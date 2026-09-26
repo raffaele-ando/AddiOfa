@@ -1,0 +1,16 @@
+{
+  "name": "OFA Polimi Prep",
+  "short_name": "OFA Prep",
+  "description": "App per prepararsi all'OFA di Inglese del Polimi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1CB0F6",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ]
+}

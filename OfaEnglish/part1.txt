@@ -1,0 +1,843 @@
+
+=================== Prepositions of Time ===================
+[q9] [B1|Traduzione]
+  P: Translate 'Il treno partirà tra 2 minuti.'
+  O: ["The train leaves between 2 minutes.","The train will leave in 2 minutes.","The train going to leave on 2 minutes.","The train part in 2 minutes."]
+  C: The train will leave in 2 minutes.
+  E: We use 'in' for future time limits ('in 2 minutes'). 'Will leave' expresses a future fact.
+[q10] [B1|Traduzione]
+  P: Translate 'Ti posso offrire qualcosa da bere?'
+  O: ["Can I offer you anything for drink?","Can I offer you something to drink?","Can I offer you somewhat to drink?","Do I can offer you something to drink?"]
+  C: Can I offer you something to drink?
+  E: In offers, we normally use 'something', not 'anything'. The infinitive is 'to drink'.
+[q11] [B1|Traduzione]
+  P: Translate 'Francesco lavora per Google.'
+  O: ["Francesco work to Google.","Francesco works for Google.","Francesco is working by Google.","Francesco working for Google."]
+  C: Francesco works for Google.
+  E: Third person singular in Present Simple requires an 's' ('works'). 'Work for' is the correct preposition.
+[q15] [B1|Traduzione]
+  P: Translate 'Francesco riesce a parlare bene inglese.'
+  O: ["Francesco can to speak English well.","Francesco can speaks English well.","Francesco is able speak English good.","Francesco can speak English well."]
+  C: Francesco can speak English well.
+  E: Modal verb 'can' is followed by the base form without 'to' ('can speak').
+[q23] [B1|Grammatica]
+  P: Complete the sentence: 'What time _____ your plane take off?'
+  O: ["do","is","does","has"]
+  C: does
+  E: For scheduled future events, we use Present Simple. 'Plane' is 'it', so we use 'does'.
+[q24] [B1|Grammatica]
+  P: Which question is correct?
+  O: ["Can I offer you anything to drink?","Can I to offer you anything to drink?","Do I can offer you anything to drink?","Can I offer you anything for drinking?"]
+  C: Can I offer you anything to drink?
+  E: Modal 'can' is followed by a bare infinitive ('offer'). The object complement is a full infinitive ('to drink').
+[q26] [B1|Grammatica]
+  P: Complete the sentence: 'James can speak English very _____.'
+  O: ["good","better","best","well"]
+  C: well
+  E: 'Well' is the adverb form of 'good' and modifies the verb 'speak'.
+[q30] [B1|Grammatica]
+  P: Complete the sentence: 'What time does the train leave tomorrow? It _____ at 9.'
+  O: ["leave","is leaving","leaving","leaves"]
+  C: leaves
+  E: For a scheduled timetable in the future, we use the Present Simple ('leaves').
+[q36] [B1|Traduzione]
+  P: Translate 'Steven lavora per Microsoft.'
+  O: ["Steven works for Microsoft.","Steven work to Microsoft.","Steven works to Microsoft.","Steven is working for Microsoft."]
+  C: Steven works for Microsoft.
+  E: Present Simple third person requires 'works'. The preposition is 'for'.
+[q41] [B1|Grammatica]
+  P: Complete the sentence: 'Hurry, the bus _____ in 2 minutes.'
+  O: ["leaves","left","is leave","leaving"]
+  C: leaves
+  E: We use Present Simple ('leaves') for timetabled future events.
+[q54] [B1|Grammatica]
+  P: Complete the sentence: 'Hurry! The bus _____ in 2 minutes.'
+  O: ["leaves","leaving","is leave","left"]
+  C: leaves
+  E: Present Simple ('leaves') is used for scheduled events like bus or train timetables.
+[q90] [B1|Grammatica]
+  P: Complete the sentence: 'I have been studying English _____ three years.'
+  O: ["for","since","from","during"]
+  C: for
+  E: 'For' is used for a duration or period of time.
+[q91] [B1|Traduzione]
+  P: Translate 'Lavora in quella banca dal 2015.'
+  O: ["He has worked in that bank since 2015.","He works in that bank from 2015.","He worked in that bank since 2015.","He has worked in that bank for 2015."]
+  C: He has worked in that bank since 2015.
+  E: 'Since' refers to the starting point of an action.
+[q92] [B1|Grammatica]
+  P: Complete the sentence: 'She hasn't eaten anything _____ yesterday morning.'
+  O: ["since","for","from","until"]
+  C: since
+  E: 'Yesterday morning' is a specific point in time, so we use 'since'.
+[q93] [B1|Traduzione]
+  P: Translate 'Stiamo aspettando da due ore.'
+  O: ["We have been waiting for two hours.","We are waiting since two hours.","We have been waiting since two hours.","We wait for two hours."]
+  C: We have been waiting for two hours.
+  E: Duration (two hours) requires 'for'.
+[q94] [B1|Grammatica]
+  P: Complete the sentence: 'I haven't seen him _____ a long time.'
+  O: ["for","since","during","in"]
+  C: for
+  E: 'A long time' is a period, so we use 'for'.
+[q136] [A1|Grammatica]
+  P: Complete: 'I usually go to bed _____ 11 PM.'
+  O: ["at","in","on","by"]
+  C: at
+  E: Use 'at' for specific times.
+[q160] [B1|Grammatica]
+  P: Complete: 'I have known him _____ 2010.'
+  O: ["since","for","from","in"]
+  C: since
+  E: 'Since' indicates a specific starting point in the past.
+[q161] [B1|Traduzione]
+  P: Translate 'Lavorano qui da molti anni.'
+  O: ["They have worked here for many years.","They work here since many years.","They have worked here since many years.","They work here for many years."]
+  C: They have worked here for many years.
+  E: 'For' is used for a duration.
+
+=================== Prepositions of Place ===================
+[q271] [A1|Grammatica]
+  P: Complete: 'The cat is hiding _____ the bed.'
+  O: ["under","in","on","at"]
+  C: under
+  E: 'Under' means below or beneath.
+[q272] [A1|Grammatica]
+  P: Complete: 'She is waiting _____ the bus stop.'
+  O: ["at","in","on","under"]
+  C: at
+  E: Use 'at' for a specific point or location.
+[q273] [A1|Grammatica]
+  P: Complete: 'The picture is hanging _____ the wall.'
+  O: ["on","in","at","under"]
+  C: on
+  E: Use 'on' for surfaces.
+[q274] [A1|Grammatica]
+  P: Complete: 'He lives _____ London.'
+  O: ["in","at","on","by"]
+  C: in
+  E: Use 'in' for cities, countries, and enclosed spaces.
+[q275] [A1|Grammatica]
+  P: Complete: 'The car is parked _____ the house.'
+  O: ["behind","under","in","on"]
+  C: behind
+  E: 'Behind' means at the back of.
+[q276] [A1|Grammatica]
+  P: Complete: 'She sat _____ her two best friends.'
+  O: ["between","next to","under","in"]
+  C: between
+  E: 'Between' is used for a position separating two things or people.
+[q277] [A1|Grammatica]
+  P: Complete: 'The bank is _____ the post office.'
+  O: ["next to","in","on","at"]
+  C: next to
+  E: 'Next to' means beside.
+[q278] [A1|Grammatica]
+  P: Complete: 'There is a bridge _____ the river.'
+  O: ["over","under","in","at"]
+  C: over
+  E: 'Over' means extending directly upwards from or across.
+[q279] [A1|Grammatica]
+  P: Complete: 'I left my keys _____ the table.'
+  O: ["on","in","at","between"]
+  C: on
+  E: 'On' is used for surfaces.
+[q280] [A1|Traduzione]
+  P: Translate 'Il cane è sotto il tavolo.'
+  O: ["The dog is under the table.","The dog is on the table.","The dog is at the table.","The dog is in the table."]
+  C: The dog is under the table.
+  E: 'Sotto' translates to 'under'.
+[q281] [A1|Traduzione]
+  P: Translate 'Sono al cinema.'
+  O: ["I am at the cinema.","I am in the cinema.","I am on the cinema.","I am to the cinema."]
+  C: I am at the cinema.
+  E: 'At' is used for specific places like the cinema.
+[q282] [A1|Traduzione]
+  P: Translate 'C'è un ragno sul soffitto.'
+  O: ["There is a spider on the ceiling.","There is a spider at the ceiling.","There is a spider in the ceiling.","There is a spider under the ceiling."]
+  C: There is a spider on the ceiling.
+  E: 'Sul' for a surface like a ceiling is 'on'.
+[q283] [A1|Traduzione]
+  P: Translate 'L'ufficio è vicino alla banca.'
+  O: ["The office is next to the bank.","The office is in the bank.","The office is between the bank.","The office is at the bank."]
+  C: The office is next to the bank.
+  E: 'Vicino a' is 'next to' or 'near'.
+[q284] [A1|Traduzione]
+  P: Translate 'Il bambino è tra i suoi genitori.'
+  O: ["The child is between his parents.","The child is among his parents.","The child is next to his parents.","The child is in his parents."]
+  C: The child is between his parents.
+  E: 'Tra' due persone è 'between'.
+[q285] [A1|Traduzione]
+  P: Translate 'Nasconditi dietro la porta.'
+  O: ["Hide behind the door.","Hide under the door.","Hide next to the door.","Hide in the door."]
+  C: Hide behind the door.
+  E: 'Dietro' is 'behind'.
+[q286] [A1|Traduzione]
+  P: Translate 'Metti i vestiti nell'armadio.'
+  O: ["Put the clothes in the wardrobe.","Put the clothes on the wardrobe.","Put the clothes at the wardrobe.","Put the clothes into the wardrobe."]
+  C: Put the clothes in the wardrobe.
+  E: 'Nel' meaning inside an enclosed space is 'in'.
+[q287] [A1|Traduzione]
+  P: Translate 'Ho incontrato Marco alla stazione.'
+  O: ["I met Marco at the station.","I met Marco in the station.","I met Marco on the station.","I met Marco to the station."]
+  C: I met Marco at the station.
+  E: 'Alla' for a specific point is 'at'.
+[q288] [A1|Traduzione]
+  P: Translate 'C'è un giardino dietro la casa.'
+  O: ["There is a garden behind the house.","There is a garden under the house.","There is a garden in the house.","There is a garden next to the house."]
+  C: There is a garden behind the house.
+  E: 'Dietro' is 'behind'.
+
+=================== Questions and Origins ===================
+[q38] [A1|Grammatica]
+  P: Complete the sentence: 'John, where do you come _____?'
+  O: ["to","by","from","of"]
+  C: from
+  E: The phrase to ask about origins is 'Where do you come from?'
+[q111] [A1|Grammatica]
+  P: Complete the sentence: 'Where _____ you born?'
+  O: ["were","was","are","did"]
+  C: were
+  E: Past of 'to be' for 'you' is 'were'.
+[q112] [A1|Traduzione]
+  P: Translate 'Da dove viene tuo fratello?'
+  O: ["Where does your brother come from?","Where do your brother come from?","Where is your brother come from?","Where does your brother comes from?"]
+  C: Where does your brother come from?
+  E: Third person singular uses 'does' auxiliary.
+[q113] [A1|Grammatica]
+  P: Complete the sentence: '_____ country are you from?'
+  O: ["Which","What","Where","How"]
+  C: Which
+  E: 'Which' is used for a limited choice, 'What' is sometimes used, but 'Which country' is common. Actually, 'Which' is standard.
+[q114] [A1|Traduzione]
+  P: Translate 'Loro sono spagnoli?'
+  O: ["Are they Spanish?","Are they Spain?","Do they Spanish?","Is they Spanish?"]
+  C: Are they Spanish?
+  E: Simple 'to be' question.
+[q115] [A1|Grammatica]
+  P: Complete the sentence: '_____ is the capital of Italy?'
+  O: ["What","Where","Which","Who"]
+  C: What
+  E: 'What' asks for specific information.
+[q116] [A1|Traduzione]
+  P: Translate 'Di dov'è Maria?'
+  O: ["Where is Maria from?","Where does Maria from?","From where is Maria?","Where Maria is from?"]
+  C: Where is Maria from?
+  E: Standard phrasing for asking origins.
+[q197] [A1|Grammatica]
+  P: Complete: '_____ is that man?'
+  O: ["Who","What","Which","Where"]
+  C: Who
+  E: Asking for a person's identity requires 'Who'.
+[q198] [A1|Traduzione]
+  P: Translate 'Perché sei in ritardo?'
+  O: ["Why are you late?","Because are you late?","Why you are late?","Why do you late?"]
+  C: Why are you late?
+  E: Asking for a reason requires 'Why'.
+[q199] [A1|Grammatica]
+  P: Complete: '_____ old are you?'
+  O: ["How","What","Who","Which"]
+  C: How
+  E: Asking about age uses 'How old'.
+[q200] [A1|Traduzione]
+  P: Translate 'Quando è il tuo compleanno?'
+  O: ["When is your birthday?","Where is your birthday?","What is your birthday?","How is your birthday?"]
+  C: When is your birthday?
+  E: Asking for time/date requires 'When'.
+[q201] [A1|Grammatica]
+  P: Complete: '_____ do you live?'
+  O: ["Where","What","How","When"]
+  C: Where
+  E: Asking for a place requires 'Where'.
+[q202] [A1|Traduzione]
+  P: Translate 'Come vai al lavoro?'
+  O: ["How do you go to work?","What do you go to work?","Where do you go to work?","Why do you go to work?"]
+  C: How do you go to work?
+  E: Asking for method/manner requires 'How'.
+[q203] [A1|Grammatica]
+  P: Complete: '_____ is your favorite color?'
+  O: ["What","Which","Who","How"]
+  C: What
+  E: Asking for general preference uses 'What'.
+[q204] [A1|Traduzione]
+  P: Translate 'Di chi è questa borsa?'
+  O: ["Whose bag is this?","Who bag is this?","Which bag is this?","What bag is this?"]
+  C: Whose bag is this?
+  E: Asking for possession requires 'Whose'.
+[q205] [A1|Grammatica]
+  P: Complete: '_____ time does the movie start?'
+  O: ["What","Which","When","How"]
+  C: What
+  E: Asking for a specific time uses 'What time'.
+[q206] [A1|Traduzione]
+  P: Translate 'Quanto costa questo libro?'
+  O: ["How much does this book cost?","How many does this book cost?","How price is this book?","What cost this book?"]
+  C: How much does this book cost?
+  E: Asking for price uses 'How much'.
+[q207] [A1|Grammatica]
+  P: Complete: '_____ languages do you speak?'
+  O: ["How many","How much","What","Which"]
+  C: How many
+  E: 'Languages' is countable, so 'How many'.
+
+=================== Possessives ===================
+[q217] [A1|Grammatica]
+  P: Complete: 'This is not my pen. It is _____.'
+  O: ["yours","your","you","yours'"]
+  C: yours
+  E: Pronoun 'yours' replaces 'your pen'.
+[q218] [A1|Grammatica]
+  P: Complete: '_____ car is parked outside.'
+  O: ["Her","Hers","She","Hers'"]
+  C: Her
+  E: Adjective 'Her' describes the car.
+[q219] [A1|Grammatica]
+  P: Complete: 'That house is _____.' (of us)
+  O: ["ours","our","we","us"]
+  C: ours
+  E: Pronoun 'ours' replaces 'our house'.
+[q220] [A1|Grammatica]
+  P: Complete: 'Is this book _____?' (of him)
+  O: ["his","him","he","his'"]
+  C: his
+  E: Pronoun 'his' indicates possession by a male.
+[q221] [A1|Grammatica]
+  P: Complete: 'These are _____ shoes.'
+  O: ["my","mine","me","I"]
+  C: my
+  E: Adjective 'my' modifies shoes.
+[q222] [A1|Grammatica]
+  P: Complete: 'The dog is wagging _____ tail.'
+  O: ["its","it's","it","its'"]
+  C: its
+  E: 'Its' is the possessive adjective for animals/things without an apostrophe.
+[q223] [A1|Grammatica]
+  P: Complete: 'Are those keys _____?' (of them)
+  O: ["theirs","their","them","they"]
+  C: theirs
+  E: Pronoun 'theirs' replaces 'their keys'.
+[q224] [A1|Grammatica]
+  P: Complete: 'I lost _____ keys yesterday.'
+  O: ["my","mine","me","I"]
+  C: my
+  E: Possessive adjective 'my' comes before the noun.
+[q225] [A1|Grammatica]
+  P: Complete: 'This laptop is _____, not yours.'
+  O: ["mine","my","me","I"]
+  C: mine
+  E: Pronoun 'mine' replaces 'my laptop'.
+[q226] [A1|Traduzione]
+  P: Translate 'Questo libro è mio.'
+  O: ["This book is mine.","This book is my.","This book is me.","This book is I."]
+  C: This book is mine.
+  E: 'Mio' at the end of the sentence is the pronoun 'mine'.
+[q227] [A1|Traduzione]
+  P: Translate 'La loro casa è molto grande.'
+  O: ["Their house is very big.","Theirs house is very big.","They house is very big.","Them house is very big."]
+  C: Their house is very big.
+  E: 'Loro' as an adjective before a noun is 'their'.
+[q228] [A1|Traduzione]
+  P: Translate 'Quella è la tua giacca, non la sua (di lei).'
+  O: ["That is your jacket, not hers.","That is your jacket, not her.","That is yours jacket, not hers.","That is your jacket, not she."]
+  C: That is your jacket, not hers.
+  E: 'La sua' without the noun is the pronoun 'hers'.
+[q229] [A1|Traduzione]
+  P: Translate 'I nostri amici stanno arrivando.'
+  O: ["Our friends are coming.","Ours friends are coming.","We friends are coming.","Us friends are coming."]
+  C: Our friends are coming.
+  E: 'Nostri' before the noun is 'our'.
+[q230] [A1|Traduzione]
+  P: Translate 'Questi soldi sono vostri?'
+  O: ["Is this money yours?","Is this money your?","Are these money yours?","Is this money you?"]
+  C: Is this money yours?
+  E: Money is uncountable singular, 'vostri' as a pronoun is 'yours'.
+[q231] [A1|Traduzione]
+  P: Translate 'Il suo (di lui) telefono è nuovo.'
+  O: ["His phone is new.","Him phone is new.","He phone is new.","His' phone is new."]
+  C: His phone is new.
+  E: 'Suo' for a male is 'his'.
+[q232] [A1|Traduzione]
+  P: Translate 'La mia macchina è rossa, la sua (di lui) è blu.'
+  O: ["My car is red, his is blue.","My car is red, him is blue.","Mine car is red, his is blue.","My car is red, he is blue."]
+  C: My car is red, his is blue.
+  E: 'La sua' as a pronoun for a male is 'his'.
+[q233] [A1|Traduzione]
+  P: Translate 'Ho dimenticato il mio ombrello.'
+  O: ["I forgot my umbrella.","I forgot mine umbrella.","I forgot me umbrella.","I forgot I umbrella."]
+  C: I forgot my umbrella.
+  E: 'Il mio' before the noun is 'my'.
+[q234] [A1|Traduzione]
+  P: Translate 'Quelle penne sono loro (di loro).'
+  O: ["Those pens are theirs.","Those pens are their.","Those pens are them.","Those pens are they."]
+  C: Those pens are theirs.
+  E: 'Loro' as a pronoun is 'theirs'.
+
+=================== Possessive S ===================
+[q46] [A1|Traduzione]
+  P: Translate 'Non mi piace il trucco di Sara.'
+  O: ["I don't like Sara makeup.","I don't like Sara's makeup.","I'm not like Sara's makeup.","I don't like the makeup of Sara."]
+  C: I don't like Sara's makeup.
+  E: We use the possessive 's (Sara's) to show belonging.
+[q100] [A1|Grammatica]
+  P: Complete the sentence: 'This is my _____ car.' (The car belongs to my friend)
+  O: ["friend's","friends'","friend","friends"]
+  C: friend's
+  E: Singular possessive adds 's.
+[q101] [A1|Traduzione]
+  P: Translate 'Dov'è il computer di Marco?'
+  O: ["Where is Marco's computer?","Where is the computer of Marco?","Where is Marcos' computer?","Where is Marco computer?"]
+  C: Where is Marco's computer?
+  E: Possessive 's is preferred for people.
+[q102] [A1|Grammatica]
+  P: Complete the sentence: 'Those are my _____ toys.' (The toys belong to my dogs)
+  O: ["dogs'","dog's","dogs","dog"]
+  C: dogs'
+  E: Regular plural nouns just add an apostrophe after the 's'.
+[q103] [A1|Traduzione]
+  P: Translate 'La borsa di Sarah è rossa.'
+  O: ["Sarah's bag is red.","The bag of Sarah is red.","Sarahs bag is red.","Sarah' bag is red."]
+  C: Sarah's bag is red.
+  E: Possessive 's shows ownership.
+[q104] [A1|Grammatica]
+  P: Complete the sentence: 'We went to the _____ house yesterday.' (The house belongs to my parents)
+  O: ["parents'","parent's","parents","parent"]
+  C: parents'
+  E: Plural noun ending in 's' gets an apostrophe at the end.
+[q148] [A1|Grammatica]
+  P: Complete: 'That is _____ jacket.' (The jacket belongs to Tom)
+  O: ["Tom's","Toms'","Tom","Toms"]
+  C: Tom's
+  E: Add 's to singular names.
+[q149] [A1|Traduzione]
+  P: Translate 'La casa dei miei nonni è grande.'
+  O: ["My grandparents' house is big.","My grandparent's house is big.","The house of my grandparents is big.","My grandparents house is big."]
+  C: My grandparents' house is big.
+  E: Plural nouns ending in -s just take an apostrophe.
+[q150] [A1|Grammatica]
+  P: Complete: 'I love _____ new song.' (The song of the band)
+  O: ["the band's","the bands'","the band","the bands"]
+  C: the band's
+  E: Singular noun 'band' takes 's.
+[q151] [A1|Traduzione]
+  P: Translate 'I giocattoli dei bambini sono sparsi ovunque.'
+  O: ["The children's toys are everywhere.","The childrens' toys are everywhere.","The children toys are everywhere.","The toys of children are everywhere."]
+  C: The children's toys are everywhere.
+  E: Irregular plurals not ending in -s take 's.
+[q152] [A1|Grammatica]
+  P: Complete: 'This is _____ desk.' (The desk belongs to the boss)
+  O: ["the boss's","the boss'","the boss","the bosses"]
+  C: the boss's
+  E: Singular nouns ending in -s usually take 's.
+[q153] [A1|Traduzione]
+  P: Translate 'La macchina di James è blu.'
+  O: ["James's car is blue.","James car is blue.","The car of James is blue.","Jame's car is blue."]
+  C: James's car is blue.
+  E: Names ending in -s can take 's or just an apostrophe. 'James's' is common.
+[q154] [A1|Grammatica]
+  P: Complete: 'I went to the _____.' (The shop of the baker)
+  O: ["baker's","bakers'","baker","bakers"]
+  C: baker's
+  E: Possessive form is often used alone for shops/businesses.
+[q155] [A1|Traduzione]
+  P: Translate 'È il compleanno di mia madre.'
+  O: ["It's my mother's birthday.","It's the birthday of my mother.","It's my mothers birthday.","It's my mother birthday."]
+  C: It's my mother's birthday.
+  E: Possessive 's for people.
+[q156] [A1|Grammatica]
+  P: Complete: 'We are meeting at _____.' (The house of Paul)
+  O: ["Paul's","Pauls'","Paul","Pauls"]
+  C: Paul's
+  E: Possessive form is often used alone for people's houses.
+[q157] [A1|Traduzione]
+  P: Translate 'Le scarpe da donna sono al secondo piano.'
+  O: ["Women's shoes are on the second floor.","Womens' shoes are on the second floor.","Woman's shoes are on the second floor.","Women shoes are on the second floor."]
+  C: Women's shoes are on the second floor.
+  E: Irregular plural 'women' takes 's.
+[q158] [A1|Grammatica]
+  P: Complete: 'The _____ room is down the hall.' (The room for teachers)
+  O: ["teachers'","teacher's","teachers","teacher"]
+  C: teachers'
+  E: Plural 'teachers' takes an apostrophe after the s.
+[q159] [A1|Traduzione]
+  P: Translate 'Hai visto le chiavi di Anna?'
+  O: ["Have you seen Anna's keys?","Have you seen the keys of Anna?","Have you seen Annas keys?","Have you seen Anna keys?"]
+  C: Have you seen Anna's keys?
+  E: Singular name takes 's.
+
+=================== Object Pronouns ===================
+[q20] [A2|Grammatica]
+  P: Complete the sentence: 'This plate is dirty, can I have a clean _____?'
+  O: ["plate","one","ones","it"]
+  C: one
+  E: We use the pronoun 'one' to avoid repeating a singular countable noun.
+[q27] [A2|Grammatica]
+  P: Complete the sentence: 'The children want _____ to play with them.'
+  O: ["I","that I","me","my"]
+  C: me
+  E: After 'want', we use an object pronoun ('me') + to-infinitive.
+[q235] [A1|Grammatica]
+  P: Complete: 'I call _____ every day.' (him/he/his/himself)
+  O: ["him","he","his","himself"]
+  C: him
+  E: 'Him' is the object pronoun for a male.
+[q236] [A1|Grammatica]
+  P: Complete: 'She loves _____ very much.' (me/I/my/mine)
+  O: ["me","I","my","mine"]
+  C: me
+  E: 'Me' is the object pronoun for first person singular.
+[q237] [A1|Grammatica]
+  P: Complete: 'Can you help _____ with this exercise?' (us/we/our/ours)
+  O: ["us","we","our","ours"]
+  C: us
+  E: 'Us' is the object pronoun for 'we'.
+[q238] [A1|Grammatica]
+  P: Complete: 'I don't know _____.' (them/they/their/theirs)
+  O: ["them","they","their","theirs"]
+  C: them
+  E: 'Them' is the object pronoun for 'they'.
+[q239] [A1|Grammatica]
+  P: Complete: 'Look at _____!' (her/she/hers/herself)
+  O: ["her","she","hers","herself"]
+  C: her
+  E: 'Her' is the object pronoun after the preposition 'at'.
+[q240] [A1|Grammatica]
+  P: Complete: 'He wants to speak to _____.' (you/your/yours/yourself)
+  O: ["you","your","yours","yourself"]
+  C: you
+  E: 'You' is the object pronoun.
+[q241] [A1|Grammatica]
+  P: Complete: 'Give _____ to me.' (it/its/it's/itself)
+  O: ["it","its","it's","itself"]
+  C: it
+  E: 'It' is the object pronoun for things/animals.
+[q242] [A1|Grammatica]
+  P: Complete: 'My parents are visiting _____.' (me/I/my/mine)
+  O: ["me","I","my","mine"]
+  C: me
+  E: 'Me' receives the action of visiting.
+[q243] [A1|Grammatica]
+  P: Complete: 'Are you listening to _____?' (him/he/his/himself)
+  O: ["him","he","his","himself"]
+  C: him
+  E: 'Him' follows the preposition 'to'.
+[q244] [A1|Traduzione]
+  P: Translate 'Non lo capisco.' (di lui)
+  O: ["I don't understand him.","I don't understand he.","I don't understand his.","I don't understand it."]
+  C: I don't understand him.
+  E: 'Lo' referring to a man translates to 'him'.
+[q245] [A1|Traduzione]
+  P: Translate 'Puoi vederci?'
+  O: ["Can you see us?","Can you see we?","Can you see our?","Can you see me?"]
+  C: Can you see us?
+  E: 'Ci' translates to the object pronoun 'us'.
+[q246] [A1|Traduzione]
+  P: Translate 'Le ho comprato un regalo.' (a lei)
+  O: ["I bought her a present.","I bought she a present.","I bought hers a present.","I bought for her a present."]
+  C: I bought her a present.
+  E: 'Le' (to her) is translated with the object pronoun 'her'.
+[q247] [A1|Traduzione]
+  P: Translate 'Li aspetto qui.'
+  O: ["I wait for them here.","I wait for they here.","I wait them here.","I am waiting they here."]
+  C: I wait for them here.
+  E: 'Li' (them) follows the preposition 'for' in English.
+[q248] [A1|Traduzione]
+  P: Translate 'Dammi quel libro.'
+  O: ["Give me that book.","Give I that book.","Give my that book.","Give to me that book."]
+  C: Give me that book.
+  E: 'Dammi' uses the object pronoun 'me'.
+[q249] [A1|Traduzione]
+  P: Translate 'Non ti credo.'
+  O: ["I don't believe you.","I don't believe your.","I don't believe to you.","I not believe you."]
+  C: I don't believe you.
+  E: 'Ti' is the object pronoun 'you'.
+[q250] [A1|Traduzione]
+  P: Translate 'Lo voglio adesso.' (un oggetto)
+  O: ["I want it now.","I want him now.","I want that now.","I want this now."]
+  C: I want it now.
+  E: 'Lo' for a thing is 'it'.
+[q251] [A1|Traduzione]
+  P: Translate 'Vieni con noi al cinema?'
+  O: ["Are you coming with us to the cinema?","Are you coming with we to the cinema?","Do you come with us to the cinema?","Are you coming to us to the cinema?"]
+  C: Are you coming with us to the cinema?
+  E: 'Con noi' uses the object pronoun 'us'.
+[q252] [A1|Traduzione]
+  P: Translate 'Non li conosco.'
+  O: ["I don't know them.","I don't know they.","I don't know their.","I not know them."]
+  C: I don't know them.
+  E: 'Li' is the object pronoun 'them'.
+
+=================== Demonstratives ===================
+[q253] [A1|Grammatica]
+  P: Complete: '_____ is my friend, Paul.' (near)
+  O: ["This","These","Those","That"]
+  C: This
+  E: 'This' is used for a singular person/thing near the speaker.
+[q254] [A1|Grammatica]
+  P: Complete: 'Look at _____ birds in the sky.'
+  O: ["those","that","this","these"]
+  C: those
+  E: 'Those' is used for plural things far from the speaker.
+[q255] [A1|Grammatica]
+  P: Complete: 'Are _____ your shoes here?'
+  O: ["these","this","that","those"]
+  C: these
+  E: 'These' is used for plural things near the speaker.
+[q256] [A1|Grammatica]
+  P: Complete: '_____ building over there is a hospital.'
+  O: ["That","This","These","Those"]
+  C: That
+  E: 'That' is used for a singular thing far away.
+[q257] [A1|Grammatica]
+  P: Complete: '_____ days are the best of my life.'
+  O: ["These","This","That","Those"]
+  C: These
+  E: 'These' refers to plural days in the current time.
+[q258] [A1|Grammatica]
+  P: Complete: 'I don't like _____ kind of music.' (near/current)
+  O: ["this","these","those","them"]
+  C: this
+  E: 'This kind' is singular.
+[q259] [A1|Grammatica]
+  P: Complete: 'Did you buy _____ apples from the market?' (far/past)
+  O: ["those","that","this","them"]
+  C: those
+  E: 'Those apples' refers to plural items away or in the past.
+[q260] [A1|Grammatica]
+  P: Complete: '_____ is a very interesting book.' (holding it)
+  O: ["This","These","Those","Them"]
+  C: This
+  E: 'This' refers to a singular item being held.
+[q261] [A1|Grammatica]
+  P: Complete: 'Can you pass me _____ pen?' (far)
+  O: ["that","those","these","this"]
+  C: that
+  E: 'That' refers to a singular item out of reach.
+[q262] [A1|Traduzione]
+  P: Translate 'Questo è il mio gatto.'
+  O: ["This is my cat.","That is my cat.","These is my cat.","Those is my cat."]
+  C: This is my cat.
+  E: 'Questo' is 'This'.
+[q263] [A1|Traduzione]
+  P: Translate 'Quelli sono i miei libri.'
+  O: ["Those are my books.","That are my books.","These are my books.","This are my books."]
+  C: Those are my books.
+  E: 'Quelli' (far plural) is 'Those'.
+[q264] [A1|Traduzione]
+  P: Translate 'Questa pizza è buonissima.'
+  O: ["This pizza is very good.","That pizza is very good.","These pizza is very good.","It pizza is very good."]
+  C: This pizza is very good.
+  E: 'Questa' is 'This'.
+[q265] [A1|Traduzione]
+  P: Translate 'Queste ragazze sono italiane.'
+  O: ["These girls are Italian.","This girls are Italian.","Those girls are Italian.","That girls are Italian."]
+  C: These girls are Italian.
+  E: 'Queste' (near plural) is 'These'.
+[q266] [A1|Traduzione]
+  P: Translate 'Quell'uomo è mio padre.'
+  O: ["That man is my father.","This man is my father.","Those man is my father.","The man is my father."]
+  C: That man is my father.
+  E: 'Quell'' (far singular) is 'That'.
+[q267] [A1|Traduzione]
+  P: Translate 'Cosa sono quelle cose?'
+  O: ["What are those things?","What are these things?","What is that things?","What are that things?"]
+  C: What are those things?
+  E: 'Quelle' (far plural) is 'those'.
+[q268] [A1|Traduzione]
+  P: Translate 'Preferisco questo vestito.'
+  O: ["I prefer this dress.","I prefer that dress.","I prefer these dress.","I prefer those dress."]
+  C: I prefer this dress.
+  E: 'Questo' is 'this'.
+[q269] [A1|Traduzione]
+  P: Translate 'Conosci quelle persone?'
+  O: ["Do you know those people?","Do you know these people?","Do you know that people?","Do you know this people?"]
+  C: Do you know those people?
+  E: 'Quelle' (far plural) is 'those'.
+[q270] [A1|Traduzione]
+  P: Translate 'Questi sono i miei appunti.'
+  O: ["These are my notes.","This are my notes.","Those are my notes.","That are my notes."]
+  C: These are my notes.
+  E: 'Questi' (near plural) is 'These'.
+
+=================== Imperative ===================
+[q289] [A1|Grammatica]
+  P: Complete: '_____ to me carefully.'
+  O: ["Listen","Listening","Listens","To listen"]
+  C: Listen
+  E: Imperative uses the base form of the verb.
+[q290] [A1|Grammatica]
+  P: Complete: '_____ open the window. It's cold.'
+  O: ["Don't","Not","No","Doesn't"]
+  C: Don't
+  E: Negative imperative uses 'Don't'.
+[q291] [A1|Grammatica]
+  P: Complete: '_____ your vegetables!'
+  O: ["Eat","Eating","Eats","To eat"]
+  C: Eat
+  E: Use base verb for direct commands.
+[q292] [A1|Grammatica]
+  P: Complete: '_____ be late for the meeting.'
+  O: ["Don't","Not","Doesn't","No"]
+  C: Don't
+  E: Negative commands always start with 'Don't'.
+[q293] [A1|Grammatica]
+  P: Complete: '_____ quiet, please.'
+  O: ["Be","Are","Is","Am"]
+  C: Be
+  E: Base form of 'to be' is used for commands.
+[q294] [A1|Grammatica]
+  P: Complete: '_____ touch that plate, it's hot.'
+  O: ["Don't","No","Not","Doesn't"]
+  C: Don't
+  E: Negative command.
+[q295] [A1|Grammatica]
+  P: Complete: '_____ your homework before dinner.'
+  O: ["Do","Does","Doing","Did"]
+  C: Do
+  E: Base verb 'Do'.
+[q296] [A1|Grammatica]
+  P: Complete: '_____ me the salt, please.'
+  O: ["Pass","Passing","Passes","To pass"]
+  C: Pass
+  E: Base verb 'Pass'.
+[q297] [A1|Grammatica]
+  P: Complete: '_____ worry about it.'
+  O: ["Don't","Not","No","Doesn't"]
+  C: Don't
+  E: Negative command.
+[q298] [A1|Traduzione]
+  P: Translate 'Non toccare il mio telefono.'
+  O: ["Don't touch my phone.","Not touch my phone.","No touch my phone.","Doesn't touch my phone."]
+  C: Don't touch my phone.
+  E: Negative imperative is formed with 'Don't'.
+[q299] [A1|Traduzione]
+  P: Translate 'Fai attenzione!'
+  O: ["Pay attention!","Do attention!","Make attention!","Attention you!"]
+  C: Pay attention!
+  E: 'Fare attenzione' is 'pay attention'.
+[q300] [A1|Traduzione]
+  P: Translate 'Ascoltami quando parlo.'
+  O: ["Listen to me when I speak.","Listen me when I speak.","Hear me when I speak.","Hear to me when I speak."]
+  C: Listen to me when I speak.
+  E: 'Ascoltare' requires 'to' before the object in English.
+[q301] [A1|Traduzione]
+  P: Translate 'Non dimenticare le chiavi.'
+  O: ["Don't forget your keys.","Not forget your keys.","No forget your keys.","Don't missing your keys."]
+  C: Don't forget your keys.
+  E: Negative command with 'Don't'.
+[q302] [A1|Traduzione]
+  P: Translate 'Chiudi la porta, per favore.'
+  O: ["Close the door, please.","Closing the door, please.","To close the door, please.","You close the door, please."]
+  C: Close the door, please.
+  E: Base verb for command.
+[q303] [A1|Traduzione]
+  P: Translate 'Non parlare durante l'esame.'
+  O: ["Don't speak during the exam.","Not speak during the exam.","Doesn't speak during the exam.","Don't speaking during the exam."]
+  C: Don't speak during the exam.
+  E: Negative command.
+[q304] [A1|Traduzione]
+  P: Translate 'Aspetta qui un momento.'
+  O: ["Wait here a moment.","Waiting here a moment.","Wait here a time.","Stay here a moment."]
+  C: Wait here a moment.
+  E: Base verb 'Wait'.
+[q305] [A1|Traduzione]
+  P: Translate 'Scrivete i vostri nomi sul foglio.'
+  O: ["Write your names on the paper.","Writing your names on the paper.","You write your names on the paper.","To write your names on the paper."]
+  C: Write your names on the paper.
+  E: Imperative is the same for singular and plural 'you'.
+[q306] [A1|Traduzione]
+  P: Translate 'Non fumare in questa stanza.'
+  O: ["Don't smoke in this room.","No smoking in this room.","Not smoke in this room.","Doesn't smoke in this room."]
+  C: Don't smoke in this room.
+  E: 'Don't smoke' is the imperative. ('No smoking' is a sign/rule but the direct translation uses 'Don't').
+
+=================== Adverbs of Manner ===================
+[q361] [A2|Grammatica]
+  P: Complete: 'She speaks English very _____.' (good/well)
+  O: ["well","good","goodly","welling"]
+  C: well
+  E: 'Well' is the adverb form of 'good'.
+[q362] [A2|Grammatica]
+  P: Complete: 'He drives very _____. It's dangerous!'
+  O: ["fast","fastly","quick","speedy"]
+  C: fast
+  E: 'Fast' is both an adjective and an adverb.
+[q363] [A2|Grammatica]
+  P: Complete: 'Please do your work _____. Take your time.'
+  O: ["carefully","careful","careless","carelessly"]
+  C: carefully
+  E: 'Carefully' describes how to do the work.
+[q364] [A2|Grammatica]
+  P: Complete: 'They won the game _____. They were much better.'
+  O: ["easily","easy","easier","easying"]
+  C: easily
+  E: 'Easily' is the adverb form of 'easy' (y changes to i + ly).
+[q365] [A2|Grammatica]
+  P: Complete: 'The old man walked _____ down the street.'
+  O: ["slowly","slow","slower","slowingly"]
+  C: slowly
+  E: 'Slowly' describes the verb 'walked'.
+[q366] [A2|Grammatica]
+  P: Complete: 'She looked at him _____ when he broke the glass.'
+  O: ["angrily","angry","angrier","angrying"]
+  C: angrily
+  E: Adverb formed from 'angry'.
+[q367] [A2|Grammatica]
+  P: Complete: 'He worked _____ to pass the exam.'
+  O: ["hard","hardly","harder","hards"]
+  C: hard
+  E: 'Hard' is an irregular adverb meaning with effort. ('Hardly' means almost not).
+[q368] [A2|Grammatica]
+  P: Complete: 'The children were playing _____ in the garden.'
+  O: ["happily","happy","happier","happiness"]
+  C: happily
+  E: Adverb of 'happy'.
+[q369] [A2|Grammatica]
+  P: Complete: 'I can run very _____.'
+  O: ["fast","fastly","quick","faster"]
+  C: fast
+  E: 'Fast' is an irregular adverb.
+[q370] [A2|Traduzione]
+  P: Translate 'Ha risposto alla domanda velocemente.'
+  O: ["He answered the question quickly.","He answered the question quick.","He answered the question fastly.","He answered the question quicker."]
+  C: He answered the question quickly.
+  E: 'Velocemente' is 'quickly'.
+[q371] [A2|Traduzione]
+  P: Translate 'Canta davvero bene.'
+  O: ["She sings really well.","She sings really good.","She sings really goodly.","She sings really nice."]
+  C: She sings really well.
+  E: 'Bene' is the adverb 'well'.
+[q372] [A2|Traduzione]
+  P: Translate 'Hanno lavorato duramente tutto il giorno.'
+  O: ["They worked hard all day.","They worked hardly all day.","They worked difficultly all day.","They worked heavy all day."]
+  C: They worked hard all day.
+  E: 'Duramente' (con fatica) is 'hard'.
+[q373] [A2|Traduzione]
+  P: Translate 'Per favore, parla lentamente.'
+  O: ["Please, speak slowly.","Please, speak slow.","Please, speak slower.","Please, speak slowingly."]
+  C: Please, speak slowly.
+  E: 'Lentamente' is 'slowly'.
+[q374] [A2|Traduzione]
+  P: Translate 'Ha chiuso la porta silenziosamente.'
+  O: ["He closed the door quietly.","He closed the door quiet.","He closed the door quietlyly.","He closed the door silent."]
+  C: He closed the door quietly.
+  E: 'Silenziosamente' is 'quietly'.
+[q375] [A2|Traduzione]
+  P: Translate 'Hanno risolto il problema facilmente.'
+  O: ["They solved the problem easily.","They solved the problem easy.","They solved the problem with easy.","They solved the problem easier."]
+  C: They solved the problem easily.
+  E: 'Facilmente' is 'easily'.
+[q376] [A2|Traduzione]
+  P: Translate 'Guida sempre con molta attenzione (attentamente).'
+  O: ["He always drives carefully.","He always drives careful.","He always drives care.","He always drives with careful."]
+  C: He always drives carefully.
+  E: 'Attentamente' is 'carefully'.
+[q377] [A2|Traduzione]
+  P: Translate 'L'insegnante ha spiegato la regola chiaramente.'
+  O: ["The teacher explained the rule clearly.","The teacher explained the rule clear.","The teacher explained the rule cleary.","The teacher explained the rule clearing."]
+  C: The teacher explained the rule clearly.
+  E: 'Chiaramente' is 'clearly'.
+[q378] [A2|Traduzione]
+  P: Translate 'Ho capito perfettamente.'
+  O: ["I understood perfectly.","I understood perfect.","I understood perfection.","I understood perfectlyly."]
+  C: I understood perfectly.
+  E: 'Perfettamente' is 'perfectly'.

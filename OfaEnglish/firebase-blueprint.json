@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "users": {
+      "$userId": {
+        "read": "request.auth != null && request.auth.uid == userId",
+        "write": "request.auth != null && request.auth.uid == userId",
+        "schema": {
+          "stats": "map",
+          "history": "list",
+          "streak": "number",
+          "lastActiveDate": "number?"
+        }
+      }
+    }
+  }
+}

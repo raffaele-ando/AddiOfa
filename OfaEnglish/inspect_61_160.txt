@@ -1,0 +1,501 @@
+=== INSPECTING QUESTIONS 61 to 160 ===
+[q61] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Translate 'Lui ha vissuto qui per dieci anni.'"
+  Ans: "He has lived here for ten years."
+  Exp: "Present Perfect for a state that started in the past and continues to the present."
+
+[q62] TOPIC: "There is / There are" | LEVEL: A1
+  Prompt: "Translate 'Ci sono molte macchine per strada oggi.'"
+  Ans: "There are many cars on the street today."
+  Exp: "We use 'There are' for plural existence."
+
+[q63] TOPIC: "There is / There are" | LEVEL: A1
+  Prompt: "Complete the sentence: '_____ any milk in the fridge?'"
+  Ans: "Is there"
+  Exp: "'Milk' is uncountable, so we use 'Is there'."
+
+[q64] TOPIC: "There is / There are" | LEVEL: A1
+  Prompt: "Translate 'Non c'è nessun problema.'"
+  Ans: "There is no problem."
+  Exp: "Singular negative existence."
+
+[q65] TOPIC: "There is / There are" | LEVEL: A1
+  Prompt: "Complete the sentence: '_____ some apples on the table.'"
+  Ans: "There are"
+  Exp: "Plural affirmative existence."
+
+[q66] TOPIC: "There is / There are" | LEVEL: A1
+  Prompt: "Translate 'C'è un cane nel giardino?'"
+  Ans: "Is there a dog in the garden?"
+  Exp: "Question form for singular existence."
+
+[q67] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Complete the sentence: 'I _____ to the cinema yesterday.'"
+  Ans: "went"
+  Exp: "Past simple for a finished action at a specific time in the past."
+
+[q68] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Translate 'Non hanno studiato per l'esame.'"
+  Ans: "They didn't study for the exam."
+  Exp: "Past simple negative uses 'didn't' + base verb."
+
+[q69] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Complete the sentence: '_____ you see the football match last night?'"
+  Ans: "Did"
+  Exp: "Past simple question uses auxiliary 'did'."
+
+[q70] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Translate 'Lei ha comprato un nuovo telefono la settimana scorsa.'"
+  Ans: "She bought a new phone last week."
+  Exp: "Irregular past simple of 'buy' is 'bought'."
+
+[q71] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Complete the sentence: 'We _____ very tired after the trip.'"
+  Ans: "were"
+  Exp: "Past simple of 'to be' for 'we' is 'were'."
+
+[q72] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Translate 'Quando sei arrivato?'"
+  Ans: "When did you arrive?"
+  Exp: "Question word + did + subject + base verb."
+
+[q73] TOPIC: "Present Continuous" | LEVEL: A2
+  Prompt: "Complete the sentence: 'Please be quiet, I _____.'"
+  Ans: "am working"
+  Exp: "Action happening right now requires present continuous."
+
+[q74] TOPIC: "Present Continuous" | LEVEL: A2
+  Prompt: "Translate 'Cosa stanno facendo?'"
+  Ans: "What are they doing?"
+  Exp: "Present continuous question format."
+
+[q75] TOPIC: "Present Continuous" | LEVEL: A2
+  Prompt: "Complete the sentence: 'She _____ to music at the moment.'"
+  Ans: "is listening"
+  Exp: "'At the moment' indicates an ongoing action."
+
+[q76] TOPIC: "Present Continuous" | LEVEL: A2
+  Prompt: "Translate 'Non sto leggendo un libro, sto guardando la TV.'"
+  Ans: "I'm not reading a book, I'm watching TV."
+  Exp: "Present continuous for current contrasting actions."
+
+[q77] TOPIC: "Present Continuous" | LEVEL: A2
+  Prompt: "Complete the sentence: '_____ it raining outside?'"
+  Ans: "Is"
+  Exp: "Auxiliary 'to be' is used for present continuous questions."
+
+[q78] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Complete the sentence: 'If you study hard, you _____ the exam.'"
+  Ans: "will pass"
+  Exp: "First conditional: If + present simple, will + base verb."
+
+[q79] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Translate 'Se piove, non andremo in spiaggia.'"
+  Ans: "If it rains, we won't go to the beach."
+  Exp: "First conditional structure."
+
+[q80] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Complete the sentence: 'I will call you if I _____ any news.'"
+  Ans: "hear"
+  Exp: "The 'if' clause uses the present simple."
+
+[q81] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Translate 'Cosa farai se perdi il treno?'"
+  Ans: "What will you do if you miss the train?"
+  Exp: "First conditional question."
+
+[q82] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Complete the sentence: 'If she _____ invite me, I won't go to the party.'"
+  Ans: "doesn't"
+  Exp: "Negative present simple in the 'if' clause."
+
+[q83] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Translate 'Se non ti sbrighi, faremo tardi.'"
+  Ans: "If you don't hurry, we will be late."
+  Exp: "First conditional with negative condition."
+
+[q84] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Complete the sentence: 'Russia is the _____ country in the world.'"
+  Ans: "largest"
+  Exp: "Superlative of short adjectives adds -est."
+
+[q85] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Translate 'L'inglese è più facile del cinese.'"
+  Ans: "English is easier than Chinese."
+  Exp: "Comparative for 'easy' is 'easier', followed by 'than'."
+
+[q86] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Complete the sentence: 'This book is _____ interesting than the last one.'"
+  Ans: "more"
+  Exp: "Long adjectives use 'more' for comparative."
+
+[q87] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Translate 'È il film peggiore che abbia mai visto.'"
+  Ans: "It's the worst movie I've ever seen."
+  Exp: "Superlative of 'bad' is 'worst'."
+
+[q88] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Complete the sentence: 'My brother is much _____ than me.'"
+  Ans: "taller"
+  Exp: "Comparative of 'tall' is 'taller'. 'Much' emphasizes it."
+
+[q89] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Translate 'Questa è la città più costosa d'Europa.'"
+  Ans: "This is the most expensive city in Europe."
+  Exp: "Superlative of long adjectives uses 'the most'."
+
+[q90] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Complete the sentence: 'I have been studying English _____ three years.'"
+  Ans: "for"
+  Exp: "'For' is used for a duration or period of time."
+
+[q91] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Translate 'Lavora in quella banca dal 2015.'"
+  Ans: "He has worked in that bank since 2015."
+  Exp: "'Since' refers to the starting point of an action."
+
+[q92] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Complete the sentence: 'She hasn't eaten anything _____ yesterday morning.'"
+  Ans: "since"
+  Exp: "'Yesterday morning' is a specific point in time, so we use 'since'."
+
+[q93] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Translate 'Stiamo aspettando da due ore.'"
+  Ans: "We have been waiting for two hours."
+  Exp: "Duration (two hours) requires 'for'."
+
+[q94] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Complete the sentence: 'I haven't seen him _____ a long time.'"
+  Ans: "for"
+  Exp: "'A long time' is a period, so we use 'for'."
+
+[q95] TOPIC: "Present Simple" | LEVEL: A1
+  Prompt: "Complete the sentence: 'He usually _____ up at 7 AM.'"
+  Ans: "wakes"
+  Exp: "Routines require Present Simple, third person adds -s."
+
+[q96] TOPIC: "Present Simple" | LEVEL: A1
+  Prompt: "Translate 'I miei genitori non vivono a Londra.'"
+  Ans: "My parents don't live in London."
+  Exp: "Plural subject negative uses 'don't'."
+
+[q97] TOPIC: "Present Simple" | LEVEL: A1
+  Prompt: "Complete the sentence: '_____ she like chocolate?'"
+  Ans: "Does"
+  Exp: "Question auxiliary for third person singular is 'Does'."
+
+[q98] TOPIC: "Present Simple" | LEVEL: A1
+  Prompt: "Translate 'Il treno parte alle 8 in punto.'"
+  Ans: "The train leaves at 8 o'clock."
+  Exp: "Scheduled events use Present Simple."
+
+[q99] TOPIC: "Present Simple" | LEVEL: A1
+  Prompt: "Complete the sentence: 'Water _____ at 100 degrees Celsius.'"
+  Ans: "boils"
+  Exp: "General facts use Present Simple."
+
+[q100] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Complete the sentence: 'This is my _____ car.' (The car belongs to my friend)"
+  Ans: "friend's"
+  Exp: "Singular possessive adds 's."
+
+[q101] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Translate 'Dov'è il computer di Marco?'"
+  Ans: "Where is Marco's computer?"
+  Exp: "Possessive 's is preferred for people."
+
+[q102] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Complete the sentence: 'Those are my _____ toys.' (The toys belong to my dogs)"
+  Ans: "dogs'"
+  Exp: "Regular plural nouns just add an apostrophe after the 's'."
+
+[q103] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Translate 'La borsa di Sarah è rossa.'"
+  Ans: "Sarah's bag is red."
+  Exp: "Possessive 's shows ownership."
+
+[q104] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Complete the sentence: 'We went to the _____ house yesterday.' (The house belongs to my parents)"
+  Ans: "parents'"
+  Exp: "Plural noun ending in 's' gets an apostrophe at the end."
+
+[q105] TOPIC: "Quantifiers" | LEVEL: A1
+  Prompt: "Complete the sentence: 'How _____ milk is left?'"
+  Ans: "much"
+  Exp: "'Milk' is uncountable, so we use 'much'."
+
+[q106] TOPIC: "Quantifiers" | LEVEL: A1
+  Prompt: "Translate 'Non ho molti amici.'"
+  Ans: "I don't have many friends."
+  Exp: "'Friends' is countable, so we use 'many' in negative sentences."
+
+[q107] TOPIC: "Quantifiers" | LEVEL: A1
+  Prompt: "Complete the sentence: 'There are _____ people at the concert.'"
+  Ans: "a lot of"
+  Exp: "We use 'a lot of' for large quantities in affirmative sentences."
+
+[q108] TOPIC: "Quantifiers" | LEVEL: A1
+  Prompt: "Translate 'Quanto zucchero vuoi nel caffè?'"
+  Ans: "How much sugar do you want in your coffee?"
+  Exp: "Sugar is uncountable, so 'How much'."
+
+[q109] TOPIC: "Quantifiers" | LEVEL: A1
+  Prompt: "Complete the sentence: 'She has _____ free time these days.'"
+  Ans: "not much"
+  Exp: "'Time' is uncountable."
+
+[q110] TOPIC: "Quantifiers" | LEVEL: A1
+  Prompt: "Translate 'Ci sono troppe macchine in questa città.'"
+  Ans: "There are too many cars in this city."
+  Exp: "'Cars' is countable, so 'too many'."
+
+[q111] TOPIC: "Questions and Origins" | LEVEL: A1
+  Prompt: "Complete the sentence: 'Where _____ you born?'"
+  Ans: "were"
+  Exp: "Past of 'to be' for 'you' is 'were'."
+
+[q112] TOPIC: "Questions and Origins" | LEVEL: A1
+  Prompt: "Translate 'Da dove viene tuo fratello?'"
+  Ans: "Where does your brother come from?"
+  Exp: "Third person singular uses 'does' auxiliary."
+
+[q113] TOPIC: "Questions and Origins" | LEVEL: A1
+  Prompt: "Complete the sentence: '_____ country are you from?'"
+  Ans: "Which"
+  Exp: "'Which' is used for a limited choice, 'What' is sometimes used, but 'Which country' is common. Actually, 'Which' is standard."
+
+[q114] TOPIC: "Questions and Origins" | LEVEL: A1
+  Prompt: "Translate 'Loro sono spagnoli?'"
+  Ans: "Are they Spanish?"
+  Exp: "Simple 'to be' question."
+
+[q115] TOPIC: "Questions and Origins" | LEVEL: A1
+  Prompt: "Complete the sentence: '_____ is the capital of Italy?'"
+  Ans: "What"
+  Exp: "'What' asks for specific information."
+
+[q116] TOPIC: "Questions and Origins" | LEVEL: A1
+  Prompt: "Translate 'Di dov'è Maria?'"
+  Ans: "Where is Maria from?"
+  Exp: "Standard phrasing for asking origins."
+
+[q117] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Translate 'Questo è il libro più lungo che abbia mai letto.'"
+  Ans: "This is the longest book I have ever read."
+  Exp: "Superlative of short adjectives takes -est."
+
+[q118] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Complete: 'My car is _____ than yours.'"
+  Ans: "faster"
+  Exp: "Comparative of fast is faster."
+
+[q119] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Translate 'Oggi è molto più caldo di ieri.'"
+  Ans: "Today is much hotter than yesterday."
+  Exp: "'much' emphasizes the comparative 'hotter'."
+
+[q120] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Complete: 'She is the _____ student in the class.'"
+  Ans: "best"
+  Exp: "Irregular superlative of good is best."
+
+[q121] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Translate 'Sua sorella è meno socievole di lui.'"
+  Ans: "His sister is less outgoing than him."
+  Exp: "Less + adjective + than is used for inferior comparatives."
+
+[q122] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Complete: 'This exercise is _____ difficult than the previous one.'"
+  Ans: "more"
+  Exp: "Long adjectives use 'more' for comparative."
+
+[q123] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Translate 'Questo è il posto meno costoso in città.'"
+  Ans: "This is the least expensive place in town."
+  Exp: "Superlative of inferiority is 'the least'."
+
+[q124] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Complete: 'He is _____ taller than his brother.'"
+  Ans: "slightly"
+  Exp: "You can modify comparatives with words like slightly, much, a lot."
+
+[q125] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Complete: 'If I have time, I _____ you.'"
+  Ans: "will help"
+  Exp: "First conditional: if + present, will + base verb."
+
+[q126] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Translate 'Se lei studierà, passerà il test.'"
+  Ans: "If she studies, she will pass the test."
+  Exp: "Present simple in the if clause, will in the main clause."
+
+[q127] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Complete: 'We won't go to the park if it _____.'"
+  Ans: "rains"
+  Exp: "If clause uses present simple."
+
+[q128] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Translate 'Cosa dirai se lui ti chiamerà?'"
+  Ans: "What will you say if he calls you?"
+  Exp: "Question form: Wh- word + will + subject + verb + if + present simple."
+
+[q129] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Complete: 'If they don't hurry, they _____ the bus.'"
+  Ans: "will miss"
+  Exp: "Main clause uses will."
+
+[q130] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Translate 'Se non mi aiuti, non finirò il progetto.'"
+  Ans: "If you don't help me, I won't finish the project."
+  Exp: "Negative present simple in if clause, won't in main clause."
+
+[q131] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Complete: 'If she _____ the job, she will move to London.'"
+  Ans: "gets"
+  Exp: "Third person singular needs 's' in present simple."
+
+[q132] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Translate 'Gli parlerò se lo vedo.'"
+  Ans: "I will talk to him if I see him."
+  Exp: "Will in main clause, present in if clause."
+
+[q133] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Complete: 'Unless you _____, you won't succeed.'"
+  Ans: "try"
+  Exp: "Unless means 'if not', so it's followed by an affirmative verb."
+
+[q134] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Translate 'A meno che non piova, andremo a fare una passeggiata.'"
+  Ans: "Unless it rains, we will go for a walk."
+  Exp: "Unless is followed by affirmative present simple."
+
+[q135] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Complete: 'I will buy that car if it _____ too expensive.'"
+  Ans: "isn't"
+  Exp: "Verb 'to be' in present simple negative for third person singular."
+
+[q136] TOPIC: "Prepositions of Time" | LEVEL: A1
+  Prompt: "Complete: 'I usually go to bed _____ 11 PM.'"
+  Ans: "at"
+  Exp: "Use 'at' for specific times."
+
+[q137] TOPIC: "Present Simple" | LEVEL: A1
+  Prompt: "Translate 'Non mi piace il caffè.'"
+  Ans: "I don't like coffee."
+  Exp: "Present simple negative for I/you/we/they uses 'don't'."
+
+[q138] TOPIC: "Present Continuous" | LEVEL: A2
+  Prompt: "Complete: 'They _____ to Paris next weekend.'"
+  Ans: "are going"
+  Exp: "Present continuous can be used for arranged future plans."
+
+[q139] TOPIC: "Modals of Obligation and Advice" | LEVEL: A1
+  Prompt: "Translate 'Posso aiutarti?'"
+  Ans: "Can I help you?"
+  Exp: "Modal verbs like 'can' don't use 'do' in questions."
+
+[q140] TOPIC: "Gerunds vs Infinitives" | LEVEL: B1
+  Prompt: "Complete: 'She is interested _____ learning Spanish.'"
+  Ans: "in"
+  Exp: "The adjective 'interested' is followed by the preposition 'in'."
+
+[q141] TOPIC: "Modals of Obligation and Advice" | LEVEL: A2
+  Prompt: "Translate 'Dobbiamo andare ora.'"
+  Ans: "We must go now."
+  Exp: "'Must' is followed by the base form of the verb."
+
+[q142] TOPIC: "Gerunds vs Infinitives" | LEVEL: B1
+  Prompt: "Complete: 'I look forward _____ from you soon.'"
+  Ans: "to hearing"
+  Exp: "'Look forward to' is followed by the -ing form (gerund)."
+
+[q143] TOPIC: "Past Simple" | LEVEL: A1
+  Prompt: "Translate 'Ero molto stanco ieri sera.'"
+  Ans: "I was very tired last night."
+  Exp: "Past simple of 'to be' for 'I' is 'was'."
+
+[q144] TOPIC: "Relative Clauses" | LEVEL: B1
+  Prompt: "Complete: 'This is the book _____ I borrowed from the library.'"
+  Ans: "which"
+  Exp: "Relative pronoun 'which' or 'that' is used for things."
+
+[q145] TOPIC: "Modals of Obligation and Advice" | LEVEL: A1
+  Prompt: "Translate 'Lei sa nuotare molto bene.'"
+  Ans: "She can swim very well."
+  Exp: "Ability is expressed with 'can' + base verb."
+
+[q146] TOPIC: "Modals of Obligation and Advice" | LEVEL: A2
+  Prompt: "Complete: 'You _____ smoke in the hospital.'"
+  Ans: "mustn't"
+  Exp: "'Mustn't' expresses prohibition."
+
+[q147] TOPIC: "Quantifiers" | LEVEL: A2
+  Prompt: "Translate 'Non ho abbastanza soldi.'"
+  Ans: "I don't have enough money."
+  Exp: "Present simple negative uses 'don't have', 'enough' comes before nouns."
+
+[q148] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Complete: 'That is _____ jacket.' (The jacket belongs to Tom)"
+  Ans: "Tom's"
+  Exp: "Add 's to singular names."
+
+[q149] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Translate 'La casa dei miei nonni è grande.'"
+  Ans: "My grandparents' house is big."
+  Exp: "Plural nouns ending in -s just take an apostrophe."
+
+[q150] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Complete: 'I love _____ new song.' (The song of the band)"
+  Ans: "the band's"
+  Exp: "Singular noun 'band' takes 's."
+
+[q151] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Translate 'I giocattoli dei bambini sono sparsi ovunque.'"
+  Ans: "The children's toys are everywhere."
+  Exp: "Irregular plurals not ending in -s take 's."
+
+[q152] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Complete: 'This is _____ desk.' (The desk belongs to the boss)"
+  Ans: "the boss's"
+  Exp: "Singular nouns ending in -s usually take 's."
+
+[q153] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Translate 'La macchina di James è blu.'"
+  Ans: "James's car is blue."
+  Exp: "Names ending in -s can take 's or just an apostrophe. 'James's' is common."
+
+[q154] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Complete: 'I went to the _____.' (The shop of the baker)"
+  Ans: "baker's"
+  Exp: "Possessive form is often used alone for shops/businesses."
+
+[q155] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Translate 'È il compleanno di mia madre.'"
+  Ans: "It's my mother's birthday."
+  Exp: "Possessive 's for people."
+
+[q156] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Complete: 'We are meeting at _____.' (The house of Paul)"
+  Ans: "Paul's"
+  Exp: "Possessive form is often used alone for people's houses."
+
+[q157] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Translate 'Le scarpe da donna sono al secondo piano.'"
+  Ans: "Women's shoes are on the second floor."
+  Exp: "Irregular plural 'women' takes 's."
+
+[q158] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Complete: 'The _____ room is down the hall.' (The room for teachers)"
+  Ans: "teachers'"
+  Exp: "Plural 'teachers' takes an apostrophe after the s."
+
+[q159] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Translate 'Hai visto le chiavi di Anna?'"
+  Ans: "Have you seen Anna's keys?"
+  Exp: "Singular name takes 's."
+
+[q160] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Complete: 'I have known him _____ 2010.'"
+  Ans: "since"
+  Exp: "'Since' indicates a specific starting point in the past."
+

@@ -1,0 +1,6 @@
+{
+  "name": "OFA Polimi Prep",
+  "description": "App per prepararsi all'OFA di Inglese del Politecnico di Milano",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

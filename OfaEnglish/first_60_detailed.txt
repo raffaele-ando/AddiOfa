@@ -1,0 +1,301 @@
+=== INSPECTING FIRST 60 QUESTIONS ===
+[q1] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Choose the correct translation for 'Sei mai stato in Brasile?'"
+  Ans: "Have you ever been to Brazil?"
+  Exp: "We use Present Perfect ('Have you ever been') for life experiences."
+
+[q2] TOPIC: "There is / There are" | LEVEL: A1
+  Prompt: "Choose the correct question: '_____ a table in this room?'"
+  Ans: "Is there"
+  Exp: "'Is there' is the correct question form of 'there is' for singular nouns."
+
+[q3] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Which sentence is correct?"
+  Ans: "Did you meet Mr. Smith's wife?"
+  Exp: "After 'did', we use the base form of the verb ('meet', not 'met')."
+
+[q4] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Translate 'Lunedì è il giorno peggiore della settimana.'"
+  Ans: "Monday is the worst day of the week."
+  Exp: "The superlative of 'bad' is 'worst'."
+
+[q5] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Translate 'Sono stato in Africa nel 2009.'"
+  Ans: "I went to Africa in 2009."
+  Exp: "With a finished time in the past ('in 2009'), we use the Past Simple ('went')."
+
+[q6] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Which sentence correctly compares the two cities?"
+  Ans: "New York is more modern than London."
+  Exp: "We use 'more + adjective + than' for comparatives with long adjectives."
+
+[q7] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Complete the sentence: '_____ did you meet Mr. Smith?' - 'At the station.'"
+  Ans: "Where"
+  Exp: "'Where' is used to ask about a place."
+
+[q8] TOPIC: "Quantifiers" | LEVEL: A1
+  Prompt: "Translate 'Quante persone ci sono alla festa?'"
+  Ans: "How many people are at the party?"
+  Exp: "'People' is plural and countable, so we use 'How many are'."
+
+[q9] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Translate 'Il treno partirà tra 2 minuti.'"
+  Ans: "The train will leave in 2 minutes."
+  Exp: "We use 'in' for future time limits ('in 2 minutes'). 'Will leave' expresses a future fact."
+
+[q10] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Translate 'Ti posso offrire qualcosa da bere?'"
+  Ans: "Can I offer you something to drink?"
+  Exp: "In offers, we normally use 'something', not 'anything'. The infinitive is 'to drink'."
+
+[q11] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Translate 'Francesco lavora per Google.'"
+  Ans: "Francesco works for Google."
+  Exp: "Third person singular in Present Simple requires an 's' ('works'). 'Work for' is the correct preposition."
+
+[q12] TOPIC: "Present Continuous" | LEVEL: A2
+  Prompt: "Choose the correct sentence to describe a current action."
+  Ans: "Look! It's raining."
+  Exp: "Present Continuous ('is raining') is used for actions happening right now."
+
+[q13] TOPIC: "There is / There are" | LEVEL: A1
+  Prompt: "Choose the correct question:"
+  Ans: "Is there any milk in the fridge?"
+  Exp: "'Milk' is uncountable (use 'is there'). 'Any' is used in questions."
+
+[q14] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Translate 'Da quanto tempo studi l'inglese?'"
+  Ans: "How long have you studied English?"
+  Exp: "We use Present Perfect ('have you studied') with 'How long' for actions starting in the past and continuing now."
+
+[q15] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Translate 'Francesco riesce a parlare bene inglese.'"
+  Ans: "Francesco can speak English well."
+  Exp: "Modal verb 'can' is followed by the base form without 'to' ('can speak')."
+
+[q16] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Translate 'Con chi è andata?'"
+  Ans: "Who did she go with?"
+  Exp: "In WH- questions, the auxiliary 'did' is followed by the base verb 'go'. The preposition 'with' goes at the end."
+
+[q17] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Choose the grammatically correct sentence:"
+  Ans: "She went to the cinema yesterday."
+  Exp: "'Yesterday' requires the Past Simple ('went')."
+
+[q18] TOPIC: "Relative Clauses" | LEVEL: A2
+  Prompt: "Complete the sentence: 'There are many people living in Italy who _____ from abroad.'"
+  Ans: "come"
+  Exp: "'People' is plural, so the relative clause verb is plural ('come')."
+
+[q19] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Complete the sentence: 'I _____ my husband in 1996.'"
+  Ans: "met"
+  Exp: "A specific time in the past ('in 1996') requires the Past Simple ('met')."
+
+[q20] TOPIC: "Object Pronouns" | LEVEL: A2
+  Prompt: "Complete the sentence: 'This plate is dirty, can I have a clean _____?'"
+  Ans: "one"
+  Exp: "We use the pronoun 'one' to avoid repeating a singular countable noun."
+
+[q21] TOPIC: "Modals of Deduction" | LEVEL: A2
+  Prompt: "Complete the sentence: 'By the year 2080, people could _____ on Mars.'"
+  Ans: "be living"
+  Exp: "'Could' is a modal and is followed by the bare infinitive ('be'). 'Could be living' implies an ongoing action in the future."
+
+[q22] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Complete the sentence: 'How many companies have you worked for _____ you left school?'"
+  Ans: "since"
+  Exp: "'Since' is used with Present Perfect to indicate a starting point in time."
+
+[q23] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Complete the sentence: 'What time _____ your plane take off?'"
+  Ans: "does"
+  Exp: "For scheduled future events, we use Present Simple. 'Plane' is 'it', so we use 'does'."
+
+[q24] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Which question is correct?"
+  Ans: "Can I offer you anything to drink?"
+  Exp: "Modal 'can' is followed by a bare infinitive ('offer'). The object complement is a full infinitive ('to drink')."
+
+[q25] TOPIC: "Past Continuous" | LEVEL: A2
+  Prompt: "Combine the sentences correctly: 'I saw Tom this morning. He was waiting at the bus stop.'"
+  Ans: "I saw Tom this morning while he was waiting at the bus stop."
+  Exp: "'While' is followed by a continuous tense (Past Continuous) to show an ongoing background action."
+
+[q26] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Complete the sentence: 'James can speak English very _____.'"
+  Ans: "well"
+  Exp: "'Well' is the adverb form of 'good' and modifies the verb 'speak'."
+
+[q27] TOPIC: "Object Pronouns" | LEVEL: A2
+  Prompt: "Complete the sentence: 'The children want _____ to play with them.'"
+  Ans: "me"
+  Exp: "After 'want', we use an object pronoun ('me') + to-infinitive."
+
+[q28] TOPIC: "Quantifiers" | LEVEL: A2
+  Prompt: "Complete the sentence: 'Is she going with _____?'"
+  Ans: "friends"
+  Exp: "'Friends' is a plural countable noun. Used generally here without an article."
+
+[q29] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Complete the sentence: 'I _____ a new pair of shoes yesterday.'"
+  Ans: "bought"
+  Exp: "'Yesterday' indicates Past Simple. The past of 'buy' is 'bought'."
+
+[q30] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Complete the sentence: 'What time does the train leave tomorrow? It _____ at 9.'"
+  Ans: "leaves"
+  Exp: "For a scheduled timetable in the future, we use the Present Simple ('leaves')."
+
+[q31] TOPIC: "There is / There are" | LEVEL: A1
+  Prompt: "Choose the correct negative sentence:"
+  Ans: "There isn't any milk in the fridge."
+  Exp: "We use 'any' in negative sentences. 'Milk' is uncountable, so we use 'isn't'."
+
+[q32] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Complete the sentence: 'How long _____ you studied English?'"
+  Ans: "have"
+  Exp: "Present Perfect uses the auxiliary 'have' + past participle ('studied')."
+
+[q33] TOPIC: "Present Continuous" | LEVEL: A2
+  Prompt: "Complete the sentence: 'Look! It _____.'"
+  Ans: "is raining"
+  Exp: "'Look!' implies an action happening right now (Present Continuous)."
+
+[q34] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Complete the sentence: 'How many people _____ to the party?'"
+  Ans: "came"
+  Exp: "When the question word ('How many people') is the subject, we don't use 'did'. We just use the past verb ('came')."
+
+[q35] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Translate 'Lunedì è il giorno peggiore della settimana.'"
+  Ans: "Monday is the worst day of the week."
+  Exp: "The superlative form is 'the worst'."
+
+[q36] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Translate 'Steven lavora per Microsoft.'"
+  Ans: "Steven works for Microsoft."
+  Exp: "Present Simple third person requires 'works'. The preposition is 'for'."
+
+[q37] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Complete the sentence: 'When _____ you meet Mr. Brown?'"
+  Ans: "did"
+  Exp: "'When' asks for a specific past time, so we use Past Simple auxiliary 'did'."
+
+[q38] TOPIC: "Questions and Origins" | LEVEL: A1
+  Prompt: "Complete the sentence: 'John, where do you come _____?'"
+  Ans: "from"
+  Exp: "The phrase to ask about origins is 'Where do you come from?'"
+
+[q39] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Complete the sentence: 'Tom is away. He has been away _____ Monday.'"
+  Ans: "since"
+  Exp: "'Since' is used with a specific point in time (Monday) to show when an action started."
+
+[q40] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Translate 'Non mi è piaciuto il cibo inglese.'"
+  Ans: "I didn't like English food."
+  Exp: "Past Simple negative uses 'didn't' + base verb ('like')."
+
+[q41] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Complete the sentence: 'Hurry, the bus _____ in 2 minutes.'"
+  Ans: "leaves"
+  Exp: "We use Present Simple ('leaves') for timetabled future events."
+
+[q42] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Complete the sentence: 'She's the most beautiful girl I've _____ seen.'"
+  Ans: "ever"
+  Exp: "'Ever' is used with Present Perfect to mean 'at any time in my life'."
+
+[q43] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Complete the sentence: 'I _____ to Africa in 2001.'"
+  Ans: "went"
+  Exp: "Past Simple ('went') is required for a specific finished past time ('in 2001')."
+
+[q44] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Translate 'Hai conosciuto la moglie del signor Smith?'"
+  Ans: "Have you met Mr. Smith's wife?"
+  Exp: "Present Perfect ('Have you met') is used for life experiences when the time is not specified."
+
+[q45] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Translate 'Sei mai stato in Brasile?'"
+  Ans: "Have you ever been to Brazil?"
+  Exp: "'Have you ever been to' is the standard way to ask about travel experiences."
+
+[q46] TOPIC: "Possessive S" | LEVEL: A1
+  Prompt: "Translate 'Non mi piace il trucco di Sara.'"
+  Ans: "I don't like Sara's makeup."
+  Exp: "We use the possessive 's (Sara's) to show belonging."
+
+[q47] TOPIC: "There is / There are" | LEVEL: A1
+  Prompt: "Complete the sentence: '_____ is a table in the room.'"
+  Ans: "There"
+  Exp: "We use 'There is' to express existence."
+
+[q48] TOPIC: "Present Continuous" | LEVEL: A2
+  Prompt: "Complete the sentence: 'He _____ his homework right now.'"
+  Ans: "is doing"
+  Exp: "'Right now' indicates Present Continuous ('is doing')."
+
+[q49] TOPIC: "First Conditional" | LEVEL: B1
+  Prompt: "Choose the correct sentence:"
+  Ans: "If it rains, we will stay home."
+  Exp: "First Conditional structure: If + Present Simple, will + base verb."
+
+[q50] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Complete the sentence: 'I _____ playing tennis since I was a child.'"
+  Ans: "have been"
+  Exp: "'Since' + a point in the past requires the Present Perfect Continuous ('have been playing')."
+
+[q51] TOPIC: "Past Simple" | LEVEL: A2
+  Prompt: "Complete the sentence: 'How many people _____ to the party?'"
+  Ans: "came"
+  Exp: "Referring to a past event ('the party' implies it already happened), so Past Simple ('came') is appropriate."
+
+[q52] TOPIC: "Comparatives and Superlatives" | LEVEL: A2
+  Prompt: "Choose the correct sentence for comparing two cities:"
+  Ans: "New York is much more modern than London."
+  Exp: "To emphasize a comparative, we use 'much' before the comparative form ('much more modern')."
+
+[q53] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Complete the sentence: 'Tom is away. He _____ away since Monday.'"
+  Ans: "has been"
+  Exp: "'Since Monday' requires Present Perfect ('has been') to connect the past to the present."
+
+[q54] TOPIC: "Prepositions of Time" | LEVEL: B1
+  Prompt: "Complete the sentence: 'Hurry! The bus _____ in 2 minutes.'"
+  Ans: "leaves"
+  Exp: "Present Simple ('leaves') is used for scheduled events like bus or train timetables."
+
+[q55] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Complete the sentence: 'Have you ever _____ to Brasil?'"
+  Ans: "been"
+  Exp: "We use 'been to' to mean 'visited and returned'."
+
+[q56] TOPIC: "Present Continuous" | LEVEL: A2
+  Prompt: "Complete the sentence: 'Is she _____ with friends?'"
+  Ans: "going"
+  Exp: "The auxiliary 'Is' indicates Present Continuous, which requires the -ing form ('going')."
+
+[q57] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Translate 'Hai mai mangiato sushi?'"
+  Ans: "Have you ever eaten sushi?"
+  Exp: "We use Present Perfect ('Have you ever eaten') for life experiences."
+
+[q58] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Complete the sentence: 'She _____ just finished her homework.'"
+  Ans: "has"
+  Exp: "'Just' is often used with Present Perfect, and 'She' takes 'has'."
+
+[q59] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Translate 'Non abbiamo ancora visto quel film.'"
+  Ans: "We haven't seen that movie yet."
+  Exp: "Present perfect negative with 'yet' for something expected to happen."
+
+[q60] TOPIC: "Present Perfect" | LEVEL: B1
+  Prompt: "Complete the sentence: '_____ you ever flown in a helicopter?'"
+  Ans: "Have"
+  Exp: "Present Perfect is used for asking about life experiences."
+

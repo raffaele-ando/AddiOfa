@@ -1,0 +1,756 @@
+
+
+############################################################
+### TOPIC: [Adverbs of Manner] (18 questions)
+############################################################
+[q361] [A2|Grammatica] P: "Complete: 'She speaks English very _____.' (good/well)" | C: "well" | E: "'Well' is the adverb form of 'good'."
+[q362] [A2|Grammatica] P: "Complete: 'He drives very _____. It's dangerous!'" | C: "fast" | E: "'Fast' is both an adjective and an adverb."
+[q363] [A2|Grammatica] P: "Complete: 'Please do your work _____. Take your time.'" | C: "carefully" | E: "'Carefully' describes how to do the work."
+[q364] [A2|Grammatica] P: "Complete: 'They won the game _____. They were much better.'" | C: "easily" | E: "'Easily' is the adverb form of 'easy' (y changes to i + ly)."
+[q365] [A2|Grammatica] P: "Complete: 'The old man walked _____ down the street.'" | C: "slowly" | E: "'Slowly' describes the verb 'walked'."
+[q366] [A2|Grammatica] P: "Complete: 'She looked at him _____ when he broke the glass.'" | C: "angrily" | E: "Adverb formed from 'angry'."
+[q367] [A2|Grammatica] P: "Complete: 'He worked _____ to pass the exam.'" | C: "hard" | E: "'Hard' is an irregular adverb meaning with effort. ('Hardly' means almost not)."
+[q368] [A2|Grammatica] P: "Complete: 'The children were playing _____ in the garden.'" | C: "happily" | E: "Adverb of 'happy'."
+[q369] [A2|Grammatica] P: "Complete: 'I can run very _____.'" | C: "fast" | E: "'Fast' is an irregular adverb."
+[q370] [A2|Traduzione] P: "Translate 'Ha risposto alla domanda velocemente.'" | C: "He answered the question quickly." | E: "'Velocemente' is 'quickly'."
+[q371] [A2|Traduzione] P: "Translate 'Canta davvero bene.'" | C: "She sings really well." | E: "'Bene' is the adverb 'well'."
+[q372] [A2|Traduzione] P: "Translate 'Hanno lavorato duramente tutto il giorno.'" | C: "They worked hard all day." | E: "'Duramente' (con fatica) is 'hard'."
+[q373] [A2|Traduzione] P: "Translate 'Per favore, parla lentamente.'" | C: "Please, speak slowly." | E: "'Lentamente' is 'slowly'."
+[q374] [A2|Traduzione] P: "Translate 'Ha chiuso la porta silenziosamente.'" | C: "He closed the door quietly." | E: "'Silenziosamente' is 'quietly'."
+[q375] [A2|Traduzione] P: "Translate 'Hanno risolto il problema facilmente.'" | C: "They solved the problem easily." | E: "'Facilmente' is 'easily'."
+[q376] [A2|Traduzione] P: "Translate 'Guida sempre con molta attenzione (attentamente).'" | C: "He always drives carefully." | E: "'Attentamente' is 'carefully'."
+[q377] [A2|Traduzione] P: "Translate 'L'insegnante ha spiegato la regola chiaramente.'" | C: "The teacher explained the rule clearly." | E: "'Chiaramente' is 'clearly'."
+[q378] [A2|Traduzione] P: "Translate 'Ho capito perfettamente.'" | C: "I understood perfectly." | E: "'Perfettamente' is 'perfectly'."
+
+
+############################################################
+### TOPIC: [Comparatives and Superlatives] (23 questions)
+############################################################
+[q4] [A2|Traduzione] P: "Translate 'Lunedì è il giorno peggiore della settimana.'" | C: "Monday is the worst day of the week." | E: "The superlative of 'bad' is 'worst'."
+[q6] [A2|Grammatica] P: "Which sentence correctly compares the two cities?" | C: "New York is more modern than London." | E: "We use 'more + adjective + than' for comparatives with long adjectives."
+[q35] [A2|Traduzione] P: "Translate 'Lunedì è il giorno peggiore della settimana.'" | C: "Monday is the worst day of the week." | E: "The superlative form is 'the worst'."
+[q52] [A2|Grammatica] P: "Choose the correct sentence for comparing two cities:" | C: "New York is much more modern than London." | E: "To emphasize a comparative, we use 'much' before the comparative form ('much more modern')."
+[q84] [A2|Grammatica] P: "Complete the sentence: 'Russia is the _____ country in the world.'" | C: "largest" | E: "Superlative of short adjectives adds -est."
+[q85] [A2|Traduzione] P: "Translate 'L'inglese è più facile del cinese.'" | C: "English is easier than Chinese." | E: "Comparative for 'easy' is 'easier', followed by 'than'."
+[q86] [A2|Grammatica] P: "Complete the sentence: 'This book is _____ interesting than the last one.'" | C: "more" | E: "Long adjectives use 'more' for comparative."
+[q87] [A2|Traduzione] P: "Translate 'È il film peggiore che abbia mai visto.'" | C: "It's the worst movie I've ever seen." | E: "Superlative of 'bad' is 'worst'."
+[q88] [A2|Grammatica] P: "Complete the sentence: 'My brother is much _____ than me.'" | C: "taller" | E: "Comparative of 'tall' is 'taller'. 'Much' emphasizes it."
+[q89] [A2|Traduzione] P: "Translate 'Questa è la città più costosa d'Europa.'" | C: "This is the most expensive city in Europe." | E: "Superlative of long adjectives uses 'the most'."
+[q117] [A2|Traduzione] P: "Translate 'Questo è il libro più lungo che abbia mai letto.'" | C: "This is the longest book I have ever read." | E: "Superlative of short adjectives takes -est."
+[q118] [A2|Grammatica] P: "Complete: 'My car is _____ than yours.'" | C: "faster" | E: "Comparative of fast is faster."
+[q119] [A2|Traduzione] P: "Translate 'Oggi è molto più caldo di ieri.'" | C: "Today is much hotter than yesterday." | E: "'much' emphasizes the comparative 'hotter'."
+[q120] [A2|Grammatica] P: "Complete: 'She is the _____ student in the class.'" | C: "best" | E: "Irregular superlative of good is best."
+[q121] [A2|Traduzione] P: "Translate 'Sua sorella è meno socievole di lui.'" | C: "His sister is less outgoing than him." | E: "Less + adjective + than is used for inferior comparatives."
+[q122] [A2|Grammatica] P: "Complete: 'This exercise is _____ difficult than the previous one.'" | C: "more" | E: "Long adjectives use 'more' for comparative."
+[q123] [A2|Traduzione] P: "Translate 'Questo è il posto meno costoso in città.'" | C: "This is the least expensive place in town." | E: "Superlative of inferiority is 'the least'."
+[q124] [A2|Grammatica] P: "Complete: 'He is _____ taller than his brother.'" | C: "slightly" | E: "You can modify comparatives with words like slightly, much, a lot."
+[q593] [B1|Grammatica] P: "Complete the sentence: 'For _____ details regarding the hotel booking, contact customer support.'" | C: "further" | E: "'Further' means 'additional/more' (figurative), while 'farther' strictly refers to physical distance."
+[q594] [B1|Grammatica] P: "Complete the sentence: 'Today the traffic is _____ than it was yesterday morning.'" | C: "heavier" | E: "Two-syllable adjectives ending in '-y' change '-y' to '-ier' (heavy -> heavier)."
+[q595] [B1|Grammatica] P: "Complete the sentence: 'The new laptop is great, but it is not _____ fast as I expected.'" | C: "as" | E: "Equality comparatives in the negative use 'not as ... as' (or 'not so ... as')."
+[q596] [B1|Grammatica] P: "Complete the sentence: 'The _____ you practice speaking, the _____ confident you will feel.'" | C: "more / more" | E: "The double comparative structure 'The more..., the more...' expresses proportional change."
+[q597] [B1|Traduzione] P: "Translate: 'Mio fratello maggiore vive a Londra.'" | C: "My elder brother lives in London." | E: "'Elder' is specifically used to describe seniority between members of the same family."
+
+
+############################################################
+### TOPIC: [Demonstratives] (18 questions)
+############################################################
+[q253] [A1|Grammatica] P: "Complete: '_____ is my friend, Paul.' (near)" | C: "This" | E: "'This' is used for a singular person/thing near the speaker."
+[q254] [A1|Grammatica] P: "Complete: 'Look at _____ birds in the sky.'" | C: "those" | E: "'Those' is used for plural things far from the speaker."
+[q255] [A1|Grammatica] P: "Complete: 'Are _____ your shoes here?'" | C: "these" | E: "'These' is used for plural things near the speaker."
+[q256] [A1|Grammatica] P: "Complete: '_____ building over there is a hospital.'" | C: "That" | E: "'That' is used for a singular thing far away."
+[q257] [A1|Grammatica] P: "Complete: '_____ days are the best of my life.'" | C: "These" | E: "'These' refers to plural days in the current time."
+[q258] [A1|Grammatica] P: "Complete: 'I don't like _____ kind of music.' (near/current)" | C: "this" | E: "'This kind' is singular."
+[q259] [A1|Grammatica] P: "Complete: 'Did you buy _____ apples from the market?' (far/past)" | C: "those" | E: "'Those apples' refers to plural items away or in the past."
+[q260] [A1|Grammatica] P: "Complete: '_____ is a very interesting book.' (holding it)" | C: "This" | E: "'This' refers to a singular item being held."
+[q261] [A1|Grammatica] P: "Complete: 'Can you pass me _____ pen?' (far)" | C: "that" | E: "'That' refers to a singular item out of reach."
+[q262] [A1|Traduzione] P: "Translate 'Questo è il mio gatto.'" | C: "This is my cat." | E: "'Questo' is 'This'."
+[q263] [A1|Traduzione] P: "Translate 'Quelli sono i miei libri.'" | C: "Those are my books." | E: "'Quelli' (far plural) is 'Those'."
+[q264] [A1|Traduzione] P: "Translate 'Questa pizza è buonissima.'" | C: "This pizza is very good." | E: "'Questa' is 'This'."
+[q265] [A1|Traduzione] P: "Translate 'Queste ragazze sono italiane.'" | C: "These girls are Italian." | E: "'Queste' (near plural) is 'These'."
+[q266] [A1|Traduzione] P: "Translate 'Quell'uomo è mio padre.'" | C: "That man is my father." | E: "'Quell'' (far singular) is 'That'."
+[q267] [A1|Traduzione] P: "Translate 'Cosa sono quelle cose?'" | C: "What are those things?" | E: "'Quelle' (far plural) is 'those'."
+[q268] [A1|Traduzione] P: "Translate 'Preferisco questo vestito.'" | C: "I prefer this dress." | E: "'Questo' is 'this'."
+[q269] [A1|Traduzione] P: "Translate 'Conosci quelle persone?'" | C: "Do you know those people?" | E: "'Quelle' (far plural) is 'those'."
+[q270] [A1|Traduzione] P: "Translate 'Questi sono i miei appunti.'" | C: "These are my notes." | E: "'Questi' (near plural) is 'These'."
+
+
+############################################################
+### TOPIC: [First Conditional] (23 questions)
+############################################################
+[q49] [B1|Grammatica] P: "Choose the correct sentence:" | C: "If it rains, we will stay home." | E: "First Conditional structure: If + Present Simple, will + base verb."
+[q78] [B1|Grammatica] P: "Complete the sentence: 'If you study hard, you _____ the exam.'" | C: "will pass" | E: "First conditional: If + present simple, will + base verb."
+[q79] [B1|Traduzione] P: "Translate 'Se piove, non andremo in spiaggia.'" | C: "If it rains, we won't go to the beach." | E: "First conditional structure."
+[q80] [B1|Grammatica] P: "Complete the sentence: 'I will call you if I _____ any news.'" | C: "hear" | E: "The 'if' clause uses the present simple."
+[q81] [B1|Traduzione] P: "Translate 'Cosa farai se perdi il treno?'" | C: "What will you do if you miss the train?" | E: "First conditional question."
+[q82] [B1|Grammatica] P: "Complete the sentence: 'If she _____ invite me, I won't go to the party.'" | C: "doesn't" | E: "Negative present simple in the 'if' clause."
+[q83] [B1|Traduzione] P: "Translate 'Se non ti sbrighi, faremo tardi.'" | C: "If you don't hurry, we will be late." | E: "First conditional with negative condition."
+[q125] [B1|Grammatica] P: "Complete: 'If I have time, I _____ you.'" | C: "will help" | E: "First conditional: if + present, will + base verb."
+[q126] [B1|Traduzione] P: "Translate 'Se lei studierà, passerà il test.'" | C: "If she studies, she will pass the test." | E: "Present simple in the if clause, will in the main clause."
+[q127] [B1|Grammatica] P: "Complete: 'We won't go to the park if it _____.'" | C: "rains" | E: "If clause uses present simple."
+[q128] [B1|Traduzione] P: "Translate 'Cosa dirai se lui ti chiamerà?'" | C: "What will you say if he calls you?" | E: "Question form: Wh- word + will + subject + verb + if + present simple."
+[q129] [B1|Grammatica] P: "Complete: 'If they don't hurry, they _____ the bus.'" | C: "will miss" | E: "Main clause uses will."
+[q130] [B1|Traduzione] P: "Translate 'Se non mi aiuti, non finirò il progetto.'" | C: "If you don't help me, I won't finish the project." | E: "Negative present simple in if clause, won't in main clause."
+[q131] [B1|Grammatica] P: "Complete: 'If she _____ the job, she will move to London.'" | C: "gets" | E: "Third person singular needs 's' in present simple."
+[q132] [B1|Traduzione] P: "Translate 'Gli parlerò se lo vedo.'" | C: "I will talk to him if I see him." | E: "Will in main clause, present in if clause."
+[q133] [B1|Grammatica] P: "Complete: 'Unless you _____, you won't succeed.'" | C: "try" | E: "Unless means 'if not', so it's followed by an affirmative verb."
+[q134] [B1|Traduzione] P: "Translate 'A meno che non piova, andremo a fare una passeggiata.'" | C: "Unless it rains, we will go for a walk." | E: "Unless is followed by affirmative present simple."
+[q135] [B1|Grammatica] P: "Complete: 'I will buy that car if it _____ too expensive.'" | C: "isn't" | E: "Verb 'to be' in present simple negative for third person singular."
+[q583] [B1|Grammatica] P: "Complete the sentence: 'I will call you as soon as I _____ at the airport.'" | C: "arrive" | E: "In time clauses introduced by 'as soon as', 'when', 'until', etc., we use the Present Simple, NOT 'will'."
+[q584] [B1|Grammatica] P: "Complete the sentence: 'We will stay inside until the heavy rain _____.'" | C: "stops" | E: "After 'until', English uses the Present Simple for future references (never 'will')."
+[q585] [B1|Grammatica] P: "Complete the sentence: 'You won't pass your driving test unless you _____ every day.'" | C: "practice" | E: "'Unless' means 'if not', so it already contains a negative meaning. Do not use double negatives or 'will'."
+[q586] [B1|Grammatica] P: "Complete the sentence: 'Take an umbrella with you in case it _____ later.'" | C: "rains" | E: "'In case' (per precauzione) is followed by the Present Simple when referring to the future."
+[q587] [B1|Traduzione] P: "Translate: 'Te lo dirò non appena lo saprò.'" | C: "I will tell you as soon as I know." | E: "Time clause rule: 'as soon as I know' (Present Simple, never 'will know')."
+
+
+############################################################
+### TOPIC: [Future: going to] (18 questions)
+############################################################
+[q307] [A2|Grammatica] P: "Complete: 'I _____ to visit my grandparents this weekend.'" | C: "am going" | E: "We use 'am going to' for planned future intentions."
+[q308] [A2|Grammatica] P: "Complete: 'Look at those dark clouds. It _____ rain.'" | C: "is going to" | E: "'Going to' is used when there is present evidence for a future event."
+[q309] [A2|Grammatica] P: "Complete: 'What _____ you going to do tonight?'" | C: "are" | E: "Question form requires the verb 'to be' (are) before the subject."
+[q310] [A2|Grammatica] P: "Complete: 'She _____ not going to buy a new car.'" | C: "is" | E: "Negative form uses 'to be' + not + going to."
+[q311] [A2|Grammatica] P: "Complete: 'We are going to _____ a movie after dinner.'" | C: "watch" | E: "'Going to' is followed by the base form of the verb."
+[q312] [A2|Grammatica] P: "Complete: '_____ he going to invite her to the party?'" | C: "Is" | E: "Question form for third person singular uses 'Is'."
+[q313] [A2|Grammatica] P: "Complete: 'They _____ going to start a new business next year.'" | C: "are" | E: "Plural subject takes 'are'."
+[q314] [A2|Grammatica] P: "Complete: 'I'm going to _____ English in London.'" | C: "study" | E: "Base verb 'study' after 'going to'."
+[q315] [A2|Grammatica] P: "Complete: 'My parents are _____ to travel to Spain.'" | C: "going" | E: "Part of the structure 'are going to'."
+[q316] [A2|Traduzione] P: "Translate 'Cosa hai intenzione di fare?'" | C: "What are you going to do?" | E: "'Have intention to' is translated with 'going to'."
+[q317] [A2|Traduzione] P: "Translate 'Non ho intenzione di aspettare tutto il giorno.'" | C: "I am not going to wait all day." | E: "Negative 'going to'."
+[q318] [A2|Traduzione] P: "Translate 'Lui studierà medicina all'università.' (intenzione)" | C: "He is going to study medicine at university." | E: "Intentions use 'going to'."
+[q319] [A2|Traduzione] P: "Translate 'Stiamo per comprare una nuova casa.' (abbiamo deciso)" | C: "We are going to buy a new house." | E: "Decisions already made use 'going to'."
+[q320] [A2|Traduzione] P: "Translate 'Pioverà a breve.' (guardando il cielo scuro)" | C: "It is going to rain soon." | E: "Prediction based on evidence uses 'going to'."
+[q321] [A2|Traduzione] P: "Translate 'Non parteciperanno all'incontro.' (intenzione)" | C: "They aren't going to attend the meeting." | E: "Negative intention."
+[q322] [A2|Traduzione] P: "Translate 'Cosa mangerai a cena?' (che programmi hai)" | C: "What are you going to eat for dinner?" | E: "Asking about plans."
+[q323] [A2|Traduzione] P: "Translate 'Venderà la sua macchina?' (ha intenzione di)" | C: "Is she going to sell her car?" | E: "Question about intention."
+[q324] [A2|Traduzione] P: "Translate 'Sono certo che cadrà!' (sta correndo sul ghiaccio)" | C: "I'm sure he is going to fall!" | E: "Prediction with evidence."
+
+
+############################################################
+### TOPIC: [Gerunds vs Infinitives] (30 questions)
+############################################################
+[q140] [B1|Grammatica] P: "Complete: 'She is interested _____ learning Spanish.'" | C: "in" | E: "The adjective 'interested' is followed by the preposition 'in'."
+[q142] [B1|Grammatica] P: "Complete: 'I look forward _____ from you soon.'" | C: "to hearing" | E: "'Look forward to' is followed by the -ing form (gerund)."
+[q398] [B1|Grammatica] P: "Complete the sentence: 'I really enjoy _____ books in my free time.'" | C: "reading" | E: "The verb 'enjoy' is followed by a gerund (-ing form)."
+[q399] [B1|Grammatica] P: "Complete the sentence: 'She decided _____ a new car.'" | C: "to buy" | E: "The verb 'decide' is followed by an infinitive with 'to'."
+[q400] [B1|Grammatica] P: "Complete the sentence: 'Do you mind _____ the window?'" | C: "opening" | E: "The verb 'mind' is followed by a gerund (-ing form)."
+[q416] [B1|Grammatica] P: "I can't stand _____ in traffic." | C: "waiting" | E: "'Can't stand' is followed by a gerund (-ing)."
+[q417] [B1|Grammatica] P: "We hope _____ you again soon." | C: "to see" | E: "'Hope' is followed by the infinitive with 'to'."
+[q418] [B1|Grammatica] P: "Avoid _____ mistakes by checking your work." | C: "making" | E: "'Avoid' takes the gerund (-ing form)."
+[q419] [B1|Grammatica] P: "She promised _____ me with my homework." | C: "to help" | E: "'Promise' takes the infinitive with 'to'."
+[q420] [B1|Traduzione] P: "Translate: 'Ho finito di leggere il libro.'" | C: "I finished reading the book." | E: "'Finish' is followed by a gerund."
+[q421] [B1|Traduzione] P: "Translate: 'Lui ha deciso di studiare all'estero.'" | C: "He decided to study abroad." | E: "'Decide' is followed by the infinitive."
+[q422] [B1|Grammatica] P: "Are you planning _____ to the party?" | C: "to go" | E: "'Plan' takes the infinitive with 'to'."
+[q423] [B1|Grammatica] P: "I miss _____ near the sea." | C: "living" | E: "'Miss' is followed by the gerund."
+[q424] [B1|Traduzione] P: "Translate: 'Non mi dispiace alzarmi presto.'" | C: "I don't mind getting up early." | E: "'Don't mind' takes the gerund."
+[q425] [B1|Traduzione] P: "Translate: 'Loro vogliono comprare una casa nuova.'" | C: "They want to buy a new house." | E: "'Want' is followed by the infinitive."
+[q426] [B1|Grammatica] P: "He offered _____ for dinner." | C: "to pay" | E: "'Offer' takes the infinitive with 'to'."
+[q427] [B1|Grammatica] P: "Keep _____ until you reach the station." | C: "walking" | E: "'Keep' is followed by the gerund."
+[q428] [B1|Grammatica] P: "I would like _____ a pizza." | C: "to order" | E: "'Would like' is followed by the infinitive with 'to'."
+[q429] [B1|Grammatica] P: "Stop _____ noise!" | C: "making" | E: "Stop + -ing means to quit an action."
+[q430] [B1|Grammatica] P: "I remembered _____ the door before leaving." | C: "to lock" | E: "Remember + to-infinitive means 'don't forget to do it'."
+[q559] [B1|Grammatica] P: "Complete the sentence: 'Don't forget _____ the front door before you go to bed.'" | C: "to lock" | E: "'Forget + to-infinitive' refers to a duty or future action that must not be forgotten (Ricordati di fare qualcosa)."
+[q560] [B1|Grammatica] P: "Complete the sentence: 'I will never forget _____ the Colosseum for the very first time.'" | C: "seeing" | E: "'Forget + -ing' refers to a memory of a past event (Non dimenticherò mai di aver visto)."
+[q561] [B1|Grammatica] P: "Complete the sentence: 'On the road trip, we stopped _____ a coffee and stretch our legs.'" | C: "to have" | E: "'Stop + to-infinitive' expresses purpose (ci siamo fermati per prendere un caffè)."
+[q562] [B1|Grammatica] P: "Complete the sentence: 'The doctor told him that he must stop _____ immediately for his health.'" | C: "smoking" | E: "'Stop + -ing' means to quit an action or habit completely (smettere di fumare)."
+[q563] [B1|Grammatica] P: "Complete the sentence: 'If the app keeps crashing, try _____ your smartphone.'" | C: "restarting" | E: "'Try + -ing' means to test an experiment or method to see if it solves a problem (prova a riavviare)."
+[q564] [B1|Grammatica] P: "Complete the sentence: 'I tried _____ the heavy wardrobe, but it was impossible alone.'" | C: "to lift" | E: "'Try + to-infinitive' means to make a physical or mental effort to achieve something difficult."
+[q565] [B1|Grammatica] P: "Complete the sentence: 'Look at the kitchen floor! It really needs _____.'" | C: "cleaning" | E: "'Need + -ing' has a passive meaning (= needs to be cleaned). Classic CEFR B1 structure!"
+[q566] [B1|Grammatica] P: "Complete the sentence: 'I am really looking forward to _____ you at the conference next week.'" | C: "meeting" | E: "In 'look forward to', 'to' is a preposition, so it must be followed by a gerund (-ing form)."
+[q567] [B1|Traduzione] P: "Translate: 'Non riesco a fare a meno di ridere quando sento quella barzelletta.'" | C: "I can't help laughing when I hear that joke." | E: "'Can't help + -ing' is a fixed idiom meaning unable to prevent yourself from doing something."
+[q568] [B1|Traduzione] P: "Translate: 'È inutile piangere sul latte versato.'" | C: "It's no use crying over spilled milk." | E: "'It's no use + -ing' is an idiomatic structure followed by the gerund."
+
+
+############################################################
+### TOPIC: [Imperative] (18 questions)
+############################################################
+[q289] [A1|Grammatica] P: "Complete: '_____ to me carefully.'" | C: "Listen" | E: "Imperative uses the base form of the verb."
+[q290] [A1|Grammatica] P: "Complete: '_____ open the window. It's cold.'" | C: "Don't" | E: "Negative imperative uses 'Don't'."
+[q291] [A1|Grammatica] P: "Complete: '_____ your vegetables!'" | C: "Eat" | E: "Use base verb for direct commands."
+[q292] [A1|Grammatica] P: "Complete: '_____ be late for the meeting.'" | C: "Don't" | E: "Negative commands always start with 'Don't'."
+[q293] [A1|Grammatica] P: "Complete: '_____ quiet, please.'" | C: "Be" | E: "Base form of 'to be' is used for commands."
+[q294] [A1|Grammatica] P: "Complete: '_____ touch that plate, it's hot.'" | C: "Don't" | E: "Negative command."
+[q295] [A1|Grammatica] P: "Complete: '_____ your homework before dinner.'" | C: "Do" | E: "Base verb 'Do'."
+[q296] [A1|Grammatica] P: "Complete: '_____ me the salt, please.'" | C: "Pass" | E: "Base verb 'Pass'."
+[q297] [A1|Grammatica] P: "Complete: '_____ worry about it.'" | C: "Don't" | E: "Negative command."
+[q298] [A1|Traduzione] P: "Translate 'Non toccare il mio telefono.'" | C: "Don't touch my phone." | E: "Negative imperative is formed with 'Don't'."
+[q299] [A1|Traduzione] P: "Translate 'Fai attenzione!'" | C: "Pay attention!" | E: "'Fare attenzione' is 'pay attention'."
+[q300] [A1|Traduzione] P: "Translate 'Ascoltami quando parlo.'" | C: "Listen to me when I speak." | E: "'Ascoltare' requires 'to' before the object in English."
+[q301] [A1|Traduzione] P: "Translate 'Non dimenticare le chiavi.'" | C: "Don't forget your keys." | E: "Negative command with 'Don't'."
+[q302] [A1|Traduzione] P: "Translate 'Chiudi la porta, per favore.'" | C: "Close the door, please." | E: "Base verb for command."
+[q303] [A1|Traduzione] P: "Translate 'Non parlare durante l'esame.'" | C: "Don't speak during the exam." | E: "Negative command."
+[q304] [A1|Traduzione] P: "Translate 'Aspetta qui un momento.'" | C: "Wait here a moment." | E: "Base verb 'Wait'."
+[q305] [A1|Traduzione] P: "Translate 'Scrivete i vostri nomi sul foglio.'" | C: "Write your names on the paper." | E: "Imperative is the same for singular and plural 'you'."
+[q306] [A1|Traduzione] P: "Translate 'Non fumare in questa stanza.'" | C: "Don't smoke in this room." | E: "'Don't smoke' is the imperative. ('No smoking' is a sign/rule but the direct translation uses 'Don't')."
+
+
+############################################################
+### TOPIC: [Modals of Deduction] (19 questions)
+############################################################
+[q21] [A2|Grammatica] P: "Complete the sentence: 'By the year 2080, people could _____ on Mars.'" | C: "be living" | E: "'Could' is a modal and is followed by the bare infinitive ('be'). 'Could be living' implies an ongoing action in the future."
+[q396] [B1|Grammatica] P: "Complete the sentence: 'He has a Ferrari and a mansion. He _____ be very rich.'" | C: "must" | E: "'Must' is used for strong logical deductions based on evidence."
+[q397] [B1|Grammatica] P: "Complete the sentence: 'That _____ be Sarah. Sarah is currently in London.'" | C: "can't" | E: "'Can't' is the negative logical deduction (you are sure something is not true)."
+[q543] [B1|Grammatica] P: "They have been traveling all day. They _____ be tired." | C: "must" | E: "Strong logical deduction."
+[q544] [B1|Grammatica] P: "He just ate a huge meal. He _____ be hungry." | C: "can't" | E: "Negative logical deduction (impossible)."
+[q545] [B1|Grammatica] P: "I can't find my phone. It _____ be in the car, but I'm not sure." | C: "might" | E: "Possibility without certainty."
+[q546] [B1|Traduzione] P: "Translate: 'Deve essere tardi, è già buio.'" | C: "It must be late, it's already dark." | E: "Must is used for logical deduction."
+[q547] [B1|Traduzione] P: "Translate: 'Non può essere vero!'" | C: "It can't be true!" | E: "Can't is the opposite of must for deductions."
+[q548] [B1|Grammatica] P: "That _____ be John's car. His car is blue, not red." | C: "can't" | E: "Logical impossibility."
+[q549] [B1|Grammatica] P: "You've been working since 6 AM. You _____ be exhausted!" | C: "must" | E: "Strong certainty."
+[q550] [B1|Grammatica] P: "Take an umbrella. It _____ rain later." | C: "might" | E: "Future possibility."
+[q551] [B1|Traduzione] P: "Translate: 'Potrebbe piovere più tardi.'" | C: "It might rain later." | E: "'Might' or 'could' indicates possibility."
+[q552] [B1|Traduzione] P: "Translate: 'Quello dev'essere il tuo nuovo capo.'" | C: "That must be your new boss." | E: "Must for deduction."
+[q553] [B1|Grammatica] P: "She speaks excellent French. She _____ be from France." | C: "must" | E: "Strong deduction based on evidence."
+[q554] [B1|Grammatica] P: "He is holding a ticket. He _____ be going to the cinema." | C: "must" | E: "Deduction using present continuous."
+[q555] [B1|Grammatica] P: "The lights are out. They _____ be asleep." | C: "must" | E: "Certain deduction."
+[q556] [B1|Grammatica] P: "She _____ be at home, but I haven't checked." | C: "could" | E: "Possibility (similar to might)."
+[q557] [B1|Grammatica] P: "This _____ be the right way. The map says to go left." | C: "can't" | E: "Logical impossibility."
+[q558] [B1|Traduzione] P: "Translate: 'Questa non può essere la casa giusta.'" | C: "This can't be the right house." | E: "Can't for negative deduction."
+
+
+############################################################
+### TOPIC: [Modals of Obligation and Advice] (22 questions)
+############################################################
+[q139] [A1|Traduzione] P: "Translate 'Posso aiutarti?'" | C: "Can I help you?" | E: "Modal verbs like 'can' don't use 'do' in questions."
+[q141] [A2|Traduzione] P: "Translate 'Dobbiamo andare ora.'" | C: "We must go now." | E: "'Must' is followed by the base form of the verb."
+[q145] [A1|Traduzione] P: "Translate 'Lei sa nuotare molto bene.'" | C: "She can swim very well." | E: "Ability is expressed with 'can' + base verb."
+[q146] [A2|Grammatica] P: "Complete: 'You _____ smoke in the hospital.'" | C: "mustn't" | E: "'Mustn't' expresses prohibition."
+[q343] [A2|Grammatica] P: "Complete: 'You look tired. You _____ go to bed early.'" | C: "should" | E: "'Should' is used for advice."
+[q344] [A2|Grammatica] P: "Complete: 'In many countries, you _____ wear a seatbelt when driving.'" | C: "have to" | E: "'Have to' is used for a strong obligation or law."
+[q345] [A2|Grammatica] P: "Complete: 'Tomorrow is Sunday, so I _____ wake up early.'" | C: "don't have to" | E: "'Don't have to' means it's not necessary (lack of obligation)."
+[q346] [A2|Grammatica] P: "Complete: 'You _____ use your phone during the exam! It's forbidden.'" | C: "mustn't" | E: "'Mustn't' means it is strictly prohibited."
+[q347] [A2|Grammatica] P: "Complete: '_____ I wear a suit to the interview?'" | C: "Should" | E: "'Should' is common to ask for an opinion or advice."
+[q348] [A2|Grammatica] P: "Complete: 'We have plenty of time. We _____ hurry.'" | C: "don't have to" | E: "No obligation to hurry."
+[q349] [A2|Grammatica] P: "Complete: 'You _____ smoke in the hospital.'" | C: "mustn't" | E: "Prohibition."
+[q350] [A2|Grammatica] P: "Complete: 'He _____ wear glasses to read because his eyesight is bad.'" | C: "has to" | E: "External obligation, third person singular 'has to'."
+[q351] [A2|Grammatica] P: "Complete: 'Do I _____ pay for this ticket now?'" | C: "have to" | E: "Question form for obligation is 'Do/Does ... have to'."
+[q352] [A2|Traduzione] P: "Translate 'Dovresti mangiare più verdure.'" | C: "You should eat more vegetables." | E: "Advice."
+[q353] [A2|Traduzione] P: "Translate 'Non devi per forza venire se sei stanco.'" | C: "You don't have to come if you're tired." | E: "Lack of obligation."
+[q354] [A2|Traduzione] P: "Translate 'Non devi assolutamente toccare quel filo!'" | C: "You mustn't touch that wire!" | E: "Strong prohibition."
+[q355] [A2|Traduzione] P: "Translate 'Lui deve lavorare fino a tardi oggi.' (obbligo esterno)" | C: "He has to work late today." | E: "External obligation with 'has to'."
+[q356] [A2|Traduzione] P: "Translate 'Non dovresti bere così tanto caffè.'" | C: "You shouldn't drink so much coffee." | E: "Negative advice."
+[q357] [A2|Traduzione] P: "Translate 'Devo togliermi le scarpe?'" | C: "Do I have to take off my shoes?" | E: "Question about rules/obligation uses 'Do I have to'."
+[q358] [A2|Traduzione] P: "Translate 'Non hai bisogno di pagare, è gratis.'" | C: "You don't have to pay, it's free." | E: "Lack of obligation."
+[q359] [A2|Traduzione] P: "Translate 'Cosa dovrei fare?'" | C: "What should I do?" | E: "Asking for advice."
+[q360] [A2|Traduzione] P: "Translate 'Non devi dire niente a nessuno, è un segreto!'" | C: "You mustn't tell anyone, it's a secret!" | E: "Prohibition."
+
+
+############################################################
+### TOPIC: [Object Pronouns] (20 questions)
+############################################################
+[q20] [A2|Grammatica] P: "Complete the sentence: 'This plate is dirty, can I have a clean _____?'" | C: "one" | E: "We use the pronoun 'one' to avoid repeating a singular countable noun."
+[q27] [A2|Grammatica] P: "Complete the sentence: 'The children want _____ to play with them.'" | C: "me" | E: "After 'want', we use an object pronoun ('me') + to-infinitive."
+[q235] [A1|Grammatica] P: "Complete: 'I call _____ every day.' (him/he/his/himself)" | C: "him" | E: "'Him' is the object pronoun for a male."
+[q236] [A1|Grammatica] P: "Complete: 'She loves _____ very much.' (me/I/my/mine)" | C: "me" | E: "'Me' is the object pronoun for first person singular."
+[q237] [A1|Grammatica] P: "Complete: 'Can you help _____ with this exercise?' (us/we/our/ours)" | C: "us" | E: "'Us' is the object pronoun for 'we'."
+[q238] [A1|Grammatica] P: "Complete: 'I don't know _____.' (them/they/their/theirs)" | C: "them" | E: "'Them' is the object pronoun for 'they'."
+[q239] [A1|Grammatica] P: "Complete: 'Look at _____!' (her/she/hers/herself)" | C: "her" | E: "'Her' is the object pronoun after the preposition 'at'."
+[q240] [A1|Grammatica] P: "Complete: 'He wants to speak to _____.' (you/your/yours/yourself)" | C: "you" | E: "'You' is the object pronoun."
+[q241] [A1|Grammatica] P: "Complete: 'Give _____ to me.' (it/its/it's/itself)" | C: "it" | E: "'It' is the object pronoun for things/animals."
+[q242] [A1|Grammatica] P: "Complete: 'My parents are visiting _____.' (me/I/my/mine)" | C: "me" | E: "'Me' receives the action of visiting."
+[q243] [A1|Grammatica] P: "Complete: 'Are you listening to _____?' (him/he/his/himself)" | C: "him" | E: "'Him' follows the preposition 'to'."
+[q244] [A1|Traduzione] P: "Translate 'Non lo capisco.' (di lui)" | C: "I don't understand him." | E: "'Lo' referring to a man translates to 'him'."
+[q245] [A1|Traduzione] P: "Translate 'Puoi vederci?'" | C: "Can you see us?" | E: "'Ci' translates to the object pronoun 'us'."
+[q246] [A1|Traduzione] P: "Translate 'Le ho comprato un regalo.' (a lei)" | C: "I bought her a present." | E: "'Le' (to her) is translated with the object pronoun 'her'."
+[q247] [A1|Traduzione] P: "Translate 'Li aspetto qui.'" | C: "I wait for them here." | E: "'Li' (them) follows the preposition 'for' in English."
+[q248] [A1|Traduzione] P: "Translate 'Dammi quel libro.'" | C: "Give me that book." | E: "'Dammi' uses the object pronoun 'me'."
+[q249] [A1|Traduzione] P: "Translate 'Non ti credo.'" | C: "I don't believe you." | E: "'Ti' is the object pronoun 'you'."
+[q250] [A1|Traduzione] P: "Translate 'Lo voglio adesso.' (un oggetto)" | C: "I want it now." | E: "'Lo' for a thing is 'it'."
+[q251] [A1|Traduzione] P: "Translate 'Vieni con noi al cinema?'" | C: "Are you coming with us to the cinema?" | E: "'Con noi' uses the object pronoun 'us'."
+[q252] [A1|Traduzione] P: "Translate 'Non li conosco.'" | C: "I don't know them." | E: "'Li' is the object pronoun 'them'."
+
+
+############################################################
+### TOPIC: [Passive Voice] (18 questions)
+############################################################
+[q383] [B1|Grammatica] P: "Complete the sentence: 'The letter _____ by John yesterday.'" | C: "was written" | E: "Past Simple Passive structure is 'was/were + past participle'."
+[q384] [B1|Traduzione] P: "Translate 'La casa viene costruita proprio ora.'" | C: "The house is being built right now." | E: "Present Continuous Passive requires 'is/are being + past participle'."
+[q463] [B1|Grammatica] P: "The Mona Lisa _____ by Leonardo da Vinci." | C: "was painted" | E: "Past Simple passive: was + past participle."
+[q464] [B1|Grammatica] P: "English _____ in many countries around the world." | C: "is spoken" | E: "Present Simple passive for facts."
+[q465] [B1|Grammatica] P: "My car _____ at the moment." | C: "is being repaired" | E: "Present Continuous passive for ongoing actions."
+[q466] [B1|Traduzione] P: "Translate: 'Il libro è stato scritto nel 1990.'" | C: "The book was written in 1990." | E: "Past Simple passive for a completed action in the past."
+[q467] [B1|Traduzione] P: "Translate: 'La stanza viene pulita ogni giorno.'" | C: "The room is cleaned every day." | E: "Present Simple passive for routines."
+[q468] [B1|Grammatica] P: "A new supermarket _____ in our town next year." | C: "will be built" | E: "Future passive: will be + past participle."
+[q469] [B1|Grammatica] P: "The thieves _____ by the police yesterday." | C: "were caught" | E: "Past Simple passive (plural)."
+[q470] [B1|Grammatica] P: "This picture _____ by my grandfather." | C: "was taken" | E: "Past Simple passive."
+[q471] [B1|Traduzione] P: "Translate: 'I biglietti sono già stati venduti.'" | C: "The tickets have already been sold." | E: "Present Perfect passive: have been + past participle."
+[q472] [B1|Traduzione] P: "Translate: 'Il problema deve essere risolto subito.'" | C: "The problem must be solved immediately." | E: "Modal passive: modal + be + past participle."
+[q473] [B1|Grammatica] P: "The emails _____ every morning at 8 am." | C: "are sent" | E: "Present Simple passive for routines."
+[q474] [B1|Grammatica] P: "The dinner _____ when the guests arrived." | C: "was being cooked" | E: "Past Continuous passive for interrupted past actions."
+[q475] [B1|Grammatica] P: "The bridge _____ in 2005." | C: "was built" | E: "Past Simple passive."
+[q476] [B1|Grammatica] P: "All the cake _____ by the children before I came." | C: "had been eaten" | E: "Past Perfect passive."
+[q477] [B1|Grammatica] P: "The keys _____ on the table yesterday." | C: "were left" | E: "Past Simple passive."
+[q478] [B1|Traduzione] P: "Translate: 'La mia bicicletta è stata rubata ieri.'" | C: "My bicycle was stolen yesterday." | E: "Past Simple passive."
+
+
+############################################################
+### TOPIC: [Past Continuous] (19 questions)
+############################################################
+[q25] [A2|Grammatica] P: "Combine the sentences correctly: 'I saw Tom this morning. He was waiting at the bus stop.'" | C: "I saw Tom this morning while he was waiting at the bus stop." | E: "'While' is followed by a continuous tense (Past Continuous) to show an ongoing background action."
+[q325] [A2|Grammatica] P: "Complete: 'I _____ TV when the phone rang.'" | C: "was watching" | E: "Past continuous for a long action interrupted by a short one."
+[q326] [A2|Grammatica] P: "Complete: 'While she was reading, her brother _____ video games.'" | C: "was playing" | E: "Two long actions happening at the same time in the past."
+[q327] [A2|Grammatica] P: "Complete: 'What _____ you doing at 8 PM yesterday?'" | C: "were" | E: "'You' takes the auxiliary 'were' in the past continuous."
+[q328] [A2|Grammatica] P: "Complete: 'They were walking in the park when it started to _____.'" | C: "rain" | E: "'Started' is followed by the infinitive 'to rain' or gerund 'raining', but here 'to' is provided, so 'rain'."
+[q329] [A2|Grammatica] P: "Complete: 'He _____ (not) listening to the teacher.'" | C: "wasn't" | E: "'He' takes 'wasn't' in negative past continuous."
+[q330] [A2|Grammatica] P: "Complete: 'While I _____ home, I saw a car accident.'" | C: "was driving" | E: "Continuous action in the past ('while' often signals continuous)."
+[q331] [A2|Grammatica] P: "Complete: 'We were having dinner when the lights _____ out.'" | C: "went" | E: "The interrupting action is in the past simple ('went')."
+[q332] [A2|Grammatica] P: "Complete: '_____ it raining when you left?'" | C: "Was" | E: "'It' takes 'was'."
+[q333] [A2|Grammatica] P: "Complete: 'I broke my leg while I _____ football.'" | C: "was playing" | E: "Long background action in past continuous."
+[q334] [A2|Traduzione] P: "Translate 'Cosa stavi facendo quando ti ho chiamato?'" | C: "What were you doing when I called you?" | E: "Question in past continuous, interrupting action in past simple."
+[q335] [A2|Traduzione] P: "Translate 'Stavo dormendo quando l'allarme ha suonato.'" | C: "I was sleeping when the alarm rang." | E: "Background action (sleeping), interruption (rang)."
+[q336] [A2|Traduzione] P: "Translate 'Mentre camminavamo, abbiamo trovato dei soldi.'" | C: "While we were walking, we found some money." | E: "'While' + past continuous, then past simple."
+[q337] [A2|Traduzione] P: "Translate 'Lei non stava guardando la TV, stava leggendo.'" | C: "She wasn't watching TV, she was reading." | E: "Both actions are past continuous."
+[q338] [A2|Traduzione] P: "Translate 'Mentre cucinavo, lui ascoltava la musica.'" | C: "While I was cooking, he was listening to music." | E: "Two simultaneous long actions usually take past continuous."
+[q339] [A2|Traduzione] P: "Translate 'Pioveva forte ieri mattina?'" | C: "Was it raining hard yesterday morning?" | E: "Asking about a progressive state at a specific time in the past."
+[q340] [A2|Traduzione] P: "Translate 'Non stavamo andando troppo veloci.'" | C: "We weren't going too fast." | E: "Negative past continuous with 'were'."
+[q341] [A2|Traduzione] P: "Translate 'Cosa pensavi in quel momento?'" | C: "What were you thinking at that moment?" | E: "Asking about ongoing thoughts at a past moment."
+[q342] [A2|Traduzione] P: "Translate 'Loro ridevano quando sono entrato.'" | C: "They were laughing when I entered." | E: "Background action (laughing), short interruption (entered)."
+
+
+############################################################
+### TOPIC: [Past Perfect] (18 questions)
+############################################################
+[q387] [B1|Grammatica] P: "Complete the sentence: 'When I arrived at the station, the train _____.'" | C: "had already left" | E: "The Past Perfect ('had left') shows an action that happened before another past action ('arrived')."
+[q388] [B1|Traduzione] P: "Translate 'Avevo già mangiato quando mi hai chiamato.'" | C: "I had already eaten when you called me." | E: "We use the Past Perfect ('had eaten') for the action that happened first."
+[q495] [B1|Grammatica] P: "By the time we arrived, the movie _____." | C: "had started" | E: "Past Perfect is used for the action that happened first in the past."
+[q496] [B1|Grammatica] P: "I realized I _____ my keys at home." | C: "had left" | E: "You left them before you realized it."
+[q497] [B1|Grammatica] P: "She was tired because she _____ all day." | C: "had worked" | E: "Action leading up to a past state."
+[q498] [B1|Traduzione] P: "Translate: 'Avevo appena finito di mangiare quando ha bussato.'" | C: "I had just finished eating when he knocked." | E: "Past perfect + just for an action completed moments before another past action."
+[q499] [B1|Traduzione] P: "Translate: 'Non avevo mai visto quel film prima di ieri.'" | C: "I had never seen that movie before yesterday." | E: "Past perfect + never for experiences before a specific past point."
+[q500] [B1|Grammatica] P: "When I got to the station, the train _____." | C: "had left" | E: "The train left before I arrived."
+[q501] [B1|Grammatica] P: "They _____ the project before the deadline." | C: "had finished" | E: "Past perfect highlights completion before a past deadline."
+[q502] [B1|Grammatica] P: "He didn't want to eat because he _____ lunch." | C: "had already had" | E: "He ate lunch before he didn't want to eat."
+[q503] [B1|Traduzione] P: "Translate: 'Ero arrabbiato perché avevo perso il portafoglio.'" | C: "I was angry because I had lost my wallet." | E: "Cause and effect in the past."
+[q504] [B1|Traduzione] P: "Translate: 'Avevano vissuto lì per dieci anni prima di trasferirsi.'" | C: "They had lived there for ten years before moving." | E: "Duration before a past action."
+[q505] [B1|Grammatica] P: "I _____ him before that day." | C: "had never met" | E: "Experience before a past event."
+[q506] [B1|Grammatica] P: "The grass was yellow because it _____ all summer." | C: "hadn't rained" | E: "Negative past perfect."
+[q507] [B1|Grammatica] P: "She passed the test because she _____ hard." | C: "had studied" | E: "Studying happened before passing."
+[q508] [B1|Grammatica] P: "I couldn't open the door because I _____ the key." | C: "had lost" | E: "Lost the key before trying to open."
+[q509] [B1|Grammatica] P: "By the time I woke up, everyone _____." | C: "had gone" | E: "'By the time' is a strong trigger for the Past Perfect."
+[q510] [B1|Traduzione] P: "Translate: 'La festa era già finita quando siamo arrivati.'" | C: "The party had already ended when we arrived." | E: "Past Perfect with 'already'."
+
+
+############################################################
+### TOPIC: [Past Simple] (19 questions)
+############################################################
+[q3] [A2|Grammatica] P: "Which sentence is correct?" | C: "Did you meet Mr. Smith's wife?" | E: "After 'did', we use the base form of the verb ('meet', not 'met')."
+[q5] [A2|Traduzione] P: "Translate 'Sono stato in Africa nel 2009.'" | C: "I went to Africa in 2009." | E: "With a finished time in the past ('in 2009'), we use the Past Simple ('went')."
+[q7] [A2|Grammatica] P: "Complete the sentence: '_____ did you meet Mr. Smith?' - 'At the station.'" | C: "Where" | E: "'Where' is used to ask about a place."
+[q16] [A2|Traduzione] P: "Translate 'Con chi è andata?'" | C: "Who did she go with?" | E: "In WH- questions, the auxiliary 'did' is followed by the base verb 'go'. The preposition 'with' goes at the end."
+[q17] [A2|Grammatica] P: "Choose the grammatically correct sentence:" | C: "She went to the cinema yesterday." | E: "'Yesterday' requires the Past Simple ('went')."
+[q19] [A2|Grammatica] P: "Complete the sentence: 'I _____ my husband in 1996.'" | C: "met" | E: "A specific time in the past ('in 1996') requires the Past Simple ('met')."
+[q29] [A2|Grammatica] P: "Complete the sentence: 'I _____ a new pair of shoes yesterday.'" | C: "bought" | E: "'Yesterday' indicates Past Simple. The past of 'buy' is 'bought'."
+[q34] [A2|Grammatica] P: "Complete the sentence: 'How many people _____ to the party?'" | C: "came" | E: "When the question word ('How many people') is the subject, we don't use 'did'. We just use the past verb ('came')."
+[q37] [A2|Grammatica] P: "Complete the sentence: 'When _____ you meet Mr. Brown?'" | C: "did" | E: "'When' asks for a specific past time, so we use Past Simple auxiliary 'did'."
+[q40] [A2|Traduzione] P: "Translate 'Non mi è piaciuto il cibo inglese.'" | C: "I didn't like English food." | E: "Past Simple negative uses 'didn't' + base verb ('like')."
+[q43] [A2|Grammatica] P: "Complete the sentence: 'I _____ to Africa in 2001.'" | C: "went" | E: "Past Simple ('went') is required for a specific finished past time ('in 2001')."
+[q51] [A2|Grammatica] P: "Complete the sentence: 'How many people _____ to the party?'" | C: "came" | E: "Referring to a past event ('the party' implies it already happened), so Past Simple ('came') is appropriate."
+[q67] [A2|Grammatica] P: "Complete the sentence: 'I _____ to the cinema yesterday.'" | C: "went" | E: "Past simple for a finished action at a specific time in the past."
+[q68] [A2|Traduzione] P: "Translate 'Non hanno studiato per l'esame.'" | C: "They didn't study for the exam." | E: "Past simple negative uses 'didn't' + base verb."
+[q69] [A2|Grammatica] P: "Complete the sentence: '_____ you see the football match last night?'" | C: "Did" | E: "Past simple question uses auxiliary 'did'."
+[q70] [A2|Traduzione] P: "Translate 'Lei ha comprato un nuovo telefono la settimana scorsa.'" | C: "She bought a new phone last week." | E: "Irregular past simple of 'buy' is 'bought'."
+[q71] [A2|Grammatica] P: "Complete the sentence: 'We _____ very tired after the trip.'" | C: "were" | E: "Past simple of 'to be' for 'we' is 'were'."
+[q72] [A2|Traduzione] P: "Translate 'Quando sei arrivato?'" | C: "When did you arrive?" | E: "Question word + did + subject + base verb."
+[q143] [A1|Traduzione] P: "Translate 'Ero molto stanco ieri sera.'" | C: "I was very tired last night." | E: "Past simple of 'to be' for 'I' is 'was'."
+
+
+############################################################
+### TOPIC: [Possessive S] (18 questions)
+############################################################
+[q46] [A1|Traduzione] P: "Translate 'Non mi piace il trucco di Sara.'" | C: "I don't like Sara's makeup." | E: "We use the possessive 's (Sara's) to show belonging."
+[q100] [A1|Grammatica] P: "Complete the sentence: 'This is my _____ car.' (The car belongs to my friend)" | C: "friend's" | E: "Singular possessive adds 's."
+[q101] [A1|Traduzione] P: "Translate 'Dov'è il computer di Marco?'" | C: "Where is Marco's computer?" | E: "Possessive 's is preferred for people."
+[q102] [A1|Grammatica] P: "Complete the sentence: 'Those are my _____ toys.' (The toys belong to my dogs)" | C: "dogs'" | E: "Regular plural nouns just add an apostrophe after the 's'."
+[q103] [A1|Traduzione] P: "Translate 'La borsa di Sarah è rossa.'" | C: "Sarah's bag is red." | E: "Possessive 's shows ownership."
+[q104] [A1|Grammatica] P: "Complete the sentence: 'We went to the _____ house yesterday.' (The house belongs to my parents)" | C: "parents'" | E: "Plural noun ending in 's' gets an apostrophe at the end."
+[q148] [A1|Grammatica] P: "Complete: 'That is _____ jacket.' (The jacket belongs to Tom)" | C: "Tom's" | E: "Add 's to singular names."
+[q149] [A1|Traduzione] P: "Translate 'La casa dei miei nonni è grande.'" | C: "My grandparents' house is big." | E: "Plural nouns ending in -s just take an apostrophe."
+[q150] [A1|Grammatica] P: "Complete: 'I love _____ new song.' (The song of the band)" | C: "the band's" | E: "Singular noun 'band' takes 's."
+[q151] [A1|Traduzione] P: "Translate 'I giocattoli dei bambini sono sparsi ovunque.'" | C: "The children's toys are everywhere." | E: "Irregular plurals not ending in -s take 's."
+[q152] [A1|Grammatica] P: "Complete: 'This is _____ desk.' (The desk belongs to the boss)" | C: "the boss's" | E: "Singular nouns ending in -s usually take 's."
+[q153] [A1|Traduzione] P: "Translate 'La macchina di James è blu.'" | C: "James's car is blue." | E: "Names ending in -s can take 's or just an apostrophe. 'James's' is common."
+[q154] [A1|Grammatica] P: "Complete: 'I went to the _____.' (The shop of the baker)" | C: "baker's" | E: "Possessive form is often used alone for shops/businesses."
+[q155] [A1|Traduzione] P: "Translate 'È il compleanno di mia madre.'" | C: "It's my mother's birthday." | E: "Possessive 's for people."
+[q156] [A1|Grammatica] P: "Complete: 'We are meeting at _____.' (The house of Paul)" | C: "Paul's" | E: "Possessive form is often used alone for people's houses."
+[q157] [A1|Traduzione] P: "Translate 'Le scarpe da donna sono al secondo piano.'" | C: "Women's shoes are on the second floor." | E: "Irregular plural 'women' takes 's."
+[q158] [A1|Grammatica] P: "Complete: 'The _____ room is down the hall.' (The room for teachers)" | C: "teachers'" | E: "Plural 'teachers' takes an apostrophe after the s."
+[q159] [A1|Traduzione] P: "Translate 'Hai visto le chiavi di Anna?'" | C: "Have you seen Anna's keys?" | E: "Singular name takes 's."
+
+
+############################################################
+### TOPIC: [Possessives] (18 questions)
+############################################################
+[q217] [A1|Grammatica] P: "Complete: 'This is not my pen. It is _____.'" | C: "yours" | E: "Pronoun 'yours' replaces 'your pen'."
+[q218] [A1|Grammatica] P: "Complete: '_____ car is parked outside.'" | C: "Her" | E: "Adjective 'Her' describes the car."
+[q219] [A1|Grammatica] P: "Complete: 'That house is _____.' (of us)" | C: "ours" | E: "Pronoun 'ours' replaces 'our house'."
+[q220] [A1|Grammatica] P: "Complete: 'Is this book _____?' (of him)" | C: "his" | E: "Pronoun 'his' indicates possession by a male."
+[q221] [A1|Grammatica] P: "Complete: 'These are _____ shoes.'" | C: "my" | E: "Adjective 'my' modifies shoes."
+[q222] [A1|Grammatica] P: "Complete: 'The dog is wagging _____ tail.'" | C: "its" | E: "'Its' is the possessive adjective for animals/things without an apostrophe."
+[q223] [A1|Grammatica] P: "Complete: 'Are those keys _____?' (of them)" | C: "theirs" | E: "Pronoun 'theirs' replaces 'their keys'."
+[q224] [A1|Grammatica] P: "Complete: 'I lost _____ keys yesterday.'" | C: "my" | E: "Possessive adjective 'my' comes before the noun."
+[q225] [A1|Grammatica] P: "Complete: 'This laptop is _____, not yours.'" | C: "mine" | E: "Pronoun 'mine' replaces 'my laptop'."
+[q226] [A1|Traduzione] P: "Translate 'Questo libro è mio.'" | C: "This book is mine." | E: "'Mio' at the end of the sentence is the pronoun 'mine'."
+[q227] [A1|Traduzione] P: "Translate 'La loro casa è molto grande.'" | C: "Their house is very big." | E: "'Loro' as an adjective before a noun is 'their'."
+[q228] [A1|Traduzione] P: "Translate 'Quella è la tua giacca, non la sua (di lei).'" | C: "That is your jacket, not hers." | E: "'La sua' without the noun is the pronoun 'hers'."
+[q229] [A1|Traduzione] P: "Translate 'I nostri amici stanno arrivando.'" | C: "Our friends are coming." | E: "'Nostri' before the noun is 'our'."
+[q230] [A1|Traduzione] P: "Translate 'Questi soldi sono vostri?'" | C: "Is this money yours?" | E: "Money is uncountable singular, 'vostri' as a pronoun is 'yours'."
+[q231] [A1|Traduzione] P: "Translate 'Il suo (di lui) telefono è nuovo.'" | C: "His phone is new." | E: "'Suo' for a male is 'his'."
+[q232] [A1|Traduzione] P: "Translate 'La mia macchina è rossa, la sua (di lui) è blu.'" | C: "My car is red, his is blue." | E: "'La sua' as a pronoun for a male is 'his'."
+[q233] [A1|Traduzione] P: "Translate 'Ho dimenticato il mio ombrello.'" | C: "I forgot my umbrella." | E: "'Il mio' before the noun is 'my'."
+[q234] [A1|Traduzione] P: "Translate 'Quelle penne sono loro (di loro).'" | C: "Those pens are theirs." | E: "'Loro' as a pronoun is 'theirs'."
+
+
+############################################################
+### TOPIC: [Prepositions of Place] (18 questions)
+############################################################
+[q271] [A1|Grammatica] P: "Complete: 'The cat is hiding _____ the bed.'" | C: "under" | E: "'Under' means below or beneath."
+[q272] [A1|Grammatica] P: "Complete: 'She is waiting _____ the bus stop.'" | C: "at" | E: "Use 'at' for a specific point or location."
+[q273] [A1|Grammatica] P: "Complete: 'The picture is hanging _____ the wall.'" | C: "on" | E: "Use 'on' for surfaces."
+[q274] [A1|Grammatica] P: "Complete: 'He lives _____ London.'" | C: "in" | E: "Use 'in' for cities, countries, and enclosed spaces."
+[q275] [A1|Grammatica] P: "Complete: 'The car is parked _____ the house.'" | C: "behind" | E: "'Behind' means at the back of."
+[q276] [A1|Grammatica] P: "Complete: 'She sat _____ her two best friends.'" | C: "between" | E: "'Between' is used for a position separating two things or people."
+[q277] [A1|Grammatica] P: "Complete: 'The bank is _____ the post office.'" | C: "next to" | E: "'Next to' means beside."
+[q278] [A1|Grammatica] P: "Complete: 'There is a bridge _____ the river.'" | C: "over" | E: "'Over' means extending directly upwards from or across."
+[q279] [A1|Grammatica] P: "Complete: 'I left my keys _____ the table.'" | C: "on" | E: "'On' is used for surfaces."
+[q280] [A1|Traduzione] P: "Translate 'Il cane è sotto il tavolo.'" | C: "The dog is under the table." | E: "'Sotto' translates to 'under'."
+[q281] [A1|Traduzione] P: "Translate 'Sono al cinema.'" | C: "I am at the cinema." | E: "'At' is used for specific places like the cinema."
+[q282] [A1|Traduzione] P: "Translate 'C'è un ragno sul soffitto.'" | C: "There is a spider on the ceiling." | E: "'Sul' for a surface like a ceiling is 'on'."
+[q283] [A1|Traduzione] P: "Translate 'L'ufficio è vicino alla banca.'" | C: "The office is next to the bank." | E: "'Vicino a' is 'next to' or 'near'."
+[q284] [A1|Traduzione] P: "Translate 'Il bambino è tra i suoi genitori.'" | C: "The child is between his parents." | E: "'Tra' due persone è 'between'."
+[q285] [A1|Traduzione] P: "Translate 'Nasconditi dietro la porta.'" | C: "Hide behind the door." | E: "'Dietro' is 'behind'."
+[q286] [A1|Traduzione] P: "Translate 'Metti i vestiti nell'armadio.'" | C: "Put the clothes in the wardrobe." | E: "'Nel' meaning inside an enclosed space is 'in'."
+[q287] [A1|Traduzione] P: "Translate 'Ho incontrato Marco alla stazione.'" | C: "I met Marco at the station." | E: "'Alla' for a specific point is 'at'."
+[q288] [A1|Traduzione] P: "Translate 'C'è un giardino dietro la casa.'" | C: "There is a garden behind the house." | E: "'Dietro' is 'behind'."
+
+
+############################################################
+### TOPIC: [Prepositions of Time] (19 questions)
+############################################################
+[q9] [B1|Traduzione] P: "Translate 'Il treno partirà tra 2 minuti.'" | C: "The train will leave in 2 minutes." | E: "We use 'in' for future time limits ('in 2 minutes'). 'Will leave' expresses a future fact."
+[q10] [B1|Traduzione] P: "Translate 'Ti posso offrire qualcosa da bere?'" | C: "Can I offer you something to drink?" | E: "In offers, we normally use 'something', not 'anything'. The infinitive is 'to drink'."
+[q11] [B1|Traduzione] P: "Translate 'Francesco lavora per Google.'" | C: "Francesco works for Google." | E: "Third person singular in Present Simple requires an 's' ('works'). 'Work for' is the correct preposition."
+[q15] [B1|Traduzione] P: "Translate 'Francesco riesce a parlare bene inglese.'" | C: "Francesco can speak English well." | E: "Modal verb 'can' is followed by the base form without 'to' ('can speak')."
+[q23] [B1|Grammatica] P: "Complete the sentence: 'What time _____ your plane take off?'" | C: "does" | E: "For scheduled future events, we use Present Simple. 'Plane' is 'it', so we use 'does'."
+[q24] [B1|Grammatica] P: "Which question is correct?" | C: "Can I offer you anything to drink?" | E: "Modal 'can' is followed by a bare infinitive ('offer'). The object complement is a full infinitive ('to drink')."
+[q26] [B1|Grammatica] P: "Complete the sentence: 'James can speak English very _____.'" | C: "well" | E: "'Well' is the adverb form of 'good' and modifies the verb 'speak'."
+[q30] [B1|Grammatica] P: "Complete the sentence: 'What time does the train leave tomorrow? It _____ at 9.'" | C: "leaves" | E: "For a scheduled timetable in the future, we use the Present Simple ('leaves')."
+[q36] [B1|Traduzione] P: "Translate 'Steven lavora per Microsoft.'" | C: "Steven works for Microsoft." | E: "Present Simple third person requires 'works'. The preposition is 'for'."
+[q41] [B1|Grammatica] P: "Complete the sentence: 'Hurry, the bus _____ in 2 minutes.'" | C: "leaves" | E: "We use Present Simple ('leaves') for timetabled future events."
+[q54] [B1|Grammatica] P: "Complete the sentence: 'Hurry! The bus _____ in 2 minutes.'" | C: "leaves" | E: "Present Simple ('leaves') is used for scheduled events like bus or train timetables."
+[q90] [B1|Grammatica] P: "Complete the sentence: 'I have been studying English _____ three years.'" | C: "for" | E: "'For' is used for a duration or period of time."
+[q91] [B1|Traduzione] P: "Translate 'Lavora in quella banca dal 2015.'" | C: "He has worked in that bank since 2015." | E: "'Since' refers to the starting point of an action."
+[q92] [B1|Grammatica] P: "Complete the sentence: 'She hasn't eaten anything _____ yesterday morning.'" | C: "since" | E: "'Yesterday morning' is a specific point in time, so we use 'since'."
+[q93] [B1|Traduzione] P: "Translate 'Stiamo aspettando da due ore.'" | C: "We have been waiting for two hours." | E: "Duration (two hours) requires 'for'."
+[q94] [B1|Grammatica] P: "Complete the sentence: 'I haven't seen him _____ a long time.'" | C: "for" | E: "'A long time' is a period, so we use 'for'."
+[q136] [A1|Grammatica] P: "Complete: 'I usually go to bed _____ 11 PM.'" | C: "at" | E: "Use 'at' for specific times."
+[q160] [B1|Grammatica] P: "Complete: 'I have known him _____ 2010.'" | C: "since" | E: "'Since' indicates a specific starting point in the past."
+[q161] [B1|Traduzione] P: "Translate 'Lavorano qui da molti anni.'" | C: "They have worked here for many years." | E: "'For' is used for a duration."
+
+
+############################################################
+### TOPIC: [Present Continuous] (21 questions)
+############################################################
+[q12] [A2|Grammatica] P: "Choose the correct sentence to describe a current action." | C: "Look! It's raining." | E: "Present Continuous ('is raining') is used for actions happening right now."
+[q33] [A2|Grammatica] P: "Complete the sentence: 'Look! It _____.'" | C: "is raining" | E: "'Look!' implies an action happening right now (Present Continuous)."
+[q48] [A2|Grammatica] P: "Complete the sentence: 'He _____ his homework right now.'" | C: "is doing" | E: "'Right now' indicates Present Continuous ('is doing')."
+[q56] [A2|Grammatica] P: "Complete the sentence: 'Is she _____ with friends?'" | C: "going" | E: "The auxiliary 'Is' indicates Present Continuous, which requires the -ing form ('going')."
+[q73] [A2|Grammatica] P: "Complete the sentence: 'Please be quiet, I _____.'" | C: "am working" | E: "Action happening right now requires present continuous."
+[q74] [A2|Traduzione] P: "Translate 'Cosa stanno facendo?'" | C: "What are they doing?" | E: "Present continuous question format."
+[q75] [A2|Grammatica] P: "Complete the sentence: 'She _____ to music at the moment.'" | C: "is listening" | E: "'At the moment' indicates an ongoing action."
+[q76] [A2|Traduzione] P: "Translate 'Non sto leggendo un libro, sto guardando la TV.'" | C: "I'm not reading a book, I'm watching TV." | E: "Present continuous for current contrasting actions."
+[q77] [A2|Grammatica] P: "Complete the sentence: '_____ it raining outside?'" | C: "Is" | E: "Auxiliary 'to be' is used for present continuous questions."
+[q138] [A2|Grammatica] P: "Complete: 'They _____ to Paris next weekend.'" | C: "are going" | E: "Present continuous can be used for arranged future plans."
+[q162] [A2|Grammatica] P: "Complete: 'They _____ tennis right now.'" | C: "are playing" | E: "Actions happening now use present continuous."
+[q163] [A2|Traduzione] P: "Translate 'Perché stai piangendo?'" | C: "Why are you crying?" | E: "Question word + are + subject + verb-ing."
+[q164] [A2|Grammatica] P: "Complete: 'I _____ to the doctor tomorrow afternoon.'" | C: "am going" | E: "Present continuous is used for arranged future plans."
+[q165] [A2|Traduzione] P: "Translate 'Il sole sta splendendo.'" | C: "The sun is shining." | E: "Action happening now."
+[q166] [A2|Grammatica] P: "Complete: 'Look! The bus _____.'" | C: "is coming" | E: "'Look!' indicates an action happening at the moment."
+[q167] [A2|Traduzione] P: "Translate 'Non stiamo usando il computer adesso.'" | C: "We aren't using the computer right now." | E: "Negative present continuous."
+[q168] [A2|Grammatica] P: "Complete: '_____ he watching TV?'" | C: "Is" | E: "Auxiliary 'to be' for third person singular is 'is'."
+[q169] [A2|Traduzione] P: "Translate 'Sto cercando le mie chiavi.'" | C: "I am looking for my keys." | E: "'Look for' means 'cercare', present continuous for current action."
+[q170] [A2|Grammatica] P: "Complete: 'The kids _____ sleeping in their room.'" | C: "are" | E: "Plural subject 'kids' takes 'are'."
+[q589] [B1|Grammatica] P: "Complete the sentence: 'Please don't disturb Marco right now; he _____ lunch with a client.'" | C: "is having" | E: "When 'have' means eating/drinking ('having lunch'), it is a dynamic action and CAN be continuous!"
+[q590] [B1|Grammatica] P: "Complete the sentence: 'Be quiet for a minute! I _____ about how to solve this math problem.'" | C: "am thinking" | E: "'Think' in the continuous form ('am thinking') refers to an active mental process at this moment."
+
+
+############################################################
+### TOPIC: [Present Perfect] (18 questions)
+############################################################
+[q1] [B1|Grammatica] P: "Choose the correct translation for 'Sei mai stato in Brasile?'" | C: "Have you ever been to Brazil?" | E: "We use Present Perfect ('Have you ever been') for life experiences."
+[q14] [B1|Traduzione] P: "Translate 'Da quanto tempo studi l'inglese?'" | C: "How long have you studied English?" | E: "We use Present Perfect ('have you studied') with 'How long' for actions starting in the past and continuing now."
+[q22] [B1|Grammatica] P: "Complete the sentence: 'How many companies have you worked for _____ you left school?'" | C: "since" | E: "'Since' is used with Present Perfect to indicate a starting point in time."
+[q32] [B1|Grammatica] P: "Complete the sentence: 'How long _____ you studied English?'" | C: "have" | E: "Present Perfect uses the auxiliary 'have' + past participle ('studied')."
+[q39] [B1|Grammatica] P: "Complete the sentence: 'Tom is away. He has been away _____ Monday.'" | C: "since" | E: "'Since' is used with a specific point in time (Monday) to show when an action started."
+[q42] [B1|Grammatica] P: "Complete the sentence: 'She's the most beautiful girl I've _____ seen.'" | C: "ever" | E: "'Ever' is used with Present Perfect to mean 'at any time in my life'."
+[q44] [B1|Traduzione] P: "Translate 'Hai conosciuto la moglie del signor Smith?'" | C: "Have you met Mr. Smith's wife?" | E: "Present Perfect ('Have you met') is used for life experiences when the time is not specified."
+[q45] [B1|Traduzione] P: "Translate 'Sei mai stato in Brasile?'" | C: "Have you ever been to Brazil?" | E: "'Have you ever been to' is the standard way to ask about travel experiences."
+[q50] [B1|Grammatica] P: "Complete the sentence: 'I _____ playing tennis since I was a child.'" | C: "have been" | E: "'Since' + a point in the past requires the Present Perfect Continuous ('have been playing')."
+[q53] [B1|Grammatica] P: "Complete the sentence: 'Tom is away. He _____ away since Monday.'" | C: "has been" | E: "'Since Monday' requires Present Perfect ('has been') to connect the past to the present."
+[q55] [B1|Grammatica] P: "Complete the sentence: 'Have you ever _____ to Brasil?'" | C: "been" | E: "We use 'been to' to mean 'visited and returned'."
+[q57] [B1|Traduzione] P: "Translate 'Hai mai mangiato sushi?'" | C: "Have you ever eaten sushi?" | E: "We use Present Perfect ('Have you ever eaten') for life experiences."
+[q58] [B1|Grammatica] P: "Complete the sentence: 'She _____ just finished her homework.'" | C: "has" | E: "'Just' is often used with Present Perfect, and 'She' takes 'has'."
+[q59] [B1|Traduzione] P: "Translate 'Non abbiamo ancora visto quel film.'" | C: "We haven't seen that movie yet." | E: "Present perfect negative with 'yet' for something expected to happen."
+[q60] [B1|Grammatica] P: "Complete the sentence: '_____ you ever flown in a helicopter?'" | C: "Have" | E: "Present Perfect is used for asking about life experiences."
+[q61] [B1|Traduzione] P: "Translate 'Lui ha vissuto qui per dieci anni.'" | C: "He has lived here for ten years." | E: "Present Perfect for a state that started in the past and continues to the present."
+[q171] [B1|Grammatica] P: "Complete: 'I have _____ finished my dinner.'" | C: "already" | E: "'Already' is used in affirmative sentences for completed actions."
+[q172] [B1|Traduzione] P: "Translate 'È la prima volta che guido una macchina.'" | C: "It's the first time I have driven a car." | E: "'First time' expressions use the present perfect."
+
+
+############################################################
+### TOPIC: [Present Simple] (22 questions)
+############################################################
+[q95] [A1|Grammatica] P: "Complete the sentence: 'He usually _____ up at 7 AM.'" | C: "wakes" | E: "Routines require Present Simple, third person adds -s."
+[q96] [A1|Traduzione] P: "Translate 'I miei genitori non vivono a Londra.'" | C: "My parents don't live in London." | E: "Plural subject negative uses 'don't'."
+[q97] [A1|Grammatica] P: "Complete the sentence: '_____ she like chocolate?'" | C: "Does" | E: "Question auxiliary for third person singular is 'Does'."
+[q98] [A1|Traduzione] P: "Translate 'Il treno parte alle 8 in punto.'" | C: "The train leaves at 8 o'clock." | E: "Scheduled events use Present Simple."
+[q99] [A1|Grammatica] P: "Complete the sentence: 'Water _____ at 100 degrees Celsius.'" | C: "boils" | E: "General facts use Present Simple."
+[q137] [A1|Traduzione] P: "Translate 'Non mi piace il caffè.'" | C: "I don't like coffee." | E: "Present simple negative for I/you/we/they uses 'don't'."
+[q173] [A1|Grammatica] P: "Complete: 'She _____ coffee every morning.'" | C: "drinks" | E: "Habits use present simple. Third person adds -s."
+[q174] [A1|Traduzione] P: "Translate 'Io lavoro in un ospedale.'" | C: "I work in a hospital." | E: "Permanent situations use present simple."
+[q175] [A1|Grammatica] P: "Complete: 'They _____ play tennis on Sundays.'" | C: "don't" | E: "Plural negative present simple uses 'don't'."
+[q176] [A1|Traduzione] P: "Translate 'Lui non capisce la domanda.'" | C: "He doesn't understand the question." | E: "Third person singular negative uses 'doesn't'."
+[q177] [A1|Grammatica] P: "Complete: '_____ you speak English?'" | C: "Do" | E: "Question auxiliary for 'you' in present simple is 'do'."
+[q178] [A1|Traduzione] P: "Translate 'Cosa significa questa parola?'" | C: "What does this word mean?" | E: "Question uses 'does' for third person singular ('this word')."
+[q179] [A1|Grammatica] P: "Complete: 'The sun _____ in the east.'" | C: "rises" | E: "Universal facts use present simple."
+[q180] [A1|Traduzione] P: "Translate 'Quante volte vai in palestra?'" | C: "How often do you go to the gym?" | E: "'How often' asks about frequency."
+[q181] [A1|Grammatica] P: "Complete: 'My brother never _____ his room.'" | C: "cleans" | E: "Adverbs of frequency are used with present simple."
+[q182] [A1|Traduzione] P: "Translate 'Lei ha due gatti e un cane.'" | C: "She has two cats and a dog." | E: "Third person singular of 'have' is 'has'."
+[q183] [A1|Grammatica] P: "Complete: 'We _____ like spicy food.'" | C: "don't" | E: "Negative present simple for 'we'."
+[q184] [A1|Traduzione] P: "Translate 'Il film inizia alle 20:30.'" | C: "The movie starts at 8:30 PM." | E: "Timetables use present simple."
+[q185] [A1|Grammatica] P: "Complete: 'Does he _____ in London?'" | C: "live" | E: "After 'does', use the base form of the verb."
+[q588] [B1|Grammatica] P: "Complete the sentence: 'I _____ what you mean, but I still disagree with your conclusion.'" | C: "understand" | E: "'Understand' is a stative verb (mental state) and is not normally used in the continuous form."
+[q591] [B1|Grammatica] P: "Complete the sentence: 'I _____ that learning English is essential for your career.'" | C: "think" | E: "When 'think' expresses an opinion ('I think that...'), it is stative and cannot be continuous."
+[q592] [B1|Grammatica] P: "Complete the sentence: 'This delicious pasta dish _____ of fresh tomatoes and basil.'" | C: "tastes" | E: "'Taste' describing the flavor of food is a stative verb (takes Present Simple)."
+
+
+############################################################
+### TOPIC: [Quantifiers] (27 questions)
+############################################################
+[q8] [A1|Traduzione] P: "Translate 'Quante persone ci sono alla festa?'" | C: "How many people are at the party?" | E: "'People' is plural and countable, so we use 'How many are'."
+[q28] [A2|Grammatica] P: "Complete the sentence: 'Is she going with _____?'" | C: "friends" | E: "'Friends' is a plural countable noun. Used generally here without an article."
+[q105] [A1|Grammatica] P: "Complete the sentence: 'How _____ milk is left?'" | C: "much" | E: "'Milk' is uncountable, so we use 'much'."
+[q106] [A1|Traduzione] P: "Translate 'Non ho molti amici.'" | C: "I don't have many friends." | E: "'Friends' is countable, so we use 'many' in negative sentences."
+[q107] [A1|Grammatica] P: "Complete the sentence: 'There are _____ people at the concert.'" | C: "a lot of" | E: "We use 'a lot of' for large quantities in affirmative sentences."
+[q108] [A1|Traduzione] P: "Translate 'Quanto zucchero vuoi nel caffè?'" | C: "How much sugar do you want in your coffee?" | E: "Sugar is uncountable, so 'How much'."
+[q109] [A1|Grammatica] P: "Complete the sentence: 'She has _____ free time these days.'" | C: "not much" | E: "'Time' is uncountable."
+[q110] [A1|Traduzione] P: "Translate 'Ci sono troppe macchine in questa città.'" | C: "There are too many cars in this city." | E: "'Cars' is countable, so 'too many'."
+[q147] [A2|Traduzione] P: "Translate 'Non ho abbastanza soldi.'" | C: "I don't have enough money." | E: "Present simple negative uses 'don't have', 'enough' comes before nouns."
+[q186] [A1|Grammatica] P: "Complete: 'I have _____ money in my pocket.'" | C: "some" | E: "Affirmative uncountable noun uses 'some'."
+[q187] [A1|Traduzione] P: "Translate 'Non ci sono mele.'" | C: "There aren't any apples." | E: "Negative countable uses 'any'."
+[q188] [A1|Grammatica] P: "Complete: 'Do you have _____ questions?'" | C: "any" | E: "Questions generally use 'any'."
+[q189] [A1|Traduzione] P: "Translate 'Vorresti del tè?'" | C: "Would you like some tea?" | E: "Offers use 'some', not 'any'."
+[q190] [A1|Grammatica] P: "Complete: 'There are only a _____ students in the class.'" | C: "few" | E: "'Students' is countable, so 'a few'."
+[q191] [A1|Traduzione] P: "Translate 'Ho pochissimo tempo.'" | C: "I have very little time." | E: "'Time' is uncountable, so 'little'."
+[q192] [A1|Grammatica] P: "Complete: 'She reads a _____ of books.'" | C: "lot" | E: "The phrase is 'a lot of'."
+[q193] [A1|Traduzione] P: "Translate 'Abbiamo mangiato troppa pizza.'" | C: "We ate too much pizza." | E: "'Pizza' in general is uncountable, so 'too much'."
+[q194] [A1|Grammatica] P: "Complete: 'How _____ apples do you want?'" | C: "many" | E: "'Apples' is countable, so 'How many'."
+[q195] [A1|Traduzione] P: "Translate 'Non abbiamo comprato niente.'" | C: "We didn't buy anything." | E: "Negative sentence requires 'anything'."
+[q196] [A1|Grammatica] P: "Complete: 'Is there _____ good on TV?'" | C: "anything" | E: "Questions generally use 'anything'."
+[q569] [B1|Grammatica] P: "Complete the sentence: 'Could you please give me _____ about the flight schedule?'" | C: "some information" | E: "'Information' is an uncountable noun in English: it never takes an 's' and cannot be preceded by 'an'."
+[q570] [B1|Grammatica] P: "Complete the sentence: 'My grandfather gave me a very useful _____ before my interview.'" | C: "piece of advice" | E: "'Advice' is uncountable. To refer to a single unit, use 'a piece of advice'."
+[q571] [B1|Grammatica] P: "Complete the sentence: 'The news _____ so surprising that nobody believed it at first.'" | C: "was" | E: "Even though 'news' ends in 's', it is a singular uncountable noun and takes a singular verb ('was')."
+[q572] [B1|Grammatica] P: "Complete the sentence: 'All the furniture in their new apartment _____ made of solid oak.'" | C: "is" | E: "'Furniture' is uncountable in English and always takes a singular verb ('is')."
+[q573] [B1|Grammatica] P: "Complete the sentence: 'How _____ luggage are you planning to take on the flight?'" | C: "much" | E: "'Luggage' (or baggage) is uncountable, so it is quantified with 'much' (or 'a lot of')."
+[q574] [B1|Grammatica] P: "Complete the sentence: 'The police _____ investigating the cause of the fire.'" | C: "are" | E: "'Police' is a plural collective noun with no 's', but it ALWAYS takes a plural verb ('are / were')."
+[q575] [B1|Traduzione] P: "Translate: 'Non ho molti compiti per domani.'" | C: "I don't have much homework for tomorrow." | E: "'Homework' is uncountable in English, so we use 'much homework' and never 'homeworks'."
+
+
+############################################################
+### TOPIC: [Question Tags] (25 questions)
+############################################################
+[q394] [B1|Grammatica] P: "Complete the sentence: 'You are Italian, _____?'" | C: "aren't you" | E: "Affirmative statements take a negative question tag ('aren't you?')."
+[q395] [B1|Grammatica] P: "Complete the sentence: 'She didn\'t go to the party, _____?'" | C: "did she" | E: "Negative statements take an affirmative question tag ('did she?')."
+[q527] [B1|Grammatica] P: "It's a beautiful day, _____?" | C: "isn't it" | E: "Affirmative statement -> negative tag."
+[q528] [B1|Grammatica] P: "You don't like coffee, _____?" | C: "do you" | E: "Negative statement -> affirmative tag."
+[q529] [B1|Grammatica] P: "She went to Paris, _____?" | C: "didn't she" | E: "Past simple affirmative -> didn't."
+[q530] [B1|Traduzione] P: "Translate: 'Siete italiani, vero?'" | C: "You are Italian, aren't you?" | E: "The tag must match the subject (you) and auxiliary (are)."
+[q531] [B1|Traduzione] P: "Translate: 'Non hai visto il film, vero?'" | C: "You haven't seen the movie, have you?" | E: "Present perfect negative -> affirmative 'have' tag."
+[q532] [B1|Grammatica] P: "They have finished the project, _____?" | C: "haven't they" | E: "Present perfect affirmative -> haven't."
+[q533] [B1|Grammatica] P: "He can speak Spanish, _____?" | C: "can't he" | E: "Modal 'can' -> can't."
+[q534] [B1|Grammatica] P: "You will come to the party, _____?" | C: "won't you" | E: "Future 'will' -> won't."
+[q535] [B1|Traduzione] P: "Translate: 'Fa freddo oggi, no?'" | C: "It's cold today, isn't it?" | E: "Verb to be -> isn't."
+[q536] [B1|Traduzione] P: "Translate: 'Lui non sa nuotare, vero?'" | C: "He can't swim, can he?" | E: "Negative can't -> affirmative can."
+[q537] [B1|Grammatica] P: "We should leave now, _____?" | C: "shouldn't we" | E: "Modal 'should' -> shouldn't."
+[q538] [B1|Grammatica] P: "She was at home, _____?" | C: "wasn't she" | E: "Past simple to be -> wasn't."
+[q539] [B1|Grammatica] P: "I am right, _____?" | C: "aren't I" | E: "'I am' always takes the tag 'aren't I?'."
+[q540] [B1|Grammatica] P: "Let's go for a walk, _____?" | C: "shall we" | E: "'Let's' always takes the tag 'shall we?'."
+[q541] [B1|Grammatica] P: "You wouldn't do that, _____?" | C: "would you" | E: "Negative wouldn't -> affirmative would."
+[q542] [B1|Traduzione] P: "Translate: 'Tua sorella vive qui, vero?'" | C: "Your sister lives here, doesn't she?" | E: "Present simple action verb -> doesn't."
+[q576] [B1|Grammatica] P: "Complete the sentence: 'I am on the right train, _____?'" | C: "aren't I" | E: "The question tag for 'I am' is irregularly 'aren't I?'."
+[q577] [B1|Grammatica] P: "Complete the sentence: 'Let's take a short break, _____?'" | C: "shall we" | E: "Suggestions starting with 'Let's' always take the question tag 'shall we?'."
+[q578] [B1|Grammatica] P: "Complete the sentence: 'Close the window, _____?'" | C: "will you" | E: "Imperative sentences (requests/commands) take 'will you?' (or 'won't you?') as question tag."
+[q579] [B1|Grammatica] P: "Complete the sentence: 'She never drinks alcohol, _____?'" | C: "does she" | E: "Words with negative meaning (never, seldom, rarely) make the clause negative, requiring an affirmative tag ('does she?')."
+[q580] [B1|Grammatica] P: "Complete the sentence: 'Nobody phoned while I was away, _____?'" | C: "did they" | E: "'Nobody' has negative meaning (so the tag is positive) and uses the plural pronoun 'they' ('did they?')."
+[q581] [B1|Grammatica] P: "Complete the sentence: 'Nothing went wrong during the test, _____?'" | C: "did it" | E: "'Nothing' is negative (requiring positive tag) and refers to a thing, represented by 'it' ('did it?')."
+[q582] [B1|Grammatica] P: "Complete the sentence: 'Everybody is ready for the presentation, _____?'" | C: "aren't they" | E: "'Everybody' takes a singular verb in the main clause ('is'), but takes 'they' with a plural verb in the tag ('aren't they?')."
+
+
+############################################################
+### TOPIC: [Questions and Origins] (18 questions)
+############################################################
+[q38] [A1|Grammatica] P: "Complete the sentence: 'John, where do you come _____?'" | C: "from" | E: "The phrase to ask about origins is 'Where do you come from?'"
+[q111] [A1|Grammatica] P: "Complete the sentence: 'Where _____ you born?'" | C: "were" | E: "Past of 'to be' for 'you' is 'were'."
+[q112] [A1|Traduzione] P: "Translate 'Da dove viene tuo fratello?'" | C: "Where does your brother come from?" | E: "Third person singular uses 'does' auxiliary."
+[q113] [A1|Grammatica] P: "Complete the sentence: '_____ country are you from?'" | C: "Which" | E: "'Which' is used for a limited choice, 'What' is sometimes used, but 'Which country' is common. Actually, 'Which' is standard."
+[q114] [A1|Traduzione] P: "Translate 'Loro sono spagnoli?'" | C: "Are they Spanish?" | E: "Simple 'to be' question."
+[q115] [A1|Grammatica] P: "Complete the sentence: '_____ is the capital of Italy?'" | C: "What" | E: "'What' asks for specific information."
+[q116] [A1|Traduzione] P: "Translate 'Di dov'è Maria?'" | C: "Where is Maria from?" | E: "Standard phrasing for asking origins."
+[q197] [A1|Grammatica] P: "Complete: '_____ is that man?'" | C: "Who" | E: "Asking for a person's identity requires 'Who'."
+[q198] [A1|Traduzione] P: "Translate 'Perché sei in ritardo?'" | C: "Why are you late?" | E: "Asking for a reason requires 'Why'."
+[q199] [A1|Grammatica] P: "Complete: '_____ old are you?'" | C: "How" | E: "Asking about age uses 'How old'."
+[q200] [A1|Traduzione] P: "Translate 'Quando è il tuo compleanno?'" | C: "When is your birthday?" | E: "Asking for time/date requires 'When'."
+[q201] [A1|Grammatica] P: "Complete: '_____ do you live?'" | C: "Where" | E: "Asking for a place requires 'Where'."
+[q202] [A1|Traduzione] P: "Translate 'Come vai al lavoro?'" | C: "How do you go to work?" | E: "Asking for method/manner requires 'How'."
+[q203] [A1|Grammatica] P: "Complete: '_____ is your favorite color?'" | C: "What" | E: "Asking for general preference uses 'What'."
+[q204] [A1|Traduzione] P: "Translate 'Di chi è questa borsa?'" | C: "Whose bag is this?" | E: "Asking for possession requires 'Whose'."
+[q205] [A1|Grammatica] P: "Complete: '_____ time does the movie start?'" | C: "What" | E: "Asking for a specific time uses 'What time'."
+[q206] [A1|Traduzione] P: "Translate 'Quanto costa questo libro?'" | C: "How much does this book cost?" | E: "Asking for price uses 'How much'."
+[q207] [A1|Grammatica] P: "Complete: '_____ languages do you speak?'" | C: "How many" | E: "'Languages' is countable, so 'How many'."
+
+
+############################################################
+### TOPIC: [Relative Clauses] (25 questions)
+############################################################
+[q18] [A2|Grammatica] P: "Complete the sentence: 'There are many people living in Italy who _____ from abroad.'" | C: "come" | E: "'People' is plural, so the relative clause verb is plural ('come')."
+[q144] [B1|Grammatica] P: "Complete: 'This is the book _____ I borrowed from the library.'" | C: "which" | E: "Relative pronoun 'which' or 'that' is used for things."
+[q391] [B1|Grammatica] P: "Complete the sentence: 'The man _____ lives next door is a doctor.'" | C: "who" | E: "'Who' is the relative pronoun used for people."
+[q392] [B1|Grammatica] P: "Complete the sentence: 'That\'s the house _____ I grew up.'" | C: "where" | E: "'Where' is used as a relative pronoun for places."
+[q393] [B1|Grammatica] P: "Complete the sentence: 'The girl _____ car was stolen is at the police station.'" | C: "whose" | E: "'Whose' indicates possession."
+[q401] [B1|Grammatica] P: "The restaurant _____ we had dinner is very expensive." | C: "where" | E: "'Where' refers to a place."
+[q402] [B1|Grammatica] P: "This is the man _____ dog bit me." | C: "whose" | E: "'Whose' shows possession."
+[q403] [B1|Grammatica] P: "My sister, _____ lives in London, is coming to visit." | C: "who" | E: "Non-defining relative clauses for people use 'who', not 'that'."
+[q404] [B1|Traduzione] P: "Translate: 'Il film che abbiamo visto ieri era noioso.'" | C: "The movie which we watched yesterday was boring." | E: "'Which' or 'that' is used for things."
+[q405] [B1|Traduzione] P: "Translate: 'La donna la cui auto è stata rubata è la mia vicina.'" | C: "The woman whose car was stolen is my neighbor." | E: "'Whose' translates 'la cui / il cui'."
+[q406] [B1|Grammatica] P: "The days _____ I was young were the best." | C: "when" | E: "'When' refers to a time."
+[q407] [B1|Grammatica] P: "I know a place _____ you can hide." | C: "where" | E: "'Where' refers to a location."
+[q408] [B1|Grammatica] P: "The student _____ got the highest grade is from Spain." | C: "who" | E: "'Who' refers to people."
+[q409] [B1|Traduzione] P: "Translate: 'Questo è il libro di cui ti parlavo.'" | C: "This is the book which I was telling you about." | E: "'Which' is used for things."
+[q410] [B1|Traduzione] P: "Translate: 'Parigi, che è la capitale della Francia, è bellissima.'" | C: "Paris, which is the capital of France, is beautiful." | E: "Non-defining relative clauses for things use 'which'."
+[q411] [B1|Grammatica] P: "Someone _____ travels a lot is lucky." | C: "who" | E: "'Who' refers to a person."
+[q412] [B1|Grammatica] P: "The cake _____ she made was delicious." | C: "which" | E: "'Which' refers to things."
+[q413] [B1|Grammatica] P: "A library is a place _____ you can borrow books." | C: "where" | E: "'Where' is for places."
+[q414] [B1|Grammatica] P: "The boy _____ sister is in my class is very tall." | C: "whose" | E: "'Whose' indicates possession (the sister of the boy)."
+[q415] [B1|Grammatica] P: "Winter is the season _____ it snows." | C: "when" | E: "'When' is used for periods of time."
+[q602] [B1|Grammatica] P: "Complete the sentence: 'Venice, _____ is famous for its canals, attracts millions of tourists every year.'" | C: "which" | E: "In non-defining relative clauses (between commas), you must use 'which' for things, NEVER 'that'."
+[q603] [B1|Grammatica] P: "Complete the sentence: 'Mr. Davis, _____ you met yesterday at the reception, is our new director.'" | C: "whom" | E: "In non-defining clauses for people as object, 'whom' (or 'who') is used; 'that' is strictly prohibited between commas."
+[q604] [B1|Grammatica] P: "Complete the sentence: 'That is the student _____ backpack was accidentally left in the classroom.'" | C: "whose" | E: "'Whose' is the relative pronoun used to indicate possession."
+[q605] [B1|Grammatica] P: "Complete the sentence: 'The hotel _____ we stayed at during our holiday was right on the beach.'" | C: "that" | E: "Because the preposition 'at' is at the end ('stayed at'), we use 'that' or 'which', NOT 'where'."
+[q606] [B1|Traduzione] P: "Translate: 'Londra, che è la capitale del Regno Unito, ha molti musei gratuiti.'" | C: "London, which is the capital of the UK, has many free museums." | E: "In non-defining relative clauses (tra virgole), si usa obbligatoriamente 'which' e mai 'that'."
+
+
+############################################################
+### TOPIC: [Reported Speech] (18 questions)
+############################################################
+[q385] [B1|Grammatica] P: "Change to reported speech: He said, 'I am tired.'" | C: "He said that he was tired." | E: "In reported speech, present simple changes to past simple ('am' becomes 'was')."
+[q386] [B1|Grammatica] P: "Change to reported speech: 'I will call you,' she told me." | C: "She told me she would call me." | E: "In reported speech, 'will' changes to 'would'."
+[q479] [B1|Grammatica] P: "He said, 'I like apples.' -> He said that he _____ apples." | C: "liked" | E: "Present simple shifts to past simple."
+[q480] [B1|Grammatica] P: "She said, 'I am watching TV.' -> She said that she _____ TV." | C: "was watching" | E: "Present continuous shifts to past continuous."
+[q481] [B1|Grammatica] P: "'I will go,' he said. -> He said that he _____ go." | C: "would" | E: "'Will' shifts to 'would'."
+[q482] [B1|Traduzione] P: "Translate: 'Mi ha detto che era stanco.'" | C: "He told me that he was tired." | E: "'Tell' must be followed by an object pronoun (me)."
+[q483] [B1|Traduzione] P: "Translate: 'Lei disse che non sapeva la risposta.'" | C: "She said that she didn't know the answer." | E: "'Said' doesn't need an object pronoun."
+[q484] [B1|Grammatica] P: "'I have finished,' she said. -> She said that she _____ finished." | C: "had" | E: "Present perfect shifts to past perfect."
+[q485] [B1|Grammatica] P: "He asked me where I _____." | C: "lived" | E: "Reported questions use affirmative word order, without 'do/did'."
+[q486] [B1|Grammatica] P: "She asked if I _____ coffee." | C: "liked" | E: "Yes/No reported questions use 'if' + affirmative past simple."
+[q487] [B1|Traduzione] P: "Translate: 'Mi ha chiesto se volessi venire.'" | C: "He asked me if I wanted to come." | E: "Reported questions use 'ask' + if + subject + verb."
+[q488] [B1|Traduzione] P: "Translate: 'Ha detto che avrebbe chiamato più tardi.'" | C: "He said that he would call later." | E: "'Would' is the reported version of 'will'."
+[q489] [B1|Grammatica] P: "'Don't touch that!' he said. -> He told me _____ that." | C: "not to touch" | E: "Reported negative commands use 'not to + infinitive'."
+[q490] [B1|Grammatica] P: "'Open the door,' she said. -> She told me _____ the door." | C: "to open" | E: "Reported commands use 'to + infinitive'."
+[q491] [B1|Grammatica] P: "He said, 'I can swim.' -> He said that he _____ swim." | C: "could" | E: "'Can' shifts to 'could'."
+[q492] [B1|Grammatica] P: "She asked, 'Are you okay?' -> She asked me _____ okay." | C: "if I was" | E: "Reported questions use subject + verb order."
+[q493] [B1|Grammatica] P: "'I must go,' he said. -> He said that he _____ go." | C: "had to" | E: "'Must' shifts to 'had to' in reported speech."
+[q494] [B1|Traduzione] P: "Translate: 'Mi ha consigliato di studiare.'" | C: "He advised me to study." | E: "Advise takes object + to-infinitive."
+
+
+############################################################
+### TOPIC: [Second Conditional] (18 questions)
+############################################################
+[q379] [B1|Grammatica] P: "Complete the sentence: 'If I _____ the lottery, I would buy a big house.'" | C: "won" | E: "Second Conditional uses 'If + Past Simple, would + infinitive' for unreal present/future situations."
+[q380] [B1|Traduzione] P: "Translate 'Se fossi in te, studierei di più.'" | C: "If I were you, I would study more." | E: "In the Second Conditional, 'were' is typically used for all subjects in the 'if' clause (If I were you)."
+[q431] [B1|Grammatica] P: "If I _____ more time, I would learn a new language." | C: "had" | E: "Second Conditional: If + past simple."
+[q432] [B1|Grammatica] P: "What would you do if you _____ a ghost?" | C: "saw" | E: "Second Conditional: If + past simple."
+[q433] [B1|Grammatica] P: "If she _____ closer, we would see her more often." | C: "lived" | E: "Second Conditional: If + past simple."
+[q434] [B1|Traduzione] P: "Translate: 'Se fossi ricco, viaggerei per il mondo.'" | C: "If I were rich, I would travel the world." | E: "Second Conditional uses 'were' for all persons and 'would + verb'."
+[q435] [B1|Traduzione] P: "Translate: 'Se lei sapesse la verità, si arrabbierebbe.'" | C: "If she knew the truth, she would be angry." | E: "Past simple in the if-clause, would in the main clause."
+[q436] [B1|Grammatica] P: "If they _____ so much pizza, they wouldn't feel sick." | C: "didn't eat" | E: "Negative if-clause in Second Conditional uses 'didn't + verb'."
+[q437] [B1|Grammatica] P: "I would buy that car if it _____ cheaper." | C: "were" | E: "'were' is used for the verb 'to be' in the Second Conditional."
+[q438] [B1|Grammatica] P: "If you _____ more, you would pass the exam." | C: "studied" | E: "If + Past Simple."
+[q439] [B1|Traduzione] P: "Translate: 'Non andrei lì se fossi in te.'" | C: "I wouldn't go there if I were you." | E: "'If I were you' is standard for giving advice."
+[q440] [B1|Traduzione] P: "Translate: 'Se avessimo una macchina, potremmo andare in montagna.'" | C: "If we had a car, we could go to the mountains." | E: "'could' is the conditional form of 'can'."
+[q441] [B1|Grammatica] P: "If he _____ his job, he would travel more." | C: "quit" | E: "Past simple of 'quit' is 'quit'."
+[q442] [B1|Grammatica] P: "She would be happier if she _____ a better job." | C: "found" | E: "Past simple in the if-clause."
+[q443] [B1|Grammatica] P: "If it _____ snowing, we could go for a walk." | C: "stopped" | E: "Past simple of stop is stopped."
+[q444] [B1|Grammatica] P: "I _____ you if I knew the answer." | C: "would tell" | E: "Main clause requires 'would + verb'."
+[q445] [B1|Grammatica] P: "If we _____ in a big city, we would use public transport." | C: "lived" | E: "Past simple in the if-clause."
+[q446] [B1|Traduzione] P: "Translate: 'Se parlassi francese, mi trasferirei a Parigi.'" | C: "If I spoke French, I would move to Paris." | E: "If + past simple, would + infinitive."
+
+
+############################################################
+### TOPIC: [There is / There are] (18 questions)
+############################################################
+[q2] [A1|Grammatica] P: "Choose the correct question: '_____ a table in this room?'" | C: "Is there" | E: "'Is there' is the correct question form of 'there is' for singular nouns."
+[q13] [A1|Grammatica] P: "Choose the correct question:" | C: "Is there any milk in the fridge?" | E: "'Milk' is uncountable (use 'is there'). 'Any' is used in questions."
+[q31] [A1|Grammatica] P: "Choose the correct negative sentence:" | C: "There isn't any milk in the fridge." | E: "We use 'any' in negative sentences. 'Milk' is uncountable, so we use 'isn't'."
+[q47] [A1|Grammatica] P: "Complete the sentence: '_____ is a table in the room.'" | C: "There" | E: "We use 'There is' to express existence."
+[q62] [A1|Traduzione] P: "Translate 'Ci sono molte macchine per strada oggi.'" | C: "There are many cars on the street today." | E: "We use 'There are' for plural existence."
+[q63] [A1|Grammatica] P: "Complete the sentence: '_____ any milk in the fridge?'" | C: "Is there" | E: "'Milk' is uncountable, so we use 'Is there'."
+[q64] [A1|Traduzione] P: "Translate 'Non c'è nessun problema.'" | C: "There is no problem." | E: "Singular negative existence."
+[q65] [A1|Grammatica] P: "Complete the sentence: '_____ some apples on the table.'" | C: "There are" | E: "Plural affirmative existence."
+[q66] [A1|Traduzione] P: "Translate 'C'è un cane nel giardino?'" | C: "Is there a dog in the garden?" | E: "Question form for singular existence."
+[q208] [A1|Grammatica] P: "Complete: '_____ a big tree in the garden.'" | C: "There is" | E: "Singular noun 'tree' requires 'There is'."
+[q209] [A1|Traduzione] P: "Translate 'Ci sono tre sedie nella stanza.'" | C: "There are three chairs in the room." | E: "Plural noun 'chairs' requires 'There are'."
+[q210] [A1|Grammatica] P: "Complete: '_____ any messages for me?'" | C: "Are there" | E: "Question form for plural 'messages' is 'Are there'."
+[q211] [A1|Traduzione] P: "Translate 'C'è un buon ristorante qui vicino?'" | C: "Is there a good restaurant near here?" | E: "Question form for singular noun."
+[q212] [A2|Grammatica] P: "Complete: 'There _____ a lot of people at the party.'" | C: "were" | E: "'People' is plural, so 'were' for past."
+[q213] [A2|Traduzione] P: "Translate 'Non c'era nessuno in casa.'" | C: "There was nobody at home." | E: "Past singular existence with negative pronoun."
+[q214] [B1|Grammatica] P: "Complete: '_____ going to be a storm tomorrow.'" | C: "There is" | E: "Future existence 'There is going to be'."
+[q215] [A1|Traduzione] P: "Translate 'Ci sono dei biscotti nella scatola?'" | C: "Are there any biscuits in the box?" | E: "Question plural existence with 'any'."
+[q216] [A1|Grammatica] P: "Complete: '_____ a mistake in this exercise.'" | C: "There is" | E: "Singular existence 'mistake'."
+
+
+############################################################
+### TOPIC: [Third Conditional] (18 questions)
+############################################################
+[q381] [B1|Grammatica] P: "Complete the sentence: 'If I had studied, I _____ the exam.'" | C: "would have passed" | E: "Third Conditional uses 'If + Past Perfect, would have + past participle' for impossible past situations."
+[q382] [B1|Traduzione] P: "Translate 'Se fossimo partiti prima, non avremmo perso il treno.'" | C: "If we had left earlier, we wouldn't have missed the train." | E: "Third conditional structure for regrets about the past."
+[q447] [B1|Grammatica] P: "If I _____ earlier, I would have caught the train." | C: "had woken up" | E: "Third Conditional uses If + Past Perfect."
+[q448] [B1|Grammatica] P: "She would have passed if she _____ harder." | C: "had studied" | E: "If + Past Perfect (had + past participle)."
+[q449] [B1|Grammatica] P: "If we had known, we _____ you." | C: "would have helped" | E: "Main clause uses 'would have + past participle'."
+[q450] [B1|Traduzione] P: "Translate: 'Se fossi andato a letto presto, non sarei stato stanco.'" | C: "If I had gone to bed early, I wouldn't have been tired." | E: "Third conditional talks about impossible past situations."
+[q451] [B1|Traduzione] P: "Translate: 'Se avesse piovuto, saremmo rimasti a casa.'" | C: "If it had rained, we would have stayed at home." | E: "If + Past Perfect, would have + past participle."
+[q452] [B1|Grammatica] P: "If he had driven carefully, he _____ the accident." | C: "wouldn't have had" | E: "Main clause negative is 'wouldn't have + past participle'."
+[q453] [B1|Grammatica] P: "They would have won if they _____ better." | C: "had played" | E: "If clause uses Past Perfect."
+[q454] [B1|Grammatica] P: "If I _____ the umbrella, I would have gotten wet." | C: "hadn't taken" | E: "Negative if-clause uses 'hadn't + past participle'."
+[q455] [B1|Traduzione] P: "Translate: 'Cosa avresti fatto se lo avessi saputo?'" | C: "What would you have done if you had known?" | E: "Interrogative third conditional structure."
+[q456] [B1|Traduzione] P: "Translate: 'Se avessi visto il messaggio, ti avrei risposto.'" | C: "If I had seen the message, I would have replied." | E: "Standard third conditional structure."
+[q457] [B1|Grammatica] P: "If she _____ the directions, she wouldn't have gotten lost." | C: "had followed" | E: "If + Past Perfect."
+[q458] [B1|Grammatica] P: "I _____ to the party if they had invited me." | C: "would have gone" | E: "Main clause requires 'would have + past participle'."
+[q459] [B1|Grammatica] P: "If it _____ so cold, we would have gone swimming." | C: "hadn't been" | E: "Negative Past Perfect."
+[q460] [B1|Grammatica] P: "We would have bought the house if it _____ cheaper." | C: "had been" | E: "Past Perfect of 'to be' is 'had been'."
+[q461] [B1|Grammatica] P: "If you had asked me, I _____ yes." | C: "would have said" | E: "Main clause uses 'would have + past participle'."
+[q462] [B1|Traduzione] P: "Translate: 'Sarebbe venuta se avesse avuto tempo.'" | C: "She would have come if she had had time." | E: "'had had' is the Past Perfect of 'have'."
+
+
+############################################################
+### TOPIC: [Used to] (22 questions)
+############################################################
+[q389] [B1|Grammatica] P: "Complete the sentence: 'I _____ tennis when I was young.'" | C: "used to play" | E: "'Used to + infinitive' describes a past habit that is no longer true."
+[q390] [B1|Grammatica] P: "Choose the correct negative form:" | C: "She didn't use to like vegetables." | E: "The negative form is 'didn't use to' (without the 'd' in use)."
+[q511] [B1|Grammatica] P: "I _____ eat a lot of chocolate, but now I don't." | C: "used to" | E: "Past habit that is no longer true."
+[q512] [B1|Grammatica] P: "_____ you use to play video games when you were a kid?" | C: "Did" | E: "Interrogative form requires 'Did' + 'use to' (without d)."
+[q513] [B1|Grammatica] P: "She _____ like coffee, but now she loves it." | C: "didn't use to" | E: "Negative form is 'didn't use to'."
+[q514] [B1|Traduzione] P: "Translate: 'Abitavamo a Londra quando ero piccolo.'" | C: "We used to live in London when I was a kid." | E: "Used to + infinitive."
+[q515] [B1|Traduzione] P: "Translate: 'Non fumava, ma ora fuma un pacchetto al giorno.'" | C: "He didn't use to smoke, but now he does." | E: "didn't use to (no 'd')."
+[q516] [B1|Grammatica] P: "There _____ be a park here, but now there is a supermarket." | C: "used to" | E: "'There used to be' describes a past state."
+[q517] [B1|Grammatica] P: "I _____ have a dog, but he died last year." | C: "used to" | E: "Past state."
+[q518] [B1|Grammatica] P: "What did you _____ do on Sundays?" | C: "use to" | E: "After 'did', use the base form 'use to'."
+[q519] [B1|Traduzione] P: "Translate: 'Andavamo al mare ogni estate.'" | C: "We used to go to the sea every summer." | E: "Past routine."
+[q520] [B1|Traduzione] P: "Translate: 'Aveva i capelli lunghi, vero?'" | C: "She used to have long hair, didn't she?" | E: "Question tag for used to is 'didn't'."
+[q521] [B1|Grammatica] P: "He _____ be so grumpy when he was younger." | C: "didn't use to" | E: "Negative past habit."
+[q522] [B1|Grammatica] P: "We _____ walk to school every day." | C: "used to" | E: "Past routine."
+[q523] [B1|Grammatica] P: "Did she _____ work in a bank?" | C: "use to" | E: "Question form drops the 'd' in use."
+[q524] [B1|Grammatica] P: "I _____ think that spiders were insects." | C: "used to" | E: "Past belief that changed."
+[q525] [B1|Grammatica] P: "They _____ travel a lot before they had children." | C: "used to" | E: "Past routine."
+[q526] [B1|Traduzione] P: "Translate: 'Prima non mi piaceva la verdura.'" | C: "I didn't use to like vegetables." | E: "Negative past state."
+[q598] [B1|Grammatica] P: "Complete the sentence: 'When I moved to the UK, it took me a long time to get used to _____ on the left.'" | C: "driving" | E: "'Get used to + -ing' means the process of becoming accustomed to something."
+[q599] [B1|Grammatica] P: "Complete the sentence: 'I am a nurse, so I am used to _____ night shifts.'" | C: "working" | E: "'Be used to + -ing' means to be already accustomed/familiar with a situation."
+[q600] [B1|Grammatica] P: "Complete the sentence: 'I _____ drink coffee when I was younger, but now I drink three cups a day.'" | C: "didn't use to" | E: "The negative of 'used to' is 'didn't use to' (without the 'd' on use)."
+[q601] [B1|Traduzione] P: "Translate: 'Ti sei abituato al clima freddo?'" | C: "Have you got used to the cold weather?" | E: "'Get used to + noun' expresses becoming accustomed to a condition."
