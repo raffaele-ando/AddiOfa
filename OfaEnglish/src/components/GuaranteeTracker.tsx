@@ -8,10 +8,10 @@ export default function GuaranteeTracker({ appState }: { appState: AppState }) {
   const progress = computeGuaranteeProgress(appState);
 
   return (
-    <div className="bg-[#F0FDF4] dark:bg-[#064E3B]/40 border-2 border-[#22C55E]/40 rounded-2xl p-4 flex flex-col gap-3">
+    <div className="bg-[#F0FDF4] dark:bg-[#064E3B]/40 border border-[#22C55E]/40 rounded-2xl p-4 flex flex-col gap-3">
       <div className="flex items-center gap-2">
         <ShieldCheck size={20} className="text-[#16A34A]" />
-        <span className="font-black text-sm uppercase tracking-widest text-[#15803D] dark:text-[#34D399]">
+        <span className="font-bold text-sm text-[#15803D] dark:text-[#34D399]">
           Stato della garanzia
         </span>
       </div>

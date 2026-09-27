@@ -5,6 +5,8 @@ import { X, Trophy, TrendingUp, AlertCircle, Clock, Target, List, ArrowLeft, Act
 import { cn } from '../lib/utils';
 import { confidenceFromEasiness } from '../lib/spacedRepetition';
 import GuaranteeTracker from './GuaranteeTracker';
+import { IconaChip } from '../brand/componenti';
+import { Illustrazione } from '../brand/Illustrazione';
 import { PoweredByAtlas } from './ui';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 
@@ -185,14 +187,14 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
 
   if (showDetailedStats) {
     return (
-      <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border-2 sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300 flex flex-col">
+      <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300 flex flex-col">
         <header className="flex items-center justify-between p-4 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors">
           <button onClick={() => setShowDetailedStats(false)} className="flex items-center gap-2 text-sm sm:text-base font-bold text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
             <ArrowLeft size={20} />
             Indietro
           </button>
           <div className="flex flex-col items-end">
-            <h2 className="text-sm sm:text-lg font-black text-[#0F172A] dark:text-[#F8FAFC] uppercase tracking-widest leading-tight">Dettaglio Frasi</h2>
+            <h2 className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Dettaglio Frasi</h2>
             <span className="text-xs font-bold text-gray-400">{filteredAndSortedQuestions.length} frasi totali</span>
           </div>
         </header>
@@ -235,12 +237,12 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             }
 
             return (
-              <div key={q.id} className="bg-gray-50 dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+              <div key={q.id} className="bg-gray-50 dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <div className="flex-1 flex gap-3 sm:gap-4 items-start">
-                  <span className="text-gray-400 dark:text-gray-500 font-black text-sm sm:text-base mt-0.5 shrink-0 w-6 sm:w-8 text-right">{index + 1}.</span>
+                  <span className="text-gray-400 dark:text-gray-500 font-bold text-sm sm:text-base mt-0.5 shrink-0 w-6 sm:w-8 text-right">{index + 1}.</span>
                   <div className="flex-1">
                     <p className="font-bold text-[#1E293B] dark:text-[#F8FAFC] text-sm sm:text-base mb-1">{q.prompt}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider flex items-center gap-2 flex-wrap">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 font-bold flex items-center gap-2 flex-wrap">
                       <span>{q.category}</span>
                       {q.level && (
                         <>
@@ -306,20 +308,20 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                   {hasSeen ? (
                     <>
                       <div className="flex flex-col items-center sm:items-end">
-                        <span className="text-[10px] sm:text-xs font-black text-gray-400 uppercase tracking-widest">Accuratezza</span>
-                        <span className={cn("text-sm sm:text-base font-black", accuracy > 70 ? "text-[#22C55E]" : accuracy > 40 ? "text-[#F59E0B]" : "text-[#EF4444]")}>
+                        <span className="text-[10px] sm:text-xs font-bold text-gray-400">Accuratezza</span>
+                        <span className={cn("text-sm sm:text-base font-bold", accuracy > 70 ? "text-[#22C55E]" : accuracy > 40 ? "text-[#F59E0B]" : "text-[#EF4444]")}>
                           {accuracy}%
                         </span>
                       </div>
                       <div className="flex flex-col items-center sm:items-end w-full sm:w-24">
                         <div className="flex justify-between w-full mb-1 items-center">
-                          <span className="text-[10px] sm:text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-1">
+                          <span className="text-[10px] sm:text-xs font-bold text-gray-400 flex items-center gap-1">
                             Confidenza
                             {trend === 'up' && <ArrowUp size={12} className="text-[#22C55E]" />}
                             {trend === 'down' && <ArrowDown size={12} className="text-[#EF4444]" />}
                             {trend === 'same' && <Minus size={12} className="text-gray-400" />}
                           </span>
-                          <span className="text-[10px] sm:text-xs font-black text-[#3B82F6]">{confidenceScore}%</span>
+                          <span className="text-[10px] sm:text-xs font-bold text-[#3B82F6]">{confidenceScore}%</span>
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-[#334155] h-2 rounded-full overflow-hidden">
                           <div className="bg-[#3B82F6] h-full transition-all" style={{ width: `${confidenceScore}%` }} />
@@ -327,7 +329,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                       </div>
                     </>
                   ) : (
-                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 px-3 py-1 bg-gray-200 dark:bg-[#334155] rounded-full uppercase tracking-wider">
+                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 px-3 py-1 bg-gray-200 dark:bg-[#334155] rounded-full">
                       Mai vista
                     </span>
                   )}
@@ -341,13 +343,14 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
   }
 
   return (
-    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border-2 sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
+    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
       <div className="flex flex-col h-full p-2 sm:p-4">
-      <header className="flex items-center justify-between p-2 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors">
-        <h2 className="text-sm sm:text-lg font-black text-[#0F172A] dark:text-[#F8FAFC] uppercase tracking-widest">Statistiche</h2>
-        <button onClick={onExit} className="p-1 sm:p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#334155] rounded-full transition-colors">
-          <X size={18} className="sm:w-5 sm:h-5" strokeWidth={3} />
-        </button>
+      <header className="flex items-end justify-between px-2 pt-2 pb-1 shrink-0">
+        <div>
+          <h2 className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Progressi</h2>
+          <p className="text-sm text-[#6B7280]">Quanto sai, argomento per argomento.</p>
+        </div>
+        <Illustrazione kit="kit-blu" nome="progressi-statistiche" lato={84} />
       </header>
 
       <main className="flex-1 overflow-y-auto scrollbar-hide p-4 sm:p-6 flex flex-col gap-4 sm:gap-6">
@@ -356,31 +359,23 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
         <div className="flex flex-col gap-4 sm:gap-6">
           {/* Overview Cards */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            <div className="bg-[#EFF6FF] dark:bg-[#3B82F6]/10 border-2 border-[#93C5FD] dark:border-[#2563EB] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
-              <Trophy className="text-[#3B82F6] dark:text-[#60A5FA] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
-              <span className="text-2xl sm:text-3xl font-black text-[#3B82F6] dark:text-[#60A5FA] leading-none mb-1">{masteryPercentage}%</span>
-              <span className="text-[10px] sm:text-xs font-bold text-[#2563EB] dark:text-[#2563EB] uppercase tracking-widest mt-1">Domande Imparate</span>
-            </div>
-            <div className="bg-[#DCFCE7] dark:bg-[#059669]/10 border-2 border-[#22C55E] dark:border-[#059669] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
-              <Target className="text-[#22C55E] dark:text-[#10B981] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
-              <span className="text-2xl sm:text-3xl font-black text-[#16A34A] dark:text-[#34D399] leading-none mb-1">{globalAccuracy}%</span>
-              <span className="text-[10px] sm:text-xs font-bold text-[#16A34A] dark:text-[#059669] uppercase tracking-widest mt-1">Accuratezza</span>
-            </div>
-            <div className="bg-[#FFF4E5] dark:bg-[#F59E0B]/10 border-2 border-[#F59E0B] dark:border-[#D97706] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
-              <TrendingUp className="text-[#F59E0B] dark:text-[#FBBF24] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
-              <span className="text-2xl sm:text-3xl font-black text-[#D97706] dark:text-[#F59E0B] leading-none mb-1">{passRate}%</span>
-              <span className="text-[10px] sm:text-xs font-bold text-[#D97706] dark:text-[#D97706] uppercase tracking-widest mt-1">Superate</span>
-            </div>
-            <div className="bg-[#EDE9FE] dark:bg-[#A78BFA]/10 border-2 border-[#8B5CF6] dark:border-[#7C3AED] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
-              <Trophy className="text-[#8B5CF6] dark:text-[#C4B5FD] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
-              <span className="text-2xl sm:text-3xl font-black text-[#7C3AED] dark:text-[#C4B5FD] leading-none mb-1">{bestScore}/30</span>
-              <span className="text-[10px] sm:text-xs font-bold text-[#7C3AED] dark:text-[#7C3AED] uppercase tracking-widest mt-1">Record</span>
-            </div>
+            {([
+              ['completato', `${masteryPercentage}%`, 'Domande imparate'],
+              ['successo', `${globalAccuracy}%`, 'Accuratezza'],
+              ['statistiche', `${passRate}%`, 'Simulazioni superate'],
+              ['quiz', `${bestScore}/30`, 'Miglior simulazione'],
+            ] as const).map(([icona, valore, nome]) => (
+              <div key={nome} className="bg-white dark:bg-[#0F172A] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-4 flex flex-col gap-2">
+                <IconaChip nome={icona} lato={40} />
+                <span className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-none">{valore}</span>
+                <span className="text-xs text-[#6B7280]">{nome}</span>
+              </div>
+            ))}
           </div>
 
           {/* Activity Chart */}
-          <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">
-             <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">
+             <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
               <Activity className="text-[#F59E0B] dark:text-[#FBBF24] w-5 h-5" />
               Costanza (Ultimi 7 Giorni)
             </h3>
@@ -402,23 +397,23 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           </div>
 
           {/* Exam Stats */}
-          <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col justify-center">
-            <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-3 uppercase tracking-widest flex items-center gap-2 shrink-0">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col justify-center">
+            <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-3 flex items-center gap-2 shrink-0">
               <Clock className="text-[#8B5CF6] dark:text-[#A78BFA] w-5 h-5" />
               Simulazioni
             </h3>
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-[#334155]">
                 <span className="text-sm sm:text-base font-bold text-gray-500 dark:text-gray-400">Esami completati</span>
-                <span className="text-base sm:text-lg font-black text-[#0F172A] dark:text-[#F8FAFC]">{examsTaken}</span>
+                <span className="text-base sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC]">{examsTaken}</span>
               </div>
               <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-[#334155]">
                 <span className="text-sm sm:text-base font-bold text-gray-500 dark:text-gray-400">Esami superati</span>
-                <span className="text-base sm:text-lg font-black text-[#22C55E] dark:text-[#10B981]">{passedExams}</span>
+                <span className="text-base sm:text-lg font-bold text-[#22C55E] dark:text-[#10B981]">{passedExams}</span>
               </div>
               <div className="flex justify-between items-center py-2">
                 <span className="text-sm sm:text-base font-bold text-gray-500 dark:text-gray-400">Miglior punteggio</span>
-                <span className="text-base sm:text-lg font-black text-[#F59E0B] dark:text-[#FBBF24]">{examsTaken > 0 ? `${bestScore}/30` : '-'}</span>
+                <span className="text-base sm:text-lg font-bold text-[#F59E0B] dark:text-[#FBBF24]">{examsTaken > 0 ? `${bestScore}/30` : '-'}</span>
               </div>
             </div>
           </div>
@@ -434,15 +429,15 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           {/* Go to detailed view button */}
           <button 
             onClick={() => setShowDetailedStats(true)}
-            className="w-full bg-[#3B82F6] hover:bg-[#2563EB] border-b-4 border-[#2563EB] active:border-b-0 active:translate-y-1 text-white font-black text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-all uppercase tracking-widest flex items-center justify-center gap-2"
+            className="w-full bg-[#EF4444] hover:bg-[#DC2626] border-[#2563EB] active:scale-[.99] text-white font-bold text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-all flex items-center justify-center gap-2"
           >
             <List className="w-5 h-5" />
             Vedi Dettaglio Frasi
           </button>
 
           {Object.keys(topicStats).length >= 3 ? (
-            <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col h-full min-h-[300px]">
-              <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
+            <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col h-full min-h-[300px]">
+              <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
                 <Target className="text-[#3B82F6] dark:text-[#60A5FA] w-5 h-5" />
                 Skill Profile
               </h3>
@@ -494,15 +489,15 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
               </div>
             </div>
           ) : (
-            <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-6 transition-colors flex-1 flex flex-col justify-center items-center text-center min-h-[300px]">
+            <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-6 transition-colors flex-1 flex flex-col justify-center items-center text-center min-h-[300px]">
               <AlertCircle className="text-[#EF4444] dark:text-[#F87171] w-10 h-10 mb-3 opacity-50" />
               <p className="text-sm font-bold text-gray-400">Rispondi a più domande su diversi argomenti per vedere il tuo profilo per argomento.</p>
             </div>
           )}
 
           {/* Progresso per Livello */}
-          <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">
-             <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">
+             <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
               <TrendingUp className="text-[#F59E0B] dark:text-[#FBBF24] w-5 h-5" />
               Progresso per Livello
             </h3>
@@ -525,8 +520,8 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           </div>
 
           {/* Progresso per Argomento */}
-          <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[350px]">
-             <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[350px]">
+             <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
               <List className="text-[#8B5CF6] dark:text-[#A78BFA] w-5 h-5" />
               Progresso per Argomento
             </h3>
@@ -549,8 +544,8 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           </div>
 
           {/* Errori Comuni */}
-          <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col">
-            <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-3 uppercase tracking-widest flex items-center gap-2 shrink-0">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col">
+            <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-3 flex items-center gap-2 shrink-0">
               <AlertCircle className="text-[#EF4444] dark:text-[#F87171] w-5 h-5" />
               Errori Comuni
             </h3>
@@ -615,13 +610,13 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
         {/* Bottom Full Width Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 shrink-0">
           {/* XP & Level Bar */}
-          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border-2 border-gray-200 dark:border-[#334155] border-b-4 flex flex-col justify-center gap-2 shadow-sm transition-colors">
+          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border border-gray-200 dark:border-[#334155] flex flex-col justify-center gap-2 shadow-sm transition-colors">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="bg-[#F59E0B] text-white p-1.5 rounded-lg shadow-sm">
                   <Crown size={18} strokeWidth={3} />
                 </div>
-                <span className="text-sm sm:text-lg font-black text-[#0F172A] dark:text-[#F8FAFC]">Liv. {currentLevel}</span>
+                <span className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC]">Liv. {currentLevel}</span>
               </div>
               <span className="text-xs sm:text-sm font-bold text-[#F59E0B]">{totalXP} XP</span>
             </div>
@@ -631,15 +626,15 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           </div>
 
           {/* Daily Goal Endless */}
-          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border-2 border-gray-200 dark:border-[#334155] border-b-4 flex flex-col justify-center gap-2 shadow-sm transition-colors relative overflow-hidden group">
+          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border border-gray-200 dark:border-[#334155] flex flex-col justify-center gap-2 shadow-sm transition-colors relative overflow-hidden group">
             <div className="flex justify-between items-center z-10 leading-none">
-              <span className="text-sm sm:text-lg font-black text-[#0F172A] dark:text-[#F8FAFC] flex items-center gap-2">
+              <span className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] flex items-center gap-2">
                 Sfida Quotidiana
-                <span className="bg-[#3B82F6] text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-lg uppercase tracking-wider">
+                <span className="bg-[#3B82F6] text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-lg">
                   Fase {milestoneIndex + 1}
                 </span>
               </span>
-              <span className="text-sm sm:text-lg font-black text-[#3B82F6]">{currentTotalDaily}/{currentMilestone}</span>
+              <span className="text-sm sm:text-lg font-bold text-[#3B82F6]">{currentTotalDaily}/{currentMilestone}</span>
             </div>
             
             <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative mt-1">

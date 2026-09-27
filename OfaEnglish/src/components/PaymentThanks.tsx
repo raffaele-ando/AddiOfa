@@ -9,7 +9,7 @@ export default function PaymentThanks({ onContinue }: { onContinue: () => void }
       <div className="mx-auto my-6 flex items-center justify-center">
         <Illustrazione kit="kit-blu" nome="celebrazione" lato={170} />
       </div>
-      <h2 className="text-3xl sm:text-4xl font-black text-center text-[#0F172A] dark:text-[#F8FAFC]">Grazie!</h2>
+      <h2 className="text-3xl sm:text-4xl font-bold text-center text-[#0F172A] dark:text-[#F8FAFC]">Grazie!</h2>
       <p className="text-center font-semibold text-gray-500 dark:text-gray-400">
         Se il pagamento è andato a buon fine riceverai la ricevuta via email. Ora puoi iniziare a prepararti.
       </p>

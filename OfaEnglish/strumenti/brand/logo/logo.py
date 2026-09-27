@@ -318,6 +318,14 @@ def svg(P: dict, sfondo: bool = True) -> str:
     defs.append(f'<clipPath id="muroArea"><path d="{muro_d}"/><path d="{porta_d}"/></clipPath>')
     scena.insert(0, pavimento_svg)
 
+    # luci: macchie di luce radiali con nome, ognuna confinata alla sua zona (muro, porta, pavimento)
+    zone = {"muro": "muroArea", "porta": "porta", "pavimento": "pavimentoArea"}
+    for k, lu in enumerate(P.get("luci", [])):
+        rx, ry = max(1.0, lu["rx"]), max(1.0, lu["ry"])
+        defs.append(f'<radialGradient id="luce{k}"><stop offset="0" stop-color="{esa(lu["colore"])}" stop-opacity="{max(0, min(1, lu["opacita"])):.3f}"/>'
+                    f'<stop offset="1" stop-color="{esa(lu["colore"])}" stop-opacity="0"/></radialGradient>')
+        scena.append(f'<g clip-path="url(#{zone[lu["zona"]]})"><ellipse id="luce-{lu["zona"]}-{k + 1}" cx="{f(lu["cx"])}" cy="{f(lu["cy"])}" '
+                     f'rx="{f(rx)}" ry="{f(ry)}" fill="url(#luce{k})"/></g>')
     corpo.append(f'<g id="piastrella-scena" clip-path="url(#piastrella)">{"".join(scena)}</g>')
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {LATO} {LATO}" width="{LATO}" height="{LATO}">'
             f'<title>AddiOFA</title><defs>{"".join(defs)}</defs>{"".join(corpo)}</svg>')
@@ -331,8 +339,11 @@ def _unisci(base, salvati):
     return salvati
 
 
+PARAMETRI = pathlib.Path(__import__("os").environ.get("LOGO_PARAMETRI", QUI / "parametri.json"))
+
+
 def carica(percorso: pathlib.Path | None = None) -> dict:
-    percorso = percorso or (QUI / "parametri.json")
+    percorso = percorso or PARAMETRI
     iniziali = json.loads(json.dumps(PARAMETRI_INIZIALI))
     if percorso.exists():
         return _unisci(iniziali, json.loads(percorso.read_text()))

@@ -34,7 +34,7 @@ export default function Leaderboard({ user, appState, onBack, onLogin, onJoin }:
       <div className="flex items-center gap-3">
         <span className="w-11 h-11 rounded-2xl bg-[#FEF3C7] text-[#F59E0B] flex items-center justify-center"><Trophy size={22} /></span>
         <div>
-          <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] dark:text-[#F8FAFC]">Classifica {ECOSYSTEM.rankingName}</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">Classifica {ECOSYSTEM.rankingName}</h2>
           <p className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400">Chi sa più regole: domande imparate, poi miglior simulazione.</p>
         </div>
       </div>
@@ -42,15 +42,15 @@ export default function Leaderboard({ user, appState, onBack, onLogin, onJoin }:
       {!isAtlasOnline() && (
         <div className="flex-1 flex flex-col items-center justify-center text-center gap-3 py-10">
           <Users size={40} className="text-gray-300" />
-          <p className="font-black text-[#0F172A] dark:text-[#F8FAFC]">La classifica {ECOSYSTEM.rankingName} arriva presto</p>
+          <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">La classifica {ECOSYSTEM.rankingName} arriva presto</p>
           <p className="text-sm font-semibold text-gray-500 max-w-xs">Sarà attiva appena il servizio {ECOSYSTEM.engineName} è online. Parteciperà solo chi lo sceglie.</p>
         </div>
       )}
 
       {isAtlasOnline() && data?.me && (
         <div className="bg-[#DBEAFE] dark:bg-[#1E3A8A]/40 rounded-2xl p-4 flex items-center justify-between">
-          <span className="font-black text-[#1D4ED8] dark:text-[#93C5FD]">La tua posizione</span>
-          <span className="font-black text-2xl text-[#1D4ED8] dark:text-[#93C5FD]">#{data.me.rank} <span className="text-sm">su {data.total}</span></span>
+          <span className="font-bold text-[#1D4ED8] dark:text-[#93C5FD]">La tua posizione</span>
+          <span className="font-bold text-2xl text-[#1D4ED8] dark:text-[#93C5FD]">#{data.me.rank} <span className="text-sm">su {data.total}</span></span>
         </div>
       )}
 
@@ -58,17 +58,17 @@ export default function Leaderboard({ user, appState, onBack, onLogin, onJoin }:
         <ol className="flex flex-col gap-2">
           {data?.entries.map(e => (
             <li key={e.handle} className={cn(
-              "flex items-center gap-3 p-3 rounded-2xl border-2",
+              "flex items-center gap-3 p-3 rounded-2xl border",
               e.isMe ? "border-[#3B82F6] bg-[#EFF6FF] dark:bg-[#1E3A8A]/30" : "border-gray-200 dark:border-[#334155]"
             )}>
-              <span className={cn("w-8 h-8 rounded-full flex items-center justify-center font-black text-sm",
+              <span className={cn("w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm",
                 e.rank <= 3 ? `${medal[e.rank - 1]} text-white` : "bg-gray-100 dark:bg-[#0F172A] text-gray-500")}>{e.rank}</span>
               <div className="flex-1 min-w-0">
-                <div className="font-black text-sm text-[#0F172A] dark:text-[#F8FAFC] truncate">{e.displayName}</div>
+                <div className="font-bold text-sm text-[#0F172A] dark:text-[#F8FAFC] truncate">{e.displayName}</div>
                 <div className="text-xs font-semibold text-gray-400">@{e.handle}</div>
               </div>
               <div className="text-right">
-                <div className="font-black text-[#22C55E]">{e.mastered}</div>
+                <div className="font-bold text-[#22C55E]">{e.mastered}</div>
                 <div className="text-[10px] font-bold text-gray-400">imparate · {e.bestSim}/30</div>
               </div>
             </li>

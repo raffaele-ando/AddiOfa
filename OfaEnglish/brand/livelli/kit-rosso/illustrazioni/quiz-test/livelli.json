@@ -1,0 +1,205 @@
+{
+ "elemento": "kit-rosso/illustrazioni/quiz-test",
+ "dimensioni": [
+  182,
+  138
+ ],
+ "parti": [
+  {
+   "n": 1,
+   "id": "parte-1-bianco",
+   "riquadro": [
+    2,
+    2,
+    180,
+    136
+   ],
+   "area": 9280,
+   "colore": "#F5F4F9",
+   "file": "parte-1.png"
+  },
+  {
+   "n": 2,
+   "id": "parte-2-azzurro",
+   "riquadro": [
+    48,
+    103,
+    132,
+    131
+   ],
+   "area": 1043,
+   "colore": "#E1E5EF",
+   "file": "parte-2.png"
+  },
+  {
+   "n": 3,
+   "id": "parte-3-azzurro",
+   "riquadro": [
+    65,
+    23,
+    88,
+    48
+   ],
+   "area": 449,
+   "colore": "#D7DCE9",
+   "file": "parte-3.png"
+  },
+  {
+   "n": 4,
+   "id": "parte-4-azzurro",
+   "riquadro": [
+    91,
+    62,
+    135,
+    80
+   ],
+   "area": 417,
+   "colore": "#E8EBF4",
+   "file": "parte-4.png"
+  },
+  {
+   "n": 5,
+   "id": "parte-5-azzurro",
+   "riquadro": [
+    86,
+    87,
+    142,
+    109
+   ],
+   "area": 383,
+   "colore": "#E6E9F3",
+   "file": "parte-5.png"
+  },
+  {
+   "n": 6,
+   "id": "parte-6-azzurro",
+   "riquadro": [
+    55,
+    78,
+    83,
+    103
+   ],
+   "area": 370,
+   "colore": "#D5DBE9",
+   "file": "parte-6.png"
+  },
+  {
+   "n": 7,
+   "id": "parte-7-azzurro",
+   "riquadro": [
+    96,
+    32,
+    144,
+    44
+   ],
+   "area": 268,
+   "colore": "#E3E7F2",
+   "file": "parte-7.png"
+  },
+  {
+   "n": 8,
+   "id": "parte-8-rosso",
+   "riquadro": [
+    62,
+    55,
+    83,
+    75
+   ],
+   "area": 203,
+   "colore": "#F8444A",
+   "file": "parte-8.png"
+  },
+  {
+   "n": 9,
+   "id": "parte-9-azzurro",
+   "riquadro": [
+    83,
+    94,
+    107,
+    105
+   ],
+   "area": 170,
+   "colore": "#E5E9F3",
+   "file": "parte-9.png"
+  },
+  {
+   "n": 10,
+   "id": "parte-10-rosso",
+   "riquadro": [
+    53,
+    57,
+    69,
+    72
+   ],
+   "area": 104,
+   "colore": "#FA5C5E",
+   "file": "parte-10.png"
+  },
+  {
+   "n": 11,
+   "id": "parte-11-azzurro",
+   "riquadro": [
+    100,
+    42,
+    119,
+    51
+   ],
+   "area": 100,
+   "colore": "#E3E7F1",
+   "file": "parte-11.png"
+  },
+  {
+   "n": 12,
+   "id": "parte-12-bianco",
+   "riquadro": [
+    68,
+    46,
+    84,
+    55
+   ],
+   "area": 97,
+   "colore": "#FBF5F6",
+   "file": "parte-12.png"
+  },
+  {
+   "n": 13,
+   "id": "parte-13-bianco",
+   "riquadro": [
+    48,
+    84,
+    57,
+    101
+   ],
+   "area": 92,
+   "colore": "#F9F9FB",
+   "file": "parte-13.png"
+  },
+  {
+   "n": 14,
+   "id": "parte-14-azzurro",
+   "riquadro": [
+    61,
+    84,
+    70,
+    97
+   ],
+   "area": 80,
+   "colore": "#ECEFF5",
+   "file": "parte-14.png"
+  },
+  {
+   "n": 15,
+   "id": "parte-15-bianco",
+   "riquadro": [
+    72,
+    106,
+    86,
+    117
+   ],
+   "area": 71,
+   "colore": "#FBFBFB",
+   "file": "parte-15.png"
+  }
+ ],
+ "scarto_ricomposizione_255": 0.0
+}

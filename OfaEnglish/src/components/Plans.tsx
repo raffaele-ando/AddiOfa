@@ -36,7 +36,7 @@ export default function Plans({ appState, user, onBack, onContinueFree, step, to
     <Screen>
       <TopBar onBack={onBack} step={step} totalSteps={totalSteps} />
       <div className="shrink-0 text-center">
-        <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] dark:text-[#F8FAFC]">Come vuoi prepararti?</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">Come vuoi prepararti?</h2>
         <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">Scegli il piano più adatto a te. Pagamento una tantum, nessun abbonamento.</p>
       </div>
 
@@ -48,7 +48,7 @@ export default function Plans({ appState, user, onBack, onContinueFree, step, to
               key={p.id}
               onClick={() => { playTapSound(); setSelected(p.id); }}
               className={cn(
-                "relative text-left rounded-2xl border-2 border-b-4 p-4 transition-all",
+                "relative text-left rounded-2xl border p-4 transition-all",
                 isSelected
                   ? p.id === 'garanzia' ? "border-[#22C55E] bg-[#F0FDF4] dark:bg-[#064E3B]/40" : "border-[#EF4444] bg-[#FEE2E2]/50 dark:bg-[#7F1D1D]/30"
                   : "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A]"
@@ -56,7 +56,7 @@ export default function Plans({ appState, user, onBack, onContinueFree, step, to
             >
               {p.badge && (
                 <span className={cn(
-                  "inline-block mb-1.5 px-2.5 py-0.5 rounded-lg text-[11px] font-black text-white",
+                  "inline-block mb-1.5 px-2.5 py-0.5 rounded-lg text-[11px] font-bold text-white",
                   p.badge.tone === 'red' ? "bg-[#EF4444]" : "bg-[#22C55E]"
                 )}>
                   {p.badge.label}
@@ -64,9 +64,9 @@ export default function Plans({ appState, user, onBack, onContinueFree, step, to
               )}
               <div className="flex items-start justify-between gap-3">
                 <div className="flex flex-col">
-                  <span className="font-black text-lg text-[#0F172A] dark:text-[#F8FAFC]">{p.name}</span>
+                  <span className="font-bold text-lg text-[#0F172A] dark:text-[#F8FAFC]">{p.name}</span>
                   <span className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400">{p.summary}</span>
-                  <span className="mt-1 font-black text-xl text-[#0F172A] dark:text-[#F8FAFC]">{formatEur(p.priceEur)}</span>
+                  <span className="mt-1 font-bold text-xl text-[#0F172A] dark:text-[#F8FAFC]">{formatEur(p.priceEur)}</span>
                 </div>
                 <span className={cn(
                   "w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1",
@@ -89,10 +89,10 @@ export default function Plans({ appState, user, onBack, onContinueFree, step, to
 
       {selected === 'garanzia' && (
         <div className="flex flex-col gap-3">
-          <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-2">
               <ShieldCheck size={18} className="text-[#16A34A]" />
-              <span className="font-black text-sm text-[#0F172A] dark:text-[#F8FAFC]">Condizioni per il rimborso</span>
+              <span className="font-bold text-sm text-[#0F172A] dark:text-[#F8FAFC]">Condizioni per il rimborso</span>
             </div>
             <ul className="flex flex-col gap-1.5">
               {GUARANTEE_CONDITIONS.map(c => (

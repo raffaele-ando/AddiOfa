@@ -8,7 +8,7 @@ import { ECOSYSTEM } from '../config/ecosystem';
 
 export function Screen({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border-2 sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
+    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
       <div className={cn("flex flex-col h-full p-5 sm:p-8 gap-4 overflow-y-auto scrollbar-hide", className)}>
         {children}
       </div>
@@ -58,7 +58,7 @@ export function PrimaryButton({ children, onClick, disabled, className }: {
       onClick={() => { playTapSound(); onClick(); }}
       disabled={disabled}
       className={cn(
-        "w-full bg-[#EF4444] hover:bg-[#DC2626] border-b-4 border-[#DC2626] active:border-b-0 active:translate-y-1 text-white font-black text-base sm:text-lg py-4 px-6 rounded-2xl shadow-sm flex items-center justify-center gap-2 transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none shrink-0",
+        "w-full bg-[#EF4444] hover:bg-[#DC2626] border-[#DC2626] active:scale-[.99] text-white font-bold text-base sm:text-lg py-4 px-6 rounded-2xl shadow-sm flex items-center justify-center gap-2 transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none shrink-0",
         className
       )}
     >
@@ -73,7 +73,7 @@ export function SecondaryButton({ children, onClick, className }: { children: Re
     <button
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        "w-full py-3 px-6 font-black text-sm sm:text-base text-gray-500 dark:text-gray-400 bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] border-b-4 rounded-2xl active:border-b-2 active:translate-y-[2px] hover:bg-gray-50 dark:hover:bg-[#1E293B] transition-all shrink-0",
+        "w-full py-3 px-6 font-bold text-sm sm:text-base text-gray-500 dark:text-gray-400 bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl active:scale-[.99] hover:bg-gray-50 dark:hover:bg-[#1E293B] transition-all shrink-0",
         className
       )}
     >
@@ -92,20 +92,20 @@ export function ChoiceCard({ selected, onClick, title, subtitle }: {
     <button
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        "w-full text-left p-4 sm:p-5 rounded-2xl border-2 border-b-4 flex items-center gap-4 transition-all",
+        "w-full text-left p-4 sm:p-5 rounded-2xl border flex items-center gap-4 transition-all",
         selected
           ? "border-[#EF4444] bg-[#FEE2E2]/60 dark:bg-[#7F1D1D]/40"
           : "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B]"
       )}
     >
       <span className={cn(
-        "w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors",
+        "w-7 h-7 rounded-full border flex items-center justify-center shrink-0 transition-colors",
         selected ? "bg-[#EF4444] border-[#EF4444] text-white" : "border-gray-300 dark:border-[#475569] text-transparent"
       )}>
         <Check size={16} strokeWidth={3.5} />
       </span>
       <span className="flex flex-col">
-        <span className="font-black text-[#0F172A] dark:text-[#F8FAFC]">{title}</span>
+        <span className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">{title}</span>
         {subtitle && <span className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400">{subtitle}</span>}
       </span>
     </button>
@@ -115,7 +115,7 @@ export function ChoiceCard({ selected, onClick, title, subtitle }: {
 // Firma dell'infrastruttura: algoritmo e servizi sono di ATLAS
 export function PoweredByAtlas({ className }: { className?: string }) {
   return (
-    <p className={cn("flex items-center justify-center gap-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-gray-400 dark:text-gray-500", className)}>
+    <p className={cn("flex items-center justify-center gap-1.5 text-[10px] font-bold tracking-[0.18em] text-gray-400 dark:text-gray-500", className)}>
       <span className="inline-block w-3 h-3 rotate-45 rounded-[3px] bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6]" aria-hidden />
       Algoritmo e infrastruttura {ECOSYSTEM.engineName}
     </p>

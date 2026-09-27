@@ -54,22 +54,22 @@ export default function ProjectConsent({ user, initialScopes, busy, error, onAcc
           <span className="w-8 h-8 rounded-xl bg-[#0F172A] dark:bg-[#F8FAFC] text-white dark:text-[#0F172A] flex items-center justify-center">
             <Fingerprint size={18} />
           </span>
-          <span className="font-black text-[#0F172A] dark:text-[#F8FAFC]">Accedi con {ECOSYSTEM.accountName}</span>
+          <span className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Accedi con {ECOSYSTEM.accountName}</span>
         </div>
 
         <div className="flex flex-col items-center text-center gap-2">
           {user.photoURL ? (
             <img src={user.photoURL} alt="" referrerPolicy="no-referrer" className="w-16 h-16 rounded-full" />
           ) : (
-            <span className="w-16 h-16 rounded-full bg-[#DBEAFE] text-[#1D4ED8] flex items-center justify-center text-2xl font-black">
+            <span className="w-16 h-16 rounded-full bg-[#DBEAFE] text-[#1D4ED8] flex items-center justify-center text-2xl font-bold">
               {(user.displayName || user.email || '?').charAt(0).toUpperCase()}
             </span>
           )}
           <div>
-            <div className="font-black text-[#0F172A] dark:text-[#F8FAFC]">{user.displayName}</div>
+            <div className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">{user.displayName}</div>
             <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">{user.email}</div>
           </div>
-          <h2 className="mt-1 text-xl font-black text-[#0F172A] dark:text-[#F8FAFC]">
+          <h2 className="mt-1 text-xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">
             {APP_NAME} vuole collegarsi al tuo {ECOSYSTEM.accountName}
           </h2>
           <p className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400">
@@ -77,14 +77,14 @@ export default function ProjectConsent({ user, initialScopes, busy, error, onAcc
           </p>
         </div>
 
-        <ul className="flex flex-col divide-y-2 divide-gray-100 dark:divide-[#334155] border-2 border-gray-200 dark:border-[#334155] rounded-2xl">
+        <ul className="flex flex-col divide-y-2 divide-gray-100 dark:divide-[#334155] border border-gray-200 dark:border-[#334155] rounded-2xl">
           {SCOPES.map(s => (
             <li key={s.id} className="flex items-start gap-3 p-3.5">
               <div className="flex-1">
-                <div className="flex items-center gap-2 font-black text-sm text-[#0F172A] dark:text-[#F8FAFC]">
+                <div className="flex items-center gap-2 font-bold text-sm text-[#0F172A] dark:text-[#F8FAFC]">
                   {s.title}
                   {s.required && (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-gray-400">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-gray-400">
                       <Lock size={10} /> Necessario
                     </span>
                   )}
@@ -106,14 +106,14 @@ export default function ProjectConsent({ user, initialScopes, busy, error, onAcc
           <button
             onClick={() => { playTapSound(); onCancel(); }}
             disabled={busy}
-            className="flex-1 py-3 font-black text-gray-500 dark:text-gray-400 bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl"
+            className="flex-1 py-3 font-bold text-gray-500 dark:text-gray-400 bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl"
           >
             Annulla
           </button>
           <button
             onClick={() => { playTapSound(); onAccept(Array.from(new Set([...scopes, ...SCOPES.filter(s => s.required).map(s => s.id)]))); }}
             disabled={busy}
-            className="flex-1 py-3 font-black text-white bg-[#0F172A] dark:bg-[#3B82F6] rounded-2xl disabled:opacity-50"
+            className="flex-1 py-3 font-bold text-white bg-[#0F172A] dark:bg-[#3B82F6] rounded-2xl disabled:opacity-50"
           >
             {busy ? 'Collegamento…' : 'Consenti'}
           </button>

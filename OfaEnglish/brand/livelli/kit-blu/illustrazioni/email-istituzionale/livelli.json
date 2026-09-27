@@ -1,0 +1,179 @@
+{
+ "elemento": "kit-blu/illustrazioni/email-istituzionale",
+ "dimensioni": [
+  178,
+  113
+ ],
+ "parti": [
+  {
+   "n": 1,
+   "id": "parte-1-bianco",
+   "riquadro": [
+    2,
+    2,
+    119,
+    110
+   ],
+   "area": 5694,
+   "colore": "#F4F7FD",
+   "file": "parte-1.png"
+  },
+  {
+   "n": 2,
+   "id": "parte-2-azzurro",
+   "riquadro": [
+    25,
+    52,
+    123,
+    111
+   ],
+   "area": 2788,
+   "colore": "#D1DDFC",
+   "file": "parte-2.png"
+  },
+  {
+   "n": 3,
+   "id": "parte-3-scuro",
+   "riquadro": [
+    87,
+    18,
+    149,
+    88
+   ],
+   "area": 2060,
+   "colore": "#264C7C",
+   "file": "parte-3.png"
+  },
+  {
+   "n": 4,
+   "id": "parte-4-bianco",
+   "riquadro": [
+    54,
+    43,
+    161,
+    111
+   ],
+   "area": 1624,
+   "colore": "#F4F7FD",
+   "file": "parte-4.png"
+  },
+  {
+   "n": 5,
+   "id": "parte-5-grigio",
+   "riquadro": [
+    95,
+    43,
+    119,
+    70
+   ],
+   "area": 350,
+   "colore": "#48648F",
+   "file": "parte-5.png"
+  },
+  {
+   "n": 6,
+   "id": "parte-6-grigio",
+   "riquadro": [
+    103,
+    52,
+    127,
+    71
+   ],
+   "area": 298,
+   "colore": "#5C7296",
+   "file": "parte-6.png"
+  },
+  {
+   "n": 7,
+   "id": "parte-7-verde",
+   "riquadro": [
+    122,
+    48,
+    140,
+    68
+   ],
+   "area": 256,
+   "colore": "#435E86",
+   "file": "parte-7.png"
+  },
+  {
+   "n": 8,
+   "id": "parte-8-rosa",
+   "riquadro": [
+    141,
+    27,
+    163,
+    43
+   ],
+   "area": 188,
+   "colore": "#FAD5D8",
+   "file": "parte-8.png"
+  },
+  {
+   "n": 9,
+   "id": "parte-9-rosso",
+   "riquadro": [
+    147,
+    7,
+    176,
+    31
+   ],
+   "area": 163,
+   "colore": "#F75357",
+   "file": "parte-9.png"
+  },
+  {
+   "n": 10,
+   "id": "parte-10-rosa",
+   "riquadro": [
+    159,
+    15,
+    176,
+    34
+   ],
+   "area": 159,
+   "colore": "#FDA09F",
+   "file": "parte-10.png"
+  },
+  {
+   "n": 11,
+   "id": "parte-11-grigio",
+   "riquadro": [
+    100,
+    64,
+    129,
+    75
+   ],
+   "area": 131,
+   "colore": "#7187A9",
+   "file": "parte-11.png"
+  },
+  {
+   "n": 12,
+   "id": "parte-12-rosa",
+   "riquadro": [
+    139,
+    11,
+    165,
+    24
+   ],
+   "area": 118,
+   "colore": "#FDB5B2",
+   "file": "parte-12.png"
+  },
+  {
+   "n": 13,
+   "id": "parte-13-azzurro",
+   "riquadro": [
+    80,
+    52,
+    87,
+    62
+   ],
+   "area": 50,
+   "colore": "#E7ECF6",
+   "file": "parte-13.png"
+  }
+ ],
+ "scarto_ricomposizione_255": 0.0
+}

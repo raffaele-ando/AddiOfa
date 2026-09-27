@@ -1,0 +1,62 @@
+{
+ "elemento": "kit-rosso/stati/vuoto",
+ "dimensioni": [
+  103,
+  69
+ ],
+ "parti": [
+  {
+   "n": 1,
+   "id": "parte-1-azzurro",
+   "riquadro": [
+    15,
+    18,
+    101,
+    69
+   ],
+   "area": 2090,
+   "colore": "#DEE4F6",
+   "file": "parte-1.png"
+  },
+  {
+   "n": 2,
+   "id": "parte-2-azzurro",
+   "riquadro": [
+    2,
+    2,
+    89,
+    66
+   ],
+   "area": 2084,
+   "colore": "#DFE6F6",
+   "file": "parte-2.png"
+  },
+  {
+   "n": 3,
+   "id": "parte-3-azzurro",
+   "riquadro": [
+    35,
+    33,
+    50,
+    52
+   ],
+   "area": 164,
+   "colore": "#CCD5EC",
+   "file": "parte-3.png"
+  },
+  {
+   "n": 4,
+   "id": "parte-4-grigio",
+   "riquadro": [
+    47,
+    38,
+    64,
+    49
+   ],
+   "area": 132,
+   "colore": "#A9B7D2",
+   "file": "parte-4.png"
+  }
+ ],
+ "scarto_ricomposizione_255": 0.0
+}

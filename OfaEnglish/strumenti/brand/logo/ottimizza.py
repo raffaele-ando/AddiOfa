@@ -33,12 +33,12 @@ QUI = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(QUI.parent))
 sys.path.insert(0, str(QUI))
 
-from logo import LATO, PARAMETRI_INIZIALI, svg, carica  # noqa: E402
+from logo import LATO, PARAMETRI_INIZIALI, PARAMETRI, svg, carica  # noqa: E402
 from render import Renderer, confronta  # noqa: E402
 
 REFERENCE = QUI.parents[3] / "69B14B05-A388-40C2-A35E-FAA933D49A04.png"
-CONFRONTI = QUI / "confronti"
-RIDOTTO = 314  # lato del render durante l'ottimizzazione (1/4): veloce, abbastanza per luce e colori
+CONFRONTI = pathlib.Path(__import__("os").environ.get("LOGO_CONFRONTI", QUI / "confronti"))
+RIDOTTO = int(__import__("os").environ.get("LOGO_RIDOTTO", 314))  # lato del render durante l'ottimizzazione (1/4): veloce, abbastanza per luce e colori
 
 
 def carica_reference():
@@ -290,10 +290,10 @@ def fase_luce(P, r: Renderer, ref, iterazioni, storia):
             storia.append({"fase": "luce", "prova": it, "errore_pesato": round(e, 3)})
             print(f"  prova {it:5d}  errore pesato {e:6.2f}/255  ({time.time() - inizio:.0f}s)", flush=True)
         if it % 1000 == 999:
-            (QUI / "parametri.json").write_text(json.dumps(P, indent=1))
+            PARAMETRI.write_text(json.dumps(P, indent=1))
             m = salva_confronto(r, P, f"luce-{it + 1:05d}")
             storia.append({"fase": "luce", "prova": it + 1, "intero": m})
-            (QUI / "storia.json").write_text(json.dumps(storia, indent=1))
+            (PARAMETRI.parent / "storia.json").write_text(json.dumps(storia, indent=1))
     return P
 
 
@@ -312,7 +312,7 @@ def main():
     iterazioni = int(sys.argv[2]) if len(sys.argv) > 2 else 4000
     ref = carica_reference()
     P = carica()
-    storia = json.loads((QUI / "storia.json").read_text()) if (QUI / "storia.json").exists() else []
+    storia = json.loads((PARAMETRI.parent / "storia.json").read_text()) if (PARAMETRI.parent / "storia.json").exists() else []
     with Renderer() as r:
         if not storia:
             storia.append({"fase": "inizio", "intero": salva_confronto(r, P, "00-inizio")})
@@ -324,12 +324,12 @@ def main():
                 P = misura_facce(P, ref)
             P = fase_luce(P, r, ref, iterazioni, storia)
         P = arrotonda_numeri(P)
-        (QUI / "parametri.json").write_text(json.dumps(P, indent=1))
+        PARAMETRI.write_text(json.dumps(P, indent=1))
         finale = salva_confronto(r, P, "finale")
         storia.append({"fase": "finale", "intero": finale})
-        (QUI / "storia.json").write_text(json.dumps(storia, indent=1))
-        (QUI / "addiofa-logo.svg").write_text(svg(P))
-        (QUI / "addiofa-logo-trasparente.svg").write_text(svg(P, sfondo=False))
+        (PARAMETRI.parent / "storia.json").write_text(json.dumps(storia, indent=1))
+        (PARAMETRI.parent / "addiofa-logo.svg").write_text(svg(P))
+        (PARAMETRI.parent / "addiofa-logo-trasparente.svg").write_text(svg(P, sfondo=False))
         print("finale:", finale)
 
 

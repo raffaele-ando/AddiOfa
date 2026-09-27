@@ -27,6 +27,7 @@ import ProjectConsent from './components/ProjectConsent';
 import ProjectProfile from './components/ProjectProfile';
 import Leaderboard from './components/Leaderboard';
 import BrandKit from './brand/BrandKit';
+import Navigazione, { Scheda } from './components/Navigazione';
 
 type View = 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'stats' | 'debug' | 'onboarding' | 'plans' | 'cheatsheet' | 'thanks' | 'profile' | 'leaderboard' | 'brand';
 
@@ -311,6 +312,15 @@ export default function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [view, user, appState.projectLink]);
 
+  // schede della barra in basso
+  const vaiScheda = (s: Scheda) => setView(({ home: 'menu', esercizi: 'practiceMenu', progressi: 'stats', classifica: 'leaderboard' } as const)[s]);
+  const conBarra = (scheda: Scheda, pagina: React.ReactNode) => (
+    <div className="h-full w-full flex flex-col overflow-hidden sm:rounded-[28px] sm:border sm:border-[#E5E7EB] bg-white dark:bg-[#1E293B]">
+      <div className="flex-1 min-h-0 [&>*]:sm:rounded-none [&>*]:sm:border-0">{pagina}</div>
+      <Navigazione attiva={scheda} onVai={vaiScheda} />
+    </div>
+  );
+
   const handleSelectCorpus = (corpus: CorpusType) => {
     handleUpdateAppState({
       ...appState,
@@ -352,6 +362,7 @@ export default function App() {
           onOpenDiagnostic={() => setView('onboarding')}
           onOpenProfile={() => setView('profile')}
           onOpenLeaderboard={() => setView('leaderboard')}
+          onNaviga={vaiScheda}
         />
       )}
       {view === 'profile' && user && (
@@ -368,6 +379,7 @@ export default function App() {
         />
       )}
       {view === 'leaderboard' && (
+        conBarra('classifica', <>
         <Leaderboard
           user={user}
           appState={appState}
@@ -375,6 +387,7 @@ export default function App() {
           onLogin={signInWithGoogle}
           onJoin={() => handleChangeScopes(Array.from(new Set([...(appState.projectLink?.scopes ?? ['profile']), 'noi.leaderboard'])) as ScopeId[])}
         />
+        </>)
       )}
       {consent.open && user && (
         <ProjectConsent
@@ -413,6 +426,7 @@ export default function App() {
         }} />
       )}
       {view === 'practiceMenu' && (
+        conBarra('esercizi', <>
         <PracticeMenu 
           selectedCorpus={appState.selectedCorpus || 'all'}
           onSelectCorpus={handleSelectCorpus}
@@ -423,6 +437,7 @@ export default function App() {
           }}
           onBack={() => setView('menu')}
         />
+        </>)
       )}
       {view === 'learn' && (
         <LearnMode 
@@ -441,10 +456,12 @@ export default function App() {
         />
       )}
       {view === 'stats' && (
+        conBarra('progressi', <>
         <StatsMode 
           appState={appState}
           onExit={() => setView('menu')}
         />
+        </>)
       )}
       <input 
         type="file" 

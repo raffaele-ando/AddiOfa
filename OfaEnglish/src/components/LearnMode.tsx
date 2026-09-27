@@ -263,7 +263,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
 
   if (currentIndex >= questions.length) {
     return (
-      <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border-2 sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm p-4 sm:p-6 items-center justify-center text-center transition-colors duration-300">
+      <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm p-4 sm:p-6 items-center justify-center text-center transition-colors duration-300">
         <motion.div 
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -271,13 +271,13 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
         >
           <Check size={40} className="sm:w-12 sm:h-12" strokeWidth={3} />
         </motion.div>
-        <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] dark:text-[#F8FAFC] mb-2">Sessione Completata!</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-2">Sessione Completata!</h2>
         <p className="text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 font-bold text-base sm:text-lg">
           Hai risposto a {sessionStats.correct} su {sessionStats.total} correttamente al primo tentativo.
         </p>
         <button
           onClick={() => { playTapSound(); onExit(); }}
-          className="w-full max-w-sm bg-[#3B82F6] border-b-4 border-[#2563EB] active:border-b-0 active:translate-y-1 text-white font-black text-base sm:text-lg py-3 sm:py-4 px-6 rounded-xl sm:rounded-2xl transition-all uppercase tracking-widest"
+          className="w-full max-w-sm bg-[#3B82F6] border-[#2563EB] active:scale-[.99] text-white font-bold text-base sm:text-lg py-3 sm:py-4 px-6 rounded-xl sm:rounded-2xl transition-all"
         >
           Continua
         </button>
@@ -288,7 +288,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   const progress = (currentIndex / questions.length) * 100;
 
   return (
-    <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border-2 sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
+    <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
       {/* Header & Progress */}
       <header className="flex items-center gap-3 sm:gap-4 p-3 border-b-2 border-gray-200 dark:border-[#334155] h-12 shrink-0 transition-colors">
         <button onClick={() => { playTapSound(); onExit(); }} className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 rounded-full transition-colors">
@@ -302,12 +302,12 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
           />
         </div>
         {streak > 1 && (
-          <div className="flex items-center gap-1 text-[#F59E0B] font-black text-xs sm:text-sm animate-bounce">
+          <div className="flex items-center gap-1 text-[#F59E0B] font-bold text-xs sm:text-sm animate-bounce">
             <Flame size={16} fill="currentColor" />
             <span>{streak}x</span>
           </div>
         )}
-        <div className={cn("font-black text-sm w-8 text-center", timeLeft <= 5 ? "text-[#EF4444] animate-pulse" : "text-gray-500 dark:text-gray-400")}>
+        <div className={cn("font-bold text-sm w-8 text-center", timeLeft <= 5 ? "text-[#EF4444] animate-pulse" : "text-gray-500 dark:text-gray-400")}>
           {timeLeft}s
         </div>
       </header>
@@ -315,16 +315,16 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       {/* Main Content */}
       <main className="flex-1 p-4 sm:p-8 flex flex-col w-full overflow-y-auto scrollbar-hide">
         <div className="mb-4 shrink-0 flex items-center justify-between">
-          <span className="px-4 py-1.5 bg-[#8B5CF6] dark:bg-[#A78BFA] text-white text-xs sm:text-sm font-black uppercase rounded-full tracking-widest shadow-sm">
+          <span className="px-4 py-1.5 bg-[#8B5CF6] dark:bg-[#A78BFA] text-white text-xs sm:text-sm font-bold rounded-full shadow-sm">
             Domanda {currentIndex + 1}
           </span>
           {(category === 'corpus:initial' || appState.selectedCorpus === 'initial') && (
-            <span className="px-3 py-1 bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/30 text-xs font-black uppercase rounded-full tracking-wider">
+            <span className="px-3 py-1 bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/30 text-xs font-bold rounded-full">
               Primo Corpus ({INITIAL_CORPUS_COUNT})
             </span>
           )}
         </div>
-        <h2 className="text-xl sm:text-3xl font-black text-[#1E293B] dark:text-[#F8FAFC] mb-6 sm:mb-8 leading-tight shrink-0">
+        <h2 className="text-xl sm:text-3xl font-bold text-[#1E293B] dark:text-[#F8FAFC] mb-6 sm:mb-8 leading-tight shrink-0">
           {question.prompt}
         </h2>
 
@@ -350,7 +350,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
 
             {/* Answer Box */}
             <div className={cn(
-              "min-h-[100px] w-full border-b-4 p-4 flex flex-wrap content-start gap-2 items-center bg-gray-50/50 dark:bg-[#0F172A]/50 rounded-t-2xl transition-colors",
+              "min-h-[100px] w-full p-4 flex flex-wrap content-start gap-2 items-center bg-gray-50/50 dark:bg-[#0F172A]/50 rounded-t-2xl transition-colors",
               hasChecked && !isCorrect ? "border-[#EF4444] bg-[#FEE2E2]/50 dark:bg-[#7F1D1D]/50" : "border-gray-300 dark:border-[#475569]"
             )}>
               {selectedRecallWords.length === 0 && (
@@ -367,7 +367,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                   }}
                   disabled={hasChecked}
                   className={cn(
-                    "bg-white dark:bg-[#1E293B] border-2 text-[#0F172A] dark:text-[#F8FAFC] px-4 py-2 rounded-xl font-bold shadow-sm transition-all",
+                    "bg-white dark:bg-[#1E293B] border text-[#0F172A] dark:text-[#F8FAFC] px-4 py-2 rounded-xl font-bold shadow-sm transition-all",
                     hasChecked ? "border-gray-200 dark:border-[#475569] opacity-80" : "border-gray-200 dark:border-[#475569] active:scale-95 hover:border-gray-300"
                   )}
                 >
@@ -393,8 +393,8 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                     className={cn(
                       "px-5 py-2.5 rounded-[16px] font-bold transition-all text-sm sm:text-base",
                       isSelected 
-                        ? "bg-gray-200 dark:bg-[#334155] text-transparent border-2 border-gray-200 dark:border-[#334155] cursor-default shadow-none" 
-                        : "bg-white dark:bg-[#1E293B] border-2 border-gray-200 dark:border-[#475569] border-b-4 text-[#0F172A] dark:text-[#F8FAFC] active:border-b-0 active:translate-y-[2px] cursor-pointer hover:bg-gray-50 dark:hover:bg-[#0F172A]"
+                        ? "bg-gray-200 dark:bg-[#334155] text-transparent border border-gray-200 dark:border-[#334155] cursor-default shadow-none" 
+                        : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-[#475569] text-[#0F172A] dark:text-[#F8FAFC] active:scale-[.99] cursor-pointer hover:bg-gray-50 dark:hover:bg-[#0F172A]"
                     )}
                   >
                     {word}
@@ -406,7 +406,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
             <div className="mt-8 flex flex-col items-center gap-4 pt-4">
               <button
                 onClick={() => { playTapSound(); setOptionsRevealed(true); }}
-                className="text-gray-400 font-bold text-xs sm:text-sm uppercase tracking-widest hover:text-gray-600 transition-colors"
+                className="text-gray-400 font-bold text-xs sm:text-sm hover:text-gray-600 transition-colors"
               >
                 Troppo difficile? Usa le opzioni multiple
               </button>
@@ -415,15 +415,15 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 flex-1">
             {question.options.map((opt, idx) => {
-              let stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] hover:border-gray-300 dark:hover:border-gray-400 text-[#0F172A] dark:text-gray-200 border-b-4 active:border-b-2 active:translate-y-[2px]";
+              let stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] hover:border-gray-300 dark:hover:border-gray-400 text-[#0F172A] dark:text-gray-200 active:scale-[.99]";
               let numberClass = "border-gray-200 dark:border-[#334155] text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#1E293B]";
               
               if (hasChecked) {
                 if (idx === question.correctIndex) {
-                  stateClass = "border-[#22C55E] dark:border-[#16A34A] bg-[#F0FDF4] dark:bg-[#064E3B] text-[#16A34A] dark:text-[#10B981] border-b-4";
+                  stateClass = "border-[#22C55E] dark:border-[#16A34A] bg-[#F0FDF4] dark:bg-[#064E3B] text-[#16A34A] dark:text-[#10B981]";
                   numberClass = "border-[#22C55E] dark:border-[#16A34A] bg-white dark:bg-[#064E3B] text-[#22C55E] dark:text-[#10B981]";
                 } else if (idx === selectedOption) {
-                  stateClass = "border-[#EF4444] dark:border-[#EF4444] bg-[#FEE2E2] dark:bg-[#7F1D1D] text-[#B91C1C] dark:text-[#F87171] border-b-4";
+                  stateClass = "border-[#EF4444] dark:border-[#EF4444] bg-[#FEE2E2] dark:bg-[#7F1D1D] text-[#B91C1C] dark:text-[#F87171]";
                   numberClass = "border-[#EF4444] dark:border-[#EF4444] bg-white dark:bg-[#7F1D1D] text-[#EF4444] dark:text-[#F87171]";
                 } else if (wrongOptions.has(idx)) {
                   stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40 border-b-2 translate-y-[2px]";
@@ -431,7 +431,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                   stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] opacity-40 border-b-2 translate-y-[2px]";
                 }
               } else if (selectedOption === idx) {
-                stateClass = "bg-[#DBEAFE] dark:bg-[#1D4ED8] border-[#93C5FD] dark:border-[#60A5FA] text-[#2563EB] dark:text-[#DBEAFE] border-b-4";
+                stateClass = "bg-[#DBEAFE] dark:bg-[#1D4ED8] border-[#93C5FD] dark:border-[#60A5FA] text-[#2563EB] dark:text-[#DBEAFE]";
                 numberClass = "border-[#93C5FD] dark:border-[#60A5FA] bg-white dark:bg-[#1D4ED8] text-[#2563EB] dark:text-[#DBEAFE]";
               } else if (wrongOptions.has(idx)) {
                 stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40 border-b-2 translate-y-[2px]";
@@ -443,12 +443,12 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                   disabled={hasChecked || wrongOptions.has(idx)}
                   onClick={() => handleSelectOption(idx)}
                   className={cn(
-                    "p-4 sm:p-5 text-left border-2 rounded-[24px] group transition-all duration-150 flex items-center min-h-[90px]",
+                    "p-4 sm:p-5 text-left border rounded-[24px] group transition-all duration-150 flex items-center min-h-[90px]",
                     stateClass
                   )}
                 >
                   <div className="flex items-center gap-4 w-full">
-                    <span className={cn("w-10 h-10 sm:w-12 sm:h-12 text-sm sm:text-base flex shrink-0 items-center justify-center border-2 rounded-[14px] font-black transition-colors", numberClass)}>
+                    <span className={cn("w-10 h-10 sm:w-12 sm:h-12 text-sm sm:text-base flex shrink-0 items-center justify-center border rounded-[14px] font-bold transition-colors", numberClass)}>
                       {String.fromCharCode(65 + idx)}
                     </span>
                     <span className="text-base sm:text-lg font-bold leading-snug flex-1">{opt}</span>
@@ -469,14 +469,14 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className={cn(
-                  "font-black flex flex-col gap-1 text-center sm:text-left w-full sm:w-auto",
+                  "font-bold flex flex-col gap-1 text-center sm:text-left w-full sm:w-auto",
                   isCorrect ? "text-[#22C55E] dark:text-[#10B981]" : "text-[#EF4444] dark:text-[#F87171]"
                 )}
               >
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                   <span className="text-xl sm:text-2xl">{isCorrect ? (streak > 2 ? `Fantastico! 🔥 ${streak} di fila!` : "Ottimo!") : "Errata."}</span>
                   {isCorrect && question.category && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black bg-white/80 dark:bg-black/30 text-[#16A34A] dark:text-[#34D399] border border-[#22C55E]/30 dark:border-[#10B981]/30 shadow-xs">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/80 dark:bg-black/30 text-[#16A34A] dark:text-[#34D399] border border-[#22C55E]/30 dark:border-[#10B981]/30 shadow-xs">
                       <span>Categoria:</span>
                       <span className="font-extrabold">{question.category}{question.grammarTopic ? ` (${question.grammarTopic})` : ''}</span>
                     </span>
@@ -501,21 +501,21 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
               <button
                 onClick={() => handleCheck('low')}
                 disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
-                className="flex-1 sm:flex-none bg-[#EF4444] hover:bg-[#DC2626] border-b-4 border-[#B91C1C] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-black uppercase text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] duration-150"
+                className="flex-1 sm:flex-none bg-[#EF4444] hover:bg-[#DC2626] border-b-4 border-[#B91C1C] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-bold text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:scale-[.99] duration-150"
               >
                 Indovino
               </button>
               <button
                 onClick={() => handleCheck('medium')}
                 disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
-                className="flex-1 sm:flex-none bg-[#F59E0B] hover:bg-[#D97706] border-b-4 border-[#D97706] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-black uppercase text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] duration-150"
+                className="flex-1 sm:flex-none bg-[#F59E0B] hover:bg-[#D97706] border-b-4 border-[#D97706] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-bold text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:scale-[.99] duration-150"
               >
                 Incerto
               </button>
               <button
                 onClick={() => handleCheck('high')}
                 disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
-                className="flex-1 sm:flex-none bg-[#22C55E] hover:bg-[#16A34A] border-b-4 border-[#16A34A] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-black uppercase text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] duration-150"
+                className="flex-1 sm:flex-none bg-[#22C55E] hover:bg-[#16A34A] border-b-4 border-[#16A34A] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-bold text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:scale-[.99] duration-150"
               >
                 Sicuro
               </button>
@@ -524,7 +524,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
             <button
               onClick={handleNext}
               className={cn(
-                "w-full sm:w-auto text-white font-black uppercase text-base sm:text-lg py-4 px-8 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] border-b-4 flex items-center justify-center gap-2 duration-150",
+                "w-full sm:w-auto text-white font-bold text-base sm:text-lg py-4 px-8 rounded-[20px] transition-all active:scale-[.99] flex items-center justify-center gap-2 duration-150",
                 isCorrect ? "bg-[#22C55E] hover:bg-[#16A34A] border-[#16A34A] dark:bg-[#10B981] dark:border-[#059669]" : "bg-[#EF4444] hover:bg-[#DC2626] border-[#B91C1C] dark:bg-[#EF4444] dark:border-[#DC2626]"
               )}
             >

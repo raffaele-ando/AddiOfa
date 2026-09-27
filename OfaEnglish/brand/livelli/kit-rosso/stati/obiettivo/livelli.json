@@ -1,0 +1,374 @@
+{
+ "elemento": "kit-rosso/stati/obiettivo",
+ "dimensioni": [
+  92,
+  90
+ ],
+ "parti": [
+  {
+   "n": 1,
+   "id": "parte-1-rosa",
+   "riquadro": [
+    17,
+    19,
+    70,
+    73
+   ],
+   "area": 1227,
+   "colore": "#F9E3E3",
+   "file": "parte-1.png"
+  },
+  {
+   "n": 2,
+   "id": "parte-2-rosso",
+   "riquadro": [
+    36,
+    39,
+    85,
+    86
+   ],
+   "area": 763,
+   "colore": "#FD7276",
+   "file": "parte-2.png"
+  },
+  {
+   "n": 3,
+   "id": "parte-3-rosso",
+   "riquadro": [
+    25,
+    29,
+    50,
+    65
+   ],
+   "area": 340,
+   "colore": "#FD6A6F",
+   "file": "parte-3.png"
+  },
+  {
+   "n": 4,
+   "id": "parte-4-rosso",
+   "riquadro": [
+    5,
+    48,
+    34,
+    78
+   ],
+   "area": 323,
+   "colore": "#FD6D70",
+   "file": "parte-4.png"
+  },
+  {
+   "n": 5,
+   "id": "parte-5-bianco",
+   "riquadro": [
+    32,
+    35,
+    54,
+    57
+   ],
+   "area": 292,
+   "colore": "#FDF1F1",
+   "file": "parte-5.png"
+  },
+  {
+   "n": 6,
+   "id": "parte-6-rosso",
+   "riquadro": [
+    33,
+    6,
+    69,
+    25
+   ],
+   "area": 269,
+   "colore": "#F47278",
+   "file": "parte-6.png"
+  },
+  {
+   "n": 7,
+   "id": "parte-7-rosso",
+   "riquadro": [
+    22,
+    7,
+    37,
+    23
+   ],
+   "area": 141,
+   "colore": "#FD8C8E",
+   "file": "parte-7.png"
+  },
+  {
+   "n": 8,
+   "id": "parte-8-rosso",
+   "riquadro": [
+    25,
+    71,
+    42,
+    90
+   ],
+   "area": 131,
+   "colore": "#FD7373",
+   "file": "parte-8.png"
+  },
+  {
+   "n": 9,
+   "id": "parte-9-rosso",
+   "riquadro": [
+    6,
+    26,
+    23,
+    37
+   ],
+   "area": 122,
+   "colore": "#FD8E91",
+   "file": "parte-9.png"
+  },
+  {
+   "n": 10,
+   "id": "parte-10-rosso",
+   "riquadro": [
+    69,
+    2,
+    85,
+    18
+   ],
+   "area": 117,
+   "colore": "#FA3B42",
+   "file": "parte-10.png"
+  },
+  {
+   "n": 11,
+   "id": "parte-11-rosa",
+   "riquadro": [
+    2,
+    34,
+    9,
+    62
+   ],
+   "area": 117,
+   "colore": "#FEEDEE",
+   "file": "parte-11.png"
+  },
+  {
+   "n": 12,
+   "id": "parte-12-rosso",
+   "riquadro": [
+    8,
+    36,
+    18,
+    50
+   ],
+   "area": 116,
+   "colore": "#FD767B",
+   "file": "parte-12.png"
+  },
+  {
+   "n": 13,
+   "id": "parte-13-rosso",
+   "riquadro": [
+    53,
+    37,
+    62,
+    53
+   ],
+   "area": 114,
+   "colore": "#FD6F72",
+   "file": "parte-13.png"
+  },
+  {
+   "n": 14,
+   "id": "parte-14-rosso",
+   "riquadro": [
+    69,
+    5,
+    89,
+    22
+   ],
+   "area": 104,
+   "colore": "#DF535B",
+   "file": "parte-14.png"
+  },
+  {
+   "n": 15,
+   "id": "parte-15-rosso",
+   "riquadro": [
+    10,
+    17,
+    28,
+    27
+   ],
+   "area": 104,
+   "colore": "#FE8287",
+   "file": "parte-15.png"
+  },
+  {
+   "n": 16,
+   "id": "parte-16-rosso",
+   "riquadro": [
+    73,
+    13,
+    90,
+    22
+   ],
+   "area": 101,
+   "colore": "#FC7E81",
+   "file": "parte-16.png"
+  },
+  {
+   "n": 17,
+   "id": "parte-17-rosa",
+   "riquadro": [
+    12,
+    9,
+    24,
+    22
+   ],
+   "area": 99,
+   "colore": "#FEE2E2",
+   "file": "parte-17.png"
+  },
+  {
+   "n": 18,
+   "id": "parte-18-rosso",
+   "riquadro": [
+    46,
+    6,
+    60,
+    18
+   ],
+   "area": 98,
+   "colore": "#FD7779",
+   "file": "parte-18.png"
+  },
+  {
+   "n": 19,
+   "id": "parte-19-rosso",
+   "riquadro": [
+    46,
+    50,
+    60,
+    64
+   ],
+   "area": 98,
+   "colore": "#FD636A",
+   "file": "parte-19.png"
+  },
+  {
+   "n": 20,
+   "id": "parte-20-bianco",
+   "riquadro": [
+    70,
+    21,
+    83,
+    36
+   ],
+   "area": 91,
+   "colore": "#FDF4F5",
+   "file": "parte-20.png"
+  },
+  {
+   "n": 21,
+   "id": "parte-21-rosa",
+   "riquadro": [
+    62,
+    3,
+    73,
+    20
+   ],
+   "area": 89,
+   "colore": "#FCE1E1",
+   "file": "parte-21.png"
+  },
+  {
+   "n": 22,
+   "id": "parte-22-rosso",
+   "riquadro": [
+    63,
+    21,
+    77,
+    33
+   ],
+   "area": 86,
+   "colore": "#E0575E",
+   "file": "parte-22.png"
+  },
+  {
+   "n": 23,
+   "id": "parte-23-rosso",
+   "riquadro": [
+    66,
+    31,
+    84,
+    41
+   ],
+   "area": 83,
+   "colore": "#FD676B",
+   "file": "parte-23.png"
+  },
+  {
+   "n": 24,
+   "id": "parte-24-bianco",
+   "riquadro": [
+    13,
+    72,
+    27,
+    90
+   ],
+   "area": 81,
+   "colore": "#FDF3F3",
+   "file": "parte-24.png"
+  },
+  {
+   "n": 25,
+   "id": "parte-25-rosso",
+   "riquadro": [
+    41,
+    27,
+    51,
+    37
+   ],
+   "area": 74,
+   "colore": "#FD797A",
+   "file": "parte-25.png"
+  },
+  {
+   "n": 26,
+   "id": "parte-26-rosso",
+   "riquadro": [
+    45,
+    32,
+    58,
+    44
+   ],
+   "area": 69,
+   "colore": "#B92F38",
+   "file": "parte-26.png"
+  },
+  {
+   "n": 27,
+   "id": "parte-27-rosso",
+   "riquadro": [
+    39,
+    41,
+    48,
+    50
+   ],
+   "area": 59,
+   "colore": "#F84D54",
+   "file": "parte-27.png"
+  },
+  {
+   "n": 28,
+   "id": "parte-28-rosso",
+   "riquadro": [
+    35,
+    27,
+    42,
+    36
+   ],
+   "area": 49,
+   "colore": "#FD7175",
+   "file": "parte-28.png"
+  }
+ ],
+ "scarto_ricomposizione_255": 0.0
+}

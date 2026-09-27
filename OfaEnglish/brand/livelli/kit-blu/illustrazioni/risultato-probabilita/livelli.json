@@ -1,0 +1,309 @@
+{
+ "elemento": "kit-blu/illustrazioni/risultato-probabilita",
+ "dimensioni": [
+  261,
+  128
+ ],
+ "parti": [
+  {
+   "n": 1,
+   "id": "parte-1-bianco",
+   "riquadro": [
+    0,
+    2,
+    241,
+    128
+   ],
+   "area": 14265,
+   "colore": "#FDF5F5",
+   "file": "parte-1.png"
+  },
+  {
+   "n": 2,
+   "id": "parte-2-rosso",
+   "riquadro": [
+    47,
+    3,
+    174,
+    72
+   ],
+   "area": 2903,
+   "colore": "#FC7172",
+   "file": "parte-2.png"
+  },
+  {
+   "n": 3,
+   "id": "parte-3-bianco",
+   "riquadro": [
+    166,
+    5,
+    259,
+    120
+   ],
+   "area": 2419,
+   "colore": "#F6F2F3",
+   "file": "parte-3.png"
+  },
+  {
+   "n": 4,
+   "id": "parte-4-rosso",
+   "riquadro": [
+    32,
+    63,
+    65,
+    114
+   ],
+   "area": 957,
+   "colore": "#F75054",
+   "file": "parte-4.png"
+  },
+  {
+   "n": 5,
+   "id": "parte-5-rosso",
+   "riquadro": [
+    95,
+    71,
+    123,
+    102
+   ],
+   "area": 563,
+   "colore": "#F3565A",
+   "file": "parte-5.png"
+  },
+  {
+   "n": 6,
+   "id": "parte-6-rosso",
+   "riquadro": [
+    171,
+    11,
+    198,
+    36
+   ],
+   "area": 426,
+   "colore": "#FD8587",
+   "file": "parte-6.png"
+  },
+  {
+   "n": 7,
+   "id": "parte-7-rosa",
+   "riquadro": [
+    137,
+    79,
+    172,
+    119
+   ],
+   "area": 395,
+   "colore": "#FDF0F0",
+   "file": "parte-7.png"
+  },
+  {
+   "n": 8,
+   "id": "parte-8-rosa",
+   "riquadro": [
+    184,
+    21,
+    212,
+    45
+   ],
+   "area": 357,
+   "colore": "#FD9496",
+   "file": "parte-8.png"
+  },
+  {
+   "n": 9,
+   "id": "parte-9-rosa",
+   "riquadro": [
+    199,
+    30,
+    228,
+    55
+   ],
+   "area": 335,
+   "colore": "#FDA7A8",
+   "file": "parte-9.png"
+  },
+  {
+   "n": 10,
+   "id": "parte-10-rosso",
+   "riquadro": [
+    94,
+    91,
+    123,
+    114
+   ],
+   "area": 313,
+   "colore": "#F24249",
+   "file": "parte-10.png"
+  },
+  {
+   "n": 11,
+   "id": "parte-11-rosso",
+   "riquadro": [
+    180,
+    91,
+    198,
+    111
+   ],
+   "area": 283,
+   "colore": "#F6565C",
+   "file": "parte-11.png"
+  },
+  {
+   "n": 12,
+   "id": "parte-12-rosso",
+   "riquadro": [
+    125,
+    100,
+    155,
+    120
+   ],
+   "area": 273,
+   "colore": "#F1343A",
+   "file": "parte-12.png"
+  },
+  {
+   "n": 13,
+   "id": "parte-13-rosso",
+   "riquadro": [
+    126,
+    71,
+    153,
+    91
+   ],
+   "area": 262,
+   "colore": "#F34043",
+   "file": "parte-13.png"
+  },
+  {
+   "n": 14,
+   "id": "parte-14-rosso",
+   "riquadro": [
+    154,
+    75,
+    174,
+    90
+   ],
+   "area": 220,
+   "colore": "#F56067",
+   "file": "parte-14.png"
+  },
+  {
+   "n": 15,
+   "id": "parte-15-rosso",
+   "riquadro": [
+    214,
+    52,
+    236,
+    65
+   ],
+   "area": 201,
+   "colore": "#F75154",
+   "file": "parte-15.png"
+  },
+  {
+   "n": 16,
+   "id": "parte-16-bianco",
+   "riquadro": [
+    117,
+    106,
+    154,
+    128
+   ],
+   "area": 148,
+   "colore": "#FDF7F8",
+   "file": "parte-16.png"
+  },
+  {
+   "n": 17,
+   "id": "parte-17-rosso",
+   "riquadro": [
+    215,
+    59,
+    236,
+    72
+   ],
+   "area": 146,
+   "colore": "#F64549",
+   "file": "parte-17.png"
+  },
+  {
+   "n": 18,
+   "id": "parte-18-rosso",
+   "riquadro": [
+    135,
+    88,
+    152,
+    101
+   ],
+   "area": 130,
+   "colore": "#F4575E",
+   "file": "parte-18.png"
+  },
+  {
+   "n": 19,
+   "id": "parte-19-rosso",
+   "riquadro": [
+    160,
+    96,
+    174,
+    118
+   ],
+   "area": 121,
+   "colore": "#F03E45",
+   "file": "parte-19.png"
+  },
+  {
+   "n": 20,
+   "id": "parte-20-rosa",
+   "riquadro": [
+    103,
+    93,
+    114,
+    103
+   ],
+   "area": 90,
+   "colore": "#FCE6E7",
+   "file": "parte-20.png"
+  },
+  {
+   "n": 21,
+   "id": "parte-21-rosso",
+   "riquadro": [
+    33,
+    113,
+    51,
+    120
+   ],
+   "area": 86,
+   "colore": "#F64B50",
+   "file": "parte-21.png"
+  },
+  {
+   "n": 22,
+   "id": "parte-22-rosso",
+   "riquadro": [
+    172,
+    85,
+    182,
+    97
+   ],
+   "area": 84,
+   "colore": "#F65158",
+   "file": "parte-22.png"
+  },
+  {
+   "n": 23,
+   "id": "parte-23-rosso",
+   "riquadro": [
+    177,
+    74,
+    187,
+    87
+   ],
+   "area": 74,
+   "colore": "#F54449",
+   "file": "parte-23.png"
+  }
+ ],
+ "scarto_ricomposizione_255": 0.0
+}

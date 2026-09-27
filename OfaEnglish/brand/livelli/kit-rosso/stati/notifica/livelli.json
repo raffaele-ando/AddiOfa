@@ -1,0 +1,75 @@
+{
+ "elemento": "kit-rosso/stati/notifica",
+ "dimensioni": [
+  93,
+  68
+ ],
+ "parti": [
+  {
+   "n": 1,
+   "id": "parte-1-azzurro",
+   "riquadro": [
+    2,
+    17,
+    78,
+    66
+   ],
+   "area": 2429,
+   "colore": "#D2DDFD",
+   "file": "parte-1.png"
+  },
+  {
+   "n": 2,
+   "id": "parte-2-azzurro",
+   "riquadro": [
+    4,
+    7,
+    62,
+    43
+   ],
+   "area": 1155,
+   "colore": "#ECEFFC",
+   "file": "parte-2.png"
+  },
+  {
+   "n": 3,
+   "id": "parte-3-rosso",
+   "riquadro": [
+    60,
+    2,
+    91,
+    32
+   ],
+   "area": 396,
+   "colore": "#FB4F56",
+   "file": "parte-3.png"
+  },
+  {
+   "n": 4,
+   "id": "parte-4-rosso",
+   "riquadro": [
+    69,
+    2,
+    91,
+    19
+   ],
+   "area": 212,
+   "colore": "#FB666A",
+   "file": "parte-4.png"
+  },
+  {
+   "n": 5,
+   "id": "parte-5-rosso",
+   "riquadro": [
+    60,
+    19,
+    70,
+    28
+   ],
+   "area": 54,
+   "colore": "#F93C41",
+   "file": "parte-5.png"
+  }
+ ],
+ "scarto_ricomposizione_255": 0.0
+}

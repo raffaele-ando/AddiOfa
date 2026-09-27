@@ -1,0 +1,322 @@
+{
+ "elemento": "kit-blu/illustrazioni/celebrazione",
+ "dimensioni": [
+  139,
+  116
+ ],
+ "parti": [
+  {
+   "n": 1,
+   "id": "parte-1-blu",
+   "riquadro": [
+    36,
+    38,
+    85,
+    85
+   ],
+   "area": 942,
+   "colore": "#5889DB",
+   "file": "parte-1.png"
+  },
+  {
+   "n": 2,
+   "id": "parte-2-rosa",
+   "riquadro": [
+    24,
+    60,
+    56,
+    99
+   ],
+   "area": 477,
+   "colore": "#FDD88E",
+   "file": "parte-2.png"
+  },
+  {
+   "n": 3,
+   "id": "parte-3-giallo",
+   "riquadro": [
+    16,
+    71,
+    46,
+    105
+   ],
+   "area": 383,
+   "colore": "#FDC060",
+   "file": "parte-3.png"
+  },
+  {
+   "n": 4,
+   "id": "parte-4-azzurro",
+   "riquadro": [
+    53,
+    20,
+    94,
+    47
+   ],
+   "area": 368,
+   "colore": "#A7C3F8",
+   "file": "parte-4.png"
+  },
+  {
+   "n": 5,
+   "id": "parte-5-rosa",
+   "riquadro": [
+    73,
+    2,
+    97,
+    25
+   ],
+   "area": 358,
+   "colore": "#FCC675",
+   "file": "parte-5.png"
+  },
+  {
+   "n": 6,
+   "id": "parte-6-rosa",
+   "riquadro": [
+    29,
+    44,
+    52,
+    77
+   ],
+   "area": 311,
+   "colore": "#F4CF80",
+   "file": "parte-6.png"
+  },
+  {
+   "n": 7,
+   "id": "parte-7-rosso",
+   "riquadro": [
+    2,
+    32,
+    31,
+    51
+   ],
+   "area": 303,
+   "colore": "#F98C8B",
+   "file": "parte-7.png"
+  },
+  {
+   "n": 8,
+   "id": "parte-8-giallo",
+   "riquadro": [
+    10,
+    85,
+    32,
+    110
+   ],
+   "area": 291,
+   "colore": "#FECD6E",
+   "file": "parte-8.png"
+  },
+  {
+   "n": 9,
+   "id": "parte-9-rosa",
+   "riquadro": [
+    79,
+    93,
+    104,
+    114
+   ],
+   "area": 290,
+   "colore": "#FECF82",
+   "file": "parte-9.png"
+  },
+  {
+   "n": 10,
+   "id": "parte-10-rosa",
+   "riquadro": [
+    21,
+    4,
+    40,
+    25
+   ],
+   "area": 269,
+   "colore": "#FDD080",
+   "file": "parte-10.png"
+  },
+  {
+   "n": 11,
+   "id": "parte-11-giallo",
+   "riquadro": [
+    95,
+    72,
+    122,
+    90
+   ],
+   "area": 248,
+   "colore": "#FDB940",
+   "file": "parte-11.png"
+  },
+  {
+   "n": 12,
+   "id": "parte-12-azzurro",
+   "riquadro": [
+    57,
+    39,
+    80,
+    59
+   ],
+   "area": 229,
+   "colore": "#C7D4EC",
+   "file": "parte-12.png"
+  },
+  {
+   "n": 13,
+   "id": "parte-13-blu",
+   "riquadro": [
+    116,
+    48,
+    139,
+    62
+   ],
+   "area": 191,
+   "colore": "#6493F3",
+   "file": "parte-13.png"
+  },
+  {
+   "n": 14,
+   "id": "parte-14-giallo",
+   "riquadro": [
+    105,
+    20,
+    126,
+    38
+   ],
+   "area": 187,
+   "colore": "#FEB739",
+   "file": "parte-14.png"
+  },
+  {
+   "n": 15,
+   "id": "parte-15-giallo",
+   "riquadro": [
+    44,
+    71,
+    73,
+    86
+   ],
+   "area": 181,
+   "colore": "#F8C05B",
+   "file": "parte-15.png"
+  },
+  {
+   "n": 16,
+   "id": "parte-16-azzurro",
+   "riquadro": [
+    65,
+    54,
+    88,
+    69
+   ],
+   "area": 146,
+   "colore": "#E6EFFA",
+   "file": "parte-16.png"
+  },
+  {
+   "n": 17,
+   "id": "parte-17-blu",
+   "riquadro": [
+    85,
+    50,
+    101,
+    65
+   ],
+   "area": 141,
+   "colore": "#4782ED",
+   "file": "parte-17.png"
+  },
+  {
+   "n": 18,
+   "id": "parte-18-giallo",
+   "riquadro": [
+    48,
+    82,
+    69,
+    95
+   ],
+   "area": 140,
+   "colore": "#FDBE53",
+   "file": "parte-18.png"
+  },
+  {
+   "n": 19,
+   "id": "parte-19-bianco",
+   "riquadro": [
+    90,
+    52,
+    114,
+    66
+   ],
+   "area": 137,
+   "colore": "#EEF3FB",
+   "file": "parte-19.png"
+  },
+  {
+   "n": 20,
+   "id": "parte-20-bianco",
+   "riquadro": [
+    80,
+    66,
+    97,
+    82
+   ],
+   "area": 111,
+   "colore": "#F8FAFC",
+   "file": "parte-20.png"
+  },
+  {
+   "n": 21,
+   "id": "parte-21-blu",
+   "riquadro": [
+    74,
+    36,
+    88,
+    49
+   ],
+   "area": 106,
+   "colore": "#427FF8",
+   "file": "parte-21.png"
+  },
+  {
+   "n": 22,
+   "id": "parte-22-bianco",
+   "riquadro": [
+    97,
+    23,
+    111,
+    37
+   ],
+   "area": 103,
+   "colore": "#FDF7EC",
+   "file": "parte-22.png"
+  },
+  {
+   "n": 23,
+   "id": "parte-23-bianco",
+   "riquadro": [
+    61,
+    83,
+    78,
+    93
+   ],
+   "area": 80,
+   "colore": "#FCF8EF",
+   "file": "parte-23.png"
+  },
+  {
+   "n": 24,
+   "id": "parte-24-bianco",
+   "riquadro": [
+    37,
+    10,
+    47,
+    25
+   ],
+   "area": 71,
+   "colore": "#FDFAF6",
+   "file": "parte-24.png"
+  }
+ ],
+ "scarto_ricomposizione_255": 0.0
+}

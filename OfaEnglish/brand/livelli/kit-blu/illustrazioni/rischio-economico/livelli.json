@@ -1,0 +1,335 @@
+{
+ "elemento": "kit-blu/illustrazioni/rischio-economico",
+ "dimensioni": [
+  198,
+  156
+ ],
+ "parti": [
+  {
+   "n": 1,
+   "id": "parte-1-azzurro",
+   "riquadro": [
+    48,
+    30,
+    176,
+    134
+   ],
+   "area": 7605,
+   "colore": "#E4ECFC",
+   "file": "parte-1.png"
+  },
+  {
+   "n": 2,
+   "id": "parte-2-bianco",
+   "riquadro": [
+    2,
+    6,
+    141,
+    153
+   ],
+   "area": 5352,
+   "colore": "#F1F5FD",
+   "file": "parte-2.png"
+  },
+  {
+   "n": 3,
+   "id": "parte-3-azzurro",
+   "riquadro": [
+    69,
+    81,
+    186,
+    151
+   ],
+   "area": 1544,
+   "colore": "#E0E8F8",
+   "file": "parte-3.png"
+  },
+  {
+   "n": 4,
+   "id": "parte-4-bianco",
+   "riquadro": [
+    133,
+    92,
+    196,
+    150
+   ],
+   "area": 1432,
+   "colore": "#F0F2FB",
+   "file": "parte-4.png"
+  },
+  {
+   "n": 5,
+   "id": "parte-5-blu",
+   "riquadro": [
+    35,
+    70,
+    71,
+    144
+   ],
+   "area": 1045,
+   "colore": "#3B72CA",
+   "file": "parte-5.png"
+  },
+  {
+   "n": 6,
+   "id": "parte-6-blu",
+   "riquadro": [
+    96,
+    62,
+    134,
+    103
+   ],
+   "area": 802,
+   "colore": "#2D64B4",
+   "file": "parte-6.png"
+  },
+  {
+   "n": 7,
+   "id": "parte-7-blu",
+   "riquadro": [
+    63,
+    121,
+    128,
+    143
+   ],
+   "area": 448,
+   "colore": "#4A7DCF",
+   "file": "parte-7.png"
+  },
+  {
+   "n": 8,
+   "id": "parte-8-blu",
+   "riquadro": [
+    44,
+    132,
+    108,
+    154
+   ],
+   "area": 351,
+   "colore": "#5582C6",
+   "file": "parte-8.png"
+  },
+  {
+   "n": 9,
+   "id": "parte-9-blu",
+   "riquadro": [
+    26,
+    71,
+    43,
+    110
+   ],
+   "area": 336,
+   "colore": "#5B8ADB",
+   "file": "parte-9.png"
+  },
+  {
+   "n": 10,
+   "id": "parte-10-grigio",
+   "riquadro": [
+    118,
+    23,
+    160,
+    41
+   ],
+   "area": 306,
+   "colore": "#6E98DE",
+   "file": "parte-10.png"
+  },
+  {
+   "n": 11,
+   "id": "parte-11-blu",
+   "riquadro": [
+    40,
+    100,
+    57,
+    138
+   ],
+   "area": 303,
+   "colore": "#2762B9",
+   "file": "parte-11.png"
+  },
+  {
+   "n": 12,
+   "id": "parte-12-blu",
+   "riquadro": [
+    161,
+    40,
+    179,
+    82
+   ],
+   "area": 276,
+   "colore": "#5688DD",
+   "file": "parte-12.png"
+  },
+  {
+   "n": 13,
+   "id": "parte-13-rosa",
+   "riquadro": [
+    63,
+    5,
+    84,
+    37
+   ],
+   "area": 259,
+   "colore": "#FAECED",
+   "file": "parte-13.png"
+  },
+  {
+   "n": 14,
+   "id": "parte-14-blu",
+   "riquadro": [
+    167,
+    42,
+    180,
+    70
+   ],
+   "area": 195,
+   "colore": "#2D69C2",
+   "file": "parte-14.png"
+  },
+  {
+   "n": 15,
+   "id": "parte-15-rosso",
+   "riquadro": [
+    83,
+    2,
+    94,
+    30
+   ],
+   "area": 181,
+   "colore": "#F5383A",
+   "file": "parte-15.png"
+  },
+  {
+   "n": 16,
+   "id": "parte-16-bianco",
+   "riquadro": [
+    175,
+    43,
+    187,
+    69
+   ],
+   "area": 161,
+   "colore": "#F4F7FC",
+   "file": "parte-16.png"
+  },
+  {
+   "n": 17,
+   "id": "parte-17-rosso",
+   "riquadro": [
+    50,
+    20,
+    71,
+    37
+   ],
+   "area": 139,
+   "colore": "#F44649",
+   "file": "parte-17.png"
+  },
+  {
+   "n": 18,
+   "id": "parte-18-blu",
+   "riquadro": [
+    32,
+    106,
+    45,
+    127
+   ],
+   "area": 133,
+   "colore": "#487CD1",
+   "file": "parte-18.png"
+  },
+  {
+   "n": 19,
+   "id": "parte-19-azzurro",
+   "riquadro": [
+    114,
+    84,
+    133,
+    96
+   ],
+   "area": 119,
+   "colore": "#E1E9F8",
+   "file": "parte-19.png"
+  },
+  {
+   "n": 20,
+   "id": "parte-20-azzurro",
+   "riquadro": [
+    17,
+    85,
+    29,
+    98
+   ],
+   "area": 116,
+   "colore": "#ECF2FC",
+   "file": "parte-20.png"
+  },
+  {
+   "n": 21,
+   "id": "parte-21-azzurro",
+   "riquadro": [
+    159,
+    30,
+    173,
+    42
+   ],
+   "area": 102,
+   "colore": "#C9D8F1",
+   "file": "parte-21.png"
+  },
+  {
+   "n": 22,
+   "id": "parte-22-rosso",
+   "riquadro": [
+    168,
+    119,
+    182,
+    134
+   ],
+   "area": 102,
+   "colore": "#F35555",
+   "file": "parte-22.png"
+  },
+  {
+   "n": 23,
+   "id": "parte-23-rosso",
+   "riquadro": [
+    151,
+    123,
+    158,
+    142
+   ],
+   "area": 102,
+   "colore": "#F55354",
+   "file": "parte-23.png"
+  },
+  {
+   "n": 24,
+   "id": "parte-24-bianco",
+   "riquadro": [
+    176,
+    70,
+    186,
+    89
+   ],
+   "area": 92,
+   "colore": "#F9FAFD",
+   "file": "parte-24.png"
+  },
+  {
+   "n": 25,
+   "id": "parte-25-blu",
+   "riquadro": [
+    102,
+    39,
+    117,
+    46
+   ],
+   "area": 66,
+   "colore": "#6590D7",
+   "file": "parte-25.png"
+  }
+ ],
+ "scarto_ricomposizione_255": 0.0
+}

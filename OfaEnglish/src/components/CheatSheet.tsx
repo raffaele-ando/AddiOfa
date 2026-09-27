@@ -14,13 +14,13 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
     <Screen>
       <TopBar onBack={onBack} />
       <div className="shrink-0">
-        <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] dark:text-[#F8FAFC]">Prontuario</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">Prontuario</h2>
         <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">
           Le {cheatSheet.length} regole che tornano più spesso, con la trappola tipica di chi parla italiano.
         </p>
       </div>
 
-      <label className="flex items-center gap-2 bg-gray-100 dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl px-4 py-2.5 shrink-0">
+      <label className="flex items-center gap-2 bg-gray-100 dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl px-4 py-2.5 shrink-0">
         <Search size={18} className="text-gray-400" />
         <input
           value={query}
@@ -32,8 +32,8 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
 
       <div className="flex flex-col gap-3 pb-4">
         {rules.map(r => (
-          <div key={r.topic} className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] border-b-4 rounded-2xl p-4">
-            <div className="text-xs font-black uppercase tracking-widest text-[#8B5CF6]">{r.topic}</div>
+          <div key={r.topic} className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4">
+            <div className="text-xs font-bold text-[#8B5CF6]">{r.topic}</div>
             <p className="mt-1.5 text-sm sm:text-base font-semibold text-[#0F172A] dark:text-gray-200 leading-relaxed">
               <RichText text={r.rule} />
             </p>

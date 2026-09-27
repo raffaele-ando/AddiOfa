@@ -1,0 +1,348 @@
+{
+ "elemento": "kit-rosso/illustrazioni/attenzione-rischio",
+ "dimensioni": [
+  153,
+  146
+ ],
+ "parti": [
+  {
+   "n": 1,
+   "id": "parte-1-bianco",
+   "riquadro": [
+    4,
+    2,
+    151,
+    146
+   ],
+   "area": 9517,
+   "colore": "#FEF0F0",
+   "file": "parte-1.png"
+  },
+  {
+   "n": 2,
+   "id": "parte-2-rosso",
+   "riquadro": [
+    37,
+    62,
+    130,
+    124
+   ],
+   "area": 3269,
+   "colore": "#F9343C",
+   "file": "parte-2.png"
+  },
+  {
+   "n": 3,
+   "id": "parte-3-rosso",
+   "riquadro": [
+    73,
+    56,
+    109,
+    108
+   ],
+   "area": 651,
+   "colore": "#FA333C",
+   "file": "parte-3.png"
+  },
+  {
+   "n": 4,
+   "id": "parte-4-bianco",
+   "riquadro": [
+    77,
+    58,
+    89,
+    92
+   ],
+   "area": 335,
+   "colore": "#FDF0F0",
+   "file": "parte-4.png"
+  },
+  {
+   "n": 5,
+   "id": "parte-5-rosso",
+   "riquadro": [
+    62,
+    39,
+    97,
+    66
+   ],
+   "area": 318,
+   "colore": "#FB353D",
+   "file": "parte-5.png"
+  },
+  {
+   "n": 6,
+   "id": "parte-6-rosso",
+   "riquadro": [
+    20,
+    16,
+    42,
+    42
+   ],
+   "area": 231,
+   "colore": "#FD5C61",
+   "file": "parte-6.png"
+  },
+  {
+   "n": 7,
+   "id": "parte-7-rosso",
+   "riquadro": [
+    2,
+    40,
+    32,
+    60
+   ],
+   "area": 221,
+   "colore": "#FC4549",
+   "file": "parte-7.png"
+  },
+  {
+   "n": 8,
+   "id": "parte-8-rosa",
+   "riquadro": [
+    23,
+    39,
+    51,
+    53
+   ],
+   "area": 207,
+   "colore": "#FDDBDC",
+   "file": "parte-8.png"
+  },
+  {
+   "n": 9,
+   "id": "parte-9-rosso",
+   "riquadro": [
+    71,
+    49,
+    100,
+    62
+   ],
+   "area": 206,
+   "colore": "#FC3E42",
+   "file": "parte-9.png"
+  },
+  {
+   "n": 10,
+   "id": "parte-10-rosso",
+   "riquadro": [
+    71,
+    35,
+    91,
+    49
+   ],
+   "area": 163,
+   "colore": "#FC464B",
+   "file": "parte-10.png"
+  },
+  {
+   "n": 11,
+   "id": "parte-11-rosa",
+   "riquadro": [
+    16,
+    33,
+    36,
+    50
+   ],
+   "area": 157,
+   "colore": "#FDEFEE",
+   "file": "parte-11.png"
+  },
+  {
+   "n": 12,
+   "id": "parte-12-bianco",
+   "riquadro": [
+    19,
+    53,
+    49,
+    64
+   ],
+   "area": 131,
+   "colore": "#FEF3F3",
+   "file": "parte-12.png"
+  },
+  {
+   "n": 13,
+   "id": "parte-13-rosso",
+   "riquadro": [
+    108,
+    76,
+    120,
+    92
+   ],
+   "area": 104,
+   "colore": "#FB474D",
+   "file": "parte-13.png"
+  },
+  {
+   "n": 14,
+   "id": "parte-14-rosa",
+   "riquadro": [
+    59,
+    41,
+    73,
+    52
+   ],
+   "area": 94,
+   "colore": "#FEF0EF",
+   "file": "parte-14.png"
+  },
+  {
+   "n": 15,
+   "id": "parte-15-rosa",
+   "riquadro": [
+    77,
+    100,
+    88,
+    111
+   ],
+   "area": 94,
+   "colore": "#FDEBEB",
+   "file": "parte-15.png"
+  },
+  {
+   "n": 16,
+   "id": "parte-16-rosa",
+   "riquadro": [
+    103,
+    57,
+    114,
+    68
+   ],
+   "area": 78,
+   "colore": "#FEEDEE",
+   "file": "parte-16.png"
+  },
+  {
+   "n": 17,
+   "id": "parte-17-rosa",
+   "riquadro": [
+    56,
+    123,
+    119,
+    125
+   ],
+   "area": 77,
+   "colore": "#FBBEBE",
+   "file": "parte-17.png"
+  },
+  {
+   "n": 18,
+   "id": "parte-18-bianco",
+   "riquadro": [
+    96,
+    45,
+    106,
+    57
+   ],
+   "area": 73,
+   "colore": "#FEF6F6",
+   "file": "parte-18.png"
+  },
+  {
+   "n": 19,
+   "id": "parte-19-rosso",
+   "riquadro": [
+    39,
+    99,
+    50,
+    108
+   ],
+   "area": 67,
+   "colore": "#FC3940",
+   "file": "parte-19.png"
+  },
+  {
+   "n": 20,
+   "id": "parte-20-bianco",
+   "riquadro": [
+    39,
+    30,
+    49,
+    41
+   ],
+   "area": 65,
+   "colore": "#FEF1F1",
+   "file": "parte-20.png"
+  },
+  {
+   "n": 21,
+   "id": "parte-21-rosa",
+   "riquadro": [
+    45,
+    66,
+    55,
+    74
+   ],
+   "area": 62,
+   "colore": "#FEECEC",
+   "file": "parte-21.png"
+  },
+  {
+   "n": 22,
+   "id": "parte-22-bianco",
+   "riquadro": [
+    12,
+    34,
+    22,
+    49
+   ],
+   "area": 60,
+   "colore": "#FEF4F3",
+   "file": "parte-22.png"
+  },
+  {
+   "n": 23,
+   "id": "parte-23-bianco",
+   "riquadro": [
+    19,
+    28,
+    33,
+    35
+   ],
+   "area": 58,
+   "colore": "#FDF2F1",
+   "file": "parte-23.png"
+  },
+  {
+   "n": 24,
+   "id": "parte-24-rosa",
+   "riquadro": [
+    56,
+    52,
+    65,
+    60
+   ],
+   "area": 56,
+   "colore": "#FEE1E1",
+   "file": "parte-24.png"
+  },
+  {
+   "n": 25,
+   "id": "parte-25-rosa",
+   "riquadro": [
+    43,
+    78,
+    52,
+    87
+   ],
+   "area": 55,
+   "colore": "#FDECEC",
+   "file": "parte-25.png"
+  },
+  {
+   "n": 26,
+   "id": "parte-26-rosso",
+   "riquadro": [
+    87,
+    101,
+    99,
+    111
+   ],
+   "area": 49,
+   "colore": "#F52934",
+   "file": "parte-26.png"
+  }
+ ],
+ "scarto_ricomposizione_255": 0.0
+}

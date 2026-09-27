@@ -40,13 +40,13 @@ export class ErrorBoundary extends Component<Props, State> {
             <div className="bg-[#FEE2E2] dark:bg-[#7F1D1D]/30 text-[#EF4444] dark:text-[#F87171] p-4 rounded-2xl mb-4">
               <AlertTriangle size={36} strokeWidth={2.5} />
             </div>
-            <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight mb-2">Qualcosa è andato storto</h2>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-2">Qualcosa è andato storto</h2>
             <p className="text-sm font-bold text-gray-500 dark:text-gray-400 mb-6">
               Si è verificato un problema imprevisto. Puoi riavviare l'applicazione in sicurezza.
             </p>
             <button
               onClick={this.handleReset}
-              className="w-full bg-[#3B82F6] hover:bg-[#2563EB] border-b-4 border-[#2563EB] active:border-b-0 active:translate-y-1 text-white font-black py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 uppercase tracking-widest transition-all"
+              className="w-full bg-[#EF4444] hover:bg-[#DC2626] border-[#2563EB] active:scale-[.99] text-white font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 transition-all"
             >
               <RotateCcw size={18} strokeWidth={2.5} />
               Ricarica App

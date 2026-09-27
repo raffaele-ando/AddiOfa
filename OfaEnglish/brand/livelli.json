@@ -1,0 +1,237 @@
+{
+ "kit-blu/illustrazioni/studio-inglese": {
+  "cartella": "livelli/kit-blu/illustrazioni/studio-inglese",
+  "parti": 28,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/quiz-test": {
+  "cartella": "livelli/kit-blu/illustrazioni/quiz-test",
+  "parti": 15,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/risultato-probabilita": {
+  "cartella": "livelli/kit-blu/illustrazioni/risultato-probabilita",
+  "parti": 23,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/rischio-economico": {
+  "cartella": "livelli/kit-blu/illustrazioni/rischio-economico",
+  "parti": 25,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/piano-studi-bloccato": {
+  "cartella": "livelli/kit-blu/illustrazioni/piano-studi-bloccato",
+  "parti": 17,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/superamento": {
+  "cartella": "livelli/kit-blu/illustrazioni/superamento",
+  "parti": 21,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/successo": {
+  "cartella": "livelli/kit-blu/illustrazioni/successo",
+  "parti": 32,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/suggerimenti-consigli": {
+  "cartella": "livelli/kit-blu/illustrazioni/suggerimenti-consigli",
+  "parti": 17,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/email-istituzionale": {
+  "cartella": "livelli/kit-blu/illustrazioni/email-istituzionale",
+  "parti": 13,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/verifica-utente": {
+  "cartella": "livelli/kit-blu/illustrazioni/verifica-utente",
+  "parti": 15,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/accesso-bloccato": {
+  "cartella": "livelli/kit-blu/illustrazioni/accesso-bloccato",
+  "parti": 19,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/mancato-superamento": {
+  "cartella": "livelli/kit-blu/illustrazioni/mancato-superamento",
+  "parti": 26,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/progressi-statistiche": {
+  "cartella": "livelli/kit-blu/illustrazioni/progressi-statistiche",
+  "parti": 28,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/mondo-internazionale": {
+  "cartella": "livelli/kit-blu/illustrazioni/mondo-internazionale",
+  "parti": 25,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/messaggi-supporto": {
+  "cartella": "livelli/kit-blu/illustrazioni/messaggi-supporto",
+  "parti": 26,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/celebrazione": {
+  "cartella": "livelli/kit-blu/illustrazioni/celebrazione",
+  "parti": 24,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/attesa-caricamento": {
+  "cartella": "livelli/kit-blu/illustrazioni/attesa-caricamento",
+  "parti": 17,
+  "scarto": 0.0
+ },
+ "kit-blu/illustrazioni/ricerca": {
+  "cartella": "livelli/kit-blu/illustrazioni/ricerca",
+  "parti": 21,
+  "scarto": 0.0
+ },
+ "kit-blu/stati/operazione-completata": {
+  "cartella": "livelli/kit-blu/stati/operazione-completata",
+  "parti": 18,
+  "scarto": 0.0
+ },
+ "kit-blu/stati/errore": {
+  "cartella": "livelli/kit-blu/stati/errore",
+  "parti": 17,
+  "scarto": 0.0
+ },
+ "kit-blu/stati/attenzione": {
+  "cartella": "livelli/kit-blu/stati/attenzione",
+  "parti": 8,
+  "scarto": 0.0
+ },
+ "kit-blu/stati/informazione": {
+  "cartella": "livelli/kit-blu/stati/informazione",
+  "parti": 17,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/studio-inglese": {
+  "cartella": "livelli/kit-rosso/illustrazioni/studio-inglese",
+  "parti": 32,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/quiz-test": {
+  "cartella": "livelli/kit-rosso/illustrazioni/quiz-test",
+  "parti": 15,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/risultato-probabilita": {
+  "cartella": "livelli/kit-rosso/illustrazioni/risultato-probabilita",
+  "parti": 30,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/rischio-economico": {
+  "cartella": "livelli/kit-rosso/illustrazioni/rischio-economico",
+  "parti": 44,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/piano-studi-bloccato": {
+  "cartella": "livelli/kit-rosso/illustrazioni/piano-studi-bloccato",
+  "parti": 25,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/piano-superamento": {
+  "cartella": "livelli/kit-rosso/illustrazioni/piano-superamento",
+  "parti": 31,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/successo-superamento": {
+  "cartella": "livelli/kit-rosso/illustrazioni/successo-superamento",
+  "parti": 22,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/email-istituzionale": {
+  "cartella": "livelli/kit-rosso/illustrazioni/email-istituzionale",
+  "parti": 21,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/verifica-utente": {
+  "cartella": "livelli/kit-rosso/illustrazioni/verifica-utente",
+  "parti": 14,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/simulazione-esame": {
+  "cartella": "livelli/kit-rosso/illustrazioni/simulazione-esame",
+  "parti": 40,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/attenzione-rischio": {
+  "cartella": "livelli/kit-rosso/illustrazioni/attenzione-rischio",
+  "parti": 26,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/progressi-statistiche": {
+  "cartella": "livelli/kit-rosso/illustrazioni/progressi-statistiche",
+  "parti": 32,
+  "scarto": 0.0
+ },
+ "kit-rosso/illustrazioni/suggerimenti-consigli": {
+  "cartella": "livelli/kit-rosso/illustrazioni/suggerimenti-consigli",
+  "parti": 22,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/ricerca": {
+  "cartella": "livelli/kit-rosso/stati/ricerca",
+  "parti": 16,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/caricamento": {
+  "cartella": "livelli/kit-rosso/stati/caricamento",
+  "parti": 12,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/completato": {
+  "cartella": "livelli/kit-rosso/stati/completato",
+  "parti": 20,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/errore": {
+  "cartella": "livelli/kit-rosso/stati/errore",
+  "parti": 21,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/vuoto": {
+  "cartella": "livelli/kit-rosso/stati/vuoto",
+  "parti": 4,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/celebrazione": {
+  "cartella": "livelli/kit-rosso/stati/celebrazione",
+  "parti": 10,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/notifica": {
+  "cartella": "livelli/kit-rosso/stati/notifica",
+  "parti": 5,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/attesa": {
+  "cartella": "livelli/kit-rosso/stati/attesa",
+  "parti": 13,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/in-corso": {
+  "cartella": "livelli/kit-rosso/stati/in-corso",
+  "parti": 20,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/obiettivo": {
+  "cartella": "livelli/kit-rosso/stati/obiettivo",
+  "parti": 28,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/messaggi": {
+  "cartella": "livelli/kit-rosso/stati/messaggi",
+  "parti": 14,
+  "scarto": 0.0
+ },
+ "kit-rosso/stati/mondo-internazionale": {
+  "cartella": "livelli/kit-rosso/stati/mondo-internazionale",
+  "parti": 20,
+  "scarto": 0.0
+ }
+}
