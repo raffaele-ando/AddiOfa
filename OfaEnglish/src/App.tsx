@@ -5,6 +5,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { AppState, UserStats, ExamHistory, CorpusType, OnboardingResult } from './types';
+import { ECOSYSTEM, CONSENT_VERSION, ScopeId } from './config/ecosystem';
+import { atlas, isAtlasOnline, ProjectAccount } from './lib/atlas';
 import { loadState, saveState, updateStreak, exportData, importData, syncToCloud, syncFromCloud } from './lib/storage';
 import { getQuestionStats, applySm2, calculateContinuousQuality, calculateExpectedResponseTimeMs } from './lib/spacedRepetition';
 import { questions } from './data/questions';
@@ -21,8 +23,11 @@ import Onboarding from './components/Onboarding';
 import Plans from './components/Plans';
 import CheatSheet from './components/CheatSheet';
 import PaymentThanks from './components/PaymentThanks';
+import ProjectConsent from './components/ProjectConsent';
+import ProjectProfile from './components/ProjectProfile';
+import Leaderboard from './components/Leaderboard';
 
-type View = 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'stats' | 'debug' | 'onboarding' | 'plans' | 'cheatsheet' | 'thanks';
+type View = 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'stats' | 'debug' | 'onboarding' | 'plans' | 'cheatsheet' | 'thanks' | 'profile' | 'leaderboard';
 
 // Il tempo di studio conta solo mentre si studia davvero (serve anche per la Garanzia Promosso)
 const STUDY_VIEWS: View[] = ['learn', 'exam', 'onboarding'];
@@ -42,7 +47,50 @@ export default function App() {
   const viewRef = useRef(view);
   viewRef.current = view;
   const [user, setUser] = useState<User | null>(null);
+  const [projectAccount, setProjectAccount] = useState<ProjectAccount | null>(null);
+  const [consent, setConsent] = useState<{ open: boolean; busy: boolean; error: string | null }>({ open: false, busy: false, error: null });
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const saveProjectLink = (scopes: ScopeId[] | undefined, uid?: string) => {
+    setAppState(prev => {
+      const now = Date.now();
+      const newState: AppState = {
+        ...prev,
+        projectLink: scopes
+          ? { scopes, consentVersion: CONSENT_VERSION, grantedAt: prev.projectLink?.grantedAt ?? now, updatedAt: now }
+          : undefined,
+      };
+      saveState(newState);
+      if (uid) syncToCloud(uid, newState);
+      return newState;
+    });
+  };
+
+  // Dopo il login: collega AddiOFA al Project ID. Se il consenso (con l'informativa attuale) non c'è, lo chiede.
+  const connectProjectId = async (currentUser: User, state: AppState) => {
+    let localLink = state.projectLink?.consentVersion === CONSENT_VERSION ? state.projectLink : undefined;
+    if (isAtlasOnline()) {
+      try {
+        const { account, links } = await atlas.me();
+        setProjectAccount(account);
+        const remote = links.find(l => l.appId === ECOSYSTEM.appId && l.consentVersion === CONSENT_VERSION);
+        if (remote) {
+          saveProjectLink(remote.scopes, currentUser.uid);
+          return;
+        }
+        if (localLink) {
+          await atlas.setLink(ECOSYSTEM.appId, localLink.scopes);
+          return;
+        }
+      } catch (err) {
+        console.error(`${ECOSYSTEM.engineName} non raggiungibile`, err);
+        if (localLink) return;
+      }
+    } else if (localLink) {
+      return;
+    }
+    setConsent({ open: true, busy: false, error: null });
+  };
 
   useEffect(() => {
     // Listen to Auth State
@@ -50,8 +98,12 @@ export default function App() {
       setUser(currentUser);
       if (currentUser) {
         // Sync data from cloud upon login
-        const syncedState = await syncFromCloud(currentUser.uid, appState);
+        const syncedState = await syncFromCloud(currentUser.uid, loadState());
         setAppState(syncedState);
+        await connectProjectId(currentUser, syncedState);
+      } else {
+        setProjectAccount(null);
+        setConsent({ open: false, busy: false, error: null });
       }
     });
     return () => unsubscribe();
@@ -207,6 +259,56 @@ export default function App() {
     setView('menu');
   };
 
+  const handleConsentAccept = async (scopes: ScopeId[]) => {
+    if (!user) return;
+    setConsent(c => ({ ...c, busy: true, error: null }));
+    try {
+      if (isAtlasOnline()) await atlas.setLink(ECOSYSTEM.appId, scopes);
+      saveProjectLink(scopes, user.uid);
+      setConsent({ open: false, busy: false, error: null });
+    } catch (err) {
+      setConsent({ open: true, busy: false, error: (err as Error).message });
+    }
+  };
+
+  // Senza consenso non c'è collegamento: si torna ospiti, con i progressi solo sul dispositivo
+  const handleConsentCancel = () => {
+    setConsent({ open: false, busy: false, error: null });
+    logout();
+  };
+
+  const handleChangeScopes = async (scopes: ScopeId[]) => {
+    if (!user) return;
+    if (isAtlasOnline()) await atlas.setLink(ECOSYSTEM.appId, scopes);
+    saveProjectLink(scopes, user.uid);
+  };
+
+  const handleUnlink = async () => {
+    if (!user) return;
+    if (isAtlasOnline()) await atlas.removeLink(ECOSYSTEM.appId);
+    saveProjectLink(undefined, user.uid);
+    await logout();
+    setView('menu');
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!user) return;
+    if (isAtlasOnline()) await atlas.deleteMe();
+    saveProjectLink(undefined, user.uid);
+    setProjectAccount(null);
+    await logout();
+    setView('menu');
+  };
+
+  // Punteggio NOI: si aggiorna tornando al menu, solo con il consenso alla classifica
+  useEffect(() => {
+    if (view !== 'menu' || !user || !isAtlasOnline() || !appState.projectLink?.scopes.includes('noi.leaderboard')) return;
+    const mastered = questions.filter(q => (appState.stats[q.id]?.box ?? 0) > 0).length;
+    const bestSim = Math.max(0, ...appState.history.map(h => h.score));
+    atlas.postScore(ECOSYSTEM.appId, mastered, bestSim).catch(err => console.error('NOI', err));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view, user, appState.projectLink]);
+
   const handleSelectCorpus = (corpus: CorpusType) => {
     handleUpdateAppState({
       ...appState,
@@ -237,6 +339,40 @@ export default function App() {
           onOpenPlans={() => setView('plans')}
           onOpenCheatSheet={() => setView('cheatsheet')}
           onOpenDiagnostic={() => setView('onboarding')}
+          onOpenProfile={() => setView('profile')}
+          onOpenLeaderboard={() => setView('leaderboard')}
+        />
+      )}
+      {view === 'profile' && user && (
+        <ProjectProfile
+          user={user}
+          account={projectAccount}
+          appState={appState}
+          onBack={() => setView('menu')}
+          onAccountChange={setProjectAccount}
+          onChangeScopes={handleChangeScopes}
+          onUnlink={handleUnlink}
+          onDeleteAccount={handleDeleteAccount}
+          onLogout={() => { logout(); setView('menu'); }}
+        />
+      )}
+      {view === 'leaderboard' && (
+        <Leaderboard
+          user={user}
+          appState={appState}
+          onBack={() => setView('menu')}
+          onLogin={signInWithGoogle}
+          onJoin={() => handleChangeScopes(Array.from(new Set([...(appState.projectLink?.scopes ?? ['profile']), 'noi.leaderboard'])) as ScopeId[])}
+        />
+      )}
+      {consent.open && user && (
+        <ProjectConsent
+          user={user}
+          initialScopes={appState.projectLink?.scopes}
+          busy={consent.busy}
+          error={consent.error}
+          onAccept={handleConsentAccept}
+          onCancel={handleConsentCancel}
         />
       )}
       {view === 'onboarding' && (

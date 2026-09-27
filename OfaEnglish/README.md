@@ -24,6 +24,11 @@ npm run build    # build di produzione in dist/
 | `src/components/GuaranteeTracker.tsx` | Avanzamento verso i requisiti della garanzia (anche in Statistiche) |
 | `src/lib/diagnostic.ts` | Scelta delle domande del diagnostico e stima della probabilità di superare il test |
 | `src/data/questions.ts` | Banco di 636 domande |
+| `src/config/ecosystem.ts` | Nomi dell'ecosistema (Project, Project ID, ATLAS, NOI) e permessi della schermata di consenso |
+| `src/components/ProjectConsent.tsx` | Consenso al collegamento con il Project ID, permesso per permesso |
+| `src/components/ProjectProfile.tsx` | Profilo Project ID: @nome utente, app collegate, esporta ed elimina i dati |
+| `src/components/Leaderboard.tsx` | Classifica NOI |
+| `src/lib/atlas.ts` | Client dell'API ATLAS (`../atlas/`) |
 | `tools/archivio/` | Script e dump usati per costruire e controllare il banco (non servono all'app) |
 
 ## Il quiz diagnostico
@@ -39,6 +44,14 @@ Prima di attivare i pagamenti serve:
 1. **Verifica lato server.** Oggi le domande e le risposte sono nel bundle JavaScript e non esiste un controllo degli acquisti: qualunque blocco fatto solo nel browser si aggira in pochi minuti. Le parti a pagamento vanno servite da un backend (per esempio Cloudflare Worker + D1, oppure Cloud Functions) che verifica il pagamento tramite webhook del provider.
 2. **Termini e condizioni** scritti e controllati da qualcuno competente, con le condizioni della garanzia identiche a quelle mostrate nell'app (`GUARANTEE_CONDITIONS`). Le condizioni sono volutamente visibili accanto al prezzo: nasconderle solo nei termini esporrebbe a contestazioni per pratica commerciale scorretta.
 3. **Aspetti fiscali** (partita IVA o regime adatto) prima di incassare.
+
+## Project ID, ATLAS e NOI
+
+- **Project ID** è l'account unico delle app Project. Si entra con Google; subito dopo compare la schermata di consenso "AddiOFA vuole collegarsi al tuo Project ID", con un interruttore per ogni permesso. Solo il profilo di base è obbligatorio, gli altri partono spenti. Con "Annulla" non si collega nulla e si resta ospiti.
+- **ATLAS** è l'algoritmo e l'infrastruttura: la firma "Algoritmo e infrastruttura ATLAS" è in menu, onboarding, statistiche, consenso e profilo. Il backend è il Worker in `../atlas/`.
+- **NOI** è la classifica: ci entra solo chi attiva il permesso, dal consenso, dal profilo o con "Entra in classifica".
+- Senza `VITE_ATLAS_API_URL` il consenso resta sull'account Google e sul dispositivo, e la classifica mostra "arriva presto".
+- I nomi si cambiano tutti in `src/config/ecosystem.ts`.
 
 ## Dati e sincronizzazione
 

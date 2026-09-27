@@ -157,6 +157,12 @@ export async function syncFromCloud(userId: string, localState: AppState): Promi
         }
       }
 
+      // 8. Consenso Project ID: vince la scelta più recente
+      if (cloudState.projectLink && (!mergedState.projectLink || cloudState.projectLink.updatedAt > mergedState.projectLink.updatedAt)) {
+        mergedState.projectLink = cloudState.projectLink;
+      }
+      if (!mergedState.onboarding && cloudState.onboarding) mergedState.onboarding = cloudState.onboarding;
+
       saveState(mergedState);
       return mergedState;
     }

@@ -5,6 +5,7 @@ import { X, Trophy, TrendingUp, AlertCircle, Clock, Target, List, ArrowLeft, Act
 import { cn } from '../lib/utils';
 import { confidenceFromEasiness } from '../lib/spacedRepetition';
 import GuaranteeTracker from './GuaranteeTracker';
+import { PoweredByAtlas } from './ui';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 
 interface StatsModeProps {
@@ -423,6 +424,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           </div>
 
           <GuaranteeTracker appState={appState} />
+          <PoweredByAtlas />
 
         </div>
 

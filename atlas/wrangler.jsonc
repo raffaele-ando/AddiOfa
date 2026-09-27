@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "atlas",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+  "vars": {
+    "FIREBASE_PROJECT_ID": "ofaenglish-f3719",
+    "ACCOUNT_ID_PREFIX": "PRJ",
+    // Metti qui le origini delle app Project (es. "https://ofa.<tuo-sottodominio>.workers.dev").
+    // Con "*" funziona comunque: l'API usa token Bearer, non cookie.
+    "ALLOWED_ORIGINS": "*"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "atlas",
+      "database_id": "fae6dddc-a787-474b-9699-e23bab53eb4d",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

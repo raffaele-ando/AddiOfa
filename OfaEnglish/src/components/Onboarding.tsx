@@ -9,6 +9,7 @@ import { cn } from '../lib/utils';
 import { playTapSound } from '../lib/audio';
 import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard } from './ui';
 import Plans from './Plans';
+import { ECOSYSTEM } from '../config/ecosystem';
 
 type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'save' | 'risk' | 'result' | 'ready' | 'plans' | 'goal';
 
@@ -224,10 +225,10 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           <Illustration icon={Cloud} tone="blue" />
           <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] dark:text-[#F8FAFC] text-center">Salva i tuoi risultati</h2>
           <p className="text-center font-semibold text-gray-500 dark:text-gray-400">
-            Accedi con Google per ritrovare progressi e piano di studio su telefono e computer. Usiamo il tuo account solo per salvare i tuoi dati di studio.
+            Accedi con il tuo {ECOSYSTEM.accountName} (con Google) per ritrovare progressi e piano di studio su telefono, computer e nelle altre app {ECOSYSTEM.name}. Subito dopo scegli tu cosa condividere.
           </p>
           <div className="mt-auto flex flex-col gap-3">
-            <PrimaryButton onClick={async () => { try { await onLogin(); } finally { setStep('risk'); } }}>Accedi con Google</PrimaryButton>
+            <PrimaryButton onClick={async () => { try { await onLogin(); } finally { setStep('risk'); } }}>Accedi con {ECOSYSTEM.accountName}</PrimaryButton>
             <SecondaryButton onClick={() => setStep('risk')}>Non ora</SecondaryButton>
           </div>
         </Screen>
@@ -268,7 +269,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             Probabilità stimata di superare il test oggi
           </p>
           <p className="text-center text-xs font-semibold text-gray-400">
-            Stima su {quiz.length} domande: al test servono {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}. È un'indicazione, si affina con le simulazioni.
+            Stima di {ECOSYSTEM.engineName} su {quiz.length} domande: al test servono {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}. È un'indicazione, si affina con le simulazioni.
           </p>
           {weak.length > 0 && (
             <div className="flex flex-col gap-2">

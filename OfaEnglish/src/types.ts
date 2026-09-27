@@ -1,3 +1,5 @@
+import type { ScopeId } from './config/ecosystem';
+
 export interface Question {
   id: string;
   prompt: string;
@@ -102,4 +104,13 @@ export interface AppState {
   dailyTimeSpent?: Record<string, number>;
   selectedCorpus?: CorpusType;
   onboarding?: OnboardingResult;
+  projectLink?: ProjectLink;
+}
+
+// Consenso dato da questo utente al collegamento di AddiOFA con il suo Project ID
+export interface ProjectLink {
+  scopes: ScopeId[];
+  consentVersion: string;
+  grantedAt: number;
+  updatedAt: number;
 }

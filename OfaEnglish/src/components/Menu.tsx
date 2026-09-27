@@ -6,7 +6,9 @@ import { useTheme } from '../hooks/useTheme';
 import { cn } from '../lib/utils';
 import { questions, getQuestionsByCorpus, INITIAL_CORPUS_COUNT } from '../data/questions';
 import { playTapSound, isAudioMuted, setAudioMuted } from '../lib/audio';
-import { ClipboardCheck, ScrollText, Sparkles } from 'lucide-react';
+import { ClipboardCheck, ScrollText, Sparkles, Trophy, Fingerprint } from 'lucide-react';
+import { ECOSYSTEM } from '../config/ecosystem';
+import { PoweredByAtlas } from './ui';
 import { DISCLAIMER } from '../config/offer';
 
 interface MenuProps {
@@ -25,9 +27,11 @@ interface MenuProps {
   onOpenPlans?: () => void;
   onOpenCheatSheet?: () => void;
   onOpenDiagnostic?: () => void;
+  onOpenProfile?: () => void;
+  onOpenLeaderboard?: () => void;
 }
 
-export default function Menu({ appState, user, onStartSmart, onStartLearn, onStartExam, onOpenStats, onExport, onImport, onLogin, onLogout, onOpenDebug, onSelectCorpus, onOpenPlans, onOpenCheatSheet, onOpenDiagnostic }: MenuProps) {
+export default function Menu({ appState, user, onStartSmart, onStartLearn, onStartExam, onOpenStats, onExport, onImport, onLogin, onLogout, onOpenDebug, onSelectCorpus, onOpenPlans, onOpenCheatSheet, onOpenDiagnostic, onOpenProfile, onOpenLeaderboard }: MenuProps) {
   const { isDark, toggleTheme } = useTheme();
   const [muted, setMuted] = useState(isAudioMuted());
 
@@ -92,11 +96,23 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
               <span>{appState.streak}</span>
             </div>
             {user ? (
-               <button onClick={() => { playTapSound(); onLogout(); }} className="text-xs font-bold text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors uppercase tracking-widest hidden sm:block">Esci</button>
+              <button
+                onClick={() => { playTapSound(); onOpenProfile?.(); }}
+                className="rounded-full ring-2 ring-[#3B82F6]/40 hover:ring-[#3B82F6] transition-all"
+                title={`${ECOSYSTEM.accountName}: ${user.displayName ?? ''}`}
+              >
+                {user.photoURL ? (
+                  <img src={user.photoURL} alt={ECOSYSTEM.accountName} referrerPolicy="no-referrer" className="w-8 h-8 rounded-full" />
+                ) : (
+                  <span className="w-8 h-8 rounded-full bg-[#DBEAFE] text-[#1D4ED8] flex items-center justify-center font-black text-sm">
+                    {(user.displayName || '?').charAt(0).toUpperCase()}
+                  </span>
+                )}
+              </button>
             ) : (
               <div className="flex flex-col items-end gap-1">
                 <button onClick={() => { playTapSound(); onLogin(); }} className="flex items-center gap-1.5 text-xs font-black text-white uppercase tracking-widest bg-[#3B82F6] hover:bg-[#2563EB] border-b-2 border-[#2563EB] active:border-b-0 active:translate-y-0.5 px-3 py-1.5 rounded-xl transition-all shadow-sm">
-                  <Cloud size={16} /> Accedi
+                  <Fingerprint size={16} /> {ECOSYSTEM.accountName}
                 </button>
               </div>
             )}
@@ -109,18 +125,10 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
           </div>
         )}
 
-        {/* Sync Info for mobile logout */}
+        {/* Account collegato */}
         {user && (
-          <div className="flex justify-between items-center shrink-0 sm:hidden">
-            <span className="text-xs font-bold text-[#22C55E] flex items-center gap-1"><Cloud size={14} /> Sincronizzato come {user.displayName}</span>
-            <button onClick={() => { playTapSound(); onLogout(); }} className="text-xs font-bold text-gray-400 uppercase">Esci</button>
-          </div>
-        )}
-        
-        {/* Sync Info desktop */}
-        {user && (
-          <div className="hidden sm:flex justify-end shrink-0 -mt-2">
-            <span className="text-xs font-bold text-[#22C55E] flex items-center gap-1"><Cloud size={14} /> Sincronizzato come {user.displayName}</span>
+          <div className="flex justify-end shrink-0 -mt-1 sm:-mt-2">
+            <span className="text-xs font-bold text-[#22C55E] flex items-center gap-1"><Cloud size={14} /> {ECOSYSTEM.accountName} · {user.displayName}</span>
           </div>
         )}
 
@@ -222,11 +230,12 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
         </div>
 
         {/* Verifica, prontuario e piani */}
-        <div className="grid grid-cols-3 gap-2 shrink-0">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 shrink-0">
           {[
             { label: 'Verifica livello', icon: ClipboardCheck, onClick: onOpenDiagnostic, color: 'text-[#EF4444]' },
             { label: 'Prontuario', icon: ScrollText, onClick: onOpenCheatSheet, color: 'text-[#8B5CF6]' },
             { label: 'Piani', icon: Sparkles, onClick: onOpenPlans, color: 'text-[#F59E0B]' },
+            { label: `Classifica ${ECOSYSTEM.rankingName}`, icon: Trophy, onClick: onOpenLeaderboard, color: 'text-[#22C55E]' },
           ].filter(item => item.onClick).map(({ label, icon: Icon, onClick, color }) => (
             <button
               key={label}
@@ -264,6 +273,7 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
           </button>
         </div>
         <p className="text-center text-[10px] font-semibold text-gray-400 dark:text-gray-500 shrink-0 -mt-1">{DISCLAIMER}</p>
+        <PoweredByAtlas className="shrink-0 -mt-2" />
       </div>
     </div>
   );
