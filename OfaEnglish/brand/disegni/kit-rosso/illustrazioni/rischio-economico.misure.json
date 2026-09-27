@@ -1,18 +1,34 @@
 {
  "forme": {
   "svg": "disegni/kit-rosso/illustrazioni/rischio-economico.svg",
-  "byte": 3889,
+  "byte": 4307,
   "fondo_chiaro": {
-   "mae_255": 11.56,
-   "p95_255": 99.0,
-   "entro_8": 0.6441,
-   "ssim": 0.7596
+   "mae_255": 7.84,
+   "p95_255": 63.2,
+   "entro_8": 0.7505,
+   "ssim": 0.8179
   },
   "fondo_scuro": {
-   "mae_255": 20.75,
-   "p95_255": 188.4,
-   "entro_8": 0.593,
-   "ssim": 0.6118
+   "mae_255": 16.37,
+   "p95_255": 147.8,
+   "entro_8": 0.6952,
+   "ssim": 0.6728
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/illustrazioni/rischio-economico.maglie.svg",
+  "byte": 40764,
+  "fondo_chiaro": {
+   "mae_255": 6.9,
+   "p95_255": 61.0,
+   "entro_8": 0.7946,
+   "ssim": 0.8421
+  },
+  "fondo_scuro": {
+   "mae_255": 15.41,
+   "p95_255": 147.0,
+   "entro_8": 0.7391,
+   "ssim": 0.698
   }
  }
 }

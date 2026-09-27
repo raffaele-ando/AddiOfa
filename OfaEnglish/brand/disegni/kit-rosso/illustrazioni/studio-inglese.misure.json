@@ -1,34 +1,34 @@
 {
  "forme": {
   "svg": "disegni/kit-rosso/illustrazioni/studio-inglese.svg",
-  "byte": 3904,
+  "byte": 3552,
   "fondo_chiaro": {
-   "mae_255": 6.15,
-   "p95_255": 47.0,
-   "entro_8": 0.7815,
-   "ssim": 0.9011
+   "mae_255": 6.63,
+   "p95_255": 57.4,
+   "entro_8": 0.7943,
+   "ssim": 0.8729
   },
   "fondo_scuro": {
-   "mae_255": 13.74,
-   "p95_255": 127.4,
-   "entro_8": 0.743,
-   "ssim": 0.7805
+   "mae_255": 12.35,
+   "p95_255": 114.2,
+   "entro_8": 0.7602,
+   "ssim": 0.7835
   }
  },
  "maglie": {
   "svg": "disegni/kit-rosso/illustrazioni/studio-inglese.maglie.svg",
-  "byte": 93023,
+  "byte": 99817,
   "fondo_chiaro": {
-   "mae_255": 5.53,
-   "p95_255": 45.0,
-   "entro_8": 0.8178,
-   "ssim": 0.9072
+   "mae_255": 5.71,
+   "p95_255": 51.0,
+   "entro_8": 0.8208,
+   "ssim": 0.8929
   },
   "fondo_scuro": {
-   "mae_255": 13.17,
-   "p95_255": 127.0,
-   "entro_8": 0.7794,
-   "ssim": 0.7883
+   "mae_255": 11.45,
+   "p95_255": 99.9,
+   "entro_8": 0.7868,
+   "ssim": 0.8024
   }
  }
 }

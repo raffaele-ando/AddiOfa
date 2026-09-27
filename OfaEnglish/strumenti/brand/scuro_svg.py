@@ -20,7 +20,13 @@ def scuro(svg: str) -> str:
         tag = re.sub(r'\sopacity="[^"]*"', "", tag)
         return tag[:-1] + f' opacity="{OPACITA}">'
     # solo il primo gruppo (quello esterno): i gruppi dentro la nuvola hanno id che iniziano allo stesso modo
-    return re.sub(r'<g id="(?:nuvola|alone|sfondo)[^"]*"[^>]*>', cambia, svg, count=1)
+    svg = re.sub(r'<g id="(?:nuvola|sfondo)[^"]*"[^>]*>', cambia, svg, count=1)
+    # i bordini bianchi che imitano i contorni dell'originale ("…-alone", "alone-bianco") su fondo
+    # scuro sembrerebbero un'aureola: nel tema scuro non si vedono
+    def nascondi(m):
+        tag = re.sub(r'\sopacity="[^"]*"', "", m.group(0))
+        return tag[:-1].rstrip("/") + (' opacity="0"/>' if tag.endswith("/>") else ' opacity="0">')
+    return re.sub(r'<(?:g|path|rect|circle|ellipse|polygon)\s[^>]*?\bid="(?:alone-bianco|[^"]*-alone)"[^>]*>', nascondi, svg)
 
 
 def main():

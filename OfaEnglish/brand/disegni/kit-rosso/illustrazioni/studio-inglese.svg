@@ -2,44 +2,45 @@
   <title>Studio / Inglese</title>
   <defs>
     <filter id="sfuma-bordo" filterUnits="userSpaceOnUse" x="0" y="0" width="168" height="164"><feGaussianBlur stdDeviation="0.7"/></filter>
-    <linearGradient id="pagine" gradientUnits="userSpaceOnUse" x1="77.82" y1="130.93" x2="146.5" y2="102.35">
-      <stop offset="0" stop-color="#FDFAF7"/><stop offset="0.506" stop-color="#FFFAFE"/><stop offset="1" stop-color="#F9F7F6"/>
+    <linearGradient id="pagine" gradientUnits="userSpaceOnUse" x1="77.49" y1="128.78" x2="144.63" y2="104.42">
+      <stop offset="0" stop-color="#FDF6F7"/><stop offset="0.418" stop-color="#FFFCFD"/><stop offset="0.916" stop-color="#FEF7F6"/>
     </linearGradient>
-    <linearGradient id="rosa-copertina" gradientUnits="userSpaceOnUse" x1="22.97" y1="62.86" x2="144.72" y2="99.15">
-      <stop offset="0.209" stop-color="#FE9698"/><stop offset="1" stop-color="#FD928B"/>
+    <linearGradient id="rosa-copertina" gradientUnits="userSpaceOnUse" x1="23.07" y1="67.82" x2="144.74" y2="105.66">
+      <stop offset="0.409" stop-color="#FE9398"/><stop offset="1" stop-color="#FE8F90"/>
     </linearGradient>
     <clipPath id="bandiera-forma"><rect data-fisso="1" x="0" y="0" width="68" height="48" rx="1.5"/></clipPath>
   </defs>
 
+  <!-- libri: contorni misurati colonna per colonna sull'originale e fissi (data-fisso);
+       la luce la mettono le maglie -->
   <g id="libro-basso">
-    <path id="libro-basso-alone" data-fisso="1" data-maglia="no" d="M12 86 L80 128 L148 111 L149 128 L79.5 156 L10 114 Q5 111 5.5 104 L6 94 Q6.5 87 12 86 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round" filter="url(#sfuma-bordo)"/>
-    <path id="libro-basso-blocco" d="M68.75 132.21 L148.93 115.65 Q148.57 110.5 148.99 111.67 L149.33 123.18 Q150.79 130.67 145.41 129.18 L79.9 157 Z" fill="#FB4F57"/>
-    <path id="libro-basso-pagine" d="M77.08 137.2 L143.41 110.98 L142.99 123.98 L80.32 151.5 Z" fill="url(#pagine)"/>
-    <path id="libro-basso-dorso" d="M12 86 L80.83 128.87 L78.87 156.24 L9.33 113.82 Q4.37 111.58 4.95 105 L5.53 93.67 Q6.22 86.95 10.83 87.14 Z" fill="#FF9D96"/>
+    <path id="libro-basso-dorso" data-fisso="1" d="M11 90 L80 134 L80 157 L11 113 Q5 110 5 104 L5 96 Q5 90 11 90 Z" fill="#FF9D96"/>
+    <path id="libro-basso-copertina-bordo" data-fisso="1" d="M79 129.5 L146 102.5 Q149.5 102 149.5 105 L149.5 107 Q149.5 109.5 146.5 110 L80 137 Z" fill="#FB4F57"/>
+    <path id="libro-basso-pagine" data-fisso="1" d="M80 136.5 L145.5 110.5 L145.5 120.5 L80 150.5 Z" fill="url(#pagine)"/>
+    <path id="libro-basso-bordo" data-fisso="1" d="M80 150 L146 119.5 Q149.5 119 149.5 122 L149.5 124.5 Q149.5 127 146.5 127.8 L80 156.5 Z" fill="#FB4F57"/>
   </g>
 
   <g id="libro-alto">
-    <path id="libro-alto-alone" data-fisso="1" data-maglia="no" d="M13 63.5 L74 41 Q77 40 80 41.5 L147 81 Q150 83 149.5 86 L149.5 104 L80 131 L13 89 Q8.5 86 8.5 80 L8.5 72 Q8.5 66 13 63.5 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round" filter="url(#sfuma-bordo)"/>
-    <path id="libro-alto-blocco" d="M79.19 107.21 L148.02 82.31 Q149.3 82.12 149.5 83.51 L145.96 100.93 Q151.54 104.5 149.26 106.94 L82.96 136.26 Z" fill="#FD4A51"/>
-    <path id="libro-alto-pagine" d="M80.16 115.66 L141.51 90.29 L146.9 102.54 L82.2 129.5 Z" fill="url(#pagine)"/>
-    <path id="libro-alto-dorso" d="M12.79 63.83 L82.14 111.91 L77.5 132.81 L11.56 89.3 Q8.88 84.35 9.01 78.1 L7.9 70.94 Q8.21 65.13 13.38 64.34 Z" fill="#FD3B41"/>
-    <path id="libro-alto-copertina" d="M11.88 63.31 L75.16 40.08 Q77.18 39.95 80.81 41.5 L145.56 80.04 Q151.38 83.06 144.06 85.24 L82.68 110.78 Q81.42 112.04 78.12 109.95 L14.68 68.02 Q9.04 65.53 12.41 63.21 Z" fill="url(#rosa-copertina)"/>
+    <path id="libro-alto-dorso" data-fisso="1" d="M14 66.5 L80 110.5 L80 134.5 L14 89.5 Q9 86.5 9 81 L9 73 Q9 66.5 14 66.5 Z" fill="#FD3B41"/>
+    <path id="libro-alto-pagine" data-fisso="1" d="M80 116 L145.5 90 L145.5 103 L80 129.5 Z" fill="url(#pagine)"/>
+    <path id="libro-alto-copertina-bordo" data-fisso="1" d="M78.5 110.5 L147 82.5 Q150 82 149.8 85 L149.5 87.5 Q149 89.5 146.5 90 L80 116.5 Z" fill="#FD4A51"/>
+    <path id="libro-alto-copertina" data-fisso="1" d="M12 65 L75 41 Q78 40 81 41.5 L146 79.5 Q150 82 146.5 84 L82 110.5 Q80 111.5 77.5 110 L13.5 69 Q9.5 66.5 12 65 Z" fill="url(#rosa-copertina)"/>
   </g>
 
   <path id="bandiera-alone" data-fisso="1" data-maglia="no" d="M89 37 L157 29.9 L158 78 L90 85 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round" filter="url(#sfuma-bordo)"/>
   <g id="bandiera" transform="matrix(1.0049 -0.096 0.0136 1.008 89.95 37)">
     <rect id="bandiera-fondo" data-fisso="1" x="0" y="0" width="68" height="48" rx="1.5" fill="#1D4FE0"/>
     <g clip-path="url(#bandiera-forma)">
-      <g id="bandiera-diagonali-bianche" stroke="#FAFBFA" stroke-width="8.38">
-        <path d="M-2.08 0.11 L70.23 48.26"/><path d="M68.47 -0.69 L-0.82 48.7"/>
+      <g id="bandiera-diagonali-bianche" stroke="#FCFBFC" stroke-width="8.38">
+        <path d="M-2.08 0.11 L70.41 48.53"/><path d="M68.43 -0.69 L-0.68 48.7"/>
       </g>
-      <g id="bandiera-diagonali-rosse" stroke="#FB3B38" stroke-width="3.41">
-        <path d="M-3.55 -0.15 L32.17 24.97"/><path d="M36 23.94 L71.26 48"/><path d="M32.54 24.54 L66.6 -0.95"/><path d="M35.36 23.35 L0.89 48.99"/>
+      <g id="bandiera-diagonali-rosse" stroke="#ED1B2A" stroke-width="3.41">
+        <path d="M-3.55 -0.15 L32.04 24.84"/><path d="M36.49 24.18 L71.42 48.15"/><path d="M32.75 24.84 L66.39 -0.99"/><path d="M35.36 23.08 L0.87 49.07"/>
       </g>
-      <rect id="croce-bianca-orizzontale" x="-2.05" y="17.42" width="67.88" height="13.97" fill="#FBF5F8"/>
+      <rect id="croce-bianca-orizzontale" x="-2.26" y="17.42" width="67.88" height="13.97" fill="#FBF5F8"/>
       <rect id="croce-bianca-verticale" x="27" y="-0.62" width="14.3" height="50.39" fill="#FDF8FB"/>
-      <rect id="croce-rossa-orizzontale" x="-1.28" y="20" width="69.54" height="8.42" fill="#FD382B"/>
-      <rect id="croce-rossa-verticale" x="29.99" y="-1" width="8.29" height="52.75" fill="#F03233"/>
+      <rect id="croce-rossa-orizzontale" x="-1.32" y="20" width="69.54" height="8.69" fill="#FF262C"/>
+      <rect id="croce-rossa-verticale" x="29.81" y="-3.47" width="8.25" height="55.28" fill="#FF322C"/>
     </g>
   </g>
 </svg>

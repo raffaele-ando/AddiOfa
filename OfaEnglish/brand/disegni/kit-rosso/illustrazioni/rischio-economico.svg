@@ -2,21 +2,24 @@
   <title>Rischio / Economico</title>
   <defs>
     <filter id="sfuma-bordo" filterUnits="userSpaceOnUse" x="0" y="0" width="172" height="150"><feGaussianBlur stdDeviation="1.35"/></filter>
-    <linearGradient id="ala-sinistra-bordo" gradientUnits="userSpaceOnUse" x1="11.51" y1="0.77" x2="68.14" y2="-1.89">
-      <stop offset="0" stop-color="#FF323F"/><stop offset="0.683" stop-color="#FC5957"/><stop offset="1" stop-color="#F7929D"/>
+    <linearGradient id="ala-sinistra-bordo" gradientUnits="userSpaceOnUse" x1="9.65" y1="1.78" x2="66.15" y2="-3.75">
+      <stop offset="0.106" stop-color="#FE313C"/><stop offset="0.499" stop-color="#FE766D"/><stop offset="1" stop-color="#FB5887"/>
     </linearGradient>
-    <linearGradient id="bordo-faccia" gradientUnits="userSpaceOnUse" x1="72.38" y1="25.81" x2="145.07" y2="113.51">
-      <stop offset="0.121" stop-color="#FFE3E3"/><stop offset="0.235" stop-color="#FE6C76"/><stop offset="1" stop-color="#FD4041"/>
+    <linearGradient id="bordo-faccia" gradientUnits="userSpaceOnUse" x1="73.1" y1="22.63" x2="138.48" y2="138.17">
+      <stop offset="0.144" stop-color="#FEDCF3"/><stop offset="0.123" stop-color="#FD4C5E"/><stop offset="1" stop-color="#FF7A5E"/>
     </linearGradient>
-    <linearGradient id="rosso-plancia" gradientUnits="userSpaceOnUse" x1="45.24" y1="76.01" x2="151.1" y2="129.73">
-      <stop offset="0" stop-color="#E1222F"/><stop offset="0.525" stop-color="#FC454C"/><stop offset="0.935" stop-color="#E72530"/>
+    <linearGradient id="rosso-plancia" gradientUnits="userSpaceOnUse" x1="58.44" y1="57.09" x2="145.8" y2="154.64">
+      <stop offset="0" stop-color="#E83037"/><stop offset="0.57" stop-color="#FE484C"/><stop offset="0.845" stop-color="#CE0C20"/>
     </linearGradient>
+    <radialGradient id="bianco-faccia" gradientUnits="userSpaceOnUse" cx="97.62" cy="63.04" r="55.63">
+      <stop offset="0" stop-color="#FCF9FF"/><stop offset="0.654" stop-color="#FFF8F8"/><stop offset="1" stop-color="#FDE6F3"/>
+    </radialGradient>
   </defs>
 
-  <g id="linee-movimento" fill="none" stroke="#F83339" stroke-linecap="round">
-    <path id="linea-alto-sinistra" d="M43.27 22.78 L55.03 29.05" stroke-width="6.1"/>
-    <path id="linea-alto" d="M70.52 9.09 L69.89 21.87" stroke-width="6.1"/>
-    <path id="linea-basso-destra" d="M145.17 126.07 L160.55 117.32" stroke-width="6.11"/>
+  <g id="linee-movimento" fill="none" stroke="#F83037" stroke-linecap="round">
+    <path id="linea-alto-sinistra" d="M43.17 22.7 L55.02 29.05" stroke-width="6.09"/>
+    <path id="linea-alto" d="M70.58 8.99 L69.78 21.66" stroke-width="6.2"/>
+    <path id="linea-basso-destra" d="M145.25 126.19 L160.68 117.15" stroke-width="5.79"/>
   </g>
 
   <g id="ala-destra">
@@ -24,18 +27,19 @@
   </g>
 
 
+  <g id="ala-sinistra">
+    <path id="ala-sinistra-forma" data-fisso="1" d="M62 67.5 Q40 64.5 22 70.5 Q11 75 9.5 84 Q9.5 93 18 96.5 Q24 98.5 30.5 97 Q29.5 105 36 108.5 Q43 111 48.5 107.5 Q48 112.5 54 113 Q60 113.5 63 110" fill="#FFFFFF" stroke="url(#ala-sinistra-bordo)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
   <g id="banconota">
-    <path id="plancia-alone" data-fisso="1" data-maglia="no" d="M48 53 L41 66 Q40 70 42 74 L76 134 Q81 142 90 139 L150 112 Q153.5 110 153.5 106 L154 88 L123 23 Q119 17 113 20 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round" filter="url(#sfuma-bordo)"/>
-    <path id="plancia" data-fisso="1" d="M48 53 L41 66 Q40 70 42 74 L76 134 Q81 142 90 139 L150 112 Q153.5 110 153.5 106 L154 88 L89 114 Z" fill="url(#rosso-plancia)"/>
-    <g id="ala-sinistra">
-      <path id="ala-sinistra-forma" data-fisso="1" d="M62 67.5 Q40 64.5 22 70.5 Q11 75 9.5 84 Q9.5 93 18 96.5 Q24 98.5 30.5 97 Q29.5 105 36 108.5 Q43 111 48.5 107.5 Q48 112.5 54 113 Q60 113.5 63 110" fill="#FFFFFF" stroke="url(#ala-sinistra-bordo)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-    <path id="faccia" data-fisso="1" d="M57 50 L113 20 Q119 17 123 23 L156 82 Q159 88 153 91 L94 114.5 Q89 116.5 86.5 112 L53 60 Q50 54 57 50 Z" fill="#FFFFFF"/>
-    <path id="faccia-bordo" data-fisso="1" d="M57 50 L113 20 Q119 17 123 23 L156 82 Q159 88 153 91 L94 114.5 Q89 116.5 86.5 112 L53 60 Q50 54 57 50 Z" fill="none" stroke="url(#bordo-faccia)" stroke-width="3.6" stroke-linejoin="round"/>
-    <circle id="angolo-sinistra" cx="53.81" cy="51.5" r="7.51" fill="#FE5C67"/>
-    <circle id="angolo-alto" cx="117" cy="21.3" r="6.65" fill="#FD5575"/>
-    <circle id="angolo-destra" cx="152.98" cy="86.12" r="8.23" fill="#FE514F"/>
-    <g id="euro" transform="translate(101.22 69.87) rotate(-25.75)">
+    <path id="plancia-alone" data-fisso="1" data-maglia="no" d="M48 53 L41 63 Q40 69 43 72 L55 82 Q57.5 84.5 58 89 L66 118 L76 134 Q81 142 90 139 L150 112 Q153.5 110 153.5 106 L154 88 L123 23 Q119 17 113 20 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round" filter="url(#sfuma-bordo)"/>
+    <path id="plancia" data-fisso="1" d="M48 53 L41 63 Q40 69 43 72 L55 82 Q57.5 84.5 58 89 L66 118 L76 134 Q81 142 90 139 L150 112 Q153.5 110 153.5 106 L154 88 L89 114 Z" fill="url(#rosso-plancia)"/>
+    <path id="faccia" data-fisso="1" data-maglia="no" d="M57 50 L113 20 Q119 17 123 23 L156 82 Q159 88 153 91 L94 114.5 Q89 116.5 86.5 112 L53 60 Q50 54 57 50 Z" fill="url(#bianco-faccia)"/>
+    <path id="faccia-bordo" data-fisso="1" d="M88 113.5 L53 60 Q50 54 57 50 L113 20 Q119 17 123 23 L156 82 Q158.5 87 155 89.5" fill="none" stroke="url(#bordo-faccia)" stroke-width="3.6" stroke-linejoin="round"/>
+    <circle id="angolo-sinistra" cx="53.74" cy="51.44" r="7.32" fill="#FD5D62"/>
+    <circle id="angolo-alto" cx="117.06" cy="21.3" r="6.67" fill="#FD5465"/>
+    <circle id="angolo-destra" cx="152.32" cy="87.67" r="8.86" fill="#FD5056"/>
+    <g id="euro" transform="translate(101.22 69.73) rotate(-25.61)">
       <path data-fisso="1" id="simbolo-euro" d="M11.09 -6.8 9.12 -2.37H-17.71L-16.04 -6.8ZM7.18 1.62 4.96 6.22H-17.71L-16.04 1.62ZM16.42 -17.76 12.87 -10.19Q12.21 -10.57 11.17 -11.17Q10.13 -11.77 8.72 -12.25Q7.31 -12.73 5.51 -12.73Q2.94 -12.73 1.08 -11.47Q-0.78 -10.21 -1.78 -7.48Q-2.78 -4.75 -2.78 -0.29Q-2.78 4.14 -1.78 6.88Q-0.78 9.61 1.08 10.83Q2.94 12.04 5.51 12.04Q7.29 12.04 8.68 11.58Q10.08 11.11 11.09 10.5Q12.1 9.88 12.7 9.5L16.28 17.05Q14.1 18.8 11.36 19.67Q8.63 20.55 5.51 20.55Q0.23 20.55 -3.84 18.1Q-7.92 15.65 -10.23 10.99Q-12.54 6.33 -12.54 -0.29Q-12.54 -6.96 -10.23 -11.65Q-7.92 -16.34 -3.84 -18.81Q0.23 -21.29 5.51 -21.29Q8.74 -21.29 11.46 -20.39Q14.18 -19.48 16.42 -17.76Z" fill="#F01E2A"/>
     </g>
   </g>

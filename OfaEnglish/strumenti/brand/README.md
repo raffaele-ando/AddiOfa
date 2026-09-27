@@ -75,7 +75,16 @@ se lo scarto scende (pesato per regione: porta, muro, pavimento, fondo).
 | 4–5 | filo per lato, vertici del fondo liberi | 5,4 | 0,943 |
 | 6 | pavimento lucido che riflette, muro curvo, spigoli smussati | **5,0** | 0,943 |
 
-| 7 | **versione misurata** (`logo/rifinisci.py`): contorni, raggi e linea muro-pavimento ricavati dalla reference, luce in maglie di sfumature, filo, bordo e grana tarati | **2,9** | 0,941 |
+| 7 | **versione misurata** (`logo/rifinisci.py`): contorni, raggi e linea muro-pavimento ricavati dalla reference, luce in maglie di sfumature, filo, bordo e grana tarati | 2,9 | 0,941 |
+| 8 | correzioni volute rispetto alla reference: pavimento unico (niente finto gradino nella porta, linea muro-pavimento simmetrica), una maglia per parete divisa sulle pieghe vere | **3,0** | 0,938 |
+
+Il giro 8 si allontana apposta dalla reference dove questa ha errori del generatore d'immagini:
+a sinistra la linea tra muro e pavimento scende (il pavimento sembra un'altra superficie che si
+solleva) e dentro la porta la soglia sembra un gradino, con due righe nette. Qui il pavimento è uno
+solo, dalla stanza dietro fino a davanti, e il muro poggia su una linea simmetrica (centro più
+avanti, lati più lontani). Le pareti del taglio hanno ognuna la sua maglia, divise sulle pieghe
+misurate (il salto di luce più netto), con la riga di luce sottile dove c'è: sparisce la macchia che
+la maglia unica creava sulla parete del braccio destro.
 
 Il giro 7 cambia metodo. Il modello "a mano" (giri 1–6) arrivava a 4,1/255 solo sfocando: bordi
 morbidi e macchie di luce abbassano lo scarto medio ma si vedono. La versione misurata tiene la
@@ -141,6 +150,13 @@ avvicinate all'originale da due programmi (procedura completa in [`DISEGNI.md`](
    e scuro;
 2. `riempi_maglie.py` tiene le forme (bordi netti, id, ordine) e riempie ognuna con una maglia di
    sfumature misurata sull'originale, così la luce dentro le forme è quella vera: `<nome>.maglie.svg`.
+
+Risultato: 41 illustrazioni (kit blu, kit rosso, stati del kit rosso; le due «email istituzionale»
+restano fuori perché contengono il sigillo del Politecnico), scarto mediano 1,9/255 su fondo chiaro
+(tra 0,9 e 6,9; 39 su 41 sotto 4), SSIM mediano 0,967. Su fondo scuro gli scarti sono più alti
+perché gli originali hanno bordi bianchi sfrangiati lasciati dall'estrazione, che i disegni non
+copiano. `scuro_svg.py` fa la variante per il tema scuro (`<nome>.scuro.svg`: nuvola quasi
+trasparente, niente bordini bianchi).
 
 Il file da modificare è `<nome>.svg` (forme con nomi in italiano: `libro-blu-copertina`,
 `bandiera`, `lancetta`…); le parti animabili hanno un gruppo loro. L'app usa `<nome>.maglie.svg`
