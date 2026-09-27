@@ -222,6 +222,37 @@ def riempi(id_, d, g, defs, attr="") -> str:
 
 
 
+def poligoni_pareti(porta, esterni, interni, oltre_vano=14.0):
+    """Poligono di ogni parete del taglio. Il confine tra due pareti è la piega vera: va dalla punta
+    del vano al punto misurato sul contorno smussato (`pieghe_punti`), prolungato fuori dal taglio
+    (il contorno della porta ritaglia il resto). Verso il vano la parete prosegue di `oltre_vano` px
+    sotto il vano, così dove il vano ha gli angoli arrotondati non resta scoperto niente."""
+    n = len(esterni)
+    punti = porta.get("pieghe_punti", {})
+    fuori = []
+    for i in range(n):
+        I = interni[i]
+        F = punti.get(str(i)) or esterni[i]
+        dx, dy = F[0] - I[0], F[1] - I[1]
+        L = math.hypot(dx, dy) or 1
+        k = (math.hypot(esterni[i][0] - I[0], esterni[i][1] - I[1]) * 1.6) / L
+        fuori.append((I[0] + dx * k, I[1] + dy * k))
+    def verso_vano(i):
+        E, I = esterni[i], interni[i]
+        dx, dy = I[0] - E[0], I[1] - E[1]; L = math.hypot(dx, dy) or 1
+        return (I[0] + dx / L * oltre_vano, I[1] + dy / L * oltre_vano)
+    poli = {}
+    for i, nome in enumerate(NOMI_FACCE):
+        j = (i + 1) % n
+        if nome == "soglia":
+            continue
+        # gli stipiti poggiano sul pavimento: lì il confine resta il lato verticale del taglio
+        a = esterni[i] if i in (4, 5) else fuori[i]
+        b = esterni[j] if j in (4, 5) else fuori[j]
+        poli[nome] = [a, b, verso_vano(j), verso_vano(i)]
+    return poli
+
+
 def svg(P: dict, sfondo: bool = True) -> str:
     t = P["piastrella"]
     porta = P["porta"]
@@ -427,8 +458,48 @@ def svg(P: dict, sfondo: bool = True) -> str:
         yv = porta["vano_pavimento_y"]
         vano_pav = (f'<rect id="pavimento-di-fondo" x="0" y="{f(yv)}" width="{LATO}" height="{f(LATO - yv)}" '
                     f'fill="url(#vanoPavimento)" clip-path="url(#vanoArea)"/>')
+    pav_porta = ""
+    if porta.get("pavimento_porta"):
+        # un solo pavimento: dalla stanza dietro, attraverso lo spessore del muro, fino a davanti
+        yv = porta["vano_pavimento_y"]
+        soglia_d = "M" + "L".join(f"{f(x)} {f(y)}" for x, y in [esterni[4], esterni[5], interni[5], interni[4]]) + "Z"
+        defs.append(f'<clipPath id="pavimentoPortaArea"><path d="{soglia_d}"/>'
+                    f'<rect x="{f(interni[5][0] - 30)}" y="{f(yv)}" width="{f(interni[4][0] - interni[5][0] + 60)}" height="{f(interni[4][1] - yv + 0.5)}"/></clipPath>')
+        defs.append(f'<clipPath id="vanoFondo"><path d="{vano_d}"/><path d="{soglia_d}"/></clipPath>')
+        pav_porta = (f'<g id="pavimento-porta" clip-path="url(#vanoFondo)"><g clip-path="url(#pavimentoPortaArea)">'
+                     f'{maglia_svg("pavimentoPortaLuce", porta["pavimento_porta"], defs)}</g></g>')
     filtro_pareti = ' filter="url(#smussaPareti)"'
-    if porta.get("pareti_maglia"):
+    if porta.get("facce_maglie"):
+        # una maglia per parete, ritagliata sul suo quadrilatero (allargato di mezzo pixel per non
+        # lasciare fessure); la leggera sfocatura del gruppo arrotonda appena le pieghe
+        facce = []
+        poligoni = poligoni_pareti(porta, esterni, interni)
+        for nome, quad in poligoni.items():
+            m = porta["facce_maglie"].get(nome)
+            if not m:
+                continue
+            cx_q = sum(p[0] for p in quad) / 4; cy_q = sum(p[1] for p in quad) / 4
+            largo = []
+            for x_, y_ in quad:
+                dx_, dy_ = x_ - cx_q, y_ - cy_q; n_ = math.hypot(dx_, dy_) or 1
+                largo.append((x_ + dx_ / n_ * 0.7, y_ + dy_ / n_ * 0.7))
+            d = "M" + "L".join(f"{f(x)} {f(y)}" for x, y in largo) + "Z"
+            defs.append(f'<clipPath id="parete-{nome}-forma"><path d="{d}"/></clipPath>')
+            facce.append(f'<g id="parete_{nome}" clip-path="url(#parete-{nome}-forma)">{maglia_svg("parete_" + nome + "_luce", m, defs)}</g>')
+        for k_, pg in enumerate(porta.get("pieghe", [])):
+            # riga di luce sulla piega: dalla punta del vano al punto della piega sul contorno
+            i_ = pg["vertice"]
+            I = interni[i_]; F = porta.get("pieghe_punti", {}).get(str(i_)) or esterni[i_]
+            dx_, dy_ = F[0] - I[0], F[1] - I[1]; L_ = math.hypot(dx_, dy_) or 1
+            ox, oy = -dy_ / L_ * pg.get("scosta", 0), dx_ / L_ * pg.get("scosta", 0)
+            facce.append(f'<line id="piega-{k_ + 1}" x1="{f(I[0] + ox)}" y1="{f(I[1] + oy)}" x2="{f(F[0] + ox + dx_ / L_ * 20)}" y2="{f(F[1] + oy + dy_ / L_ * 20)}" '
+                         f'stroke="{esa(pg["colore"])}" stroke-width="{f(pg["spessore"])}" stroke-opacity="{max(0, min(1, pg["opacita"])):.3f}" stroke-linecap="round"/>')
+        if porta.get("soglia_maglia"):
+            quad = [esterni[4], esterni[5], interni[5], interni[4]]
+            d = "M" + "L".join(f"{f(x)} {f(y)}" for x, y in quad) + "Z"
+            defs.append(f'<clipPath id="sogliaClip"><path d="{d}"/></clipPath>')
+            facce.append(f'<g id="soglia" clip-path="url(#sogliaClip)">{maglia_svg("sogliaMaglia", porta["soglia_maglia"], defs)}</g>')
+    elif porta.get("pareti_maglia"):
         facce = [maglia_svg("paretiMaglia", porta["pareti_maglia"], defs)]
         filtro_pareti = ""
         if porta.get("soglia_maglia"):
@@ -437,8 +508,11 @@ def svg(P: dict, sfondo: bool = True) -> str:
             d = "M" + "L".join(f"{f(x)} {f(y)}" for x, y in quad) + "Z"
             defs.append(f'<clipPath id="sogliaClip"><path d="{d}"/></clipPath>')
             facce.append(f'<g id="soglia" clip-path="url(#sogliaClip)">{maglia_svg("sogliaMaglia", porta["soglia_maglia"], defs)}</g>')
-    sopra.append(f'<g id="porta" clip-path="url(#porta)"><g id="pareti"{filtro_pareti}>{"".join(facce)}</g>'
-                 + (f'<g id="vano" filter="url(#sfumaVano)">{vano_maglia}</g></g>' if vano_maglia else
+    # fondo pieno sotto le pareti: la sfocatura delle pieghe rende semitrasparenti i bordi del gruppo,
+    # e lì non deve trasparire il muro blu (si vedrebbero fili grigi)
+    base_porta = f'<path id="porta-fondo" d="{porta_d}" fill="{esa(porta.get("colore_fondo", [246, 222, 176]))}"/>'
+    sopra.append(f'<g id="porta" clip-path="url(#porta)">{base_porta}<g id="pareti"{filtro_pareti}>{"".join(facce)}</g>'
+                 + (f'<g id="vano" filter="url(#sfumaVano)">{vano_maglia}</g>{pav_porta}</g>' if vano_maglia else
                  f'<g id="vano" filter="url(#sfumaVano)"><path d="{vano_d}" fill="{vano_fill}"/>{vano_pav}</g></g>'))
     fl = porta["filo"]
     sopra.append(f'<path id="trabocco" d="{vano_d}" fill="{esa(tr["colore"])}" opacity="{tr["opacita"]:.3f}" filter="url(#sfumaTrabocco)"/>')

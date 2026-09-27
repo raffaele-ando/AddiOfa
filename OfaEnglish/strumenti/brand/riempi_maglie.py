@@ -31,9 +31,19 @@ CELLA = 4.0
 
 
 def elementi_forma(svg: str):
-    """Forme candidate: (inizio, fine, id, tag, attributi) delle forme piene senza trasformazioni sopra."""
+    """Forme candidate: (inizio, fine, id, tag, attributi) delle forme piene. Si guardano anche i
+    gruppi che le contengono: una forma dentro un <g> con transform, stroke, fill="none",
+    opacity bassa o data-maglia="no" resta com'è."""
     fuori = []
-    pila = []  # (tag, ha_transform)
+    pila = []  # (tag, attributi)
+
+    def escluso(attrs: str) -> bool:
+        st = re.search(r'\sstroke="([^"]+)"', attrs)
+        fill = re.search(r'\sfill="([^"]+)"', attrs)
+        op = re.search(r'\sopacity="([\d.]+)"', attrs)
+        return ("transform=" in attrs or 'data-maglia="no"' in attrs or (st is not None and st.group(1) != "none")
+                or (fill is not None and fill.group(1) == "none") or (op is not None and float(op.group(1)) <= 0.95))
+
     for m in re.finditer(r"<(/?)([\w:-]+)([^>]*?)(/?)>", svg):
         chiusa, tag, attrs, auto = m.group(1), m.group(2), m.group(3), m.group(4)
         if chiusa:
@@ -42,17 +52,17 @@ def elementi_forma(svg: str):
             if pila:
                 pila.pop()
             continue
-        trasformato = any(t for _, t in pila) or ("transform=" in attrs)
-        in_defs = any(t == "defs" or t == "clipPath" or t == "mask" for t, _ in pila) or tag in ("defs",)
+        in_defs = any(t in ("defs", "clipPath", "mask", "pattern", "symbol") for t, _ in pila) or tag == "defs"
         if tag in FORME and not in_defs:
             idm = re.search(r'\sid="([^"]+)"', attrs)
-            fill = re.search(r'\sfill="([^"]+)"', attrs)
-            op = re.search(r'\sopacity="([\d.]+)"', attrs)
-            if idm and not trasformato and 'data-maglia="no"' not in attrs and (fill is None or fill.group(1) != "none") \
-                    and "stroke=" not in attrs and (op is None or float(op.group(1)) > 0.95):
+            # un gruppo sopra con fill="none" conta solo se la forma non ha un fill suo
+            sopra = [a for _, a in pila]
+            fill_proprio = re.search(r'\sfill="([^"]+)"', attrs)
+            ereditato = any(escluso(re.sub(r'\sfill="none"', "", a) if fill_proprio else a) for a in sopra)
+            if idm and not escluso(attrs) and not ereditato:
                 fuori.append((m.start(), m.end(), idm.group(1), tag, attrs))
         if not auto and tag not in FORME:
-            pila.append((tag, "transform=" in attrs))
+            pila.append((tag, attrs))
     return fuori
 
 

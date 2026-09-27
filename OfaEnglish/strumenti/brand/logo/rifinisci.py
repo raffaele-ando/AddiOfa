@@ -250,7 +250,13 @@ def main():
     print("soglia esterna", y_soglia_esterna, "soglia interna", fondo_vano, "pavimento di fondo", y_pav)
     # la porta arriva fino alla linea dove il muro incontra il pavimento (qualche pixel sotto il
     # bordo della soglia): così tra porta e pavimento non resta una striscia di muro
-    y_linea = linea_muro(a, m_piastrella, m_porta)
+    y_misurata = linea_muro(a, m_piastrella, m_porta)
+    # Nella reference la linea tra muro e pavimento scende verso sinistra (a sinistra il pavimento
+    # sembra un'altra superficie che si solleva): è un errore del generatore d'immagini. Il muro è
+    # curvo con il centro più avanti, quindi i lati, più lontani, poggiano un po' più in alto e in
+    # modo simmetrico: la linea giusta è una curva simmetrica con i lati 6 px sopra il centro.
+    c = float(y_misurata(LATO / 2))
+    y_linea = np.poly1d(np.polyfit([0, LATO / 2, LATO], [c - 6, c, c - 6], 2))
     y_soglia_esterna = float(np.ceil(y_linea(LATO / 2))) + 1
     esterni = adatta_poligono(po["vertici"], m_porta, {4: y_soglia_esterna})
     # la soglia interna è dove finisce il pavimento di fondo: bordo basso del vano sotto gli stipiti
@@ -293,8 +299,8 @@ def main():
         print(f"{nome:25} {len(xs):6d} px  scarto {e:5.2f}")
 
     # il vano intero (parete e pavimento di fondo) come maglia: la luce non è uniforme
-    ys, xs = np.nonzero(vano)
-    riq = (float(xs.min() - 2), float(ys.min() - 2), float(xs.max() + 3), float(fondo_vano + 1))
+    ys, xs = np.nonzero(vano | maschera_poligono(interni))
+    riq = (float(xs.min() - 3), float(ys.min() - 3), float(xs.max() + 4), float(fondo_vano + 1))
     # righe più fitte in basso, dove c'è il pavimento di fondo: basta una maglia fitta
     g, e = adatta_maglia(a, ndi.binary_erosion(vano, iterations=1) & (np.arange(LATO)[:, None] < fondo_vano), riq, 30, 60)
     po["vano_maglia"] = g
@@ -314,9 +320,82 @@ def main():
     print(f"soglia: maglia 40x8, scarto {e:5.2f}")
     ys, xs = np.nonzero(m_porta)
     riq = (float(xs.min() - 2), float(ys.min() - 2), float(xs.max() + 3), float(y_soglia_esterna + 1))
-    g, e = adatta_maglia(a, pareti_px, riq, 140, 124, liscio=0.3)
-    po["pareti_maglia"] = g
-    print(f"pareti: maglia 140x124, scarto {e:5.2f}")
+    # una maglia per parete, ritagliata sul suo quadrilatero: le pieghe tra le pareti restano nette
+    # (una maglia unica le sfumava e, vicino alle punte, inventava macchie di luce)
+    po.pop("pareti_maglia", None)
+    # le pieghe vere: per ogni punta si cerca il punto del contorno smussato da cui parte il salto di
+    # luce più netto verso la punta del vano
+    lum = a.mean(axis=2)
+    def contrasto(p0, p1):
+        d = (p1 - p0) / np.linalg.norm(p1 - p0); nr = np.array([-d[1], d[0]]); c = []
+        for t_ in np.linspace(0.25, 0.75, 14):
+            q = p0 + (p1 - p0) * t_
+            lato = lambda sgn: np.mean([lum[int(round((q + nr * k * sgn)[1])), int(round((q + nr * k * sgn)[0]))] for k in (3, 4, 5)])
+            c.append(lato(1) - lato(-1))
+        return abs(float(np.mean(c)))
+    punti = {}
+    E_ = np.array(esterni); I_ = np.array(interni)
+    for i in (0, 1, 2, 3, 6, 7, 8):
+        e = E_[i]; da = E_[i - 1] - e; db = E_[(i + 1) % 9] - e
+        da /= np.linalg.norm(da); db /= np.linalg.norm(db)
+        bis = (da + db) / np.linalg.norm(da + db); per = np.array([-bis[1], bis[0]])
+        migliore = max(((contrasto(I_[i], e + bis * s_ + per * o_), s_, o_) for s_ in np.arange(0, 42, 2) for o_ in np.arange(-20, 22, 2)))
+        _, s_, o_ = migliore
+        punti[str(i)] = [round(float(v), 2) for v in e + bis * s_ + per * o_]
+    po["pieghe_punti"] = punti
+    # sulla piega c'è spesso una riga di luce sottile (lo spigolo arrotondato che prende la luce):
+    # si cerca il picco di luminosità vicino alla piega, e se c'è si disegna una linea di quel colore
+    pieghe = []
+    for i, F in punti.items():
+        i = int(i); I = I_[i]; F = np.array(F)
+        d = (F - I) / np.linalg.norm(F - I); nr = np.array([-d[1], d[0]])
+        picchi, scarti, colori = [], [], []
+        for t_ in np.linspace(0.2, 0.8, 16):
+            q = I + (F - I) * t_
+            prof = [(lum[int(round((q + nr * k)[1])), int(round((q + nr * k)[0]))], k) for k in range(-4, 5)]
+            lv, k = max(prof)
+            fondo = np.mean([lum[int(round((q + nr * kk)[1])), int(round((q + nr * kk)[0]))] for kk in (-7, -6, 6, 7)])
+            picchi.append(k); scarti.append(lv - fondo)
+            colori.append(a[int(round((q + nr * k)[1])), int(round((q + nr * k)[0]))])
+        if np.median(scarti) > 8:
+            off = float(np.median(picchi))
+            pieghe.append({"vertice": i, "scosta": off, "colore": [round(float(v), 1) for v in np.median(colori, axis=0)],
+                           "opacita": round(min(1.0, float(np.median(scarti)) / 20), 3), "spessore": 1.8})
+    po["pieghe"] = pieghe
+    print("righe di luce sulle pieghe", [(p_["vertice"], p_["opacita"]) for p_ in pieghe])
+    print("pieghe", punti)
+    from logo import poligoni_pareti
+    poligoni = poligoni_pareti(po, esterni, interni, oltre_vano=16.0)
+    facce_m = {}
+    for nome, poli in poligoni.items():
+        sel = maschera_poligono(poligoni_pareti(po, esterni, interni, oltre_vano=0.0)[nome]) & pareti_px
+        ys, xs = np.nonzero(maschera_poligono(poli) & ndi.binary_dilation(m_porta | poli_porta, iterations=4))
+        riq = (float(xs.min() - 3), float(ys.min() - 3), float(xs.max() + 4), float(ys.max() + 4))
+        col = max(2, math.ceil((riq[2] - riq[0]) / 7)); rig = max(2, math.ceil((riq[3] - riq[1]) / 7))
+        g, e = adatta_maglia(a, sel, riq, col, rig, liscio=1.0)
+        facce_m[nome] = g
+        print(f"parete {nome:18} maglia {col}x{rig}, scarto {e:5.2f}")
+    po["facce_maglie"] = facce_m
+    po["colore_fondo"] = [round(float(v), 1) for v in np.median(a[pareti_px], axis=0)]
+    po["smussatura"] = 0.5
+
+
+    # pavimento dentro la porta: nella reference la soglia sembra un gradino (una riga netta dove
+    # finisce lo spessore del muro e un'altra dove inizia il pavimento davanti): è un errore del
+    # generatore d'immagini. Il pavimento è uno solo: dalla stanza dietro (y_pav) al pavimento
+    # davanti si misura una maglia liscia, saltando le righe del finto gradino.
+    Yp = np.arange(LATO)[:, None] * np.ones((1, LATO))
+    x_sx, x_dx = esterni[5][0], esterni[4][0]
+    zona = (Yp >= y_pav) & (Yp <= y_soglia_esterna + 14)
+    zona &= (np.arange(LATO)[None, :] >= x_sx) & (np.arange(LATO)[None, :] <= x_dx)
+    zona &= (vano | soglia_q | (Yp > y_soglia_esterna))
+    for riga in (fondo_vano, fondo_vano + 1, y_soglia_esterna - 7, y_soglia_esterna - 1):
+        zona &= np.abs(Yp - riga) > 3
+    zona &= ~ndi.binary_dilation(maschera_poligono(esterni) & ~soglia_q & ~maschera_poligono(interni), iterations=2)
+    riq = (float(x_sx - 3), float(y_pav - 1), float(x_dx + 4), float(y_soglia_esterna + 4))
+    g, e = adatta_maglia(a, zona, riq, 40, 10, liscio=3.0)
+    po["pavimento_porta"] = g
+    print(f"pavimento dentro la porta: maglia 40x10, scarto {e:5.2f}")
 
     # il filo: sottile e uguale su tutti i lati del taglio
     po["filo"].update({"spessore": 2.4, "opacita": 0.8, "colore": [140, 178, 240], "contorno": True,
@@ -360,8 +439,12 @@ def main():
     sotto = Y >= y_linea(X)
     t = P["piastrella"]
     dentro = ndi.binary_erosion(m_piastrella, iterations=3)
-    pav_px = dentro & sotto & (Y > y_soglia_esterna) & ~ndi.binary_dilation(m_porta, iterations=1)
-    muro_px = dentro & ~ndi.binary_dilation(sotto, iterations=2) & ~ndi.binary_dilation(m_porta, iterations=3)
+    # si misura solo dove reference e linea corretta sono d'accordo: nella striscia tra le due linee
+    # la maglia prosegue liscia da sola (niente gradino sul pavimento)
+    sicuro_pav = Y >= np.maximum(y_linea(X), y_misurata(X)) + 3
+    sicuro_muro = Y < np.minimum(y_linea(X), y_misurata(X)) - 3
+    pav_px = dentro & sicuro_pav & (Y > y_soglia_esterna) & ~ndi.binary_dilation(m_porta, iterations=1)
+    muro_px = dentro & sicuro_muro & ~ndi.binary_dilation(m_porta, iterations=3)
     alto_pav = float(np.floor(min(y_linea(0), y_linea(LATO), y_linea(LATO / 2)) - 6))
     g, e = adatta_maglia(a, pav_px, (float(t["x0"]), alto_pav, float(t["x1"]), float(t["y1"])), 72, 28, passo=2)
     P["pavimento"]["maglia"] = g
