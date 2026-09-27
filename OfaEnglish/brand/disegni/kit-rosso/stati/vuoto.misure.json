@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/stati/vuoto.svg",
+  "byte": 1172,
+  "fondo_chiaro": {
+   "mae_255": 1.12,
+   "p95_255": 6.0,
+   "entro_8": 0.9757,
+   "ssim": 0.9881
+  },
+  "fondo_scuro": {
+   "mae_255": 5.63,
+   "p95_255": 17.8,
+   "entro_8": 0.9023,
+   "ssim": 0.9363
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/stati/vuoto.maglie.svg",
+  "byte": 25051,
+  "fondo_chiaro": {
+   "mae_255": 1.04,
+   "p95_255": 5.0,
+   "entro_8": 0.9754,
+   "ssim": 0.986
+  },
+  "fondo_scuro": {
+   "mae_255": 5.76,
+   "p95_255": 20.0,
+   "entro_8": 0.9016,
+   "ssim": 0.9317
+  }
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/stati/mondo-internazionale.svg",
+  "byte": 2629,
+  "fondo_chiaro": {
+   "mae_255": 2.67,
+   "p95_255": 12.4,
+   "entro_8": 0.9034,
+   "ssim": 0.9713
+  },
+  "fondo_scuro": {
+   "mae_255": 9.1,
+   "p95_255": 39.1,
+   "entro_8": 0.8402,
+   "ssim": 0.8863
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/stati/mondo-internazionale.maglie.svg",
+  "byte": 68504,
+  "fondo_chiaro": {
+   "mae_255": 1.85,
+   "p95_255": 11.0,
+   "entro_8": 0.9324,
+   "ssim": 0.9788
+  },
+  "fondo_scuro": {
+   "mae_255": 8.43,
+   "p95_255": 39.9,
+   "entro_8": 0.87,
+   "ssim": 0.891
+  }
+ }
+}

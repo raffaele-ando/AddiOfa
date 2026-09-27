@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/stati/in-corso.svg",
+  "byte": 1742,
+  "fondo_chiaro": {
+   "mae_255": 1.57,
+   "p95_255": 9.5,
+   "entro_8": 0.9305,
+   "ssim": 0.9819
+  },
+  "fondo_scuro": {
+   "mae_255": 5.64,
+   "p95_255": 20.0,
+   "entro_8": 0.8812,
+   "ssim": 0.9268
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/stati/in-corso.maglie.svg",
+  "byte": 47491,
+  "fondo_chiaro": {
+   "mae_255": 1.28,
+   "p95_255": 7.0,
+   "entro_8": 0.959,
+   "ssim": 0.985
+  },
+  "fondo_scuro": {
+   "mae_255": 5.55,
+   "p95_255": 20.0,
+   "entro_8": 0.9106,
+   "ssim": 0.926
+  }
+ }
+}

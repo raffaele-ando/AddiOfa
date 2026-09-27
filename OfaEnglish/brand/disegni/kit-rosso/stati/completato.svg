@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 84" width="82" height="84">
+  <title>Stato / Completato</title>
+  <defs>
+    <filter id="sfuma-righe" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="0"/></filter>
+    <linearGradient id="verde-cerchio" gradientUnits="userSpaceOnUse" x1="36.39" y1="31.57" x2="51.15" y2="73.53">
+      <stop offset="0" stop-color="#29B154"/><stop offset="0.731" stop-color="#26B754"/>
+    </linearGradient>
+  </defs>
+
+  <g id="foglio">
+    <path id="foglio-pagina" data-fisso="1" d="M8.2 3 L46 3 L59.4 16 L59.4 72.4 Q59.4 77.4 54.4 77.4 L8.2 77.4 Q3 77.4 3 72.2 L3 8.2 Q3 3 8.2 3 Z" fill="#EEF2FE"/>
+    <path id="foglio-piega" d="M46.13 2.55 L59.37 15.38 L48.93 15.71 Q45.97 16.03 46.69 10.57 Z" fill="#D5DFFD"/>
+    <g id="foglio-righe" fill="#C8D6FC" filter="url(#sfuma-righe)">
+      <rect id="riga-1" x="13.17" y="20.85" width="36.13" height="4.29" rx="1.83"/>
+      <rect id="riga-2" x="12.62" y="31.98" width="36.82" height="4.2" rx="2.07"/>
+      <rect id="riga-3" x="13.03" y="42.6" width="22.39" height="4.2" rx="2.77"/>
+      <rect id="riga-4" x="12.9" y="53.31" width="18.02" height="4.35" rx="2.07"/>
+    </g>
+  </g>
+
+  <g id="spunta-tondo">
+    <circle id="alone-bianco" data-fisso="1" cx="54" cy="58.4" r="20.8" fill="#F6FBFA"/>
+    <circle id="cerchio-verde" cx="54" cy="58.43" r="19.5" fill="url(#verde-cerchio)"/>
+    <g id="spunta">
+      <path id="spunta-segno" d="M46.16 58.86 L51.57 64.61 L62.11 53.15" fill="none" stroke="#F7FCF9" stroke-width="3.86" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>

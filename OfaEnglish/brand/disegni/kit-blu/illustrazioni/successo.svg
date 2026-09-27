@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 191 171" width="191" height="171">
+  <title>Successo</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <linearGradient id="oro-coppa" gradientUnits="userSpaceOnUse" x1="38.83" y1="56.03" x2="147.78" y2="107.53">
+      <stop offset="0.017" stop-color="#FECA66"/><stop offset="0.599" stop-color="#FEB32C"/><stop offset="0.827" stop-color="#FEB01C"/>
+    </linearGradient>
+    <linearGradient id="oro-manico" gradientUnits="userSpaceOnUse" x1="12.75" y1="64.21" x2="60.94" y2="138.28">
+      <stop offset="0" stop-color="#FEC45C"/><stop offset="1" stop-color="#FFC74E"/>
+    </linearGradient>
+    <linearGradient id="oro-manico-destro" gradientUnits="userSpaceOnUse" x1="164.8" y1="62.26" x2="123.51" y2="110.71">
+      <stop offset="0.147" stop-color="#FDC34D"/><stop offset="0.947" stop-color="#FFB01D"/>
+    </linearGradient>
+    <linearGradient id="oro-stelo" gradientUnits="userSpaceOnUse" x1="0" y1="129.18" x2="0.14" y2="143.25">
+      <stop offset="0.409" stop-color="#FEB22C"/><stop offset="0.954" stop-color="#FEC047"/>
+    </linearGradient>
+    <linearGradient id="arancio-base" gradientUnits="userSpaceOnUse" x1="57.99" y1="149.6" x2="120.65" y2="168.15">
+      <stop offset="0.024" stop-color="#FC9E0C"/><stop offset="0.971" stop-color="#F48D01"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sfondo: nuvola chiara calda -->
+  <g id="nuvola" fill="#FEF7EE" filter="url(#sfuma-alone)">
+    <ellipse id="nuvola-alto" cx="78.54" cy="64.85" rx="76.71" ry="45.99"/>
+    <ellipse id="nuvola-destra" cx="138.38" cy="113.33" rx="47.68" ry="52.8"/>
+    <ellipse id="nuvola-basso" cx="68.22" cy="133.61" rx="61.21" ry="34.73"/>
+  </g>
+
+  <!-- raggi -->
+  <g id="raggi" stroke="#FCA817" stroke-width="7.18" stroke-linecap="round" fill="none">
+    <path id="raggio-sinistro" fill="none" d="M50.13 25.62 L56.7 33.87"/>
+    <path id="raggio-centrale" fill="none" d="M79.84 9.31 L80.01 28.19"/>
+    <path id="raggio-destro" fill="none" d="M110.66 20.89 L105 30.08"/>
+  </g>
+
+  <!-- coppa -->
+  <g id="coppa">
+    <path id="manico-sinistro" d="M42 64.23 H27.13 Q18.74 65.19 17.16 71.62 V83.2 Q18.91 114.58 55.5 119.5 L57 110 Q29.15 100.03 28.75 83.15 V75.9 H42 Z" fill="url(#oro-manico)"/>
+    <path id="manico-destro" d="M137 61.02 H155.83 Q164.81 62.4 163.09 71.77 V78.66 Q161.26 108.18 124 119.5 L122 110 Q150.03 99.08 150.82 79.53 V73 H137 Z" fill="url(#oro-manico-destro)"/>
+    <rect id="stelo" x="75.23" y="126" width="29" height="23" fill="url(#oro-stelo)"/>
+    <path id="coppa-corpo" d="M44.5 50.63 H134.24 Q139.25 51.73 139.04 56.17 V70.39 C136.69 103.39 121.01 124.99 104.09 131.18 H74.24 C58.34 124.88 40.37 101.8 40.67 71.71 V55.63 Q39.15 52.73 44.96 50.66 Z" fill="url(#oro-coppa)"/>
+    <path id="stella" d="M89.07 68.83 L94.57 81.61 L108.08 83.41 L98.4 92.86 L100.75 105.97 L89.1 99.82 L77.73 105.94 L79.91 93.39 L70.41 83.39 L83.45 82.17 Z" fill="#FEFDFB" stroke="#FEFEFA" stroke-width="1.65" stroke-linejoin="round"/>
+    <rect id="base" x="58.38" y="147.6" width="62.37" height="18.2" rx="9.49" fill="url(#arancio-base)"/>
+  </g>
+</svg>

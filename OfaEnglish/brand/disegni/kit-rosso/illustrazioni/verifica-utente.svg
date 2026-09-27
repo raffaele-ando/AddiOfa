@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 199 108" width="199" height="108">
+  <title>Verifica / Utente</title>
+  <defs>
+    <filter id="sfuma-nuvola" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0.7"/></filter>
+  </defs>
+
+  <g id="nuvola" fill="#F5F7FD" filter="url(#sfuma-nuvola)">
+    <circle id="nuvola-alto" cx="56.3" cy="31.5" r="28.87"/>
+    <circle id="nuvola-sinistra" cx="23.76" cy="76.77" r="21.84"/>
+    <circle id="nuvola-destra" cx="172.86" cy="64.73" r="23.29"/>
+  </g>
+
+  <g id="tessera">
+    <rect id="tessera-fondo" x="13.87" y="15.63" width="168.88" height="88.52" rx="14.56" fill="#D4DEFE"/>
+    <g id="righe">
+      <rect id="riga-1" x="104.06" y="36.89" width="60.13" height="8.44" rx="4.33" fill="#A8BAFE"/>
+      <rect id="riga-2" x="104.46" y="55.87" width="36.46" height="7.66" rx="4.39" fill="#FDFCFE"/>
+      <rect id="riga-3" x="103.75" y="74.9" width="60.38" height="8.18" rx="4.18" fill="#AFC0FE"/>
+    </g>
+  </g>
+
+  <g id="utente">
+    <circle id="utente-cerchio" cx="59.71" cy="60.12" r="32.08" fill="#FBFDFE"/>
+    <rect id="utente-testa" x="48.49" y="38.88" width="22.94" height="29.5" rx="11.12" ry="10.54" fill="#4A67FA"/>
+    <path id="utente-busto" d="M41.23 86.22 Q44.04 74.8 59.29 73.4 Q75.69 74.13 78.45 86.11 A32.28 32.95 0 0 1 41.02 85.95 Z" fill="#0941C7"/>
+  </g>
+</svg>

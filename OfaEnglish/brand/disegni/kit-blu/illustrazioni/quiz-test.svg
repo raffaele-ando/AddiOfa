@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 205 166" width="205" height="166">
+  <title>Quiz / Test</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <filter id="sfuma-bordo" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.15"/></filter>
+    <linearGradient id="blu-quadrato" gradientUnits="userSpaceOnUse" x1="72.02" y1="28.13" x2="99.6" y2="60.99">
+      <stop offset="0.041" stop-color="#7EA3E4"/><stop offset="1" stop-color="#7598E6"/>
+    </linearGradient>
+    <linearGradient id="rosso-quadrato" gradientUnits="userSpaceOnUse" x1="63.86" y1="66.71" x2="90.78" y2="102.5">
+      <stop offset="0.054" stop-color="#F43E3F"/><stop offset="0.941" stop-color="#F22A2F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sfondo: nuvola chiara -->
+  <g id="nuvola" fill="#EEF3FE" filter="url(#sfuma-alone)">
+    <ellipse id="nuvola-centro" cx="99.06" cy="61.43" rx="77.87" ry="58.73"/>
+    <circle id="nuvola-sinistra" cx="43.88" cy="119.04" r="41.61"/>
+    <ellipse id="nuvola-basso" cx="113.99" cy="125.78" rx="89.43" ry="35.86"/>
+    <ellipse id="nuvola-destra" cx="164.23" cy="93.47" rx="36.24" ry="56.61"/>
+  </g>
+
+  <!-- foglio: spessore dietro, poi la pagina bianca -->
+  <path id="foglio-spessore" d="M61.31 4 L177.51 13.27 Q185.84 20.78 182.31 27.3 L163.98 161.42 Q163.76 162.39 157.72 162.84 L33.44 154 Q24.71 153.78 30.68 146.19 L53.2 10.64 Q54.17 5.59 65.91 5.92 Z" fill="#E5EDFF" filter="url(#sfuma-bordo)"/>
+  <path id="foglio" d="M70.17 8.42 L174.87 28.5 Q182.97 24.74 184.68 34.33 L162.9 156.47 Q162.3 164.59 156 162.3 L41.64 159.99 Q34.72 160.06 34.51 149.52 L61.04 14.67 Q63.11 8 69.65 7.91 Z" fill="#F7F9FE"/>
+
+  <!-- risposte -->
+  <g id="risposta-a">
+    <path id="quadrato-a" d="M76.62 27.92 L97.35 32.29 Q101.34 32.62 101.19 38.19 L97.59 57.85 Q96.73 61.67 91.69 60.63 L71.94 57.09 Q69.88 55.36 69.25 52.49 L73 33.95 Q74.15 28.52 77.05 28.8 Z" fill="url(#blu-quadrato)"/>
+    <g id="lettera-a" transform="rotate(11.25 84.63 45.34)">
+      <path data-fisso="1" d="M77.2 53 L82.6 37.3 H86.8 L92.3 53 H88.7 L86.2 45.4 Q85.7 43.9 85.3 42.2 Q84.8 40.4 84.3 38.4 H85 Q84.5 40.5 84 42.2 Q83.6 44 83.2 45.4 L80.7 53 Z M80.5 49.4 V46.8 H88.9 V49.4 Z" fill="#FFFFFF"/>
+    </g>
+  </g>
+  <g id="risposta-giusta">
+    <path id="quadrato-rosso" d="M68.65 67.35 L92.02 72.04 Q94.23 74.2 93.81 76.25 L90.64 96.5 Q89.42 102.27 82.01 100.94 L64.72 96.98 Q60.11 96.2 62.2 88.59 L65.15 71.71 Q66.38 68.37 69.71 68 Z" fill="url(#rosso-quadrato)"/>
+    <path id="spunta" d="M71.54 82.61 L75.04 89.41 L86 79.3" fill="none" stroke="#FFFFFB" stroke-width="3.34" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="risposta-c">
+    <path id="quadrato-c" d="M62.59 107.38 L82.2 111.64 Q86.33 112.4 86.12 117 L82.4 135.96 Q81.49 141.71 77.22 141.06 L57.42 137.37 Q53.4 135.7 53.83 131.39 L57.14 113.73 Q58.12 107.5 62 107.39 Z" fill="#AFBFE0"/>
+    <g id="lettera-c" transform="rotate(9.46 70.94 124.5)">
+      <path data-fisso="1" d="M70.3 132.9 Q68.2 132.9 66.5 131.9 Q64.8 131 63.9 129.1 Q62.9 127.3 62.9 124.7 Q62.9 122.1 63.9 120.2 Q64.9 118.4 66.6 117.4 Q68.3 116.4 70.3 116.4 Q71.7 116.4 72.9 116.8 Q74.1 117.2 75 117.9 Q75.9 118.7 76.5 119.7 Q77.1 120.8 77.2 122.2 H73.9 Q73.8 121.5 73.5 121 Q73.2 120.5 72.7 120.1 Q72.3 119.7 71.7 119.6 Q71.1 119.4 70.4 119.4 Q69.1 119.4 68.2 120 Q67.2 120.6 66.7 121.8 Q66.2 123 66.2 124.7 Q66.2 126.5 66.7 127.6 Q67.3 128.8 68.2 129.4 Q69.1 130 70.4 130 Q71.1 130 71.7 129.8 Q72.3 129.6 72.7 129.3 Q73.2 128.9 73.5 128.4 Q73.8 127.9 73.9 127.2 H77.3 Q77.1 128.4 76.6 129.4 Q76.1 130.4 75.2 131.2 Q74.3 132 73.1 132.5 Q71.9 132.9 70.3 132.9 Z" fill="#FFFFFF"/>
+    </g>
+  </g>
+
+  <!-- righe di testo -->
+  <g id="righe" stroke="#DBE3FD" stroke-width="6.79" stroke-linecap="round" fill="none">
+    <path id="riga-1" d="M113.66 41.84 L160.73 51.64"/>
+    <path id="riga-2" d="M110.69 58.21 L131.91 62.86"/>
+    <path id="riga-3" d="M106.33 81.6 L153.66 91.63"/>
+    <path id="riga-4" d="M103.1 98.11 L124.06 102.6"/>
+    <path id="riga-5" d="M99.59 122.21 L145.92 131.03"/>
+    <path id="riga-6" d="M95.44 137.59 L116.61 141.75"/>
+  </g>
+</svg>

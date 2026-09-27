@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/illustrazioni/progressi-statistiche.svg",
+  "byte": 1962,
+  "fondo_chiaro": {
+   "mae_255": 1.66,
+   "p95_255": 10.0,
+   "entro_8": 0.9255,
+   "ssim": 0.9838
+  },
+  "fondo_scuro": {
+   "mae_255": 2.65,
+   "p95_255": 14.0,
+   "entro_8": 0.8944,
+   "ssim": 0.9717
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/illustrazioni/progressi-statistiche.maglie.svg",
+  "byte": 76893,
+  "fondo_chiaro": {
+   "mae_255": 1.27,
+   "p95_255": 7.0,
+   "entro_8": 0.9598,
+   "ssim": 0.9858
+  },
+  "fondo_scuro": {
+   "mae_255": 2.39,
+   "p95_255": 12.0,
+   "entro_8": 0.9275,
+   "ssim": 0.9714
+  }
+ }
+}

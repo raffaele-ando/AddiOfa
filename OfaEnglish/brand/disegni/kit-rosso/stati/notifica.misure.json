@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/stati/notifica.svg",
+  "byte": 1257,
+  "fondo_chiaro": {
+   "mae_255": 1.29,
+   "p95_255": 9.0,
+   "entro_8": 0.9475,
+   "ssim": 0.9831
+  },
+  "fondo_scuro": {
+   "mae_255": 4.4,
+   "p95_255": 13.7,
+   "entro_8": 0.9086,
+   "ssim": 0.914
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/stati/notifica.maglie.svg",
+  "byte": 32921,
+  "fondo_chiaro": {
+   "mae_255": 1.16,
+   "p95_255": 6.2,
+   "entro_8": 0.9674,
+   "ssim": 0.9864
+  },
+  "fondo_scuro": {
+   "mae_255": 4.69,
+   "p95_255": 22.2,
+   "entro_8": 0.9127,
+   "ssim": 0.9146
+  }
+ }
+}

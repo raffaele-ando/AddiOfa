@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 90" width="92" height="90">
+  <title>Stato / Obiettivo</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.41"/></filter>
+    <linearGradient id="rosso-anello" gradientUnits="userSpaceOnUse" x1="27.1" y1="5.6" x2="69.24" y2="61.26">
+      <stop offset="0.069" stop-color="#FE747C"/><stop offset="0.811" stop-color="#FE6667"/>
+    </linearGradient>
+    <linearGradient id="bordeaux-asta" gradientUnits="userSpaceOnUse" x1="50.09" y1="42.08" x2="69.49" y2="22.74">
+      <stop offset="0.029" stop-color="#B21B24"/><stop offset="0.845" stop-color="#702430"/>
+    </linearGradient>
+  </defs>
+
+  <circle id="bolla-rosa" cx="17.09" cy="14.82" r="4.51" fill="#FFE4E4" filter="url(#sfuma-alone)"/>
+
+  <g id="bersaglio">
+    <circle id="anello-esterno" cx="43.15" cy="45.68" r="36.06" fill="url(#rosso-anello)"/>
+    <circle id="fascia-bianca-esterna" cx="43.07" cy="45.53" r="27.01" fill="#FEF9F8"/>
+    <circle id="anello-interno" cx="43.15" cy="45.67" r="19.17" fill="#FE6B6E"/>
+    <circle id="fascia-bianca-interna" cx="42.98" cy="45.76" r="10.94" fill="#FEFBFB"/>
+    <circle id="centro" cx="43.51" cy="45.47" r="4.67" fill="#FA4B52"/>
+  </g>
+
+  <g id="freccia">
+    <path id="freccia-impennaggio" d="M78.28 1.69 L79.94 9.06 L88.56 11.69 L82.42 18 L77.45 22.35 L69.69 21.32 L68.54 17.89 L68.54 11 Z" fill="#FC363F"/>
+    <path id="freccia-asta" d="M47.96 41.3 L71.57 18.56" fill="none" stroke="url(#bordeaux-asta)" stroke-width="3.98" stroke-linecap="round"/>
+  </g>
+</svg>

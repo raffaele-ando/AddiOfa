@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/stati/obiettivo.svg",
+  "byte": 1598,
+  "fondo_chiaro": {
+   "mae_255": 3.34,
+   "p95_255": 20.0,
+   "entro_8": 0.7909,
+   "ssim": 0.971
+  },
+  "fondo_scuro": {
+   "mae_255": 16.19,
+   "p95_255": 157.5,
+   "entro_8": 0.7203,
+   "ssim": 0.6922
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/stati/obiettivo.maglie.svg",
+  "byte": 56082,
+  "fondo_chiaro": {
+   "mae_255": 2.81,
+   "p95_255": 19.0,
+   "entro_8": 0.86,
+   "ssim": 0.9724
+  },
+  "fondo_scuro": {
+   "mae_255": 15.44,
+   "p95_255": 149.9,
+   "entro_8": 0.7925,
+   "ssim": 0.6993
+  }
+ }
+}

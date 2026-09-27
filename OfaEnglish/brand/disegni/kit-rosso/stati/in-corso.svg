@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 84" width="85" height="84">
+  <title>Stato / In corso</title>
+  <defs>
+    <filter id="sfuma-righe" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="0.4"/></filter>
+    <linearGradient id="viola-orologio" gradientUnits="userSpaceOnUse" x1="35.63" y1="40.07" x2="75.81" y2="69.15">
+      <stop offset="0.003" stop-color="#707BFD"/><stop offset="1" stop-color="#7888FE"/>
+    </linearGradient>
+  </defs>
+
+  <g id="foglio">
+    <path id="foglio-pagina" data-fisso="1" d="M8.6 3.5 L51 3.5 L62.5 15.2 L62.5 75.2 Q62.5 80.3 57.4 80.3 L8.6 80.3 Q3.4 80.3 3.4 75.1 L3.4 8.7 Q3.4 3.5 8.6 3.5 Z" fill="#EDF1FE"/>
+    <path id="foglio-piega" d="M50.84 4.52 L62.23 16.14 L49.92 15.93 Q50.57 18.79 48.84 8.76 Z" fill="#D8E0FD"/>
+    <g id="foglio-righe" fill="#C4CFFE" filter="url(#sfuma-righe)">
+      <rect id="riga-1" x="14.05" y="21.22" width="37.51" height="4.96" rx="2.03"/>
+      <rect id="riga-2" x="14.01" y="33.13" width="37.55" height="4.6" rx="1.95"/>
+      <rect id="riga-3" x="14.09" y="44.46" width="23.79" height="4.81" rx="2.89"/>
+      <rect id="riga-4" x="13.92" y="55.74" width="19.77" height="4.5" rx="2.07"/>
+    </g>
+  </g>
+
+  <g id="orologio">
+    <circle id="alone-bianco" cx="56.01" cy="54.16" r="17.63" fill="#F9FCFF"/>
+    <circle id="quadrante" cx="59.17" cy="54.93" r="19.26" fill="url(#viola-orologio)"/>
+    <g id="lancette" fill="#F9FCFE">
+      <rect id="lancetta-ore" x="57.21" y="43.43" width="3.12" height="11.13"/>
+      <rect id="lancetta-minuti" x="57.28" y="53.69" width="12.1" height="2.75"/>
+      <path id="lancetta-secondi" d="M59.31 55.01 L67.68 63.66" fill="none" stroke="#F3F5FE" stroke-width="2.23"/>
+    </g>
+  </g>
+</svg>

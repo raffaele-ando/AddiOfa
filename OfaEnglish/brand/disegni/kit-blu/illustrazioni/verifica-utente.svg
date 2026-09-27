@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 103" width="181" height="103">
+  <title>Verifica utente</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.6"/></filter>
+    <linearGradient id="blu-testa" gradientUnits="userSpaceOnUse" x1="-2.05" y1="37.92" x2="1.14" y2="59.34">
+      <stop offset="0.305" stop-color="#5F96FB"/><stop offset="0.953" stop-color="#4C89FD"/>
+    </linearGradient>
+    <linearGradient id="blu-busto" gradientUnits="userSpaceOnUse" x1="66.14" y1="64.9" x2="58.94" y2="89.7">
+      <stop offset="0.088" stop-color="#2A6FFD"/><stop offset="1" stop-color="#125EF9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sfondo: nuvola chiara -->
+  <g id="nuvola" fill="#F4F7FE" filter="url(#sfuma-alone)">
+    <ellipse id="nuvola-sinistra" cx="45.06" cy="51.53" rx="43.93" ry="49.76"/>
+    <rect id="nuvola-centro" x="20.13" y="11.81" width="145.09" height="84.7" rx="16.12"/>
+    <ellipse id="nuvola-destra" cx="157.87" cy="67.24" rx="20.83" ry="26.94"/>
+  </g>
+
+  <!-- tessera -->
+  <g id="tessera">
+    <path id="tessera-fondo" d="M25 16.6 L154 11.1 Q162 10.9 163.5 19 L166.5 80 Q166.7 88.3 158.7 88.7 L26 95.5 Q18 95.9 17.8 87.5 L17.2 24.6 Q17.2 17 25 16.6 Z" fill="#DBE5FE"/>
+    <circle id="foto-cerchio" cx="57.92" cy="51" r="29.3" fill="#F7FAFE"/>
+    <g id="righe" stroke="#B0C5FC" stroke-width="7.35" stroke-linecap="round" fill="none">
+      <path id="riga-1" fill="none" d="M99.94 36.01 L146.9 34.09"/>
+      <path id="riga-2" fill="none" d="M100.85 53.56 L136.83 52.28"/>
+      <path id="riga-3" fill="none" d="M100.92 70.72 L129.97 69.93"/>
+    </g>
+  </g>
+
+  <!-- persona -->
+  <g id="persona">
+    <path id="busto-alone" d="M32.8 82.5 Q34 62 58.5 61.8 Q83 62 84.2 81.5 Q84.4 87 79 87.2 Q58 88.5 38 87.7 Q32.6 87.5 32.8 82.5 Z" fill="#FCFEFE"/>
+    <ellipse id="testa" cx="58.13" cy="47.1" rx="12.53" ry="13.83" fill="url(#blu-testa)"/>
+    <path id="busto" d="M34.5 82.5 Q35.5 64 58.5 63.5 Q81.5 64 82.5 81.5 Q82.7 85.3 79 85.5 Q58 86.8 38 86 Q34.3 85.8 34.5 82.5 Z" fill="url(#blu-busto)"/>
+  </g>
+</svg>

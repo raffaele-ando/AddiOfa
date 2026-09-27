@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78 81" width="78" height="81">
+  <title>Stato / Celebrazione</title>
+
+  <g id="coriandoli" fill="none" stroke-linecap="round">
+    <path id="coriandolo-giallo-alto" d="M21.79 10.97 L25.4 14.85" stroke="#FEC032" stroke-width="5.8"/>
+    <ellipse id="coriandolo-pesca" cx="40.88" cy="7.51" rx="2.77" ry="4.55" fill="#FEE6CE"/>
+    <path id="coriandolo-rosso-alto" d="M62.09 11 L57.69 16.41" stroke="#FE474B" stroke-width="5.88"/>
+    <path id="coriandolo-giallo-sinistra" d="M10.71 32.29 L14.78 33.87" stroke="#FEC441" stroke-width="6.28"/>
+    <path id="coriandolo-giallo-destra" d="M71.81 33.89 L67.75 36.16" stroke="#FEC364" stroke-width="5.69"/>
+    <path id="coriandolo-rosso-sinistra" d="M20.83 53.6 L15.77 60.17" stroke="#FD4048" stroke-width="6.05"/>
+    <path id="coriandolo-giallo-basso" d="M42.22 65.76 L38.8 73.37" stroke="#FEC64B" stroke-width="6.33"/>
+    <path id="coriandolo-rosso-destra" d="M60.34 56.51 L65.63 62" stroke="#FD3740" stroke-width="5.91"/>
+  </g>
+
+  <g id="nastro">
+    <path id="nastro-anello" fill-rule="evenodd" d="M34.54 30.19 Q39.14 30.8 40.52 36.42 Q40.98 45.43 34.05 46.56 Q30.63 48.17 30.14 37.73 Q31.3 31.06 36.75 31.22 Z M34.26 36.39 Q32.81 36.4 33.02 41.21 Q33.37 40.6 34.95 40.88 Q38.17 40.6 37.8 39.98 Q37.75 36.6 34.86 35.35 Z" fill="#FE4147"/>
+    <path id="nastro-braccio" d="M41.67 34.33 L45.4 36.31 L46.95 38.89 L49.73 41.3 Q50.05 44.71 47.05 45.43 L44.71 44.94 L41.91 40.21 L39.21 39.45 Z" fill="#FE3239"/>
+    <path id="nastro-punta" d="M43.84 40.99 L44.78 30.78 Q45.74 28.89 48.58 29.15 Q52.04 31.06 51 34.11 L46.57 35.83 Z" fill="#FB333A"/>
+    <path id="nastro-fascia" d="M32.72 33.16 Q35.39 29.5 38.02 30.76 L41.9 34.57 L44.8 37.38 L39.62 37.45 L37.77 35.95 Q36.67 36.66 33.96 42.26 Z" fill="#FD5254"/>
+  </g>
+</svg>

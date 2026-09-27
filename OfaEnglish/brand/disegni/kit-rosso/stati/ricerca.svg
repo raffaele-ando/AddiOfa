@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" width="100" height="80">
+  <title>Stato / Ricerca</title>
+  <defs>
+    <radialGradient id="vetro-luce" gradientUnits="userSpaceOnUse" cx="46.95" cy="18.75" r="56.02">
+      <stop offset="0.036" stop-color="#EBEEF8"/><stop offset="0.959" stop-color="#E6EBF6"/>
+    </radialGradient>
+  </defs>
+
+  <g id="segni" stroke-linecap="round" stroke-width="4.37">
+    <path id="segno-alto" d="M12.82 13.79 L18.17 20.04" stroke="#FE777A"/>
+    <path id="segno-centro" d="M5.02 30.55 L13.35 30.46" stroke="#FE5F64"/>
+    <path id="segno-basso" d="M16.95 42.2 L12.92 46.09" stroke="#FE726E"/>
+  </g>
+
+  <g id="lente">
+    <path id="lente-manico" d="M67.51 50.47 Q67.94 47.39 75.18 50.59 L89.19 64.69 Q92.93 68.58 88.57 72.64 L90.22 71.8 Q84.94 76.18 80.96 71.45 L67.98 57.78 Q68.52 52.7 68.18 51.58 Z" fill="#395073"/>
+    <circle id="lente-cornice" cx="53.37" cy="33.4" r="26.35" fill="#485E81"/>
+    <circle id="lente-vetro" cx="53.35" cy="33.51" r="19.68" fill="url(#vetro-luce)"/>
+    <path id="lente-riflesso" d="M40.8 33 Q41.8 26 47.8 22.2" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" opacity="0.9" data-maglia="no"/>
+  </g>
+</svg>

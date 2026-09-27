@@ -1,0 +1,18 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/illustrazioni/rischio-economico.svg",
+  "byte": 3889,
+  "fondo_chiaro": {
+   "mae_255": 11.56,
+   "p95_255": 99.0,
+   "entro_8": 0.6441,
+   "ssim": 0.7596
+  },
+  "fondo_scuro": {
+   "mae_255": 20.75,
+   "p95_255": 188.4,
+   "entro_8": 0.593,
+   "ssim": 0.6118
+  }
+ }
+}

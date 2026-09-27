@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-blu/illustrazioni/rischio-economico.svg",
+  "byte": 4041,
+  "fondo_chiaro": {
+   "mae_255": 3.24,
+   "p95_255": 20.0,
+   "entro_8": 0.8601,
+   "ssim": 0.9497
+  },
+  "fondo_scuro": {
+   "mae_255": 9.49,
+   "p95_255": 37.0,
+   "entro_8": 0.8141,
+   "ssim": 0.8582
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-blu/illustrazioni/rischio-economico.maglie.svg",
+  "byte": 149593,
+  "fondo_chiaro": {
+   "mae_255": 2.31,
+   "p95_255": 14.0,
+   "entro_8": 0.915,
+   "ssim": 0.965
+  },
+  "fondo_scuro": {
+   "mae_255": 8.56,
+   "p95_255": 42.2,
+   "entro_8": 0.8691,
+   "ssim": 0.8732
+  }
+ }
+}

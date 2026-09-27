@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 103 69" width="103" height="69">
+  <title>Stato / Vuoto</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.5"/></filter>
+  </defs>
+
+  <g id="nuvola" fill="#E1E7F8">
+    <circle id="nuvola-cima" cx="54" cy="27.2" r="25.07"/>
+    <rect id="nuvola-corpo" x="7.77" y="28.12" width="92.27" height="34.73" rx="16.47"/>
+  </g>
+
+  <g id="faccia">
+    <g id="aloni-occhi" fill="#E8EEFC" filter="url(#sfuma-alone)">
+      <ellipse id="alone-occhio-sinistro" cx="44.1" cy="32.96" rx="5.06" ry="4.34"/>
+      <ellipse id="alone-occhio-destro" cx="64.51" cy="32.86" rx="4.24" ry="4.56"/>
+      <path id="alone-bocca" d="M44.5 47.24 Q56.18 38.51 63.45 47.7" fill="none" stroke="#F5FBFF" stroke-width="4.59"/>
+    </g>
+    <g id="occhi" fill="#39557F">
+      <ellipse id="occhio-sinistro" cx="44.74" cy="33.08" rx="3.05" ry="3.33"/>
+      <ellipse id="occhio-destro" cx="64.38" cy="33" rx="2.92" ry="3.16"/>
+    </g>
+    <path id="bocca" d="M46.05 46.01 Q55 38 62.62 45.91" fill="none" stroke="#7489B3" stroke-width="4.03" stroke-linecap="round"/>
+  </g>
+</svg>

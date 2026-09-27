@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-blu/illustrazioni/risultato-probabilita.svg",
+  "byte": 6246,
+  "fondo_chiaro": {
+   "mae_255": 4.43,
+   "p95_255": 25.0,
+   "entro_8": 0.8759,
+   "ssim": 0.9081
+  },
+  "fondo_scuro": {
+   "mae_255": 13.87,
+   "p95_255": 116.0,
+   "entro_8": 0.8213,
+   "ssim": 0.8012
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-blu/illustrazioni/risultato-probabilita.maglie.svg",
+  "byte": 98476,
+  "fondo_chiaro": {
+   "mae_255": 3.69,
+   "p95_255": 25.0,
+   "entro_8": 0.8826,
+   "ssim": 0.9252
+  },
+  "fondo_scuro": {
+   "mae_255": 13.28,
+   "p95_255": 106.0,
+   "entro_8": 0.8315,
+   "ssim": 0.8133
+  }
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-blu/illustrazioni/mondo-internazionale.svg",
+  "byte": 4870,
+  "fondo_chiaro": {
+   "mae_255": 4.99,
+   "p95_255": 27.0,
+   "entro_8": 0.7671,
+   "ssim": 0.9214
+  },
+  "fondo_scuro": {
+   "mae_255": 11.43,
+   "p95_255": 80.0,
+   "entro_8": 0.7159,
+   "ssim": 0.8428
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-blu/illustrazioni/mondo-internazionale.maglie.svg",
+  "byte": 114360,
+  "fondo_chiaro": {
+   "mae_255": 3.71,
+   "p95_255": 23.0,
+   "entro_8": 0.8697,
+   "ssim": 0.9326
+  },
+  "fondo_scuro": {
+   "mae_255": 10.2,
+   "p95_255": 74.2,
+   "entro_8": 0.8179,
+   "ssim": 0.8534
+  }
+ }
+}

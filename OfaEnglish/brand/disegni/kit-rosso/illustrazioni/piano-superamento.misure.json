@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/illustrazioni/piano-superamento.svg",
+  "byte": 3795,
+  "fondo_chiaro": {
+   "mae_255": 2.46,
+   "p95_255": 17.0,
+   "entro_8": 0.878,
+   "ssim": 0.9582
+  },
+  "fondo_scuro": {
+   "mae_255": 9.69,
+   "p95_255": 46.0,
+   "entro_8": 0.8344,
+   "ssim": 0.8337
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/illustrazioni/piano-superamento.maglie.svg",
+  "byte": 155041,
+  "fondo_chiaro": {
+   "mae_255": 1.9,
+   "p95_255": 13.0,
+   "entro_8": 0.9227,
+   "ssim": 0.9664
+  },
+  "fondo_scuro": {
+   "mae_255": 9.13,
+   "p95_255": 50.8,
+   "entro_8": 0.8771,
+   "ssim": 0.8427
+  }
+ }
+}

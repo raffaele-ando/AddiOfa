@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 122" width="149" height="122">
+  <title>Mancato superamento</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.6"/></filter>
+    <linearGradient id="azzurro-foglio" gradientUnits="userSpaceOnUse" x1="90.06" y1="9.21" x2="41.32" y2="110.63">
+      <stop offset="0" stop-color="#DBE6FE"/><stop offset="0.994" stop-color="#E3EBFE"/>
+    </linearGradient>
+    <linearGradient id="rosso-bollino" gradientUnits="userSpaceOnUse" x1="98.46" y1="63.75" x2="121.15" y2="115.92">
+      <stop offset="0.012" stop-color="#FB6364"/><stop offset="0.977" stop-color="#F02327"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sfondo: nuvola chiara -->
+  <g id="nuvola" fill="#F2F4FE" filter="url(#sfuma-alone)">
+    <rect id="nuvola-centro" x="19.72" y="6.88" width="68.31" height="105" rx="25.89"/>
+    <circle id="nuvola-sinistra" cx="29.75" cy="86.11" r="26.57"/>
+    <ellipse id="nuvola-destra" cx="117.72" cy="68.37" rx="28.45" ry="41.05"/>
+    <ellipse id="nuvola-basso" cx="74.25" cy="103.86" rx="58.13" ry="14.75"/>
+  </g>
+
+  <!-- documento -->
+  <g id="documento">
+    <path id="foglio" d="M31 9.5 H89 Q92 9.5 94 11.5 L106.5 24 Q109.5 26 109.5 29 V107.5 Q109 115 101 115 H30 Q21.5 115 21.5 107 V18 Q21.5 9.5 31 9.5 Z" fill="url(#azzurro-foglio)"/>
+    <g id="righe" stroke="#8AAEF7" stroke-width="6.67" stroke-linecap="round" fill="none">
+      <path id="riga-1" fill="none" d="M41.7 30.34 L82.68 32.9"/>
+      <path id="riga-2" fill="none" d="M40.75 47.81 L72.31 49.65"/>
+      <path id="riga-3" fill="none" d="M39.78 67.08 L64.43 68.36"/>
+      <path id="riga-4" fill="none" d="M38.98 88.35 L57.83 89.6"/>
+    </g>
+  </g>
+
+  <!-- bollino rosso con la croce -->
+  <g id="bollino">
+    <circle id="bollino-alone" data-maglia="no" cx="105.72" cy="87.56" r="29.6" fill="#F6F8FE"/>
+    <circle id="bollino-rosso" cx="105.72" cy="87.56" r="28.11" fill="url(#rosso-bollino)"/>
+    <g id="croce" stroke="#FEF8F9" stroke-width="5.5" stroke-linecap="round" fill="none">
+      <path id="croce-1" fill="none" d="M97 78.9 L113.8 95.96"/>
+      <path id="croce-2" fill="none" d="M113.97 79.03 L96.94 95.96"/>
+    </g>
+  </g>
+</svg>

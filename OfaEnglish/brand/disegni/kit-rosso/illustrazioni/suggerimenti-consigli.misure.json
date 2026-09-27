@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/illustrazioni/suggerimenti-consigli.svg",
+  "byte": 1919,
+  "fondo_chiaro": {
+   "mae_255": 1.66,
+   "p95_255": 12.0,
+   "entro_8": 0.9151,
+   "ssim": 0.97
+  },
+  "fondo_scuro": {
+   "mae_255": 10.65,
+   "p95_255": 80.5,
+   "entro_8": 0.8544,
+   "ssim": 0.8121
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/illustrazioni/suggerimenti-consigli.maglie.svg",
+  "byte": 44151,
+  "fondo_chiaro": {
+   "mae_255": 1.71,
+   "p95_255": 13.0,
+   "entro_8": 0.9283,
+   "ssim": 0.9642
+  },
+  "fondo_scuro": {
+   "mae_255": 13.3,
+   "p95_255": 135.0,
+   "entro_8": 0.8617,
+   "ssim": 0.7753
+  }
+ }
+}

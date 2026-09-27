@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207 161" width="207" height="161">
+  <title>Superamento</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <filter id="sfuma-ombra" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.98"/></filter>
+    <linearGradient id="azzurro-piega" gradientUnits="userSpaceOnUse" x1="0.46" y1="28.94" x2="12.65" y2="146.77">
+      <stop offset="0.033" stop-color="#C3D8FC"/><stop offset="1" stop-color="#CFD7FF"/>
+    </linearGradient>
+    <linearGradient id="verde-bollino" gradientUnits="userSpaceOnUse" x1="131.23" y1="78.48" x2="172.83" y2="129.83">
+      <stop offset="0" stop-color="#2CC562"/><stop offset="1" stop-color="#1EB654"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sfondo: nuvola chiara -->
+  <g id="nuvola" fill="#F0F4FE" filter="url(#sfuma-alone)">
+    <ellipse id="nuvola-alto" cx="93.14" cy="66.73" rx="80.99" ry="64.54"/>
+    <circle id="nuvola-spalla" cx="143" cy="48" r="32"/>
+    <ellipse id="nuvola-destra" cx="161.06" cy="104.06" rx="41.62" ry="54.92"/>
+    <ellipse id="nuvola-sinistra" cx="40" cy="111.28" rx="37.41" ry="47.97"/>
+    <rect id="nuvola-basso" x="30.64" y="94.6" width="157.36" height="62.84" rx="19.34"/>
+  </g>
+
+  <!-- foglio dietro, inclinato -->
+  <g id="foglio-dietro">
+    <path id="foglio-dietro-carta" d="M12.05 62.44 L57.53 41.93 Q57.11 32.79 67.4 40.5 H75.3 V154.86 H44.45 Q41.2 152.43 38.84 145.28 L7.54 76.06 Q3.66 66.18 15.17 59.86 Z" fill="#D8E3FD"/>
+    <g id="foglio-dietro-righe" stroke="#BDD0FE" stroke-width="6.59" stroke-linecap="round" fill="none">
+      <path id="riga-dietro-1" fill="none" d="M28.61 76.72 L50.45 66.89"/>
+      <path id="riga-dietro-2" fill="none" d="M34.61 91.04 L55.72 80.66"/>
+      <path id="riga-dietro-3" fill="none" d="M40.57 105.5 L57.87 97.32"/>
+      <path id="riga-dietro-4" fill="none" d="M48.89 120.38 L59.34 116.2"/>
+      <path id="riga-dietro-5" fill="none" d="M54.29 135.47 L60.68 133.01"/>
+    </g>
+  </g>
+
+  <!-- foglio davanti -->
+  <g id="foglio">
+    <rect id="foglio-ombra" x="72.07" y="138" width="91.23" height="15.02" rx="0.82" fill="#E1E9FE" filter="url(#sfuma-ombra)"/>
+    <path id="foglio-piega" d="M60.5 28.4 H73 Q76 28.4 75.5 34 L68.5 147 L65.5 147 L64.5 41 Q56 40 55.5 34.5 Q56 28.4 60.5 28.4 Z" fill="url(#azzurro-piega)"/>
+    <path id="foglio-carta" d="M84 16 H149 Q170.5 17 171.5 50 V142 Q171 149 162 149.5 H74 Q66 150 66.5 142 L73.5 26 Q74.5 16 84 16 Z" fill="#F0F5FE"/>
+    <g id="foglio-righe" stroke="#D4DFFD" stroke-width="7.12" stroke-linecap="round" fill="none">
+      <path id="riga-1" fill="none" d="M94.22 39.97 L131.23 42.7"/>
+      <path id="riga-2" fill="none" d="M92.78 58.13 L147.83 62.64"/>
+      <path id="riga-3" fill="none" d="M90.72 77.39 L117.84 78.71"/>
+      <path id="riga-4" fill="none" d="M89.04 99.92 L112.24 100.91"/>
+      <path id="riga-5" fill="none" d="M88 120 L106 121.69"/>
+    </g>
+  </g>
+
+  <!-- bollino verde con la spunta -->
+  <g id="bollino">
+    <circle id="bollino-alone" cx="150.2" cy="105.64" r="32.5" fill="#E9F2F9"/>
+    <circle id="bollino-verde" cx="152.36" cy="104.63" r="29" fill="url(#verde-bollino)"/>
+    <path id="spunta" fill="none" d="M140.74 105.17 L148.58 113.58 L164.15 96.28" stroke="#F8FAFF" stroke-width="6.37" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

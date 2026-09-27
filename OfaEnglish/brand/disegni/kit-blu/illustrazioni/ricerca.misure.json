@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-blu/illustrazioni/ricerca.svg",
+  "byte": 2023,
+  "fondo_chiaro": {
+   "mae_255": 4.27,
+   "p95_255": 18.0,
+   "entro_8": 0.8692,
+   "ssim": 0.9362
+  },
+  "fondo_scuro": {
+   "mae_255": 10.92,
+   "p95_255": 72.1,
+   "entro_8": 0.8076,
+   "ssim": 0.848
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-blu/illustrazioni/ricerca.maglie.svg",
+  "byte": 83247,
+  "fondo_chiaro": {
+   "mae_255": 3.11,
+   "p95_255": 13.0,
+   "entro_8": 0.9194,
+   "ssim": 0.9472
+  },
+  "fondo_scuro": {
+   "mae_255": 9.83,
+   "p95_255": 57.0,
+   "entro_8": 0.8581,
+   "ssim": 0.8583
+  }
+ }
+}

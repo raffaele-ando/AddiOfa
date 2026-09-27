@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/illustrazioni/attenzione-rischio.svg",
+  "byte": 1356,
+  "fondo_chiaro": {
+   "mae_255": 1.69,
+   "p95_255": 10.0,
+   "entro_8": 0.9294,
+   "ssim": 0.9826
+  },
+  "fondo_scuro": {
+   "mae_255": 5.58,
+   "p95_255": 20.0,
+   "entro_8": 0.8934,
+   "ssim": 0.9154
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/illustrazioni/attenzione-rischio.maglie.svg",
+  "byte": 75837,
+  "fondo_chiaro": {
+   "mae_255": 1.37,
+   "p95_255": 8.0,
+   "entro_8": 0.9521,
+   "ssim": 0.9852
+  },
+  "fondo_scuro": {
+   "mae_255": 5.31,
+   "p95_255": 21.0,
+   "entro_8": 0.9149,
+   "ssim": 0.9161
+  }
+ }
+}

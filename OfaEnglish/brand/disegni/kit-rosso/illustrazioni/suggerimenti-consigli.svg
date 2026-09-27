@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 142 146" width="142" height="146">
+  <title>Suggerimenti / Consigli</title>
+  <defs>
+    <linearGradient id="giallo-lampadina" gradientUnits="userSpaceOnUse" x1="55.73" y1="28.34" x2="91.37" y2="116.48">
+      <stop offset="0.041" stop-color="#FED073"/><stop offset="1" stop-color="#FEC641"/>
+    </linearGradient>
+  </defs>
+
+  <!-- falce chiara dietro la lampadina, a destra -->
+  <path id="falce" d="M107 30 C128 40 137 62 135 82 C133 110 115 130 90 136.5 L75 136.5 L100 70 L128 72 Q126 52 110 38 Z" data-fisso="1" fill="#FEFAF8"/>
+
+  <g id="raggi" stroke="#FECE65" stroke-width="6.34" stroke-linecap="round">
+    <path id="raggio-alto" d="M70.87 7.46 L70.87 24.4"/>
+    <path id="raggio-alto-sinistro" d="M28.71 21.83 L36.03 30.55"/>
+    <path id="raggio-alto-destro" d="M113.51 21.79 L105.28 33.39"/>
+    <path id="raggio-sinistro" d="M9.95 58.21 L20.94 60.1"/>
+    <path id="raggio-destro" d="M121.01 60.36 L132.29 58.33"/>
+  </g>
+
+  <g id="lampadina">
+    <path id="vetro" data-fisso="1" d="M45.3 98 A37 37 0 1 1 96.7 98 Q89.5 105 88.5 113 L53.5 113 Q52.5 105 45.3 98 Z" fill="url(#giallo-lampadina)"/>
+    <g id="filamento">
+      <path id="filamento-sinistro" data-fisso="1" d="M58 82 Q59.5 88.5 65.8 91.5 L65.8 113" fill="none" stroke="#FFEAB0" stroke-width="3.6" stroke-linecap="round"/>
+      <path id="filamento-destro" data-fisso="1" d="M84 82 Q82.5 88.5 76.2 91.5 L76.2 113" fill="none" stroke="#FFEAB0" stroke-width="3.6" stroke-linecap="round"/>
+    </g>
+    <g id="attacco">
+      <rect id="attacco-ghiera-alta" x="54.56" y="113.95" width="32.74" height="7.95" rx="3.33" fill="#334666"/>
+      <rect id="attacco-ghiera-bassa" x="54.5" y="121.02" width="32.93" height="8.73" rx="4.25" fill="#435778"/>
+      <path id="attacco-punta" d="M61.03 129.56 L81.82 129.2 Q81.09 136.26 71.73 137.31 Q62.62 137.65 59.74 129.44 Z" fill="#142B44"/>
+    </g>
+  </g>
+</svg>

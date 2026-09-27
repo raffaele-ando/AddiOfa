@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141 114" width="141" height="114">
+  <title>Messaggi / Supporto</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.21"/></filter>
+    <filter id="sfuma-ombra" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.86"/></filter>
+    <filter id="sfuma-bordo" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <linearGradient id="bianco-fumetto" gradientUnits="userSpaceOnUse" x1="0.75" y1="12.95" x2="0.74" y2="69.06">
+      <stop offset="0.027" stop-color="#EAF0FE"/><stop offset="0.866" stop-color="#FBFCFE"/>
+    </linearGradient>
+    <linearGradient id="blu-fumetto" gradientUnits="userSpaceOnUse" x1="61.91" y1="0.42" x2="133.46" y2="1.38">
+      <stop offset="0.002" stop-color="#4B8BFB"/><stop offset="1" stop-color="#5B96FC"/>
+    </linearGradient>
+  </defs>
+
+  <g id="nuvola" fill="#EFF3FE" filter="url(#sfuma-alone)">
+    <ellipse id="nuvola-centro" cx="57.67" cy="56.93" rx="65.94" ry="53.53"/>
+    <ellipse id="nuvola-destra" cx="111.59" cy="73.55" rx="25.91" ry="30.66"/>
+  </g>
+
+  <g id="fumetto-bianco">
+    <rect id="fumetto-bianco-ombra" data-maglia="no" x="13.08" y="6.79" width="97.65" height="63.27" rx="7.44" fill="#EDF1FF" filter="url(#sfuma-ombra)"/>
+    <path id="fumetto-bianco-corpo" data-fisso="1" d="M21.5 11 L95 11 Q101 11 101 17 L101 64 Q101 70 95 70 L48 70 L34 86 Q32 88 31 85.5 L31 70 L21.5 70 Q15.5 70 15.5 64 L15.5 17 Q15.5 11 21.5 11 Z" fill="url(#bianco-fumetto)"/>
+    <rect id="fumetto-bianco-riflesso" x="87.14" y="17.59" width="14.67" height="40.33" fill="#F9FBFE"/>
+  </g>
+
+  <g id="puntini-blu">
+    <circle id="puntino-blu-1-alone" data-maglia="no" cx="34.68" cy="42.61" r="7.26" fill="#FCFDFE" filter="url(#sfuma-bordo)"/>
+    <circle id="puntino-blu-2-alone" data-maglia="no" cx="51.31" cy="41" r="6.47" fill="#F5FBFE" filter="url(#sfuma-bordo)"/>
+    <circle id="puntino-blu-3-alone" data-maglia="no" cx="68.3" cy="41.81" r="6.19" fill="#FFFCFF" filter="url(#sfuma-bordo)"/>
+    <circle id="puntino-blu-1" cx="35.24" cy="41.94" r="5.32" fill="#4D84FA"/>
+    <circle id="puntino-blu-2" cx="51.42" cy="41.32" r="5.34" fill="#5187FA"/>
+    <circle id="puntino-blu-3" cx="67.4" cy="40.53" r="5.23" fill="#4C85F8"/>
+  </g>
+
+  <g id="fumetto-blu">
+    <path id="fumetto-blu-bordo" data-fisso="1" data-maglia="no" d="M76 68 L83 68 Q88 68 88 63 L88 57 L99 57 Q103 57 103 53 L103 51 Q103 46.5 107.5 46.5 L128.5 46.5 Q133 46.5 133 51 L133 92 Q133 96.5 128.5 96.5 L120 96.5 L120 107.5 Q119.5 109 118 107.5 L106 96.5 L75.5 96.5 Q71 96.5 71 92 L71 73 Q71 68 76 68 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" filter="url(#sfuma-bordo)"/>
+    <path id="fumetto-blu-corpo" data-fisso="1" d="M76 68 L83 68 Q88 68 88 63 L88 57 L99 57 Q103 57 103 53 L103 51 Q103 46.5 107.5 46.5 L128.5 46.5 Q133 46.5 133 51 L133 92 Q133 96.5 128.5 96.5 L120 96.5 L120 107.5 Q119.5 109 118 107.5 L106 96.5 L75.5 96.5 Q71 96.5 71 92 L71 73 Q71 68 76 68 Z" fill="url(#blu-fumetto)"/>
+    <circle id="puntino-bianco-1" cx="88.64" cy="71.96" r="4.46" fill="#F7FBFE"/>
+    <circle id="puntino-bianco-2" cx="102.27" cy="71.52" r="4.45" fill="#F5FBFE"/>
+    <circle id="puntino-bianco-3" cx="115.67" cy="71.03" r="4.61" fill="#F5FBFF"/>
+  </g>
+</svg>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 139 116" width="139" height="116">
+  <title>Celebrazione</title>
+  <defs>
+    <filter id="sfuma-bordo" filterUnits="userSpaceOnUse" x="0" y="0" width="139" height="116"><feGaussianBlur data-fisso="1" stdDeviation="0.7"/></filter>
+    <linearGradient id="giallo-cono" gradientUnits="userSpaceOnUse" x1="48.76" y1="105.43" x2="35.78" y2="55.04">
+      <stop offset="0.199" stop-color="#FEC94D"/><stop offset="0.97" stop-color="#FCD07C"/>
+    </linearGradient>
+    <linearGradient id="blu-bocca" gradientUnits="userSpaceOnUse" x1="-0.54" y1="43.91" x2="-0.85" y2="80.32">
+      <stop offset="0.015" stop-color="#578BE5"/><stop offset="1" stop-color="#457BD1"/>
+    </linearGradient>
+  </defs>
+
+  <g id="coriandoli">
+    <g id="coriandolo-arancio-alto" fill="#FC9D17">
+      <path id="coriandolo-arancio-alto-vita" data-fisso="1" d="M85.1 8.6 L83.8 17.4" fill="none" stroke="#FCA018" stroke-width="5.6" stroke-linecap="round"/>
+      <circle id="coriandolo-arancio-alto-testa" data-fisso="1" cx="85.1" cy="8.6" r="3.8"/>
+      <circle id="coriandolo-arancio-alto-coda" data-fisso="1" cx="83.8" cy="17.4" r="3.8"/>
+    </g>
+    <g id="coriandolo-giallo-sinistra" fill="#FEBB48">
+      <path id="coriandolo-giallo-sinistra-vita" data-fisso="1" d="M29.4 9.5 L34.3 17.3" fill="none" stroke="#FDBB49" stroke-width="5.4" stroke-linecap="round"/>
+      <circle id="coriandolo-giallo-sinistra-testa" data-fisso="1" cx="29.4" cy="9.5" r="3.7"/>
+      <circle id="coriandolo-giallo-sinistra-coda" data-fisso="1" cx="34.3" cy="17.3" r="3.7"/>
+    </g>
+    <g id="coriandolo-blu-alto" fill="#3375F3">
+      <path id="coriandolo-blu-alto-vita" data-fisso="1" d="M62.4 25.4 L62.2 31.7" fill="none" stroke="#3274F2" stroke-width="5.0" stroke-linecap="round"/>
+      <circle id="coriandolo-blu-alto-testa" data-fisso="1" cx="62.4" cy="25.4" r="3.4"/>
+      <circle id="coriandolo-blu-alto-coda" data-fisso="1" cx="62.2" cy="31.7" r="3.4"/>
+    </g>
+    <g id="coriandolo-giallo-destra" fill="#FFB83C">
+      <path id="coriandolo-giallo-destra-vita" data-fisso="1" d="M114.6 26.7 L108.6 31.7" fill="none" stroke="#FEB83C" stroke-width="5.2" stroke-linecap="round"/>
+      <circle id="coriandolo-giallo-destra-testa" data-fisso="1" cx="114.6" cy="26.7" r="3.5"/>
+      <circle id="coriandolo-giallo-destra-coda" data-fisso="1" cx="108.6" cy="31.7" r="3.5"/>
+    </g>
+    <g id="coriandolo-blu-diagonale" fill="#3F7EFA">
+      <path id="coriandolo-blu-diagonale-vita" data-fisso="1" d="M82.8 38.4 L78.4 43.8" fill="none" stroke="#427EF7" stroke-width="5.0" stroke-linecap="round"/>
+      <circle id="coriandolo-blu-diagonale-testa" data-fisso="1" cx="82.8" cy="38.4" r="3.4"/>
+      <circle id="coriandolo-blu-diagonale-coda" data-fisso="1" cx="78.4" cy="43.8" r="3.4"/>
+    </g>
+    <g id="coriandolo-rosso" fill="#F74847">
+      <path id="coriandolo-rosso-vita" data-fisso="1" d="M11.7 38.5 L18.7 42.8" fill="none" stroke="#F64846" stroke-width="5.8" stroke-linecap="round"/>
+      <circle id="coriandolo-rosso-testa" data-fisso="1" cx="11.7" cy="38.5" r="3.9"/>
+      <circle id="coriandolo-rosso-coda" data-fisso="1" cx="18.7" cy="42.8" r="3.9"/>
+    </g>
+    <g id="coriandolo-blu-destra" fill="#4E86F3">
+      <path id="coriandolo-blu-destra-vita" data-fisso="1" d="M120.6 54.9 L127.5 54.2" fill="none" stroke="#4D83F1" stroke-width="5.4" stroke-linecap="round"/>
+      <circle id="coriandolo-blu-destra-testa" data-fisso="1" cx="120.6" cy="54.9" r="3.7"/>
+      <circle id="coriandolo-blu-destra-coda" data-fisso="1" cx="127.5" cy="54.2" r="3.7"/>
+    </g>
+    <g id="coriandolo-blu-centro" fill="#3C79ED">
+      <path id="coriandolo-blu-centro-vita" data-fisso="1" d="M89.6 57.7 L95.6 56.8" fill="none" stroke="#3F7CED" stroke-width="5.5" stroke-linecap="round"/>
+      <circle id="coriandolo-blu-centro-testa" data-fisso="1" cx="89.6" cy="57.7" r="3.8"/>
+      <circle id="coriandolo-blu-centro-coda" data-fisso="1" cx="95.6" cy="56.8" r="3.8"/>
+    </g>
+    <g id="coriandolo-arancio-destra" fill="#FEAF23">
+      <path id="coriandolo-arancio-destra-vita" data-fisso="1" d="M104.6 78.2 L112.4 81.6" fill="none" stroke="#FDAE22" stroke-width="5.6" stroke-linecap="round"/>
+      <circle id="coriandolo-arancio-destra-testa" data-fisso="1" cx="104.6" cy="78.2" r="3.8"/>
+      <circle id="coriandolo-arancio-destra-coda" data-fisso="1" cx="112.4" cy="81.6" r="3.8"/>
+    </g>
+    <g id="coriandolo-giallo-basso" fill="#FEB742">
+      <path id="coriandolo-giallo-basso-vita" data-fisso="1" d="M89.1 100.9 L93.5 106.4" fill="none" stroke="#FEB743" stroke-width="5.6" stroke-linecap="round"/>
+      <circle id="coriandolo-giallo-basso-testa" data-fisso="1" cx="89.1" cy="100.9" r="3.8"/>
+      <circle id="coriandolo-giallo-basso-coda" data-fisso="1" cx="93.5" cy="106.4" r="3.8"/>
+    </g>
+  </g>
+
+  <g id="trombetta">
+    <path id="trombetta-alone" data-fisso="1" data-maglia="no" d="M44 43 L17 97 Q14 104 20 106 Q22 106.5 25 105.5 L81 80 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round" filter="url(#sfuma-bordo)"/>
+    <path id="trombetta-cono" d="M43.78 41.29 L16.12 97.8 Q11.66 104.61 19.94 107.04 Q23.73 106.5 24.36 105.5 L82.16 80.29 Z" fill="url(#giallo-cono)"/>
+    <path id="trombetta-bocca-alone" data-fisso="1" data-maglia="no" d="M44.4 42.8 A26 11.5 46 1 0 80.6 80.2 A26 11.5 46 1 0 44.4 42.8 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.6" filter="url(#sfuma-bordo)"/>
+    <path id="trombetta-bocca" d="M44.33 42.73 A26.39 12.31 45.77 1 0 80.62 80.87 A25.9 10.42 46.36 1 0 43.39 43.12 Z" fill="url(#blu-bocca)"/>
+    <path id="coriandolo-bianco-1" data-fisso="1" d="M57.5 50.5 L60 57 L65.5 53.5" fill="none" stroke="#DDE6F4" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="coriandolo-bianco-2" data-fisso="1" d="M65.5 67 L77 62.5" fill="none" stroke="#F4F7FC" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

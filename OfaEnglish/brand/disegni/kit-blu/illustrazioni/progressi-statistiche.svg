@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146 105" width="146" height="105">
+  <title>Progressi / Statistiche</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.7"/></filter>
+    <filter id="sfuma-bordo" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <linearGradient id="blu-barra-1" gradientUnits="userSpaceOnUse" x1="24.84" y1="0.03" x2="40.45" y2="-0.3">
+      <stop offset="0.022" stop-color="#4383F6"/><stop offset="0.997" stop-color="#85AEFF"/>
+    </linearGradient>
+    <linearGradient id="blu-barra-2" gradientUnits="userSpaceOnUse" x1="51.74" y1="-0.26" x2="68.77" y2="0.07">
+      <stop offset="0" stop-color="#2A70E4"/><stop offset="1" stop-color="#82AEFF"/>
+    </linearGradient>
+    <linearGradient id="blu-barra-3" gradientUnits="userSpaceOnUse" x1="76.51" y1="0.02" x2="92.69" y2="0">
+      <stop offset="0.057" stop-color="#6396F5"/><stop offset="0.87" stop-color="#AECBFE"/>
+    </linearGradient>
+    <linearGradient id="blu-barra-4" gradientUnits="userSpaceOnUse" x1="95.17" y1="1.4" x2="112.23" y2="-0.41">
+      <stop offset="0" stop-color="#1D69FC"/><stop offset="0.973" stop-color="#5B92FD"/>
+    </linearGradient>
+  </defs>
+
+  <g id="nuvola" fill="#EFF4FE" filter="url(#sfuma-alone)">
+    <ellipse id="nuvola-destra" cx="88.25" cy="55.68" rx="52.2" ry="49.09"/>
+    <ellipse id="nuvola-sinistra" cx="39.12" cy="71.07" rx="36.55" ry="31.97"/>
+    <ellipse id="nuvola-alto" cx="54.89" cy="52" rx="42.94" ry="25.63"/>
+  </g>
+
+  <g id="barra-1">
+    <rect id="barra-1-bordo" data-maglia="no" x="23.04" y="64.79" width="20.26" height="24.62" rx="5.14" fill="#FAFDFF" filter="url(#sfuma-bordo)"/>
+    <rect id="barra-1-corpo" x="24.42" y="64.82" width="18.08" height="24.36" rx="5.45" fill="url(#blu-barra-1)"/>
+  </g>
+  <g id="barra-2">
+    <rect id="barra-2-bordo" data-maglia="no" x="48.55" y="43.2" width="19.46" height="47.92" rx="7.46" fill="#FAFEFE" filter="url(#sfuma-bordo)"/>
+    <rect id="barra-2-corpo" x="49.71" y="44.24" width="18.14" height="45" rx="6.12" fill="url(#blu-barra-2)"/>
+  </g>
+  <g id="barra-3">
+    <rect id="barra-3-bordo" data-maglia="no" x="74.16" y="25.86" width="19.27" height="64.61" rx="7.59" fill="#FEFDFE" filter="url(#sfuma-bordo)"/>
+    <rect id="barra-3-corpo" x="75.59" y="27.29" width="18.23" height="61.97" rx="5.68" fill="url(#blu-barra-3)"/>
+  </g>
+  <g id="barra-4">
+    <rect id="barra-4-bordo" data-maglia="no" x="99.92" y="3.25" width="19.9" height="81.93" rx="7.97" fill="#FFFFFE" filter="url(#sfuma-bordo)"/>
+    <rect id="barra-4-corpo" x="101.43" y="5.1" width="18.84" height="84.25" rx="6.45" fill="url(#blu-barra-4)"/>
+    <path id="barra-4-cima" d="M102.43 20.48 L102.34 10.43 Q105.28 4.84 107.38 6.06 L116.08 5.93 Q117.92 7.38 120.1 9.48 L120.31 20.25 Z" fill="#0F5FFC"/>
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 185 158" width="185" height="158">
+  <title>Suggerimenti / Consigli</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <radialGradient id="giallo-lampadina" gradientUnits="userSpaceOnUse" cx="74.03" cy="52.53" r="76.08">
+      <stop offset="0.139" stop-color="#FECE6F"/><stop offset="0.945" stop-color="#FEC14F"/>
+    </radialGradient>
+    <linearGradient id="blu-attacco" gradientUnits="userSpaceOnUse" x1="0" y1="126.06" x2="0" y2="143.9">
+      <stop offset="0.042" stop-color="#224674"/><stop offset="0.484" stop-color="#4A6387"/><stop offset="0.993" stop-color="#304978"/>
+    </linearGradient>
+    <linearGradient id="blu-fondo" gradientUnits="userSpaceOnUse" x1="-0.08" y1="146.14" x2="0" y2="148.64">
+      <stop offset="0.067" stop-color="#273B62"/><stop offset="0.985" stop-color="#0F2A52"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sfondo: nuvola chiara calda -->
+  <g id="nuvola" fill="#FEF6EB" filter="url(#sfuma-alone)">
+    <ellipse id="nuvola-alto" cx="82.5" cy="81.59" rx="80.84" ry="61.09"/>
+    <ellipse id="nuvola-destra" cx="139.46" cy="112.17" rx="43.14" ry="38.32"/>
+    <ellipse id="nuvola-basso" cx="79" cy="122.01" rx="77.47" ry="34.2"/>
+  </g>
+
+  <!-- raggi di luce -->
+  <g id="raggi" stroke="#FEAF12" stroke-width="7.53" stroke-linecap="round" fill="none">
+    <path id="raggio-alto" fill="none" d="M93.13 9.95 L93.13 24.68"/>
+    <path id="raggio-alto-sinistro" fill="none" d="M48.96 28.72 L57.5 37.94"/>
+    <path id="raggio-alto-destro" fill="none" d="M137.68 28.8 L129.13 37.91"/>
+    <path id="raggio-sinistro" fill="none" d="M28.75 76.02 L40.81 75.98"/>
+    <path id="raggio-destro" fill="none" d="M144.5 75.87 L156.58 76.04"/>
+  </g>
+
+  <!-- lampadina -->
+  <g id="lampadina">
+    <path id="vetro" d="M74.5 126.45 V120.65 C73.62 111.81 54.56 105.03 54.99 80.5 A37.81 37.96 0.02 0 1 131 81.03 C131.49 104 110.92 112 110.8 121.42 V127.3 Z" fill="url(#giallo-lampadina)"/>
+    <g id="filamento" stroke="#FFF1D1" stroke-width="3.97" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path id="filamento-sinistro" fill="none" d="M79.54 92.5 Q80.92 99.44 87.24 101.38 V127"/>
+      <path id="filamento-destro" fill="none" d="M105.78 92.71 Q104.23 99.86 97.76 101.53 V126.25"/>
+    </g>
+    <rect id="attacco-alto" x="74.78" y="126.49" width="35.9" height="9.22" rx="4.6" fill="url(#blu-attacco)"/>
+    <rect id="attacco-basso" x="75.29" y="134.89" width="34.82" height="9.5" rx="4.34" fill="url(#blu-attacco)"/>
+    <path id="attacco-fondo" d="M81.65 143.88 H103.2 V143.59 A9.63 8.02 3.71 0 1 81.44 143.56 Z" fill="url(#blu-fondo)"/>
+  </g>
+</svg>

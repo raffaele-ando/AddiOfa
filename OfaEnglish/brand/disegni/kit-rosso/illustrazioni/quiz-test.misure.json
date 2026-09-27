@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/illustrazioni/quiz-test.svg",
+  "byte": 4606,
+  "fondo_chiaro": {
+   "mae_255": 2.02,
+   "p95_255": 9.0,
+   "entro_8": 0.9433,
+   "ssim": 0.9567
+  },
+  "fondo_scuro": {
+   "mae_255": 60.14,
+   "p95_255": 235.0,
+   "entro_8": 0.6563,
+   "ssim": 0.4907
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/illustrazioni/quiz-test.maglie.svg",
+  "byte": 72963,
+  "fondo_chiaro": {
+   "mae_255": 1.58,
+   "p95_255": 7.0,
+   "entro_8": 0.9666,
+   "ssim": 0.9623
+  },
+  "fondo_scuro": {
+   "mae_255": 59.71,
+   "p95_255": 235.0,
+   "entro_8": 0.6782,
+   "ssim": 0.4919
+  }
+ }
+}

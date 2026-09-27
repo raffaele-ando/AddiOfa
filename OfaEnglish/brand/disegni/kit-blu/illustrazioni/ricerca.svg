@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 117" width="130" height="117">
+  <title>Ricerca</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.77"/></filter>
+    <filter id="sfuma-bordo" filterUnits="userSpaceOnUse" x="0" y="0" width="130" height="117"><feGaussianBlur stdDeviation="1.13"/></filter>
+    <linearGradient id="blu-anello" gradientUnits="userSpaceOnUse" x1="41.29" y1="22.67" x2="66.52" y2="94.78">
+      <stop offset="0.014" stop-color="#7D96C8"/><stop offset="0.427" stop-color="#26538F"/><stop offset="0.972" stop-color="#1B488D"/>
+    </linearGradient>
+    <linearGradient id="blu-manico" gradientUnits="userSpaceOnUse" x1="80.21" y1="83.02" x2="84.18" y2="99.62">
+      <stop offset="0.178" stop-color="#13396D"/><stop offset="0.404" stop-color="#123260"/>
+    </linearGradient>
+  </defs>
+
+  <g id="nuvola" fill="#F2F6FE" filter="url(#sfuma-alone)">
+    <ellipse id="nuvola-centro" cx="57.34" cy="58.44" rx="55.58" ry="56.31"/>
+    <ellipse id="nuvola-destra" cx="99.99" cy="79.13" rx="27.76" ry="31.07"/>
+  </g>
+
+  <g id="lente">
+    <path id="manico-alone" data-fisso="1" data-maglia="no" d="M80 82 L96 102" fill="none" stroke="#FFFFFF" stroke-width="18.5" stroke-linecap="round" filter="url(#sfuma-bordo)"/>
+    <circle id="anello-alone" data-maglia="no" cx="60.04" cy="52.98" r="35.06" fill="#F3F7FC" filter="url(#sfuma-bordo)"/>
+    <path id="manico" data-fisso="1" d="M75.9 89.3 L89.9 106.8 A7.75 7.75 0 0 0 102.1 97.2 L88.1 79.7 Z" fill="url(#blu-manico)"/>
+    <path id="manico-collo" data-fisso="1" d="M72.6 80.6 L79.6 89.4 L87.4 83.2 L80.4 74.4 Z" fill="url(#blu-manico)"/>
+    <circle id="anello" cx="54.94" cy="52.5" r="33.63" fill="url(#blu-anello)"/>
+    <circle id="vetro-bordo" cx="55.24" cy="52.86" r="24.01" fill="#ECF2FC"/>
+    <circle id="vetro" cx="56.15" cy="51.83" r="22.8" fill="#E9F0FE"/>
+    <ellipse id="vetro-riflesso" cx="47.11" cy="38.49" rx="5.49" ry="3.38" fill="#F3F7FE"/>
+  </g>
+</svg>

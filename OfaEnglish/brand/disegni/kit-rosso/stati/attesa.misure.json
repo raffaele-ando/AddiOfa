@@ -1,0 +1,34 @@
+{
+ "forme": {
+  "svg": "disegni/kit-rosso/stati/attesa.svg",
+  "byte": 2053,
+  "fondo_chiaro": {
+   "mae_255": 2.27,
+   "p95_255": 15.0,
+   "entro_8": 0.8778,
+   "ssim": 0.9664
+  },
+  "fondo_scuro": {
+   "mae_255": 5.12,
+   "p95_255": 23.7,
+   "entro_8": 0.8149,
+   "ssim": 0.9139
+  }
+ },
+ "maglie": {
+  "svg": "disegni/kit-rosso/stati/attesa.maglie.svg",
+  "byte": 33194,
+  "fondo_chiaro": {
+   "mae_255": 1.98,
+   "p95_255": 14.0,
+   "entro_8": 0.9039,
+   "ssim": 0.9707
+  },
+  "fondo_scuro": {
+   "mae_255": 5.04,
+   "p95_255": 30.6,
+   "entro_8": 0.8427,
+   "ssim": 0.9152
+  }
+ }
+}

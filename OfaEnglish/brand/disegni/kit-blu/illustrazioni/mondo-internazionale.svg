@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 120" width="156" height="120">
+  <title>Mondo / Internazionale</title>
+  <defs>
+    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.7"/></filter>
+    <filter id="sfuma-bordo" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.95"/></filter>
+    <filter id="sfuma-scia" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.77"/></filter>
+    <clipPath id="globo-forma"><ellipse data-fisso="1" cx="70.5" cy="64.5" rx="48.5" ry="49.5"/></clipPath>
+    <linearGradient id="calotta-sud-colore" gradientUnits="userSpaceOnUse" x1="51.73" y1="-0.18" x2="92.48" y2="0.57">
+      <stop offset="0" stop-color="#2F69D5"/><stop offset="0.429" stop-color="#135BE9"/><stop offset="0.972" stop-color="#1759A8"/>
+    </linearGradient>
+  </defs>
+
+  <g id="nuvola" fill="#ECF3FE" filter="url(#sfuma-alone)">
+    <ellipse id="nuvola-centro" cx="54.13" cy="59.81" rx="54" ry="57.9"/>
+    <ellipse id="nuvola-destra" cx="101.11" cy="80.43" rx="37.73" ry="34.83"/>
+    <ellipse id="nuvola-aereo" cx="125.86" cy="42.8" rx="20.82" ry="9.88"/>
+  </g>
+
+  <g id="globo">
+    <ellipse id="globo-bordo" data-maglia="no" cx="73.25" cy="63.92" rx="50.62" ry="52.97" fill="#F1F3FB" filter="url(#sfuma-bordo)"/>
+    <ellipse id="globo-mare" cx="71.42" cy="64.69" rx="48.71" ry="50.02" fill="#8BB6FD"/>
+    <g id="terre" clip-path="url(#globo-forma)">
+      <path id="terra-nord-ovest" d="M41.67 21 L59.38 21.65 Q64.17 23.19 67.63 27 L68.52 35.47 Q66.17 41.64 61.37 43.58 L58.24 43.99 L58.22 37.23 Q53.33 36.98 48.99 41.9 L49.37 43.5 L54.43 43.31 L54.27 47.82 Q51.18 51.28 49.16 52.5 Q45.14 54 41.78 55.92 L37.78 59.9 L32.69 64.23 Q30.65 58.65 25.48 57.75 Q23.24 60.55 24.85 62.34 Q28 67.32 28.5 69.94 L29.08 72 L15 71.15 L15 21 Z" fill="#4076CA"/>
+      <path id="terra-sud-ovest" d="M29.36 75.19 L31.62 75.5 Q36.42 78.41 38.24 78.11 L42.59 80 L44.4 84.22 Q46.29 87.31 48.62 88.45 L50.78 90.71 L54.37 94.37 L54.34 97.33 Q51.13 102.08 48.95 102.87 L44.02 106.93 Q38.02 102.22 32.33 94.48 Q27.77 88.51 25.74 81.88 Q26.5 77.5 29.6 75.77 Z" fill="#3D6FC5"/>
+      <path id="terra-est" d="M106.39 27.97 L125 29 L125 113.15 L73.69 114.43 L78.16 104.59 L79.61 97.08 L78.14 91.27 L77.31 90 L72.98 89 Q66.07 88.28 63.99 84.27 L62.68 78.6 Q65.01 75.31 64.6 73.17 L67 70.83 Q69.7 68.06 72.33 66.26 L75.66 64.74 L77.86 64.43 L78.83 64.2 L81.22 64.84 Q82.47 69.2 90.15 70 L98.45 68.97 Q99.92 69.81 98.9 64.84 Q96.63 63.66 94.14 65.5 L87.42 62.8 L84.86 59.86 L80.58 60.72 L75.28 62.44 L75.78 58.26 L74.89 54.47 L76.05 52.04 L78.31 49.57 L83.12 51.41 L84.46 51.21 L84.31 46.03 L86.48 44 L88.05 42.43 L96.07 40.26 L100.67 37.72 L100.39 36 L105.17 34 Z" fill="#396DC1"/>
+      <path id="terra-sud-est-chiara" d="M106.84 84.6 Q106 93.58 100.36 96.52 Q95.95 99.49 95.61 104.77 L97 106 L125 106 L125 86.7 L110.98 87.31 Z" fill="#8BB9FD"/>
+      <path id="ombra-est" d="M112.85 64.81 Q111.94 77.02 108.8 80.63 Q107.44 84.65 112.41 87.57 L117.38 89.84 Q118.8 80.61 117.21 64.77 Z" fill="#12549C"/>
+      <path id="calotta-nord" d="M59.11 14.99 L62.18 16.7 Q69.2 21.23 77.65 24.97 Q89.58 29.39 93.79 31.61 Q96.27 32.03 99 29.5 L101.94 25.09 L102 10 Z" fill="#1151A3"/>
+      <path id="calotta-sud" d="M50.03 111 Q62.86 110.26 72.68 108.42 Q85.21 106.02 87.94 104.32 Q95.1 100.59 96.74 104.86 L100.93 104.99 L100 118 L45 118 Z" fill="url(#calotta-sud-colore)"/>
+    </g>
+  </g>
+
+  <path id="rotta-grigia" data-fisso="1" d="M64.5 74 L93 62.5" fill="none" stroke="#D3DCF2" stroke-width="1.4" stroke-linecap="round"/>
+  <path id="orbita-sinistra" data-fisso="1" d="M24 70.8 Q45.5 81.5 64.5 74" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round"/>
+  <path id="orbita-anello" data-fisso="1" d="M113 39.3 Q104 37.5 99.5 43 Q96.5 47 97.5 53 Q98.5 59 103 59.3 Q106 59 116.5 52.3" fill="none" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round"/>
+  <ellipse id="scia-aereo" data-maglia="no" cx="121.51" cy="41.34" rx="4.27" ry="8.76" fill="#FAFFFF" opacity="0.788" filter="url(#sfuma-scia)"/>
+
+  <g id="aereo" data-fisso="1" transform="translate(136 42) rotate(-26.5)">
+    <path id="aereo-alone" data-fisso="1" data-maglia="no" d="M12 0 Q12 -2.6 8.5 -2.6 L3.5 -2.6 L-2.5 -10.5 Q-5 -11.5 -6.5 -10 L-3.5 -2.6 L-7.5 -2.6 L-10 -5.5 L-12.5 -5.5 L-11 0 L-12.5 5.5 L-10 5.5 L-7.5 2.6 L-3.5 2.6 L-6.5 10 Q-5 11.5 -2.5 10.5 L3.5 2.6 L8.5 2.6 Q12 2.6 12 0 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round" filter="url(#sfuma-bordo)"/>
+    <path id="aereo-sagoma" data-fisso="1" d="M12 0 Q12 -2.6 8.5 -2.6 L3.5 -2.6 L-2.5 -10.5 Q-5 -11.5 -6.5 -10 L-3.5 -2.6 L-7.5 -2.6 L-10 -5.5 L-12.5 -5.5 L-11 0 L-12.5 5.5 L-10 5.5 L-7.5 2.6 L-3.5 2.6 L-6.5 10 Q-5 11.5 -2.5 10.5 L3.5 2.6 L8.5 2.6 Q12 2.6 12 0 Z" fill="#1060EC"/>
+  </g>
+</svg>
