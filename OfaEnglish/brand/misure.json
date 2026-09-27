@@ -1,0 +1,1342 @@
+{
+ "kit-blu/icone/studio": {
+  "dimensioni": [
+   63,
+   62
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 2,
+   "w": 56,
+   "h": 57
+  },
+  "raggio": 27.3,
+  "riempimento": "#F0F4FE",
+  "bordo": null,
+  "inchiostro": "#0456FD",
+  "ombra": {
+   "pixel": 206,
+   "alfa_media": 0.473
+  }
+ },
+ "kit-blu/icone/statistiche": {
+  "dimensioni": [
+   64,
+   64
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 4,
+   "w": 57,
+   "h": 56
+  },
+  "raggio": 27.3,
+  "riempimento": "#FEF7EC",
+  "bordo": null,
+  "inchiostro": "#FEA400",
+  "ombra": {
+   "pixel": 260,
+   "alfa_media": 0.438
+  }
+ },
+ "kit-blu/icone/quiz": {
+  "dimensioni": [
+   63,
+   63
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 57,
+   "h": 56
+  },
+  "raggio": 27.3,
+  "riempimento": "#EFF3FE",
+  "bordo": null,
+  "inchiostro": "#0850FE",
+  "ombra": {
+   "pixel": 189,
+   "alfa_media": 0.45
+  }
+ },
+ "kit-blu/icone/contenuti": {
+  "dimensioni": [
+   63,
+   63
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 56,
+   "h": 56
+  },
+  "raggio": 27.3,
+  "riempimento": "#FEEFF0",
+  "bordo": null,
+  "inchiostro": "#F41F27",
+  "ombra": {
+   "pixel": 241,
+   "alfa_media": 0.472
+  }
+ },
+ "kit-blu/icone/costo": {
+  "dimensioni": [
+   64,
+   64
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 56,
+   "h": 57
+  },
+  "raggio": 27.3,
+  "riempimento": "#FEEFEF",
+  "bordo": null,
+  "inchiostro": "#F4242B",
+  "ombra": {
+   "pixel": 226,
+   "alfa_media": 0.441
+  }
+ },
+ "kit-blu/icone/blocco": {
+  "dimensioni": [
+   63,
+   62
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 57,
+   "h": 56
+  },
+  "raggio": 27.3,
+  "riempimento": "#FEEEEF",
+  "bordo": null,
+  "inchiostro": "#F4222C",
+  "ombra": {
+   "pixel": 215,
+   "alfa_media": 0.427
+  }
+ },
+ "kit-blu/icone/successo": {
+  "dimensioni": [
+   64,
+   64
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 4,
+   "w": 57,
+   "h": 56
+  },
+  "raggio": 27.3,
+  "riempimento": "#EBF9F0",
+  "bordo": null,
+  "inchiostro": "#06AE45",
+  "ombra": {
+   "pixel": 240,
+   "alfa_media": 0.456
+  }
+ },
+ "kit-blu/icone/email": {
+  "dimensioni": [
+   64,
+   63
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 56,
+   "h": 56
+  },
+  "raggio": 27.3,
+  "riempimento": "#FEF0F0",
+  "bordo": null,
+  "inchiostro": "#F32F35",
+  "ombra": {
+   "pixel": 235,
+   "alfa_media": 0.433
+  }
+ },
+ "kit-blu/icone/profilo": {
+  "dimensioni": [
+   63,
+   62
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 56,
+   "h": 56
+  },
+  "raggio": 27.3,
+  "riempimento": "#EBF0FE",
+  "bordo": null,
+  "inchiostro": "#5D81FB",
+  "ombra": {
+   "pixel": 213,
+   "alfa_media": 0.474
+  }
+ },
+ "kit-blu/icone/impostazioni": {
+  "dimensioni": [
+   63,
+   63
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 2,
+   "w": 56,
+   "h": 57
+  },
+  "raggio": 27.3,
+  "riempimento": "#F1F3F6",
+  "bordo": null,
+  "inchiostro": "#63748F",
+  "ombra": {
+   "pixel": 210,
+   "alfa_media": 0.456
+  }
+ },
+ "kit-blu/icone/aiuto": {
+  "dimensioni": [
+   63,
+   63
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 2,
+   "w": 56,
+   "h": 57
+  },
+  "raggio": 27.3,
+  "riempimento": "#F1F2F6",
+  "bordo": null,
+  "inchiostro": "#52627E",
+  "ombra": {
+   "pixel": 208,
+   "alfa_media": 0.428
+  }
+ },
+ "kit-blu/icone/completato": {
+  "dimensioni": [
+   64,
+   63
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 57,
+   "h": 57
+  },
+  "raggio": 28.5,
+  "riempimento": "#EBF9F0",
+  "bordo": null,
+  "inchiostro": "#11AB4B",
+  "ombra": {
+   "pixel": 223,
+   "alfa_media": 0.463
+  }
+ },
+ "kit-blu/icone/errore": {
+  "dimensioni": [
+   63,
+   63
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 57,
+   "h": 56
+  },
+  "raggio": 27.3,
+  "riempimento": "#FEEFEF",
+  "bordo": null,
+  "inchiostro": "#F22830",
+  "ombra": {
+   "pixel": 222,
+   "alfa_media": 0.414
+  }
+ },
+ "kit-blu/icone/info": {
+  "dimensioni": [
+   65,
+   63
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 57,
+   "h": 57
+  },
+  "raggio": 28.5,
+  "riempimento": "#EBF0FE",
+  "bordo": null,
+  "inchiostro": "#2162FC",
+  "ombra": {
+   "pixel": 214,
+   "alfa_media": 0.434
+  }
+ },
+ "kit-blu/stati/operazione-completata": {
+  "dimensioni": [
+   173,
+   75
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 4,
+   "w": 164,
+   "h": 67
+  },
+  "raggio": 13.7,
+  "riempimento": "#EDF9F1",
+  "bordo": null,
+  "inchiostro": "#16884D",
+  "ombra": {
+   "pixel": 572,
+   "alfa_media": 0.393
+  }
+ },
+ "kit-blu/stati/errore": {
+  "dimensioni": [
+   173,
+   73
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 166,
+   "h": 67
+  },
+  "raggio": 13.7,
+  "riempimento": "#FEF0F0",
+  "bordo": null,
+  "inchiostro": "#F3242C",
+  "ombra": {
+   "pixel": 503,
+   "alfa_media": 0.384
+  }
+ },
+ "kit-blu/stati/attenzione": {
+  "dimensioni": [
+   174,
+   74
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 4,
+   "w": 166,
+   "h": 67
+  },
+  "raggio": 13.7,
+  "riempimento": "#FEF7EC",
+  "bordo": null,
+  "inchiostro": "#B07004",
+  "ombra": {
+   "pixel": 499,
+   "alfa_media": 0.381
+  }
+ },
+ "kit-blu/stati/informazione": {
+  "dimensioni": [
+   174,
+   73
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 167,
+   "h": 67
+  },
+  "raggio": 13.7,
+  "riempimento": "#F1F5FE",
+  "bordo": null,
+  "inchiostro": "#1D4A72",
+  "ombra": {
+   "pixel": 461,
+   "alfa_media": 0.403
+  }
+ },
+ "kit-blu/ui/pulsante-primario": {
+  "dimensioni": [
+   169,
+   56
+  ],
+  "corpo": {
+   "x": 8,
+   "y": 5,
+   "w": 152,
+   "h": 47
+  },
+  "raggio": 20.5,
+  "riempimento": "#F4393F",
+  "bordo": null,
+  "inchiostro": "#FEF8F7",
+  "ombra": {
+   "pixel": 947,
+   "alfa_media": 0.352
+  }
+ },
+ "kit-blu/ui/pulsante-secondario": {
+  "dimensioni": [
+   154,
+   50
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 4,
+   "w": 148,
+   "h": 43
+  },
+  "raggio": 10.2,
+  "riempimento": "#F4F6F9",
+  "bordo": null,
+  "inchiostro": "#0D1B3B",
+  "ombra": {
+   "pixel": 416,
+   "alfa_media": 0.547
+  }
+ },
+ "kit-blu/ui/pulsante-outline": {
+  "dimensioni": [
+   153,
+   57
+  ],
+  "corpo": {
+   "x": 7,
+   "y": 6,
+   "w": 140,
+   "h": 45
+  },
+  "raggio": 6.8,
+  "riempimento": "#FEFEFE",
+  "bordo": "#81ABFC",
+  "inchiostro": "#155EFA",
+  "ombra": {
+   "pixel": 650,
+   "alfa_media": 0.442
+  }
+ },
+ "kit-blu/ui/interruttore-acceso": {
+  "dimensioni": [
+   67,
+   38
+  ],
+  "corpo": {
+   "x": 8,
+   "y": 6,
+   "w": 55,
+   "h": 27
+  },
+  "raggio": 13.5,
+  "riempimento": "#FCFCFE",
+  "bordo": "#226EFD",
+  "inchiostro": "#085AFC",
+  "ombra": {
+   "pixel": 333,
+   "alfa_media": 0.396
+  }
+ },
+ "kit-blu/ui/interruttore-spento": {
+  "dimensioni": [
+   52,
+   33
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 4,
+   "w": 45,
+   "h": 26
+  },
+  "raggio": 13.0,
+  "riempimento": "#D7DBE3",
+  "bordo": null,
+  "inchiostro": "#F9F9FB",
+  "ombra": {
+   "pixel": 152,
+   "alfa_media": 0.38
+  }
+ },
+ "kit-blu/ui/casella-spuntata": {
+  "dimensioni": [
+   43,
+   34
+  ],
+  "corpo": {
+   "x": 10,
+   "y": 5,
+   "w": 23,
+   "h": 23
+  },
+  "raggio": 0.0,
+  "riempimento": "#246FFD",
+  "bordo": null,
+  "inchiostro": "#FFFFFF",
+  "ombra": {
+   "pixel": 270,
+   "alfa_media": 0.517
+  }
+ },
+ "kit-blu/ui/casella-vuota": {
+  "dimensioni": [
+   30,
+   30
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 24,
+   "h": 24
+  },
+  "raggio": 3.4,
+  "riempimento": "#FEFEFE",
+  "bordo": "#DEE1E9",
+  "inchiostro": "#FBFCFC",
+  "ombra": {
+   "pixel": 73,
+   "alfa_media": 0.558
+  }
+ },
+ "kit-blu/ui/radio-selezionato": {
+  "dimensioni": [
+   44,
+   37
+  ],
+  "corpo": {
+   "x": 10,
+   "y": 3,
+   "w": 31,
+   "h": 31
+  },
+  "raggio": 15.5,
+  "riempimento": "#FAFBFE",
+  "bordo": "#82ADFE",
+  "inchiostro": "#015EFE",
+  "ombra": {
+   "pixel": 213,
+   "alfa_media": 0.389
+  }
+ },
+ "kit-blu/ui/radio-vuoto": {
+  "dimensioni": [
+   33,
+   33
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 26,
+   "h": 27
+  },
+  "raggio": 13.0,
+  "riempimento": "#FEFEFE",
+  "bordo": "#DADEE8",
+  "inchiostro": "#FDFCFD",
+  "ombra": {
+   "pixel": 97,
+   "alfa_media": 0.394
+  }
+ },
+ "kit-blu/ui/indicatore-avanzamento": {
+  "dimensioni": [
+   494,
+   58
+  ],
+  "corpo": {
+   "x": 8,
+   "y": 5,
+   "w": 147,
+   "h": 30
+  },
+  "raggio": 15.0,
+  "riempimento": "#236EFD",
+  "bordo": "#88B5FC",
+  "inchiostro": "#F7FEFF",
+  "ombra": {
+   "pixel": 6321,
+   "alfa_media": 0.726
+  }
+ },
+ "kit-blu/ui/badge-piu-scelto": {
+  "dimensioni": [
+   112,
+   44
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 4,
+   "w": 102,
+   "h": 37
+  },
+  "raggio": 10.2,
+  "riempimento": "#FEEEEE",
+  "bordo": null,
+  "inchiostro": "#F83238",
+  "ombra": {
+   "pixel": 335,
+   "alfa_media": 0.381
+  }
+ },
+ "kit-blu/ui/badge-massima-sicurezza": {
+  "dimensioni": [
+   170,
+   45
+  ],
+  "corpo": {
+   "x": 2,
+   "y": 4,
+   "w": 163,
+   "h": 37
+  },
+  "raggio": 18.5,
+  "riempimento": "#E9F9EE",
+  "bordo": null,
+  "inchiostro": "#159F48",
+  "ombra": {
+   "pixel": 474,
+   "alfa_media": 0.355
+  }
+ },
+ "kit-blu/ui/badge-consigliato": {
+  "dimensioni": [
+   120,
+   43
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 113,
+   "h": 37
+  },
+  "raggio": 10.2,
+  "riempimento": "#EDF3FE",
+  "bordo": null,
+  "inchiostro": "#1460FD",
+  "ombra": {
+   "pixel": 318,
+   "alfa_media": 0.325
+  }
+ },
+ "kit-rosso/ui/stile-illustrativo": {
+  "dimensioni": [
+   383,
+   80
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 4,
+   "w": 375,
+   "h": 72
+  },
+  "raggio": 13.7,
+  "riempimento": "#FEF1F1",
+  "bordo": null,
+  "inchiostro": "#121729",
+  "ombra": {
+   "pixel": 938,
+   "alfa_media": 0.246
+  }
+ },
+ "kit-rosso/icone/studio": {
+  "dimensioni": [
+   67,
+   70
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 60,
+   "h": 60
+  },
+  "raggio": 27.3,
+  "riempimento": "#FEEBEC",
+  "bordo": null,
+  "inchiostro": "#F61C23",
+  "ombra": {
+   "pixel": 270,
+   "alfa_media": 0.351
+  }
+ },
+ "kit-rosso/icone/statistiche": {
+  "dimensioni": [
+   67,
+   70
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 60,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#FEF3E7",
+  "bordo": null,
+  "inchiostro": "#F9AB01",
+  "ombra": {
+   "pixel": 278,
+   "alfa_media": 0.345
+  }
+ },
+ "kit-rosso/icone/quiz": {
+  "dimensioni": [
+   67,
+   70
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 60,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#ECEDFE",
+  "bordo": null,
+  "inchiostro": "#3329FE",
+  "ombra": {
+   "pixel": 252,
+   "alfa_media": 0.365
+  }
+ },
+ "kit-rosso/icone/contenuti": {
+  "dimensioni": [
+   67,
+   67
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 4,
+   "w": 60,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#FEF0F0",
+  "bordo": null,
+  "inchiostro": "#F31C25",
+  "ombra": {
+   "pixel": 216,
+   "alfa_media": 0.421
+  }
+ },
+ "kit-rosso/icone/costo": {
+  "dimensioni": [
+   67,
+   70
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 4,
+   "w": 60,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#FEF0F1",
+  "bordo": null,
+  "inchiostro": "#FB121A",
+  "ombra": {
+   "pixel": 253,
+   "alfa_media": 0.373
+  }
+ },
+ "kit-rosso/icone/blocco": {
+  "dimensioni": [
+   67,
+   67
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 60,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#FEECED",
+  "bordo": null,
+  "inchiostro": "#F9111F",
+  "ombra": {
+   "pixel": 259,
+   "alfa_media": 0.354
+  }
+ },
+ "kit-rosso/icone/successo": {
+  "dimensioni": [
+   68,
+   70
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 60,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#E4F7EA",
+  "bordo": null,
+  "inchiostro": "#08A238",
+  "ombra": {
+   "pixel": 319,
+   "alfa_media": 0.319
+  }
+ },
+ "kit-rosso/icone/email": {
+  "dimensioni": [
+   68,
+   71
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 4,
+   "w": 60,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#FEF0F1",
+  "bordo": null,
+  "inchiostro": "#F91D2B",
+  "ombra": {
+   "pixel": 278,
+   "alfa_media": 0.36
+  }
+ },
+ "kit-rosso/icone/profilo": {
+  "dimensioni": [
+   66,
+   67
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 60,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#EBEFFE",
+  "bordo": null,
+  "inchiostro": "#5D66FD",
+  "ombra": {
+   "pixel": 232,
+   "alfa_media": 0.38
+  }
+ },
+ "kit-rosso/icone/impostazioni": {
+  "dimensioni": [
+   67,
+   67
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 61,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#F1F3F7",
+  "bordo": null,
+  "inchiostro": "#71819A",
+  "ombra": {
+   "pixel": 222,
+   "alfa_media": 0.387
+  }
+ },
+ "kit-rosso/icone/aiuto": {
+  "dimensioni": [
+   67,
+   70
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 61,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#ECEEF1",
+  "bordo": null,
+  "inchiostro": "#3B4E68",
+  "ombra": {
+   "pixel": 236,
+   "alfa_media": 0.39
+  }
+ },
+ "kit-rosso/icone/completato": {
+  "dimensioni": [
+   73,
+   74
+  ],
+  "corpo": {
+   "x": 0,
+   "y": 7,
+   "w": 73,
+   "h": 67
+  },
+  "raggio": 33.5,
+  "riempimento": "#E4F7EC",
+  "bordo": null,
+  "inchiostro": "#0A9B3B",
+  "ombra": {
+   "pixel": 508,
+   "alfa_media": 0.326
+  }
+ },
+ "kit-rosso/icone/errore": {
+  "dimensioni": [
+   71,
+   74
+  ],
+  "corpo": {
+   "x": 7,
+   "y": 7,
+   "w": 60,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#FEE7E9",
+  "bordo": null,
+  "inchiostro": "#FA0F1A",
+  "ombra": {
+   "pixel": 500,
+   "alfa_media": 0.241
+  }
+ },
+ "kit-rosso/icone/info": {
+  "dimensioni": [
+   67,
+   66
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 61,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#E8EDFE",
+  "bordo": null,
+  "inchiostro": "#2B3EFD",
+  "ombra": {
+   "pixel": 218,
+   "alfa_media": 0.39
+  }
+ },
+ "kit-rosso/ui/pulsante-primario": {
+  "dimensioni": [
+   194,
+   67
+  ],
+  "corpo": {
+   "x": 5,
+   "y": 2,
+   "w": 185,
+   "h": 60
+  },
+  "raggio": 27.3,
+  "riempimento": "#F22B36",
+  "bordo": null,
+  "inchiostro": "#FEF4F6",
+  "ombra": {
+   "pixel": 767,
+   "alfa_media": 0.235
+  }
+ },
+ "kit-rosso/ui/pulsante-secondario": {
+  "dimensioni": [
+   180,
+   61
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 172,
+   "h": 54
+  },
+  "raggio": 13.7,
+  "riempimento": "#FEEEEE",
+  "bordo": null,
+  "inchiostro": "#FC1217",
+  "ombra": {
+   "pixel": 484,
+   "alfa_media": 0.319
+  }
+ },
+ "kit-rosso/ui/pulsante-outline": {
+  "dimensioni": [
+   151,
+   66
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 4,
+   "w": 146,
+   "h": 59
+  },
+  "raggio": 17.1,
+  "riempimento": "#FEFEFE",
+  "bordo": "#FDA4AA",
+  "inchiostro": "#FB1A23",
+  "ombra": {
+   "pixel": 312,
+   "alfa_media": 0.552
+  }
+ },
+ "kit-rosso/ui/interruttore-acceso": {
+  "dimensioni": [
+   59,
+   35
+  ],
+  "corpo": {
+   "x": 2,
+   "y": 4,
+   "w": 53,
+   "h": 29
+  },
+  "raggio": 14.5,
+  "riempimento": "#FEFBFB",
+  "bordo": "#F8464C",
+  "inchiostro": "#F21C2A",
+  "ombra": {
+   "pixel": 252,
+   "alfa_media": 0.379
+  }
+ },
+ "kit-rosso/ui/interruttore-spento": {
+  "dimensioni": [
+   51,
+   33
+  ],
+  "corpo": {
+   "x": 7,
+   "y": 5,
+   "w": 41,
+   "h": 24
+  },
+  "raggio": 12.0,
+  "riempimento": "#FCFDFD",
+  "bordo": "#D3D7E1",
+  "inchiostro": "#D0D5DF",
+  "ombra": {
+   "pixel": 171,
+   "alfa_media": 0.34
+  }
+ },
+ "kit-rosso/ui/casella-spuntata": {
+  "dimensioni": [
+   46,
+   37
+  ],
+  "corpo": {
+   "x": 5,
+   "y": 5,
+   "w": 36,
+   "h": 27
+  },
+  "raggio": 13.5,
+  "riempimento": "#F52C34",
+  "bordo": null,
+  "inchiostro": "#FFFFFF",
+  "ombra": {
+   "pixel": 289,
+   "alfa_media": 0.44
+  }
+ },
+ "kit-rosso/ui/radio-vuoto": {
+  "dimensioni": [
+   39,
+   31
+  ],
+  "corpo": {
+   "x": 6,
+   "y": 3,
+   "w": 27,
+   "h": 26
+  },
+  "raggio": 13.0,
+  "riempimento": "#FDFDFD",
+  "bordo": "#D4D7E2",
+  "inchiostro": "#FAFAFB",
+  "ombra": {
+   "pixel": 129,
+   "alfa_media": 0.352
+  }
+ },
+ "kit-rosso/ui/barre-avanzamento": {
+  "dimensioni": [
+   174,
+   69
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 46,
+   "w": 168,
+   "h": 20
+  },
+  "raggio": 10.0,
+  "riempimento": "#EFF0F5",
+  "bordo": null,
+  "inchiostro": "#E91E27",
+  "ombra": {
+   "pixel": 2383,
+   "alfa_media": 0.694
+  }
+ },
+ "kit-rosso/ui/indicatore-avanzamento": {
+  "dimensioni": [
+   525,
+   66
+  ],
+  "corpo": {
+   "x": 12,
+   "y": 4,
+   "w": 274,
+   "h": 56
+  },
+  "raggio": 23.9,
+  "riempimento": "#FEFCFC",
+  "bordo": "#FCD6D8",
+  "inchiostro": "#F61616",
+  "ombra": {
+   "pixel": 7430,
+   "alfa_media": 0.728
+  }
+ },
+ "kit-rosso/stati/ricerca": {
+  "dimensioni": [
+   100,
+   80
+  ],
+  "corpo": {
+   "x": 8,
+   "y": 5,
+   "w": 85,
+   "h": 68
+  },
+  "raggio": 34.0,
+  "riempimento": "#E9EDF7",
+  "bordo": null,
+  "inchiostro": "#385174",
+  "ombra": {
+   "pixel": 650,
+   "alfa_media": 0.433
+  }
+ },
+ "kit-rosso/stati/caricamento": {
+  "dimensioni": [
+   74,
+   76
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 7,
+   "w": 68,
+   "h": 64
+  },
+  "raggio": 32.0,
+  "riempimento": "#FEFEFE",
+  "bordo": "#FECBCC",
+  "inchiostro": "#FEF7F7",
+  "ombra": {
+   "pixel": 317,
+   "alfa_media": 0.357
+  }
+ },
+ "kit-rosso/stati/completato": {
+  "dimensioni": [
+   82,
+   84
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 75,
+   "h": 78
+  },
+  "raggio": 6.8,
+  "riempimento": "#EEF2FE",
+  "bordo": null,
+  "inchiostro": "#1BAD4C",
+  "ombra": {
+   "pixel": 353,
+   "alfa_media": 0.465
+  }
+ },
+ "kit-rosso/stati/errore": {
+  "dimensioni": [
+   82,
+   84
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 4,
+   "w": 72,
+   "h": 77
+  },
+  "raggio": 6.8,
+  "riempimento": "#FEEEEE",
+  "bordo": null,
+  "inchiostro": "#FA252F",
+  "ombra": {
+   "pixel": 383,
+   "alfa_media": 0.336
+  }
+ },
+ "kit-rosso/stati/vuoto": {
+  "dimensioni": [
+   103,
+   69
+  ],
+  "corpo": {
+   "x": 2,
+   "y": 3,
+   "w": 98,
+   "h": 63
+  },
+  "raggio": 31.5,
+  "riempimento": "#E1E7F8",
+  "bordo": null,
+  "inchiostro": "#425E84",
+  "ombra": {
+   "pixel": 458,
+   "alfa_media": 0.307
+  }
+ },
+ "kit-rosso/stati/celebrazione": {
+  "dimensioni": [
+   78,
+   81
+  ],
+  "corpo": {
+   "x": 26,
+   "y": 29,
+   "w": 30,
+   "h": 22
+  },
+  "raggio": 0.0,
+  "riempimento": "#FDF5F5",
+  "bordo": null,
+  "inchiostro": "#FC2631",
+  "ombra": {
+   "pixel": 1372,
+   "alfa_media": 0.684
+  }
+ },
+ "kit-rosso/stati/notifica": {
+  "dimensioni": [
+   93,
+   68
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 4,
+   "w": 84,
+   "h": 60
+  },
+  "raggio": 30.0,
+  "riempimento": "#D1DCFD",
+  "bordo": null,
+  "inchiostro": "#FB2F39",
+  "ombra": {
+   "pixel": 388,
+   "alfa_media": 0.356
+  }
+ },
+ "kit-rosso/stati/attesa": {
+  "dimensioni": [
+   57,
+   82
+  ],
+  "corpo": {
+   "x": 6,
+   "y": 4,
+   "w": 43,
+   "h": 75
+  },
+  "raggio": 10.2,
+  "riempimento": "#FEE1E1",
+  "bordo": null,
+  "inchiostro": "#FE4045",
+  "ombra": {
+   "pixel": 429,
+   "alfa_media": 0.253
+  }
+ },
+ "kit-rosso/stati/in-corso": {
+  "dimensioni": [
+   85,
+   84
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 4,
+   "w": 79,
+   "h": 76
+  },
+  "raggio": 6.8,
+  "riempimento": "#EEF1FE",
+  "bordo": null,
+  "inchiostro": "#6876FD",
+  "ombra": {
+   "pixel": 349,
+   "alfa_media": 0.397
+  }
+ },
+ "kit-rosso/stati/obiettivo": {
+  "dimensioni": [
+   92,
+   90
+  ],
+  "corpo": {
+   "x": 4,
+   "y": 3,
+   "w": 86,
+   "h": 82
+  },
+  "raggio": 34.1,
+  "riempimento": "#FEF9F9",
+  "bordo": "#FE8A8E",
+  "inchiostro": "#901E29",
+  "ombra": {
+   "pixel": 522,
+   "alfa_media": 0.385
+  }
+ },
+ "kit-rosso/stati/messaggi": {
+  "dimensioni": [
+   180,
+   77
+  ],
+  "corpo": {
+   "x": 73,
+   "y": 3,
+   "w": 104,
+   "h": 70
+  },
+  "raggio": 10.2,
+  "riempimento": "#ECF0FB",
+  "bordo": null,
+  "inchiostro": "#FC4C55",
+  "ombra": {
+   "pixel": 3222,
+   "alfa_media": 0.853
+  }
+ },
+ "kit-rosso/stati/mondo-internazionale": {
+  "dimensioni": [
+   101,
+   94
+  ],
+  "corpo": {
+   "x": 3,
+   "y": 3,
+   "w": 95,
+   "h": 85
+  },
+  "raggio": 42.5,
+  "riempimento": "#97B0F2",
+  "bordo": "#F6F8FD",
+  "inchiostro": "#2D508A",
+  "ombra": {
+   "pixel": 276,
+   "alfa_media": 0.479
+  }
+ }
+}

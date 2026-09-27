@@ -1,0 +1,937 @@
+[
+ {
+  "elemento": "kit-rosso/stati/caricamento",
+  "mae_255": 19.09,
+  "p95_255": 184.0,
+  "entro_8": 0.6741,
+  "ssim": 0.5486,
+  "dimensioni_disegno": {
+   "originale": [
+    62,
+    65
+   ],
+   "codice": [
+    60,
+    60
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/stati/operazione-completata",
+  "mae_255": 11.8,
+  "p95_255": 133.0,
+  "entro_8": 0.7707,
+  "ssim": 0.7018,
+  "dimensioni_disegno": {
+   "originale": [
+    122,
+    35
+   ],
+   "codice": [
+    123,
+    35
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/stati/errore",
+  "mae_255": 11.66,
+  "p95_255": 139.6,
+  "entro_8": 0.7449,
+  "ssim": 0.6802,
+  "dimensioni_disegno": {
+   "originale": [
+    141,
+    34
+   ],
+   "codice": [
+    145,
+    33
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/stati/attenzione",
+  "mae_255": 10.13,
+  "p95_255": 132.0,
+  "entro_8": 0.7264,
+  "ssim": 0.7294,
+  "dimensioni_disegno": {
+   "originale": [
+    122,
+    37
+   ],
+   "codice": [
+    117,
+    35
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/stati/informazione",
+  "mae_255": 11.68,
+  "p95_255": 114.0,
+  "entro_8": 0.7638,
+  "ssim": 0.7276,
+  "dimensioni_disegno": {
+   "originale": [
+    136,
+    35
+   ],
+   "codice": [
+    133,
+    35
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/pulsante-primario",
+  "mae_255": 9.25,
+  "p95_255": 85.6,
+  "entro_8": 0.7431,
+  "ssim": 0.7783,
+  "dimensioni_disegno": {
+   "originale": [
+    151,
+    45
+   ],
+   "codice": [
+    151,
+    45
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/pulsante-secondario",
+  "mae_255": 8.06,
+  "p95_255": 80.0,
+  "entro_8": 0.8748,
+  "ssim": 0.859,
+  "dimensioni_disegno": {
+   "originale": [
+    95,
+    13
+   ],
+   "codice": [
+    100,
+    13
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/pulsante-outline",
+  "mae_255": 9.51,
+  "p95_255": 125.0,
+  "entro_8": 0.838,
+  "ssim": 0.6451,
+  "dimensioni_disegno": {
+   "originale": [
+    140,
+    45
+   ],
+   "codice": [
+    140,
+    45
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/interruttore-acceso",
+  "mae_255": 8.21,
+  "p95_255": 83.0,
+  "entro_8": 0.6167,
+  "ssim": 0.8744,
+  "dimensioni_disegno": {
+   "originale": [
+    47,
+    28
+   ],
+   "codice": [
+    47,
+    27
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/interruttore-spento",
+  "mae_255": 5.16,
+  "p95_255": 22.9,
+  "entro_8": 0.6941,
+  "ssim": 0.8425,
+  "dimensioni_disegno": {
+   "originale": [
+    45,
+    26
+   ],
+   "codice": [
+    47,
+    27
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/casella-spuntata",
+  "mae_255": 8.2,
+  "p95_255": 108.9,
+  "entro_8": 0.7257,
+  "ssim": 0.7705,
+  "dimensioni_disegno": {
+   "originale": [
+    25,
+    25
+   ],
+   "codice": [
+    24,
+    24
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/indicatore-avanzamento",
+  "mae_255": 11.24,
+  "p95_255": 115.0,
+  "entro_8": 0.7787,
+  "ssim": 0.6456,
+  "dimensioni_disegno": {
+   "originale": [
+    486,
+    46
+   ],
+   "codice": [
+    498,
+    44
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/ui/pulsante-primario",
+  "mae_255": 7.9,
+  "p95_255": 76.1,
+  "entro_8": 0.8014,
+  "ssim": 0.8237,
+  "dimensioni_disegno": {
+   "originale": [
+    179,
+    55
+   ],
+   "codice": [
+    179,
+    54
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/ui/pulsante-secondario",
+  "mae_255": 6.7,
+  "p95_255": 63.0,
+  "entro_8": 0.8295,
+  "ssim": 0.8391,
+  "dimensioni_disegno": {
+   "originale": [
+    111,
+    15
+   ],
+   "codice": [
+    111,
+    13
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/ui/pulsante-outline",
+  "mae_255": 6.87,
+  "p95_255": 76.0,
+  "entro_8": 0.8863,
+  "ssim": 0.7604,
+  "dimensioni_disegno": {
+   "originale": [
+    140,
+    56
+   ],
+   "codice": [
+    140,
+    56
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/ui/interruttore-acceso",
+  "mae_255": 10.96,
+  "p95_255": 56.2,
+  "entro_8": 0.5792,
+  "ssim": 0.8687,
+  "dimensioni_disegno": {
+   "originale": [
+    44,
+    26
+   ],
+   "codice": [
+    44,
+    26
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/ui/interruttore-spento",
+  "mae_255": 6.37,
+  "p95_255": 23.0,
+  "entro_8": 0.6162,
+  "ssim": 0.7801,
+  "dimensioni_disegno": {
+   "originale": [
+    41,
+    26
+   ],
+   "codice": [
+    44,
+    26
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/ui/casella-spuntata",
+  "mae_255": 7.22,
+  "p95_255": 61.0,
+  "entro_8": 0.7832,
+  "ssim": 0.8165,
+  "dimensioni_disegno": {
+   "originale": [
+    27,
+    26
+   ],
+   "codice": [
+    26,
+    26
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/ui/indicatore-avanzamento",
+  "mae_255": 12.68,
+  "p95_255": 110.0,
+  "entro_8": 0.7552,
+  "ssim": 0.6504,
+  "dimensioni_disegno": {
+   "originale": [
+    512,
+    55
+   ],
+   "codice": [
+    520,
+    52
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/casella-vuota",
+  "mae_255": 4.25,
+  "p95_255": 25.0,
+  "entro_8": 0.8211,
+  "ssim": 0.7657,
+  "dimensioni_disegno": {
+   "originale": [
+    23,
+    24
+   ],
+   "codice": [
+    24,
+    24
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/radio-selezionato",
+  "mae_255": 10.87,
+  "p95_255": 124.6,
+  "entro_8": 0.7236,
+  "ssim": 0.7874,
+  "dimensioni_disegno": {
+   "originale": [
+    28,
+    28
+   ],
+   "codice": [
+    28,
+    28
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/radio-vuoto",
+  "mae_255": 1.91,
+  "p95_255": 12.0,
+  "entro_8": 0.9082,
+  "ssim": 0.9412,
+  "dimensioni_disegno": {
+   "originale": [
+    26,
+    26
+   ],
+   "codice": [
+    26,
+    26
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/ui/radio-vuoto",
+  "mae_255": 2.72,
+  "p95_255": 18.7,
+  "entro_8": 0.895,
+  "ssim": 0.8973,
+  "dimensioni_disegno": {
+   "originale": [
+    26,
+    26
+   ],
+   "codice": [
+    26,
+    26
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/ui/barre-avanzamento",
+  "mae_255": 18.37,
+  "p95_255": 194.2,
+  "entro_8": 0.6797,
+  "ssim": 0.6442,
+  "dimensioni_disegno": {
+   "originale": [
+    121,
+    58
+   ],
+   "codice": [
+    168,
+    50
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/badge-piu-scelto",
+  "mae_255": 9.55,
+  "p95_255": 117.0,
+  "entro_8": 0.7802,
+  "ssim": 0.6837,
+  "dimensioni_disegno": {
+   "originale": [
+    79,
+    16
+   ],
+   "codice": [
+    88,
+    15
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/badge-massima-sicurezza",
+  "mae_255": 16.6,
+  "p95_255": 175.5,
+  "entro_8": 0.7404,
+  "ssim": 0.6341,
+  "dimensioni_disegno": {
+   "originale": [
+    145,
+    19
+   ],
+   "codice": [
+    150,
+    17
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/ui/badge-consigliato",
+  "mae_255": 11.63,
+  "p95_255": 163.0,
+  "entro_8": 0.7095,
+  "ssim": 0.6223,
+  "dimensioni_disegno": {
+   "originale": [
+    92,
+    17
+   ],
+   "codice": [
+    98,
+    16
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/studio",
+  "mae_255": 2.49,
+  "p95_255": 24.0,
+  "entro_8": 0.8756,
+  "ssim": 0.945,
+  "dimensioni_disegno": {
+   "originale": [
+    27,
+    29
+   ],
+   "codice": [
+    29,
+    30
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/statistiche",
+  "mae_255": 1.96,
+  "p95_255": 18.0,
+  "entro_8": 0.873,
+  "ssim": 0.9651,
+  "dimensioni_disegno": {
+   "originale": [
+    26,
+    28
+   ],
+   "codice": [
+    26,
+    29
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/quiz",
+  "mae_255": 1.73,
+  "p95_255": 11.0,
+  "entro_8": 0.9332,
+  "ssim": 0.9696,
+  "dimensioni_disegno": {
+   "originale": [
+    20,
+    30
+   ],
+   "codice": [
+    21,
+    30
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/contenuti",
+  "mae_255": 4.06,
+  "p95_255": 27.6,
+  "entro_8": 0.8476,
+  "ssim": 0.9061,
+  "dimensioni_disegno": {
+   "originale": [
+    23,
+    30
+   ],
+   "codice": [
+    24,
+    31
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/costo",
+  "mae_255": 4.68,
+  "p95_255": 41.2,
+  "entro_8": 0.8696,
+  "ssim": 0.8878,
+  "dimensioni_disegno": {
+   "originale": [
+    23,
+    27
+   ],
+   "codice": [
+    23,
+    28
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/blocco",
+  "mae_255": 5.51,
+  "p95_255": 56.0,
+  "entro_8": 0.8415,
+  "ssim": 0.8644,
+  "dimensioni_disegno": {
+   "originale": [
+    25,
+    31
+   ],
+   "codice": [
+    24,
+    31
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/successo",
+  "mae_255": 3.32,
+  "p95_255": 21.0,
+  "entro_8": 0.8726,
+  "ssim": 0.9354,
+  "dimensioni_disegno": {
+   "originale": [
+    32,
+    30
+   ],
+   "codice": [
+    32,
+    31
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/email",
+  "mae_255": 3.61,
+  "p95_255": 28.0,
+  "entro_8": 0.8264,
+  "ssim": 0.9081,
+  "dimensioni_disegno": {
+   "originale": [
+    28,
+    23
+   ],
+   "codice": [
+    29,
+    23
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/profilo",
+  "mae_255": 2.04,
+  "p95_255": 15.0,
+  "entro_8": 0.9147,
+  "ssim": 0.9464,
+  "dimensioni_disegno": {
+   "originale": [
+    24,
+    27
+   ],
+   "codice": [
+    25,
+    28
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/impostazioni",
+  "mae_255": 4.37,
+  "p95_255": 21.0,
+  "entro_8": 0.9038,
+  "ssim": 0.8972,
+  "dimensioni_disegno": {
+   "originale": [
+    30,
+    31
+   ],
+   "codice": [
+    31,
+    31
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/aiuto",
+  "mae_255": 2.19,
+  "p95_255": 9.7,
+  "entro_8": 0.9405,
+  "ssim": 0.9566,
+  "dimensioni_disegno": {
+   "originale": [
+    18,
+    28
+   ],
+   "codice": [
+    18,
+    29
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/completato",
+  "mae_255": 3.99,
+  "p95_255": 18.0,
+  "entro_8": 0.8934,
+  "ssim": 0.8798,
+  "dimensioni_disegno": {
+   "originale": [
+    26,
+    21
+   ],
+   "codice": [
+    27,
+    22
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/errore",
+  "mae_255": 3.91,
+  "p95_255": 17.0,
+  "entro_8": 0.8723,
+  "ssim": 0.901,
+  "dimensioni_disegno": {
+   "originale": [
+    23,
+    24
+   ],
+   "codice": [
+    24,
+    24
+   ]
+  }
+ },
+ {
+  "elemento": "kit-blu/icone/info",
+  "mae_255": 3.35,
+  "p95_255": 19.3,
+  "entro_8": 0.8769,
+  "ssim": 0.9119,
+  "dimensioni_disegno": {
+   "originale": [
+    29,
+    29
+   ],
+   "codice": [
+    31,
+    30
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/studio",
+  "mae_255": 2.31,
+  "p95_255": 16.0,
+  "entro_8": 0.8667,
+  "ssim": 0.9436,
+  "dimensioni_disegno": {
+   "originale": [
+    30,
+    32
+   ],
+   "codice": [
+    31,
+    32
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/statistiche",
+  "mae_255": 2.5,
+  "p95_255": 22.0,
+  "entro_8": 0.8736,
+  "ssim": 0.9295,
+  "dimensioni_disegno": {
+   "originale": [
+    28,
+    30
+   ],
+   "codice": [
+    29,
+    31
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/quiz",
+  "mae_255": 1.77,
+  "p95_255": 12.0,
+  "entro_8": 0.9111,
+  "ssim": 0.9647,
+  "dimensioni_disegno": {
+   "originale": [
+    22,
+    32
+   ],
+   "codice": [
+    23,
+    32
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/contenuti",
+  "mae_255": 2.58,
+  "p95_255": 17.0,
+  "entro_8": 0.8701,
+  "ssim": 0.9525,
+  "dimensioni_disegno": {
+   "originale": [
+    25,
+    32
+   ],
+   "codice": [
+    27,
+    32
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/costo",
+  "mae_255": 2.43,
+  "p95_255": 16.0,
+  "entro_8": 0.8977,
+  "ssim": 0.9623,
+  "dimensioni_disegno": {
+   "originale": [
+    24,
+    30
+   ],
+   "codice": [
+    26,
+    30
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/blocco",
+  "mae_255": 5.89,
+  "p95_255": 52.6,
+  "entro_8": 0.8472,
+  "ssim": 0.8508,
+  "dimensioni_disegno": {
+   "originale": [
+    26,
+    33
+   ],
+   "codice": [
+    27,
+    33
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/successo",
+  "mae_255": 13.77,
+  "p95_255": 161.1,
+  "entro_8": 0.745,
+  "ssim": 0.6021,
+  "dimensioni_disegno": {
+   "originale": [
+    48,
+    48
+   ],
+   "codice": [
+    35,
+    32
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/email",
+  "mae_255": 1.95,
+  "p95_255": 13.0,
+  "entro_8": 0.9041,
+  "ssim": 0.9575,
+  "dimensioni_disegno": {
+   "originale": [
+    31,
+    24
+   ],
+   "codice": [
+    32,
+    25
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/profilo",
+  "mae_255": 1.72,
+  "p95_255": 11.5,
+  "entro_8": 0.9138,
+  "ssim": 0.9625,
+  "dimensioni_disegno": {
+   "originale": [
+    26,
+    28
+   ],
+   "codice": [
+    26,
+    30
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/impostazioni",
+  "mae_255": 4.04,
+  "p95_255": 19.0,
+  "entro_8": 0.9062,
+  "ssim": 0.9019,
+  "dimensioni_disegno": {
+   "originale": [
+    32,
+    32
+   ],
+   "codice": [
+    33,
+    32
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/aiuto",
+  "mae_255": 2.38,
+  "p95_255": 11.0,
+  "entro_8": 0.9333,
+  "ssim": 0.9511,
+  "dimensioni_disegno": {
+   "originale": [
+    19,
+    29
+   ],
+   "codice": [
+    19,
+    29
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/completato",
+  "mae_255": 14.3,
+  "p95_255": 204.9,
+  "entro_8": 0.7042,
+  "ssim": 0.624,
+  "dimensioni_disegno": {
+   "originale": [
+    32,
+    41
+   ],
+   "codice": [
+    28,
+    23
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/errore",
+  "mae_255": 4.0,
+  "p95_255": 21.0,
+  "entro_8": 0.8831,
+  "ssim": 0.8778,
+  "dimensioni_disegno": {
+   "originale": [
+    32,
+    27
+   ],
+   "codice": [
+    26,
+    26
+   ]
+  }
+ },
+ {
+  "elemento": "kit-rosso/icone/info",
+  "mae_255": 3.77,
+  "p95_255": 22.0,
+  "entro_8": 0.8675,
+  "ssim": 0.8907,
+  "dimensioni_disegno": {
+   "originale": [
+    30,
+    31
+   ],
+   "codice": [
+    30,
+    30
+   ]
+  }
+ }
+]

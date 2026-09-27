@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
-import { BookOpen, ClipboardCheck, Cloud, AlertTriangle, Target, Zap, BarChart3, Lightbulb, Award } from 'lucide-react';
+import { Zap, BarChart3, Lightbulb, Target } from 'lucide-react';
 import { User } from 'firebase/auth';
 import { AppState, OnboardingResult, Question } from '../types';
 import { APP_NAME, DISCLAIMER, OFA_CONSEQUENCES, OFA_RULES_NOTE, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, SIM_PASS_SCORE } from '../config/offer';
@@ -9,6 +9,7 @@ import { cn } from '../lib/utils';
 import { playTapSound } from '../lib/audio';
 import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard } from './ui';
 import Plans from './Plans';
+import { Illustrazione } from '../brand/Illustrazione';
 import { ECOSYSTEM } from '../config/ecosystem';
 
 type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'save' | 'risk' | 'result' | 'ready' | 'plans' | 'goal';
@@ -24,16 +25,13 @@ interface OnboardingProps {
   onFinish: (result: OnboardingResult) => void;
 }
 
-function Illustration({ icon: Icon, tone }: { icon: typeof BookOpen; tone: 'red' | 'blue' | 'green' | 'amber' }) {
-  const tones = {
-    red: 'bg-[#FEE2E2] text-[#EF4444] dark:bg-[#7F1D1D]/40',
-    blue: 'bg-[#DBEAFE] text-[#3B82F6] dark:bg-[#1E3A8A]/40',
-    green: 'bg-[#DCFCE7] text-[#22C55E] dark:bg-[#064E3B]/40',
-    amber: 'bg-[#FEF3C7] text-[#F59E0B] dark:bg-[#78350F]/40',
-  };
+// Illustrazioni del Brand Kit (kit blu), identiche all'originale, con l'animazione del catalogo.
+// Il tema scuro usa la variante con aloni semitrasparenti.
+function Scena({ nome }: { nome: string }) {
+  const scuro = document.documentElement.classList.contains('dark');
   return (
-    <div className={cn("mx-auto my-4 w-32 h-32 sm:w-40 sm:h-40 rounded-[40px] flex items-center justify-center", tones[tone])}>
-      <Icon className="w-16 h-16 sm:w-20 sm:h-20" strokeWidth={2} />
+    <div className="mx-auto my-3 flex items-center justify-center" style={{ minHeight: 150 }}>
+      <Illustrazione kit="kit-blu" nome={nome} lato={200} fondoScuro={scuro} />
     </div>
   );
 }
@@ -119,7 +117,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
               Scopri in 3 minuti a che punto sei e come superarlo.
             </p>
           </div>
-          <Illustration icon={BookOpen} tone="red" />
+          <Scena nome="studio-inglese" />
           <div className="mt-auto flex flex-col gap-3">
             <PrimaryButton onClick={() => setStep('certification')}>Inizia la verifica</PrimaryButton>
             <button onClick={() => { playTapSound(); onFinish(result()); }} className="text-sm font-bold text-gray-400 hover:text-gray-600 py-1">
@@ -151,7 +149,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
       return (
         <Screen>
           <TopBar onBack={() => setStep('certification')} />
-          <Illustration icon={Award} tone="green" />
+          <Scena nome="superamento" />
           <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] dark:text-[#F8FAFC] text-center">Forse non ti serve il test</h2>
           <p className="text-center font-semibold text-gray-500 dark:text-gray-400">
             Con una certificazione accettata dall'ateneo di solito l'OFA si toglie senza fare il test. Controlla l'elenco delle certificazioni valide e i livelli minimi sulla pagina del tuo corso prima di pagare qualsiasi cosa.
@@ -190,7 +188,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           <p className="font-semibold text-gray-500 dark:text-gray-400">
             {DIAGNOSTIC_LENGTH} domande, circa 3 minuti. Il risultato è immediato.
           </p>
-          <Illustration icon={ClipboardCheck} tone="blue" />
+          <Scena nome="quiz-test" />
           <div className="mt-auto">
             <PrimaryButton onClick={() => { questionStart.current = Date.now(); setStep('quiz'); }}>Inizia il quiz</PrimaryButton>
           </div>
@@ -222,7 +220,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
       return (
         <Screen>
           <TopBar {...bar} />
-          <Illustration icon={Cloud} tone="blue" />
+          <Scena nome="verifica-utente" />
           <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] dark:text-[#F8FAFC] text-center">Salva i tuoi risultati</h2>
           <p className="text-center font-semibold text-gray-500 dark:text-gray-400">
             Accedi con il tuo {ECOSYSTEM.accountName} (con Google) per ritrovare progressi e piano di studio su telefono, computer e nelle altre app {ECOSYSTEM.name}. Subito dopo scegli tu cosa condividere.
@@ -238,7 +236,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
       return (
         <Screen>
           <TopBar {...bar} />
-          <Illustration icon={AlertTriangle} tone="amber" />
+          <Scena nome="rischio-economico" />
           <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] dark:text-[#F8FAFC]">Se non superi l'OFA…</h2>
           <ul className="flex flex-col gap-3">
             {OFA_CONSEQUENCES.map(c => (
@@ -328,7 +326,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
     case 'goal':
       return (
         <Screen>
-          <Illustration icon={Target} tone="red" />
+          <Scena nome="successo" />
           <h2 className="text-3xl sm:text-4xl font-black text-[#0F172A] dark:text-[#F8FAFC] text-center leading-tight">Il tuo obiettivo è a portata di mano.</h2>
           <p className="text-center font-semibold text-gray-500 dark:text-gray-400">
             Inizia dal Primo Corpus e fai una sessione al giorno. Quando superi stabilmente {SIM_PASS_SCORE}/30 nel simulatore sei pronto.

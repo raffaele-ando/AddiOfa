@@ -1,0 +1,13 @@
+/* Palette del Brand Kit AddiOFA (kit blu). Valori dichiarati nel kit; accanto il colore
+   misurato sul campione, che ha una leggera lucentezza. Generato da strumenti/brand/brand.py */
+:root {
+  --brand-primario: #0F172A; /* misurato sul campione: #101C32 */
+  --brand-secondario: #3B82F6; /* misurato sul campione: #4F8EFC */
+  --brand-sfondo: #F6F8FC; /* misurato sul campione: #F1F5FE */
+  --brand-superfici: #E5E7EB; /* misurato sul campione: #E2E5E9 */
+  --brand-testo-secondario: #6B7280; /* misurato sul campione: #8891A0 */
+  --brand-accento-rischio: #EF4444; /* misurato sul campione: #F8474A */
+  --brand-attenzione: #F59E0B; /* misurato sul campione: #FCA915 */
+  --brand-successo: #22C55E; /* misurato sul campione: #26C35F */
+  --brand-quiz-apprendimento: #8B5CF6; /* misurato sul campione: #8C5BFA */
+}

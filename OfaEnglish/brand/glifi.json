@@ -1,0 +1,198 @@
+{
+ "kit-blu/icone/studio": {
+  "svg": "glifi/kit-blu/studio.svg",
+  "diametro": 57,
+  "cerchio": "#F0F4FE",
+  "inchiostro": "#0456FD",
+  "byte": 65270
+ },
+ "kit-blu/icone/statistiche": {
+  "svg": "glifi/kit-blu/statistiche.svg",
+  "diametro": 57,
+  "cerchio": "#FEF7EC",
+  "inchiostro": "#FEA400",
+  "byte": 48188
+ },
+ "kit-blu/icone/quiz": {
+  "svg": "glifi/kit-blu/quiz.svg",
+  "diametro": 57,
+  "cerchio": "#EFF3FE",
+  "inchiostro": "#0850FE",
+  "byte": 43006
+ },
+ "kit-blu/icone/contenuti": {
+  "svg": "glifi/kit-blu/contenuti.svg",
+  "diametro": 56,
+  "cerchio": "#FEEFF0",
+  "inchiostro": "#F41F27",
+  "byte": 66939
+ },
+ "kit-blu/icone/costo": {
+  "svg": "glifi/kit-blu/costo.svg",
+  "diametro": 57,
+  "cerchio": "#FEEFEF",
+  "inchiostro": "#F4242B",
+  "byte": 71967
+ },
+ "kit-blu/icone/blocco": {
+  "svg": "glifi/kit-blu/blocco.svg",
+  "diametro": 57,
+  "cerchio": "#FEEEEF",
+  "inchiostro": "#F4222C",
+  "byte": 59514
+ },
+ "kit-blu/icone/successo": {
+  "svg": "glifi/kit-blu/successo.svg",
+  "diametro": 57,
+  "cerchio": "#EBF9F0",
+  "inchiostro": "#06AE45",
+  "byte": 94106
+ },
+ "kit-blu/icone/email": {
+  "svg": "glifi/kit-blu/email.svg",
+  "diametro": 56,
+  "cerchio": "#FEF0F0",
+  "inchiostro": "#F32F35",
+  "byte": 55952
+ },
+ "kit-blu/icone/profilo": {
+  "svg": "glifi/kit-blu/profilo.svg",
+  "diametro": 56,
+  "cerchio": "#EBF0FE",
+  "inchiostro": "#5D81FB",
+  "byte": 34238
+ },
+ "kit-blu/icone/impostazioni": {
+  "svg": "glifi/kit-blu/impostazioni.svg",
+  "diametro": 57,
+  "cerchio": "#F1F3F6",
+  "inchiostro": "#63748F",
+  "byte": 54074
+ },
+ "kit-blu/icone/aiuto": {
+  "svg": "glifi/kit-blu/aiuto.svg",
+  "diametro": 57,
+  "cerchio": "#F1F2F6",
+  "inchiostro": "#52627E",
+  "byte": 31848
+ },
+ "kit-blu/icone/completato": {
+  "svg": "glifi/kit-blu/completato.svg",
+  "diametro": 57,
+  "cerchio": "#EBF9F0",
+  "inchiostro": "#11AB4B",
+  "byte": 38868
+ },
+ "kit-blu/icone/errore": {
+  "svg": "glifi/kit-blu/errore.svg",
+  "diametro": 57,
+  "cerchio": "#FEEFEF",
+  "inchiostro": "#F22830",
+  "byte": 55249
+ },
+ "kit-blu/icone/info": {
+  "svg": "glifi/kit-blu/info.svg",
+  "diametro": 57,
+  "cerchio": "#EBF0FE",
+  "inchiostro": "#2162FC",
+  "byte": 52559
+ },
+ "kit-rosso/icone/studio": {
+  "svg": "glifi/kit-rosso/studio.svg",
+  "diametro": 60,
+  "cerchio": "#FEEBEC",
+  "inchiostro": "#F61C23",
+  "byte": 75233
+ },
+ "kit-rosso/icone/statistiche": {
+  "svg": "glifi/kit-rosso/statistiche.svg",
+  "diametro": 60,
+  "cerchio": "#FEF3E7",
+  "inchiostro": "#F9AB01",
+  "byte": 58132
+ },
+ "kit-rosso/icone/quiz": {
+  "svg": "glifi/kit-rosso/quiz.svg",
+  "diametro": 60,
+  "cerchio": "#ECEDFE",
+  "inchiostro": "#3329FE",
+  "byte": 46990
+ },
+ "kit-rosso/icone/contenuti": {
+  "svg": "glifi/kit-rosso/contenuti.svg",
+  "diametro": 60,
+  "cerchio": "#FEF0F0",
+  "inchiostro": "#F31C25",
+  "byte": 67282
+ },
+ "kit-rosso/icone/costo": {
+  "svg": "glifi/kit-rosso/costo.svg",
+  "diametro": 60,
+  "cerchio": "#FEF0F1",
+  "inchiostro": "#FB121A",
+  "byte": 72877
+ },
+ "kit-rosso/icone/blocco": {
+  "svg": "glifi/kit-rosso/blocco.svg",
+  "diametro": 60,
+  "cerchio": "#FEECED",
+  "inchiostro": "#F9111F",
+  "byte": 71743
+ },
+ "kit-rosso/icone/successo": {
+  "svg": "glifi/kit-rosso/successo.svg",
+  "diametro": 60,
+  "cerchio": "#E4F7EA",
+  "inchiostro": "#08A238",
+  "byte": 84819
+ },
+ "kit-rosso/icone/email": {
+  "svg": "glifi/kit-rosso/email.svg",
+  "diametro": 60,
+  "cerchio": "#FEF0F1",
+  "inchiostro": "#F91D2B",
+  "byte": 46846
+ },
+ "kit-rosso/icone/profilo": {
+  "svg": "glifi/kit-rosso/profilo.svg",
+  "diametro": 60,
+  "cerchio": "#EBEFFE",
+  "inchiostro": "#5D66FD",
+  "byte": 33628
+ },
+ "kit-rosso/icone/impostazioni": {
+  "svg": "glifi/kit-rosso/impostazioni.svg",
+  "diametro": 61,
+  "cerchio": "#F1F3F7",
+  "inchiostro": "#71819A",
+  "byte": 46412
+ },
+ "kit-rosso/icone/aiuto": {
+  "svg": "glifi/kit-rosso/aiuto.svg",
+  "diametro": 61,
+  "cerchio": "#ECEEF1",
+  "inchiostro": "#3B4E68",
+  "byte": 38738
+ },
+ "kit-rosso/icone/completato": {
+  "svg": "glifi/kit-rosso/completato.svg",
+  "diametro": 60,
+  "cerchio": "#E4F7EC",
+  "inchiostro": "#0A9B3B",
+  "byte": 54147
+ },
+ "kit-rosso/icone/errore": {
+  "svg": "glifi/kit-rosso/errore.svg",
+  "diametro": 60,
+  "cerchio": "#FEE7E9",
+  "inchiostro": "#FA0F1A",
+  "byte": 73466
+ },
+ "kit-rosso/icone/info": {
+  "svg": "glifi/kit-rosso/info.svg",
+  "diametro": 61,
+  "cerchio": "#E8EDFE",
+  "inchiostro": "#2B3EFD",
+  "byte": 53259
+ }
+}

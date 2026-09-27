@@ -26,8 +26,9 @@ import PaymentThanks from './components/PaymentThanks';
 import ProjectConsent from './components/ProjectConsent';
 import ProjectProfile from './components/ProjectProfile';
 import Leaderboard from './components/Leaderboard';
+import BrandKit from './brand/BrandKit';
 
-type View = 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'stats' | 'debug' | 'onboarding' | 'plans' | 'cheatsheet' | 'thanks' | 'profile' | 'leaderboard';
+type View = 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'stats' | 'debug' | 'onboarding' | 'plans' | 'cheatsheet' | 'thanks' | 'profile' | 'leaderboard' | 'brand';
 
 // Il tempo di studio conta solo mentre si studia davvero (serve anche per la Garanzia Promosso)
 const STUDY_VIEWS: View[] = ['learn', 'exam', 'onboarding'];
@@ -35,6 +36,7 @@ const STUDY_VIEWS: View[] = ['learn', 'exam', 'onboarding'];
 function initialView(state: AppState): View {
   const params = new URLSearchParams(window.location.search);
   if (params.get('pagamento') === 'ok') return 'thanks';
+  if (params.has('brand')) return 'brand';
   const isNewUser = !state.onboarding && state.history.length === 0 && Object.keys(state.stats).length === 0;
   return isNewUser ? 'onboarding' : 'menu';
 }
@@ -315,6 +317,15 @@ export default function App() {
       selectedCorpus: corpus
     });
   };
+
+  // Il Brand Kit usa tutta la finestra, fuori dalla cornice dell'app
+  if (view === 'brand') {
+    return (
+      <div style={{ height: '100dvh' }}>
+        <BrandKit onEsci={() => { window.history.replaceState(null, '', window.location.pathname); setView('menu'); }} />
+      </div>
+    );
+  }
 
   return (
     <Layout>

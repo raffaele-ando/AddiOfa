@@ -1,0 +1,1883 @@
+[
+ {
+  "elemento": "kit-blu/illustrazioni/studio-inglese",
+  "svg": "vettori/kit-blu/illustrazioni/studio-inglese.svg",
+  "impostazione": "fine",
+  "byte": 496965,
+  "fondo_tavola": {
+   "mae_255": 3.46,
+   "p95_255": 27.0,
+   "entro_8": 0.8479,
+   "ssim": 0.9578
+  },
+  "fondo_scuro": {
+   "mae_255": 4.64,
+   "p95_255": 34.0,
+   "entro_8": 0.8254,
+   "ssim": 0.9429
+  },
+  "punteggio": 4.05
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/quiz-test",
+  "svg": "vettori/kit-blu/illustrazioni/quiz-test.svg",
+  "impostazione": "fine",
+  "byte": 174972,
+  "fondo_tavola": {
+   "mae_255": 1.94,
+   "p95_255": 9.0,
+   "entro_8": 0.9432,
+   "ssim": 0.9697
+  },
+  "fondo_scuro": {
+   "mae_255": 3.19,
+   "p95_255": 12.0,
+   "entro_8": 0.9237,
+   "ssim": 0.9561
+  },
+  "punteggio": 2.56
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/risultato-probabilita",
+  "svg": "vettori/kit-blu/illustrazioni/risultato-probabilita.svg",
+  "impostazione": "fine",
+  "byte": 323625,
+  "fondo_tavola": {
+   "mae_255": 3.55,
+   "p95_255": 29.0,
+   "entro_8": 0.8576,
+   "ssim": 0.9475
+  },
+  "fondo_scuro": {
+   "mae_255": 4.59,
+   "p95_255": 36.0,
+   "entro_8": 0.8393,
+   "ssim": 0.9384
+  },
+  "punteggio": 4.07
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/rischio-economico",
+  "svg": "vettori/kit-blu/illustrazioni/rischio-economico.svg",
+  "impostazione": "fine",
+  "byte": 862555,
+  "fondo_tavola": {
+   "mae_255": 2.6,
+   "p95_255": 12.0,
+   "entro_8": 0.8895,
+   "ssim": 0.966
+  },
+  "fondo_scuro": {
+   "mae_255": 4.28,
+   "p95_255": 19.0,
+   "entro_8": 0.8629,
+   "ssim": 0.9529
+  },
+  "punteggio": 3.44
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/piano-studi-bloccato",
+  "svg": "vettori/kit-blu/illustrazioni/piano-studi-bloccato.svg",
+  "impostazione": "fine",
+  "byte": 199251,
+  "fondo_tavola": {
+   "mae_255": 2.2,
+   "p95_255": 12.0,
+   "entro_8": 0.9004,
+   "ssim": 0.9661
+  },
+  "fondo_scuro": {
+   "mae_255": 3.49,
+   "p95_255": 17.0,
+   "entro_8": 0.8782,
+   "ssim": 0.9512
+  },
+  "punteggio": 2.85
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/superamento",
+  "svg": "vettori/kit-blu/illustrazioni/superamento.svg",
+  "impostazione": "fine",
+  "byte": 214172,
+  "fondo_tavola": {
+   "mae_255": 1.67,
+   "p95_255": 8.0,
+   "entro_8": 0.955,
+   "ssim": 0.9712
+  },
+  "fondo_scuro": {
+   "mae_255": 3.16,
+   "p95_255": 13.3,
+   "entro_8": 0.928,
+   "ssim": 0.9529
+  },
+  "punteggio": 2.42
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/successo",
+  "svg": "vettori/kit-blu/illustrazioni/successo.svg",
+  "impostazione": "fine",
+  "byte": 616436,
+  "fondo_tavola": {
+   "mae_255": 2.62,
+   "p95_255": 24.0,
+   "entro_8": 0.7983,
+   "ssim": 0.9748
+  },
+  "fondo_scuro": {
+   "mae_255": 4.22,
+   "p95_255": 28.5,
+   "entro_8": 0.7694,
+   "ssim": 0.9561
+  },
+  "punteggio": 3.42
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/suggerimenti-consigli",
+  "svg": "vettori/kit-blu/illustrazioni/suggerimenti-consigli.svg",
+  "impostazione": "media",
+  "byte": 264848,
+  "fondo_tavola": {
+   "mae_255": 1.75,
+   "p95_255": 15.0,
+   "entro_8": 0.8814,
+   "ssim": 0.9803
+  },
+  "fondo_scuro": {
+   "mae_255": 3.19,
+   "p95_255": 20.5,
+   "entro_8": 0.8535,
+   "ssim": 0.965
+  },
+  "punteggio": 2.47
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/email-istituzionale",
+  "svg": "vettori/kit-blu/illustrazioni/email-istituzionale.svg",
+  "impostazione": "fine",
+  "byte": 698468,
+  "fondo_tavola": {
+   "mae_255": 2.27,
+   "p95_255": 12.0,
+   "entro_8": 0.9148,
+   "ssim": 0.9682
+  },
+  "fondo_scuro": {
+   "mae_255": 4.3,
+   "p95_255": 21.0,
+   "entro_8": 0.8812,
+   "ssim": 0.9505
+  },
+  "punteggio": 3.29
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/verifica-utente",
+  "svg": "vettori/kit-blu/illustrazioni/verifica-utente.svg",
+  "impostazione": "media",
+  "byte": 144614,
+  "fondo_tavola": {
+   "mae_255": 3.04,
+   "p95_255": 21.0,
+   "entro_8": 0.8413,
+   "ssim": 0.9391
+  },
+  "fondo_scuro": {
+   "mae_255": 4.76,
+   "p95_255": 23.0,
+   "entro_8": 0.8052,
+   "ssim": 0.9303
+  },
+  "punteggio": 3.9
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/accesso-bloccato",
+  "svg": "vettori/kit-blu/illustrazioni/accesso-bloccato.svg",
+  "impostazione": "fine",
+  "byte": 691310,
+  "fondo_tavola": {
+   "mae_255": 2.58,
+   "p95_255": 14.0,
+   "entro_8": 0.9011,
+   "ssim": 0.9668
+  },
+  "fondo_scuro": {
+   "mae_255": 5.08,
+   "p95_255": 28.0,
+   "entro_8": 0.8534,
+   "ssim": 0.9383
+  },
+  "punteggio": 3.83
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/mancato-superamento",
+  "svg": "vettori/kit-blu/illustrazioni/mancato-superamento.svg",
+  "impostazione": "fine",
+  "byte": 435027,
+  "fondo_tavola": {
+   "mae_255": 2.64,
+   "p95_255": 16.0,
+   "entro_8": 0.8397,
+   "ssim": 0.9614
+  },
+  "fondo_scuro": {
+   "mae_255": 5.3,
+   "p95_255": 25.0,
+   "entro_8": 0.788,
+   "ssim": 0.9214
+  },
+  "punteggio": 3.97
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/progressi-statistiche",
+  "svg": "vettori/kit-blu/illustrazioni/progressi-statistiche.svg",
+  "impostazione": "fine",
+  "byte": 327287,
+  "fondo_tavola": {
+   "mae_255": 2.09,
+   "p95_255": 14.0,
+   "entro_8": 0.8988,
+   "ssim": 0.9645
+  },
+  "fondo_scuro": {
+   "mae_255": 4.07,
+   "p95_255": 23.0,
+   "entro_8": 0.8565,
+   "ssim": 0.945
+  },
+  "punteggio": 3.08
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/mondo-internazionale",
+  "svg": "vettori/kit-blu/illustrazioni/mondo-internazionale.svg",
+  "impostazione": "fine",
+  "byte": 695907,
+  "fondo_tavola": {
+   "mae_255": 2.53,
+   "p95_255": 14.0,
+   "entro_8": 0.896,
+   "ssim": 0.9587
+  },
+  "fondo_scuro": {
+   "mae_255": 4.21,
+   "p95_255": 22.0,
+   "entro_8": 0.8728,
+   "ssim": 0.9541
+  },
+  "punteggio": 3.37
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/messaggi-supporto",
+  "svg": "vettori/kit-blu/illustrazioni/messaggi-supporto.svg",
+  "impostazione": "media",
+  "byte": 139975,
+  "fondo_tavola": {
+   "mae_255": 2.96,
+   "p95_255": 14.0,
+   "entro_8": 0.815,
+   "ssim": 0.9449
+  },
+  "fondo_scuro": {
+   "mae_255": 5.43,
+   "p95_255": 27.0,
+   "entro_8": 0.7707,
+   "ssim": 0.9217
+  },
+  "punteggio": 4.2
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/celebrazione",
+  "svg": "vettori/kit-blu/illustrazioni/celebrazione.svg",
+  "impostazione": "media",
+  "byte": 301372,
+  "fondo_tavola": {
+   "mae_255": 2.38,
+   "p95_255": 23.0,
+   "entro_8": 0.8574,
+   "ssim": 0.9411
+  },
+  "fondo_scuro": {
+   "mae_255": 6.38,
+   "p95_255": 56.5,
+   "entro_8": 0.8085,
+   "ssim": 0.917
+  },
+  "punteggio": 4.38
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/attesa-caricamento",
+  "svg": "vettori/kit-blu/illustrazioni/attesa-caricamento.svg",
+  "impostazione": "fine",
+  "byte": 285827,
+  "fondo_tavola": {
+   "mae_255": 1.68,
+   "p95_255": 10.1,
+   "entro_8": 0.9328,
+   "ssim": 0.97
+  },
+  "fondo_scuro": {
+   "mae_255": 3.46,
+   "p95_255": 19.0,
+   "entro_8": 0.904,
+   "ssim": 0.9508
+  },
+  "punteggio": 2.57
+ },
+ {
+  "elemento": "kit-blu/illustrazioni/ricerca",
+  "svg": "vettori/kit-blu/illustrazioni/ricerca.svg",
+  "impostazione": "fine",
+  "byte": 397005,
+  "fondo_tavola": {
+   "mae_255": 2.03,
+   "p95_255": 11.0,
+   "entro_8": 0.9303,
+   "ssim": 0.9754
+  },
+  "fondo_scuro": {
+   "mae_255": 3.82,
+   "p95_255": 20.9,
+   "entro_8": 0.889,
+   "ssim": 0.9531
+  },
+  "punteggio": 2.92
+ },
+ {
+  "elemento": "kit-blu/icone/studio",
+  "svg": "vettori/kit-blu/icone/studio.svg",
+  "impostazione": "leggera",
+  "byte": 32939,
+  "fondo_tavola": {
+   "mae_255": 2.02,
+   "p95_255": 16.0,
+   "entro_8": 0.8989,
+   "ssim": 0.9656
+  },
+  "fondo_scuro": {
+   "mae_255": 4.4,
+   "p95_255": 33.8,
+   "entro_8": 0.8349,
+   "ssim": 0.9421
+  },
+  "punteggio": 3.21
+ },
+ {
+  "elemento": "kit-blu/icone/statistiche",
+  "svg": "vettori/kit-blu/icone/statistiche.svg",
+  "impostazione": "leggera",
+  "byte": 32380,
+  "fondo_tavola": {
+   "mae_255": 1.76,
+   "p95_255": 18.0,
+   "entro_8": 0.8875,
+   "ssim": 0.9758
+  },
+  "fondo_scuro": {
+   "mae_255": 4.56,
+   "p95_255": 36.8,
+   "entro_8": 0.8247,
+   "ssim": 0.946
+  },
+  "punteggio": 3.16
+ },
+ {
+  "elemento": "kit-blu/icone/quiz",
+  "svg": "vettori/kit-blu/icone/quiz.svg",
+  "impostazione": "leggera",
+  "byte": 26101,
+  "fondo_tavola": {
+   "mae_255": 1.8,
+   "p95_255": 10.0,
+   "entro_8": 0.9438,
+   "ssim": 0.9696
+  },
+  "fondo_scuro": {
+   "mae_255": 3.74,
+   "p95_255": 28.8,
+   "entro_8": 0.8927,
+   "ssim": 0.952
+  },
+  "punteggio": 2.77
+ },
+ {
+  "elemento": "kit-blu/icone/contenuti",
+  "svg": "vettori/kit-blu/icone/contenuti.svg",
+  "impostazione": "media",
+  "byte": 56319,
+  "fondo_tavola": {
+   "mae_255": 2.09,
+   "p95_255": 12.0,
+   "entro_8": 0.9176,
+   "ssim": 0.9653
+  },
+  "fondo_scuro": {
+   "mae_255": 4.92,
+   "p95_255": 33.2,
+   "entro_8": 0.8539,
+   "ssim": 0.9392
+  },
+  "punteggio": 3.5
+ },
+ {
+  "elemento": "kit-blu/icone/costo",
+  "svg": "vettori/kit-blu/icone/costo.svg",
+  "impostazione": "leggera",
+  "byte": 35403,
+  "fondo_tavola": {
+   "mae_255": 2.37,
+   "p95_255": 16.0,
+   "entro_8": 0.9094,
+   "ssim": 0.9669
+  },
+  "fondo_scuro": {
+   "mae_255": 4.57,
+   "p95_255": 35.5,
+   "entro_8": 0.8506,
+   "ssim": 0.9473
+  },
+  "punteggio": 3.47
+ },
+ {
+  "elemento": "kit-blu/icone/blocco",
+  "svg": "vettori/kit-blu/icone/blocco.svg",
+  "impostazione": "fine",
+  "byte": 97798,
+  "fondo_tavola": {
+   "mae_255": 1.95,
+   "p95_255": 11.0,
+   "entro_8": 0.9265,
+   "ssim": 0.9696
+  },
+  "fondo_scuro": {
+   "mae_255": 4.7,
+   "p95_255": 27.0,
+   "entro_8": 0.8674,
+   "ssim": 0.942
+  },
+  "punteggio": 3.33
+ },
+ {
+  "elemento": "kit-blu/icone/successo",
+  "svg": "vettori/kit-blu/icone/successo.svg",
+  "impostazione": "media",
+  "byte": 72338,
+  "fondo_tavola": {
+   "mae_255": 2.18,
+   "p95_255": 11.0,
+   "entro_8": 0.9141,
+   "ssim": 0.9631
+  },
+  "fondo_scuro": {
+   "mae_255": 5.03,
+   "p95_255": 32.1,
+   "entro_8": 0.855,
+   "ssim": 0.9395
+  },
+  "punteggio": 3.61
+ },
+ {
+  "elemento": "kit-blu/icone/email",
+  "svg": "vettori/kit-blu/icone/email.svg",
+  "impostazione": "media",
+  "byte": 46173,
+  "fondo_tavola": {
+   "mae_255": 1.79,
+   "p95_255": 9.0,
+   "entro_8": 0.9452,
+   "ssim": 0.963
+  },
+  "fondo_scuro": {
+   "mae_255": 4.16,
+   "p95_255": 26.6,
+   "entro_8": 0.8899,
+   "ssim": 0.9472
+  },
+  "punteggio": 2.98
+ },
+ {
+  "elemento": "kit-blu/icone/profilo",
+  "svg": "vettori/kit-blu/icone/profilo.svg",
+  "impostazione": "leggera",
+  "byte": 28851,
+  "fondo_tavola": {
+   "mae_255": 1.79,
+   "p95_255": 11.0,
+   "entro_8": 0.9211,
+   "ssim": 0.9638
+  },
+  "fondo_scuro": {
+   "mae_255": 4.26,
+   "p95_255": 27.0,
+   "entro_8": 0.8656,
+   "ssim": 0.9433
+  },
+  "punteggio": 3.02
+ },
+ {
+  "elemento": "kit-blu/icone/impostazioni",
+  "svg": "vettori/kit-blu/icone/impostazioni.svg",
+  "impostazione": "fine",
+  "byte": 92351,
+  "fondo_tavola": {
+   "mae_255": 1.82,
+   "p95_255": 7.0,
+   "entro_8": 0.9612,
+   "ssim": 0.9661
+  },
+  "fondo_scuro": {
+   "mae_255": 4.36,
+   "p95_255": 23.9,
+   "entro_8": 0.9007,
+   "ssim": 0.9484
+  },
+  "punteggio": 3.09
+ },
+ {
+  "elemento": "kit-blu/icone/aiuto",
+  "svg": "vettori/kit-blu/icone/aiuto.svg",
+  "impostazione": "leggera",
+  "byte": 22728,
+  "fondo_tavola": {
+   "mae_255": 1.82,
+   "p95_255": 8.0,
+   "entro_8": 0.9519,
+   "ssim": 0.9696
+  },
+  "fondo_scuro": {
+   "mae_255": 3.8,
+   "p95_255": 24.7,
+   "entro_8": 0.8964,
+   "ssim": 0.9551
+  },
+  "punteggio": 2.81
+ },
+ {
+  "elemento": "kit-blu/icone/completato",
+  "svg": "vettori/kit-blu/icone/completato.svg",
+  "impostazione": "leggera",
+  "byte": 27470,
+  "fondo_tavola": {
+   "mae_255": 1.76,
+   "p95_255": 9.5,
+   "entro_8": 0.937,
+   "ssim": 0.9665
+  },
+  "fondo_scuro": {
+   "mae_255": 4.42,
+   "p95_255": 31.8,
+   "entro_8": 0.8812,
+   "ssim": 0.943
+  },
+  "punteggio": 3.09
+ },
+ {
+  "elemento": "kit-blu/icone/errore",
+  "svg": "vettori/kit-blu/icone/errore.svg",
+  "impostazione": "leggera",
+  "byte": 27722,
+  "fondo_tavola": {
+   "mae_255": 2.12,
+   "p95_255": 12.0,
+   "entro_8": 0.9164,
+   "ssim": 0.9688
+  },
+  "fondo_scuro": {
+   "mae_255": 4.61,
+   "p95_255": 31.0,
+   "entro_8": 0.8609,
+   "ssim": 0.945
+  },
+  "punteggio": 3.37
+ },
+ {
+  "elemento": "kit-blu/icone/info",
+  "svg": "vettori/kit-blu/icone/info.svg",
+  "impostazione": "media",
+  "byte": 54577,
+  "fondo_tavola": {
+   "mae_255": 1.96,
+   "p95_255": 12.0,
+   "entro_8": 0.906,
+   "ssim": 0.9651
+  },
+  "fondo_scuro": {
+   "mae_255": 4.55,
+   "p95_255": 26.8,
+   "entro_8": 0.8498,
+   "ssim": 0.9391
+  },
+  "punteggio": 3.25
+ },
+ {
+  "elemento": "kit-blu/stati/operazione-completata",
+  "svg": "vettori/kit-blu/stati/operazione-completata.svg",
+  "impostazione": "media",
+  "byte": 238648,
+  "fondo_tavola": {
+   "mae_255": 3.02,
+   "p95_255": 18.3,
+   "entro_8": 0.8749,
+   "ssim": 0.9656
+  },
+  "fondo_scuro": {
+   "mae_255": 5.56,
+   "p95_255": 34.0,
+   "entro_8": 0.8304,
+   "ssim": 0.9438
+  },
+  "punteggio": 4.29
+ },
+ {
+  "elemento": "kit-blu/stati/errore",
+  "svg": "vettori/kit-blu/stati/errore.svg",
+  "impostazione": "media",
+  "byte": 250385,
+  "fondo_tavola": {
+   "mae_255": 3.15,
+   "p95_255": 22.0,
+   "entro_8": 0.8625,
+   "ssim": 0.9626
+  },
+  "fondo_scuro": {
+   "mae_255": 5.79,
+   "p95_255": 37.6,
+   "entro_8": 0.8137,
+   "ssim": 0.945
+  },
+  "punteggio": 4.47
+ },
+ {
+  "elemento": "kit-blu/stati/attenzione",
+  "svg": "vettori/kit-blu/stati/attenzione.svg",
+  "impostazione": "media",
+  "byte": 222893,
+  "fondo_tavola": {
+   "mae_255": 2.85,
+   "p95_255": 22.0,
+   "entro_8": 0.8655,
+   "ssim": 0.9675
+  },
+  "fondo_scuro": {
+   "mae_255": 5.08,
+   "p95_255": 37.0,
+   "entro_8": 0.8221,
+   "ssim": 0.9544
+  },
+  "punteggio": 3.96
+ },
+ {
+  "elemento": "kit-blu/stati/informazione",
+  "svg": "vettori/kit-blu/stati/informazione.svg",
+  "impostazione": "media",
+  "byte": 228338,
+  "fondo_tavola": {
+   "mae_255": 3.07,
+   "p95_255": 18.0,
+   "entro_8": 0.8758,
+   "ssim": 0.9665
+  },
+  "fondo_scuro": {
+   "mae_255": 5.26,
+   "p95_255": 31.0,
+   "entro_8": 0.8322,
+   "ssim": 0.9534
+  },
+  "punteggio": 4.17
+ },
+ {
+  "elemento": "kit-blu/ui/pulsante-primario",
+  "svg": "vettori/kit-blu/ui/pulsante-primario.svg",
+  "impostazione": "leggera",
+  "byte": 76497,
+  "fondo_tavola": {
+   "mae_255": 4.61,
+   "p95_255": 38.3,
+   "entro_8": 0.8429,
+   "ssim": 0.9244
+  },
+  "fondo_scuro": {
+   "mae_255": 4.85,
+   "p95_255": 50.0,
+   "entro_8": 0.8168,
+   "ssim": 0.9241
+  },
+  "punteggio": 4.73
+ },
+ {
+  "elemento": "kit-blu/ui/pulsante-secondario",
+  "svg": "vettori/kit-blu/ui/pulsante-secondario.svg",
+  "impostazione": "media",
+  "byte": 95477,
+  "fondo_tavola": {
+   "mae_255": 3.03,
+   "p95_255": 19.0,
+   "entro_8": 0.9138,
+   "ssim": 0.9682
+  },
+  "fondo_scuro": {
+   "mae_255": 6.23,
+   "p95_255": 45.0,
+   "entro_8": 0.8577,
+   "ssim": 0.926
+  },
+  "punteggio": 4.63
+ },
+ {
+  "elemento": "kit-blu/ui/pulsante-outline",
+  "svg": "vettori/kit-blu/ui/pulsante-outline.svg",
+  "impostazione": "leggera",
+  "byte": 85458,
+  "fondo_tavola": {
+   "mae_255": 2.84,
+   "p95_255": 23.0,
+   "entro_8": 0.8472,
+   "ssim": 0.9671
+  },
+  "fondo_scuro": {
+   "mae_255": 4.41,
+   "p95_255": 30.8,
+   "entro_8": 0.8186,
+   "ssim": 0.9607
+  },
+  "punteggio": 3.62
+ },
+ {
+  "elemento": "kit-blu/ui/interruttore-acceso",
+  "svg": "vettori/kit-blu/ui/interruttore-acceso.svg",
+  "impostazione": "leggera",
+  "byte": 31975,
+  "fondo_tavola": {
+   "mae_255": 4.51,
+   "p95_255": 42.0,
+   "entro_8": 0.8099,
+   "ssim": 0.9042
+  },
+  "fondo_scuro": {
+   "mae_255": 7.59,
+   "p95_255": 65.1,
+   "entro_8": 0.7628,
+   "ssim": 0.9031
+  },
+  "punteggio": 6.05
+ },
+ {
+  "elemento": "kit-blu/ui/interruttore-spento",
+  "svg": "vettori/kit-blu/ui/interruttore-spento.svg",
+  "impostazione": "media",
+  "byte": 23621,
+  "fondo_tavola": {
+   "mae_255": 1.99,
+   "p95_255": 9.3,
+   "entro_8": 0.926,
+   "ssim": 0.9477
+  },
+  "fondo_scuro": {
+   "mae_255": 6.51,
+   "p95_255": 40.4,
+   "entro_8": 0.8671,
+   "ssim": 0.9122
+  },
+  "punteggio": 4.25
+ },
+ {
+  "elemento": "kit-blu/ui/casella-spuntata",
+  "svg": "vettori/kit-blu/ui/casella-spuntata.svg",
+  "impostazione": "leggera",
+  "byte": 11495,
+  "fondo_tavola": {
+   "mae_255": 4.53,
+   "p95_255": 48.0,
+   "entro_8": 0.7777,
+   "ssim": 0.931
+  },
+  "fondo_scuro": {
+   "mae_255": 7.72,
+   "p95_255": 60.0,
+   "entro_8": 0.697,
+   "ssim": 0.9223
+  },
+  "punteggio": 6.12
+ },
+ {
+  "elemento": "kit-blu/ui/casella-vuota",
+  "svg": "vettori/kit-blu/ui/casella-vuota.svg",
+  "impostazione": "leggera",
+  "byte": 10793,
+  "fondo_tavola": {
+   "mae_255": 2.24,
+   "p95_255": 9.0,
+   "entro_8": 0.9233,
+   "ssim": 0.9465
+  },
+  "fondo_scuro": {
+   "mae_255": 8.26,
+   "p95_255": 49.6,
+   "entro_8": 0.8122,
+   "ssim": 0.9447
+  },
+  "punteggio": 5.25
+ },
+ {
+  "elemento": "kit-blu/ui/radio-selezionato",
+  "svg": "vettori/kit-blu/ui/radio-selezionato.svg",
+  "impostazione": "fine",
+  "byte": 86097,
+  "fondo_tavola": {
+   "mae_255": 4.16,
+   "p95_255": 37.0,
+   "entro_8": 0.7789,
+   "ssim": 0.9563
+  },
+  "fondo_scuro": {
+   "mae_255": 9.45,
+   "p95_255": 64.3,
+   "entro_8": 0.7009,
+   "ssim": 0.8925
+  },
+  "punteggio": 6.8
+ },
+ {
+  "elemento": "kit-blu/ui/radio-vuoto",
+  "svg": "vettori/kit-blu/ui/radio-vuoto.svg",
+  "impostazione": "leggera",
+  "byte": 16539,
+  "fondo_tavola": {
+   "mae_255": 2.35,
+   "p95_255": 13.0,
+   "entro_8": 0.8852,
+   "ssim": 0.8969
+  },
+  "fondo_scuro": {
+   "mae_255": 6.85,
+   "p95_255": 44.3,
+   "entro_8": 0.8072,
+   "ssim": 0.9329
+  },
+  "punteggio": 4.6
+ },
+ {
+  "elemento": "kit-blu/ui/indicatore-avanzamento",
+  "svg": "vettori/kit-blu/ui/indicatore-avanzamento.svg",
+  "impostazione": "leggera",
+  "byte": 130452,
+  "fondo_tavola": {
+   "mae_255": 2.78,
+   "p95_255": 22.0,
+   "entro_8": 0.8706,
+   "ssim": 0.9396
+  },
+  "fondo_scuro": {
+   "mae_255": 5.96,
+   "p95_255": 45.3,
+   "entro_8": 0.8214,
+   "ssim": 0.9302
+  },
+  "punteggio": 4.37
+ },
+ {
+  "elemento": "kit-blu/ui/badge-piu-scelto",
+  "svg": "vettori/kit-blu/ui/badge-piu-scelto.svg",
+  "impostazione": "leggera",
+  "byte": 57799,
+  "fondo_tavola": {
+   "mae_255": 2.84,
+   "p95_255": 21.0,
+   "entro_8": 0.8754,
+   "ssim": 0.9629
+  },
+  "fondo_scuro": {
+   "mae_255": 5.87,
+   "p95_255": 39.0,
+   "entro_8": 0.7969,
+   "ssim": 0.9386
+  },
+  "punteggio": 4.36
+ },
+ {
+  "elemento": "kit-blu/ui/badge-massima-sicurezza",
+  "svg": "vettori/kit-blu/ui/badge-massima-sicurezza.svg",
+  "impostazione": "media",
+  "byte": 175482,
+  "fondo_tavola": {
+   "mae_255": 3.29,
+   "p95_255": 20.0,
+   "entro_8": 0.8382,
+   "ssim": 0.9526
+  },
+  "fondo_scuro": {
+   "mae_255": 6.19,
+   "p95_255": 35.0,
+   "entro_8": 0.7933,
+   "ssim": 0.9357
+  },
+  "punteggio": 4.74
+ },
+ {
+  "elemento": "kit-blu/ui/badge-consigliato",
+  "svg": "vettori/kit-blu/ui/badge-consigliato.svg",
+  "impostazione": "media",
+  "byte": 109412,
+  "fondo_tavola": {
+   "mae_255": 2.83,
+   "p95_255": 24.1,
+   "entro_8": 0.85,
+   "ssim": 0.9603
+  },
+  "fondo_scuro": {
+   "mae_255": 5.81,
+   "p95_255": 39.0,
+   "entro_8": 0.7715,
+   "ssim": 0.9427
+  },
+  "punteggio": 4.32
+ },
+ {
+  "elemento": "kit-rosso/ui/stile-illustrativo",
+  "svg": "vettori/kit-rosso/ui/stile-illustrativo.svg",
+  "impostazione": "media",
+  "byte": 162632,
+  "fondo_tavola": {
+   "mae_255": 5.05,
+   "p95_255": 30.0,
+   "entro_8": 0.8263,
+   "ssim": 0.9443
+  },
+  "fondo_scuro": {
+   "mae_255": 6.47,
+   "p95_255": 39.0,
+   "entro_8": 0.7921,
+   "ssim": 0.9405
+  },
+  "punteggio": 5.76
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/studio-inglese",
+  "svg": "vettori/kit-rosso/illustrazioni/studio-inglese.svg",
+  "impostazione": "media",
+  "byte": 659319,
+  "fondo_tavola": {
+   "mae_255": 3.04,
+   "p95_255": 22.0,
+   "entro_8": 0.8648,
+   "ssim": 0.9643
+  },
+  "fondo_scuro": {
+   "mae_255": 4.41,
+   "p95_255": 33.0,
+   "entro_8": 0.8435,
+   "ssim": 0.9514
+  },
+  "punteggio": 3.73
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/quiz-test",
+  "svg": "vettori/kit-rosso/illustrazioni/quiz-test.svg",
+  "impostazione": "media",
+  "byte": 238023,
+  "fondo_tavola": {
+   "mae_255": 1.45,
+   "p95_255": 9.0,
+   "entro_8": 0.9439,
+   "ssim": 0.967
+  },
+  "fondo_scuro": {
+   "mae_255": 4.86,
+   "p95_255": 30.4,
+   "entro_8": 0.8686,
+   "ssim": 0.939
+  },
+  "punteggio": 3.16
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/risultato-probabilita",
+  "svg": "vettori/kit-rosso/illustrazioni/risultato-probabilita.svg",
+  "impostazione": "media",
+  "byte": 181930,
+  "fondo_tavola": {
+   "mae_255": 4.32,
+   "p95_255": 37.1,
+   "entro_8": 0.8151,
+   "ssim": 0.9504
+  },
+  "fondo_scuro": {
+   "mae_255": 6.84,
+   "p95_255": 49.0,
+   "entro_8": 0.7685,
+   "ssim": 0.9217
+  },
+  "punteggio": 5.58
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/rischio-economico",
+  "svg": "vettori/kit-rosso/illustrazioni/rischio-economico.svg",
+  "impostazione": "media",
+  "byte": 571113,
+  "fondo_tavola": {
+   "mae_255": 3.37,
+   "p95_255": 22.0,
+   "entro_8": 0.8509,
+   "ssim": 0.9373
+  },
+  "fondo_scuro": {
+   "mae_255": 5.03,
+   "p95_255": 38.1,
+   "entro_8": 0.8265,
+   "ssim": 0.943
+  },
+  "punteggio": 4.2
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/piano-studi-bloccato",
+  "svg": "vettori/kit-rosso/illustrazioni/piano-studi-bloccato.svg",
+  "impostazione": "fine",
+  "byte": 448187,
+  "fondo_tavola": {
+   "mae_255": 2.4,
+   "p95_255": 12.0,
+   "entro_8": 0.9011,
+   "ssim": 0.9622
+  },
+  "fondo_scuro": {
+   "mae_255": 3.93,
+   "p95_255": 18.0,
+   "entro_8": 0.8747,
+   "ssim": 0.9441
+  },
+  "punteggio": 3.17
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/piano-superamento",
+  "svg": "vettori/kit-rosso/illustrazioni/piano-superamento.svg",
+  "impostazione": "media",
+  "byte": 260569,
+  "fondo_tavola": {
+   "mae_255": 2.53,
+   "p95_255": 16.0,
+   "entro_8": 0.8627,
+   "ssim": 0.9378
+  },
+  "fondo_scuro": {
+   "mae_255": 4.19,
+   "p95_255": 24.0,
+   "entro_8": 0.8385,
+   "ssim": 0.9421
+  },
+  "punteggio": 3.36
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/successo-superamento",
+  "svg": "vettori/kit-rosso/illustrazioni/successo-superamento.svg",
+  "impostazione": "media",
+  "byte": 281681,
+  "fondo_tavola": {
+   "mae_255": 4.35,
+   "p95_255": 41.0,
+   "entro_8": 0.7002,
+   "ssim": 0.9512
+  },
+  "fondo_scuro": {
+   "mae_255": 6.43,
+   "p95_255": 43.0,
+   "entro_8": 0.6773,
+   "ssim": 0.9428
+  },
+  "punteggio": 5.39
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/email-istituzionale",
+  "svg": "vettori/kit-rosso/illustrazioni/email-istituzionale.svg",
+  "impostazione": "fine",
+  "byte": 750949,
+  "fondo_tavola": {
+   "mae_255": 2.37,
+   "p95_255": 15.0,
+   "entro_8": 0.8981,
+   "ssim": 0.9685
+  },
+  "fondo_scuro": {
+   "mae_255": 4.41,
+   "p95_255": 25.0,
+   "entro_8": 0.8653,
+   "ssim": 0.9545
+  },
+  "punteggio": 3.39
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/verifica-utente",
+  "svg": "vettori/kit-rosso/illustrazioni/verifica-utente.svg",
+  "impostazione": "media",
+  "byte": 131789,
+  "fondo_tavola": {
+   "mae_255": 1.57,
+   "p95_255": 9.1,
+   "entro_8": 0.9405,
+   "ssim": 0.9737
+  },
+  "fondo_scuro": {
+   "mae_255": 2.66,
+   "p95_255": 13.0,
+   "entro_8": 0.9174,
+   "ssim": 0.9673
+  },
+  "punteggio": 2.12
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/simulazione-esame",
+  "svg": "vettori/kit-rosso/illustrazioni/simulazione-esame.svg",
+  "impostazione": "fine",
+  "byte": 853372,
+  "fondo_tavola": {
+   "mae_255": 3.01,
+   "p95_255": 19.5,
+   "entro_8": 0.8726,
+   "ssim": 0.9585
+  },
+  "fondo_scuro": {
+   "mae_255": 4.71,
+   "p95_255": 29.5,
+   "entro_8": 0.846,
+   "ssim": 0.946
+  },
+  "punteggio": 3.86
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/attenzione-rischio",
+  "svg": "vettori/kit-rosso/illustrazioni/attenzione-rischio.svg",
+  "impostazione": "media",
+  "byte": 205307,
+  "fondo_tavola": {
+   "mae_255": 2.11,
+   "p95_255": 11.0,
+   "entro_8": 0.9239,
+   "ssim": 0.9723
+  },
+  "fondo_scuro": {
+   "mae_255": 3.33,
+   "p95_255": 17.4,
+   "entro_8": 0.8937,
+   "ssim": 0.9613
+  },
+  "punteggio": 2.72
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/progressi-statistiche",
+  "svg": "vettori/kit-rosso/illustrazioni/progressi-statistiche.svg",
+  "impostazione": "fine",
+  "byte": 329265,
+  "fondo_tavola": {
+   "mae_255": 1.59,
+   "p95_255": 8.0,
+   "entro_8": 0.9504,
+   "ssim": 0.9758
+  },
+  "fondo_scuro": {
+   "mae_255": 2.84,
+   "p95_255": 15.5,
+   "entro_8": 0.9176,
+   "ssim": 0.9604
+  },
+  "punteggio": 2.21
+ },
+ {
+  "elemento": "kit-rosso/illustrazioni/suggerimenti-consigli",
+  "svg": "vettori/kit-rosso/illustrazioni/suggerimenti-consigli.svg",
+  "impostazione": "leggera",
+  "byte": 118789,
+  "fondo_tavola": {
+   "mae_255": 2.18,
+   "p95_255": 18.0,
+   "entro_8": 0.8263,
+   "ssim": 0.9576
+  },
+  "fondo_scuro": {
+   "mae_255": 4.56,
+   "p95_255": 29.0,
+   "entro_8": 0.7965,
+   "ssim": 0.9486
+  },
+  "punteggio": 3.37
+ },
+ {
+  "elemento": "kit-rosso/icone/studio",
+  "svg": "vettori/kit-rosso/icone/studio.svg",
+  "impostazione": "media",
+  "byte": 68669,
+  "fondo_tavola": {
+   "mae_255": 2.2,
+   "p95_255": 13.0,
+   "entro_8": 0.8902,
+   "ssim": 0.9593
+  },
+  "fondo_scuro": {
+   "mae_255": 4.44,
+   "p95_255": 28.0,
+   "entro_8": 0.8388,
+   "ssim": 0.9414
+  },
+  "punteggio": 3.32
+ },
+ {
+  "elemento": "kit-rosso/icone/statistiche",
+  "svg": "vettori/kit-rosso/icone/statistiche.svg",
+  "impostazione": "media",
+  "byte": 55384,
+  "fondo_tavola": {
+   "mae_255": 1.74,
+   "p95_255": 16.0,
+   "entro_8": 0.9019,
+   "ssim": 0.9712
+  },
+  "fondo_scuro": {
+   "mae_255": 4.15,
+   "p95_255": 33.0,
+   "entro_8": 0.8482,
+   "ssim": 0.9465
+  },
+  "punteggio": 2.95
+ },
+ {
+  "elemento": "kit-rosso/icone/quiz",
+  "svg": "vettori/kit-rosso/icone/quiz.svg",
+  "impostazione": "leggera",
+  "byte": 31393,
+  "fondo_tavola": {
+   "mae_255": 1.88,
+   "p95_255": 11.0,
+   "entro_8": 0.9177,
+   "ssim": 0.9669
+  },
+  "fondo_scuro": {
+   "mae_255": 4.0,
+   "p95_255": 26.1,
+   "entro_8": 0.8687,
+   "ssim": 0.9504
+  },
+  "punteggio": 2.94
+ },
+ {
+  "elemento": "kit-rosso/icone/contenuti",
+  "svg": "vettori/kit-rosso/icone/contenuti.svg",
+  "impostazione": "media",
+  "byte": 57848,
+  "fondo_tavola": {
+   "mae_255": 2.43,
+   "p95_255": 15.0,
+   "entro_8": 0.9049,
+   "ssim": 0.962
+  },
+  "fondo_scuro": {
+   "mae_255": 4.7,
+   "p95_255": 29.0,
+   "entro_8": 0.8516,
+   "ssim": 0.9443
+  },
+  "punteggio": 3.57
+ },
+ {
+  "elemento": "kit-rosso/icone/costo",
+  "svg": "vettori/kit-rosso/icone/costo.svg",
+  "impostazione": "leggera",
+  "byte": 33006,
+  "fondo_tavola": {
+   "mae_255": 2.35,
+   "p95_255": 15.0,
+   "entro_8": 0.9126,
+   "ssim": 0.9687
+  },
+  "fondo_scuro": {
+   "mae_255": 4.31,
+   "p95_255": 33.8,
+   "entro_8": 0.8544,
+   "ssim": 0.9531
+  },
+  "punteggio": 3.33
+ },
+ {
+  "elemento": "kit-rosso/icone/blocco",
+  "svg": "vettori/kit-rosso/icone/blocco.svg",
+  "impostazione": "media",
+  "byte": 71255,
+  "fondo_tavola": {
+   "mae_255": 2.44,
+   "p95_255": 15.0,
+   "entro_8": 0.8761,
+   "ssim": 0.9613
+  },
+  "fondo_scuro": {
+   "mae_255": 4.67,
+   "p95_255": 27.0,
+   "entro_8": 0.8267,
+   "ssim": 0.9462
+  },
+  "punteggio": 3.55
+ },
+ {
+  "elemento": "kit-rosso/icone/successo",
+  "svg": "vettori/kit-rosso/icone/successo.svg",
+  "impostazione": "media",
+  "byte": 85845,
+  "fondo_tavola": {
+   "mae_255": 2.46,
+   "p95_255": 13.0,
+   "entro_8": 0.8945,
+   "ssim": 0.9594
+  },
+  "fondo_scuro": {
+   "mae_255": 5.03,
+   "p95_255": 28.0,
+   "entro_8": 0.8368,
+   "ssim": 0.9359
+  },
+  "punteggio": 3.75
+ },
+ {
+  "elemento": "kit-rosso/icone/email",
+  "svg": "vettori/kit-rosso/icone/email.svg",
+  "impostazione": "leggera",
+  "byte": 26408,
+  "fondo_tavola": {
+   "mae_255": 1.92,
+   "p95_255": 12.0,
+   "entro_8": 0.914,
+   "ssim": 0.9605
+  },
+  "fondo_scuro": {
+   "mae_255": 4.35,
+   "p95_255": 28.0,
+   "entro_8": 0.8494,
+   "ssim": 0.9314
+  },
+  "punteggio": 3.13
+ },
+ {
+  "elemento": "kit-rosso/icone/profilo",
+  "svg": "vettori/kit-rosso/icone/profilo.svg",
+  "impostazione": "leggera",
+  "byte": 26270,
+  "fondo_tavola": {
+   "mae_255": 1.88,
+   "p95_255": 10.2,
+   "entro_8": 0.9322,
+   "ssim": 0.9619
+  },
+  "fondo_scuro": {
+   "mae_255": 4.09,
+   "p95_255": 27.0,
+   "entro_8": 0.8838,
+   "ssim": 0.9447
+  },
+  "punteggio": 2.98
+ },
+ {
+  "elemento": "kit-rosso/icone/impostazioni",
+  "svg": "vettori/kit-rosso/icone/impostazioni.svg",
+  "impostazione": "leggera",
+  "byte": 28198,
+  "fondo_tavola": {
+   "mae_255": 2.31,
+   "p95_255": 12.0,
+   "entro_8": 0.9303,
+   "ssim": 0.9563
+  },
+  "fondo_scuro": {
+   "mae_255": 4.18,
+   "p95_255": 25.0,
+   "entro_8": 0.8732,
+   "ssim": 0.9412
+  },
+  "punteggio": 3.25
+ },
+ {
+  "elemento": "kit-rosso/icone/aiuto",
+  "svg": "vettori/kit-rosso/icone/aiuto.svg",
+  "impostazione": "media",
+  "byte": 56147,
+  "fondo_tavola": {
+   "mae_255": 1.77,
+   "p95_255": 8.0,
+   "entro_8": 0.9499,
+   "ssim": 0.9624
+  },
+  "fondo_scuro": {
+   "mae_255": 3.96,
+   "p95_255": 22.0,
+   "entro_8": 0.8981,
+   "ssim": 0.9512
+  },
+  "punteggio": 2.87
+ },
+ {
+  "elemento": "kit-rosso/icone/completato",
+  "svg": "vettori/kit-rosso/icone/completato.svg",
+  "impostazione": "media",
+  "byte": 68389,
+  "fondo_tavola": {
+   "mae_255": 1.54,
+   "p95_255": 8.0,
+   "entro_8": 0.9526,
+   "ssim": 0.9682
+  },
+  "fondo_scuro": {
+   "mae_255": 5.24,
+   "p95_255": 29.8,
+   "entro_8": 0.858,
+   "ssim": 0.931
+  },
+  "punteggio": 3.39
+ },
+ {
+  "elemento": "kit-rosso/icone/errore",
+  "svg": "vettori/kit-rosso/icone/errore.svg",
+  "impostazione": "leggera",
+  "byte": 39300,
+  "fondo_tavola": {
+   "mae_255": 2.13,
+   "p95_255": 11.0,
+   "entro_8": 0.9231,
+   "ssim": 0.9643
+  },
+  "fondo_scuro": {
+   "mae_255": 5.31,
+   "p95_255": 37.1,
+   "entro_8": 0.8337,
+   "ssim": 0.8992
+  },
+  "punteggio": 3.72
+ },
+ {
+  "elemento": "kit-rosso/icone/info",
+  "svg": "vettori/kit-rosso/icone/info.svg",
+  "impostazione": "leggera",
+  "byte": 31251,
+  "fondo_tavola": {
+   "mae_255": 2.42,
+   "p95_255": 15.0,
+   "entro_8": 0.8917,
+   "ssim": 0.9548
+  },
+  "fondo_scuro": {
+   "mae_255": 4.64,
+   "p95_255": 34.5,
+   "entro_8": 0.8453,
+   "ssim": 0.9383
+  },
+  "punteggio": 3.53
+ },
+ {
+  "elemento": "kit-rosso/ui/pulsante-primario",
+  "svg": "vettori/kit-rosso/ui/pulsante-primario.svg",
+  "impostazione": "leggera",
+  "byte": 75570,
+  "fondo_tavola": {
+   "mae_255": 3.51,
+   "p95_255": 26.0,
+   "entro_8": 0.8964,
+   "ssim": 0.9564
+  },
+  "fondo_scuro": {
+   "mae_255": 3.78,
+   "p95_255": 39.0,
+   "entro_8": 0.8768,
+   "ssim": 0.9563
+  },
+  "punteggio": 3.64
+ },
+ {
+  "elemento": "kit-rosso/ui/pulsante-secondario",
+  "svg": "vettori/kit-rosso/ui/pulsante-secondario.svg",
+  "impostazione": "leggera",
+  "byte": 83284,
+  "fondo_tavola": {
+   "mae_255": 2.31,
+   "p95_255": 17.0,
+   "entro_8": 0.8968,
+   "ssim": 0.9695
+  },
+  "fondo_scuro": {
+   "mae_255": 4.23,
+   "p95_255": 34.0,
+   "entro_8": 0.8529,
+   "ssim": 0.9552
+  },
+  "punteggio": 3.27
+ },
+ {
+  "elemento": "kit-rosso/ui/pulsante-outline",
+  "svg": "vettori/kit-rosso/ui/pulsante-outline.svg",
+  "impostazione": "leggera",
+  "byte": 112243,
+  "fondo_tavola": {
+   "mae_255": 3.84,
+   "p95_255": 38.3,
+   "entro_8": 0.8532,
+   "ssim": 0.9361
+  },
+  "fondo_scuro": {
+   "mae_255": 6.0,
+   "p95_255": 51.0,
+   "entro_8": 0.831,
+   "ssim": 0.9403
+  },
+  "punteggio": 4.92
+ },
+ {
+  "elemento": "kit-rosso/ui/interruttore-acceso",
+  "svg": "vettori/kit-rosso/ui/interruttore-acceso.svg",
+  "impostazione": "leggera",
+  "byte": 38243,
+  "fondo_tavola": {
+   "mae_255": 5.93,
+   "p95_255": 52.0,
+   "entro_8": 0.7918,
+   "ssim": 0.9056
+  },
+  "fondo_scuro": {
+   "mae_255": 9.37,
+   "p95_255": 81.5,
+   "entro_8": 0.7245,
+   "ssim": 0.8934
+  },
+  "punteggio": 7.65
+ },
+ {
+  "elemento": "kit-rosso/ui/interruttore-spento",
+  "svg": "vettori/kit-rosso/ui/interruttore-spento.svg",
+  "impostazione": "media",
+  "byte": 27881,
+  "fondo_tavola": {
+   "mae_255": 1.77,
+   "p95_255": 10.0,
+   "entro_8": 0.9329,
+   "ssim": 0.9554
+  },
+  "fondo_scuro": {
+   "mae_255": 6.16,
+   "p95_255": 40.5,
+   "entro_8": 0.8723,
+   "ssim": 0.908
+  },
+  "punteggio": 3.96
+ },
+ {
+  "elemento": "kit-rosso/ui/casella-spuntata",
+  "svg": "vettori/kit-rosso/ui/casella-spuntata.svg",
+  "impostazione": "leggera",
+  "byte": 21548,
+  "fondo_tavola": {
+   "mae_255": 4.87,
+   "p95_255": 40.0,
+   "entro_8": 0.7779,
+   "ssim": 0.895
+  },
+  "fondo_scuro": {
+   "mae_255": 9.69,
+   "p95_255": 73.1,
+   "entro_8": 0.7009,
+   "ssim": 0.9008
+  },
+  "punteggio": 7.28
+ },
+ {
+  "elemento": "kit-rosso/ui/radio-vuoto",
+  "svg": "vettori/kit-rosso/ui/radio-vuoto.svg",
+  "impostazione": "leggera",
+  "byte": 15172,
+  "fondo_tavola": {
+   "mae_255": 1.9,
+   "p95_255": 11.0,
+   "entro_8": 0.9049,
+   "ssim": 0.9546
+  },
+  "fondo_scuro": {
+   "mae_255": 6.31,
+   "p95_255": 42.4,
+   "entro_8": 0.823,
+   "ssim": 0.9367
+  },
+  "punteggio": 4.1
+ },
+ {
+  "elemento": "kit-rosso/ui/barre-avanzamento",
+  "svg": "vettori/kit-rosso/ui/barre-avanzamento.svg",
+  "impostazione": "leggera",
+  "byte": 50447,
+  "fondo_tavola": {
+   "mae_255": 1.76,
+   "p95_255": 11.0,
+   "entro_8": 0.928,
+   "ssim": 0.9566
+  },
+  "fondo_scuro": {
+   "mae_255": 4.08,
+   "p95_255": 32.5,
+   "entro_8": 0.8707,
+   "ssim": 0.9396
+  },
+  "punteggio": 2.92
+ },
+ {
+  "elemento": "kit-rosso/ui/indicatore-avanzamento",
+  "svg": "vettori/kit-rosso/ui/indicatore-avanzamento.svg",
+  "impostazione": "leggera",
+  "byte": 44304,
+  "fondo_tavola": {
+   "mae_255": 5.35,
+   "p95_255": 44.5,
+   "entro_8": 0.8371,
+   "ssim": 0.8522
+  },
+  "fondo_scuro": {
+   "mae_255": 10.69,
+   "p95_255": 85.6,
+   "entro_8": 0.8011,
+   "ssim": 0.8503
+  },
+  "punteggio": 8.02
+ },
+ {
+  "elemento": "kit-rosso/stati/ricerca",
+  "svg": "vettori/kit-rosso/stati/ricerca.svg",
+  "impostazione": "media",
+  "byte": 146003,
+  "fondo_tavola": {
+   "mae_255": 3.35,
+   "p95_255": 22.0,
+   "entro_8": 0.8819,
+   "ssim": 0.9153
+  },
+  "fondo_scuro": {
+   "mae_255": 5.51,
+   "p95_255": 39.1,
+   "entro_8": 0.8476,
+   "ssim": 0.9284
+  },
+  "punteggio": 4.43
+ },
+ {
+  "elemento": "kit-rosso/stati/caricamento",
+  "svg": "vettori/kit-rosso/stati/caricamento.svg",
+  "impostazione": "media",
+  "byte": 97971,
+  "fondo_tavola": {
+   "mae_255": 2.16,
+   "p95_255": 14.0,
+   "entro_8": 0.9045,
+   "ssim": 0.9649
+  },
+  "fondo_scuro": {
+   "mae_255": 4.66,
+   "p95_255": 33.0,
+   "entro_8": 0.8691,
+   "ssim": 0.9401
+  },
+  "punteggio": 3.41
+ },
+ {
+  "elemento": "kit-rosso/stati/completato",
+  "svg": "vettori/kit-rosso/stati/completato.svg",
+  "impostazione": "media",
+  "byte": 106626,
+  "fondo_tavola": {
+   "mae_255": 2.41,
+   "p95_255": 11.0,
+   "entro_8": 0.9039,
+   "ssim": 0.9582
+  },
+  "fondo_scuro": {
+   "mae_255": 5.73,
+   "p95_255": 48.0,
+   "entro_8": 0.8452,
+   "ssim": 0.9356
+  },
+  "punteggio": 4.07
+ },
+ {
+  "elemento": "kit-rosso/stati/errore",
+  "svg": "vettori/kit-rosso/stati/errore.svg",
+  "impostazione": "media",
+  "byte": 105933,
+  "fondo_tavola": {
+   "mae_255": 2.58,
+   "p95_255": 14.0,
+   "entro_8": 0.8699,
+   "ssim": 0.9581
+  },
+  "fondo_scuro": {
+   "mae_255": 4.68,
+   "p95_255": 26.0,
+   "entro_8": 0.824,
+   "ssim": 0.9406
+  },
+  "punteggio": 3.63
+ },
+ {
+  "elemento": "kit-rosso/stati/vuoto",
+  "svg": "vettori/kit-rosso/stati/vuoto.svg",
+  "impostazione": "leggera",
+  "byte": 31053,
+  "fondo_tavola": {
+   "mae_255": 1.71,
+   "p95_255": 9.3,
+   "entro_8": 0.9415,
+   "ssim": 0.9639
+  },
+  "fondo_scuro": {
+   "mae_255": 4.07,
+   "p95_255": 25.0,
+   "entro_8": 0.8808,
+   "ssim": 0.9315
+  },
+  "punteggio": 2.89
+ },
+ {
+  "elemento": "kit-rosso/stati/celebrazione",
+  "svg": "vettori/kit-rosso/stati/celebrazione.svg",
+  "impostazione": "leggera",
+  "byte": 57904,
+  "fondo_tavola": {
+   "mae_255": 2.21,
+   "p95_255": 23.0,
+   "entro_8": 0.8824,
+   "ssim": 0.945
+  },
+  "fondo_scuro": {
+   "mae_255": 6.0,
+   "p95_255": 57.4,
+   "entro_8": 0.8245,
+   "ssim": 0.9092
+  },
+  "punteggio": 4.11
+ },
+ {
+  "elemento": "kit-rosso/stati/notifica",
+  "svg": "vettori/kit-rosso/stati/notifica.svg",
+  "impostazione": "fine",
+  "byte": 91233,
+  "fondo_tavola": {
+   "mae_255": 1.69,
+   "p95_255": 10.0,
+   "entro_8": 0.9295,
+   "ssim": 0.9707
+  },
+  "fondo_scuro": {
+   "mae_255": 4.11,
+   "p95_255": 24.1,
+   "entro_8": 0.8982,
+   "ssim": 0.9461
+  },
+  "punteggio": 2.9
+ },
+ {
+  "elemento": "kit-rosso/stati/attesa",
+  "svg": "vettori/kit-rosso/stati/attesa.svg",
+  "impostazione": "leggera",
+  "byte": 47152,
+  "fondo_tavola": {
+   "mae_255": 2.82,
+   "p95_255": 16.0,
+   "entro_8": 0.8547,
+   "ssim": 0.9459
+  },
+  "fondo_scuro": {
+   "mae_255": 5.4,
+   "p95_255": 34.7,
+   "entro_8": 0.7914,
+   "ssim": 0.9182
+  },
+  "punteggio": 4.11
+ },
+ {
+  "elemento": "kit-rosso/stati/in-corso",
+  "svg": "vettori/kit-rosso/stati/in-corso.svg",
+  "impostazione": "media",
+  "byte": 73190,
+  "fondo_tavola": {
+   "mae_255": 2.12,
+   "p95_255": 12.0,
+   "entro_8": 0.9001,
+   "ssim": 0.9596
+  },
+  "fondo_scuro": {
+   "mae_255": 4.9,
+   "p95_255": 25.0,
+   "entro_8": 0.8627,
+   "ssim": 0.9406
+  },
+  "punteggio": 3.51
+ },
+ {
+  "elemento": "kit-rosso/stati/obiettivo",
+  "svg": "vettori/kit-rosso/stati/obiettivo.svg",
+  "impostazione": "media",
+  "byte": 250015,
+  "fondo_tavola": {
+   "mae_255": 4.2,
+   "p95_255": 26.0,
+   "entro_8": 0.7658,
+   "ssim": 0.9363
+  },
+  "fondo_scuro": {
+   "mae_255": 6.52,
+   "p95_255": 43.0,
+   "entro_8": 0.7339,
+   "ssim": 0.9307
+  },
+  "punteggio": 5.36
+ },
+ {
+  "elemento": "kit-rosso/stati/messaggi",
+  "svg": "vettori/kit-rosso/stati/messaggi.svg",
+  "impostazione": "media",
+  "byte": 129530,
+  "fondo_tavola": {
+   "mae_255": 2.0,
+   "p95_255": 12.0,
+   "entro_8": 0.9131,
+   "ssim": 0.9654
+  },
+  "fondo_scuro": {
+   "mae_255": 4.05,
+   "p95_255": 25.0,
+   "entro_8": 0.8767,
+   "ssim": 0.9493
+  },
+  "punteggio": 3.02
+ },
+ {
+  "elemento": "kit-rosso/stati/mondo-internazionale",
+  "svg": "vettori/kit-rosso/stati/mondo-internazionale.svg",
+  "impostazione": "media",
+  "byte": 175037,
+  "fondo_tavola": {
+   "mae_255": 3.08,
+   "p95_255": 15.0,
+   "entro_8": 0.8818,
+   "ssim": 0.9408
+  },
+  "fondo_scuro": {
+   "mae_255": 4.72,
+   "p95_255": 24.0,
+   "entro_8": 0.8581,
+   "ssim": 0.9413
+  },
+  "punteggio": 3.9
+ },
+ {
+  "elemento": "logo/logo/icona-app",
+  "svg": "vettori/logo/logo/icona-app.svg",
+  "impostazione": "fine",
+  "byte": 4062381,
+  "fondo_tavola": {
+   "mae_255": 3.59,
+   "p95_255": 20.0,
+   "entro_8": 0.8007,
+   "ssim": 0.9577
+  },
+  "fondo_scuro": {
+   "mae_255": 3.59,
+   "p95_255": 20.0,
+   "entro_8": 0.8007,
+   "ssim": 0.9577
+  },
+  "punteggio": 3.59
+ }
+]

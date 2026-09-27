@@ -1,0 +1,37 @@
+/* Il font del Brand Kit è incluso nell'app: stesso disegno delle lettere ovunque, anche offline */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/inter/800.css';
+
+/* Animazioni del Brand Kit. Tutte si spengono con "riduci movimento" del sistema. */
+
+.brand-anim-galleggia { animation: brand-galleggia 3.2s ease-in-out infinite; }
+.brand-anim-pulsa { animation: brand-pulsa 2.4s ease-in-out infinite; }
+.brand-anim-oscilla { animation: brand-oscilla 2.8s ease-in-out infinite; transform-origin: 50% 70%; }
+.brand-anim-gira { animation: brand-gira 1s linear infinite; }
+.brand-anim-gira-lento { animation: brand-gira 18s linear infinite; }
+.brand-anim-rimbalza { animation: brand-rimbalza 1.6s cubic-bezier(.3, 1.6, .5, 1) infinite; }
+.brand-anim-capovolgi { animation: brand-capovolgi 3s ease-in-out infinite; }
+.brand-anim-brilla { animation: brand-brilla 2.6s ease-in-out infinite; }
+.brand-anim-entra { animation: brand-entra .5s cubic-bezier(.2, 1.4, .4, 1) both; }
+
+@keyframes brand-galleggia { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6%); } }
+@keyframes brand-pulsa { 0%, 100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.04); filter: brightness(1.08); } }
+@keyframes brand-oscilla { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes brand-gira { to { transform: rotate(360deg); } }
+@keyframes brand-rimbalza { 0%, 100% { transform: scale(1); } 30% { transform: scale(1.12); } 60% { transform: scale(.97); } }
+@keyframes brand-capovolgi { 0%, 40% { transform: rotate(0); } 50%, 90% { transform: rotate(180deg); } 100% { transform: rotate(360deg); } }
+@keyframes brand-brilla { 0%, 100% { filter: brightness(1) drop-shadow(0 0 0 rgba(255, 200, 0, 0)); } 50% { filter: brightness(1.12) drop-shadow(0 0 10px rgba(255, 190, 40, .55)); } }
+@keyframes brand-entra { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.brand-premibile { transition: transform .12s ease, filter .12s ease, box-shadow .12s ease; cursor: pointer; }
+.brand-premibile:hover { filter: brightness(1.04); }
+.brand-premibile:active { transform: translateY(1px) scale(.985); }
+.brand-premibile:focus-visible { outline: 3px solid rgba(59, 130, 246, .45); outline-offset: 2px; }
+.brand-premibile:disabled { cursor: not-allowed; filter: grayscale(.4) opacity(.55); transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="brand-anim-"] { animation: none !important; }
+}

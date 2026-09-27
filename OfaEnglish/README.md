@@ -29,6 +29,8 @@ npm run build    # build di produzione in dist/
 | `src/components/ProjectProfile.tsx` | Profilo Project ID: @nome utente, app collegate, esporta ed elimina i dati |
 | `src/components/Leaderboard.tsx` | Classifica NOI |
 | `src/lib/atlas.ts` | Client dell'API ATLAS (`../atlas/`) |
+| `src/brand/` | Brand Kit: token misurati, componenti in codice, icone miste, illustrazioni animabili, catalogo (`?brand`) |
+| `brand/` e `strumenti/brand/` | Elementi estratti e ricreati dalle immagini, e il programma che li produce e li verifica (vedi `strumenti/brand/README.md`) |
 | `tools/archivio/` | Script e dump usati per costruire e controllare il banco (non servono all'app) |
 
 ## Il quiz diagnostico
