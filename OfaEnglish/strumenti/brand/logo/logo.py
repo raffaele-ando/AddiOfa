@@ -31,6 +31,9 @@ import math
 import pathlib
 
 QUI = pathlib.Path(__file__).resolve().parent
+import sys  # noqa: E402
+sys.path.insert(0, str(QUI.parent))
+from maglia import maglia_svg, righe_maglia  # noqa: E402,F401
 LATO = 1254
 
 # Vertici della porta sul muro, in senso orario dalla punta in alto (misurati sulla reference).
@@ -216,59 +219,7 @@ def riempi(id_, d, g, defs, attr="") -> str:
     return out
 
 
-def maglia_svg(id_, m, defs) -> str:
-    """Maglia di sfumature (gradient mesh) fatta con SVG semplice: una griglia di nodi colorati,
-    interpolata in modo bilineare. Ogni riga della griglia è un rettangolo con la sfumatura della
-    linea di nodi in alto, più uno con la sfumatura della linea in basso che entra con una maschera
-    verticale: in ogni cella il colore è esattamente l'interpolazione dei suoi quattro nodi.
-    I colori dei nodi si possono cambiare a mano (o con ricolora_logo.py)."""
-    x0, y0, x1, y1 = m["x0"], m["y0"], m["x1"], m["y1"]
-    C, Rr = m["colonne"], m["righe"]
-    col = m["colori"]
-    ys = righe_maglia(m)
-    tol = m.get("tolleranza", 2.0)
-    for r in range(Rr + 1):
-        riga = [col[r * (C + 1) + c] for c in range(C + 1)]
-        tenuti = semplifica(riga, tol)
-        stop = "".join(f'<stop offset="{f"{c / C:.4f}".rstrip("0").rstrip(".") or "0"}" stop-color="{esa(riga[c])}"/>' for c in tenuti)
-        defs.append(f'<linearGradient id="{id_}L{r}" gradientUnits="userSpaceOnUse" x1="{f(x0)}" y1="0" x2="{f(x1)}" y2="0">{stop}</linearGradient>')
-    defs.append(f'<linearGradient id="{id_}V" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient>')
-    righe = []
-    for r in range(Rr):
-        ya, yb = ys[r], ys[r + 1]
-        defs.append(f'<mask id="{id_}M{r}" maskUnits="userSpaceOnUse" x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}">'
-                    f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}" fill="url(#{id_}V)"/></mask>')
-        righe.append(f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}" fill="url(#{id_}L{r})"/>'
-                     f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}" fill="url(#{id_}L{r + 1})" mask="url(#{id_}M{r})"/>')
-    # righe su pixel interi e senza antialiasing: nessuna fessura tra una riga e l'altra
-    return f'<g id="{id_}" shape-rendering="crispEdges">{"".join(righe)}</g>'
 
-
-def semplifica(riga, tol) -> list[int]:
-    """Fermate da tenere in una linea di nodi: si salta un nodo quando la retta tra i due vicini
-    tenuti lo riproduce entro `tol` (su 255). Il risultato cambia di meno di `tol`."""
-    tenuti = [0]
-    i = 0
-    n = len(riga)
-    while i < n - 1:
-        j = i + 1
-        while j + 1 < n:
-            ok = True
-            for k in range(i + 1, j + 1):
-                u = (k - i) / (j + 1 - i)
-                if any(abs(riga[i][c] + (riga[j + 1][c] - riga[i][c]) * u - riga[k][c]) > tol for c in range(3)):
-                    ok = False; break
-            if not ok:
-                break
-            j += 1
-        tenuti.append(j)
-        i = j
-    return tenuti
-
-
-def righe_maglia(m) -> list[int]:
-    """Bordi delle righe della maglia, su pixel interi."""
-    return [int(round(m["y0"] + (m["y1"] - m["y0"]) * r / m["righe"])) for r in range(m["righe"] + 1)]
 
 
 def svg(P: dict, sfondo: bool = True) -> str:

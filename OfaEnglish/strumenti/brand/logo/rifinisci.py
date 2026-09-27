@@ -25,6 +25,7 @@ from scipy import ndimage as ndi
 
 from ottimizza import carica_reference, adatta, iou, arrotonda_numeri, PARAMETRI as P_FILE
 from logo import carica, NOMI_FACCE, LATO
+from maglia import adatta_maglia
 
 import cv2
 
@@ -187,47 +188,6 @@ def raggi_spigoli(vertici, m, fissi=(4, 5)):
         raggi.append(round(float(2 * taglio / max(0.2, coseno)), 1))
     return raggi
 
-
-def adatta_maglia(a, sel, riquadro, colonne, righe, liscio=0.6, passo=1):
-    """Colori dei nodi di una maglia bilineare (come la disegna logo.maglia_svg) che riproducono
-    i pixel `sel` della reference: minimi quadrati con un po' di levigatezza tra nodi vicini."""
-    import scipy.sparse as sp
-    from scipy.sparse.linalg import spsolve
-    from logo import righe_maglia
-    x0, y0, x1, y1 = riquadro
-    x0, y0, x1, y1 = float(round(x0)), float(round(y0)), float(round(x1)), float(round(y1))
-    bordi = np.array(righe_maglia({"y0": y0, "y1": y1, "righe": righe}), dtype=float)
-    ys, xs = np.nonzero(sel)
-    k = (ys % passo == 0) & (xs % passo == 0)
-    ys, xs = ys[k], xs[k]
-    u = np.clip((xs + 0.5 - x0) / (x1 - x0) * colonne, 0, colonne - 1e-9)
-    c = np.floor(u).astype(int)
-    r = np.clip(np.searchsorted(bordi, ys + 0.5, side="right") - 1, 0, righe - 1)
-    fv = np.clip((ys + 0.5 - bordi[r]) / (bordi[r + 1] - bordi[r]), 0, 1)
-    fu = u - c
-    N = colonne + 1
-    idx = lambda rr, cc: rr * N + cc
-    rows = np.repeat(np.arange(len(xs)), 4)
-    cols = np.stack([idx(r, c), idx(r, c + 1), idx(r + 1, c), idx(r + 1, c + 1)], 1).ravel()
-    w = np.stack([(1 - fu) * (1 - fv), fu * (1 - fv), (1 - fu) * fv, fu * fv], 1).ravel()
-    n_nodi = (righe + 1) * N
-    A = sp.csr_matrix((w, (rows, cols)), shape=(len(xs), n_nodi))
-    # levigatezza: differenze tra nodi vicini, pesata per quanti pixel ci sono in media per nodo
-    D = []
-    for rr in range(righe + 1):
-        for cc in range(N):
-            if cc + 1 < N: D.append((idx(rr, cc), idx(rr, cc + 1)))
-            if rr + 1 <= righe: D.append((idx(rr, cc), idx(rr + 1, cc)))
-    D = np.array(D)
-    L = sp.csr_matrix((np.concatenate([np.ones(len(D)), -np.ones(len(D))]),
-                       (np.concatenate([np.arange(len(D))] * 2), np.concatenate([D[:, 0], D[:, 1]]))), shape=(len(D), n_nodi))
-    lam = liscio * max(1.0, len(xs) / n_nodi) ** 0.5
-    M = (A.T @ A + lam * (L.T @ L)).tocsc()
-    col = a[ys, xs]
-    X = np.stack([spsolve(M, A.T @ col[:, ch]) for ch in range(3)], 1)
-    err = float(np.abs(A @ X - col).mean())
-    return {"x0": x0, "y0": y0, "x1": x1, "y1": y1, "colonne": colonne, "righe": righe,
-            "colori": [[round(float(min(255, max(0, v))), 1) for v in x] for x in X]}, err
 
 
 def linea_muro(a, m_piastrella, m_porta):

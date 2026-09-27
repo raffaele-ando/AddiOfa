@@ -30,6 +30,7 @@ class Renderer:
 
     def svg(self, svg: str, w: int, h: int, fondo: str = "transparent") -> Image.Image:
         """PNG RGBA di uno SVG reso a w×h px (1 px CSS = 1 px), su un fondo CSS."""
+        self._rapido = None
         self._page.set_viewport_size({"width": w, "height": h})
         b64 = base64.b64encode(svg.encode()).decode()
         self._page.set_content(
@@ -38,6 +39,20 @@ class Renderer:
         )
         self._page.wait_for_function("document.images[0].complete")
         png = self._page.screenshot(clip={"x": 0, "y": 0, "width": w, "height": h}, omit_background=(fondo == "transparent"))
+        return Image.open(io.BytesIO(png)).convert("RGBA")
+
+
+    def rapido(self, svg: str, w: int, h: int) -> Image.Image:
+        """Come svg() su fondo trasparente, ma riusa la stessa pagina: molto più veloce quando si
+        rende lo stesso disegno migliaia di volte (adattamento dei parametri)."""
+        if getattr(self, "_rapido", None) != (w, h):
+            self._page.set_viewport_size({"width": w, "height": h})
+            self._page.set_content(f"<style>html,body{{margin:0;background:transparent}}img{{display:block;width:{w}px;height:{h}px}}</style><img>")
+            self._rapido = (w, h)
+        b64 = base64.b64encode(svg.encode()).decode()
+        self._page.evaluate("async s => { const i = document.images[0]; i.src = s; await i.decode(); }",
+                            "data:image/svg+xml;base64," + b64)
+        png = self._page.screenshot(clip={"x": 0, "y": 0, "width": w, "height": h}, omit_background=True)
         return Image.open(io.BytesIO(png)).convert("RGBA")
 
 
