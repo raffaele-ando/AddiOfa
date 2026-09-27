@@ -75,6 +75,15 @@ export interface ExamHistory {
 
 export type CorpusType = 'all' | 'initial';
 
+export interface OnboardingResult {
+  completedAt: number;
+  hasCertification: boolean;
+  hasOfa: 'yes' | 'no' | 'unknown';
+  diagnosticCorrect?: number;
+  diagnosticTotal?: number;
+  passProbability?: number; // 0–1, stima del quiz diagnostico
+}
+
 export interface AppState {
   stats: UserStats;
   history: ExamHistory[];
@@ -92,4 +101,5 @@ export interface AppState {
   dailyActivity?: Record<string, number>;
   dailyTimeSpent?: Record<string, number>;
   selectedCorpus?: CorpusType;
+  onboarding?: OnboardingResult;
 }

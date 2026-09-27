@@ -2,7 +2,7 @@ import { AppState, UserStats, ExamHistory } from '../types';
 import { db } from './firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
-const STORAGE_KEY = 'ofa_polimi_app_state';
+const STORAGE_KEY = 'ofa_polimi_app_state'; // chiave storica: non cambiarla o si perdono i progressi salvati
 
 const defaultState: AppState = {
   stats: {},
@@ -40,9 +40,31 @@ export function saveState(state: AppState) {
   }
 }
 
+// Un documento Firestore ha un limite di 1 MiB. I clic dettagliati di ogni simulazione (~14 KB l'una)
+// restano solo in locale; sul cloud va lo storico alleggerito, con i log per domanda solo per le ultime 50.
+const CLOUD_HISTORY_WITH_LOGS = 50;
+
+export function toCloudState(state: AppState): AppState {
+  const history = state.history || [];
+  const firstWithLogs = Math.max(0, history.length - CLOUD_HISTORY_WITH_LOGS);
+  return {
+    ...state,
+    history: history.map((h, i) => {
+      if (i < firstWithLogs) {
+        const { questionLogs, answers, questionIds, ...rest } = h;
+        return rest;
+      }
+      return {
+        ...h,
+        questionLogs: h.questionLogs?.map(({ clickEvents, trajectory, ...log }) => log),
+      };
+    }),
+  };
+}
+
 export async function syncToCloud(userId: string, state: AppState) {
   try {
-    await setDoc(doc(db, "users", userId), state, { merge: true });
+    await setDoc(doc(db, "users", userId), toCloudState(state), { merge: true });
     console.log("State synced to cloud.");
   } catch (err) {
     console.error('Error syncing to cloud', err);
@@ -59,8 +81,9 @@ export async function syncFromCloud(userId: string, localState: AppState): Promi
       
       // 1. Merge history uniquely by date
       const historyMap = new Map<number, any>();
-      localState.history?.forEach(h => historyMap.set(h.date, h));
+      // Prima il cloud, poi il locale: a parità di esame vince la copia locale, che ha i log completi
       cloudState.history?.forEach(h => historyMap.set(h.date, h));
+      localState.history?.forEach(h => historyMap.set(h.date, h));
       mergedState.history = Array.from(historyMap.values()).sort((a, b) => a.date - b.date);
 
       // 2. Reconstruct examCategoryStats perfectly from merged history
@@ -179,7 +202,7 @@ export function exportData(state: AppState) {
   const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state, null, 2));
   const downloadAnchorNode = document.createElement('a');
   downloadAnchorNode.setAttribute("href", dataStr);
-  downloadAnchorNode.setAttribute("download", "ofa_polimi_progress.json");
+  downloadAnchorNode.setAttribute("download", "addiofa_progressi.json");
   document.body.appendChild(downloadAnchorNode);
   downloadAnchorNode.click();
   downloadAnchorNode.remove();

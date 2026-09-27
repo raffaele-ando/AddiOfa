@@ -155,7 +155,7 @@ export const questions: Question[] = [
       "Do I can offer you something to drink?"
     ],
     "correctIndex": 1,
-    "explanation": "In offers, we normally use 'something', not 'anything'. The infinitive is 'to drink'.",
+    "explanation": "The error in the wrong options is 'for drink': after 'something/anything' we use the to-infinitive ('something to drink'). In offers 'something' is the most common choice, but 'anything' is also correct ('Can I offer you anything to drink?'). 'Somewhat' means 'a bit', and 'can' never takes 'do'.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Modals of Ability and Permission"
@@ -172,7 +172,7 @@ export const questions: Question[] = [
     "correctIndex": 1,
     "explanation": "Third person singular in Present Simple requires an 's' ('works'). 'Work for' is the correct preposition.",
     "category": "Traduzione",
-    "level": "B1",
+    "level": "A1",
     "grammarTopic": "Present Simple"
   },
   {
@@ -196,11 +196,11 @@ export const questions: Question[] = [
     "options": [
       "Is there any milk in the fridge?",
       "Are there some milk in the fridge?",
-      "Is there some milk in the fridge?",
+      "Is there a milk in the fridge?",
       "Is there any milks in the fridge?"
     ],
     "correctIndex": 0,
-    "explanation": "'Milk' is uncountable (use 'is there'). 'Any' is used in questions.",
+    "explanation": "'Milk' is uncountable, so we use 'Is there' (not 'Are there'), with no 'a' and no plural -s. 'Any' is used in questions.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are"
@@ -299,13 +299,13 @@ export const questions: Question[] = [
     "id": "q20",
     "prompt": "Complete the sentence: 'This plate is dirty, can I have a clean _____?'",
     "options": [
-      "plate",
+      "a one",
       "one",
       "ones",
       "it"
     ],
     "correctIndex": 1,
-    "explanation": "We use the pronoun 'one' to avoid repeating a singular countable noun.",
+    "explanation": "We use the pronoun 'one' to avoid repeating a singular countable noun ('a clean one' = 'a clean plate'); 'ones' is plural and 'it' would mean the same dirty plate.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Object Pronouns"
@@ -320,9 +320,9 @@ export const questions: Question[] = [
       "are living"
     ],
     "correctIndex": 1,
-    "explanation": "'Could' is a modal and is followed by the bare infinitive ('be'). 'Could be living' implies an ongoing action in the future.",
+    "explanation": "'Could' is a modal and is followed by the bare infinitive ('be'), never by 'to' or a conjugated verb. 'Could be living' expresses a possible ongoing situation in the future.",
     "category": "Grammatica",
-    "level": "A2",
+    "level": "B1",
     "grammarTopic": "Modals of Deduction"
   },
   {
@@ -357,15 +357,15 @@ export const questions: Question[] = [
   },
   {
     "id": "q24",
-    "prompt": "Which question is correct?",
+    "prompt": "Complete the sentence: 'When I was ten, I _____ swim across the lake, but now I can't.'",
     "options": [
-      "Can I offer you anything to drink?",
-      "Can I to offer you anything to drink?",
-      "Do I can offer you anything to drink?",
-      "Can I offer you anything for drinking?"
+      "could",
+      "can",
+      "was able",
+      "could to"
     ],
     "correctIndex": 0,
-    "explanation": "Modal 'can' is followed by a bare infinitive ('offer'). The object complement is a full infinitive ('to drink').",
+    "explanation": "'Could' is the past of 'can' for a general ability in the past; 'can' is present, 'was able' needs 'to', and modals are never followed by 'to'.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Ability and Permission"
@@ -374,13 +374,13 @@ export const questions: Question[] = [
     "id": "q25",
     "prompt": "Combine the sentences correctly: 'I saw Tom this morning. He was waiting at the bus stop.'",
     "options": [
-      "I saw Tom this morning while he waited at the bus stop.",
+      "I saw Tom this morning while he waits at the bus stop.",
       "I saw Tom this morning while he was waiting at the bus stop.",
       "I saw Tom this morning during he was waiting at the bus stop.",
       "I saw Tom this morning waiting to the bus stop."
     ],
     "correctIndex": 1,
-    "explanation": "'While' is followed by a continuous tense (Past Continuous) to show an ongoing background action.",
+    "explanation": "'While' introduces the longer background action, so we use the Past Continuous ('while he was waiting'); the Present Simple 'waits' doesn't match the past, and 'during' must be followed by a noun, not a clause.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Continuous"
@@ -417,15 +417,15 @@ export const questions: Question[] = [
   },
   {
     "id": "q28",
-    "prompt": "Complete the sentence: 'Is she going with _____?'",
+    "prompt": "Complete the sentence: 'Is she going with _____ friends?'",
     "options": [
-      "friend",
-      "the friends",
-      "friends",
-      "a friends"
+      "much",
+      "a",
+      "some",
+      "any of"
     ],
     "correctIndex": 2,
-    "explanation": "'Friends' is a plural countable noun. Used generally here without an article.",
+    "explanation": "'Friends' is a plural countable noun, so we can use 'some' ('some friends'); 'much' is only for uncountable nouns, 'a' only for singular nouns, and 'any of' needs 'the/her' before the noun.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Quantifiers"
@@ -450,12 +450,12 @@ export const questions: Question[] = [
     "prompt": "Complete the sentence: 'What time does the train leave tomorrow? It _____ at 9.'",
     "options": [
       "leave",
-      "is leaving",
+      "will leaves",
       "leaving",
       "leaves"
     ],
     "correctIndex": 3,
-    "explanation": "For a scheduled timetable in the future, we use the Present Simple ('leaves').",
+    "explanation": "For a scheduled timetable in the future, we use the Present Simple with -s for 'it' ('leaves'); after 'will' the verb never takes -s.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Simple"
@@ -509,28 +509,28 @@ export const questions: Question[] = [
     "id": "q34",
     "prompt": "Complete the sentence: 'How many people _____ to the party?'",
     "options": [
-      "did come",
+      "did came",
       "comes",
       "came",
-      "were coming"
+      "comed"
     ],
     "correctIndex": 2,
-    "explanation": "When the question word ('How many people') is the subject, we don't use 'did'. We just use the past verb ('came').",
+    "explanation": "When the question word ('How many people') is the subject, we don't use 'did'. We just use the past verb ('came'); 'come' is irregular, so 'comed' does not exist.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple"
   },
   {
     "id": "q35",
-    "prompt": "Translate 'Lunedì è il giorno peggiore della settimana.'",
+    "prompt": "Translate 'Questa è la cosa migliore che io abbia mai mangiato.'",
     "options": [
-      "Monday is the worse day of the week.",
-      "Monday is the worst day of the week.",
-      "Monday is worst day of the week.",
-      "Monday is the bad day of the week."
+      "This is the better thing I have ever eaten.",
+      "This is the best thing I have ever eaten.",
+      "This is the goodest thing I have ever eaten.",
+      "This is the most good thing I have ever eaten."
     ],
     "correctIndex": 1,
-    "explanation": "The superlative form is 'the worst'.",
+    "explanation": "The superlative of 'good' is irregular: 'the best'. 'Better' is the comparative, and 'goodest' / 'most good' do not exist.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives"
@@ -542,12 +542,12 @@ export const questions: Question[] = [
       "Steven works for Microsoft.",
       "Steven work to Microsoft.",
       "Steven works to Microsoft.",
-      "Steven is working for Microsoft."
+      "Steven working for Microsoft."
     ],
     "correctIndex": 0,
-    "explanation": "Present Simple third person requires 'works'. The preposition is 'for'.",
+    "explanation": "The Present Simple third person singular requires -s ('works'), and a sentence always needs a conjugated verb. The preposition with a company is 'for'.",
     "category": "Traduzione",
-    "level": "B1",
+    "level": "A1",
     "grammarTopic": "Present Simple"
   },
   {
@@ -672,15 +672,15 @@ export const questions: Question[] = [
   },
   {
     "id": "q45",
-    "prompt": "Translate 'Sei mai stato in Brasile?'",
+    "prompt": "Translate 'Conosco Luca da quando eravamo bambini.'",
     "options": [
-      "Have you ever been to Brazil?",
-      "Did you ever go to Brazil?",
-      "Have you never been in Brazil?",
-      "Are you ever been to Brazil?"
+      "I have known Luca since we were children.",
+      "I know Luca since we were children.",
+      "I have known Luca for we were children.",
+      "I am knowing Luca since we were children."
     ],
     "correctIndex": 0,
-    "explanation": "'Have you ever been to' is the standard way to ask about travel experiences.",
+    "explanation": "With 'since' + a starting point, English uses the Present Perfect ('have known') for a state that is still true; Italian uses the present ('conosco'), but 'I know... since' is wrong.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Present Perfect"
@@ -736,11 +736,11 @@ export const questions: Question[] = [
     "options": [
       "If it rains, we will stay home.",
       "If it will rain, we stay home.",
-      "If it rains, we stay home.",
+      "If it rains, we would stay home.",
       "If it rain, we will stay home."
     ],
     "correctIndex": 0,
-    "explanation": "First Conditional structure: If + Present Simple, will + base verb.",
+    "explanation": "First Conditional: If + Present Simple, will + base verb. We don't use 'will' in the if-clause, and 'would' belongs to the Second Conditional.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional"
@@ -762,15 +762,15 @@ export const questions: Question[] = [
   },
   {
     "id": "q51",
-    "prompt": "Complete the sentence: 'How many people _____ to the party?'",
+    "prompt": "Complete the sentence: 'Where _____ your last summer holiday?'",
     "options": [
-      "came",
-      "come",
-      "comes",
-      "coming"
+      "did you spend",
+      "you spent",
+      "did you spent",
+      "do you spent"
     ],
     "correctIndex": 0,
-    "explanation": "Referring to a past event ('the party' implies it already happened), so Past Simple ('came') is appropriate.",
+    "explanation": "Past Simple questions with a question word use 'did' + subject + base form ('did you spend'); after 'did' the verb never goes into the past form.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple"
@@ -807,22 +807,22 @@ export const questions: Question[] = [
   },
   {
     "id": "q54",
-    "prompt": "Complete the sentence: 'Hurry! The bus _____ in 2 minutes.'",
+    "prompt": "Complete the sentence: 'The sun _____ in the east and sets in the west.'",
     "options": [
-      "leaves",
-      "leaving",
-      "is leave",
-      "left"
+      "rises",
+      "is rising",
+      "rise",
+      "rised"
     ],
     "correctIndex": 0,
-    "explanation": "Present Simple ('leaves') is used for scheduled events like bus or train timetables.",
+    "explanation": "We use the Present Simple for general truths and facts; with a third person singular subject the verb takes -s ('rises').",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Simple"
   },
   {
     "id": "q55",
-    "prompt": "Complete the sentence: 'Have you ever _____ to Brasil?'",
+    "prompt": "Complete the sentence: 'Have you ever _____ to Brazil?'",
     "options": [
       "been",
       "gone",
@@ -912,7 +912,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q61",
-    "prompt": "Translate 'Lui ha vissuto qui per dieci anni.'",
+    "prompt": "Translate 'Lui vive qui da dieci anni.'",
     "options": [
       "He has lived here for ten years.",
       "He is living here since ten years.",
@@ -920,7 +920,7 @@ export const questions: Question[] = [
       "He have lived here for ten years."
     ],
     "correctIndex": 0,
-    "explanation": "Present Perfect for a state that started in the past and continues to the present.",
+    "explanation": "Italian 'vive qui da' + a period of time becomes the Present Perfect + 'for' in English ('has lived here for ten years'), because the state started in the past and continues now. 'Since' needs a starting point, not a period.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Present Perfect"
@@ -1051,11 +1051,11 @@ export const questions: Question[] = [
     "options": [
       "She bought a new phone last week.",
       "She buys a new phone last week.",
-      "She did buy a new phone last week.",
+      "She buyed a new phone last week.",
       "She have bought a new phone last week."
     ],
     "correctIndex": 0,
-    "explanation": "Irregular past simple of 'buy' is 'bought'.",
+    "explanation": "The Past Simple of the irregular verb 'buy' is 'bought'; 'buyed' does not exist, and 'last week' excludes the Present Perfect.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Simple"
@@ -1412,10 +1412,10 @@ export const questions: Question[] = [
       "for",
       "since",
       "during",
-      "in"
+      "from"
     ],
     "correctIndex": 0,
-    "explanation": "'A long time' is a period, so we use 'for'.",
+    "explanation": "'A long time' is a period of time, so we use 'for'; 'since' needs a starting point ('since Monday'), and 'during'/'from' don't work with the Present Perfect here.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Prepositions of Time"
@@ -1470,12 +1470,12 @@ export const questions: Question[] = [
     "prompt": "Translate 'Il treno parte alle 8 in punto.'",
     "options": [
       "The train leaves at 8 o'clock.",
-      "The train is leaving at 8 o'clock.",
+      "The train leaving at 8 o'clock.",
       "The train leave at 8 o'clock.",
       "The train left at 8 o'clock."
     ],
     "correctIndex": 0,
-    "explanation": "Scheduled events use Present Simple.",
+    "explanation": "Scheduled events (timetables) use the Present Simple: 'The train leaves at 8 o'clock.' A sentence cannot use the -ing form without 'is'.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Present Simple"
@@ -1557,7 +1557,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q104",
-    "prompt": "Complete the sentence: 'We went to the _____ house yesterday.' (The house belongs to my parents)",
+    "prompt": "Complete the sentence: 'We went to my _____ house yesterday.' (The house belongs to my parents)",
     "options": [
       "parents'",
       "parent's",
@@ -1565,7 +1565,7 @@ export const questions: Question[] = [
       "parent"
     ],
     "correctIndex": 0,
-    "explanation": "Plural noun ending in 's' gets an apostrophe at the end.",
+    "explanation": "'Parents' is a regular plural ending in -s, so the possessive adds only an apostrophe at the end: 'my parents' house'. 'Parent's' would mean only one parent.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessive S"
@@ -1592,10 +1592,10 @@ export const questions: Question[] = [
       "I don't have many friends.",
       "I don't have much friends.",
       "I don't have a lot friends.",
-      "I haven't many friends."
+      "I don't have many friend."
     ],
     "correctIndex": 0,
-    "explanation": "'Friends' is countable, so we use 'many' in negative sentences.",
+    "explanation": "'Friends' is a plural countable noun, so we use 'many' in negative sentences, and the noun must stay plural after 'many'.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Quantifiers"
@@ -1632,15 +1632,15 @@ export const questions: Question[] = [
   },
   {
     "id": "q109",
-    "prompt": "Complete the sentence: 'She has _____ free time these days.'",
+    "prompt": "Complete the sentence: 'She has very _____ free time these days.'",
     "options": [
-      "not much",
-      "not many",
-      "no many",
-      "none"
+      "little",
+      "few",
+      "a few",
+      "many"
     ],
     "correctIndex": 0,
-    "explanation": "'Time' is uncountable.",
+    "explanation": "'Time' is uncountable, so we use 'little' ('very little free time' = not much time); 'few', 'a few' and 'many' are only used with plural countable nouns.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Quantifiers"
@@ -1695,12 +1695,12 @@ export const questions: Question[] = [
     "prompt": "Complete the sentence: '_____ country are you from?'",
     "options": [
       "Which",
-      "What",
+      "Whose",
       "Where",
       "How"
     ],
     "correctIndex": 0,
-    "explanation": "'Which' is used for a limited choice, 'What' is sometimes used, but 'Which country' is common. Actually, 'Which' is standard.",
+    "explanation": "'Which country' asks for one item from a set of possible countries ('What country' is also used). 'Where' and 'How' cannot be followed directly by a noun like 'country', and 'Whose' asks about possession.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins"
@@ -2042,10 +2042,10 @@ export const questions: Question[] = [
       "at",
       "in",
       "on",
-      "by"
+      "to"
     ],
     "correctIndex": 0,
-    "explanation": "Use 'at' for specific times.",
+    "explanation": "We use 'at' with clock times ('at 11 PM'); 'in' is for months, years and parts of the day, and 'on' for days and dates.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Time"
@@ -2090,22 +2090,22 @@ export const questions: Question[] = [
       "May I helping you?"
     ],
     "correctIndex": 0,
-    "explanation": "Modal verbs like 'can' don't use 'do' in questions.",
+    "explanation": "Modal verbs like 'can' form questions by inversion ('Can I help you?') without 'do', and they are followed by the base form of the verb.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Ability and Permission"
   },
   {
     "id": "q140",
-    "prompt": "Complete: 'She is interested _____ learning Spanish.'",
+    "prompt": "Complete: 'She is interested in _____ Spanish.'",
     "options": [
-      "in",
-      "on",
-      "at",
-      "about"
+      "learning",
+      "to learn",
+      "learn",
+      "learned"
     ],
     "correctIndex": 0,
-    "explanation": "The adjective 'interested' is followed by the preposition 'in'.",
+    "explanation": "After a preposition ('interested in') a verb must take the -ing form (gerund): 'interested in learning', never the infinitive.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives"
@@ -2180,10 +2180,10 @@ export const questions: Question[] = [
       "She knows to swim very well."
     ],
     "correctIndex": 0,
-    "explanation": "Ability is expressed with 'can' + base verb.",
+    "explanation": "Ability is expressed with 'can' + base verb ('can swim'); 'can' never takes -s, and 'sapere fare qualcosa' is not 'know (to) do' in English.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Ability and Permission"
   },
   {
     "id": "q146",
@@ -2207,10 +2207,10 @@ export const questions: Question[] = [
       "I don't have enough money.",
       "I have not enough money.",
       "I don't have money enough.",
-      "I haven't enough money."
+      "I don't have enough of money."
     ],
     "correctIndex": 0,
-    "explanation": "Present simple negative uses 'don't have', 'enough' comes before nouns.",
+    "explanation": "In the negative we use 'don't have', and 'enough' goes directly before a noun ('enough money'), without 'of'.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Quantifiers"
@@ -2264,13 +2264,13 @@ export const questions: Question[] = [
     "id": "q151",
     "prompt": "Translate 'I giocattoli dei bambini sono sparsi ovunque.'",
     "options": [
-      "The children's toys are everywhere.",
-      "The childrens' toys are everywhere.",
-      "The children toys are everywhere.",
-      "The toys of children are everywhere."
+      "The children's toys are scattered everywhere.",
+      "The childrens' toys are scattered everywhere.",
+      "The children toys are scattered everywhere.",
+      "The toys of children are scattered everywhere."
     ],
     "correctIndex": 0,
-    "explanation": "Irregular plurals not ending in -s take 's.",
+    "explanation": "'Children' is an irregular plural not ending in -s, so its possessive is 's ('children's'); 'sparsi' is 'scattered'.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Possessive S"
@@ -3045,12 +3045,12 @@ export const questions: Question[] = [
     "prompt": "Complete: '_____ is your favorite color?'",
     "options": [
       "What",
-      "Which",
+      "Whose",
       "Who",
       "How"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for general preference uses 'What'.",
+    "explanation": "We use 'What' to ask about a general preference ('What is your favorite color?'); 'Whose' asks about possession, 'Who' about people and 'How' about manner.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins"
@@ -3106,11 +3106,11 @@ export const questions: Question[] = [
     "options": [
       "How many",
       "How much",
-      "What",
-      "Which"
+      "How often",
+      "How long"
     ],
     "correctIndex": 0,
-    "explanation": "'Languages' is countable, so 'How many'.",
+    "explanation": "'Languages' is a plural countable noun, so we ask about the number with 'How many'; 'How much' is for uncountable nouns, 'How often' asks about frequency and 'How long' about duration.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins"
@@ -3704,13 +3704,13 @@ export const questions: Question[] = [
     "id": "q247",
     "prompt": "Translate 'Li aspetto qui.'",
     "options": [
-      "I wait for them here.",
-      "I wait for they here.",
-      "I wait them here.",
-      "I am waiting they here."
+      "I'll wait for them here.",
+      "I'll wait for they here.",
+      "I'll wait them here.",
+      "I'm waiting they here."
     ],
     "correctIndex": 0,
-    "explanation": "'Li' (them) follows the preposition 'for' in English.",
+    "explanation": "'Li' is the object pronoun 'them', and 'wait' needs 'for' before its object: 'I'll wait for them here'. 'They' is a subject pronoun.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Object Pronouns"
@@ -3935,7 +3935,7 @@ export const questions: Question[] = [
       "Those is my cat."
     ],
     "correctIndex": 0,
-    "explanation": "'Questo' is 'This'.",
+    "explanation": "'Questo' for one thing near the speaker is 'This'; 'that' is for something far away, and 'these/those' are plural.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Demonstratives"
@@ -3965,7 +3965,7 @@ export const questions: Question[] = [
       "It pizza is very good."
     ],
     "correctIndex": 0,
-    "explanation": "'Questa' is 'This'.",
+    "explanation": "'Questa' (singular, near the speaker) is 'This': 'This pizza'; 'that' is for something far away and 'these' is plural.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Demonstratives"
@@ -4025,7 +4025,7 @@ export const questions: Question[] = [
       "I prefer those dress."
     ],
     "correctIndex": 0,
-    "explanation": "'Questo' is 'this'.",
+    "explanation": "'Questo' (singular, near the speaker) is 'this': 'this dress'; 'these' and 'those' are plural, and 'that' refers to something far away.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Demonstratives"
@@ -4065,12 +4065,12 @@ export const questions: Question[] = [
     "prompt": "Complete: 'The cat is hiding _____ the bed.'",
     "options": [
       "under",
-      "in",
+      "between",
       "on",
       "at"
     ],
     "correctIndex": 0,
-    "explanation": "'Under' means below or beneath.",
+    "explanation": "'Under' means below or beneath something ('under the bed'); 'between' needs two things, and 'on'/'at' don't describe a place beneath.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place"
@@ -4140,12 +4140,12 @@ export const questions: Question[] = [
     "prompt": "Complete: 'She sat _____ her two best friends.'",
     "options": [
       "between",
-      "next to",
+      "among",
       "under",
       "in"
     ],
     "correctIndex": 0,
-    "explanation": "'Between' is used for a position separating two things or people.",
+    "explanation": "'Between' is used for a position separating two things or people; 'among' is used for more than two.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place"
@@ -4175,7 +4175,7 @@ export const questions: Question[] = [
       "at"
     ],
     "correctIndex": 0,
-    "explanation": "'Over' means extending directly upwards from or across.",
+    "explanation": "'Over' means above or across something: a bridge goes over (across) the river. 'Under' is below, and 'in'/'at' don't describe this position.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place"
@@ -4215,12 +4215,12 @@ export const questions: Question[] = [
     "prompt": "Translate 'Sono al cinema.'",
     "options": [
       "I am at the cinema.",
-      "I am in the cinema.",
+      "I am into the cinema.",
       "I am on the cinema.",
       "I am to the cinema."
     ],
     "correctIndex": 0,
-    "explanation": "'At' is used for specific places like the cinema.",
+    "explanation": "'At' is used for a place where an activity happens (at the cinema, at school); 'into' shows movement, 'on' is for surfaces and 'to' for direction.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place"
@@ -4244,13 +4244,13 @@ export const questions: Question[] = [
     "id": "q283",
     "prompt": "Translate 'L'ufficio è vicino alla banca.'",
     "options": [
-      "The office is next to the bank.",
+      "The office is near the bank.",
       "The office is in the bank.",
       "The office is between the bank.",
       "The office is at the bank."
     ],
     "correctIndex": 0,
-    "explanation": "'Vicino a' is 'next to' or 'near'.",
+    "explanation": "'Vicino a' is 'near' ('next to' means 'accanto a'); 'between' needs two places, and 'in'/'at' mean the office is inside or at the bank.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place"
@@ -4265,7 +4265,7 @@ export const questions: Question[] = [
       "The child is in his parents."
     ],
     "correctIndex": 0,
-    "explanation": "'Tra' due persone è 'between'.",
+    "explanation": "'Tra' two people is 'between'; 'among' is used for more than two people or things.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place"
@@ -4292,10 +4292,10 @@ export const questions: Question[] = [
       "Put the clothes in the wardrobe.",
       "Put the clothes on the wardrobe.",
       "Put the clothes at the wardrobe.",
-      "Put the clothes into the wardrobe."
+      "Put the clothes to the wardrobe."
     ],
     "correctIndex": 0,
-    "explanation": "'Nel' meaning inside an enclosed space is 'in'.",
+    "explanation": "'Nel' meaning inside an enclosed space is 'in'; 'on' is for surfaces, 'at' for a point and 'to' for direction, not position.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place"
@@ -4305,12 +4305,12 @@ export const questions: Question[] = [
     "prompt": "Translate 'Ho incontrato Marco alla stazione.'",
     "options": [
       "I met Marco at the station.",
-      "I met Marco in the station.",
+      "I met Marco into the station.",
       "I met Marco on the station.",
       "I met Marco to the station."
     ],
     "correctIndex": 0,
-    "explanation": "'Alla' for a specific point is 'at'.",
+    "explanation": "'Alla' for a specific point or place is 'at' ('at the station'); 'into' shows movement inside, and 'on'/'to' are not used here.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place"
@@ -4385,7 +4385,7 @@ export const questions: Question[] = [
       "No"
     ],
     "correctIndex": 0,
-    "explanation": "Negative commands always start with 'Don't'.",
+    "explanation": "Negative commands usually start with 'Don't' + base verb ('Don't be late'); 'Not', 'No' and 'Doesn't' cannot form an imperative.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative"
@@ -4415,7 +4415,7 @@ export const questions: Question[] = [
       "Doesn't"
     ],
     "correctIndex": 0,
-    "explanation": "Negative command.",
+    "explanation": "Negative commands use 'Don't' + base verb ('Don't touch'); 'No', 'Not' and 'Doesn't' cannot form an imperative.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative"
@@ -4430,7 +4430,7 @@ export const questions: Question[] = [
       "Did"
     ],
     "correctIndex": 0,
-    "explanation": "Base verb 'Do'.",
+    "explanation": "The imperative uses the base form of the verb ('Do your homework'), with no -s, -ing or past form.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative"
@@ -4445,7 +4445,7 @@ export const questions: Question[] = [
       "To pass"
     ],
     "correctIndex": 0,
-    "explanation": "Base verb 'Pass'.",
+    "explanation": "The imperative uses the base form of the verb with no subject: 'Pass me the salt, please.'",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative"
@@ -4460,7 +4460,7 @@ export const questions: Question[] = [
       "Doesn't"
     ],
     "correctIndex": 0,
-    "explanation": "Negative command.",
+    "explanation": "Negative imperatives are formed with 'Don't' + base verb: 'Don't worry about it.'",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative"
@@ -4505,7 +4505,7 @@ export const questions: Question[] = [
       "Hear to me when I speak."
     ],
     "correctIndex": 0,
-    "explanation": "'Ascoltare' requires 'to' before the object in English.",
+    "explanation": "The English verb 'listen' needs 'to' before its object ('listen to me'); 'hear' means 'sentire' and never takes 'to'.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative"
@@ -4550,7 +4550,7 @@ export const questions: Question[] = [
       "Don't speaking during the exam."
     ],
     "correctIndex": 0,
-    "explanation": "Negative command.",
+    "explanation": "Negative imperatives use 'Don't' + base verb ('Don't speak'), not 'Not', 'Doesn't' or 'Don't' + -ing.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative"
@@ -4565,7 +4565,7 @@ export const questions: Question[] = [
       "Stay here a moment."
     ],
     "correctIndex": 0,
-    "explanation": "Base verb 'Wait'.",
+    "explanation": "The imperative is the base form of the verb ('Wait here'); 'aspettare' is 'wait' (not 'stay'), and 'un momento' is 'a moment', not 'a time'.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative"
@@ -4590,12 +4590,12 @@ export const questions: Question[] = [
     "prompt": "Translate 'Non fumare in questa stanza.'",
     "options": [
       "Don't smoke in this room.",
-      "No smoking in this room.",
+      "Smoke not in this room.",
       "Not smoke in this room.",
       "Doesn't smoke in this room."
     ],
     "correctIndex": 0,
-    "explanation": "'Don't smoke' is the imperative. ('No smoking' is a sign/rule but the direct translation uses 'Don't').",
+    "explanation": "'Don't' + base verb forms the negative imperative ('Don't smoke'); 'Not smoke', 'Smoke not' and 'Doesn't smoke' are not correct imperative forms.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative"
@@ -4745,7 +4745,7 @@ export const questions: Question[] = [
       "What you are going to do?"
     ],
     "correctIndex": 0,
-    "explanation": "'Have intention to' is translated with 'going to'.",
+    "explanation": "'Avere intenzione di' (a plan or intention) is expressed with 'be going to' + base verb: 'What are you going to do?'. In questions the verb 'be' comes before the subject ('are you', not 'you are').",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to"
@@ -4782,15 +4782,15 @@ export const questions: Question[] = [
   },
   {
     "id": "q319",
-    "prompt": "Translate 'Stiamo per comprare una nuova casa.' (abbiamo deciso)",
+    "prompt": "Translate 'Abbiamo intenzione di comprare una nuova casa.'",
     "options": [
       "We are going to buy a new house.",
       "We will buy a new house.",
-      "We are buying a new house.",
+      "We are going buy a new house.",
       "We buy a new house."
     ],
     "correctIndex": 0,
-    "explanation": "Decisions already made use 'going to'.",
+    "explanation": "An intention or a decision already made uses 'be going to' + base verb ('We are going to buy'); 'to' cannot be left out.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to"
@@ -4820,7 +4820,7 @@ export const questions: Question[] = [
       "They aren't attending the meeting."
     ],
     "correctIndex": 0,
-    "explanation": "Negative intention.",
+    "explanation": "A negative intention uses 'be not going to' + base verb: 'They aren't going to attend the meeting.'",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to"
@@ -4835,7 +4835,7 @@ export const questions: Question[] = [
       "What you going to eat for dinner?"
     ],
     "correctIndex": 0,
-    "explanation": "Asking about plans.",
+    "explanation": "To ask about plans already made, we use 'be going to' in the question form: 'What are you going to eat?'",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to"
@@ -4857,15 +4857,15 @@ export const questions: Question[] = [
   },
   {
     "id": "q324",
-    "prompt": "Translate 'Sono certo che cadrà!' (sta correndo sul ghiaccio)",
+    "prompt": "Translate 'Cadrà!' (lo vedi correre sul ghiaccio)",
     "options": [
-      "I'm sure he is going to fall!",
-      "I'm sure he will fall!",
-      "I'm sure he falls!",
-      "I'm sure he falling!"
+      "He's going to fall!",
+      "He is going fall!",
+      "He falls!",
+      "He falling!"
     ],
     "correctIndex": 0,
-    "explanation": "Prediction with evidence.",
+    "explanation": "When we predict something from evidence we can see now (he's running on the ice), we use 'be going to' + base verb: 'He's going to fall!'",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to"
@@ -4917,15 +4917,15 @@ export const questions: Question[] = [
   },
   {
     "id": "q328",
-    "prompt": "Complete: 'They were walking in the park when it started to _____.'",
+    "prompt": "Complete: 'They _____ in the park when it started to rain.'",
     "options": [
-      "rain",
-      "raining",
-      "rained",
-      "rains"
+      "were walking",
+      "was walking",
+      "are walking",
+      "walking"
     ],
     "correctIndex": 0,
-    "explanation": "'Started' is followed by the infinitive 'to rain' or gerund 'raining', but here 'to' is provided, so 'rain'.",
+    "explanation": "The Past Continuous ('were walking', plural subject) describes the longer background action interrupted by a shorter Past Simple action ('it started to rain').",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Continuous"
@@ -4985,7 +4985,7 @@ export const questions: Question[] = [
       "Is"
     ],
     "correctIndex": 0,
-    "explanation": "'It' takes 'was'.",
+    "explanation": "In the Past Continuous, the singular subject 'it' takes 'was': 'Was it raining when you left?'",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Continuous"
@@ -5070,12 +5070,12 @@ export const questions: Question[] = [
     "prompt": "Translate 'Mentre cucinavo, lui ascoltava la musica.'",
     "options": [
       "While I was cooking, he was listening to music.",
-      "While I cooked, he listened to music.",
-      "While I was cooking, he listened to music.",
-      "While I cooked, he was listening to music."
+      "While I was cook, he was listening to music.",
+      "While I cooking, he was listening to music.",
+      "While I was cooking, he were listening to music."
     ],
     "correctIndex": 0,
-    "explanation": "Two simultaneous long actions usually take past continuous.",
+    "explanation": "Two long actions in progress at the same time in the past both take the Past Continuous (was/were + -ing); with 'he' we use 'was', not 'were'.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous"
@@ -5085,12 +5085,12 @@ export const questions: Question[] = [
     "prompt": "Translate 'Pioveva forte ieri mattina?'",
     "options": [
       "Was it raining hard yesterday morning?",
-      "Did it rain hard yesterday morning?",
+      "Did it raining hard yesterday morning?",
       "Were it raining hard yesterday morning?",
       "Is it raining hard yesterday morning?"
     ],
     "correctIndex": 0,
-    "explanation": "Asking about a progressive state at a specific time in the past.",
+    "explanation": "'Pioveva' describes an action in progress at a past time, so we use the Past Continuous question 'Was it raining...?'; 'it' takes 'was', and 'did' is never followed by -ing.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous"
@@ -5205,12 +5205,12 @@ export const questions: Question[] = [
     "prompt": "Complete: '_____ I wear a suit to the interview?'",
     "options": [
       "Should",
-      "Must",
+      "Does",
       "Have to",
       "Do I must"
     ],
     "correctIndex": 0,
-    "explanation": "'Should' is common to ask for an opinion or advice.",
+    "explanation": "'Should' is used to ask for an opinion or advice ('Should I...?'); 'have to' needs 'do' in questions ('Do I have to...?'), and modals like 'must' never combine with 'do'.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5232,15 +5232,15 @@ export const questions: Question[] = [
   },
   {
     "id": "q349",
-    "prompt": "Complete: 'You _____ smoke in the hospital.'",
+    "prompt": "Complete: 'All visitors _____ wear a helmet on the building site. It's the law.'",
     "options": [
+      "must",
       "mustn't",
       "don't have to",
-      "shouldn't",
-      "haven't to"
+      "musts"
     ],
     "correctIndex": 0,
-    "explanation": "Prohibition.",
+    "explanation": "'Must' + base verb expresses a strong obligation or a rule ('It's the law'); 'mustn't' means it is forbidden, 'don't have to' that it isn't necessary, and 'must' never takes -s.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5250,12 +5250,12 @@ export const questions: Question[] = [
     "prompt": "Complete: 'He _____ wear glasses to read because his eyesight is bad.'",
     "options": [
       "has to",
-      "should",
+      "must to",
       "musts",
       "have to"
     ],
     "correctIndex": 0,
-    "explanation": "External obligation, third person singular 'has to'.",
+    "explanation": "'Has to' expresses a necessity (his eyesight is bad, so he needs glasses); with 'he' we use 'has to', not 'have to', and 'must' never takes -s or 'to'.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5285,7 +5285,7 @@ export const questions: Question[] = [
       "You shouldn't eat more vegetables."
     ],
     "correctIndex": 0,
-    "explanation": "Advice.",
+    "explanation": "'Should' + base verb gives advice ('Dovresti' = 'You should'); 'must' and 'have to' express obligation, not advice.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5300,7 +5300,7 @@ export const questions: Question[] = [
       "You haven't to come if you're tired."
     ],
     "correctIndex": 0,
-    "explanation": "Lack of obligation.",
+    "explanation": "'Don't have to' means it isn't necessary (lack of obligation); 'mustn't' would mean it is forbidden.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5315,7 +5315,7 @@ export const questions: Question[] = [
       "You haven't to touch that wire!"
     ],
     "correctIndex": 0,
-    "explanation": "Strong prohibition.",
+    "explanation": "'Mustn't' expresses a strong prohibition ('Non devi assolutamente'); 'don't have to' only means it isn't necessary.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5345,7 +5345,7 @@ export const questions: Question[] = [
       "You haven't to drink so much coffee."
     ],
     "correctIndex": 0,
-    "explanation": "Negative advice.",
+    "explanation": "'Shouldn't' + base verb gives negative advice ('Non dovresti'); 'mustn't' would be a prohibition, not advice.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5356,11 +5356,11 @@ export const questions: Question[] = [
     "options": [
       "Do I have to take off my shoes?",
       "Must I to take off my shoes?",
-      "Should I take off my shoes?",
+      "Do I must take off my shoes?",
       "Have I to take off my shoes?"
     ],
     "correctIndex": 0,
-    "explanation": "Question about rules/obligation uses 'Do I have to'.",
+    "explanation": "Questions about rules or obligation use 'Do I have to' + base verb; 'must' is never followed by 'to' or used with 'do', and 'Have I to' is not correct.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5375,7 +5375,7 @@ export const questions: Question[] = [
       "You haven't to pay, it's free."
     ],
     "correctIndex": 0,
-    "explanation": "Lack of obligation.",
+    "explanation": "'Don't have to' means there is no obligation (it's free, so paying isn't necessary); 'mustn't' would mean that paying is forbidden.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5390,7 +5390,7 @@ export const questions: Question[] = [
       "What do I do?"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for advice.",
+    "explanation": "'Should' is used to ask for advice: 'What should I do?' ('Cosa dovrei fare?').",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5405,7 +5405,7 @@ export const questions: Question[] = [
       "You haven't to tell anyone, it's a secret!"
     ],
     "correctIndex": 0,
-    "explanation": "Prohibition.",
+    "explanation": "'Mustn't' expresses prohibition: telling anyone is not allowed because it's a secret. 'Don't have to' would only mean it isn't necessary.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice"
@@ -5506,11 +5506,11 @@ export const questions: Question[] = [
     "options": [
       "hard",
       "hardly",
-      "harder",
+      "hardy",
       "hards"
     ],
     "correctIndex": 0,
-    "explanation": "'Hard' is an irregular adverb meaning with effort. ('Hardly' means almost not).",
+    "explanation": "'Hard' is an irregular adverb meaning 'with effort' (the same form as the adjective). 'Hardly' means 'almost not', and 'hardy' and 'hards' are not the adverb.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner"
@@ -5525,7 +5525,7 @@ export const questions: Question[] = [
       "happiness"
     ],
     "correctIndex": 0,
-    "explanation": "Adverb of 'happy'.",
+    "explanation": "'Happily' is the adverb of 'happy' (y becomes i + -ly); we need an adverb to describe how they were playing.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner"
@@ -5594,13 +5594,13 @@ export const questions: Question[] = [
     "id": "q373",
     "prompt": "Translate 'Per favore, parla lentamente.'",
     "options": [
-      "Please, speak slowly.",
-      "Please, speak slow.",
-      "Please, speak slower.",
-      "Please, speak slowingly."
+      "Please speak slowly.",
+      "Please speak slow.",
+      "Please speak slowlier.",
+      "Please speak slowingly."
     ],
     "correctIndex": 0,
-    "explanation": "'Lentamente' is 'slowly'.",
+    "explanation": "'Lentamente' is the adverb 'slowly' (adjective 'slow' + -ly); we need an adverb to describe how someone speaks.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner"
@@ -5877,7 +5877,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q392",
-    "prompt": "Complete the sentence: 'That\\'s the house _____ I grew up.'",
+    "prompt": "Complete the sentence: 'That's the house _____ I grew up.'",
     "options": [
       "which",
       "who",
@@ -5922,7 +5922,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q395",
-    "prompt": "Complete the sentence: 'She didn\\'t go to the party, _____?'",
+    "prompt": "Complete the sentence: 'She didn't go to the party, _____?'",
     "options": [
       "did she",
       "didn't she",
@@ -6237,15 +6237,15 @@ export const questions: Question[] = [
   },
   {
     "id": "q416",
-    "prompt": "I can't stand _____ in traffic.",
+    "prompt": "I always try to avoid _____ in traffic during rush hour.",
     "options": [
-      "waiting",
-      "to wait",
-      "wait",
-      "waited"
+      "driving",
+      "to drive",
+      "drive",
+      "drove"
     ],
     "correctIndex": 0,
-    "explanation": "'Can't stand' is followed by a gerund (-ing).",
+    "explanation": "'Avoid' is always followed by the -ing form (gerund), never by the infinitive: 'avoid driving'.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives"
@@ -6450,12 +6450,12 @@ export const questions: Question[] = [
     "prompt": "I remembered _____ the door before leaving.",
     "options": [
       "to lock",
-      "locking",
+      "to locking",
       "lock",
       "locked"
     ],
     "correctIndex": 0,
-    "explanation": "Remember + to-infinitive means 'don't forget to do it'.",
+    "explanation": "Remember + to-infinitive means 'not forget to do something' ('I remembered to lock the door'); after 'to' we always use the base form, never -ing.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives"
@@ -6575,7 +6575,7 @@ export const questions: Question[] = [
       "will study"
     ],
     "correctIndex": 0,
-    "explanation": "If + Past Simple.",
+    "explanation": "Second Conditional: If + Past Simple ('studied'), would + base verb, for an unreal or unlikely present situation.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Second Conditional"
@@ -6860,7 +6860,7 @@ export const questions: Question[] = [
       "has followed"
     ],
     "correctIndex": 0,
-    "explanation": "If + Past Perfect.",
+    "explanation": "Third Conditional: If + Past Perfect ('had followed'), would have + past participle, for an imaginary situation in the past.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Third Conditional"
@@ -7395,12 +7395,12 @@ export const questions: Question[] = [
     "prompt": "'I must go,' he said. -> He said that he _____ go.",
     "options": [
       "had to",
-      "must",
+      "musts",
       "must to",
       "have to"
     ],
     "correctIndex": 0,
-    "explanation": "'Must' shifts to 'had to' in reported speech.",
+    "explanation": "'Must' usually shifts to 'had to' in reported speech; 'must' never takes -s or 'to', and 'have to' would need to become 'had to'.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Reported Speech"
@@ -7512,7 +7512,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q501",
-    "prompt": "They _____ the project before the deadline.",
+    "prompt": "By the time the manager called, they _____ the project.",
     "options": [
       "had finished",
       "finished",
@@ -7520,7 +7520,7 @@ export const questions: Question[] = [
       "finish"
     ],
     "correctIndex": 0,
-    "explanation": "Past perfect highlights completion before a past deadline.",
+    "explanation": "'By the time' + a past event requires the Past Perfect ('had finished') for the action completed before that moment.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Past Perfect"
@@ -7535,7 +7535,7 @@ export const questions: Question[] = [
       "already has"
     ],
     "correctIndex": 0,
-    "explanation": "He ate lunch before he didn't want to eat.",
+    "explanation": "The Past Perfect ('had already had') shows the earlier action: he had lunch first, so later he wasn't hungry.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Past Perfect"
@@ -7605,12 +7605,12 @@ export const questions: Question[] = [
     "prompt": "She passed the test because she _____ hard.",
     "options": [
       "had studied",
-      "studied",
+      "had study",
       "has studied",
       "studies"
     ],
     "correctIndex": 0,
-    "explanation": "Studying happened before passing.",
+    "explanation": "The Past Perfect ('had' + past participle 'studied') shows that the studying happened before she passed the test; 'had study' has no past participle and 'has studied/studies' don't fit a past story.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Past Perfect"
@@ -7724,13 +7724,13 @@ export const questions: Question[] = [
     "id": "q515",
     "prompt": "Translate: 'Non fumava, ma ora fuma un pacchetto al giorno.'",
     "options": [
-      "He didn't use to smoke, but now he does.",
-      "He didn't used to smoke, but now he does.",
-      "He wasn't used to smoke, but now he does.",
-      "He hasn't used to smoke, but now he does."
+      "He didn't use to smoke, but now he smokes a pack a day.",
+      "He didn't used to smoke, but now he smokes a pack a day.",
+      "He wasn't used to smoke, but now he smokes a pack a day.",
+      "He hasn't used to smoke, but now he smokes a pack a day."
     ],
     "correctIndex": 0,
-    "explanation": "didn't use to (no 'd').",
+    "explanation": "The negative of 'used to' is 'didn't use to' (no -d after 'didn't', because 'did' already shows the past); 'un pacchetto al giorno' is 'a pack a day'.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Used to"
@@ -7760,7 +7760,7 @@ export const questions: Question[] = [
       "am used to"
     ],
     "correctIndex": 0,
-    "explanation": "Past state.",
+    "explanation": "'Used to' + base verb describes a past state that is no longer true (I had a dog, but now I don't).",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Used to"
@@ -7790,7 +7790,7 @@ export const questions: Question[] = [
       "We had gone to the sea every summer."
     ],
     "correctIndex": 0,
-    "explanation": "Past routine.",
+    "explanation": "'Used to' + base verb describes a repeated action in the past that doesn't happen now ('andavamo' = we used to go).",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Used to"
@@ -7835,7 +7835,7 @@ export const questions: Question[] = [
       "are used to"
     ],
     "correctIndex": 0,
-    "explanation": "Past routine.",
+    "explanation": "'Used to' + base verb describes a past habit or routine; 'be used to' means 'essere abituato' and is a different structure.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Used to"
@@ -7880,7 +7880,7 @@ export const questions: Question[] = [
       "are used to"
     ],
     "correctIndex": 0,
-    "explanation": "Past routine.",
+    "explanation": "'Used to' + base verb describes a past habit that has stopped (they travelled a lot before having children).",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Used to"
@@ -8191,11 +8191,11 @@ export const questions: Question[] = [
     "options": [
       "It must be late, it's already dark.",
       "It can be late, it's already dark.",
-      "It has to be late, it's already dark.",
+      "It may to be late, it's already dark.",
       "It should be late, it's already dark."
     ],
     "correctIndex": 0,
-    "explanation": "Must is used for logical deduction.",
+    "explanation": "'Must' + base verb is used for a logical deduction based on evidence (it's already dark); modals are never followed by 'to'.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Modals of Deduction"
@@ -8240,7 +8240,7 @@ export const questions: Question[] = [
       "can"
     ],
     "correctIndex": 0,
-    "explanation": "Strong certainty.",
+    "explanation": "'Must' + base verb expresses a strong, logical certainty based on evidence (you've been working since 6 AM).",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction"
@@ -8255,7 +8255,7 @@ export const questions: Question[] = [
       "should"
     ],
     "correctIndex": 0,
-    "explanation": "Future possibility.",
+    "explanation": "'Might' + base verb expresses a possibility in the future: it may rain later, but we aren't sure.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction"
@@ -8282,17 +8282,17 @@ export const questions: Question[] = [
       "That must be your new boss.",
       "That can be your new boss.",
       "That should be your new boss.",
-      "That has to be your new boss."
+      "That must to be your new boss."
     ],
     "correctIndex": 0,
-    "explanation": "Must for deduction.",
+    "explanation": "'Must' + base verb ('must be') expresses a logical deduction we are almost sure about ('dev'essere'); modals are never followed by 'to'.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Modals of Deduction"
   },
   {
     "id": "q553",
-    "prompt": "She speaks excellent French. She _____ be from France.",
+    "prompt": "She speaks perfect French, has a French passport and her parents live in Paris. She _____ be from France.",
     "options": [
       "must",
       "can't",
@@ -8300,14 +8300,14 @@ export const questions: Question[] = [
       "should"
     ],
     "correctIndex": 0,
-    "explanation": "Strong deduction based on evidence.",
+    "explanation": "When the evidence makes us almost certain, we use 'must' + base verb for a positive deduction; 'might' would express only a possibility.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction"
   },
   {
     "id": "q554",
-    "prompt": "He is holding a ticket. He _____ be going to the cinema.",
+    "prompt": "He is holding a cinema ticket for tonight's film. He _____ be going to the cinema.",
     "options": [
       "must",
       "can't",
@@ -8315,14 +8315,14 @@ export const questions: Question[] = [
       "should"
     ],
     "correctIndex": 0,
-    "explanation": "Deduction using present continuous.",
+    "explanation": "'Must be' + -ing makes a strong deduction about what someone is doing now or soon, based on clear evidence (a cinema ticket for tonight).",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction"
   },
   {
     "id": "q555",
-    "prompt": "The lights are out. They _____ be asleep.",
+    "prompt": "It's 3 a.m., the lights are out and the house is silent. They _____ be asleep.",
     "options": [
       "must",
       "can't",
@@ -8330,7 +8330,7 @@ export const questions: Question[] = [
       "won't"
     ],
     "correctIndex": 0,
-    "explanation": "Certain deduction.",
+    "explanation": "At 3 a.m. with the lights out and total silence we are almost sure, so we use 'must' + base verb for a certain deduction.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction"
@@ -8405,7 +8405,7 @@ export const questions: Question[] = [
       "saw"
     ],
     "correctIndex": 0,
-    "explanation": "'Forget + -ing' refers to a memory of a past event (Non dimenticherò mai di aver visto).",
+    "explanation": "'Forget + -ing' refers to the memory of a past event: 'I will never forget seeing the Colosseum' = non dimenticherò mai la prima volta che ho visto il Colosseo.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives"
@@ -8450,7 +8450,7 @@ export const questions: Question[] = [
       "restarted"
     ],
     "correctIndex": 0,
-    "explanation": "'Try + -ing' means to test an experiment or method to see if it solves a problem (prova a riavviare).",
+    "explanation": "'Try + -ing' means doing something as an experiment, to see if it solves a problem (prova a riavviare); 'try + to-infinitive' means making an effort to do something difficult.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives"
@@ -8753,7 +8753,7 @@ export const questions: Question[] = [
     "explanation": "In time clauses introduced by 'as soon as', 'when', 'until', etc., we use the Present Simple, NOT 'will'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "Present Simple"
   },
   {
     "id": "q584",
@@ -8768,7 +8768,7 @@ export const questions: Question[] = [
     "explanation": "After 'until', English uses the Present Simple for future references (never 'will').",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "Present Simple"
   },
   {
     "id": "q585",
@@ -8798,7 +8798,7 @@ export const questions: Question[] = [
     "explanation": "'In case' (per precauzione) is followed by the Present Simple when referring to the future.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "Present Simple"
   },
   {
     "id": "q587",
@@ -8813,7 +8813,7 @@ export const questions: Question[] = [
     "explanation": "Time clause rule: 'as soon as I know' (Present Simple, never 'will know').",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "Present Simple"
   },
   {
     "id": "q588",
@@ -8955,12 +8955,12 @@ export const questions: Question[] = [
     "prompt": "Translate: 'Mio fratello maggiore vive a Londra.'",
     "options": [
       "My elder brother lives in London.",
-      "My older brother is living in London.",
+      "My elder brother living in London.",
       "My more old brother lives in London.",
       "My eldest brother live in London."
     ],
     "correctIndex": 0,
-    "explanation": "'Elder' is specifically used to describe seniority between members of the same family.",
+    "explanation": "'Elder' (like the more common 'older') describes the older of two family members and is used only before a noun ('my elder brother'). With 'brother' the verb needs the third person -s ('lives').",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Comparatives and Superlatives"
@@ -9001,11 +9001,11 @@ export const questions: Question[] = [
     "options": [
       "didn't use to",
       "didn't used to",
-      "used not to",
+      "not used to",
       "wasn't used to"
     ],
     "correctIndex": 0,
-    "explanation": "The negative of 'used to' is 'didn't use to' (without the 'd' on use).",
+    "explanation": "The negative of 'used to' is 'didn't use to': 'did' already carries the past, so 'use' has no -d. 'Wasn't used to' means 'non ero abituato' and needs a noun or -ing form.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Used to"
@@ -9016,11 +9016,11 @@ export const questions: Question[] = [
     "options": [
       "Have you got used to the cold weather?",
       "Did you use to the cold weather?",
-      "Are you used to the cold weather?",
+      "Have you used to the cold weather?",
       "Did you get use to cold weather?"
     ],
     "correctIndex": 0,
-    "explanation": "'Get used to + noun' expresses becoming accustomed to a condition.",
+    "explanation": "'Get used to + noun' expresses becoming accustomed to a condition ('Have you got used to...?'); 'use to' without 'get' or 'be' cannot be followed by a noun.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Used to"
@@ -9095,7 +9095,7 @@ export const questions: Question[] = [
       "London, what is the capital of the UK, has many free museums."
     ],
     "correctIndex": 0,
-    "explanation": "In non-defining relative clauses (tra virgole), si usa obbligatoriamente 'which' e mai 'that'.",
+    "explanation": "In non-defining relative clauses (between commas), we must use 'which' for things, never 'that'; 'where' and 'what' are not relative pronouns for a subject here.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Relative Clauses"
@@ -9192,7 +9192,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q613",
-    "prompt": "Have you ever ...... Brasil?",
+    "prompt": "Have you ever ...... Brazil?",
     "options": [
       "gone in",
       "been in",
@@ -9241,11 +9241,11 @@ export const questions: Question[] = [
     "options": [
       "something",
       "some",
-      "anything",
+      "somewhat",
       "any"
     ],
     "correctIndex": 0,
-    "explanation": "Nelle offerte di cortesia o proposte ('Can I offer you...'), si usa 'something' invece di 'anything'.",
+    "explanation": "Nelle offerte ('Can I offer you...') si usa di solito il pronome 'something' seguito da 'to drink'; 'some' e 'any' da soli sono determinanti e 'somewhat' significa 'un po''.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Quantifiers"

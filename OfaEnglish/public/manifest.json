@@ -1,16 +1,24 @@
 {
-  "name": "OFA Polimi Prep",
-  "short_name": "OFA Prep",
-  "description": "App per prepararsi all'OFA di Inglese del Polimi",
+  "name": "AddiOFA",
+  "short_name": "AddiOFA",
+  "description": "Allenati all'OFA di Inglese: ripasso dilazionato e simulazioni. Progetto indipendente, non affiliato al Politecnico di Milano.",
+  "lang": "it",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1CB0F6",
+  "background_color": "#F6F8FC",
+  "theme_color": "#1D4ED8",
   "icons": [
     {
-      "src": "/icon.svg",
-      "type": "image/svg+xml",
-      "sizes": "512x512"
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ]
 }

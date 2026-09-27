@@ -1,8 +1,10 @@
 import { useState, useMemo } from 'react';
 import { AppState } from '../types';
-import { questions } from '../data/questions';
+import { questions, getQuestionsByCorpus, INITIAL_CORPUS_COUNT } from '../data/questions';
 import { X, Trophy, TrendingUp, AlertCircle, Clock, Target, List, ArrowLeft, Activity, Filter, ArrowDownUp, ArrowUp, ArrowDown, Minus, Crown, Check } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { confidenceFromEasiness } from '../lib/spacedRepetition';
+import GuaranteeTracker from './GuaranteeTracker';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 
 interface StatsModeProps {
@@ -16,8 +18,10 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
   const [filterCategory, setFilterCategory] = useState<string>('all');
 
   // Compute stats
-  const totalQuestions = questions.length;
-  const masteredQuestions = Object.values(appState.stats).filter(stat => stat.box > 0).length;
+  // Stesso materiale del menu: con il Primo Corpus la percentuale è calcolata su quelle domande
+  const activeQuestions = getQuestionsByCorpus(appState.selectedCorpus || 'all');
+  const totalQuestions = activeQuestions.length;
+  const masteredQuestions = activeQuestions.filter(q => (appState.stats[q.id]?.box ?? 0) > 0).length;
   const masteryPercentage = Math.round((masteredQuestions / totalQuestions) * 100) || 0;
   
   const examsTaken = appState.history.length;
@@ -158,7 +162,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
   const filteredAndSortedQuestions = useMemo(() => {
     let filtered = questions;
     if (filterCategory === 'corpus:initial') {
-      filtered = questions.slice(0, 60);
+      filtered = getQuestionsByCorpus('initial');
     } else if (filterCategory !== 'all') {
       filtered = filtered.filter(q => q.category === filterCategory);
     }
@@ -167,8 +171,8 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
       const statA = appState.stats[a.id];
       const statB = appState.stats[b.id];
       
-      const confA = statA ? Math.min(100, Math.round(((statA.easiness || 2.5) - 1.3) / 1.3 * 100)) : -1;
-      const confB = statB ? Math.min(100, Math.round(((statB.easiness || 2.5) - 1.3) / 1.3 * 100)) : -1;
+      const confA = statA ? confidenceFromEasiness(statA.easiness) : -1;
+      const confB = statB ? confidenceFromEasiness(statB.easiness) : -1;
 
       if (sortOrder === 'asc') {
         return confA - confB;
@@ -187,7 +191,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             Indietro
           </button>
           <div className="flex flex-col items-end">
-            <h2 className="text-sm sm:text-lg font-black text-[#4B4B4B] dark:text-[#F8FAFC] uppercase tracking-widest leading-tight">Dettaglio Frasi</h2>
+            <h2 className="text-sm sm:text-lg font-black text-[#0F172A] dark:text-[#F8FAFC] uppercase tracking-widest leading-tight">Dettaglio Frasi</h2>
             <span className="text-xs font-bold text-gray-400">{filteredAndSortedQuestions.length} frasi totali</span>
           </div>
         </header>
@@ -197,16 +201,16 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="bg-transparent border-none text-sm font-bold text-[#4B4B4B] dark:text-[#F8FAFC] focus:ring-0 cursor-pointer"
+              className="bg-transparent border-none text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] focus:ring-0 cursor-pointer"
             >
               <option value="all">Tutte le categorie</option>
-              <option value="corpus:initial">⭐ Primo Corpus (60 frasi)</option>
+              <option value="corpus:initial">⭐ Primo Corpus ({INITIAL_CORPUS_COUNT} frasi)</option>
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
           <button
             onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-            className="flex items-center gap-2 text-sm font-bold text-[#1CB0F6] hover:text-[#1899D6] transition-colors"
+            className="flex items-center gap-2 text-sm font-bold text-[#3B82F6] hover:text-[#2563EB] transition-colors"
           >
             <ArrowDownUp size={16} />
             {sortOrder === 'asc' ? 'Peggiori prima' : 'Migliori prima'}
@@ -221,7 +225,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             const omittedCount = stat?.omitted || 0;
             const totalAttempts = correctCount + incorrectCount + omittedCount;
             const accuracy = (correctCount + incorrectCount) > 0 ? Math.round((correctCount / (correctCount + incorrectCount)) * 100) : 0;
-            const confidenceScore = hasSeen ? Math.min(100, Math.round(((stat.easiness || 2.5) - 1.3) / 1.3 * 100)) : 0; // simplistic normalization for UI
+            const confidenceScore = hasSeen ? confidenceFromEasiness(stat.easiness) : 0;
             const previousEasiness = stat?.previousEasiness ?? stat?.easiness;
             let trend = 'same';
             if (stat && stat.easiness !== undefined && previousEasiness !== undefined) {
@@ -234,13 +238,13 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                 <div className="flex-1 flex gap-3 sm:gap-4 items-start">
                   <span className="text-gray-400 dark:text-gray-500 font-black text-sm sm:text-base mt-0.5 shrink-0 w-6 sm:w-8 text-right">{index + 1}.</span>
                   <div className="flex-1">
-                    <p className="font-bold text-[#3C3C3C] dark:text-[#F8FAFC] text-sm sm:text-base mb-1">{q.prompt}</p>
+                    <p className="font-bold text-[#1E293B] dark:text-[#F8FAFC] text-sm sm:text-base mb-1">{q.prompt}</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider flex items-center gap-2 flex-wrap">
                       <span>{q.category}</span>
                       {q.level && (
                         <>
                           <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-                          <span className="bg-[#1CB0F6]/10 text-[#1CB0F6] px-1.5 py-0.5 rounded">{q.level}</span>
+                          <span className="bg-[#3B82F6]/10 text-[#3B82F6] px-1.5 py-0.5 rounded">{q.level}</span>
                         </>
                       )}
                       {q.grammarTopic && (
@@ -256,7 +260,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                       <span className={cn(
                         "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors",
                         correctCount > 0 
-                          ? "bg-[#D7FFB8] dark:bg-[#059669]/20 text-[#46A302] dark:text-[#34D399] border-[#58CC02]/30" 
+                          ? "bg-[#DCFCE7] dark:bg-[#059669]/20 text-[#16A34A] dark:text-[#34D399] border-[#22C55E]/30" 
                           : "bg-white dark:bg-[#1E293B] text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
                       )}>
                         <Check size={12} strokeWidth={3} />
@@ -266,7 +270,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                       <span className={cn(
                         "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors",
                         incorrectCount > 0 
-                          ? "bg-[#FFE5E5] dark:bg-[#7F1D1D]/30 text-[#D80000] dark:text-[#FCA5A5] border-[#FF4B4B]/30" 
+                          ? "bg-[#FEE2E2] dark:bg-[#7F1D1D]/30 text-[#B91C1C] dark:text-[#FCA5A5] border-[#EF4444]/30" 
                           : "bg-white dark:bg-[#1E293B] text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
                       )}>
                         <X size={12} strokeWidth={3} />
@@ -276,7 +280,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                       <span className={cn(
                         "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors",
                         omittedCount > 0 
-                          ? "bg-[#FFF4E5] dark:bg-[#F59E0B]/20 text-[#D97706] dark:text-[#FBBF24] border-[#FFC800]/30" 
+                          ? "bg-[#FFF4E5] dark:bg-[#F59E0B]/20 text-[#D97706] dark:text-[#FBBF24] border-[#F59E0B]/30" 
                           : "bg-white dark:bg-[#1E293B] text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
                       )}>
                         <Minus size={12} strokeWidth={3} />
@@ -302,7 +306,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                     <>
                       <div className="flex flex-col items-center sm:items-end">
                         <span className="text-[10px] sm:text-xs font-black text-gray-400 uppercase tracking-widest">Accuratezza</span>
-                        <span className={cn("text-sm sm:text-base font-black", accuracy > 70 ? "text-[#58CC02]" : accuracy > 40 ? "text-[#FFC800]" : "text-[#FF4B4B]")}>
+                        <span className={cn("text-sm sm:text-base font-black", accuracy > 70 ? "text-[#22C55E]" : accuracy > 40 ? "text-[#F59E0B]" : "text-[#EF4444]")}>
                           {accuracy}%
                         </span>
                       </div>
@@ -310,14 +314,14 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                         <div className="flex justify-between w-full mb-1 items-center">
                           <span className="text-[10px] sm:text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-1">
                             Confidenza
-                            {trend === 'up' && <ArrowUp size={12} className="text-[#58CC02]" />}
-                            {trend === 'down' && <ArrowDown size={12} className="text-[#FF4B4B]" />}
+                            {trend === 'up' && <ArrowUp size={12} className="text-[#22C55E]" />}
+                            {trend === 'down' && <ArrowDown size={12} className="text-[#EF4444]" />}
                             {trend === 'same' && <Minus size={12} className="text-gray-400" />}
                           </span>
-                          <span className="text-[10px] sm:text-xs font-black text-[#1CB0F6]">{confidenceScore}%</span>
+                          <span className="text-[10px] sm:text-xs font-black text-[#3B82F6]">{confidenceScore}%</span>
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-[#334155] h-2 rounded-full overflow-hidden">
-                          <div className="bg-[#1CB0F6] h-full transition-all" style={{ width: `${confidenceScore}%` }} />
+                          <div className="bg-[#3B82F6] h-full transition-all" style={{ width: `${confidenceScore}%` }} />
                         </div>
                       </div>
                     </>
@@ -339,7 +343,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
     <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border-2 sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
       <div className="flex flex-col h-full p-2 sm:p-4">
       <header className="flex items-center justify-between p-2 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors">
-        <h2 className="text-sm sm:text-lg font-black text-[#4B4B4B] dark:text-[#F8FAFC] uppercase tracking-widest">Statistiche</h2>
+        <h2 className="text-sm sm:text-lg font-black text-[#0F172A] dark:text-[#F8FAFC] uppercase tracking-widest">Statistiche</h2>
         <button onClick={onExit} className="p-1 sm:p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#334155] rounded-full transition-colors">
           <X size={18} className="sm:w-5 sm:h-5" strokeWidth={3} />
         </button>
@@ -351,32 +355,32 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
         <div className="flex flex-col gap-4 sm:gap-6">
           {/* Overview Cards */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            <div className="bg-[#E5F5FF] dark:bg-[#0EA5E9]/10 border-2 border-[#84D8FF] dark:border-[#0284C7] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
-              <Trophy className="text-[#1CB0F6] dark:text-[#38BDF8] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
-              <span className="text-2xl sm:text-3xl font-black text-[#1CB0F6] dark:text-[#38BDF8] leading-none mb-1">{masteryPercentage}%</span>
-              <span className="text-[10px] sm:text-xs font-bold text-[#1899D6] dark:text-[#0284C7] uppercase tracking-widest mt-1">Domande Imparate</span>
+            <div className="bg-[#EFF6FF] dark:bg-[#3B82F6]/10 border-2 border-[#93C5FD] dark:border-[#2563EB] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
+              <Trophy className="text-[#3B82F6] dark:text-[#60A5FA] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
+              <span className="text-2xl sm:text-3xl font-black text-[#3B82F6] dark:text-[#60A5FA] leading-none mb-1">{masteryPercentage}%</span>
+              <span className="text-[10px] sm:text-xs font-bold text-[#2563EB] dark:text-[#2563EB] uppercase tracking-widest mt-1">Domande Imparate</span>
             </div>
-            <div className="bg-[#D7FFB8] dark:bg-[#059669]/10 border-2 border-[#58CC02] dark:border-[#059669] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
-              <Target className="text-[#58CC02] dark:text-[#10B981] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
-              <span className="text-2xl sm:text-3xl font-black text-[#46A302] dark:text-[#34D399] leading-none mb-1">{globalAccuracy}%</span>
-              <span className="text-[10px] sm:text-xs font-bold text-[#46A302] dark:text-[#059669] uppercase tracking-widest mt-1">Accuratezza</span>
+            <div className="bg-[#DCFCE7] dark:bg-[#059669]/10 border-2 border-[#22C55E] dark:border-[#059669] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
+              <Target className="text-[#22C55E] dark:text-[#10B981] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
+              <span className="text-2xl sm:text-3xl font-black text-[#16A34A] dark:text-[#34D399] leading-none mb-1">{globalAccuracy}%</span>
+              <span className="text-[10px] sm:text-xs font-bold text-[#16A34A] dark:text-[#059669] uppercase tracking-widest mt-1">Accuratezza</span>
             </div>
-            <div className="bg-[#FFF4E5] dark:bg-[#F59E0B]/10 border-2 border-[#FFC800] dark:border-[#D97706] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
-              <TrendingUp className="text-[#FFC800] dark:text-[#FBBF24] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
-              <span className="text-2xl sm:text-3xl font-black text-[#E5B400] dark:text-[#F59E0B] leading-none mb-1">{passRate}%</span>
-              <span className="text-[10px] sm:text-xs font-bold text-[#E5B400] dark:text-[#D97706] uppercase tracking-widest mt-1">Pass Rate</span>
+            <div className="bg-[#FFF4E5] dark:bg-[#F59E0B]/10 border-2 border-[#F59E0B] dark:border-[#D97706] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
+              <TrendingUp className="text-[#F59E0B] dark:text-[#FBBF24] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
+              <span className="text-2xl sm:text-3xl font-black text-[#D97706] dark:text-[#F59E0B] leading-none mb-1">{passRate}%</span>
+              <span className="text-[10px] sm:text-xs font-bold text-[#D97706] dark:text-[#D97706] uppercase tracking-widest mt-1">Superate</span>
             </div>
-            <div className="bg-[#F5E5FF] dark:bg-[#D946EF]/10 border-2 border-[#CE82FF] dark:border-[#C026D3] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
-              <Trophy className="text-[#CE82FF] dark:text-[#E879F9] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
-              <span className="text-2xl sm:text-3xl font-black text-[#A568CC] dark:text-[#E879F9] leading-none mb-1">{bestScore}/30</span>
-              <span className="text-[10px] sm:text-xs font-bold text-[#A568CC] dark:text-[#C026D3] uppercase tracking-widest mt-1">Record</span>
+            <div className="bg-[#EDE9FE] dark:bg-[#A78BFA]/10 border-2 border-[#8B5CF6] dark:border-[#7C3AED] rounded-[24px] p-4 sm:p-5 flex flex-col items-center text-center transition-colors">
+              <Trophy className="text-[#8B5CF6] dark:text-[#C4B5FD] mb-2 sm:mb-3 w-8 h-8 sm:w-10 sm:h-10 shrink-0" />
+              <span className="text-2xl sm:text-3xl font-black text-[#7C3AED] dark:text-[#C4B5FD] leading-none mb-1">{bestScore}/30</span>
+              <span className="text-[10px] sm:text-xs font-bold text-[#7C3AED] dark:text-[#7C3AED] uppercase tracking-widest mt-1">Record</span>
             </div>
           </div>
 
           {/* Activity Chart */}
           <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">
-             <h3 className="text-sm sm:text-base font-black text-[#4B4B4B] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
-              <Activity className="text-[#FFC800] dark:text-[#FBBF24] w-5 h-5" />
+             <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
+              <Activity className="text-[#F59E0B] dark:text-[#FBBF24] w-5 h-5" />
               Costanza (Ultimi 7 Giorni)
             </h3>
             <div className="flex-1 min-h-[150px] w-full">
@@ -387,10 +391,10 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                   <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} allowDecimals={false} />
                   <Tooltip 
                     cursor={{ fill: '#F3F4F6' }}
-                    contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#4B4B4B' }}
+                    contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
                   />
-                  <Bar dataKey="domande" name="Domande" fill="#1CB0F6" radius={[4, 4, 0, 0]} maxBarSize={30} />
-                  <Bar dataKey="minuti" name="Minuti" fill="#58CC02" radius={[4, 4, 0, 0]} maxBarSize={30} />
+                  <Bar dataKey="domande" name="Domande" fill="#3B82F6" radius={[4, 4, 0, 0]} maxBarSize={30} />
+                  <Bar dataKey="minuti" name="Minuti" fill="#22C55E" radius={[4, 4, 0, 0]} maxBarSize={30} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -398,25 +402,27 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
 
           {/* Exam Stats */}
           <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col justify-center">
-            <h3 className="text-sm sm:text-base font-black text-[#4B4B4B] dark:text-[#F8FAFC] mb-3 uppercase tracking-widest flex items-center gap-2 shrink-0">
-              <Clock className="text-[#CE82FF] dark:text-[#D946EF] w-5 h-5" />
+            <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-3 uppercase tracking-widest flex items-center gap-2 shrink-0">
+              <Clock className="text-[#8B5CF6] dark:text-[#A78BFA] w-5 h-5" />
               Simulazioni
             </h3>
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-[#334155]">
                 <span className="text-sm sm:text-base font-bold text-gray-500 dark:text-gray-400">Esami completati</span>
-                <span className="text-base sm:text-lg font-black text-[#4B4B4B] dark:text-[#F8FAFC]">{examsTaken}</span>
+                <span className="text-base sm:text-lg font-black text-[#0F172A] dark:text-[#F8FAFC]">{examsTaken}</span>
               </div>
               <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-[#334155]">
                 <span className="text-sm sm:text-base font-bold text-gray-500 dark:text-gray-400">Esami superati</span>
-                <span className="text-base sm:text-lg font-black text-[#58CC02] dark:text-[#10B981]">{passedExams}</span>
+                <span className="text-base sm:text-lg font-black text-[#22C55E] dark:text-[#10B981]">{passedExams}</span>
               </div>
               <div className="flex justify-between items-center py-2">
                 <span className="text-sm sm:text-base font-bold text-gray-500 dark:text-gray-400">Miglior punteggio</span>
-                <span className="text-base sm:text-lg font-black text-[#FFC800] dark:text-[#FBBF24]">{examsTaken > 0 ? `${bestScore}/30` : '-'}</span>
+                <span className="text-base sm:text-lg font-black text-[#F59E0B] dark:text-[#FBBF24]">{examsTaken > 0 ? `${bestScore}/30` : '-'}</span>
               </div>
             </div>
           </div>
+
+          <GuaranteeTracker appState={appState} />
 
         </div>
 
@@ -426,7 +432,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           {/* Go to detailed view button */}
           <button 
             onClick={() => setShowDetailedStats(true)}
-            className="w-full bg-[#1CB0F6] hover:bg-[#1899D6] border-b-4 border-[#1899D6] active:border-b-0 active:translate-y-1 text-white font-black text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-all uppercase tracking-widest flex items-center justify-center gap-2"
+            className="w-full bg-[#3B82F6] hover:bg-[#2563EB] border-b-4 border-[#2563EB] active:border-b-0 active:translate-y-1 text-white font-black text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-all uppercase tracking-widest flex items-center justify-center gap-2"
           >
             <List className="w-5 h-5" />
             Vedi Dettaglio Frasi
@@ -434,8 +440,8 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
 
           {Object.keys(topicStats).length >= 3 ? (
             <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col h-full min-h-[300px]">
-              <h3 className="text-sm sm:text-base font-black text-[#4B4B4B] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
-                <Target className="text-[#1CB0F6] dark:text-[#38BDF8] w-5 h-5" />
+              <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
+                <Target className="text-[#3B82F6] dark:text-[#60A5FA] w-5 h-5" />
                 Skill Profile
               </h3>
               
@@ -463,10 +469,10 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                       axisLine={false}
                     />
                     <Radar
-                      name="Mastery"
+                      name="Padronanza"
                       dataKey="A"
-                      stroke="#1CB0F6"
-                      fill="#1CB0F6"
+                      stroke="#3B82F6"
+                      fill="#3B82F6"
                       fillOpacity={0.5}
                     />
                     <Tooltip 
@@ -476,10 +482,10 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                         fontWeight: 'bold',
                         fontSize: '14px',
                         backgroundColor: '#fff',
-                        color: '#4B4B4B',
+                        color: '#0F172A',
                         padding: '8px 12px'
                       }}
-                      itemStyle={{ color: '#1CB0F6', fontWeight: '900' }}
+                      itemStyle={{ color: '#3B82F6', fontWeight: '900' }}
                     />
                   </RadarChart>
                 </ResponsiveContainer>
@@ -487,15 +493,15 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             </div>
           ) : (
             <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-6 transition-colors flex-1 flex flex-col justify-center items-center text-center min-h-[300px]">
-              <AlertCircle className="text-[#FF4B4B] dark:text-[#F87171] w-10 h-10 mb-3 opacity-50" />
-              <p className="text-sm font-bold text-gray-400">Rispondi a più domande su diversi argomenti per vedere il tuo Skill Profile radar.</p>
+              <AlertCircle className="text-[#EF4444] dark:text-[#F87171] w-10 h-10 mb-3 opacity-50" />
+              <p className="text-sm font-bold text-gray-400">Rispondi a più domande su diversi argomenti per vedere il tuo profilo per argomento.</p>
             </div>
           )}
 
           {/* Progresso per Livello */}
           <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">
-             <h3 className="text-sm sm:text-base font-black text-[#4B4B4B] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
-              <TrendingUp className="text-[#FFC800] dark:text-[#FBBF24] w-5 h-5" />
+             <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
+              <TrendingUp className="text-[#F59E0B] dark:text-[#FBBF24] w-5 h-5" />
               Progresso per Livello
             </h3>
             <div className="flex-1 min-h-[150px] w-full">
@@ -506,10 +512,10 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                   <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} />
                   <Tooltip 
                     cursor={{ fill: '#F3F4F6' }}
-                    contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#4B4B4B' }}
+                    contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
                     formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da Imparare' : name]}
                   />
-                  <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#58CC02" radius={[0, 0, 0, 0]} maxBarSize={30} />
+                  <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#22C55E" radius={[0, 0, 0, 0]} maxBarSize={30} />
                   <Bar dataKey="daImparare" name="Da Imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={30} />
                 </BarChart>
               </ResponsiveContainer>
@@ -518,8 +524,8 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
 
           {/* Progresso per Argomento */}
           <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[350px]">
-             <h3 className="text-sm sm:text-base font-black text-[#4B4B4B] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
-              <List className="text-[#CE82FF] dark:text-[#D946EF] w-5 h-5" />
+             <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-4 uppercase tracking-widest flex items-center gap-2 shrink-0">
+              <List className="text-[#8B5CF6] dark:text-[#A78BFA] w-5 h-5" />
               Progresso per Argomento
             </h3>
             <div className="flex-1 min-h-[250px] w-full">
@@ -530,10 +536,10 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                   <YAxis type="category" dataKey="name" width={120} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#9CA3AF', fontWeight: 'bold' }} />
                   <Tooltip 
                     cursor={{ fill: '#F3F4F6' }}
-                    contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#4B4B4B' }}
+                    contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
                     formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da Imparare' : name]}
                   />
-                  <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#1CB0F6" radius={[0, 0, 0, 0]} maxBarSize={20} />
+                  <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#3B82F6" radius={[0, 0, 0, 0]} maxBarSize={20} />
                   <Bar dataKey="daImparare" name="Da Imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={20} />
                 </BarChart>
               </ResponsiveContainer>
@@ -542,8 +548,8 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
 
           {/* Errori Comuni */}
           <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col">
-            <h3 className="text-sm sm:text-base font-black text-[#4B4B4B] dark:text-[#F8FAFC] mb-3 uppercase tracking-widest flex items-center gap-2 shrink-0">
-              <AlertCircle className="text-[#FF4B4B] dark:text-[#F87171] w-5 h-5" />
+            <h3 className="text-sm sm:text-base font-black text-[#0F172A] dark:text-[#F8FAFC] mb-3 uppercase tracking-widest flex items-center gap-2 shrink-0">
+              <AlertCircle className="text-[#EF4444] dark:text-[#F87171] w-5 h-5" />
               Errori Comuni
             </h3>
             {topErrors.length === 0 ? (
@@ -556,22 +562,22 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                   const q = questions.find(q => q.id === err.qId);
                   if (!q) return null;
                   return (
-                    <div key={err.qId} className="bg-[#FFE5E5] dark:bg-[#7F1D1D]/25 border border-[#FF4B4B] dark:border-[#EF4444] rounded-xl p-3 sm:p-4 shadow-sm transition-colors flex flex-col gap-2.5">
-                      <p className="font-bold text-sm sm:text-base text-[#3C3C3C] dark:text-[#F8FAFC] line-clamp-2 leading-tight">{q.prompt}</p>
+                    <div key={err.qId} className="bg-[#FEE2E2] dark:bg-[#7F1D1D]/25 border border-[#EF4444] dark:border-[#EF4444] rounded-xl p-3 sm:p-4 shadow-sm transition-colors flex flex-col gap-2.5">
+                      <p className="font-bold text-sm sm:text-base text-[#1E293B] dark:text-[#F8FAFC] line-clamp-2 leading-tight">{q.prompt}</p>
                       
                       {/* Breakdown: Giuste, Sbagliate, Omesse */}
                       <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                         <span className={cn(
                           "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors",
                           err.correct > 0 
-                            ? "bg-[#D7FFB8] dark:bg-[#059669]/30 text-[#46A302] dark:text-[#34D399] border-[#58CC02]/30" 
+                            ? "bg-[#DCFCE7] dark:bg-[#059669]/30 text-[#16A34A] dark:text-[#34D399] border-[#22C55E]/30" 
                             : "bg-white/80 dark:bg-black/20 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
                         )}>
                           <Check size={11} strokeWidth={3} />
                           {err.correct} {err.correct === 1 ? 'giusta' : 'giuste'}
                         </span>
 
-                        <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border bg-white dark:bg-[#450A0A] text-[#D80000] dark:text-[#FCA5A5] border-[#FF4B4B]/30">
+                        <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border bg-white dark:bg-[#450A0A] text-[#B91C1C] dark:text-[#FCA5A5] border-[#EF4444]/30">
                           <X size={11} strokeWidth={3} />
                           {err.incorrect} {err.incorrect === 1 ? 'sbagliata' : 'sbagliate'}
                         </span>
@@ -579,7 +585,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                         <span className={cn(
                           "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors",
                           err.omitted > 0 
-                            ? "bg-[#FFF4E5] dark:bg-[#F59E0B]/30 text-[#D97706] dark:text-[#FBBF24] border-[#FFC800]/30" 
+                            ? "bg-[#FFF4E5] dark:bg-[#F59E0B]/30 text-[#D97706] dark:text-[#FBBF24] border-[#F59E0B]/30" 
                             : "bg-white/80 dark:bg-black/20 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
                         )}>
                           <Minus size={11} strokeWidth={3} />
@@ -587,11 +593,11 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                         </span>
                       </div>
 
-                      <div className="flex items-center justify-between pt-1 border-t border-[#FF4B4B]/20 dark:border-[#EF4444]/20">
-                        <span className="text-xs sm:text-sm font-bold text-[#D80000] dark:text-[#FCA5A5]">
+                      <div className="flex items-center justify-between pt-1 border-t border-[#EF4444]/20 dark:border-[#EF4444]/20">
+                        <span className="text-xs sm:text-sm font-bold text-[#B91C1C] dark:text-[#FCA5A5]">
                           {Math.round(err.errorRate * 100)}% errore
                         </span>
-                        <span className="text-xs sm:text-sm font-bold text-[#46A302] dark:text-[#34D399] truncate max-w-[50%]">
+                        <span className="text-xs sm:text-sm font-bold text-[#16A34A] dark:text-[#34D399] truncate max-w-[50%]">
                           {q.options[q.correctIndex]}
                         </span>
                       </div>
@@ -610,33 +616,33 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border-2 border-gray-200 dark:border-[#334155] border-b-4 flex flex-col justify-center gap-2 shadow-sm transition-colors">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
-                <div className="bg-[#FFC800] text-white p-1.5 rounded-lg shadow-sm">
+                <div className="bg-[#F59E0B] text-white p-1.5 rounded-lg shadow-sm">
                   <Crown size={18} strokeWidth={3} />
                 </div>
-                <span className="text-sm sm:text-lg font-black text-[#4B4B4B] dark:text-[#F8FAFC]">Liv. {currentLevel}</span>
+                <span className="text-sm sm:text-lg font-black text-[#0F172A] dark:text-[#F8FAFC]">Liv. {currentLevel}</span>
               </div>
-              <span className="text-xs sm:text-sm font-bold text-[#FFC800]">{totalXP} XP</span>
+              <span className="text-xs sm:text-sm font-bold text-[#F59E0B]">{totalXP} XP</span>
             </div>
             <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative">
-              <div className={cn("bg-[#FFC800] h-full rounded-full transition-all duration-500 ease-out", progressPercent > 80 && "animate-pulse")} style={{ width: `${progressPercent}%` }} />
+              <div className={cn("bg-[#F59E0B] h-full rounded-full transition-all duration-500 ease-out", progressPercent > 80 && "animate-pulse")} style={{ width: `${progressPercent}%` }} />
             </div>
           </div>
 
           {/* Daily Goal Endless */}
           <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border-2 border-gray-200 dark:border-[#334155] border-b-4 flex flex-col justify-center gap-2 shadow-sm transition-colors relative overflow-hidden group">
             <div className="flex justify-between items-center z-10 leading-none">
-              <span className="text-sm sm:text-lg font-black text-[#4B4B4B] dark:text-[#F8FAFC] flex items-center gap-2">
+              <span className="text-sm sm:text-lg font-black text-[#0F172A] dark:text-[#F8FAFC] flex items-center gap-2">
                 Sfida Quotidiana
-                <span className="bg-[#1CB0F6] text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-lg uppercase tracking-wider">
+                <span className="bg-[#3B82F6] text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-lg uppercase tracking-wider">
                   Fase {milestoneIndex + 1}
                 </span>
               </span>
-              <span className="text-sm sm:text-lg font-black text-[#1CB0F6]">{currentTotalDaily}/{currentMilestone}</span>
+              <span className="text-sm sm:text-lg font-black text-[#3B82F6]">{currentTotalDaily}/{currentMilestone}</span>
             </div>
             
             <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative mt-1">
               <div 
-                className={cn("bg-[#1CB0F6] h-full rounded-full transition-all duration-700 ease-out", phaseProgressPercent > 80 && "animate-pulse")} 
+                className={cn("bg-[#3B82F6] h-full rounded-full transition-all duration-700 ease-out", phaseProgressPercent > 80 && "animate-pulse")} 
                 style={{ width: `${phaseProgressPercent}%` }} 
               />
             </div>

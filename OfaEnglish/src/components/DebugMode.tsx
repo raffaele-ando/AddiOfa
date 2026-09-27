@@ -22,10 +22,10 @@ export default function DebugMode({ onBack }: DebugModeProps) {
       </header>
 
       <main className="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full">
-        <div className="bg-[#FFE5E5] dark:bg-[#7F1D1D]/30 border-2 border-[#FF4B4B] dark:border-[#EF4444] rounded-2xl p-4 md:p-6 mb-8 flex flex-col md:flex-row gap-4 items-start">
-          <ShieldAlert className="text-[#FF4B4B] dark:text-[#FCA5A5] shrink-0" size={32} />
+        <div className="bg-[#FEE2E2] dark:bg-[#7F1D1D]/30 border-2 border-[#EF4444] dark:border-[#EF4444] rounded-2xl p-4 md:p-6 mb-8 flex flex-col md:flex-row gap-4 items-start">
+          <ShieldAlert className="text-[#EF4444] dark:text-[#FCA5A5] shrink-0" size={32} />
           <div>
-            <h2 className="text-lg font-black text-[#D80000] dark:text-[#FCA5A5] uppercase tracking-widest mb-2">
+            <h2 className="text-lg font-black text-[#B91C1C] dark:text-[#FCA5A5] uppercase tracking-widest mb-2">
               Configurazione Attuale
             </h2>
             <p className="text-sm text-gray-800 dark:text-gray-200 mb-4 font-medium">
@@ -53,7 +53,7 @@ export default function DebugMode({ onBack }: DebugModeProps) {
                   <td className="py-3 px-4 text-sm font-bold text-gray-800 dark:text-gray-200">
                     {key}
                   </td>
-                  <td className="py-3 px-4 text-sm font-mono text-[#1CB0F6] dark:text-[#38BDF8] break-all">
+                  <td className="py-3 px-4 text-sm font-mono text-[#3B82F6] dark:text-[#60A5FA] break-all">
                     {value || <span className="text-gray-400 italic">Non impostato</span>}
                   </td>
                 </tr>

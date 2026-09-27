@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Target, Zap, Folder, BrainCircuit, ArrowLeft, BookOpen, Layers, BookmarkCheck } from 'lucide-react';
-import { questions } from '../data/questions';
+import { questions, getQuestionsByCorpus, INITIAL_CORPUS_COUNT } from '../data/questions';
 import { playTapSound } from '../lib/audio';
 import { CorpusType } from '../types';
 import { cn } from '../lib/utils';
@@ -15,7 +15,7 @@ interface PracticeMenuProps {
 export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'all', onSelectCorpus }: PracticeMenuProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   
-  const poolQuestions = selectedCorpus === 'initial' ? questions.slice(0, 60) : questions;
+  const poolQuestions = selectedCorpus === 'initial' ? getQuestionsByCorpus('initial') : questions;
   const categories = Array.from(new Set(poolQuestions.map(q => q.category))).filter(Boolean);
   const levels = Array.from(new Set(poolQuestions.map(q => q.level))).filter(Boolean);
   const topics = Array.from(new Set(poolQuestions.map(q => q.grammarTopic))).filter(Boolean);
@@ -31,12 +31,12 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
           >
             <ArrowLeft size={24} strokeWidth={3} />
           </button>
-          <h1 className="text-xl sm:text-2xl font-black text-[#4B4B4B] dark:text-[#F8FAFC] tracking-tight">Modalità</h1>
+          <h1 className="text-xl sm:text-2xl font-black text-[#0F172A] dark:text-[#F8FAFC] tracking-tight">Modalità</h1>
         </div>
         {selectedCorpus === 'initial' && (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-black bg-[#58CC02]/10 text-[#58CC02] border border-[#58CC02]/30">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-black bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/30">
             <BookmarkCheck size={14} />
-            <span>Primo Corpus (60)</span>
+            <span>Primo Corpus ({INITIAL_CORPUS_COUNT})</span>
           </span>
         )}
       </header>
@@ -50,7 +50,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
             className={cn(
               "flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-1.5",
               selectedCorpus !== 'initial'
-                ? "bg-white dark:bg-[#1E293B] text-[#1CB0F6] shadow-xs border border-gray-200/50 dark:border-[#334155]"
+                ? "bg-white dark:bg-[#1E293B] text-[#3B82F6] shadow-xs border border-gray-200/50 dark:border-[#334155]"
                 : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
             )}
           >
@@ -63,12 +63,12 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
             className={cn(
               "flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-1.5",
               selectedCorpus === 'initial'
-                ? "bg-white dark:bg-[#1E293B] text-[#58CC02] shadow-xs border border-gray-200/50 dark:border-[#334155]"
+                ? "bg-white dark:bg-[#1E293B] text-[#22C55E] shadow-xs border border-gray-200/50 dark:border-[#334155]"
                 : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
             )}
           >
             <BookmarkCheck size={15} />
-            <span>Primo Corpus (60)</span>
+            <span>Primo Corpus ({INITIAL_CORPUS_COUNT})</span>
           </button>
         </div>
       )}
@@ -78,11 +78,11 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
           onClick={() => { playTapSound(); onSelectMode('standard'); }}
           className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] border-b-4 hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-[24px] transition-all duration-200 active:border-b-0 active:translate-y-1 flex items-center gap-4 h-full"
         >
-          <div className="bg-[#1CB0F6]/10 text-[#1CB0F6] p-3 sm:p-4 rounded-[16px] shrink-0">
+          <div className="bg-[#3B82F6]/10 text-[#3B82F6] p-3 sm:p-4 rounded-[16px] shrink-0">
             <BookOpen className="w-6 sm:w-7 h-6 sm:h-7" />
           </div>
           <div>
-            <h3 className="font-black text-[#4B4B4B] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Standard</h3>
+            <h3 className="font-black text-[#0F172A] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Standard</h3>
             <p className="text-gray-500 dark:text-gray-400 font-bold text-xs sm:text-sm">Spaced repetition classica.</p>
           </div>
         </button>
@@ -91,11 +91,11 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
           onClick={() => { playTapSound(); onSelectMode('weakness'); }}
           className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] border-b-4 hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-[24px] transition-all duration-200 active:border-b-0 active:translate-y-1 flex items-center gap-4 h-full"
         >
-          <div className="bg-[#FF4B4B]/10 text-[#FF4B4B] p-3 sm:p-4 rounded-[16px] shrink-0">
+          <div className="bg-[#EF4444]/10 text-[#EF4444] p-3 sm:p-4 rounded-[16px] shrink-0">
             <Target className="w-6 sm:w-7 h-6 sm:h-7" />
           </div>
           <div>
-            <h3 className="font-black text-[#4B4B4B] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Weakness</h3>
+            <h3 className="font-black text-[#0F172A] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Punti deboli</h3>
             <p className="text-gray-500 dark:text-gray-400 font-bold text-xs sm:text-sm">Focalizzati sugli errori.</p>
           </div>
         </button>
@@ -104,11 +104,11 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
           onClick={() => { playTapSound(); onSelectMode('blitz'); }}
           className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] border-b-4 hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-[24px] transition-all duration-200 active:border-b-0 active:translate-y-1 flex items-center gap-4 h-full"
         >
-          <div className="bg-[#FFC800]/10 text-[#FFC800] p-3 sm:p-4 rounded-[16px] shrink-0">
+          <div className="bg-[#F59E0B]/10 text-[#F59E0B] p-3 sm:p-4 rounded-[16px] shrink-0">
             <Zap className="w-6 sm:w-7 h-6 sm:h-7" />
           </div>
           <div>
-            <h3 className="font-black text-[#4B4B4B] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Blitz</h3>
+            <h3 className="font-black text-[#0F172A] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Blitz</h3>
             <p className="text-gray-500 dark:text-gray-400 font-bold text-xs sm:text-sm">Timer aggressivo (10s).</p>
           </div>
         </button>
@@ -117,34 +117,34 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
           onClick={() => { playTapSound(); onSelectMode('recall'); }}
           className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] border-b-4 hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-[24px] transition-all duration-200 active:border-b-0 active:translate-y-1 flex items-center gap-4 h-full"
         >
-          <div className="bg-[#CE82FF]/10 text-[#CE82FF] p-3 sm:p-4 rounded-[16px] shrink-0">
+          <div className="bg-[#8B5CF6]/10 text-[#8B5CF6] p-3 sm:p-4 rounded-[16px] shrink-0">
             <BrainCircuit className="w-6 sm:w-7 h-6 sm:h-7" />
           </div>
           <div>
-            <h3 className="font-black text-[#4B4B4B] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Active Recall</h3>
+            <h3 className="font-black text-[#0F172A] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Richiamo attivo</h3>
             <p className="text-gray-500 dark:text-gray-400 font-bold text-xs sm:text-sm">Nasconde le opzioni.</p>
           </div>
         </button>
 
         <div className="bg-white dark:bg-[#0F172A] border-2 border-gray-200 dark:border-[#334155] border-b-4 p-4 sm:p-6 rounded-[24px] flex flex-col justify-between gap-4 sm:col-span-2 h-full">
           <div className="flex items-center gap-4">
-            <div className="bg-[#58CC02]/10 text-[#58CC02] p-3 sm:p-4 rounded-[16px] shrink-0">
+            <div className="bg-[#22C55E]/10 text-[#22C55E] p-3 sm:p-4 rounded-[16px] shrink-0">
               <Folder className="w-6 sm:w-7 h-6 sm:h-7" />
             </div>
             <div>
-              <h3 className="font-black text-[#4B4B4B] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Filtro Mirato</h3>
+              <h3 className="font-black text-[#0F172A] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Filtro Mirato</h3>
               <p className="text-gray-500 dark:text-gray-400 font-bold text-xs sm:text-sm">Allenati su un corpus, categoria o argomento specifico.</p>
             </div>
           </div>
           <div className="flex flex-row gap-3 mt-auto">
             <select 
-              className="flex-1 min-w-0 bg-gray-50 dark:bg-[#1E293B] border-2 border-gray-200 dark:border-[#334155] rounded-xl px-4 py-3 text-sm font-bold text-[#4B4B4B] dark:text-[#F8FAFC] outline-none focus:border-[#1CB0F6] transition-colors appearance-none"
+              className="flex-1 min-w-0 bg-gray-50 dark:bg-[#1E293B] border-2 border-gray-200 dark:border-[#334155] rounded-xl px-4 py-3 text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] outline-none focus:border-[#3B82F6] transition-colors appearance-none"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
               <option value="" disabled>Seleziona un filtro...</option>
               <optgroup label="Corpus / Raccolte">
-                <option value="corpus:initial">⭐ Primo Corpus Iniziale (60 frasi)</option>
+                <option value="corpus:initial">⭐ Primo Corpus Iniziale ({INITIAL_CORPUS_COUNT} frasi)</option>
                 <option value="corpus:all">🌐 Tutto il Database ({questions.length} frasi)</option>
               </optgroup>
               <optgroup label="Categorie">
@@ -166,7 +166,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
             <button
               disabled={!selectedCategory}
               onClick={() => { playTapSound(); onSelectMode('category', selectedCategory); }}
-              className="bg-[#58CC02] hover:bg-[#46A302] border-b-4 border-[#46A302] disabled:bg-gray-200 disabled:border-gray-300 disabled:dark:bg-[#334155] disabled:dark:border-[#475569] disabled:text-gray-400 text-white font-black px-6 sm:px-8 py-3 text-sm sm:text-base rounded-[16px] transition-all duration-200 active:border-b-0 active:translate-y-1"
+              className="bg-[#22C55E] hover:bg-[#16A34A] border-b-4 border-[#16A34A] disabled:bg-gray-200 disabled:border-gray-300 disabled:dark:bg-[#334155] disabled:dark:border-[#475569] disabled:text-gray-400 text-white font-black px-6 sm:px-8 py-3 text-sm sm:text-base rounded-[16px] transition-all duration-200 active:border-b-0 active:translate-y-1"
             >
               INIZIA
             </button>

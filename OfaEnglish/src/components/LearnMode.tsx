@@ -3,8 +3,9 @@ import { Question, AppState, QuestionClickEvent, QuestionTelemetry } from '../ty
 import { selectPracticeQuestions, updateStats } from '../lib/spacedRepetition';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Check, ArrowRight, RotateCcw, Lightbulb, Flame } from 'lucide-react';
-import { cn, shuffleQuestion } from '../lib/utils';
+import { cn, shuffleQuestion, shuffleArray } from '../lib/utils';
 import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound, triggerConfetti } from '../lib/audio';
+import { INITIAL_CORPUS_COUNT } from '../data/questions';
 
 interface LearnModeProps {
   appState: AppState;
@@ -101,9 +102,9 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
         });
       }
       
-      const shuffledDistractors = Array.from(distractors).sort(() => Math.random() - 0.5).slice(0, maxDistractors);
+      const shuffledDistractors = shuffleArray(Array.from(distractors)).slice(0, maxDistractors);
       
-      const combined = [...words, ...shuffledDistractors].sort(() => Math.random() - 0.5);
+      const combined = shuffleArray([...words, ...shuffledDistractors]);
       
       setRecallWords(combined);
       setSelectedRecallWords([]);
@@ -266,17 +267,17 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
         <motion.div 
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="bg-[#58CC02] dark:bg-[#46A302] p-4 sm:p-6 rounded-full mb-4 sm:mb-6 text-white shadow-sm"
+          className="bg-[#22C55E] dark:bg-[#16A34A] p-4 sm:p-6 rounded-full mb-4 sm:mb-6 text-white shadow-sm"
         >
           <Check size={40} className="sm:w-12 sm:h-12" strokeWidth={3} />
         </motion.div>
-        <h2 className="text-2xl sm:text-3xl font-black text-[#4B4B4B] dark:text-[#F8FAFC] mb-2">Sessione Completata!</h2>
+        <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] dark:text-[#F8FAFC] mb-2">Sessione Completata!</h2>
         <p className="text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 font-bold text-base sm:text-lg">
           Hai risposto a {sessionStats.correct} su {sessionStats.total} correttamente al primo tentativo.
         </p>
         <button
           onClick={() => { playTapSound(); onExit(); }}
-          className="w-full max-w-sm bg-[#1CB0F6] border-b-4 border-[#1899D6] active:border-b-0 active:translate-y-1 text-white font-black text-base sm:text-lg py-3 sm:py-4 px-6 rounded-xl sm:rounded-2xl transition-all uppercase tracking-widest"
+          className="w-full max-w-sm bg-[#3B82F6] border-b-4 border-[#2563EB] active:border-b-0 active:translate-y-1 text-white font-black text-base sm:text-lg py-3 sm:py-4 px-6 rounded-xl sm:rounded-2xl transition-all uppercase tracking-widest"
         >
           Continua
         </button>
@@ -295,18 +296,18 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
         </button>
         <div className="flex-1 bg-gray-200 dark:bg-[#334155] h-3 rounded-full overflow-hidden transition-colors">
           <motion.div 
-            className="bg-[#58CC02] h-full rounded-full transition-all duration-500"
+            className="bg-[#22C55E] h-full rounded-full transition-all duration-500"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
           />
         </div>
         {streak > 1 && (
-          <div className="flex items-center gap-1 text-[#FFC800] font-black text-xs sm:text-sm animate-bounce">
+          <div className="flex items-center gap-1 text-[#F59E0B] font-black text-xs sm:text-sm animate-bounce">
             <Flame size={16} fill="currentColor" />
             <span>{streak}x</span>
           </div>
         )}
-        <div className={cn("font-black text-sm w-8 text-center", timeLeft <= 5 ? "text-[#FF4B4B] animate-pulse" : "text-gray-500 dark:text-gray-400")}>
+        <div className={cn("font-black text-sm w-8 text-center", timeLeft <= 5 ? "text-[#EF4444] animate-pulse" : "text-gray-500 dark:text-gray-400")}>
           {timeLeft}s
         </div>
       </header>
@@ -314,16 +315,16 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       {/* Main Content */}
       <main className="flex-1 p-4 sm:p-8 flex flex-col w-full overflow-y-auto scrollbar-hide">
         <div className="mb-4 shrink-0 flex items-center justify-between">
-          <span className="px-4 py-1.5 bg-[#CE82FF] dark:bg-[#D946EF] text-white text-xs sm:text-sm font-black uppercase rounded-full tracking-widest shadow-sm">
+          <span className="px-4 py-1.5 bg-[#8B5CF6] dark:bg-[#A78BFA] text-white text-xs sm:text-sm font-black uppercase rounded-full tracking-widest shadow-sm">
             Domanda {currentIndex + 1}
           </span>
           {(category === 'corpus:initial' || appState.selectedCorpus === 'initial') && (
-            <span className="px-3 py-1 bg-[#58CC02]/10 text-[#58CC02] border border-[#58CC02]/30 text-xs font-black uppercase rounded-full tracking-wider">
-              Primo Corpus (60)
+            <span className="px-3 py-1 bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/30 text-xs font-black uppercase rounded-full tracking-wider">
+              Primo Corpus ({INITIAL_CORPUS_COUNT})
             </span>
           )}
         </div>
-        <h2 className="text-xl sm:text-3xl font-black text-[#3C3C3C] dark:text-[#F8FAFC] mb-6 sm:mb-8 leading-tight shrink-0">
+        <h2 className="text-xl sm:text-3xl font-black text-[#1E293B] dark:text-[#F8FAFC] mb-6 sm:mb-8 leading-tight shrink-0">
           {question.prompt}
         </h2>
 
@@ -341,7 +342,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                   Mostra Suggerimento
                 </button>
               ) : (
-                <div className="bg-[#DDF4FF] dark:bg-[#0369A1] text-[#1899D6] dark:text-[#E0F2FE] px-4 py-2 rounded-xl text-sm font-bold text-center animate-in fade-in zoom-in duration-300">
+                <div className="bg-[#DBEAFE] dark:bg-[#1D4ED8] text-[#2563EB] dark:text-[#DBEAFE] px-4 py-2 rounded-xl text-sm font-bold text-center animate-in fade-in zoom-in duration-300">
                   Argomento: {question.grammarTopic || question.category} {question.level && `(${question.level})`}
                 </div>
               )}
@@ -350,7 +351,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
             {/* Answer Box */}
             <div className={cn(
               "min-h-[100px] w-full border-b-4 p-4 flex flex-wrap content-start gap-2 items-center bg-gray-50/50 dark:bg-[#0F172A]/50 rounded-t-2xl transition-colors",
-              hasChecked && !isCorrect ? "border-[#FF4B4B] bg-[#FFE5E5]/50 dark:bg-[#7F1D1D]/50" : "border-gray-300 dark:border-[#475569]"
+              hasChecked && !isCorrect ? "border-[#EF4444] bg-[#FEE2E2]/50 dark:bg-[#7F1D1D]/50" : "border-gray-300 dark:border-[#475569]"
             )}>
               {selectedRecallWords.length === 0 && (
                 <span className="text-gray-400 font-bold px-2 py-1">Tocca le parole per formare la frase...</span>
@@ -366,7 +367,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                   }}
                   disabled={hasChecked}
                   className={cn(
-                    "bg-white dark:bg-[#1E293B] border-2 text-[#4B4B4B] dark:text-[#F8FAFC] px-4 py-2 rounded-xl font-bold shadow-sm transition-all",
+                    "bg-white dark:bg-[#1E293B] border-2 text-[#0F172A] dark:text-[#F8FAFC] px-4 py-2 rounded-xl font-bold shadow-sm transition-all",
                     hasChecked ? "border-gray-200 dark:border-[#475569] opacity-80" : "border-gray-200 dark:border-[#475569] active:scale-95 hover:border-gray-300"
                   )}
                 >
@@ -393,7 +394,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                       "px-5 py-2.5 rounded-[16px] font-bold transition-all text-sm sm:text-base",
                       isSelected 
                         ? "bg-gray-200 dark:bg-[#334155] text-transparent border-2 border-gray-200 dark:border-[#334155] cursor-default shadow-none" 
-                        : "bg-white dark:bg-[#1E293B] border-2 border-gray-200 dark:border-[#475569] border-b-4 text-[#4B4B4B] dark:text-[#F8FAFC] active:border-b-0 active:translate-y-[2px] cursor-pointer hover:bg-gray-50 dark:hover:bg-[#0F172A]"
+                        : "bg-white dark:bg-[#1E293B] border-2 border-gray-200 dark:border-[#475569] border-b-4 text-[#0F172A] dark:text-[#F8FAFC] active:border-b-0 active:translate-y-[2px] cursor-pointer hover:bg-gray-50 dark:hover:bg-[#0F172A]"
                     )}
                   >
                     {word}
@@ -414,24 +415,24 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 flex-1">
             {question.options.map((opt, idx) => {
-              let stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] hover:border-gray-300 dark:hover:border-gray-400 text-[#4B4B4B] dark:text-gray-200 border-b-4 active:border-b-2 active:translate-y-[2px]";
+              let stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] hover:border-gray-300 dark:hover:border-gray-400 text-[#0F172A] dark:text-gray-200 border-b-4 active:border-b-2 active:translate-y-[2px]";
               let numberClass = "border-gray-200 dark:border-[#334155] text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#1E293B]";
               
               if (hasChecked) {
                 if (idx === question.correctIndex) {
-                  stateClass = "border-[#58CC02] dark:border-[#46A302] bg-[#E5F5E5] dark:bg-[#064E3B] text-[#46A302] dark:text-[#10B981] border-b-4";
-                  numberClass = "border-[#58CC02] dark:border-[#46A302] bg-white dark:bg-[#064E3B] text-[#58CC02] dark:text-[#10B981]";
+                  stateClass = "border-[#22C55E] dark:border-[#16A34A] bg-[#F0FDF4] dark:bg-[#064E3B] text-[#16A34A] dark:text-[#10B981] border-b-4";
+                  numberClass = "border-[#22C55E] dark:border-[#16A34A] bg-white dark:bg-[#064E3B] text-[#22C55E] dark:text-[#10B981]";
                 } else if (idx === selectedOption) {
-                  stateClass = "border-[#FF4B4B] dark:border-[#EF4444] bg-[#FFE5E5] dark:bg-[#7F1D1D] text-[#D80000] dark:text-[#F87171] border-b-4";
-                  numberClass = "border-[#FF4B4B] dark:border-[#EF4444] bg-white dark:bg-[#7F1D1D] text-[#FF4B4B] dark:text-[#F87171]";
+                  stateClass = "border-[#EF4444] dark:border-[#EF4444] bg-[#FEE2E2] dark:bg-[#7F1D1D] text-[#B91C1C] dark:text-[#F87171] border-b-4";
+                  numberClass = "border-[#EF4444] dark:border-[#EF4444] bg-white dark:bg-[#7F1D1D] text-[#EF4444] dark:text-[#F87171]";
                 } else if (wrongOptions.has(idx)) {
                   stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40 border-b-2 translate-y-[2px]";
                 } else {
                   stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] opacity-40 border-b-2 translate-y-[2px]";
                 }
               } else if (selectedOption === idx) {
-                stateClass = "bg-[#DDF4FF] dark:bg-[#0369A1] border-[#84D8FF] dark:border-[#38BDF8] text-[#1899D6] dark:text-[#E0F2FE] border-b-4";
-                numberClass = "border-[#84D8FF] dark:border-[#38BDF8] bg-white dark:bg-[#0369A1] text-[#1899D6] dark:text-[#E0F2FE]";
+                stateClass = "bg-[#DBEAFE] dark:bg-[#1D4ED8] border-[#93C5FD] dark:border-[#60A5FA] text-[#2563EB] dark:text-[#DBEAFE] border-b-4";
+                numberClass = "border-[#93C5FD] dark:border-[#60A5FA] bg-white dark:bg-[#1D4ED8] text-[#2563EB] dark:text-[#DBEAFE]";
               } else if (wrongOptions.has(idx)) {
                 stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40 border-b-2 translate-y-[2px]";
               }
@@ -460,7 +461,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       </main>
 
       {/* Bottom Action Bar */}
-      <div className={cn("border-t-2 border-gray-200 dark:border-[#334155] shrink-0 p-4 transition-colors", hasChecked ? (isCorrect ? "bg-[#D7FFB8] dark:bg-[#064E3B] border-[#58CC02] dark:border-[#46A302]" : "bg-[#FFDFE0] dark:bg-[#7F1D1D] border-[#FF4B4B] dark:border-[#EF4444]") : "bg-white dark:bg-[#1E293B]")}>
+      <div className={cn("border-t-2 border-gray-200 dark:border-[#334155] shrink-0 p-4 transition-colors", hasChecked ? (isCorrect ? "bg-[#DCFCE7] dark:bg-[#064E3B] border-[#22C55E] dark:border-[#16A34A]" : "bg-[#FEE2E2] dark:bg-[#7F1D1D] border-[#EF4444] dark:border-[#EF4444]") : "bg-white dark:bg-[#1E293B]")}>
         <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-between">
           <AnimatePresence>
             {hasChecked && (
@@ -469,13 +470,13 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                 animate={{ opacity: 1, y: 0 }}
                 className={cn(
                   "font-black flex flex-col gap-1 text-center sm:text-left w-full sm:w-auto",
-                  isCorrect ? "text-[#58CC02] dark:text-[#10B981]" : "text-[#FF4B4B] dark:text-[#F87171]"
+                  isCorrect ? "text-[#22C55E] dark:text-[#10B981]" : "text-[#EF4444] dark:text-[#F87171]"
                 )}
               >
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                   <span className="text-xl sm:text-2xl">{isCorrect ? (streak > 2 ? `Fantastico! 🔥 ${streak} di fila!` : "Ottimo!") : "Errata."}</span>
                   {isCorrect && question.category && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black bg-white/80 dark:bg-black/30 text-[#46A302] dark:text-[#34D399] border border-[#58CC02]/30 dark:border-[#10B981]/30 shadow-xs">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black bg-white/80 dark:bg-black/30 text-[#16A34A] dark:text-[#34D399] border border-[#22C55E]/30 dark:border-[#10B981]/30 shadow-xs">
                       <span>Categoria:</span>
                       <span className="font-extrabold">{question.category}{question.grammarTopic ? ` (${question.grammarTopic})` : ''}</span>
                     </span>
@@ -500,21 +501,21 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
               <button
                 onClick={() => handleCheck('low')}
                 disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
-                className="flex-1 sm:flex-none bg-[#FF4B4B] hover:bg-[#E63E3E] border-b-4 border-[#D80000] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-black uppercase text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] duration-150"
+                className="flex-1 sm:flex-none bg-[#EF4444] hover:bg-[#DC2626] border-b-4 border-[#B91C1C] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-black uppercase text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] duration-150"
               >
                 Indovino
               </button>
               <button
                 onClick={() => handleCheck('medium')}
                 disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
-                className="flex-1 sm:flex-none bg-[#FFC800] hover:bg-[#F0BD00] border-b-4 border-[#E5B400] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-black uppercase text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] duration-150"
+                className="flex-1 sm:flex-none bg-[#F59E0B] hover:bg-[#D97706] border-b-4 border-[#D97706] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-black uppercase text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] duration-150"
               >
                 Incerto
               </button>
               <button
                 onClick={() => handleCheck('high')}
                 disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
-                className="flex-1 sm:flex-none bg-[#58CC02] hover:bg-[#46A302] border-b-4 border-[#46A302] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-black uppercase text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] duration-150"
+                className="flex-1 sm:flex-none bg-[#22C55E] hover:bg-[#16A34A] border-b-4 border-[#16A34A] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-black uppercase text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] duration-150"
               >
                 Sicuro
               </button>
@@ -524,11 +525,11 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
               onClick={handleNext}
               className={cn(
                 "w-full sm:w-auto text-white font-black uppercase text-base sm:text-lg py-4 px-8 rounded-[20px] transition-all active:border-b-0 active:translate-y-[2px] border-b-4 flex items-center justify-center gap-2 duration-150",
-                isCorrect ? "bg-[#58CC02] hover:bg-[#46A302] border-[#46A302] dark:bg-[#10B981] dark:border-[#059669]" : "bg-[#FF4B4B] hover:bg-[#E63E3E] border-[#D80000] dark:bg-[#EF4444] dark:border-[#DC2626]"
+                isCorrect ? "bg-[#22C55E] hover:bg-[#16A34A] border-[#16A34A] dark:bg-[#10B981] dark:border-[#059669]" : "bg-[#EF4444] hover:bg-[#DC2626] border-[#B91C1C] dark:bg-[#EF4444] dark:border-[#DC2626]"
               )}
             >
               {isCorrect ? (
-                <>Next <ArrowRight size={20} strokeWidth={3} /></>
+                <>Avanti <ArrowRight size={20} strokeWidth={3} /></>
               ) : (
                 <>Riprova <RotateCcw size={20} strokeWidth={3} /></>
               )}

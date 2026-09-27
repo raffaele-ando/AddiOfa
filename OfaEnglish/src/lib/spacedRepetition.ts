@@ -233,12 +233,47 @@ export function calculateContinuousQuality(
 
   // Subjective / metacognitive confidence modifiers
   if (confidence === 'low') {
-    quality = Math.max(0.1, quality - 2.0);
+    // "Indovino": tetto a 2,5 così una risposta azzeccata a caso non conta come imparata
+    quality = Math.max(0.1, Math.min(2.5, quality - 2.0));
   } else if (confidence === 'medium') {
     quality = Math.max(0.1, quality - 0.6);
   }
 
   return Math.round(quality * 100) / 100;
+}
+
+// One SM-2 step with a continuous quality (0.0–5.0). Shared by practice sessions and mock exams.
+export function applySm2(
+  state: { repetitions: number; interval: number; easiness: number },
+  quality: number
+): { repetitions: number; interval: number; easiness: number } {
+  let { repetitions, interval, easiness } = state;
+  if (quality >= 3.0) {
+    // Successful recall: increment spaced repetition interval
+    if (repetitions === 0) {
+      interval = 1;
+    } else if (repetitions === 1) {
+      interval = 6;
+    } else {
+      interval = Math.max(1, Math.round(interval * easiness));
+    }
+    repetitions += 1;
+  } else {
+    // Unsuccessful or high struggle: reset interval for immediate recovery
+    repetitions = 0;
+    interval = 1;
+  }
+
+  // Update SuperMemo-2 easiness factor continuously using the exact quality rating
+  easiness = easiness + (0.1 - (5.0 - quality) * (0.08 + (5.0 - quality) * 0.02));
+  easiness = Math.max(1.3, Math.round(easiness * 100) / 100); // Floor of 1.3
+  return { repetitions, interval, easiness };
+}
+
+// Confidence shown in the UI (0–100) from the SM-2 easiness factor.
+// Range 1.3–3.5: a new card (2.5) starts around 55%, about ten perfect answers reach 100%.
+export function confidenceFromEasiness(easiness: number = 2.5): number {
+  return Math.max(0, Math.min(100, Math.round(((easiness - 1.3) / 2.2) * 100)));
 }
 
 // Update stats after answering based on SM-2, dynamic fluency, and trajectory telemetry
@@ -301,25 +336,8 @@ export function updateStats(
     maxTimeMs = Math.max(maxTimeMs, cleanTimeMs);
   }
 
-  if (quality >= 3.0) {
-    // Successful recall: increment spaced repetition interval
-    if (newRepetitions === 0) {
-      newInterval = 1;
-    } else if (newRepetitions === 1) {
-      newInterval = 6;
-    } else {
-      newInterval = Math.max(1, Math.round(newInterval * newEasiness));
-    }
-    newRepetitions += 1;
-  } else {
-    // Unsuccessful or high struggle: reset interval for immediate recovery
-    newRepetitions = 0;
-    newInterval = 1;
-  }
-
-  // Update SuperMemo-2 easiness factor continuously using the exact quality rating
-  newEasiness = newEasiness + (0.1 - (5.0 - quality) * (0.08 + (5.0 - quality) * 0.02));
-  newEasiness = Math.max(1.3, Math.round(newEasiness * 100) / 100); // Floor of 1.3
+  ({ repetitions: newRepetitions, interval: newInterval, easiness: newEasiness } =
+    applySm2({ repetitions: newRepetitions, interval: newInterval, easiness: newEasiness }, quality));
 
   const dateString = new Date().toISOString().split('T')[0];
   const dailyActivity = { ...(appState.dailyActivity || {}) };

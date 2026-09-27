@@ -4,9 +4,10 @@
  */
 
 import React, { useState, useEffect, useRef } from 'react';
-import { AppState, UserStats, ExamHistory, CorpusType } from './types';
+import { AppState, UserStats, ExamHistory, CorpusType, OnboardingResult } from './types';
 import { loadState, saveState, updateStreak, exportData, importData, syncToCloud, syncFromCloud } from './lib/storage';
-import { getQuestionStats } from './lib/spacedRepetition';
+import { getQuestionStats, applySm2, calculateContinuousQuality, calculateExpectedResponseTimeMs } from './lib/spacedRepetition';
+import { questions } from './data/questions';
 import { auth, signInWithGoogle, logout } from './lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import Menu from './components/Menu';
@@ -16,14 +17,30 @@ import ExamMode from './components/ExamMode';
 import StatsMode from './components/StatsMode';
 import DebugMode from './components/DebugMode';
 import { Layout } from './components/Layout';
+import Onboarding from './components/Onboarding';
+import Plans from './components/Plans';
+import CheatSheet from './components/CheatSheet';
+import PaymentThanks from './components/PaymentThanks';
 
-type View = 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'stats' | 'debug';
+type View = 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'stats' | 'debug' | 'onboarding' | 'plans' | 'cheatsheet' | 'thanks';
+
+// Il tempo di studio conta solo mentre si studia davvero (serve anche per la Garanzia Promosso)
+const STUDY_VIEWS: View[] = ['learn', 'exam', 'onboarding'];
+
+function initialView(state: AppState): View {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('pagamento') === 'ok') return 'thanks';
+  const isNewUser = !state.onboarding && state.history.length === 0 && Object.keys(state.stats).length === 0;
+  return isNewUser ? 'onboarding' : 'menu';
+}
 
 export default function App() {
-  const [view, setView] = useState<View>('menu');
+  const [appState, setAppState] = useState<AppState>(() => loadState());
+  const [view, setView] = useState<View>(() => initialView(appState));
   const [learnMode, setLearnMode] = useState<'standard' | 'weakness' | 'blitz' | 'category' | 'recall' | 'smart'>('smart');
   const [learnCategory, setLearnCategory] = useState<string | undefined>(undefined);
-  const [appState, setAppState] = useState<AppState>(() => loadState());
+  const viewRef = useRef(view);
+  viewRef.current = view;
   const [user, setUser] = useState<User | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -55,7 +72,7 @@ export default function App() {
   useEffect(() => {
     let lastSync = Date.now();
     const interval = setInterval(() => {
-      if (document.visibilityState === 'visible') {
+      if (document.visibilityState === 'visible' && STUDY_VIEWS.includes(viewRef.current)) {
         setAppState(prev => {
           const dateString = new Date().toISOString().split('T')[0];
           const newDailyTimeSpent = { ...(prev.dailyTimeSpent || {}) };
@@ -104,53 +121,53 @@ export default function App() {
       }
 
       const newStats: UserStats = { ...(prev.stats || {}) };
+      let answeredCount = 0;
       if (questionResults) {
         // Map question logs by questionId for fast telemetry retrieval
         const logsMap = new Map((historyEntry.questionLogs || []).map(l => [l.questionId, l]));
+        const speed = prev.speedStats;
 
         for (const [qId, result] of Object.entries(questionResults)) {
           const currentQ = getQuestionStats(newStats, qId);
           const log = logsMap.get(qId);
+          const question = questions.find(q => q.id === qId);
+          if (result !== 'omitted') answeredCount++;
 
+          // Le risposte della simulazione aggiornano SM-2 come in allenamento:
+          // giusta → voto continuo da tempo e cambi di opzione; sbagliata o omessa → 0
+          let quality = 0;
           if (result === 'correct') {
-            newStats[qId] = {
-              ...currentQ,
-              correct: currentQ.correct + 1,
-              box: currentQ.box + 1,
-              lastSeen: Date.now(),
-              lastResponseTimeMs: log?.timeSpentMs ?? currentQ.lastResponseTimeMs,
-              lastFirstClickTimeMs: log?.firstClickTimeMs ?? currentQ.lastFirstClickTimeMs,
-              lastSwitchCount: log?.switchCount ?? currentQ.lastSwitchCount,
-              lastTrajectory: log?.trajectory ?? currentQ.lastTrajectory,
-            };
-          } else if (result === 'incorrect') {
-            newStats[qId] = {
-              ...currentQ,
-              incorrect: currentQ.incorrect + 1,
-              box: 0,
-              lastSeen: Date.now(),
-              lastResponseTimeMs: log?.timeSpentMs ?? currentQ.lastResponseTimeMs,
-              lastFirstClickTimeMs: log?.firstClickTimeMs ?? currentQ.lastFirstClickTimeMs,
-              lastSwitchCount: log?.switchCount ?? currentQ.lastSwitchCount,
-              lastTrajectory: log?.trajectory ?? currentQ.lastTrajectory,
-            };
-          } else if (result === 'omitted') {
-            newStats[qId] = {
-              ...currentQ,
-              omitted: (currentQ.omitted || 0) + 1,
-              lastSeen: Date.now(),
-              lastResponseTimeMs: log?.timeSpentMs ?? currentQ.lastResponseTimeMs,
-              lastFirstClickTimeMs: log?.firstClickTimeMs ?? currentQ.lastFirstClickTimeMs,
-              lastSwitchCount: log?.switchCount ?? currentQ.lastSwitchCount,
-              lastTrajectory: log?.trajectory ?? currentQ.lastTrajectory,
-            };
+            const expectedMs = calculateExpectedResponseTimeMs(question, speed?.speedFactor ?? 1.0, speed?.avgWpm ?? 180);
+            quality = calculateContinuousQuality(true, log?.timeSpentMs ?? expectedMs, expectedMs, 1, 'high', {
+              switchCount: log?.switchCount ?? 0,
+              trajectory: log?.trajectory ?? [],
+              firstOptionIndex: log?.firstOptionIndex,
+            }, question);
           }
+          const sm2 = applySm2({ repetitions: currentQ.box, interval: currentQ.interval, easiness: currentQ.easiness }, quality);
+
+          newStats[qId] = {
+            ...currentQ,
+            correct: currentQ.correct + (result === 'correct' ? 1 : 0),
+            incorrect: currentQ.incorrect + (result === 'incorrect' ? 1 : 0),
+            omitted: (currentQ.omitted || 0) + (result === 'omitted' ? 1 : 0),
+            box: sm2.repetitions,
+            interval: sm2.interval,
+            easiness: sm2.easiness,
+            previousEasiness: currentQ.easiness,
+            lastQuality: quality,
+            lastSeen: Date.now(),
+            lastResponseTimeMs: log?.timeSpentMs ?? currentQ.lastResponseTimeMs,
+            lastFirstClickTimeMs: log?.firstClickTimeMs ?? currentQ.lastFirstClickTimeMs,
+            lastSwitchCount: log?.switchCount ?? currentQ.lastSwitchCount,
+            lastTrajectory: log?.trajectory ?? currentQ.lastTrajectory,
+          };
         }
       }
       
       const dateString = new Date().toISOString().split('T')[0];
       const newDailyActivity = { ...(prev.dailyActivity || {}) };
-      newDailyActivity[dateString] = (newDailyActivity[dateString] || 0) + 30; // Assuming 30 questions in exam
+      newDailyActivity[dateString] = (newDailyActivity[dateString] || 0) + answeredCount;
 
       const newState = updateStreak({ 
         ...prev, 
@@ -180,6 +197,16 @@ export default function App() {
     }
   };
 
+  const handleOnboardingFinish = (result: OnboardingResult) => {
+    setAppState(prev => {
+      const newState = { ...prev, onboarding: result };
+      saveState(newState);
+      if (user) syncToCloud(user.uid, newState);
+      return newState;
+    });
+    setView('menu');
+  };
+
   const handleSelectCorpus = (corpus: CorpusType) => {
     handleUpdateAppState({
       ...appState,
@@ -205,9 +232,38 @@ export default function App() {
           onImport={() => fileInputRef.current?.click()}
           onLogin={signInWithGoogle}
           onLogout={logout}
-          onOpenDebug={() => setView('debug')}
+          onOpenDebug={import.meta.env.DEV ? () => setView('debug') : undefined}
           onSelectCorpus={handleSelectCorpus}
+          onOpenPlans={() => setView('plans')}
+          onOpenCheatSheet={() => setView('cheatsheet')}
+          onOpenDiagnostic={() => setView('onboarding')}
         />
+      )}
+      {view === 'onboarding' && (
+        <Onboarding
+          appState={appState}
+          user={user}
+          onLogin={signInWithGoogle}
+          onUpdateAppState={handleUpdateAppState}
+          onFinish={handleOnboardingFinish}
+        />
+      )}
+      {view === 'plans' && (
+        <Plans
+          appState={appState}
+          user={user}
+          onBack={() => setView('menu')}
+          onContinueFree={() => setView('menu')}
+        />
+      )}
+      {view === 'cheatsheet' && (
+        <CheatSheet onBack={() => setView('menu')} />
+      )}
+      {view === 'thanks' && (
+        <PaymentThanks onContinue={() => {
+          window.history.replaceState(null, '', window.location.pathname);
+          setView('menu');
+        }} />
       )}
       {view === 'practiceMenu' && (
         <PracticeMenu 
@@ -250,7 +306,7 @@ export default function App() {
         ref={fileInputRef}
         onChange={handleImport}
       />
-      {view === 'debug' && (
+      {import.meta.env.DEV && view === 'debug' && (
         <DebugMode onBack={() => setView('menu')} />
       )}
     </Layout>
