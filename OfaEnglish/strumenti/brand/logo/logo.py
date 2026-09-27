@@ -15,6 +15,14 @@ La scena, in prospettiva centrale con punto di fuga V:
 
 Il punto di partenza e i numeri sono misurati sulla reference; `ottimizza.py` li rifinisce
 confrontando in continuazione il render con l'immagine originale.
+
+Versione misurata (`rifinisci.py`): la geometria resta quella della scena (contorno del taglio,
+vano, soglia, linea curva tra muro e pavimento, tutti con i loro vertici e raggi), mentre la luce
+di muro, pavimento, pareti del taglio e vano è una "maglia di sfumature": una griglia di nodi
+colorati interpolata in modo bilineare, fatta con semplici sfumature lineari e maschere SVG.
+Quando una zona ha la sua maglia, le sfumature disegnate a mano di quella zona non si disegnano
+(restano nei parametri come versione "modello"). Sopra: filo di luce del taglio, bordo in rilievo
+della piastrella e grana del materiale. Le varianti di colore si fanno con `ricolora_logo.py`.
 """
 from __future__ import annotations
 
@@ -109,18 +117,20 @@ def squircle(x0, y0, x1, y1, r, k) -> str:
 
 
 def arrotonda(punti, raggio, spigoli=None) -> str:
-    """Poligono con gli spigoli smussati (curva quadratica), tranne quelli in `spigoli`."""
+    """Poligono con gli spigoli smussati (curva quadratica), tranne quelli in `spigoli`.
+    `raggio` è un numero oppure uno per vertice."""
     spigoli = spigoli or set()
     n = len(punti)
     parti = []
     for i in range(n):
         p = punti[i]
-        if i in spigoli or raggio <= 0:
+        rv = raggio[i] if isinstance(raggio, (list, tuple)) else raggio
+        if i in spigoli or rv <= 0:
             parti.append(("L", p))
             continue
         a, b = punti[i - 1], punti[(i + 1) % n]
         la = math.dist(p, a); lb = math.dist(p, b)
-        ra = min(raggio, la / 2.2); rb = min(raggio, lb / 2.2)
+        ra = min(rv, la / 2.2); rb = min(rv, lb / 2.2)
         e = (p[0] + (a[0] - p[0]) * ra / la, p[1] + (a[1] - p[1]) * ra / la)
         u = (p[0] + (b[0] - p[0]) * rb / lb, p[1] + (b[1] - p[1]) * rb / lb)
         parti.append(("Q", e, p, u))
@@ -147,6 +157,120 @@ def verso_fuga(p, V, s, spost=(0.0, 0.0)):
     return (V[0] + (p[0] - V[0]) * s + spost[0], V[1] + (p[1] - V[1]) * s + spost[1])
 
 
+def proietta_stella(vertici, base_y, g, basso=None):
+    """La stella proiettata sul pavimento da una luce dietro il muro, vista dalla camera.
+
+    Coordinate del muro: X = x dell'immagine, Y = altezza sopra il pavimento (base_y - y).
+    Luce in (lx, ly) a distanza q·D dietro il muro (D = distanza camera-muro); camera con il
+    centro in cx e l'occhio all'altezza dell'immagine cy. Un punto del pavimento a distanza Z
+    davanti al muro si vede ingrandito di s = D / (D - Z)."""
+    lx, ly, q, cx, cy = g["lx"], max(1.0, g["ly"] - 0.0), g["q"], g["cx"], g["cy"]
+    tetto = ly * 0.985
+    pts = [(x, min(max(0.0, base_y - y), 1e9)) for x, y in vertici]
+    # la parte della stella più alta della luce non arriva sul pavimento: si taglia
+    tagliati = []
+    for i in range(len(pts)):
+        a, b = pts[i - 1], pts[i]
+        dentro_a, dentro_b = a[1] <= tetto, b[1] <= tetto
+        if dentro_a != dentro_b:
+            u = (tetto - a[1]) / (b[1] - a[1])
+            tagliati.append((a[0] + u * (b[0] - a[0]), tetto))
+        if dentro_b:
+            tagliati.append(b)
+    if len(tagliati) < 3:
+        return None
+    out = []
+    for X, Y in tagliati:
+        t = ly / (ly - Y)
+        Xf = lx + t * (X - lx)
+        zd = min(0.97, q * (t - 1))
+        k = 1 / (1 - zd)
+        y = cy + (base_y - cy) * k
+        if basso is not None and y > basso:
+            # oltre il bordo della piastrella: basta sapere la direzione
+            k = (basso - cy) / (base_y - cy); y = basso
+        out.append((cx + (Xf - cx) * k, y))
+    return out
+
+
+def gradiente(id_, g) -> str:
+    n = len(g["colori"])
+    stop = "".join(f'<stop offset="{i / (n - 1):.3f}" stop-color="{esa(c)}"/>' for i, c in enumerate(g["colori"]))
+    return (f'<linearGradient id="{id_}" gradientUnits="userSpaceOnUse" x1="{f(g["x1"])}" y1="{f(g["y1"])}" '
+            f'x2="{f(g["x2"])}" y2="{f(g["y2"])}">{stop}</linearGradient>')
+
+
+def riempi(id_, d, g, defs, attr="") -> str:
+    """Forma `d` riempita con la sfumatura misurata `g`: lineare, oppure bilineare quando ha
+    `colori2` (seconda sfumatura che entra piano piano lungo la direzione `w`, con una maschera)."""
+    defs.append(gradiente(f"{id_}A", g))
+    out = f'<path id="{id_}" d="{d}" fill="url(#{id_}A)"{attr}/>'
+    if g.get("colori2"):
+        defs.append(gradiente(f"{id_}B", g | {"colori": g["colori2"]}))
+        w = g["w"]
+        defs.append(f'<linearGradient id="{id_}W" gradientUnits="userSpaceOnUse" x1="{f(w["x1"])}" y1="{f(w["y1"])}" x2="{f(w["x2"])}" y2="{f(w["y2"])}">'
+                    f'<stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient>'
+                    f'<mask id="{id_}M" maskUnits="userSpaceOnUse" x="0" y="0" width="{LATO}" height="{LATO}">'
+                    f'<rect width="{LATO}" height="{LATO}" fill="url(#{id_}W)"/></mask>')
+        out += f'<path d="{d}" fill="url(#{id_}B)" mask="url(#{id_}M)"{attr}/>'
+    return out
+
+
+def maglia_svg(id_, m, defs) -> str:
+    """Maglia di sfumature (gradient mesh) fatta con SVG semplice: una griglia di nodi colorati,
+    interpolata in modo bilineare. Ogni riga della griglia è un rettangolo con la sfumatura della
+    linea di nodi in alto, più uno con la sfumatura della linea in basso che entra con una maschera
+    verticale: in ogni cella il colore è esattamente l'interpolazione dei suoi quattro nodi.
+    I colori dei nodi si possono cambiare a mano (o con ricolora_logo.py)."""
+    x0, y0, x1, y1 = m["x0"], m["y0"], m["x1"], m["y1"]
+    C, Rr = m["colonne"], m["righe"]
+    col = m["colori"]
+    ys = righe_maglia(m)
+    tol = m.get("tolleranza", 2.0)
+    for r in range(Rr + 1):
+        riga = [col[r * (C + 1) + c] for c in range(C + 1)]
+        tenuti = semplifica(riga, tol)
+        stop = "".join(f'<stop offset="{f"{c / C:.4f}".rstrip("0").rstrip(".") or "0"}" stop-color="{esa(riga[c])}"/>' for c in tenuti)
+        defs.append(f'<linearGradient id="{id_}L{r}" gradientUnits="userSpaceOnUse" x1="{f(x0)}" y1="0" x2="{f(x1)}" y2="0">{stop}</linearGradient>')
+    defs.append(f'<linearGradient id="{id_}V" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient>')
+    righe = []
+    for r in range(Rr):
+        ya, yb = ys[r], ys[r + 1]
+        defs.append(f'<mask id="{id_}M{r}" maskUnits="userSpaceOnUse" x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}">'
+                    f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}" fill="url(#{id_}V)"/></mask>')
+        righe.append(f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}" fill="url(#{id_}L{r})"/>'
+                     f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}" fill="url(#{id_}L{r + 1})" mask="url(#{id_}M{r})"/>')
+    # righe su pixel interi e senza antialiasing: nessuna fessura tra una riga e l'altra
+    return f'<g id="{id_}" shape-rendering="crispEdges">{"".join(righe)}</g>'
+
+
+def semplifica(riga, tol) -> list[int]:
+    """Fermate da tenere in una linea di nodi: si salta un nodo quando la retta tra i due vicini
+    tenuti lo riproduce entro `tol` (su 255). Il risultato cambia di meno di `tol`."""
+    tenuti = [0]
+    i = 0
+    n = len(riga)
+    while i < n - 1:
+        j = i + 1
+        while j + 1 < n:
+            ok = True
+            for k in range(i + 1, j + 1):
+                u = (k - i) / (j + 1 - i)
+                if any(abs(riga[i][c] + (riga[j + 1][c] - riga[i][c]) * u - riga[k][c]) > tol for c in range(3)):
+                    ok = False; break
+            if not ok:
+                break
+            j += 1
+        tenuti.append(j)
+        i = j
+    return tenuti
+
+
+def righe_maglia(m) -> list[int]:
+    """Bordi delle righe della maglia, su pixel interi."""
+    return [int(round(m["y0"] + (m["y1"] - m["y0"]) * r / m["righe"])) for r in range(m["righe"] + 1)]
+
+
 def svg(P: dict, sfondo: bool = True) -> str:
     t = P["piastrella"]
     porta = P["porta"]
@@ -166,7 +290,7 @@ def svg(P: dict, sfondo: bool = True) -> str:
 
     forma_piastrella = squircle(t["x0"], t["y0"], t["x1"], t["y1"], t["raggio"], t["continuita"])
     defs.append(f'<clipPath id="piastrella"><path d="{forma_piastrella}"/></clipPath>')
-    porta_d = arrotonda(esterni, porta["raggio"], stipiti)
+    porta_d = arrotonda(esterni, porta.get("raggi") or porta["raggio"], stipiti)
     defs.append(f'<clipPath id="porta"><path d="{porta_d}"/></clipPath>')
 
     # 1. ombra della piastrella
@@ -201,9 +325,12 @@ def svg(P: dict, sfondo: bool = True) -> str:
                 f'<stop offset="0" stop-color="{esa(cu["colore"])}" stop-opacity="{cu["ombra_sx"]:.3f}"/>'
                 f'<stop offset="{cu["centro"]:.3f}" stop-color="{esa(cu["colore"])}" stop-opacity="0"/>'
                 f'<stop offset="1" stop-color="{esa(cu["colore"])}" stop-opacity="{cu["ombra_dx"]:.3f}"/></linearGradient>')
-    sopra = [f'<g id="muro"><path d="{muro_d}" fill="url(#muroLuce)"/>'
-             f'<path d="{muro_d}" fill="url(#muroCurvatura)"/>'
-             f'<path d="{muro_d}" fill="url(#muroRiflesso)"/></g>']
+    if muro.get("maglia"):
+        sopra = [f'<g id="muro">{maglia_svg("muroMaglia", muro["maglia"], defs)}</g>']
+    else:
+        sopra = [f'<g id="muro"><path d="{muro_d}" fill="url(#muroLuce)"/>'
+                 f'<path d="{muro_d}" fill="url(#muroCurvatura)"/>'
+                 f'<path d="{muro_d}" fill="url(#muroRiflesso)"/></g>']
 
     # 4. pavimento: dal fondo scuro all'orizzonte, bagliore e fascio di luce dalla porta
     defs.append(f'<linearGradient id="pavimentoBase" x1="0" y1="{f(oz)}" x2="0" y2="{f(t["y1"])}" gradientUnits="userSpaceOnUse">'
@@ -252,6 +379,30 @@ def svg(P: dict, sfondo: bool = True) -> str:
                 f'<rect width="{LATO}" height="{LATO}" fill="url(#dissolvenzaSpecchio)"/></mask>')
     specchio = (f'<g id="specchio" clip-path="url(#pavimentoArea)"><g mask="url(#maskSpecchio)" opacity="{sp["opacita"]:.3f}">'
                 f'<use href="#sopra" transform="matrix(1 0 0 {-k:.4f} 0 {f((1 + k) * oc)})" filter="url(#sfumaSpecchio)"/></g></g>')
+    pr = pav.get("proiezione")
+    proiezione = ""
+    if pr and pr.get("sfumatura"):
+        pts = proietta_stella(esterni, oz, pr, basso=LATO + 400)
+        if pts:
+            defs.append(gradiente("luceProiettata", pr["sfumatura"]))
+            defs.append(f'<filter id="sfumaProiezione" x="-20%" y="-20%" width="140%" height="140%">'
+                        f'<feGaussianBlur stdDeviation="{f(max(0.1, pr["sfocatura"]))}"/></filter>')
+            proiezione = (f'<path id="luce-proiettata" d="{arrotonda(pts, porta["raggio"] * 1.5, stipiti)}" fill="url(#luceProiettata)" '
+                          f'opacity="{max(0, min(1, pr["opacita"])):.3f}" filter="url(#sfumaProiezione)"/>')
+    for k, ch in enumerate(pav.get("chiazze", [])):
+        defs.append(f'<filter id="sfumaChiazza{k}" x="-20%" y="-20%" width="140%" height="140%">'
+                    f'<feGaussianBlur stdDeviation="{f(max(0.1, ch["sfocatura"]))}"/></filter>')
+        d = "M" + "L".join(f"{f(x)} {f(y)}" for x, y in ch["vertici"]) + "Z"
+        proiezione += (f'<g id="chiazza-{k + 1}" opacity="{max(0, min(1, ch["opacita"])):.3f}" filter="url(#sfumaChiazza{k})">'
+                       f'{riempi(f"chiazza{k}", d, ch["sfumatura"], defs)}</g>')
+    gr = pav.get("grana")
+    grana = ""
+    if gr and gr.get("opacita", 0) > 0.001:
+        defs.append(f'<filter id="granaPavimento" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">'
+                    f'<feTurbulence type="fractalNoise" baseFrequency="{gr["frequenza"]:.3f} {gr["frequenza"] * gr.get("allunga", 0.35):.3f}" numOctaves="2" seed="4"/>'
+                    f'<feColorMatrix type="matrix" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1"/></filter>')
+        grana = (f'<rect id="grana" x="0" y="{f(oz - 10)}" width="{LATO}" height="{f(LATO - oz + 10)}" filter="url(#granaPavimento)" '
+                 f'opacity="{gr["opacita"]:.3f}" style="mix-blend-mode:overlay"/>')
     scena.append(f'<g id="pavimento"><path d="{pav_d}" fill="url(#pavimentoBase)"/>'
                  f'<path d="{pav_d}" fill="url(#pavimentoLati)"/>'
                  f'<path d="{pav_d}" fill="url(#pavimentoAmbiente)"/>'
@@ -260,9 +411,14 @@ def svg(P: dict, sfondo: bool = True) -> str:
                  f'fill="{esa(pe["colore"])}" opacity="{pe["opacita"]:.3f}" filter="url(#sfumaPenombra)"/>'
                  f'<path id="fascio" d="M{f(ps[0])} {f(oz)}L{f(pd[0])} {f(oz)}L{f(fa["dx"])} {f(fondo_y)}L{f(fa["sx"])} {f(fondo_y)}Z" '
                  f'fill="url(#fascioLuce)" filter="url(#sfumaFascio)"/>'
-                 f'{raggi_svg}'
-                 f'<rect x="0" y="{f(oz - 40)}" width="{LATO}" height="{f(LATO - oz + 40)}" fill="url(#pavimentoBagliore)"/></g>')
+                 f'{raggi_svg}{proiezione}'
+                 f'<rect x="0" y="{f(oz - 40)}" width="{LATO}" height="{f(LATO - oz + 40)}" fill="url(#pavimentoBagliore)"/>'
+                 f'<g clip-path="url(#pavimentoArea)">{grana}</g></g>')
     pavimento_svg = scena.pop()
+    if pav.get("maglia"):
+        # la luce misurata sul pavimento (riflessi, fasci, penombra) è tutta nella maglia
+        pavimento_svg = (f'<g id="pavimento"><g clip-path="url(#pavimentoArea)">{maglia_svg("pavimentoMaglia", pav["maglia"], defs)}'
+                         f'{grana}</g></g>')
 
     # 5. porta: vano in fondo, pareti interne e soglia, tutto ritagliato dal contorno della porta
     va = porta["vano"]
@@ -273,6 +429,12 @@ def svg(P: dict, sfondo: bool = True) -> str:
     for i in range(n):
         j = (i + 1) % n
         nome = NOMI_FACCE[i]
+        misurata = porta.get("sfumature", {}).get(nome)
+        if misurata:
+            quad = [esterni[i], esterni[j], interni[j], interni[i]]
+            d = "M" + "L".join(f"{f(x)} {f(y)}" for x, y in quad) + "Z"
+            facce.append(riempi(f"parete_{nome}", d, misurata, defs))
+            continue
         c_in, c_out = porta["facce"][nome]
         # sfumatura perpendicolare al bordo: dal lato di fondo (luce) al lato del muro
         mi = ((interni[i][0] + interni[j][0]) / 2, (interni[i][1] + interni[j][1]) / 2)
@@ -289,7 +451,7 @@ def svg(P: dict, sfondo: bool = True) -> str:
                         f'<stop offset="0" stop-color="{esa(c_lungo)}" stop-opacity="0"/>'
                         f'<stop offset="1" stop-color="{esa(c_lungo)}" stop-opacity="{op_lungo:.3f}"/></linearGradient>')
             facce.append(f'<path d="{d}" fill="url(#lungo_{nome})"/>')
-    vano_d = arrotonda(interni, porta["raggio"] * s, stipiti)
+    vano_d = arrotonda(interni, porta.get("raggi_fondo") or porta["raggio"] * s, stipiti)
     tr = porta["trabocco"]
     defs.append(f'<filter id="sfumaTrabocco" x="-30%" y="-30%" width="160%" height="160%">'
                 f'<feGaussianBlur stdDeviation="{f(tr["sfocatura"])}"/></filter>')
@@ -299,8 +461,34 @@ def svg(P: dict, sfondo: bool = True) -> str:
     sm = max(0.1, porta.get("smussatura", 4.0))
     defs.append(f'<filter id="smussaPareti" x="-5%" y="-5%" width="110%" height="110%">'
                 f'<feGaussianBlur stdDeviation="{f(sm)}"/></filter>')
-    sopra.append(f'<g id="porta" clip-path="url(#porta)"><g id="pareti" filter="url(#smussaPareti)">{"".join(facce)}</g>'
-                 f'<path id="vano" d="{vano_d}" fill="url(#vanoLuce)" filter="url(#sfumaVano)"/></g>')
+    vano_fill = "url(#vanoLuce)"
+    vano_pav = ""
+    sf = porta.get("sfumature", {})
+    vano_maglia = ""
+    if porta.get("vano_maglia"):
+        defs.append(f'<clipPath id="vanoClip"><path d="{vano_d}"/></clipPath>')
+        vano_maglia = f'<g clip-path="url(#vanoClip)">{maglia_svg("vanoMaglia", porta["vano_maglia"], defs)}</g>'
+    elif sf.get("vano"):
+        defs.append(gradiente("vanoMisurato", sf["vano"])); vano_fill = "url(#vanoMisurato)"
+    if sf.get("vano_pavimento"):
+        defs.append(gradiente("vanoPavimento", sf["vano_pavimento"]))
+        defs.append(f'<clipPath id="vanoArea"><path d="{vano_d}"/></clipPath>')
+        yv = porta["vano_pavimento_y"]
+        vano_pav = (f'<rect id="pavimento-di-fondo" x="0" y="{f(yv)}" width="{LATO}" height="{f(LATO - yv)}" '
+                    f'fill="url(#vanoPavimento)" clip-path="url(#vanoArea)"/>')
+    filtro_pareti = ' filter="url(#smussaPareti)"'
+    if porta.get("pareti_maglia"):
+        facce = [maglia_svg("paretiMaglia", porta["pareti_maglia"], defs)]
+        filtro_pareti = ""
+        if porta.get("soglia_maglia"):
+            # la soglia (il pavimento dentro lo spessore del muro) ha bordi netti in diagonale
+            quad = [esterni[4], esterni[5], interni[5], interni[4]]
+            d = "M" + "L".join(f"{f(x)} {f(y)}" for x, y in quad) + "Z"
+            defs.append(f'<clipPath id="sogliaClip"><path d="{d}"/></clipPath>')
+            facce.append(f'<g id="soglia" clip-path="url(#sogliaClip)">{maglia_svg("sogliaMaglia", porta["soglia_maglia"], defs)}</g>')
+    sopra.append(f'<g id="porta" clip-path="url(#porta)"><g id="pareti"{filtro_pareti}>{"".join(facce)}</g>'
+                 + (f'<g id="vano" filter="url(#sfumaVano)">{vano_maglia}</g></g>' if vano_maglia else
+                 f'<g id="vano" filter="url(#sfumaVano)"><path d="{vano_d}" fill="{vano_fill}"/>{vano_pav}</g></g>'))
     fl = porta["filo"]
     sopra.append(f'<path id="trabocco" d="{vano_d}" fill="{esa(tr["colore"])}" opacity="{tr["opacita"]:.3f}" filter="url(#sfumaTrabocco)"/>')
     lati = fl.get("lati", {})
@@ -311,8 +499,16 @@ def svg(P: dict, sfondo: bool = True) -> str:
         if op > 0.01 and nome != "soglia":
             fili += (f'<line x1="{f(esterni[i][0])}" y1="{f(esterni[i][1])}" x2="{f(esterni[j][0])}" y2="{f(esterni[j][1])}" '
                      f'stroke-opacity="{op:.3f}"/>')
-    sopra.append(f'<g id="filo" stroke="{esa(fl["colore"])}" stroke-width="{f(fl["spessore"])}" stroke-linecap="round" '
-                 f'clip-path="url(#porta)">{fili}</g>')
+    if fl.get("contorno"):
+        # il filo segue il contorno smussato del taglio (la soglia resta senza filo)
+        y_taglio = min(esterni[4][1], esterni[5][1]) - 3
+        defs.append(f'<clipPath id="filoArea"><rect width="{LATO}" height="{f(y_taglio)}"/></clipPath>')
+        sopra.append(f'<g id="filo" clip-path="url(#porta)"><g clip-path="url(#filoArea)">'
+                     f'<path d="{porta_d}" fill="none" stroke="{esa(fl["colore"])}" stroke-width="{f(fl["spessore"])}" '
+                     f'stroke-opacity="{max(0, min(1, fl["opacita"])):.3f}"/></g></g>')
+    else:
+        sopra.append(f'<g id="filo" stroke="{esa(fl["colore"])}" stroke-width="{f(fl["spessore"])}" stroke-linecap="round" '
+                     f'clip-path="url(#porta)">{fili}</g>')
     # il muro e la porta stanno sopra il pavimento; il pavimento li riflette (vedi #specchio)
     scena.append(f'<g id="sopra" clip-path="url(#muroArea)">{"".join(sopra)}</g>')
     defs.append(f'<clipPath id="muroArea"><path d="{muro_d}"/><path d="{porta_d}"/></clipPath>')
@@ -326,7 +522,22 @@ def svg(P: dict, sfondo: bool = True) -> str:
                     f'<stop offset="1" stop-color="{esa(lu["colore"])}" stop-opacity="0"/></radialGradient>')
         scena.append(f'<g clip-path="url(#{zone[lu["zona"]]})"><ellipse id="luce-{lu["zona"]}-{k + 1}" cx="{f(lu["cx"])}" cy="{f(lu["cy"])}" '
                      f'rx="{f(rx)}" ry="{f(ry)}" fill="url(#luce{k})"/></g>')
+    gt = t.get("grana")
+    if gt and gt.get("opacita", 0) > 0.001:
+        defs.append(f'<filter id="granaPiastrella" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">'
+                    f'<feTurbulence type="fractalNoise" baseFrequency="{gt["frequenza"]:.3f}" numOctaves="2" seed="9"/>'
+                    f'<feColorMatrix type="matrix" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1"/></filter>')
+        scena.append(f'<rect id="grana-muro" width="{LATO}" height="{LATO}" filter="url(#granaPiastrella)" '
+                     f'opacity="{gt["opacita"]:.3f}" style="mix-blend-mode:overlay"/>')
+    bo = t.get("bordo")
+    if bo:
+        # bordo in rilievo: una linea scura appena dentro e una chiara sul filo della piastrella
+        scena.append(f'<path id="bordo-scuro" d="{forma_piastrella}" fill="none" stroke="{esa(bo["scuro"])}" '
+                     f'stroke-width="{f(bo["spessore_scuro"])}" stroke-opacity="{max(0, min(1, bo["opacita_scuro"])):.3f}"/>')
     corpo.append(f'<g id="piastrella-scena" clip-path="url(#piastrella)">{"".join(scena)}</g>')
+    if bo:
+        corpo.append(f'<path id="bordo-chiaro" d="{forma_piastrella}" fill="none" stroke="{esa(bo["chiaro"])}" '
+                     f'stroke-width="{f(bo["spessore_chiaro"])}" stroke-opacity="{max(0, min(1, bo["opacita_chiaro"])):.3f}"/>')
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {LATO} {LATO}" width="{LATO}" height="{LATO}">'
             f'<title>AddiOFA</title><defs>{"".join(defs)}</defs>{"".join(corpo)}</svg>')
 

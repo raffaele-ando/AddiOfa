@@ -26,6 +26,7 @@ def pieno_campo(P) -> str:
     t = P["piastrella"]
     s = svg(P, sfondo=False)
     s = re.sub(r'<path id="ombra"[^>]*/>', "", s)
+    s = re.sub(r'<path id="bordo-(chiaro|scuro)"[^>]*/>', "", s)
     s = s.replace('clip-path="url(#piastrella)"', "")
     lato = min(t["x1"] - t["x0"], t["y1"] - t["y0"])
     return s.replace(f'viewBox="0 0 {LATO} {LATO}"', f'viewBox="{t["x0"]:.1f} {t["y0"]:.1f} {lato:.1f} {lato:.1f}"', 1)
