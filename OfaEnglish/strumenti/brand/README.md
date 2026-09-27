@@ -75,13 +75,27 @@ se lo scarto scende (pesato per regione: porta, muro, pavimento, fondo).
 | 4–5 | filo per lato, vertici del fondo liberi | 5,4 | 0,943 |
 | 6 | pavimento lucido che riflette, muro curvo, spigoli smussati | **5,0** | 0,943 |
 
-Limite: la reference ha una grana fotografica che da sola vale 1,3–1,8/255; una scena vettoriale
-pulita non può scendere sotto quel valore.
+| 7 | **versione misurata** (`logo/rifinisci.py`): contorni, raggi e linea muro-pavimento ricavati dalla reference, luce in maglie di sfumature, filo, bordo e grana tarati | **2,9** | 0,941 |
+
+Il giro 7 cambia metodo. Il modello "a mano" (giri 1–6) arrivava a 4,1/255 solo sfocando: bordi
+morbidi e macchie di luce abbassano lo scarto medio ma si vedono. La versione misurata tiene la
+scena (vertici e raggi di taglio, vano, soglia, linea curva tra muro e pavimento) e mette la luce in
+**maglie di sfumature** (`maglia.py`): griglie di nodi colorati interpolate in modo bilineare, fatte
+con semplici sfumature lineari e maschere SVG. Muro 32×28 nodi, pavimento 72×28, pareti del taglio
+140×124, vano 30×60; ogni maglia riproduce la sua zona con 0,7–1,6/255. Sopra: filo di luce del
+taglio (segue il contorno smussato), bordo in rilievo della piastrella, grana del materiale (rumore
+centrato, tarato sulla grana della reference: senza grana lo scarto sarebbe 2,75 ma il pavimento
+sembrerebbe di plastica). SVG da 380 KB.
+
+Varianti di colore: `python3 strumenti/brand/logo/ricolora_logo.py --da "#1D4ED8" --a "#DC2626" --uscita rosso`
+cambia la famiglia di colore in tutti i nodi e le sfumature (OKLCH, come `ricolora.py`).
 
 Storia passo per passo in `logo/storia.json`, confronti (reference | SVG | differenza) in
 `logo/confronti/`. Risultati: `logo/addiofa-logo.svg`, `addiofa-logo-trasparente.svg` (senza fondo),
 `addiofa-icona-pieno-campo.svg` (per le icone). `logo/icone.py` rigenera le icone dell'app dall'SVG
-quando il logo viene modificato (oggi le icone vengono dal PNG originale, che è identico).
+(fatto: le icone PWA e la favicon vengono dall'SVG costruito).
+
+Rifare la versione misurata: `python3 strumenti/brand/logo/rifinisci.py` (circa 10 minuti).
 
 **Modificarlo**: ogni numero di `logo/parametri.json` ha un nome (colori, luci, profondità, curvatura,
 riflesso…). Si cambia lì e si rigenera con `python3 -c "import sys; sys.path.insert(0,'strumenti/brand/logo'); from logo import svg, carica; open('strumenti/brand/logo/addiofa-logo.svg','w').write(svg(carica()))"`,
@@ -115,6 +129,26 @@ Fedeltà misurata (`verifica_codice.py`, Chromium, contro i PNG estratti):
 
 Font: Inter, incluso nell'app (`@fontsource/inter`), così il testo si disegna uguale ovunque.
 
+## Illustrazioni disegnate a mano in SVG (`brand/disegni/`)
+
+I ricalchi automatici (`vettorializza.py`, poi `disegna.py` a regioni di colore) partono da PNG di
+circa 200 px, molto morbidi: il risultato ha bordi tremolanti e l'aspetto di un acquerello. Le
+illustrazioni sono state quindi **ridisegnate a mano** come SVG pulito, forma per forma, e poi
+avvicinate all'originale da due programmi (procedura completa in [`DISEGNI.md`](DISEGNI.md)):
+
+1. `adatta_svg.py` tiene la struttura del disegno e muove solo i numeri (posizioni, misure, raggi,
+   colori, opacità, sfocature), rendendo in Chromium e confrontando con l'originale su fondo chiaro
+   e scuro;
+2. `riempi_maglie.py` tiene le forme (bordi netti, id, ordine) e riempie ognuna con una maglia di
+   sfumature misurata sull'originale, così la luce dentro le forme è quella vera: `<nome>.maglie.svg`.
+
+Il file da modificare è `<nome>.svg` (forme con nomi in italiano: `libro-blu-copertina`,
+`bandiera`, `lancetta`…); le parti animabili hanno un gruppo loro. L'app usa `<nome>.maglie.svg`
+(`<Illustrazione formato="disegno">`, il default), e il PNG dove il disegno non c'è.
+Aiuti: `griglia.py` (originale ingrandito con le coordinate), `testo_svg.py` (scritte in tracciati
+con Inter). Misure per disegno in `<nome>.misure.json`, tavole (originale | disegno, 4x, chiaro e
+scuro) in `brand/tavole/disegni/`.
+
 ## Cambiare colori e posizioni
 
 - **Componenti in codice**: colori e misure in `src/brand/tokens.ts`, testi e stato come props.
@@ -127,6 +161,16 @@ python3 strumenti/brand/ricolora.py kit-blu/illustrazioni/studio-inglese --da "#
   --escludi "94,4 176,0 178,60 100,70"      # il libro diventa verde, la bandiera resta blu
 ```
 
-- **Posizione, dimensione, rotazione** di un'illustrazione: props del componente (`lato`, `style`);
-  per spostare un pezzo interno (per esempio la bandiera sopra il libro) va separata in livelli: si fa
-  su richiesta, elemento per elemento.
+- **Illustrazioni disegnate**: colori, posizioni e misure si cambiano nel `<nome>.svg` (ogni forma
+  ha un id), poi si rigenera con `riempi_maglie.py`; per cambiare un colore tenendo la luce basta
+  cambiare il colore della forma e rilanciare `adatta_svg.py` con `data-fisso="colori"` su quella forma.
+- **Posizione, dimensione, rotazione** di un'illustrazione: props del componente (`lato`, `style`).
+- **Pezzi interni dei PNG identici**: `livelli.py` scompone ogni illustrazione in parti con i pixel
+  originali (si ricompongono identiche, 0/255) e `modifica.py` sposta, ingrandisce, ruota, ricolora o
+  nasconde le parti scelte per numero o per zona, ricostruendo lo sfondo dove una parte si sposta:
+
+```bash
+# la bandiera 8 px più in alto e un po' più grande, il libro verde
+python3 strumenti/brand/modifica.py kit-blu/illustrazioni/studio-inglese --zona 98,0,180,72 --sposta 0,-8 --scala 1.08
+python3 strumenti/brand/modifica.py kit-blu/illustrazioni/studio-inglese --zona 30,30,195,125 --escludi 98,0,180,72 --ricolora "#3B82F6:#22C55E"
+```

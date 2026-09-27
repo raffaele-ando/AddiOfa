@@ -17,18 +17,18 @@
  },
  "maglie": {
   "svg": "disegni/kit-blu/illustrazioni/studio-inglese.maglie.svg",
-  "byte": 151286,
+  "byte": 152090,
   "fondo_chiaro": {
-   "mae_255": 3.71,
+   "mae_255": 3.74,
    "p95_255": 28.0,
-   "entro_8": 0.8363,
-   "ssim": 0.9575
+   "entro_8": 0.8367,
+   "ssim": 0.9568
   },
   "fondo_scuro": {
-   "mae_255": 14.1,
-   "p95_255": 122.0,
-   "entro_8": 0.7733,
-   "ssim": 0.8141
+   "mae_255": 14.13,
+   "p95_255": 123.6,
+   "entro_8": 0.7735,
+   "ssim": 0.8133
   }
  }
 }

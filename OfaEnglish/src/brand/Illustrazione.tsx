@@ -9,7 +9,7 @@ import './brand.css';
  *   se il disegno non c'è ancora si usa il PNG
  * - formato "png": identica al pixel all'originale
  * - formato "svg": ricalco vettoriale automatico
- * - fondoScuro: per il tema scuro, il PNG con aloni semitrasparenti invece che bianchi
+ * - fondoScuro: per il tema scuro, con la nuvola di sfondo quasi trasparente invece che bianca
  * - animazione: quella suggerita dal catalogo, un'altra, oppure "nessuna"
  * - tinta: rotazione del colore in gradi, per prove veloci (per un cambio preciso: strumenti/brand/ricolora.py)
  */
@@ -20,7 +20,7 @@ export function Illustrazione({ nome, kit = 'kit-blu', gruppo, lato, formato = '
   const voce = CATALOGO.find(v => v.kit === kit && v.nome === nome && (!gruppo || v.gruppo === gruppo));
   const gr = gruppo ?? voce?.gruppo ?? 'illustrazioni';
   const src = formato === 'svg' ? urlSvg(kit, gr, nome)
-    : formato === 'disegno' && !fondoScuro ? (urlDisegno(kit, gr, nome) ?? urlPng(kit, gr, nome))
+    : formato === 'disegno' ? (urlDisegno(kit, gr, nome, fondoScuro) ?? urlPng(kit, gr, nome, fondoScuro))
     : urlPng(kit, gr, nome, fondoScuro);
   const anim = animazione ?? voce?.animazione;
   return (

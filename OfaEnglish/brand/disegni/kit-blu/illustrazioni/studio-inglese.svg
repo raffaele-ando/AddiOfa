@@ -25,7 +25,7 @@
   </g>
 
   <g id="libro-giallo">
-    <path id="libro-giallo-copertina" d="M36.77 87.81 L102.12 63.85 L193.21 92.37 L119.75 128.38 Z" fill="#F9B15A"/>
+    <path id="libro-giallo-copertina" d="M36.77 87.81 L102.12 63.85 L187.6 93.2 L119.75 128.38 Z" fill="#F9B15A"/>
     <path id="libro-giallo-dorso" d="M41.41 88.31 L114.44 121.33 L113.62 145.46 L39.5 110.22 Q36.43 107.67 35.2 102.2 L35.26 94.26 Q35.36 88.55 40.49 86.58 Z" fill="url(#giallo-dorso)"/>
     <path id="libro-giallo-pagine" d="M113.34 126.01 L187.36 95.6 L187.1 115.06 L113.95 142.67 Z" fill="url(#pagine)"/>
     <path id="libro-giallo-bordo" d="M113.88 142.65 L187.83 113.07 Q190.63 111.6 189.26 116.14 L189.24 116.73 L114.69 147.3 Z" fill="#FFB336"/>
