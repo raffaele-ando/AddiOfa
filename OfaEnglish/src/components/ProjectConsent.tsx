@@ -26,7 +26,7 @@ export function Toggle({ on, disabled, onChange, label }: { on: boolean; disable
       onClick={() => { playTapSound(); onChange(!on); }}
       className={cn(
         "relative w-12 h-7 rounded-full transition-colors shrink-0 disabled:opacity-60",
-        on ? "bg-[#3B82F6]" : "bg-gray-300 dark:bg-[#475569]"
+        on ? "bg-[#EF4444]" : "bg-gray-300 dark:bg-[#475569]"
       )}
     >
       <span className={cn("absolute top-1 left-1 w-5 h-5 rounded-full bg-white shadow transition-transform", on && "translate-x-5")} />
@@ -61,7 +61,7 @@ export default function ProjectConsent({ user, initialScopes, busy, error, onAcc
           {user.photoURL ? (
             <img src={user.photoURL} alt="" referrerPolicy="no-referrer" className="w-16 h-16 rounded-full" />
           ) : (
-            <span className="w-16 h-16 rounded-full bg-[#DBEAFE] text-[#1D4ED8] flex items-center justify-center text-2xl font-bold">
+            <span className="w-16 h-16 rounded-full bg-[#FEE2E2] text-[#B91C1C] flex items-center justify-center text-2xl font-bold">
               {(user.displayName || user.email || '?').charAt(0).toUpperCase()}
             </span>
           )}
@@ -113,7 +113,7 @@ export default function ProjectConsent({ user, initialScopes, busy, error, onAcc
           <button
             onClick={() => { playTapSound(); onAccept(Array.from(new Set([...scopes, ...SCOPES.filter(s => s.required).map(s => s.id)]))); }}
             disabled={busy}
-            className="flex-1 py-3 font-bold text-white bg-[#0F172A] dark:bg-[#3B82F6] rounded-2xl disabled:opacity-50"
+            className="flex-1 py-3 font-bold text-white bg-[#EF4444] hover:bg-[#DC2626] rounded-2xl disabled:opacity-50"
           >
             {busy ? 'Collegamento…' : 'Consenti'}
           </button>

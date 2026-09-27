@@ -3,7 +3,7 @@
 // in codice, ognuna nel riquadro esatto del suo PNG, per il confronto automatico (strumenti/brand/verifica_codice.py).
 import { ReactNode, useState } from 'react';
 import { CATALOGO, Voce } from './catalogo';
-import { urlPng, urlSvg, urlGlifo } from './risorse';
+import { urlPng, urlSvg, urlGlifo, urlDisegno } from './risorse';
 import { Illustrazione, Logo } from './Illustrazione';
 import { Pulsante, Interruttore, Casella, Radio, Avanzamento, Barra, Badge, Stato, IconaChip, Misuratore, Caricamento, NOMI_ICONE } from './componenti';
 import { FONT, Kit } from './tokens';
@@ -48,7 +48,8 @@ function Ricreato({ v, interattivo = true }: { v: Voce; interattivo?: boolean })
     case 'Logo': return <Logo lato={120} />;
     default:
       if (v.nome === 'stile-illustrativo') return <StileIllustrativo />;
-      return <Illustrazione kit={v.kit} gruppo={v.gruppo} nome={v.nome} formato="svg" />;
+      // disegnata a mano in SVG se c'è, altrimenti il ricalco vettoriale automatico
+      return <Illustrazione kit={v.kit} gruppo={v.gruppo} nome={v.nome} formato={urlDisegno(v.kit, v.gruppo, v.nome) ? 'disegno' : 'svg'} />;
   }
 }
 
@@ -84,7 +85,7 @@ function Scheda({ v }: { v: Voce }) {
             style={{ minHeight: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', transform: 'scale(1)' }}>
             <div style={{ maxWidth: '100%', overflow: 'hidden' }}><Ricreato v={v} /></div>
           </div>
-          <figcaption style={{ font: `500 10px ${FONT}`, color: '#9CA3AF', marginTop: 4 }}>{v.tipo === 'grafica' ? 'SVG ricreato' : 'in codice'}</figcaption>
+          <figcaption style={{ font: `500 10px ${FONT}`, color: '#9CA3AF', marginTop: 4 }}>{v.tipo !== 'grafica' ? 'in codice' : urlDisegno(v.kit, v.gruppo, v.nome) ? 'disegnato in SVG' : 'ricalco SVG'}</figcaption>
         </figure>
       </div>
       {v.animazione && (

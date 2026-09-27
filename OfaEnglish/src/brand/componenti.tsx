@@ -235,8 +235,9 @@ const CERCHI: Record<string, string> = {
 
 export const NOMI_ICONE = ['studio', 'statistiche', 'quiz', 'contenuti', 'costo', 'blocco', 'successo', 'email', 'profilo', 'impostazioni', 'aiuto', 'completato', 'errore', 'info'] as const;
 
-/** Icona: cerchio in codice (colore modificabile) + glifo vettoriale. Cliccabile solo se riceve onClick. */
-export function IconaChip({ nome, kit = 'blu', lato = 57, cerchio, onClick, etichetta }: {
+/** Icona: cerchio in codice (colore modificabile) + glifo vettoriale. Cliccabile solo se riceve onClick.
+ * L'app usa il kit rosso (quello delle schermate); il Brand Kit mostra entrambi. */
+export function IconaChip({ nome, kit = 'rosso', lato = 57, cerchio, onClick, etichetta }: {
   nome: typeof NOMI_ICONE[number]; kit?: Kit; lato?: number; cerchio?: string; onClick?: () => void; etichetta?: string;
 }) {
   const chiave = `kit-${kit}/${nome}`;

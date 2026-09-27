@@ -59,7 +59,7 @@ export default function Leaderboard({ user, appState, onBack, onLogin, onJoin }:
           {data?.entries.map(e => (
             <li key={e.handle} className={cn(
               "flex items-center gap-3 p-3 rounded-2xl border",
-              e.isMe ? "border-[#3B82F6] bg-[#EFF6FF] dark:bg-[#1E3A8A]/30" : "border-gray-200 dark:border-[#334155]"
+              e.isMe ? "border-[#EF4444] bg-[#FEF2F2] dark:bg-[#7F1D1D]/30" : "border-gray-200 dark:border-[#334155]"
             )}>
               <span className={cn("w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm",
                 e.rank <= 3 ? `${medal[e.rank - 1]} text-white` : "bg-gray-100 dark:bg-[#0F172A] text-gray-500")}>{e.rank}</span>

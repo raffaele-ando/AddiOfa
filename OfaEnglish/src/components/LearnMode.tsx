@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { Question, AppState, QuestionClickEvent, QuestionTelemetry } from '../types';
 import { selectPracticeQuestions, updateStats } from '../lib/spacedRepetition';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Check, ArrowRight, RotateCcw, Lightbulb, Flame } from 'lucide-react';
+import { X, ArrowRight, RotateCcw, Lightbulb, Flame } from 'lucide-react';
+import { Illustrazione } from '../brand/Illustrazione';
 import { cn, shuffleQuestion, shuffleArray } from '../lib/utils';
 import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound, triggerConfetti } from '../lib/audio';
 import { INITIAL_CORPUS_COUNT } from '../data/questions';
@@ -264,20 +265,16 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   if (currentIndex >= questions.length) {
     return (
       <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm p-4 sm:p-6 items-center justify-center text-center transition-colors duration-300">
-        <motion.div 
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="bg-[#22C55E] dark:bg-[#16A34A] p-4 sm:p-6 rounded-full mb-4 sm:mb-6 text-white shadow-sm"
-        >
-          <Check size={40} className="sm:w-12 sm:h-12" strokeWidth={3} />
+        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="mb-4">
+          <Illustrazione kit="kit-rosso" gruppo="stati" nome="completato" lato={150} />
         </motion.div>
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-2">Sessione Completata!</h2>
-        <p className="text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 font-bold text-base sm:text-lg">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-2">Sessione completata!</h2>
+        <p className="text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 font-semibold text-base">
           Hai risposto a {sessionStats.correct} su {sessionStats.total} correttamente al primo tentativo.
         </p>
         <button
           onClick={() => { playTapSound(); onExit(); }}
-          className="w-full max-w-sm bg-[#3B82F6] border-[#2563EB] active:scale-[.99] text-white font-bold text-base sm:text-lg py-3 sm:py-4 px-6 rounded-xl sm:rounded-2xl transition-all"
+          className="w-full max-w-sm bg-[#EF4444] hover:bg-[#DC2626] active:scale-[.99] text-white font-bold text-base py-3.5 px-6 rounded-2xl transition-all"
         >
           Continua
         </button>
@@ -290,13 +287,13 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   return (
     <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
       {/* Header & Progress */}
-      <header className="flex items-center gap-3 sm:gap-4 p-3 border-b-2 border-gray-200 dark:border-[#334155] h-12 shrink-0 transition-colors">
+      <header className="flex items-center gap-3 sm:gap-4 p-3 border-b border-gray-100 dark:border-[#334155] h-12 shrink-0 transition-colors">
         <button onClick={() => { playTapSound(); onExit(); }} className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 rounded-full transition-colors">
           <X size={18} strokeWidth={3} />
         </button>
-        <div className="flex-1 bg-gray-200 dark:bg-[#334155] h-3 rounded-full overflow-hidden transition-colors">
+        <div className="flex-1 bg-gray-100 dark:bg-[#334155] h-2 rounded-full overflow-hidden transition-colors">
           <motion.div 
-            className="bg-[#22C55E] h-full rounded-full transition-all duration-500"
+            className="bg-[#EF4444] h-full rounded-full transition-all duration-500"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
           />
@@ -315,8 +312,8 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       {/* Main Content */}
       <main className="flex-1 p-4 sm:p-8 flex flex-col w-full overflow-y-auto scrollbar-hide">
         <div className="mb-4 shrink-0 flex items-center justify-between">
-          <span className="px-4 py-1.5 bg-[#8B5CF6] dark:bg-[#A78BFA] text-white text-xs sm:text-sm font-bold rounded-full shadow-sm">
-            Domanda {currentIndex + 1}
+          <span className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400">
+            Domanda {currentIndex + 1} di {questions.length}
           </span>
           {(category === 'corpus:initial' || appState.selectedCorpus === 'initial') && (
             <span className="px-3 py-1 bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/30 text-xs font-bold rounded-full">
@@ -324,7 +321,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
             </span>
           )}
         </div>
-        <h2 className="text-xl sm:text-3xl font-bold text-[#1E293B] dark:text-[#F8FAFC] mb-6 sm:mb-8 leading-tight shrink-0">
+        <h2 className="text-xl sm:text-2xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-5 sm:mb-6 leading-snug shrink-0">
           {question.prompt}
         </h2>
 
@@ -413,7 +410,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 flex-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 content-start">
             {question.options.map((opt, idx) => {
               let stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] hover:border-gray-300 dark:hover:border-gray-400 text-[#0F172A] dark:text-gray-200 active:scale-[.99]";
               let numberClass = "border-gray-200 dark:border-[#334155] text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#1E293B]";
@@ -426,15 +423,15 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                   stateClass = "border-[#EF4444] dark:border-[#EF4444] bg-[#FEE2E2] dark:bg-[#7F1D1D] text-[#B91C1C] dark:text-[#F87171]";
                   numberClass = "border-[#EF4444] dark:border-[#EF4444] bg-white dark:bg-[#7F1D1D] text-[#EF4444] dark:text-[#F87171]";
                 } else if (wrongOptions.has(idx)) {
-                  stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40 border-b-2 translate-y-[2px]";
+                  stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40";
                 } else {
-                  stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] opacity-40 border-b-2 translate-y-[2px]";
+                  stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] opacity-40";
                 }
               } else if (selectedOption === idx) {
-                stateClass = "bg-[#DBEAFE] dark:bg-[#1D4ED8] border-[#93C5FD] dark:border-[#60A5FA] text-[#2563EB] dark:text-[#DBEAFE]";
-                numberClass = "border-[#93C5FD] dark:border-[#60A5FA] bg-white dark:bg-[#1D4ED8] text-[#2563EB] dark:text-[#DBEAFE]";
+                stateClass = "bg-[#FEF2F2] dark:bg-[#7F1D1D]/40 border-[#EF4444] text-[#0F172A] dark:text-[#F8FAFC]";
+                numberClass = "border-[#EF4444] bg-[#EF4444] text-white";
               } else if (wrongOptions.has(idx)) {
-                stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40 border-b-2 translate-y-[2px]";
+                stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40";
               }
 
               return (
@@ -443,15 +440,15 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                   disabled={hasChecked || wrongOptions.has(idx)}
                   onClick={() => handleSelectOption(idx)}
                   className={cn(
-                    "p-4 sm:p-5 text-left border rounded-[24px] group transition-all duration-150 flex items-center min-h-[90px]",
+                    "p-3 sm:p-3.5 text-left border rounded-2xl group transition-all duration-150 flex items-center min-h-[56px]",
                     stateClass
                   )}
                 >
                   <div className="flex items-center gap-4 w-full">
-                    <span className={cn("w-10 h-10 sm:w-12 sm:h-12 text-sm sm:text-base flex shrink-0 items-center justify-center border rounded-[14px] font-bold transition-colors", numberClass)}>
+                    <span className={cn("w-8 h-8 text-sm flex shrink-0 items-center justify-center border rounded-full font-bold transition-colors", numberClass)}>
                       {String.fromCharCode(65 + idx)}
                     </span>
-                    <span className="text-base sm:text-lg font-bold leading-snug flex-1">{opt}</span>
+                    <span className="text-[15px] sm:text-base font-semibold leading-snug flex-1">{opt}</span>
                   </div>
                 </button>
               );
@@ -461,7 +458,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       </main>
 
       {/* Bottom Action Bar */}
-      <div className={cn("border-t-2 border-gray-200 dark:border-[#334155] shrink-0 p-4 transition-colors", hasChecked ? (isCorrect ? "bg-[#DCFCE7] dark:bg-[#064E3B] border-[#22C55E] dark:border-[#16A34A]" : "bg-[#FEE2E2] dark:bg-[#7F1D1D] border-[#EF4444] dark:border-[#EF4444]") : "bg-white dark:bg-[#1E293B]")}>
+      <div className={cn("border-t border-gray-100 dark:border-[#334155] shrink-0 p-4 transition-colors", hasChecked ? (isCorrect ? "bg-[#DCFCE7] dark:bg-[#064E3B] border-[#22C55E] dark:border-[#16A34A]" : "bg-[#FEE2E2] dark:bg-[#7F1D1D] border-[#EF4444] dark:border-[#EF4444]") : "bg-white dark:bg-[#1E293B]")}>
         <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-between">
           <AnimatePresence>
             {hasChecked && (
@@ -497,34 +494,37 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
           </AnimatePresence>
 
           {!hasChecked ? (
-            <div className="w-full sm:w-auto flex flex-row gap-2 justify-between sm:justify-end">
+            <div className="w-full sm:w-auto flex flex-col gap-2">
+              <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 text-center sm:text-right">Quanto sei sicuro della risposta?</span>
+              <div className="flex flex-row gap-2 justify-between sm:justify-end">
               <button
                 onClick={() => handleCheck('low')}
                 disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
-                className="flex-1 sm:flex-none bg-[#EF4444] hover:bg-[#DC2626] border-b-4 border-[#B91C1C] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-bold text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:scale-[.99] duration-150"
+                className="flex-1 sm:flex-none bg-[#EF4444] hover:bg-[#DC2626] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-all active:scale-[.99] duration-150"
               >
                 Indovino
               </button>
               <button
                 onClick={() => handleCheck('medium')}
                 disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
-                className="flex-1 sm:flex-none bg-[#F59E0B] hover:bg-[#D97706] border-b-4 border-[#D97706] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-bold text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:scale-[.99] duration-150"
+                className="flex-1 sm:flex-none bg-[#F59E0B] hover:bg-[#D97706] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-all active:scale-[.99] duration-150"
               >
                 Incerto
               </button>
               <button
                 onClick={() => handleCheck('high')}
                 disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
-                className="flex-1 sm:flex-none bg-[#22C55E] hover:bg-[#16A34A] border-b-4 border-[#16A34A] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:border-gray-300 disabled:dark:border-[#475569] disabled:text-gray-400 disabled:dark:text-gray-600 text-white font-bold text-xs sm:text-sm py-4 px-5 rounded-[20px] transition-all active:scale-[.99] duration-150"
+                className="flex-1 sm:flex-none bg-[#22C55E] hover:bg-[#16A34A] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-all active:scale-[.99] duration-150"
               >
                 Sicuro
               </button>
+              </div>
             </div>
           ) : (
             <button
               onClick={handleNext}
               className={cn(
-                "w-full sm:w-auto text-white font-bold text-base sm:text-lg py-4 px-8 rounded-[20px] transition-all active:scale-[.99] flex items-center justify-center gap-2 duration-150",
+                "w-full sm:w-auto text-white font-bold text-base py-3.5 px-8 rounded-2xl transition-all active:scale-[.99] flex items-center justify-center gap-2 duration-150",
                 isCorrect ? "bg-[#22C55E] hover:bg-[#16A34A] border-[#16A34A] dark:bg-[#10B981] dark:border-[#059669]" : "bg-[#EF4444] hover:bg-[#DC2626] border-[#B91C1C] dark:bg-[#EF4444] dark:border-[#DC2626]"
               )}
             >

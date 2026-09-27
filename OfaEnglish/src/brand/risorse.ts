@@ -4,6 +4,8 @@
 const png = import.meta.glob('/brand/elementi/**/*.png', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
 // l'SVG ricalcato del logo (4 MB) resta fuori: nell'app si usa quello costruito in strumenti/brand/logo
 const svg = import.meta.glob(['/brand/vettori/**/*.svg', '!/brand/vettori/logo/**'], { query: '?url', import: 'default', eager: true }) as Record<string, string>;
+// illustrazioni ridisegnate a mano in SVG (forme con nome + maglie di sfumature), vedi strumenti/brand/DISEGNI.md
+const disegni = import.meta.glob('/brand/disegni/**/*.maglie.svg', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
 const glifi = import.meta.glob('/brand/glifi/**/*.svg', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
 const logo = import.meta.glob('/strumenti/brand/logo/addiofa-logo*.svg', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
 
@@ -18,6 +20,11 @@ export function urlPng(kit: KitId, gruppo: string, nome: string, scuro = false):
 /** SVG ricreato (vettoriale, scalabile). */
 export function urlSvg(kit: KitId, gruppo: string, nome: string): string | undefined {
   return svg[`/brand/vettori/${kit}/${gruppo}/${nome}.svg`];
+}
+
+/** Illustrazione ridisegnata in SVG (nitida a ogni dimensione), se c'è. */
+export function urlDisegno(kit: KitId, gruppo: string, nome: string): string | undefined {
+  return disegni[`/brand/disegni/${kit}/${gruppo}/${nome}.maglie.svg`];
 }
 
 /** Glifo di un'icona, senza il cerchio (che disegna il codice). */

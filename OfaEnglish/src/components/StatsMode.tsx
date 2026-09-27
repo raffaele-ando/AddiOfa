@@ -213,7 +213,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           </div>
           <button
             onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-            className="flex items-center gap-2 text-sm font-bold text-[#3B82F6] hover:text-[#2563EB] transition-colors"
+            className="flex items-center gap-2 text-sm font-bold text-[#EF4444] hover:text-[#DC2626] transition-colors"
           >
             <ArrowDownUp size={16} />
             {sortOrder === 'asc' ? 'Peggiori prima' : 'Migliori prima'}
@@ -350,7 +350,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           <h2 className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Progressi</h2>
           <p className="text-sm text-[#6B7280]">Quanto sai, argomento per argomento.</p>
         </div>
-        <Illustrazione kit="kit-blu" nome="progressi-statistiche" lato={84} />
+        <Illustrazione kit="kit-rosso" nome="progressi-statistiche" lato={84} />
       </header>
 
       <main className="flex-1 overflow-y-auto scrollbar-hide p-4 sm:p-6 flex flex-col gap-4 sm:gap-6">
@@ -389,7 +389,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                     cursor={{ fill: '#F3F4F6' }}
                     contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
                   />
-                  <Bar dataKey="domande" name="Domande" fill="#3B82F6" radius={[4, 4, 0, 0]} maxBarSize={30} />
+                  <Bar dataKey="domande" name="Domande" fill="#EF4444" radius={[4, 4, 0, 0]} maxBarSize={30} />
                   <Bar dataKey="minuti" name="Minuti" fill="#22C55E" radius={[4, 4, 0, 0]} maxBarSize={30} />
                 </BarChart>
               </ResponsiveContainer>
@@ -468,8 +468,8 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                     <Radar
                       name="Padronanza"
                       dataKey="A"
-                      stroke="#3B82F6"
-                      fill="#3B82F6"
+                      stroke="#EF4444"
+                      fill="#EF4444"
                       fillOpacity={0.5}
                     />
                     <Tooltip 
@@ -482,7 +482,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                         color: '#0F172A',
                         padding: '8px 12px'
                       }}
-                      itemStyle={{ color: '#3B82F6', fontWeight: '900' }}
+                      itemStyle={{ color: '#EF4444', fontWeight: '900' }}
                     />
                   </RadarChart>
                 </ResponsiveContainer>
@@ -536,7 +536,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                     contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
                     formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da Imparare' : name]}
                   />
-                  <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#3B82F6" radius={[0, 0, 0, 0]} maxBarSize={20} />
+                  <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#EF4444" radius={[0, 0, 0, 0]} maxBarSize={20} />
                   <Bar dataKey="daImparare" name="Da Imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={20} />
                 </BarChart>
               </ResponsiveContainer>
@@ -630,16 +630,16 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             <div className="flex justify-between items-center z-10 leading-none">
               <span className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] flex items-center gap-2">
                 Sfida Quotidiana
-                <span className="bg-[#3B82F6] text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-lg">
+                <span className="bg-[#EF4444] text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-lg">
                   Fase {milestoneIndex + 1}
                 </span>
               </span>
-              <span className="text-sm sm:text-lg font-bold text-[#3B82F6]">{currentTotalDaily}/{currentMilestone}</span>
+              <span className="text-sm sm:text-lg font-bold text-[#EF4444]">{currentTotalDaily}/{currentMilestone}</span>
             </div>
             
             <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative mt-1">
               <div 
-                className={cn("bg-[#3B82F6] h-full rounded-full transition-all duration-700 ease-out", phaseProgressPercent > 80 && "animate-pulse")} 
+                className={cn("bg-[#EF4444] h-full rounded-full transition-all duration-700 ease-out", phaseProgressPercent > 80 && "animate-pulse")} 
                 style={{ width: `${phaseProgressPercent}%` }} 
               />
             </div>

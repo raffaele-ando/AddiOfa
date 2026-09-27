@@ -10,7 +10,7 @@ import { playTapSound } from '../lib/audio';
 import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard } from './ui';
 import Plans from './Plans';
 import { Illustrazione } from '../brand/Illustrazione';
-import { IconaChip } from '../brand/componenti';
+import { IconaChip, Misuratore } from '../brand/componenti';
 import { ECOSYSTEM } from '../config/ecosystem';
 
 type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'save' | 'risk' | 'result' | 'ready' | 'plans' | 'goal';
@@ -26,39 +26,17 @@ interface OnboardingProps {
   onFinish: (result: OnboardingResult) => void;
 }
 
-// Illustrazioni del Brand Kit (kit blu), identiche all'originale, con l'animazione del catalogo.
-// Il tema scuro usa la variante con aloni semitrasparenti.
-function Scena({ nome }: { nome: string }) {
+// Illustrazioni del Brand Kit (kit rosso, come le schermate di riferimento), con l'animazione del
+// catalogo. Il tema scuro usa la variante con aloni semitrasparenti.
+function Scena({ nome, gruppo }: { nome: string; gruppo?: string }) {
   const scuro = document.documentElement.classList.contains('dark');
   return (
     <div className="mx-auto my-3 flex items-center justify-center" style={{ minHeight: 150 }}>
-      <Illustrazione kit="kit-blu" nome={nome} lato={200} fondoScuro={scuro} />
+      <Illustrazione kit="kit-rosso" nome={nome} gruppo={gruppo} lato={200} fondoScuro={scuro} />
     </div>
   );
 }
 
-function Gauge({ percent, label }: { percent: number; label: string }) {
-  // Semicerchio da 180°: colore a semaforo sulla probabilità di superare il test
-  const color = percent >= 70 ? '#22C55E' : percent >= 40 ? '#F59E0B' : '#EF4444';
-  const r = 80;
-  const circumference = Math.PI * r;
-  return (
-    <svg viewBox="0 0 200 115" className="w-full max-w-[260px] mx-auto" role="img" aria-label={label}>
-      <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="currentColor" strokeWidth="16" strokeLinecap="round" className="text-gray-200 dark:text-[#334155]" />
-      <path
-        d="M 20 100 A 80 80 0 0 1 180 100"
-        fill="none"
-        stroke={color}
-        strokeWidth="16"
-        strokeLinecap="round"
-        strokeDasharray={circumference}
-        strokeDashoffset={circumference * (1 - percent / 100)}
-        style={{ transition: 'stroke-dashoffset 1s ease-out' }}
-      />
-      <text x="100" y="92" textAnchor="middle" fontSize="40" fontWeight="900" fill={color}>{label}</text>
-    </svg>
-  );
-}
 
 export default function Onboarding({ appState, user, onLogin, onUpdateAppState, onFinish }: OnboardingProps) {
   const [step, setStep] = useState<Step>('intro');
@@ -150,7 +128,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
       return (
         <Screen>
           <TopBar onBack={() => setStep('certification')} />
-          <Scena nome="superamento" />
+          <Scena nome="piano-superamento" />
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC] text-center">Forse non ti serve il test</h2>
           <p className="text-center font-semibold text-gray-500 dark:text-gray-400">
             Con una certificazione accettata dall'ateneo di solito l'OFA si toglie senza fare il test. Controlla l'elenco delle certificazioni valide e i livelli minimi sulla pagina del tuo corso prima di pagare qualsiasi cosa.
@@ -240,9 +218,9 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           <Scena nome="rischio-economico" />
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">Se non superi l'OFA…</h2>
           <ul className="flex flex-col gap-3">
-            {OFA_CONSEQUENCES.map(c => (
-              <li key={c} className="flex gap-3 items-start font-bold text-[#0F172A] dark:text-gray-200">
-                <span className="mt-1.5 w-2.5 h-2.5 rounded-full bg-[#EF4444] shrink-0" />
+            {OFA_CONSEQUENCES.map((c, i) => (
+              <li key={c} className="flex gap-3 items-center font-semibold text-sm text-[#0F172A] dark:text-gray-200">
+                <IconaChip nome={(['costo', 'blocco', 'contenuti'] as const)[i % 3]} lato={36} />
                 {c}
               </li>
             ))}
@@ -263,7 +241,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">Quiz completato!</h2>
             <p className="font-semibold text-gray-500 dark:text-gray-400">Hai risposto bene a {correct} domande su {quiz.length}.</p>
           </div>
-          <Gauge percent={passPercent} label={passPercent === 0 ? '< 1%' : passPercent === 100 ? '> 99%' : `${passPercent}%`} />
+          <div className="flex justify-center"><Misuratore valore={passPercent} larghezza={250} etichetta={passPercent === 0 ? '< 1%' : passPercent === 100 ? '> 99%' : `${passPercent}%`} /></div>
           <p className="text-center font-bold text-[#0F172A] dark:text-[#F8FAFC] -mt-2">
             Probabilità stimata di superare il test oggi
           </p>
@@ -327,7 +305,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
     case 'goal':
       return (
         <Screen>
-          <Scena nome="successo" />
+          <Scena nome="obiettivo" gruppo="stati" />
           <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] dark:text-[#F8FAFC] text-center leading-tight">Il tuo obiettivo è a portata di mano.</h2>
           <p className="text-center font-semibold text-gray-500 dark:text-gray-400">
             Inizia dal Primo Corpus e fai una sessione al giorno. Quando superi stabilmente {SIM_PASS_SCORE}/30 nel simulatore sei pronto.

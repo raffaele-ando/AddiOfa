@@ -239,16 +239,16 @@ export default function ExamMode({ onComplete, onExit, corpus = 'all' }: ExamMod
           <div className="mb-3"><Illustrazione kit="kit-rosso" nome="simulazione-esame" lato={150} /></div>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 sm:mb-6">Simulazione</h2>
           <ul className="text-left text-gray-500 dark:text-gray-400 font-bold space-y-4 mb-8 sm:mb-10 w-full text-sm sm:text-base bg-gray-50 dark:bg-[#0F172A] p-4 sm:p-6 rounded-2xl border border-gray-100 dark:border-[#334155]">
-            <li className="flex gap-3 sm:gap-4 items-center"><span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-[#3B82F6] dark:bg-[#60A5FA] rounded-full shrink-0"></span> 30 domande a scelta multipla</li>
+            <li className="flex gap-3 sm:gap-4 items-center"><span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-[#EF4444] rounded-full shrink-0"></span> 30 domande a scelta multipla</li>
             <li className="flex gap-3 sm:gap-4 items-center"><span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-[#F59E0B] dark:bg-[#FBBF24] rounded-full shrink-0"></span> 15 minuti di tempo</li>
             <li className="flex gap-3 sm:gap-4 items-center"><span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-[#22C55E] dark:bg-[#16A34A] rounded-full shrink-0"></span> 25/30 per superarla (al test reale ne bastano 24)</li>
-            <li className="flex gap-3 sm:gap-4 items-center"><span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-[#8B5CF6] dark:bg-[#A78BFA] rounded-full shrink-0"></span> Nessun feedback durante la prova</li>
+            <li className="flex gap-3 sm:gap-4 items-center"><span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-[#0F172A] dark:bg-[#F8FAFC] rounded-full shrink-0"></span> Nessun feedback durante la prova</li>
           </ul>
           <div className="flex flex-col gap-3 sm:gap-4 w-full shrink-0">
-            <button onClick={handleStart} className="w-full py-4 sm:py-5 font-bold text-white bg-[#EF4444] hover:bg-[#DC2626] border-[#2563EB] rounded-[24px] active:scale-[.99] transition-all text-base sm:text-lg duration-150">
+            <button onClick={handleStart} className="w-full py-4 sm:py-5 font-bold text-white bg-[#EF4444] hover:bg-[#DC2626] rounded-2xl active:scale-[.99] transition-all text-base sm:text-lg duration-150">
               Inizia
             </button>
-            <button onClick={onExit} className="w-full py-4 sm:py-5 font-bold text-gray-400 dark:text-gray-500 bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-[24px] active:scale-[.99] transition-all hover:bg-gray-50 dark:hover:bg-[#1E293B] text-base sm:text-lg duration-150">
+            <button onClick={onExit} className="w-full py-4 sm:py-5 font-bold text-gray-400 dark:text-gray-500 bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl active:scale-[.99] transition-all hover:bg-gray-50 dark:hover:bg-[#1E293B] text-base sm:text-lg duration-150">
               Annulla
             </button>
           </div>
@@ -285,7 +285,7 @@ export default function ExamMode({ onComplete, onExit, corpus = 'all' }: ExamMod
           </p>
         </div>
 
-        <button onClick={onExit} className="w-full max-w-sm mx-auto mb-4 sm:mb-8 bg-[#3B82F6] border-[#2563EB] active:scale-[.99] text-white font-bold text-sm sm:text-base py-3 sm:py-4 rounded-xl sm:rounded-2xl transition-all shrink-0">
+        <button onClick={onExit} className="w-full max-w-sm mx-auto mb-4 sm:mb-8 bg-[#EF4444] hover:bg-[#DC2626] active:scale-[.99] text-white font-bold text-base py-3.5 rounded-2xl transition-all shrink-0">
           Torna al menu
         </button>
 
@@ -351,17 +351,17 @@ export default function ExamMode({ onComplete, onExit, corpus = 'all' }: ExamMod
 
   return (
     <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
-      <header className="flex flex-col gap-2 p-3 sm:p-4 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors">
+      <header className="flex flex-col gap-2 p-3 sm:p-4 border-b border-gray-100 dark:border-[#334155] shrink-0 transition-colors">
         <div className="flex items-center justify-between">
           <button onClick={handleExit} className="p-1 sm:p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#334155] rounded-full transition-colors">
             <X size={20} className="sm:w-6 sm:h-6" strokeWidth={3} />
           </button>
-          <div className={cn("font-bold font-mono text-base sm:text-xl flex items-center gap-1 sm:gap-2", timeLeft < 120 ? "text-[#EF4444] dark:text-[#EF4444]" : "text-[#3B82F6] dark:text-[#60A5FA]")}>
+          <div className={cn("font-bold tabular-nums text-base sm:text-xl flex items-center gap-1 sm:gap-2", timeLeft < 120 ? "text-[#EF4444] dark:text-[#EF4444]" : "text-[#0F172A] dark:text-[#F8FAFC]")}>
             <Clock size={18} className="sm:w-5 sm:h-5" strokeWidth={3} /> {timeStr}
           </div>
           <button 
             onClick={handleSubmit}
-            className="text-[10px] sm:text-xs font-bold text-[#8B5CF6] dark:text-[#A78BFA] hover:bg-[#8B5CF6]/10 dark:hover:bg-[#A78BFA]/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl transition-colors"
+            className="text-[10px] sm:text-xs font-bold text-[#EF4444] hover:bg-[#FEE2E2] dark:hover:bg-[#7F1D1D]/40 border border-[#FCA5A5] px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl transition-colors"
           >
             Consegna
           </button>
@@ -369,15 +369,15 @@ export default function ExamMode({ onComplete, onExit, corpus = 'all' }: ExamMod
         <div className="flex items-center gap-2 mt-1 sm:mt-2">
           <span className="text-[10px] sm:text-xs font-bold text-gray-400 dark:text-gray-500 w-8 sm:w-10 text-right">{answeredCount}/30</span>
           <div className="flex-1 bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden transition-colors">
-            <div className="bg-[#3B82F6] dark:bg-[#60A5FA] h-full rounded-full transition-all" style={{ width: `${progress}%` }} />
+            <div className="bg-[#EF4444] h-full rounded-full transition-all" style={{ width: `${progress}%` }} />
           </div>
         </div>
       </header>
 
       <main className="flex-1 p-4 sm:p-8 flex flex-col w-full overflow-y-auto scrollbar-hide">
         <div className="mb-4 shrink-0 flex items-center justify-between">
-          <span className="px-4 py-1.5 bg-[#F59E0B] dark:bg-[#F59E0B] text-white text-xs sm:text-sm font-bold rounded-full shadow-sm">
-            Domanda {currentIndex + 1}
+          <span className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400">
+            Domanda {currentIndex + 1} di {examQuestions.length}
           </span>
           {corpus === 'initial' && (
             <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/30 text-xs font-bold rounded-full">
@@ -386,11 +386,11 @@ export default function ExamMode({ onComplete, onExit, corpus = 'all' }: ExamMod
             </span>
           )}
         </div>
-        <h2 className="text-xl sm:text-3xl font-bold text-[#1E293B] dark:text-[#F8FAFC] mb-6 sm:mb-8 leading-tight shrink-0">
+        <h2 className="text-xl sm:text-2xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-5 sm:mb-6 leading-snug shrink-0">
           {question.prompt}
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 flex-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 content-start">
           {question.options.map((opt, idx) => {
             const isSelected = answers[question.id] === idx;
             return (
@@ -398,19 +398,19 @@ export default function ExamMode({ onComplete, onExit, corpus = 'all' }: ExamMod
                 key={idx}
                 onClick={() => handleOptionSelect(question.id, idx)}
                 className={cn(
-                  "p-4 sm:p-5 text-left border rounded-[24px] group transition-all duration-150 flex items-center min-h-[90px]",
+                  "p-3 sm:p-3.5 text-left border rounded-2xl group transition-all duration-150 flex items-center min-h-[56px]",
                   isSelected 
-                    ? "bg-[#DBEAFE] dark:bg-[#1D4ED8] border-[#93C5FD] dark:border-[#60A5FA] text-[#2563EB] dark:text-[#DBEAFE]" 
+                    ? "bg-[#FEF2F2] dark:bg-[#7F1D1D]/40 border-[#EF4444] text-[#0F172A] dark:text-[#F8FAFC]" 
                     : "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] hover:border-gray-300 dark:hover:border-gray-400 text-[#0F172A] dark:text-gray-200 active:scale-[.99]"
                 )}
               >
                 <div className="flex items-center gap-4 w-full">
-                  <span className={cn("w-10 h-10 sm:w-12 sm:h-12 text-sm sm:text-base flex shrink-0 items-center justify-center border rounded-[14px] font-bold transition-colors", 
-                    isSelected ? "border-[#93C5FD] dark:border-[#60A5FA] bg-white dark:bg-[#1D4ED8] text-[#2563EB] dark:text-[#DBEAFE]" : "border-gray-200 dark:border-[#334155] text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#1E293B]"
+                  <span className={cn("w-8 h-8 text-sm flex shrink-0 items-center justify-center border rounded-full font-bold transition-colors", 
+                    isSelected ? "border-[#EF4444] bg-[#EF4444] text-white" : "border-gray-200 dark:border-[#334155] text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#1E293B]"
                   )}>
                     {String.fromCharCode(65 + idx)}
                   </span>
-                  <span className="text-base sm:text-lg font-bold leading-snug flex-1">{opt}</span>
+                  <span className="text-[15px] sm:text-base font-semibold leading-snug flex-1">{opt}</span>
                 </div>
               </button>
             );
@@ -418,7 +418,7 @@ export default function ExamMode({ onComplete, onExit, corpus = 'all' }: ExamMod
         </div>
       </main>
 
-      <div className="p-3 sm:p-4 border-t-2 border-gray-200 dark:border-[#334155] bg-white dark:bg-[#1E293B] shrink-0 flex items-center transition-colors min-h-[70px] sm:min-h-[80px]">
+      <div className="p-3 sm:p-4 border-t border-gray-100 dark:border-[#334155] bg-white dark:bg-[#1E293B] shrink-0 flex items-center transition-colors min-h-[70px] sm:min-h-[80px]">
         <div className="max-w-4xl w-full mx-auto flex justify-between items-center px-2 sm:px-4">
           <button
             onClick={() => handleNavigateQuestion(Math.max(0, currentIndex - 1))}
@@ -435,7 +435,7 @@ export default function ExamMode({ onComplete, onExit, corpus = 'all' }: ExamMod
                 onClick={() => handleNavigateQuestion(idx)}
                 className={cn(
                   "h-1.5 sm:h-2 min-w-[6px] sm:min-w-[8px] flex-1 rounded-full transition-all cursor-pointer", 
-                  currentIndex === idx ? "bg-[#0F172A] dark:bg-[#F8FAFC] h-2.5 sm:h-3" : answers[q.id] !== undefined ? "bg-[#3B82F6] dark:bg-[#60A5FA]" : "bg-gray-200 dark:bg-[#334155]"
+                  currentIndex === idx ? "bg-[#0F172A] dark:bg-[#F8FAFC] h-2.5 sm:h-3" : answers[q.id] !== undefined ? "bg-[#EF4444]" : "bg-gray-200 dark:bg-[#334155]"
                 )}
               />
             ))}

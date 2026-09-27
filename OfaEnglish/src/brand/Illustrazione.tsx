@@ -1,23 +1,27 @@
 import { CSSProperties } from 'react';
-import { urlPng, urlSvg, urlLogo, KitId } from './risorse';
+import { urlPng, urlSvg, urlDisegno, urlLogo, KitId } from './risorse';
 import { CATALOGO, Animazione } from './catalogo';
 import './brand.css';
 
 /**
  * Un'illustrazione del Brand Kit.
- * - formato "png": identica al pixel all'originale (default)
- * - formato "svg": ricreata in vettoriale, nitida a qualsiasi dimensione
- * - fondoScuro: per il tema scuro, con aloni semitrasparenti invece che bianchi
+ * - formato "disegno" (default): ridisegnata a mano in SVG, nitida a qualsiasi dimensione;
+ *   se il disegno non c'è ancora si usa il PNG
+ * - formato "png": identica al pixel all'originale
+ * - formato "svg": ricalco vettoriale automatico
+ * - fondoScuro: per il tema scuro, il PNG con aloni semitrasparenti invece che bianchi
  * - animazione: quella suggerita dal catalogo, un'altra, oppure "nessuna"
  * - tinta: rotazione del colore in gradi, per prove veloci (per un cambio preciso: strumenti/brand/ricolora.py)
  */
-export function Illustrazione({ nome, kit = 'kit-blu', gruppo, lato, formato = 'png', fondoScuro = false, animazione, tinta, alt = '', style }: {
-  nome: string; kit?: KitId; gruppo?: string; lato?: number; formato?: 'png' | 'svg'; fondoScuro?: boolean;
+export function Illustrazione({ nome, kit = 'kit-blu', gruppo, lato, formato = 'disegno', fondoScuro = false, animazione, tinta, alt = '', style }: {
+  nome: string; kit?: KitId; gruppo?: string; lato?: number; formato?: 'disegno' | 'png' | 'svg'; fondoScuro?: boolean;
   animazione?: Animazione | 'nessuna'; tinta?: number; alt?: string; style?: CSSProperties;
 }) {
   const voce = CATALOGO.find(v => v.kit === kit && v.nome === nome && (!gruppo || v.gruppo === gruppo));
   const gr = gruppo ?? voce?.gruppo ?? 'illustrazioni';
-  const src = formato === 'svg' ? urlSvg(kit, gr, nome) : urlPng(kit, gr, nome, fondoScuro);
+  const src = formato === 'svg' ? urlSvg(kit, gr, nome)
+    : formato === 'disegno' && !fondoScuro ? (urlDisegno(kit, gr, nome) ?? urlPng(kit, gr, nome))
+    : urlPng(kit, gr, nome, fondoScuro);
   const anim = animazione ?? voce?.animazione;
   return (
     <span className={anim && anim !== 'nessuna' ? `brand-anim-${anim}` : undefined} style={{ display: 'inline-block', lineHeight: 0, ...style }}>

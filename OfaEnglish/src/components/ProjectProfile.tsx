@@ -105,7 +105,7 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
           </div>
           <div className="flex gap-2 mt-2">
             <button onClick={() => setEditing(false)} className="flex-1 py-2.5 rounded-xl font-bold text-gray-500 border border-gray-200 dark:border-[#334155]">Annulla</button>
-            <button onClick={saveProfile} disabled={busy} className="flex-1 py-2.5 rounded-xl font-bold text-white bg-[#3B82F6] disabled:opacity-50">Salva</button>
+            <button onClick={saveProfile} disabled={busy} className="flex-1 py-2.5 rounded-xl font-bold text-white bg-[#EF4444] hover:bg-[#DC2626] disabled:opacity-50">Salva</button>
           </div>
         </div>
       )}
@@ -144,7 +144,7 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
         <h3 className="text-xs font-bold text-gray-400">I tuoi dati</h3>
         <button onClick={exportData} disabled={busy}
           className="flex items-center gap-3 p-3.5 rounded-2xl border border-gray-200 dark:border-[#334155] font-bold text-sm text-[#0F172A] dark:text-[#F8FAFC]">
-          <Download size={18} className="text-[#3B82F6]" /> Scarica una copia dei tuoi dati
+          <Download size={18} className="text-[#EF4444]" /> Scarica una copia dei tuoi dati
         </button>
         <button onClick={onLogout}
           className="flex items-center gap-3 p-3.5 rounded-2xl border border-gray-200 dark:border-[#334155] font-bold text-sm text-[#0F172A] dark:text-[#F8FAFC]">

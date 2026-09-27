@@ -40,7 +40,7 @@ function Strumento({ icona, titolo, testo, onClick }: { icona: typeof NOMI_ICONE
   return (
     <button onClick={() => { playTapSound(); onClick(); }}
       className="brand-premibile flex items-center gap-3 text-left bg-white dark:bg-[#1E293B] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-3 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
-      <IconaChip nome={icona} kit="blu" lato={44} />
+      <IconaChip nome={icona} lato={44} />
       <span className="flex-1 min-w-0">
         <span className="block text-[15px] font-semibold text-[#0F172A] dark:text-[#F8FAFC] truncate">{titolo}</span>
         <span className="block text-xs text-[#6B7280] dark:text-[#94A3B8] truncate">{testo}</span>
@@ -87,10 +87,10 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
             <button onClick={() => { playTapSound(); toggleTheme(); }} className={icona} title="Tema">{isDark ? <Sun size={20} /> : <Moon size={20} />}</button>
             <span className="flex items-center gap-1 text-[#F59E0B] font-semibold text-sm px-2" title="Giorni di fila"><Flame size={17} fill="currentColor" />{appState.streak}</span>
             {user ? (
-              <button onClick={() => { playTapSound(); onOpenProfile?.(); }} className="rounded-full ring-2 ring-[#E5E7EB] hover:ring-[#3B82F6] transition-all" title={ECOSYSTEM.accountName}>
+              <button onClick={() => { playTapSound(); onOpenProfile?.(); }} className="rounded-full ring-2 ring-[#E5E7EB] hover:ring-[#EF4444] transition-all" title={ECOSYSTEM.accountName}>
                 {user.photoURL
                   ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer" className="w-9 h-9 rounded-full" />
-                  : <span className="w-9 h-9 rounded-full bg-[#DBEAFE] text-[#1D4ED8] flex items-center justify-center font-semibold">{(user.displayName || '?')[0]}</span>}
+                  : <span className="w-9 h-9 rounded-full bg-[#FEE2E2] text-[#B91C1C] flex items-center justify-center font-semibold">{(user.displayName || '?')[0]}</span>}
               </button>
             ) : (
               <button onClick={() => { playTapSound(); onLogin(); }} className="brand-premibile flex items-center gap-1.5 text-[13px] font-semibold text-white bg-[#0F172A] px-3 py-2 rounded-xl">
@@ -106,7 +106,7 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
             <h1 className="text-[26px] leading-tight font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">{nome ? `Ciao, ${nome}` : 'Ciao!'}</h1>
             <p className="text-sm text-[#6B7280] dark:text-[#94A3B8] mt-1">Continua la tua preparazione per superare l'OFA.</p>
           </div>
-          <Illustrazione kit="kit-blu" nome="studio-inglese" lato={112} fondoScuro={isDark} />
+          <Illustrazione kit="kit-rosso" nome="studio-inglese" lato={112} fondoScuro={isDark} />
         </section>
 
         {/* inizia */}
