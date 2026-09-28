@@ -34,7 +34,7 @@ C = {"faccia": ("#FFFFFF", "#FEEDED"), "bordo": "#F4454B", "orlo": "#FCA5A5",
 CENTRO, ROTAZIONE = V(105, 66), -26          # centro della faccia di sopra, rotazione in gradi
 MEZZI = (38.5, 39)                             # mezza larghezza e mezza altezza della banconota
 SPESSORE = V(-6.5, 25)                        # estrusione della mazzetta (verso il basso, un po' a sinistra)
-ALI = {"centro": V(87, 71), "asse": -18, "distanza": 62, "scala": 0.95}
+ALI = {"centro": V(88, 72), "asse": -18, "distanza": 59, "scala": 0.9}
 TRATTINI = {"distanza": 67, "lunghezza": 12.5, "angoli": [214, 237, 45.5]}   # angoli sullo schermo (y in giù)
 
 u = V(math.cos(math.radians(ROTAZIONE)), math.sin(math.radians(ROTAZIONE)))
@@ -49,10 +49,11 @@ def punto(x: float, y: float) -> V:
 def ala(nome: str, lato: int) -> str:
     """Ala a tre piume, disegnata per la sinistra (si allunga verso -x) e specchiata per la destra.
     La radice (x = 0) sta dietro la mazzetta."""
-    d = ("M4 -12 C-8 -26 -36 -30 -47 -15 "
-         "C-54 -4 -46 7 -36 4 "
-         "C-38 14 -26 19 -19 11 "
-         "C-19 20 -6 22 -1 12 Z")
+    d = ("M4 -10 C-6 -25 -30 -33 -48 -25 "        # bordo di sopra, che sale verso la punta
+         "C-55 -22 -55 -12 -47 -9 "                 # punta tonda
+         "C-51 0 -42 5 -34 1 "                      # piuma lunga
+         "C-35 10 -25 13 -19 6 "                    # piuma media
+         "C-18 15 -7 16 -2 8 Z")                    # piuma corta, verso la radice
     a = ALI
     w = V(math.cos(math.radians(a["asse"])), math.sin(math.radians(a["asse"])))
     radice = a["centro"] + w * (lato * (a["distanza"] - 24))
