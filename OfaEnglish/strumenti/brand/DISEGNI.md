@@ -1,3 +1,6 @@
+> **Superato.** Questo è il metodo 6 (fedeltà ai pixel): copia i difetti delle illustrazioni AI.
+> Per ridisegnare usare `STILE.md` e i generatori in `illustrazioni/` (vedi `sapere/03-illustrazioni.md`).
+
 # Disegnare le illustrazioni in SVG
 
 Le illustrazioni del Brand Kit si rifanno **a mano** come SVG pulito (forme con un nome, niente
