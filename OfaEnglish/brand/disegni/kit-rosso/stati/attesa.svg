@@ -1,27 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57 82" width="57" height="82">
-  <title>Stato / Attesa</title>
-  <defs>
-    <linearGradient id="rosso-tappo-alto" gradientUnits="userSpaceOnUse" x1="0.01" y1="5.42" x2="0.04" y2="14.71">
-      <stop offset="0" stop-color="#FE555E"/><stop offset="1" stop-color="#FE4145"/>
-    </linearGradient>
-    <linearGradient id="rosso-tappo-basso" gradientUnits="userSpaceOnUse" x1="-0.28" y1="64.26" x2="0.43" y2="77.21">
-      <stop offset="0.046" stop-color="#FC505A"/><stop offset="1" stop-color="#FE5E62"/>
-    </linearGradient>
-    <linearGradient id="riflesso-base" gradientUnits="userSpaceOnUse" x1="-0.46" y1="74.5" x2="0.33" y2="78.5">
-      <stop offset="0" stop-color="#F2B6BA"/><stop offset="0.956" stop-color="#FEFAFB"/>
-    </linearGradient>
-  </defs>
-
-  <path id="vetro" d="M9.32 13.23 L45.78 12.92 L46.22 23.37 C44.65 32.1 37.55 35.22 32.68 39.9 L33.29 43.04 C38 47.01 46.26 51.65 45.73 60.11 L45.82 70.33 L8.36 67.64 L9.91 58.54 C11.18 51.17 17.2 47.5 23.77 41.45 L23.28 40.21 C17.08 34.79 10.62 32.22 9.52 23.72 Z" fill="#FEE0E0"/>
-
-  <g id="sabbia">
-    <path id="sabbia-alta" d="M13.21 24.2 L43.34 23.63 C42.73 28.84 36.08 33.95 30.99 38.05 L24.21 37.83 C19.44 34.42 13.93 29.91 13.43 25.89 Z" fill="#FEA2A5"/>
-    <rect id="sabbia-filo" x="26.13" y="35.25" width="3.42" height="21.76" fill="#FEAAAC"/>
-    <path id="sabbia-bassa" d="M29.26 54.79 C30.44 59.52 36.48 60.01 40.26 64.23 Q42.61 66.35 42.13 71.7 L43.33 69.5 L14.58 71.05 L13.4 67.22 Q15.81 62.9 15.2 63.89 C19.35 61.23 25.89 58.3 26.69 53.84 Z" fill="#FE6164"/>
-  </g>
-
-  <rect id="tappo-alto-riflesso" data-fisso="1" x="17.5" y="5.7" width="13.5" height="3.4" rx="1.6" fill="#FDBEBE"/>
-  <rect id="tappo-alto" x="6.77" y="7.12" width="42.25" height="6.28" rx="3.08" fill="url(#rosso-tappo-alto)"/>
-  <rect id="base-riflesso" x="17.45" y="72" width="29.64" height="7" rx="0.6" fill="url(#riflesso-base)"/>
-  <rect id="tappo-basso" x="6.66" y="67.97" width="42.32" height="7.42" rx="3.59" fill="url(#rosso-tappo-basso)"/>
+<title>Stato / Attesa</title>
+<defs><filter id="sfuma-ombra" filterUnits="userSpaceOnUse" x="0" y="0" width="57" height="82"><feGaussianBlur stdDeviation="1.4"/></filter><linearGradient id="clessidra-tappo-luce" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="7.49"><stop offset="0" stop-color="#FF7A7E"/><stop offset="0.5" stop-color="#FB4B52"/><stop offset="1" stop-color="#E0303A"/></linearGradient><linearGradient id="clessidra-vetro-luce" gradientUnits="userSpaceOnUse" x1="9.73" y1="0" x2="46.27" y2="0"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.45" stop-color="#FEE5E6"/><stop offset="1" stop-color="#FEE5E6"/></linearGradient><clipPath id="clessidra-dentro"><path d="M44.67 13.69 C44.67 36.22 31.56 33.4 31.56 41.85 C31.56 50.3 44.67 47.48 44.67 70.01 L11.33 70.01 C11.33 47.48 24.44 50.3 24.44 41.85 C24.44 33.4 11.33 36.22 11.33 13.69 Z"/></clipPath><linearGradient id="clessidra-sabbia-alto-luce" gradientUnits="userSpaceOnUse" x1="9.73" y1="0" x2="46.27" y2="0"><stop offset="0" stop-color="#FFB6B8"/><stop offset="1" stop-color="#FF9A9F"/></linearGradient><linearGradient id="clessidra-sabbia-basso-luce" gradientUnits="userSpaceOnUse" x1="9.73" y1="0" x2="46.27" y2="0"><stop offset="0" stop-color="#FF7077"/><stop offset="1" stop-color="#F54A53"/></linearGradient></defs>
+<ellipse id="clessidra-ombra" cx="28" cy="78.1" rx="20.25" ry="1.8" fill="#DC2626" opacity="0.2" filter="url(#sfuma-ombra)"/>
+<g id="clessidra"><path id="clessidra-vetro" d="M46.27 13.69 C46.27 36.22 32.04 33.4 32.04 41.85 C32.04 50.3 46.27 47.48 46.27 70.01 L9.73 70.01 C9.73 47.48 23.96 50.3 23.96 41.85 C23.96 33.4 9.73 36.22 9.73 13.69 Z" fill="url(#clessidra-vetro-luce)" stroke="#FDD3D5" stroke-width="1"/><g id="clessidra-sabbia" clip-path="url(#clessidra-dentro)"><rect id="clessidra-sabbia-alto" x="9.73" y="24.83" width="36.55" height="17.52" fill="url(#clessidra-sabbia-alto-luce)"/><path id="clessidra-sabbia-filo" d="M28 41.85 L28 69.01" stroke="#FF9EA3" stroke-width="2.76" stroke-linecap="round"/><path id="clessidra-sabbia-basso" d="M7.73 71.01 L7.73 66.92 C17.95 65.79 22.88 55.93 28 55.93 C33.12 55.93 38.05 65.79 48.27 66.92 L48.27 71.01 Z" fill="url(#clessidra-sabbia-basso-luce)"/></g><path id="clessidra-riflesso" d="M16.67 16.69 C16.67 23.54 18.86 29.18 22.15 33.4" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="2.12" stroke-linecap="round"/><g id="clessidra-tappo-alto" transform="translate(0 6.2)"><rect x="6.75" y="0" width="42.5" height="7.49" rx="3.74" fill="url(#clessidra-tappo-luce)"/><path d="M11.24 2.25 L44.76 2.25" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1.65" stroke-linecap="round"/></g><g id="clessidra-tappo-basso" transform="translate(0 70.01)"><rect x="6.75" y="0" width="42.5" height="7.49" rx="3.74" fill="url(#clessidra-tappo-luce)"/><path d="M11.24 2.25 L44.76 2.25" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1.65" stroke-linecap="round"/></g></g>
 </svg>

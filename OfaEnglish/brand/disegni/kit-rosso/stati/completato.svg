@@ -1,28 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 84" width="82" height="84">
-  <title>Stato / Completato</title>
-  <defs>
-    <filter id="sfuma-righe" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="0"/></filter>
-    <linearGradient id="verde-cerchio" gradientUnits="userSpaceOnUse" x1="36.39" y1="31.57" x2="51.15" y2="73.53">
-      <stop offset="0" stop-color="#29B154"/><stop offset="0.731" stop-color="#26B754"/>
-    </linearGradient>
-  </defs>
-
-  <g id="foglio">
-    <path id="foglio-pagina" data-fisso="1" d="M8.2 3 L46 3 L59.4 16 L59.4 72.4 Q59.4 77.4 54.4 77.4 L8.2 77.4 Q3 77.4 3 72.2 L3 8.2 Q3 3 8.2 3 Z" fill="#EEF2FE"/>
-    <path id="foglio-piega" d="M46.13 2.55 L59.37 15.38 L48.93 15.71 Q45.97 16.03 46.69 10.57 Z" fill="#D5DFFD"/>
-    <g id="foglio-righe" fill="#C8D6FC" filter="url(#sfuma-righe)">
-      <rect id="riga-1" x="13.17" y="20.85" width="36.13" height="4.29" rx="1.83"/>
-      <rect id="riga-2" x="12.62" y="31.98" width="36.82" height="4.2" rx="2.07"/>
-      <rect id="riga-3" x="13.03" y="42.6" width="22.39" height="4.2" rx="2.77"/>
-      <rect id="riga-4" x="12.9" y="53.31" width="18.02" height="4.35" rx="2.07"/>
-    </g>
-  </g>
-
-  <g id="spunta-tondo">
-    <circle id="alone-bianco" data-fisso="1" cx="54" cy="58.4" r="20.8" fill="#F6FBFA"/>
-    <circle id="cerchio-verde" cx="54" cy="58.43" r="19.5" fill="url(#verde-cerchio)"/>
-    <g id="spunta">
-      <path id="spunta-segno" d="M46.16 58.86 L51.57 64.61 L62.11 53.15" fill="none" stroke="#F7FCF9" stroke-width="3.86" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-  </g>
+<title>Stato / Completato</title>
+<defs><filter id="sfuma-ombra" filterUnits="userSpaceOnUse" x="0" y="0" width="82" height="84"><feGaussianBlur stdDeviation="1.4"/></filter><linearGradient id="foglio-luce" gradientUnits="userSpaceOnUse" x1="3.5" y1="3.5" x2="59.5" y2="77.5"><stop offset="0" stop-color="#F8FAFF"/><stop offset="1" stop-color="#EDF1FE"/></linearGradient><linearGradient id="foglio-piega-luce" gradientUnits="userSpaceOnUse" x1="53" y1="10" x2="46.5" y2="16.5"><stop offset="0" stop-color="#CDD9FC"/><stop offset="1" stop-color="#EDF1FE"/></linearGradient><filter id="sfuma-piega" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.7"/></filter><linearGradient id="badge-luce" gradientUnits="userSpaceOnUse" x1="40.05" y1="44.45" x2="67.95" y2="72.35"><stop offset="0" stop-color="#4FD37C"/><stop offset="0.5" stop-color="#26B856"/><stop offset="1" stop-color="#16A34A"/></linearGradient></defs>
+<g id="foglio"><path id="foglio-carta" d="M8.5 3.5 L45.84 3.5 C46.26 3.5 46.67 3.67 46.97 3.97 L59.03 16.03 C59.33 16.33 59.5 16.74 59.5 17.16 L59.5 72.5 C59.5 75.26 57.26 77.5 54.5 77.5 L8.5 77.5 C5.74 77.5 3.5 75.26 3.5 72.5 L3.5 8.5 C3.5 5.74 5.74 3.5 8.5 3.5 Z" fill="url(#foglio-luce)" stroke="#DFE6FD" stroke-width="1"/><path id="foglio-piega-ombra" d="M45.9 6.81 L45.9 15 C45.9 16.33 46.97 17.4 48.3 17.4 L56.49 17.4 C57.38 17.4 57.82 16.32 57.19 15.69 L47.61 6.11 C46.98 5.48 45.9 5.92 45.9 6.81 Z" fill="#1D4ED8" opacity="0.12" filter="url(#sfuma-piega)"/><path id="foglio-piega" d="M46.5 5.43 L46.5 14.1 C46.5 15.43 47.57 16.5 48.9 16.5 L57.57 16.5 C58.28 16.5 58.64 15.64 58.13 15.13 L47.87 4.87 C47.36 4.36 46.5 4.72 46.5 5.43 Z" fill="url(#foglio-piega-luce)"/><g id="foglio-righe" fill="#C9D6FC"><rect id="foglio-riga-1" x="13" y="20.9" width="36" height="4.2" rx="2.1"/><rect id="foglio-riga-2" x="13" y="31.9" width="36" height="4.2" rx="2.1"/><rect id="foglio-riga-3" x="13" y="42.7" width="22.5" height="4.2" rx="2.1"/><rect id="foglio-riga-4" x="13" y="53.4" width="18" height="4.2" rx="2.1"/></g></g>
+<ellipse id="badge-ombra" cx="54.6" cy="60.2" rx="20.2" ry="19.8" fill="#16A34A" opacity="0.22" filter="url(#sfuma-ombra)"/>
+<g id="badge"><circle id="badge-bordo" cx="54" cy="58.4" r="20.8" fill="#FFFFFF"/><circle id="badge-disco" cx="54" cy="58.4" r="18.6" fill="url(#badge-luce)"/><path id="badge-riflesso" d="M41.07 53.69 A13.76 13.76 0 0 1 49.29 45.47" fill="none" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2.05" stroke-linecap="round"/><g id="badge-simbolo"><path id="badge-spunta" d="M46.56 58.77 L51.77 63.98 L61.81 53.56" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.91"/></g></g>
 </svg>
