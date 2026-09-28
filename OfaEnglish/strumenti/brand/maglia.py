@@ -36,16 +36,22 @@ def maglia_svg(id_, m, defs) -> str:
         tenuti = semplifica(riga, tol)
         stop = "".join(f'<stop offset="{f"{c / C:.4f}".rstrip("0").rstrip(".") or "0"}" stop-color="{esa(riga[c])}"/>' for c in tenuti)
         defs.append(f'<linearGradient id="{id_}L{r}" gradientUnits="userSpaceOnUse" x1="{f(x0)}" y1="0" x2="{f(x1)}" y2="0">{stop}</linearGradient>')
-    defs.append(f'<linearGradient id="{id_}V" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient>')
     righe = []
     for r in range(Rr):
         ya, yb = ys[r], ys[r + 1]
-        defs.append(f'<mask id="{id_}M{r}" maskUnits="userSpaceOnUse" x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}">'
-                    f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}" fill="url(#{id_}V)"/></mask>')
-        righe.append(f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}" fill="url(#{id_}L{r})"/>'
-                     f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(yb - ya)}" fill="url(#{id_}L{r + 1})" mask="url(#{id_}M{r})"/>')
-    # righe su pixel interi e senza antialiasing: nessuna fessura tra una riga e l'altra
-    return f'<g id="{id_}" shape-rendering="crispEdges">{"".join(righe)}</g>'
+        # ogni riga scende fino in fondo alla maglia, sotto tutte le successive (che le stanno
+        # sopra): così ogni pixel è coperto per intero da almeno una riga, a qualunque dimensione
+        # venga disegnata (con righe solo affiancate, in piccolo, sul pixel di confine ognuna ne copre
+        # una parte e lì passa lo sfondo: righine chiare). Sotto yb la maschera resta piena, quindi
+        # il colore è già quello della riga di sotto.
+        giu = ys[-1]
+        defs.append(f'<linearGradient id="{id_}V{r}" gradientUnits="userSpaceOnUse" x1="0" y1="{f(ya)}" x2="0" y2="{f(yb)}">'
+                    f'<stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient>'
+                    f'<mask id="{id_}M{r}" maskUnits="userSpaceOnUse" x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(giu - ya)}">'
+                    f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(giu - ya)}" fill="url(#{id_}V{r})"/></mask>')
+        righe.append(f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(giu - ya)}" fill="url(#{id_}L{r})"/>'
+                     f'<rect x="{f(x0)}" y="{f(ya)}" width="{f(x1 - x0)}" height="{f(giu - ya)}" fill="url(#{id_}L{r + 1})" mask="url(#{id_}M{r})"/>')
+    return f'<g id="{id_}">{"".join(righe)}</g>'
 
 
 def semplifica(riga, tol) -> list[int]:

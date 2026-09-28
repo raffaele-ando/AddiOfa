@@ -308,7 +308,10 @@ def svg(P: dict, sfondo: bool = True) -> str:
                 f'<stop offset="{cu["centro"]:.3f}" stop-color="{esa(cu["colore"])}" stop-opacity="0"/>'
                 f'<stop offset="1" stop-color="{esa(cu["colore"])}" stop-opacity="{cu["ombra_dx"]:.3f}"/></linearGradient>')
     if muro.get("maglia"):
-        sopra = [f'<g id="muro">{maglia_svg("muroMaglia", muro["maglia"], defs)}</g>']
+        # il muro solo nella sua area: sotto il bordo della porta non deve trasparire (in piccolo
+        # si vedeva una riga blu alla base della porta)
+        defs.append(f'<clipPath id="soloMuro"><path d="{muro_d}"/></clipPath>')
+        sopra = [f'<g id="muro" clip-path="url(#soloMuro)">{maglia_svg("muroMaglia", muro["maglia"], defs)}</g>']
     else:
         sopra = [f'<g id="muro"><path d="{muro_d}" fill="url(#muroLuce)"/>'
                  f'<path d="{muro_d}" fill="url(#muroCurvatura)"/>'
