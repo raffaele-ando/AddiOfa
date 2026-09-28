@@ -39,3 +39,18 @@ Da usare solo dopo che i tre esempi sono approvati:
 > oggetti nuovi che servono ad altri), lancialo, controlla con `controlla_disegno.py` e guarda la
 > tavola; correggi al massimo 4 volte. Non usare `adatta_svg.py` né `riempi_maglie.py`. Solo i tuoi
 > file, niente git. Resoconto: difetti corretti, cosa resta imperfetto, IoU.
+
+## Secondo giro (ridisegno pulito, 38 illustrazioni)
+
+Fatto dopo l'approvazione dei tre esempi, con il modello di istruzioni qui sopra: tutte accettate
+al primo controllo. Cosa è successo:
+
+- **Collisioni di nomi**: un agente ha sovrascritto il generatore `quiz_test.py` di un altro (lo
+  strumento di scrittura non l'ha impedito). Il disegno era salvo; il generatore è stato rifatto
+  (`blu_quiz_test.py`) e verificato identico al byte. Da allora: prefissi per kit (`blu_`, `rosso_`,
+  `stato_`) fissati **nelle istruzioni**, e ogni agente lavora in una sottocartella sua dello
+  scratchpad (anche i file temporanei si sono sovrascritti).
+- **IoU sotto 0,8** in 6 casi, tutti spiegati: l'originale ha residui bianchi opachi o buchi che il
+  disegno pulito non copia (celebrazione, quiz rosso, ricerca). L'IoU è un controllo, non un obiettivo.
+- **Oggetti comuni** costruiti una volta per famiglia (foglio con badge, clessidra, fumetto) rendono
+  coerenti gli stati tra loro: da chiedere sempre quando più illustrazioni condividono parti.

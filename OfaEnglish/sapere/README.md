@@ -28,7 +28,9 @@ da seguire quando si deve rifare una grafica.
   reference (SSIM 0,938), con due errori della reference corretti apposta. Icone dell'app generate dall'SVG.
 - **Componenti in codice** (pulsanti, interruttori, caselle, radio, avanzamento, badge, stati,
   icone, misuratore, caricamento): finiti, in `src/brand/`.
-- **Illustrazioni**: in corso di ridisegno pulito. Tre esempi fatti col metodo attuale (libri,
-  coppa, calendario con lucchetto) in `strumenti/brand/illustrazioni/`; le altre hanno ancora la
-  versione "fedele" che copia i difetti dell'AI e vanno rifatte (vedi 03-illustrazioni.md).
+- **Illustrazioni**: tutte le 41 ridisegnate pulite col metodo 7 (3 esempi approvati dall'utente,
+  poi 38 da quattro agenti con le stesse regole). Un generatore per illustrazione in
+  `strumenti/brand/illustrazioni/` (oggetti comuni in `oggetti.py` e `oggetti_a/b/c/d.py`), SVG in
+  `brand/disegni/`, varianti scure `<nome>.scuro.svg`, tavole in `brand/tavole/puliti/`, tavola
+  d'insieme `brand/tavole/disegni-puliti.png`.
 - **App**: pagine coerenti con il kit rosso, barra di navigazione, illustrazioni SVG.
