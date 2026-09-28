@@ -3,7 +3,7 @@ Variante per il tema scuro dei disegni SVG: la nuvola chiara dello sfondo (<g id
 fondo scuro diventerebbe una macchia bianca; qui diventa un alone appena percepibile, come nei PNG
 «fondo-scuro». Il resto del disegno non cambia.
 
-    python3 strumenti/brand/scuro_svg.py            # tutti i disegni: <nome>.maglie.svg -> <nome>.scuro.svg
+    python3 strumenti/brand/scuro_svg.py            # tutti i disegni: <nome>.svg -> <nome>.scuro.svg
 """
 from __future__ import annotations
 
@@ -31,8 +31,10 @@ def scuro(svg: str) -> str:
 
 def main():
     n = 0
-    for f in sorted((BRAND / "disegni").rglob("*.maglie.svg")):
-        dest = f.with_name(f.name.replace(".maglie.svg", ".scuro.svg"))
+    for f in sorted((BRAND / "disegni").rglob("*.svg")):
+        if f.name.endswith((".maglie.svg", ".scuro.svg")) or "--" in f.name:
+            continue
+        dest = f.with_name(f.stem + ".scuro.svg")
         s = f.read_text()
         dest.write_text(scuro(s))
         n += 1
