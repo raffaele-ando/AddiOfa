@@ -1,29 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 117" width="130" height="117">
-  <title>Ricerca</title>
-  <defs>
-    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.77"/></filter>
-    <filter id="sfuma-bordo" filterUnits="userSpaceOnUse" x="0" y="0" width="130" height="117"><feGaussianBlur stdDeviation="1.13"/></filter>
-    <linearGradient id="blu-anello" gradientUnits="userSpaceOnUse" x1="41.29" y1="22.67" x2="66.52" y2="94.78">
-      <stop offset="0.014" stop-color="#7D96C8"/><stop offset="0.427" stop-color="#26538F"/><stop offset="0.972" stop-color="#1B488D"/>
-    </linearGradient>
-    <linearGradient id="blu-manico" gradientUnits="userSpaceOnUse" x1="80.21" y1="83.02" x2="84.18" y2="99.62">
-      <stop offset="0.178" stop-color="#13396D"/><stop offset="0.404" stop-color="#123260"/>
-    </linearGradient>
-  </defs>
-
-  <g id="nuvola" fill="#F2F6FE" filter="url(#sfuma-alone)">
-    <ellipse id="nuvola-centro" cx="57.34" cy="58.44" rx="55.58" ry="56.31"/>
-    <ellipse id="nuvola-destra" cx="99.99" cy="79.13" rx="27.76" ry="31.07"/>
-  </g>
-
-  <g id="lente">
-    <path id="manico-alone" data-fisso="1" data-maglia="no" d="M80 82 L96 102" fill="none" stroke="#FFFFFF" stroke-width="18.5" stroke-linecap="round" filter="url(#sfuma-bordo)"/>
-    <circle id="anello-alone" data-maglia="no" cx="60.04" cy="52.98" r="35.06" fill="#F3F7FC" filter="url(#sfuma-bordo)"/>
-    <path id="manico" data-fisso="1" d="M75.9 89.3 L89.9 106.8 A7.75 7.75 0 0 0 102.1 97.2 L88.1 79.7 Z" fill="url(#blu-manico)"/>
-    <path id="manico-collo" data-fisso="1" d="M72.6 80.6 L79.6 89.4 L87.4 83.2 L80.4 74.4 Z" fill="url(#blu-manico)"/>
-    <circle id="anello" cx="54.94" cy="52.5" r="33.63" fill="url(#blu-anello)"/>
-    <circle id="vetro-bordo" cx="55.24" cy="52.86" r="24.01" fill="#ECF2FC"/>
-    <circle id="vetro" cx="56.15" cy="51.83" r="22.8" fill="#E9F0FE"/>
-    <ellipse id="vetro-riflesso" cx="47.11" cy="38.49" rx="5.49" ry="3.38" fill="#F3F7FE"/>
-  </g>
+<title>Ricerca</title>
+<defs><filter id="sfuma-ombra" filterUnits="userSpaceOnUse" x="0" y="0" width="130" height="117"><feGaussianBlur stdDeviation="2.2"/></filter><linearGradient id="anello-luce" gradientUnits="userSpaceOnUse" x1="30.85" y1="27.85" x2="79.15" y2="76.15"><stop offset="0" stop-color="#7593C6"/><stop offset="0.5" stop-color="#34609F"/><stop offset="1" stop-color="#123C78"/></linearGradient><radialGradient id="vetro-luce" gradientUnits="userSpaceOnUse" cx="47" cy="43" r="36"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E4EDFD"/></radialGradient><linearGradient id="manico-luce" gradientUnits="userSpaceOnUse" x1="0" y1="-7" x2="0" y2="7"><stop offset="0" stop-color="#3A5F97"/><stop offset="0.5" stop-color="#1A3C70"/><stop offset="1" stop-color="#0F2B55"/></linearGradient><linearGradient id="attacco-luce" gradientUnits="userSpaceOnUse" x1="0" y1="-5" x2="0" y2="5"><stop offset="0" stop-color="#34609F"/><stop offset="1" stop-color="#123C78"/></linearGradient></defs>
+<g id="nuvola" fill="#F2F6FE"><ellipse cx="66" cy="58" rx="62" ry="54"/></g>
+<circle id="ombra-lente" cx="57" cy="55" r="34.5" fill="#1D4ED8" opacity="0.1" filter="url(#sfuma-ombra)"/>
+<g id="manico" transform="translate(55 52) rotate(49)"><path id="manico-ombra" d="M44 -7 L65 -7 C68.87 -7 72 -3.87 72 0 L72 0 C72 3.87 68.87 7 65 7 L44 7 C42.34 7 41 5.66 41 4 L41 -4 C41 -5.66 42.34 -7 44 -7 Z" fill="#1D4ED8" opacity="0.14" transform="translate(1.5 2.5)" filter="url(#sfuma-ombra)"/><path id="manico-attacco" d="M31 -5 L41.5 -5 C42.33 -5 43 -4.33 43 -3.5 L43 3.5 C43 4.33 42.33 5 41.5 5 L31 5 L31 -5 Z" fill="url(#attacco-luce)"/><path id="manico-impugnatura" d="M44 -7 L65 -7 C68.87 -7 72 -3.87 72 0 L72 0 C72 3.87 68.87 7 65 7 L44 7 C42.34 7 41 5.66 41 4 L41 -4 C41 -5.66 42.34 -7 44 -7 Z" fill="url(#manico-luce)"/><path id="manico-riflesso" d="M45 -3.2 H65" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="2" stroke-linecap="round"/></g>
+<g id="lente"><circle id="vetro" cx="55" cy="52" r="24.5" fill="url(#vetro-luce)"/><path id="vetro-riflesso" d="M38.09 45.84 A18 18 0 0 1 50.34 34.61" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" fill="none"/><circle id="vetro-riflesso-punto" cx="37.01" cy="52.63" r="1.6" fill="#FFFFFF"/><path id="vetro-bordo" d="M77.65 55.99 A23 23 0 0 1 43.5 71.92" stroke="#1D4ED8" stroke-opacity="0.12" stroke-width="2.4" stroke-linecap="round" fill="none"/><path id="anello" d="M89.5 52 A34.5 34.5 0 1 0 20.5 52 A34.5 34.5 0 1 0 89.5 52 Z M79 52 A24 24 0 1 1 31 52 A24 24 0 1 1 79 52 Z" fill="url(#anello-luce)" fill-rule="evenodd"/><path id="anello-riflesso" d="M27.51 62 A29.25 29.25 0 0 1 45 24.51" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="2.6" stroke-linecap="round" fill="none"/></g>
 </svg>

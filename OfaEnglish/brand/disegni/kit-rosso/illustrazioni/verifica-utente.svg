@@ -1,27 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 199 108" width="199" height="108">
-  <title>Verifica / Utente</title>
-  <defs>
-    <filter id="sfuma-nuvola" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0.7"/></filter>
-  </defs>
-
-  <g id="nuvola" fill="#F5F7FD" filter="url(#sfuma-nuvola)">
-    <circle id="nuvola-alto" cx="56.3" cy="31.5" r="28.87"/>
-    <circle id="nuvola-sinistra" cx="23.76" cy="76.77" r="21.84"/>
-    <circle id="nuvola-destra" cx="172.86" cy="64.73" r="23.29"/>
-  </g>
-
-  <g id="tessera">
-    <rect id="tessera-fondo" x="13.87" y="15.63" width="168.88" height="88.52" rx="14.56" fill="#D4DEFE"/>
-    <g id="righe">
-      <rect id="riga-1" x="104.06" y="36.89" width="60.13" height="8.44" rx="4.33" fill="#A8BAFE"/>
-      <rect id="riga-2" x="104.46" y="55.87" width="36.46" height="7.66" rx="4.39" fill="#FDFCFE"/>
-      <rect id="riga-3" x="103.75" y="74.9" width="60.38" height="8.18" rx="4.18" fill="#AFC0FE"/>
-    </g>
-  </g>
-
-  <g id="utente">
-    <circle id="utente-cerchio" cx="59.71" cy="60.12" r="32.08" fill="#FBFDFE"/>
-    <rect id="utente-testa" x="48.49" y="38.88" width="22.94" height="29.5" rx="11.12" ry="10.54" fill="#4A67FA"/>
-    <path id="utente-busto" d="M41.23 86.22 Q44.04 74.8 59.29 73.4 Q75.69 74.13 78.45 86.11 A32.28 32.95 0 0 1 41.02 85.95 Z" fill="#0941C7"/>
-  </g>
+<title>Verifica utente</title>
+<defs><filter id="sfuma-ombra" filterUnits="userSpaceOnUse" x="0" y="0" width="199" height="108"><feGaussianBlur stdDeviation="2.2"/></filter><linearGradient id="tessera-luce" gradientUnits="userSpaceOnUse" x1="14" y1="16" x2="183" y2="104"><stop offset="0" stop-color="#DCE4FE"/><stop offset="1" stop-color="#CCD7FC"/></linearGradient><linearGradient id="testa-luce" gradientUnits="userSpaceOnUse" x1="47.5" y1="41" x2="71.5" y2="65"><stop offset="0" stop-color="#6380FB"/><stop offset="1" stop-color="#4461F3"/></linearGradient><linearGradient id="busto-luce" gradientUnits="userSpaceOnUse" x1="38.5" y1="70.5" x2="80.5" y2="90.5"><stop offset="0" stop-color="#2458DA"/><stop offset="1" stop-color="#0A3DB8"/></linearGradient><clipPath id="foto-forma"><circle cx="59.5" cy="60.5" r="32.5"/></clipPath></defs>
+<g id="nuvola" fill="#F2F6FE"><circle cx="34" cy="20" r="17"/><circle cx="22" cy="78" r="20"/><circle cx="176" cy="64" r="18"/></g>
+<rect id="tessera-ombra" x="22" y="99" width="153" height="7" rx="3.5" fill="#1D4ED8" opacity="0.12" filter="url(#sfuma-ombra)"/>
+<rect id="tessera" x="14" y="16" width="169" height="88" rx="13" fill="url(#tessera-luce)" stroke="#C2CFFB" stroke-width="1.2"/>
+<path id="tessera-riflesso" d="M26 20 H171" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="1.6" stroke-linecap="round"/>
+<g id="foto"><circle id="foto-fondo" cx="59.5" cy="60.5" r="32.5" fill="#FFFFFF"/><g id="persona" clip-path="url(#foto-forma)"><path id="busto" d="M38.5 106.5 L38.5 88.5 C38.5 78.56 46.56 70.5 56.5 70.5 L62.5 70.5 C72.44 70.5 80.5 78.56 80.5 88.5 L80.5 106.5 L38.5 106.5 Z" fill="url(#busto-luce)"/><circle id="testa" cx="59.5" cy="53" r="12" fill="url(#testa-luce)"/><path id="testa-riflesso" d="M53 50 A7.5 7.5 0 0 1 57.5 45.4" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="2.2" stroke-linecap="round"/></g></g>
+<g id="righe-dati" stroke-width="8" stroke-linecap="round"><path id="riga-1" d="M108 41 H160" stroke="#A9BCFD"/><path id="riga-2" d="M108 59.5 H137" stroke="#FFFFFF"/><path id="riga-3" d="M108 79 H160" stroke="#A9BCFD"/></g>
 </svg>

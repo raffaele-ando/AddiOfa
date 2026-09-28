@@ -1,42 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141 114" width="141" height="114">
-  <title>Messaggi / Supporto</title>
-  <defs>
-    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.21"/></filter>
-    <filter id="sfuma-ombra" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.86"/></filter>
-    <filter id="sfuma-bordo" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.5"/></filter>
-    <linearGradient id="bianco-fumetto" gradientUnits="userSpaceOnUse" x1="0.75" y1="12.95" x2="0.74" y2="69.06">
-      <stop offset="0.027" stop-color="#EAF0FE"/><stop offset="0.866" stop-color="#FBFCFE"/>
-    </linearGradient>
-    <linearGradient id="blu-fumetto" gradientUnits="userSpaceOnUse" x1="61.91" y1="0.42" x2="133.46" y2="1.38">
-      <stop offset="0.002" stop-color="#4B8BFB"/><stop offset="1" stop-color="#5B96FC"/>
-    </linearGradient>
-  </defs>
-
-  <g id="nuvola" fill="#EFF3FE" filter="url(#sfuma-alone)">
-    <ellipse id="nuvola-centro" cx="57.67" cy="56.93" rx="65.94" ry="53.53"/>
-    <ellipse id="nuvola-destra" cx="111.59" cy="73.55" rx="25.91" ry="30.66"/>
-  </g>
-
-  <g id="fumetto-bianco">
-    <rect id="fumetto-bianco-ombra" data-maglia="no" x="13.08" y="6.79" width="97.65" height="63.27" rx="7.44" fill="#EDF1FF" filter="url(#sfuma-ombra)"/>
-    <path id="fumetto-bianco-corpo" data-fisso="1" d="M21.5 11 L95 11 Q101 11 101 17 L101 64 Q101 70 95 70 L48 70 L34 86 Q32 88 31 85.5 L31 70 L21.5 70 Q15.5 70 15.5 64 L15.5 17 Q15.5 11 21.5 11 Z" fill="url(#bianco-fumetto)"/>
-    <rect id="fumetto-bianco-riflesso" x="87.14" y="17.59" width="14.67" height="40.33" fill="#F9FBFE"/>
-  </g>
-
-  <g id="puntini-blu">
-    <circle id="puntino-blu-1-alone" data-maglia="no" cx="34.68" cy="42.61" r="7.26" fill="#FCFDFE" filter="url(#sfuma-bordo)"/>
-    <circle id="puntino-blu-2-alone" data-maglia="no" cx="51.31" cy="41" r="6.47" fill="#F5FBFE" filter="url(#sfuma-bordo)"/>
-    <circle id="puntino-blu-3-alone" data-maglia="no" cx="68.3" cy="41.81" r="6.19" fill="#FFFCFF" filter="url(#sfuma-bordo)"/>
-    <circle id="puntino-blu-1" cx="35.24" cy="41.94" r="5.32" fill="#4D84FA"/>
-    <circle id="puntino-blu-2" cx="51.42" cy="41.32" r="5.34" fill="#5187FA"/>
-    <circle id="puntino-blu-3" cx="67.4" cy="40.53" r="5.23" fill="#4C85F8"/>
-  </g>
-
-  <g id="fumetto-blu">
-    <path id="fumetto-blu-bordo" data-fisso="1" data-maglia="no" d="M76 68 L83 68 Q88 68 88 63 L88 57 L99 57 Q103 57 103 53 L103 51 Q103 46.5 107.5 46.5 L128.5 46.5 Q133 46.5 133 51 L133 92 Q133 96.5 128.5 96.5 L120 96.5 L120 107.5 Q119.5 109 118 107.5 L106 96.5 L75.5 96.5 Q71 96.5 71 92 L71 73 Q71 68 76 68 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" filter="url(#sfuma-bordo)"/>
-    <path id="fumetto-blu-corpo" data-fisso="1" d="M76 68 L83 68 Q88 68 88 63 L88 57 L99 57 Q103 57 103 53 L103 51 Q103 46.5 107.5 46.5 L128.5 46.5 Q133 46.5 133 51 L133 92 Q133 96.5 128.5 96.5 L120 96.5 L120 107.5 Q119.5 109 118 107.5 L106 96.5 L75.5 96.5 Q71 96.5 71 92 L71 73 Q71 68 76 68 Z" fill="url(#blu-fumetto)"/>
-    <circle id="puntino-bianco-1" cx="88.64" cy="71.96" r="4.46" fill="#F7FBFE"/>
-    <circle id="puntino-bianco-2" cx="102.27" cy="71.52" r="4.45" fill="#F5FBFE"/>
-    <circle id="puntino-bianco-3" cx="115.67" cy="71.03" r="4.61" fill="#F5FBFF"/>
-  </g>
+<title>Messaggi / Supporto</title>
+<defs><filter id="sfuma-ombra" filterUnits="userSpaceOnUse" x="0" y="0" width="141" height="114"><feGaussianBlur stdDeviation="2.2"/></filter><linearGradient id="bianco-luce" gradientUnits="userSpaceOnUse" x1="0" y1="9" x2="0" y2="87"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF3FD"/></linearGradient><linearGradient id="blu-luce" gradientUnits="userSpaceOnUse" x1="71" y1="46" x2="132" y2="108"><stop offset="0" stop-color="#76A6FD"/><stop offset="0.5" stop-color="#528FFD"/><stop offset="1" stop-color="#3B76EC"/></linearGradient></defs>
+<g id="nuvola" fill="#F2F6FE"><ellipse cx="71" cy="57" rx="66" ry="51"/><circle cx="34" cy="84" r="28"/></g>
+<path id="ombra-fumetto-bianco" d="M25 9 L91 9 C97.63 9 103 14.37 103 21 L103 58 C103 64.63 97.63 70 91 70 L47.35 70 C46.49 70 45.67 70.37 45.1 71.02 L35.01 82.45 C33.54 84.12 30.77 83.17 30.64 80.94 L30.17 72.82 C30.07 71.24 28.76 70 27.17 70 L21.5 70 C16.81 70 13 66.19 13 61.5 L13 21 C13 14.37 18.37 9 25 9 Z" fill="#1D4ED8" opacity="0.08" transform="translate(0 2.5)" filter="url(#sfuma-ombra)"/>
+<g id="fumetto-bianco"><path id="fumetto-bianco-sagoma" d="M25 9 L91 9 C97.63 9 103 14.37 103 21 L103 58 C103 64.63 97.63 70 91 70 L47.35 70 C46.49 70 45.67 70.37 45.1 71.02 L35.01 82.45 C33.54 84.12 30.77 83.17 30.64 80.94 L30.17 72.82 C30.07 71.24 28.76 70 27.17 70 L21.5 70 C16.81 70 13 66.19 13 61.5 L13 21 C13 14.37 18.37 9 25 9 Z" fill="url(#bianco-luce)" stroke="#DBEAFE" stroke-width="1.2"/>
+<g id="puntini-bianco" fill="#4B84F8"><circle id="puntino-bianco-1" cx="35" cy="40.5" r="5"/><circle id="puntino-bianco-2" cx="51" cy="40.5" r="5"/><circle id="puntino-bianco-3" cx="67" cy="40.5" r="5"/></g></g>
+<path id="ombra-fumetto-blu" d="M80 46 L123 46 C127.97 46 132 50.03 132 55 L132 90.5 C132 93.54 129.54 96 126.5 96 L123.76 96 C122.2 96 120.9 97.2 120.77 98.75 L120.39 103.32 C120.22 105.32 117.9 106.32 116.34 105.07 L105.82 96.66 C105.29 96.23 104.63 96 103.95 96 L80 96 C75.03 96 71 91.97 71 87 L71 55 C71 50.03 75.03 46 80 46 Z" fill="#1D4ED8" opacity="0.16" transform="translate(-1 3)" filter="url(#sfuma-ombra)"/>
+<g id="fumetto-blu"><path id="fumetto-blu-sagoma" d="M80 46 L123 46 C127.97 46 132 50.03 132 55 L132 90.5 C132 93.54 129.54 96 126.5 96 L123.76 96 C122.2 96 120.9 97.2 120.77 98.75 L120.39 103.32 C120.22 105.32 117.9 106.32 116.34 105.07 L105.82 96.66 C105.29 96.23 104.63 96 103.95 96 L80 96 C75.03 96 71 91.97 71 87 L71 55 C71 50.03 75.03 46 80 46 Z" fill="url(#blu-luce)"/>
+<path id="fumetto-blu-riflesso" d="M78 51 H120" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="2.4" stroke-linecap="round"/>
+<g id="puntini-blu" fill="#FFFFFF"><circle id="puntino-blu-1" cx="88.5" cy="71" r="4.3"/><circle id="puntino-blu-2" cx="101.5" cy="71" r="4.3"/><circle id="puntino-blu-3" cx="114.5" cy="71" r="4.3"/></g></g>
 </svg>

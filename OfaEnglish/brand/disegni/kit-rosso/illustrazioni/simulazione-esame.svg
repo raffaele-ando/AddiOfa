@@ -1,55 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163 152" width="163" height="152">
-  <title>Simulazione / Esame</title>
-  <defs>
-    <filter id="sfuma-nuvola" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0.44"/></filter>
-    <linearGradient id="rosso-cornice" gradientUnits="userSpaceOnUse" x1="22.05" y1="19.83" x2="141.07" y2="140.92">
-      <stop offset="0.224" stop-color="#FF6B6B"/><stop offset="1" stop-color="#FB3544"/>
-    </linearGradient>
-    <clipPath id="bandiera-forma"><rect data-fisso="1" x="-21" y="-14.75" width="42" height="29.5"/></clipPath>
-  </defs>
-
-  <g id="nuvola" fill="#FEF2F2" filter="url(#sfuma-nuvola)">
-    <ellipse id="nuvola-centro" cx="81.69" cy="88.27" rx="79.06" ry="58.42"/>
-  </g>
-
-  <g id="tavoletta">
-    <path id="tavoletta-foglio" d="M12.39 138.71 Q12.81 138.56 9.3 135.03 L27.58 24.14 Q32.86 17.11 39.9 16.06 L142.6 25.89 Q151.57 27.13 147.8 37.74 L130.86 146.9 Q129.38 139.61 132.46 140.34 L125.11 145.96 Q129.15 148.74 119.69 147.4 L21.02 143.02 Q19.79 142 20.02 140.69 Z" fill="#FEF1F1"/>
-    <path id="tavoletta-cornice" d="M15.09 135.98 Q14.78 134.39 13.41 134.27 L29.29 27.06 Q31.21 18.12 36.36 16.72 L139.99 27.98 Q149.82 29.64 149.73 38.86 L132.99 140.39 Q133.51 142.55 130.99 142.64 L124.47 145.05 Q124 144.28 126.81 147.36 L141.19 39.15 Q140.72 34.79 137.73 34.28 L40.68 23.44 Q37.53 25 35.69 27.38 L18.92 141.32 Q18.56 141.9 19.04 140.69 Z" fill="url(#rosso-cornice)"/>
-  </g>
-
-  <g id="molletta">
-    <circle id="molletta-anello" cx="90.96" cy="16.32" r="11.19" fill="#F25253"/>
-    <path id="molletta-corpo" d="M60.43 17.71 Q62.44 13.78 67.62 12.67 L115.53 18.79 Q118.48 19.81 119.79 24.5 L118.57 34.52 Q118.24 39.55 112.47 39.12 L61.72 33.34 Q59.98 32.04 58.89 29.37 Z" fill="#EE444A"/>
-    <circle id="molletta-foro" cx="90.65" cy="17.24" r="3.86" fill="#FEF5F8"/>
-  </g>
-
-  <g id="righe">
-    <path id="riga-1" d="M48.47 56.03 Q49.19 54.28 53.28 54.05 L66.58 55.79 Q67.13 55.21 67.9 59.13 Q67.63 61.18 64.4 61.13 L52.4 59.94 Q48.33 59.19 48.69 56.21 Z" fill="#FFCECE"/>
-    <path id="riga-2" d="M72.22 93.29 Q73.66 89.4 77.06 90.77 L111.15 95.16 Q116.41 95.06 116.47 98.6 Q116.44 102.36 112.22 101.75 L77.62 97.28 Q72.66 96.93 72.77 94.79 Z" fill="#FEC7C4"/>
-    <path id="riga-3" d="M68.41 120.91 Q68.18 118.66 70.63 118.91 L106.58 123.59 Q111.75 123.93 112.51 127.12 Q111.93 131.52 104.51 129.76 L71.88 125.81 Q68.2 125.07 67.83 121.79 Z" fill="#FECCCC"/>
-  </g>
-
-  <g id="caselle">
-    <path id="casella-1" d="M44.87 83.56 Q45.15 80.48 47.69 79.52 L58.96 80.78 Q63.63 81.15 63.81 83.72 L62.22 94.92 Q61.47 100.99 58.1 99.84 L46.5 98.42 Q43.04 98.05 43.52 94.75 Z" fill="#FC3036"/>
-    <path id="spunta-1" d="M49.07 89.42 L52.04 93.12 L58.52 87.1" fill="none" stroke="#FEFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-    <path id="casella-2" d="M40.38 114.28 Q40.72 108.25 43.73 107.92 L56.78 109.76 Q59.46 109.55 59.36 113.4 L57.92 124.68 Q56.48 129.07 53.96 128.51 L40.97 126.72 Q38.83 126.08 39.03 122.19 Z" fill="#FC2D32"/>
-    <path id="spunta-2" d="M44.86 118.14 L47.59 121.57 L54.54 115.04" fill="none" stroke="#FEFDFE" stroke-width="2.54" stroke-linecap="round" stroke-linejoin="round"/>
-  </g>
-
-  <rect id="bandiera-alone" x="-22.5" y="-16.03" width="45.44" height="32.4" fill="#FAFAFA" transform="translate(99.66 63.68) rotate(7.47)"/>
-  <g id="bandiera" transform="translate(99.6 64.15) rotate(6.68)">
-    <rect id="bandiera-fondo" data-fisso="1" x="-21" y="-14.75" width="42" height="29.5" fill="#1D4AD8"/>
-    <g clip-path="url(#bandiera-forma)">
-      <g id="bandiera-diagonali-bianche" stroke="#F6EFF4" stroke-width="5.64">
-        <path d="M-20.68 -14.87 L21.97 15.67"/><path d="M21.63 -13.65 L-22.3 15"/>
-      </g>
-      <g id="bandiera-diagonali-rosse" stroke="#F81F1C" stroke-width="2.2">
-        <path d="M-22.6 -15.55 L20.45 13.96"/><path d="M22 -14.5 L-22.87 15.91"/>
-      </g>
-      <rect id="croce-bianca-orizzontale" x="-21.67" y="-4.69" width="45.84" height="9.69" fill="#F5F6F6"/>
-      <rect id="croce-bianca-verticale" x="-3.98" y="-15.49" width="8.48" height="30.79" fill="#FEFEF3"/>
-      <rect id="croce-rossa-orizzontale" x="-22.15" y="-2.6" width="44.43" height="5.31" fill="#FB1517"/>
-      <rect id="croce-rossa-verticale" x="-2.8" y="-14.43" width="6" height="30.34" fill="#FA1512"/>
-    </g>
-  </g>
+<title>Simulazione d'esame</title>
+<defs><filter id="sfuma-ombra" filterUnits="userSpaceOnUse" x="0" y="0" width="163" height="152"><feGaussianBlur stdDeviation="2.4"/></filter><linearGradient id="tavola-luce" gradientUnits="userSpaceOnUse" x1="22" y1="23" x2="142" y2="143"><stop offset="0" stop-color="#FDA3A7"/><stop offset="0.45" stop-color="#FB5A60"/><stop offset="1" stop-color="#F2353D"/></linearGradient><linearGradient id="foglio-luce" gradientUnits="userSpaceOnUse" x1="22" y1="23" x2="142" y2="143"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#FFF2F2"/></linearGradient><linearGradient id="fermaglio-luce" gradientUnits="userSpaceOnUse" x1="0" y1="5" x2="0" y2="37"><stop offset="0" stop-color="#F25A5D"/><stop offset="1" stop-color="#E23A3F"/></linearGradient><linearGradient id="casella-1-luce" gradientUnits="userSpaceOnUse" x1="45" y1="82.5" x2="64" y2="101.5"><stop offset="0" stop-color="#FD4A52"/><stop offset="1" stop-color="#EE2831"/></linearGradient><linearGradient id="casella-2-luce" gradientUnits="userSpaceOnUse" x1="45" y1="112.5" x2="64" y2="131.5"><stop offset="0" stop-color="#FD4A52"/><stop offset="1" stop-color="#EE2831"/></linearGradient><clipPath id="bandiera-forma"><rect width="45" height="27" rx="3"/></clipPath><clipPath id="bandiera-controcambio"><path d="M22.5 13.5 H45 V27 Z V27 H0 Z H0 V0 Z V0 H45 Z"/></clipPath><linearGradient id="bandiera-lucentezza" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="27"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.18"/><stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0"/><stop offset="1" stop-color="#000000" stop-opacity="0.06"/></linearGradient></defs>
+<g id="nuvola" fill="#FEF1F1"><ellipse cx="82" cy="90" rx="78" ry="54"/><circle cx="36" cy="104" r="34"/><circle cx="128" cy="100" r="32"/></g>
+<ellipse id="ombra" cx="80" cy="146" rx="52" ry="3.2" fill="#DC2626" opacity="0.14" filter="url(#sfuma-ombra)"/>
+<g id="portablocco" transform="rotate(6.3 82 83)"><rect id="tavola" x="22" y="23" width="120" height="120" rx="12" fill="url(#tavola-luce)"/><path id="tavola-filo" d="M23.4 131 V35 A10.6 10.6 0 0 1 34 24.4 H52" fill="none" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1.1" stroke-linecap="round"/><rect id="foglio" x="28" y="29" width="108" height="108" rx="7" fill="url(#foglio-luce)"/><rect id="fermaglio-ombra" x="58" y="35" width="48" height="4.5" rx="2.2" fill="#DC2626" opacity="0.16" filter="url(#sfuma-ombra)"/><g id="fermaglio"><circle id="fermaglio-anello" cx="82" cy="14" r="9" fill="url(#fermaglio-luce)"/><path id="fermaglio-linguetta" d="M61 14 L103 14 C106.31 14 109 16.69 109 20 L109 31 C109 34.31 106.31 37 103 37 L61 37 C57.69 37 55 34.31 55 31 L55 20 C55 16.69 57.69 14 61 14 Z" fill="url(#fermaglio-luce)"/><circle id="fermaglio-foro" cx="82" cy="14" r="3.6" fill="#FFFFFF"/></g><g id="righe-testo" stroke="#FDC9CA" stroke-width="7" stroke-linecap="round"><path id="riga-1" d="M48.5 60 H61.5"/><path id="riga-2" d="M77.5 92 H113.5"/><path id="riga-3" d="M77.5 122 H108.5"/></g><g id="casella-1"><rect id="casella-1-fondo" x="45" y="82.5" width="19" height="19" rx="4.6" fill="url(#casella-1-luce)"/><path id="casella-1-spunta" d="M50.18 91.94 L52.95 94.6 C53.14 94.79 53.45 94.78 53.63 94.59 L59.06 88.82" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g><g id="casella-2"><rect id="casella-2-fondo" x="45" y="112.5" width="19" height="19" rx="4.6" fill="url(#casella-2-luce)"/><path id="casella-2-spunta" d="M50.18 121.94 L52.95 124.6 C53.14 124.79 53.45 124.78 53.63 124.59 L59.06 118.82" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g><rect id="bandiera-ombra" x="78.5" y="74.5" width="39" height="4" rx="2" fill="#DC2626" opacity="0.14" filter="url(#sfuma-ombra)"/><g id="bandiera" transform="matrix(1 0 0 1 75.5 48.5)"><g clip-path="url(#bandiera-forma)"><rect id="bandiera-campo" width="45" height="27" fill="#1D4ED8"/><path id="bandiera-diagonali-bianche" d="M0 0 L45 27 M45 0 L0 27" stroke="#FFFFFF" stroke-width="5.4"/><path id="bandiera-diagonali-rosse" d="M0 0 L45 27 M45 0 L0 27" stroke="#EF4444" stroke-width="2.16" clip-path="url(#bandiera-controcambio)"/><path id="bandiera-croce-bianca" d="M22.5 0 V27 M0 13.5 H45" stroke="#FFFFFF" stroke-width="8.1"/><path id="bandiera-croce-rossa" d="M22.5 0 V27 M0 13.5 H45" stroke="#EF4444" stroke-width="4.86"/><rect id="bandiera-lucentezza" width="45" height="27" fill="url(#bandiera-lucentezza)"/></g></g></g>
 </svg>

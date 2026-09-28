@@ -1,52 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 198 156" width="198" height="156">
-  <title>Rischio economico</title>
-  <defs>
-    <filter id="sfuma-alone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.5"/></filter>
-    <filter id="sfuma-ombra" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.09"/></filter>
-    <linearGradient id="azzurro-carta" gradientUnits="userSpaceOnUse" x1="144.69" y1="21.17" x2="83.42" y2="132.12">
-      <stop offset="0" stop-color="#DDE5FE"/><stop offset="0.848" stop-color="#EFF2FE"/>
-    </linearGradient>
-    <linearGradient id="blu-blocco" gradientUnits="userSpaceOnUse" x1="30.66" y1="63.43" x2="58.18" y2="147.33">
-      <stop offset="0" stop-color="#4174D4"/><stop offset="1" stop-color="#3B75CC"/>
-    </linearGradient>
-    <linearGradient id="blu-destra" gradientUnits="userSpaceOnUse" x1="161.82" y1="36.12" x2="180.87" y2="116.89">
-      <stop offset="0" stop-color="#447BD1"/><stop offset="1" stop-color="#739EEB"/>
-    </linearGradient>
-  </defs>
-
-  <!-- sfondo: nuvola chiara -->
-  <g id="nuvola" fill="#F7F9FD" filter="url(#sfuma-alone)">
-    <path id="nuvola-corpo" d="M4.25 55.17 Q10.09 40.71 24.5 33.79 L87.52 21.67 Q148.3 20.91 157.89 44.82 Q180.56 37.43 183.27 52.48 L186.52 94.53 Q196.92 102.92 193.9 121.41 Q192.16 129.72 180.81 141.14 L115.54 144.23 Q60.62 153.89 37.98 150.09 Q12.68 146.37 9.64 124.68 L10.58 111.39 Q16.68 100 15.22 96.97 Q4.8 86.37 3.41 67.4 Z"/>
-  </g>
-
-  <!-- ombra chiara della carta -->
-  <path id="alone-carta" d="M9 63.79 Q7.56 36.9 31.58 32.91 L122.55 25 L184.87 92.3 Q194.42 99.11 190.82 127.42 Q187.24 131.63 182.45 132.46 L134.37 130.37 Z" fill="#EFF3FE" filter="url(#sfuma-ombra)"/>
-
-  <!-- carta -->
-  <path id="carta-bianca" d="M45 54.97 L145.01 26.14 Q147.3 24.73 156.8 32.2 L182.34 101.35 Q182.14 103.66 177.34 110.41 L80.31 141.99 Q63 144.07 63.04 135.21 L44.31 63.36 Q44.01 58.79 49.46 55.38 Z" fill="#FAFCFE"/>
-  <path id="carta-fondo" d="M52.3 63.84 L145.53 34.11 Q157.02 30.11 153.09 25.6 L177.04 88.94 Q174.25 103.62 168.47 104 L74.85 131.22 Q69.21 133 68.21 130.08 L48.07 68.17 Q46.28 63.55 58.52 62.06 Z" fill="url(#azzurro-carta)"/>
-
-  <!-- cornice spezzata -->
-  <g id="cornice">
-    <path id="cornice-sinistra" d="M30.63 74.72 L45.06 69.8 Q48.26 67.21 49.71 75.01 L67.96 135.02 L119.76 120.07 Q128.13 123.56 126.76 123.85 Q130.71 126.99 124.85 128.07 L65.12 147.19 Q53.7 153.12 45.32 148.22 L25.23 84.72 Q25.06 78.98 30 74.96 Z" fill="url(#blu-blocco)"/>
-    <path id="cornice-sinistra-incavo" d="M37.53 86.69 L41.37 86.78 L57.63 132.76 L48.11 140.45 Z" fill="#2764BD"/>
-    <path id="cornice-alto" d="M105.81 40.8 L148.19 25.66 Q152.2 26.07 156.02 31.36 L157.47 35 L151.68 32.2 L106.44 46.3 Q98.5 44.24 104.98 39.75 Z" fill="#5F8EDB"/>
-    <path id="cornice-destra-linguetta" d="M157.2 35.47 L163.16 36.18 Q175.08 41.97 175.83 47.68 L179.34 62 Q180.58 67.89 175.49 66.32 L167.05 65.64 Q165.83 63.25 164.56 58.43 L159.06 39.6 Z" fill="#3C75D1"/>
-    <path id="cornice-destra" d="M167.12 64.85 L180.71 63.9 Q180.4 62.78 176.1 68.31 L182.83 98.57 Q185.54 106.72 179.61 109.77 L170.99 113.06 Q168.49 110.93 169.08 106.95 L176.14 101.31 Z" fill="url(#blu-destra)"/>
-  </g>
-
-  <!-- euro -->
-  <g id="euro" stroke="#1A56B0" stroke-linecap="round" fill="none">
-    <path id="euro-curva" fill="none" d="M122.49 66.26 Q115.88 60.27 108.9 69.05 Q101.64 74.9 104.77 88.89 Q110.32 100.38 121.78 99.28 Q128.36 97.45 130.93 93.38" stroke-width="7.27"/>
-    <path id="euro-barra-alta" fill="none" d="M98.24 83.81 L119.73 77.71" stroke-width="5.56"/>
-    <path id="euro-barra-bassa" fill="none" d="M100.09 92.49 L120.33 86.03" stroke-width="5.49"/>
-  </g>
-
-  <!-- trattini d'allarme -->
-  <g id="trattini" stroke="#F53A3C" stroke-width="6.32" stroke-linecap="round" fill="none">
-    <path id="trattino-1" fill="none" d="M58.72 26.32 L66.89 33.67"/>
-    <path id="trattino-2" fill="none" d="M86.78 8.57 L86.78 26.31"/>
-    <path id="trattino-3" fill="none" d="M154.05 127.08 L155.05 137.81"/>
-    <path id="trattino-4" fill="none" d="M171.07 121.89 L177.71 130.12"/>
-  </g>
+<title>Rischio economico</title>
+<defs><filter id="sfuma-ombra" filterUnits="userSpaceOnUse" x="0" y="0" width="198" height="156"><feGaussianBlur stdDeviation="2.5"/></filter><linearGradient id="banconota-luce" gradientUnits="userSpaceOnUse" x1="-73" y1="-43" x2="73" y2="43"><stop offset="0" stop-color="#F7FAFF"/><stop offset="1" stop-color="#E3EBFD"/></linearGradient><linearGradient id="angolare-luce" gradientUnits="userSpaceOnUse" x1="-73" y1="-43" x2="14.6" y2="43"><stop offset="0" stop-color="#6394E3"/><stop offset="0.55" stop-color="#3D74CC"/><stop offset="1" stop-color="#2C60B5"/></linearGradient><linearGradient id="angolare-alto-luce" gradientUnits="userSpaceOnUse" x1="73" y1="43" x2="-14.6" y2="-43"><stop offset="0" stop-color="#6394E3"/><stop offset="0.55" stop-color="#3D74CC"/><stop offset="1" stop-color="#2C60B5"/></linearGradient><linearGradient id="euro-luce" gradientUnits="userSpaceOnUse" x1="0" y1="-20" x2="0" y2="20"><stop offset="0" stop-color="#3A6FC0"/><stop offset="1" stop-color="#2458AC"/></linearGradient></defs>
+<g id="nuvola" fill="#F0F4FE"><ellipse cx="56.6" cy="100.6" rx="56.1" ry="51.6"/><ellipse cx="93.2" cy="61.7" rx="91.5" ry="40"/><ellipse cx="114.1" cy="84.1" rx="66.3" ry="61.1"/><ellipse cx="161.7" cy="115.9" rx="35.8" ry="30.2"/></g>
+<g id="banconota-cornice" transform="translate(106 88) rotate(-19)"><path id="ombra" d="M-57 -35 L57 -35 C63.63 -35 69 -29.63 69 -23 L69 37 C69 43.63 63.63 49 57 49 L-57 49 C-63.63 49 -69 43.63 -69 37 L-69 -23 C-69 -29.63 -63.63 -35 -57 -35 Z" fill="#1D4ED8" opacity="0.14" filter="url(#sfuma-ombra)"/><g id="banconota"><path id="banconota-fianco" d="M-56 -32 L56 -32 C60.42 -32 64 -28.42 64 -24 L64 30 C64 34.42 60.42 38 56 38 L-56 38 C-60.42 38 -64 34.42 -64 30 L-64 -24 C-64 -28.42 -60.42 -32 -56 -32 Z" fill="#C9D8F6"/><path id="banconota-faccia" d="M-56 -35 L56 -35 C60.42 -35 64 -31.42 64 -27 L64 27 C64 31.42 60.42 35 56 35 L-56 35 C-60.42 35 -64 31.42 -64 27 L-64 -27 C-64 -31.42 -60.42 -35 -56 -35 Z" fill="url(#banconota-luce)" stroke="#D3E0FA" stroke-width="1"/><path id="banconota-riflesso" d="M-55 -32 H55" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="1.6" stroke-linecap="round"/><path id="euro" d="M10.4 -5.93 8.64 -1.97H-15.31L-13.82 -5.93ZM6.91 1.59 4.93 5.7H-15.31L-13.82 1.59ZM15.16 -15.72 11.99 -8.95Q11.4 -9.29 10.47 -9.83Q9.55 -10.37 8.29 -10.8Q7.03 -11.22 5.42 -11.22Q3.12 -11.22 1.46 -10.1Q-0.2 -8.98 -1.09 -6.54Q-1.98 -4.09 -1.98 -0.12Q-1.98 3.84 -1.09 6.28Q-0.2 8.72 1.46 9.81Q3.12 10.9 5.42 10.9Q7.01 10.9 8.25 10.48Q9.5 10.07 10.4 9.52Q11.3 8.97 11.84 8.62L15.04 15.36Q13.09 16.93 10.64 17.71Q8.2 18.49 5.42 18.49Q0.71 18.49 -2.93 16.3Q-6.57 14.12 -8.63 9.96Q-10.69 5.79 -10.69 -0.12Q-10.69 -6.07 -8.63 -10.26Q-6.57 -14.45 -2.93 -16.66Q0.71 -18.87 5.42 -18.87Q8.3 -18.87 10.73 -18.06Q13.16 -17.25 15.16 -15.72Z" fill="url(#euro-luce)"/></g><g id="angolare-basso"><g transform="translate(0 3.4) rotate(0)"><path id="angolare-basso-fianco" d="M-73 -30.25 L-73 31 C-73 37.63 -67.63 43 -61 43 L4.25 43 C7.98 43 11 39.98 11 36.25 L11 36.25 C11 32.52 7.98 29.5 4.25 29.5 L-56 29.5 C-57.93 29.5 -59.5 27.93 -59.5 26 L-59.5 -30.25 C-59.5 -33.98 -62.52 -37 -66.25 -37 L-66.25 -37 C-69.98 -37 -73 -33.98 -73 -30.25 Z" fill="#23519E"/></g><g transform="rotate(0)"><path id="angolare-basso-faccia" d="M-73 -30.25 L-73 31 C-73 37.63 -67.63 43 -61 43 L4.25 43 C7.98 43 11 39.98 11 36.25 L11 36.25 C11 32.52 7.98 29.5 4.25 29.5 L-56 29.5 C-57.93 29.5 -59.5 27.93 -59.5 26 L-59.5 -30.25 C-59.5 -33.98 -62.52 -37 -66.25 -37 L-66.25 -37 C-69.98 -37 -73 -33.98 -73 -30.25 Z" fill="url(#angolare-luce)"/><path id="angolare-basso-riflesso" d="M-69.8 -31 V35" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2" stroke-linecap="round"/></g></g><g id="angolare-alto"><g transform="translate(0 3.4) rotate(180)"><path id="angolare-alto-fianco" d="M-73 -30.25 L-73 31 C-73 37.63 -67.63 43 -61 43 L4.25 43 C7.98 43 11 39.98 11 36.25 L11 36.25 C11 32.52 7.98 29.5 4.25 29.5 L-56 29.5 C-57.93 29.5 -59.5 27.93 -59.5 26 L-59.5 -30.25 C-59.5 -33.98 -62.52 -37 -66.25 -37 L-66.25 -37 C-69.98 -37 -73 -33.98 -73 -30.25 Z" fill="#23519E"/></g><g transform="rotate(180)"><path id="angolare-alto-faccia" d="M-73 -30.25 L-73 31 C-73 37.63 -67.63 43 -61 43 L4.25 43 C7.98 43 11 39.98 11 36.25 L11 36.25 C11 32.52 7.98 29.5 4.25 29.5 L-56 29.5 C-57.93 29.5 -59.5 27.93 -59.5 26 L-59.5 -30.25 C-59.5 -33.98 -62.52 -37 -66.25 -37 L-66.25 -37 C-69.98 -37 -73 -33.98 -73 -30.25 Z" fill="url(#angolare-alto-luce)"/><path id="angolare-alto-riflesso" d="M-69.8 -31 V35" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2" stroke-linecap="round"/></g></g></g>
+<g id="lampi"><path id="lampo-alto-1" d="M87.5 4.5 L87.5 17" stroke="#F43F40" stroke-width="6" stroke-linecap="round" fill="none"/><path id="lampo-basso-1" d="M153.5 139.5 L153.5 127" stroke="#F43F40" stroke-width="6" stroke-linecap="round" fill="none"/><path id="lampo-alto-2" d="M58.5 16.5 L67.5 25.5" stroke="#F43F40" stroke-width="6" stroke-linecap="round" fill="none"/><path id="lampo-basso-2" d="M182.5 127.5 L173.5 118.5" stroke="#F43F40" stroke-width="6" stroke-linecap="round" fill="none"/></g>
 </svg>

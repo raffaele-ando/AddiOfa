@@ -1,46 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 164" width="168" height="164">
-  <title>Studio / Inglese</title>
-  <defs>
-    <filter id="sfuma-bordo" filterUnits="userSpaceOnUse" x="0" y="0" width="168" height="164"><feGaussianBlur stdDeviation="0.7"/></filter>
-    <linearGradient id="pagine" gradientUnits="userSpaceOnUse" x1="77.49" y1="128.78" x2="144.63" y2="104.42">
-      <stop offset="0" stop-color="#FDF6F7"/><stop offset="0.418" stop-color="#FFFCFD"/><stop offset="0.916" stop-color="#FEF7F6"/>
-    </linearGradient>
-    <linearGradient id="rosa-copertina" gradientUnits="userSpaceOnUse" x1="23.07" y1="67.82" x2="144.74" y2="105.66">
-      <stop offset="0.409" stop-color="#FE9398"/><stop offset="1" stop-color="#FE8F90"/>
-    </linearGradient>
-    <clipPath id="bandiera-forma"><rect data-fisso="1" x="0" y="0" width="68" height="48" rx="1.5"/></clipPath>
-  </defs>
-
-  <!-- libri: contorni misurati colonna per colonna sull'originale e fissi (data-fisso);
-       la luce la mettono le maglie -->
-  <g id="libro-basso">
-    <path id="libro-basso-dorso" data-fisso="1" d="M11 90 L80 134 L80 157 L11 113 Q5 110 5 104 L5 96 Q5 90 11 90 Z" fill="#FF9D96"/>
-    <path id="libro-basso-copertina-bordo" data-fisso="1" d="M79 129.5 L146 102.5 Q149.5 102 149.5 105 L149.5 107 Q149.5 109.5 146.5 110 L80 137 Z" fill="#FB4F57"/>
-    <path id="libro-basso-pagine" data-fisso="1" d="M80 136.5 L145.5 110.5 L145.5 120.5 L80 150.5 Z" fill="url(#pagine)"/>
-    <path id="libro-basso-bordo" data-fisso="1" d="M80 150 L146 119.5 Q149.5 119 149.5 122 L149.5 124.5 Q149.5 127 146.5 127.8 L80 156.5 Z" fill="#FB4F57"/>
-  </g>
-
-  <g id="libro-alto">
-    <path id="libro-alto-dorso" data-fisso="1" d="M14 66.5 L80 110.5 L80 134.5 L14 89.5 Q9 86.5 9 81 L9 73 Q9 66.5 14 66.5 Z" fill="#FD3B41"/>
-    <path id="libro-alto-pagine" data-fisso="1" d="M80 116 L145.5 90 L145.5 103 L80 129.5 Z" fill="url(#pagine)"/>
-    <path id="libro-alto-copertina-bordo" data-fisso="1" d="M78.5 110.5 L147 82.5 Q150 82 149.8 85 L149.5 87.5 Q149 89.5 146.5 90 L80 116.5 Z" fill="#FD4A51"/>
-    <path id="libro-alto-copertina" data-fisso="1" d="M12 65 L75 41 Q78 40 81 41.5 L146 79.5 Q150 82 146.5 84 L82 110.5 Q80 111.5 77.5 110 L13.5 69 Q9.5 66.5 12 65 Z" fill="url(#rosa-copertina)"/>
-  </g>
-
-  <path id="bandiera-alone" data-fisso="1" data-maglia="no" d="M89 37 L157 29.9 L158 78 L90 85 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round" filter="url(#sfuma-bordo)"/>
-  <g id="bandiera" transform="matrix(1.0049 -0.096 0.0136 1.008 89.95 37)">
-    <rect id="bandiera-fondo" data-fisso="1" x="0" y="0" width="68" height="48" rx="1.5" fill="#1D4FE0"/>
-    <g clip-path="url(#bandiera-forma)">
-      <g id="bandiera-diagonali-bianche" stroke="#FCFBFC" stroke-width="8.38">
-        <path d="M-2.08 0.11 L70.41 48.53"/><path d="M68.43 -0.69 L-0.68 48.7"/>
-      </g>
-      <g id="bandiera-diagonali-rosse" stroke="#ED1B2A" stroke-width="3.41">
-        <path d="M-3.55 -0.15 L32.04 24.84"/><path d="M36.49 24.18 L71.42 48.15"/><path d="M32.75 24.84 L66.39 -0.99"/><path d="M35.36 23.08 L0.87 49.07"/>
-      </g>
-      <rect id="croce-bianca-orizzontale" x="-2.26" y="17.42" width="67.88" height="13.97" fill="#FBF5F8"/>
-      <rect id="croce-bianca-verticale" x="27" y="-0.62" width="14.3" height="50.39" fill="#FDF8FB"/>
-      <rect id="croce-rossa-orizzontale" x="-1.32" y="20" width="69.54" height="8.69" fill="#FF262C"/>
-      <rect id="croce-rossa-verticale" x="29.81" y="-3.47" width="8.25" height="55.28" fill="#FF322C"/>
-    </g>
-  </g>
+<title>Studio / Inglese</title>
+<defs><filter id="sfuma-ombra" filterUnits="userSpaceOnUse" x="0" y="0" width="168" height="164"><feGaussianBlur stdDeviation="2"/></filter><linearGradient id="libro-sotto-dorso-luce" gradientUnits="userSpaceOnUse" x1="78" y1="134" x2="78" y2="153"><stop offset="0" stop-color="#FEA3A7"/><stop offset="1" stop-color="#FB858A"/></linearGradient><linearGradient id="libro-sotto-copertina-luce" gradientUnits="userSpaceOnUse" x1="11" y1="91" x2="146" y2="104"><stop offset="0" stop-color="#FFC4C6"/><stop offset="0.55" stop-color="#FEA3A7"/><stop offset="1" stop-color="#FEA3A7"/></linearGradient><linearGradient id="libro-sotto-pagine-luce" gradientUnits="userSpaceOnUse" x1="78" y1="134" x2="146" y2="104"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F6E9EA"/></linearGradient><linearGradient id="libro-sopra-dorso-luce" gradientUnits="userSpaceOnUse" x1="80" y1="111" x2="80" y2="128"><stop offset="0" stop-color="#FE4A51"/><stop offset="1" stop-color="#E9262E"/></linearGradient><linearGradient id="libro-sopra-copertina-luce" gradientUnits="userSpaceOnUse" x1="13" y1="68" x2="148" y2="81"><stop offset="0" stop-color="#FFA7AA"/><stop offset="0.55" stop-color="#FE7C81"/><stop offset="1" stop-color="#FE7C81"/></linearGradient><linearGradient id="libro-sopra-pagine-luce" gradientUnits="userSpaceOnUse" x1="80" y1="111" x2="148" y2="81"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F6E9EA"/></linearGradient><clipPath id="bandiera-forma"><rect width="72" height="48" rx="3"/></clipPath><clipPath id="bandiera-controcambio"><path d="M36 24 H72 V48 Z V48 H0 Z H0 V0 Z V0 H72 Z"/></clipPath><linearGradient id="bandiera-lucentezza" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="48"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.18"/><stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0"/><stop offset="1" stop-color="#000000" stop-opacity="0.06"/></linearGradient></defs>
+<g id="nuvola" fill="#FEF1F1"></g>
+<ellipse id="ombra" cx="74.0" cy="155.0" rx="70" ry="4" fill="#DC2626" opacity="0.14" filter="url(#sfuma-ombra)"/>
+<g id="libro-sotto"><path id="libro-sotto-corpo" d="M82.62 63.32 L143.7 102.52 C145.13 103.44 146 105.03 146 106.73 L146 120.39 C146 121.98 145.06 123.41 143.61 124.05 L79.47 152.35 C78.55 152.76 77.49 152.67 76.64 152.13 L15.37 112.8 C12.65 111.06 11 108.04 11 104.81 L11 97.19 C11 93.43 13.22 90.02 16.67 88.5 L75.07 62.73 C77.52 61.65 80.36 61.87 82.62 63.32 Z" fill="url(#libro-sotto-dorso-luce)"/><path id="libro-sotto-pagine" d="M80.24 136.24 L141.49 109.22 C142.81 108.64 144.3 109.6 144.3 111.05 L144.3 119.22 C144.3 120.01 143.83 120.73 143.11 121.05 L81.05 148.42 C80.39 148.72 79.65 148.23 79.65 147.51 L79.65 137.16 C79.65 136.76 79.88 136.4 80.24 136.24 Z" fill="url(#libro-sotto-pagine-luce)"/><path id="libro-sotto-riga-1" d="M81.4 139.99 L141.92 113.29" stroke="#F9DCDE" stroke-width="0.6" stroke-linecap="round" fill="none"/><path id="libro-sotto-riga-2" d="M81.4 142 L141.92 115.3" stroke="#F9DCDE" stroke-width="0.6" stroke-linecap="round" fill="none"/><path id="libro-sotto-riga-3" d="M81.4 144.01 L141.92 117.31" stroke="#F9DCDE" stroke-width="0.6" stroke-linecap="round" fill="none"/><path id="libro-sotto-ombra-pagine" d="M79.65 137.2 L144.3 108.68" stroke="#FB858A" stroke-opacity="0.22" stroke-width="1.2" fill="none"/><path id="libro-sotto-copertina" d="M25.56 84.58 L75.07 62.73 C77.52 61.65 80.36 61.87 82.62 63.32 L138.17 98.97 C141.52 101.13 141.13 106.15 137.49 107.76 L79.47 133.35 C78.55 133.76 77.49 133.67 76.64 133.13 L24.39 99.59 C18.66 95.91 19.32 87.33 25.56 84.58 Z" fill="url(#libro-sotto-copertina-luce)"/><path id="libro-sotto-spigolo" d="M15.69 94.01 L75.99 132.71 L80.04 133.1 L143.28 105.2" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path id="libro-sotto-cerniera" d="M20.38 99.52 L20.38 113.52" stroke="#FB858A" stroke-opacity="0.35" stroke-width="0.9" stroke-linecap="round" fill="none"/><path id="libro-sotto-riflesso" d="M24.4 105.3 L72.64 136.26" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="2.66" stroke-linecap="round" fill="none"/></g>
+<g id="libro-sopra"><path id="libro-sopra-corpo" d="M84.62 40.32 L145.7 79.52 C147.13 80.44 148 82.03 148 83.73 L148 95.39 C148 96.98 147.06 98.41 145.61 99.05 L81.47 127.35 C80.55 127.76 79.49 127.67 78.64 127.13 L16.91 87.51 C14.47 85.95 13 83.25 13 80.36 L13 73.54 C13 70.17 14.99 67.12 18.07 65.76 L77.07 39.73 C79.52 38.65 82.36 38.87 84.62 40.32 Z" fill="url(#libro-sopra-dorso-luce)"/><path id="libro-sopra-pagine" d="M82.24 112.9 L143.49 85.88 C144.81 85.3 146.3 86.26 146.3 87.71 L146.3 94.56 C146.3 95.35 145.83 96.07 145.11 96.39 L83.05 123.76 C82.39 124.06 81.65 123.57 81.65 122.85 L81.65 113.82 C81.65 113.42 81.88 113.06 82.24 112.9 Z" fill="url(#libro-sopra-pagine-luce)"/><path id="libro-sopra-riga-1" d="M83.4 116.2 L143.92 89.5" stroke="#F9DCDE" stroke-width="0.6" stroke-linecap="round" fill="none"/><path id="libro-sopra-riga-2" d="M83.4 118 L143.92 91.3" stroke="#F9DCDE" stroke-width="0.6" stroke-linecap="round" fill="none"/><path id="libro-sopra-riga-3" d="M83.4 119.8 L143.92 93.1" stroke="#F9DCDE" stroke-width="0.6" stroke-linecap="round" fill="none"/><path id="libro-sopra-ombra-pagine" d="M81.65 113.86 L146.3 85.34" stroke="#EE3037" stroke-opacity="0.22" stroke-width="1.2" fill="none"/><path id="libro-sopra-copertina" d="M26.03 62.25 L77.07 39.73 C79.52 38.65 82.36 38.87 84.62 40.32 L140.17 75.97 C143.52 78.13 143.13 83.15 139.49 84.76 L81.47 110.35 C80.55 110.76 79.49 110.67 78.64 110.13 L24.98 75.69 C19.85 72.4 20.45 64.71 26.03 62.25 Z" fill="url(#libro-sopra-copertina-luce)"/><path id="libro-sopra-spigolo" d="M17.69 71.01 L77.99 109.71 L82.04 110.1 L145.28 82.2" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round" fill="none"/><path id="libro-sopra-cerniera" d="M22.38 76.52 L22.38 88.52" stroke="#EE3037" stroke-opacity="0.35" stroke-width="0.9" stroke-linecap="round" fill="none"/><path id="libro-sopra-riflesso" d="M26.4 81.7 L74.64 112.66" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="2.38" stroke-linecap="round" fill="none"/></g>
+<ellipse id="ombra-bandiera" cx="124" cy="84" rx="30" ry="4" fill="#DC2626" opacity="0.2" filter="url(#sfuma-ombra)"/>
+<g id="bandiera" transform="matrix(0.97 -0.1 0.04 1 88.5 37)"><g clip-path="url(#bandiera-forma)"><rect id="bandiera-campo" width="72" height="48" fill="#1D4ED8"/><path id="bandiera-diagonali-bianche" d="M0 0 L72 48 M72 0 L0 48" stroke="#FFFFFF" stroke-width="9.6"/><path id="bandiera-diagonali-rosse" d="M0 0 L72 48 M72 0 L0 48" stroke="#EF4444" stroke-width="3.84" clip-path="url(#bandiera-controcambio)"/><path id="bandiera-croce-bianca" d="M36 0 V48 M0 24 H72" stroke="#FFFFFF" stroke-width="14.4"/><path id="bandiera-croce-rossa" d="M36 0 V48 M0 24 H72" stroke="#EF4444" stroke-width="8.64"/><rect id="bandiera-lucentezza" width="72" height="48" fill="url(#bandiera-lucentezza)"/></g></g>
 </svg>
