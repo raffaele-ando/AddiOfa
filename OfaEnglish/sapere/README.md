@@ -17,6 +17,7 @@ vuole applicare lo stesso metodo a un altro logo, un altro kit, un'altra app.
 | [05-strumenti.md](05-strumenti.md) | Ogni programma di `strumenti/brand/`: cosa fa, quando usarlo, come si lancia |
 | [06-lavoro-con-agenti.md](06-lavoro-con-agenti.md) | Come dividere il lavoro tra più agenti, cosa è andato storto e come si evita |
 | [07-cosa-funziona.md](07-cosa-funziona.md) | Riassunto secco: cosa funziona, cosa non funziona, con il perché |
+| [08-concept.md](08-concept.md) | Estrazione automatica degli elementi dalle 52 immagini di `design-concept/` |
 
 La stessa conoscenza, in forma operativa, è nella skill
 [`.claude/skills/ricreare-grafica/SKILL.md`](../.claude/skills/ricreare-grafica/SKILL.md): è quella
@@ -34,3 +35,4 @@ da seguire quando si deve rifare una grafica.
   `brand/disegni/`, varianti scure `<nome>.scuro.svg`, tavole in `brand/tavole/puliti/`, tavola
   d'insieme `brand/tavole/disegni-puliti.png`.
 - **App**: pagine coerenti con il kit rosso, barra di navigazione, illustrazioni SVG.
+- **Concept**: `design-concept/` appiattita in una cartella; 1277 elementi estratti in `brand/concept/` con `estrai_concept.py` (vedi 08).

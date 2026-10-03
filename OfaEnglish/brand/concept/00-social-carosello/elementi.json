@@ -1,0 +1,124 @@
+{
+ "indice": 0,
+ "cartella": "00-social-carosello",
+ "sorgente": "file_0000000001548246b0827f47ee43a483.png",
+ "dimensioni": [
+  1536,
+  1024
+ ],
+ "fondo": "#FEFEFE",
+ "modalita": "xy",
+ "elementi": 3,
+ "per_tipo": {
+  "foto": 3
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-foto.png",
+   "tipo": "foto",
+   "riquadro": [
+    11,
+    8,
+    1525,
+    344
+   ],
+   "dimensioni": [
+    1514,
+    336
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 477,
+   "bordo_fondo": 0.394,
+   "angoli_fondo": 0.348
+  },
+  {
+   "n": 2,
+   "file": "002-foto.png",
+   "tipo": "foto",
+   "riquadro": [
+    9,
+    360,
+    1525,
+    684
+   ],
+   "dimensioni": [
+    1516,
+    324
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 468,
+   "bordo_fondo": 0.315,
+   "angoli_fondo": 0.488
+  },
+  {
+   "n": 3,
+   "file": "003-foto.png",
+   "tipo": "foto",
+   "riquadro": [
+    10,
+    699,
+    1524,
+    1007
+   ],
+   "dimensioni": [
+    1514,
+    308
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 468,
+   "bordo_fondo": 0.354,
+   "angoli_fondo": 0.406
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    9,
+    8,
+    1525,
+    1007
+   ],
+   "figli": [
+    {
+     "box": [
+      11,
+      8,
+      1525,
+      344
+     ],
+     "figli": [],
+     "foglia": true,
+     "serie": true
+    },
+    {
+     "box": [
+      9,
+      360,
+      1525,
+      684
+     ],
+     "figli": [],
+     "foglia": true,
+     "serie": true
+    },
+    {
+     "box": [
+      10,
+      699,
+      1524,
+      1007
+     ],
+     "figli": [],
+     "foglia": true,
+     "serie": true
+    }
+   ],
+   "maschera": 0
+  }
+ ]
+}

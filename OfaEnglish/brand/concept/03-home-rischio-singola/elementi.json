@@ -1,0 +1,50 @@
+{
+ "indice": 3,
+ "cartella": "03-home-rischio-singola",
+ "sorgente": "file_00000000078c821085a0cea182772e23.png",
+ "dimensioni": [
+  941,
+  1672
+ ],
+ "fondo": "#FBFDFE",
+ "modalita": "xy",
+ "elementi": 1,
+ "per_tipo": {
+  "schermata": 1
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    103,
+    23,
+    841,
+    1672
+   ],
+   "dimensioni": [
+    738,
+    1649
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 184,
+   "bordo_fondo": 0.283,
+   "angoli_fondo": 1.0
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    103,
+    23,
+    841,
+    1672
+   ],
+   "figli": [],
+   "foglia": true
+  }
+ ]
+}

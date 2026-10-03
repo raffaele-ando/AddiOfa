@@ -1,0 +1,50 @@
+{
+ "indice": 24,
+ "cartella": "24-icona-app-stella",
+ "sorgente": "file_00000000762c8243a72d58d109b8a9ca.jpg",
+ "dimensioni": [
+  1254,
+  1254
+ ],
+ "fondo": "#FDFDFE",
+ "modalita": "xy",
+ "elementi": 1,
+ "per_tipo": {
+  "pannello": 1
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    26,
+    60,
+    1221,
+    1245
+   ],
+   "dimensioni": [
+    1195,
+    1185
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 246,
+   "bordo_fondo": 0.425,
+   "angoli_fondo": 1.0
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    26,
+    60,
+    1221,
+    1245
+   ],
+   "figli": [],
+   "foglia": true
+  }
+ ]
+}

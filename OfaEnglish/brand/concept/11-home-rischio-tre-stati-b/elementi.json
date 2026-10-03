@@ -1,0 +1,121 @@
+{
+ "indice": 11,
+ "cartella": "11-home-rischio-tre-stati-b",
+ "sorgente": "file_000000002dd88210a17cbb776135db2f.png",
+ "dimensioni": [
+  1024,
+  1536
+ ],
+ "fondo": "#F1F8FE",
+ "modalita": "orari",
+ "elementi": 3,
+ "per_tipo": {
+  "pannello": 3
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    12,
+    89,
+    343,
+    1473
+   ],
+   "dimensioni": [
+    331,
+    1384
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 270,
+   "bordo_fondo": 0.289,
+   "angoli_fondo": 0.941
+  },
+  {
+   "n": 2,
+   "file": "002-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    343,
+    89,
+    674,
+    1473
+   ],
+   "dimensioni": [
+    331,
+    1384
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 214,
+   "bordo_fondo": 0.503,
+   "angoli_fondo": 0.992
+  },
+  {
+   "n": 3,
+   "file": "003-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    674,
+    89,
+    1012,
+    1473
+   ],
+   "dimensioni": [
+    338,
+    1384
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 262,
+   "bordo_fondo": 0.249,
+   "angoli_fondo": 0.941
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    0,
+    0,
+    1024,
+    1536
+   ],
+   "schermate_da_orari": 3,
+   "figli": [
+    {
+     "box": [
+      12,
+      89,
+      343,
+      1473
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      343,
+      89,
+      674,
+      1473
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      674,
+      89,
+      1012,
+      1473
+     ],
+     "foglia": true,
+     "figli": []
+    }
+   ]
+  }
+ ]
+}

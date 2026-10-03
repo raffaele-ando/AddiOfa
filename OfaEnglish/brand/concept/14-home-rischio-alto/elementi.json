@@ -1,0 +1,50 @@
+{
+ "indice": 14,
+ "cartella": "14-home-rischio-alto",
+ "sorgente": "file_000000003fa08210bbdfa3a6380c79ab.png",
+ "dimensioni": [
+  941,
+  1672
+ ],
+ "fondo": "#FBFDFE",
+ "modalita": "xy",
+ "elementi": 1,
+ "per_tipo": {
+  "schermata": 1
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    92,
+    0,
+    852,
+    1672
+   ],
+   "dimensioni": [
+    760,
+    1672
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 193,
+   "bordo_fondo": 0.299,
+   "angoli_fondo": 1.0
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    92,
+    0,
+    852,
+    1672
+   ],
+   "figli": [],
+   "foglia": true
+  }
+ ]
+}

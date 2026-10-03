@@ -1,0 +1,91 @@
+{
+ "indice": 22,
+ "cartella": "22-schermate-sfide-profilo",
+ "sorgente": "file_00000000715481f49fb2ead59f0c4fa8.png",
+ "dimensioni": [
+  1536,
+  1024
+ ],
+ "fondo": "#F6FAFD",
+ "modalita": "xy",
+ "elementi": 2,
+ "per_tipo": {
+  "schermata": 2
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    278,
+    0,
+    740,
+    1024
+   ],
+   "dimensioni": [
+    462,
+    1024
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 341,
+   "bordo_fondo": 0.063,
+   "angoli_fondo": 1.0
+  },
+  {
+   "n": 2,
+   "file": "002-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    796,
+    0,
+    1257,
+    1024
+   ],
+   "dimensioni": [
+    461,
+    1024
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 291,
+   "bordo_fondo": 0.062,
+   "angoli_fondo": 1.0
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    278,
+    0,
+    1257,
+    1024
+   ],
+   "figli": [
+    {
+     "box": [
+      278,
+      0,
+      740,
+      1024
+     ],
+     "figli": [],
+     "foglia": true
+    },
+    {
+     "box": [
+      796,
+      0,
+      1257,
+      1024
+     ],
+     "figli": [],
+     "foglia": true
+    }
+   ],
+   "maschera": 0
+  }
+ ]
+}

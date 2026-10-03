@@ -1,0 +1,211 @@
+{
+ "indice": 9,
+ "cartella": "09-schermate-calcolo-risultato",
+ "sorgente": "file_000000002ca08246993dae6baa22ae9a.png",
+ "dimensioni": [
+  1536,
+  1024
+ ],
+ "fondo": "#F4F9FE",
+ "modalita": "orari",
+ "elementi": 6,
+ "per_tipo": {
+  "schermata": 6
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    34,
+    160,
+    251,
+    815
+   ],
+   "dimensioni": [
+    217,
+    655
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 89,
+   "bordo_fondo": 0.117,
+   "angoli_fondo": 0.973
+  },
+  {
+   "n": 2,
+   "file": "002-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    251,
+    153,
+    496,
+    816
+   ],
+   "dimensioni": [
+    245,
+    663
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 90,
+   "bordo_fondo": 0.194,
+   "angoli_fondo": 0.945
+  },
+  {
+   "n": 3,
+   "file": "003-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    498,
+    150,
+    748,
+    815
+   ],
+   "dimensioni": [
+    250,
+    665
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 130,
+   "bordo_fondo": 0.116,
+   "angoli_fondo": 0.953
+  },
+  {
+   "n": 4,
+   "file": "004-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    748,
+    150,
+    1000,
+    816
+   ],
+   "dimensioni": [
+    252,
+    666
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 136,
+   "bordo_fondo": 0.12,
+   "angoli_fondo": 0.98
+  },
+  {
+   "n": 5,
+   "file": "005-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    1000,
+    150,
+    1249,
+    816
+   ],
+   "dimensioni": [
+    249,
+    666
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 138,
+   "bordo_fondo": 0.119,
+   "angoli_fondo": 0.996
+  },
+  {
+   "n": 6,
+   "file": "006-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    1251,
+    151,
+    1510,
+    840
+   ],
+   "dimensioni": [
+    259,
+    689
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 136,
+   "bordo_fondo": 0.031,
+   "angoli_fondo": 0.91
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    0,
+    0,
+    1536,
+    1024
+   ],
+   "schermate_da_orari": 6,
+   "figli": [
+    {
+     "box": [
+      34,
+      160,
+      251,
+      815
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      251,
+      153,
+      496,
+      816
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      498,
+      150,
+      748,
+      815
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      748,
+      150,
+      1000,
+      816
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      1000,
+      150,
+      1249,
+      816
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      1251,
+      151,
+      1510,
+      840
+     ],
+     "foglia": true,
+     "figli": []
+    }
+   ]
+  }
+ ]
+}

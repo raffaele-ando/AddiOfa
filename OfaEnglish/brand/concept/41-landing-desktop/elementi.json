@@ -1,0 +1,50 @@
+{
+ "indice": 41,
+ "cartella": "41-landing-desktop",
+ "sorgente": "file_00000000c23c82108838e288ab528e67.png",
+ "dimensioni": [
+  1536,
+  1024
+ ],
+ "fondo": "#FEFEFE",
+ "modalita": "xy",
+ "elementi": 1,
+ "per_tipo": {
+  "pannello": 1
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    70,
+    0,
+    1536,
+    1024
+   ],
+   "dimensioni": [
+    1466,
+    1024
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 422,
+   "bordo_fondo": 0.398,
+   "angoli_fondo": 0.5
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    70,
+    0,
+    1536,
+    1024
+   ],
+   "figli": [],
+   "foglia": true
+  }
+ ]
+}

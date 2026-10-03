@@ -1,0 +1,878 @@
+[
+ {
+  "indice": 0,
+  "cartella": "00-social-carosello",
+  "sorgente": "file_0000000001548246b0827f47ee43a483.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 3,
+  "per_tipo": {
+   "foto": 3
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 1,
+  "cartella": "01-home-rischio-tre-stati",
+  "sorgente": "file_0000000002488210b63d462f2349a784.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F0F7FC",
+  "modalita": "orari",
+  "elementi": 3,
+  "per_tipo": {
+   "schermata": 3
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 2,
+  "cartella": "02-schermate-onboarding-piani",
+  "sorgente": "file_0000000003108210ab85412b3bdcb125.jpg",
+  "dimensioni": [
+   1536,
+   683
+  ],
+  "fondo": "#F6F7F7",
+  "modalita": "orari",
+  "elementi": 14,
+  "per_tipo": {
+   "schermata": 14
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 3,
+  "cartella": "03-home-rischio-singola",
+  "sorgente": "file_00000000078c821085a0cea182772e23.png",
+  "dimensioni": [
+   941,
+   1672
+  ],
+  "fondo": "#FBFDFE",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "schermata": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 4,
+  "cartella": "04-locandina-supera-ofa",
+  "sorgente": "file_000000000f0482469e5d13818e3ae27b.png",
+  "dimensioni": [
+   1024,
+   1536
+  ],
+  "fondo": "#F7F7F5",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "pannello": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 5,
+  "cartella": "05-schermate-onboarding-invito",
+  "sorgente": "file_00000000106881f4928db217ddf2162e.jpg",
+  "dimensioni": [
+   1536,
+   909
+  ],
+  "fondo": "#F3F8FC",
+  "modalita": "orari",
+  "elementi": 13,
+  "per_tipo": {
+   "schermata": 11,
+   "pannello": 2
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 6,
+  "cartella": "06-schermate-sfide-progressi",
+  "sorgente": "file_0000000017ec81f4bab41f7a9283b467.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F3FAFE",
+  "modalita": "orari",
+  "elementi": 14,
+  "per_tipo": {
+   "schermata": 14
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 7,
+  "cartella": "07-brand-board-logo-palette",
+  "sorgente": "file_00000000275881f49f6618cde49d8d94.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 68,
+  "per_tipo": {
+   "pannello": 15,
+   "grafica": 52,
+   "testo": 2,
+   "foto": 1
+  },
+  "scarto_ricomposizione_max_255": 0.288
+ },
+ {
+  "indice": 8,
+  "cartella": "08-brand-kit-illustrazioni",
+  "sorgente": "file_00000000293081f4b8c01c2d26fff733.jpg",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 76,
+  "per_tipo": {
+   "pannello": 21,
+   "grafica": 55,
+   "testo": 3
+  },
+  "scarto_ricomposizione_max_255": 0.507
+ },
+ {
+  "indice": 9,
+  "cartella": "09-schermate-calcolo-risultato",
+  "sorgente": "file_000000002ca08246993dae6baa22ae9a.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F4F9FE",
+  "modalita": "orari",
+  "elementi": 6,
+  "per_tipo": {
+   "schermata": 6
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 10,
+  "cartella": "10-schermate-risultato-dettaglio",
+  "sorgente": "file_000000002cd081f481c01751962e387f.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F2F9FE",
+  "modalita": "orari",
+  "elementi": 6,
+  "per_tipo": {
+   "schermata": 6
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 11,
+  "cartella": "11-home-rischio-tre-stati-b",
+  "sorgente": "file_000000002dd88210a17cbb776135db2f.png",
+  "dimensioni": [
+   1024,
+   1536
+  ],
+  "fondo": "#F1F8FE",
+  "modalita": "orari",
+  "elementi": 3,
+  "per_tipo": {
+   "pannello": 3
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 12,
+  "cartella": "12-landing-mobile",
+  "sorgente": "file_0000000036a081f49ba9a19d5b3d32af.png",
+  "dimensioni": [
+   749,
+   2098
+  ],
+  "fondo": "#FDFEFE",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "schermata": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 13,
+  "cartella": "13-mappa-schermate-atlas-noi-agora",
+  "sorgente": "file_000000003c4081f49a2084c79e44f624.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F5FBFE",
+  "modalita": "orari",
+  "elementi": 13,
+  "per_tipo": {
+   "schermata": 12,
+   "grafica": 1
+  },
+  "scarto_ricomposizione_max_255": 0.065
+ },
+ {
+  "indice": 14,
+  "cartella": "14-home-rischio-alto",
+  "sorgente": "file_000000003fa08210bbdfa3a6380c79ab.png",
+  "dimensioni": [
+   941,
+   1672
+  ],
+  "fondo": "#FBFDFE",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "schermata": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 15,
+  "cartella": "15-brand-concept-logo-stella",
+  "sorgente": "file_000000004090820aa813bc9aaf3b92a5.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 76,
+  "per_tipo": {
+   "grafica": 57,
+   "pannello": 19,
+   "testo": 2
+  },
+  "scarto_ricomposizione_max_255": 0.356
+ },
+ {
+  "indice": 16,
+  "cartella": "16-brand-kit-b",
+  "sorgente": "file_0000000047c08210949d5a3b00c5dcda.png",
+  "dimensioni": [
+   1881,
+   836
+  ],
+  "fondo": "#FDFDFE",
+  "modalita": "xy",
+  "elementi": 73,
+  "per_tipo": {
+   "pannello": 21,
+   "grafica": 52,
+   "testo": 2
+  },
+  "scarto_ricomposizione_max_255": 0.705
+ },
+ {
+  "indice": 17,
+  "cartella": "17-brand-kit-c",
+  "sorgente": "file_0000000049188210ae7849f930a090c8.png",
+  "dimensioni": [
+   1881,
+   836
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 79,
+  "per_tipo": {
+   "grafica": 52,
+   "pannello": 27,
+   "testo": 3
+  },
+  "scarto_ricomposizione_max_255": 0.391
+ },
+ {
+  "indice": 18,
+  "cartella": "18-schermate-profilo-statistiche",
+  "sorgente": "file_00000000496c820a90b90569fb6a69a8.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F9FCFE",
+  "modalita": "orari",
+  "elementi": 9,
+  "per_tipo": {
+   "schermata": 9
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 19,
+  "cartella": "19-schermate-profilo-statistiche-b",
+  "sorgente": "file_000000004b048210aa21adae790dbaef.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FCFDFE",
+  "modalita": "orari",
+  "elementi": 9,
+  "per_tipo": {
+   "schermata": 9
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 20,
+  "cartella": "20-schermate-risultato-sei",
+  "sorgente": "file_0000000053508210b048731fb8d31af2.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F5FAFE",
+  "modalita": "orari",
+  "elementi": 6,
+  "per_tipo": {
+   "schermata": 6
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 21,
+  "cartella": "21-home-dettaglio-rischio",
+  "sorgente": "file_0000000058b0824397163a42e262e503.png",
+  "dimensioni": [
+   941,
+   1672
+  ],
+  "fondo": "#FAFDFE",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "schermata": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 22,
+  "cartella": "22-schermate-sfide-profilo",
+  "sorgente": "file_00000000715481f49fb2ead59f0c4fa8.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F6FAFD",
+  "modalita": "xy",
+  "elementi": 2,
+  "per_tipo": {
+   "schermata": 2
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 23,
+  "cartella": "23-brand-kit-d",
+  "sorgente": "file_00000000743c820a9624a4d04d2a32da.jpg",
+  "dimensioni": [
+   1536,
+   683
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 70,
+  "per_tipo": {
+   "pannello": 19,
+   "grafica": 51,
+   "testo": 4
+  },
+  "scarto_ricomposizione_max_255": 0.631
+ },
+ {
+  "indice": 24,
+  "cartella": "24-icona-app-stella",
+  "sorgente": "file_00000000762c8243a72d58d109b8a9ca.jpg",
+  "dimensioni": [
+   1254,
+   1254
+  ],
+  "fondo": "#FDFDFE",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "pannello": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 25,
+  "cartella": "25-flusso-rischio",
+  "sorgente": "file_0000000079808210b70464a09e79ef88.png",
+  "dimensioni": [
+   1174,
+   1340
+  ],
+  "fondo": "#F5FAFE",
+  "modalita": "orari",
+  "elementi": 8,
+  "per_tipo": {
+   "pannello": 4,
+   "grafica": 2,
+   "schermata": 2
+  },
+  "scarto_ricomposizione_max_255": 0.039
+ },
+ {
+  "indice": 26,
+  "cartella": "26-social-media-identity",
+  "sorgente": "file_000000007c448210acbc3b891fe6e023.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 42,
+  "per_tipo": {
+   "pannello": 21,
+   "foto": 3,
+   "schermata": 1,
+   "grafica": 17
+  },
+  "scarto_ricomposizione_max_255": 0.324
+ },
+ {
+  "indice": 27,
+  "cartella": "27-brand-kit-e",
+  "sorgente": "file_000000007d588243bc36c3920520a8f3.jpg",
+  "dimensioni": [
+   1536,
+   683
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 70,
+  "per_tipo": {
+   "pannello": 19,
+   "grafica": 51,
+   "testo": 4
+  },
+  "scarto_ricomposizione_max_255": 0.631
+ },
+ {
+  "indice": 28,
+  "cartella": "28-brand-identity-system",
+  "sorgente": "file_0000000084bc8210aea02bc9e24200d6.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FDFDFE",
+  "modalita": "xy",
+  "elementi": 160,
+  "per_tipo": {
+   "pannello": 63,
+   "grafica": 97,
+   "testo": 12
+  },
+  "scarto_ricomposizione_max_255": 0.591
+ },
+ {
+  "indice": 29,
+  "cartella": "29-schermate-risultato-sei-b",
+  "sorgente": "file_00000000883481f498a06da70e0aea49.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "orari",
+  "elementi": 6,
+  "per_tipo": {
+   "schermata": 6
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 30,
+  "cartella": "30-flusso-schermate-a",
+  "sorgente": "file_0000000089688210bbf00df3de3f973f.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F4FAFE",
+  "modalita": "orari",
+  "elementi": 16,
+  "per_tipo": {
+   "grafica": 2,
+   "schermata": 14
+  },
+  "scarto_ricomposizione_max_255": 0.067
+ },
+ {
+  "indice": 31,
+  "cartella": "31-flusso-schermate-b",
+  "sorgente": "file_000000008ba881f4a420b137ffc486c3.png",
+  "dimensioni": [
+   1312,
+   1199
+  ],
+  "fondo": "#F8FCFE",
+  "modalita": "orari",
+  "elementi": 12,
+  "per_tipo": {
+   "grafica": 2,
+   "schermata": 8,
+   "pannello": 2
+  },
+  "scarto_ricomposizione_max_255": 0.041
+ },
+ {
+  "indice": 32,
+  "cartella": "32-banner-verticali",
+  "sorgente": "file_000000008f5c82109632fc8fed9b6ca6.png",
+  "dimensioni": [
+   941,
+   1672
+  ],
+  "fondo": "#FCFCFD",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "pannello": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 33,
+  "cartella": "33-home-rischio-b",
+  "sorgente": "file_00000000921c81f49ff61dea267eeb68.png",
+  "dimensioni": [
+   941,
+   1672
+  ],
+  "fondo": "#FCFDFE",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "schermata": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 34,
+  "cartella": "34-flusso-schermate-c",
+  "sorgente": "file_000000009a2c8246b7dab8a14af06360.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F4FAFE",
+  "modalita": "orari",
+  "elementi": 14,
+  "per_tipo": {
+   "grafica": 2,
+   "schermata": 12
+  },
+  "scarto_ricomposizione_max_255": 0.074
+ },
+ {
+  "indice": 35,
+  "cartella": "35-brand-identity-b",
+  "sorgente": "file_000000009c60824684ade9547e05128a.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 112,
+  "per_tipo": {
+   "grafica": 64,
+   "pannello": 48,
+   "testo": 4
+  },
+  "scarto_ricomposizione_max_255": 0.147
+ },
+ {
+  "indice": 36,
+  "cartella": "36-flusso-schermate-d",
+  "sorgente": "file_000000009df882108810bb77083462e9.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F7FBFE",
+  "modalita": "orari",
+  "elementi": 14,
+  "per_tipo": {
+   "schermata": 14
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 37,
+  "cartella": "37-profilo-instagram",
+  "sorgente": "file_000000009e5c81f4b0baad22bd7f8b7a.png",
+  "dimensioni": [
+   1312,
+   1199
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 2,
+  "per_tipo": {
+   "pannello": 2
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 38,
+  "cartella": "38-locandina-b",
+  "sorgente": "file_000000009fa48210af14ab230db94824.png",
+  "dimensioni": [
+   1024,
+   1536
+  ],
+  "fondo": "#F5F5F3",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "pannello": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 39,
+  "cartella": "39-home-fattori",
+  "sorgente": "file_00000000a5c482109d3b50ccba1d198e.png",
+  "dimensioni": [
+   941,
+   1672
+  ],
+  "fondo": "#FAFDFE",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "schermata": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 40,
+  "cartella": "40-art-direction",
+  "sorgente": "file_00000000bdec81f4a150d09e9b243045.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 76,
+  "per_tipo": {
+   "foto": 3,
+   "pannello": 42,
+   "grafica": 31,
+   "testo": 4
+  },
+  "scarto_ricomposizione_max_255": 0.16
+ },
+ {
+  "indice": 41,
+  "cartella": "41-landing-desktop",
+  "sorgente": "file_00000000c23c82108838e288ab528e67.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "pannello": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 42,
+  "cartella": "42-schermate-risultato-animazioni",
+  "sorgente": "file_00000000c554821090390fe115876103.png",
+  "dimensioni": [
+   1629,
+   965
+  ],
+  "fondo": "#EBF5FE",
+  "modalita": "orari",
+  "elementi": 6,
+  "per_tipo": {
+   "schermata": 6
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 43,
+  "cartella": "43-schermate-risultato-sette",
+  "sorgente": "file_00000000ddec81f4947d440d4b314c7d.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F3F9FE",
+  "modalita": "orari",
+  "elementi": 6,
+  "per_tipo": {
+   "schermata": 6
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 44,
+  "cartella": "44-icone-sfera",
+  "sorgente": "file_00000000e2cc8243a6d5ee9ce3a792ba.png",
+  "dimensioni": [
+   2172,
+   724
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 28,
+  "per_tipo": {
+   "grafica": 25,
+   "pannello": 3
+  },
+  "scarto_ricomposizione_max_255": 0.318
+ },
+ {
+  "indice": 45,
+  "cartella": "45-landing-desktop-b",
+  "sorgente": "file_00000000e55481f4afd0f6b1727320de.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 23,
+  "per_tipo": {
+   "pannello": 6,
+   "grafica": 17
+  },
+  "scarto_ricomposizione_max_255": 0.289
+ },
+ {
+  "indice": 46,
+  "cartella": "46-locandina-c",
+  "sorgente": "file_00000000e63481f4b3860897e3f3c721.png",
+  "dimensioni": [
+   1024,
+   1536
+  ],
+  "fondo": "#ECE9E4",
+  "modalita": "xy",
+  "elementi": 1,
+  "per_tipo": {
+   "foto": 1
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 47,
+  "cartella": "47-schermate-onboarding-c",
+  "sorgente": "file_00000000ecd481f49653cd56523b5e7c.jpg",
+  "dimensioni": [
+   1536,
+   683
+  ],
+  "fondo": "#F6F7F7",
+  "modalita": "orari",
+  "elementi": 14,
+  "per_tipo": {
+   "schermata": 14
+  },
+  "scarto_ricomposizione_max_255": 0.0
+ },
+ {
+  "indice": 48,
+  "cartella": "48-social-copertine-video",
+  "sorgente": "file_00000000ef148210badb0fcc37386407.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 18,
+  "per_tipo": {
+   "pannello": 12,
+   "grafica": 6
+  },
+  "scarto_ricomposizione_max_255": 0.431
+ },
+ {
+  "indice": 49,
+  "cartella": "49-schermate-esplora-atlas-noi-agora",
+  "sorgente": "file_00000000fac08210954140c04c3f104a.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#F3FAFE",
+  "modalita": "orari",
+  "elementi": 9,
+  "per_tipo": {
+   "foto": 1,
+   "grafica": 2,
+   "pannello": 4,
+   "schermata": 2
+  },
+  "scarto_ricomposizione_max_255": 0.205
+ },
+ {
+  "indice": 50,
+  "cartella": "50-brand-kit-f",
+  "sorgente": "file_00000000fb5c8210a8fa4205cc4769a9.jpg",
+  "dimensioni": [
+   1536,
+   683
+  ],
+  "fondo": "#FEFEFE",
+  "modalita": "xy",
+  "elementi": 70,
+  "per_tipo": {
+   "pannello": 19,
+   "grafica": 51,
+   "testo": 4
+  },
+  "scarto_ricomposizione_max_255": 0.631
+ },
+ {
+  "indice": 51,
+  "cartella": "51-landing-desktop-c",
+  "sorgente": "file_00000000fe4482108b4c6e950fe1b4ca.png",
+  "dimensioni": [
+   1536,
+   1024
+  ],
+  "fondo": "#FDFDFD",
+  "modalita": "xy",
+  "elementi": 16,
+  "per_tipo": {
+   "foto": 1,
+   "pannello": 4,
+   "grafica": 11,
+   "testo": 2
+  },
+  "scarto_ricomposizione_max_255": 0.403
+ }
+]

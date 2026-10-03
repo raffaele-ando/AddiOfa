@@ -1,0 +1,50 @@
+{
+ "indice": 12,
+ "cartella": "12-landing-mobile",
+ "sorgente": "file_0000000036a081f49ba9a19d5b3d32af.png",
+ "dimensioni": [
+  749,
+  2098
+ ],
+ "fondo": "#FDFEFE",
+ "modalita": "xy",
+ "elementi": 1,
+ "per_tipo": {
+  "schermata": 1
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    25,
+    0,
+    749,
+    2092
+   ],
+   "dimensioni": [
+    724,
+    2092
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 478,
+   "bordo_fondo": 0.642,
+   "angoli_fondo": 0.742
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    25,
+    0,
+    749,
+    2092
+   ],
+   "figli": [],
+   "foglia": true
+  }
+ ]
+}

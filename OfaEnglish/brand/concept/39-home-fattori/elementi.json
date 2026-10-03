@@ -1,0 +1,50 @@
+{
+ "indice": 39,
+ "cartella": "39-home-fattori",
+ "sorgente": "file_00000000a5c482109d3b50ccba1d198e.png",
+ "dimensioni": [
+  941,
+  1672
+ ],
+ "fondo": "#FAFDFE",
+ "modalita": "xy",
+ "elementi": 1,
+ "per_tipo": {
+  "schermata": 1
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    102,
+    0,
+    840,
+    1672
+   ],
+   "dimensioni": [
+    738,
+    1672
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 268,
+   "bordo_fondo": 0.285,
+   "angoli_fondo": 1.0
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    102,
+    0,
+    840,
+    1672
+   ],
+   "figli": [],
+   "foglia": true
+  }
+ ]
+}

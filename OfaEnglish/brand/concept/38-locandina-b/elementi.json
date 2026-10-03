@@ -1,0 +1,50 @@
+{
+ "indice": 38,
+ "cartella": "38-locandina-b",
+ "sorgente": "file_000000009fa48210af14ab230db94824.png",
+ "dimensioni": [
+  1024,
+  1536
+ ],
+ "fondo": "#F5F5F3",
+ "modalita": "xy",
+ "elementi": 1,
+ "per_tipo": {
+  "pannello": 1
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    0,
+    0,
+    1024,
+    1535
+   ],
+   "dimensioni": [
+    1024,
+    1535
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 391,
+   "bordo_fondo": 0.604,
+   "angoli_fondo": 0.723
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    0,
+    0,
+    1024,
+    1535
+   ],
+   "figli": [],
+   "foglia": true
+  }
+ ]
+}

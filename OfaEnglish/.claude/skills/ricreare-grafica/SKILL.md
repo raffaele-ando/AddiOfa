@@ -72,6 +72,13 @@ Foto di tutte le schermate (Playwright 390×844, anche tema scuro) accanto alle 
 riferimento; un colore d'azione, un kit di illustrazioni, componenti del kit in codice
 (`src/brand/componenti.tsx`), stessi pesi e raggi ovunque. Correggi, rifai le foto, riguarda.
 
+### Estrarre gli elementi da immagini di design (concept)
+
+`python3 strumenti/brand/estrai_concept.py [indici]` → `brand/concept/<NN>-<nome>/` con un PNG per
+elemento, `anteprima.png` con i riquadri numerati (guardala sempre) ed `elementi.json`. Taglio XY con
+scala di maschere; schermate trovate dal «9:41»; unmatting solo alle grafiche, ricomposizione ≤ 1/255.
+Colonne icona+scritta vanno in `SENZA_SCHERMATE`. Dettagli e limiti: `sapere/08-concept.md`.
+
 ## Da non rifare
 
 Ricalco automatico di immagini AI piccole; inseguire lo scarto medio con macchie o sfocature;

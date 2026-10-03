@@ -1,0 +1,50 @@
+{
+ "indice": 4,
+ "cartella": "04-locandina-supera-ofa",
+ "sorgente": "file_000000000f0482469e5d13818e3ae27b.png",
+ "dimensioni": [
+  1024,
+  1536
+ ],
+ "fondo": "#F7F7F5",
+ "modalita": "xy",
+ "elementi": 1,
+ "per_tipo": {
+  "pannello": 1
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    0,
+    0,
+    1024,
+    1536
+   ],
+   "dimensioni": [
+    1024,
+    1536
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 386,
+   "bordo_fondo": 0.142,
+   "angoli_fondo": 0.531
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    0,
+    0,
+    1024,
+    1536
+   ],
+   "figli": [],
+   "foglia": true
+  }
+ ]
+}

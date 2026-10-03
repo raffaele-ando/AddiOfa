@@ -1,0 +1,50 @@
+{
+ "indice": 32,
+ "cartella": "32-banner-verticali",
+ "sorgente": "file_000000008f5c82109632fc8fed9b6ca6.png",
+ "dimensioni": [
+  941,
+  1672
+ ],
+ "fondo": "#FCFCFD",
+ "modalita": "xy",
+ "elementi": 1,
+ "per_tipo": {
+  "pannello": 1
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    0,
+    0,
+    941,
+    1672
+   ],
+   "dimensioni": [
+    941,
+    1672
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 519,
+   "bordo_fondo": 0.479,
+   "angoli_fondo": 0.879
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    0,
+    0,
+    941,
+    1672
+   ],
+   "figli": [],
+   "foglia": true
+  }
+ ]
+}

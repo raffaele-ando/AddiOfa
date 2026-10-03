@@ -1,0 +1,91 @@
+{
+ "indice": 37,
+ "cartella": "37-profilo-instagram",
+ "sorgente": "file_000000009e5c81f4b0baad22bd7f8b7a.png",
+ "dimensioni": [
+  1312,
+  1199
+ ],
+ "fondo": "#FEFEFE",
+ "modalita": "xy",
+ "elementi": 2,
+ "per_tipo": {
+  "pannello": 2
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    26,
+    50,
+    450,
+    1184
+   ],
+   "dimensioni": [
+    424,
+    1134
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 434,
+   "bordo_fondo": 0.654,
+   "angoli_fondo": 0.691
+  },
+  {
+   "n": 2,
+   "file": "002-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    450,
+    26,
+    1290,
+    1186
+   ],
+   "dimensioni": [
+    840,
+    1160
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 447,
+   "bordo_fondo": 0.744,
+   "angoli_fondo": 0.906
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    26,
+    26,
+    1290,
+    1186
+   ],
+   "figli": [
+    {
+     "box": [
+      26,
+      50,
+      450,
+      1184
+     ],
+     "figli": [],
+     "foglia": true
+    },
+    {
+     "box": [
+      450,
+      26,
+      1290,
+      1186
+     ],
+     "figli": [],
+     "foglia": true
+    }
+   ],
+   "maschera": 4
+  }
+ ]
+}

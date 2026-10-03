@@ -1,0 +1,570 @@
+{
+ "indice": 25,
+ "cartella": "25-flusso-rischio",
+ "sorgente": "file_0000000079808210b70464a09e79ef88.png",
+ "dimensioni": [
+  1174,
+  1340
+ ],
+ "fondo": "#F5FAFE",
+ "modalita": "orari",
+ "elementi": 8,
+ "per_tipo": {
+  "pannello": 4,
+  "grafica": 2,
+  "schermata": 2
+ },
+ "scarto_ricomposizione_max_255": 0.039,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    321,
+    0,
+    655,
+    858
+   ],
+   "dimensioni": [
+    334,
+    858
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 183,
+   "bordo_fondo": 0.317,
+   "angoli_fondo": 0.797
+  },
+  {
+   "n": 2,
+   "file": "002-grafica.png",
+   "tipo": "grafica",
+   "riquadro": [
+    7,
+    35,
+    321,
+    651
+   ],
+   "dimensioni": [
+    314,
+    616
+   ],
+   "trasparente": true,
+   "ricomposizione_mae_255": 0.008,
+   "colori": 106,
+   "bordo_fondo": 0.376,
+   "angoli_fondo": 1.0
+  },
+  {
+   "n": 3,
+   "file": "003-grafica.png",
+   "tipo": "grafica",
+   "riquadro": [
+    595,
+    44,
+    921,
+    156
+   ],
+   "dimensioni": [
+    326,
+    112
+   ],
+   "trasparente": true,
+   "ricomposizione_mae_255": 0.039,
+   "colori": 91,
+   "bordo_fondo": 0.103,
+   "angoli_fondo": 0.793
+  },
+  {
+   "n": 4,
+   "file": "004-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    744,
+    42,
+    981,
+    858
+   ],
+   "dimensioni": [
+    237,
+    816
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 156,
+   "bordo_fondo": 0.355,
+   "angoli_fondo": 0.668
+  },
+  {
+   "n": 5,
+   "file": "005-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    908,
+    188,
+    1152,
+    677
+   ],
+   "dimensioni": [
+    244,
+    489
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 109,
+   "bordo_fondo": 0.123,
+   "angoli_fondo": 0.691
+  },
+  {
+   "n": 6,
+   "file": "006-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    11,
+    809,
+    647,
+    846
+   ],
+   "dimensioni": [
+    636,
+    37
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 51,
+   "bordo_fondo": 0.337,
+   "angoli_fondo": 0.703
+  },
+  {
+   "n": 7,
+   "file": "007-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    745,
+    809,
+    1160,
+    846
+   ],
+   "dimensioni": [
+    415,
+    37
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 45,
+   "bordo_fondo": 0.083,
+   "angoli_fondo": 0.312
+  },
+  {
+   "n": 8,
+   "file": "008-pannello.png",
+   "tipo": "pannello",
+   "riquadro": [
+    241,
+    858,
+    1097,
+    1296
+   ],
+   "dimensioni": [
+    856,
+    438
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 153,
+   "bordo_fondo": 0.371,
+   "angoli_fondo": 0.645
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    0,
+    0,
+    1174,
+    1340
+   ],
+   "schermate_da_orari": 5,
+   "figli": [
+    {
+     "box": [
+      595,
+      44,
+      921,
+      156
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      908,
+      188,
+      1152,
+      677
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      11,
+      809,
+      647,
+      846
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      745,
+      809,
+      1160,
+      846
+     ],
+     "foglia": true,
+     "figli": []
+    },
+    {
+     "box": [
+      241,
+      858,
+      1097,
+      1296
+     ],
+     "foglia": true,
+     "figli": []
+    }
+   ]
+  },
+  {
+   "box": [
+    7,
+    0,
+    1166,
+    1296
+   ],
+   "figli": [
+    {
+     "box": [
+      7,
+      35,
+      321,
+      1296
+     ],
+     "figli": [
+      {
+       "box": [
+        7,
+        35,
+        321,
+        651
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        25,
+        780,
+        321,
+        809
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        10,
+        846,
+        309,
+        1296
+       ],
+       "figli": [],
+       "foglia": true
+      }
+     ],
+     "maschera": 0
+    },
+    {
+     "box": [
+      321,
+      0,
+      655,
+      858
+     ],
+     "figli": [],
+     "foglia": true
+    },
+    {
+     "box": [
+      655,
+      16,
+      694,
+      858
+     ],
+     "figli": [
+      {
+       "box": [
+        655,
+        16,
+        694,
+        44
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        655,
+        156,
+        694,
+        802
+       ],
+       "figli": [
+        {
+         "box": [
+          655,
+          156,
+          694,
+          645
+         ],
+         "figli": [
+          {
+           "box": [
+            655,
+            156,
+            684,
+            345
+           ],
+           "figli": [],
+           "foglia": true
+          },
+          {
+           "box": [
+            655,
+            345,
+            694,
+            645
+           ],
+           "figli": [],
+           "foglia": true
+          }
+         ],
+         "maschera": 4
+        },
+        {
+         "box": [
+          655,
+          645,
+          662,
+          755
+         ],
+         "figli": [],
+         "foglia": true
+        },
+        {
+         "box": [
+          655,
+          755,
+          694,
+          802
+         ],
+         "figli": [],
+         "foglia": true
+        }
+       ],
+       "maschera": 3
+      },
+      {
+       "box": [
+        655,
+        853,
+        694,
+        858
+       ],
+       "figli": [],
+       "foglia": true
+      }
+     ],
+     "maschera": 0
+    },
+    {
+     "box": [
+      694,
+      41,
+      744,
+      858
+     ],
+     "figli": [
+      {
+       "box": [
+        694,
+        41,
+        744,
+        44
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        720,
+        158,
+        731,
+        160
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        702,
+        183,
+        740,
+        216
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        704,
+        273,
+        736,
+        305
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        704,
+        365,
+        738,
+        396
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        703,
+        457,
+        738,
+        492
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        694,
+        532,
+        744,
+        541
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        694,
+        551,
+        744,
+        554
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        694,
+        789,
+        744,
+        800
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        694,
+        853,
+        729,
+        858
+       ],
+       "figli": [],
+       "foglia": true
+      }
+     ],
+     "maschera": 0
+    },
+    {
+     "box": [
+      744,
+      42,
+      981,
+      858
+     ],
+     "figli": [],
+     "foglia": true
+    },
+    {
+     "box": [
+      981,
+      184,
+      1166,
+      1257
+     ],
+     "figli": [
+      {
+       "box": [
+        981,
+        184,
+        1166,
+        672
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        981,
+        804,
+        1141,
+        809
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        981,
+        846,
+        1161,
+        1240
+       ],
+       "figli": [],
+       "foglia": true
+      },
+      {
+       "box": [
+        1097,
+        1249,
+        1145,
+        1257
+       ],
+       "figli": [],
+       "foglia": true
+      }
+     ],
+     "maschera": 0
+    }
+   ],
+   "maschera": 4
+  }
+ ]
+}

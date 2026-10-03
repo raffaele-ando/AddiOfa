@@ -1,0 +1,50 @@
+{
+ "indice": 21,
+ "cartella": "21-home-dettaglio-rischio",
+ "sorgente": "file_0000000058b0824397163a42e262e503.png",
+ "dimensioni": [
+  941,
+  1672
+ ],
+ "fondo": "#FAFDFE",
+ "modalita": "xy",
+ "elementi": 1,
+ "per_tipo": {
+  "schermata": 1
+ },
+ "scarto_ricomposizione_max_255": 0.0,
+ "lista": [
+  {
+   "n": 1,
+   "file": "001-schermata.png",
+   "tipo": "schermata",
+   "riquadro": [
+    160,
+    17,
+    785,
+    1672
+   ],
+   "dimensioni": [
+    625,
+    1655
+   ],
+   "trasparente": false,
+   "ricomposizione_mae_255": 0.0,
+   "colori": 203,
+   "bordo_fondo": 0.259,
+   "angoli_fondo": 1.0
+  }
+ ],
+ "albero": [
+  {
+   "box": [
+    160,
+    17,
+    785,
+    1672
+   ],
+   "figli": [],
+   "foglia": true
+  }
+ ]
+}

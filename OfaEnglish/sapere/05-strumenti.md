@@ -17,6 +17,7 @@ Tutti in Python 3; rendono in Chromium con Playwright (`render.py`). Si lanciano
 | File | Cosa fa |
 |---|---|
 | `estrai.py` (+ `sorgenti.json`) | ritaglia gli elementi dai fogli del kit, toglie il fondo (unmatting), palette |
+| `estrai_concept.py` (+ `modelli/9-41.png`) | trova da solo gli elementi nelle immagini di `design-concept/` (taglio XY, schermate via «9:41»), vedi `08-concept.md` |
 | `griglia.py` | originale ingrandito con la griglia delle coordinate, per disegnare |
 | `livelli.py`, `modifica.py` | parti con i pixel originali e loro modifica (raster) |
 
