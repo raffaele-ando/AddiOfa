@@ -1,0 +1,3833 @@
+{
+"00.001": {
+"stato": "non-contato"
+},
+"00.002": {
+"stato": "non-contato"
+},
+"00.003": {
+"stato": "non-contato"
+},
+"01.001": {
+"stato": "non-contato"
+},
+"01.002": {
+"stato": "non-contato"
+},
+"01.003": {
+"stato": "non-contato"
+},
+"02.001": {
+"stato": "non-contato"
+},
+"02.002": {
+"stato": "non-contato"
+},
+"02.003": {
+"stato": "non-contato"
+},
+"02.004": {
+"stato": "non-contato"
+},
+"02.005": {
+"stato": "non-contato"
+},
+"02.006": {
+"stato": "non-contato"
+},
+"02.007": {
+"stato": "non-contato"
+},
+"02.008": {
+"stato": "non-contato"
+},
+"02.009": {
+"stato": "non-contato"
+},
+"02.010": {
+"stato": "non-contato"
+},
+"02.011": {
+"stato": "non-contato"
+},
+"02.012": {
+"stato": "non-contato"
+},
+"02.013": {
+"stato": "non-contato"
+},
+"02.014": {
+"stato": "non-contato"
+},
+"03.001": {
+"stato": "non-contato"
+},
+"04.001": {
+"stato": "non-contato"
+},
+"05.001": {
+"stato": "non-contato"
+},
+"05.002": {
+"stato": "non-contato"
+},
+"05.003": {
+"stato": "non-contato"
+},
+"05.004": {
+"stato": "non-contato"
+},
+"05.005": {
+"stato": "non-contato"
+},
+"05.006": {
+"stato": "non-contato"
+},
+"05.007": {
+"stato": "non-contato"
+},
+"05.008": {
+"stato": "non-contato"
+},
+"05.009": {
+"stato": "non-contato"
+},
+"05.010": {
+"stato": "non-contato"
+},
+"05.011": {
+"stato": "non-contato"
+},
+"05.012": {
+"stato": "non-contato"
+},
+"05.013": {
+"stato": "non-contato"
+},
+"06.001": {
+"stato": "non-contato"
+},
+"06.002": {
+"stato": "non-contato"
+},
+"06.003": {
+"stato": "non-contato"
+},
+"06.004": {
+"stato": "non-contato"
+},
+"06.005": {
+"stato": "non-contato"
+},
+"06.006": {
+"stato": "non-contato"
+},
+"06.007": {
+"stato": "non-contato"
+},
+"06.008": {
+"stato": "non-contato"
+},
+"06.009": {
+"stato": "non-contato"
+},
+"06.010": {
+"stato": "non-contato"
+},
+"06.011": {
+"stato": "non-contato"
+},
+"06.012": {
+"stato": "non-contato"
+},
+"06.013": {
+"stato": "non-contato"
+},
+"06.014": {
+"stato": "non-contato"
+},
+"07.001": {
+"stato": "non-contato"
+},
+"07.002": {
+"stato": "non-contato"
+},
+"07.003": {
+"stato": "non-contato"
+},
+"07.004": {
+"stato": "non-contato"
+},
+"07.005": {
+"stato": "non-contato"
+},
+"07.006": {
+"stato": "non-contato"
+},
+"07.007": {
+"stato": "non-contato"
+},
+"07.008": {
+"stato": "non-contato"
+},
+"07.009": {
+"stato": "non-contato"
+},
+"07.010": {
+"stato": "non-contato"
+},
+"07.011": {
+"stato": "non-contato"
+},
+"07.012": {
+"stato": "non-contato"
+},
+"07.013": {
+"stato": "non-contato"
+},
+"07.014": {
+"stato": "non-contato"
+},
+"07.015": {
+"stato": "non-contato"
+},
+"07.016": {
+"stato": "non-contato"
+},
+"07.017": {
+"stato": "non-contato"
+},
+"07.018": {
+"stato": "non-contato"
+},
+"07.019": {
+"stato": "non-contato"
+},
+"07.020": {
+"stato": "non-contato"
+},
+"07.021": {
+"stato": "non-contato"
+},
+"07.022": {
+"stato": "non-contato"
+},
+"07.023": {
+"stato": "non-contato"
+},
+"07.024": {
+"stato": "non-contato"
+},
+"07.025": {
+"stato": "non-contato"
+},
+"07.026": {
+"stato": "non-contato"
+},
+"07.027": {
+"stato": "non-contato"
+},
+"07.028": {
+"stato": "non-contato"
+},
+"07.029": {
+"stato": "non-contato"
+},
+"07.030": {
+"stato": "non-contato"
+},
+"07.031": {
+"stato": "non-contato"
+},
+"07.032": {
+"stato": "non-contato"
+},
+"07.033": {
+"stato": "non-contato"
+},
+"07.034": {
+"stato": "non-contato"
+},
+"07.035": {
+"stato": "non-contato"
+},
+"07.036": {
+"stato": "non-contato"
+},
+"07.037": {
+"stato": "non-contato"
+},
+"07.038": {
+"stato": "non-contato"
+},
+"07.039": {
+"stato": "non-contato"
+},
+"07.040": {
+"stato": "non-contato"
+},
+"07.041": {
+"stato": "non-contato"
+},
+"07.042": {
+"stato": "non-contato"
+},
+"07.043": {
+"stato": "non-contato"
+},
+"07.044": {
+"stato": "non-contato"
+},
+"07.045": {
+"stato": "non-contato"
+},
+"07.046": {
+"stato": "non-contato"
+},
+"07.047": {
+"stato": "non-contato"
+},
+"07.048": {
+"stato": "non-contato"
+},
+"07.049": {
+"stato": "non-contato"
+},
+"07.050": {
+"stato": "non-contato"
+},
+"07.051": {
+"stato": "non-contato"
+},
+"07.052": {
+"stato": "non-contato"
+},
+"07.053": {
+"stato": "non-contato"
+},
+"07.054": {
+"stato": "non-contato"
+},
+"07.055": {
+"stato": "non-contato"
+},
+"07.056": {
+"stato": "non-contato"
+},
+"07.057": {
+"stato": "non-contato"
+},
+"07.058": {
+"stato": "non-contato"
+},
+"07.059": {
+"stato": "non-contato"
+},
+"07.060": {
+"stato": "non-contato"
+},
+"07.061": {
+"stato": "non-contato"
+},
+"07.062": {
+"stato": "non-contato"
+},
+"07.063": {
+"stato": "non-contato"
+},
+"07.064": {
+"stato": "non-contato"
+},
+"07.065": {
+"stato": "non-contato"
+},
+"07.066": {
+"stato": "non-contato"
+},
+"07.067": {
+"stato": "non-contato"
+},
+"07.068": {
+"stato": "non-contato"
+},
+"08.001": {
+"stato": "non-contato"
+},
+"08.002": {
+"stato": "non-contato"
+},
+"08.003": {
+"stato": "non-contato"
+},
+"08.004": {
+"stato": "non-contato"
+},
+"08.005": {
+"stato": "non-contato"
+},
+"08.006": {
+"stato": "non-contato"
+},
+"08.007": {
+"stato": "non-contato"
+},
+"08.008": {
+"stato": "non-contato"
+},
+"08.009": {
+"stato": "non-contato"
+},
+"08.010": {
+"stato": "non-contato"
+},
+"08.011": {
+"stato": "non-contato"
+},
+"08.012": {
+"stato": "non-contato"
+},
+"08.013": {
+"stato": "non-contato"
+},
+"08.014": {
+"stato": "non-contato"
+},
+"08.015": {
+"stato": "non-contato"
+},
+"08.016": {
+"stato": "non-contato"
+},
+"08.017": {
+"stato": "non-contato"
+},
+"08.018": {
+"stato": "non-contato"
+},
+"08.019": {
+"stato": "non-contato"
+},
+"08.020": {
+"stato": "non-contato"
+},
+"08.021": {
+"stato": "non-contato"
+},
+"08.022": {
+"stato": "non-contato"
+},
+"08.023": {
+"stato": "non-contato"
+},
+"08.024": {
+"stato": "non-contato"
+},
+"08.025": {
+"stato": "non-contato"
+},
+"08.026": {
+"stato": "non-contato"
+},
+"08.027": {
+"stato": "non-contato"
+},
+"08.028": {
+"stato": "non-contato"
+},
+"08.029": {
+"stato": "non-contato"
+},
+"08.030": {
+"stato": "non-contato"
+},
+"08.031": {
+"stato": "non-contato"
+},
+"08.032": {
+"stato": "non-contato"
+},
+"08.033": {
+"stato": "non-contato"
+},
+"08.034": {
+"stato": "non-contato"
+},
+"08.035": {
+"stato": "non-contato"
+},
+"08.036": {
+"stato": "non-contato"
+},
+"08.037": {
+"stato": "non-contato"
+},
+"08.038": {
+"stato": "non-contato"
+},
+"08.039": {
+"stato": "non-contato"
+},
+"08.040": {
+"stato": "non-contato"
+},
+"08.041": {
+"stato": "non-contato"
+},
+"08.042": {
+"stato": "non-contato"
+},
+"08.043": {
+"stato": "non-contato"
+},
+"08.044": {
+"stato": "non-contato"
+},
+"08.045": {
+"stato": "non-contato"
+},
+"08.046": {
+"stato": "non-contato"
+},
+"08.047": {
+"stato": "non-contato"
+},
+"08.048": {
+"stato": "non-contato"
+},
+"08.049": {
+"stato": "non-contato"
+},
+"08.050": {
+"stato": "non-contato"
+},
+"08.051": {
+"stato": "non-contato"
+},
+"08.052": {
+"stato": "non-contato"
+},
+"08.053": {
+"stato": "non-contato"
+},
+"08.054": {
+"stato": "non-contato"
+},
+"08.055": {
+"stato": "non-contato"
+},
+"08.056": {
+"stato": "non-contato"
+},
+"08.057": {
+"stato": "non-contato"
+},
+"08.058": {
+"stato": "non-contato"
+},
+"08.059": {
+"stato": "non-contato"
+},
+"08.060": {
+"stato": "non-contato"
+},
+"08.061": {
+"stato": "non-contato"
+},
+"08.062": {
+"stato": "non-contato"
+},
+"08.063": {
+"stato": "non-contato"
+},
+"08.064": {
+"stato": "non-contato"
+},
+"08.065": {
+"stato": "non-contato"
+},
+"08.066": {
+"stato": "non-contato"
+},
+"08.067": {
+"stato": "non-contato"
+},
+"08.068": {
+"stato": "non-contato"
+},
+"08.069": {
+"stato": "non-contato"
+},
+"08.070": {
+"stato": "non-contato"
+},
+"08.071": {
+"stato": "non-contato"
+},
+"08.072": {
+"stato": "non-contato"
+},
+"08.073": {
+"stato": "non-contato"
+},
+"08.074": {
+"stato": "non-contato"
+},
+"08.075": {
+"stato": "non-contato"
+},
+"08.076": {
+"stato": "non-contato"
+},
+"09.001": {
+"stato": "non-contato"
+},
+"09.002": {
+"stato": "non-contato"
+},
+"09.003": {
+"stato": "non-contato"
+},
+"09.004": {
+"stato": "non-contato"
+},
+"09.005": {
+"stato": "non-contato"
+},
+"09.006": {
+"stato": "non-contato"
+},
+"10.001": {
+"stato": "non-contato"
+},
+"10.002": {
+"stato": "non-contato"
+},
+"10.003": {
+"stato": "non-contato"
+},
+"10.004": {
+"stato": "non-contato"
+},
+"10.005": {
+"stato": "non-contato"
+},
+"10.006": {
+"stato": "non-contato"
+},
+"11.001": {
+"stato": "non-contato"
+},
+"11.002": {
+"stato": "non-contato"
+},
+"11.003": {
+"stato": "non-contato"
+},
+"12.001": {
+"stato": "non-contato"
+},
+"13.001": {
+"stato": "non-contato"
+},
+"13.002": {
+"stato": "non-contato"
+},
+"13.003": {
+"stato": "non-contato"
+},
+"13.004": {
+"stato": "non-contato"
+},
+"13.005": {
+"stato": "non-contato"
+},
+"13.006": {
+"stato": "non-contato"
+},
+"13.007": {
+"stato": "non-contato"
+},
+"13.008": {
+"stato": "non-contato"
+},
+"13.009": {
+"stato": "non-contato"
+},
+"13.010": {
+"stato": "non-contato"
+},
+"13.011": {
+"stato": "non-contato"
+},
+"13.012": {
+"stato": "non-contato"
+},
+"13.013": {
+"stato": "non-contato"
+},
+"14.001": {
+"stato": "non-contato"
+},
+"15.001": {
+"stato": "non-contato"
+},
+"15.002": {
+"stato": "non-contato"
+},
+"15.003": {
+"stato": "non-contato"
+},
+"15.004": {
+"stato": "non-contato"
+},
+"15.005": {
+"stato": "non-contato"
+},
+"15.006": {
+"stato": "non-contato"
+},
+"15.007": {
+"stato": "non-contato"
+},
+"15.008": {
+"stato": "non-contato"
+},
+"15.009": {
+"stato": "non-contato"
+},
+"15.010": {
+"stato": "non-contato"
+},
+"15.011": {
+"stato": "non-contato"
+},
+"15.012": {
+"stato": "non-contato"
+},
+"15.013": {
+"stato": "non-contato"
+},
+"15.014": {
+"stato": "non-contato"
+},
+"15.015": {
+"stato": "non-contato"
+},
+"15.016": {
+"stato": "non-contato"
+},
+"15.017": {
+"stato": "non-contato"
+},
+"15.018": {
+"stato": "non-contato"
+},
+"15.019": {
+"stato": "non-contato"
+},
+"15.020": {
+"stato": "non-contato"
+},
+"15.021": {
+"stato": "non-contato"
+},
+"15.022": {
+"stato": "non-contato"
+},
+"15.023": {
+"stato": "non-contato"
+},
+"15.024": {
+"stato": "non-contato"
+},
+"15.025": {
+"stato": "non-contato"
+},
+"15.026": {
+"stato": "non-contato"
+},
+"15.027": {
+"stato": "non-contato"
+},
+"15.028": {
+"stato": "non-contato"
+},
+"15.029": {
+"stato": "non-contato"
+},
+"15.030": {
+"stato": "non-contato"
+},
+"15.031": {
+"stato": "non-contato"
+},
+"15.032": {
+"stato": "non-contato"
+},
+"15.033": {
+"stato": "non-contato"
+},
+"15.034": {
+"stato": "non-contato"
+},
+"15.035": {
+"stato": "non-contato"
+},
+"15.036": {
+"stato": "non-contato"
+},
+"15.037": {
+"stato": "non-contato"
+},
+"15.038": {
+"stato": "non-contato"
+},
+"15.039": {
+"stato": "non-contato"
+},
+"15.040": {
+"stato": "non-contato"
+},
+"15.041": {
+"stato": "non-contato"
+},
+"15.042": {
+"stato": "non-contato"
+},
+"15.043": {
+"stato": "non-contato"
+},
+"15.044": {
+"stato": "non-contato"
+},
+"15.045": {
+"stato": "non-contato"
+},
+"15.046": {
+"stato": "non-contato"
+},
+"15.047": {
+"stato": "non-contato"
+},
+"15.048": {
+"stato": "non-contato"
+},
+"15.049": {
+"stato": "non-contato"
+},
+"15.050": {
+"stato": "non-contato"
+},
+"15.051": {
+"stato": "non-contato"
+},
+"15.052": {
+"stato": "non-contato"
+},
+"15.053": {
+"stato": "non-contato"
+},
+"15.054": {
+"stato": "non-contato"
+},
+"15.055": {
+"stato": "non-contato"
+},
+"15.056": {
+"stato": "non-contato"
+},
+"15.057": {
+"stato": "non-contato"
+},
+"15.058": {
+"stato": "non-contato"
+},
+"15.059": {
+"stato": "non-contato"
+},
+"15.060": {
+"stato": "non-contato"
+},
+"15.061": {
+"stato": "non-contato"
+},
+"15.062": {
+"stato": "non-contato"
+},
+"15.063": {
+"stato": "non-contato"
+},
+"15.064": {
+"stato": "non-contato"
+},
+"15.065": {
+"stato": "non-contato"
+},
+"15.066": {
+"stato": "non-contato"
+},
+"15.067": {
+"stato": "non-contato"
+},
+"15.068": {
+"stato": "non-contato"
+},
+"15.069": {
+"stato": "non-contato"
+},
+"15.070": {
+"stato": "non-contato"
+},
+"15.071": {
+"stato": "non-contato"
+},
+"15.072": {
+"stato": "non-contato"
+},
+"15.073": {
+"stato": "non-contato"
+},
+"15.074": {
+"stato": "non-contato"
+},
+"15.075": {
+"stato": "non-contato"
+},
+"15.076": {
+"stato": "non-contato"
+},
+"16.001": {
+"stato": "non-contato"
+},
+"16.002": {
+"stato": "non-contato"
+},
+"16.003": {
+"stato": "non-contato"
+},
+"16.004": {
+"stato": "non-contato"
+},
+"16.005": {
+"stato": "non-contato"
+},
+"16.006": {
+"stato": "non-contato"
+},
+"16.007": {
+"stato": "non-contato"
+},
+"16.008": {
+"stato": "non-contato"
+},
+"16.009": {
+"stato": "non-contato"
+},
+"16.010": {
+"stato": "non-contato"
+},
+"16.011": {
+"stato": "non-contato"
+},
+"16.012": {
+"stato": "non-contato"
+},
+"16.013": {
+"stato": "non-contato"
+},
+"16.014": {
+"stato": "non-contato"
+},
+"16.015": {
+"stato": "non-contato"
+},
+"16.016": {
+"stato": "non-contato"
+},
+"16.017": {
+"stato": "non-contato"
+},
+"16.018": {
+"stato": "non-contato"
+},
+"16.019": {
+"stato": "non-contato"
+},
+"16.020": {
+"stato": "non-contato"
+},
+"16.021": {
+"stato": "non-contato"
+},
+"16.022": {
+"stato": "non-contato"
+},
+"16.023": {
+"stato": "non-contato"
+},
+"16.024": {
+"stato": "non-contato"
+},
+"16.025": {
+"stato": "non-contato"
+},
+"16.026": {
+"stato": "non-contato"
+},
+"16.027": {
+"stato": "non-contato"
+},
+"16.028": {
+"stato": "non-contato"
+},
+"16.029": {
+"stato": "non-contato"
+},
+"16.030": {
+"stato": "non-contato"
+},
+"16.031": {
+"stato": "non-contato"
+},
+"16.032": {
+"stato": "non-contato"
+},
+"16.033": {
+"stato": "non-contato"
+},
+"16.034": {
+"stato": "non-contato"
+},
+"16.035": {
+"stato": "non-contato"
+},
+"16.036": {
+"stato": "non-contato"
+},
+"16.037": {
+"stato": "non-contato"
+},
+"16.038": {
+"stato": "non-contato"
+},
+"16.039": {
+"stato": "non-contato"
+},
+"16.040": {
+"stato": "non-contato"
+},
+"16.041": {
+"stato": "non-contato"
+},
+"16.042": {
+"stato": "non-contato"
+},
+"16.043": {
+"stato": "non-contato"
+},
+"16.044": {
+"stato": "non-contato"
+},
+"16.045": {
+"stato": "non-contato"
+},
+"16.046": {
+"stato": "non-contato"
+},
+"16.047": {
+"stato": "non-contato"
+},
+"16.048": {
+"stato": "non-contato"
+},
+"16.049": {
+"stato": "non-contato"
+},
+"16.050": {
+"stato": "non-contato"
+},
+"16.051": {
+"stato": "non-contato"
+},
+"16.052": {
+"stato": "non-contato"
+},
+"16.053": {
+"stato": "non-contato"
+},
+"16.054": {
+"stato": "non-contato"
+},
+"16.055": {
+"stato": "non-contato"
+},
+"16.056": {
+"stato": "non-contato"
+},
+"16.057": {
+"stato": "non-contato"
+},
+"16.058": {
+"stato": "non-contato"
+},
+"16.059": {
+"stato": "non-contato"
+},
+"16.060": {
+"stato": "non-contato"
+},
+"16.061": {
+"stato": "non-contato"
+},
+"16.062": {
+"stato": "non-contato"
+},
+"16.063": {
+"stato": "non-contato"
+},
+"16.064": {
+"stato": "non-contato"
+},
+"16.065": {
+"stato": "non-contato"
+},
+"16.066": {
+"stato": "non-contato"
+},
+"16.067": {
+"stato": "non-contato"
+},
+"16.068": {
+"stato": "non-contato"
+},
+"16.069": {
+"stato": "non-contato"
+},
+"16.070": {
+"stato": "non-contato"
+},
+"16.071": {
+"stato": "non-contato"
+},
+"16.072": {
+"stato": "non-contato"
+},
+"16.073": {
+"stato": "non-contato"
+},
+"17.001": {
+"stato": "non-contato"
+},
+"17.002": {
+"stato": "non-contato"
+},
+"17.003": {
+"stato": "non-contato"
+},
+"17.004": {
+"stato": "non-contato"
+},
+"17.005": {
+"stato": "non-contato"
+},
+"17.006": {
+"stato": "non-contato"
+},
+"17.007": {
+"stato": "non-contato"
+},
+"17.008": {
+"stato": "non-contato"
+},
+"17.009": {
+"stato": "non-contato"
+},
+"17.010": {
+"stato": "non-contato"
+},
+"17.011": {
+"stato": "non-contato"
+},
+"17.012": {
+"stato": "non-contato"
+},
+"17.013": {
+"stato": "non-contato"
+},
+"17.014": {
+"stato": "non-contato"
+},
+"17.015": {
+"stato": "non-contato"
+},
+"17.016": {
+"stato": "non-contato"
+},
+"17.017": {
+"stato": "non-contato"
+},
+"17.018": {
+"stato": "non-contato"
+},
+"17.019": {
+"stato": "non-contato"
+},
+"17.020": {
+"stato": "non-contato"
+},
+"17.021": {
+"stato": "non-contato"
+},
+"17.022": {
+"stato": "non-contato"
+},
+"17.023": {
+"stato": "non-contato"
+},
+"17.024": {
+"stato": "non-contato"
+},
+"17.025": {
+"stato": "non-contato"
+},
+"17.026": {
+"stato": "non-contato"
+},
+"17.027": {
+"stato": "non-contato"
+},
+"17.028": {
+"stato": "non-contato"
+},
+"17.029": {
+"stato": "non-contato"
+},
+"17.030": {
+"stato": "non-contato"
+},
+"17.031": {
+"stato": "non-contato"
+},
+"17.032": {
+"stato": "non-contato"
+},
+"17.033": {
+"stato": "non-contato"
+},
+"17.034": {
+"stato": "non-contato"
+},
+"17.035": {
+"stato": "non-contato"
+},
+"17.036": {
+"stato": "non-contato"
+},
+"17.037": {
+"stato": "non-contato"
+},
+"17.038": {
+"stato": "non-contato"
+},
+"17.039": {
+"stato": "non-contato"
+},
+"17.040": {
+"stato": "non-contato"
+},
+"17.041": {
+"stato": "non-contato"
+},
+"17.042": {
+"stato": "non-contato"
+},
+"17.043": {
+"stato": "non-contato"
+},
+"17.044": {
+"stato": "non-contato"
+},
+"17.045": {
+"stato": "non-contato"
+},
+"17.046": {
+"stato": "non-contato"
+},
+"17.047": {
+"stato": "non-contato"
+},
+"17.048": {
+"stato": "non-contato"
+},
+"17.049": {
+"stato": "non-contato"
+},
+"17.050": {
+"stato": "non-contato"
+},
+"17.051": {
+"stato": "non-contato"
+},
+"17.052": {
+"stato": "non-contato"
+},
+"17.053": {
+"stato": "non-contato"
+},
+"17.054": {
+"stato": "non-contato"
+},
+"17.055": {
+"stato": "non-contato"
+},
+"17.056": {
+"stato": "non-contato"
+},
+"17.057": {
+"stato": "non-contato"
+},
+"17.058": {
+"stato": "non-contato"
+},
+"17.059": {
+"stato": "non-contato"
+},
+"17.060": {
+"stato": "non-contato"
+},
+"17.061": {
+"stato": "non-contato"
+},
+"17.062": {
+"stato": "non-contato"
+},
+"17.063": {
+"stato": "non-contato"
+},
+"17.064": {
+"stato": "non-contato"
+},
+"17.065": {
+"stato": "non-contato"
+},
+"17.066": {
+"stato": "non-contato"
+},
+"17.067": {
+"stato": "non-contato"
+},
+"17.068": {
+"stato": "non-contato"
+},
+"17.069": {
+"stato": "non-contato"
+},
+"17.070": {
+"stato": "non-contato"
+},
+"17.071": {
+"stato": "non-contato"
+},
+"17.072": {
+"stato": "non-contato"
+},
+"17.073": {
+"stato": "non-contato"
+},
+"17.074": {
+"stato": "non-contato"
+},
+"17.075": {
+"stato": "non-contato"
+},
+"17.076": {
+"stato": "non-contato"
+},
+"17.077": {
+"stato": "non-contato"
+},
+"17.078": {
+"stato": "non-contato"
+},
+"17.079": {
+"stato": "non-contato"
+},
+"18.001": {
+"stato": "non-contato"
+},
+"18.002": {
+"stato": "non-contato"
+},
+"18.003": {
+"stato": "non-contato"
+},
+"18.004": {
+"stato": "non-contato"
+},
+"18.005": {
+"stato": "non-contato"
+},
+"18.006": {
+"stato": "non-contato"
+},
+"18.007": {
+"stato": "non-contato"
+},
+"18.008": {
+"stato": "non-contato"
+},
+"18.009": {
+"stato": "non-contato"
+},
+"19.001": {
+"stato": "non-contato"
+},
+"19.002": {
+"stato": "non-contato"
+},
+"19.003": {
+"stato": "non-contato"
+},
+"19.004": {
+"stato": "non-contato"
+},
+"19.005": {
+"stato": "non-contato"
+},
+"19.006": {
+"stato": "non-contato"
+},
+"19.007": {
+"stato": "non-contato"
+},
+"19.008": {
+"stato": "non-contato"
+},
+"19.009": {
+"stato": "non-contato"
+},
+"20.001": {
+"stato": "non-contato"
+},
+"20.002": {
+"stato": "non-contato"
+},
+"20.003": {
+"stato": "non-contato"
+},
+"20.004": {
+"stato": "non-contato"
+},
+"20.005": {
+"stato": "non-contato"
+},
+"20.006": {
+"stato": "non-contato"
+},
+"21.001": {
+"stato": "non-contato"
+},
+"22.001": {
+"stato": "non-contato"
+},
+"22.002": {
+"stato": "non-contato"
+},
+"23.001": {
+"stato": "non-contato"
+},
+"23.002": {
+"stato": "non-contato"
+},
+"23.003": {
+"stato": "non-contato"
+},
+"23.004": {
+"stato": "non-contato"
+},
+"23.005": {
+"stato": "non-contato"
+},
+"23.006": {
+"stato": "non-contato"
+},
+"23.007": {
+"stato": "non-contato"
+},
+"23.008": {
+"stato": "non-contato"
+},
+"23.009": {
+"stato": "non-contato"
+},
+"23.010": {
+"stato": "non-contato"
+},
+"23.011": {
+"stato": "non-contato"
+},
+"23.012": {
+"stato": "non-contato"
+},
+"23.013": {
+"stato": "non-contato"
+},
+"23.014": {
+"stato": "non-contato"
+},
+"23.015": {
+"stato": "non-contato"
+},
+"23.016": {
+"stato": "non-contato"
+},
+"23.017": {
+"stato": "non-contato"
+},
+"23.018": {
+"stato": "non-contato"
+},
+"23.019": {
+"stato": "non-contato"
+},
+"23.020": {
+"stato": "non-contato"
+},
+"23.021": {
+"stato": "non-contato"
+},
+"23.022": {
+"stato": "non-contato"
+},
+"23.023": {
+"stato": "non-contato"
+},
+"23.024": {
+"stato": "non-contato"
+},
+"23.025": {
+"stato": "non-contato"
+},
+"23.026": {
+"stato": "non-contato"
+},
+"23.027": {
+"stato": "non-contato"
+},
+"23.028": {
+"stato": "non-contato"
+},
+"23.029": {
+"stato": "non-contato"
+},
+"23.030": {
+"stato": "non-contato"
+},
+"23.031": {
+"stato": "non-contato"
+},
+"23.032": {
+"stato": "non-contato"
+},
+"23.033": {
+"stato": "non-contato"
+},
+"23.034": {
+"stato": "non-contato"
+},
+"23.035": {
+"stato": "non-contato"
+},
+"23.036": {
+"stato": "non-contato"
+},
+"23.037": {
+"stato": "non-contato"
+},
+"23.038": {
+"stato": "non-contato"
+},
+"23.039": {
+"stato": "non-contato"
+},
+"23.040": {
+"stato": "non-contato"
+},
+"23.041": {
+"stato": "non-contato"
+},
+"23.042": {
+"stato": "non-contato"
+},
+"23.043": {
+"stato": "non-contato"
+},
+"23.044": {
+"stato": "non-contato"
+},
+"23.045": {
+"stato": "non-contato"
+},
+"23.046": {
+"stato": "non-contato"
+},
+"23.047": {
+"stato": "non-contato"
+},
+"23.048": {
+"stato": "non-contato"
+},
+"23.049": {
+"stato": "non-contato"
+},
+"23.050": {
+"stato": "non-contato"
+},
+"23.051": {
+"stato": "non-contato"
+},
+"23.052": {
+"stato": "non-contato"
+},
+"23.053": {
+"stato": "non-contato"
+},
+"23.054": {
+"stato": "non-contato"
+},
+"23.055": {
+"stato": "non-contato"
+},
+"23.056": {
+"stato": "non-contato"
+},
+"23.057": {
+"stato": "non-contato"
+},
+"23.058": {
+"stato": "non-contato"
+},
+"23.059": {
+"stato": "non-contato"
+},
+"23.060": {
+"stato": "non-contato"
+},
+"23.061": {
+"stato": "non-contato"
+},
+"23.062": {
+"stato": "non-contato"
+},
+"23.063": {
+"stato": "non-contato"
+},
+"23.064": {
+"stato": "non-contato"
+},
+"23.065": {
+"stato": "non-contato"
+},
+"23.066": {
+"stato": "non-contato"
+},
+"23.067": {
+"stato": "non-contato"
+},
+"23.068": {
+"stato": "non-contato"
+},
+"23.069": {
+"stato": "non-contato"
+},
+"23.070": {
+"stato": "non-contato"
+},
+"24.001": {
+"stato": "non-contato"
+},
+"25.001": {
+"stato": "non-contato"
+},
+"25.002": {
+"stato": "non-contato"
+},
+"25.003": {
+"stato": "non-contato"
+},
+"25.004": {
+"stato": "non-contato"
+},
+"25.005": {
+"stato": "non-contato"
+},
+"25.006": {
+"stato": "non-contato"
+},
+"25.007": {
+"stato": "non-contato"
+},
+"25.008": {
+"stato": "non-contato"
+},
+"26.001": {
+"stato": "non-contato"
+},
+"26.002": {
+"stato": "non-contato"
+},
+"26.003": {
+"stato": "non-contato"
+},
+"26.004": {
+"stato": "non-contato"
+},
+"26.005": {
+"stato": "non-contato"
+},
+"26.006": {
+"stato": "non-contato"
+},
+"26.007": {
+"stato": "non-contato"
+},
+"26.008": {
+"stato": "non-contato"
+},
+"26.009": {
+"stato": "non-contato"
+},
+"26.010": {
+"stato": "non-contato"
+},
+"26.011": {
+"stato": "non-contato"
+},
+"26.012": {
+"stato": "non-contato"
+},
+"26.013": {
+"stato": "non-contato"
+},
+"26.014": {
+"stato": "non-contato"
+},
+"26.015": {
+"stato": "non-contato"
+},
+"26.016": {
+"stato": "non-contato"
+},
+"26.017": {
+"stato": "non-contato"
+},
+"26.018": {
+"stato": "non-contato"
+},
+"26.019": {
+"stato": "non-contato"
+},
+"26.020": {
+"stato": "non-contato"
+},
+"26.021": {
+"stato": "non-contato"
+},
+"26.022": {
+"stato": "non-contato"
+},
+"26.023": {
+"stato": "non-contato"
+},
+"26.024": {
+"stato": "non-contato"
+},
+"26.025": {
+"stato": "non-contato"
+},
+"26.026": {
+"stato": "non-contato"
+},
+"26.027": {
+"stato": "non-contato"
+},
+"26.028": {
+"stato": "non-contato"
+},
+"26.029": {
+"stato": "non-contato"
+},
+"26.030": {
+"stato": "non-contato"
+},
+"26.031": {
+"stato": "non-contato"
+},
+"26.032": {
+"stato": "non-contato"
+},
+"26.033": {
+"stato": "non-contato"
+},
+"26.034": {
+"stato": "non-contato"
+},
+"26.035": {
+"stato": "non-contato"
+},
+"26.036": {
+"stato": "non-contato"
+},
+"26.037": {
+"stato": "non-contato"
+},
+"26.038": {
+"stato": "non-contato"
+},
+"26.039": {
+"stato": "non-contato"
+},
+"26.040": {
+"stato": "non-contato"
+},
+"26.041": {
+"stato": "non-contato"
+},
+"26.042": {
+"stato": "non-contato"
+},
+"27.001": {
+"stato": "non-contato"
+},
+"27.002": {
+"stato": "non-contato"
+},
+"27.003": {
+"stato": "non-contato"
+},
+"27.004": {
+"stato": "non-contato"
+},
+"27.005": {
+"stato": "non-contato"
+},
+"27.006": {
+"stato": "non-contato"
+},
+"27.007": {
+"stato": "non-contato"
+},
+"27.008": {
+"stato": "non-contato"
+},
+"27.009": {
+"stato": "non-contato"
+},
+"27.010": {
+"stato": "non-contato"
+},
+"27.011": {
+"stato": "non-contato"
+},
+"27.012": {
+"stato": "non-contato"
+},
+"27.013": {
+"stato": "non-contato"
+},
+"27.014": {
+"stato": "non-contato"
+},
+"27.015": {
+"stato": "non-contato"
+},
+"27.016": {
+"stato": "non-contato"
+},
+"27.017": {
+"stato": "non-contato"
+},
+"27.018": {
+"stato": "non-contato"
+},
+"27.019": {
+"stato": "non-contato"
+},
+"27.020": {
+"stato": "non-contato"
+},
+"27.021": {
+"stato": "non-contato"
+},
+"27.022": {
+"stato": "non-contato"
+},
+"27.023": {
+"stato": "non-contato"
+},
+"27.024": {
+"stato": "non-contato"
+},
+"27.025": {
+"stato": "non-contato"
+},
+"27.026": {
+"stato": "non-contato"
+},
+"27.027": {
+"stato": "non-contato"
+},
+"27.028": {
+"stato": "non-contato"
+},
+"27.029": {
+"stato": "non-contato"
+},
+"27.030": {
+"stato": "non-contato"
+},
+"27.031": {
+"stato": "non-contato"
+},
+"27.032": {
+"stato": "non-contato"
+},
+"27.033": {
+"stato": "non-contato"
+},
+"27.034": {
+"stato": "non-contato"
+},
+"27.035": {
+"stato": "non-contato"
+},
+"27.036": {
+"stato": "non-contato"
+},
+"27.037": {
+"stato": "non-contato"
+},
+"27.038": {
+"stato": "non-contato"
+},
+"27.039": {
+"stato": "non-contato"
+},
+"27.040": {
+"stato": "non-contato"
+},
+"27.041": {
+"stato": "non-contato"
+},
+"27.042": {
+"stato": "non-contato"
+},
+"27.043": {
+"stato": "non-contato"
+},
+"27.044": {
+"stato": "non-contato"
+},
+"27.045": {
+"stato": "non-contato"
+},
+"27.046": {
+"stato": "non-contato"
+},
+"27.047": {
+"stato": "non-contato"
+},
+"27.048": {
+"stato": "non-contato"
+},
+"27.049": {
+"stato": "non-contato"
+},
+"27.050": {
+"stato": "non-contato"
+},
+"27.051": {
+"stato": "non-contato"
+},
+"27.052": {
+"stato": "non-contato"
+},
+"27.053": {
+"stato": "non-contato"
+},
+"27.054": {
+"stato": "non-contato"
+},
+"27.055": {
+"stato": "non-contato"
+},
+"27.056": {
+"stato": "non-contato"
+},
+"27.057": {
+"stato": "non-contato"
+},
+"27.058": {
+"stato": "non-contato"
+},
+"27.059": {
+"stato": "non-contato"
+},
+"27.060": {
+"stato": "non-contato"
+},
+"27.061": {
+"stato": "non-contato"
+},
+"27.062": {
+"stato": "non-contato"
+},
+"27.063": {
+"stato": "non-contato"
+},
+"27.064": {
+"stato": "non-contato"
+},
+"27.065": {
+"stato": "non-contato"
+},
+"27.066": {
+"stato": "non-contato"
+},
+"27.067": {
+"stato": "non-contato"
+},
+"27.068": {
+"stato": "non-contato"
+},
+"27.069": {
+"stato": "non-contato"
+},
+"27.070": {
+"stato": "non-contato"
+},
+"28.001": {
+"stato": "non-contato"
+},
+"28.002": {
+"stato": "non-contato"
+},
+"28.003": {
+"stato": "non-contato"
+},
+"28.004": {
+"stato": "non-contato"
+},
+"28.005": {
+"stato": "non-contato"
+},
+"28.006": {
+"stato": "non-contato"
+},
+"28.007": {
+"stato": "non-contato"
+},
+"28.008": {
+"stato": "non-contato"
+},
+"28.009": {
+"stato": "non-contato"
+},
+"28.010": {
+"stato": "non-contato"
+},
+"28.011": {
+"stato": "non-contato"
+},
+"28.012": {
+"stato": "non-contato"
+},
+"28.013": {
+"stato": "non-contato"
+},
+"28.014": {
+"stato": "non-contato"
+},
+"28.015": {
+"stato": "non-contato"
+},
+"28.016": {
+"stato": "non-contato"
+},
+"28.017": {
+"stato": "non-contato"
+},
+"28.018": {
+"stato": "non-contato"
+},
+"28.019": {
+"stato": "non-contato"
+},
+"28.020": {
+"stato": "non-contato"
+},
+"28.021": {
+"stato": "non-contato"
+},
+"28.022": {
+"stato": "non-contato"
+},
+"28.023": {
+"stato": "non-contato"
+},
+"28.024": {
+"stato": "non-contato"
+},
+"28.025": {
+"stato": "non-contato"
+},
+"28.026": {
+"stato": "non-contato"
+},
+"28.027": {
+"stato": "non-contato"
+},
+"28.028": {
+"stato": "non-contato"
+},
+"28.029": {
+"stato": "non-contato"
+},
+"28.030": {
+"stato": "non-contato"
+},
+"28.031": {
+"stato": "non-contato"
+},
+"28.032": {
+"stato": "non-contato"
+},
+"28.033": {
+"stato": "non-contato"
+},
+"28.034": {
+"stato": "non-contato"
+},
+"28.035": {
+"stato": "non-contato"
+},
+"28.036": {
+"stato": "non-contato"
+},
+"28.037": {
+"stato": "non-contato"
+},
+"28.038": {
+"stato": "non-contato"
+},
+"28.039": {
+"stato": "non-contato"
+},
+"28.040": {
+"stato": "non-contato"
+},
+"28.041": {
+"stato": "non-contato"
+},
+"28.042": {
+"stato": "non-contato"
+},
+"28.043": {
+"stato": "non-contato"
+},
+"28.044": {
+"stato": "non-contato"
+},
+"28.045": {
+"stato": "non-contato"
+},
+"28.046": {
+"stato": "non-contato"
+},
+"28.047": {
+"stato": "non-contato"
+},
+"28.048": {
+"stato": "non-contato"
+},
+"28.049": {
+"stato": "non-contato"
+},
+"28.050": {
+"stato": "non-contato"
+},
+"28.051": {
+"stato": "non-contato"
+},
+"28.052": {
+"stato": "non-contato"
+},
+"28.053": {
+"stato": "non-contato"
+},
+"28.054": {
+"stato": "non-contato"
+},
+"28.055": {
+"stato": "non-contato"
+},
+"28.056": {
+"stato": "non-contato"
+},
+"28.057": {
+"stato": "non-contato"
+},
+"28.058": {
+"stato": "non-contato"
+},
+"28.059": {
+"stato": "non-contato"
+},
+"28.060": {
+"stato": "non-contato"
+},
+"28.061": {
+"stato": "non-contato"
+},
+"28.062": {
+"stato": "non-contato"
+},
+"28.063": {
+"stato": "non-contato"
+},
+"28.064": {
+"stato": "non-contato"
+},
+"28.065": {
+"stato": "non-contato"
+},
+"28.066": {
+"stato": "non-contato"
+},
+"28.067": {
+"stato": "non-contato"
+},
+"28.068": {
+"stato": "non-contato"
+},
+"28.069": {
+"stato": "non-contato"
+},
+"28.070": {
+"stato": "non-contato"
+},
+"28.071": {
+"stato": "non-contato"
+},
+"28.072": {
+"stato": "non-contato"
+},
+"28.073": {
+"stato": "non-contato"
+},
+"28.074": {
+"stato": "non-contato"
+},
+"28.075": {
+"stato": "non-contato"
+},
+"28.076": {
+"stato": "non-contato"
+},
+"28.077": {
+"stato": "non-contato"
+},
+"28.078": {
+"stato": "non-contato"
+},
+"28.079": {
+"stato": "non-contato"
+},
+"28.080": {
+"stato": "non-contato"
+},
+"28.081": {
+"stato": "non-contato"
+},
+"28.082": {
+"stato": "non-contato"
+},
+"28.083": {
+"stato": "non-contato"
+},
+"28.084": {
+"stato": "non-contato"
+},
+"28.085": {
+"stato": "non-contato"
+},
+"28.086": {
+"stato": "non-contato"
+},
+"28.087": {
+"stato": "non-contato"
+},
+"28.088": {
+"stato": "non-contato"
+},
+"28.089": {
+"stato": "non-contato"
+},
+"28.090": {
+"stato": "non-contato"
+},
+"28.091": {
+"stato": "non-contato"
+},
+"28.092": {
+"stato": "non-contato"
+},
+"28.093": {
+"stato": "non-contato"
+},
+"28.094": {
+"stato": "non-contato"
+},
+"28.095": {
+"stato": "non-contato"
+},
+"28.096": {
+"stato": "non-contato"
+},
+"28.097": {
+"stato": "non-contato"
+},
+"28.098": {
+"stato": "non-contato"
+},
+"28.099": {
+"stato": "non-contato"
+},
+"28.100": {
+"stato": "non-contato"
+},
+"28.101": {
+"stato": "non-contato"
+},
+"28.102": {
+"stato": "non-contato"
+},
+"28.103": {
+"stato": "non-contato"
+},
+"28.104": {
+"stato": "non-contato"
+},
+"28.105": {
+"stato": "non-contato"
+},
+"28.106": {
+"stato": "non-contato"
+},
+"28.107": {
+"stato": "non-contato"
+},
+"28.108": {
+"stato": "non-contato"
+},
+"28.109": {
+"stato": "non-contato"
+},
+"28.110": {
+"stato": "non-contato"
+},
+"28.111": {
+"stato": "non-contato"
+},
+"28.112": {
+"stato": "non-contato"
+},
+"28.113": {
+"stato": "non-contato"
+},
+"28.114": {
+"stato": "non-contato"
+},
+"28.115": {
+"stato": "non-contato"
+},
+"28.116": {
+"stato": "non-contato"
+},
+"28.117": {
+"stato": "non-contato"
+},
+"28.118": {
+"stato": "non-contato"
+},
+"28.119": {
+"stato": "non-contato"
+},
+"28.120": {
+"stato": "non-contato"
+},
+"28.121": {
+"stato": "non-contato"
+},
+"28.122": {
+"stato": "non-contato"
+},
+"28.123": {
+"stato": "non-contato"
+},
+"28.124": {
+"stato": "non-contato"
+},
+"28.125": {
+"stato": "non-contato"
+},
+"28.126": {
+"stato": "non-contato"
+},
+"28.127": {
+"stato": "non-contato"
+},
+"28.128": {
+"stato": "non-contato"
+},
+"28.129": {
+"stato": "non-contato"
+},
+"28.130": {
+"stato": "non-contato"
+},
+"28.131": {
+"stato": "non-contato"
+},
+"28.132": {
+"stato": "non-contato"
+},
+"28.133": {
+"stato": "non-contato"
+},
+"28.134": {
+"stato": "non-contato"
+},
+"28.135": {
+"stato": "non-contato"
+},
+"28.136": {
+"stato": "non-contato"
+},
+"28.137": {
+"stato": "non-contato"
+},
+"28.138": {
+"stato": "non-contato"
+},
+"28.139": {
+"stato": "non-contato"
+},
+"28.140": {
+"stato": "non-contato"
+},
+"28.141": {
+"stato": "non-contato"
+},
+"28.142": {
+"stato": "non-contato"
+},
+"28.143": {
+"stato": "non-contato"
+},
+"28.144": {
+"stato": "non-contato"
+},
+"28.145": {
+"stato": "non-contato"
+},
+"28.146": {
+"stato": "non-contato"
+},
+"28.147": {
+"stato": "non-contato"
+},
+"28.148": {
+"stato": "non-contato"
+},
+"28.149": {
+"stato": "non-contato"
+},
+"28.150": {
+"stato": "non-contato"
+},
+"28.151": {
+"stato": "non-contato"
+},
+"28.152": {
+"stato": "non-contato"
+},
+"28.153": {
+"stato": "non-contato"
+},
+"28.154": {
+"stato": "non-contato"
+},
+"28.155": {
+"stato": "non-contato"
+},
+"28.156": {
+"stato": "non-contato"
+},
+"28.157": {
+"stato": "non-contato"
+},
+"28.158": {
+"stato": "non-contato"
+},
+"28.159": {
+"stato": "non-contato"
+},
+"28.160": {
+"stato": "non-contato"
+},
+"29.001": {
+"stato": "non-contato"
+},
+"29.002": {
+"stato": "non-contato"
+},
+"29.003": {
+"stato": "non-contato"
+},
+"29.004": {
+"stato": "non-contato"
+},
+"29.005": {
+"stato": "non-contato"
+},
+"29.006": {
+"stato": "non-contato"
+},
+"30.001": {
+"stato": "non-contato"
+},
+"30.002": {
+"stato": "non-contato"
+},
+"30.003": {
+"stato": "non-contato"
+},
+"30.004": {
+"stato": "non-contato"
+},
+"30.005": {
+"stato": "non-contato"
+},
+"30.006": {
+"stato": "non-contato"
+},
+"30.007": {
+"stato": "non-contato"
+},
+"30.008": {
+"stato": "non-contato"
+},
+"30.009": {
+"stato": "non-contato"
+},
+"30.010": {
+"stato": "non-contato"
+},
+"30.011": {
+"stato": "non-contato"
+},
+"30.012": {
+"stato": "non-contato"
+},
+"30.013": {
+"stato": "non-contato"
+},
+"30.014": {
+"stato": "non-contato"
+},
+"30.015": {
+"stato": "non-contato"
+},
+"30.016": {
+"stato": "non-contato"
+},
+"31.001": {
+"stato": "non-contato"
+},
+"31.002": {
+"stato": "non-contato"
+},
+"31.003": {
+"stato": "non-contato"
+},
+"31.004": {
+"stato": "non-contato"
+},
+"31.005": {
+"stato": "non-contato"
+},
+"31.006": {
+"stato": "non-contato"
+},
+"31.007": {
+"stato": "non-contato"
+},
+"31.008": {
+"stato": "non-contato"
+},
+"31.009": {
+"stato": "non-contato"
+},
+"31.010": {
+"stato": "non-contato"
+},
+"31.011": {
+"stato": "non-contato"
+},
+"31.012": {
+"stato": "non-contato"
+},
+"32.001": {
+"stato": "non-contato"
+},
+"33.001": {
+"stato": "non-contato"
+},
+"34.001": {
+"stato": "non-contato"
+},
+"34.002": {
+"stato": "non-contato"
+},
+"34.003": {
+"stato": "non-contato"
+},
+"34.004": {
+"stato": "non-contato"
+},
+"34.005": {
+"stato": "non-contato"
+},
+"34.006": {
+"stato": "non-contato"
+},
+"34.007": {
+"stato": "non-contato"
+},
+"34.008": {
+"stato": "non-contato"
+},
+"34.009": {
+"stato": "non-contato"
+},
+"34.010": {
+"stato": "non-contato"
+},
+"34.011": {
+"stato": "non-contato"
+},
+"34.012": {
+"stato": "non-contato"
+},
+"34.013": {
+"stato": "non-contato"
+},
+"34.014": {
+"stato": "non-contato"
+},
+"35.001": {
+"stato": "non-contato"
+},
+"35.002": {
+"stato": "non-contato"
+},
+"35.003": {
+"stato": "non-contato"
+},
+"35.004": {
+"stato": "non-contato"
+},
+"35.005": {
+"stato": "non-contato"
+},
+"35.006": {
+"stato": "non-contato"
+},
+"35.007": {
+"stato": "non-contato"
+},
+"35.008": {
+"stato": "non-contato"
+},
+"35.009": {
+"stato": "non-contato"
+},
+"35.010": {
+"stato": "non-contato"
+},
+"35.011": {
+"stato": "non-contato"
+},
+"35.012": {
+"stato": "non-contato"
+},
+"35.013": {
+"stato": "non-contato"
+},
+"35.014": {
+"stato": "non-contato"
+},
+"35.015": {
+"stato": "non-contato"
+},
+"35.016": {
+"stato": "non-contato"
+},
+"35.017": {
+"stato": "non-contato"
+},
+"35.018": {
+"stato": "non-contato"
+},
+"35.019": {
+"stato": "non-contato"
+},
+"35.020": {
+"stato": "non-contato"
+},
+"35.021": {
+"stato": "non-contato"
+},
+"35.022": {
+"stato": "non-contato"
+},
+"35.023": {
+"stato": "non-contato"
+},
+"35.024": {
+"stato": "non-contato"
+},
+"35.025": {
+"stato": "non-contato"
+},
+"35.026": {
+"stato": "non-contato"
+},
+"35.027": {
+"stato": "non-contato"
+},
+"35.028": {
+"stato": "non-contato"
+},
+"35.029": {
+"stato": "non-contato"
+},
+"35.030": {
+"stato": "non-contato"
+},
+"35.031": {
+"stato": "non-contato"
+},
+"35.032": {
+"stato": "non-contato"
+},
+"35.033": {
+"stato": "non-contato"
+},
+"35.034": {
+"stato": "non-contato"
+},
+"35.035": {
+"stato": "non-contato"
+},
+"35.036": {
+"stato": "non-contato"
+},
+"35.037": {
+"stato": "non-contato"
+},
+"35.038": {
+"stato": "non-contato"
+},
+"35.039": {
+"stato": "non-contato"
+},
+"35.040": {
+"stato": "non-contato"
+},
+"35.041": {
+"stato": "non-contato"
+},
+"35.042": {
+"stato": "non-contato"
+},
+"35.043": {
+"stato": "non-contato"
+},
+"35.044": {
+"stato": "non-contato"
+},
+"35.045": {
+"stato": "non-contato"
+},
+"35.046": {
+"stato": "non-contato"
+},
+"35.047": {
+"stato": "non-contato"
+},
+"35.048": {
+"stato": "non-contato"
+},
+"35.049": {
+"stato": "non-contato"
+},
+"35.050": {
+"stato": "non-contato"
+},
+"35.051": {
+"stato": "non-contato"
+},
+"35.052": {
+"stato": "non-contato"
+},
+"35.053": {
+"stato": "non-contato"
+},
+"35.054": {
+"stato": "non-contato"
+},
+"35.055": {
+"stato": "non-contato"
+},
+"35.056": {
+"stato": "non-contato"
+},
+"35.057": {
+"stato": "non-contato"
+},
+"35.058": {
+"stato": "non-contato"
+},
+"35.059": {
+"stato": "non-contato"
+},
+"35.060": {
+"stato": "non-contato"
+},
+"35.061": {
+"stato": "non-contato"
+},
+"35.062": {
+"stato": "non-contato"
+},
+"35.063": {
+"stato": "non-contato"
+},
+"35.064": {
+"stato": "non-contato"
+},
+"35.065": {
+"stato": "non-contato"
+},
+"35.066": {
+"stato": "non-contato"
+},
+"35.067": {
+"stato": "non-contato"
+},
+"35.068": {
+"stato": "non-contato"
+},
+"35.069": {
+"stato": "non-contato"
+},
+"35.070": {
+"stato": "non-contato"
+},
+"35.071": {
+"stato": "non-contato"
+},
+"35.072": {
+"stato": "non-contato"
+},
+"35.073": {
+"stato": "non-contato"
+},
+"35.074": {
+"stato": "non-contato"
+},
+"35.075": {
+"stato": "non-contato"
+},
+"35.076": {
+"stato": "non-contato"
+},
+"35.077": {
+"stato": "non-contato"
+},
+"35.078": {
+"stato": "non-contato"
+},
+"35.079": {
+"stato": "non-contato"
+},
+"35.080": {
+"stato": "non-contato"
+},
+"35.081": {
+"stato": "non-contato"
+},
+"35.082": {
+"stato": "non-contato"
+},
+"35.083": {
+"stato": "non-contato"
+},
+"35.084": {
+"stato": "non-contato"
+},
+"35.085": {
+"stato": "non-contato"
+},
+"35.086": {
+"stato": "non-contato"
+},
+"35.087": {
+"stato": "non-contato"
+},
+"35.088": {
+"stato": "non-contato"
+},
+"35.089": {
+"stato": "non-contato"
+},
+"35.090": {
+"stato": "non-contato"
+},
+"35.091": {
+"stato": "non-contato"
+},
+"35.092": {
+"stato": "non-contato"
+},
+"35.093": {
+"stato": "non-contato"
+},
+"35.094": {
+"stato": "non-contato"
+},
+"35.095": {
+"stato": "non-contato"
+},
+"35.096": {
+"stato": "non-contato"
+},
+"35.097": {
+"stato": "non-contato"
+},
+"35.098": {
+"stato": "non-contato"
+},
+"35.099": {
+"stato": "non-contato"
+},
+"35.100": {
+"stato": "non-contato"
+},
+"35.101": {
+"stato": "non-contato"
+},
+"35.102": {
+"stato": "non-contato"
+},
+"35.103": {
+"stato": "non-contato"
+},
+"35.104": {
+"stato": "non-contato"
+},
+"35.105": {
+"stato": "non-contato"
+},
+"35.106": {
+"stato": "non-contato"
+},
+"35.107": {
+"stato": "non-contato"
+},
+"35.108": {
+"stato": "non-contato"
+},
+"35.109": {
+"stato": "non-contato"
+},
+"35.110": {
+"stato": "non-contato"
+},
+"35.111": {
+"stato": "non-contato"
+},
+"35.112": {
+"stato": "non-contato"
+},
+"36.001": {
+"stato": "non-contato"
+},
+"36.002": {
+"stato": "non-contato"
+},
+"36.003": {
+"stato": "non-contato"
+},
+"36.004": {
+"stato": "non-contato"
+},
+"36.005": {
+"stato": "non-contato"
+},
+"36.006": {
+"stato": "non-contato"
+},
+"36.007": {
+"stato": "non-contato"
+},
+"36.008": {
+"stato": "non-contato"
+},
+"36.009": {
+"stato": "non-contato"
+},
+"36.010": {
+"stato": "non-contato"
+},
+"36.011": {
+"stato": "non-contato"
+},
+"36.012": {
+"stato": "non-contato"
+},
+"36.013": {
+"stato": "non-contato"
+},
+"36.014": {
+"stato": "non-contato"
+},
+"37.001": {
+"stato": "non-contato"
+},
+"37.002": {
+"stato": "non-contato"
+},
+"38.001": {
+"stato": "non-contato"
+},
+"39.001": {
+"stato": "non-contato"
+},
+"40.001": {
+"stato": "non-contato"
+},
+"40.002": {
+"stato": "non-contato"
+},
+"40.003": {
+"stato": "non-contato"
+},
+"40.004": {
+"stato": "non-contato"
+},
+"40.005": {
+"stato": "non-contato"
+},
+"40.006": {
+"stato": "non-contato"
+},
+"40.007": {
+"stato": "non-contato"
+},
+"40.008": {
+"stato": "non-contato"
+},
+"40.009": {
+"stato": "non-contato"
+},
+"40.010": {
+"stato": "non-contato"
+},
+"40.011": {
+"stato": "non-contato"
+},
+"40.012": {
+"stato": "non-contato"
+},
+"40.013": {
+"stato": "non-contato"
+},
+"40.014": {
+"stato": "non-contato"
+},
+"40.015": {
+"stato": "non-contato"
+},
+"40.016": {
+"stato": "non-contato"
+},
+"40.017": {
+"stato": "non-contato"
+},
+"40.018": {
+"stato": "non-contato"
+},
+"40.019": {
+"stato": "non-contato"
+},
+"40.020": {
+"stato": "non-contato"
+},
+"40.021": {
+"stato": "non-contato"
+},
+"40.022": {
+"stato": "non-contato"
+},
+"40.023": {
+"stato": "non-contato"
+},
+"40.024": {
+"stato": "non-contato"
+},
+"40.025": {
+"stato": "non-contato"
+},
+"40.026": {
+"stato": "non-contato"
+},
+"40.027": {
+"stato": "non-contato"
+},
+"40.028": {
+"stato": "non-contato"
+},
+"40.029": {
+"stato": "non-contato"
+},
+"40.030": {
+"stato": "non-contato"
+},
+"40.031": {
+"stato": "non-contato"
+},
+"40.032": {
+"stato": "non-contato"
+},
+"40.033": {
+"stato": "non-contato"
+},
+"40.034": {
+"stato": "non-contato"
+},
+"40.035": {
+"stato": "non-contato"
+},
+"40.036": {
+"stato": "non-contato"
+},
+"40.037": {
+"stato": "non-contato"
+},
+"40.038": {
+"stato": "non-contato"
+},
+"40.039": {
+"stato": "non-contato"
+},
+"40.040": {
+"stato": "non-contato"
+},
+"40.041": {
+"stato": "non-contato"
+},
+"40.042": {
+"stato": "non-contato"
+},
+"40.043": {
+"stato": "non-contato"
+},
+"40.044": {
+"stato": "non-contato"
+},
+"40.045": {
+"stato": "non-contato"
+},
+"40.046": {
+"stato": "non-contato"
+},
+"40.047": {
+"stato": "non-contato"
+},
+"40.048": {
+"stato": "non-contato"
+},
+"40.049": {
+"stato": "non-contato"
+},
+"40.050": {
+"stato": "non-contato"
+},
+"40.051": {
+"stato": "non-contato"
+},
+"40.052": {
+"stato": "non-contato"
+},
+"40.053": {
+"stato": "non-contato"
+},
+"40.054": {
+"stato": "non-contato"
+},
+"40.055": {
+"stato": "non-contato"
+},
+"40.056": {
+"stato": "non-contato"
+},
+"40.057": {
+"stato": "non-contato"
+},
+"40.058": {
+"stato": "non-contato"
+},
+"40.059": {
+"stato": "non-contato"
+},
+"40.060": {
+"stato": "non-contato"
+},
+"40.061": {
+"stato": "non-contato"
+},
+"40.062": {
+"stato": "non-contato"
+},
+"40.063": {
+"stato": "non-contato"
+},
+"40.064": {
+"stato": "non-contato"
+},
+"40.065": {
+"stato": "non-contato"
+},
+"40.066": {
+"stato": "non-contato"
+},
+"40.067": {
+"stato": "non-contato"
+},
+"40.068": {
+"stato": "non-contato"
+},
+"40.069": {
+"stato": "non-contato"
+},
+"40.070": {
+"stato": "non-contato"
+},
+"40.071": {
+"stato": "non-contato"
+},
+"40.072": {
+"stato": "non-contato"
+},
+"40.073": {
+"stato": "non-contato"
+},
+"40.074": {
+"stato": "non-contato"
+},
+"40.075": {
+"stato": "non-contato"
+},
+"40.076": {
+"stato": "non-contato"
+},
+"41.001": {
+"stato": "non-contato"
+},
+"42.001": {
+"stato": "non-contato"
+},
+"42.002": {
+"stato": "non-contato"
+},
+"42.003": {
+"stato": "non-contato"
+},
+"42.004": {
+"stato": "non-contato"
+},
+"42.005": {
+"stato": "non-contato"
+},
+"42.006": {
+"stato": "non-contato"
+},
+"43.001": {
+"stato": "non-contato"
+},
+"43.002": {
+"stato": "non-contato"
+},
+"43.003": {
+"stato": "non-contato"
+},
+"43.004": {
+"stato": "non-contato"
+},
+"43.005": {
+"stato": "non-contato"
+},
+"43.006": {
+"stato": "non-contato"
+},
+"44.001": {
+"stato": "non-contato"
+},
+"44.002": {
+"stato": "non-contato"
+},
+"44.003": {
+"stato": "non-contato"
+},
+"44.004": {
+"stato": "non-contato"
+},
+"44.005": {
+"stato": "non-contato"
+},
+"44.006": {
+"stato": "non-contato"
+},
+"44.007": {
+"stato": "non-contato"
+},
+"44.008": {
+"stato": "non-contato"
+},
+"44.009": {
+"stato": "non-contato"
+},
+"44.010": {
+"stato": "non-contato"
+},
+"44.011": {
+"stato": "non-contato"
+},
+"44.012": {
+"stato": "non-contato"
+},
+"44.013": {
+"stato": "non-contato"
+},
+"44.014": {
+"stato": "non-contato"
+},
+"44.015": {
+"stato": "non-contato"
+},
+"44.016": {
+"stato": "non-contato"
+},
+"44.017": {
+"stato": "non-contato"
+},
+"44.018": {
+"stato": "non-contato"
+},
+"44.019": {
+"stato": "non-contato"
+},
+"44.020": {
+"stato": "non-contato"
+},
+"44.021": {
+"stato": "non-contato"
+},
+"44.022": {
+"stato": "non-contato"
+},
+"44.023": {
+"stato": "non-contato"
+},
+"44.024": {
+"stato": "non-contato"
+},
+"44.025": {
+"stato": "non-contato"
+},
+"44.026": {
+"stato": "non-contato"
+},
+"44.027": {
+"stato": "non-contato"
+},
+"44.028": {
+"stato": "non-contato"
+},
+"45.001": {
+"stato": "non-contato"
+},
+"45.002": {
+"stato": "non-contato"
+},
+"45.003": {
+"stato": "non-contato"
+},
+"45.004": {
+"stato": "non-contato"
+},
+"45.005": {
+"stato": "non-contato"
+},
+"45.006": {
+"stato": "non-contato"
+},
+"45.007": {
+"stato": "non-contato"
+},
+"45.008": {
+"stato": "non-contato"
+},
+"45.009": {
+"stato": "non-contato"
+},
+"45.010": {
+"stato": "non-contato"
+},
+"45.011": {
+"stato": "non-contato"
+},
+"45.012": {
+"stato": "non-contato"
+},
+"45.013": {
+"stato": "non-contato"
+},
+"45.014": {
+"stato": "non-contato"
+},
+"45.015": {
+"stato": "non-contato"
+},
+"45.016": {
+"stato": "non-contato"
+},
+"45.017": {
+"stato": "non-contato"
+},
+"45.018": {
+"stato": "non-contato"
+},
+"45.019": {
+"stato": "non-contato"
+},
+"45.020": {
+"stato": "non-contato"
+},
+"45.021": {
+"stato": "non-contato"
+},
+"45.022": {
+"stato": "non-contato"
+},
+"45.023": {
+"stato": "non-contato"
+},
+"46.001": {
+"stato": "non-contato"
+},
+"47.001": {
+"stato": "non-contato"
+},
+"47.002": {
+"stato": "non-contato"
+},
+"47.003": {
+"stato": "non-contato"
+},
+"47.004": {
+"stato": "non-contato"
+},
+"47.005": {
+"stato": "non-contato"
+},
+"47.006": {
+"stato": "non-contato"
+},
+"47.007": {
+"stato": "non-contato"
+},
+"47.008": {
+"stato": "non-contato"
+},
+"47.009": {
+"stato": "non-contato"
+},
+"47.010": {
+"stato": "non-contato"
+},
+"47.011": {
+"stato": "non-contato"
+},
+"47.012": {
+"stato": "non-contato"
+},
+"47.013": {
+"stato": "non-contato"
+},
+"47.014": {
+"stato": "non-contato"
+},
+"48.001": {
+"stato": "non-contato"
+},
+"48.002": {
+"stato": "non-contato"
+},
+"48.003": {
+"stato": "non-contato"
+},
+"48.004": {
+"stato": "non-contato"
+},
+"48.005": {
+"stato": "non-contato"
+},
+"48.006": {
+"stato": "non-contato"
+},
+"48.007": {
+"stato": "non-contato"
+},
+"48.008": {
+"stato": "non-contato"
+},
+"48.009": {
+"stato": "non-contato"
+},
+"48.010": {
+"stato": "non-contato"
+},
+"48.011": {
+"stato": "non-contato"
+},
+"48.012": {
+"stato": "non-contato"
+},
+"48.013": {
+"stato": "non-contato"
+},
+"48.014": {
+"stato": "non-contato"
+},
+"48.015": {
+"stato": "non-contato"
+},
+"48.016": {
+"stato": "non-contato"
+},
+"48.017": {
+"stato": "non-contato"
+},
+"48.018": {
+"stato": "non-contato"
+},
+"49.001": {
+"stato": "non-contato"
+},
+"49.002": {
+"stato": "non-contato"
+},
+"49.003": {
+"stato": "non-contato"
+},
+"49.004": {
+"stato": "non-contato"
+},
+"49.005": {
+"stato": "non-contato"
+},
+"49.006": {
+"stato": "non-contato"
+},
+"49.007": {
+"stato": "non-contato"
+},
+"49.008": {
+"stato": "non-contato"
+},
+"49.009": {
+"stato": "non-contato"
+},
+"50.001": {
+"stato": "non-contato"
+},
+"50.002": {
+"stato": "non-contato"
+},
+"50.003": {
+"stato": "non-contato"
+},
+"50.004": {
+"stato": "non-contato"
+},
+"50.005": {
+"stato": "non-contato"
+},
+"50.006": {
+"stato": "non-contato"
+},
+"50.007": {
+"stato": "non-contato"
+},
+"50.008": {
+"stato": "non-contato"
+},
+"50.009": {
+"stato": "non-contato"
+},
+"50.010": {
+"stato": "non-contato"
+},
+"50.011": {
+"stato": "non-contato"
+},
+"50.012": {
+"stato": "non-contato"
+},
+"50.013": {
+"stato": "non-contato"
+},
+"50.014": {
+"stato": "non-contato"
+},
+"50.015": {
+"stato": "non-contato"
+},
+"50.016": {
+"stato": "non-contato"
+},
+"50.017": {
+"stato": "non-contato"
+},
+"50.018": {
+"stato": "non-contato"
+},
+"50.019": {
+"stato": "non-contato"
+},
+"50.020": {
+"stato": "non-contato"
+},
+"50.021": {
+"stato": "non-contato"
+},
+"50.022": {
+"stato": "non-contato"
+},
+"50.023": {
+"stato": "non-contato"
+},
+"50.024": {
+"stato": "non-contato"
+},
+"50.025": {
+"stato": "non-contato"
+},
+"50.026": {
+"stato": "non-contato"
+},
+"50.027": {
+"stato": "non-contato"
+},
+"50.028": {
+"stato": "non-contato"
+},
+"50.029": {
+"stato": "non-contato"
+},
+"50.030": {
+"stato": "non-contato"
+},
+"50.031": {
+"stato": "non-contato"
+},
+"50.032": {
+"stato": "non-contato"
+},
+"50.033": {
+"stato": "non-contato"
+},
+"50.034": {
+"stato": "non-contato"
+},
+"50.035": {
+"stato": "non-contato"
+},
+"50.036": {
+"stato": "non-contato"
+},
+"50.037": {
+"stato": "non-contato"
+},
+"50.038": {
+"stato": "non-contato"
+},
+"50.039": {
+"stato": "non-contato"
+},
+"50.040": {
+"stato": "non-contato"
+},
+"50.041": {
+"stato": "non-contato"
+},
+"50.042": {
+"stato": "non-contato"
+},
+"50.043": {
+"stato": "non-contato"
+},
+"50.044": {
+"stato": "non-contato"
+},
+"50.045": {
+"stato": "non-contato"
+},
+"50.046": {
+"stato": "non-contato"
+},
+"50.047": {
+"stato": "non-contato"
+},
+"50.048": {
+"stato": "non-contato"
+},
+"50.049": {
+"stato": "non-contato"
+},
+"50.050": {
+"stato": "non-contato"
+},
+"50.051": {
+"stato": "non-contato"
+},
+"50.052": {
+"stato": "non-contato"
+},
+"50.053": {
+"stato": "non-contato"
+},
+"50.054": {
+"stato": "non-contato"
+},
+"50.055": {
+"stato": "non-contato"
+},
+"50.056": {
+"stato": "non-contato"
+},
+"50.057": {
+"stato": "non-contato"
+},
+"50.058": {
+"stato": "non-contato"
+},
+"50.059": {
+"stato": "non-contato"
+},
+"50.060": {
+"stato": "non-contato"
+},
+"50.061": {
+"stato": "non-contato"
+},
+"50.062": {
+"stato": "non-contato"
+},
+"50.063": {
+"stato": "non-contato"
+},
+"50.064": {
+"stato": "non-contato"
+},
+"50.065": {
+"stato": "non-contato"
+},
+"50.066": {
+"stato": "non-contato"
+},
+"50.067": {
+"stato": "non-contato"
+},
+"50.068": {
+"stato": "non-contato"
+},
+"50.069": {
+"stato": "non-contato"
+},
+"50.070": {
+"stato": "non-contato"
+},
+"51.001": {
+"stato": "non-contato"
+},
+"51.002": {
+"stato": "non-contato"
+},
+"51.003": {
+"stato": "non-contato"
+},
+"51.004": {
+"stato": "non-contato"
+},
+"51.005": {
+"stato": "non-contato"
+},
+"51.006": {
+"stato": "non-contato"
+},
+"51.007": {
+"stato": "non-contato"
+},
+"51.008": {
+"stato": "non-contato"
+},
+"51.009": {
+"stato": "non-contato"
+},
+"51.010": {
+"stato": "non-contato"
+},
+"51.011": {
+"stato": "non-contato"
+},
+"51.012": {
+"stato": "non-contato"
+},
+"51.013": {
+"stato": "non-contato"
+},
+"51.014": {
+"stato": "non-contato"
+},
+"51.015": {
+"stato": "non-contato"
+},
+"51.016": {
+"stato": "non-contato"
+}
+}

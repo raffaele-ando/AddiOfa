@@ -1,0 +1,50 @@
+{
+ "kit-rosso/illustrazioni/studio-inglese@90": [
+  168.0,
+  164.0,
+  11.0,
+  30.0,
+  160.125,
+  152.625
+ ],
+ "kit-rosso/illustrazioni/quiz-test@25": [
+  182.0,
+  138.0,
+  3.0,
+  0.375,
+  181.0,
+  136.0
+ ],
+ "kit-rosso/illustrazioni/rischio-economico@60": [
+  172.0,
+  150.0,
+  2.75,
+  9.5,
+  163.625,
+  140.875
+ ],
+ "kit-rosso/illustrazioni/risultato-probabilita@60": [
+  228.0,
+  122.0,
+  9.25,
+  5.0,
+  224.75,
+  117.25
+ ],
+ "kit-rosso/stati/completato@40": [
+  82.0,
+  84.0,
+  3.0,
+  3.0,
+  74.875,
+  79.25
+ ],
+ "kit-rosso/stati/obiettivo@90": [
+  92.0,
+  90.0,
+  7.5,
+  2.875,
+  85.625,
+  81.0
+ ]
+}

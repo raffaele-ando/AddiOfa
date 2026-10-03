@@ -1,0 +1,226 @@
+[
+ {
+  "elementi": [
+   "02.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/01-intro.svg",
+  "nota": "Sigillo del Politecnico non riprodotto: segnaposto circolare `sigillo-segnaposto` + nome come testo. Libri con bandiera = riuso kit-rosso/illustrazioni/studio-inglese (bandiera con diagonali sfalsate corrette). Testi leggibili."
+ },
+ {
+  "elementi": [
+   "47.001"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/01-intro.svg",
+  "nota": "duplicato di 02.001: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/02-certificazione.svg",
+  "nota": "Avanzamento a 5 segmenti uguali sull'asse della freccia. Testi leggibili (l'app dice 'dal tuo ateneo', l'immagine 'dal Polimi': tenuto l'immagine). Manca 'Avanti' come nell'originale."
+ },
+ {
+  "elementi": [
+   "47.002"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/02-certificazione.svg",
+  "nota": "duplicato di 02.002: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/03-ofa-assegnato.svg",
+  "nota": "'l'OFA' in rosso. Tondo vuoto con spunta chiara pulito. Nell'originale non c'è 'Non lo so ancora' (presente nell'app): non aggiunto."
+ },
+ {
+  "elementi": [
+   "47.003"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/03-ofa-assegnato.svg",
+  "nota": "duplicato di 02.003: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.004"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/04-verifica-livello.svg",
+  "nota": "Riuso kit-rosso/illustrazioni/quiz-test (nell'originale c'è un tondo con bandiera UK in più, assente nel disegno del kit). Testi leggibili."
+ },
+ {
+  "elementi": [
+   "47.004"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/04-verifica-livello.svg",
+  "nota": "duplicato di 02.004: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/05-domanda.svg",
+  "nota": "Barra di avanzamento rimessa sull'asse della freccia (nell'originale era sopra). Frase d'esempio e opzioni leggibili e identiche all'app."
+ },
+ {
+  "elementi": [
+   "47.005"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/05-domanda.svg",
+  "nota": "duplicato di 02.005: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/06-salva-risultati.svg",
+  "nota": "Sigillo sul timbro non riprodotto: disco neutro `sigillo-segnaposto`. Busta ridisegnata (stile stati/notifica). Tutti i testi letti a 3x: nessun testo ricostruito."
+ },
+ {
+  "elementi": [
+   "47.006"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/06-salva-risultati.svg",
+  "nota": "duplicato di 02.006: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/07-se-non-superi.svg",
+  "nota": "Riuso rischio-economico + lucchetto disegnato; le 4 icone delle righe (illeggibili nell'originale) sostituite con euro, lucchetto, foglio, calendario. Testi leggibili."
+ },
+ {
+  "elementi": [
+   "47.007"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/07-se-non-superi.svg",
+  "nota": "duplicato di 02.007: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.008"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/08-quiz-completato.svg",
+  "nota": "Misuratore = riuso kit-rosso/illustrazioni/risultato-probabilita (82%). Scheda con soldi alati = rischio-economico ridotto. Barra: 4 segmenti su 5."
+ },
+ {
+  "elementi": [
+   "47.008"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/08-quiz-completato.svg",
+  "nota": "duplicato di 02.008: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/09-momento-di-prepararti.svg",
+  "nota": "Chip d'icona tondi con glifi pieni (libro, barre, fulmine). Nessun pulsante, come l'originale."
+ },
+ {
+  "elementi": [
+   "47.009"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/09-momento-di-prepararti.svg",
+  "nota": "duplicato di 02.009: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.010"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/10-scelta-piano.svg",
+  "nota": "Prezzi leggibili e uguali a src/config/offer.ts (9,99 / 14,99 / 24,99 €). Terza scheda completata (nell'originale era tagliata dal ritaglio). Testo 'Massima sicurezza' e descrizioni leggibili."
+ },
+ {
+  "elementi": [
+   "47.010"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/10-scelta-piano.svg",
+  "nota": "duplicato di 02.010: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.011"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/11-cram-pass-pro.svg",
+  "nota": "Testi leggibili; icone libro/lista/documento ridisegnate. Nessun prezzo nell'originale."
+ },
+ {
+  "elementi": [
+   "47.011"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/11-cram-pass-pro.svg",
+  "nota": "duplicato di 02.011: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.012"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/12-pagamento.svg",
+  "nota": "Marchi PayPal/Apple/Google ridisegnati in forma semplice (non loghi ufficiali). Avanzamento 5/5 (nell'originale 3 segmenti e poi nulla)."
+ },
+ {
+  "elementi": [
+   "47.012"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/12-pagamento.svg",
+  "nota": "duplicato di 02.012: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.013"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/13-accesso-completato.svg",
+  "nota": "Riuso kit-rosso/stati/completato + coriandoli disegnati (capsule/croci pulite al posto degli 'ossi' storti). Testi leggibili."
+ },
+ {
+  "elementi": [
+   "47.013"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/13-accesso-completato.svg",
+  "nota": "duplicato di 02.013: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ },
+ {
+  "elementi": [
+   "02.014"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/14-obiettivo.svg",
+  "nota": "Riuso kit-rosso/stati/obiettivo. Testi leggibili."
+ },
+ {
+  "elementi": [
+   "47.014"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/funnel-rosso/14-obiettivo.svg",
+  "nota": "duplicato di 02.014: le immagini 02 e 47 sono lo STESSO file (stesso MD5, i 14 ritagli sono identici pixel per pixel); coperto dallo stesso SVG."
+ }
+]
