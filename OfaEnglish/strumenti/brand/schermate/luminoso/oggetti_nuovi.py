@@ -169,3 +169,74 @@ def bulbo_lampadina(CX: float, cy: float, R: float, w: float, y_curva: float, y_
         phi = th - math.acos(R / d); T = C + V(math.cos(phi), math.sin(phi)) * R
     Ts = V(2 * CX - T.x, T.y)
     return (f"M{n(CX - w)} {n(y_fondo)} L{p(P)} L{p(T)} A{n(R)} {n(R)} 0 1 1 {p(Ts)} L{n(CX + w)} {n(y_curva)} L{n(CX + w)} {n(y_fondo)} Z")
+
+
+# ---------------------------------------------------------------- orologio, cappello, busta
+
+def orologio(S: Scena, nome: str, c: V, r: float, anello: tuple, lancette: str, ore_minuti=(0, 12 * 4 / 12 * 30 + 0), spessore: float | None = None) -> None:
+    """Orologio tondo: anello colorato (chiaro, scuro), quadrante chiaro, 4 tacche (12-3-6-9), due lancette tonde: minuti al 12 e
+    ore verso le 4 (angoli misurati dal 12, in senso orario). Tutto in tracciati veri."""
+    sp = spessore or r * 0.22
+    S.d(lineare(f"{nome}-anello-luce", c + V(-r, -r), c + V(r, r), [(0, anello[0]), (1, anello[1])]),
+        radiale(f"{nome}-quadrante-luce", c + V(-r * 0.3, -r * 0.4), r * 1.3, [(0, "#FFFFFF"), (1, "#E9EFFD")]))
+    g = [f'<g id="{nome}">',
+         f'<circle id="{nome}-alone" cx="{n(c.x)}" cy="{n(c.y)}" r="{n(r + 2.6)}" fill="#FFFFFF" opacity="0.9"/>',
+         f'<circle id="{nome}-quadrante" cx="{n(c.x)}" cy="{n(c.y)}" r="{n(r)}" fill="url(#{nome}-quadrante-luce)"/>',
+         f'<circle id="{nome}-anello" cx="{n(c.x)}" cy="{n(c.y)}" r="{n(r - sp / 2)}" stroke="url(#{nome}-anello-luce)" stroke-width="{n(sp)}" fill="none"/>']
+    ri = r - sp - 1.8
+    for k, a in enumerate((0, 90, 180, 270)):
+        d = V(math.sin(math.radians(a)), -math.cos(math.radians(a)))
+        g.append(f'<path id="{nome}-tacca-{k + 1}" d="M{p(c + d * ri)} L{p(c + d * (ri - r * 0.12))}" stroke="{lancette}" stroke-opacity="0.55" stroke-width="{n(r * 0.07)}" stroke-linecap="round"/>')
+    for nm, ang, lung, sp2 in (("minuti", 0, r * 0.62, r * 0.1), ("ore", 120, r * 0.42, r * 0.12)):
+        d = V(math.sin(math.radians(ang)), -math.cos(math.radians(ang)))
+        g.append(f'<path id="{nome}-lancetta-{nm}" d="M{p(c)} L{p(c + d * lung)}" stroke="{lancette}" stroke-width="{n(sp2)}" stroke-linecap="round"/>')
+    g.append(f'<circle id="{nome}-perno" cx="{n(c.x)}" cy="{n(c.y)}" r="{n(r * 0.1)}" fill="{lancette}"/></g>')
+    S.c("".join(g))
+
+
+def cappello_laurea(S: Scena, nome: str, c: V, larg: float, colori: dict, nappa: str = "#FFA21F", con_nappa: bool = True) -> None:
+    """Tocco da laureato: losanga (faccia sopra) con il suo spessore, calotta sotto, bottone e cordino con nappa. `c` = centro della
+    losanga, `larg` = larghezza della losanga (punta a punta). La losanga è simmetrica sul suo asse verticale."""
+    L = larg
+    top = [c + V(-L / 2, 0.06 * L), c + V(-0.02 * L, -0.24 * L), c + V(L / 2, 0.03 * L), c + V(0.0, 0.2 * L)]
+    # la losanga è leggermente storta in prospettiva (punta sinistra più bassa), come nell'originale
+    sp = L * 0.075
+    sotto = [p_ + V(0, sp) for p_ in top]
+    S.d(lineare(f"{nome}-sopra-luce", top[1], top[3], [(0, colori["chiaro"]), (1, colori["base"])]),
+        lineare(f"{nome}-calotta-luce", c + V(0, L * 0.1), c + V(0, L * 0.5), [(0, colori["base"]), (1, colori["scuro"])]))
+    # calotta: dalla losanga scende, larga ~0.58 L, fondo curvo
+    cw = L * 0.31
+    base_y = c.y + L * 0.46
+    calotta = f"M{n(c.x - cw)} {n(c.y + L * 0.1)} L{n(c.x - cw)} {n(base_y - L * 0.06)} Q{n(c.x)} {n(base_y + L * 0.1)} {n(c.x + cw)} {n(base_y - L * 0.06)} L{n(c.x + cw)} {n(c.y + L * 0.1)} Z"
+    g = [f'<g id="{nome}">', f'<path id="{nome}-calotta" d="{calotta}" fill="url(#{nome}-calotta-luce)"/>',
+         f'<path id="{nome}-spessore" d="{arrotondato([top[0], top[3], top[2], sotto[2], sotto[3], sotto[0]], [2, 1, 2, 2, 1, 2])}" fill="{colori["scuro"]}"/>',
+         f'<path id="{nome}-sopra" d="{arrotondato(top, [2.5, 3, 2.5, 3])}" fill="url(#{nome}-sopra-luce)"/>',
+         f'<path id="{nome}-filo" d="M{p(top[0] + V(2, -0.4))} L{p(top[1] + V(0, 1))} L{p(top[2] + V(-2, -0.2))}" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',
+         f'<circle id="{nome}-bottone" cx="{n(c.x)}" cy="{n(c.y - L * 0.02)}" r="{n(L * 0.025)}" fill="{colori["scuro"]}"/>']
+    if con_nappa:
+        a = c + V(0, -L * 0.02)
+        b = top[2] + V(-L * 0.07, L * 0.045)
+        g.append(f'<path id="{nome}-cordino" d="M{p(a)} L{p(b)}" stroke="{colori["scuro"]}" stroke-width="{n(L * 0.014)}" stroke-linecap="round" fill="none"/>')
+        g.append(f'<path id="{nome}-cordino-giu" d="M{p(b)} V{n(b.y + L * 0.17)}" stroke="#9A4A2C" stroke-width="{n(L * 0.03)}" stroke-linecap="round" fill="none"/>')
+        g.append(f'<path id="{nome}-nappa" d="{rettangolo(b.x - L * 0.03, b.y + L * 0.15, L * 0.06, L * 0.1, L * 0.03)}" fill="{nappa}"/>')
+    g.append("</g>")
+    S.c("".join(g))
+
+
+def busta(S: Scena, nome: str, c: V, w: float, h: float, gradi: float, corpo: tuple, aletta: tuple, raggio: float = 8, pieghe: bool = True) -> None:
+    """Busta chiusa: corpo arrotondato (chiaro, scuro), aletta triangolare (punta in basso al ~58% dell'altezza) con raccordi veri,
+    due pieghe sottili dagli angoli di sotto al centro. Tutto in un gruppo ruotato in c."""
+    x0, y0 = -w / 2, -h / 2
+    S.d(lineare(f"{nome}-corpo-luce", V(x0, y0), V(x0 + w * 0.3, y0 + h), [(0, corpo[0]), (1, corpo[1])]),
+        lineare(f"{nome}-aletta-luce", V(0, y0), V(0, y0 + h * 0.6), [(0, aletta[0]), (1, aletta[1])]))
+    tip = V(0, y0 + h * 0.6)
+    ale = arrotondato([V(x0 + 0.5, y0 + 0.5), tip, V(x0 + w - 0.5, y0 + 0.5)], [raggio * 0.9, raggio * 0.9, raggio * 0.9])
+    g = [f'<g id="{nome}" transform="translate({n(c.x)} {n(c.y)}) rotate({n(gradi)})">',
+         f'<path id="{nome}-corpo" d="{rettangolo(x0, y0, w, h, raggio)}" fill="url(#{nome}-corpo-luce)"/>']
+    if pieghe:
+        g.append(f'<path id="{nome}-pieghe" d="M{n(x0 + raggio * 0.6)} {n(y0 + h - raggio * 0.5)} L{n(-w * 0.04)} {n(y0 + h * 0.46)} M{n(x0 + w - raggio * 0.6)} {n(y0 + h - raggio * 0.5)} L{n(w * 0.04)} {n(y0 + h * 0.46)}" '
+                 f'stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="1.1" stroke-linecap="round" fill="none"/>')
+    g.append(f'<path id="{nome}-aletta-ombra" d="{ale}" transform="translate(0 1.8)" fill="{corpo[1]}" opacity="0.28"/>')
+    g.append(f'<path id="{nome}-aletta" d="{ale}" fill="url(#{nome}-aletta-luce)" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="1.1" stroke-linejoin="round"/>')
+    g.append("</g>")
+    S.c("".join(g))

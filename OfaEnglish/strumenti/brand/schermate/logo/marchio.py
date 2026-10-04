@@ -69,7 +69,7 @@ def squircle(x, y, s, r=None, k=0.65, h=None) -> str:
             f"V{f(y + r)}C{f(x)} {f(y + c)} {f(x + c)} {f(y)} {f(x + r)} {f(y)}Z")
 
 
-STELLA_U = 0.50     # quanto la curva rientra verso il centro (0,667 = astroide; più basso = più "magra")
+STELLA_U = 0.48     # quanto la curva rientra verso il centro (0,667 = astroide; più basso = più "magra")
 
 
 def _cubica_tratto(P0, P1, P2, P3, t0, t1):
@@ -114,7 +114,7 @@ def stella4(cx, cy, r, u: float = STELLA_U, rx: float | None = None, tondo: floa
     return d + "Z"
 
 
-def stella4_tonda(t: Tela, cx, cy, r, fill, id, u: float = STELLA_U, tondo: float = 0.07, opacita=None):
+def stella4_tonda(t: Tela, cx, cy, r, fill, id, u: float = STELLA_U, tondo: float = 0.10, opacita=None):
     """Stella 4 punte con le punte arrotondate (raccordo vero sulle punte, nessuno stroke)."""
     t.path(stella4(cx, cy, r, u, tondo=tondo), fill=fill, id=id, opacita=opacita)
 
@@ -270,7 +270,7 @@ def marchio_stella4(t: Tela, x, y, s, id="marchio-stella", piatto=False):
         else:
             tile_sfumato(t, x, y, s, f"{id}-tile")
         cx, cy = x + s / 2, y + s * 0.505
-        t.path(stella4(cx, cy, s * 0.315, STELLA_U, rx=s * 0.295, tondo=0.07), fill=BIANCO, id=f"{id}-stella")
+        t.path(stella4(cx, cy, s * 0.315, STELLA_U, rx=s * 0.295, tondo=0.10), fill=BIANCO, id=f"{id}-stella")
 
 
 def marchio_porta(t: Tela, x, y, s, id="marchio-porta", scuro=False, ky=1.12, larg=0.62, base=0.80, fondo=None):

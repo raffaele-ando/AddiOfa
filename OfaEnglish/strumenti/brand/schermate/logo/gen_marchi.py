@@ -35,12 +35,12 @@ def main(controlli=True):
     # tile con la porta luminosa (7.005)
     b = (517, 156, 593, 221)
     t = Fo(vb(b), "marchio-tile-porta")
-    marchio_porta(t, 521.5, 156.5, 63.5, larg=0.70, ky=1.0, base=0.80)
+    marchio_porta(t, 521.5, 156.5, 63.5, larg=0.70, ky=1.1, base=0.80)
     salva(t, "marchio-tile-porta"); out.append(("marchio-tile-porta", 7, b))
     # tile scuro (7.007)
     b = (829, 156, 901, 225)
     t = Fo(vb(b), "marchio-tile-scuro")
-    marchio_porta(t, 833.5, 156.5, 64, scuro=True, larg=0.66, ky=1.14, base=0.80)
+    marchio_porta(t, 833.5, 156.5, 64, scuro=True, larg=0.62, ky=1.12, base=0.80)
     salva(t, "marchio-tile-scuro"); out.append(("marchio-tile-scuro", 7, b))
     if controlli:
         for nome, idx, bx in out:

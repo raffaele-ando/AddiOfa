@@ -32,7 +32,7 @@ def lettermark_pieno(t, x, y, w, h, colore=BLU, id="lettermark-a"):
     r = [6.5 * k, 6.5 * k, 6.5 * k, 3.5 * k, 3.5 * k, 3.5 * k, 3.5 * k, 6.5 * k]
     d = arrotondato(pts, r)
     cx, cy = x + 73.5 * k, y + 80 * h / 144.0
-    ds = stella4(cx, cy, 36 * k, 0.62, rx=34.5 * k, tondo=0.09)
+    ds = stella4(cx, cy, 36 * k, 0.48, rx=34.5 * k, tondo=0.10)
     with t.gruppo(id):
         t.add(f'<path id="{id}-forma" d="{d}{ds}" fill="{colore}" fill-rule="evenodd"/>')
         # filo tondo sulle punte della stella (stesso colore del fondo non serve: il contorno e' gia' arrotondato dallo stroke)

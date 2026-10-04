@@ -34,6 +34,7 @@ import mondo_internazionale as mondo  # noqa: E402
 DEST = USCITA / "tonde"
 LATO = 64
 C = 32
+ESCALA = 1.16        # i glifi originali occupano ~55 % del diametro: la griglia ±15 diventa ±17,4
 
 
 # ------------------------------------------------------------------------------------------- glifi
@@ -262,7 +263,7 @@ def icona(kit: str, nome: str) -> Svg:
     s = Svg(0, 0, LATO, LATO, f"{kit}-{nome}", f"Icona tonda ({kit}): {nome}")
     s.cerchio(C, C, 32, fill=s.rad([(0, mescola(cerchio, "#FFFFFF", 0.55)), (1, cerchio)], 22, 20, 52), id="cerchio")
     scuro = mescola(col, "#000000", 0.28)
-    s.apri("glifo", trasforma=f"translate({C} {C})")
+    s.apri("glifo", trasforma=f"translate({C} {C}) scale({ESCALA})")
     forme = GLIFI[nome]()
     colori = {"base": col, "bianco": "#FFFFFF", "accento": acc, "scuro": scuro}
     if lucido:
