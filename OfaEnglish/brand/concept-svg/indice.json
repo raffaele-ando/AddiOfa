@@ -1,12 +1,21 @@
 {
 "00.001": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/00-social-carosello/01-intro-tuo-inglese-senza-ostacoli.svg",
+"nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. ",
+"agente": "p1"
 },
 "00.002": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/00-social-carosello/07-tre-consigli.svg",
+"nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. ",
+"agente": "p1"
 },
 "00.003": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/00-social-carosello/13-dalla-paura-al-superamento.svg",
+"nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. ",
+"agente": "p1"
 },
 "01.001": {
 "stato": "svg",
@@ -345,7 +354,10 @@
 "agente": "logo"
 },
 "07.011": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.012": {
 "stato": "svg",
@@ -354,10 +366,16 @@
 "agente": "ui"
 },
 "07.013": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.014": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.015": {
 "stato": "svg",
@@ -366,7 +384,10 @@
 "agente": "icone"
 },
 "07.016": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.017": {
 "stato": "svg",
@@ -405,13 +426,22 @@
 "agente": "ill"
 },
 "07.023": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.024": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.025": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.026": {
 "stato": "scartato",
@@ -444,13 +474,22 @@
 "agente": "ill"
 },
 "07.031": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.032": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.033": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.034": {
 "stato": "svg",
@@ -459,7 +498,10 @@
 "agente": "icone"
 },
 "07.035": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.036": {
 "stato": "svg",
@@ -480,10 +522,16 @@
 "agente": "icone"
 },
 "07.039": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.040": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.041": {
 "stato": "svg",
@@ -492,7 +540,10 @@
 "agente": "ui"
 },
 "07.042": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.043": {
 "stato": "riuso",
@@ -501,16 +552,28 @@
 "agente": "ill"
 },
 "07.044": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.045": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.046": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "07.047": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "07.048": {
 "stato": "riuso",
@@ -543,7 +606,10 @@
 "agente": "ill"
 },
 "07.053": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.054": {
 "stato": "svg",
@@ -570,7 +636,10 @@
 "agente": "ill"
 },
 "07.058": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.059": {
 "stato": "scartato",
@@ -579,19 +648,34 @@
 "agente": "ill"
 },
 "07.060": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.061": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.062": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.063": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "07.064": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "07.065": {
 "stato": "scartato",
@@ -624,7 +708,10 @@
 "agente": "ui"
 },
 "08.002": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.003": {
 "stato": "scartato",
@@ -651,10 +738,16 @@
 "agente": "ui"
 },
 "08.007": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.008": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.009": {
 "stato": "scartato",
@@ -669,7 +762,10 @@
 "agente": "ill"
 },
 "08.011": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.012": {
 "stato": "scartato",
@@ -684,7 +780,10 @@
 "agente": "ill"
 },
 "08.014": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "08.015": {
 "stato": "scartato",
@@ -693,7 +792,10 @@
 "agente": "ui"
 },
 "08.016": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.017": {
 "stato": "scartato",
@@ -708,10 +810,16 @@
 "agente": "ill"
 },
 "08.019": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.020": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.021": {
 "stato": "riuso",
@@ -720,7 +828,10 @@
 "agente": "ill"
 },
 "08.022": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.023": {
 "stato": "svg",
@@ -747,16 +858,28 @@
 "agente": "ill"
 },
 "08.027": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.028": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.029": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.030": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.031": {
 "stato": "scartato",
@@ -795,7 +918,10 @@
 "agente": "ill"
 },
 "08.037": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.038": {
 "stato": "riuso",
@@ -924,10 +1050,16 @@
 "agente": "ill"
 },
 "08.059": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.060": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.061": {
 "stato": "svg",
@@ -948,16 +1080,28 @@
 "agente": "ill"
 },
 "08.064": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.065": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.066": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.067": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.068": {
 "stato": "riuso",
@@ -966,19 +1110,34 @@
 "agente": "ill"
 },
 "08.069": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.070": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.071": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.072": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "08.073": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "08.074": {
 "stato": "riuso",
@@ -987,81 +1146,87 @@
 "agente": "ill"
 },
 "08.075": {
-"stato": "non-contato"
-},
-"08.076": {
-"stato": "non-contato"
-},
-"09.001": {
 "stato": "scartato",
 "svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
+},
+"08.076": {
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
+},
+"09.001": {
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/09-schermate-calcolo-risultato-001-calcoliamo-0.svg",
+"nota": "Misuratore a mezza ellisse (come nell'originale); passi con spunte; avanzamento 10/10 sempre pieno. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "09.002": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/09-schermate-calcolo-risultato-002-elaboriamo-18.svg",
+"nota": "Misuratore a mezza ellisse (come nell'originale); passi con spunte; avanzamento 10/10 sempre pieno. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "09.003": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/09-schermate-calcolo-risultato-003-analizzando-42.svg",
+"nota": "Misuratore a mezza ellisse (come nell'originale); passi con spunte; avanzamento 10/10 sempre pieno. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "09.004": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/09-schermate-calcolo-risultato-004-ultimi-calcoli-68.svg",
+"nota": "Misuratore a mezza ellisse (come nell'originale); passi con spunte; avanzamento 10/10 sempre pieno. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "09.005": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/09-schermate-calcolo-risultato-005-quasi-pronto-80.svg",
+"nota": "Misuratore a mezza ellisse (come nell'originale); passi con spunte; avanzamento 10/10 sempre pieno. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "09.006": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/09-schermate-calcolo-risultato-006-risultato-82.svg",
+"nota": "Misuratore a mezza ellisse (come nell'originale); passi con spunte; avanzamento 10/10 sempre pieno. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "10.001": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/10-schermate-risultato-dettaglio-001-calcoliamo-0.svg",
+"nota": "Misuratore a mezza ellisse con alone; corpi: passi, aree, curva di confronto, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "10.002": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/10-schermate-risultato-dettaglio-002-elaboriamo-22.svg",
+"nota": "Misuratore a mezza ellisse con alone; corpi: passi, aree, curva di confronto, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "10.003": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/10-schermate-risultato-dettaglio-003-analizzando-48.svg",
+"nota": "Misuratore a mezza ellisse con alone; corpi: passi, aree, curva di confronto, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "10.004": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/10-schermate-risultato-dettaglio-004-quasi-pronto-72.svg",
+"nota": "Misuratore a mezza ellisse con alone; corpi: passi, aree, curva di confronto, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "10.005": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/10-schermate-risultato-dettaglio-005-ultimi-dettagli-80.svg",
+"nota": "Misuratore a mezza ellisse con alone; corpi: passi, aree, curva di confronto, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "10.006": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/10-schermate-risultato-dettaglio-006-risultato-82.svg",
+"nota": "Misuratore a mezza ellisse con alone; corpi: passi, aree, curva di confronto, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "11.001": {
@@ -1257,7 +1422,10 @@
 "agente": "ill"
 },
 "15.015": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.016": {
 "stato": "scartato",
@@ -1266,10 +1434,16 @@
 "agente": "ill"
 },
 "15.017": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.018": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.019": {
 "stato": "svg",
@@ -1278,13 +1452,22 @@
 "agente": "ui"
 },
 "15.020": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.021": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.022": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.023": {
 "stato": "scartato",
@@ -1317,7 +1500,10 @@
 "agente": "ill"
 },
 "15.028": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.029": {
 "stato": "svg",
@@ -1332,7 +1518,10 @@
 "agente": "ui"
 },
 "15.031": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.032": {
 "stato": "scartato",
@@ -1359,22 +1548,40 @@
 "agente": "ui"
 },
 "15.036": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.037": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.038": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.039": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.040": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.041": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.042": {
 "stato": "svg",
@@ -1419,16 +1626,28 @@
 "agente": "ill"
 },
 "15.049": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.050": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.051": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.052": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "15.053": {
 "stato": "riuso",
@@ -1455,13 +1674,22 @@
 "agente": "ill"
 },
 "15.057": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.058": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.059": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "15.060": {
 "stato": "riuso",
@@ -1476,16 +1704,28 @@
 "agente": "ill"
 },
 "15.062": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.063": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.064": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.065": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "15.066": {
 "stato": "scartato",
@@ -1542,7 +1782,10 @@
 "agente": "ill"
 },
 "15.075": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "15.076": {
 "stato": "scartato",
@@ -1557,7 +1800,10 @@
 "agente": "ui"
 },
 "16.002": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "16.003": {
 "stato": "scartato",
@@ -1578,7 +1824,10 @@
 "agente": "ui"
 },
 "16.006": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "16.007": {
 "stato": "scartato",
@@ -1593,10 +1842,16 @@
 "agente": "ui"
 },
 "16.009": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.010": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.011": {
 "stato": "svg",
@@ -1611,7 +1866,10 @@
 "agente": "ui"
 },
 "16.013": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.014": {
 "stato": "svg",
@@ -1620,7 +1878,10 @@
 "agente": "ui"
 },
 "16.015": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.016": {
 "stato": "svg",
@@ -1629,7 +1890,10 @@
 "agente": "ui"
 },
 "16.017": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.018": {
 "stato": "scartato",
@@ -1638,7 +1902,10 @@
 "agente": "ui"
 },
 "16.019": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.020": {
 "stato": "scartato",
@@ -1821,7 +2088,10 @@
 "agente": "icone"
 },
 "16.050": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "16.051": {
 "stato": "svg",
@@ -1848,7 +2118,10 @@
 "agente": "icone"
 },
 "16.055": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.056": {
 "stato": "svg",
@@ -1875,10 +2148,16 @@
 "agente": "ui"
 },
 "16.060": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "16.061": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.062": {
 "stato": "svg",
@@ -1887,16 +2166,28 @@
 "agente": "ui"
 },
 "16.063": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.064": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.065": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.066": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.067": {
 "stato": "svg",
@@ -1905,13 +2196,22 @@
 "agente": "ui"
 },
 "16.068": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.069": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "16.070": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "16.071": {
 "stato": "svg",
@@ -1920,13 +2220,22 @@
 "agente": "ui"
 },
 "16.072": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "16.073": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.001": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.002": {
 "stato": "scartato",
@@ -1953,7 +2262,10 @@
 "agente": "ui"
 },
 "17.006": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.007": {
 "stato": "scartato",
@@ -1962,13 +2274,22 @@
 "agente": "ui"
 },
 "17.008": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.009": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "17.010": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "17.011": {
 "stato": "svg",
@@ -2007,13 +2328,22 @@
 "agente": "ui"
 },
 "17.017": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "17.018": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "17.019": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.020": {
 "stato": "scartato",
@@ -2088,7 +2418,10 @@
 "agente": "luminoso"
 },
 "17.032": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "17.033": {
 "stato": "scartato",
@@ -2169,7 +2502,10 @@
 "agente": "luminoso"
 },
 "17.046": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.047": {
 "stato": "scartato",
@@ -2232,7 +2568,10 @@
 "agente": "icone"
 },
 "17.057": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.058": {
 "stato": "svg",
@@ -2259,7 +2598,10 @@
 "agente": "icone"
 },
 "17.062": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "17.063": {
 "stato": "svg",
@@ -2286,7 +2628,10 @@
 "agente": "ui"
 },
 "17.067": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.068": {
 "stato": "svg",
@@ -2295,16 +2640,28 @@
 "agente": "ui"
 },
 "17.069": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "17.070": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "17.071": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "17.072": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.073": {
 "stato": "svg",
@@ -2313,13 +2670,22 @@
 "agente": "ui"
 },
 "17.074": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.075": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "17.076": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "17.077": {
 "stato": "svg",
@@ -2342,25 +2708,25 @@
 "18.001": {
 "stato": "svg",
 "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/01-profilo.svg",
-"nota": "Barra del livello portata al 65% (l'originale la disegnava al 58%); icone del menu (pupazzetto, badge storto) = bersaglio, grafico, scudo, ingranaggio; avatar = sagoma segnaposto (non foto). Testi leggibili, nessun testo ricostruito.",
+"nota": "Barra del livello portata al 65% (l'originale la disegnava al 58%); icone del menu (pupazzetto, badge storto) = bersaglio, grafico, scudo, ingranaggio; avatar = sagoma segnaposto (non foto). Testi leggibili, nessun testo ricostruito. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]",
 "agente": "s4"
 },
 "18.002": {
 "stato": "svg",
 "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/02-statistiche.svg",
-"nota": "Barre delle abilita' lunghe quanto la percentuale scritta (l'originale no); grafico a 18 barre uguali e allineate; icone delle abilita' rifatte; nav con Profilo attivo (originale: nessuna). Nessun testo ricostruito.",
+"nota": "Barre delle abilita' lunghe quanto la percentuale scritta (l'originale no); grafico a 18 barre uguali e allineate; icone delle abilita' rifatte; nav con Profilo attivo (originale: nessuna). Nessun testo ricostruito. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]",
 "agente": "s4"
 },
 "18.003": {
 "stato": "svg",
 "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/03-frasi-e-vocaboli.svg",
-"nota": "Stelle vere (a 5 punte regolari), chip Gia' note rimesso dentro il margine, sei frasi come nell'originale. Nessun testo ricostruito.",
+"nota": "Stelle vere (a 5 punte regolari), chip Gia' note rimesso dentro il margine, sei frasi come nell'originale. Nessun testo ricostruito. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]",
 "agente": "s4"
 },
 "18.004": {
 "stato": "svg",
 "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/04-quiz-domanda.svg",
-"nota": "Quiz 3/10: avanzamento a 10 segmenti con 3 pieni (l'originale 8 segmenti, 2 pieni); nav con Lezioni attiva. Testi dall'originale.",
+"nota": "Quiz 3/10: avanzamento a 10 segmenti con 3 pieni (l'originale 8 segmenti, 2 pieni); nav con Lezioni attiva. Testi dall'originale. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]",
 "agente": "s4"
 },
 "18.005": {
@@ -2372,19 +2738,19 @@
 "18.006": {
 "stato": "svg",
 "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/06-correzioni.svg",
-"nota": "Correzioni: ritaglio tagliato a destra, scheda ricostruita simmetrica; spunte e X vere; frasi e risposte dell'originale. Nessun testo ricostruito.",
+"nota": "Correzioni: ritaglio tagliato a destra, scheda ricostruita simmetrica; spunte e X vere; frasi e risposte dell'originale. Nessun testo ricostruito. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]",
 "agente": "s4"
 },
 "18.007": {
 "stato": "svg",
 "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/07-simulatore-esame.svg",
-"nota": "Simulatore d'esame: sottotitolo AI storto ('e temmpli e tempo reale') ricostruito come 'e tempi reali.' (TESTO RICOSTRUITO); scena cronometro+foglio disegnata (il kit ha solo il blocco appunti); icone delle righe rifatte; ritaglio tagliato a destra, margine ricostruito.",
+"nota": "Simulatore d'esame: sottotitolo AI storto ('e temmpli e tempo reale') ricostruito come 'e tempi reali.' (TESTO RICOSTRUITO); scena cronometro+foglio disegnata (il kit ha solo il blocco appunti); icone delle righe rifatte; ritaglio tagliato a destra, margine ricostruito. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]",
 "agente": "s4"
 },
 "18.008": {
 "stato": "svg",
 "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/08-simulazione-domanda.svg",
-"nota": "Simulazione 12/40: avanzamento 10 segmenti con 3 pieni (originale 9 disuguali); timer e scudo Grammar ridisegnati; segnalibro vero. Testi leggibili.",
+"nota": "Simulazione 12/40: avanzamento 10 segmenti con 3 pieni (originale 9 disuguali); timer e scudo Grammar ridisegnati; segnalibro vero. Testi leggibili. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]",
 "agente": "s4"
 },
 "18.009": {
@@ -2498,7 +2864,7 @@
 "22.002": {
 "stato": "svg",
 "svg": "brand/concept-svg/schermate/22-schermate-sfide-profilo/02-profilo.svg",
-"nota": "Profilo: Project ID, statistiche, progressi, obiettivi, badge. L'originale ha 'Punteggio medio' con '+12%' doppio e storto: corretto. Avatar disegnato al posto della foto.",
+"nota": "Profilo: Project ID, statistiche, progressi, obiettivi, badge. L'originale ha 'Punteggio medio' con '+12%' doppio e storto: corretto. Avatar disegnato al posto della foto. Nota: s3 copre 22.002 per riuso di 06.008 (stessa schermata, versione più piccola); questo SVG è la versione disegnata dalla 22 a piena risoluzione, con la parte bassa (Badge) letta qui.",
 "agente": "s2"
 },
 "23.001": {
@@ -2520,13 +2886,22 @@
 "agente": "ui"
 },
 "23.004": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.005": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.006": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.007": {
 "stato": "scartato",
@@ -2535,10 +2910,16 @@
 "agente": "ill"
 },
 "23.008": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.009": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.010": {
 "stato": "scartato",
@@ -2553,7 +2934,10 @@
 "agente": "ill"
 },
 "23.012": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.013": {
 "stato": "scartato",
@@ -2580,7 +2964,10 @@
 "agente": "ill"
 },
 "23.017": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "23.018": {
 "stato": "scartato",
@@ -2619,16 +3006,28 @@
 "agente": "ill"
 },
 "23.024": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.025": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.026": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.027": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.028": {
 "stato": "scartato",
@@ -2667,7 +3066,10 @@
 "agente": "ill"
 },
 "23.034": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.035": {
 "stato": "scartato",
@@ -2688,7 +3090,10 @@
 "agente": "ill"
 },
 "23.038": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.039": {
 "stato": "scartato",
@@ -2847,7 +3252,10 @@
 "agente": "ill"
 },
 "23.065": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "23.066": {
 "stato": "scartato",
@@ -2886,154 +3294,304 @@
 "agente": "logo"
 },
 "25.001": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/25-flusso-rischio/01-home-rischio.svg",
+"nota": "Home con rischio 82 % (variante a bassa risoluzione della home di 03/s8, qui con la sezione «Come cambia il tuo rischio»). Valori ed etichette del grafico sulla stessa linea di base (nell'originale a quote diverse); i connettori blu con puntini del foglio non sono parte della schermata e non sono riprodotti. Misuratore = misuratore_rischio di s8.",
+"agente": "s2"
 },
 "25.002": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/25-flusso-rischio/02-come-viene-calcolato.svg",
+"nota": "Finestra «Come viene calcolato il tuo rischio?» sopra la home sfocata e scurita (sfondo ricostruito con forme sfocate: non c'è altro da leggere). Icone dei 3 fattori e della nota ridisegnate; testi tutti leggibili.",
+"agente": "s2"
 },
 "25.003": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": "brand/concept-svg/schermate/25-flusso-rischio/03-fattori.svg",
+"nota": "frammento: il titolo «Fattori che influenzano il tuo rischio» tagliato dal riquadro; coperto da 25-03-fattori.svg.",
+"agente": "s2"
 },
 "25.004": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/25-flusso-rischio/03-fattori.svg",
+"nota": "Elenco «Fattori che influenzano il tuo rischio» (foglio sopra l'app sfocata): Grammatica, Comprensione, Vocabolario, Ragionamento con barre rosso/arancio/giallo; icone ridisegnate (Aa con testo vero). Il riquadro del catalogo contiene anche la parte sfocata sopra: inclusa.",
+"agente": "s2"
 },
 "25.005": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/25-flusso-rischio/04-lezione-future-tenses.svg",
+"nota": "Lezione «Future tenses» con barra a 5 segmenti, tre punti d'elenco (icone ridisegnate: nell'originale illeggibili, testi invece leggibili) e pulsante «Inizia la lezione».",
+"agente": "s2"
 },
 "25.006": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": "brand/concept-svg/schermate/25-flusso-rischio/05-dettaglio-obiettivo.svg",
+"nota": "frammento: striscia della barra di stato dei due schermi in basso a sinistra; coperta dagli SVG 25-05-dettaglio-obiettivo (schermata «Dettaglio obiettivo», 5 lezioni con i titoli allineati alla stessa x) e 25-06.",
+"agente": "s2"
 },
 "25.007": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": "brand/concept-svg/schermate/25-flusso-rischio/07-il-tuo-percorso.svg",
+"nota": "frammento: striscia della barra di stato della schermata «Il tuo percorso»; coperta da 25-07-il-tuo-percorso.svg.",
+"agente": "s2"
 },
 "25.008": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/25-flusso-rischio/06-come-cambia-rischio.svg",
+"nota": "Il pannello contiene due schermate: «Come cambia il tuo rischio?» (questo SVG; la parentesi spezzata dopo il «?» è diventata l'icona (i)) e «Il tuo percorso» (25-07-il-tuo-percorso.svg, stesso grafico con 82 %/62 %/28 % e scheda «Obiettivo: sotto il 20%»).",
+"agente": "s2"
 },
 "26.001": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/01-hero-social-media-identity.svg",
+"nota": "Hero della tavola: tutto vettoriale (cielo, edificio, gradinata, blocco-marchio con stella luminosa simmetrica, titolo Inter, scritta a mano resa con Inter inclinata). I frammenti di testo 001/002/007/009/010/011/012/014 sono coperti dal layout.",
+"agente": "p2"
 },
 "26.002": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/01-hero-social-media-identity.svg",
+"nota": "Hero della tavola: tutto vettoriale (cielo, edificio, gradinata, blocco-marchio con stella luminosa simmetrica, titolo Inter, scritta a mano resa con Inter inclinata). I frammenti di testo 001/002/007/009/010/011/012/014 sono coperti dal layout.",
+"agente": "p2"
 },
 "26.003": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/01-hero-social-media-identity.svg",
+"nota": "Hero della tavola: tutto vettoriale (cielo, edificio, gradinata, blocco-marchio con stella luminosa simmetrica, titolo Inter, scritta a mano resa con Inter inclinata). I frammenti di testo 001/002/007/009/010/011/012/014 sono coperti dal layout.",
+"agente": "p2"
 },
 "26.004": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/02-profilo-instagram-telefono.svg",
+"nota": "Telefono con profilo @addiofa tutto vettoriale (corpo, isola, barra di stato, avatar con stella luminosa, bio, pulsanti, 5 storie). Corretti: icona 'Risultati' (nell'originale era un punto interrogativo) ora barre; emoji della bio sostituite da glifi; icone di stato generiche. Testo della bio ricopiato dall'originale.",
+"agente": "p2"
 },
 "26.005": {
-"stato": "non-contato"
+"stato": "riuso",
+"svg": "brand/concept-svg/layout/26-social-media-identity/03-highlight-covers.svg",
+"nota": "6 copertine delle storie in evidenza (Quiz, Tips, Risultati=trofeo, Studenti, FAQ, OFA): trofeo = riuso kit-blu/successo; documento, lampadina, cappello da laureato, punto interrogativo, barre disegnati vettoriali. 008 (trofeo) e 013 (OFA) coperti qui.",
+"agente": "p2"
 },
 "26.006": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/26-social-media-identity/04-formati-di-contenuto.svg",
+"nota": "4 formati di contenuto. Tre vettoriali (Quiz Time, 3 consigli, 82%); il quarto (Community: studente di spalle davanti all'edificio) ha lo sfondo fotografico raster pulito dalla scritta, titolo vettoriale.",
+"agente": "p2"
 },
 "26.007": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/01-hero-social-media-identity.svg",
+"nota": "Hero della tavola: tutto vettoriale (cielo, edificio, gradinata, blocco-marchio con stella luminosa simmetrica, titolo Inter, scritta a mano resa con Inter inclinata). I frammenti di testo 001/002/007/009/010/011/012/014 sono coperti dal layout.",
+"agente": "p2"
 },
 "26.008": {
-"stato": "non-contato"
+"stato": "riuso",
+"svg": "brand/concept-svg/layout/26-social-media-identity/03-highlight-covers.svg",
+"nota": "6 copertine delle storie in evidenza (Quiz, Tips, Risultati=trofeo, Studenti, FAQ, OFA): trofeo = riuso kit-blu/successo; documento, lampadina, cappello da laureato, punto interrogativo, barre disegnati vettoriali. 008 (trofeo) e 013 (OFA) coperti qui.",
+"agente": "p2"
 },
 "26.009": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/01-hero-social-media-identity.svg",
+"nota": "Hero della tavola: tutto vettoriale (cielo, edificio, gradinata, blocco-marchio con stella luminosa simmetrica, titolo Inter, scritta a mano resa con Inter inclinata). I frammenti di testo 001/002/007/009/010/011/012/014 sono coperti dal layout.",
+"agente": "p2"
 },
 "26.010": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/01-hero-social-media-identity.svg",
+"nota": "Hero della tavola: tutto vettoriale (cielo, edificio, gradinata, blocco-marchio con stella luminosa simmetrica, titolo Inter, scritta a mano resa con Inter inclinata). I frammenti di testo 001/002/007/009/010/011/012/014 sono coperti dal layout.",
+"agente": "p2"
 },
 "26.011": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/01-hero-social-media-identity.svg",
+"nota": "Hero della tavola: tutto vettoriale (cielo, edificio, gradinata, blocco-marchio con stella luminosa simmetrica, titolo Inter, scritta a mano resa con Inter inclinata). I frammenti di testo 001/002/007/009/010/011/012/014 sono coperti dal layout.",
+"agente": "p2"
 },
 "26.012": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/01-hero-social-media-identity.svg",
+"nota": "Hero della tavola: tutto vettoriale (cielo, edificio, gradinata, blocco-marchio con stella luminosa simmetrica, titolo Inter, scritta a mano resa con Inter inclinata). I frammenti di testo 001/002/007/009/010/011/012/014 sono coperti dal layout.",
+"agente": "p2"
 },
 "26.013": {
-"stato": "non-contato"
+"stato": "riuso",
+"svg": "brand/concept-svg/layout/26-social-media-identity/03-highlight-covers.svg",
+"nota": "6 copertine delle storie in evidenza (Quiz, Tips, Risultati=trofeo, Studenti, FAQ, OFA): trofeo = riuso kit-blu/successo; documento, lampadina, cappello da laureato, punto interrogativo, barre disegnati vettoriali. 008 (trofeo) e 013 (OFA) coperti qui.",
+"agente": "p2"
 },
 "26.014": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/01-hero-social-media-identity.svg",
+"nota": "Hero della tavola: tutto vettoriale (cielo, edificio, gradinata, blocco-marchio con stella luminosa simmetrica, titolo Inter, scritta a mano resa con Inter inclinata). I frammenti di testo 001/002/007/009/010/011/012/014 sono coperti dal layout.",
+"agente": "p2"
 },
 "26.015": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": "brand/concept-svg/layout/26-social-media-identity/05-template-post-instagram.svg",
+"nota": "testo: etichetta di sezione 'TEMPLATE STORIES (9:16)', non e' un elemento grafico (le etichette sezione sono coperte come testo nei layout).",
+"agente": "p2"
 },
 "26.016": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/26-social-media-identity/05-template-post-instagram.svg",
+"nota": "6 post 1:1: cinque vettoriali (Quiz Time, 3 consigli, 82%, Errori comuni, checklist scura); il post 4 (edificio POLITECNICO DI MILANO) ha lo sfondo foto raster pulito dalla scritta a mano, che e' rifatta ('SAME STUDENTS BRIGHTER PATHS' = tagline inglese mantenuta). Simboli rifatti: X rossa e cerchi numerati.",
+"agente": "p2"
 },
 "26.017": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/06-template-stories.svg",
+"nota": "5 storie 9:16 tutte vettoriali (cielo e volumi disegnati, telefono con quiz, grafico a barre con +40%, lampadina = riuso kit-blu suggerimenti-consigli). Testi ricostruiti: contenuto dello schermo del telefono nella storia 1 (barre di testo, non frasi).",
+"agente": "p2"
 },
 "26.018": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/06-template-stories.svg",
+"nota": "5 storie 9:16 tutte vettoriali (cielo e volumi disegnati, telefono con quiz, grafico a barre con +40%, lampadina = riuso kit-blu suggerimenti-consigli). Testi ricostruiti: contenuto dello schermo del telefono nella storia 1 (barre di testo, non frasi).",
+"agente": "p2"
 },
 "26.019": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/26-social-media-identity/07-template-reels-tiktok.svg",
+"nota": "5 reel 9:16. Raster pulito: sfondi fotografici di 4 reel (studente, laptop, di spalle, ragazza); il reel 'Errore comune' e' vettoriale. Titoli, icone, X rossa, spunta verde, contatori vettoriali; nel reel laptop la scritta 'Quiz reale dell'OFA' e' vettoriale su schermo ripulito.",
+"agente": "p2"
 },
 "26.020": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/08-esempi-di-caption-e-tono-di-voce.svg",
+"nota": "Scheda caption (testata addiofa, testo, elenco numerato, hashtag) e riga 'Tono di voce' con 6 chip (Chiaro, Motivante, Pratico, Amichevole, Istituzionale, Autentico: il blocco chip non e' un elemento del catalogo ma fa parte della composizione). Bandierina UK a diagonali sfalsate al posto dell'emoji.",
+"agente": "p2"
 },
 "26.021": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/08-esempi-di-caption-e-tono-di-voce.svg",
+"nota": "Scheda caption (testata addiofa, testo, elenco numerato, hashtag) e riga 'Tono di voce' con 6 chip (Chiaro, Motivante, Pratico, Amichevole, Istituzionale, Autentico: il blocco chip non e' un elemento del catalogo ma fa parte della composizione). Bandierina UK a diagonali sfalsate al posto dell'emoji.",
+"agente": "p2"
 },
 "26.022": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/09-applicazioni.svg",
+"nota": "Tre profili AddiOFA su TikTok, YouTube, LinkedIn: forme generiche (nessuna copia dei loghi di terzi: la nota di TikTok e' un segno generico), marchio AddiOFA = tile con stella disegnato. Pulsanti Segui/Iscriviti/Segui vettoriali; testi 'AddiOFA', 'Studenti Polimi - Preparazione OFA di inglese' ricopiati.",
+"agente": "p2"
 },
 "26.023": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/09-applicazioni.svg",
+"nota": "Tre profili AddiOFA su TikTok, YouTube, LinkedIn: forme generiche (nessuna copia dei loghi di terzi: la nota di TikTok e' un segno generico), marchio AddiOFA = tile con stella disegnato. Pulsanti Segui/Iscriviti/Segui vettoriali; testi 'AddiOFA', 'Studenti Polimi - Preparazione OFA di inglese' ricopiati.",
+"agente": "p2"
 },
 "26.024": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/09-applicazioni.svg",
+"nota": "Tre profili AddiOFA su TikTok, YouTube, LinkedIn: forme generiche (nessuna copia dei loghi di terzi: la nota di TikTok e' un segno generico), marchio AddiOFA = tile con stella disegnato. Pulsanti Segui/Iscriviti/Segui vettoriali; testi 'AddiOFA', 'Studenti Polimi - Preparazione OFA di inglese' ricopiati.",
+"agente": "p2"
 },
 "26.025": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/08-esempi-di-caption-e-tono-di-voce.svg",
+"nota": "Scheda caption (testata addiofa, testo, elenco numerato, hashtag) e riga 'Tono di voce' con 6 chip (Chiaro, Motivante, Pratico, Amichevole, Istituzionale, Autentico: il blocco chip non e' un elemento del catalogo ma fa parte della composizione). Bandierina UK a diagonali sfalsate al posto dell'emoji.",
+"agente": "p2"
 },
 "26.026": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/08-esempi-di-caption-e-tono-di-voce.svg",
+"nota": "Scheda caption (testata addiofa, testo, elenco numerato, hashtag) e riga 'Tono di voce' con 6 chip (Chiaro, Motivante, Pratico, Amichevole, Istituzionale, Autentico: il blocco chip non e' un elemento del catalogo ma fa parte della composizione). Bandierina UK a diagonali sfalsate al posto dell'emoji.",
+"agente": "p2"
 },
 "26.027": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/09-applicazioni.svg",
+"nota": "Tre profili AddiOFA su TikTok, YouTube, LinkedIn: forme generiche (nessuna copia dei loghi di terzi: la nota di TikTok e' un segno generico), marchio AddiOFA = tile con stella disegnato. Pulsanti Segui/Iscriviti/Segui vettoriali; testi 'AddiOFA', 'Studenti Polimi - Preparazione OFA di inglese' ricopiati.",
+"agente": "p2"
 },
 "26.028": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/09-applicazioni.svg",
+"nota": "Tre profili AddiOFA su TikTok, YouTube, LinkedIn: forme generiche (nessuna copia dei loghi di terzi: la nota di TikTok e' un segno generico), marchio AddiOFA = tile con stella disegnato. Pulsanti Segui/Iscriviti/Segui vettoriali; testi 'AddiOFA', 'Studenti Polimi - Preparazione OFA di inglese' ricopiati.",
+"agente": "p2"
 },
 "26.029": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/09-applicazioni.svg",
+"nota": "Tre profili AddiOFA su TikTok, YouTube, LinkedIn: forme generiche (nessuna copia dei loghi di terzi: la nota di TikTok e' un segno generico), marchio AddiOFA = tile con stella disegnato. Pulsanti Segui/Iscriviti/Segui vettoriali; testi 'AddiOFA', 'Studenti Polimi - Preparazione OFA di inglese' ricopiati.",
+"agente": "p2"
 },
 "26.030": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/08-esempi-di-caption-e-tono-di-voce.svg",
+"nota": "Scheda caption (testata addiofa, testo, elenco numerato, hashtag) e riga 'Tono di voce' con 6 chip (Chiaro, Motivante, Pratico, Amichevole, Istituzionale, Autentico: il blocco chip non e' un elemento del catalogo ma fa parte della composizione). Bandierina UK a diagonali sfalsate al posto dell'emoji.",
+"agente": "p2"
 },
 "26.031": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/10-pattern-e-background.svg",
+"nota": "7 sfondi/pattern: stella morbida, blu notte con arco e scintilla, nuvole, volumi bianchi dell'edificio, fascia e griglia di punti, archi sottili. Tutto vettoriale (nuvole e edificio disegnati, non foto). 035 (fascia di punti) frammento incluso.",
+"agente": "p2"
 },
 "26.032": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/10-pattern-e-background.svg",
+"nota": "7 sfondi/pattern: stella morbida, blu notte con arco e scintilla, nuvole, volumi bianchi dell'edificio, fascia e griglia di punti, archi sottili. Tutto vettoriale (nuvole e edificio disegnati, non foto). 035 (fascia di punti) frammento incluso.",
+"agente": "p2"
 },
 "26.033": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/10-pattern-e-background.svg",
+"nota": "7 sfondi/pattern: stella morbida, blu notte con arco e scintilla, nuvole, volumi bianchi dell'edificio, fascia e griglia di punti, archi sottili. Tutto vettoriale (nuvole e edificio disegnati, non foto). 035 (fascia di punti) frammento incluso.",
+"agente": "p2"
 },
 "26.034": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/10-pattern-e-background.svg",
+"nota": "7 sfondi/pattern: stella morbida, blu notte con arco e scintilla, nuvole, volumi bianchi dell'edificio, fascia e griglia di punti, archi sottili. Tutto vettoriale (nuvole e edificio disegnati, non foto). 035 (fascia di punti) frammento incluso.",
+"agente": "p2"
 },
 "26.035": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/10-pattern-e-background.svg",
+"nota": "7 sfondi/pattern: stella morbida, blu notte con arco e scintilla, nuvole, volumi bianchi dell'edificio, fascia e griglia di punti, archi sottili. Tutto vettoriale (nuvole e edificio disegnati, non foto). 035 (fascia di punti) frammento incluso.",
+"agente": "p2"
 },
 "26.036": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/10-pattern-e-background.svg",
+"nota": "7 sfondi/pattern: stella morbida, blu notte con arco e scintilla, nuvole, volumi bianchi dell'edificio, fascia e griglia di punti, archi sottili. Tutto vettoriale (nuvole e edificio disegnati, non foto). 035 (fascia di punti) frammento incluso.",
+"agente": "p2"
 },
 "26.037": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/10-pattern-e-background.svg",
+"nota": "7 sfondi/pattern: stella morbida, blu notte con arco e scintilla, nuvole, volumi bianchi dell'edificio, fascia e griglia di punti, archi sottili. Tutto vettoriale (nuvole e edificio disegnati, non foto). 035 (fascia di punti) frammento incluso.",
+"agente": "p2"
 },
 "26.038": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/11-grafiche-testo.svg",
+"nota": "4 grafiche di testo: 'Il tuo inglese, senza ostacoli.', 'SMALL STEPS BIG OPPORTUNITIES' a mano (Inter inclinata), 'Dal Polimi al tuo futuro.', 'Quiz. Strategie. Risultati.'.",
+"agente": "p2"
 },
 "26.039": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/11-grafiche-testo.svg",
+"nota": "4 grafiche di testo: 'Il tuo inglese, senza ostacoli.', 'SMALL STEPS BIG OPPORTUNITIES' a mano (Inter inclinata), 'Dal Polimi al tuo futuro.', 'Quiz. Strategie. Risultati.'.",
+"agente": "p2"
 },
 "26.040": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/12-copertina-social.svg",
+"nota": "Copertina YouTube/LinkedIn: wordmark AddiOFA vettoriale con O a stella, tagline, scena con blocco-marchio illuminato, scritta a mano. Tutto vettoriale.",
+"agente": "p2"
 },
 "26.041": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/11-grafiche-testo.svg",
+"nota": "4 grafiche di testo: 'Il tuo inglese, senza ostacoli.', 'SMALL STEPS BIG OPPORTUNITIES' a mano (Inter inclinata), 'Dal Polimi al tuo futuro.', 'Quiz. Strategie. Risultati.'.",
+"agente": "p2"
 },
 "26.042": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/26-social-media-identity/11-grafiche-testo.svg",
+"nota": "4 grafiche di testo: 'Il tuo inglese, senza ostacoli.', 'SMALL STEPS BIG OPPORTUNITIES' a mano (Inter inclinata), 'Dal Polimi al tuo futuro.', 'Quiz. Strategie. Risultati.'.",
+"agente": "p2"
 },
 "27.001": {
 "stato": "scartato",
@@ -3054,13 +3612,22 @@
 "agente": "ui"
 },
 "27.004": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.005": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.006": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.007": {
 "stato": "scartato",
@@ -3069,10 +3636,16 @@
 "agente": "ill"
 },
 "27.008": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.009": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.010": {
 "stato": "scartato",
@@ -3087,7 +3660,10 @@
 "agente": "ill"
 },
 "27.012": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.013": {
 "stato": "scartato",
@@ -3114,7 +3690,10 @@
 "agente": "ill"
 },
 "27.017": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "27.018": {
 "stato": "scartato",
@@ -3153,16 +3732,28 @@
 "agente": "ill"
 },
 "27.024": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.025": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.026": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.027": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.028": {
 "stato": "scartato",
@@ -3201,7 +3792,10 @@
 "agente": "ill"
 },
 "27.034": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.035": {
 "stato": "scartato",
@@ -3222,7 +3816,10 @@
 "agente": "ill"
 },
 "27.038": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.039": {
 "stato": "scartato",
@@ -3381,7 +3978,10 @@
 "agente": "ill"
 },
 "27.065": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "27.066": {
 "stato": "scartato",
@@ -3414,7 +4014,10 @@
 "agente": "ill"
 },
 "28.001": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "28.002": {
 "stato": "svg",
@@ -3639,7 +4242,10 @@
 "agente": "icone"
 },
 "28.039": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.040": {
 "stato": "svg",
@@ -3678,7 +4284,10 @@
 "agente": "icone"
 },
 "28.046": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.047": {
 "stato": "svg",
@@ -3687,7 +4296,10 @@
 "agente": "ui"
 },
 "28.048": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.049": {
 "stato": "svg",
@@ -3696,7 +4308,10 @@
 "agente": "ui"
 },
 "28.050": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.051": {
 "stato": "svg",
@@ -3711,10 +4326,16 @@
 "agente": "ui"
 },
 "28.053": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.054": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.055": {
 "stato": "svg",
@@ -3741,7 +4362,10 @@
 "agente": "icone"
 },
 "28.059": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.060": {
 "stato": "scartato",
@@ -3774,10 +4398,16 @@
 "agente": "ui"
 },
 "28.065": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.066": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.067": {
 "stato": "svg",
@@ -3816,7 +4446,10 @@
 "agente": "icone"
 },
 "28.073": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "28.074": {
 "stato": "scartato",
@@ -3825,7 +4458,10 @@
 "agente": "ill"
 },
 "28.075": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.076": {
 "stato": "svg",
@@ -3840,7 +4476,10 @@
 "agente": "ui"
 },
 "28.078": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.079": {
 "stato": "svg",
@@ -3849,19 +4488,34 @@
 "agente": "ui"
 },
 "28.080": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.081": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.082": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.083": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.084": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.085": {
 "stato": "riuso",
@@ -3912,10 +4566,16 @@
 "agente": "ill"
 },
 "28.093": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "28.094": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "28.095": {
 "stato": "svg",
@@ -3942,7 +4602,10 @@
 "agente": "ill"
 },
 "28.099": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.100": {
 "stato": "scartato",
@@ -3963,10 +4626,16 @@
 "agente": "ill"
 },
 "28.103": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.104": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.105": {
 "stato": "scartato",
@@ -4005,7 +4674,10 @@
 "agente": "ill"
 },
 "28.111": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.112": {
 "stato": "svg",
@@ -4074,7 +4746,10 @@
 "agente": "icone"
 },
 "28.123": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.124": {
 "stato": "svg",
@@ -4113,22 +4788,40 @@
 "agente": "ill"
 },
 "28.130": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.131": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.132": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.133": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.134": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.135": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.136": {
 "stato": "scartato",
@@ -4137,7 +4830,10 @@
 "agente": "ill"
 },
 "28.137": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.138": {
 "stato": "svg",
@@ -4146,10 +4842,16 @@
 "agente": "icone"
 },
 "28.139": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.140": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.141": {
 "stato": "svg",
@@ -4182,7 +4884,10 @@
 "agente": "ill"
 },
 "28.146": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.147": {
 "stato": "svg",
@@ -4191,10 +4896,16 @@
 "agente": "icone"
 },
 "28.148": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.149": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "28.150": {
 "stato": "svg",
@@ -4209,10 +4920,16 @@
 "agente": "icone"
 },
 "28.152": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "28.153": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "28.154": {
 "stato": "scartato",
@@ -4221,57 +4938,75 @@
 "agente": "ill"
 },
 "28.155": {
-"stato": "non-contato"
-},
-"28.156": {
-"stato": "non-contato"
-},
-"28.157": {
-"stato": "non-contato"
-},
-"28.158": {
-"stato": "non-contato"
-},
-"28.159": {
-"stato": "non-contato"
-},
-"28.160": {
-"stato": "non-contato"
-},
-"29.001": {
 "stato": "scartato",
 "svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
+},
+"28.156": {
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
+},
+"28.157": {
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
+},
+"28.158": {
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
+},
+"28.159": {
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
+},
+"28.160": {
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
+},
+"29.001": {
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/29-schermate-risultato-sei-b-001-calcoliamo-0.svg",
+"nota": "Striscia di stato sotto il misuratore (icona + testo breve); avviso + pulsante nell'ultima. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "29.002": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/29-schermate-risultato-sei-b-002-elaboriamo-12.svg",
+"nota": "Striscia di stato sotto il misuratore (icona + testo breve); avviso + pulsante nell'ultima. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "29.003": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/29-schermate-risultato-sei-b-003-analizzando-36.svg",
+"nota": "Striscia di stato sotto il misuratore (icona + testo breve); avviso + pulsante nell'ultima. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "29.004": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/29-schermate-risultato-sei-b-004-quasi-pronto-58.svg",
+"nota": "Striscia di stato sotto il misuratore (icona + testo breve); avviso + pulsante nell'ultima. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "29.005": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/29-schermate-risultato-sei-b-005-ultimi-dettagli-74.svg",
+"nota": "Striscia di stato sotto il misuratore (icona + testo breve); avviso + pulsante nell'ultima. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "29.006": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/29-schermate-risultato-sei-b-006-risultato-82.svg",
+"nota": "Striscia di stato sotto il misuratore (icona + testo breve); avviso + pulsante nell'ultima. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "30.001": {
@@ -4443,7 +5178,10 @@
 "agente": "s6"
 },
 "32.001": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/32-banner-verticali/01-banner-hero.svg",
+"nota": "Banner di 301-317 px (tela in px x1,5), tutto vettoriale tranne le foto/render 3D dichiarati RASTER (JPEG incorporati): arco con stella e scalinata, skyline di Milano, parete 'SAME STUDENTS HIGHER HORIZONS'. Testi, pulsanti, wordmark, sfumature, bordi strappati, schede, icone, anello 82 %% e badge store vettoriali; testi sovrapposti dall'AI alle foto tolti con inpaint e rifatti. Tile del marchio dal kit (marchio-tile-scuro).",
+"agente": "p1"
 },
 "33.001": {
 "stato": "svg",
@@ -4638,7 +5376,10 @@
 "agente": "logo"
 },
 "35.018": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.019": {
 "stato": "svg",
@@ -4659,7 +5400,10 @@
 "agente": "ui"
 },
 "35.022": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.023": {
 "stato": "scartato",
@@ -4668,13 +5412,22 @@
 "agente": "ill"
 },
 "35.024": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.025": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.026": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.027": {
 "stato": "scartato",
@@ -4695,7 +5448,10 @@
 "agente": "ill"
 },
 "35.030": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.031": {
 "stato": "scartato",
@@ -4710,16 +5466,28 @@
 "agente": "ill"
 },
 "35.033": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.034": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.035": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.036": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.037": {
 "stato": "svg",
@@ -4734,16 +5502,28 @@
 "agente": "ui"
 },
 "35.039": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.040": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.041": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.042": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.043": {
 "stato": "scartato",
@@ -4752,10 +5532,16 @@
 "agente": "ill"
 },
 "35.044": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.045": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.046": {
 "stato": "scartato",
@@ -4788,7 +5574,10 @@
 "agente": "ui"
 },
 "35.051": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.052": {
 "stato": "svg",
@@ -4815,7 +5604,10 @@
 "agente": "ui"
 },
 "35.056": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.057": {
 "stato": "riuso",
@@ -4842,10 +5634,16 @@
 "agente": "ill"
 },
 "35.061": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.062": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.063": {
 "stato": "svg",
@@ -4854,7 +5652,10 @@
 "agente": "ui"
 },
 "35.064": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.065": {
 "stato": "scartato",
@@ -4863,10 +5664,16 @@
 "agente": "ill"
 },
 "35.066": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.067": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.068": {
 "stato": "svg",
@@ -4881,7 +5688,10 @@
 "agente": "ill"
 },
 "35.070": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.071": {
 "stato": "svg",
@@ -4890,7 +5700,10 @@
 "agente": "ui"
 },
 "35.072": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.073": {
 "stato": "svg",
@@ -4923,10 +5736,16 @@
 "agente": "ui"
 },
 "35.078": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.079": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.080": {
 "stato": "scartato",
@@ -4935,7 +5754,10 @@
 "agente": "ill"
 },
 "35.081": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.082": {
 "stato": "svg",
@@ -4956,16 +5778,28 @@
 "agente": "ui"
 },
 "35.085": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "35.086": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "35.087": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.088": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "35.089": {
 "stato": "scartato",
@@ -4992,22 +5826,40 @@
 "agente": "ill"
 },
 "35.093": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "35.094": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "35.095": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "35.096": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "35.097": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "35.098": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "35.099": {
 "stato": "scartato",
@@ -5022,10 +5874,16 @@
 "agente": "ui"
 },
 "35.101": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "35.102": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "35.103": {
 "stato": "scartato",
@@ -5202,52 +6060,100 @@
 "agente": "logo"
 },
 "40.002": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.003": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.004": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "40.005": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "40.006": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.007": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.008": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.009": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.010": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.011": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.012": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.013": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.014": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.015": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.016": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.017": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.018": {
 "stato": "scartato",
@@ -5256,16 +6162,28 @@
 "agente": "ill"
 },
 "40.019": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "40.020": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.021": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.022": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "40.023": {
 "stato": "scartato",
@@ -5316,7 +6234,10 @@
 "agente": "ui"
 },
 "40.031": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.032": {
 "stato": "svg",
@@ -5331,7 +6252,10 @@
 "agente": "ui"
 },
 "40.034": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.035": {
 "stato": "svg",
@@ -5382,13 +6306,22 @@
 "agente": "ui"
 },
 "40.043": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.044": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.045": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.046": {
 "stato": "svg",
@@ -5409,7 +6342,10 @@
 "agente": "ill"
 },
 "40.049": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.050": {
 "stato": "svg",
@@ -5454,7 +6390,10 @@
 "agente": "ui"
 },
 "40.057": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "40.058": {
 "stato": "svg",
@@ -5511,16 +6450,28 @@
 "agente": "ui"
 },
 "40.067": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "40.068": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "40.069": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "40.070": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "mockup fotografico 3D o foto (felpa, borsa, borraccia, quaderno, telefono renderizzato, edifici): non vettorializzabile; resta raster in design-concept/",
+"agente": "coordinatore-board"
 },
 "40.071": {
 "stato": "svg",
@@ -5535,10 +6486,16 @@
 "agente": "ill"
 },
 "40.073": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "40.074": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "40.075": {
 "stato": "scartato",
@@ -5559,39 +6516,39 @@
 "agente": "p3"
 },
 "42.001": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/42-schermate-risultato-animazioni-001-calcoliamo.svg",
+"nota": "Due riquadri in uno SVG: schermata con decorazioni (carte, scie) sopra e dettaglio ingrandito del misuratore sotto; decorazioni come forme vettoriali con sfumature. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "42.002": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/42-schermate-risultato-animazioni-002-elaboriamo-8.svg",
+"nota": "Due riquadri in uno SVG: schermata con decorazioni (carte, scie) sopra e dettaglio ingrandito del misuratore sotto; decorazioni come forme vettoriali con sfumature. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "42.003": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/42-schermate-risultato-animazioni-003-analizzando-28.svg",
+"nota": "Due riquadri in uno SVG: schermata con decorazioni (carte, scie) sopra e dettaglio ingrandito del misuratore sotto; decorazioni come forme vettoriali con sfumature. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "42.004": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/42-schermate-risultato-animazioni-004-ultimi-calcoli-56.svg",
+"nota": "Due riquadri in uno SVG: schermata con decorazioni (carte, scie) sopra e dettaglio ingrandito del misuratore sotto; decorazioni come forme vettoriali con sfumature. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "42.005": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/42-schermate-risultato-animazioni-005-quasi-pronto-76.svg",
+"nota": "Due riquadri in uno SVG: schermata con decorazioni (carte, scie) sopra e dettaglio ingrandito del misuratore sotto; decorazioni come forme vettoriali con sfumature. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "42.006": {
-"stato": "scartato",
-"svg": null,
-"nota": "IN LAVORAZIONE: SVG non ancora generato",
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/calcolo-risultato/42-schermate-risultato-animazioni-006-risultato-82.svg",
+"nota": "Due riquadri in uno SVG: schermata con decorazioni (carte, scie) sopra e dettaglio ingrandito del misuratore sotto; decorazioni come forme vettoriali con sfumature. Testo piccolo ricostruito/ricontrollato a ingrandimento.",
 "agente": "s5"
 },
 "43.001": {
@@ -6027,85 +6984,166 @@
 "agente": "s1"
 },
 "48.001": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/01-storie-verticali.svg",
+"nota": "8 storie/reel verticali. Raster: sfondi fotografici (studenti, mano con telefono, edificio) puliti dalle scritte con inpainting; tutto il resto vettoriale (wordmark AddiOFA, icone social generiche, contatori, didascalie, titoli, arco 82% e pulsanti, scheda con spunte, bandiera UK a diagonali sfalsate, fumetto, elenco errori, telefono con quiz). Corretti: '3 / 1' sovrapposti della tessera 3 consigli; contatori coperti dalla scheda; '92 con apostrofo. Testi ricostruiti: contatori della tessera 7 (9.2K, 184, 890), testo del telefono nella tessera 8.",
+"agente": "p2"
 },
 "48.002": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/01-storie-verticali.svg",
+"nota": "8 storie/reel verticali. Raster: sfondi fotografici (studenti, mano con telefono, edificio) puliti dalle scritte con inpainting; tutto il resto vettoriale (wordmark AddiOFA, icone social generiche, contatori, didascalie, titoli, arco 82% e pulsanti, scheda con spunte, bandiera UK a diagonali sfalsate, fumetto, elenco errori, telefono con quiz). Corretti: '3 / 1' sovrapposti della tessera 3 consigli; contatori coperti dalla scheda; '92 con apostrofo. Testi ricostruiti: contatori della tessera 7 (9.2K, 184, 890), testo del telefono nella tessera 8.",
+"agente": "p2"
 },
 "48.003": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/02-carosello-educativo.svg",
+"nota": "Carosello a 5 schede. Raster solo le foto dell'edificio (copertina e scheda 4, pulite dalle scritte); schede, numeri, titoli, telefono mini, checklist, pulsanti vettoriali.",
+"agente": "p2"
 },
 "48.004": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/03-carosello-dati-statistiche.svg",
+"nota": "Carosello '5 motivi per non rimandare l'OFA': tutto vettoriale, telefono con stella a 4 punte disegnato, icone (moneta, lucchetto, x, cervello, barre) disegnate. 'in media 30€' come nell'originale (cifra non inventata).",
+"agente": "p2"
 },
 "48.005": {
-"stato": "non-contato"
+"stato": "riuso",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/04-carosello-tips.svg",
+"nota": "Carosello tips: testata, 'Tip del giorno / Reading' (frammenti 005, 006, 008, 009 rimessi insieme e corretti), lampadina = riuso kit-blu suggerimenti-consigli, schede 1 e 2 (tagliata a bordo, come nell'originale). Tutto vettoriale.",
+"agente": "p2"
 },
 "48.006": {
-"stato": "non-contato"
+"stato": "riuso",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/04-carosello-tips.svg",
+"nota": "Carosello tips: testata, 'Tip del giorno / Reading' (frammenti 005, 006, 008, 009 rimessi insieme e corretti), lampadina = riuso kit-blu suggerimenti-consigli, schede 1 e 2 (tagliata a bordo, come nell'originale). Tutto vettoriale.",
+"agente": "p2"
 },
 "48.007": {
-"stato": "non-contato"
+"stato": "riuso",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/04-carosello-tips.svg",
+"nota": "Carosello tips: testata, 'Tip del giorno / Reading' (frammenti 005, 006, 008, 009 rimessi insieme e corretti), lampadina = riuso kit-blu suggerimenti-consigli, schede 1 e 2 (tagliata a bordo, come nell'originale). Tutto vettoriale.",
+"agente": "p2"
 },
 "48.008": {
-"stato": "non-contato"
+"stato": "riuso",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/04-carosello-tips.svg",
+"nota": "Carosello tips: testata, 'Tip del giorno / Reading' (frammenti 005, 006, 008, 009 rimessi insieme e corretti), lampadina = riuso kit-blu suggerimenti-consigli, schede 1 e 2 (tagliata a bordo, come nell'originale). Tutto vettoriale.",
+"agente": "p2"
 },
 "48.009": {
-"stato": "non-contato"
+"stato": "riuso",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/04-carosello-tips.svg",
+"nota": "Carosello tips: testata, 'Tip del giorno / Reading' (frammenti 005, 006, 008, 009 rimessi insieme e corretti), lampadina = riuso kit-blu suggerimenti-consigli, schede 1 e 2 (tagliata a bordo, come nell'originale). Tutto vettoriale.",
+"agente": "p2"
 },
 "48.010": {
-"stato": "non-contato"
+"stato": "riuso",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/04-carosello-tips.svg",
+"nota": "Carosello tips: testata, 'Tip del giorno / Reading' (frammenti 005, 006, 008, 009 rimessi insieme e corretti), lampadina = riuso kit-blu suggerimenti-consigli, schede 1 e 2 (tagliata a bordo, come nell'originale). Tutto vettoriale.",
+"agente": "p2"
 },
 "48.011": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/05-reel-study-vlog.svg",
+"nota": "Reel study vlog: foto scrivania/laptop raster pulita; titolo, chip 'Realistica.', icone e contatore vettoriali.",
+"agente": "p2"
 },
 "48.012": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/06-reel-testimonianza.svg",
+"nota": "Reel testimonianza: foto del volto raster pulita; citazione e interfaccia vettoriali.",
+"agente": "p2"
 },
 "48.013": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/07-reel-miti-vs-realta.svg",
+"nota": "Reel miti vs realtà: tutto vettoriale (sfondo a sfumatura al posto della foto sfocata).",
+"agente": "p2"
 },
 "48.014": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/08-reel-app-walkthrough.svg",
+"nota": "Reel app walkthrough: tutto vettoriale, telefono con 'Il tuo piano' disegnato (testo del telefono ricostruito: Simulazioni, Quiz mirati, Spiegazioni, Statistiche).",
+"agente": "p2"
 },
 "48.015": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/09-reel-motivazionale.svg",
+"nota": "Reel motivazionale: foto della scalinata raster pulita; scritta a mano resa con Inter inclinata.",
+"agente": "p2"
 },
 "48.016": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/10-post-informativo.svg",
+"nota": "Post informativo 'Cosa succede se non superi l'OFA?': card vettoriale + pannello inclinato con foto dell'edificio (raster, pulita) e stella a 4 punte disegnata. Icone delle voci sostituite con glifi veri.",
+"agente": "p2"
 },
 "48.017": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/10-post-informativo.svg",
+"nota": "Post informativo 'Cosa succede se non superi l'OFA?': card vettoriale + pannello inclinato con foto dell'edificio (raster, pulita) e stella a 4 punte disegnata. Icone delle voci sostituite con glifi veri.",
+"agente": "p2"
 },
 "48.018": {
-"stato": "non-contato"
+"stato": "raster",
+"svg": "brand/concept-svg/layout/48-social-copertine-video/11-post-meme-engagement.svg",
+"nota": "Post meme: foto del cane con le cuffie raster; nuvoletta, testo ('I go... to the... ehm... Polimi... because... opportunities... yes?' ricopiato), icone cuore/commenti/condividi/salva generiche vettoriali.",
+"agente": "p2"
 },
 "49.001": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/01-splash.svg",
+"nota": "Il catalogo etichetta 49.001 'foto' ma contiene tre telefoni (splash, onboarding, home): sono 49-01, 49-02, 49-03. Splash blu con logo e slogan, cerchi di fondo tenui.",
+"agente": "s2"
 },
 "49.002": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento: striscia con l'ora «9:41» della barra di stato; coperta dagli SVG delle schermate.",
+"agente": "s2"
 },
 "49.003": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento: strisce di barra di stato di sei schermate; coperta dagli SVG.",
+"agente": "s2"
 },
 "49.004": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/04-lezioni.svg",
+"nota": "Elenco «Lezioni» (8 voci, 2 completate, «Future tenses» evidenziata). Cerchi numerati e spunte regolarizzati; barra a 4 voci con «Studia» attiva.",
+"agente": "s2"
 },
 "49.005": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/05-esercizio.svg",
+"nota": "Il riquadro contiene due schermate: esercizio «Completa la frase» (questo SVG, con feedback «Corretto!») e «Simulazioni» (49-06). Risposte allineate alla stessa x.",
+"agente": "s2"
 },
 "49.006": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/07-profilo.svg",
+"nota": "Profilo: avatar con iniziale, voci con icone ridisegnate (barre, campana, aiuto, ingranaggio, esci), interruttore notifiche. Nell'originale nessuna voce della barra è attiva: attivato «Profilo».",
+"agente": "s2"
 },
 "49.007": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "testo: striscia di didascalie del foglio (titoli 'ATLAS – Conoscenza, strumenti, opportunità', 'NOI', 'Agorà' con logo): non fa parte delle schermate.",
+"agente": "s2"
 },
 "49.008": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/08-esplora.svg",
+"nota": "Pannello con tre telefoni: Esplora (questo SVG, con tre schede ATLAS/NOI/Agorà), ATLAS home (49-09), ATLAS articolo (49-10). Copertine e miniature fotografiche rifatte come scene vettoriali (pianeta con luci, persone in silhouette, colonne, sala di un evento, città, sfera luminosa): nessun raster. ",
+"agente": "s2"
 },
 "49.009": {
-"stato": "non-contato"
+"stato": "svg",
+"svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/11-noi-home.svg",
+"nota": "Pannello con quattro telefoni: NOI home (questo SVG), evento (49-12), Agorà home (49-13), discussione (49-14). Colore della sezione verde. Avatar disegnati. Copertine e miniature fotografiche rifatte come scene vettoriali (pianeta con luci, persone in silhouette, colonne, sala di un evento, città, sfera luminosa): nessun raster. ",
+"agente": "s2"
 },
 "50.001": {
 "stato": "scartato",
@@ -6126,13 +7164,22 @@
 "agente": "ui"
 },
 "50.004": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.005": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.006": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.007": {
 "stato": "scartato",
@@ -6141,10 +7188,16 @@
 "agente": "ill"
 },
 "50.008": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.009": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.010": {
 "stato": "scartato",
@@ -6159,7 +7212,10 @@
 "agente": "ill"
 },
 "50.012": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.013": {
 "stato": "svg",
@@ -6186,7 +7242,10 @@
 "agente": "ill"
 },
 "50.017": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "duplicato visivo di un elemento già vettorializzato (campione di colore, pulsante, titolo di sezione, misuratore, forma decorativa, icona) coperto dai set componenti/token/icone/illustrazioni; oppure frammento di foglio",
+"agente": "coordinatore-board"
 },
 "50.018": {
 "stato": "svg",
@@ -6225,16 +7284,28 @@
 "agente": "ill"
 },
 "50.024": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.025": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.026": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.027": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.028": {
 "stato": "svg",
@@ -6273,7 +7344,10 @@
 "agente": "ill"
 },
 "50.034": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.035": {
 "stato": "riuso",
@@ -6294,7 +7368,10 @@
 "agente": "ill"
 },
 "50.038": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.039": {
 "stato": "riuso",
@@ -6453,7 +7530,10 @@
 "agente": "ill"
 },
 "50.065": {
-"stato": "non-contato"
+"stato": "scartato",
+"svg": null,
+"nota": "frammento (lettera, riga di testo o glifo tagliato dal segmentatore) o icona piccola ripetuta: coperta dai set icone/componenti/token/logo",
+"agente": "coordinatore-board"
 },
 "50.066": {
 "stato": "svg",

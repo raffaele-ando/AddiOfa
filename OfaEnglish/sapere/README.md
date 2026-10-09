@@ -18,6 +18,7 @@ vuole applicare lo stesso metodo a un altro logo, un altro kit, un'altra app.
 | [06-lavoro-con-agenti.md](06-lavoro-con-agenti.md) | Come dividere il lavoro tra più agenti, cosa è andato storto e come si evita |
 | [07-cosa-funziona.md](07-cosa-funziona.md) | Riassunto secco: cosa funziona, cosa non funziona, con il perché |
 | [08-concept.md](08-concept.md) | Estrazione automatica degli elementi dalle 52 immagini di `design-concept/` |
+| [09-concept-svg.md](09-concept-svg.md) | Dagli elementi agli SVG: logo, icone, kit luminoso, componenti, schermate, layout |
 
 La stessa conoscenza, in forma operativa, è nella skill
 [`.claude/skills/ricreare-grafica/SKILL.md`](../.claude/skills/ricreare-grafica/SKILL.md): è quella
