@@ -19,6 +19,7 @@ from ui import clip_rett
 CART = "12-landing-mobile"
 ORIG = CONCEPT / CART / "001-schermata.png"
 W, H = 724, 2092
+LOGO_TILE = RADICE / "brand/concept-svg/logo/marchio-tile-porta.svg"
 NAVY = "#0B1033"; AZZ = "#1D6BF2"; AZZ2 = "#2B6FF2"; GRIGIO_T = "#5B6784"
 
 
@@ -36,9 +37,8 @@ def sfondo_hero(t):
 def testata(t):
     p = t.p
     with t.gruppo("testata"):
-        t.inserisci_svg(LOGO_STELLA.read_text(), p(14), p(20), p(47), "logo-icona-stella")
-        T(t, "Addi", 72, 54, larg=None, corpo=33, peso=800, colore=NAVY, id="logo-addi", spaz=-0.4)
-        wa = larghezza_testo("Addi", 33, 800) / t.k
+        t.inserisci_svg(LOGO_TILE.read_text(), p(14), p(20), p(47), "logo-icona-stella")
+        wa = T(t, "Addi", 72, 54, corpo=33, peso=800, colore=NAVY, id="logo-addi", spaz=-0.4)
         T(t, "OFA", 72 + wa - 1, 54, corpo=33, peso=800, colore=AZZ, id="logo-ofa", spaz=-0.4)
         # pulsante
         R(t, 453, 21, 155, 44, 22, t.sfumatura(["#2F7BF6", "#1F63F0"], 0, 0, 1, 0), id="pulsante-scarica",
@@ -51,9 +51,9 @@ def testata(t):
 
 def hero_testi(t):
     p = t.p
-    T(t, "Oltre l’OFA,", 15, 175, larg=330, peso=800, colore=NAVY, id="titolo-1", spaz=-0.8)
-    T(t, "un passo", 17, 241, larg=266, peso=800, colore=AZZ2, id="titolo-2", spaz=-0.8)
-    T(t, "in più.", 17, 289, larg=176, peso=800, colore=AZZ2, id="titolo-3", spaz=-0.8)
+    T(t, "Oltre l’OFA,", 15, 171, larg=330, peso=800, colore=NAVY, id="titolo-1", spaz=-0.8)
+    T(t, "un passo", 17, 237, larg=266, peso=800, colore=AZZ2, id="titolo-2", spaz=-0.8)
+    T(t, "in più.", 17, 285, larg=176, peso=800, colore=AZZ2, id="titolo-3", spaz=-0.8)
     righe = [("AddiOFA ti aiuta a superare", 231), ("l’OFA di inglese con un percorso", 268),
              ("personalizzato, evitando rischi,", 256), ("costi e blocchi del tuo piano di studi.", 296)]
     for i, (r_, lw) in enumerate(righe):
@@ -108,7 +108,7 @@ def come_funziona(t):
         T(t, "Un percorso semplice", 18, 822, larg=348, peso=800, colore=NAVY, id="titolo-sezione-1", spaz=-0.4)
         T(t, "e guidato.", 18, 860, larg=161, peso=800, colore=NAVY, id="titolo-sezione-2", spaz=-0.4)
         T(t, "Dal test iniziale al superamento,", 18, 895, larg=282, peso=400, colore=GRIGIO_T)
-        T(t, "tutto in un’unica app.", 18, 919, larg=128, peso=400, colore=GRIGIO_T)
+        T(t, "tutto in un’unica app.", 18, 919, larg=168, peso=400, colore=GRIGIO_T)
         passi = [("Fai il test iniziale", 128, ["Scopri il tuo livello e la", "probabilità di superare l’OFA."], [156, 205]),
                  ("Segui un piano personalizzato", 240, ["Lezioni, quiz e simulazioni", "pensati per i tuoi punti deboli."], [177, 200]),
                  ("Allenati con simulazioni reali", 229, ["Stesso formato dell’esame", "ufficiale."], [193, 60]),
@@ -146,9 +146,8 @@ def telefono(t):
             R(t, sx + 168 + i * 4, sy + 24 - hh, 2.6, hh, 1, NAVY)
         R(t, sx + 188, sy + 15, 17, 9, 2.6, "none", stroke=NAVY, sw=1)
         R(t, sx + 189.5, sy + 16.5, 12, 6, 1.6, NAVY)
-        t.inserisci_svg(LOGO_STELLA.read_text(), p(sx + 62), p(sy + 50), p(23), "mock-logo-stella")
-        T(t, "Addi", sx + 90, sy + 68, corpo=14, peso=800, colore=NAVY, spaz=-0.2)
-        wa = larghezza_testo("Addi", 14, 800) / t.k
+        t.inserisci_svg(LOGO_TILE.read_text(), p(sx + 62), p(sy + 50), p(23), "mock-logo-stella")
+        wa = T(t, "Addi", sx + 90, sy + 68, corpo=14, peso=800, colore=NAVY, spaz=-0.2)
         T(t, "OFA", sx + 90 + wa - 0.2, sy + 68, corpo=14, peso=800, colore=AZZ, spaz=-0.2)
         T(t, "Sei a rischio?", sx + 111, sy + 118, larg=94, peso=800, colore=NAVY, ancora="middle")
         STATO = STATI["alto"]
@@ -215,7 +214,7 @@ def dati_reali(t):
         x0, y0 = cx + r * math.cos(a0), cy - r * math.sin(a0)
         x1, y1 = cx + r * math.cos(a1), cy - r * math.sin(a1)
         g = t.sfumatura([(0, "#7FA9FB"), (0.45, "#3B82F6"), (1, "#2563EB")], p(x0), p(y0), p(x1), p(y1), userspace=True)
-        t.path(f"M{n(p(x0))} {n(p(y0))}A{n(p(r))} {n(p(r))} 0 1 1 {n(p(x1))} {n(p(y1))}", stroke=g, sw=p(20), id="arco-dati-reali")
+        t.path(f"M{n(p(x0))} {n(p(y0))}A{n(p(r))} {n(p(r))} 0 0 1 {n(p(x1))} {n(p(y1))}", stroke=g, sw=p(20), id="arco-dati-reali")
         T(t, "82%", 76, 1692, larg=91, peso=800, colore="#1D5FE0", id="dati-percentuale")
         T(t, "Molti studenti", 73, 1726, larg=138, peso=800, colore=NAVY)
         T(t, "partono a rischio.", 73, 1753, larg=175, peso=800, colore=NAVY)
@@ -254,15 +253,15 @@ def banda_finale(t):
         t.path(f"M{n(p(600))} {n(p(2086))}L{n(p(585))} {n(p(2028))}L{n(p(700))} {n(p(2000))}L{n(p(700))} {n(p(2086))}z", fill="#0E49B8", opacita=0.9)
         # marchio-tile inclinato con la stella
         with t.gruppo("marchio-tile-inclinato", trasforma=f"rotate(-6 {n(p(524))} {n(p(1976))})"):
-            R(t, 460, 1912, 136, 136, 30, "#0B3A9C", id="tile-ombra", opacita=0.6)
-            t.inserisci_svg(LOGO_STELLA.read_text(), p(455), p(1908), p(138), "marchio-stella")
+            R(t, 460, 1912, 136, 136, 30, "#4F86F0", id="tile-bordo", opacita=0.55)
+            t.inserisci_svg(LOGO_TILE.read_text(), p(455), p(1908), p(138), "marchio-stella")
         # scritta a mano
         with t.gruppo("stessa-partenza", trasforma=f"rotate(-9 {n(p(650))} {n(p(1990))})"):
             for i, (r_, lw) in enumerate((("Stessa", 44), ("partenza.", 62), ("Più possibilità.", 98))):
                 tr = f"skewX(-12)"
-                with t.gruppo(f"sp-{i}", trasforma=f"translate({n(p(618 + 2 - i * 0))} {n(p(1990 + i * 17))}) skewX(-12)"):
+                with t.gruppo(f"sp-{i}", trasforma=f"translate({n(p(600 + i * 2))} {n(p(1990 + i * 17))}) skewX(-12)"):
                     T(t, r_, 0, 0, larg=lw, peso=500, colore="#1E3F9E")
-            L(t, 614, 2046, 656, 2038, AZZ, 3.2)
+            L(t, 598, 2046, 640, 2038, AZZ, 3.2)
         T(t, "INIZIA OGGI", 36, 1904, larg=84, peso=600, colore="#8FB6FF", spaz=1.0)
         T(t, "Sblocca il tuo domani.", 36, 1945, larg=338, peso=800, colore="#FFFFFF", spaz=-0.3)
         T(t, "Un piccolo passo ora, per un grande percorso", 36, 1974, larg=331, peso=400, colore="#D6E4FF")
@@ -305,6 +304,6 @@ def schermata():
 
 if __name__ == "__main__":
     t = schermata()
-    svg = salva(t, CART, "001-landing-mobile.svg")
+    svg = salva_leggero(t, CART, "001-landing-mobile.svg")
     if vuole_tavola():
         controlla(svg, ORIG, "12-landing-mobile", 1.0)

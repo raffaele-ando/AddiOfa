@@ -49,12 +49,12 @@ ICONE = {
     "sicurezza": ("Sicurezza", [("M12 3 4.5 6v5.6c0 4.6 3.1 8.1 7.5 9.4 4.4-1.3 7.5-4.8 7.5-9.4V6z", True), ("M8.7 12.1 11 14.4 15.4 9.6", False)]),
     "accessibilita": ("Accessibilità", [("M8.6 4.6a3.4 3.4 0 1 1 0 6.8 3.4 3.4 0 1 1 0-6.8z", True),
                                         ("M2.8 19.6c0-3.3 2.6-5.4 5.8-5.4s5.8 2.1 5.8 5.4z", True),
-                                        ("M15.4 4.9a3.3 3.3 0 0 1 0 6.2", False), ("M17 14.6c2.3.5 4.2 2.2 4.2 5", False)]),
+                                        ("M15.2 4.8a3.2 3.2 0 0 1 0 6.4", False), ("M16.4 14.4c2.5.5 4.8 2.2 4.8 5.2", False)]),
     "opportunita": ("Opportunità", [(arrotondato([V(12, 4.6), V(22, 9.6), V(12, 14.6), V(2, 9.6)], [1.4, 1.4, 1.4, 1.4]), True),
                                    ("M6 12.2v4.4c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.4", False), ("M21.4 10.2v5.4", False)]),
     "libro": ("Libro", [("M12 6.6C10 5 7 4.6 3.6 5v12.6c3.4-.4 6.4 0 8.4 1.6 2-1.6 5-2 8.4-1.6V5C17 4.6 14 5 12 6.6z", True), ("M12 6.6v12.6", False)]),
     "bersaglio": ("Bersaglio", [("M12 3a9 9 0 1 1 0 18 9 9 0 1 1 0-18z", True), ("M12 7.4a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 1 1 0-9.2z", False),
-                                ("M12 11.2a.8.8 0 1 1 0 1.6.8.8 0 1 1 0-1.6z", True), ("M12.4 11.6 20.2 3.8M15.6 3.8h4.6v4.6", False)]),
+                                ("M12 11.2a.8.8 0 1 1 0 1.6.8.8 0 1 1 0-1.6z", True), ("M12.4 11.6 20.2 3.8M16.6 3.8h3.6v3.6", False)]),
     "globo": ("Globo", [("M12 3a9 9 0 1 1 0 18 9 9 0 1 1 0-18z", True), ("M3 12h18", False),
                         ("M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z", False)]),
     "messaggi": ("Messaggi", [("M8 8.4V6A2.5 2.5 0 0 1 10.5 3.5h8A2.5 2.5 0 0 1 21 6v6a2.5 2.5 0 0 1-2.5 2.5h-.7v3.2l-3.2-3.2", False),
@@ -72,7 +72,7 @@ ELEMENTI = {"successo": ["35.105"], "crescita": ["35.109"], "sicurezza": ["35.11
 def icona(nome: str) -> Svg:
     etichetta, forme = ICONE[nome]
     s = Svg(0, 0, 24, 24, f"tratto-{nome}", f"Icona a tratto: {etichetta}")
-    s.apri("tratto", extra_attr=None) if False else s.apri(id=f"icona-{nome}")
+    s.apri(id=f"icona-{nome}")
     for i, (d, riempi) in enumerate(forme):
         nodo = f'<path d="{d}" fill="{BLU if riempi else "none"}"' + (f' fill-opacity="{RIEMPI}"' if riempi else "") + \
             f' stroke="{BLU}" stroke-width="{n(SPESSORE)}" stroke-linecap="round" stroke-linejoin="round" id="{nome}-{i + 1}"/>'

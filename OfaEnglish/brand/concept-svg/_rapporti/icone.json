@@ -1,0 +1,971 @@
+[
+ {
+  "elementi": [
+   "44.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/addiofa.svg",
+  "nota": "Sfera di vetro AddiOFA: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py. Stella a 4 punte con lati concavi."
+ },
+ {
+  "elementi": [
+   "44.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/studio.svg",
+  "nota": "Sfera di vetro Studio: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py. Riuso oggetti.libro e oggetti.bandiera_uk (diagonali rosse sfalsate)."
+ },
+ {
+  "elementi": [
+   "44.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/quiz.svg",
+  "nota": "Sfera di vetro Quiz: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py. Casella centrale: il segno rosso storto diventa una 'B' vera."
+ },
+ {
+  "elementi": [
+   "44.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/risultati.svg",
+  "nota": "Sfera di vetro Risultati: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py."
+ },
+ {
+  "elementi": [
+   "44.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/tips.svg",
+  "nota": "Sfera di vetro Tips: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py."
+ },
+ {
+  "elementi": [
+   "44.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/consigli.svg",
+  "nota": "Sfera di vetro Consigli: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py."
+ },
+ {
+  "elementi": [
+   "44.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/app.svg",
+  "nota": "Sfera di vetro App: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py."
+ },
+ {
+  "elementi": [
+   "44.015"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/polimi.svg",
+  "nota": "Sfera di vetro Polimi: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py. Edificio asimmetrico a colonne alternate -> tempio frontale simmetrico generico, nessuno stemma."
+ },
+ {
+  "elementi": [
+   "44.016"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/ofa.svg",
+  "nota": "Sfera di vetro OFA: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py."
+ },
+ {
+  "elementi": [
+   "44.017"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/costi.svg",
+  "nota": "Sfera di vetro Costi: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py. Moneta con spessore e € vero (glifo Inter)."
+ },
+ {
+  "elementi": [
+   "44.018"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/successi.svg",
+  "nota": "Sfera di vetro Successi: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py. Dardo dritto, penne uguali."
+ },
+ {
+  "elementi": [
+   "44.019"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/faq.svg",
+  "nota": "Sfera di vetro FAQ: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py."
+ },
+ {
+  "elementi": [
+   "44.020"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/opportunita.svg",
+  "nota": "Sfera di vetro Opportunità: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py. Continenti veri (proiezione di mondo_internazionale), orbita con parte dietro nascosta."
+ },
+ {
+  "elementi": [
+   "44.021"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/sfera/community.svg",
+  "nota": "Sfera di vetro Community: sfera/alone/riflessi costruiti uguali per tutte (r=122,5 come l'originale), oggetto ridisegnato. Layout con etichette in brand/concept-svg/icone/sfera/icone-sfera.svg. Correzioni AI nel commento di testa di sfera.py."
+ },
+ {
+  "elementi": [
+   "44.008"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'AddiOFA' coperta dal foglio icone-sfera.svg (Inter 600, 34 px). 'AddiOFA': la O sbarrata dell'originale era un errore AI, scritto normale."
+ },
+ {
+  "elementi": [
+   "44.009"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'Studio' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.010"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'Quiz' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.011"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'Risultati' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.012"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'Tips' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.013"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'Consigli' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.014"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'App' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.022"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'Polimi' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.023"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'OFA' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.024"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'Costi' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.025"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'Successi' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.026"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'FAQ' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.027"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'Opportunità' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "44.028"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/icone/sfera/icone-sfera.svg",
+  "nota": "testo: etichetta 'Community' coperta dal foglio icone-sfera.svg (Inter 600, 34 px)."
+ },
+ {
+  "elementi": [
+   "08.041"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/libro.svg",
+  "nota": "kit-rosso, glifo 'libro': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.042"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/lampo.svg",
+  "nota": "kit-rosso, glifo 'lampo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.043"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/trofeo.svg",
+  "nota": "kit-rosso, glifo 'trofeo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.044"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/utente.svg",
+  "nota": "kit-rosso, glifo 'utente': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.045"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/interrogativo.svg",
+  "nota": "kit-rosso, glifo 'interrogativo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.046"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/spunta.svg",
+  "nota": "kit-rosso, glifo 'spunta': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.047"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/x.svg",
+  "nota": "kit-rosso, glifo 'x': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.048"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/info.svg",
+  "nota": "kit-rosso, glifo 'info': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.049"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/grafico.svg",
+  "nota": "kit-rosso, glifo 'grafico': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.050"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/documento.svg",
+  "nota": "kit-rosso, glifo 'documento': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.051"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/euro.svg",
+  "nota": "kit-rosso, glifo 'euro': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.052"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/lucchetto.svg",
+  "nota": "kit-rosso, glifo 'lucchetto': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.053"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/busta.svg",
+  "nota": "kit-rosso, glifo 'busta': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "08.054"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-rosso/ingranaggio.svg",
+  "nota": "kit-rosso, glifo 'ingranaggio': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.041"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/libro.svg",
+  "nota": "kit-luminoso, glifo 'libro': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.042"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/grafico.svg",
+  "nota": "kit-luminoso, glifo 'grafico': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.043"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/lampo.svg",
+  "nota": "kit-luminoso, glifo 'lampo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.044"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/documento.svg",
+  "nota": "kit-luminoso, glifo 'documento': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.045"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/euro.svg",
+  "nota": "kit-luminoso, glifo 'euro': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.046"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/lucchetto.svg",
+  "nota": "kit-luminoso, glifo 'lucchetto': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.047"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/trofeo.svg",
+  "nota": "kit-luminoso, glifo 'trofeo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.048"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/busta.svg",
+  "nota": "kit-luminoso, glifo 'busta': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.049"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/utente.svg",
+  "nota": "kit-luminoso, glifo 'utente': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.051"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/interrogativo.svg",
+  "nota": "kit-luminoso, glifo 'interrogativo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.052"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/spunta.svg",
+  "nota": "kit-luminoso, glifo 'spunta': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.053"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/x.svg",
+  "nota": "kit-luminoso, glifo 'x': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "16.054"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-luminoso/info.svg",
+  "nota": "kit-luminoso, glifo 'info': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.048"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/libro.svg",
+  "nota": "kit-blu, glifo 'libro': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.049"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/grafico.svg",
+  "nota": "kit-blu, glifo 'grafico': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.050"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/lampo.svg",
+  "nota": "kit-blu, glifo 'lampo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.051"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/documento.svg",
+  "nota": "kit-blu, glifo 'documento': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.052"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/euro.svg",
+  "nota": "kit-blu, glifo 'euro': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.053"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/lucchetto.svg",
+  "nota": "kit-blu, glifo 'lucchetto': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.054"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/trofeo.svg",
+  "nota": "kit-blu, glifo 'trofeo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.055"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/busta.svg",
+  "nota": "kit-blu, glifo 'busta': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.056"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/utente.svg",
+  "nota": "kit-blu, glifo 'utente': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.058"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/interrogativo.svg",
+  "nota": "kit-blu, glifo 'interrogativo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.059"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/spunta.svg",
+  "nota": "kit-blu, glifo 'spunta': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.060"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/x.svg",
+  "nota": "kit-blu, glifo 'x': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "17.061"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-blu/info.svg",
+  "nota": "kit-blu, glifo 'info': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "23.041"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/libro.svg",
+  "nota": "kit-d, glifo 'libro': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.041",
+   "50.041"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.041 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.042"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/grafico.svg",
+  "nota": "kit-d, glifo 'grafico': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.042",
+   "50.042"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.042 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.043"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/lampo.svg",
+  "nota": "kit-d, glifo 'lampo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.043",
+   "50.043"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.043 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.044"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/documento.svg",
+  "nota": "kit-d, glifo 'documento': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.044",
+   "50.044"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.044 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.045"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/euro.svg",
+  "nota": "kit-d, glifo 'euro': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.045",
+   "50.045"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.045 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.046"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/lucchetto.svg",
+  "nota": "kit-d, glifo 'lucchetto': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.046",
+   "50.046"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.046 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.047"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/trofeo.svg",
+  "nota": "kit-d, glifo 'trofeo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.047",
+   "50.047"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.047 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.048"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/busta.svg",
+  "nota": "kit-d, glifo 'busta': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.048",
+   "50.048"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.048 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.049"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/utente.svg",
+  "nota": "kit-d, glifo 'utente': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.049",
+   "50.049"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.049 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.050"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/ingranaggio.svg",
+  "nota": "kit-d, glifo 'ingranaggio': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.050",
+   "50.050"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.050 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.051"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/interrogativo.svg",
+  "nota": "kit-d, glifo 'interrogativo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.051",
+   "50.051"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.051 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.052"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/spunta.svg",
+  "nota": "kit-d, glifo 'spunta': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.052",
+   "50.052"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.052 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.053"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/x.svg",
+  "nota": "kit-d, glifo 'x': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.053",
+   "50.053"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.053 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "23.054"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/kit-d/info.svg",
+  "nota": "kit-d, glifo 'info': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "27.054",
+   "50.054"
+  ],
+  "stato": "scartato",
+  "nota": "duplicato di 23.054 (immagini 23, 27 e 50 sono lo stesso file)"
+ },
+ {
+  "elementi": [
+   "07.015",
+   "28.038",
+   "28.120"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/libro.svg",
+  "nota": "marchio, glifo 'libro': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "07.017",
+   "28.122",
+   "40.039"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/cappello.svg",
+  "nota": "marchio, glifo 'cappello': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "07.018",
+   "28.041",
+   "40.038"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/lucchetto.svg",
+  "nota": "marchio, glifo 'lucchetto': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "07.019",
+   "28.070",
+   "28.124"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/trofeo.svg",
+  "nota": "marchio, glifo 'trofeo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "07.034",
+   "28.138",
+   "40.040"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/documento.svg",
+  "nota": "marchio, glifo 'documento': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "07.036"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/busta.svg",
+  "nota": "marchio, glifo 'busta': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "07.037",
+   "28.058"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/utente.svg",
+  "nota": "marchio, glifo 'utente': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "07.038",
+   "28.141"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/ingranaggio.svg",
+  "nota": "marchio, glifo 'ingranaggio': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "28.040",
+   "28.121",
+   "40.037"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/grafico.svg",
+  "nota": "marchio, glifo 'grafico': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "28.071",
+   "40.059"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/globo.svg",
+  "nota": "marchio, glifo 'globo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "28.045",
+   "35.091",
+   "40.058"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/stella.svg",
+  "nota": "marchio, glifo 'stella': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "28.072",
+   "40.060"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/lampadina.svg",
+  "nota": "marchio, glifo 'lampadina': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati. Le altre immagini del marchio (7, 28, 40) usano lo stesso glifo: coperte da questo SVG (28.xxx in tessera quadrata arrotondata nell'originale: stesso glifo, solo il fondo cambia)."
+ },
+ {
+  "elementi": [
+   "28.150"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/aereo.svg",
+  "nota": "marchio, glifo 'aereo': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "28.151"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/lente.svg",
+  "nota": "marchio, glifo 'lente': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "28.147"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/calendario.svg",
+  "nota": "marchio, glifo 'calendario': set unico per kit (cerchio r=32, glifo da griglia ±15 x1,16), colori campionati."
+ },
+ {
+  "elementi": [
+   "28.125"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tonde/marchio/documento.svg",
+  "nota": "striscia verticale di tre tessere (documento, globo, calendario) in un unico ritaglio: coperta da marchio/documento, globo, calendario."
+ },
+ {
+  "elementi": [
+   "28.118"
+  ],
+  "stato": "scartato",
+  "nota": "frammento: striscia sottile di tessera tagliata male"
+ },
+ {
+  "elementi": [
+   "28.044"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tratto/successo.svg",
+  "nota": "stella a contorno (variante 'Light' del segno): coperta dall'icona di tratto successo (stella a cinque punte regolare); per la stella a 4 punte vedi marchio/stella."
+ },
+ {
+  "elementi": [
+   "35.105"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tratto/successo.svg",
+  "nota": "Icona di tratto del set unico (24x24, tratto 1,9, riempimento 14 %); nell'originale i cinque simboli hanno stili diversi (contorno/pieno): resi coerenti, stella regolare, scudo simmetrico."
+ },
+ {
+  "elementi": [
+   "35.109"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tratto/crescita.svg",
+  "nota": "Icona di tratto del set unico (24x24, tratto 1,9, riempimento 14 %); nell'originale i cinque simboli hanno stili diversi (contorno/pieno): resi coerenti, stella regolare, scudo simmetrico."
+ },
+ {
+  "elementi": [
+   "35.110"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tratto/sicurezza.svg",
+  "nota": "Icona di tratto del set unico (24x24, tratto 1,9, riempimento 14 %); nell'originale i cinque simboli hanno stili diversi (contorno/pieno): resi coerenti, stella regolare, scudo simmetrico."
+ },
+ {
+  "elementi": [
+   "35.111"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tratto/accessibilita.svg",
+  "nota": "Icona di tratto del set unico (24x24, tratto 1,9, riempimento 14 %); nell'originale i cinque simboli hanno stili diversi (contorno/pieno): resi coerenti, stella regolare, scudo simmetrico."
+ },
+ {
+  "elementi": [
+   "35.112"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/icone/tratto/opportunita.svg",
+  "nota": "Icona di tratto del set unico (24x24, tratto 1,9, riempimento 14 %); nell'originale i cinque simboli hanno stili diversi (contorno/pieno): resi coerenti, stella regolare, scudo simmetrico."
+ }
+]

@@ -1,0 +1,26 @@
+[
+ {
+  "elementi": [
+   "04.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/04-locandina-supera-ofa/01-locandina-a.svg",
+  "nota": "Locandina 1024x1536 px tutta vettoriale (wordmark del kit con marchio stella, titoli Inter tracciati, tessere con icone, telefono col quiz, QR VERO decodificabile verso linktr.ee/addiofa al posto di quello finto dell'AI, strisce staccabili, svolazzi, frecce e scritte a mano rifatte in Inter corsivo maiuscolo). RASTER dichiarato: solo la fotografia dell'edificio del Politecnico (JPEG incorporato, ritagliato con strappo vettoriale; testi/stella/telefono sovrapposti dall'AI tolti con inpaint e rifatti in vettoriale). Testo del telefono ricostruito (stesso quiz in tutte le varianti, 'Choose the correct form: She ___ to Milan every day.'). Sigillo del Politecnico: non presente. Corretto: la 'O' del wordmark dell'originale era un'icona storta (Ø), qui il marchio stella 4 punte."
+ },
+ {
+  "elementi": [
+   "38.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/38-locandina-b/01-locandina-b.svg",
+  "nota": "Locandina 1024x1536 px tutta vettoriale (wordmark del kit con marchio stella, titoli Inter tracciati, tessere con icone, telefono col quiz, QR VERO decodificabile verso linktr.ee/addiofa al posto di quello finto dell'AI, strisce staccabili, svolazzi, frecce e scritte a mano rifatte in Inter corsivo maiuscolo). RASTER dichiarato: solo la fotografia dell'edificio del Politecnico (JPEG incorporato, ritagliato con strappo vettoriale; testi/stella/telefono sovrapposti dall'AI tolti con inpaint e rifatti in vettoriale). Testo del telefono ricostruito (stesso quiz in tutte le varianti, 'Choose the correct form: She ___ to Milan every day.'). Sigillo del Politecnico: non presente. La stella blu sull'edificio è rifatta vettoriale (era nella foto)."
+ },
+ {
+  "elementi": [
+   "46.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/46-locandina-c/01-locandina-c.svg",
+  "nota": "Locandina 1024x1536 px tutta vettoriale (wordmark del kit con marchio stella, titoli Inter tracciati, tessere con icone, telefono col quiz, QR VERO decodificabile verso linktr.ee/addiofa al posto di quello finto dell'AI, strisce staccabili, svolazzi, frecce e scritte a mano rifatte in Inter corsivo maiuscolo). RASTER dichiarato: solo la fotografia dell'edificio del Politecnico (JPEG incorporato, ritagliato con strappo vettoriale; testi/stella/telefono sovrapposti dall'AI tolti con inpaint e rifatti in vettoriale). Testo del telefono ricostruito (stesso quiz in tutte le varianti, 'Choose the correct form: She ___ to Milan every day.'). Sigillo del Politecnico: non presente. Omessa la mano grigia che regge il telefono (anatomia AI, fotografia): il telefono è libero."
+ }
+]

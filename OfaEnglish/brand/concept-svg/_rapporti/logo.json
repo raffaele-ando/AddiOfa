@@ -1,0 +1,295 @@
+[
+ {
+  "elementi": [
+   "24.001"
+  ],
+  "stato": "riuso",
+  "svg": "strumenti/brand/logo/addiofa-logo.svg",
+  "nota": "Stessa icona 3D gia' ricostruita (strumenti/brand/logo): confronto sul ritaglio mae 3.26, ssim 0.93 (tavola: _tavole/icona-app-stella.png). Nessuna variante nuova."
+ },
+ {
+  "elementi": [
+   "07.002",
+   "15.001",
+   "35.002"
+  ],
+  "stato": "riuso",
+  "svg": "strumenti/brand/logo/addiofa-logo.svg",
+  "nota": "Icona app 3D a stella: stesso soggetto dell'immagine 24 (cambia solo il rendering AI); 15.001 e 35.002 sono pannelli che contengono anche etichette e icone secondarie (coperte dalle altre voci)."
+ },
+ {
+  "elementi": [
+   "07.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/costruzione-marchio.svg",
+  "nota": "Pannello 'Costruzione del brandmark': guide regolari (riquadro, assi, archi laterali) al posto delle linee AI doppie; tile con la stella-porta semplificata; didascalia in Inter distribuita come l'originale."
+ },
+ {
+  "elementi": [
+   "07.003",
+   "07.009",
+   "35.008",
+   "35.009",
+   "28.003",
+   "28.004",
+   "28.005",
+   "28.006",
+   "28.007",
+   "28.017"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/wordmark-primario.svg",
+  "nota": "Wordmark AddiOFA: Inter ExtraBold + O come disco vero con stella 4 punte simmetrica, FA crenate; misure (tracking, gap, crenatura FA, diametro O) adattate sul 28.003 (mae 17). Le lettere dell'originale sono piu' arrotondate: scelto Inter sharp come da brief. 28.004-.007/.017 e 35.008/.009 sono pezzi dello stesso wordmark (frammenti) coperti da questo file."
+ },
+ {
+  "elementi": [
+   "28.008",
+   "28.009",
+   "28.010",
+   "28.011",
+   "28.002",
+   "35.017"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/wordmark-con-tagline.svg",
+  "nota": "'Logo secondario': wordmark + tagline IL TUO INGLESE, SENZA OSTACOLI. (tagline distribuita uniformemente sulla larghezza). 28.008-.011 sono frammenti del wordmark piccolo, 28.002 e' l'etichetta 'Logo secondario' (testo coperto dal layout), 35.017 = variante monocromatica piccola (vedi wordmark-mono-nero)."
+ },
+ {
+  "elementi": [
+   "28.020",
+   "28.021",
+   "28.022",
+   "28.023",
+   "35.010",
+   "35.011",
+   "35.012",
+   "35.013",
+   "35.014",
+   "35.015",
+   "35.006",
+   "07.010",
+   "07.020",
+   "07.021",
+   "15.008",
+   "15.014"
+  ],
+  "stato": "scartato",
+  "nota": "frammento: pezzo di wordmark/tagline tagliato dal ritaglio, coperto da wordmark-con-tagline.svg / lockup-verticale.svg / wordmark-o-anello.svg (7.010/.020/.021, 35.006/.010-.015 e 28.020-.023 sono lettere/parole della tagline o del wordmark tagliate in pezzi; 15.008 e 15.014 sono la tagline 'Studia oggi, sblocca il tuo domani.' = testo coperto da wordmark-o-anello)."
+ },
+ {
+  "elementi": [
+   "28.024"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/wordmark-bianco-su-scuro.svg",
+  "nota": "Wordmark bianco su scheda blu notte, O bianca con stella nel colore del fondo; angoli della scheda uguali."
+ },
+ {
+  "elementi": [
+   "28.025",
+   "28.026"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/wordmark-su-chiaro.svg",
+  "nota": "Wordmark a colori su scheda bianca con bordo; 28.025/.026 sono due pezzi tagliati della scheda."
+ },
+ {
+  "elementi": [
+   "28.027",
+   "28.031",
+   "35.017"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/wordmark-mono-nero.svg",
+  "nota": "Versione monocromatica nera (stella come ritaglio nel colore del fondo). 28.027/.031 pezzi tagliati."
+ },
+ {
+  "elementi": [
+   "28.028",
+   "28.029",
+   "28.030"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/wordmark-mono-grigio.svg",
+  "nota": "Versione monocromatica grigia (#9AA2B6 circa). 28.028-.030 pezzi tagliati."
+ },
+ {
+  "elementi": [
+   "28.012"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/marchio-tile-stella4.svg",
+  "nota": "'Logo compatto': tile ad angoli continui sfumato blu->blu notte con stella 4 punte bianca simmetrica."
+ },
+ {
+  "elementi": [
+   "28.042"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/marchio-tile-stella4-piatto.svg",
+  "nota": "Tile blu piatto con stella 4 punte ('Stile icona')."
+ },
+ {
+  "elementi": [
+   "28.044"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/stella4-contorno.svg",
+  "nota": "Stella 4 punte a contorno: tratto costante, giunzioni tonde (originale con spessore irregolare)."
+ },
+ {
+  "elementi": [
+   "28.045",
+   "07.055"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/stella4-piena.svg",
+  "nota": "Stella 4 punte piena blu, simmetrica (nell'originale 7.055 e' piu' alta che larga e con punte disuguali)."
+ },
+ {
+  "elementi": [
+   "28.013"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/griglia-wordmark.svg",
+  "nota": "Griglia di costruzione del wordmark: guide tratteggiate regolari, etichette x / 2x / x."
+ },
+ {
+  "elementi": [
+   "28.014",
+   "28.015",
+   "28.016",
+   "28.018",
+   "28.019"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/area-rispetto-wordmark.svg",
+  "nota": "Area di rispetto: contorno, quattro moduli 'x' agli angoli, wordmark centrato. 28.014-.016 sono strisce tagliate della cornice, 28.018/.019 pezzi del wordmark."
+ },
+ {
+  "elementi": [
+   "07.004",
+   "35.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/lettermark-a-blu.svg",
+  "nota": "Lettermark: A piena blu con stella 4 punte ritagliata (evenodd), raccordi veri; piedi e gambe simmetrici."
+ },
+ {
+  "elementi": [
+   "07.005",
+   "35.016"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/marchio-tile-porta.svg",
+  "nota": "Icona semplificata piatta: tile blu con stella-porta chiara, bordo scuro e pavimento. Versione leggera (la 3D pesa 470 KB), usata nei lockup."
+ },
+ {
+  "elementi": [
+   "07.007",
+   "35.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/marchio-tile-scuro.svg",
+  "nota": "'App icon (dark)': tile blu notte con la stella-porta bianca. Nell'originale 35.005 la sagoma e' una casetta con la base tagliata male: qui la sagoma vera del logo 3D. 35.005 e' un pannello (contiene anche A e tile blu: vedi altre voci)."
+ },
+ {
+  "elementi": [
+   "35.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/stella4-in-cerchio.svg",
+  "nota": "Pannello 'App icon (colore)' + icone semplificate: l'icona colore e' il riuso 3D; qui la stella 4 punte in cerchio; la A e' lettermark-a-blu e il tile blu con stella a 5 punte e' marchio-tile-piatto-porta.svg."
+ },
+ {
+  "elementi": [
+   "35.002"
+  ],
+  "stato": "riuso",
+  "svg": "strumenti/brand/logo/addiofa-logo.svg",
+  "nota": "App icon colore nel pannello (vedi sopra)."
+ },
+ {
+  "elementi": [
+   "35.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/lockup-orizzontale.svg",
+  "nota": "Pannello 'Logo variations': primario = wordmark-primario, con tagline = wordmark-con-tagline, orizzontale con icona = lockup-orizzontale, monocromatica = wordmark-mono-nero, scuro = wordmark-bianco-su-scuro."
+ },
+ {
+  "elementi": [
+   "07.006",
+   "07.008",
+   "35.010"
+  ],
+  "stato": "scartato",
+  "nota": "frammento: pezzi di wordmark tagliati, coperti da lockup-orizzontale.svg / wordmark-primario.svg"
+ },
+ {
+  "elementi": [
+   "15.004",
+   "15.005",
+   "15.006",
+   "15.007",
+   "15.010",
+   "15.011"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/wordmark-o-anello.svg",
+  "nota": "Variante del concept 15: O come anello vuoto (senza stella) e tagline diversa. 15.004-.007 sono i pezzi (Add, i, O, FA) del wordmark grande; 15.010/.011 la copia piccola nel pannello 'Wordmark'."
+ },
+ {
+  "elementi": [
+   "15.009"
+  ],
+  "stato": "scartato",
+  "nota": "testo: etichetta 'Lettermark', coperta dal layout"
+ },
+ {
+  "elementi": [
+   "15.012"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/lettermark-a-bicolore.svg",
+  "nota": "A a Lambda bicolore navy/blu con controforma a stella a 5 punte (maschera). Taglio tra le due tinte pulito."
+ },
+ {
+  "elementi": [
+   "15.013"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/lettermark-a-tile.svg",
+  "nota": "A bianca a Lambda su tile blu con stella blu; tile reso quadrato (nell'originale 91x100)."
+ },
+ {
+  "elementi": [
+   "40.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/wordmark-hero-scuro.svg",
+  "nota": "Hero 'Art direction' (foto+layout): ridisegnata solo la parte wordmark/tagline su fondo notte (Addi bianco, O/FA blu, tagline su 2 righe). Il resto e' foto/architettura (non vettorializzabile): a chi fa le foto/layout."
+ },
+ {
+  "elementi": [
+   "40.058"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/stella4-in-tondo-chiaro.svg",
+  "nota": "Icona stella 4 punte blu in tondo chiaro (iconografia)."
+ },
+ {
+  "elementi": [
+   "35.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/logo/marchio-tile-piatto-porta.svg",
+  "nota": "Tile blu piatto con stella-porta (icona semplificata)."
+ },
+ {
+  "elementi": [],
+  "stato": "scartato",
+  "nota": "Immagini 17, 16, 23, 27, 50: kit di illustrazioni/icone/colori/UI senza loghi, marchi o wordmark (nessun elemento da me). 23, 27, 50 sono lo stesso file (duplicati)."
+ }
+]

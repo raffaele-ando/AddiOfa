@@ -1,0 +1,12 @@
+# elementi 30.NNN -> schermate
+add("30.001", C30, 1, "splash", "Splash blu con logo AddiOfa e slogan; curve decorative in basso ridisegnate simmetriche.")
+add("30.002", C30, 2, "onboarding-1", "Benvenuto: logo, 'Studia in modo mirato con l'intelligenza di ATLAS', illustrazione documento+grafico ridisegnata (l'originale era sfocata e asimmetrica). Testi leggibili.")
+add("30.003", C30, 3, "onboarding-2", "Elenco 5 benefici (ATLAS, lezioni, simulazioni, sfide con NOI, Agorà): icone rifatte pulite al posto dei glifi AI storti. Testi letti a 2,6x.")
+add("30.004", C30, 4, "test-iniziale", "Domanda 'If I ___ more time' con 4 scelte radio ('had' selezionata); nell'originale manca il pulsante, tenuto come nell'originale.")
+add("30.005", C30, 5, "risultati-test", "Radar a pentagono con i 5 valori delle etichette (72/58/65/78/62) disegnato esatto (nell'originale il poligono non rispettava i valori).")
+add("30.006", C30, 6, "home", "Home con arco del rischio 82% (stessi toni di 03). Pulsante rosso/blu senza etichetta nell'originale: aggiunto 'Inizia la lezione' (testo ricostruito da 31.006). Avatar generico.")
+add("30.007", C30, 7, "studia", "Studia (panoramica): tab, card percorso ATLAS, continua, unità. Righe 1-2 completate (coerente con 31.011). Testo piccolo 'Basato sui tuoi risultati e obiettivi' ricostruito.")
+add("30.008", C30, 8, "lezione", "Lezione Future tenses: spiegazione e due esempi; barra di avanzamento riempita 3/10 (nell'originale vuota).")
+add("30.009", C30, 9, "esercizio", "Completa la frase: 'We ___ to Milan tomorrow.' con 'will go' e box Corretto! verde.")
+add("30.010", C30, 10, "simulazioni", "Elenco simulazioni e card ATLAS; chevron aggiunto a tutte le voci (coerente con 31.010).")
+add("30.011", C30, 11, "risultato-simulazione", "Anello 72% (29/40), analisi ATLAS, barre aree da migliorare con soglie di colore coerenti (65/80/45/90).")

@@ -1,0 +1,11 @@
+[
+ {
+  "elementi": [
+   "37.001",
+   "37.002"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/37-profilo-instagram/01-profilo-instagram-addiofa.svg",
+  "nota": "Profilo @addiofa completo (1312x1199). Vettoriale: avatar con stella a 4 punte, nome, pulsanti, contatori, bio (emoji sostituite da glifi vettoriali), 5 storie in evidenza (riuso illustrazioni kit-blu studio-inglese, quiz-test, suggerimenti-consigli, progressi-statistiche + cappello da laureato disegnato), schede, post 2 tutto vettoriale (cielo, telefono con quiz, testo inglese rifatto), badge, spilli, frecce. Raster: solo gli sfondi fotografici dei post 1 e 3 (studenti/edificio/scala), puliti dalle scritte cotte con inpainting. Il testo 'POLITECNICO DI MILANO' sull'edificio resta nella foto. Testo ricostruito: quiz 'She goes to Milan every day' (nell'originale illeggibile)."
+ }
+]

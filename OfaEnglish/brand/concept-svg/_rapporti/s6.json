@@ -1,0 +1,90 @@
+[
+ {
+  "elementi": [
+   "30.001"
+  ],
+  "stato": "scartato",
+  "svg": null,
+  "nota": "NON ANCORA FATTO: Splash blu con logo AddiOfa e slogan; curve decorative in basso ridisegnate simmetriche."
+ },
+ {
+  "elementi": [
+   "30.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/02-onboarding-1.svg",
+  "nota": "Benvenuto: logo, 'Studia in modo mirato con l'intelligenza di ATLAS', illustrazione documento+grafico ridisegnata (l'originale era sfocata e asimmetrica). Testi leggibili."
+ },
+ {
+  "elementi": [
+   "30.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/03-onboarding-2.svg",
+  "nota": "Elenco 5 benefici (ATLAS, lezioni, simulazioni, sfide con NOI, Agorà): icone rifatte pulite al posto dei glifi AI storti. Testi letti a 2,6x."
+ },
+ {
+  "elementi": [
+   "30.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/04-test-iniziale.svg",
+  "nota": "Domanda 'If I ___ more time' con 4 scelte radio ('had' selezionata); nell'originale manca il pulsante, tenuto come nell'originale."
+ },
+ {
+  "elementi": [
+   "30.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/05-risultati-test.svg",
+  "nota": "Radar a pentagono con i 5 valori delle etichette (72/58/65/78/62) disegnato esatto (nell'originale il poligono non rispettava i valori)."
+ },
+ {
+  "elementi": [
+   "30.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/06-home.svg",
+  "nota": "Home con arco del rischio 82% (stessi toni di 03). Pulsante rosso/blu senza etichetta nell'originale: aggiunto 'Inizia la lezione' (testo ricostruito da 31.006). Avatar generico."
+ },
+ {
+  "elementi": [
+   "30.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/07-studia.svg",
+  "nota": "Studia (panoramica): tab, card percorso ATLAS, continua, unità. Righe 1-2 completate (coerente con 31.011). Testo piccolo 'Basato sui tuoi risultati e obiettivi' ricostruito."
+ },
+ {
+  "elementi": [
+   "30.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/08-lezione.svg",
+  "nota": "Lezione Future tenses: spiegazione e due esempi; barra di avanzamento riempita 3/10 (nell'originale vuota)."
+ },
+ {
+  "elementi": [
+   "30.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/09-esercizio.svg",
+  "nota": "Completa la frase: 'We ___ to Milan tomorrow.' con 'will go' e box Corretto! verde."
+ },
+ {
+  "elementi": [
+   "30.010"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/10-simulazioni.svg",
+  "nota": "Elenco simulazioni e card ATLAS; chevron aggiunto a tutte le voci (coerente con 31.010)."
+ },
+ {
+  "elementi": [
+   "30.011"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/11-risultato-simulazione.svg",
+  "nota": "Anello 72% (29/40), analisi ATLAS, barre aree da migliorare con soglie di colore coerenti (65/80/45/90)."
+ }
+]

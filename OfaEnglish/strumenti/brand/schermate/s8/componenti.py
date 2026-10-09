@@ -450,3 +450,20 @@ def ritaglio(percorso, box, inpaint=None) -> str:
     f = tempfile.NamedTemporaryFile(suffix=".png", delete=False)
     im.crop(box).save(f.name)
     return f.name
+
+
+def salva_leggero(t: Tela, cartella: str, nome: str, cifre: int = 1):
+    """Come salva(), ma arrotonda a `cifre` decimali i numeri dei tracciati (i testi in tracciati pesano molto):
+    a 390 punti di larghezza 0,1 e' ben sotto il pixel. Serve per le pagine lunghe (landing)."""
+    import re
+    s = t.svg()
+
+    def arrot(m):
+        d = re.sub(r"-?\d+\.\d+", lambda x: (f"{float(x.group()):.{cifre}f}".rstrip("0").rstrip(".") or "0"), m.group(1))
+        return f'd="{d}"'
+    s = re.sub(r'\bd="([^"]*)"', arrot, s)
+    p = OUT / cartella / nome
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(s)
+    print(p, f"{len(s) // 1024} KB")
+    return p

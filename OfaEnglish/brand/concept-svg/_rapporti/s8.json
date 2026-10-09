@@ -1,0 +1,90 @@
+[
+ {
+  "elementi": [
+   "01.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/01-home-rischio-tre-stati/001-home-rischio-alto.svg",
+  "nota": "gen_01 (un generatore, tre stati). Misuratore a semicerchio vero (originale ellittico); pomello non proporzionale tenuto come scelta di design."
+ },
+ {
+  "elementi": [
+   "01.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/01-home-rischio-tre-stati/002-home-rischio-medio.svg",
+  "nota": "Sottotitolo allineato al titolo (nell'originale spostato di 6 px)."
+ },
+ {
+  "elementi": [
+   "01.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/01-home-rischio-tre-stati/003-home-rischio-basso.svg",
+  "nota": "Stato verde, stesso layout."
+ },
+ {
+  "elementi": [
+   "11.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/11-home-rischio-tre-stati-b/001-home-rischio-alto.svg",
+  "nota": "gen_11. Cucitura dell'arco a sinistra eliminata; 'quanto puoi migliorare?' corretto in 'Quanto puoi migliorare?'; margini unificati."
+ },
+ {
+  "elementi": [
+   "11.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/11-home-rischio-tre-stati-b/002-home-rischio-medio.svg",
+  "nota": "Layout B, stato medio; testi tutti leggibili."
+ },
+ {
+  "elementi": [
+   "11.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/11-home-rischio-tre-stati-b/003-home-rischio-basso.svg",
+  "nota": "Layout B, stato basso (pomello a sinistra)."
+ },
+ {
+  "elementi": [
+   "14.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/14-home-rischio-alto/001-home-rischio-alto.svg",
+  "nota": "gen_14."
+ },
+ {
+  "elementi": [
+   "21.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/21-home-dettaglio-rischio/001-home-dettaglio-rischio.svg",
+  "nota": "gen_21. Terza card dei consigli tagliata dal bordo (scorrimento): testo tagliato ricostruito ('Studia le aree deboli / Concentrati sugli argomenti in cui hai più difficoltà') = testo ricostruito."
+ },
+ {
+  "elementi": [
+   "33.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/33-home-rischio-b/001-home-rischio-b.svg",
+  "nota": "gen_33."
+ },
+ {
+  "elementi": [
+   "39.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/39-home-fattori/001-home-fattori.svg",
+  "nota": "gen_39."
+ },
+ {
+  "elementi": [
+   "12.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/schermate/home/12-landing-mobile/001-landing-mobile.svg",
+  "nota": "gen_12. Layout vettoriale; RASTER dichiarati: foto hero (palazzo con porta-stella e studente, pulsanti UI ripuliti con inpaint), 4 volti 'Già 12.000+ studenti', facciata del Politecnico nella card 'Il tuo futuro'. Icona logo = marchio-tile-porta.svg (il file pieno-campo pesa 468 KB). Telefono, badge store (glifi semplificati, senza loghi ufficiali), banda finale in vettoriale; scritta a mano resa con Inter inclinato. SVG ~750 KB (circa 150 righe di testo in tracciati + foto): oltre il limite di 300 KB, pagina molto lunga."
+ }
+]

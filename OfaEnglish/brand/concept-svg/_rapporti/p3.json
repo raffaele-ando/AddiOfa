@@ -1,0 +1,63 @@
+[
+ {
+  "elementi": [
+   "41.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/41-landing-desktop/01-landing.svg",
+  "nota": "IN LAVORO (rapporto provvisorio)"
+ },
+ {
+  "elementi": [
+   "45.001",
+   "45.002",
+   "45.003",
+   "45.004",
+   "45.005",
+   "45.006",
+   "45.007",
+   "45.008",
+   "45.009",
+   "45.010",
+   "45.011",
+   "45.012",
+   "45.013",
+   "45.014",
+   "45.015",
+   "45.016",
+   "45.017",
+   "45.018",
+   "45.019",
+   "45.020",
+   "45.021",
+   "45.022",
+   "45.023"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "IN LAVORO (rapporto provvisorio)"
+ },
+ {
+  "elementi": [
+   "51.001",
+   "51.002",
+   "51.003",
+   "51.004",
+   "51.005",
+   "51.006",
+   "51.007",
+   "51.008",
+   "51.009",
+   "51.010",
+   "51.011",
+   "51.012",
+   "51.013",
+   "51.014",
+   "51.015",
+   "51.016"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "IN LAVORO (rapporto provvisorio)"
+ }
+]

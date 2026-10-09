@@ -240,3 +240,71 @@ def busta(S: Scena, nome: str, c: V, w: float, h: float, gradi: float, corpo: tu
     g.append(f'<path id="{nome}-aletta" d="{ale}" fill="url(#{nome}-aletta-luce)" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="1.1" stroke-linejoin="round"/>')
     g.append("</g>")
     S.c("".join(g))
+
+
+def aereo(S: Scena, nome: str, c: V, lung: float, gradi: float, col: tuple) -> None:
+    """Aeroplanino simmetrico sul suo asse (fusoliera, ali, coda), con la punta verso +x ruotato di `gradi`. Corretto: l'originale ha ali storte."""
+    L, a = lung, lung * 0.5
+    fus = arrotondato([V(L / 2, 0), V(L * 0.12, -L * 0.1), V(-L / 2, -L * 0.07), V(-L / 2, L * 0.07), V(L * 0.12, L * 0.1)], [L * 0.1, 1, 1.5, 1.5, 1])
+    ala = arrotondato([V(L * 0.12, 0), V(-L * 0.12, -a * 0.95), V(-L * 0.28, -a * 0.95), V(-L * 0.18, 0), V(-L * 0.28, a * 0.95), V(-L * 0.12, a * 0.95)], [1, 1.5, 1.5, 1, 1.5, 1.5])
+    coda = arrotondato([V(-L * 0.36, 0), V(-L * 0.52, -a * 0.42), V(-L * 0.6, -a * 0.42), V(-L * 0.52, 0), V(-L * 0.6, a * 0.42), V(-L * 0.52, a * 0.42)], [0.8] * 6)
+    S.d(lineare(f"{nome}-luce", V(-L / 2, -a), V(L / 2, a), [(0, col[0]), (1, col[1])]))
+    S.c(f'<g id="{nome}" transform="translate({n(c.x)} {n(c.y)}) rotate({n(gradi)})" fill="url(#{nome}-luce)" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round" paint-order="stroke">'
+        f'<path id="{nome}-ali" d="{ala}"/><path id="{nome}-coda" d="{coda}"/><path id="{nome}-fusoliera" d="{fus}"/></g>')
+
+
+def party_popper(S: Scena, nome: str, base: V, lung: float, gradi: float, lum: bool) -> None:
+    """Cono da festa: punta in `base`, apertura (ellisse) a distanza `lung` lungo la direzione `gradi` (0=destra, negativo=su).
+    Strisce oblique alternate arancio/giallo, bocca blu con riflesso, bordo bianco."""
+    c1, c2, bocca = (("#FFC24A", "#FF9F1C", "#2358D6") if lum else ("#FFC02E", "#FFA30C", "#1F5FE0"))
+    wid = lung * 0.66
+    S.d(lineare(f"{nome}-luce", V(0, -wid / 2), V(0, wid / 2), [(0, "#FFD97A" if lum else "#FFD060"), (0.5, c1), (1, c2)]),
+        f'<clipPath id="{nome}-cono"><path d="M0 0 L{n(lung)} {n(-wid / 2)} A{n(wid * 0.28)} {n(wid / 2)} 0 0 1 {n(lung)} {n(wid / 2)} Z"/></clipPath>')
+    strisce = "".join(f'<path d="M{n(lung * (0.18 + 0.2 * i))} {n(-wid)} L{n(lung * (0.3 + 0.2 * i))} {n(wid)}" stroke="#FFFFFF" stroke-opacity="0.32" stroke-width="{n(lung * 0.07)}"/>' for i in range(4))
+    cono = f"M0 0 L{n(lung)} {n(-wid / 2)} A{n(wid * 0.28)} {n(wid / 2)} 0 0 1 {n(lung)} {n(wid / 2)} Z"
+    S.c(f'<g id="{nome}" transform="translate({n(base.x)} {n(base.y)}) rotate({n(gradi)})">'
+        f'<path id="{nome}-alone" d="{cono}" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linejoin="round" opacity="0.9"/>'
+        f'<path id="{nome}-cono" d="{cono}" fill="url(#{nome}-luce)"/><g id="{nome}-strisce" clip-path="url(#{nome}-cono)">{strisce}</g>'
+        f'<ellipse id="{nome}-bocca" cx="{n(lung)}" cy="0" rx="{n(wid * 0.28)}" ry="{n(wid / 2)}" fill="{bocca}"/>'
+        f'<ellipse id="{nome}-bocca-riflesso" cx="{n(lung - 1)}" cy="{n(-wid * 0.12)}" rx="{n(wid * 0.14)}" ry="{n(wid * 0.26)}" fill="#FFFFFF" opacity="0.22"/></g>')
+
+
+def lente(S: Scena, nome: str, c: V, r: float, spessore: float, manico: float, anello: tuple, col_manico: str) -> None:
+    """Lente d'ingrandimento: anello a spessore costante, vetro chiaro con riflesso, manico sulla diagonale in basso a destra
+    che parte dal bordo esterno dell'anello (stessa direzione del centro)."""
+    d = V(0.7071, 0.7071)
+    a0, a1 = c + d * (r + spessore * 0.4), c + d * (r + spessore * 0.4 + manico)
+    S.d(lineare(f"{nome}-anello-luce", c + V(-r, -r), c + V(r, r), [(0, anello[0]), (1, anello[1])]),
+        radiale(f"{nome}-vetro-luce", c + V(-r * 0.4, -r * 0.4), r * 1.3, [(0, "#FFFFFF", 0.9), (1, "#DCE8FD", 0.75)]))
+    S.c(f'<g id="{nome}"><path id="{nome}-manico-alone" d="M{p(a0)} L{p(a1)}" stroke="#FFFFFF" stroke-width="{n(spessore * 1.1 + 3.4)}" stroke-linecap="round"/>'
+        f'<path id="{nome}-manico" d="M{p(a0)} L{p(a1)}" stroke="{col_manico}" stroke-width="{n(spessore * 1.1)}" stroke-linecap="round"/>'
+        f'<circle id="{nome}-alone" cx="{n(c.x)}" cy="{n(c.y)}" r="{n(r + spessore / 2 + 1.7)}" fill="#FFFFFF" opacity="0.9"/>'
+        f'<circle id="{nome}-vetro" cx="{n(c.x)}" cy="{n(c.y)}" r="{n(r)}" fill="url(#{nome}-vetro-luce)"/>'
+        f'<circle id="{nome}-anello" cx="{n(c.x)}" cy="{n(c.y)}" r="{n(r)}" fill="none" stroke="url(#{nome}-anello-luce)" stroke-width="{n(spessore)}"/>'
+        f'<path id="{nome}-riflesso" d="M{p(c + V(-r * 0.62, -r * 0.1))} A{n(r * 0.64)} {n(r * 0.64)} 0 0 1 {p(c + V(-r * 0.1, -r * 0.62))}" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="3.2" stroke-linecap="round" fill="none"/></g>')
+
+
+def clessidra(S: Scena, nome: str, cx: float, y0: float, y1: float, largo: float, tappo: tuple, sabbia: tuple, base_col: str | None) -> None:
+    """Clessidra su asse cx: due tappi uguali (arrotondati), vetro a due bulbi con collo (metà costruita e specchiata), sabbia che cade."""
+    th = 9
+    ym = (y0 + y1) / 2
+    gy0, gy1 = y0 + th, y1 - th
+    hw = largo * 0.78
+    def meta(s):
+        x = lambda d: cx + s * d
+        return (f"L{n(x(hw))} {n(gy0)} C{n(x(hw))} {n(gy0 + (ym - gy0) * 0.7)} {n(x(3))} {n(ym - 8)} {n(x(2.6))} {n(ym)} "
+                f"C{n(x(3))} {n(ym + 8)} {n(x(hw))} {n(gy1 - (gy1 - ym) * 0.7)} {n(x(hw))} {n(gy1)}")
+    vetro = f"M{n(cx - hw)} {n(gy0)} " + meta(1) + f" L{n(cx - hw)} {n(gy1)} " + \
+        f"C{n(cx - hw)} {n(gy1 - (gy1 - ym) * 0.7)} {n(cx - 3)} {n(ym + 8)} {n(cx - 2.6)} {n(ym)} C{n(cx - 3)} {n(ym - 8)} {n(cx - hw)} {n(gy0 + (ym - gy0) * 0.7)} {n(cx - hw)} {n(gy0)} Z"
+    S.d(f'<clipPath id="{nome}-vetro-ritaglio"><path d="{vetro}"/></clipPath>',
+        lineare(f"{nome}-tappo-luce", V(0, 0), V(0, th), [(0, tappo[0]), (1, tappo[1])]),
+        lineare(f"{nome}-sabbia-luce", V(0, ym), V(0, gy1), [(0, sabbia[0]), (1, sabbia[1])]))
+    sab_alta = f"M{n(cx - hw)} {n(gy0 + 24)} L{n(cx + hw)} {n(gy0 + 24)} L{n(cx + hw)} {n(ym - 8)} L{n(cx - hw)} {n(ym - 8)} Z"
+    sab_bassa = f"M{n(cx - hw)} {n(gy1)} C{n(cx - hw * 0.8)} {n(gy1 - 14)} {n(cx - 6)} {n(gy1 - 22)} {n(cx)} {n(gy1 - 24)} C{n(cx + 6)} {n(gy1 - 22)} {n(cx + hw * 0.8)} {n(gy1 - 14)} {n(cx + hw)} {n(gy1)} Z"
+    S.c(f'<g id="{nome}"><path id="{nome}-vetro-alone" d="{vetro}" fill="none" stroke="#FFFFFF" stroke-width="3.6" stroke-linejoin="round" opacity="0.9"/>'
+        f'<path id="{nome}-vetro" d="{vetro}" fill="#EEF3FD" opacity="0.8"/>'
+        f'<g id="{nome}-sabbia" clip-path="url(#{nome}-vetro-ritaglio)"><path id="{nome}-sabbia-alta" d="{sab_alta}" fill="url(#{nome}-sabbia-luce)"/><path id="{nome}-sabbia-bassa" d="{sab_bassa}" fill="url(#{nome}-sabbia-luce)"/>'
+        f'<path id="{nome}-filo-sabbia" d="M{n(cx)} {n(ym - 6)} V{n(gy1 - 22)}" stroke="{sabbia[0]}" stroke-width="1.8"/></g>'
+        f'<path id="{nome}-vetro-riflesso" d="M{n(cx - hw + 5)} {n(gy0 + 8)} C{n(cx - hw + 4)} {n(gy0 + 20)} {n(cx - hw + 8)} {n(gy0 + 28)} {n(cx - hw + 14)} {n(gy0 + 34)}" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="2.6" stroke-linecap="round" fill="none"/>'
+        f'<path id="{nome}-tappo-alto" d="{rettangolo(cx - largo, y0, 2 * largo, th, 4.5)}" fill="url(#{nome}-tappo-luce)" transform="translate(0 0)"/>'
+        f'<path id="{nome}-tappo-basso" d="{rettangolo(cx - largo, y1 - th, 2 * largo, th, 4.5)}" fill="{base_col or tappo[1]}"/></g>')

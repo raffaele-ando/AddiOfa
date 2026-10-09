@@ -48,7 +48,7 @@ _XH = set("acemnorsuvwxz.:-…")
 
 
 def testo_box(t: Tela, s: str, x0: float, x1: float, y0: float, y1: float, peso: int = 400, colore: str = INK,  # noqa: F405
-              ancora: str = "start", id: str | None = None, clamp: float = 0.10, forza_dim: float | None = None,
+              ancora: str = "start", id: str | None = None, clamp: float = 0.14, forza_dim: float | None = None,
               opacita: float | None = None) -> float:
     """Scrive `s` nel riquadro d'inchiostro misurato (x0..x1 larghezza, y0..y1 dall'alto al basso, inclusi).
     Tutto in punti telefono. Dimensione = altezza dell'inchiostro / (altezza tipica Inter), con scarto massimo
@@ -63,7 +63,7 @@ def testo_box(t: Tela, s: str, x0: float, x1: float, y0: float, y1: float, peso:
     sp = 0.0
     if len(s) > 3 and not forza_dim:
         sp = (larg - larghezza_testo(s, dim, peso)) / (len(s) - 1)
-        sp = max(-0.04 * dim, min(0.08 * dim, sp))
+        sp = max(-0.05 * dim, min(0.06 * dim, sp))
     base = y1 - desc * dim
     if ancora == "middle":
         t.testo(s, (x0 + x1) / 2, base, dim, peso, colore, "middle", id=id, spaziatura=sp, opacita=opacita)
@@ -196,10 +196,10 @@ def _scuro(c: str, q: float) -> str:
 def _tacche(t, cx, cy, rx, ry, th, v, tipo, tacche_col, stops, colore_in):
     """Tacche piccole fuori dall'arco (e, se tipo == 'doppie', più chiare anche dentro): 11 posizioni."""
     with t.gruppo("tacche"):
-        for i in range(11):
+        for i in range(1, 10):
             f = i / 10
             a = math.pi * (1 - f)
-            for lato, lung, op in ((1, th * 0.36, 0.9), (-1, th * 0.30, 0.45)):
+            for lato, lung, op in ((1, th * 0.30, 0.55), (-1, th * 0.24, 0.28)):
                 if lato == -1 and tipo != "doppie":
                     continue
                 d0 = th * 0.5 + (th * 0.38 if lato == 1 else th * 0.42)

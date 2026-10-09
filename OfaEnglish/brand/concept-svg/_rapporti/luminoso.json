@@ -1,0 +1,319 @@
+[
+ {
+  "elementi": [
+   "16.022"
+  ],
+  "stato": "svg",
+  "nota": "Libri: oggetti.libro()+bandiera_uk() riusati con palette scura; bandiera posata sul piano della copertina, diagonali rosse sfalsate; alone arancione sul fianco. Variante scura: studio-inglese.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/studio-inglese.svg"
+ },
+ {
+  "elementi": [
+   "17.022"
+  ],
+  "stato": "svg",
+  "nota": "Libri: oggetti.libro()+bandiera_uk() riusati con palette scura; bandiera posata sul piano della copertina, diagonali rosse sfalsate; alone arancione sul fianco. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/studio-inglese.svg"
+ },
+ {
+  "elementi": [
+   "16.023"
+  ],
+  "stato": "svg",
+  "nota": "Foglio e contenuti nello stesso gruppo ruotato; tre caselle uguali a passo costante; lettere Inter, spunta disegnata. Nel 17 le risposte sono A/B/C (B rossa). Variante scura: quiz-test.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/quiz-test.svg"
+ },
+ {
+  "elementi": [
+   "17.023"
+  ],
+  "stato": "svg",
+  "nota": "Foglio e contenuti nello stesso gruppo ruotato; tre caselle uguali a passo costante; lettere Inter, spunta disegnata. Nel 17 le risposte sono A/B/C (B rossa). (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/quiz-test.svg"
+ },
+ {
+  "elementi": [
+   "16.024"
+  ],
+  "stato": "svg",
+  "nota": "Pallina calcolata sull'angolo reale dell'82%; nel 17 il blu pieno arriva alla pallina (l'originale aveva tre stati); testo 82% in tracciati. Testo ricostruito: nessuno, cifra vista. Variante scura: risultato-probabilita.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/risultato-probabilita.svg"
+ },
+ {
+  "elementi": [
+   "17.024"
+  ],
+  "stato": "svg",
+  "nota": "Pallina calcolata sull'angolo reale dell'82%; nel 17 il blu pieno arriva alla pallina (l'originale aveva tre stati); testo 82% in tracciati. Testo ricostruito: nessuno, cifra vista. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/risultato-probabilita.svg"
+ },
+ {
+  "elementi": [
+   "16.025"
+  ],
+  "stato": "svg",
+  "nota": "Tre banconote con stessa inclinazione, € vero (Inter); sigillino regolare; bagliore dal bordo basso-destra. Variante scura: rischio-economico.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/rischio-economico.svg"
+ },
+ {
+  "elementi": [
+   "17.025"
+  ],
+  "stato": "svg",
+  "nota": "Tre banconote con stessa inclinazione, € vero (Inter); sigillino regolare; bagliore dal bordo basso-destra. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/rischio-economico.svg"
+ },
+ {
+  "elementi": [
+   "16.026"
+  ],
+  "stato": "svg",
+  "nota": "Griglia 3x2 regolare, anelli uguali, arco del lucchetto a U costante, buco chiave centrato (acceso nel luminoso; lucchetto rosso nel 17). Oggetto nuovo lucchetto() in oggetti_nuovi.py. Variante scura: piano-studi-bloccato.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/piano-studi-bloccato.svg"
+ },
+ {
+  "elementi": [
+   "17.026"
+  ],
+  "stato": "svg",
+  "nota": "Griglia 3x2 regolare, anelli uguali, arco del lucchetto a U costante, buco chiave centrato (acceso nel luminoso; lucchetto rosso nel 17). Oggetto nuovo lucchetto() in oggetti_nuovi.py. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/piano-studi-bloccato.svg"
+ },
+ {
+  "elementi": [
+   "16.027"
+  ],
+  "stato": "svg",
+  "nota": "Foglio con righe a lunghezza decrescente, due fogli dietro, distintivo verde con spunta vera. Variante scura: superamento.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/superamento.svg"
+ },
+ {
+  "elementi": [
+   "17.027"
+  ],
+  "stato": "svg",
+  "nota": "Foglio con righe a lunghezza decrescente, due fogli dietro, distintivo verde con spunta vera. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/superamento.svg"
+ },
+ {
+  "elementi": [
+   "16.034"
+  ],
+  "stato": "svg",
+  "nota": "Come superamento ma con distintivo rosso e croce; 17.037/17.038 sono due ritagli della stessa illustrazione. Variante scura: mancato-superamento.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/mancato-superamento.svg"
+ },
+ {
+  "elementi": [
+   "17.037",
+   "17.038"
+  ],
+  "stato": "svg",
+  "nota": "Come superamento ma con distintivo rosso e croce; 17.037/17.038 sono due ritagli della stessa illustrazione. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/mancato-superamento.svg"
+ },
+ {
+  "elementi": [
+   "16.028"
+  ],
+  "stato": "svg",
+  "nota": "Coppa su asse specchiata, manici uguali, stella regolare, tre raggi uguali (17.028/029 erano frammenti dei raggi, inclusi qui). Oggetto nuovo trofeo(). Variante scura: successo.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/successo.svg"
+ },
+ {
+  "elementi": [
+   "17.030",
+   "17.028",
+   "17.029"
+  ],
+  "stato": "svg",
+  "nota": "Coppa su asse specchiata, manici uguali, stella regolare, tre raggi uguali (17.028/029 erano frammenti dei raggi, inclusi qui). Oggetto nuovo trofeo(). (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/successo.svg"
+ },
+ {
+  "elementi": [
+   "16.029"
+  ],
+  "stato": "svg",
+  "nota": "Bulbo = cerchio + cono tangente; filamento a due steli specchiati; cinque raggi radiali equidistanti. Variante scura: suggerimenti-consigli.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/suggerimenti-consigli.svg"
+ },
+ {
+  "elementi": [
+   "17.031"
+  ],
+  "stato": "svg",
+  "nota": "Bulbo = cerchio + cono tangente; filamento a due steli specchiati; cinque raggi radiali equidistanti. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/suggerimenti-consigli.svg"
+ },
+ {
+  "elementi": [
+   "16.031"
+  ],
+  "stato": "svg",
+  "nota": "Busta con aletta raccordata e pieghe simmetriche. Sigillo del Politecnico NON riprodotto: segnaposto neutro (id sigillo-segnaposto) nel 17; nel luminoso stella accesa come nell'originale. Variante scura: email-polimi.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/email-polimi.svg"
+ },
+ {
+  "elementi": [
+   "17.034"
+  ],
+  "stato": "svg",
+  "nota": "Busta con aletta raccordata e pieghe simmetriche. Sigillo del Politecnico NON riprodotto: segnaposto neutro (id sigillo-segnaposto) nel 17; nel luminoso stella accesa come nell'originale. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/email-polimi.svg"
+ },
+ {
+  "elementi": [
+   "16.032"
+  ],
+  "stato": "svg",
+  "nota": "Carta d'identità: avatar costruito (testa cerchio, busto a fondo piatto), tre righe decrescenti nello stesso gruppo ruotato. Variante scura: verifica-utente.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/verifica-utente.svg"
+ },
+ {
+  "elementi": [
+   "17.035"
+  ],
+  "stato": "svg",
+  "nota": "Carta d'identità: avatar costruito (testa cerchio, busto a fondo piatto), tre righe decrescenti nello stesso gruppo ruotato. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/verifica-utente.svg"
+ },
+ {
+  "elementi": [
+   "16.033"
+  ],
+  "stato": "svg",
+  "nota": "Finestra browser con tocco da laureato simmetrico e orologio con lancette alle 12 e 4; 17.044 (orologio) incluso nella scena. Variante scura: accesso-bloccato.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/accesso-bloccato.svg"
+ },
+ {
+  "elementi": [
+   "17.036",
+   "17.044"
+  ],
+  "stato": "svg",
+  "nota": "Finestra browser con tocco da laureato simmetrico e orologio con lancette alle 12 e 4; 17.044 (orologio) incluso nella scena. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/accesso-bloccato.svg"
+ },
+ {
+  "elementi": [
+   "16.035"
+  ],
+  "stato": "svg",
+  "nota": "Quattro barre larghe uguali, passo costante, stessa linea di appoggio; calore arancione dal piede nel luminoso. Variante scura: progressi-statistiche.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/progressi-statistiche.svg"
+ },
+ {
+  "elementi": [
+   "17.039"
+  ],
+  "stato": "svg",
+  "nota": "Quattro barre larghe uguali, passo costante, stessa linea di appoggio; calore arancione dal piede nel luminoso. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/progressi-statistiche.svg"
+ },
+ {
+  "elementi": [
+   "16.036"
+  ],
+  "stato": "svg",
+  "nota": "Globo con continenti lisci ritagliati sul disco, orbita continua (mezza dietro, mezza davanti), aereo simmetrico (oggetto nuovo aereo()). Variante scura: mondo-internazionale.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/mondo-internazionale.svg"
+ },
+ {
+  "elementi": [
+   "17.040"
+  ],
+  "stato": "svg",
+  "nota": "Globo con continenti lisci ritagliati sul disco, orbita continua (mezza dietro, mezza davanti), aereo simmetrico (oggetto nuovo aereo()). (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/mondo-internazionale.svg"
+ },
+ {
+  "elementi": [
+   "16.037"
+  ],
+  "stato": "svg",
+  "nota": "Due fumetti con la stessa coda (oggetti_b.fumetto), tre puntini uguali; i colori dei due fumetti sono invertiti tra 16 e 17 come negli originali. Variante scura: messaggi-supporto.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/messaggi-supporto.svg"
+ },
+ {
+  "elementi": [
+   "17.045"
+  ],
+  "stato": "svg",
+  "nota": "Due fumetti con la stessa coda (oggetti_b.fumetto), tre puntini uguali; i colori dei due fumetti sono invertiti tra 16 e 17 come negli originali. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/messaggi-supporto.svg"
+ },
+ {
+  "elementi": [
+   "16.038"
+  ],
+  "stato": "svg",
+  "nota": "Party popper (oggetto nuovo) con strisce, bocca blu; coriandoli come squiggle a tratto costante. I coriandoli sparsi dell'originale sono ricollocati a mano. Variante scura: celebrazione.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/celebrazione.svg"
+ },
+ {
+  "elementi": [
+   "17.041"
+  ],
+  "stato": "svg",
+  "nota": "Party popper (oggetto nuovo) con strisce, bocca blu; coriandoli come squiggle a tratto costante. I coriandoli sparsi dell'originale sono ricollocati a mano. (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/celebrazione.svg"
+ },
+ {
+  "elementi": [
+   "16.039"
+  ],
+  "stato": "svg",
+  "nota": "Clessidra su asse specchiata, due tappi uguali, sabbia con piano orizzontale (oggetto nuovo clessidra()). Variante scura: attesa-caricamento.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/attesa-caricamento.svg"
+ },
+ {
+  "elementi": [
+   "17.042"
+  ],
+  "stato": "svg",
+  "nota": "Clessidra su asse specchiata, due tappi uguali, sabbia con piano orizzontale (oggetto nuovo clessidra()). (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/attesa-caricamento.svg"
+ },
+ {
+  "elementi": [
+   "16.040"
+  ],
+  "stato": "svg",
+  "nota": "Lente: anello a spessore costante, manico sulla diagonale del centro (oggetto nuovo lente()). Variante scura: ricerca.scuro.svg.",
+  "svg": "brand/concept-svg/illustrazioni-luminose/ricerca.svg"
+ },
+ {
+  "elementi": [
+   "17.043"
+  ],
+  "stato": "svg",
+  "nota": "Lente: anello a spessore costante, manico sulla diagonale del centro (oggetto nuovo lente()). (kit 'vivo', immagine 17: stessa illustrazione senza bagliore.)",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/ricerca.svg"
+ },
+ {
+  "elementi": [
+   "40.041"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/illustrazioni-luminose/vivo/quiz-test.svg",
+  "nota": "Foglio quiz A/B/C del kit 'vivo' (stessa illustrazione del 17.023, ritaglio più piccolo)."
+ },
+ {
+  "elementi": [
+   "40.026"
+  ],
+  "stato": "scartato",
+  "nota": "Composizione di tre illustrazioni del kit 'vivo' (gauge 82%, globo, calendario con lucchetto) già coperte da vivo/risultato-probabilita, vivo/mondo-internazionale, vivo/piano-studi-bloccato: va ricomposta dal layout di 40."
+ },
+ {
+  "elementi": [
+   "16.020",
+   "16.021",
+   "17.020",
+   "17.021"
+  ],
+  "stato": "scartato",
+  "nota": "testo: didascalie/titoli del foglio kit, di competenza degli agenti dei testi."
+ }
+]
