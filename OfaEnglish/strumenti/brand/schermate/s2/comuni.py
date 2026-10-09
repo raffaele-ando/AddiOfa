@@ -166,13 +166,13 @@ def pulsante_rosso(t, x, y, w, h, etichetta, corpo, id="pulsante-primario", frec
             I(t, icona_sx, cx - lw / 2 - corpo * 1.05, y + h / 2, corpo * 1.25, "#FFFFFF", 2.2)
 
 
-def pulsante_blu(t, x, y, w, h, etichetta, corpo, id="pulsante-primario", freccia=False, r=None, larg=None, peso=600):
+def pulsante_blu(t, x, y, w, h, etichetta, corpo, id="pulsante-primario", freccia=False, r=None, larg=None, peso=600, x_testo=None):
     r = r if r is not None else h * 0.26
     with t.gruppo(id):
         R(t, x, y, w, h, r, t.sfumatura(["#2F7BFB", "#1F6BF5"], 0, 0, 0, 1), id=f"{id}-fondo", filtro=t.ombra(t.p(h * 0.07), t.p(h * 0.22), "#2563EB", 0.24))
         lw = larghezza_testo(etichetta, t.p(corpo), peso) / t.k if larg is None else larg
         cx = x + w / 2 - (corpo * 0.4 if freccia else 0)
-        T(t, etichetta, cx - lw / 2, y + h / 2 + corpo * 0.36, corpo, peso, "#FFFFFF", id=f"{id}-testo", larg=larg)
+        T(t, etichetta, (x_testo if x_testo is not None else cx - lw / 2), y + h / 2 + corpo * 0.36, corpo, peso, "#FFFFFF", id=f"{id}-testo", larg=larg)
         if freccia:
             I(t, "freccia-destra", x + w - h * 0.55, y + h / 2, h * 0.38, "#FFFFFF", 1.9, id=f"{id}-freccia")
 

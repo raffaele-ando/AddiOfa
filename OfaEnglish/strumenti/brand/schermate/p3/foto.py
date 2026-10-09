@@ -59,7 +59,10 @@ class Maschera:
                 grande = cv2.resize(sm, (self.img.shape[1], self.img.shape[0]), interpolation=cv2.INTER_CUBIC)
                 mm = cv2.GaussianBlur(self.m, (0, 0), 2)[..., None] / 255.0
                 rumore = np.random.default_rng(3).normal(0, 2.2, grande.shape)
-                out = np.where(self.m[..., None] > 0, np.clip(grande + rumore, 0, 255), out).astype(np.uint8)
+                mm = cv2.GaussianBlur(cv2.dilate(self.m, np.ones((9, 9), np.uint8)), (0, 0), 7)[..., None] / 255.0
+                piena = np.clip(grande + rumore, 0, 255)
+                out = np.where(self.m[..., None] > 0, piena, out)
+                out = (out * (1 - mm) + piena * mm).astype(np.uint8) if False else (np.where(self.m[..., None] > 0, piena, self.img * (1 - mm) + piena * mm)).astype(np.uint8)
         return out
 
 

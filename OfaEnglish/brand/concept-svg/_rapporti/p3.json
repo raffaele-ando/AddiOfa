@@ -5,59 +5,350 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/layout/41-landing-desktop/01-landing.svg",
-  "nota": "IN LAVORO (rapporto provvisorio)"
+  "nota": "Landing A a pagina intera, tutta vettoriale (nessuna foto): scena arco-stella ridisegnata (tile blu con foro a stella luminoso, scalinata, edifici/alberi sfocati, vetri), card dei rischi con nastro rosso, logo dal kit. Corretto: icona Home sbilenca, simboli dei punti di forza; scritte a terra inglesi mantenute (glifi Inter, testo ricostruito); cifre 82 % e 30 € lette dall'originale, non verificate; nessun sigillo."
  },
  {
   "elementi": [
-   "45.001",
-   "45.002",
-   "45.003",
-   "45.004",
-   "45.005",
-   "45.006",
-   "45.007",
-   "45.008",
-   "45.009",
-   "45.010",
-   "45.011",
-   "45.012",
-   "45.013",
-   "45.014",
-   "45.015",
-   "45.016",
-   "45.017",
-   "45.018",
-   "45.019",
-   "45.020",
-   "45.021",
-   "45.022",
+   "45.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Hero: foto dell'arco con la stella e lo studente (raster, ripulita da titolo/menu/telefoni con inpainting) + navigazione, titolo, pulsanti, 4 telefoni, 5 bolle in vettoriale. Menu 'Prezz' corretto in 'Prezzi'; schermate dei telefoni ridisegnate dal kit; tab ricostruite (Home/Studio/Statistiche); 12.000+ e 82 %/30 € letti dall'originale, non verificati."
+ },
+ {
+  "elementi": [
+   "45.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Colonna sinistra (card di funzione/telefono) rifatta nel gruppo perche-addiofa e hero."
+ },
+ {
+  "elementi": [
+   "45.003"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Pannello 'Il tuo futuro': foto dell'edificio del Politecnico (raster, testo cancellato e ridisegnato vettoriale)."
+ },
+ {
+  "elementi": [
+   "45.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: telefono 'Sei a rischio?' (anche come componente a parte); ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: bolla/icona; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: icona; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: testo di scheda; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: testo di scheda; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: icona tonda del vantaggio; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.010"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: icona tonda del vantaggio; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.011"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: titolo scheda; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.012"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: testo scheda; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.013"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: icona scheda; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.014"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: titolo scheda; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.015"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: testo scheda; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.016"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Pannello CTA: foto del tile con stella (raster, testo/badge cancellati); titoli, testo, badge App Store e Google Play e scritta a mano rifatti in vettoriale (testo ricostruito)."
+ },
+ {
+  "elementi": [
+   "45.017"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: icona; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.018"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: pannello; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.019"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: titolo; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.020"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: testo; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.021"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: icona; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
+   "45.022"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
+  "nota": "Vettoriale nel layout: testo; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
+ },
+ {
+  "elementi": [
    "45.023"
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/layout/45-landing-desktop-b/01-landing.svg",
-  "nota": "IN LAVORO (rapporto provvisorio)"
+  "nota": "Vettoriale nel layout: icona; ricomposto come gruppo del layout (gruppi hero, vantaggi, perche-addiofa, dati-reali, pannello-futuro, cta-store)."
  },
  {
   "elementi": [
-   "51.001",
-   "51.002",
-   "51.003",
-   "51.004",
-   "51.005",
-   "51.006",
-   "51.007",
-   "51.008",
-   "51.009",
-   "51.010",
-   "51.011",
-   "51.012",
-   "51.013",
-   "51.014",
-   "51.015",
+   "51.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Hero e fascia 'La realtà / Il tuo domani': tre foto raster ripulite (testi, menu, paginazione, scritte a mano cancellati; SIGILLO del pilastro rimosso e sostituito dal segnaposto 'sigillo-segnaposto'); tutto il testo, i pulsanti, il misuratore 82 %, la paginazione (corretta da '01 02 03 04 04' a 01-04) e le scritte a mano (Inter inclinato, testo ricostruito) in vettoriale."
+ },
+ {
+  "elementi": [
+   "51.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.010"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.011"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.012"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.013"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.014"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "51.015"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
    "51.016"
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/layout/51-landing-desktop-c/01-landing.svg",
-  "nota": "IN LAVORO (rapporto provvisorio)"
+  "nota": "Vettoriale nel gruppo come-funziona del layout (4 passi con mini-schermate ridisegnate semplificate: domanda, piano, simulazione, documento con spunta; testi letti dall'originale) o nel pannello/etichette del layout."
+ },
+ {
+  "elementi": [
+   "45.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/componenti/telefono-sei-a-rischio.svg",
+  "nota": "Componente riusabile: telefono con schermata del kit (usato anche nelle landing)."
+ },
+ {
+  "elementi": [
+   "45.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/componenti/telefono-domanda.svg",
+  "nota": "Componente riusabile: telefono con schermata del kit (usato anche nelle landing)."
+ },
+ {
+  "elementi": [
+   "45.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/componenti/telefono-obiettivo-raggiunto.svg",
+  "nota": "Componente riusabile: telefono con schermata del kit (usato anche nelle landing)."
+ },
+ {
+  "elementi": [
+   "45.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/45-landing-desktop-b/componenti/telefono-piano-di-studio.svg",
+  "nota": "Componente riusabile: telefono con schermata del kit (usato anche nelle landing)."
  }
 ]

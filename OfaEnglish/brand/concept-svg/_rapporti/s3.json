@@ -1,0 +1,266 @@
+[
+ {
+  "elementi": [
+   "19.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/01-profilo.svg",
+  "nota": "Il tuo profilo (kit rosso come nell'originale). Icone della lista rifatte; stessa schermata di 18.001. Nessun testo ricostruito."
+ },
+ {
+  "elementi": [
+   "19.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/02-statistiche.svg",
+  "nota": "Le tue statistiche con grafico a barre. Barre del grafico: dati di esempio (testo/valori non leggibili); icone delle abilità rifatte; stessa schermata di 18.002."
+ },
+ {
+  "elementi": [
+   "19.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/03-frasi-e-vocaboli.svg",
+  "nota": "Frasi e vocaboli con ricerca, chip e 6 frasi. Testi letti dall'originale; chip 'Già note' non più tagliato; stessa schermata di 18.003."
+ },
+ {
+  "elementi": [
+   "19.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/04-test.svg",
+  "nota": "Test, domanda 3/10, opzione selezionata. Testi letti dall'originale; stessa schermata di 18.004."
+ },
+ {
+  "elementi": [
+   "19.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/05-quiz-completato.svg",
+  "nota": "Quiz completato 80%: illustrazione riusata (kit-rosso/stati/completato), coriandoli e misuratore ridisegnati. Stessa schermata di 18.005."
+ },
+ {
+  "elementi": [
+   "19.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/06-correzioni.svg",
+  "nota": "Correzioni con 4 domande (3 giuste, 1 errata). Testi letti dall'originale; stessa schermata di 18.006."
+ },
+ {
+  "elementi": [
+   "19.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/07-simulatore.svg",
+  "nota": "Simulatore d'esame. Sottotitolo ricostruito (refuso AI); illustrazione cronometro disegnata; stessa schermata di 18.007. Descrizioni durata/domande lette dall'originale."
+ },
+ {
+  "elementi": [
+   "19.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/08-durante-la-simulazione.svg",
+  "nota": "Domanda 12/40 con timer. Testi letti dall'originale; stessa schermata di 18.008."
+ },
+ {
+  "elementi": [
+   "19.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/09-simulazione-completata.svg",
+  "nota": "Simulazione completata 76%: trofeo riusato (kit-rosso/successo-superamento), coriandoli, misuratore. Stessa schermata di 18.009."
+ },
+ {
+  "elementi": [
+   "06.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/01-sfide-home.svg",
+  "nota": "Sfide home. Avatar-foto -> cerchio neutro; frecce decorative storte intorno al trofeo -> raggi del trofeo già disegnato (riuso kit-rosso/successo-superamento); riga 3 tagliata dalla tab-bar come nell'originale. Testi leggibili. NB: 22.001 è un'altra generazione (sfida col bersaglio), non è questa."
+ },
+ {
+  "elementi": [
+   "06.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/02-tutte-le-sfide.svg",
+  "nota": "Tutte le sfide (tab Attive/Completate/Tutte). Icona tonda in alto a destra illeggibile -> calendario. Testo ricostruito: nessuno (testi riletti da 22.001, stesse sfide)."
+ },
+ {
+  "elementi": [
+   "06.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/03-dettaglio-sfida.svg",
+  "nota": "Dettaglio sfida: cielo, montagna e bandierina disegnati; 7 giorni con 4 spunte; Ricompensa, Consigli, pulsante. Testo ricostruito: nessuno."
+ },
+ {
+  "elementi": [
+   "06.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/04-classifica.svg",
+  "nota": "Classifica settimanale: podio + elenco 4-10. Nomi di esempio come nell'originale; foto -> avatar neutri."
+ },
+ {
+  "elementi": [
+   "06.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/05-amici.svg",
+  "nota": "Amici: l'originale è tagliato a destra, completato alla larghezza intera. Avatar neutri."
+ },
+ {
+  "elementi": [
+   "06.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/06-sfide-completate.svg",
+  "nota": "Sfide completate: 5 righe a passo uguale (irregolare nell'originale). Date e punti come nell'originale."
+ },
+ {
+  "elementi": [
+   "06.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/07-calendario.svg",
+  "nota": "Calendario settembre 2026. CORRETTO l'errore dell'AI: il 1/9/2026 è un martedì (nell'originale sta sotto «L»); streak coerente (5 giorni, oggi 12). Completato a destra."
+ },
+ {
+  "elementi": [
+   "06.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/08-profilo-panoramica.svg",
+  "nota": "Profilo panoramica: foto -> avatar neutro; icona Project ID disegnata. Parte bassa (altri 2 obiettivi, Badge) ricostruita da 22.002 perché l'originale è tagliato: TESTO RICOSTRUITO per quella parte (nomi dei badge letti da 22.002)."
+ },
+ {
+  "elementi": [
+   "06.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/09-progressi.svg",
+  "nota": "I miei progressi: grafico a linea 82% -> 28% (etichetta '26' illeggibile dell'originale -> 82%, punto finale al 28% coerente). Tab-bar aggiunta; testo ricostruito: nessuno."
+ },
+ {
+  "elementi": [
+   "06.010"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/10-obiettivi.svg",
+  "nota": "I miei obiettivi: alone fantasma e '20%' sfocato dietro la barra rimossi. Tab-bar aggiunta."
+ },
+ {
+  "elementi": [
+   "06.011"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/11-badge.svg",
+  "nota": "I miei badge: griglia 3x3 (6 sbloccati, 3 bloccati), riquadri uguali. Tab-bar aggiunta."
+ },
+ {
+  "elementi": [
+   "06.012"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/12-attivita.svg",
+  "nota": "Attività: 6 voci; icone Simulazione e Sfida completata (illeggibili/storte) sostituite. Tab-bar aggiunta."
+ },
+ {
+  "elementi": [
+   "06.013"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/13-impostazioni.svg",
+  "nota": "Impostazioni: tutte le icone dell'AI (storte) sostituite con icone vere; testi tenuti."
+ },
+ {
+  "elementi": [
+   "06.014"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/14-modifica-profilo.svg",
+  "nota": "Modifica profilo: avatar neutro, refuso 'voita' -> 'volta', fotocamera vera, campi alla larghezza intera (originale tagliato a destra)."
+ },
+ {
+  "elementi": [
+   "18.001"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/01-profilo.svg",
+  "nota": "Stessa schermata di 19.001 (altra generazione, stesso contenuto; l'originale 18 ha la tab-bar a 3 voci, qui quella a 5 di 19). Da coordinatore: se un altro agente ha 18, tenere una sola uscita."
+ },
+ {
+  "elementi": [
+   "18.002"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/02-statistiche.svg",
+  "nota": "Stessa schermata di 19.002 (altra generazione, stesso contenuto; l'originale 18 ha la tab-bar a 3 voci, qui quella a 5 di 19). Da coordinatore: se un altro agente ha 18, tenere una sola uscita."
+ },
+ {
+  "elementi": [
+   "18.003"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/03-frasi-e-vocaboli.svg",
+  "nota": "Stessa schermata di 19.003 (altra generazione, stesso contenuto; l'originale 18 ha la tab-bar a 3 voci, qui quella a 5 di 19). Da coordinatore: se un altro agente ha 18, tenere una sola uscita."
+ },
+ {
+  "elementi": [
+   "18.004"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/04-test.svg",
+  "nota": "Stessa schermata di 19.004 (altra generazione, stesso contenuto; l'originale 18 ha la tab-bar a 3 voci, qui quella a 5 di 19). Da coordinatore: se un altro agente ha 18, tenere una sola uscita."
+ },
+ {
+  "elementi": [
+   "18.005"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/05-quiz-completato.svg",
+  "nota": "Stessa schermata di 19.005 (altra generazione, stesso contenuto; l'originale 18 ha la tab-bar a 3 voci, qui quella a 5 di 19). Da coordinatore: se un altro agente ha 18, tenere una sola uscita."
+ },
+ {
+  "elementi": [
+   "18.006"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/06-correzioni.svg",
+  "nota": "Stessa schermata di 19.006 (altra generazione, stesso contenuto; l'originale 18 ha la tab-bar a 3 voci, qui quella a 5 di 19). Da coordinatore: se un altro agente ha 18, tenere una sola uscita."
+ },
+ {
+  "elementi": [
+   "18.007"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/07-simulatore.svg",
+  "nota": "Stessa schermata di 19.007 (altra generazione, stesso contenuto; l'originale 18 ha la tab-bar a 3 voci, qui quella a 5 di 19). Da coordinatore: se un altro agente ha 18, tenere una sola uscita."
+ },
+ {
+  "elementi": [
+   "18.008"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/08-durante-la-simulazione.svg",
+  "nota": "Stessa schermata di 19.008 (altra generazione, stesso contenuto; l'originale 18 ha la tab-bar a 3 voci, qui quella a 5 di 19). Da coordinatore: se un altro agente ha 18, tenere una sola uscita."
+ },
+ {
+  "elementi": [
+   "18.009"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/19-schermate-profilo-statistiche-b/09-simulazione-completata.svg",
+  "nota": "Stessa schermata di 19.009 (altra generazione, stesso contenuto; l'originale 18 ha la tab-bar a 3 voci, qui quella a 5 di 19). Da coordinatore: se un altro agente ha 18, tenere una sola uscita."
+ },
+ {
+  "elementi": [
+   "22.002"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/06-schermate-sfide-progressi/08-profilo-panoramica.svg",
+  "nota": "Stessa schermata del profilo di 06.008 (rigenerata più grande: da questa è stata letta la parte bassa, Badge). Differenze minori di testo ('I tuoi progressi' / 'Obiettivi'). 22.001 NON è 06.001: è un'altra variante (sfida con bersaglio) e non è coperta da s3."
+ }
+]

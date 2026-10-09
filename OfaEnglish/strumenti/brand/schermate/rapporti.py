@@ -24,7 +24,11 @@ def main():
             print("rapporto illeggibile", f.name, e); continue
         if isinstance(dati, dict):
             dati = dati.get("voci", [])
-        for v in dati:
+        def appiattisci(x):
+            for e in x:
+                if isinstance(e, list): yield from appiattisci(e)
+                elif isinstance(e, dict): yield e
+        for v in appiattisci(dati):
             for i in v.get("elementi", []):
                 ex = voce.get(i)
                 # uno svg/raster vale più di uno scartato

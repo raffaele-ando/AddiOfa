@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136 95" width="136" height="95">
+<title>Forme del brand (onda e goccia)</title>
+<defs><linearGradient id="onda-luce" gradientUnits="userSpaceOnUse" x1="8" y1="90" x2="88" y2="20"><stop offset="0" stop-color="#DDEAFD"/><stop offset="0.45" stop-color="#A9C8FC"/><stop offset="1" stop-color="#6EA2FA"/></linearGradient><radialGradient id="onda-nucleo" gradientUnits="userSpaceOnUse" cx="58" cy="50" r="28"><stop offset="0" stop-color="#4B8BF7" stop-opacity="0.9"/><stop offset="1" stop-color="#4B8BF7" stop-opacity="0"/></radialGradient><linearGradient id="blob-luce" gradientUnits="userSpaceOnUse" x1="56" y1="90" x2="127" y2="50"><stop offset="0" stop-color="#6AA0FA"/><stop offset="1" stop-color="#8FB8FC"/></linearGradient></defs>
+<path id="forma-onda" d="M50 4 H82 Q91 4 91 13 V46 Q91 51 85 51 C66 51 56 56 47 68 C36 82 22 92 10 92 C2 92 -1 84 1 72 C5 46 22 20 50 4 Z" fill="url(#onda-luce)"/>
+<path id="forma-onda-nucleo" d="M50 4 H82 Q91 4 91 13 V46 Q91 51 85 51 C66 51 56 56 47 68 C36 82 22 92 10 92 C2 92 -1 84 1 72 C5 46 22 20 50 4 Z" fill="url(#onda-nucleo)"/>
+<path id="forma-goccia-piatta" d="M66 60 C80 58 105 60 119 44 L127 80 Q128 91 117 91 H66 Q56 91 56 81 V70 Q56 60 66 60 Z" fill="url(#blob-luce)"/>
+</svg>

@@ -3,9 +3,9 @@
   "elementi": [
    "30.001"
   ],
-  "stato": "scartato",
-  "svg": null,
-  "nota": "NON ANCORA FATTO: Splash blu con logo AddiOfa e slogan; curve decorative in basso ridisegnate simmetriche."
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/01-splash.svg",
+  "nota": "Splash blu con logo AddiOfa e slogan 'Supera l'OFA di inglese. Senza blocchi.'; onde decorative ridisegnate pulite. Testi leggibili."
  },
  {
   "elementi": [
@@ -13,7 +13,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/02-onboarding-1.svg",
-  "nota": "Benvenuto: logo, 'Studia in modo mirato con l'intelligenza di ATLAS', illustrazione documento+grafico ridisegnata (l'originale era sfocata e asimmetrica). Testi leggibili."
+  "nota": "Benvenuto: logo, 'Studia in modo mirato con l'intelligenza di ATLAS', illustrazione documento+grafico+fogli ridisegnata (originale sfocata e asimmetrica). Testi leggibili."
  },
  {
   "elementi": [
@@ -21,7 +21,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/03-onboarding-2.svg",
-  "nota": "Elenco 5 benefici (ATLAS, lezioni, simulazioni, sfide con NOI, Agorà): icone rifatte pulite al posto dei glifi AI storti. Testi letti a 2,6x."
+  "nota": "Cinque benefici (ATLAS, lezioni ed esercizi, simulazioni, sfide con NOI, confronto su Agorà): icone rifatte pulite al posto dei glifi AI storti. Testi leggibili a 2,6x."
  },
  {
   "elementi": [
@@ -29,7 +29,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/04-test-iniziale.svg",
-  "nota": "Domanda 'If I ___ more time' con 4 scelte radio ('had' selezionata); nell'originale manca il pulsante, tenuto come nell'originale."
+  "nota": "Domanda 'If I ___ more time, I would travel' con 4 scelte radio ('had' selezionata, corretta); manca il pulsante come nell'originale."
  },
  {
   "elementi": [
@@ -37,7 +37,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/05-risultati-test.svg",
-  "nota": "Radar a pentagono con i 5 valori delle etichette (72/58/65/78/62) disegnato esatto (nell'originale il poligono non rispettava i valori)."
+  "nota": "Radar a pentagono costruito esatto sui 5 valori delle etichette (72/58/65/78/62): nell'originale il poligono non li rispettava. Card ATLAS con marchio ridisegnato."
  },
  {
   "elementi": [
@@ -45,7 +45,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/06-home.svg",
-  "nota": "Home con arco del rischio 82% (stessi toni di 03). Pulsante rosso/blu senza etichetta nell'originale: aggiunto 'Inizia la lezione' (testo ricostruito da 31.006). Avatar generico."
+  "nota": "Home con arco del rischio 82% (stessi toni di 03); il pulsante dell'originale non aveva etichetta: aggiunto 'Inizia la lezione' (testo ricostruito da 31.006). Avatar generico (niente foto). Meta della card 'Lezione - 10 min - -6% rischio' ricostruita (garbata nell'originale)."
  },
  {
   "elementi": [
@@ -53,7 +53,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/07-studia.svg",
-  "nota": "Studia (panoramica): tab, card percorso ATLAS, continua, unità. Righe 1-2 completate (coerente con 31.011). Testo piccolo 'Basato sui tuoi risultati e obiettivi' ricostruito."
+  "nota": "Studia (panoramica): tab, card percorso ATLAS, 'Continua da qui', unità. Righe 1-2 completate per coerenza con 31.011. Testo piccolo 'Basato sui tuoi risultati e obiettivi' e 'Lezione - 10 min / -6% rischio' ricostruiti."
  },
  {
   "elementi": [
@@ -61,7 +61,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/08-lezione.svg",
-  "nota": "Lezione Future tenses: spiegazione e due esempi; barra di avanzamento riempita 3/10 (nell'originale vuota)."
+  "nota": "Lezione Future tenses con spiegazione e due esempi; barra di avanzamento riempita 3/10 (vuota nell'originale)."
  },
  {
   "elementi": [
@@ -69,7 +69,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/09-esercizio.svg",
-  "nota": "Completa la frase: 'We ___ to Milan tomorrow.' con 'will go' e box Corretto! verde."
+  "nota": "Completa la frase 'We ___ to Milan tomorrow.' (will go) con box Corretto!; frase di conferma letta 'Will go e la forma corretta'."
  },
  {
   "elementi": [
@@ -77,7 +77,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/10-simulazioni.svg",
-  "nota": "Elenco simulazioni e card ATLAS; chevron aggiunto a tutte le voci (coerente con 31.010)."
+  "nota": "Elenco simulazioni + card ATLAS; chevron su tutte le voci (come 31.010). Icone ridisegnate."
  },
  {
   "elementi": [
@@ -85,6 +85,160 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/11-risultato-simulazione.svg",
-  "nota": "Anello 72% (29/40), analisi ATLAS, barre aree da migliorare con soglie di colore coerenti (65/80/45/90)."
+  "nota": "Anello 72% (29/40), analisi ATLAS, barre 'Aree da migliorare' con soglie di colore coerenti (65/80/45/90). Tab-bar con Studia attiva (nell'originale era Sfide)."
+ },
+ {
+  "elementi": [
+   "30.012"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/12-sfide.svg",
+  "nota": "Sfide: scheda della settimana (+100 pt), tre sfide attive. Sottotitolo '5/7 giorni consecutivi' ricostruito (illeggibile nell'originale); icone rifatte."
+ },
+ {
+  "elementi": [
+   "30.013"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/13-sfida-dettaglio.svg",
+  "nota": "Dettaglio '7 giorni di studio' 5/7, giorni L-D con spunte, ricompensa +150 punti. Emblema coppa/scudo/nuvola ridisegnato."
+ },
+ {
+  "elementi": [
+   "30.014"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/14-classifica.svg",
+  "nota": "Classifica settimanale: podio ale.dis / giulia.p / marti.s con punti letti (1.240, 1.560, 1.120), righe 4-7 e card posizione #5 820 pt. Avatar: busti generici (foto non riprodotte). Separatore migliaia uniformato all'italiano."
+ },
+ {
+  "elementi": [
+   "30.015"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/15-profilo.svg",
+  "nota": "Profilo Project ID: Raffaele @raffaele.ando, #4821, statistiche 12/320/7/3 e 7 voci di menu."
+ },
+ {
+  "elementi": [
+   "30.016"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/30-flusso-schermate-a/16-impostazioni.svg",
+  "nota": "Impostazioni (6 voci con sottotitoli). Nell'originale la schermata e' tagliata dal bordo del foglio e i sottotitoli sono troncati: ricostruita schermata intera, sottotitoli completati. Senza tab-bar come l'originale."
+ },
+ {
+  "elementi": [
+   "31.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/01-splash.svg",
+  "nota": "Splash blu con logo e slogan (senza onde, come nell'originale)."
+ },
+ {
+  "elementi": [
+   "31.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/02-onboarding.svg",
+  "nota": "Benvenuto 'Valuta il tuo livello, studia in modo mirato e riduci il rischio di fallire l'OFA' con documento inclinato ridisegnato simmetrico."
+ },
+ {
+  "elementi": [
+   "31.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/03-verifica-ofa.svg",
+  "nota": "'Hai gia' l'attestato OFA di inglese?' con due scelte (Si', l'ho gia' superato / No, devo ancora sostenerlo). Testi leggibili."
+ },
+ {
+  "elementi": [
+   "31.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/04-email-polimi.svg",
+  "nota": "'Inserisci la tua email @polimi.it': progresso 1/5, campo email, Continua, nota dati al sicuro. Testi leggibili."
+ },
+ {
+  "elementi": [
+   "31.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/05-quiz-valutazione.svg",
+  "nota": "Quiz 3/20 'Scegli la frase corretta', She ___ to Milan every week, goes selezionata."
+ },
+ {
+  "elementi": [
+   "31.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/07-lezione.svg",
+  "nota": "Il ritaglio 31.006 contiene DUE schermate sovrapposte (Lezione e Lezioni lista): qui la Lezione 'Future tenses'. Barra di avanzamento vuota come nell'originale."
+ },
+ {
+  "elementi": [
+   "31.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/11-lezioni-lista.svg",
+  "nota": "Seconda schermata del ritaglio 31.006: lista Lezioni (Present simple... Conditionals), 1-2 completate, 4 corrente."
+ },
+ {
+  "elementi": [
+   "31.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/09-fine-lezione.svg",
+  "nota": "Il ritaglio 31.007 contiene Fine lezione e Il tuo percorso: 'Lezione completata!' 82% -> 76%."
+ },
+ {
+  "elementi": [
+   "31.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/13-il-tuo-percorso.svg",
+  "nota": "Seconda schermata del ritaglio 31.007: Il tuo percorso (82/62/28 %) con tre voci; grafico ridisegnato."
+ },
+ {
+  "elementi": [
+   "31.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/10-simulazioni.svg",
+  "nota": "Il ritaglio 31.008 contiene Simulazioni e Profilo: Simulazioni con tre voci."
+ },
+ {
+  "elementi": [
+   "31.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/14-profilo.svg",
+  "nota": "Seconda schermata del ritaglio 31.008: Profilo (Raffaele, raffaele@polimi.it, progressi, notifiche attive, FAQ, Esci)."
+ },
+ {
+  "elementi": [
+   "31.009",
+   "31.011",
+   "31.012"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/06-home.svg",
+  "nota": "I ritagli 31.009 (arco 82%), 31.011 (card Prossimo passo) e 31.012 (Il tuo percorso) sono parti della Home 31.006-schermata: coperti dall'unica Home completa. Meta della card letta a 1,9x; disegnata con scala uniforme (la Home dell'originale ha un grande vuoto sotto)."
+ },
+ {
+  "elementi": [
+   "31.010"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/08-esercizi.svg",
+  "nota": "Il ritaglio 31.010 contiene Esercizi e Dettaglio lezione: qui 'Completa la frase' con Corretto! (il box verde dell'originale era sovrapposto al pulsante: corretto)."
+ },
+ {
+  "elementi": [
+   "31.010"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/31-flusso-schermate-b/12-dettaglio-lezione.svg",
+  "nota": "Seconda schermata del ritaglio 31.010: dettaglio lezione con Spiegazione / Esempi / Esercizi / Quiz finale; icone ridisegnate."
  }
 ]

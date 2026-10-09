@@ -15,7 +15,7 @@ def segmenti(im, soglia=175, gap=7, y=None, x=None, minh=2):
     lum = a.mean(axis=2)
     H, W = lum.shape
     y0, y1 = y or (0, H); x0, x1 = x or (0, W)
-    m = lum < soglia
+    m = (lum < soglia) if soglia > 0 else (lum > -soglia)
     m[:y0] = False; m[y1:] = False; m[:, :x0] = False; m[:, x1:] = False
     rows = m.any(axis=1)
     out = []; i = 0
@@ -121,7 +121,7 @@ def fit_arco(im, y0, y1, cx, init, delta=12, passi=40, fondo=(249, 251, 254)):
     for passo in (4, 2, 1, 0.5):
         for _ in range(passi):
             mig = False
-            for k in ("cy", "rx", "ry", "th", "cx"):
+            for k in ("cy", "rx", "ry", "th"):
                 for dl in (-passo, passo):
                     p = dict(best); p[k] += dl
                     if p["th"] < 6 or p["rx"] < 30 or p["ry"] < 30: continue
@@ -170,3 +170,23 @@ def componenti(im, y0, y1, x0, x1, tipo="sat", minarea=8, dil=1):
         col = a[sl][mm].mean(axis=0)
         out.append((x0 + xs.start, x0 + xs.stop, y0 + ys.start, y0 + ys.stop, "#%02X%02X%02X" % tuple(int(v) for v in col)))
     return sorted(out, key=lambda b: (round(b[2] / 6), b[0]))
+
+
+def v_da_arco(im, p, sat=70):
+    """Frazione (0..1) di riempimento stimata: massimo parametro angolare dei pixel saturi (o rossi/blu pieni) sull'anello,
+    meno il raggio del pomello. p = dict(cx, cy, rx, ry, th)."""
+    a = np.asarray(im).astype(int)
+    H, W = a.shape[:2]
+    Y, X = np.mgrid[0:H, 0:W]
+    cx, cy, rx, ry, th = p["cx"], p["cy"], p["rx"], p["ry"], p["th"]
+    u = (X - cx) / rx; v = (cy - Y) / ry
+    f = np.sqrt(u ** 2 + v ** 2)
+    ring = (np.abs(f - 1) * (rx + ry) / 2 < th * 0.75) & (cy - Y > -th)
+    s = (a.max(axis=2) - a.min(axis=2)) > sat
+    m = ring & s
+    # niente testo: escludi pixel molto scuri (testo navy)
+    m &= a.mean(axis=2) > 90
+    ang = np.arctan2(np.maximum(v, 0), u)      # 0 = destra, pi = sinistra
+    fr = (np.pi - ang) / np.pi
+    if m.sum() < 30: return 0.0
+    return float(np.percentile(fr[m], 99.7))

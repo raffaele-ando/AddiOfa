@@ -82,7 +82,7 @@ def footer(t, y, xs, dividers, bordo_alto=None):
 
 # --------------------------------------------------------------------------- locandina 4
 def loc4():
-    t = Tela(W, H, "#F6F6F4", id="locandina-supera-ofa-a")
+    t = TelaC(W, H, "#F6F6F4", id="locandina-supera-ofa-a")
     t.add('<rect id="carta-luce" x="0" y="0" width="1024" height="1536" fill="%s"/>' % t.radiale([(0, "#FFFFFF", 0.6), (1, "#E4E2DC", 0.35)], 0.35, 0.3, 0.9))
     # foto con strappo
     img = foto_senza_telefono(4, [(672, 548), (968, 600), (880, 1170), (555, 1105)])
@@ -150,7 +150,7 @@ def pulisci(img, regioni_scure=(), cerchi=(), rett=()):
 
 
 def loc38():
-    t = Tela(W, H, "#F5F5F3", id="locandina-supera-ofa-b")
+    t = TelaC(W, H, "#F5F5F3", id="locandina-supera-ofa-b")
     t.add('<rect id="carta-luce" x="0" y="0" width="1024" height="1536" fill="%s"/>' % t.radiale([(0, "#FFFFFF", 0.7), (1, "#E4E2DC", 0.3)], 0.3, 0.4, 0.9))
     q = quad(725, 975, 0.98, 10)
     img = foto_senza_telefono(38, q)
@@ -186,7 +186,7 @@ def loc38():
 
 
 def loc46():
-    t = Tela(W, H, "#ECE9E4", id="locandina-supera-ofa-c")
+    t = TelaC(W, H, "#ECE9E4", id="locandina-supera-ofa-c")
     t.add('<rect id="carta-luce" x="0" y="0" width="1024" height="1536" fill="%s"/>' % t.radiale([(0, "#F7F5F1", 0.9), (1, "#DAD6CE", 0.5)], 0.4, 0.35, 0.85))
     img = Image.open(ORIG / SRC[46]).convert("RGB")
     img = pulisci(img, regioni_scure=[(210, 930, 400, 1070, 70)] if False else [])

@@ -152,19 +152,6 @@ def post3(t):
     freccia_tonda(t, 372, 469, 26)
 
 
-def bandiera_uk(t, cx, cy, w, id="bandiera-regno-unito"):
-    h = w * 0.62
-    x, y = cx - w / 2, cy - h / 2
-    cid = clip_rett(t, x, y, w, h, 2)
-    with t.gruppo(id, clip=cid, trasforma=f"rotate(-4 {n(cx)} {n(cy)})"):
-        t.rett(x, y, w, h, 0, fill="#1C3F94")
-        t.path(f"M{n(x)} {n(y)}L{n(x+w)} {n(y+h)}M{n(x+w)} {n(y)}L{n(x)} {n(y+h)}", stroke="#FFFFFF", sw=h * 0.2, cap="butt")
-        t.path(f"M{n(x)} {n(y)}L{n(x+w)} {n(y+h)}", stroke="#D0202E", sw=h * 0.07, cap="butt")
-        t.path(f"M{n(x+w)} {n(y)}L{n(x)} {n(y+h)}", stroke="#D0202E", sw=h * 0.07, cap="butt")
-        t.path(f"M{n(cx)} {n(y)}V{n(y+h)}M{n(x)} {n(cy)}H{n(x+w)}", stroke="#FFFFFF", sw=h * 0.34, cap="butt")
-        t.path(f"M{n(cx)} {n(y)}V{n(y+h)}M{n(x)} {n(cy)}H{n(x+w)}", stroke="#D0202E", sw=h * 0.2, cap="butt")
-
-
 def main():
     t = nuova(W, H, "profilo-instagram-addiofa", "#FFFFFF")
     # intestazione

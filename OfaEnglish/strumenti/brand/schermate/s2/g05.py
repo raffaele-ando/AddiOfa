@@ -254,7 +254,7 @@ def riga_classifica(t, y, pos, nome, pct, pers, evid=False):
         else:
             T(t, str(pos), 23, y + 4, 11, 600, "#1B2440", "middle", id=f"classifica-{pos}-posizione")
         persona(t, pers, 58, y, 11.2)
-        T(t, nome, 80, y + 4, None, 500 if not evid else 600, "#2B3550" if not evid else "#2D6FF2", larg=len(nome) * 5.4, id=f"classifica-{pos}-nome")
+        T(t, nome, 80, y + 4, None, 500 if not evid else 600, "#2B3550" if not evid else "#2D6FF2", larg=len(nome) * 4.6, id=f"classifica-{pos}-nome")
         T(t, pct, 210, y + 4, None, 600, "#1B2440" if not evid else "#2D6FF2", "end", larg=21, id=f"classifica-{pos}-percentuale")
 
 
@@ -306,7 +306,7 @@ def s13():
 
 def main(sel):
     for nome, f in globals().items():
-        if nome.startswith("s") and nome[1:3].isdigit() and (not sel or nome[1:3] in sel):
+        if len(nome) == 3 and nome.startswith("s") and nome[1:3].isdigit() and callable(f) and (not sel or nome[1:3] in sel):
             f()
 
 

@@ -10,6 +10,34 @@ def logo_v(t, x, y, larg):
     w1 = tx(t, "Addi", x, y, c, 700, NAVY, id="logo-addi")
     tx(t, "Ofa", x + w1, y, c, 700, AZZ, id="logo-ofa")
 
+# ---------------------------------------------------------------- 01 splash (vista 5,20 x3)
+def splash(t, ondata=True):
+    """Fondo azzurro pieno con logo bianco, slogan e onde chiare in basso (coordinate della vista 5,20 x3)."""
+    t.rett(0, 0, 390, H, 22, fill=t.sfumatura(["#0A79FF", "#0069F5"]), id="sfondo-splash")
+    stato(t, chiaro=True)
+    c = 365 / larghezza_testo("AddiOfa", 1.0, 600)
+    tx(t, "AddiOfa", 105, 603, c, 600, "#FFFFFF", id="logo")
+    tx(t, "Supera l’OFA di inglese.", 290, 708, 30, 400, "#FFFFFF", "middle", larg=380, id="slogan-1")
+    tx(t, "Senza blocchi.", 290, 768, 30, 400, "#FFFFFF", "middle", larg=236, id="slogan-2")
+    if ondata:
+        X, Y = t.X, t.Y
+        def pth(d):
+            import re
+            nums = iter(re.findall(r"[MCLZ]|-?\d+\.?\d*", d)); out = []; coord = []
+            for tk in nums:
+                if tk in "MCLZ": out.append(tk)
+                else:
+                    coord.append(float(tk))
+                    if len(coord) == 2: out.append(f"{n(X(coord[0]))} {n(Y(coord[1]))}"); coord = []
+            return " ".join(out)
+        t.path(pth("M 17 1090 C 150 1000 280 960 380 990 C 500 1030 530 1100 525 1200 L 520 1403 L 17 1403 Z"), fill="#FFFFFF", opacita=.16, id="onda-chiara")
+        t.path(pth("M 17 1215 C 150 1120 330 1130 390 1290 L 410 1403 L 17 1403 Z"), fill="#0A70FC", id="onda-scura")
+
+def s01():
+    t = nuova(30, 1, "splash", (17, 55, 567, 1403), CART, vista=(5, 20, 3))
+    splash(t)
+    chiudi(t)
+
 # ---------------------------------------------------------------- 02 onboarding 1 (vista 200,30 x2.6)
 def s02():
     t = nuova(30, 2, "onboarding-1", (15, 22, 505, 1195), CART, vista=(200, 30, 2.6))
@@ -90,7 +118,7 @@ def s06():
     stato(t)
     logo_v(t, 30, 125, 160)
     avatar(t, t.X(355), t.Y(110), t.s(27), "#C9D3E6", testa="#B07A55", capelli="#2B1B14", id="avatar-utente")
-    gauge(t, t.X(211), t.Y(357), t.s(164), t.s(34), 0.76)
+    gauge(t, t.X(211), t.Y(357), t.s(138), t.s(30), 0.76)
     tx(t, "82%", 210, 352, 58, 800, "#F01E2C", "middle", larg=108, id="percentuale")
     tx(t, "Rischio di fallimento", 211, 393, 24, 600, "#F01E2C", "middle", larg=202, id="rischio-etichetta")
     tx(t, "all’OFA di inglese", 210, 428, 22, 400, SOTTO, "middle", larg=156, id="rischio-sotto")
@@ -196,7 +224,7 @@ def s10():
         R(t, 445, cy - 35, 515, cy + 35, 16, "#F3F7FF", id=f"tile-{i+1}")
         I(t, ic, 480, cy, 40, AZZ, 1.9)
         tx(t, ti, 543, cy - 6, 17.5, 700, NAVY, larg=w1, id=f"voce-{i+1}-titolo")
-        tx(t, su, 543, cy + 25, 16, 400, SOTTO, larg=w2, id=f"voce-{i+1}-sub")
+        tx(t, su, 543, cy + 25, 118 / larghezza_testo("Scegli l’argomento", 1.0, 400), 400, SOTTO, id=f"voce-{i+1}-sub")
         I(t, "chevron-destra", 750, cy, 14, "#8A96B5", 2.2)
     R(t, 430, 590, 775, 760, 14, CARD_P, id="card-atlas")
     atlas_marchio(t, t.X(470), t.Y(660), t.s(48))
@@ -233,6 +261,129 @@ def s11():
         tx(t, f"{v}%", 1172, y, 18.5, 500, "#46557F", "end", larg=36, id=f"area-{i+1}-valore")
     pulsante(t, 835, 718, 1185, 785, "Vedi analisi dettagliata", corpo=16.5)
     tabbar(t, TAB_ATLAS, 1)
+    chiudi(t)
+
+# ---------------------------------------------------------------- 12 sfide (home)  vista 600,550 x2.6
+def s12():
+    t = nuova(30, 12, "sfide", (50, 10, 600, 1160), CART, vista=(600, 550, 2.6))
+    stato(t)
+    tx(t, "Sfide", 87, 140, 44, 800, NAVY, larg=108, id="titolo")
+    I(t, "ricerca", 555, 123, 34, NAVY, 2.3, id="cerca")
+    for (a, b, et, sel) in ((79, 241, "Attive", True), (254, 415, "Classifica", False), (428, 585, "Amici", False)):
+        R(t, a, 180 if sel else 182, b, 244, 12, "#E4EFFF" if sel else "#F1F4FA", id=f"scheda-{et.lower()}", stroke=AZZ_BORDO if sel else None, sw=1.4)
+        tx(t, et, (a + b) / 2, 224, 22, 600 if sel else 500, AZZ if sel else SOTTO, "middle", larg={"Attive": 62, "Classifica": 96, "Amici": 58}[et])
+    R(t, 73, 270, 590, 490, 18, t.sfumatura(["#FFF1E4", "#FFE8D2"], 0, 0, 1, 0), id="card-sfida-settimana")
+    tx(t, "Sfida della settimana", 108, 325, 23, 600, "#F2631F", larg=244, id="sfida-etichetta")
+    tx(t, "Completa 5 lezioni", 108, 369, 33, 700, NAVY, larg=272, id="sfida-titolo")
+    barra_valore(t, 108, 410, 433, .6, "#0FA37F", "#17B38C", h=22)
+    R(t, 467, 320, 560, 408, 20, "#FFE0C2", id="regalo-fondo")
+    I(t, "regalo", 513, 364, 56, "#F58A1B", 2.0)
+    tx(t, "+100 pt", 563, 447, 29, 700, "#F05A1A", "end", larg=103, id="sfida-punti")
+    tx(t, "Sfide attive", 80, 551, 27, 700, NAVY, larg=148, id="titolo-attive")
+    voci = [("medaglia", "#FFE6D2", ARANCIO, "7 giorni di studio", "5/7 giorni consecutivi", "+150 pt", 630, 183, 215, 91),
+            ("gruppo", "#FFE1E3", "#E5303F", "Duello simulazione", "Sfida un altro studente", "+200 pt", 745, 210, 245, 94),
+            ("fulmine", "#DDF3E6", "#17A455", "Grammar Sprint", "Completa 10 esercizi", "+80 pt", 858, 185, 226, 80)]
+    for ic, fondo, col, ti, su, pt, cy, w1, w2, w3 in voci:
+        R(t, 92, cy - 34, 160, cy + 34, 18, fondo, id="tile-" + ic)
+        I(t, ic, 126, cy, 34, col, 2.1)
+        tx(t, ti, 187, cy - 16, 22.5, 700, NAVY, larg=w1)
+        tx(t, su, 187, cy + 23, 20.5, 400, SOTTO, larg=w2)
+        tx(t, pt, 563, cy + 11, 24, 700, "#F58A0B", "end", larg=w3)
+    R(t, 78, 923, 583, 1015, 16, "#FFFFFF", id="pulsante-vedi-tutte", stroke="#E3E9F4", sw=1.3, filtro=ombra_l(t, .04))
+    tx(t, "Vedi tutte le sfide", 331, 975, 24, 700, AZZ, "middle", larg=195)
+    tabbar(t, TAB_ATLAS, 2)
+    chiudi(t)
+
+# ---------------------------------------------------------------- 13 sfida (dettaglio)  vista 825,550 x1.7
+def s13():
+    t = nuova(30, 13, "sfida-dettaglio", (35, 10, 342, 757), CART, vista=(825, 550, 1.7))
+    stato(t); indietro(t, t.Y(80))
+    emblema_sfida(t, t.X(190), t.Y(135), 1.12)
+    tx(t, "7 giorni di studio", 62, 260, 29, 800, NAVY, larg=205, id="titolo")
+    c13 = 235 / larghezza_testo("Completa almeno una lezione", 1.0, 400)
+    for i, r_ in enumerate(("Completa almeno una lezione", "ogni giorno per 7 giorni", "consecutivi.")):
+        tx(t, r_, 62, 304 + i * 25.5, c13, 400, SOTTO, id=f"testo-{i+1}")
+    tx(t, "5/7 giorni", 62, 401, 20, 700, NAVY, larg=87, id="progresso-etichetta")
+    barra_valore(t, 62, 315, 428, 5 / 7, "#0FA37F", "#2BC29A", h=14)
+    pallini_settimana(t, (72, 111, 150, 188, 227, 265, 304), 466, ("si", "si", "si", "si", "oggi", "no", "no"), "LMMGVSD", y_et=505)
+    C(t, 86, 567, 25, fill="#FDEBC8", id="ricompensa-icona")
+    I(t, "medaglia", 86, 567, 28, ARANCIO, 2.2)
+    tx(t, "Ricompensa", 120, 560, 18, 700, NAVY, larg=90, id="ricompensa-titolo")
+    tx(t, "+150 punti  ·  Badge esclusivo", 120, 586, 15.5, 400, SOTTO, larg=188, id="ricompensa-sub")
+    pulsante(t, 54, 617, 322, 672, "Continua a studiare", corpo=17)
+    tabbar(t, TAB_ATLAS, 2)
+    chiudi(t)
+
+# ---------------------------------------------------------------- 14 classifica
+def s14():
+    t = nuova(30, 14, "classifica", (355, 10, 655, 757), CART, vista=(825, 550, 1.7))
+    stato(t)
+    tx(t, "Classifica", 377, 91, 30, 800, NAVY, larg=110, id="titolo")
+    I(t, "ricerca", 622, 77, 20, NAVY, 2.3, id="cerca")
+    for (a, b, et, sel) in ((369, 463, "Settimanale", True), (471, 550, "Mensile", False), (558, 638, "Sempre", False)):
+        R(t, a, 108, b, 148, 10, "#E4EFFF" if sel else "#F1F4FA", id=f"scheda-{et.lower()}", stroke=AZZ_BORDO if sel else None, sw=1.4)
+        tx(t, et, (a + b) / 2, 134, 15.5, 600 if sel else 500, AZZ if sel else SOTTO, "middle", larg=(b - a) * (.8 if sel else .6))
+    R(t, 458, 186, 551, 325, 14, "#FDF0DF", id="podio-primo")
+    # corona
+    cx, cy = t.X(503), t.Y(177)
+    t.path(f"M{n(cx-13)} {n(cy+7)}L{n(cx-15)} {n(cy-7)}L{n(cx-6)} {n(cy)}L{n(cx)} {n(cy-10)}L{n(cx+6)} {n(cy)}L{n(cx+15)} {n(cy-7)}L{n(cx+13)} {n(cy+7)}z", fill="#F6B31C", id="corona")
+    gente = [("giulia.p", "1.240 pt", 411, 237, 24, "2", AZZ, "#9B6B4F"), ("ale.dis", "1.560 pt", 503, 224, 26, "1", ROSSO_T, "#B57A55"), ("marti.s", "1.120 pt", 594, 236, 24, "3", ROSSO_T, "#C08A62")]
+    for nome, pt, x, y, r, pos, col, pelle in gente:
+        avatar(t, t.X(x), t.Y(y), t.s(r * 1.2), "#D9E2F2", testa=pelle, id=f"avatar-{nome}")
+        tx(t, pos, x, y + r + 8, 14, 800, col, "middle")
+        tx(t, nome, x, 291, 17, 700, NAVY, "middle", larg=53 if nome != "marti.s" else 50)
+        tx(t, pt, x, 316, 15.5, 400, SOTTO, "middle", larg=56)
+    righe = [("4", "fede.it", "980 pt", 361, False), ("5", "raffaele.ando", "820 pt", 411, True), ("6", "luca.m", "790 pt", 457, False), ("7", "chiara.m", "760 pt", 500, False)]
+    for pos, nome, pt, y, evid in righe:
+        if evid: R(t, 370, 386, 640, 436, 12, "#EAF2FF", id="riga-evidenza")
+        tx(t, pos, 387, y + 5, 15, 800, NAVY, "middle")
+        if nome.startswith("raffaele"):
+            avatar(t, t.X(434), t.Y(y), t.s(18), "#CFE2FF", iniziale="R", col_iniziale=AZZ, id="avatar-raffaele")
+        else:
+            avatar(t, t.X(434), t.Y(y), t.s(18), "#D9E2F2", testa="#A87A5C", id=f"avatar-{nome}")
+        tx(t, nome, 464, y + 5, 16, 700 if evid else 500, AZZ if evid else NAVY, larg={"fede.it": 49, "raffaele.ando": 100, "luca.m": 50, "chiara.m": 62}[nome])
+        tx(t, pt, 628, y + 5, 15.5, 500 if evid else 400, "#46557F", "end", larg=45)
+    R(t, 369, 552, 640, 655, 12, "#FFFFFF", id="card-posizione", stroke="#8DB8FF", sw=1.6)
+    tx(t, "La tua posizione", 390, 586, 16, 700, NAVY, larg=116, id="posizione-etichetta")
+    tx(t, "#5", 390, 626, 30, 800, NAVY, larg=34, id="posizione-valore")
+    tx(t, "820 pt", 548, 616, 15.5, 400, "#46557F", "end", larg=44)
+    I(t, "nodi", 600, 603, 26, NAVY, 2.0)
+    tabbar(t, TAB_ATLAS, 2)
+    chiudi(t)
+
+# ---------------------------------------------------------------- 15 profilo (Project ID)
+def s15():
+    t = nuova(30, 15, "profilo", (672, 10, 958, 757), CART, vista=(825, 550, 1.7))
+    stato(t)
+    C(t, 708, 105, 25, fill="#E1EDFF", id="avatar-fondo")
+    tx(t, "R", 708, 116, 30, 800, AZZ, "middle", id="avatar-iniziale")
+    tx(t, "Raffaele", 777, 100, 19, 700, NAVY, larg=61, id="nome")
+    tx(t, "@raffaele.ando", 777, 124, 15.5, 400, SOTTO, larg=103, id="username")
+    I(t, "impostazioni", 920, 77, 22, NAVY, 2.0)
+    R(t, 684, 158, 933, 238, 14, CARD_P, id="card-project-id")
+    I(t, "orologio", 711, 193, 28, AZZ, 2.3)
+    tx(t, "Project ID", 743, 188, 17, 700, NAVY, larg=69, id="project-id-etichetta")
+    tx(t, "#4821", 743, 214, 15.5, 400, SOTTO, larg=40, id="project-id-valore")
+    I(t, "documento", 907, 196, 22, NAVY, 2.2)
+    for x, v, l in ((708, "12", "livello"), (776, "320", "pt"), (838, "7", "sfide"), (904, "3", "badge")):
+        tx(t, v, x, 283, 24, 800, NAVY, "middle", id=f"stat-{l}")
+        tx(t, l, x, 307, 14.5, 400, SOTTO, "middle")
+    voci = (("grafico", "I miei progressi", 98), ("gruppo", "Le mie sfide", 78), ("scudo", "Classifica", 68), ("bersaglio", "Obiettivi", 58), ("mondo", "Attività", 55), ("mondo", "Collegamenti", 86), ("documento", "Project ID", 69))
+    for i, (ic, nome, w) in enumerate(voci):
+        riga_menu(t, 703, 742, (351, 397, 443, 489, 536, 583, 630)[i], ic, nome, w_t=w, chevron_x=921)
+    tabbar(t, TAB_ATLAS, 2)
+    chiudi(t)
+
+# ---------------------------------------------------------------- 16 impostazioni
+def s16():
+    t = nuova(30, 16, "impostazioni", (978, 10, 1298, 757), CART, vista=(825, 550, 1.7))
+    stato(t); indietro(t, t.Y(80))
+    tx(t, "Impostazioni", 1138, 128, 21, 800, NAVY, "middle", larg=120, id="titolo")
+    voci = (("utente", "Account", "Email, password, sicurezza", 191, 60, 145), ("mondo", "Preferenze", "Tema, lingua", 277, 63, 59),
+            ("campana", "Notifiche", "Solo attività importanti", 364, 62, 143), ("scudo", "Privacy", "Dati e permessi", 448, 52, 80),
+            ("info", "Aiuto", "FAQ e supporto", 535, 40, 80), ("info", "Informazioni", "Versione dell’app", 620, 76, 82))
+    for ic, ti, su, y, w1, w2 in voci:
+        riga_menu(t, 1003, 1039, y + 5, ic, ti, su, w1, w2)
     chiudi(t)
 
 def genera():

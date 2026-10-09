@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 177 80" width="177" height="80">
+<title>Piastra sfumata con punti</title>
+<defs><linearGradient id="piastra-luce" gradientUnits="userSpaceOnUse" x1="59" y1="40" x2="177" y2="40"><stop offset="0" stop-color="#0057FF"/><stop offset="0.35" stop-color="#3F85FD"/><stop offset="0.7" stop-color="#8FB8FC"/><stop offset="1" stop-color="#DCE9FD"/></linearGradient></defs>
+<path id="piastra" d="M64 4 H131 L177 44 V73 Q177 78 172 78 H64 Q59 78 59 73 V9 Q59 4 64 4 Z" fill="url(#piastra-luce)"/>
+<g id="griglia-di-punti" fill="#6A9EF7"><circle cx="10" cy="22" r="2.6"/><circle cx="25.5" cy="22" r="2.6"/><circle cx="41" cy="22" r="2.6"/><circle cx="10" cy="35.5" r="2.6"/><circle cx="25.5" cy="35.5" r="2.6"/><circle cx="41" cy="35.5" r="2.6"/><circle cx="10" cy="49" r="2.6"/><circle cx="25.5" cy="49" r="2.6"/><circle cx="41" cy="49" r="2.6"/><circle cx="10" cy="62.5" r="2.6"/><circle cx="25.5" cy="62.5" r="2.6"/><circle cx="41" cy="62.5" r="2.6"/></g>
+</svg>

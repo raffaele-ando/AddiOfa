@@ -86,5 +86,115 @@
   "stato": "raster",
   "svg": "brand/concept-svg/schermate/home/12-landing-mobile/001-landing-mobile.svg",
   "nota": "gen_12. Layout vettoriale; RASTER dichiarati: foto hero (palazzo con porta-stella e studente, pulsanti UI ripuliti con inpaint), 4 volti 'Già 12.000+ studenti', facciata del Politecnico nella card 'Il tuo futuro'. Icona logo = marchio-tile-porta.svg (il file pieno-campo pesa 468 KB). Telefono, badge store (glifi semplificati, senza loghi ufficiali), banda finale in vettoriale; scritta a mano resa con Inter inclinato. SVG ~750 KB (circa 150 righe di testo in tracciati + foto): oltre il limite di 300 KB, pagina molto lunga."
+ },
+ {
+  "elementi": [
+   "13.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/04-lezione.svg",
+  "nota": "Quiz 'Future tenses'. Ritaglio con didascalia '4. Lezione' (artefatto) non riprodotta."
+ },
+ {
+  "elementi": [
+   "13.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/06-esplora.svg",
+  "nota": "Esplora ATLAS/NOI/Agora; le illustrazioni astratte nelle card sono rifatte come forme semplici (scarto alto, 21): da migliorare."
+ },
+ {
+  "elementi": [
+   "13.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/08-impostazioni.svg",
+  "nota": "Impostazioni; icone Aspetto/Aiuto ridisegnate pulite."
+ },
+ {
+  "elementi": [
+   "13.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/01-splash.svg",
+  "nota": "Splash con logo testuale e arco blu."
+ },
+ {
+  "elementi": [
+   "13.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/02-onboarding.svg",
+  "nota": "Onboarding; illustrazione riusata (kit-blu quiz-test) al posto dei fogli AI."
+ },
+ {
+  "elementi": [
+   "13.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/16-avatar-r.svg",
+  "nota": "Avatar tondo con R (grafica)."
+ },
+ {
+  "elementi": [
+   "13.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/09-atlas-home.svg",
+  "nota": "ATLAS home."
+ },
+ {
+  "elementi": [
+   "13.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/10-atlas-analisi.svg",
+  "nota": "Radar a 5 assi esatti a 72 gradi (originale storto); etichette sovrapposte sistemate."
+ },
+ {
+  "elementi": [
+   "13.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/11-atlas-piano.svg",
+  "nota": "Il tuo piano."
+ },
+ {
+  "elementi": [
+   "13.010"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/12-noi-home.svg",
+  "nota": "Classifica NOI; 3 volti raster. Foto dei volti raster."
+ },
+ {
+  "elementi": [
+   "13.011"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/13-noi-sfide.svg",
+  "nota": "Sfide; icone sfida ridisegnate con icone coerenti."
+ },
+ {
+  "elementi": [
+   "13.012"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/14-agora-home.svg",
+  "nota": "Agora; volti raster. Foto dei volti raster."
+ },
+ {
+  "elementi": [
+   "13.013"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/15-agora-discussione.svg",
+  "nota": "Discussione Agora; volti raster. Foto dei volti raster."
+ },
+ {
+  "elementi": [],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/home/13-mappa-schermate-atlas-noi-agora/03-home.svg",
+  "nota": "EXTRA: schermate della mappa non catalogate, disegnate dal foglio intero: 03-home, 05-simulazione, 07-profilo (Profilo: aggiunta la quinta voce Studio nella nav)."
  }
 ]

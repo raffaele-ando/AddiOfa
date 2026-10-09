@@ -260,7 +260,8 @@ def pulsante_azione(t: Tela, x: float, y: float, w: float, h: float, etichetta: 
 # ---------------------------------------------------------------------------- navigazione
 def nav(t: Tela, voci: list[tuple[str, str]], attiva: int, y: float, h: float, corpo: float = 14, ico: float = 30,
         x0: float = 0, x1: float | None = None, indicatore: bool = True, centri: list[float] | None = None,
-        icone_attive: dict | None = None, kit: str = "blu", y_ico: float | None = None, y_lab: float | None = None):
+        icone_attive: dict | None = None, kit: str = "blu", y_ico: float | None = None, y_lab: float | None = None,
+        col_attivo: str | None = None, ombra_nav: bool = True):
     """Barra di navigazione inferiore: icone con contorno, la voce attiva piena e blu."""
     x1 = x1 if x1 is not None else t.w / t.k
     k = KIT[kit]
@@ -271,7 +272,7 @@ def nav(t: Tela, voci: list[tuple[str, str]], attiva: int, y: float, h: float, c
         for i, (ic, et) in enumerate(voci):
             cx = centri[i] if centri else x0 + m * i + m / 2
             att = i == attiva
-            col = k["azione"] if att else "#718096"
+            col = (col_attivo or k["azione"]) if att else "#718096"
             nome = ic
             if att and icone_attive and ic in icone_attive:
                 nome = icone_attive[ic]

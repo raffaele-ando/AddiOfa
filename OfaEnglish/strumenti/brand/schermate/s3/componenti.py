@@ -106,7 +106,7 @@ def tab_bar(t: Tela, voci, attiva: int | None, y: float | None = None, h: float 
 
 
 NAV3 = [("casa-contorno", "casa-pieno", "Home"), ("barre-contorno", "barre-pieno", "Studia"), ("trofeo", "trofeo-pieno", "Sfide")]
-NAV5 = [("casa-contorno", "casa-pieno", "Home"), ("libro-aperto", "libro-pieno", "Lezioni"), ("documento", "documento-pieno", "Quiz"),
+NAV5 = [("casa-contorno", "casa-pieno", "Home"), ("barre-contorno", "barre-pieno", "Lezioni"), ("documento", "documento-pieno", "Quiz"),
         ("trofeo", "trofeo-pieno", "Classifica"), ("utente-contorno", "utente-pieno", "Profilo")]
 
 
@@ -350,3 +350,163 @@ def salva(t: Tela, cartella: str, nome: str):
     t.salva(p)
     print(p)
     return p
+
+
+# ---------------------------------------------------------------------------- blocchi di pagina usati da più schermate
+def logo_testata(t, y=66, x=22, corpo=23):
+    w = t.testo("Addi", x, y, corpo, 800, NAVY, id="logo-addi")
+    t.testo("Ofa", x + w, y, corpo, 800, AZZ, id="logo-ofa")
+
+
+def badge_riga(t, cx, y, tit1, tit2, kind, s=46, corpo=11.5, base_lab=None):
+    """Un badge (tile s x s) con etichetta su 1-2 righe. kind: fiamma, libro, stella, bersaglio, bandiera, trofeo, lucchetto, libro-grigio."""
+    fondi = {"fiamma": "#E4EEFD", "libro": "#FFF1DD", "stella": "#F1E7FD", "bersaglio": "#E3F6EC", "bandiera": "#E3F6EC", "trofeo": "#FFF1DD",
+             "lucchetto": "#EEF0F6", "libro-grigio": "#EEF0F6"}
+    tile_icona(t, cx - s / 2, y, s, fondi[kind], s * 0.3, id=f"badge-{kind}")
+    c, m, k = cx, y + s / 2, s / 46
+    if kind == "fiamma":
+        t.cerchio(c, m, 14 * k, fill=AZZ); g_fiamma_bianca(t, c, m, 17 * k)
+    elif kind == "libro":
+        g_libro(t, c, m, 27 * k)
+    elif kind == "stella":
+        g_medaglia(t, c, m, 30 * k, "#8B3FF0")
+    elif kind == "bersaglio":
+        g_bersaglio(t, c, m, 30 * k)
+    elif kind == "bandiera":
+        t.icona("bandiera", c - 14 * k, m - 15 * k, 28 * k, "#17A765", 1.8)
+    elif kind == "trofeo":
+        g_trofeo(t, c, m, 30 * k)
+    elif kind == "libro-grigio":
+        g_libro(t, c, m, 27 * k, "#B7BFD0")
+    else:
+        t.cerchio(c, m, 14 * k, fill="#FFFFFF", opacita=0.8)
+        g_lucchetto(t, c, m, 18 * k)
+    col = "#8A94A6" if kind in ("lucchetto", "libro-grigio") else SOTTO
+    yy = base_lab if base_lab is not None else y + s + 16
+    t.testo(tit1, cx, yy, corpo, 400, col, "middle")
+    if tit2:
+        t.testo(tit2, cx, yy + corpo * 1.25, corpo, 400, col, "middle")
+
+
+def g_fiamma_bianca(t, cx, cy, s):
+    t.add(f'<g transform="translate({n(cx - s / 2)} {n(cy - s / 2)}) scale({n(s / 24)})"><path d="{ICONE["fiamma"][0][1]}" fill="#FFFFFF"/></g>')
+
+
+def stat_tile(t, x, y, w, h, etichetta, valore, sub=None, barra=None, glifo=None):
+    """Tile con etichetta, valore grande (opz. '/60' in grigio) e barra."""
+    t.rett(x, y, w, h, 14, fill="#FFFFFF", stroke="#EDF0F6", sw=1, id="tile-" + etichetta.lower().replace(" ", "-"), filtro=t.ombra(2, 8, "#0F172A", 0.05))
+    t.testo(etichetta, x + 14, y + 26, 11.8, 400, SOTTO)
+    vx = x + 14
+    if isinstance(valore, tuple):
+        w1 = t.testo(valore[0], vx, y + 58, 23, 800, NAVY)
+        t.testo(valore[1], vx + w1 + 1, y + 58, 14, 400, "#8A94A6")
+    else:
+        t.testo(valore, vx, y + 58, 23, 800, NAVY)
+    if barra is not None:
+        t.barra(x + 14, y + h - 20, w - 28, barra, h=7, kit=t.kit, fondo="#ECEFF5")
+
+
+def da_a(t, x_end, y, a, b, corpo=13.5, col=NAVY, peso=600):
+    """«82% → 28%» (la freccia è un'icona: il carattere → non è nel sottoinsieme Inter)."""
+    wb = t.testo(b, x_end, y, corpo, peso, col, "end")
+    t.icona("freccia-destra", x_end - wb - 6 - corpo * 1.05, y - corpo * 0.95, corpo * 1.05, col, 2.2)
+    t.testo(a, x_end - wb - 10 - corpo * 1.05, y, corpo, peso, col, "end")
+
+
+# ---------------------------------------------------------------------------- componenti dell'immagine 19 (kit rosso)
+def intestazione_indietro(t, y=60):
+    t.icona("chevron-sinistra", 20, y - 12, 24, NAVY, 2.4, id="indietro")
+
+
+def passi(t, pieni, totale=10, y=81, x0=24, x1=366, gap=3, h=7):
+    """Barra a segmenti (quiz/simulazione)."""
+    w = (x1 - x0 - gap * (totale - 1)) / totale
+    with t.gruppo("avanzamento-segmenti"):
+        for i in range(totale):
+            t.rett(x0 + i * (w + gap), y, w, h, h / 2, fill=t.K["az"] if i < pieni else "#EAEFF7", id=f"segmento-{i + 1}")
+
+
+def opzione(t, y, testo, sel=False, h=46, x0=24, x1=366, corpo=16.5):
+    """Opzione di risposta con radio; selezionata = fondo rosato e filo rosso."""
+    K = t.K
+    with t.gruppo("opzione-" + testo.lower().replace(" ", "-")):
+        if sel:
+            t.rett(x0, y, x1 - x0, h, 13, fill="#FEEDEF", stroke="#F2848E", sw=1.4, id="opzione-selezionata")
+            t.cerchio(x0 + 29, y + h / 2, 11, fill="#FFFFFF", stroke=K["az"], sw=2.3)
+            t.cerchio(x0 + 29, y + h / 2, 5.4, fill=K["az"])
+        else:
+            t.rett(x0, y, x1 - x0, h, 13, fill="#FFFFFF", stroke="#EDF0F6", sw=1.2, filtro=t.ombra(1, 5, "#0F172A", 0.04))
+            t.cerchio(x0 + 29, y + h / 2, 10.6, fill="#FFFFFF", stroke="#C9D0E0", sw=1.5)
+        t.testo(testo, x0 + 57, y + h / 2 + corpo * 0.35, corpo, 700 if sel else 500, NAVY)
+
+
+def pulsante_pieno(t, x0, y, x1, h, testo, freccia=False, corpo=17, id="pulsante-primario"):
+    K = t.K
+    with t.gruppo(id):
+        t.rett(x0, y, x1 - x0, h, h * 0.3, fill=t.sfumatura(["#F93C4C", "#F0222F"]), id=id + "-fondo", filtro=t.ombra(3, 9, "#E11D2B", 0.25))
+        cx = (x0 + x1) / 2 - (8 if freccia else 0)
+        t.testo(testo, cx, y + h / 2 + corpo * 0.35, corpo, 600, "#FFFFFF", "middle", id=id + "-testo")
+        if freccia:
+            t.icona("chevron-destra", x1 - 38, y + h / 2 - 8, 16, "#FFFFFF", 2.6)
+
+
+def pulsante_bordo(t, x0, y, x1, h, testo, corpo=16, id="pulsante-secondario"):
+    with t.gruppo(id):
+        t.rett(x0, y, x1 - x0, h, h * 0.3, fill="#FFFFFF", stroke="#7BA3F0", sw=1.5, id=id + "-fondo")
+        t.testo(testo, (x0 + x1) / 2, y + h / 2 + corpo * 0.35, corpo, 600, NAVY, "middle")
+
+
+def misuratore_ellittico(t, cx, cy, rx, ry, valore, spessore=14, colore="#F0222F", chiaro="#FF7C86", vuoto="#E9ECF3", id="misuratore"):
+    """Semi-ellisse (da sinistra a destra) con arco pieno fino a `valore` (0..1) e pomello: è la forma schiacciata dei misuratori AI."""
+    with t.gruppo(id):
+        def pt(f):
+            a = math.pi - math.pi * f
+            return cx + rx * math.cos(a), cy - ry * math.sin(a)
+        def arco(f0, f1):
+            (x0, y0), (x1, y1) = pt(f0), pt(f1)
+            return f"M{n(x0)} {n(y0)}A{n(rx)} {n(ry)} 0 0 1 {n(x1)} {n(y1)}"
+        t.path(arco(0, 1), stroke=vuoto, sw=spessore, id=id + "-fondo")
+        g = t.sfumatura([colore, chiaro], cx - rx, 0, cx + rx, 0, userspace=True)
+        t.path(arco(0, valore), stroke=g, sw=spessore, id=id + "-valore")
+        px, py = pt(valore)
+        t.cerchio(px, py, spessore * 0.9, fill=colore, stroke="#FFFFFF", sw=1.5, filtro=t.ombra(1, 4, colore, 0.35), id=id + "-pomello")
+
+
+def coriandoli(t, punti, id="coriandoli"):
+    """punti: (x, y, angolo, colore): piccoli tratti arrotondati."""
+    with t.gruppo(id):
+        for x, y, a, c in punti:
+            t.add(f'<rect x="{n(x - 7)}" y="{n(y - 2.2)}" width="14" height="4.4" rx="2.2" fill="{c}" transform="rotate({n(a)} {n(x)} {n(y)})"/>')
+
+
+def riquadro_risultato(t, x, y, w, h, kind, valore, etichetta):
+    """Riquadro 'Corrette / Errate / Tempo' con tondo d'icona."""
+    fondi = {"ok": ("#EEF7F4", "#22B573"), "no": ("#FEEFF1", "#EF4444"), "t": ("#EEF3FD", "#1D6BF2")}
+    f, c = fondi[kind]
+    with t.gruppo("risultato-" + etichetta.lower()):
+        t.rett(x, y, w, h, 16, fill=f, id="riquadro")
+        cx = x + w / 2
+        t.cerchio(cx, y + 24, 13, fill=c)
+        if kind == "ok":
+            t.icona("spunta", cx - 7, y + 17, 14, "#FFFFFF", 3)
+        elif kind == "no":
+            t.icona("x", cx - 6.5, y + 17.5, 13, "#FFFFFF", 3)
+        else:
+            t.icona("tempo", cx - 8.5, y + 15.5, 17, "#FFFFFF", 2.4)
+        t.testo(valore, cx, y + 65, 22, 800, NAVY, "middle")
+        t.testo(etichetta, cx, y + 85, 13, 400, "#5A6EA8", "middle")
+
+
+def cronometro(t, cx, cy, r, id="cronometro"):
+    """Cronometro rosso con quadrante bianco, tacche e lancetta blu (illustrazione di 19.007: disegnata, non c'era già)."""
+    with t.gruppo(id):
+        t.rett(cx - r * 0.2, cy - r * 1.25, r * 0.4, r * 0.28, 3, fill="#4C73D8")
+        t.rett(cx + r * 0.78, cy - r * 0.86, r * 0.28, r * 0.2, 3, fill="#F0222F", opacita=0.9) if False else None
+        t.cerchio(cx, cy, r, fill=t.sfumatura(["#FF5A67", "#E4101F"]), filtro=t.ombra(3, 9, "#E11D2B", 0.25), id="cronometro-ghiera")
+        t.cerchio(cx, cy, r * 0.82, fill="#FFFFFF", id="cronometro-quadrante")
+        for i in range(12):
+            a = i * math.pi / 6
+            r0, r1 = r * 0.66, r * (0.74 if i % 3 else 0.76)
+            t.linea(cx + r0 * math.sin(a), cy - r0 * math.cos(a), cx + r1 * math.sin(a), cy - r1 * math.cos(a), "#A9B6D6", 1.2)
+        t.linea(cx, cy, cx + r * 0.12, cy - r * 0.5, "#2F55C4", r * 0.07, id="lancetta")
+        t.cerchio(cx, cy, r * 0.07, fill="#2F55C4")

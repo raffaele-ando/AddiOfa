@@ -30,6 +30,30 @@ class Tela(_Tela):
         super().__init__(*a, **k)
         self._glifi: dict = {}
 
+    def ombra(self, dy=3, sfoca=6, colore="#0F172A", opacita=0.10, dx=0):
+        """Come Tela.ombra ma con regione di filtro molto grande (serve quando si disegna in coordinate assolute della sorgente)."""
+        chiave = ("ombra", dx, dy, sfoca, colore, opacita)
+        if chiave in self._chiavi:
+            return self._chiavi[chiave]
+        fid = self.uid("om")
+        self.defs.append(
+            f'<filter id="{fid}" filterUnits="userSpaceOnUse" x="-100" y="-100" width="2400" height="1400" '
+            f'color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="{n(sfoca / 2)}"/>'
+            f'<feOffset dx="{n(dx)}" dy="{n(dy)}" result="o"/><feFlood flood-color="{colore}" flood-opacity="{n(opacita)}"/>'
+            f'<feComposite in2="o" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>')
+        self._chiavi[chiave] = f"url(#{fid})"
+        return self._chiavi[chiave]
+
+    def sfoca(self, quanto):
+        chiave = ("sfoca", quanto)
+        if chiave in self._chiavi:
+            return self._chiavi[chiave]
+        fid = self.uid("sf")
+        self.defs.append(f'<filter id="{fid}" filterUnits="userSpaceOnUse" x="-100" y="-100" width="2400" height="1400">'
+                         f'<feGaussianBlur stdDeviation="{n(quanto)}"/></filter>')
+        self._chiavi[chiave] = f"url(#{fid})"
+        return self._chiavi[chiave]
+
     def _glifo(self, peso, carattere):
         from fontTools.pens.svgPathPen import SVGPathPen
         from fontTools.pens.transformPen import TransformPen
@@ -369,6 +393,56 @@ def reel_chrome(t, w, h, conteggi=None, didascalia=(), alto="x", scuro=False, co
 def corsivo(t, righe, x, y, corpo, col="#FFFFFF", rot=-12, passo=None, id="scritta-corsiva", peso=400, skew=-10):
     """Scritta a mano (Small steps / Stessi studenti): Inter inclinata e ruotata, righe in colonna."""
     passo = passo or corpo * 1.25
-    with t.gruppo(id, trasforma=f"rotate({rot} {n(x)} {n(y)}) skewX({skew})"):
+    with t.gruppo(id, trasforma=f"translate({n(x)} {n(y)}) rotate({rot}) skewX({skew}) translate({n(-x)} {n(-y)})"):
         for i, r in enumerate(righe):
             t.testo(r, x + i * passo * 0.3, y + i * passo, corpo, peso, col, spaziatura=corpo * 0.04, id=f"{id}-riga-{i+1}")
+
+
+def bandiera_uk(t, cx, cy, w, id="bandiera-regno-unito"):
+    h = w * 0.62
+    x, y = cx - w / 2, cy - h / 2
+    cid = clip_rett(t, x, y, w, h, 2)
+    with t.gruppo(id, clip=cid, trasforma=f"rotate(-4 {n(cx)} {n(cy)})"):
+        t.rett(x, y, w, h, 0, fill="#1C3F94")
+        t.path(f"M{n(x)} {n(y)}L{n(x+w)} {n(y+h)}M{n(x+w)} {n(y)}L{n(x)} {n(y+h)}", stroke="#FFFFFF", sw=h * 0.2, cap="butt")
+        t.path(f"M{n(x)} {n(y)}L{n(x+w)} {n(y+h)}", stroke="#D0202E", sw=h * 0.07, cap="butt")
+        t.path(f"M{n(x+w)} {n(y)}L{n(x)} {n(y+h)}", stroke="#D0202E", sw=h * 0.07, cap="butt")
+        t.path(f"M{n(cx)} {n(y)}V{n(y+h)}M{n(x)} {n(cy)}H{n(x+w)}", stroke="#FFFFFF", sw=h * 0.34, cap="butt")
+        t.path(f"M{n(cx)} {n(y)}V{n(y+h)}M{n(x)} {n(cy)}H{n(x+w)}", stroke="#D0202E", sw=h * 0.2, cap="butt")
+
+
+def logo_mini(t, x, y, lato, id="logo-mini"):
+    """App-icon piatta: quadrato blu notte con stella a 4 punte bianca (logo piccolo delle testate)."""
+    t.rett(x, y, lato, lato, lato * 0.26, fill=t.sfumatura(["#123C9C", "#0A1E66"]), id=id)
+    stella4(t, x + lato / 2, y + lato / 2, lato * 0.3, "#FFFFFF", id=id + "-stella", curva=0.2)
+
+
+def pannello_chiaro(t, x, y, w, h, r=12, id="pannello", rad=None):
+    """Scheda chiara di carosello: sfumatura azzurro pallido, filo bianco, ombra leggera."""
+    t.rett(x, y, w, h, r, fill=t.sfumatura(["#E9F0FF", "#F4F8FF", "#EAF1FE"]), id=id, filtro=t.ombra(2, 10, "#4C7CE0", 0.12), stroke="#FFFFFF", sw=1.2,
+           r_angoli=rad)
+
+
+def intestazione_post(t, x, y, w=110, pag=None, corpo=11.5):
+    logo_mini(t, x, y - 2, 17)
+    wordmark(t, x + 22, y + 11, corpo, col=NAVY, col_o=BLU_T, id="wordmark-testata")
+    if pag:
+        t.testo(pag, x + w, y + 10, 8.5, 500, "#6B7280", ancora="end", id="numero-pagina")
+
+
+class Origine:
+    """with Origine(t, x0, y0): disegna in coordinate ASSOLUTE della sorgente dentro una tela grande come il riquadro."""
+    def __init__(self, t, x0, y0, id="contenuto"):
+        self.t, self.x0, self.y0, self.id = t, x0, y0, id
+
+    def __enter__(self):
+        self.t.add(f'<g id="{self.id}" transform="translate({-self.x0} {-self.y0})">')
+        return self.t
+
+    def __exit__(self, *e):
+        self.t.add("</g>")
+
+
+def scrim_basso(t, x, y, w, h, alto=70, col="#0A1226", op=0.55, id="velo-basso"):
+    """Sfumatura scura in basso (come nei reel) per leggere visualizzazioni/didascalie."""
+    t.rett(x, y + h - alto, w, alto, 0, fill=t.sfumatura([(0, col + "00"), (1, col)]), opacita=op, id=id)

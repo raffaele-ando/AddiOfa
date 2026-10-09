@@ -31,7 +31,7 @@ class S(Tela):
     pass
 
 
-def nuova(imm: int, num: int, nome: str, rect, cartella: str, vista=None):
+def nuova(imm: int, num: int, nome: str, rect, cartella: str, vista=None, uniforme=False):
     """rect = riquadro del telefono. Se `vista`=(ox,oy,z) (ritaglio di leggi.py), rect e tutte le misure sono in pixel
     della vista (si leggono direttamente dall'immagine ingrandita); altrimenti sono pixel dell'originale."""
     x0, y0, x1, y1 = rect
@@ -45,7 +45,7 @@ def nuova(imm: int, num: int, nome: str, rect, cartella: str, vista=None):
     k = 390 / (x1 - x0)
     t.k = k
     t.X = lambda x: (x - x0) * k
-    t.Y = lambda y: (y - y0) * H / (y1 - y0)
+    t.Y = (lambda y: (y - y0) * k) if uniforme else (lambda y: (y - y0) * H / (y1 - y0))
     t.s = lambda v: v * k
     t.p = t.s
     t.rett(0.5, 0.5, 389, H - 1, 22, fill="#FFFFFF", stroke="#EDF1F8", sw=1, id="schermata-fondo")
@@ -136,14 +136,13 @@ def tabbar(t, voci, attiva, y=777):
         m = 390 / len(voci)
         for i, (ic, et) in enumerate(voci):
             cx = m * i + m / 2
-            col = AZZ if i == attiva else "#8A96B5"
-            t.icona(ic, cx - 12, y, 24, col, 2.0 if i != attiva else 2.2, fill_pieno=col if i == attiva and ic in ("casa", "trofeo") else None)
+            col = AZZ if i == attiva else "#6F7BA3"
+            t.icona(PIENE.get(ic, ic) if i == attiva else ic, cx - 13, y - 1, 26, col, 2.0)
             t.testo(et, cx, y + 49, 11.5, 700 if i == attiva else 500, col, "middle", id=f"nav-{et.lower()}")
-    t.rett(145, 833, 100, 4.5, 2.2, fill=NAVY, opacita=0.9, id="indicatore-home")
 
 
-TAB_APP = [("casa", "Home"), ("grafico", "Simulazioni"), ("libro", "Lezioni")]
-TAB_ATLAS = [("casa", "Home"), ("grafico", "Studia"), ("trofeo", "Sfide")]
+TAB_APP = [("casa-o", "Home"), ("barre-o", "Simulazioni"), ("libro-o", "Lezioni")]
+TAB_ATLAS = [("casa-o", "Home"), ("barre-o", "Studia"), ("trofeo-o", "Sfide")]
 
 
 def logo(t, x, y, corpo, colore=NAVY):
@@ -177,7 +176,7 @@ def pulsante_chiaro(t, x0, y0, x1, y1, etichetta, corpo=14):
         t.testo(etichetta, (xa + xb) / 2 - lw / 2, (ya + yb) / 2 + corpo * .35, corpo, 600, AZZ)
 
 
-def scelta(t, x0, y0, x1, y1, etichetta, sel=False, corpo=13, sub=None, chevron=False, id="scelta"):
+def scelta(t, x0, y0, x1, y1, etichetta, sel=False, corpo=13, sub=None, chevron=False, id="scelta", rx=None, tx_=None, larg=None, larg_sub=None):
     """Card di scelta con radio a sinistra."""
     X, Y = t.X, t.Y
     xa, ya, xb, yb = X(x0), Y(y0), X(x1), Y(y1)
@@ -187,17 +186,20 @@ def scelta(t, x0, y0, x1, y1, etichetta, sel=False, corpo=13, sub=None, chevron=
             t.rett(xa + .75, ya + .75, xb - xa - 1.5, h - 1.5, min(13, h * .3), fill=t.sfumatura(["#E3EFFF", "#D6E8FF"]), stroke=AZZ_BORDO, sw=1.5)
         else:
             t.rett(xa + .5, ya + .5, xb - xa - 1, h - 1, min(13, h * .3), fill="#FFFFFF", stroke=LINEA_S, sw=1, filtro=t.ombra(1.5, 6, "#1B3A8A", 0.05))
-        cx, cy = xa + 28, ya + h / 2
+        cx, cy = (X(rx) if rx else xa + 28), ya + h / 2
+        xt = X(tx_) if tx_ else xa + 52
+        if larg: corpo = t.s(larg) / larghezza_testo(etichetta, 1.0, 600 if sel or sub else 500)
         if sel:
-            t.cerchio(cx, cy, 10.5, fill="#FFFFFF", stroke=AZZ, sw=2.2); t.cerchio(cx, cy, 4.8, fill=AZZ)
+            t.cerchio(cx, cy, 11.5 if sub else 10.5, fill="#FFFFFF", stroke=AZZ, sw=2.6); t.cerchio(cx, cy, 5.2 if sub else 4.8, fill=AZZ)
         else:
-            t.cerchio(cx, cy, 10, fill="#FFFFFF", stroke="#C9D1E3", sw=1.6)
-        tyb = cy + corpo * .35 - (6 if sub else 0)
-        t.testo(etichetta, xa + 52, tyb, corpo, 600 if sel or sub else 500, NAVY if sel or sub else "#3A4770", id=f"{id}-testo")
+            t.cerchio(cx, cy, 11 if sub else 10, fill="#FFFFFF", stroke="#C0C9DE", sw=1.8)
+        tyb = cy + corpo * .35 - (12 if sub else 0)
+        t.testo(etichetta, xt, tyb, corpo, 600 if sel or sub else 500, NAVY if sel or sub else "#3A4770", id=f"{id}-testo")
         if sub:
-            t.testo(sub, xa + 52, tyb + 17, corpo * .83, 400, SOTTO)
+            cs = (t.s(larg_sub) / larghezza_testo(sub, 1.0, 400)) if larg_sub else corpo * .83
+            t.testo(sub, xt, tyb + 8 + cs * 1.25, cs, 400, SOTTO)
         if chevron:
-            t.icona("chevron-destra", xb - 34, cy - 7, 14, "#4B5A85", 2.2)
+            t.icona("chevron-destra", xb - 38, cy - 10, 20, NAVY, 2.4)
 
 
 def riga_chip(t, cx, cy, r, fondo, glifo, colore, id="icona"):
@@ -245,12 +247,12 @@ def radar(t, cx, cy, R_, valori, id="radar"):
             x, y = pt(i, v); t.cerchio(x, y, 3.2, fill="#FFFFFF", stroke=AZZ, sw=1.8)
 
 
-def avatar(t, cx, cy, r, colore, iniziale=None, id="avatar", testa="#8A5A3C", capelli="#2B1B14"):
+def avatar(t, cx, cy, r, colore, iniziale=None, id="avatar", testa="#8A5A3C", capelli="#2B1B14", col_iniziale="#FFFFFF"):
     """Avatar generico (t.avatar): iniziale oppure busto stilizzato."""
     with t.gruppo(id):
         t.cerchio(cx, cy, r, fill=colore)
         if iniziale:
-            t.testo(iniziale, cx, cy + r * .36, r * 1.0, 700, "#FFFFFF", "middle")
+            t.testo(iniziale, cx, cy + r * .36, r * 1.0, 700, col_iniziale, "middle")
         else:
             t.cerchio(cx, cy - r * .12, r * .34, fill=testa)
             t.path(f"M{n(cx - r*.34)} {n(cy - r*.2)}a{n(r*.34)} {n(r*.3)} 0 0 1 {n(r*.68)} 0q{n(-r*.34)} {n(-r*.12)} {n(-r*.68)} 0z", fill=capelli)
@@ -282,6 +284,17 @@ def doc_illustrazione(t, cx, cy, sc=1.0, id="documento-grafico"):
 
 
 # ------------------------------------------------------------------ icone in più
+ICONE["nodi"] = [("c", (18, 5.500, 2.800)), ("c", (6, 12, 2.800)), ("c", (18, 18.500, 2.800)), ("p", "M8.500 10.600 15.500 6.800M8.500 13.400l7 3.800")]
+ICONE["regalo"] = [("pf", "M3.500 9h17v4h-17zM5 13h14v7.500H5z"), ("p", "M12 9v11.500M12 9c-1.500-4-5-4.500-5-2.200S10.500 9 12 9zM12 9c1.500-4 5-4.500 5-2.200S13.500 9 12 9z")]
+ICONE["casa-o"] = [("p", "M12 3.500 3.700 10.300V19.500a1 1 0 0 0 1 1H9.500v-6h5v6h4.800a1 1 0 0 0 1-1V10.300z")]
+ICONE["barre-o"] = [("p", "M4.500 13.500a1 1 0 0 1 1-1h2.500a1 1 0 0 1 1 1V20H4.500zM9.800 8.500a1 1 0 0 1 1-1h2.500a1 1 0 0 1 1 1V20H9.800zM15.100 4a1 1 0 0 1 1-1h2.500a1 1 0 0 1 1 1v16h-4.500z")]
+ICONE["barre-p"] = [("pf", "M4.500 13.500a1 1 0 0 1 1-1h2.500a1 1 0 0 1 1 1V20H4.500zM9.800 8.500a1 1 0 0 1 1-1h2.500a1 1 0 0 1 1 1V20H9.800zM15.100 4a1 1 0 0 1 1-1h2.500a1 1 0 0 1 1 1v16h-4.500z")]
+ICONE["trofeo-o"] = [("p", "M7.500 4h9v5.500a4.500 4.500 0 0 1-9 0zM7.500 6H4.500v1.500A3 3 0 0 0 7.500 10.500M16.500 6h3v1.500a3 3 0 0 1-3 3M12 14v3.500M8.500 20h7M10 17.500h4")]
+ICONE["trofeo-p"] = [("pf", "M7.500 4h9v5.500a4.500 4.500 0 0 1-9 0z"), ("p", "M7.500 6H4.500v1.500A3 3 0 0 0 7.500 10.500M16.500 6h3v1.500a3 3 0 0 1-3 3M12 14v3.500M8.500 20h7M10 17.500h4")]
+ICONE["libro-o"] = [("p", "M12 6.500C10 5 7 4.600 3.500 5v13c3.500-.4 6.500 0 8.500 1.500 2-1.500 5-1.900 8.500-1.500V5C17 4.600 14 5 12 6.500zM12 6.500v13")]
+ICONE["libro-p"] = [("pf", "M12 6.500C10 5 7 4.600 3.500 5v13c3.500-.4 6.500 0 8.500 1.500 2-1.500 5-1.900 8.500-1.500V5C17 4.600 14 5 12 6.500z")]
+PIENE = {"casa-o": "casa", "barre-o": "barre-p", "trofeo-o": "trofeo-p", "libro-o": "libro-p"}
+ICONE["esci"] = [("p", "M10 4H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4M15 8l4 4-4 4M19 12H9")]
 ICONE["chat"] = [("pf", "M5 4.5h14a2 2 0 0 1 2 2v8.500a2 2 0 0 1-2 2h-6.500L8 20.500v-4H5a2 2 0 0 1-2-2V6.500a2 2 0 0 1 2-2z")]
 ICONE["atlas"] = [("c", (12, 12, 8.5)), ("p", "M12 7.500v9M8.500 12h7")]
 ICONE["medaglia"] = [("c", (12, 9.5, 5.500)), ("p", "M8.700 14 7 21l5-2.500L17 21l-1.700-7"), ("cf", (12, 9.5, 1.600))]
@@ -348,7 +361,7 @@ def grafico_percorso(t, pts, valori, etichette, y_val, y_et, x_tratto=None):
         t.cerchio(x, y, 6.5, fill=c, stroke="#FFFFFF", sw=1.5)
     for i, ((x, _), v, e) in enumerate(zip(P, valori, etichette)):
         t.testo(v, x, t.Y(y_val), t.s(22), 700 if i == 0 else 600, "#E6121F" if i == 0 else ("#5B6C92" if i == 1 else "#2E78F2"), "middle")
-        t.testo(e, x, t.Y(y_et), t.s(19), 400, SOTTO, "middle")
+        t.testo(e, min(x, 390 - 12 - larghezza_testo(e, t.s(16.5), 400) / 2), t.Y(y_et), t.s(16.5), 400, SOTTO, "middle")
 
 
 def esito_corretto(t, x0, y0, x1, y1, titolo, testo, larg_t, larg_x, cx_icona, id="esito-corretto"):
@@ -358,11 +371,74 @@ def esito_corretto(t, x0, y0, x1, y1, titolo, testo, larg_t, larg_x, cx_icona, i
     C(t, cx_icona, cy, (y1 - y0) * .21, fill="#17A455", filtro=t.ombra(1, 4, "#17A455", .3))
     t.icona("spunta", t.X(cx_icona) - t.s((y1 - y0) * .11), t.Y(cy) - t.s((y1 - y0) * .11), t.s((y1 - y0) * .22), "#FFFFFF", 3.2)
     xt = cx_icona + (y1 - y0) * .21 + 24
-    tx(t, titolo, xt, cy - 6, 24, 700, "#0E8A44", larg=larg_t, id="esito-titolo")
-    tx(t, testo, xt, cy + 24, 16, 400, "#2C7A52", larg=larg_x, id="esito-testo")
+    tx(t, titolo, xt, cy - 6 if testo else cy + 9, 24, 700, "#0E8A44", larg=larg_t, id="esito-titolo")
+    if testo: tx(t, testo, xt, cy + 24, 16, 400, "#2C7A52", larg=larg_x, id="esito-testo")
 
 
 def barra_valore(t, x0, x1, y, frac, colore, chiaro, h=11):
     R(t, x0, y - h / 2, x1, y + h / 2, h / 2, "#E8ECF4")
     xe = x0 + (x1 - x0) * frac
     t.rett(t.X(x0), t.Y(y) - t.s(h / 2), t.X(xe) - t.X(x0), t.s(h), t.s(h / 2), fill=t.sfumatura([chiaro, colore], 0, 0, 1, 0))
+
+
+def trofeo(t, cx, cy, d, id="trofeo"):
+    """Coppa dorata (cx,cy,d in punti canonici; d = altezza)."""
+    k = d / 56
+    g = t.sfumatura(["#FFD35A", "#F2A413"], 0, 0, 0, 1)
+    with t.gruppo(id, trasforma=f"translate({n(cx - 32 * k)} {n(cy - 28 * k)}) scale({n(k)})"):
+        t.path("M18 12H9c0 9 3 14 10 15.500M46 12h9c0 9-3 14-10 15.500", stroke="#F2A413", sw=4)
+        t.path("M17 5h30v17c0 10-6.500 17-15 17S17 32 17 22z", fill=g)
+        t.path("M22 9h6v16c0 4 2 7 4 8-6 0-10-5-10-12z", fill="#FFF1B8", opacita=.55)
+        t.rett(29, 38, 6, 8, 1, fill="#F2A413")
+        t.rett(19, 46, 26, 8, 3.500, fill=g)
+
+
+def emblema_sfida(t, cx, cy, sc=1.0, id="emblema"):
+    """Coppa su scudo esagonale con nuvola azzurra (dettaglio sfida). Punti canonici."""
+    with t.gruppo(id):
+        t.ellisse(cx, cy + 14 * sc, 82 * sc, 44 * sc, fill="#DCE9FB", id="nuvola")
+        t.ellisse(cx - 55 * sc, cy + 4 * sc, 28 * sc, 26 * sc, fill="#D3E3FA")
+        t.ellisse(cx + 55 * sc, cy + 4 * sc, 28 * sc, 26 * sc, fill="#D3E3FA")
+        d = "M{0} {1}L{2} {3}V{4}L{0} {5}L{6} {4}V{3}z".format(n(cx), n(cy - 52 * sc), n(cx + 42 * sc), n(cy - 32 * sc), n(cy + 26 * sc), n(cy + 52 * sc), n(cx - 42 * sc))
+        t.path(d, fill=t.sfumatura(["#EEF4FD", "#C9DCF7"]), stroke="#B9D0F3", sw=1.5, id="scudo")
+        trofeo(t, cx, cy - 4 * sc, 58 * sc)
+
+
+def pallini_settimana(t, xs, y, stati, lettere, r=12, y_et=None):
+    """stati: 'si' (verde con spunta), 'oggi' (pallido con spunta chiara), 'no' (grigio)."""
+    for x, s_, l in zip(xs, stati, lettere):
+        cx, cy = t.X(x), t.Y(y)
+        if s_ == "si":
+            t.cerchio(cx, cy, t.s(r), fill="#17A455"); t.icona("spunta", cx - t.s(r * .5), cy - t.s(r * .5), t.s(r), "#FFFFFF", 3.4)
+        elif s_ == "oggi":
+            t.cerchio(cx, cy, t.s(r), fill="#EAF7EF", stroke="#BFE5CD", sw=1.2); t.icona("spunta", cx - t.s(r * .45), cy - t.s(r * .45), t.s(r * .9), "#9AD3B3", 3)
+        else:
+            t.cerchio(cx, cy, t.s(r), fill="#E9EDF5")
+        t.testo(l, cx, t.Y(y_et or y + 39), t.s(15), 500, "#17A455" if s_ == "si" else "#8A96B5", "middle")
+
+
+def riga_menu(t, x_ic, x_tx, cy, icona, titolo, sub=None, w_t=None, w_s=None, chevron_x=None, col_ic="#52618C", corpo=17.5):
+    I(t, icona, x_ic, cy, 22, col_ic, 1.9)
+    if sub:
+        tx(t, titolo, x_tx, cy - 5, 18, 700, NAVY, larg=w_t)
+        tx(t, sub, x_tx, cy + 19, 14.5, 400, SOTTO, larg=w_s)
+    else:
+        tx(t, titolo, x_tx, cy + 6, corpo, 400, "#46557F", larg=w_t)
+    if chevron_x:
+        I(t, "chevron-destra", chevron_x, cy, 13, "#8A96B5", 2.2)
+
+
+def doc_semplice(t, cx, cy, sc=1.0, id="illustrazione-documento"):
+    """Documento azzurro inclinato con tre righe, tondo bianco, pallino blu e fogli fantasma dietro (benvenuto 31)."""
+    with t.gruppo(id):
+        with t.gruppo("fogli-fantasma", trasforma=f"rotate(8 {n(cx)} {n(cy)})"):
+            t.rett(cx - 70 * sc, cy - 108 * sc, 150 * sc, 190 * sc, 14 * sc, fill="#EEF3FC")
+        with t.gruppo("foglio-chiaro", trasforma=f"rotate(-4 {n(cx)} {n(cy)})"):
+            t.rett(cx - 92 * sc, cy - 98 * sc, 150 * sc, 196 * sc, 14 * sc, fill="#F6F8FD", stroke="#E8EEF8", sw=1)
+        with t.gruppo("documento", trasforma=f"rotate(6 {n(cx)} {n(cy)})"):
+            t.rett(cx - 68 * sc, cy - 88 * sc, 118 * sc, 170 * sc, 12 * sc, fill=t.sfumatura(["#6AAAFF", "#3A86F8"]), filtro=t.ombra(8, 18, "#2F6BE0", .28), id="documento-fondo")
+            for i, w in enumerate((82, 82, 82)):
+                t.rett(cx - 50 * sc, cy - 46 * sc + i * 26 * sc, w * sc, 11 * sc, 5.5 * sc, fill="#FFFFFF", opacita=.72)
+            t.cerchio(cx - 40 * sc, cy + 50 * sc, 7 * sc, fill="#FFFFFF", opacita=.85)
+            t.cerchio(cx + 28 * sc, cy - 70 * sc, 7 * sc, fill="#2D82FF")
+        t.cerchio(cx + 62 * sc, cy - 15 * sc, 12 * sc, fill="#0A63F2", filtro=t.ombra(3, 6, "#0A63F2", .35), id="pallino")

@@ -52,7 +52,7 @@ def disegna():
         t.testo("+150 punti", 112, 612, 18, 600, ARANCIO)
     with t.gruppo("card-consigli"):
         t.rect = t.rett(24, 660, 342, 100, 20, fill="#F5F7FC")
-        t.icona("lampadina", 49, 683, 30, NAVY, 1.6)
+        t.icona("lampadina", 44, 680, 38, NAVY, 1.5)
         t.testo("Consigli", 112, 692, 14.5, 700, NAVY)
         t.testo("Sessioni brevi ma costanti", 112, 719, 14.5, 400, SOTTO)
         t.testo("sono più efficaci.", 112, 740, 14.5, 400, SOTTO)

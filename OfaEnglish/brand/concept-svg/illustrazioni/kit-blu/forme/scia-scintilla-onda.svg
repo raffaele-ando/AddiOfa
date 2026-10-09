@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207 112" width="207" height="112">
+<title>Scia con scintilla e onda</title>
+<defs><linearGradient id="onda-luce" gradientUnits="userSpaceOnUse" x1="80" y1="90" x2="207" y2="40"><stop offset="0" stop-color="#5B9AFA"/><stop offset="0.5" stop-color="#9EC3FC"/><stop offset="1" stop-color="#E4EEFE" stop-opacity="0.4"/></linearGradient></defs>
+<path id="forma-onda" d="M80 94 C80 82 100 70 125 64 C148 58 158 52 168 38 C178 24 190 8 203 0 L207 0 V80 C207 96 196 102 176 102 H88 C82 102 80 100 80 94 Z" fill="url(#onda-luce)"/>
+<path id="scia" d="M0 50 C25 54 38 46 52 32 C62 22 70 19 78 17" fill="none" stroke="#0B5BEF" stroke-width="3" stroke-linecap="round"/>
+<path id="scintilla" d="M91 0.5 Q92.32 11.5 102 13 Q92.32 14.5 91 25.5 Q89.68 14.5 80 13 Q89.68 11.5 91 0.5 Z" fill="#0A5FF5" stroke="#0A5FF5" stroke-width="1.98" stroke-linejoin="round"/>
+</svg>

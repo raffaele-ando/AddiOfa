@@ -1,0 +1,218 @@
+[
+ {
+  "elementi": [
+   "09.001"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "09.002"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "09.003"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "09.004"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "09.005"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "09.006"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "10.001"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "10.002"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "10.003"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "10.004"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "10.005"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "10.006"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "29.001"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "29.002"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "29.003"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "29.004"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "29.005"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "29.006"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "42.001"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "42.002"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "42.003"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "42.004"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "42.005"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "42.006"
+  ],
+  "stato": "scartato",
+  "nota": "IN LAVORAZIONE: SVG non ancora generato"
+ },
+ {
+  "elementi": [
+   "43.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/calcolo-risultato/43-schermate-risultato-sette-001-calcoliamo-0.svg",
+  "nota": "Misuratore con tacche; corpi: passi, aree, fattori + nota, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento."
+ },
+ {
+  "elementi": [
+   "43.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/calcolo-risultato/43-schermate-risultato-sette-002-elaboriamo-18.svg",
+  "nota": "Misuratore con tacche; corpi: passi, aree, fattori + nota, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento."
+ },
+ {
+  "elementi": [
+   "43.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/calcolo-risultato/43-schermate-risultato-sette-003-analizzando-42.svg",
+  "nota": "Misuratore con tacche; corpi: passi, aree, fattori + nota, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento."
+ },
+ {
+  "elementi": [
+   "43.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/calcolo-risultato/43-schermate-risultato-sette-004-ultimi-calcoli-68.svg",
+  "nota": "Misuratore con tacche; corpi: passi, aree, fattori + nota, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento."
+ },
+ {
+  "elementi": [
+   "43.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/calcolo-risultato/43-schermate-risultato-sette-005-quasi-pronto-80.svg",
+  "nota": "Misuratore con tacche; corpi: passi, aree, fattori + nota, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento."
+ },
+ {
+  "elementi": [
+   "43.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/calcolo-risultato/43-schermate-risultato-sette-006-risultato-82.svg",
+  "nota": "Misuratore con tacche; corpi: passi, aree, fattori + nota, fattori, avviso + istogramma, costi + pulsanti. Testo piccolo ricostruito/ricontrollato a ingrandimento."
+ }
+]

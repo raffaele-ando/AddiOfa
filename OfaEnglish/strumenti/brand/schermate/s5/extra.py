@@ -18,7 +18,7 @@ import sys
 QUI = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(QUI.parent))
 from ui import *          # noqa: F401,F403,E402
-from ui import ICONE, Tela, n, larghezza_testo, KIT  # noqa: E402
+from ui import ICONE, Tela, n, larghezza_testo, KIT, tracciato  # noqa: E402
 
 # ---------------------------------------------------------------------------- icone nuove
 ICONE.update({
@@ -48,29 +48,37 @@ _XH = set("acemnorsuvwxz.:-…")
 
 
 def testo_box(t: Tela, s: str, x0: float, x1: float, y0: float, y1: float, peso: int = 400, colore: str = INK,  # noqa: F405
-              ancora: str = "start", id: str | None = None, clamp: float = 0.14, forza_dim: float | None = None,
+              ancora: str = "start", id: str | None = None, clamp: float = 0.12, forza_dim: float | None = None,
               opacita: float | None = None) -> float:
     """Scrive `s` nel riquadro d'inchiostro misurato (x0..x1 larghezza, y0..y1 dall'alto al basso, inclusi).
-    Tutto in punti telefono. Dimensione = altezza dell'inchiostro / (altezza tipica Inter), con scarto massimo
-    `clamp`  rispetto alla dimensione che darebbe la larghezza; il resto va nella spaziatura. Restituisce la dimensione."""
+    Tutto in punti telefono. Dimensione = altezza dell'inchiostro / (altezza tipica Inter); la differenza di larghezza
+    (il font AI non è Inter) si assorbe con una compressione/dilatazione orizzontale di al massimo `clamp` (e, oltre,
+    cambiando la dimensione): i glifi restano leggibili e le righe combaciano con l'originale. Restituisce la dimensione."""
     top = 0.74 if any(c in _ASC for c in s) else 0.55
     desc = 0.21 if any(c in _DESC for c in s) else 0.0
     alto = (y1 - y0) / (top + desc)
-    nat1 = larghezza_testo(s, 1.0, peso)
     larg = x1 - x0
-    dim_w = larg / nat1
-    dim = forza_dim or (min(max(dim_w, alto * (1 - clamp)), alto * (1 + clamp)) if len(s) > 3 else alto)
-    sp = 0.0
-    if len(s) > 3 and not forza_dim:
-        sp = (larg - larghezza_testo(s, dim, peso)) / (len(s) - 1)
-        sp = max(-0.05 * dim, min(0.06 * dim, sp))
-    base = y1 - desc * dim
-    if ancora == "middle":
-        t.testo(s, (x0 + x1) / 2, base, dim, peso, colore, "middle", id=id, spaziatura=sp, opacita=opacita)
-    elif ancora == "end":
-        t.testo(s, x1, base, dim, peso, colore, "end", id=id, spaziatura=sp, opacita=opacita)
+    dim = forza_dim or alto
+    nat = larghezza_testo(s, dim, peso)
+    sx = larg / nat if nat > 0 else 1.0
+    if not forza_dim and len(s) > 3:
+        lo, hi = 1 - clamp, 1 + clamp
+        if sx > hi: dim *= sx / hi; sx = hi
+        elif sx < lo: dim *= sx / lo; sx = lo
     else:
-        t.testo(s, x0 - 0.03 * dim, base, dim, peso, colore, "start", id=id, spaziatura=sp, opacita=opacita)
+        sx = max(0.9, min(1.1, sx)) if not forza_dim else 1.0
+    base = y1 - desc * dim
+    nat = larghezza_testo(s, dim, peso)
+    if ancora == "middle": xa = (x0 + x1) / 2
+    elif ancora == "end": xa = x1
+    else: xa = x0
+    d = tracciato(s, xa, base, dim, peso, ancora, 0.0)
+    a = f' id="{id}"' if id else ""
+    a += f' opacity="{n(opacita)}"' if opacita is not None else ""
+    if abs(sx - 1) > 0.004:
+        t.add(f'<path d="{d}" fill="{colore}" transform="matrix({n(sx * 1000) if False else round(sx, 4)} 0 0 1 {n(xa * (1 - sx))} 0)"{a}/>')
+    else:
+        t.add(f'<path d="{d}" fill="{colore}"{a}/>')
     return dim
 
 
@@ -114,7 +122,7 @@ def tondo_rosso(t: Tela, nome: str, cx: float, cy: float, r: float, id: str | No
     """Pallino rosso con icona bianca (elenco dei costi del risultato)."""
     with t.gruppo(id or f"costo-{nome}"):
         t.cerchio(cx, cy, r, fill=t.sfumatura(["#FF6A70", "#F22B36"], 0.2, 0, 0.8, 1), filtro=t.ombra(1.5, r * 0.6, "#F22B36", 0.28))
-        t.icona(nome, cx - r * 0.52, cy - r * 0.52, r * 1.04, "#FFFFFF", 2.1)
+        t.icona(nome, cx - r * 0.64, cy - r * 0.64, r * 1.28, "#FFFFFF", 2.0)
 
 
 # ---------------------------------------------------------------------------- misuratore a mezza ellisse
@@ -161,7 +169,7 @@ def misuratore_arco(t: Tela, cx: float, cy: float, rx: float, ry: float, th: flo
         with t.gruppo(f"{id}-traccia"):
             gt = t.sfumatura([(0, traccia[0]), (1, traccia[1])], 0, cy - ry, 0, cy, userspace=True)
             t.path(arco_ell(cx, cy, rx, ry, 0, 1), stroke=vuoto_col or gt, sw=th, id=f"{id}-traccia-arco")
-            t.path(arco_ell(cx, cy, rx, ry, 0, 1), stroke="#FFFFFF", sw=th * 0.22, opacita=0.55, id=f"{id}-traccia-luce")
+            t.path(arco_ell(cx, cy, rx, ry, 0, 1), stroke="#FFFFFF", sw=th * 0.16, opacita=0.35, id=f"{id}-traccia-luce")
         if v > 0.001:
             with t.gruppo(f"{id}-valore"):
                 if glow:
@@ -199,7 +207,7 @@ def _tacche(t, cx, cy, rx, ry, th, v, tipo, tacche_col, stops, colore_in):
         for i in range(1, 10):
             f = i / 10
             a = math.pi * (1 - f)
-            for lato, lung, op in ((1, th * 0.30, 0.55), (-1, th * 0.24, 0.28)):
+            for lato, lung, op in ((1, th * 0.26, 0.5), (-1, th * 0.20, 0.25)):
                 if lato == -1 and tipo != "doppie":
                     continue
                 d0 = th * 0.5 + (th * 0.38 if lato == 1 else th * 0.42)

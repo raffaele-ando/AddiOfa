@@ -31,6 +31,38 @@ def _fc(peso):
     return f.getGlyphSet(), f.getBestCmap(), f["head"].unitsPerEm
 
 
+class TelaC(Tela):
+    """Come Tela, ma ogni lettera (per peso) è definita una volta in <defs> e riusata con <use>: file molto più leggeri."""
+
+    def __init__(self, *a, **k):
+        super().__init__(*a, **k)
+        self._glifi = {}
+
+    def _glifo(self, peso, c):
+        pw = ui._peso(peso); _, gs, cmap, upm = ui._font(pw)
+        g = cmap.get(ord(c), cmap[ord("?")]); ch = (pw, g)
+        if ch not in self._glifi:
+            pen = SVGPathPen(gs, ntos=lambda v: str(int(round(v))))
+            gs[g].draw(TransformPen(pen, (1, 0, 0, -1, 0, 0))); d = pen.getCommands()
+            gid = f"{self.id}-gl{pw}-{g}"
+            self._glifi[ch] = (gid if d else None, gs[g].width)
+            if d: self.defs.append(f'<path id="{gid}" d="{d}"/>')
+        return self._glifi[ch], upm
+
+    def testo(self, testo, x, y, dimensione, peso=400, colore=INK, ancora="start", id=None, spaziatura=0.0, opacita=None):
+        tot = larghezza_testo(testo, dimensione, peso, spaziatura)
+        cx = x - tot / 2 if ancora == "middle" else x - tot if ancora == "end" else x
+        usi = []
+        for c in testo:
+            (gid, adv), upm = self._glifo(peso, c); s_ = dimensione / upm
+            if gid: usi.append(f'<use href="#{gid}" transform="translate({n(cx)} {n(y)}) scale({s_:.5f})"/>')
+            cx += adv * s_ + spaziatura
+        a = f' id="{id}"' if id else ""
+        a += f' opacity="{n(opacita)}"' if opacita is not None else ""
+        self.add(f'<g fill="{colore}"{a}>{"".join(usi)}</g>')
+        return tot
+
+
 def corsivo(t, testo, x, y, dim, peso=500, colore=AZZ, ancora="start", rot=0, id=None, spaz=0.0):
     """Scritta 'a mano' (Inter corsivo, maiuscole, ruotata): il font a mano libera non c'è, si dice nel rapporto."""
     gs, cmap, upm = _fc(peso); s = dim / upm

@@ -77,6 +77,9 @@ class Pagina(TelaCompatta):
         s = s.replace(f'<g id="{self.id}">', f'<g id="{self.id}" transform="scale({SC})">', 1)
         return s
 
+    def testo(self, testo, *a, **k):
+        return super().testo(testo.replace("'", "\u2019"), *a, **k)
+
     # -- scorciatoie
     def T(self, testo, x, y, corpo, peso=500, colore=NAVY, ancora="start", id=None, sp=0.0, opacita=None, larg=None):
         """Testo; se `larg` è dato il corpo è accordato a quella larghezza (px originali)."""
@@ -130,13 +133,13 @@ def tile_app(t: Pagina, x, y, lato, id="icona-app"):
     t.inserisci_svg((LOGO / "marchio-tile-porta.svg").read_text(), x, y, lato, id)
 
 
-def logo_orizzontale(t: Pagina, x, y, lato, scuro=False, id="logo"):
+def logo_orizzontale(t: Pagina, x, y, lato, scuro=False, id="logo", larg_testo=None):
     """Tile + AddiOFA scritto (come nelle landing 45 e 51): x,y alto-sinistra del tile."""
     with t.gruppo(id):
         tile_app(t, x, y, lato, id=f"{id}-icona")
         c1 = "#FFFFFF" if scuro else "#0B1D5B"
         c2 = "#FFFFFF" if scuro else BLU
-        corpo = lato * 0.68
+        corpo = corpo_per("AddiOFA", larg_testo, 800) if larg_testo else lato * 0.68
         tx = x + lato * 1.12
         w1 = t.testo("Addi", tx, y + lato * 0.72, corpo, 800, c1, id=f"{id}-addi")
         t.testo("OFA", tx + w1, y + lato * 0.72, corpo, 800, c2, id=f"{id}-ofa")
@@ -204,6 +207,8 @@ def icona_quadra(t: Pagina, nome, x, y, lato, fondo, colore, sp=2.0, id=None, r=
 
 def bolla(t: Pagina, x, y, w, h, testo, icona="spunta", corpo=11.5, coda=None, rot=0, id=None, colore_icona=BLU):
     """Bolla flottante bianca con icona piccola e testo (45: Quiz interattivi, Statistiche…). coda = 'sx'|'dx'|None."""
+    ic0 = h * 0.46
+    w = h * 0.3 + ic0 + 8 + larghezza_testo(testo, corpo, 500) + h * 0.5
     tr = f"rotate({rot} {n(x + w / 2)} {n(y + h / 2)})" if rot else None
     with t.gruppo(id or "bolla-" + testo.lower().replace(" ", "-").replace("'", ""), trasforma=tr):
         t.rett(x, y, w, h, h / 2, fill="#FFFFFF", opacita=0.96, filtro=t.ombra(5, 16, "#2B4FA0", 0.20))
@@ -286,16 +291,20 @@ def sigillo_segnaposto(t: Pagina, cx, cy, r, colore="#C9CFDA", opacita=0.9):
 
 
 def sagome_sfondo(t: Pagina, x, y, w, h, colore="#DDE6F6", opacita=0.6, n_picchi=6, seme=1, id="sagome-edifici"):
-    """Profilo di edifici/guglie molto sfumato (fondo delle sezioni chiare)."""
+    """Profilo di guglie/edifici molto sfumato (fondo delle sezioni chiare): triangoli che sfumano verso l'alto."""
     import random
     rnd = random.Random(seme)
+    g = t.sfumatura([(0, colore + "00"), (1, colore)], 0, 0, 0, 1) if False else None
     with t.gruppo(id, opacita=opacita):
-        px = x
+        px = x - 20
         while px < x + w:
-            bw = rnd.uniform(w / (n_picchi * 1.8), w / (n_picchi * 0.8))
-            bh = rnd.uniform(h * 0.35, h)
-            t.rett(px, y + h - bh, bw, bh, 3, fill=colore)
-            px += bw * rnd.uniform(0.6, 1.0)
+            bw = rnd.uniform(w / (n_picchi * 1.1), w / (n_picchi * 0.6))
+            bh = rnd.uniform(h * 0.45, h)
+            gid = t.uid("sg")
+            t.defs.append(f'<linearGradient id="{gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{colore}" stop-opacity="0"/>'
+                          f'<stop offset="1" stop-color="{colore}" stop-opacity="1"/></linearGradient>')
+            t.path(f"M{n(px)} {n(y + h)}L{n(px + bw / 2)} {n(y + h - bh)}L{n(px + bw)} {n(y + h)}z", fill=f"url(#{gid})")
+            px += bw * rnd.uniform(0.55, 0.9)
 
 
 # ---------------------------------------------------------------------------- telefono
@@ -401,7 +410,7 @@ def schermo_domanda(t: Pagina, w, h):
 def schermo_obiettivo(t: Pagina, w, h):
     _stato(t, w)
     # documento con spunta e coriandoli
-    cx, cy = w / 2, 270
+    cx, cy = w / 2, 225
     t.rett(cx - 78, cy - 100, 156, 196, 20, fill="#E8EEFB", filtro=t.ombra(6, 18, "#4C70C8", 0.2))
     for i, lw in enumerate((100, 100, 70)):
         t.rett(cx - 50, cy - 62 + i * 26, lw, 11, 5.5, fill="#C5D2EE")
@@ -410,9 +419,9 @@ def schermo_obiettivo(t: Pagina, w, h):
     for (dx, dy, c, rot) in [(-120, -70, ROSSO, 20), (-90, -120, GIALLO, -30), (100, -110, GIALLO, 30), (130, -30, ROSSO, 60),
                              (-130, 20, ROSSO, -40), (-60, 100, GIALLO, 10), (150, 40, GIALLO, 0)]:
         t.path(f"M{n(cx + dx - 9)} {n(cy + dy)}l18 0", stroke=c, sw=8, opacita=0.95, id=f"coriandolo-{abs(dx)}-{abs(dy)}")
-    t.T("Obiettivo raggiunto!", w / 2, 478, 33, 800, NAVY, "middle", id="titolo-schermo")
-    t.T("Puoi iscriverti al", w / 2, 530, 24, 400, TESTO, "middle")
-    t.T("secondo anno!", w / 2, 562, 24, 400, TESTO, "middle")
+    t.T("Obiettivo raggiunto!", w / 2, 410, 33, 800, NAVY, "middle", id="titolo-schermo", larg=340)
+    t.T("Puoi iscriverti al", w / 2, 458, 24, 400, TESTO, "middle")
+    t.T("secondo anno!", w / 2, 490, 24, 400, TESTO, "middle")
     t.rett(26, h - 190, w - 52, 78, 24, fill=BLU_BTN, filtro=t.ombra(8, 18, BLU_BTN, 0.3), id="pulsante-dashboard")
     t.T("Vai alla dashboard", w / 2, h - 190 + 49, 25, 700, "#FFFFFF", "middle")
     _nav(t, w, h, 0, BLU_BTN)
@@ -473,3 +482,33 @@ def tavola(svg_path: pathlib.Path, nimg: int, uscita: pathlib.Path, k: float = 1
     tv.save(uscita)
     im.convert("RGB").save(uscita.with_name(uscita.stem + "-solo.png"))
     return m
+
+
+def a_mano(t: Pagina, righe, cx, cy, rot=-12, corpo=15, colore="#2B4C9E", passo=None, id="scritta-a-mano", peso=400, inclina=-9):
+    """Scritta a mano rifatta con Inter inclinato (il corsivo dell'originale non esiste nel kit): righe centrate su (cx, cy)."""
+    passo = passo or corpo * 1.3
+    with t.gruppo(id, trasforma=f"translate({n(cx)} {n(cy)}) rotate({n(rot)}) skewX({n(inclina)})"):
+        for j, r in enumerate(righe):
+            t.testo(r, 0, (j - (len(righe) - 1) / 2) * passo + corpo * 0.35, corpo, peso, colore, "middle", id=f"{id}-{j + 1}")
+
+
+def maschera_dissolvenza(t: Pagina, x0, x1, y0, y1, a0=0.0, a1=1.0, id=None) -> str:
+    """Maschera rettangolare con rampa orizzontale di trasparenza da x0 (alpha a0) a x1 (alpha a1); restituisce l'id."""
+    mid = id or t.uid("mk")
+    gid = mid + "-g"
+    t.defs.append(f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{n(x0)}" y1="0" x2="{n(x1)}" y2="0">'
+                  f'<stop offset="0" stop-color="#FFF" stop-opacity="{n(a0)}"/><stop offset="1" stop-color="#FFF" stop-opacity="{n(a1)}"/></linearGradient>')
+    t.defs.append(f'<mask id="{mid}" maskUnits="userSpaceOnUse" x="-10" y="-10" width="{W + 20}" height="{H + 20}">'
+                  f'<rect x="-10" y="-10" width="{W + 20}" height="{H + 20}" fill="url(#{gid})"/></mask>')
+    return mid
+
+
+class con_maschera:
+    def __init__(self, t, mid, id=None):
+        self.t, self.mid, self.id = t, mid, id
+
+    def __enter__(self):
+        self.t.add(f'<g mask="url(#{self.mid})"' + (f' id="{self.id}"' if self.id else "") + ">")
+
+    def __exit__(self, *e):
+        self.t.add("</g>")

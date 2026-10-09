@@ -1,0 +1,122 @@
+[
+ {
+  "elementi": [
+   "05.001"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/01-intro.svg",
+  "nota": "Libri con bandiera = riuso kit-blu/illustrazioni/studio-inglese (bandiera con diagonali sfalsate corrette). Avanzamento a 3 segmenti uguali. Pulsanti con chevron a destra e testo a sinistra come nell'originale."
+ },
+ {
+  "elementi": [
+   "05.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/02-certificazione.svg",
+  "nota": "Guida con spunta verde ridisegnata (foglio dietro + foglio davanti + tondo spunta), non presente nei kit. Testi leggibili."
+ },
+ {
+  "elementi": [
+   "05.003"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/03-verifica-livello.svg",
+  "nota": "Riuso kit-blu/illustrazioni/quiz-test. Testi leggibili."
+ },
+ {
+  "elementi": [
+   "05.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/04-domanda.svg",
+  "nota": "Barra di avanzamento 3/10 e quattro risposte radio; 'went' selezionata in blu (kit blu dentro un funnel a pulsanti rossi, come l'originale)."
+ },
+ {
+  "elementi": [
+   "05.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/05-risultato.svg",
+  "nota": "Misuratore = t.misuratore del kit al 32 % (l'originale ha il pomello come pallina piatta). Le 4 icone delle conseguenze (illeggibili nell'originale) sostituite con euro, lucchetto, documento, scudo: testo ricostruito solo come icone, le scritte sono quelle dell'originale."
+ },
+ {
+  "elementi": [
+   "05.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/06-verifica-account.svg",
+  "nota": "Sigillo/stemma non presente nella schermata. Scudo di 'dati al sicuro' ridisegnato. Testi leggibili."
+ },
+ {
+  "elementi": [
+   "05.007"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/07-sblocca-accesso.svg",
+  "nota": "Illustrazione utenti con '+' ridisegnata. L'avanzamento nell'originale aveva un puntino rosso storto: corretto a 3 segmenti uguali."
+ },
+ {
+  "elementi": [
+   "05.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/08-inviti.svg",
+  "nota": "Avatar disegnati al posto delle foto (e nomi coerenti: 'Luca' ha un avatar maschile, nell'originale la foto era di una donna). Stepper verde 2 su 3."
+ },
+ {
+  "elementi": [
+   "05.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/09-condividi-link.svg",
+  "nota": "Marchi WhatsApp/Instagram/Messaggi semplificati (non loghi ufficiali). Icona copia disegnata."
+ },
+ {
+  "elementi": [
+   "05.010"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/10-accesso-sbloccato.svg",
+  "nota": "Regalo con fiocco ridisegnato (assonometria pulita, nastro unico continuo) e coriandoli puliti."
+ },
+ {
+  "elementi": [
+   "05.011"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/11-home.svg",
+  "nota": "Home 'Ciao, Raffaele' (la schermata e' tagliata in due pannelli 05.011/05.012 nel catalogo: ricomposta intera). Mano che saluta disegnata (emoji non ridisegnabile come glifo). Barra a 4 voci con icone chiare."
+ },
+ {
+  "elementi": [
+   "05.012"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/12-classifica.svg",
+  "nota": "Il pannello 05.012 contiene la parte destra della home (05.011) e la classifica: la classifica e' l'SVG 12; la home e' coperta anche da 05.011. Classifica: avatar disegnati, corone 1-2-3 ridisegnate, riga 'Tu' evidenziata. Voce 'Classifica' attiva con il trofeo (il glifo originale era illeggibile)."
+ },
+ {
+  "elementi": [
+   "05.013"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/05-schermate-onboarding-invito/13-profilo.svg",
+  "nota": "Profilo con avatar neutro; icone delle voci sostituite (gruppo, barre, ingranaggio). Nav con trofeo attivo (glifo originale illeggibile)."
+ },
+ {
+  "elementi": [
+   "22.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/22-schermate-sfide-profilo/01-sfide.svg",
+  "nota": "Schermata Sfide: sfida della settimana, tre sfide attive, podio settimanale. Avatar disegnati (foto nell'originale). Icone sfide ridisegnate. Nome del terzo del podio letto come 'marti.s'."
+ },
+ {
+  "elementi": [
+   "22.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/22-schermate-sfide-profilo/02-profilo.svg",
+  "nota": "Profilo: Project ID, statistiche, progressi, obiettivi, badge. L'originale ha 'Punteggio medio' con '+12%' doppio e storto: corretto. Avatar disegnato al posto della foto."
+ }
+]

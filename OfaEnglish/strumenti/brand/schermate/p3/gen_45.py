@@ -27,7 +27,7 @@ def costruisci() -> Pagina:
         # fascia alta di mistura sopra la foto per il menu
         # ---- navigazione
         with t.gruppo("navigazione"):
-            logo_orizzontale(t, 45, 11, 38, id="logo-addiofa")
+            logo_orizzontale(t, 45, 11, 38, id="logo-addiofa", larg_testo=99)
             for i, (voce, x) in enumerate([("Home", 273.5), ("Funzionalità", 348.5), ("Come funziona", 445.5), ("Prezzi", 527), ("FAQ", 586)]):
                 t.testo(voce, x, 32, 12.2, 600 if i == 0 else 500, NAVY if i == 0 else "#2E3A66", "middle", id="menu-" + voce.lower().replace(" ", "-"))
             t.rett(259, 38, 29, 2, 1, fill=BLU, id="menu-attivo")
@@ -50,8 +50,8 @@ def costruisci() -> Pagina:
         # ---- bolle flottanti + telefoni
         with t.gruppo("telefoni-app"):
             telefono(t, 962, 150, 104, 270, schermo_piano, rot=-1.2, id="telefono-piano-di-studio")
-            telefono(t, 1340, 185, 143, 266, schermo_obiettivo, rot=1.5, id="telefono-obiettivo")
             telefono(t, 1215, 111, 144, 322, schermo_domanda, rot=1.5, id="telefono-domanda")
+            telefono(t, 1340, 185, 143, 266, schermo_obiettivo, rot=1.5, id="telefono-obiettivo")
             telefono(t, 1044, 66, 178, 381, schermo_rischio, rot=0, id="telefono-rischio")
         with t.gruppo("bolle-funzionalita"):
             bolla(t, 941, 108, 112, 37, "Quiz interattivi", "scudo", 11.6, coda="dx", rot=-4)
@@ -92,13 +92,15 @@ def costruisci() -> Pagina:
                 if ic == "grafico":
                     for j, hh in enumerate((10, 16, 22)):
                         t.rett(x + 22 + j * 8, 740 - hh, 6, hh, 2, fill=col)
-                elif ic == "fiamma":
-                    t.icona("stella4", x + 20, 716, 26, col, 1.6, fill_pieno="#FFD36B")
-                    t.cerchio(x + 33, 730, 9, fill="#FFD36B", stroke=col, sw=2)
-                    t.linea(x + 30, 741, x + 36, 741, col, 2.2)
+                elif ic == "fiamma":      # lampadina
+                    t.cerchio(x + 33, 726, 8.5, fill="#FFE29A", stroke=col, sw=2)
+                    t.rett(x + 29, 735, 8, 5, 1.5, fill=col)
+                    for ang in (-60, -30, 0, 30, 60):
+                        c_, s_ = math.sin(math.radians(ang)), -math.cos(math.radians(ang))
+                        t.linea(x + 33 + c_ * 12.5, 726 + s_ * 12.5, x + 33 + c_ * 15.5, 726 + s_ * 15.5, col, 1.8)
                 else:
                     t.icona(ic, x + 21, 717, 24, col, 2.2, fill_pieno=(fondo if ic == "documento" else None) if ic != "bersaglio" else None)
-                t.T(tit, x + 14, 771, 14.4, 700, NAVY, id="scheda-titolo")
+                t.T(tit, x + 14, 771, 13.3, 700, NAVY, id="scheda-titolo")
                 t.righe(desc, x + 14, 789, 12.6, 400, SOTTO, passo=16.3, id="scheda-testo")
 
     # ------------------------------------------------------------------ dati reali
@@ -141,9 +143,7 @@ def costruisci() -> Pagina:
                 t.T(p1, x + 36, 960, 7.8, 400, "#FFFFFF")
                 t.T(p2, x + 36, 976, 13.5, 600, "#FFFFFF", larg=(w_ - 48) if i == 1 else 60)
         # scritta a mano della foto (rifatta: Inter inclinato; testo letto dall'originale)
-        with t.gruppo("scritta-stessa-partenza", trasforma="rotate(-12 1455 930) skewX(-10)"):
-            for j, r in enumerate(["Stessa", "partenza.", "Più possibilità."]):
-                t.T(r, 1436 + (2 - j) * 0 + j * 7.5, 905 + j * 21, 15, 500, "#2B4C9E", id=f"mano-{j + 1}")
+        a_mano(t, ["Stessa", "partenza.", "Più possibilità."], 1462, 928, -13, 13.2, "#2B4C9E", 17, id="scritta-stessa-partenza")
     return t
 
 

@@ -45,15 +45,15 @@ SCHERMATE = {
  (36, 3): ((4, 203, 0, 461), "03-test-iniziale"),
  (36, 4): ((3, 203, 0, 452), "04-risultati-atlas"),
  (36, 5): ((21, 232, 0, 460), "05-home"),
- (36, 6): ((0, 187, 0, 446), "06-lezione"),
+ (36, 6): ((-9.5, 197.5, 0, 446), "06-lezione"),
  (36, 7): ((27, 228, 0, 458), "07-ranking-noi"),
  (36, 14): ((4, 194, 0, 409), "08-simulazioni"),
- (36, 8): ((10, 211, 0, 414), "09-dettaglio-simulazione"),
- (36, 9): ((13, 209, 0, 407), "10-risultato-simulazione"),
- (36, 10): ((13, 200, 0, 411), "11-correzione-atlas"),
+ (36, 8): ((10, 224, 0, 414), "09-dettaglio-simulazione"),
+ (36, 9): ((13, 223, 0, 407), "10-risultato-simulazione"),
+ (36, 10): ((13, 222, 0, 411), "11-correzione-atlas"),
  (36, 11): ((14, 221, 0, 418), "12-discussione-agora"),
  (36, 12): ((11, 199, 0, 416), "13-profilo"),
- (36, 13): ((13, 189, 0, 412), "14-impostazioni"),
+ (36, 13): ((13, 189, 0, 446), "14-impostazioni"),
 }
 FILE_ORIG = {(34, "3a"): "003-grafica.png", (34, "3b"): "003-grafica.png", (34, 1): "001-grafica.png", (34, 2): "002-schermata.png",
              (34, 4): "004-schermata.png", (34, 5): "005-schermata.png", (34, 6): "006-schermata.png"}
@@ -97,7 +97,7 @@ def corpo_per(testo, w_px, peso=700, spaz=0.0):
 
 def tx(t, testo, x, y, w=None, corpo=None, peso=400, col=NAVY, ancora="start", id=None, spaz=0):
     """Testo: x = sinistra/centro/destra secondo `ancora`, y = linea di base (px ritaglio). `w` = larghezza misurata (px) oppure `corpo` (px)."""
-    c = corpo_per(testo, w, peso) if w else corpo
+    c = corpo_per(testo, w, peso) if w else corpo * 1.1
     t.testo(testo, t.X(x), t.Y(y), t.s(c), peso, col, ancora, id=id, spaziatura=t.s(spaz))
     return c
 
@@ -113,11 +113,11 @@ def multi(t, segs, x, y, corpo, peso=400, ancora="start", id=None):
 
 
 # ---------------------------------------------------------------- elementi del telefono
-def stato(t, y=17, scuro=False, cx=None):
+def stato(t, y=17, scuro=False, mx=19):
     c = "#FFFFFF" if scuro else NAVY
     X, Y, s = t.X, t.Y, t.s
     with t.gruppo("barra-di-stato"):
-        t.testo("9:41", X(t.x0 + 19), Y(y), s(7.6), 700, c, id="ora")
+        t.testo("9:41", X(t.x0 + mx), Y(y), s(7.6), 700, c, id="ora")
         r = t.x1 - 13
         bx = X(r) - s(12)
         t.rett(bx, Y(y - 6.2), s(11.6), s(6), s(1.9), fill="none", stroke=c, sw=s(0.55), opacita=0.5)
@@ -213,7 +213,7 @@ NAV5_A = [("casa", "Home"), ("grafico", "Studio"), ("ingranaggio", "Simulazioni"
 NAV5_B = [("casa", "Home"), ("grafico", "ATLAS"), ("gruppo", "NOI"), ("fiamma", "Agorà"), ("utente", "Profilo")]
 
 
-def nav(t, voci, attiva, y_top, y_cen_icona=None, ic=9.5, corpo=5.4, x0=None, x1=None):
+def nav(t, voci, attiva, y_top, y_cen_icona=None, ic=18, corpo=6.4, x0=None, x1=None):
     """Barra di navigazione in px ritaglio: y_top = bordo superiore; icone e voci distribuite sulla larghezza del telefono."""
     X, Y, s = t.X, t.Y, t.s
     x0 = t.x0 if x0 is None else x0; x1 = t.x1 if x1 is None else x1
@@ -224,12 +224,12 @@ def nav(t, voci, attiva, y_top, y_cen_icona=None, ic=9.5, corpo=5.4, x0=None, x1
         for i, (icn, et) in enumerate(voci):
             cx = x0 + m * i + m / 2
             col = BL if i == attiva else "#8590AA"
-            cy = y_top + 15
+            cy = y_top + 18
             if i == attiva:
                 t.icona(icn, X(cx) - s(ic / 2), Y(cy) - s(ic / 2), s(ic), col, 2.3, fill_pieno=col)
             else:
                 t.icona(icn, X(cx) - s(ic / 2), Y(cy) - s(ic / 2), s(ic), col, 1.7)
-            t.testo(et, X(cx), Y(y_top + 30), s(corpo), 700 if i == attiva else 500, col, "middle", id=f"nav-{et.lower()}")
+            t.testo(et, X(cx), Y(y_top + 34), s(corpo), 700 if i == attiva else 500, col, "middle", id=f"nav-{et.lower()}")
 
 
 def avatar_f(t, cx, cy, r, tono=0, id="avatar"):

@@ -40,7 +40,7 @@ NOMI18 = {1: "profilo", 2: "statistiche", 3: "frasi-e-vocaboli", 4: "quiz-domand
           7: "simulatore-esame", 8: "simulazione-domanda", 9: "simulazione-completata"}
 # parte bianca del telefono nel ritaglio: x0, x1, y0, y1 (px)
 FIN18 = {1: (51, 335, 6, 520), 2: (27, 308, 6, 520), 3: (19, 302, 6, 520), 4: (19, 302, 6, 520), 5: (7, 283, 1, 462), 6: (10, 292, 2, 462),
-         7: (0, 0, 0, 0), 8: (0, 0, 0, 0), 9: (0, 0, 0, 0)}
+         7: (35, 309, 2, 462), 8: (35, 313, 2, 463), 9: (14, 289, 2, 463)}
 
 
 def percorso18(n_): return ORIG18 / f"{n_:03d}-schermata.png"
@@ -242,3 +242,52 @@ def tessera_esito(t, x0, x1, y0, y1, fondo, ic, val, et, ex0, ex1, vy=None, ey=N
             t.path(f"M{n(X(cx))} {n(Y(cy - r * 0.55))}V{n(Y(cy))}L{n(X(cx + r * 0.4))} {n(Y(cy + r * 0.3))}", stroke="#FFFFFF", sw=s(r * 0.2))
         riga(t, val, cx, vy or y0 + h * 0.67, h * 0.235, 800, INK_R, ancora="middle", id=f"{id}-valore")
         riga(t, et, cx, ey or y0 + h * 0.915, corpo_per(et, ex1 - ex0, 400), 400, BLU_T, ancora="middle", id=f"{id}-etichetta")
+
+
+def scena_cronometro(t, x0, y_base, id="illustrazione-cronometro"):
+    """Cronometro rosso con foglio e nuvole azzurre (scena della schermata 'Simulatore d'esame'). Pixel del ritaglio 18.007:
+    x0 = sinistra della scena, y_base = filo inferiore (la scena e' tagliata li')."""
+    import math
+    X, Y, s = t.X, t.Y, t.s
+    cx, cy, R = x0 + 121, y_base - 34, 27.2
+    with t.gruppo(id):
+        cid = f"{t.id}-clip-cron"
+        t.defs.append(f'<clipPath id="{cid}"><rect x="{n(X(x0 - 5))}" y="{n(Y(y_base - 90))}" width="{n(s(190))}" height="{n(s(90))}"/></clipPath>')
+        with t.gruppo("sfondo-nuvole", clip=cid):
+            for ex, ey, rx, ry, f in ((x0 + 22, y_base - 26, 22, 28, "#E1EAFB"), (x0 + 55, y_base - 38, 24, 30, "#E4ECFC"), (x0 + 148, y_base - 24, 20, 26, "#E1EAFB"),
+                                     (x0 + 100, y_base - 12, 60, 22, "#E6EDFC")):
+                t.ellisse(X(ex), Y(ey), s(rx), s(ry), fill=f)
+            t.rett(X(x0 + 20), Y(y_base - 40), s(130), s(40), 0, fill="#E6EDFC")
+            # foglio inclinato
+            with t.gruppo("foglio", trasforma=f"rotate(-14 {n(X(x0 + 58))} {n(Y(y_base - 20))})"):
+                t.rett(X(x0 + 30), Y(y_base - 42), s(56), s(50), s(5), fill="#F3F7FE", stroke="#D5E1F9", sw=s(0.8))
+                t.rett(X(x0 + 38), Y(y_base - 33), s(32), s(4), s(2), fill="#C3D4F6")
+                t.rett(X(x0 + 38), Y(y_base - 23), s(40), s(4), s(2), fill="#C3D4F6")
+        # cronometro
+        t.rett(X(cx + 4) - s(6), Y(cy - R - 8), s(12), s(7), s(3), fill="#3F72D8", id="cronometro-pulsante")
+        t.rett(X(cx) - s(2.4), Y(cy - R - 3), s(4.8), s(5), 0, fill="#3F72D8")
+        with t.gruppo("cronometro-anello", trasforma=""):
+            t.cerchio(X(cx), Y(cy), s(R), fill="#FFFFFF", stroke=t.sfumatura(["#F4404C", "#E41C2B"]), sw=s(6.6), filtro=t.ombra(s(1.2), s(5), "#E11D2B", 0.25), id="cronometro-corpo")
+        t.rett(X(cx + R * 0.72), Y(cy - R * 0.78) , s(7), s(5), s(1.5), fill="#EE2433")
+        for i in range(12):
+            a = math.radians(i * 30)
+            r0, r1 = R * 0.69, R * (0.80 if i % 3 else 0.84)
+            t.linea(X(cx + r0 * math.sin(a)), Y(cy - r0 * math.cos(a)), X(cx + r1 * math.sin(a)), Y(cy - r1 * math.cos(a)), "#B8C6E4", s(0.9), cap="round")
+        t.path(f"M{n(X(cx))} {n(Y(cy))}L{n(X(cx + 4))} {n(Y(cy - R * 0.58))}", stroke="#2457C8", sw=s(2.4), id="cronometro-lancetta")
+        t.cerchio(X(cx), Y(cy), s(2.4), fill="#2457C8")
+
+
+def cronometro_icona(t, cx, cy, r, colore, id="icona-cronometro"):
+    X, Y, s = t.X, t.Y, t.s
+    with t.gruppo(id):
+        t.cerchio(X(cx), Y(cy + r * 0.12), s(r * 0.78), fill="none", stroke=colore, sw=s(r * 0.22))
+        t.linea(X(cx - r * 0.28), Y(cy - r * 0.9), X(cx + r * 0.28), Y(cy - r * 0.9), colore, s(r * 0.22))
+        t.linea(X(cx), Y(cy + r * 0.12), X(cx), Y(cy - r * 0.32), colore, s(r * 0.2))
+        t.linea(X(cx + r * 0.62), Y(cy - r * 0.52), X(cx + r * 0.8), Y(cy - r * 0.7), colore, s(r * 0.2))
+
+
+def segnalibro(t, cx, cy, h, colore, id="icona-segnalibro"):
+    X, Y, s = t.X, t.Y, t.s
+    w = h * 0.72
+    t.path(f"M{n(X(cx - w / 2))} {n(Y(cy - h / 2))}H{n(X(cx + w / 2))}V{n(Y(cy + h / 2))}L{n(X(cx))} {n(Y(cy + h * 0.2))}L{n(X(cx - w / 2))} {n(Y(cy + h / 2))}Z",
+           stroke=colore, sw=s(h * 0.14), id=id, join="round")

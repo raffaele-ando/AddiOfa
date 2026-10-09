@@ -30,7 +30,7 @@ for num, y0, y1, frase, w, ok, risp, b0, b1 in voci:
             t.icona("spunta", X(78) - s(7), Y(yc) - s(7), s(14), "#1FAE4E", 3.0, id=f"correzione-{num}-spunta")
             riga(t, risp, 95, yc + 4.5, 12, 600, "#1F9D45", id=f"correzione-{num}-risposta")
         else:
-            t.icona("x", X(76) - s(6.5), Y(yc) - s(6.5), s(13), "#EE2433", 3.4, id=f"correzione-{num}-croce")
+            t.icona("x", X(76) - s(7.2), Y(yc) - s(7.2), s(14.5), "#EE2433", 3.8, id=f"correzione-{num}-croce")
             riga(t, risp, 95, yc + 4.5, 12, 600, "#EE2433", id=f"correzione-{num}-risposta")
             w1 = riga(t, "Risposta corretta: ", 64, 240.5, corpo_per("Risposta corretta:", 88, 400), 400, BLU_T, id="correzione-2-corretta-etichetta")
             riga(t, "are playing", 157, 240.5, corpo_per("are playing", 55, 800), 800, INK_R, id="correzione-2-corretta-valore")
