@@ -38,7 +38,7 @@ def email(stile="luminoso") -> Scena:
         S.alone("alone-sigillo", 125, 52, 50, 44, 0.9, "#FFD9A0", "#FFC27A")
         S.alone("alone-basso", 90, 110, 70, 10, 0.5)
         S.ombra("ombra", 84, 117, 66, 3, 0.18)
-        busta(S, "busta", V(76, 68), 108, 74, -7, ("#A9C2FB", "#7C9CF3"), ("#F6F8FF", "#E4ECFD"), 8)
+        busta(S, "busta", V(73, 68), 100, 70, -7, ("#A9C2FB", "#7C9CF3"), ("#F6F8FF", "#E4ECFD"), 8)
         sigillo_stella(S, "sigillo", V(122, 67), 31)
     else:
         S.nuvola(["M4 50 C2 20 30 6 74 6 C120 6 154 18 152 54 C150 96 120 104 76 104 C30 104 6 94 4 50 Z"])
@@ -49,10 +49,10 @@ def email(stile="luminoso") -> Scena:
         S.c(f'<g id="sigillo"><circle id="sigillo-alone" cx="{n(c.x)}" cy="{n(c.y)}" r="{n(r + 2.4)}" fill="#FFFFFF"/>'
             f'<circle id="sigillo-disco" cx="{n(c.x)}" cy="{n(c.y)}" r="{n(r)}" fill="url(#sigillo-luce)"/>'
             f'<circle id="sigillo-segnaposto" cx="{n(c.x)}" cy="{n(c.y)}" r="{n(r * 0.6)}" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="2"/></g>')
-        # freccia di invio (puntatore) rossa in alto a destra
-        frec = arrotondato([V(150, 3), V(128, 11), V(139, 17), V(131, 28), V(141, 28), V(143.5, 18), V(152, 24)], [0, 0, 0, 0, 0, 0, 0]) if False else None
-        S.d(lineare("freccia-luce", V(128, 3), V(152, 26), [(0, "#FF6B5E"), (1, "#EF3B33")]))
-        S.c(f'<path id="freccia-invio" d="{arrotondato([V(151, 3), V(128, 11.5), V(139, 17.5), V(133.5, 27), V(141, 28.5), V(146.5, 21), V(152, 26)][:3] + [V(151, 3)][:0], [2, 2, 2]) if False else arrotondato([V(152, 4), V(129, 12), V(139, 18), V(150, 25)], [2, 2, 2, 2])}" fill="url(#freccia-luce)"/>')
+        # freccia di invio rossa in alto a destra: freccia vera (asta + punta) costruita in locale e ruotata di -45 gradi
+        S.d(lineare("freccia-luce", V(-12, -9), V(14, 9), [(0, "#FF6B5E"), (1, "#EF3B33")]))
+        pts = [V(15, 0), V(0.5, -9.5), V(3.8, -2.8), V(-12, -2.8), V(-12, 2.8), V(3.8, 2.8), V(0.5, 9.5)]
+        S.c(f'<path id="freccia-invio" transform="translate(139 16) rotate(-45)" d="{arrotondato(pts, [1.8, 1.8, 0.8, 1.6, 1.6, 0.8, 1.8])}" fill="url(#freccia-luce)"/>')
     return S
 
 
@@ -87,7 +87,7 @@ def carta_id(stile="luminoso") -> Scena:
     d.append(f'<path id="carta-faccia" d="{rettangolo(x0, y0, w, h, 11)}" fill="url(#carta-luce)" stroke="#FFFFFF" stroke-width="1.2" stroke-opacity="0.9"/>')
     # fascia in alto (il lato di sopra della carta, in prospettiva) solo nel luminoso
     if lum:
-        d.append(f'<path id="carta-lato-alto" d="M{n(x0 + 38)} {n(y0 + 0.6)} L{n(x0 + w - 11)} {n(y0 + 0.6)} Q{n(x0 + w)} {n(y0 + 0.6)} {n(x0 + w)} {n(y0 + 11)} V{n(y0 + 12)} L{n(x0 + 38)} {n(y0 + 7)} Z" fill="#8FAEF4" opacity="0.7"/>')
+        d.append(f'<path id="carta-lato-alto" d="M{n(x0 + 60)} {n(y0 + 0.6)} L{n(x0 + w - 11)} {n(y0 + 0.6)} Q{n(x0 + w)} {n(y0 + 0.6)} {n(x0 + w)} {n(y0 + 11)} V{n(y0 + 11)} L{n(x0 + 60)} {n(y0 + 5)} Z" fill="#8FAEF4" opacity="0.4"/>')
     # avatar: alone tondo chiaro, testa (cerchio), busto (mezzo ellisse col fondo piatto)
     ax = -28
     d.append(f'<circle id="avatar-alone-tondo" cx="{ax}" cy="-2" r="30" fill="#FFFFFF" opacity="0.8"/>')
@@ -118,7 +118,7 @@ def accesso(stile="luminoso") -> Scena:
         S.ombra("ombra", 88, 123, 66, 2.5, 0.14)
         cx, cy, w, h, g = 79, 66, 126, 96, -3.8
         barra_c = ("#3E74EE", "#1C46C6"); ch = 22
-        cap = dict(c=V(84 - cx, 63 - cy), L=65)
+        cap = dict(c=V(84 - cx, 63 - cy), L=58)
         clock = (V(143, 89), 20)
     else:
         S.nuvola(["M4 56 C2 20 28 6 76 6 C124 6 160 20 158 60 C156 104 126 112 76 112 C28 112 6 100 4 56 Z"])

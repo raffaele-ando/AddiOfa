@@ -52,6 +52,7 @@ ui.ICONE.update({
     "tasti": [("p", "M4 6h16M4 12h16M4 18h16")],
     "virgolette": [("pf", "M4 12.500C4 9 6 6.800 9.500 5.800l.8 1.600C8.700 8.200 7.800 9.200 7.600 10.700H9.500V18H4zM13.700 12.500C13.700 9 15.700 6.800 19.200 5.800l.8 1.600c-1.600.8-2.500 1.800-2.700 3.300h1.900V18h-5.500z")],
     "libro-pieno": [("pf", "M2.800 5.600C5.600 4.800 9 5 11.200 6.500V19.200c-2.300-1.300-5.600-1.600-8.400-.8zM12.800 6.500C15 5 18.400 4.800 21.200 5.600v12.800c-2.800-.8-6.100-.5-8.400.8z")],
+    "monete": [("p", "M4.5 7.5c0-1.4 3.4-2.5 7.5-2.5s7.5 1.1 7.5 2.5-3.4 2.5-7.5 2.5-7.5-1.1-7.5-2.5zM4.5 7.5v4c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-4M4.5 11.5v4c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-4M4.5 15.5v2c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-2")],
     "utente-contorno": [("c", (12, 8, 4)), ("p", "M4.500 20.500c0-3.800 3.300-6 7.500-6s7.500 2.200 7.500 6z")],
 })
 
@@ -417,3 +418,35 @@ def controlla(svg: pathlib.Path, originale: pathlib.Path, nome_tavola: str, k: f
 
 def vuole_tavola() -> bool:
     return "--tavola" in sys.argv
+
+
+def sfum_op(t: Tela, stops: list[tuple[float, str, float]], x1=0, y1=0, x2=1, y2=0, userspace=False) -> str:
+    """linearGradient con opacita' per fermata: stops = [(offset, colore, opacita)] (ui.sfumatura non le ha)."""
+    chiave = ("linop", tuple(stops), x1, y1, x2, y2, userspace)
+    if chiave in t._chiavi:
+        return t._chiavi[chiave]
+    gid = t.uid("so")
+    unit = ' gradientUnits="userSpaceOnUse"' if userspace else ""
+    fermate = "".join(f'<stop offset="{n(o)}" stop-color="{c}" stop-opacity="{n(a)}"/>' for o, c, a in stops)
+    t.defs.append(f'<linearGradient id="{gid}" x1="{n(x1)}" y1="{n(y1)}" x2="{n(x2)}" y2="{n(y2)}"{unit}>{fermate}</linearGradient>')
+    t._chiavi[chiave] = f"url(#{gid})"
+    return t._chiavi[chiave]
+
+
+def ritaglio(percorso, box, inpaint=None) -> str:
+    """Ritaglia `box` (x0,y0,x1,y1) da un'immagine; `inpaint` = rettangoli (pulsanti dell'interfaccia sopra la foto)
+    ripuliti con cv2.inpaint. Restituisce il percorso di un PNG temporaneo (le foto restano raster)."""
+    import tempfile
+    import numpy as np
+    from PIL import Image
+    im = Image.open(percorso).convert("RGB")
+    if inpaint:
+        import cv2
+        a = np.asarray(im).copy()
+        m = np.zeros(a.shape[:2], np.uint8)
+        for x0, y0, x1, y1 in inpaint:
+            m[y0:y1, x0:x1] = 255
+        im = Image.fromarray(cv2.inpaint(a, m, 5, cv2.INPAINT_TELEA))
+    f = tempfile.NamedTemporaryFile(suffix=".png", delete=False)
+    im.crop(box).save(f.name)
+    return f.name

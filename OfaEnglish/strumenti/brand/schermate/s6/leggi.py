@@ -1,5 +1,5 @@
 """Ritaglia una zona dell'immagine sorgente con griglia in coordinate dell'originale, per leggere misure.
-    python3 leggi.py 30 x0 y0 x1 y1 [zoom] [passo]   ->  /tmp/claude-0/s6w/l.png"""
+    python3 leggi.py 30 x0 y0 x1 y1 [zoom] [passo]   ->  /tmp/claude-0/-home-user-AddiOfa/553cbc19-7099-5f91-95ed-46eecd1a1a4a/scratchpad/l.png"""
 import sys
 from PIL import Image, ImageDraw, ImageFont
 SRC = {30: "file_0000000089688210bbf00df3de3f973f.png", 31: "file_000000008ba881f4a420b137ffc486c3.png"}
@@ -18,5 +18,5 @@ for y in range((y0 // passo + 1) * passo, y1, passo):
     Y = (y - y0) * z; forte = y % (passo * 5) == 0
     d.line([(0, Y), (im.width, Y)], fill=(255, 0, 0, 90 if forte else 28))
     if forte: d.text((2, Y + 2), str(y), fill=(220, 0, 0, 255), font=f)
-im.save("/tmp/claude-0/s6w/l.png")
+im.save("/tmp/claude-0/-home-user-AddiOfa/553cbc19-7099-5f91-95ed-46eecd1a1a4a/scratchpad/l.png")
 print(im.size)

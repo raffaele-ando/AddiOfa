@@ -205,8 +205,8 @@ def cappello_laurea(S: Scena, nome: str, c: V, larg: float, colori: dict, nappa:
     S.d(lineare(f"{nome}-sopra-luce", top[1], top[3], [(0, colori["chiaro"]), (1, colori["base"])]),
         lineare(f"{nome}-calotta-luce", c + V(0, L * 0.1), c + V(0, L * 0.5), [(0, colori["base"]), (1, colori["scuro"])]))
     # calotta: dalla losanga scende, larga ~0.58 L, fondo curvo
-    cw = L * 0.31
-    base_y = c.y + L * 0.46
+    cw = L * 0.27
+    base_y = c.y + L * 0.4
     calotta = f"M{n(c.x - cw)} {n(c.y + L * 0.1)} L{n(c.x - cw)} {n(base_y - L * 0.06)} Q{n(c.x)} {n(base_y + L * 0.1)} {n(c.x + cw)} {n(base_y - L * 0.06)} L{n(c.x + cw)} {n(c.y + L * 0.1)} Z"
     g = [f'<g id="{nome}">', f'<path id="{nome}-calotta" d="{calotta}" fill="url(#{nome}-calotta-luce)"/>',
          f'<path id="{nome}-spessore" d="{arrotondato([top[0], top[3], top[2], sotto[2], sotto[3], sotto[0]], [2, 1, 2, 2, 1, 2])}" fill="{colori["scuro"]}"/>',
