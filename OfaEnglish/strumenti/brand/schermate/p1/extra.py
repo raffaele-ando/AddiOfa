@@ -38,6 +38,24 @@ class TelaC(Tela):
         super().__init__(*a, **k)
         self._glifi = {}
 
+    reg = None   # regione dei filtri (x, y, w, h) se il contenuto è traslato
+
+    def ombra(self, dy=3, sfoca=6, colore="#0F172A", opacita=0.10, dx=0):
+        chiave = ("ombra", dx, dy, sfoca, colore, opacita)
+        if chiave in self._chiavi: return self._chiavi[chiave]
+        fid = self.uid("om"); x, y, w, h = self.reg or (-40, -40, self.w + 80, self.h + 80)
+        self.defs.append(f'<filter id="{fid}" filterUnits="userSpaceOnUse" x="{n(x)}" y="{n(y)}" width="{n(w)}" height="{n(h)}" color-interpolation-filters="sRGB">'
+                         f'<feGaussianBlur in="SourceAlpha" stdDeviation="{n(sfoca / 2)}"/><feOffset dx="{n(dx)}" dy="{n(dy)}" result="o"/>'
+                         f'<feFlood flood-color="{colore}" flood-opacity="{n(opacita)}"/><feComposite in2="o" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>')
+        self._chiavi[chiave] = f"url(#{fid})"; return self._chiavi[chiave]
+
+    def sfoca(self, quanto):
+        chiave = ("sfoca", quanto)
+        if chiave in self._chiavi: return self._chiavi[chiave]
+        fid = self.uid("sf"); x, y, w, h = self.reg or (-40, -40, self.w + 80, self.h + 80)
+        self.defs.append(f'<filter id="{fid}" filterUnits="userSpaceOnUse" x="{n(x)}" y="{n(y)}" width="{n(w)}" height="{n(h)}"><feGaussianBlur stdDeviation="{n(quanto)}"/></filter>')
+        self._chiavi[chiave] = f"url(#{fid})"; return self._chiavi[chiave]
+
     def _glifo(self, peso, c):
         pw = ui._peso(peso); _, gs, cmap, upm = ui._font(pw)
         g = cmap.get(ord(c), cmap[ord("?")]); ch = (pw, g)
@@ -97,7 +115,7 @@ def riga(t, testo, x, y, larg, peso=800, colore=NAVY, spaz_rel=-0.02, id=None, a
 def wordmark(t, x, y, w, scuro=False, id="wordmark", rot=0):
     svg = (LOGO / "wordmark-primario.svg").read_text()
     if scuro:
-        svg = svg.replace("#071438", "#FFFFFF")
+        svg = svg.replace("#FFFFFF", "#1D4FD8").replace("#071438", "#FFFFFF").replace("#055EFD", "#FFFFFF")
     if rot:
         h = w * 77 / 365
         with t.gruppo(id + "-rot", trasforma=f"translate({n(x)} {n(y)}) rotate({n(rot)})"):

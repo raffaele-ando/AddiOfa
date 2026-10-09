@@ -123,8 +123,7 @@ def s06():
     with t.gruppo("nota-privacy"):
         C(t, 25, 262, 9.5, "#E6EBF4", id="scudo-fondo")
         I(t, "scudo", 25, 262, 11, "#51648F", 2.4, fill_pieno="#51648F")
-        righe_t(t, ["I tuoi dati sono al sicuro", "e verranno usati solo per", "verificare che sei uno studente", "del Politecnico di Milano."], 45, 264, 8.4, 13, 400, "#6B7690",
-                larg=[78, 90, 108, 100], id="nota")
+        righe_t(t, ["I tuoi dati sono al sicuro", "e verranno usati solo per", "verificare che sei uno studente", "del Politecnico di Milano."], 45, 264, 9.4, 13, 400, "#6B7690", id="nota")
     pulsante_rosso(t, 15, 357, 167, 36, "Continua", 10.6, larg=45, id="pulsante-primario")
     return chiudi(t)
 
@@ -143,7 +142,7 @@ def s07():
             C(t, 32, y, 8, t.sfumatura(["#35C970", "#1FA84F"]))
             T(t, str(i + 1), 32, y + 3, 8.6, 700, "#FFFFFF", "middle")
             for j, r_ in enumerate(righe):
-                T(t, r_, 49, y + 3.5 + j * 12, 8.0, 400, "#4A5575", id=f"passo-{i + 1}-riga-{j + 1}")
+                T(t, r_, 49, y + 3.5 + j * 12, 8.8, 400, "#4A5575", id=f"passo-{i + 1}-riga-{j + 1}")
     pulsante_contorno(t, 14, 358, 149, 26, "Più tardi", 9.6, larg=37, id="pulsante-secondario")
     pulsante_rosso(t, 14, 387, 149, 27, "Invita 3 amici", 9.8, larg=62, id="pulsante-primario")
     return chiudi(t)

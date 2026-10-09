@@ -22,5 +22,173 @@
   "stato": "raster",
   "svg": "brand/concept-svg/layout/46-locandina-c/01-locandina-c.svg",
   "nota": "Locandina 1024x1536 px tutta vettoriale (wordmark del kit con marchio stella, titoli Inter tracciati, tessere con icone, telefono col quiz, QR VERO decodificabile verso linktr.ee/addiofa al posto di quello finto dell'AI, strisce staccabili, svolazzi, frecce e scritte a mano rifatte in Inter corsivo maiuscolo). RASTER dichiarato: solo la fotografia dell'edificio del Politecnico (JPEG incorporato, ritagliato con strappo vettoriale; testi/stella/telefono sovrapposti dall'AI tolti con inpaint e rifatti in vettoriale). Testo del telefono ricostruito (stesso quiz in tutte le varianti, 'Choose the correct form: She ___ to Milan every day.'). Sigillo del Politecnico: non presente. Omessa la mano grigia che regge il telefono (anatomia AI, fotografia): il telefono è libero."
+ },
+ {
+  "elementi": [
+   "32.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/32-banner-verticali/01-banner-hero.svg",
+  "nota": "Banner di 301-317 px (tela in px x1,5), tutto vettoriale tranne le foto/render 3D dichiarati RASTER (JPEG incorporati): arco con stella e scalinata, skyline di Milano, parete 'SAME STUDENTS HIGHER HORIZONS'. Testi, pulsanti, wordmark, sfumature, bordi strappati, schede, icone, anello 82 %% e badge store vettoriali; testi sovrapposti dall'AI alle foto tolti con inpaint e rifatti. Tile del marchio dal kit (marchio-tile-scuro)."
+ },
+ {
+  "elementi": [
+   "32.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/32-banner-verticali/02-banner-funzionalita.svg",
+  "nota": "Banner di 301-317 px (tela in px x1,5), tutto vettoriale tranne le foto/render 3D dichiarati RASTER (JPEG incorporati): studente alla scrivania con pannelli di vetro (testi QUIZ/SIMULAZIONI/PROGRESSI sono nella foto), rocce di ghiaccio. Testi, pulsanti, wordmark, sfumature, bordi strappati, schede, icone, anello 82 %% e badge store vettoriali; testi sovrapposti dall'AI alle foto tolti con inpaint e rifatti. Telefono col risultato 82 %, timeline, quattro schede di vetro con icone (bandiera UK con diagonali sfalsate) rifatti vettoriali; anello 82 % vettoriale (nell'originale mescolato alle rocce); 'Probabilità' corretto (originale 'Probablità'); pianta e blocco bianco dietro al telefono non riprodotti."
+ },
+ {
+  "elementi": [
+   "32.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/32-banner-verticali/03-banner-storie.svg",
+  "nota": "Banner di 301-317 px (tela in px x1,5), tutto vettoriale tranne le foto/render 3D dichiarati RASTER (JPEG incorporati): arco con il Duomo, volto del video, arco con la stella di notte. Testi, pulsanti, wordmark, sfumature, bordi strappati, schede, icone, anello 82 %% e badge store vettoriali; testi sovrapposti dall'AI alle foto tolti con inpaint e rifatti. 'Sarica su' corretto in 'Scarica su'; sigillo del Politecnico = segnaposto circolare (id sigillo-segnaposto); badge store semplificati (simboli stilizzati)."
+ },
+ {
+  "elementi": [
+   "00.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/00-social-carosello/01-intro-tuo-inglese-senza-ostacoli.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. "
+ },
+ {
+  "elementi": [
+   "00.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/00-social-carosello/02-cose-addiofa.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Interamente vettoriale. "
+ },
+ {
+  "elementi": [
+   "00.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/00-social-carosello/03-perche-e-importante.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Interamente vettoriale. "
+ },
+ {
+  "elementi": [
+   "00.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/00-social-carosello/04-come-funziona.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Interamente vettoriale. Contatore '4/6' corretto (originale ripeteva '3/6'). "
+ },
+ {
+  "elementi": [
+   "00.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/00-social-carosello/05-il-tuo-risultato.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. Telefono vettoriale con schermata ricostruita (Quiz completato 82 %); testo della frase a mano corretto ('È'). "
+ },
+ {
+  "elementi": [
+   "00.001"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/00-social-carosello/06-stessi-studenti-percorsi-luminosi.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. "
+ },
+ {
+  "elementi": [
+   "00.002"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/00-social-carosello/07-tre-consigli.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. "
+ },
+ {
+  "elementi": [
+   "00.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/00-social-carosello/08-conosci-la-struttura.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Interamente vettoriale. "
+ },
+ {
+  "elementi": [
+   "00.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/00-social-carosello/09-esercitati-con-simulazioni.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Interamente vettoriale. "
+ },
+ {
+  "elementi": [
+   "00.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/00-social-carosello/10-studia-in-modo-costante.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Interamente vettoriale. Calendario con cappello disegnato in vettoriale (semplificato rispetto al render). "
+ },
+ {
+  "elementi": [
+   "00.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/00-social-carosello/11-strumenti-utili.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Interamente vettoriale. "
+ },
+ {
+  "elementi": [
+   "00.002"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/00-social-carosello/12-pronto-alla-prova.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. Mano col telefono lasciata nella foto raster (mockup); testi dello schermo non ricostruiti. "
+ },
+ {
+  "elementi": [
+   "00.003"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/00-social-carosello/13-dalla-paura-al-superamento.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. "
+ },
+ {
+  "elementi": [
+   "00.003"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/00-social-carosello/14-prima.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. "
+ },
+ {
+  "elementi": [
+   "00.003"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/00-social-carosello/15-durante.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. Mano col telefono lasciata nella foto raster (mockup); testi dello schermo non ricostruiti. "
+ },
+ {
+  "elementi": [
+   "00.003"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/00-social-carosello/16-risultato.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. "
+ },
+ {
+  "elementi": [
+   "00.003"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/00-social-carosello/17-consigli.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Interamente vettoriale. "
+ },
+ {
+  "elementi": [
+   "00.003"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/00-social-carosello/18-il-tuo-turno.svg",
+  "nota": "Slide di carosello (vista = px originali x2), testi/badge/pulsanti/stelle/wordmark vettoriali; sfondo foto/render RASTER dichiarato dove presente; scritte a mano rifatte in Inter corsivo maiuscolo. Contiene foto raster di sfondo. "
  }
 ]

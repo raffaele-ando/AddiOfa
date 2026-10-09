@@ -7,5 +7,233 @@
   "stato": "raster",
   "svg": "brand/concept-svg/layout/37-profilo-instagram/01-profilo-instagram-addiofa.svg",
   "nota": "Profilo @addiofa completo (1312x1199). Vettoriale: avatar con stella a 4 punte, nome, pulsanti, contatori, bio (emoji sostituite da glifi vettoriali), 5 storie in evidenza (riuso illustrazioni kit-blu studio-inglese, quiz-test, suggerimenti-consigli, progressi-statistiche + cappello da laureato disegnato), schede, post 2 tutto vettoriale (cielo, telefono con quiz, testo inglese rifatto), badge, spilli, frecce. Raster: solo gli sfondi fotografici dei post 1 e 3 (studenti/edificio/scala), puliti dalle scritte cotte con inpainting. Il testo 'POLITECNICO DI MILANO' sull'edificio resta nella foto. Testo ricostruito: quiz 'She goes to Milan every day' (nell'originale illeggibile)."
+ },
+ {
+  "elementi": [
+   "48.001",
+   "48.002"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/01-storie-verticali.svg",
+  "nota": "8 storie/reel verticali. Raster: sfondi fotografici (studenti, mano con telefono, edificio) puliti dalle scritte con inpainting; tutto il resto vettoriale (wordmark AddiOFA, icone social generiche, contatori, didascalie, titoli, arco 82% e pulsanti, scheda con spunte, bandiera UK a diagonali sfalsate, fumetto, elenco errori, telefono con quiz). Corretti: '3 / 1' sovrapposti della tessera 3 consigli; contatori coperti dalla scheda; '92 con apostrofo. Testi ricostruiti: contatori della tessera 7 (9.2K, 184, 890), testo del telefono nella tessera 8."
+ },
+ {
+  "elementi": [
+   "48.003"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/02-carosello-educativo.svg",
+  "nota": "Carosello a 5 schede. Raster solo le foto dell'edificio (copertina e scheda 4, pulite dalle scritte); schede, numeri, titoli, telefono mini, checklist, pulsanti vettoriali."
+ },
+ {
+  "elementi": [
+   "48.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/03-carosello-dati-statistiche.svg",
+  "nota": "Carosello '5 motivi per non rimandare l'OFA': tutto vettoriale, telefono con stella a 4 punte disegnato, icone (moneta, lucchetto, x, cervello, barre) disegnate. 'in media 30€' come nell'originale (cifra non inventata)."
+ },
+ {
+  "elementi": [
+   "48.005",
+   "48.006",
+   "48.007",
+   "48.008",
+   "48.009",
+   "48.010"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/04-carosello-tips.svg",
+  "nota": "Carosello tips: testata, 'Tip del giorno / Reading' (frammenti 005, 006, 008, 009 rimessi insieme e corretti), lampadina = riuso kit-blu suggerimenti-consigli, schede 1 e 2 (tagliata a bordo, come nell'originale). Tutto vettoriale."
+ },
+ {
+  "elementi": [
+   "48.011"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/05-reel-study-vlog.svg",
+  "nota": "Reel study vlog: foto scrivania/laptop raster pulita; titolo, chip 'Realistica.', icone e contatore vettoriali."
+ },
+ {
+  "elementi": [
+   "48.012"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/06-reel-testimonianza.svg",
+  "nota": "Reel testimonianza: foto del volto raster pulita; citazione e interfaccia vettoriali."
+ },
+ {
+  "elementi": [
+   "48.013"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/07-reel-miti-vs-realta.svg",
+  "nota": "Reel miti vs realtà: tutto vettoriale (sfondo a sfumatura al posto della foto sfocata)."
+ },
+ {
+  "elementi": [
+   "48.014"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/08-reel-app-walkthrough.svg",
+  "nota": "Reel app walkthrough: tutto vettoriale, telefono con 'Il tuo piano' disegnato (testo del telefono ricostruito: Simulazioni, Quiz mirati, Spiegazioni, Statistiche)."
+ },
+ {
+  "elementi": [
+   "48.015"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/09-reel-motivazionale.svg",
+  "nota": "Reel motivazionale: foto della scalinata raster pulita; scritta a mano resa con Inter inclinata."
+ },
+ {
+  "elementi": [
+   "48.016",
+   "48.017"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/10-post-informativo.svg",
+  "nota": "Post informativo 'Cosa succede se non superi l'OFA?': card vettoriale + pannello inclinato con foto dell'edificio (raster, pulita) e stella a 4 punte disegnata. Icone delle voci sostituite con glifi veri."
+ },
+ {
+  "elementi": [
+   "48.018"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/48-social-copertine-video/11-post-meme-engagement.svg",
+  "nota": "Post meme: foto del cane con le cuffie raster; nuvoletta, testo ('I go... to the... ehm... Polimi... because... opportunities... yes?' ricopiato), icone cuore/commenti/condividi/salva generiche vettoriali."
+ },
+ {
+  "elementi": [
+   "26.001",
+   "26.002",
+   "26.003",
+   "26.007",
+   "26.009",
+   "26.010",
+   "26.011",
+   "26.012",
+   "26.014"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/01-hero-social-media-identity.svg",
+  "nota": "Hero della tavola: tutto vettoriale (cielo, edificio, gradinata, blocco-marchio con stella luminosa simmetrica, titolo Inter, scritta a mano resa con Inter inclinata). I frammenti di testo 001/002/007/009/010/011/012/014 sono coperti dal layout."
+ },
+ {
+  "elementi": [
+   "26.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/02-profilo-instagram-telefono.svg",
+  "nota": "Telefono con profilo @addiofa tutto vettoriale (corpo, isola, barra di stato, avatar con stella luminosa, bio, pulsanti, 5 storie). Corretti: icona 'Risultati' (nell'originale era un punto interrogativo) ora barre; emoji della bio sostituite da glifi; icone di stato generiche. Testo della bio ricopiato dall'originale."
+ },
+ {
+  "elementi": [
+   "26.005",
+   "26.008",
+   "26.013"
+  ],
+  "stato": "riuso",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/03-highlight-covers.svg",
+  "nota": "6 copertine delle storie in evidenza (Quiz, Tips, Risultati=trofeo, Studenti, FAQ, OFA): trofeo = riuso kit-blu/successo; documento, lampadina, cappello da laureato, punto interrogativo, barre disegnati vettoriali. 008 (trofeo) e 013 (OFA) coperti qui."
+ },
+ {
+  "elementi": [
+   "26.006"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/04-formati-di-contenuto.svg",
+  "nota": "4 formati di contenuto. Tre vettoriali (Quiz Time, 3 consigli, 82%); il quarto (Community: studente di spalle davanti all'edificio) ha lo sfondo fotografico raster pulito dalla scritta, titolo vettoriale."
+ },
+ {
+  "elementi": [
+   "26.015"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/05-template-post-instagram.svg",
+  "nota": "testo: etichetta di sezione 'TEMPLATE STORIES (9:16)', non e' un elemento grafico (le etichette sezione sono coperte come testo nei layout)."
+ },
+ {
+  "elementi": [
+   "26.016"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/05-template-post-instagram.svg",
+  "nota": "6 post 1:1: cinque vettoriali (Quiz Time, 3 consigli, 82%, Errori comuni, checklist scura); il post 4 (edificio POLITECNICO DI MILANO) ha lo sfondo foto raster pulito dalla scritta a mano, che e' rifatta ('SAME STUDENTS BRIGHTER PATHS' = tagline inglese mantenuta). Simboli rifatti: X rossa e cerchi numerati."
+ },
+ {
+  "elementi": [
+   "26.017",
+   "26.018"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/06-template-stories.svg",
+  "nota": "5 storie 9:16 tutte vettoriali (cielo e volumi disegnati, telefono con quiz, grafico a barre con +40%, lampadina = riuso kit-blu suggerimenti-consigli). Testi ricostruiti: contenuto dello schermo del telefono nella storia 1 (barre di testo, non frasi)."
+ },
+ {
+  "elementi": [
+   "26.019"
+  ],
+  "stato": "raster",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/07-template-reels-tiktok.svg",
+  "nota": "5 reel 9:16. Raster pulito: sfondi fotografici di 4 reel (studente, laptop, di spalle, ragazza); il reel 'Errore comune' e' vettoriale. Titoli, icone, X rossa, spunta verde, contatori vettoriali; nel reel laptop la scritta 'Quiz reale dell'OFA' e' vettoriale su schermo ripulito."
+ },
+ {
+  "elementi": [
+   "26.020",
+   "26.021",
+   "26.025",
+   "26.026",
+   "26.030"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/08-esempi-di-caption-e-tono-di-voce.svg",
+  "nota": "Scheda caption (testata addiofa, testo, elenco numerato, hashtag) e riga 'Tono di voce' con 6 chip (Chiaro, Motivante, Pratico, Amichevole, Istituzionale, Autentico: il blocco chip non e' un elemento del catalogo ma fa parte della composizione). Bandierina UK a diagonali sfalsate al posto dell'emoji."
+ },
+ {
+  "elementi": [
+   "26.022",
+   "26.023",
+   "26.024",
+   "26.027",
+   "26.028",
+   "26.029"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/09-applicazioni.svg",
+  "nota": "Tre profili AddiOFA su TikTok, YouTube, LinkedIn: forme generiche (nessuna copia dei loghi di terzi: la nota di TikTok e' un segno generico), marchio AddiOFA = tile con stella disegnato. Pulsanti Segui/Iscriviti/Segui vettoriali; testi 'AddiOFA', 'Studenti Polimi - Preparazione OFA di inglese' ricopiati."
+ },
+ {
+  "elementi": [
+   "26.031",
+   "26.032",
+   "26.033",
+   "26.034",
+   "26.035",
+   "26.036",
+   "26.037"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/10-pattern-e-background.svg",
+  "nota": "7 sfondi/pattern: stella morbida, blu notte con arco e scintilla, nuvole, volumi bianchi dell'edificio, fascia e griglia di punti, archi sottili. Tutto vettoriale (nuvole e edificio disegnati, non foto). 035 (fascia di punti) frammento incluso."
+ },
+ {
+  "elementi": [
+   "26.038",
+   "26.039",
+   "26.041",
+   "26.042"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/11-grafiche-testo.svg",
+  "nota": "4 grafiche di testo: 'Il tuo inglese, senza ostacoli.', 'SMALL STEPS BIG OPPORTUNITIES' a mano (Inter inclinata), 'Dal Polimi al tuo futuro.', 'Quiz. Strategie. Risultati.'."
+ },
+ {
+  "elementi": [
+   "26.040"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/layout/26-social-media-identity/12-copertina-social.svg",
+  "nota": "Copertina YouTube/LinkedIn: wordmark AddiOFA vettoriale con O a stella, tagline, scena con blocco-marchio illuminato, scritta a mano. Tutto vettoriale."
  }
 ]

@@ -5,7 +5,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/01-profilo.svg",
-  "nota": "Barra del livello portata al 65% (l'originale la disegnava al 58%); icone del menu (pupazzetto, badge storto) = bersaglio, grafico, scudo, ingranaggio; avatar = sagoma segnaposto (non foto). Testi leggibili, nessun testo ricostruito."
+  "nota": "Barra del livello portata al 65% (l'originale la disegnava al 58%); icone del menu (pupazzetto, badge storto) = bersaglio, grafico, scudo, ingranaggio; avatar = sagoma segnaposto (non foto). Testi leggibili, nessun testo ricostruito. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]"
  },
  {
   "elementi": [
@@ -13,7 +13,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/02-statistiche.svg",
-  "nota": "Barre delle abilita' lunghe quanto la percentuale scritta (l'originale no); grafico a 18 barre uguali e allineate; icone delle abilita' rifatte; nav con Profilo attivo (originale: nessuna). Nessun testo ricostruito."
+  "nota": "Barre delle abilita' lunghe quanto la percentuale scritta (l'originale no); grafico a 18 barre uguali e allineate; icone delle abilita' rifatte; nav con Profilo attivo (originale: nessuna). Nessun testo ricostruito. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]"
  },
  {
   "elementi": [
@@ -21,7 +21,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/03-frasi-e-vocaboli.svg",
-  "nota": "Stelle vere (a 5 punte regolari), chip Gia' note rimesso dentro il margine, sei frasi come nell'originale. Nessun testo ricostruito."
+  "nota": "Stelle vere (a 5 punte regolari), chip Gia' note rimesso dentro il margine, sei frasi come nell'originale. Nessun testo ricostruito. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]"
  },
  {
   "elementi": [
@@ -29,7 +29,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/04-quiz-domanda.svg",
-  "nota": "Quiz 3/10: avanzamento a 10 segmenti con 3 pieni (l'originale 8 segmenti, 2 pieni); nav con Lezioni attiva. Testi dall'originale."
+  "nota": "Quiz 3/10: avanzamento a 10 segmenti con 3 pieni (l'originale 8 segmenti, 2 pieni); nav con Lezioni attiva. Testi dall'originale. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]"
  },
  {
   "elementi": [
@@ -37,7 +37,7 @@
   ],
   "stato": "riuso",
   "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/05-quiz-completato.svg",
-  "nota": "Quiz completato 80%: illustrazione kit-rosso/stati/completato (riuso) + coriandoli disegnati; misuratore ellittico con pomello sull'arco. Testi leggibili."
+  "nota": "Quiz completato 80%: illustrazione kit-rosso/stati/completato (riuso) + coriandoli disegnati; misuratore ellittico con pomello sull'arco. Testi leggibili. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]"
  },
  {
   "elementi": [
@@ -45,7 +45,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/06-correzioni.svg",
-  "nota": "Correzioni: ritaglio tagliato a destra, scheda ricostruita simmetrica; spunte e X vere; frasi e risposte dell'originale. Nessun testo ricostruito."
+  "nota": "Correzioni: ritaglio tagliato a destra, scheda ricostruita simmetrica; spunte e X vere; frasi e risposte dell'originale. Nessun testo ricostruito. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]"
  },
  {
   "elementi": [
@@ -53,7 +53,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/07-simulatore-esame.svg",
-  "nota": "Simulatore d'esame: sottotitolo AI storto ('e temmpli e tempo reale') ricostruito come 'e tempi reali.' (TESTO RICOSTRUITO); scena cronometro+foglio disegnata (il kit ha solo il blocco appunti); icone delle righe rifatte; ritaglio tagliato a destra, margine ricostruito."
+  "nota": "Simulatore d'esame: sottotitolo AI storto ('e temmpli e tempo reale') ricostruito come 'e tempi reali.' (TESTO RICOSTRUITO); scena cronometro+foglio disegnata (il kit ha solo il blocco appunti); icone delle righe rifatte; ritaglio tagliato a destra, margine ricostruito. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]"
  },
  {
   "elementi": [
@@ -61,7 +61,7 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/08-simulazione-domanda.svg",
-  "nota": "Simulazione 12/40: avanzamento 10 segmenti con 3 pieni (originale 9 disuguali); timer e scudo Grammar ridisegnati; segnalibro vero. Testi leggibili."
+  "nota": "Simulazione 12/40: avanzamento 10 segmenti con 3 pieni (originale 9 disuguali); timer e scudo Grammar ridisegnati; segnalibro vero. Testi leggibili. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]"
  },
  {
   "elementi": [
@@ -69,7 +69,7 @@
   ],
   "stato": "riuso",
   "svg": "brand/concept-svg/schermate/18-schermate-profilo-statistiche/09-simulazione-completata.svg",
-  "nota": "Simulazione completata 76%: coppa = riuso kit-rosso/illustrazioni/successo-superamento + coriandoli disegnati; 30 + 10 = 40 domande coerente con la schermata 8. Testi leggibili."
+  "nota": "Simulazione completata 76%: coppa = riuso kit-rosso/illustrazioni/successo-superamento + coriandoli disegnati; 30 + 10 = 40 domande coerente con la schermata 8. Testi leggibili. [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]"
  },
  {
   "elementi": [

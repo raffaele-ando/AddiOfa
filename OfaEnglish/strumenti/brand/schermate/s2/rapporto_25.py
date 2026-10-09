@@ -1,0 +1,11 @@
+def aggiungi(v):
+    S = "25-schermate"
+    v(["25.001"], "25-01-home-rischio", "svg", "Home con rischio 82 % (variante a bassa risoluzione della home di 03/s8, qui con la sezione «Come cambia il tuo rischio»). Valori ed etichette del grafico sulla stessa linea di base (nell'originale a quote diverse); i connettori blu con puntini del foglio non sono parte della schermata e non sono riprodotti. Misuratore = misuratore_rischio di s8.")
+    v(["25.002"], "25-02-come-viene-calcolato", "svg", "Finestra «Come viene calcolato il tuo rischio?» sopra la home sfocata e scurita (sfondo ricostruito con forme sfocate: non c'è altro da leggere). Icone dei 3 fattori e della nota ridisegnate; testi tutti leggibili.")
+    v(["25.003"], "25-03-fattori", "scartato", "frammento: il titolo «Fattori che influenzano il tuo rischio» tagliato dal riquadro; coperto da 25-03-fattori.svg.")
+    v(["25.004"], "25-03-fattori", "svg", "Elenco «Fattori che influenzano il tuo rischio» (foglio sopra l'app sfocata): Grammatica, Comprensione, Vocabolario, Ragionamento con barre rosso/arancio/giallo; icone ridisegnate (Aa con testo vero). Il riquadro del catalogo contiene anche la parte sfocata sopra: inclusa.")
+    v(["25.005"], "25-04-lezione-future-tenses", "svg", "Lezione «Future tenses» con barra a 5 segmenti, tre punti d'elenco (icone ridisegnate: nell'originale illeggibili, testi invece leggibili) e pulsante «Inizia la lezione».")
+    v(["25.006"], "25-05-dettaglio-obiettivo", "scartato", "frammento: striscia della barra di stato dei due schermi in basso a sinistra; coperta dagli SVG 25-05-dettaglio-obiettivo (schermata «Dettaglio obiettivo», 5 lezioni con i titoli allineati alla stessa x) e 25-06.")
+    v(["25.007"], "25-07-il-tuo-percorso", "scartato", "frammento: striscia della barra di stato della schermata «Il tuo percorso»; coperta da 25-07-il-tuo-percorso.svg.")
+    v(["25.008"], "25-06-come-cambia-rischio", "svg", "Il pannello contiene due schermate: «Come cambia il tuo rischio?» (questo SVG; la parentesi spezzata dopo il «?» è diventata l'icona (i)) e «Il tuo percorso» (25-07-il-tuo-percorso.svg, stesso grafico con 82 %/62 %/28 % e scheda «Obiettivo: sotto il 20%»).")
+    v(["25.008"], "25-07-il-tuo-percorso", "svg", "Seconda schermata del pannello 25.008: «Il tuo percorso». Grafico con punti allineati e valori sulla stessa linea di base.")

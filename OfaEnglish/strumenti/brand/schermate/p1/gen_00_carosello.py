@@ -41,7 +41,7 @@ class S:
         self.num = num
         self.w, self.h = self.x1 - self.x0, self.y1 - self.y0
         self.t = TelaC(self.w, self.h, None, id=f"slide-{num:02d}")
-        t = self.t
+        t = self.t; t.reg = (self.x0 - 40, self.y0 - 40, self.w + 80, self.h + 80)
         cid = ui.clip_rett(t, 0, 0, self.w, self.h, 30)
         t.add(f'<g id="slide" clip-path="url(#{cid})"><g id="contenuto" transform="translate({n(-self.x0)} {n(-self.y0)})">')
 
@@ -74,7 +74,7 @@ def pulisci_vista(s, regioni):
         elif modo == "pelle": r = (hsv[sub][..., 0] < 25) & (hsv[sub][..., 1] > 40) & (hsv[sub][..., 2] > 90)
         else: r = np.ones(g[sub].shape, bool)
         m[sub] |= r.astype(np.uint8) * 255
-    m = cv2.dilate(m, np.ones((5, 5), np.uint8))
+    m = cv2.dilate(m, np.ones((7, 7), np.uint8))
     return Image.fromarray(cv2.cvtColor(cv2.inpaint(a, m, 5, cv2.INPAINT_TELEA), cv2.COLOR_BGR2RGB))
 
 
@@ -143,7 +143,7 @@ def wordmark_testa(s, x, y, w, scuro=False):
 # ---------------------------------------------------------------------- slide
 def s01():
     s = S(1); t = s.t
-    img = pulisci_vista(s, [(40, 25, 230, 90, "scuro", 150), (45, 110, 420, 330, "scuro", 175), (520, 35, 600, 70, "scuro", 160), (170, 350, 305, 495, "blu", 120)])
+    img = pulisci_vista(s, [(40, 25, 230, 90, "scuro", 160), (45, 110, 420, 235, "scuro", 190), (45, 235, 345, 330, "scuro", 215), (520, 35, 600, 70, "scuro", 205), (170, 350, 305, 495, "blu", 120)])
     foto_slide(s, img)
     wordmark_testa(s, 57, 46, 148)
     tit(s, [("Il tuo inglese,", 300), ("senza ostacoli.", 335)], 57, 160, 48, 40, INK_S, 800)
@@ -259,7 +259,7 @@ def telefono_risultato(s, cx, cy, rot):
 
 def s06():
     s = S(6); t = s.t
-    img = pulisci_vista(s, [(455, 70, 730, 270, "chiaro", 22), (445, 595, 625, 665, "chiaro", 30)])
+    img = pulisci_vista(s, [(455, 70, 730, 270, "chiaro", 22), (445, 595, 625, 665, "tutto", 0), (835, 35, 885, 68, "chiaro", 20), (432, 35, 480, 62, "chiaro", 20)])
     foto_slide(s, img)
     trattino(s, "#FFFFFF"); contatore(s, "6/6", "#FFFFFF")
     for i, (txt, y, w) in enumerate([("Stessi", 112, 117), ("studenti.", 163, 176), ("Percorsi", 205, 158), ("più luminosi.", 248, 228)]):
@@ -273,7 +273,7 @@ def s06():
 
 def s07():
     s = S(7); t = s.t
-    img = pulisci_vista(s, [(60, 40, 220, 95, "scuro", 150), (60, 110, 540, 390, "scuro", 160), (520, 35, 585, 70, "scuro", 160), (180, 480, 290, 590, "blu", 120), (460, 80, 590, 240, "blu", 40)])
+    img = pulisci_vista(s, [(60, 40, 220, 95, "scuro", 160), (60, 110, 540, 330, "scuro", 190), (60, 330, 420, 390, "scuro", 205), (520, 35, 585, 70, "scuro", 205), (180, 480, 290, 590, "blu", 120), (460, 80, 590, 240, "blu", 40)])
     foto_slide(s, img)
     wordmark_testa(s, 68, 52, 142)
     stella_grande(s, 527, 160, 78, "#8DB4F3", 0.65, id="stella-trasparente")
@@ -315,7 +315,7 @@ def s09():
     badge_num(s, 2, 62, 72)
     tit(s, [("Esercitati con", 205), ("simulazioni reali", 212)], 172, 113, 37, 25, INK_S, 700)
     corpo(s, ["Fai quiz a tempo e simulazioni", "con domande simili a quelle", "dell’esame. Così migliori", "gestione del tempo e sicurezza."], 68, 197, 32, 22, "#2F4577", larghezze=[343, 317, 280, 380])
-    with t.gruppo("telefono-quiz", trasforma="translate(210 560) rotate(-15)"):
+    with t.gruppo("telefono-quiz", trasforma="translate(222 560) rotate(-14) scale(0.86)"):
         t.rett(-170, -250, 340, 600, 48, fill="#000", opacita=0.25, filtro=t.sfoca(12))
         t.rett(-172, -260, 340, 700, 48, fill=t.sfumatura(["#7A849F", "#1A2340", "#5A6482"], 0, 0, 1, 1), id="telefono-telaio")
         t.rett(-166, -254, 328, 690, 44, fill="#0F1630"); t.rett(-160, -248, 316, 680, 39, fill="#F7F9FD", id="telefono-schermo")
@@ -347,10 +347,11 @@ def calendario(s, x, y):
                 ok = (c == 2)
                 t.rett(xx, yy, 56, 50, 12, fill="#2D6BF3" if ok else "#E3ECFB", id=f"giorno-{r}{c}")
                 if ok: t.icona("spunta", xx + 14, yy + 12, 28, "#FFFFFF", 3.4)
-        t.add('<g id="cappello-laurea">')
-        t.path("M-6 170 80 130 166 170 80 212z", fill=t.sfumatura(["#3F8AFB", "#1B52D8"], 0, 0, 1, 1), extra=f'transform="translate({x - 40} {y + 80})"')
-        t.path("M0 190 80 224 160 190V230Q80 266 0 230z", fill="#1647C0", extra=f'transform="translate({x - 40} {y + 80}) translate(0 -8)"')
-        t.add("</g>")
+        with t.gruppo("cappello-laurea", trasforma=f"translate({x - 40} {y + 168})"):
+            t.path("M40 70V112Q95 140 150 112V70L95 90z", fill="#1546BC", id="cappello-corpo")
+            t.path("M0 52 95 14 190 52 95 92z", fill=t.sfumatura(["#4A93FC", "#1F5BF0"], 0, 0, 1, 1), id="cappello-piano")
+            t.path("M95 52 188 54 L196 118", stroke="#1D5BE8", sw=4, id="cappello-nappa-filo")
+            t.rett(190, 112, 14, 30, 5, fill="#2D6BF3", id="cappello-nappa")
 
 
 def s10():
@@ -360,8 +361,8 @@ def s10():
     badge_num(s, 3, 552, 72)
     tit(s, [("Studia in modo", 197), ("costante (ma leggero)", 288)], 662, 113, 37, 25, INK_S, 700)
     corpo(s, ["Meglio 20–30 minuti al giorno", "che maratone infinite. La costanza", "fa la differenza, soprattutto", "nella grammatica e nel vocabolario."], 558, 197, 31, 22, "#2F4577", larghezze=[331, 402, 335, 407])
-    calendario(s, 598, 372)
-    scritta_mano(s, [("PICCOLI", 90), ("PASSI,", 80), ("GRANDI", 88), ("RISULTATI.", 126)], 860, 392, (2, 30), -12)
+    calendario(s, 552, 384)
+    scritta_mano(s, [("PICCOLI", 90), ("PASSI,", 80), ("GRANDI", 88), ("RISULTATI.", 126)], 880, 392, (2, 30), -12)
     btn(s, 948, 605)
     return s.fine()
 
@@ -384,7 +385,7 @@ def s11():
 
 def s12():
     s = S(12); t = s.t
-    img = pulisci_vista(s, [(530, 80, 790, 340, "scuro", 150), (850, 410, 975, 560, "blu", 70)])
+    img = pulisci_vista(s, [(530, 80, 790, 345, "scuro", 205), (850, 410, 975, 560, "blu", 40)])
     foto_slide(s, img)
     trattino(s); contatore(s, "6/6", "#6B7A99")
     tit(s, [("Pronto", 140), ("a metterti", 210), ("alla prova?", 215)], 543, 115, 51, 46, INK_S, 800)
@@ -396,7 +397,7 @@ def s12():
 
 def s13():
     s = S(13); t = s.t
-    img = pulisci_vista(s, [(50, 35, 220, 90, "scuro", 150), (45, 100, 440, 290, "scuro", 160), (440, 40, 500, 70, "scuro", 160), (310, 390, 495, 530, "blu", 70)])
+    img = pulisci_vista(s, [(50, 35, 220, 90, "scuro", 160), (45, 100, 340, 290, "scuro", 200), (340, 100, 440, 235, "scuro", 150), (440, 40, 500, 70, "scuro", 205), (310, 390, 495, 545, "blu", 35)])
     foto_slide(s, img)
     wordmark_testa(s, 60, 46, 148)
     tit(s, [("Dalla paura", 255), ("al superamento.", 360)], 60, 150, 54, 42, INK_S, 800)
@@ -420,7 +421,7 @@ def s14():
 
 def s15():
     s = S(15); t = s.t
-    img = pulisci_vista(s, [(40, 60, 480, 400, "scuro", 160), (440, 40, 500, 70, "scuro", 160)])
+    img = pulisci_vista(s, [(40, 120, 330, 245, "scuro", 205), (200, 125, 345, 175, "blu", 60), (40, 250, 290, 395, "scuro", 205), (440, 40, 500, 70, "scuro", 205)])
     foto_slide(s, img)
     contatore(s, "3/6", "#6B7A99")
     pillola(s, "DURANTE", 55, 62, 125, 38, AZ, corpo_=17)
@@ -434,7 +435,7 @@ def s15():
 
 def s16():
     s = S(16); t = s.t
-    img = pulisci_vista(s, [(555, 110, 850, 410, "scuro", 150), (560, 450, 665, 560, "blu", 70), (560, 40, 640, 70, "scuro", 160)])
+    img = pulisci_vista(s, [(555, 110, 820, 335, "scuro", 205), (555, 335, 745, 365, "scuro", 205), (745, 335, 830, 362, "scuro", 200), (560, 450, 665, 560, "blu", 40), (990, 35, 1050, 70, "scuro", 205)])
     foto_slide(s, img)
     contatore(s, "4/6", "#6B7A99")
     pillola(s, "RISULTATO", 570, 62, 132, 38, AZ, corpo_=16)
@@ -464,7 +465,7 @@ def s17():
 
 def s18():
     s = S(18); t = s.t
-    img = pulisci_vista(s, [(510, 40, 660, 90, "scuro", 150), (505, 110, 780, 270, "scuro", 170), (880, 40, 950, 70, "chiaro", 25), (510, 285, 810, 350, "blu", 120), (510, 380, 720, 530, "blu", 70)])
+    img = pulisci_vista(s, [(510, 40, 660, 90, "scuro", 160), (505, 110, 885, 270, "scuro", 205), (880, 40, 950, 70, "chiaro", 20), (510, 285, 810, 350, "blu", 120), (510, 380, 720, 530, "blu", 40)])
     foto_slide(s, img)
     wordmark_testa(s, 519, 46, 126)
     contatore(s, "6/6", "#FFFFFF")

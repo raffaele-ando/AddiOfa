@@ -17,7 +17,8 @@ note18 = {
 v = []
 for i in range(1, 10):
     st = "riuso" if i in (5, 9) else "svg"
-    v.append({"elementi": [f"18.{i:03d}"], "stato": st, "svg": f"brand/concept-svg/schermate/18-schermate-profilo-statistiche/{n18[i]}.svg", "nota": note18[i]})
+    v.append({"elementi": [f"18.{i:03d}"], "stato": st, "svg": f"brand/concept-svg/schermate/18-schermate-profilo-statistiche/{n18[i]}.svg",
+              "nota": note18[i] + " [s3 ha coperto 18.00N col riuso di 19.00N (tab-bar a 5 voci); questa versione e' fedele alla nav a 3 voci di 18: preferibile per 18, tenere 19 per 19.]"})
 n20 = {1: "01-calcoliamo-0", 2: "02-elaboriamo-18", 3: "03-stiamo-analizzando-42", 4: "04-ultimi-calcoli-68", 5: "05-quasi-pronto-80", 6: "06-il-tuo-risultato-82"}
 note20 = {
  1: "Calcoliamo 0%: motore parametrico di s5 (strumenti/brand/schermate/s5/motore.py) + corpo proprio (elenco passi con icone). Intestazione 10/10 con barra piena, pomello sull'arco, nessuna tacca (non ci sono nell'originale). Ritaglio tagliato a destra come l'originale. Testi leggibili.",

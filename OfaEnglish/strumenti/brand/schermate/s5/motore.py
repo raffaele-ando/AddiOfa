@@ -24,7 +24,7 @@ QUI_S5 = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(QUI_S5))
 sys.path.insert(0, str(QUI_S5.parent))
 from extra import *                       # noqa: F401,F403,E402
-from extra import testo_box, misuratore_arco, tessera_icona, spunta_cerchio, cerchio_vuoto, spinner, tondo_rosso, Tela, n, KIT  # noqa: E402,F401
+from extra import testi_box_gruppo, testo_box, misuratore_arco, tessera_icona, spunta_cerchio, cerchio_vuoto, spinner, tondo_rosso, Tela, n, KIT  # noqa: E402,F401
 from ui import RADICE                     # noqa: E402
 import misura as _m                       # noqa: E402
 
@@ -59,18 +59,19 @@ class Mis:
     def righe(self, y0, y1, x0=0, x1=None, soglia=150, gap=12, minh=3):
         """Segmenti d'inchiostro (x0, x1, y0, y1) in ordine di lettura nella fascia."""
         x1 = x1 or self.W
+        y0, y1, x0, x1 = int(round(y0)), int(round(y1)), int(round(x0)), int(round(x1))
         def f():
             segs = _m.segmenti(self.im, soglia, gap, (y0, y1), (x0, x1))
             return [[s[2], s[3] + 1, s[0], s[1] + 1] for s in segs if s[1] - s[0] + 1 >= minh]
         r = self._ch(f"r{y0},{y1},{x0},{x1},{soglia},{gap}", f)
         return [tuple(v) for v in sorted(r, key=lambda b: (round(b[2] / 6), b[0]))]
 
-    def arco(self, y0, y1, cx, cy_r, rx_r, ry_r, th_r=(20, 24, 28, 32)):
+    def arco(self, y0, y1, cx, cy_r, rx_r, ry_r, th_r=(20, 24, 28, 32), delta=12):
         def f():
-            p, s = _m.fit_arco_grid(self.im, y0, y1, cx, cy_r, rx_r, ry_r, th_r)
+            p, s = _m.fit_arco_grid(self.im, y0, y1, cx, cy_r, rx_r, ry_r, th_r, delta)
             p["score"] = s
             return p
-        return self._ch(f"a{y0},{y1},{cx},{cy_r},{rx_r},{ry_r}", f)
+        return self._ch(f"a{y0},{y1},{cx},{cy_r},{rx_r},{ry_r}" + (f",d{delta}" if delta != 12 else ""), f)
 
     def scheda(self):
         """(xl, xr, yt, yb, fondo, striscia): bordi della scheda bianca (strisce azzurre ai lati ai bordi)."""
@@ -106,7 +107,7 @@ def cornice(t: Tela, sp: dict, mis: Mis):
     t.rett(0, 0, t.w, t.h, 0, fill=strisc, id="sfondo-pagina")
     r = 15
     x0 = P(xl if xl > 0 else -30); x1 = P(xr if xr < mis.W else mis.W + 30)
-    y0 = P(yt); y1 = P(sp.get("H", mis.H) + 40)
+    y0 = P(yt); y1 = P(yb if yb < mis.H - 6 else sp.get("H", mis.H) + 40)
     t.rett(x0, y0, x1 - x0, y1 - y0, P(r), fill=fondo, id="scheda-telefono")
 
 
@@ -130,10 +131,11 @@ def barra_stato(t: Tela, mis: Mis):
 def intestazione(t: Tela, mis: Mis):
     """Indietro + 10/10 + barra di avanzamento piena (corretto: alcune schermate AI l'hanno a metà)."""
     P = t.p
-    segs = mis.righe(40, 100, soglia=205, gap=10)
-    barra = max(segs, key=lambda s: s[1] - s[0])
-    ind = min([s for s in segs if s is not barra], key=lambda s: s[0])
-    passo = [s for s in segs if s is not barra and s is not ind and s[1] - s[0] > 20][0]
+    bl = [b for b in comp(mis, 25, 100, 0, mis.W, "blu", minarea=60, dil=0) if b[1] - b[0] > 60]
+    barra = max(bl, key=lambda s: s[1] - s[0])[:4]
+    ind = min(mis.righe(30, 100, 0, barra[0] - 2, 150, 6), key=lambda s: s[0])
+    pas = [s for s in mis.righe(barra[2] - 24, barra[2] + 1, barra[0] - 4, mis.W, 160, 10) if s[1] - s[0] > 20 and s[3] <= barra[2] + 2]
+    passo = pas[0]
     with t.gruppo("intestazione"):
         cx, cy, hh = (ind[0] + ind[1]) / 2, (ind[2] + ind[3]) / 2, (ind[3] - ind[2]) * 0.8
         t.path(f"M{n(P(cx) + P(hh) * 0.28)} {n(P(cy) - P(hh) * 0.5)}L{n(P(cx) - P(hh) * 0.22)} {n(P(cy))}L{n(P(cx) + P(hh) * 0.28)} {n(P(cy) + P(hh) * 0.5)}",
@@ -144,14 +146,17 @@ def intestazione(t: Tela, mis: Mis):
                id="barra-avanzamento", filtro=t.ombra(1, P(3), "#2F73F2", 0.22))
 
 
-def testi(t: Tela, mis: Mis, stringhe, y0, y1, *, x0=0, x1=None, peso=400, colore=SOTTO, soglia=150, gap=14, ancora="start", id="testo", max_h=40):
+def testi(t: Tela, mis: Mis, stringhe, y0, y1, *, x0=0, x1=None, peso=400, colore=SOTTO, soglia=150, gap=14, ancora="start", id="testo", max_h=40, gruppo=True):
     """Scrive le stringhe nei riquadri d'inchiostro trovati (in ordine) nella fascia."""
     P = t.p
     bande = [b for b in mis.righe(y0, y1, x0, x1, soglia, gap) if b[3] - b[2] <= max_h]
     if len(bande) != len(stringhe):
         print(f"  ! {id} {mis.nn}.{mis.k}: {len(bande)} bande per {len(stringhe)} stringhe {stringhe} fascia {y0}-{y1} {bande}")
-    for i, (s, b) in enumerate(zip(stringhe, bande)):
-        testo_box(t, s, P(b[0]), P(b[1]), P(b[2] + 0.6), P(b[3] - 0.6), peso, colore, ancora, id=f"{id}-{i + 1}" if len(stringhe) > 1 else id)
+    righe = [(s, P(b[0]), P(b[1]), P(b[2] + 0.6), P(b[3] - 0.6)) for s, b in zip(stringhe, bande)]
+    if len(righe) > 1 and gruppo: testi_box_gruppo(t, righe, peso, colore, id, ancora)
+    else:
+        for i, r in enumerate(righe):
+            testo_box(t, *r, peso, colore, ancora, id=f"{id}-{i + 1}" if len(stringhe) > 1 else id)
     return bande
 
 
@@ -181,19 +186,17 @@ def disegna_base(sp: dict, mis: Mis) -> Tela:
     ytop = sp.get("y_testa", 100)
     bande = [b for b in mis.righe(ytop, sp["y_gauge0"], soglia=sogl_t, gap=40)]
     bt = [b for b in bande[:nt]]
-    for i, (s, b) in enumerate(zip(sp["titolo"], bt)):
-        testo_box(t, s, P(b[0]), P(b[1]), P(b[2] + 0.5), P(b[3] - 0.5), 700, NAVY, id=f"titolo-{i + 1}" if nt > 1 else "titolo")
+    testi_box_gruppo(t, [(s, P(b[0]), P(b[1]), P(b[2] + 0.5), P(b[3] - 0.5)) for s, b in zip(sp["titolo"], bt)], 700, NAVY, "titolo")
     sb = mis.righe(bt[-1][3] + 4, sp["y_gauge0"], soglia=sp.get("soglia_sotto", 165), gap=40)
-    for i, (s, b) in enumerate(zip(sp["sotto"], sb)):
-        testo_box(t, s, P(b[0]), P(b[1]), P(b[2] + 0.6), P(b[3] - 0.6), 400, SOTTO, id=f"sottotitolo-{i + 1}" if ns > 1 else "sottotitolo")
+    testi_box_gruppo(t, [(s, P(b[0]), P(b[1]), P(b[2] + 0.6), P(b[3] - 0.6)) for s, b in zip(sp["sotto"], sb)], 400, SOTTO, "sottotitolo")
     if len(sb) < ns: print("  ! sottotitolo: bande", len(sb), "per", ns, sp["id"])
     # percentuale e didascalia
     py0, py1 = sp["pct_y"]
-    pb = mis.righe(py0, py1, soglia=sp.get("soglia_pct", 150), gap=40)
+    pb = mis.righe(py0, py1, soglia=sp.get("soglia_pct", 100), gap=40)
     pb = max(pb, key=lambda b: b[3] - b[2])
     cx = (pb[0] + pb[1]) / 2
     g = sp["gauge"]
-    a = mis.arco(sp["y_gauge0"], py1, round(cx), g["cy_r"], g["rx_r"], g["ry_r"], g.get("th_r", (20, 24, 28, 32)))
+    a = mis.arco(sp["y_gauge0"], py1, round(cx), g["cy_r"], g["rx_r"], g["ry_r"], g.get("th_r", (20, 24, 28, 32)), g.get("delta", 12))
     a = dict(a); a["th"] = min(30.0, a["th"] + 2.5)
     if "arco" in sp: a.update(sp["arco"])
     with t.gruppo("misuratore-con-valore"):
@@ -206,7 +209,13 @@ def disegna_base(sp: dict, mis: Mis) -> Tela:
     sp["_pct_box"] = pb
     if sp.get("did"):
         dy0, dy1 = sp["did_y"]
-        testi(t, mis, sp["did"], dy0, dy1, peso=sp.get("did_peso", 600), colore=sp["did_col"], soglia=sp.get("soglia_did", 150), gap=40, id="didascalia")
+        stili = sp.get("did_stili")
+        if stili:
+            bande = [b for b in mis.righe(dy0, dy1, soglia=sp.get("soglia_did", 150), gap=40) if b[3] - b[2] <= 40]
+            for i, (s, b) in enumerate(zip(sp["did"], bande)):
+                testo_box(t, s, P(b[0]), P(b[1]), P(b[2] + 0.6), P(b[3] - 0.6), stili[i][0], stili[i][1], id=f"didascalia-{i + 1}")
+        else:
+            testi(t, mis, sp["did"], dy0, dy1, peso=sp.get("did_peso", 600), colore=sp["did_col"], soglia=sp.get("soglia_did", 150), gap=40, id="didascalia")
     return t
 
 
@@ -508,3 +517,30 @@ def fattori_generici(t, mis, sp, c):
                 barra_px(t, bx0, bx1, r["by"], c.get("bh", 8), r["frac"], r["col"], "#E7ECF6", id="barra")
                 for j, (s, a0, a1, xx0) in enumerate(r["dx"]):
                     testi(t, mis, [s], a0, a1, x0=xx0, peso=400, colore=ETICHETTA, soglia=175, id=f"valore-{j + 1}")
+
+
+def corpo_striscia(t, mis, sp, c):
+    """Striscia di stato sotto il misuratore (29): card, icona blu e 1-2 righe di testo."""
+    P = t.p
+    with t.gruppo("striscia-di-stato"):
+        scheda(t, *c["card"], r=15, fill=CARD_AZ, id="striscia-scheda")
+        if c.get("tile"):
+            t.rett(P(c["cx"] - 14), P(c["cy"] - 14), P(28), P(28), P(6), fill="#E4EDFB", id="icona-fondo")
+        ic = c["lato"]
+        t.icona(c["icona"], P(c["cx"] - ic / 2), P(c["cy"] - ic / 2), P(ic), "#2F6FF0", 1.9, id="icona-stato")
+        testi(t, mis, c["testi"], *c["y"], x0=c["x_txt"], peso=400, colore="#3C4F82", soglia=c.get("soglia", 150), gap=30, id="striscia-testo")
+
+
+def avviso_elevato(t, mis, sp, c):
+    """Avviso 'Rischio elevato' (29.6): titolo rosso + 2 righe piccole."""
+    P = t.p
+    with t.gruppo("avviso-rischio-elevato"):
+        scheda(t, *c["card"], r=15, fill=CARD_ROSA, id="avviso-scheda")
+        r = P(c["r"]); cx, cy = P(c["cx"]), P(c["cy"])
+        t.cerchio(cx, cy, r, fill=t.sfumatura(["#FF4350", "#EE1022"], 0.2, 0, 0.8, 1), filtro=t.ombra(1.5, r * 0.6, "#F22B36", 0.3), id="avviso-icona")
+        t.rett(cx - r * 0.11, cy - r * 0.52, r * 0.22, r * 0.62, r * 0.11, fill="#FFFFFF")
+        t.cerchio(cx, cy + r * 0.42, r * 0.13, fill="#FFFFFF")
+        b = mis.righe(*c["y_tit"], x0=c["x_txt"], soglia=140, gap=30)[0]
+        testo_box(t, c["titolo"], P(b[0]), P(b[1]), P(b[2] + 0.5), P(b[3] - 0.5), 600, "#E2101B", id="avviso-titolo")
+        bs = mis.righe(*c["y_sub"], x0=c["x_txt"], soglia=185, gap=30)
+        testi_box_gruppo(t, [(s, P(bb[0]), P(bb[1]), P(bb[2] + 0.4), P(bb[3] - 0.4)) for s, bb in zip(c["testi"], bs)], 400, "#B8535D", "avviso-testo")

@@ -117,6 +117,211 @@
   ],
   "stato": "svg",
   "svg": "brand/concept-svg/schermate/22-schermate-sfide-profilo/02-profilo.svg",
-  "nota": "Profilo: Project ID, statistiche, progressi, obiettivi, badge. L'originale ha 'Punteggio medio' con '+12%' doppio e storto: corretto. Avatar disegnato al posto della foto."
+  "nota": "Profilo: Project ID, statistiche, progressi, obiettivi, badge. L'originale ha 'Punteggio medio' con '+12%' doppio e storto: corretto. Avatar disegnato al posto della foto. Nota: s3 copre 22.002 per riuso di 06.008 (stessa schermata, versione più piccola); questo SVG è la versione disegnata dalla 22 a piena risoluzione, con la parte bassa (Badge) letta qui."
+ },
+ {
+  "elementi": [
+   "25.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/25-flusso-rischio/01-home-rischio.svg",
+  "nota": "Home con rischio 82 % (variante a bassa risoluzione della home di 03/s8, qui con la sezione «Come cambia il tuo rischio»). Valori ed etichette del grafico sulla stessa linea di base (nell'originale a quote diverse); i connettori blu con puntini del foglio non sono parte della schermata e non sono riprodotti. Misuratore = misuratore_rischio di s8."
+ },
+ {
+  "elementi": [
+   "25.002"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/25-flusso-rischio/02-come-viene-calcolato.svg",
+  "nota": "Finestra «Come viene calcolato il tuo rischio?» sopra la home sfocata e scurita (sfondo ricostruito con forme sfocate: non c'è altro da leggere). Icone dei 3 fattori e della nota ridisegnate; testi tutti leggibili."
+ },
+ {
+  "elementi": [
+   "25.003"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/25-flusso-rischio/03-fattori.svg",
+  "nota": "frammento: il titolo «Fattori che influenzano il tuo rischio» tagliato dal riquadro; coperto da 25-03-fattori.svg."
+ },
+ {
+  "elementi": [
+   "25.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/25-flusso-rischio/03-fattori.svg",
+  "nota": "Elenco «Fattori che influenzano il tuo rischio» (foglio sopra l'app sfocata): Grammatica, Comprensione, Vocabolario, Ragionamento con barre rosso/arancio/giallo; icone ridisegnate (Aa con testo vero). Il riquadro del catalogo contiene anche la parte sfocata sopra: inclusa."
+ },
+ {
+  "elementi": [
+   "25.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/25-flusso-rischio/04-lezione-future-tenses.svg",
+  "nota": "Lezione «Future tenses» con barra a 5 segmenti, tre punti d'elenco (icone ridisegnate: nell'originale illeggibili, testi invece leggibili) e pulsante «Inizia la lezione»."
+ },
+ {
+  "elementi": [
+   "25.006"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/25-flusso-rischio/05-dettaglio-obiettivo.svg",
+  "nota": "frammento: striscia della barra di stato dei due schermi in basso a sinistra; coperta dagli SVG 25-05-dettaglio-obiettivo (schermata «Dettaglio obiettivo», 5 lezioni con i titoli allineati alla stessa x) e 25-06."
+ },
+ {
+  "elementi": [
+   "25.007"
+  ],
+  "stato": "scartato",
+  "svg": "brand/concept-svg/schermate/25-flusso-rischio/07-il-tuo-percorso.svg",
+  "nota": "frammento: striscia della barra di stato della schermata «Il tuo percorso»; coperta da 25-07-il-tuo-percorso.svg."
+ },
+ {
+  "elementi": [
+   "25.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/25-flusso-rischio/06-come-cambia-rischio.svg",
+  "nota": "Il pannello contiene due schermate: «Come cambia il tuo rischio?» (questo SVG; la parentesi spezzata dopo il «?» è diventata l'icona (i)) e «Il tuo percorso» (25-07-il-tuo-percorso.svg, stesso grafico con 82 %/62 %/28 % e scheda «Obiettivo: sotto il 20%»)."
+ },
+ {
+  "elementi": [
+   "25.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/25-flusso-rischio/07-il-tuo-percorso.svg",
+  "nota": "Seconda schermata del pannello 25.008: «Il tuo percorso». Grafico con punti allineati e valori sulla stessa linea di base."
+ },
+ {
+  "elementi": [
+   "49.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/01-splash.svg",
+  "nota": "Il catalogo etichetta 49.001 'foto' ma contiene tre telefoni (splash, onboarding, home): sono 49-01, 49-02, 49-03. Splash blu con logo e slogan, cerchi di fondo tenui."
+ },
+ {
+  "elementi": [
+   "49.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/02-onboarding.svg",
+  "nota": "Seconda schermata di 49.001: onboarding con logo AddiOfa a due colori; illustrazione dei fogli ridisegnata (nell'originale due fogli con righe sfocate)."
+ },
+ {
+  "elementi": [
+   "49.001"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/03-home.svg",
+  "nota": "Terza schermata di 49.001: home con 82 % (diversa dalla home di 25 e 03: qui c'è la scheda «Prossimo passo» e «Il tuo percorso»). Misuratore con tacche, grafico con valori allineati, barra di navigazione a 4 voci con indicatore home."
+ },
+ {
+  "elementi": [
+   "49.002"
+  ],
+  "stato": "scartato",
+  "nota": "frammento: striscia con l'ora «9:41» della barra di stato; coperta dagli SVG delle schermate."
+ },
+ {
+  "elementi": [
+   "49.003"
+  ],
+  "stato": "scartato",
+  "nota": "frammento: strisce di barra di stato di sei schermate; coperta dagli SVG."
+ },
+ {
+  "elementi": [
+   "49.004"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/04-lezioni.svg",
+  "nota": "Elenco «Lezioni» (8 voci, 2 completate, «Future tenses» evidenziata). Cerchi numerati e spunte regolarizzati; barra a 4 voci con «Studia» attiva."
+ },
+ {
+  "elementi": [
+   "49.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/05-esercizio.svg",
+  "nota": "Il riquadro contiene due schermate: esercizio «Completa la frase» (questo SVG, con feedback «Corretto!») e «Simulazioni» (49-06). Risposte allineate alla stessa x."
+ },
+ {
+  "elementi": [
+   "49.005"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/06-simulazioni.svg",
+  "nota": "Seconda schermata di 49.005: Simulazioni con tre voci (completa, per argomento, le mie)."
+ },
+ {
+  "elementi": [
+   "49.006"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/07-profilo.svg",
+  "nota": "Profilo: avatar con iniziale, voci con icone ridisegnate (barre, campana, aiuto, ingranaggio, esci), interruttore notifiche. Nell'originale nessuna voce della barra è attiva: attivato «Profilo»."
+ },
+ {
+  "elementi": [
+   "49.007"
+  ],
+  "stato": "scartato",
+  "nota": "testo: striscia di didascalie del foglio (titoli 'ATLAS – Conoscenza, strumenti, opportunità', 'NOI', 'Agorà' con logo): non fa parte delle schermate."
+ },
+ {
+  "elementi": [
+   "49.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/08-esplora.svg",
+  "nota": "Pannello con tre telefoni: Esplora (questo SVG, con tre schede ATLAS/NOI/Agorà), ATLAS home (49-09), ATLAS articolo (49-10). Copertine e miniature fotografiche rifatte come scene vettoriali (pianeta con luci, persone in silhouette, colonne, sala di un evento, città, sfera luminosa): nessun raster. "
+ },
+ {
+  "elementi": [
+   "49.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/09-atlas-home.svg",
+  "nota": "Seconda schermata di 49.008: ATLAS home con chip, copertina scura, «In evidenza» e due articoli. Copertine e miniature fotografiche rifatte come scene vettoriali (pianeta con luci, persone in silhouette, colonne, sala di un evento, città, sfera luminosa): nessun raster. "
+ },
+ {
+  "elementi": [
+   "49.008"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/10-atlas-articolo.svg",
+  "nota": "Terza schermata di 49.008: articolo ATLAS con copertina a pianeta, chip «Tecnologia», titolo, tempo di lettura. Copertine e miniature fotografiche rifatte come scene vettoriali (pianeta con luci, persone in silhouette, colonne, sala di un evento, città, sfera luminosa): nessun raster. "
+ },
+ {
+  "elementi": [
+   "49.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/11-noi-home.svg",
+  "nota": "Pannello con quattro telefoni: NOI home (questo SVG), evento (49-12), Agorà home (49-13), discussione (49-14). Colore della sezione verde. Avatar disegnati. Copertine e miniature fotografiche rifatte come scene vettoriali (pianeta con luci, persone in silhouette, colonne, sala di un evento, città, sfera luminosa): nessun raster. "
+ },
+ {
+  "elementi": [
+   "49.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/12-noi-evento.svg",
+  "nota": "NOI evento «Aperitivo PoliNetwork» con copertina vettoriale, data/luogo, partecipanti, pulsante «Partecipo». Copertine e miniature fotografiche rifatte come scene vettoriali (pianeta con luci, persone in silhouette, colonne, sala di un evento, città, sfera luminosa): nessun raster. "
+ },
+ {
+  "elementi": [
+   "49.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/13-agora-home.svg",
+  "nota": "Agorà home con chip scorrevoli (l'ultimo «Tecnologia» tagliato dal bordo come nell'originale), copertina «Discussioni» e tre discussioni popolari. Colore della sezione arancio. Copertine e miniature fotografiche rifatte come scene vettoriali (pianeta con luci, persone in silhouette, colonne, sala di un evento, città, sfera luminosa): nessun raster. "
+ },
+ {
+  "elementi": [
+   "49.009"
+  ],
+  "stato": "svg",
+  "svg": "brand/concept-svg/schermate/49-schermate-esplora-atlas-noi-agora/14-agora-discussione.svg",
+  "nota": "Discussione «È giusto che l'università blocchi gli esami per l'OFA?» con scheda «Più rilevanti» e primo commento. Testi leggibili."
  }
 ]

@@ -108,7 +108,7 @@ def corpo_per(testo: str, larghezza_px: float, peso: int = 700, spaziatura: floa
 
 
 # ------------------------------------------------------------------------------------------ foto
-def foto_pulita(sorgente, box, nome, rects=(), thr=14, raggio=7, dil=7, liscia=True):
+def foto_pulita(sorgente, box, nome, rects=(), thr=14, raggio=7, dil=7, liscia=True, chiaro=None):
     """Ritaglia `box` (x0,y0,x1,y1) dalla sorgente, toglie le scritte/icone cotte nella foto dentro i rettangoli
     `rects` (coordinate assolute della sorgente): maschera = pixel che differiscono dalla mediana locale (contrasto
     fine = lettere), dilatata, poi inpainting; dentro i rettangoli si leviga leggermente il residuo.
@@ -124,7 +124,10 @@ def foto_pulita(sorgente, box, nome, rects=(), thr=14, raggio=7, dil=7, liscia=T
     for (rx0, ry0, rx1, ry1) in rects:
         sub = np.zeros_like(mask)
         sub[max(0, ry0 - y0):ry1 - y0, max(0, rx0 - x0):rx1 - x0] = 1
-        mask |= ((diff > thr) & (sub > 0)).astype(np.uint8)
+        m = (diff > thr)
+        if chiaro:
+            m |= (a.min(axis=2) >= chiaro)
+        mask |= (m & (sub > 0)).astype(np.uint8)
     if mask.any():
         mask = cv2.dilate(mask, np.ones((dil, dil), np.uint8))
         a = cv2.inpaint(a, mask * 255, raggio, cv2.INPAINT_TELEA)

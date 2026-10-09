@@ -61,12 +61,14 @@ def testo_box(t: Tela, s: str, x0: float, x1: float, y0: float, y1: float, peso:
     dim = forza_dim or alto
     nat = larghezza_testo(s, dim, peso)
     sx = larg / nat if nat > 0 else 1.0
-    if not forza_dim and len(s) > 3:
+    if forza_dim:
+        sx = max(0.84, min(1.16, sx)) if len(s) > 3 else 1.0
+    elif len(s) > 3:
         lo, hi = 1 - clamp, 1 + clamp
         if sx > hi: dim *= sx / hi; sx = hi
         elif sx < lo: dim *= sx / lo; sx = lo
     else:
-        sx = max(0.9, min(1.1, sx)) if not forza_dim else 1.0
+        sx = max(0.9, min(1.1, sx))
     base = y1 - desc * dim
     nat = larghezza_testo(s, dim, peso)
     if ancora == "middle": xa = (x0 + x1) / 2
@@ -80,6 +82,24 @@ def testo_box(t: Tela, s: str, x0: float, x1: float, y0: float, y1: float, peso:
     else:
         t.add(f'<path d="{d}" fill="{colore}"{a}/>')
     return dim
+
+
+def alto_di(s: str, y0: float, y1: float) -> float:
+    """Corpo stimato dall'altezza d'inchiostro di una riga (stessa formula di testo_box)."""
+    top = 0.74 if any(c in _ASC for c in s) else 0.55
+    desc = 0.21 if any(c in _DESC for c in s) else 0.0
+    return (y1 - y0) / (top + desc)
+
+
+def testi_box_gruppo(t: Tela, righe: list, peso: int, colore: str, prefisso: str, ancora: str = "start"):
+    """righe = [(s, x0, x1, y0, y1)]: stesso corpo per tutto il paragrafo (mediana dei corpi stimati sulle righe con
+    ascendenti e discendenti, più affidabili), larghezza di ogni riga accordata con compressione orizzontale."""
+    import statistics
+    pesi = [(alto_di(s, y0, y1), (2.0 if (any(c in _ASC for c in s) and any(c in _DESC for c in s)) else 1.0)) for s, x0, x1, y0, y1 in righe]
+    sel = [d for d, w in pesi if w > 1.5] or [d for d, w in pesi]
+    dim = statistics.median(sel)
+    for i, (s, x0, x1, y0, y1) in enumerate(righe):
+        testo_box(t, s, x0, x1, y0, y1, peso, colore, ancora, id=f"{prefisso}-{i + 1}" if len(righe) > 1 else prefisso, forza_dim=dim)
 
 
 # ---------------------------------------------------------------------------- pezzi piccoli

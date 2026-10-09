@@ -16,11 +16,18 @@ def tavola(r, svg_p, orig_p, out, k=2.0):
     W, H = o.size
     svg = svg_p.read_text()
     W2, H2 = int(round(W * k)), int(round(H * k))
-    svg2 = re.sub(r'(<svg[^>]*?)\swidth="[^"]*"\s+height="[^"]*"', rf'\1 width="{W2}" height="{H2}"', svg, count=1)
-    im = r.svg(svg2, W2, H2, fondo="#FFFFFF")
+    vb = re.search(r'viewBox="0 0 ([\d.]+) ([\d.]+)"', svg)
+    H2s = int(round(W2 * float(vb.group(2)) / float(vb.group(1))))      # l'SVG può essere più alto del ritaglio (voce completata)
+    svg2 = re.sub(r'(<svg[^>]*?)\swidth="[^"]*"\s+height="[^"]*"', rf'\1 width="{W2}" height="{H2s}"', svg, count=1)
+    im = r.svg(svg2, W2, H2s, fondo="#FFFFFF")
     a = np.asarray(o.resize((W2, H2), Image.LANCZOS)).astype(float)
-    b = np.asarray(im.convert("RGB")).astype(float)
+    b_full = np.asarray(im.convert("RGB")).astype(float)
+    b = b_full[:H2]
     m = confronta(a, b)
+    if H2s > H2:
+        pad = np.full((H2s - H2, W2, 3), 200.0)
+        a = np.concatenate([a, pad], axis=0); b = b_full
+        H2 = H2s
     diff = np.clip(np.abs(a - b).mean(axis=2) * 3, 0, 255)
     d = np.stack([255 - diff] * 3, axis=2)
     t = Image.new("RGB", (W2 * 3 + 24, H2), (255, 255, 255))

@@ -32,7 +32,7 @@ v(["05.011"], "05-11-home", "svg", N5[11])
 v(["05.012"], "05-12-classifica", "svg", "Il pannello 05.012 contiene la parte destra della home (05.011) e la classifica: la classifica e' l'SVG 12; la home e' coperta anche da 05.011. " + N5[12])
 v(["05.013"], "05-13-profilo", "svg", N5[13])
 v(["22.001"], "22-01-sfide", "svg", "Schermata Sfide: sfida della settimana, tre sfide attive, podio settimanale. Avatar disegnati (foto nell'originale). Icone sfide ridisegnate. Nome del terzo del podio letto come 'marti.s'.")
-v(["22.002"], "22-02-profilo", "svg", "Profilo: Project ID, statistiche, progressi, obiettivi, badge. L'originale ha 'Punteggio medio' con '+12%' doppio e storto: corretto. Avatar disegnato al posto della foto.")
+v(["22.002"], "22-02-profilo", "svg", "Profilo: Project ID, statistiche, progressi, obiettivi, badge. L'originale ha 'Punteggio medio' con '+12%' doppio e storto: corretto. Avatar disegnato al posto della foto. Nota: s3 copre 22.002 per riuso di 06.008 (stessa schermata, versione più piccola); questo SVG è la versione disegnata dalla 22 a piena risoluzione, con la parte bassa (Badge) letta qui.")
 import importlib, pathlib
 for extra in ("rapporto_25", "rapporto_49"):
     try:
