@@ -7,7 +7,7 @@ import { cn } from '../lib/utils';
 import { questions, getQuestionsByCorpus, INITIAL_CORPUS_COUNT } from '../data/questions';
 import { playTapSound, isAudioMuted, setAudioMuted } from '../lib/audio';
 import { ECOSYSTEM } from '../config/ecosystem';
-import { DISCLAIMER, FEATURE_FLAGS } from '../config/offer';
+import { FEATURE_FLAGS } from '../config/offer';
 import { useAccess } from '../access/context';
 import { remainingFreeSims } from '../access/entitlement';
 import Footer from '../screens/Footer';
@@ -211,7 +211,6 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
             {onExport && <button onClick={() => { playTapSound(); onExport(); }} className="flex items-center gap-1.5 hover:text-[#0F172A]"><Download size={14} /> Esporta progressi</button>}
           </div>
         )}
-        <p className="text-center text-[10px] text-[#9CA3AF]">{DISCLAIMER}</p>
         {FEATURE_FLAGS.projectId && provider.mode !== 'demo' && <PoweredByAtlas className="-mt-2" />}
         <Footer onOpenLegal={onOpenLegal} />
       </div>

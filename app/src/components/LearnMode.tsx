@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { AppState, QuestionClickEvent, QuestionTelemetry, PaywallReason } from '../types';
 import { selectPracticeIds, updateStats, poolMeta } from '../lib/spacedRepetition';
 import { motion, AnimatePresence } from 'motion/react';
@@ -98,13 +98,13 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadKey, blocked]);
 
-  const questions = items.map(i => i.q);
+  const questions = useMemo(() => items.map(i => i.q), [items]);
 
-  // Play fanfare & celebration confetti when session completes
+  // Fanfara e coriandoli a fine sessione (i coriandoli solo se il sistema non chiede animazioni ridotte)
   useEffect(() => {
     if (questions.length > 0 && currentIndex >= questions.length) {
       playVictorySound();
-      triggerConfetti('celebration');
+      if (!prefersReducedMotion()) triggerConfetti('celebration');
     }
   }, [currentIndex, questions.length]);
 
@@ -117,181 +117,163 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
     setTimeLeft(timeLimit);
     setOptionsRevealed(mode !== 'recall');
     setShowHint(false);
+    setResult(null);
+    setCheckError(null);
+    setSelectedOption(null);
+    setHasChecked(false);
+    setChecking(false);
+    checkingRef.current = false;
 
     if (mode === 'recall' && questions[currentIndex]) {
-      const q = questions[currentIndex];
-      const correctText = q.options[q.correctIndex];
-      // Split by spaces, filter out empty strings just in case
-      let words = correctText.split(' ').filter(w => w.trim() !== '');
-      
-      const distractors = new Set<string>();
-      
-      // First try to get distractors from the current question's options
-      q.options.forEach((opt, idx) => {
-        if (idx !== q.correctIndex) {
-          const optWords = opt.split(' ').filter(w => w.trim() !== '');
-          optWords.forEach(w => {
-            if (!words.includes(w)) {
-              distractors.add(w);
-            }
-          });
-        }
+      // La risposta esatta non è nell'app prima di rispondere: le parole offerte sono quelle di tutte le opzioni
+      // (ogni parola tante volte quante ne serve in una sola opzione), rimescolate.
+      const need = new Map<string, number>();
+      questions[currentIndex].options.forEach(opt => {
+        const count = new Map<string, number>();
+        words(opt).forEach(w => count.set(w, (count.get(w) || 0) + 1));
+        count.forEach((n, w) => need.set(w, Math.max(need.get(w) || 0, n)));
       });
-      
-      const maxDistractors = words.length <= 3 ? 8 : 5;
-      
-      // If we don't have enough, pull from other questions in the set
-      if (distractors.size < maxDistractors) {
-        questions.forEach(otherQ => {
-          otherQ.options.forEach(opt => {
-            const optWords = opt.split(' ').filter(w => w.trim() !== '');
-            optWords.forEach(w => {
-              if (!words.includes(w)) {
-                distractors.add(w);
-              }
-            });
-          });
-        });
-      }
-      
-      const shuffledDistractors = shuffleArray(Array.from(distractors)).slice(0, maxDistractors);
-      
-      const combined = shuffleArray([...words, ...shuffledDistractors]);
-      
-      setRecallWords(combined);
+      const pool: string[] = [];
+      need.forEach((n, w) => { for (let i = 0; i < n; i++) pool.push(w); });
+      setRecallWords(shuffleArray(pool));
       setSelectedRecallWords([]);
     }
   }, [currentIndex, mode, timeLimit, questions]);
 
   useEffect(() => {
-    if (hasChecked || timeLeft <= 0 || attempts > 0) return;
+    if (hasChecked || checking || timeLeft <= 0 || attempts > 0 || currentIndex >= questions.length) return;
     const timer = setInterval(() => {
       setTimeLeft(prev => prev - 1);
     }, 1000);
     return () => clearInterval(timer);
-  }, [hasChecked, timeLeft, attempts]);
+  }, [hasChecked, checking, timeLeft, attempts, currentIndex, questions.length]);
 
   useEffect(() => {
-    if (timeLeft === 0 && !hasChecked && attempts === 0) {
-      handleCheck('low', true);
+    if (timeLeft === 0 && !hasChecked && !checking && attempts === 0 && loadState === 'ready') {
+      void handleCheck('low', true);
     }
-  }, [timeLeft, hasChecked, attempts]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeLeft, hasChecked, checking, attempts, loadState]);
 
-  if (questions.length === 0) return null;
+  if (blocked) return null;
 
-  const question = questions[currentIndex];
-  const isCorrect = selectedOption === question?.correctIndex;
+  if (loadState === 'loading') {
+    return (
+      <Screen className="items-center justify-center text-center">
+        <Loader2 size={32} className="animate-spin text-[#EF4444]" />
+        <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Preparo le domande…</p>
+      </Screen>
+    );
+  }
+  if (loadState === 'error') {
+    return (
+      <Screen className="items-center justify-center text-center">
+        <p role="alert" className="font-bold text-[#B91C1C] dark:text-[#FCA5A5] max-w-sm">Non riesco a caricare le domande. Controlla la connessione e riprova.</p>
+        <button onClick={() => { playTapSound(); setLoadKey(k => k + 1); }} className="w-full max-w-xs bg-[#EF4444] hover:bg-[#DC2626] text-white font-bold py-3.5 rounded-2xl transition-all active:scale-[.99]">Riprova</button>
+        <button onClick={onExit} className="text-sm font-bold text-gray-500 dark:text-gray-400 underline">Torna indietro</button>
+      </Screen>
+    );
+  }
+
+  const item = items[currentIndex];
+  const question = item?.q;
+  // Posizione (nell'ordine mostrato) della risposta esatta, nota solo dopo grade()
+  const correctDisplay = result && item ? item.order.indexOf(result.correctIndex) : -1;
+  const isCorrect = result !== null && selectedOption === correctDisplay;
 
   const handleSelectOption = (idx: number) => {
-    if (hasChecked || wrongOptions.has(idx)) return;
+    if (hasChecked || checking || wrongOptions.has(idx)) return;
     playTapSound();
     setSelectedOption(idx);
     const now = Date.now();
     const elapsedMs = now - startTime;
-    const isOptionCorrect = idx === question.correctIndex;
     setLastSelectionTimestamp(now);
+    // Il provider non dice ancora se l'opzione è esatta: il campo si riempie in base alla risposta più avanti
     setSelectionHistory(prev => [
       ...prev,
-      { optionIndex: idx, timestamp: now, elapsedMs, isCorrect: isOptionCorrect }
+      { optionIndex: idx, timestamp: now, elapsedMs, isCorrect: false }
     ]);
   };
 
-  const handleCheck = (confidence: 'low' | 'medium' | 'high', isTimeout: boolean = false) => {
-    if (!optionsRevealed && mode === 'recall') {
+  const handleCheck = async (confidence: 'low' | 'medium' | 'high', isTimeout: boolean = false) => {
+    if (!item || checkingRef.current || hasChecked) return;
+    const recall = !optionsRevealed && mode === 'recall';
+
+    // Cosa ha scelto l'utente, come posizione nell'ordine mostrato (-1 = nessuna opzione corrispondente)
+    let chosen: number | null = selectedOption;
+    if (recall) {
       if (selectedRecallWords.length === 0 && !isTimeout) return;
-      
-      setHasChecked(true);
-      const currentAttempts = attempts + 1;
-      setAttempts(currentAttempts);
-      
-      const constructedAnswer = selectedRecallWords.map(i => recallWords[i]).join(' ').trim();
-      const correctAnswer = question.options[question.correctIndex].split(' ').filter(w => w.trim() !== '').join(' ');
-      const correct = !isTimeout && constructedAnswer === correctAnswer;
-      
-      setSelectedOption(correct ? question.correctIndex : -1);
-
-      const timeTakenMs = Date.now() - startTime;
-      const hesitationBeforeSubmitMs = lastSelectionTimestamp ? Math.max(0, Date.now() - lastSelectionTimestamp) : 0;
-      const telemetry: QuestionTelemetry = {
-        firstClickTimeMs: selectionHistory.length > 0 ? selectionHistory[0].elapsedMs : timeTakenMs,
-        firstOptionIndex: selectionHistory.length > 0 ? selectionHistory[0].optionIndex : (correct ? question.correctIndex : null),
-        finalOptionIndex: correct ? question.correctIndex : null,
-        switchCount: Math.max(0, selectionHistory.length - 1),
-        trajectory: selectionHistory.map(h => h.optionIndex),
-        hesitationBeforeSubmitMs,
-        clickEvents: selectionHistory
-      };
-
-      if (correct) {
-        const nextStreak = streak + 1;
-        setStreak(nextStreak);
-        playCorrectSound(nextStreak);
-        triggerConfetti(nextStreak >= 4 ? 'cannon' : (nextStreak >= 2 ? 'burst' : 'mini'));
-
-        const newState = updateStats(appState, question.id, true, timeTakenMs, currentAttempts, confidence, telemetry);
-        onUpdateAppState(newState);
-        
-        if (currentAttempts === 1) {
-          setSessionStats(prev => ({ ...prev, correct: prev.correct + 1, total: prev.total + 1 }));
-        } else {
-          setSessionStats(prev => ({ ...prev, total: prev.total + 1 }));
-        }
-      } else {
-        setStreak(0);
-        playIncorrectSound();
-        if (currentAttempts === 1) {
-          const newState = updateStats(appState, question.id, false, timeTakenMs, currentAttempts, confidence, telemetry);
-          onUpdateAppState(newState);
-        }
-      }
+      const built = selectedRecallWords.map(i => recallWords[i]).join(' ').trim();
+      chosen = question.options.findIndex(opt => words(opt).join(' ') === built);
+    } else if (selectedOption === null && !isTimeout) {
       return;
     }
 
-    if (selectedOption === null && !isTimeout) return;
-    
-    setHasChecked(true);
-    const currentAttempts = attempts + 1;
-    setAttempts(currentAttempts);
-    
-    const correct = !isTimeout && selectedOption === question.correctIndex;
-    const timeTakenMs = Date.now() - startTime;
-    const hesitationBeforeSubmitMs = lastSelectionTimestamp ? Math.max(0, Date.now() - lastSelectionTimestamp) : 0;
+    // Il tempo si ferma al clic, non quando arriva la risposta del provider
+    const now = Date.now();
+    const timeTakenMs = now - startTime;
+    const hesitationBeforeSubmitMs = lastSelectionTimestamp ? Math.max(0, now - lastSelectionTimestamp) : 0;
+    const history = selectionHistory;
 
+    checkingRef.current = true;
+    lastCheckRef.current = { confidence, isTimeout };
+    setChecking(true);
+    setCheckError(null);
+
+    let res = result;
+    if (!res) {
+      try {
+        // -1 = nessuna risposta (tempo scaduto o frase che non corrisponde a nessuna opzione)
+        res = await provider.grade(question.id, chosen !== null && chosen >= 0 ? item.order[chosen] : -1);
+      } catch {
+        checkingRef.current = false;
+        setChecking(false);
+        setCheckError('Non riesco a controllare la risposta. Riprova.');
+        return;
+      }
+    }
+
+    const correctIdx = item.order.indexOf(res.correctIndex);
+    const correct = !isTimeout && chosen !== null && chosen >= 0 && chosen === correctIdx;
+    const currentAttempts = attempts + 1;
+
+    const finalChoice = recall ? (correct ? correctIdx : null) : chosen;
     const telemetry: QuestionTelemetry = {
-      firstClickTimeMs: selectionHistory.length > 0 ? selectionHistory[0].elapsedMs : timeTakenMs,
-      firstOptionIndex: selectionHistory.length > 0 ? selectionHistory[0].optionIndex : selectedOption,
-      finalOptionIndex: selectedOption,
-      switchCount: Math.max(0, selectionHistory.length - 1),
-      trajectory: selectionHistory.map(h => h.optionIndex),
+      firstClickTimeMs: history.length > 0 ? history[0].elapsedMs : timeTakenMs,
+      firstOptionIndex: history.length > 0 ? history[0].optionIndex : (recall ? (correct ? correctIdx : null) : chosen),
+      finalOptionIndex: finalChoice,
+      switchCount: Math.max(0, history.length - 1),
+      trajectory: history.map(h => h.optionIndex),
       hesitationBeforeSubmitMs,
-      clickEvents: selectionHistory
+      clickEvents: history.map(h => ({ ...h, isCorrect: h.optionIndex === correctIdx })),
     };
-    
+    const quiz = { prompt: question.prompt, options: question.options, correctIndex: correctIdx };
+
+    setResult(res);
+    setHasChecked(true);
+    setAttempts(currentAttempts);
+    setChecking(false);
+    checkingRef.current = false;
+
+    if (recall) setSelectedOption(correct ? correctIdx : -1);
+
     if (correct) {
       const nextStreak = streak + 1;
       setStreak(nextStreak);
       playCorrectSound(nextStreak);
-      triggerConfetti(nextStreak >= 4 ? 'cannon' : (nextStreak >= 2 ? 'burst' : 'mini'));
+      if (!prefersReducedMotion()) triggerConfetti(nextStreak >= 4 ? 'cannon' : (nextStreak >= 2 ? 'burst' : 'mini'));
 
-      const newState = updateStats(appState, question.id, true, timeTakenMs, currentAttempts, confidence, telemetry);
-      onUpdateAppState(newState);
-      
-      if (currentAttempts === 1) {
-        setSessionStats(prev => ({ ...prev, correct: prev.correct + 1, total: prev.total + 1 }));
-      } else {
-        setSessionStats(prev => ({ ...prev, total: prev.total + 1 }));
-      }
+      onUpdateAppState(updateStats(appStateRef.current, question.id, true, timeTakenMs, currentAttempts, confidence, telemetry, quiz));
+      setSessionStats(prev => ({ ...prev, correct: prev.correct + (currentAttempts === 1 ? 1 : 0), total: prev.total + 1 }));
     } else {
       setStreak(0);
       playIncorrectSound();
-      if (selectedOption !== null) {
-        setWrongOptions(prev => new Set(prev).add(selectedOption));
+      if (!recall && chosen !== null && chosen >= 0) {
+        setWrongOptions(prev => new Set(prev).add(chosen as number));
       }
-      
-      // Update stats as incorrect on the first failed attempt
+      // La prima risposta sbagliata conta come errore; i tentativi dopo no
       if (currentAttempts === 1) {
-        const newState = updateStats(appState, question.id, false, timeTakenMs, currentAttempts, confidence, telemetry);
-        onUpdateAppState(newState);
+        onUpdateAppState(updateStats(appStateRef.current, question.id, false, timeTakenMs, currentAttempts, confidence, telemetry, quiz));
       }
     }
   };
@@ -366,9 +348,9 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
           <span className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400">
             Domanda {currentIndex + 1} di {questions.length}
           </span>
-          {(category === 'corpus:initial' || appState.selectedCorpus === 'initial') && (
-            <span className="px-3 py-1 bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/30 text-xs font-bold rounded-full">
-              Primo Corpus ({INITIAL_CORPUS_COUNT})
+          {(!pass || category === 'corpus:initial' || appState.selectedCorpus === 'initial') && (
+            <span className="px-3 py-1 bg-[#22C55E]/10 text-[#16A34A] dark:text-[#34D399] border border-[#22C55E]/30 text-xs font-bold rounded-full">
+              {pass ? 'Nucleo di base' : 'Nucleo gratuito'} ({poolMeta(false).length})
             </span>
           )}
         </div>
@@ -467,7 +449,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
               let numberClass = "border-gray-200 dark:border-[#334155] text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#1E293B]";
               
               if (hasChecked) {
-                if (idx === question.correctIndex) {
+                if (idx === correctDisplay) {
                   stateClass = "border-[#22C55E] dark:border-[#16A34A] bg-[#F0FDF4] dark:bg-[#064E3B] text-[#16A34A] dark:text-[#10B981]";
                   numberClass = "border-[#22C55E] dark:border-[#16A34A] bg-white dark:bg-[#064E3B] text-[#22C55E] dark:text-[#10B981]";
                 } else if (idx === selectedOption) {
@@ -508,6 +490,12 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
         )}
       </main>
 
+      {checkError && (
+        <div role="alert" className="shrink-0 flex items-center justify-between gap-3 px-4 py-2 bg-[#FEE2E2] dark:bg-[#7F1D1D] text-[#B91C1C] dark:text-[#FCA5A5] text-sm font-bold">
+          <span>{checkError}</span>
+          <button onClick={() => { const l = lastCheckRef.current; if (l) void handleCheck(l.confidence, l.isTimeout); }} className="underline shrink-0">Riprova</button>
+        </div>
+      )}
       {/* Bottom Action Bar */}
       <div className={cn("border-t border-gray-100 dark:border-[#334155] shrink-0 p-4 transition-colors", hasChecked ? (isCorrect ? "bg-[#DCFCE7] dark:bg-[#064E3B] border-[#22C55E] dark:border-[#16A34A]" : "bg-[#FEE2E2] dark:bg-[#7F1D1D] border-[#EF4444] dark:border-[#EF4444]") : "bg-white dark:bg-[#1E293B]")}>
         <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-between">
@@ -522,7 +510,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                 )}
               >
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-                  <span className="text-xl sm:text-2xl">{isCorrect ? (streak > 2 ? `Fantastico! 🔥 ${streak} di fila!` : "Ottimo!") : "Errata."}</span>
+                  <span className="text-xl sm:text-2xl">{isCorrect ? (streak > 2 ? `Fantastico, ${streak} di fila!` : "Ottimo!") : "Errata."}</span>
                   {isCorrect && question.category && (
                     <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/80 dark:bg-black/30 text-[#16A34A] dark:text-[#34D399] border border-[#22C55E]/30 dark:border-[#10B981]/30 shadow-xs">
                       <span>Categoria:</span>
@@ -535,10 +523,20 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                     Riprova!
                   </p>
                 )}
-                {isCorrect && (
-                  <p className="text-sm font-bold opacity-80 text-gray-700 dark:text-gray-200 leading-tight">
-                    {question.explanation}
-                  </p>
+                {result?.explanation && (
+                  <div className="max-h-[28vh] overflow-y-auto">
+                    <p className="text-sm font-bold opacity-80 text-gray-700 dark:text-gray-200 leading-snug">
+                      {result.explanation}
+                    </p>
+                  </div>
+                )}
+                {result?.theoryId && onOpenTheory && (
+                  <button
+                    onClick={() => { playTapSound(); onOpenTheory(result.theoryId!); }}
+                    className="inline-flex items-center justify-center sm:justify-start gap-1.5 text-sm font-bold text-gray-700 dark:text-gray-200 underline underline-offset-2"
+                  >
+                    <BookOpen size={15} /> Studia la regola
+                  </button>
                 )}
               </motion.div>
             )}
@@ -550,21 +548,21 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
               <div className="flex flex-row gap-2 justify-between sm:justify-end">
               <button
                 onClick={() => handleCheck('low')}
-                disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
+                disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
                 className="flex-1 sm:flex-none bg-[#EF4444] hover:bg-[#DC2626] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-all active:scale-[.99] duration-150"
               >
                 Indovino
               </button>
               <button
                 onClick={() => handleCheck('medium')}
-                disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
+                disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
                 className="flex-1 sm:flex-none bg-[#F59E0B] hover:bg-[#D97706] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-all active:scale-[.99] duration-150"
               >
                 Incerto
               </button>
               <button
                 onClick={() => handleCheck('high')}
-                disabled={!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null}
+                disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
                 className="flex-1 sm:flex-none bg-[#22C55E] hover:bg-[#16A34A] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-all active:scale-[.99] duration-150"
               >
                 Sicuro

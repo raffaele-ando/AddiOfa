@@ -1,0 +1,5 @@
+# Copia in pass/.dev.vars per le prove locali (il file .dev.vars non va in git). MAI in produzione.
+ALLOW_TEST_TOKENS=true
+ALLOW_SHORT_EXAMS=true
+DEV_RETURN_CODE=true
+STRIPE_WEBHOOK_SECRET=whsec_prova_locale

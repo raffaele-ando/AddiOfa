@@ -10,6 +10,8 @@ export interface Question {
   category: string;
   level?: string;
   grammarTopic?: string;
+  /** Scheda di teoria collegata (id di TheoryTopic in data/theory.ts). Lo imposta il generatore dei contenuti. */
+  theoryId?: string;
   /** Quinta opzione (distrattore) per il pool del formato TENG, che ha 5 opzioni. Non fa parte di options. */
   extraOption?: string;
 }

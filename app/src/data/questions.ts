@@ -1,10 +1,17 @@
-import { Question, CorpusType } from '../types';
+// GENERATO da contenuti/ con npm run contenuti: non modificare a mano.
+import type { Question, CorpusType } from '../types';
 
-export const INITIAL_CORPUS_COUNT = 60;
+/** Numero di domande del nucleo gratuito (core: true in contenuti/domande/). */
+export const INITIAL_CORPUS_COUNT = 100;
+
+/** Id delle domande del nucleo gratuito. */
+const CORE_IDS: ReadonlySet<string> = new Set(["q61","q67","q69","q71","q75","q84","q91","q95","q98","q107","q111","q114","q121","q122","q133","q134","q135","q136","q137","q139","q143","q145","q146","q148","q150","q157","q160","q162","q165","q171","q172","q179","q190","q191","q199","q210","q213","q214","q217","q222","q227","q237","q242","q251","q256","q258","q270","q271","q272","q280","q291","q296","q301","q311","q312","q322","q325","q326","q328","q335","q346","q347","q354","q363","q367","q370","q380","q381","q389","q396","q398","q404","q406","q425","q432","q436","q450","q459","q465","q468","q472","q489","q490","q494","q495","q499","q507","q521","q526","q529","q535","q546","q553","q566","q570","q581","q584","q590","q594","q605"]);
+
+export const isCoreId = (id: string): boolean => CORE_IDS.has(id);
 
 export const getQuestionsByCorpus = (corpus: CorpusType = 'all'): Question[] => {
   if (corpus === 'initial') {
-    return questions.slice(0, INITIAL_CORPUS_COUNT);
+    return questions.filter((q) => CORE_IDS.has(q.id));
   }
   return questions;
 };
@@ -789,21 +796,6 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives"
-  },
-  {
-    "id": "q53",
-    "prompt": "Complete the sentence: 'Tom is away. He _____ away since Monday.'",
-    "options": [
-      "was",
-      "is",
-      "has been",
-      "had been"
-    ],
-    "correctIndex": 2,
-    "explanation": "'Since Monday' requires Present Perfect ('has been') to connect the past to the present.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
   },
   {
     "id": "q54",
@@ -7496,21 +7488,6 @@ export const questions: Question[] = [
     "grammarTopic": "Past Perfect"
   },
   {
-    "id": "q500",
-    "prompt": "When I got to the station, the train _____.",
-    "options": [
-      "had left",
-      "left",
-      "has left",
-      "leaves"
-    ],
-    "correctIndex": 0,
-    "explanation": "The train left before I arrived.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Past Perfect"
-  },
-  {
     "id": "q501",
     "prompt": "By the time the manager called, they _____ the project.",
     "options": [
@@ -8636,21 +8613,6 @@ export const questions: Question[] = [
     "grammarTopic": "Quantifiers"
   },
   {
-    "id": "q576",
-    "prompt": "Complete the sentence: 'I am on the right train, _____?'",
-    "options": [
-      "aren't I",
-      "am not I",
-      "amn't I",
-      "isn't I"
-    ],
-    "correctIndex": 0,
-    "explanation": "The question tag for 'I am' is irregularly 'aren't I?'.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Question Tags"
-  },
-  {
     "id": "q577",
     "prompt": "Complete the sentence: 'Let's take a short break, _____?'",
     "options": [
@@ -9101,81 +9063,6 @@ export const questions: Question[] = [
     "grammarTopic": "Relative Clauses"
   },
   {
-    "id": "q607",
-    "prompt": "Tom is away. He's been away ...... Monday.",
-    "options": [
-      "at",
-      "since",
-      "on",
-      "for"
-    ],
-    "correctIndex": 1,
-    "explanation": "Si usa 'since' con il Present Perfect per indicare il punto di inizio nel tempo ('since Monday'). 'For' si usa invece per esprimere la durata.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q608",
-    "prompt": "She ...... to the cinema yesterday.",
-    "options": [
-      "gone",
-      "has gone",
-      "is gone",
-      "went"
-    ],
-    "correctIndex": 3,
-    "explanation": "Con un riferimento temporale concluso nel passato come 'yesterday' si usa il Past Simple ('went').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple"
-  },
-  {
-    "id": "q609",
-    "prompt": "There ...... a table in the room.",
-    "options": [
-      "are",
-      "has",
-      "have",
-      "is"
-    ],
-    "correctIndex": 3,
-    "explanation": "Con un soggetto singolare numerabile ('a table') la forma corretta è 'there is'.",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "There is / There are"
-  },
-  {
-    "id": "q610",
-    "prompt": "How many companies ...... since you left school?",
-    "options": [
-      "are you work for",
-      "have you worked for",
-      "do you work for",
-      "you work for"
-    ],
-    "correctIndex": 1,
-    "explanation": "La proposizione con 'since' collega un momento passato al presente, richiedendo la forma interrogativa del Present Perfect ('have you worked for').",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q611",
-    "prompt": "...... with friends?",
-    "options": [
-      "Is she go",
-      "She goes",
-      "Is she going",
-      "She go"
-    ],
-    "correctIndex": 2,
-    "explanation": "La forma interrogativa corretta al Present Continuous è 'Is she going with friends?' (ausiliare be + soggetto + forma in -ing).",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "Present Continuous"
-  },
-  {
     "id": "q612",
     "prompt": "I ...... English Food",
     "options": [
@@ -9189,36 +9076,6 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Simple"
-  },
-  {
-    "id": "q613",
-    "prompt": "Have you ever ...... Brazil?",
-    "options": [
-      "gone in",
-      "been in",
-      "been to",
-      "gone to"
-    ],
-    "correctIndex": 2,
-    "explanation": "Nelle domande sulle esperienze di vita con 'Have you ever...', si usa 'been to' per indicare una visita o soggiorno (con ritorno).",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q614",
-    "prompt": "This plate is dirty. Can I have ...... ?",
-    "options": [
-      "a clean one",
-      "clean",
-      "a clean",
-      "clean one"
-    ],
-    "correctIndex": 0,
-    "explanation": "Si usa il pronome 'one' preceduto da articolo indeterminativo e aggettivo ('a clean one') per sostituire il sostantivo numerabile 'plate'.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Object Pronouns"
   },
   {
     "id": "q615",
@@ -9266,21 +9123,6 @@ export const questions: Question[] = [
     "grammarTopic": "Present Simple"
   },
   {
-    "id": "q618",
-    "prompt": "I saw Tom this morning. He ...... at the bus stop.",
-    "options": [
-      "was waiting",
-      "were waiting",
-      "was waited",
-      "waited"
-    ],
-    "correctIndex": 0,
-    "explanation": "Si usa il Past Continuous ('was waiting') per un'azione in corso di svolgimento in un preciso momento del passato con soggetto 'He'.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Continuous"
-  },
-  {
     "id": "q619",
     "prompt": "She ...... meet her friends tomorrow.",
     "options": [
@@ -9324,96 +9166,6 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are"
-  },
-  {
-    "id": "q622",
-    "prompt": "I ...... Africa in 2001",
-    "options": [
-      "was at",
-      "went in",
-      "went to",
-      "was to"
-    ],
-    "correctIndex": 2,
-    "explanation": "Il moto a luogo verso un continente o paese richiede il verbo 'went' seguito dalla preposizione 'to' ('went to Africa').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple"
-  },
-  {
-    "id": "q623",
-    "prompt": "Have you met ...... ?",
-    "options": [
-      "The Mr Smith wife",
-      "the wife of Mr Smith",
-      "Mr Smith wife",
-      "Mr Smith's wife"
-    ],
-    "correctIndex": 3,
-    "explanation": "In inglese la relazione familiare o di possesso riferita a persone si esprime con il genitivo sassone ('Mr Smith's wife').",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "Possessive S"
-  },
-  {
-    "id": "q624",
-    "prompt": "She's the ...... beautiful girl I've ever seen.",
-    "options": [
-      "more",
-      "most",
-      "much more",
-      "very"
-    ],
-    "correctIndex": 1,
-    "explanation": "Con aggettivi lunghi (tre o più sillabe) come 'beautiful', il superlativo relativo si forma con 'the most' ('the most beautiful').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
-  },
-  {
-    "id": "q625",
-    "prompt": "When ...... Mr. Brown?",
-    "options": [
-      "did you meet",
-      "have you met",
-      "you met",
-      "do you met"
-    ],
-    "correctIndex": 0,
-    "explanation": "Le domande con 'When' che chiedono di un evento puntuale nel passato richiedono il Past Simple ('did you meet') e non il Present Perfect.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple"
-  },
-  {
-    "id": "q626",
-    "prompt": "Hurry! The bus leaves ...... 2 minutes.",
-    "options": [
-      "at",
-      "for",
-      "in",
-      "on"
-    ],
-    "correctIndex": 2,
-    "explanation": "La preposizione 'in' seguita da un'indicazione di tempo ('in 2 minutes') significa 'tra/entro due minuti'.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Prepositions of Time"
-  },
-  {
-    "id": "q627",
-    "prompt": "How long ...... English?",
-    "options": [
-      "you study",
-      "you studied",
-      "are you study",
-      "have you studied"
-    ],
-    "correctIndex": 3,
-    "explanation": "'How long' riferito a un'attività iniziata nel passato che prosegue nel presente richiede il Present Perfect interrogativo ('have you studied').",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
   },
   {
     "id": "q628",
@@ -9491,36 +9243,6 @@ export const questions: Question[] = [
     "grammarTopic": "Modals of Ability and Permission"
   },
   {
-    "id": "q633",
-    "prompt": "What time does the train leave tomorrow? It ...... at 9.",
-    "options": [
-      "leave",
-      "will leave",
-      "is leave",
-      "leaves"
-    ],
-    "correctIndex": 3,
-    "explanation": "Per gli orari programmati di treni, aerei e trasporti ('timetables') si usa il Present Simple ('leaves') anche per il futuro.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Present Simple"
-  },
-  {
-    "id": "q634",
-    "prompt": "I ...... my husband in 1996",
-    "options": [
-      "have known",
-      "meet",
-      "know",
-      "met"
-    ],
-    "correctIndex": 3,
-    "explanation": "Con una data precisa e conclusa nel passato ('in 1996') si usa il Past Simple ('met', passato del verbo irregolare 'meet').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple"
-  },
-  {
     "id": "q635",
     "prompt": "New York is......than London.",
     "options": [
@@ -9534,20 +9256,5 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives"
-  },
-  {
-    "id": "q636",
-    "prompt": "I ...... a new pair of shoes yesterday. Do you like them?",
-    "options": [
-      "have buyed",
-      "buyer",
-      "bought",
-      "have bought"
-    ],
-    "correctIndex": 2,
-    "explanation": "L'avverbio 'yesterday' definisce un tempo passato concluso, richiedendo il Past Simple ('bought', passato irregolare di 'buy').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple"
   }
 ];
