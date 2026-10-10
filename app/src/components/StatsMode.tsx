@@ -1,30 +1,54 @@
-import { useState, useMemo } from 'react';
-import { AppState } from '../types';
-import { questions, getQuestionsByCorpus, INITIAL_CORPUS_COUNT } from '../data/questions';
-import { X, Trophy, TrendingUp, AlertCircle, Clock, Target, List, ArrowLeft, Activity, Filter, ArrowDownUp, ArrowUp, ArrowDown, Minus, Crown, Check } from 'lucide-react';
+import { useState, useMemo, useEffect } from 'react';
+import { AppState, PaywallReason } from '../types';
+import { X, Trophy, TrendingUp, AlertCircle, Clock, Target, List, ArrowLeft, Activity, Filter, ArrowDownUp, ArrowUp, ArrowDown, Minus, Crown, Check, Lock, Loader2 } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { confidenceFromEasiness } from '../lib/spacedRepetition';
+import { confidenceFromEasiness, bankMeta, poolMeta } from '../lib/spacedRepetition';
 import GuaranteeTracker from './GuaranteeTracker';
 import { IconaChip } from '../brand/componenti';
 import { Illustrazione } from '../brand/Illustrazione';
 import { PoweredByAtlas } from './ui';
+import { useAccess } from '../access/context';
+import { FEATURE_FLAGS, FORMATS, PASS } from '../config/offer';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 
 interface StatsModeProps {
   appState: AppState;
   onExit: () => void;
+  onNeedPass: (reason: PaywallReason) => void;
 }
 
-export default function StatsMode({ appState, onExit }: StatsModeProps) {
+// Scarica il testo delle domande dal provider a gruppi, senza ripetere quelle già in mano
+async function fetchPrompts(
+  provider: ReturnType<typeof useAccess>['provider'],
+  ids: string[],
+  have: Record<string, string>
+): Promise<Record<string, string>> {
+  const missing = ids.filter(id => !(id in have));
+  const out: Record<string, string> = {};
+  for (let i = 0; i < missing.length; i += 80) {
+    const list = await provider.getQuestions(missing.slice(i, i + 80));
+    list.forEach(q => { out[q.id] = q.prompt; });
+  }
+  return out;
+}
+
+export default function StatsMode({ appState, onExit, onNeedPass }: StatsModeProps) {
+  const { provider, pass } = useAccess();
   const [showDetailedStats, setShowDetailedStats] = useState(false);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [filterCategory, setFilterCategory] = useState<string>('all');
+  const [prompts, setPrompts] = useState<Record<string, string>>({});
+  const [answersText, setAnswersText] = useState<Record<string, string>>({});
+  const [promptsState, setPromptsState] = useState<'idle' | 'loading' | 'error'>('idle');
+
+  // Indice leggero del banco: senza Pass solo il nucleo gratuito
+  const allMeta = useMemo(() => poolMeta(pass, 'all'), [pass]);
+  const activeMeta = useMemo(() => poolMeta(pass, appState.selectedCorpus || 'all'), [pass, appState.selectedCorpus]);
 
   // Compute stats
-  // Stesso materiale del menu: con il Primo Corpus la percentuale è calcolata su quelle domande
-  const activeQuestions = getQuestionsByCorpus(appState.selectedCorpus || 'all');
-  const totalQuestions = activeQuestions.length;
-  const masteredQuestions = activeQuestions.filter(q => (appState.stats[q.id]?.box ?? 0) > 0).length;
+  // Stesso materiale del menu: con il nucleo di base la percentuale è calcolata su quelle domande
+  const totalQuestions = activeMeta.length;
+  const masteredQuestions = activeMeta.filter(q => (appState.stats[q.id]?.box ?? 0) > 0).length;
   const masteryPercentage = Math.round((masteredQuestions / totalQuestions) * 100) || 0;
   
   const examsTaken = appState.history.length;
@@ -32,6 +56,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
   const passRate = examsTaken > 0 ? Math.round((passedExams / examsTaken) * 100) : 0;
   
   const bestScore = Math.max(0, ...appState.history.map(h => h.score));
+  const lastExam = appState.history.reduce<AppState['history'][number] | null>((last, h) => (!last || h.date > last.date ? h : last), null);
 
   let totalCorrect = 0;
   let totalIncorrect = 0;
@@ -45,7 +70,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
 
   const topicStats = useMemo(() => {
     const stats: Record<string, { correct: number; total: number }> = {};
-    questions.forEach(q => {
+    allMeta.forEach(q => {
       if (q.grammarTopic) {
         const stat = appState.stats[q.id];
         if (stat) {
@@ -58,7 +83,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
       }
     });
     return stats;
-  }, [appState.stats]);
+  }, [appState.stats, allMeta]);
 
   // Find most frequent errors
   const errorRates = Object.keys(appState.stats)
@@ -75,6 +100,33 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
     .sort((a, b) => (b.errorRate - a.errorRate) || (b.incorrect - a.incorrect));
 
   const topErrors = errorRates.slice(0, 5); // top 5 hardest questions
+  const topErrorIds = topErrors.map(e => e.qId).join(',');
+
+  // Testo e risposta esatta delle domande più sbagliate: arrivano dal provider (solo con il Pass)
+  useEffect(() => {
+    if (!pass || !topErrorIds) return;
+    let alive = true;
+    const ids = topErrorIds.split(',');
+    (async () => {
+      try {
+        const meta = await provider.getQuestions(ids);
+        const got: Record<string, string> = {};
+        meta.forEach(q => { got[q.id] = q.prompt; });
+        const texts: Record<string, string> = {};
+        await Promise.all(meta.map(async q => {
+          try {
+            const g = await provider.grade(q.id, -1);
+            texts[q.id] = q.options[g.correctIndex] ?? '';
+          } catch { /* la risposta esatta è un di più: senza, resta il testo della domanda */ }
+        }));
+        if (!alive) return;
+        setPrompts(p => ({ ...p, ...got }));
+        setAnswersText(t => ({ ...t, ...texts }));
+      } catch { /* il testo mancante si mostra come puntini */ }
+    })();
+    return () => { alive = false; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pass, topErrorIds, provider]);
 
   // Prepare Daily Activity Data for Chart (last 7 days)
   const activityData = useMemo(() => {
@@ -96,7 +148,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
 
   const levelStatsData = useMemo(() => {
     const stats: Record<string, { imparate: number; total: number }> = {};
-    questions.forEach(q => {
+    allMeta.forEach(q => {
       const level = q.level || 'Varie';
       if (!stats[level]) {
         stats[level] = { imparate: 0, total: 0 };
@@ -113,11 +165,11 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
       daImparare: data.total - data.imparate,
       total: data.total
     })).sort((a, b) => a.name.localeCompare(b.name));
-  }, [appState.stats]);
+  }, [appState.stats, allMeta]);
 
   const topicStatsData = useMemo(() => {
     const stats: Record<string, { imparate: number; total: number }> = {};
-    questions.forEach(q => {
+    allMeta.forEach(q => {
       const topic = q.grammarTopic || 'Altro';
       if (!stats[topic]) {
         stats[topic] = { imparate: 0, total: 0 };
@@ -134,22 +186,21 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
       daImparare: data.total - data.imparate,
       total: data.total
     })).sort((a, b) => b.total - a.total);
-  }, [appState.stats]);
+  }, [appState.stats, allMeta]);
 
-  const categories = useMemo(() => Array.from(new Set(questions.map(q => q.category))), []);
+  const categories = useMemo(() => Array.from(new Set(allMeta.map(q => q.category))), [allMeta]);
+  const coreCount = useMemo(() => poolMeta(false).length, []);
 
-  // Endowed Progress Effect: Give users a 50 XP head start so they feel invested immediately.
-  const totalXP = 50 + Object.values(appState.stats).reduce((sum, stat) => sum + stat.correct, 0) * 10;
+  // Livello e punti: solo da risposte vere, senza punti regalati
+  const totalXP = Object.values(appState.stats).reduce((sum, stat) => sum + stat.correct, 0) * 10;
   const currentLevel = Math.floor(Math.sqrt(totalXP / 50)) + 1;
   const xpForCurrentLevel = Math.pow(currentLevel - 1, 2) * 50;
   const xpForNextLevel = Math.pow(currentLevel, 2) * 50;
   const progressPercent = Math.min(100, Math.max(0, ((totalXP - xpForCurrentLevel) / (xpForNextLevel - xpForCurrentLevel)) * 100));
 
-  // Endless Daily Quest
+  // Sfida quotidiana: conta solo le domande fatte oggi
   const todayStr = new Date().toISOString().split('T')[0];
-  const todayActivity = appState.dailyActivity?.[todayStr] || 0;
-  const endowedDaily = 1; // 1 free progress step every day just for opening the app
-  const currentTotalDaily = todayActivity + endowedDaily;
+  const currentTotalDaily = appState.dailyActivity?.[todayStr] || 0;
   
   const milestones = [10, 25, 50, 100, 150, 250, 400, 600, 1000, 99999];
   let milestoneIndex = 0;
@@ -163,9 +214,9 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
   const phaseProgressPercent = Math.min(100, (currentPhaseProgress / currentPhaseGoal) * 100);
 
   const filteredAndSortedQuestions = useMemo(() => {
-    let filtered = questions;
+    let filtered = allMeta;
     if (filterCategory === 'corpus:initial') {
-      filtered = getQuestionsByCorpus('initial');
+      filtered = poolMeta(false);
     } else if (filterCategory !== 'all') {
       filtered = filtered.filter(q => q.category === filterCategory);
     }
@@ -183,7 +234,93 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
         return confB - confA;
       }
     });
-  }, [filterCategory, sortOrder, appState.stats]);
+  }, [filterCategory, sortOrder, appState.stats, allMeta]);
+
+  // Il dettaglio mostra il testo di ogni domanda: si scarica quando si apre la vista
+  useEffect(() => {
+    if (!showDetailedStats || !pass) return;
+    let alive = true;
+    setPromptsState('loading');
+    fetchPrompts(provider, allMeta.map(q => q.id), prompts)
+      .then(got => { if (alive) { setPrompts(p => ({ ...p, ...got })); setPromptsState('idle'); } })
+      .catch(() => { if (alive) setPromptsState('error'); });
+    return () => { alive = false; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showDetailedStats, pass, provider]);
+
+  const lastExamFormat = lastExam ? FORMATS[lastExam.format ?? 'ente'] : null;
+
+  // ================== Senza Pass: i numeri di base e un invito ==================
+  if (!pass) {
+    return (
+      <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
+        <div className="flex flex-col h-full p-2 sm:p-4">
+          <header className="flex items-end justify-between px-2 pt-2 pb-1 shrink-0">
+            <div>
+              <h2 className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Progressi</h2>
+              <p className="text-sm text-[#6B7280] dark:text-gray-400">Quanto sai, in breve.</p>
+            </div>
+            <Illustrazione kit="kit-rosso" nome="progressi-statistiche" lato={84} />
+          </header>
+
+          <main className="flex-1 overflow-y-auto scrollbar-hide p-4 sm:p-6 flex flex-col gap-4 sm:gap-6 max-w-2xl w-full mx-auto">
+            <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-3 sm:gap-4">
+              {([
+                ['completato', `${masteryPercentage}%`, `Domande imparate (su ${totalQuestions})`],
+                ['successo', `${globalAccuracy}%`, 'Accuratezza'],
+              ] as const).map(([icona, valore, nome]) => (
+                <div key={nome} className="bg-white dark:bg-[#0F172A] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-4 flex flex-col gap-2">
+                  <IconaChip nome={icona} lato={40} />
+                  <span className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-none">{valore}</span>
+                  <span className="text-xs text-[#6B7280] dark:text-gray-400">{nome}</span>
+                </div>
+              ))}
+              <div className="min-[420px]:col-span-2 bg-white dark:bg-[#0F172A] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-4 flex flex-col gap-2">
+                <IconaChip nome="quiz" lato={40} />
+                {lastExam && lastExamFormat ? (
+                  <>
+                    <span className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-none">
+                      {lastExam.score}/{lastExamFormat.questions}
+                      <span className={cn("ml-3 text-base font-bold", lastExam.passed ? "text-[#16A34A] dark:text-[#10B981]" : "text-[#EF4444] dark:text-[#F87171]")}>
+                        {lastExam.passed ? 'Superata' : 'Non superata'}
+                      </span>
+                    </span>
+                    <span className="text-xs text-[#6B7280] dark:text-gray-400">
+                      Ultimo esame, {new Date(lastExam.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'long' })}. Soglia {lastExamFormat.passMark} su {lastExamFormat.questions}.
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-none">-</span>
+                    <span className="text-xs text-[#6B7280] dark:text-gray-400">Ultimo esame: non ne hai ancora fatto uno.</span>
+                  </>
+                )}
+              </div>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
+              <div className="flex items-start gap-3">
+                <Lock size={18} className="mt-0.5 shrink-0 text-gray-500 dark:text-gray-400" />
+                <div>
+                  <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Il quadro completo è nel Pass</h3>
+                  <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">
+                    Radar per argomento, progresso per livello, le domande che sbagli di più e il dettaglio di ogni domanda. Il Pass costa una volta sola ({PASS.validMonths} mesi di accesso).
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => onNeedPass('statistiche')}
+                className="self-start text-sm font-bold text-[#EF4444] border border-[#FCA5A5] hover:bg-[#FEE2E2] dark:hover:bg-[#7F1D1D]/40 px-4 py-2 rounded-xl transition-colors"
+              >
+                Scopri il Pass
+              </button>
+            </div>
+            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500">I numeri contano il nucleo gratuito ({coreCount} domande).</p>
+          </main>
+        </div>
+      </div>
+    );
+  }
 
   if (showDetailedStats) {
     return (
@@ -194,8 +331,8 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             Indietro
           </button>
           <div className="flex flex-col items-end">
-            <h2 className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Dettaglio Frasi</h2>
-            <span className="text-xs font-bold text-gray-400">{filteredAndSortedQuestions.length} frasi totali</span>
+            <h2 className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Dettaglio domande</h2>
+            <span className="text-xs font-bold text-gray-400">{filteredAndSortedQuestions.length} domande totali</span>
           </div>
         </header>
         <div className="flex items-center justify-between p-4 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors bg-gray-50 dark:bg-[#0F172A]">
@@ -207,7 +344,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
               className="bg-transparent border-none text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] focus:ring-0 cursor-pointer"
             >
               <option value="all">Tutte le categorie</option>
-              <option value="corpus:initial">⭐ Primo Corpus ({INITIAL_CORPUS_COUNT} frasi)</option>
+              <option value="corpus:initial">Nucleo di base ({coreCount} domande)</option>
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
@@ -220,6 +357,14 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           </button>
         </div>
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col gap-4">
+          {promptsState === 'loading' && (
+            <p className="flex items-center gap-2 text-sm font-bold text-gray-500 dark:text-gray-400"><Loader2 size={16} className="animate-spin" /> Carico le domande…</p>
+          )}
+          {promptsState === 'error' && (
+            <p role="alert" className="text-sm font-bold text-[#B91C1C] dark:text-[#FCA5A5] bg-[#FEE2E2] dark:bg-[#7F1D1D]/40 rounded-xl px-3 py-2">
+              Non riesco a caricare il testo delle domande. Controlla la connessione e riapri il dettaglio.
+            </p>
+          )}
           {filteredAndSortedQuestions.map((q, index) => {
             const stat = appState.stats[q.id];
             const hasSeen = !!stat;
@@ -241,7 +386,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                 <div className="flex-1 flex gap-3 sm:gap-4 items-start">
                   <span className="text-gray-400 dark:text-gray-500 font-bold text-sm sm:text-base mt-0.5 shrink-0 w-6 sm:w-8 text-right">{index + 1}.</span>
                   <div className="flex-1">
-                    <p className="font-bold text-[#1E293B] dark:text-[#F8FAFC] text-sm sm:text-base mb-1">{q.prompt}</p>
+                    <p className="font-bold text-[#1E293B] dark:text-[#F8FAFC] text-sm sm:text-base mb-1">{prompts[q.id] ?? '…'}</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-bold flex items-center gap-2 flex-wrap">
                       <span>{q.category}</span>
                       {q.level && (
@@ -348,7 +493,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
       <header className="flex items-end justify-between px-2 pt-2 pb-1 shrink-0">
         <div>
           <h2 className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Progressi</h2>
-          <p className="text-sm text-[#6B7280]">Quanto sai, argomento per argomento.</p>
+          <p className="text-sm text-[#6B7280] dark:text-gray-400">Quanto sai, argomento per argomento.</p>
         </div>
         <Illustrazione kit="kit-rosso" nome="progressi-statistiche" lato={84} />
       </header>
@@ -368,7 +513,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
               <div key={nome} className="bg-white dark:bg-[#0F172A] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-4 flex flex-col gap-2">
                 <IconaChip nome={icona} lato={40} />
                 <span className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-none">{valore}</span>
-                <span className="text-xs text-[#6B7280]">{nome}</span>
+                <span className="text-xs text-[#6B7280] dark:text-gray-400">{nome}</span>
               </div>
             ))}
           </div>
@@ -377,7 +522,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
           <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">
              <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
               <Activity className="text-[#F59E0B] dark:text-[#FBBF24] w-5 h-5" />
-              Costanza (Ultimi 7 Giorni)
+              Costanza (ultimi 7 giorni)
             </h3>
             <div className="flex-1 min-h-[150px] w-full">
               <ResponsiveContainer width="100%" height="100%">
@@ -418,7 +563,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             </div>
           </div>
 
-          <GuaranteeTracker appState={appState} />
+          {FEATURE_FLAGS.guarantee && <GuaranteeTracker appState={appState} />}
           <PoweredByAtlas />
 
         </div>
@@ -432,14 +577,14 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             className="w-full bg-[#EF4444] hover:bg-[#DC2626] border-[#2563EB] active:scale-[.99] text-white font-bold text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-all flex items-center justify-center gap-2"
           >
             <List className="w-5 h-5" />
-            Vedi Dettaglio Frasi
+            Vedi Dettaglio domande
           </button>
 
           {Object.keys(topicStats).length >= 3 ? (
             <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col h-full min-h-[300px]">
               <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
                 <Target className="text-[#3B82F6] dark:text-[#60A5FA] w-5 h-5" />
-                Skill Profile
+                Profilo per argomento
               </h3>
               
               <div className="flex-1 min-h-0 relative">
@@ -495,11 +640,11 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             </div>
           )}
 
-          {/* Progresso per Livello */}
+          {/* Progresso per livello */}
           <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">
              <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
               <TrendingUp className="text-[#F59E0B] dark:text-[#FBBF24] w-5 h-5" />
-              Progresso per Livello
+              Progresso per livello
             </h3>
             <div className="flex-1 min-h-[150px] w-full">
               <ResponsiveContainer width="100%" height="100%">
@@ -510,20 +655,20 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                   <Tooltip 
                     cursor={{ fill: '#F3F4F6' }}
                     contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
-                    formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da Imparare' : name]}
+                    formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]}
                   />
                   <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#22C55E" radius={[0, 0, 0, 0]} maxBarSize={30} />
-                  <Bar dataKey="daImparare" name="Da Imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={30} />
+                  <Bar dataKey="daImparare" name="Da imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={30} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
 
-          {/* Progresso per Argomento */}
+          {/* Progresso per argomento */}
           <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[350px]">
              <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
               <List className="text-[#8B5CF6] dark:text-[#A78BFA] w-5 h-5" />
-              Progresso per Argomento
+              Progresso per argomento
             </h3>
             <div className="flex-1 min-h-[250px] w-full">
               <ResponsiveContainer width="100%" height="100%">
@@ -534,20 +679,20 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                   <Tooltip 
                     cursor={{ fill: '#F3F4F6' }}
                     contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
-                    formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da Imparare' : name]}
+                    formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]}
                   />
                   <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#EF4444" radius={[0, 0, 0, 0]} maxBarSize={20} />
-                  <Bar dataKey="daImparare" name="Da Imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={20} />
+                  <Bar dataKey="daImparare" name="Da imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={20} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
 
-          {/* Errori Comuni */}
+          {/* Errori frequenti */}
           <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col">
             <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-3 flex items-center gap-2 shrink-0">
               <AlertCircle className="text-[#EF4444] dark:text-[#F87171] w-5 h-5" />
-              Errori Comuni
+              Errori frequenti
             </h3>
             {topErrors.length === 0 ? (
               <div className="py-6 flex items-center justify-center text-center">
@@ -556,11 +701,11 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
             ) : (
               <div className="space-y-3">
                 {topErrors.map(err => {
-                  const q = questions.find(q => q.id === err.qId);
-                  if (!q) return null;
+                  const text = prompts[err.qId];
+                  const rightAnswer = answersText[err.qId];
                   return (
                     <div key={err.qId} className="bg-[#FEE2E2] dark:bg-[#7F1D1D]/25 border border-[#EF4444] dark:border-[#EF4444] rounded-xl p-3 sm:p-4 shadow-sm transition-colors flex flex-col gap-2.5">
-                      <p className="font-bold text-sm sm:text-base text-[#1E293B] dark:text-[#F8FAFC] line-clamp-2 leading-tight">{q.prompt}</p>
+                      <p className="font-bold text-sm sm:text-base text-[#1E293B] dark:text-[#F8FAFC] line-clamp-2 leading-tight">{text ?? '…'}</p>
                       
                       {/* Breakdown: Giuste, Sbagliate, Omesse */}
                       <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
@@ -595,7 +740,7 @@ export default function StatsMode({ appState, onExit }: StatsModeProps) {
                           {Math.round(err.errorRate * 100)}% errore
                         </span>
                         <span className="text-xs sm:text-sm font-bold text-[#16A34A] dark:text-[#34D399] truncate max-w-[50%]">
-                          {q.options[q.correctIndex]}
+                          {rightAnswer ?? ''}
                         </span>
                       </div>
                     </div>

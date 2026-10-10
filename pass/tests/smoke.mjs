@@ -222,7 +222,7 @@ test('esame gratuito: solo ente, una volta, solo nucleo, senza risposte', async 
   assert.equal(stranger.status, 404);
 });
 
-test('esame con Pass: punteggio ente e TENG con penalita calcolato dal server', async () => {
+test('esame con Pass: punteggio ente e TENG con penalita calcolato dal server', async (ctx) => {
   const device = rnd();
   await giveWebhookPass(device);
 
@@ -257,6 +257,7 @@ test('esame con Pass: punteggio ente e TENG con penalita calcolato dal server', 
   assert.equal(rt.data.score, tc - tw * 0.25);
 
   // Soglie vere, solo se il banco ha 30 domande per formato
+  ctx.diagnostic(`soglie 30/30 provate: ente=${n === 30}, teng=${nt === 30}`);
   if (n === 30) {
     const e2 = await api('POST', '/v1/exam/start', { device, body: { format: 'ente' } });
     const c2 = await correctIndexes(device, e2.data);
@@ -283,6 +284,11 @@ test('esame fuori tempo: oltre 15 minuti + 20 secondi non si supera (se e possib
   try {
     execSync(`npx wrangler d1 execute addiofa-pass --local --command "UPDATE exams SET started_at = ${old} WHERE id = '${e.data.id}'"`, { stdio: 'ignore' });
   } catch { t.skip('wrangler d1 execute non disponibile'); return; }
+  // Il comando puo far ricaricare il server locale: si aspetta che risponda di nuovo
+  for (let i = 0; i < 30; i++) {
+    try { if ((await fetch(BASE + '/v1/health')).ok) break; } catch { /* riprova */ }
+    await new Promise(r => setTimeout(r, 500));
+  }
   const c = await correctIndexes(device, e.data);
   const r = await api('POST', `/v1/exam/${e.data.id}/submit`, { device, body: { answers: mixAnswers(e.data, c, e.data.questions.length, 0), elapsed: 10 } });
   assert.equal(r.status, 200);

@@ -42,12 +42,12 @@ export function ActivityChart({ dailyActivity }: ActivityChartProps) {
     <div className="h-full bg-white dark:bg-[#0F172A] rounded-xl sm:rounded-2xl p-2 sm:p-4 border-2 border-gray-200 dark:border-[#334155] border-b-4 shadow-sm transition-colors flex flex-col justify-between min-h-0">
       <div className="flex justify-between items-end mb-1 sm:mb-2 shrink-0">
         <div>
-          <h3 className="text-xs sm:text-sm font-black text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Consistency</h3>
-          <p className="text-[8px] sm:text-[10px] font-bold text-gray-400 mt-0.5">Last 28 Days</p>
+          <h3 className="text-xs sm:text-sm font-black text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Costanza</h3>
+          <p className="text-[8px] sm:text-[10px] font-bold text-gray-400 mt-0.5">Ultimi 28 giorni</p>
         </div>
         <div className="text-right">
           <div className="text-sm sm:text-lg font-black text-[#22C55E] dark:text-[#10B981] leading-none">{activeDays}</div>
-          <div className="text-[8px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">Active</div>
+          <div className="text-[8px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">Giorni attivi</div>
         </div>
       </div>
       
@@ -62,7 +62,7 @@ export function ActivityChart({ dailyActivity }: ActivityChartProps) {
           {days.map((day, i) => (
             <div 
               key={day.date}
-              title={`${day.date}: ${day.count} activity`}
+              title={`${day.date}: ${day.count} ${day.count === 1 ? 'domanda' : 'domande'}`}
               className={`w-full h-full min-h-[6px] sm:min-h-[12px] rounded-[2px] sm:rounded-sm border ${getColor(day.count, day.isFuture)} transition-all duration-300`}
             />
           ))}

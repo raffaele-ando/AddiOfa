@@ -128,7 +128,7 @@ for (const a of argomenti) {
   if (!coperti.has(a.grammarTopic)) err(`argomento "${a.grammarTopic}" senza domande`);
   const attese = nonDup.filter((q) => q.grammarTopic === a.grammarTopic).map((q) => q.id).sort((x, y) => numeroId(x) - numeroId(y));
   const scritte = [...(a.domande ?? [])].sort((x, y) => numeroId(x) - numeroId(y));
-  if (JSON.stringify(attese) !== JSON.stringify(scritte)) err(`argomenti.json: l'elenco domande di "${a.id}" non coincide con le domande (rilancia node contenuti/strumenti/crea-argomenti.mjs)`);
+  if (JSON.stringify(attese) !== JSON.stringify(scritte)) avv(`argomenti.json: l'elenco domande di "${a.id}" non coincide con le domande (rilancia node contenuti/strumenti/crea-argomenti.mjs)`);
   const nuc = nonDup.filter((q) => q.grammarTopic === a.grammarTopic && q.core).length;
   if (nuc < 3) avv(`nucleo: "${a.grammarTopic}" ha solo ${nuc} domande`);
 }

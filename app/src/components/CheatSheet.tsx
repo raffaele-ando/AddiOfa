@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { cheatSheet } from '../data/cheatSheet';
 import { Screen, TopBar, RichText } from './ui';
+import { FORMATS, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS } from '../config/offer';
+import type { PaywallReason } from '../types';
 
-export default function CheatSheet({ onBack }: { onBack: () => void }) {
+export default function CheatSheet({ onBack }: { onBack: () => void; onNeedPass?: (reason: PaywallReason) => void }) {
   const [query, setQuery] = useState('');
   const q = query.trim().toLowerCase();
   const rules = q
@@ -17,6 +19,11 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
         <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">Prontuario</h2>
         <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">
           Le {cheatSheet.length} regole che tornano più spesso, con la trappola tipica di chi parla italiano.
+        </p>
+        <p className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400 mt-3 leading-relaxed">
+          Cosa si sa del test: il TENG, la parte di inglese del test d'ingresso, ha {REAL_TEST_QUESTIONS} domande in {FORMATS.teng.minutes} minuti e dà l'OFA se le risposte esatte sono meno di {REAL_TEST_PASS_MARK}.
+          Il test di recupero di LinguaViva ha {FORMATS.ente.questions} domande in {FORMATS.ente.minutes} minuti e si supera con {FORMATS.ente.passMark} su {FORMATS.ente.questions}.
+          Language Academy e British Institutes non pubblicano la soglia: chiedila all'ente che scegli.
         </p>
       </div>
 

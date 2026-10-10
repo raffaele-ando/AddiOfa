@@ -14,7 +14,8 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": true,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "Don't to forget your keys."
   },
   {
     "id": "q302",
@@ -31,7 +32,8 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "Closed the door, please."
   },
   {
     "id": "q303",
@@ -48,7 +50,8 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "Don't to speak during the exam."
   },
   {
     "id": "q304",
@@ -65,7 +68,8 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "Waits here a moment."
   },
   {
     "id": "q305",
@@ -82,7 +86,8 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "Wrote your names on the paper."
   },
   {
     "id": "q306",
@@ -99,7 +104,8 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "Don't smoked in this room."
   },
   {
     "id": "q307",
@@ -116,7 +122,8 @@
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "am go"
   },
   {
     "id": "q308",
@@ -150,7 +157,8 @@
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "have"
   },
   {
     "id": "q310",
@@ -167,7 +175,8 @@
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "do"
   },
   {
     "id": "q311",
@@ -218,7 +227,8 @@
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "is"
   },
   {
     "id": "q314",
@@ -235,7 +245,8 @@
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "to study"
   },
   {
     "id": "q315",
@@ -269,7 +280,8 @@
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "What are you going to doing?"
   },
   {
     "id": "q317",
@@ -286,7 +298,8 @@
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "I am not going wait all day."
   },
   {
     "id": "q318",
@@ -320,7 +333,8 @@
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "We are going to buying a new house."
   },
   {
     "id": "q320",
@@ -405,7 +419,8 @@
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "He's go to fall!"
   },
   {
     "id": "q325",
@@ -456,7 +471,8 @@
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "have"
   },
   {
     "id": "q328",
@@ -490,7 +506,8 @@
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "hasn't"
   },
   {
     "id": "q330",
@@ -541,7 +558,8 @@
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "Has"
   },
   {
     "id": "q333",
@@ -575,7 +593,8 @@
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "What were you do when I called you?"
   },
   {
     "id": "q335",
@@ -626,7 +645,8 @@
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "She wasn't watched TV, she was reading."
   },
   {
     "id": "q338",
@@ -660,7 +680,8 @@
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "Was it rain hard yesterday morning?"
   },
   {
     "id": "q340",
@@ -677,7 +698,8 @@
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "We weren't go too fast."
   },
   {
     "id": "q341",
@@ -694,7 +716,8 @@
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "What were you think at that moment?"
   },
   {
     "id": "q342",
@@ -762,7 +785,8 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "doesn't have to"
   },
   {
     "id": "q346",
@@ -830,7 +854,8 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "has to"
   },
   {
     "id": "q350",
@@ -864,7 +889,8 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "to have"
   },
   {
     "id": "q352",
@@ -881,7 +907,8 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "You should to eat more vegetables."
   },
   {
     "id": "q353",
@@ -898,7 +925,8 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "You don't must come if you're tired."
   },
   {
     "id": "q354",
@@ -915,7 +943,8 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": true,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "You not must touch that wire!"
   },
   {
     "id": "q355",
@@ -949,7 +978,8 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "You shouldn't to drink so much coffee."
   },
   {
     "id": "q357",
@@ -966,7 +996,8 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "Do I have take off my shoes?"
   },
   {
     "id": "q358",
@@ -983,7 +1014,8 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "You not have to pay, it's free."
   },
   {
     "id": "q359",
@@ -1034,7 +1066,8 @@
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "bad"
   },
   {
     "id": "q362",
@@ -1068,7 +1101,8 @@
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": true,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "care"
   },
   {
     "id": "q364",
@@ -1085,7 +1119,8 @@
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "easiest"
   },
   {
     "id": "q365",
@@ -1102,7 +1137,8 @@
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "slowest"
   },
   {
     "id": "q366",
@@ -1119,7 +1155,8 @@
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "with angry"
   },
   {
     "id": "q367",
@@ -1153,7 +1190,8 @@
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "happiest"
   },
   {
     "id": "q369",
@@ -1187,7 +1225,8 @@
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": true,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "He answered the question with quick."
   },
   {
     "id": "q371",
@@ -1323,7 +1362,8 @@
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "I understood perfectest."
   },
   {
     "id": "q379",
@@ -1340,7 +1380,8 @@
     "level": "B1",
     "grammarTopic": "Second Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "would win"
   },
   {
     "id": "q380",
@@ -1357,7 +1398,8 @@
     "level": "B1",
     "grammarTopic": "Second Conditional",
     "core": true,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "If I were you, I would studying more."
   },
   {
     "id": "q381",
@@ -1374,7 +1416,8 @@
     "level": "B1",
     "grammarTopic": "Third Conditional",
     "core": true,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "would had passed"
   },
   {
     "id": "q382",
@@ -1391,7 +1434,8 @@
     "level": "B1",
     "grammarTopic": "Third Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "If we had left earlier, we wouldn't missed the train."
   },
   {
     "id": "q383",
@@ -1408,7 +1452,8 @@
     "level": "B1",
     "grammarTopic": "Passive Voice",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "has written"
   },
   {
     "id": "q384",
@@ -1425,7 +1470,8 @@
     "level": "B1",
     "grammarTopic": "Passive Voice",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "is been built"
   },
   {
     "id": "q385",
@@ -1544,7 +1590,8 @@
     "level": "B1",
     "grammarTopic": "Relative Clauses",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "whom"
   },
   {
     "id": "q392",
@@ -1561,7 +1608,8 @@
     "level": "B1",
     "grammarTopic": "Relative Clauses",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "what"
   },
   {
     "id": "q393",
@@ -1578,7 +1626,8 @@
     "level": "B1",
     "grammarTopic": "Relative Clauses",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "who's"
   },
   {
     "id": "q394",
@@ -1595,7 +1644,8 @@
     "level": "B1",
     "grammarTopic": "Question Tags",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "won't you"
   },
   {
     "id": "q395",
@@ -1612,7 +1662,8 @@
     "level": "B1",
     "grammarTopic": "Question Tags",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "has she"
   },
   {
     "id": "q396",
@@ -1663,7 +1714,8 @@
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": true,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "for reading"
   },
   {
     "id": "q399",
@@ -1680,7 +1732,8 @@
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "for buying"
   },
   {
     "id": "q400",
@@ -1697,6 +1750,7 @@
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "originale"
+    "stato": "originale",
+    "extraOption": "for opening"
   }
 ]

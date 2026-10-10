@@ -1,0 +1,27 @@
+{
+  "id": "quantifiers",
+  "titolo": "Quantificatori: much, many, few, little, some, any",
+  "livello": "A1",
+  "regola": [
+    "*Much* e *little* si usano con i nomi non numerabili (*money, time, milk*); *many* e *few* con i numerabili al plurale (*friends, cars*). Nelle frasi affermative si usa spesso *a lot of* per entrambi.",
+    "*A few* e *a little* significano «qualche, un po'»; senza *a* (*few, little*) significano «pochi, poco» in senso negativo.",
+    "*Some* si usa nelle affermative e nelle offerte o richieste (*Would you like some tea?*); *any* nelle negative e nelle domande.",
+    "*Information, advice, news, furniture, luggage, homework* sono non numerabili: non hanno il plurale e vogliono il verbo al singolare."
+  ],
+  "esempi": [
+    { "en": "How many people are at the party?", "it": "Quante persone ci sono alla festa?" },
+    { "en": "How much sugar do you want in your coffee?", "it": "Quanto zucchero vuoi nel caffè?" },
+    { "en": "I have very little time today.", "it": "Oggi ho pochissimo tempo." },
+    { "en": "Only a few students came to the lecture.", "it": "Alla lezione sono venuti solo pochi studenti." },
+    { "en": "Would you like some tea?", "it": "Vorresti del tè?" },
+    { "en": "Could you give me some information about the course?", "it": "Puoi darmi qualche informazione sul corso?" }
+  ],
+  "errori": [
+    { "sbagliato": "How much people are at the party?", "giusto": "How many people are at the party?", "perche": "*People* è un plurale numerabile, quindi vuole *many*." },
+    { "sbagliato": "I need many informations.", "giusto": "I need some information.", "perche": "*Information* è non numerabile: niente plurale e niente *many*." },
+    { "sbagliato": "I have very few time.", "giusto": "I have very little time.", "perche": "*Time* non è numerabile, quindi serve *little*, non *few*." },
+    { "sbagliato": "There aren't some apples.", "giusto": "There aren't any apples.", "perche": "Nelle frasi negative si usa *any*." }
+  ],
+  "consiglio": "Prima di scegliere, chiediti se il nome può avere il plurale: se non può (*money, advice, luggage*), niente *many* né *few*.",
+  "domande": ["q107", "q191", "q570"]
+}

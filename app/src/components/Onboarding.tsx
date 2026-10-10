@@ -276,7 +276,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           <TopBar {...bar} />
           <div className="text-center">
             <h2 className={titolo}>Quiz completato</h2>
-            <p className={sotto}>Hai risposto bene a {correct} domande su {quiz.length}.</p>
+            <p className={sotto}>Hai risposto bene a {correct} {correct === 1 ? 'domanda' : 'domande'} su {quiz.length}.</p>
           </div>
           <div className="flex justify-center"><Misuratore valore={passPercent} larghezza={250} etichetta={passPercent === 0 ? '< 1%' : passPercent === 100 ? '> 99%' : `${passPercent}%`} /></div>
           <p className="text-center font-bold text-[#0F172A] dark:text-[#F8FAFC] -mt-2">

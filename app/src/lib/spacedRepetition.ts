@@ -1,7 +1,6 @@
 import { Question, UserStats, AppState, QuestionTelemetry, CorpusType } from '../types';
 import { questions, getQuestionsByCorpus } from '../data/questions';
-import type { QuestionMeta } from '../data/bank';
-import { toMeta } from '../data/bank';
+import { toMeta, type QuestionMeta } from '../data/bank';
 
 // Quanto serve di una domanda per misurare i tempi e la qualità della risposta: il testo e la risposta esatta
 // (nell'ordine in cui l'utente l'ha vista). Dopo grade() la risposta esatta c'è; senza, la qualità non usa i cambi di opzione.
@@ -12,14 +11,10 @@ export interface QuizLike {
 }
 
 let metaCache: QuestionMeta[] | null = null;
-let coreIds: Set<string> | null = null;
 
 /** Indice leggero del banco (id, categoria, livello, argomento, se è del nucleo gratuito). Non contiene risposte. */
 export function bankMeta(): QuestionMeta[] {
-  if (!metaCache) {
-    coreIds = new Set(getQuestionsByCorpus('initial').map(q => q.id));
-    metaCache = questions.map((q, i) => ({ ...toMeta(q, i), core: coreIds!.has(q.id) }));
-  }
+  if (!metaCache) metaCache = questions.map(q => toMeta(q));
   return metaCache;
 }
 
