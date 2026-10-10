@@ -1,0 +1,26 @@
+{
+  "id": "prepositions-place",
+  "titolo": "Preposizioni di luogo: in, on, at, under, between",
+  "livello": "A1",
+  "regola": [
+    "*In* = dentro uno spazio, una città o un paese (*in the wardrobe, in London*); *on* = su una superficie (*on the table, on the wall*); *at* = in un punto preciso o in un luogo dove si svolge un'attività (*at the bus stop, at the cinema*).",
+    "*Under* = sotto, *behind* = dietro, *next to* = accanto a, *near* = vicino a.",
+    "*Between* si usa per due persone o cose, *among* per più di due, in mezzo a un gruppo."
+  ],
+  "esempi": [
+    { "en": "The cat is hiding under the bed.", "it": "Il gatto si sta nascondendo sotto il letto." },
+    { "en": "She is waiting at the bus stop.", "it": "Sta aspettando alla fermata dell'autobus." },
+    { "en": "The picture is hanging on the wall.", "it": "Il quadro è appeso alla parete." },
+    { "en": "He lives in London.", "it": "Vive a Londra." },
+    { "en": "The bank is next to the post office.", "it": "La banca è accanto all'ufficio postale." },
+    { "en": "She sat between her two best friends.", "it": "Si è seduta tra le sue due migliori amiche." }
+  ],
+  "errori": [
+    { "sbagliato": "I am into the cinema.", "giusto": "I am at the cinema.", "perche": "Per dire dove ci si trova si usa *at*; *into* indica un movimento verso l'interno." },
+    { "sbagliato": "There is a spider at the ceiling.", "giusto": "There is a spider on the ceiling.", "perche": "Il ragno sta su una superficie, quindi *on*." },
+    { "sbagliato": "The child is among his parents.", "giusto": "The child is between his parents.", "perche": "Con due persone si usa *between*, *among* è per più di due." },
+    { "sbagliato": "He lives at London.", "giusto": "He lives in London.", "perche": "Con città e paesi si usa *in*." }
+  ],
+  "consiglio": "Immagina la scena: dentro qualcosa è *in*, sopra a contatto è *on*, un punto preciso è *at*.",
+  "domande": ["q271", "q272", "q280"]
+}

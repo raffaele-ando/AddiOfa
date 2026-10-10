@@ -1,0 +1,27 @@
+{
+  "id": "possessive-s",
+  "titolo": "Il genitivo sassone ('s)",
+  "livello": "A1",
+  "regola": [
+    "Per dire di chi è qualcosa si mette il possessore prima, con *'s*, e subito dopo la cosa posseduta, senza articolo: *Marco's computer*, *my mother's birthday*.",
+    "Se il possessore è un plurale in *-s* si aggiunge solo l'apostrofo (*my parents' house*); i plurali irregolari prendono *'s* (*children's, women's, men's*).",
+    "Si usa soprattutto con persone e animali; *'s* può anche indicare un luogo o un negozio (*at Paul's*, *the baker's*).",
+    "L'apostrofo si mette prima della *s* se il possessore è uno solo (*friend's*) e dopo la *s* se sono più di uno (*friends'*)."
+  ],
+  "esempi": [
+    { "en": "Where is Marco's computer?", "it": "Dov'è il computer di Marco?" },
+    { "en": "My grandparents' house is big.", "it": "La casa dei miei nonni è grande." },
+    { "en": "The children's toys are scattered everywhere.", "it": "I giocattoli dei bambini sono sparsi ovunque." },
+    { "en": "Have you seen Anna's keys?", "it": "Hai visto le chiavi di Anna?" },
+    { "en": "It's my mother's birthday.", "it": "È il compleanno di mia madre." },
+    { "en": "Women's shoes are on the second floor.", "it": "Le scarpe da donna sono al secondo piano." }
+  ],
+  "errori": [
+    { "sbagliato": "I don't like Sara makeup.", "giusto": "I don't like Sara's makeup.", "perche": "Il possessore ha bisogno di *'s*." },
+    { "sbagliato": "Sarahs bag is red.", "giusto": "Sarah's bag is red.", "perche": "Senza apostrofo *Sarahs* sarebbe solo un plurale." },
+    { "sbagliato": "My grandparent's house is big.", "giusto": "My grandparents' house is big.", "perche": "I nonni sono più di uno: plurale in *-s* e apostrofo dopo la *s*." },
+    { "sbagliato": "The childrens' toys are here.", "giusto": "The children's toys are here.", "perche": "*Children* è già plurale (irregolare), quindi prende *'s*." }
+  ],
+  "consiglio": "Prima chiediti se il possessore è uno o più di uno, poi guarda se il plurale finisce in *-s*: questo ti dice dove va l'apostrofo.",
+  "domande": ["q148", "q150", "q157"]
+}

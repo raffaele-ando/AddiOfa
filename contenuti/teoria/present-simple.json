@@ -1,0 +1,28 @@
+{
+  "id": "present-simple",
+  "titolo": "Present Simple: abitudini e fatti",
+  "livello": "A1",
+  "regola": [
+    "Si usa per abitudini, fatti sempre veri e orari fissi: *I wake up at 7*, *water boils at 100 degrees*.",
+    "Alla 3ª persona singolare (*he, she, it*) il verbo prende la **-s**: *she drinks*, *he has*.",
+    "Negativa e domanda si fanno con *do/does* + forma base: *She doesn't like coffee*, *Does he live here?* Dopo *does* il verbo non ha la -s.",
+    "I verbi di stato (*understand, like, know*) restano al Present Simple anche quando parli di adesso.",
+    "Dopo *when, as soon as, until, in case* il futuro si esprime con il presente: *I will call you as soon as I arrive*."
+  ],
+  "esempi": [
+    { "en": "He usually wakes up at seven.", "it": "Di solito si sveglia alle sette." },
+    { "en": "My parents don't live in London.", "it": "I miei genitori non vivono a Londra." },
+    { "en": "Does she like chocolate?", "it": "A lei piace il cioccolato?" },
+    { "en": "The train leaves at eight o'clock.", "it": "Il treno parte alle otto in punto." },
+    { "en": "What does this word mean?", "it": "Cosa significa questa parola?" },
+    { "en": "I will call you as soon as I arrive.", "it": "Ti chiamerò non appena arrivo." }
+  ],
+  "errori": [
+    { "sbagliato": "She don't like coffee.", "giusto": "She doesn't like coffee.", "perche": "Con he/she/it l'ausiliare della negativa è *doesn't*, non *don't*." },
+    { "sbagliato": "Does he works here?", "giusto": "Does he work here?", "perche": "Dopo *does* il verbo resta alla forma base, senza -s." },
+    { "sbagliato": "I'm not like coffee.", "giusto": "I don't like coffee.", "perche": "Per negare un verbo normale si usa *do not*, non il verbo *be*." },
+    { "sbagliato": "I am understanding what you mean.", "giusto": "I understand what you mean.", "perche": "*Understand* è un verbo di stato e non si usa nella forma in -ing." }
+  ],
+  "consiglio": "Quando vedi *does* o *doesn't*, controlla che il verbo subito dopo sia nella forma base, senza -s.",
+  "domande": ["q95", "q98", "q137"]
+}

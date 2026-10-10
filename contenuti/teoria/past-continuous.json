@@ -1,0 +1,27 @@
+{
+  "id": "past-continuous",
+  "titolo": "Past Continuous: azioni in corso nel passato",
+  "livello": "A2",
+  "regola": [
+    "Si forma con *was/were* + verbo in -ing: *I was watching TV*.",
+    "Descrive un'azione che era in corso in un momento del passato (*What were you doing at 8 PM?*) o due azioni che si svolgevano nello stesso tempo con *while*.",
+    "Spesso un'azione lunga (Past Continuous) viene interrotta da una breve (Past Simple): *I was watching TV when the phone rang*.",
+    "La negativa è *wasn't/weren't* + -ing; la domanda si fa con l'inversione: *Was it raining?*"
+  ],
+  "esempi": [
+    { "en": "I was watching TV when the phone rang.", "it": "Stavo guardando la TV quando ha squillato il telefono." },
+    { "en": "While she was reading, her brother was playing video games.", "it": "Mentre lei leggeva, suo fratello giocava ai videogiochi." },
+    { "en": "What were you doing at 8 PM yesterday?", "it": "Cosa stavi facendo ieri alle 20?" },
+    { "en": "They were walking in the park when it started to rain.", "it": "Stavano camminando nel parco quando ha iniziato a piovere." },
+    { "en": "He wasn't listening to the teacher.", "it": "Non stava ascoltando l'insegnante." },
+    { "en": "Was it raining when you left?", "it": "Pioveva quando sei uscito?" }
+  ],
+  "errori": [
+    { "sbagliato": "I watched TV when the phone was ringing.", "giusto": "I was watching TV when the phone rang.", "perche": "L'azione già in corso va al Past Continuous, quella breve che la interrompe al Past Simple." },
+    { "sbagliato": "They was walking in the park.", "giusto": "They were walking in the park.", "perche": "Con they il passato di *be* è *were*." },
+    { "sbagliato": "He didn't listening to the teacher.", "giusto": "He wasn't listening to the teacher.", "perche": "Il Past Continuous si nega con *wasn't/weren't*, non con *didn't*." },
+    { "sbagliato": "Did it raining when you left?", "giusto": "Was it raining when you left?", "perche": "La domanda si fa con *was/were*, non con *did*." }
+  ],
+  "consiglio": "Chiediti quale azione era già in corso: quella va al Past Continuous, l'azione che la interrompe al Past Simple.",
+  "domande": ["q325", "q326", "q328"]
+}

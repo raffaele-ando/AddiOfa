@@ -1,0 +1,28 @@
+{
+  "id": "present-continuous",
+  "titolo": "Present Continuous: azioni in corso",
+  "livello": "A2",
+  "regola": [
+    "Si forma con *am/is/are* + verbo in -ing: *She is listening to music*.",
+    "Descrive un'azione che sta succedendo adesso (*right now, at the moment, Look!*) o una situazione temporanea.",
+    "Si usa anche per un programma già fissato nel futuro vicino: *I'm going to the doctor tomorrow afternoon*.",
+    "La negativa si fa con *not* dopo *be*, la domanda con l'inversione: *Is it raining?* (mai *Does it raining?*).",
+    "Non si usa con i verbi di stato (*know, like, want*); *think* con il senso di \"avere un'opinione\" resta al Present Simple, mentre *I'm thinking about...* descrive un pensiero in corso."
+  ],
+  "esempi": [
+    { "en": "Look! It's raining.", "it": "Guarda! Sta piovendo." },
+    { "en": "She is listening to music at the moment.", "it": "In questo momento sta ascoltando musica." },
+    { "en": "We aren't using the computer right now.", "it": "Adesso non stiamo usando il computer." },
+    { "en": "Why are you crying?", "it": "Perché stai piangendo?" },
+    { "en": "I'm going to the doctor tomorrow afternoon.", "it": "Domani pomeriggio vado dal dottore." },
+    { "en": "Marco is having lunch with a client.", "it": "Marco sta pranzando con un cliente." }
+  ],
+  "errori": [
+    { "sbagliato": "She is listen to music.", "giusto": "She is listening to music.", "perche": "Dopo *am/is/are* il verbo va in -ing." },
+    { "sbagliato": "I am knowing the answer.", "giusto": "I know the answer.", "perche": "*Know* è un verbo di stato e non si usa al Continuous." },
+    { "sbagliato": "Does it raining outside?", "giusto": "Is it raining outside?", "perche": "La domanda al Present Continuous si fa con *be*, non con *do/does*." },
+    { "sbagliato": "They playing tennis right now.", "giusto": "They are playing tennis right now.", "perche": "Senza *am/is/are* la forma in -ing da sola non basta." }
+  ],
+  "consiglio": "Se nella frase trovi *right now*, *at the moment* o *Look!*, cerca un'opzione con *am/is/are* + -ing.",
+  "domande": ["q75", "q162", "q590"]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "prepositions-time",
+  "titolo": "Preposizioni di tempo: at, on, in, for, since",
+  "livello": "B1",
+  "regola": [
+    "*At* + ora o momento preciso (*at 7 o'clock, at night*); *on* + giorni e date (*on Monday, on 5 May*); *in* + mesi, anni, stagioni e parti del giorno (*in March, in 2009, in the morning*).",
+    "*For* + durata (*for two hours*); *since* + punto d'inizio (*since 2015, since Monday*). Con entrambe si usa di solito il Present Perfect.",
+    "*In* + durata riferita al futuro significa «tra» (*in two minutes*); *between* non si usa in questo senso."
+  ],
+  "esempi": [
+    { "en": "I usually go to bed at 11 PM.", "it": "Di solito vado a letto alle 23." },
+    { "en": "The exam is on Friday.", "it": "L'esame è venerdì." },
+    { "en": "My birthday is in March.", "it": "Il mio compleanno è a marzo." },
+    { "en": "He has worked in that bank since 2015.", "it": "Lavora in quella banca dal 2015." },
+    { "en": "We have been waiting for two hours.", "it": "Stiamo aspettando da due ore." },
+    { "en": "The train will leave in two minutes.", "it": "Il treno partirà tra due minuti." }
+  ],
+  "errori": [
+    { "sbagliato": "I have known him for 2010.", "giusto": "I have known him since 2010.", "perche": "*2010* è un punto d'inizio, non una durata: serve *since*." },
+    { "sbagliato": "I live here since ten years.", "giusto": "I have lived here for ten years.", "perche": "*Ten years* è una durata (*for*) e con essa si usa il Present Perfect." },
+    { "sbagliato": "He was born on 2005.", "giusto": "He was born in 2005.", "perche": "Con gli anni si usa *in*; *on* è per giorni e date." },
+    { "sbagliato": "The bus leaves between two minutes.", "giusto": "The bus leaves in two minutes.", "perche": "Per «tra» riferito al tempo che manca si usa *in*." }
+  ],
+  "consiglio": "Davanti a una durata (*two hours, ten years*) scegli *for*; davanti a una data o a un momento di partenza (*2015, Monday*) scegli *since*.",
+  "domande": ["q91", "q136", "q160"]
+}

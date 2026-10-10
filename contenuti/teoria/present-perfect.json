@@ -1,0 +1,28 @@
+{
+  "id": "present-perfect",
+  "titolo": "Present Perfect: esperienze e durata",
+  "livello": "B1",
+  "regola": [
+    "Si forma con *have/has* + participio passato: *I have seen*, *she has finished*.",
+    "Si usa per esperienze senza una data precisa (*Have you ever been to Brazil?*) e per situazioni iniziate nel passato che durano ancora.",
+    "Con la durata si usa *for* (*for ten years*), con il punto d'inizio *since* (*since 2015*).",
+    "Se c'è una data o un momento concluso (*in 2009, yesterday, last week*) si usa il Past Simple.",
+    "Parole tipiche: *ever, never, already, just, yet*."
+  ],
+  "esempi": [
+    { "en": "Have you ever been to Brazil?", "it": "Sei mai stato in Brasile?" },
+    { "en": "He has lived here for ten years.", "it": "Vive qui da dieci anni." },
+    { "en": "I have known Luca since we were children.", "it": "Conosco Luca da quando eravamo bambini." },
+    { "en": "We haven't seen that movie yet.", "it": "Non abbiamo ancora visto quel film." },
+    { "en": "It's the first time I have driven a car.", "it": "È la prima volta che guido una macchina." },
+    { "en": "She has just finished her homework.", "it": "Ha appena finito i compiti." }
+  ],
+  "errori": [
+    { "sbagliato": "I have been to Africa in 2009.", "giusto": "I went to Africa in 2009.", "perche": "Con una data precisa si usa il Past Simple." },
+    { "sbagliato": "I live here since ten years.", "giusto": "I have lived here for ten years.", "perche": "Una situazione che dura ancora vuole il Present Perfect, e una durata si introduce con *for*." },
+    { "sbagliato": "Tom has been away for Monday.", "giusto": "Tom has been away since Monday.", "perche": "*Since* indica il punto d'inizio, *for* la durata." },
+    { "sbagliato": "Have you ever flew in a helicopter?", "giusto": "Have you ever flown in a helicopter?", "perche": "Dopo *have/has* serve il participio passato (*flown*), non il Past Simple (*flew*)." }
+  ],
+  "consiglio": "Cerca nella frase una data o un momento finito (*yesterday, in 2009, last week*): se c'è, il Present Perfect non va bene.",
+  "domande": ["q61", "q171", "q172"]
+}

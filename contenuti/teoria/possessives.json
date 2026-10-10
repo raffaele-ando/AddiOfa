@@ -1,0 +1,27 @@
+{
+  "id": "possessives",
+  "titolo": "Aggettivi e pronomi possessivi",
+  "livello": "A1",
+  "regola": [
+    "Gli aggettivi possessivi stanno prima del nome e non vogliono l'articolo: *my, your, his, her, its, our, their* (*my car*, non *the my car*).",
+    "I pronomi possessivi stanno da soli, senza nome: *mine, yours, his, hers, ours, theirs* (*This pen is mine*).",
+    "Il possessivo si accorda con il possessore, non con la cosa posseduta: *his sister* è la sorella di lui, *her brother* è il fratello di lei.",
+    "*Its* (di una cosa o di un animale) non ha apostrofo; *it's* significa *it is*. Nemmeno i pronomi hanno l'apostrofo (*yours*, mai *your's*)."
+  ],
+  "esempi": [
+    { "en": "This is not my pen. It is yours.", "it": "Questa non è la mia penna. È la tua." },
+    { "en": "Their house is very big.", "it": "La loro casa è molto grande." },
+    { "en": "That is your jacket, not hers.", "it": "Quella è la tua giacca, non la sua." },
+    { "en": "The dog is wagging its tail.", "it": "Il cane scodinzola." },
+    { "en": "Our friends are coming.", "it": "I nostri amici stanno arrivando." },
+    { "en": "This laptop is mine, not yours.", "it": "Questo portatile è mio, non tuo." }
+  ],
+  "errori": [
+    { "sbagliato": "This book is my.", "giusto": "This book is mine.", "perche": "Se dopo non c'è un nome serve il pronome *mine*." },
+    { "sbagliato": "The dog is wagging it's tail.", "giusto": "The dog is wagging its tail.", "perche": "*It's* è la forma abbreviata di *it is*; il possessivo è *its*." },
+    { "sbagliato": "Is this your's?", "giusto": "Is this yours?", "perche": "I pronomi possessivi si scrivono senza apostrofo." },
+    { "sbagliato": "Theirs house is very big.", "giusto": "Their house is very big.", "perche": "Prima di un nome si usa l'aggettivo *their*, non il pronome *theirs*." }
+  ],
+  "consiglio": "Guarda cosa viene dopo il possessivo: un nome vuole *my/your/their…*, la fine della frase vuole *mine/yours/theirs…*.",
+  "domande": ["q217", "q222", "q227"]
+}

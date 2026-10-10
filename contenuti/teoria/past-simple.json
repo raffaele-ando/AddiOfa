@@ -1,0 +1,27 @@
+{
+  "id": "past-simple",
+  "titolo": "Past Simple: azioni concluse nel passato",
+  "livello": "A2",
+  "regola": [
+    "Si usa per azioni concluse in un momento passato definito: *yesterday, last week, in 2001, two years ago*.",
+    "I verbi regolari prendono *-ed*; quelli irregolari cambiano forma (*go → went, buy → bought, meet → met*).",
+    "Negativa e domanda si fanno con *did/didn't* + forma base: *Did you see...?*, *They didn't study*.",
+    "Il verbo *be* fa eccezione: *was/were*, senza *did*."
+  ],
+  "esempi": [
+    { "en": "I went to the cinema yesterday.", "it": "Ieri sono andato al cinema." },
+    { "en": "Did you see the football match last night?", "it": "Hai visto la partita ieri sera?" },
+    { "en": "They didn't study for the exam.", "it": "Non hanno studiato per l'esame." },
+    { "en": "She bought a new phone last week.", "it": "La settimana scorsa ha comprato un telefono nuovo." },
+    { "en": "We were very tired after the trip.", "it": "Eravamo molto stanchi dopo il viaggio." },
+    { "en": "When did you arrive?", "it": "Quando sei arrivato?" }
+  ],
+  "errori": [
+    { "sbagliato": "Did you met his wife?", "giusto": "Did you meet his wife?", "perche": "Dopo *did* il verbo torna alla forma base: il passato è già espresso da *did*." },
+    { "sbagliato": "I have been to Africa in 2009.", "giusto": "I went to Africa in 2009.", "perche": "Con una data precisa si usa il Past Simple, non il Present Perfect." },
+    { "sbagliato": "I buyed a new pair of shoes yesterday.", "giusto": "I bought a new pair of shoes yesterday.", "perche": "*Buy* è irregolare: il passato è *bought*." },
+    { "sbagliato": "We was very tired.", "giusto": "We were very tired.", "perche": "Con we, you, they il passato di *be* è *were*." }
+  ],
+  "consiglio": "Se vedi *yesterday, last night, ago* o un anno preciso, scegli il Past Simple; se la frase ha *did*, il verbo principale non cambia.",
+  "domande": ["q67", "q69", "q143"]
+}

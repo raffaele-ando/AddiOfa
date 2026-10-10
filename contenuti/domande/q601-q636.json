@@ -188,20 +188,20 @@
   },
   {
     "id": "q612",
-    "prompt": "I ...... English Food",
+    "prompt": "Complete the sentence: 'Marco is a vegetarian, so he _____ meat.'",
     "options": [
-      "dcn't like",
-      "don't like",
-      "not like",
-      "liked not"
+      "eats not",
+      "don't eat",
+      "doesn't eat",
+      "not eats"
     ],
-    "correctIndex": 1,
-    "explanation": "Nel Present Simple la forma negativa per la prima persona singolare 'I' è 'don't like'.",
+    "correctIndex": 2,
+    "explanation": "With he, she and it, the negative Present Simple uses 'doesn't' plus the base verb: 'he doesn't eat'.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q613",
@@ -239,54 +239,54 @@
   },
   {
     "id": "q615",
-    "prompt": "Monday is the ...... day of the week",
+    "prompt": "Complete the sentence: 'Of all the subjects I studied this year, physics was the _____.'",
     "options": [
-      "worst",
-      "baddest",
-      "worse",
-      "badest"
+      "hardly",
+      "hardest",
+      "most hard",
+      "more hard"
     ],
-    "correctIndex": 0,
-    "explanation": "Il superlativo relativo irregolare dell'aggettivo 'bad' è 'worst' ('the worst day').",
+    "correctIndex": 1,
+    "explanation": "Short adjectives make the superlative with 'the' and '-est': 'the hardest'.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q616",
-    "prompt": "Can I offer you ...... to drink?",
+    "prompt": "Complete the sentence: 'We can't make pancakes because there isn't _____ flour left.'",
     "options": [
-      "something",
       "some",
-      "somewhat",
+      "a",
+      "many",
       "any"
     ],
-    "correctIndex": 0,
-    "explanation": "Nelle offerte ('Can I offer you...') si usa di solito il pronome 'something' seguito da 'to drink'; 'some' e 'any' da soli sono determinanti e 'somewhat' significa 'un po''.",
+    "correctIndex": 3,
+    "explanation": "Use 'any' with uncountable nouns like 'flour' in negative sentences.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Quantifiers",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q617",
-    "prompt": "No sugar please. I like coffee ...... sugar.",
+    "prompt": "Complete the sentence: 'Every morning Anna _____ to the university by bus.'",
     "options": [
-      "without",
-      "and",
-      "with",
-      "no"
+      "goes",
+      "go",
+      "going",
+      "is go"
     ],
     "correctIndex": 0,
-    "explanation": "'Without' è la preposizione che significa 'senza', coerentemente con 'No sugar please'.",
+    "explanation": "With she, he and it, the Present Simple verb takes -s or -es: 'goes'.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q618",
@@ -307,54 +307,54 @@
   },
   {
     "id": "q619",
-    "prompt": "She ...... meet her friends tomorrow.",
+    "prompt": "Complete the sentence: 'How often _____ your sister visit your grandparents?'",
     "options": [
-      "is",
       "do",
-      "will",
+      "is",
+      "has",
       "does"
     ],
-    "correctIndex": 2,
-    "explanation": "'Will' esprime un'azione futura ed è seguito direttamente dalla forma base del verbo ('will meet').",
+    "correctIndex": 3,
+    "explanation": "Present Simple questions with he, she and it use 'does' and the base verb.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Present Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q620",
-    "prompt": "- choose the correct sentence -",
+    "prompt": "Choose the correct sentence.",
     "options": [
-      "Look! It's raining",
-      "Look! it's raining",
-      "Look! it raining",
-      "Look! it raning"
+      "Look! The children playing in the garden.",
+      "Look! The children is playing in the garden.",
+      "Look! The children are playing in the garden.",
+      "Look! The children plays in the garden."
     ],
-    "correctIndex": 0,
-    "explanation": "Dopo il punto esclamativo la frase successiva inizia con lettera maiuscola ('It's') e la forma del Present Continuous è 'is raining'.",
+    "correctIndex": 2,
+    "explanation": "For an action happening now, use 'be' + -ing. With the plural 'children', use 'are'.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Continuous",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q621",
-    "prompt": "...... any milk in the fridge",
+    "prompt": "Complete the sentence: '_____ a supermarket near the university?'",
     "options": [
-      "There is",
-      "There isn't",
-      "There aren't",
-      "There are"
+      "Do there",
+      "Is there",
+      "Are there",
+      "Has there"
     ],
     "correctIndex": 1,
-    "explanation": "'Milk' è non numerabile (richiede la forma singolare) e nelle frasi negative si usa 'any': 'There isn't any milk'.",
+    "explanation": "'A supermarket' is singular, so the question is 'Is there...?'.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q622",
@@ -460,88 +460,88 @@
   },
   {
     "id": "q628",
-    "prompt": "Steven works ...... Microsoft.",
+    "prompt": "Complete the sentence: 'My grandparents live _____ a small village near Bergamo.'",
     "options": [
-      "for",
-      "on",
       "in",
-      "to"
+      "at",
+      "to",
+      "on"
     ],
     "correctIndex": 0,
-    "explanation": "Si dice 'work for' seguito dall'azienda o dal datore di lavoro ('works for Microsoft').",
+    "explanation": "Use 'in' for towns, cities and villages: 'live in a village'.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q629",
-    "prompt": "I don't like ...... make-up.",
+    "prompt": "Complete the sentence: 'We went to my _____ house for dinner on Sunday.'",
     "options": [
-      "of Sara",
-      "Sara's",
-      "Saras",
-      "Sara"
+      "grandmother",
+      "grandmothers",
+      "grandmothers's",
+      "grandmother's"
     ],
-    "correctIndex": 1,
-    "explanation": "Si usa il genitivo sassone con apostrofo e 's' per indicare il possesso riferito a una persona: 'Sara's make-up'.",
+    "correctIndex": 3,
+    "explanation": "Use the possessive 's for people: 'my grandmother's house'.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q630",
-    "prompt": "...... have you studied English?",
+    "prompt": "Complete the sentence: '_____ does the library close on Fridays?' 'At six o'clock.'",
     "options": [
-      "How far",
+      "Who",
+      "What time",
       "How much",
-      "How long",
-      "How many"
+      "Where"
     ],
-    "correctIndex": 2,
-    "explanation": "'How long' è la domanda utilizzata per domandare la durata nel tempo ('Da quanto tempo').",
+    "correctIndex": 1,
+    "explanation": "Use 'What time' to ask about the time of an event.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Questions and Origins",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q631",
-    "prompt": "How ...... people came to the party?",
+    "prompt": "Complete the sentence: 'How _____ money do you spend on books every semester?'",
     "options": [
-      "few",
-      "much",
       "many",
-      "any"
+      "few",
+      "any",
+      "much"
     ],
-    "correctIndex": 2,
-    "explanation": "Con i sostantivi numerabili plurali come 'people' si utilizza 'How many'.",
+    "correctIndex": 3,
+    "explanation": "'Money' is uncountable, so we say 'How much money'.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q632",
-    "prompt": "James ...... English very well.",
+    "prompt": "Complete the sentence: 'Sorry, I _____ come to the party on Saturday because I have to work.'",
     "options": [
-      "cans speak",
-      "can speak",
-      "can speaks",
-      "can to speak"
+      "not can",
+      "don't can",
+      "can't",
+      "can't to"
     ],
-    "correctIndex": 1,
-    "explanation": "Il verbo modale 'can' è invariabile (senza '-s' alla terza persona) ed è seguito dalla forma base senza 'to' ('can speak').",
+    "correctIndex": 2,
+    "explanation": "'Can't' is followed by the base verb without 'to': 'I can't come'.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Modals of Ability and Permission",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q633",
@@ -579,20 +579,20 @@
   },
   {
     "id": "q635",
-    "prompt": "New York is......than London.",
+    "prompt": "Complete the sentence: 'I think this book is _____ than the film.'",
     "options": [
-      "more moderner",
-      "more modern",
-      "modernest",
-      "modern"
+      "more interesting",
+      "interestinger",
+      "most interesting",
+      "very interesting"
     ],
-    "correctIndex": 1,
-    "explanation": "L'aggettivo 'modern' forma il comparativo di maggioranza con 'more' ('more modern than').",
+    "correctIndex": 0,
+    "explanation": "Long adjectives like 'interesting' make the comparative with 'more': 'more interesting than'.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q636",
