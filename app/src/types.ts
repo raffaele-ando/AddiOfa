@@ -1,4 +1,5 @@
 import type { ScopeId } from './config/ecosystem';
+import type { FormatId } from './config/offer';
 
 export interface Question {
   id: string;
@@ -9,6 +10,8 @@ export interface Question {
   category: string;
   level?: string;
   grammarTopic?: string;
+  /** Quinta opzione (distrattore) per il pool del formato TENG, che ha 5 opzioni. Non fa parte di options. */
+  extraOption?: string;
 }
 
 export interface QuestionClickEvent {
@@ -73,6 +76,7 @@ export interface ExamHistory {
   questionLogs?: ExamQuestionLog[];
   answers?: Record<string, number>;
   questionIds?: string[];
+  format?: FormatId; // formato della simulazione (assente = 'ente', storico precedente)
 }
 
 export type CorpusType = 'all' | 'initial';
@@ -114,3 +118,9 @@ export interface ProjectLink {
   grantedAt: number;
   updatedAt: number;
 }
+
+// Sezioni delle pagine legali (screens/Legal.tsx)
+export type LegalSection = 'termini' | 'privacy' | 'cookie' | 'recesso';
+
+// Perché si apre il paywall (testo dell'intestazione in screens/Paywall.tsx)
+export type PaywallReason = 'simulazione' | 'domande' | 'teng' | 'teoria' | 'errori' | 'statistiche' | 'generico';

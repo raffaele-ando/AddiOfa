@@ -43,3 +43,8 @@ export function canStartSim(e: Entitlement, format: 'ente' | 'teng', simsDone: n
   if (isPass(e, now)) return true;
   return format === 'ente' && remainingFreeSims(e, simsDone, now) > 0;
 }
+
+/** Simulazioni gratuite già usate: quelle nel formato "ente" (lo storico senza formato conta come "ente"). */
+export function countFreeSims(history: { format?: string }[]): number {
+  return history.filter(h => (h.format ?? 'ente') === 'ente').length;
+}
