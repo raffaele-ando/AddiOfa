@@ -120,7 +120,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             <span className="font-bold text-lg text-[#0F172A] dark:text-[#F8FAFC]">{APP_NAME}</span>
           </div>
           <div className="mt-4">
-            <h1 className="text-4xl sm:text-5xl font-bold leading-tight text-[#0F172A] dark:text-[#F8FAFC]">
+            <h1 className="text-4xl sm:text-5xl font-bold leading-tight text-balance text-[#0F172A] dark:text-[#F8FAFC]">
               Due domande su di te, poi <span className="text-[#EF4444]">{DIAGNOSTIC_LENGTH} di inglese.</span>
             </h1>
             <p className="mt-3 text-base sm:text-lg font-semibold text-gray-500 dark:text-gray-400">
