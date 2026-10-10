@@ -1,0 +1,1702 @@
+[
+  {
+    "id": "q201",
+    "prompt": "Complete: '_____ do you live?'",
+    "options": [
+      "Where",
+      "What",
+      "How",
+      "When"
+    ],
+    "correctIndex": 0,
+    "explanation": "Asking for a place requires 'Where'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Questions and Origins",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q202",
+    "prompt": "Translate 'Come vai al lavoro?'",
+    "options": [
+      "How do you go to work?",
+      "What do you go to work?",
+      "Where do you go to work?",
+      "Why do you go to work?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Asking for method/manner requires 'How'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Questions and Origins",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q203",
+    "prompt": "Complete: '_____ is your favorite color?'",
+    "options": [
+      "What",
+      "Whose",
+      "Who",
+      "How"
+    ],
+    "correctIndex": 0,
+    "explanation": "We use 'What' to ask about a general preference ('What is your favorite color?'); 'Whose' asks about possession, 'Who' about people and 'How' about manner.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Questions and Origins",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q204",
+    "prompt": "Translate 'Di chi è questa borsa?'",
+    "options": [
+      "Whose bag is this?",
+      "Who bag is this?",
+      "Which bag is this?",
+      "What bag is this?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Asking for possession requires 'Whose'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Questions and Origins",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q205",
+    "prompt": "Complete: '_____ time does the movie start?'",
+    "options": [
+      "What",
+      "Which",
+      "When",
+      "How"
+    ],
+    "correctIndex": 0,
+    "explanation": "Asking for a specific time uses 'What time'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Questions and Origins",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q206",
+    "prompt": "Translate 'Quanto costa questo libro?'",
+    "options": [
+      "How much does this book cost?",
+      "How many does this book cost?",
+      "How price is this book?",
+      "What cost this book?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Asking for price uses 'How much'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Questions and Origins",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q207",
+    "prompt": "Complete: '_____ languages do you speak?'",
+    "options": [
+      "How many",
+      "How much",
+      "How often",
+      "How long"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Languages' is a plural countable noun, so we ask about the number with 'How many'; 'How much' is for uncountable nouns, 'How often' asks about frequency and 'How long' about duration.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Questions and Origins",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q208",
+    "prompt": "Complete: '_____ a big tree in the garden.'",
+    "options": [
+      "There is",
+      "There are",
+      "It is",
+      "They are"
+    ],
+    "correctIndex": 0,
+    "explanation": "Singular noun 'tree' requires 'There is'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q209",
+    "prompt": "Translate 'Ci sono tre sedie nella stanza.'",
+    "options": [
+      "There are three chairs in the room.",
+      "They are three chairs in the room.",
+      "There is three chairs in the room.",
+      "Have three chairs in the room."
+    ],
+    "correctIndex": 0,
+    "explanation": "Plural noun 'chairs' requires 'There are'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q210",
+    "prompt": "Complete: '_____ any messages for me?'",
+    "options": [
+      "Are there",
+      "Is there",
+      "Do there",
+      "Have there"
+    ],
+    "correctIndex": 0,
+    "explanation": "Question form for plural 'messages' is 'Are there'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q211",
+    "prompt": "Translate 'C'è un buon ristorante qui vicino?'",
+    "options": [
+      "Is there a good restaurant near here?",
+      "Are there a good restaurant near here?",
+      "There is a good restaurant near here?",
+      "Does there a good restaurant near here?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Question form for singular noun.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q212",
+    "prompt": "Complete: 'There _____ a lot of people at the party.'",
+    "options": [
+      "were",
+      "was",
+      "are been",
+      "is"
+    ],
+    "correctIndex": 0,
+    "explanation": "'People' is plural, so 'were' for past.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "There is / There are",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q213",
+    "prompt": "Translate 'Non c'era nessuno in casa.'",
+    "options": [
+      "There was nobody at home.",
+      "There wasn't nobody at home.",
+      "There were nobody at home.",
+      "It was nobody at home."
+    ],
+    "correctIndex": 0,
+    "explanation": "Past singular existence with negative pronoun.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "There is / There are",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q214",
+    "prompt": "Complete: '_____ going to be a storm tomorrow.'",
+    "options": [
+      "There is",
+      "It is",
+      "There are",
+      "They are"
+    ],
+    "correctIndex": 0,
+    "explanation": "Future existence 'There is going to be'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "There is / There are",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q215",
+    "prompt": "Translate 'Ci sono dei biscotti nella scatola?'",
+    "options": [
+      "Are there any biscuits in the box?",
+      "Is there any biscuits in the box?",
+      "Are there some biscuits in the box?",
+      "Do there any biscuits in the box?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Question plural existence with 'any'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q216",
+    "prompt": "Complete: '_____ a mistake in this exercise.'",
+    "options": [
+      "There is",
+      "There are",
+      "It is",
+      "This is"
+    ],
+    "correctIndex": 0,
+    "explanation": "Singular existence 'mistake'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q217",
+    "prompt": "Complete: 'This is not my pen. It is _____.'",
+    "options": [
+      "yours",
+      "your",
+      "you",
+      "yours'"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pronoun 'yours' replaces 'your pen'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q218",
+    "prompt": "Complete: '_____ car is parked outside.'",
+    "options": [
+      "Her",
+      "Hers",
+      "She",
+      "Hers'"
+    ],
+    "correctIndex": 0,
+    "explanation": "Adjective 'Her' describes the car.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q219",
+    "prompt": "Complete: 'That house is _____.' (of us)",
+    "options": [
+      "ours",
+      "our",
+      "we",
+      "us"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pronoun 'ours' replaces 'our house'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q220",
+    "prompt": "Complete: 'Is this book _____?' (of him)",
+    "options": [
+      "his",
+      "him",
+      "he",
+      "his'"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pronoun 'his' indicates possession by a male.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q221",
+    "prompt": "Complete: 'These are _____ shoes.'",
+    "options": [
+      "my",
+      "mine",
+      "me",
+      "I"
+    ],
+    "correctIndex": 0,
+    "explanation": "Adjective 'my' modifies shoes.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q222",
+    "prompt": "Complete: 'The dog is wagging _____ tail.'",
+    "options": [
+      "its",
+      "it's",
+      "it",
+      "its'"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Its' is the possessive adjective for animals/things without an apostrophe.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q223",
+    "prompt": "Complete: 'Are those keys _____?' (of them)",
+    "options": [
+      "theirs",
+      "their",
+      "them",
+      "they"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pronoun 'theirs' replaces 'their keys'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q224",
+    "prompt": "Complete: 'I lost _____ keys yesterday.'",
+    "options": [
+      "my",
+      "mine",
+      "me",
+      "I"
+    ],
+    "correctIndex": 0,
+    "explanation": "Possessive adjective 'my' comes before the noun.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q225",
+    "prompt": "Complete: 'This laptop is _____, not yours.'",
+    "options": [
+      "mine",
+      "my",
+      "me",
+      "I"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pronoun 'mine' replaces 'my laptop'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q226",
+    "prompt": "Translate 'Questo libro è mio.'",
+    "options": [
+      "This book is mine.",
+      "This book is my.",
+      "This book is me.",
+      "This book is I."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Mio' at the end of the sentence is the pronoun 'mine'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q227",
+    "prompt": "Translate 'La loro casa è molto grande.'",
+    "options": [
+      "Their house is very big.",
+      "Theirs house is very big.",
+      "They house is very big.",
+      "Them house is very big."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Loro' as an adjective before a noun is 'their'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q228",
+    "prompt": "Translate 'Quella è la tua giacca, non la sua (di lei).'",
+    "options": [
+      "That is your jacket, not hers.",
+      "That is your jacket, not her.",
+      "That is yours jacket, not hers.",
+      "That is your jacket, not she."
+    ],
+    "correctIndex": 0,
+    "explanation": "'La sua' without the noun is the pronoun 'hers'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q229",
+    "prompt": "Translate 'I nostri amici stanno arrivando.'",
+    "options": [
+      "Our friends are coming.",
+      "Ours friends are coming.",
+      "We friends are coming.",
+      "Us friends are coming."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Nostri' before the noun is 'our'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q230",
+    "prompt": "Translate 'Questi soldi sono vostri?'",
+    "options": [
+      "Is this money yours?",
+      "Is this money your?",
+      "Are these money yours?",
+      "Is this money you?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Money is uncountable singular, 'vostri' as a pronoun is 'yours'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q231",
+    "prompt": "Translate 'Il suo (di lui) telefono è nuovo.'",
+    "options": [
+      "His phone is new.",
+      "Him phone is new.",
+      "He phone is new.",
+      "His' phone is new."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Suo' for a male is 'his'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q232",
+    "prompt": "Translate 'La mia macchina è rossa, la sua (di lui) è blu.'",
+    "options": [
+      "My car is red, his is blue.",
+      "My car is red, him is blue.",
+      "Mine car is red, his is blue.",
+      "My car is red, he is blue."
+    ],
+    "correctIndex": 0,
+    "explanation": "'La sua' as a pronoun for a male is 'his'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q233",
+    "prompt": "Translate 'Ho dimenticato il mio ombrello.'",
+    "options": [
+      "I forgot my umbrella.",
+      "I forgot mine umbrella.",
+      "I forgot me umbrella.",
+      "I forgot I umbrella."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Il mio' before the noun is 'my'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q234",
+    "prompt": "Translate 'Quelle penne sono loro (di loro).'",
+    "options": [
+      "Those pens are theirs.",
+      "Those pens are their.",
+      "Those pens are them.",
+      "Those pens are they."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Loro' as a pronoun is 'theirs'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q235",
+    "prompt": "Complete: 'I call _____ every day.' (him/he/his/himself)",
+    "options": [
+      "him",
+      "he",
+      "his",
+      "himself"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Him' is the object pronoun for a male.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q236",
+    "prompt": "Complete: 'She loves _____ very much.' (me/I/my/mine)",
+    "options": [
+      "me",
+      "I",
+      "my",
+      "mine"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Me' is the object pronoun for first person singular.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q237",
+    "prompt": "Complete: 'Can you help _____ with this exercise?' (us/we/our/ours)",
+    "options": [
+      "us",
+      "we",
+      "our",
+      "ours"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Us' is the object pronoun for 'we'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q238",
+    "prompt": "Complete: 'I don't know _____.' (them/they/their/theirs)",
+    "options": [
+      "them",
+      "they",
+      "their",
+      "theirs"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Them' is the object pronoun for 'they'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q239",
+    "prompt": "Complete: 'Look at _____!' (her/she/hers/herself)",
+    "options": [
+      "her",
+      "she",
+      "hers",
+      "herself"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Her' is the object pronoun after the preposition 'at'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q240",
+    "prompt": "Complete: 'He wants to speak to _____.' (you/your/yours/yourself)",
+    "options": [
+      "you",
+      "your",
+      "yours",
+      "yourself"
+    ],
+    "correctIndex": 0,
+    "explanation": "'You' is the object pronoun.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q241",
+    "prompt": "Complete: 'Give _____ to me.' (it/its/it's/itself)",
+    "options": [
+      "it",
+      "its",
+      "it's",
+      "itself"
+    ],
+    "correctIndex": 0,
+    "explanation": "'It' is the object pronoun for things/animals.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q242",
+    "prompt": "Complete: 'My parents are visiting _____.' (me/I/my/mine)",
+    "options": [
+      "me",
+      "I",
+      "my",
+      "mine"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Me' receives the action of visiting.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q243",
+    "prompt": "Complete: 'Are you listening to _____?' (him/he/his/himself)",
+    "options": [
+      "him",
+      "he",
+      "his",
+      "himself"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Him' follows the preposition 'to'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q244",
+    "prompt": "Translate 'Non lo capisco.' (di lui)",
+    "options": [
+      "I don't understand him.",
+      "I don't understand he.",
+      "I don't understand his.",
+      "I don't understand it."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Lo' referring to a man translates to 'him'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q245",
+    "prompt": "Translate 'Puoi vederci?'",
+    "options": [
+      "Can you see us?",
+      "Can you see we?",
+      "Can you see our?",
+      "Can you see me?"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Ci' translates to the object pronoun 'us'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q246",
+    "prompt": "Translate 'Le ho comprato un regalo.' (a lei)",
+    "options": [
+      "I bought her a present.",
+      "I bought she a present.",
+      "I bought hers a present.",
+      "I bought for her a present."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Le' (to her) is translated with the object pronoun 'her'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q247",
+    "prompt": "Translate 'Li aspetto qui.'",
+    "options": [
+      "I'll wait for them here.",
+      "I'll wait for they here.",
+      "I'll wait them here.",
+      "I'm waiting they here."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Li' is the object pronoun 'them', and 'wait' needs 'for' before its object: 'I'll wait for them here'. 'They' is a subject pronoun.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q248",
+    "prompt": "Translate 'Dammi quel libro.'",
+    "options": [
+      "Give me that book.",
+      "Give I that book.",
+      "Give my that book.",
+      "Give to me that book."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Dammi' uses the object pronoun 'me'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q249",
+    "prompt": "Translate 'Non ti credo.'",
+    "options": [
+      "I don't believe you.",
+      "I don't believe your.",
+      "I don't believe to you.",
+      "I not believe you."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Ti' is the object pronoun 'you'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q250",
+    "prompt": "Translate 'Lo voglio adesso.' (un oggetto)",
+    "options": [
+      "I want it now.",
+      "I want him now.",
+      "I want that now.",
+      "I want this now."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Lo' for a thing is 'it'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q251",
+    "prompt": "Translate 'Vieni con noi al cinema?'",
+    "options": [
+      "Are you coming with us to the cinema?",
+      "Are you coming with we to the cinema?",
+      "Do you come with us to the cinema?",
+      "Are you coming to us to the cinema?"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Con noi' uses the object pronoun 'us'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q252",
+    "prompt": "Translate 'Non li conosco.'",
+    "options": [
+      "I don't know them.",
+      "I don't know they.",
+      "I don't know their.",
+      "I not know them."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Li' is the object pronoun 'them'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q253",
+    "prompt": "Complete: '_____ is my friend, Paul.' (near)",
+    "options": [
+      "This",
+      "These",
+      "Those",
+      "That"
+    ],
+    "correctIndex": 0,
+    "explanation": "'This' is used for a singular person/thing near the speaker.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q254",
+    "prompt": "Complete: 'Look at _____ birds in the sky.'",
+    "options": [
+      "those",
+      "that",
+      "this",
+      "these"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Those' is used for plural things far from the speaker.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q255",
+    "prompt": "Complete: 'Are _____ your shoes here?'",
+    "options": [
+      "these",
+      "this",
+      "that",
+      "those"
+    ],
+    "correctIndex": 0,
+    "explanation": "'These' is used for plural things near the speaker.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q256",
+    "prompt": "Complete: '_____ building over there is a hospital.'",
+    "options": [
+      "That",
+      "This",
+      "These",
+      "Those"
+    ],
+    "correctIndex": 0,
+    "explanation": "'That' is used for a singular thing far away.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q257",
+    "prompt": "Complete: '_____ days are the best of my life.'",
+    "options": [
+      "These",
+      "This",
+      "That",
+      "Those"
+    ],
+    "correctIndex": 0,
+    "explanation": "'These' refers to plural days in the current time.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q258",
+    "prompt": "Complete: 'I don't like _____ kind of music.' (near/current)",
+    "options": [
+      "this",
+      "these",
+      "those",
+      "them"
+    ],
+    "correctIndex": 0,
+    "explanation": "'This kind' is singular.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q259",
+    "prompt": "Complete: 'Did you buy _____ apples from the market?' (far/past)",
+    "options": [
+      "those",
+      "that",
+      "this",
+      "them"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Those apples' refers to plural items away or in the past.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q260",
+    "prompt": "Complete: '_____ is a very interesting book.' (holding it)",
+    "options": [
+      "This",
+      "These",
+      "Those",
+      "Them"
+    ],
+    "correctIndex": 0,
+    "explanation": "'This' refers to a singular item being held.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q261",
+    "prompt": "Complete: 'Can you pass me _____ pen?' (far)",
+    "options": [
+      "that",
+      "those",
+      "these",
+      "this"
+    ],
+    "correctIndex": 0,
+    "explanation": "'That' refers to a singular item out of reach.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q262",
+    "prompt": "Translate 'Questo è il mio gatto.'",
+    "options": [
+      "This is my cat.",
+      "That is my cat.",
+      "These is my cat.",
+      "Those is my cat."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Questo' for one thing near the speaker is 'This'; 'that' is for something far away, and 'these/those' are plural.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q263",
+    "prompt": "Translate 'Quelli sono i miei libri.'",
+    "options": [
+      "Those are my books.",
+      "That are my books.",
+      "These are my books.",
+      "This are my books."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Quelli' (far plural) is 'Those'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q264",
+    "prompt": "Translate 'Questa pizza è buonissima.'",
+    "options": [
+      "This pizza is very good.",
+      "That pizza is very good.",
+      "These pizza is very good.",
+      "It pizza is very good."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Questa' (singular, near the speaker) is 'This': 'This pizza'; 'that' is for something far away and 'these' is plural.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q265",
+    "prompt": "Translate 'Queste ragazze sono italiane.'",
+    "options": [
+      "These girls are Italian.",
+      "This girls are Italian.",
+      "Those girls are Italian.",
+      "That girls are Italian."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Queste' (near plural) is 'These'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q266",
+    "prompt": "Translate 'Quell'uomo è mio padre.'",
+    "options": [
+      "That man is my father.",
+      "This man is my father.",
+      "Those man is my father.",
+      "The man is my father."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Quell'' (far singular) is 'That'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q267",
+    "prompt": "Translate 'Cosa sono quelle cose?'",
+    "options": [
+      "What are those things?",
+      "What are these things?",
+      "What is that things?",
+      "What are that things?"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Quelle' (far plural) is 'those'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q268",
+    "prompt": "Translate 'Preferisco questo vestito.'",
+    "options": [
+      "I prefer this dress.",
+      "I prefer that dress.",
+      "I prefer these dress.",
+      "I prefer those dress."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Questo' (singular, near the speaker) is 'this': 'this dress'; 'these' and 'those' are plural, and 'that' refers to something far away.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q269",
+    "prompt": "Translate 'Conosci quelle persone?'",
+    "options": [
+      "Do you know those people?",
+      "Do you know these people?",
+      "Do you know that people?",
+      "Do you know this people?"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Quelle' (far plural) is 'those'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q270",
+    "prompt": "Translate 'Questi sono i miei appunti.'",
+    "options": [
+      "These are my notes.",
+      "This are my notes.",
+      "Those are my notes.",
+      "That are my notes."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Questi' (near plural) is 'These'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Demonstratives",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q271",
+    "prompt": "Complete: 'The cat is hiding _____ the bed.'",
+    "options": [
+      "under",
+      "between",
+      "on",
+      "at"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Under' means below or beneath something ('under the bed'); 'between' needs two things, and 'on'/'at' don't describe a place beneath.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q272",
+    "prompt": "Complete: 'She is waiting _____ the bus stop.'",
+    "options": [
+      "at",
+      "in",
+      "on",
+      "under"
+    ],
+    "correctIndex": 0,
+    "explanation": "Use 'at' for a specific point or location.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q273",
+    "prompt": "Complete: 'The picture is hanging _____ the wall.'",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "under"
+    ],
+    "correctIndex": 0,
+    "explanation": "Use 'on' for surfaces.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q274",
+    "prompt": "Complete: 'He lives _____ London.'",
+    "options": [
+      "in",
+      "at",
+      "on",
+      "by"
+    ],
+    "correctIndex": 0,
+    "explanation": "Use 'in' for cities, countries, and enclosed spaces.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q275",
+    "prompt": "Complete: 'The car is parked _____ the house.'",
+    "options": [
+      "behind",
+      "under",
+      "in",
+      "on"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Behind' means at the back of.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q276",
+    "prompt": "Complete: 'She sat _____ her two best friends.'",
+    "options": [
+      "between",
+      "among",
+      "under",
+      "in"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Between' is used for a position separating two things or people; 'among' is used for more than two.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q277",
+    "prompt": "Complete: 'The bank is _____ the post office.'",
+    "options": [
+      "next to",
+      "in",
+      "on",
+      "at"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Next to' means beside.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q278",
+    "prompt": "Complete: 'There is a bridge _____ the river.'",
+    "options": [
+      "over",
+      "under",
+      "in",
+      "at"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Over' means above or across something: a bridge goes over (across) the river. 'Under' is below, and 'in'/'at' don't describe this position.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q279",
+    "prompt": "Complete: 'I left my keys _____ the table.'",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "between"
+    ],
+    "correctIndex": 0,
+    "explanation": "'On' is used for surfaces.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q280",
+    "prompt": "Translate 'Il cane è sotto il tavolo.'",
+    "options": [
+      "The dog is under the table.",
+      "The dog is on the table.",
+      "The dog is at the table.",
+      "The dog is in the table."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Sotto' translates to 'under'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q281",
+    "prompt": "Translate 'Sono al cinema.'",
+    "options": [
+      "I am at the cinema.",
+      "I am into the cinema.",
+      "I am on the cinema.",
+      "I am to the cinema."
+    ],
+    "correctIndex": 0,
+    "explanation": "'At' is used for a place where an activity happens (at the cinema, at school); 'into' shows movement, 'on' is for surfaces and 'to' for direction.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q282",
+    "prompt": "Translate 'C'è un ragno sul soffitto.'",
+    "options": [
+      "There is a spider on the ceiling.",
+      "There is a spider at the ceiling.",
+      "There is a spider in the ceiling.",
+      "There is a spider under the ceiling."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Sul' for a surface like a ceiling is 'on'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q283",
+    "prompt": "Translate 'L'ufficio è vicino alla banca.'",
+    "options": [
+      "The office is near the bank.",
+      "The office is in the bank.",
+      "The office is between the bank.",
+      "The office is at the bank."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Vicino a' is 'near' ('next to' means 'accanto a'); 'between' needs two places, and 'in'/'at' mean the office is inside or at the bank.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q284",
+    "prompt": "Translate 'Il bambino è tra i suoi genitori.'",
+    "options": [
+      "The child is between his parents.",
+      "The child is among his parents.",
+      "The child is next to his parents.",
+      "The child is in his parents."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Tra' two people is 'between'; 'among' is used for more than two people or things.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q285",
+    "prompt": "Translate 'Nasconditi dietro la porta.'",
+    "options": [
+      "Hide behind the door.",
+      "Hide under the door.",
+      "Hide next to the door.",
+      "Hide in the door."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Dietro' is 'behind'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q286",
+    "prompt": "Translate 'Metti i vestiti nell'armadio.'",
+    "options": [
+      "Put the clothes in the wardrobe.",
+      "Put the clothes on the wardrobe.",
+      "Put the clothes at the wardrobe.",
+      "Put the clothes to the wardrobe."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Nel' meaning inside an enclosed space is 'in'; 'on' is for surfaces, 'at' for a point and 'to' for direction, not position.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q287",
+    "prompt": "Translate 'Ho incontrato Marco alla stazione.'",
+    "options": [
+      "I met Marco at the station.",
+      "I met Marco into the station.",
+      "I met Marco on the station.",
+      "I met Marco to the station."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Alla' for a specific point or place is 'at' ('at the station'); 'into' shows movement inside, and 'on'/'to' are not used here.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q288",
+    "prompt": "Translate 'C'è un giardino dietro la casa.'",
+    "options": [
+      "There is a garden behind the house.",
+      "There is a garden under the house.",
+      "There is a garden in the house.",
+      "There is a garden next to the house."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Dietro' is 'behind'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q289",
+    "prompt": "Complete: '_____ to me carefully.'",
+    "options": [
+      "Listen",
+      "Listening",
+      "Listens",
+      "To listen"
+    ],
+    "correctIndex": 0,
+    "explanation": "Imperative uses the base form of the verb.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q290",
+    "prompt": "Complete: '_____ open the window. It's cold.'",
+    "options": [
+      "Don't",
+      "Not",
+      "No",
+      "Doesn't"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative imperative uses 'Don't'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q291",
+    "prompt": "Complete: '_____ your vegetables!'",
+    "options": [
+      "Eat",
+      "Eating",
+      "Eats",
+      "To eat"
+    ],
+    "correctIndex": 0,
+    "explanation": "Use base verb for direct commands.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q292",
+    "prompt": "Complete: '_____ be late for the meeting.'",
+    "options": [
+      "Don't",
+      "Not",
+      "Doesn't",
+      "No"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative commands usually start with 'Don't' + base verb ('Don't be late'); 'Not', 'No' and 'Doesn't' cannot form an imperative.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q293",
+    "prompt": "Complete: '_____ quiet, please.'",
+    "options": [
+      "Be",
+      "Are",
+      "Is",
+      "Am"
+    ],
+    "correctIndex": 0,
+    "explanation": "Base form of 'to be' is used for commands.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q294",
+    "prompt": "Complete: '_____ touch that plate, it's hot.'",
+    "options": [
+      "Don't",
+      "No",
+      "Not",
+      "Doesn't"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative commands use 'Don't' + base verb ('Don't touch'); 'No', 'Not' and 'Doesn't' cannot form an imperative.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q295",
+    "prompt": "Complete: '_____ your homework before dinner.'",
+    "options": [
+      "Do",
+      "Does",
+      "Doing",
+      "Did"
+    ],
+    "correctIndex": 0,
+    "explanation": "The imperative uses the base form of the verb ('Do your homework'), with no -s, -ing or past form.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q296",
+    "prompt": "Complete: '_____ me the salt, please.'",
+    "options": [
+      "Pass",
+      "Passing",
+      "Passes",
+      "To pass"
+    ],
+    "correctIndex": 0,
+    "explanation": "The imperative uses the base form of the verb with no subject: 'Pass me the salt, please.'",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q297",
+    "prompt": "Complete: '_____ worry about it.'",
+    "options": [
+      "Don't",
+      "Not",
+      "No",
+      "Doesn't"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative imperatives are formed with 'Don't' + base verb: 'Don't worry about it.'",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q298",
+    "prompt": "Translate 'Non toccare il mio telefono.'",
+    "options": [
+      "Don't touch my phone.",
+      "Not touch my phone.",
+      "No touch my phone.",
+      "Doesn't touch my phone."
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative imperative is formed with 'Don't'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q299",
+    "prompt": "Translate 'Fai attenzione!'",
+    "options": [
+      "Pay attention!",
+      "Do attention!",
+      "Make attention!",
+      "Attention you!"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Fare attenzione' is 'pay attention'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q300",
+    "prompt": "Translate 'Ascoltami quando parlo.'",
+    "options": [
+      "Listen to me when I speak.",
+      "Listen me when I speak.",
+      "Hear me when I speak.",
+      "Hear to me when I speak."
+    ],
+    "correctIndex": 0,
+    "explanation": "The English verb 'listen' needs 'to' before its object ('listen to me'); 'hear' means 'sentire' and never takes 'to'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  }
+]

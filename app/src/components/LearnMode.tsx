@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
-import { Question, AppState, QuestionClickEvent, QuestionTelemetry } from '../types';
-import { selectPracticeQuestions, updateStats } from '../lib/spacedRepetition';
+import { useState, useEffect, useRef } from 'react';
+import { AppState, QuestionClickEvent, QuestionTelemetry, PaywallReason } from '../types';
+import { selectPracticeIds, updateStats, poolMeta } from '../lib/spacedRepetition';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowRight, RotateCcw, Lightbulb, Flame } from 'lucide-react';
+import { X, ArrowRight, RotateCcw, Lightbulb, Flame, BookOpen, Loader2 } from 'lucide-react';
 import { Illustrazione } from '../brand/Illustrazione';
-import { cn, shuffleQuestion, shuffleArray } from '../lib/utils';
+import { cn, shuffleArray, prefersReducedMotion } from '../lib/utils';
 import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound, triggerConfetti } from '../lib/audio';
-import { INITIAL_CORPUS_COUNT } from '../data/questions';
+import { useAccess } from '../access/context';
+import type { GradeResult, PublicQuestion } from '../access/provider';
+import { Screen } from './ui';
 
 interface LearnModeProps {
   appState: AppState;
@@ -14,13 +16,28 @@ interface LearnModeProps {
   category?: string;
   onUpdateAppState: (newState: AppState) => void;
   onExit: () => void;
+  onNeedPass: (reason: PaywallReason) => void;
+  /** Se c'è, dopo la risposta compare "Studia la regola" (quando la domanda ha una scheda di teoria). */
+  onOpenTheory?: (id: string) => void;
 }
 
-export default function LearnMode({ appState, mode, category, onUpdateAppState, onExit }: LearnModeProps) {
-  const [questions, setQuestions] = useState<Question[]>([]);
+// Una domanda come la vede l'utente: le opzioni sono rimescolate qui, `order[i]` dice quale opzione originale sta in posizione i.
+// Al provider si manda sempre l'indice originale, perché è quello che conosce.
+interface Item { q: PublicQuestion; order: number[]; }
+
+const words = (t: string) => t.split(' ').filter(w => w.trim() !== '');
+
+export default function LearnMode({ appState, mode, category, onUpdateAppState, onExit, onNeedPass, onOpenTheory }: LearnModeProps) {
+  const { provider, pass } = useAccess();
+  const [items, setItems] = useState<Item[]>([]);
+  const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [loadKey, setLoadKey] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [hasChecked, setHasChecked] = useState(false);
+  const [checking, setChecking] = useState(false);
+  const [checkError, setCheckError] = useState<string | null>(null);
+  const [result, setResult] = useState<GradeResult | null>(null);
   const [sessionStats, setSessionStats] = useState({ correct: 0, total: 0 });
   const [streak, setStreak] = useState(0);
   const [optionsRevealed, setOptionsRevealed] = useState(mode !== 'recall');
@@ -36,18 +53,52 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   const [selectedRecallWords, setSelectedRecallWords] = useState<number[]>([]);
   const [showHint, setShowHint] = useState(false);
 
+  const checkingRef = useRef(false);
+  const lastCheckRef = useRef<{ confidence: 'low' | 'medium' | 'high'; isTimeout: boolean } | null>(null);
+  const appStateRef = useRef(appState);
+  appStateRef.current = appState;
+
   const timeLimit = mode === 'blitz' ? 10 : 30;
   const [timeLeft, setTimeLeft] = useState(timeLimit);
 
+  // Senza Pass non si entra nel ripasso sugli errori: lo decide già il menu, qui è una rete di sicurezza
+  const blocked = !pass && mode === 'weakness';
   useEffect(() => {
-    setQuestions(selectPracticeQuestions(appState.stats, { 
-      numQuestions: 10, 
-      mode, 
-      category, 
-      corpus: appState.selectedCorpus 
-    }).map(shuffleQuestion));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (blocked) onNeedPass('errori');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blocked]);
+
+  // Scelta degli id sul solo indice leggero, poi le domande (senza risposte) dal provider
+  useEffect(() => {
+    if (blocked) return;
+    let alive = true;
+    setLoadState('loading');
+    const ids = selectPracticeIds(appStateRef.current.stats, {
+      numQuestions: 10,
+      mode,
+      category,
+      corpus: appStateRef.current.selectedCorpus,
+      pass,
+    });
+    provider.getQuestions(ids)
+      .then(list => {
+        if (!alive) return;
+        const byId = new Map(list.map(q => [q.id, q]));
+        const ordered = ids.map(id => byId.get(id)).filter((q): q is PublicQuestion => !!q);
+        if (ordered.length === 0) { setLoadState('error'); return; }
+        setItems(ordered.map(q => {
+          const order = shuffleArray(q.options.map((_, i) => i));
+          return { q: { ...q, options: order.map(i => q.options[i]) }, order };
+        }));
+        setCurrentIndex(0);
+        setLoadState('ready');
+      })
+      .catch(() => { if (alive) setLoadState('error'); });
+    return () => { alive = false; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadKey, blocked]);
+
+  const questions = items.map(i => i.q);
 
   // Play fanfare & celebration confetti when session completes
   useEffect(() => {

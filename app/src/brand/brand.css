@@ -1,9 +1,10 @@
-/* Il font del Brand Kit è incluso nell'app: stesso disegno delle lettere ovunque, anche offline */
-@import '@fontsource/inter/latin-400.css';
-@import '@fontsource/inter/latin-500.css';
-@import '@fontsource/inter/latin-600.css';
-@import '@fontsource/inter/latin-700.css';
-@import '@fontsource/inter/latin-800.css';
+/* Il font del Brand Kit è incluso nell'app: stesso disegno delle lettere ovunque, anche offline.
+   Solo latin e solo woff2 (5 pesi, circa 24 KB l'uno): niente cirillico né greco, niente woff di ripiego. */
+@font-face { font-family: 'Inter'; font-style: normal; font-display: swap; font-weight: 400; src: url('../../node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-display: swap; font-weight: 500; src: url('../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-display: swap; font-weight: 600; src: url('../../node_modules/@fontsource/inter/files/inter-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-display: swap; font-weight: 700; src: url('../../node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-display: swap; font-weight: 800; src: url('../../node_modules/@fontsource/inter/files/inter-latin-800-normal.woff2') format('woff2'); }
 
 /* Animazioni del Brand Kit. Tutte si spengono con "riduci movimento" del sistema. */
 

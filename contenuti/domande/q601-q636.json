@@ -1,0 +1,614 @@
+[
+  {
+    "id": "q601",
+    "prompt": "Translate: 'Ti sei abituato al clima freddo?'",
+    "options": [
+      "Have you got used to the cold weather?",
+      "Did you use to the cold weather?",
+      "Have you used to the cold weather?",
+      "Did you get use to cold weather?"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Get used to + noun' expresses becoming accustomed to a condition ('Have you got used to...?'); 'use to' without 'get' or 'be' cannot be followed by a noun.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q602",
+    "prompt": "Complete the sentence: 'Venice, _____ is famous for its canals, attracts millions of tourists every year.'",
+    "options": [
+      "which",
+      "that",
+      "where",
+      "what"
+    ],
+    "correctIndex": 0,
+    "explanation": "In non-defining relative clauses (between commas), you must use 'which' for things, NEVER 'that'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q603",
+    "prompt": "Complete the sentence: 'Mr. Davis, _____ you met yesterday at the reception, is our new director.'",
+    "options": [
+      "whom",
+      "which",
+      "that",
+      "whose"
+    ],
+    "correctIndex": 0,
+    "explanation": "In non-defining clauses for people as object, 'whom' (or 'who') is used; 'that' is strictly prohibited between commas.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q604",
+    "prompt": "Complete the sentence: 'That is the student _____ backpack was accidentally left in the classroom.'",
+    "options": [
+      "whose",
+      "who's",
+      "which",
+      "that's"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Whose' is the relative pronoun used to indicate possession.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q605",
+    "prompt": "Complete the sentence: 'The hotel _____ we stayed at during our holiday was right on the beach.'",
+    "options": [
+      "that",
+      "where",
+      "what",
+      "whose"
+    ],
+    "correctIndex": 0,
+    "explanation": "Because the preposition 'at' is at the end ('stayed at'), we use 'that' or 'which', NOT 'where'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q606",
+    "prompt": "Translate: 'Londra, che è la capitale del Regno Unito, ha molti musei gratuiti.'",
+    "options": [
+      "London, which is the capital of the UK, has many free museums.",
+      "London, that is the capital of the UK, has many free museums.",
+      "London, where is the capital of the UK, has many free museums.",
+      "London, what is the capital of the UK, has many free museums."
+    ],
+    "correctIndex": 0,
+    "explanation": "In non-defining relative clauses (between commas), we must use 'which' for things, never 'that'; 'where' and 'what' are not relative pronouns for a subject here.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q607",
+    "prompt": "Tom is away. He's been away ...... Monday.",
+    "options": [
+      "at",
+      "since",
+      "on",
+      "for"
+    ],
+    "correctIndex": 1,
+    "explanation": "Si usa 'since' con il Present Perfect per indicare il punto di inizio nel tempo ('since Monday'). 'For' si usa invece per esprimere la durata.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "duplicata-di:q39"
+  },
+  {
+    "id": "q608",
+    "prompt": "She ...... to the cinema yesterday.",
+    "options": [
+      "gone",
+      "has gone",
+      "is gone",
+      "went"
+    ],
+    "correctIndex": 3,
+    "explanation": "Con un riferimento temporale concluso nel passato come 'yesterday' si usa il Past Simple ('went').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "core": false,
+    "stato": "duplicata-di:q17"
+  },
+  {
+    "id": "q609",
+    "prompt": "There ...... a table in the room.",
+    "options": [
+      "are",
+      "has",
+      "have",
+      "is"
+    ],
+    "correctIndex": 3,
+    "explanation": "Con un soggetto singolare numerabile ('a table') la forma corretta è 'there is'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "core": false,
+    "stato": "duplicata-di:q47"
+  },
+  {
+    "id": "q610",
+    "prompt": "How many companies ...... since you left school?",
+    "options": [
+      "are you work for",
+      "have you worked for",
+      "do you work for",
+      "you work for"
+    ],
+    "correctIndex": 1,
+    "explanation": "La proposizione con 'since' collega un momento passato al presente, richiedendo la forma interrogativa del Present Perfect ('have you worked for').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "duplicata-di:q22"
+  },
+  {
+    "id": "q611",
+    "prompt": "...... with friends?",
+    "options": [
+      "Is she go",
+      "She goes",
+      "Is she going",
+      "She go"
+    ],
+    "correctIndex": 2,
+    "explanation": "La forma interrogativa corretta al Present Continuous è 'Is she going with friends?' (ausiliare be + soggetto + forma in -ing).",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Present Continuous",
+    "core": false,
+    "stato": "duplicata-di:q56"
+  },
+  {
+    "id": "q612",
+    "prompt": "I ...... English Food",
+    "options": [
+      "dcn't like",
+      "don't like",
+      "not like",
+      "liked not"
+    ],
+    "correctIndex": 1,
+    "explanation": "Nel Present Simple la forma negativa per la prima persona singolare 'I' è 'don't like'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q613",
+    "prompt": "Have you ever ...... Brazil?",
+    "options": [
+      "gone in",
+      "been in",
+      "been to",
+      "gone to"
+    ],
+    "correctIndex": 2,
+    "explanation": "Nelle domande sulle esperienze di vita con 'Have you ever...', si usa 'been to' per indicare una visita o soggiorno (con ritorno).",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "duplicata-di:q55"
+  },
+  {
+    "id": "q614",
+    "prompt": "This plate is dirty. Can I have ...... ?",
+    "options": [
+      "a clean one",
+      "clean",
+      "a clean",
+      "clean one"
+    ],
+    "correctIndex": 0,
+    "explanation": "Si usa il pronome 'one' preceduto da articolo indeterminativo e aggettivo ('a clean one') per sostituire il sostantivo numerabile 'plate'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Object Pronouns",
+    "core": false,
+    "stato": "duplicata-di:q20"
+  },
+  {
+    "id": "q615",
+    "prompt": "Monday is the ...... day of the week",
+    "options": [
+      "worst",
+      "baddest",
+      "worse",
+      "badest"
+    ],
+    "correctIndex": 0,
+    "explanation": "Il superlativo relativo irregolare dell'aggettivo 'bad' è 'worst' ('the worst day').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Comparatives and Superlatives",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q616",
+    "prompt": "Can I offer you ...... to drink?",
+    "options": [
+      "something",
+      "some",
+      "somewhat",
+      "any"
+    ],
+    "correctIndex": 0,
+    "explanation": "Nelle offerte ('Can I offer you...') si usa di solito il pronome 'something' seguito da 'to drink'; 'some' e 'any' da soli sono determinanti e 'somewhat' significa 'un po''.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Quantifiers",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q617",
+    "prompt": "No sugar please. I like coffee ...... sugar.",
+    "options": [
+      "without",
+      "and",
+      "with",
+      "no"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Without' è la preposizione che significa 'senza', coerentemente con 'No sugar please'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q618",
+    "prompt": "I saw Tom this morning. He ...... at the bus stop.",
+    "options": [
+      "was waiting",
+      "were waiting",
+      "was waited",
+      "waited"
+    ],
+    "correctIndex": 0,
+    "explanation": "Si usa il Past Continuous ('was waiting') per un'azione in corso di svolgimento in un preciso momento del passato con soggetto 'He'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "duplicata-di:q25"
+  },
+  {
+    "id": "q619",
+    "prompt": "She ...... meet her friends tomorrow.",
+    "options": [
+      "is",
+      "do",
+      "will",
+      "does"
+    ],
+    "correctIndex": 2,
+    "explanation": "'Will' esprime un'azione futura ed è seguito direttamente dalla forma base del verbo ('will meet').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q620",
+    "prompt": "- choose the correct sentence -",
+    "options": [
+      "Look! It's raining",
+      "Look! it's raining",
+      "Look! it raining",
+      "Look! it raning"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dopo il punto esclamativo la frase successiva inizia con lettera maiuscola ('It's') e la forma del Present Continuous è 'is raining'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Present Continuous",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q621",
+    "prompt": "...... any milk in the fridge",
+    "options": [
+      "There is",
+      "There isn't",
+      "There aren't",
+      "There are"
+    ],
+    "correctIndex": 1,
+    "explanation": "'Milk' è non numerabile (richiede la forma singolare) e nelle frasi negative si usa 'any': 'There isn't any milk'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q622",
+    "prompt": "I ...... Africa in 2001",
+    "options": [
+      "was at",
+      "went in",
+      "went to",
+      "was to"
+    ],
+    "correctIndex": 2,
+    "explanation": "Il moto a luogo verso un continente o paese richiede il verbo 'went' seguito dalla preposizione 'to' ('went to Africa').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "core": false,
+    "stato": "duplicata-di:q43"
+  },
+  {
+    "id": "q623",
+    "prompt": "Have you met ...... ?",
+    "options": [
+      "The Mr Smith wife",
+      "the wife of Mr Smith",
+      "Mr Smith wife",
+      "Mr Smith's wife"
+    ],
+    "correctIndex": 3,
+    "explanation": "In inglese la relazione familiare o di possesso riferita a persone si esprime con il genitivo sassone ('Mr Smith's wife').",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessive S",
+    "core": false,
+    "stato": "duplicata-di:q3"
+  },
+  {
+    "id": "q624",
+    "prompt": "She's the ...... beautiful girl I've ever seen.",
+    "options": [
+      "more",
+      "most",
+      "much more",
+      "very"
+    ],
+    "correctIndex": 1,
+    "explanation": "Con aggettivi lunghi (tre o più sillabe) come 'beautiful', il superlativo relativo si forma con 'the most' ('the most beautiful').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Comparatives and Superlatives",
+    "core": false,
+    "stato": "duplicata-di:q42"
+  },
+  {
+    "id": "q625",
+    "prompt": "When ...... Mr. Brown?",
+    "options": [
+      "did you meet",
+      "have you met",
+      "you met",
+      "do you met"
+    ],
+    "correctIndex": 0,
+    "explanation": "Le domande con 'When' che chiedono di un evento puntuale nel passato richiedono il Past Simple ('did you meet') e non il Present Perfect.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "core": false,
+    "stato": "duplicata-di:q37"
+  },
+  {
+    "id": "q626",
+    "prompt": "Hurry! The bus leaves ...... 2 minutes.",
+    "options": [
+      "at",
+      "for",
+      "in",
+      "on"
+    ],
+    "correctIndex": 2,
+    "explanation": "La preposizione 'in' seguita da un'indicazione di tempo ('in 2 minutes') significa 'tra/entro due minuti'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Prepositions of Time",
+    "core": false,
+    "stato": "duplicata-di:q41"
+  },
+  {
+    "id": "q627",
+    "prompt": "How long ...... English?",
+    "options": [
+      "you study",
+      "you studied",
+      "are you study",
+      "have you studied"
+    ],
+    "correctIndex": 3,
+    "explanation": "'How long' riferito a un'attività iniziata nel passato che prosegue nel presente richiede il Present Perfect interrogativo ('have you studied').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "duplicata-di:q32"
+  },
+  {
+    "id": "q628",
+    "prompt": "Steven works ...... Microsoft.",
+    "options": [
+      "for",
+      "on",
+      "in",
+      "to"
+    ],
+    "correctIndex": 0,
+    "explanation": "Si dice 'work for' seguito dall'azienda o dal datore di lavoro ('works for Microsoft').",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q629",
+    "prompt": "I don't like ...... make-up.",
+    "options": [
+      "of Sara",
+      "Sara's",
+      "Saras",
+      "Sara"
+    ],
+    "correctIndex": 1,
+    "explanation": "Si usa il genitivo sassone con apostrofo e 's' per indicare il possesso riferito a una persona: 'Sara's make-up'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessive S",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q630",
+    "prompt": "...... have you studied English?",
+    "options": [
+      "How far",
+      "How much",
+      "How long",
+      "How many"
+    ],
+    "correctIndex": 2,
+    "explanation": "'How long' è la domanda utilizzata per domandare la durata nel tempo ('Da quanto tempo').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Questions and Origins",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q631",
+    "prompt": "How ...... people came to the party?",
+    "options": [
+      "few",
+      "much",
+      "many",
+      "any"
+    ],
+    "correctIndex": 2,
+    "explanation": "Con i sostantivi numerabili plurali come 'people' si utilizza 'How many'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Quantifiers",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q632",
+    "prompt": "James ...... English very well.",
+    "options": [
+      "cans speak",
+      "can speak",
+      "can speaks",
+      "can to speak"
+    ],
+    "correctIndex": 1,
+    "explanation": "Il verbo modale 'can' è invariabile (senza '-s' alla terza persona) ed è seguito dalla forma base senza 'to' ('can speak').",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Modals of Ability and Permission",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q633",
+    "prompt": "What time does the train leave tomorrow? It ...... at 9.",
+    "options": [
+      "leave",
+      "will leave",
+      "is leave",
+      "leaves"
+    ],
+    "correctIndex": 3,
+    "explanation": "Per gli orari programmati di treni, aerei e trasporti ('timetables') si usa il Present Simple ('leaves') anche per il futuro.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "duplicata-di:q30"
+  },
+  {
+    "id": "q634",
+    "prompt": "I ...... my husband in 1996",
+    "options": [
+      "have known",
+      "meet",
+      "know",
+      "met"
+    ],
+    "correctIndex": 3,
+    "explanation": "Con una data precisa e conclusa nel passato ('in 1996') si usa il Past Simple ('met', passato del verbo irregolare 'meet').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "core": false,
+    "stato": "duplicata-di:q19"
+  },
+  {
+    "id": "q635",
+    "prompt": "New York is......than London.",
+    "options": [
+      "more moderner",
+      "more modern",
+      "modernest",
+      "modern"
+    ],
+    "correctIndex": 1,
+    "explanation": "L'aggettivo 'modern' forma il comparativo di maggioranza con 'more' ('more modern than').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Comparatives and Superlatives",
+    "core": false,
+    "stato": "da-riscrivere"
+  },
+  {
+    "id": "q636",
+    "prompt": "I ...... a new pair of shoes yesterday. Do you like them?",
+    "options": [
+      "have buyed",
+      "buyer",
+      "bought",
+      "have bought"
+    ],
+    "correctIndex": 2,
+    "explanation": "L'avverbio 'yesterday' definisce un tempo passato concluso, richiedendo il Past Simple ('bought', passato irregolare di 'buy').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "core": false,
+    "stato": "duplicata-di:q29"
+  }
+]

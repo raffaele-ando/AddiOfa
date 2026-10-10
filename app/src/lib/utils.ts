@@ -16,6 +16,9 @@ export function shuffleArray<T>(items: readonly T[]): T[] {
   return result;
 }
 
+// Con la quinta opzione (extraOption) non si fa nulla qui: resta fuori da options, che ha le 4 opzioni del banco.
+// Per le simulazioni (4 o 5 opzioni a seconda del formato) si usa prepareQuestion di lib/exam.ts.
+// Nota: non aggiungere parametri facoltativi, la funzione viene passata direttamente a .map().
 export function shuffleQuestion(q: Question): Question {
   const optionsWithIndex = q.options.map((opt, i) => ({ text: opt, isCorrect: i === q.correctIndex }));
   
@@ -63,4 +66,29 @@ export function calculateSimilarity(str1: string, str2: string): number {
 
   const union = set1.size + set2.size - intersection;
   return intersection / union;
+}
+
+// Rispetta la preferenza di sistema per le animazioni ridotte (i coriandoli non sempre la guardano da soli)
+export function prefersReducedMotion(): boolean {
+  try {
+    return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch {
+    return false;
+  }
+}
+
+// 12,5 e non 12.5; i numeri interi restano interi
+export function formatNumber(value: number): string {
+  return value.toLocaleString('it-IT', { maximumFractionDigits: 2 });
+}
+
+// 125 secondi → "2 min 05 s"
+export function formatDuration(totalSeconds: number): string {
+  const s = Math.max(0, Math.round(totalSeconds));
+  return `${Math.floor(s / 60)} min ${(s % 60).toString().padStart(2, '0')} s`;
+}
+
+// "formato_non_disponibile" e simili arrivano come messaggio dell'errore lanciato dal provider
+export function errorCode(e: unknown): string {
+  return e instanceof Error ? e.message : String(e);
 }

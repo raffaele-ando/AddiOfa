@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "addiofa-pass",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+  "vars": {
+    "FIREBASE_PROJECT_ID": "ofaenglish-f3719",
+    // Origini dell'app che possono chiamare l'API (separate da virgola, senza barra finale).
+    // Aggiungi qui l'indirizzo pubblico dell'app prima del lancio.
+    "ALLOWED_ORIGINS": "http://localhost:5173,http://localhost:4173",
+    // Resta 'false' finche' non e' pronto tutto (partita IVA, Stripe, termini). Vedi DEPLOY.md.
+    "PAYMENTS_ENABLED": "false",
+    "LAUNCH_UNTIL": "2027-01-31",
+    "PRICE_CENTS": "1499",
+    "LAUNCH_PRICE_CENTS": "999",
+    // Mittente delle email di verifica (serve solo quando collegherai EMAIL_API_KEY).
+    "EMAIL_FROM": "AddiOFA <verifica@example.com>"
+  },
+  // Segreti (NON qui): STRIPE_SECRET, STRIPE_WEBHOOK_SECRET, EMAIL_API_KEY -> `wrangler secret put <NOME>`
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "addiofa-pass",
+      "database_id": "DA_CREARE",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

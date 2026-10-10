@@ -1,5 +1,33 @@
 import { Question, UserStats, AppState, QuestionTelemetry, CorpusType } from '../types';
 import { questions, getQuestionsByCorpus } from '../data/questions';
+import type { QuestionMeta } from '../data/bank';
+import { toMeta } from '../data/bank';
+
+// Quanto serve di una domanda per misurare i tempi e la qualità della risposta: il testo e la risposta esatta
+// (nell'ordine in cui l'utente l'ha vista). Dopo grade() la risposta esatta c'è; senza, la qualità non usa i cambi di opzione.
+export interface QuizLike {
+  prompt: string;
+  options: string[];
+  correctIndex?: number;
+}
+
+let metaCache: QuestionMeta[] | null = null;
+let coreIds: Set<string> | null = null;
+
+/** Indice leggero del banco (id, categoria, livello, argomento, se è del nucleo gratuito). Non contiene risposte. */
+export function bankMeta(): QuestionMeta[] {
+  if (!metaCache) {
+    coreIds = new Set(getQuestionsByCorpus('initial').map(q => q.id));
+    metaCache = questions.map((q, i) => ({ ...toMeta(q, i), core: coreIds!.has(q.id) }));
+  }
+  return metaCache;
+}
+
+/** Domande disponibili: con il Pass tutto il banco (o il solo nucleo se l'utente lo sceglie), senza Pass solo il nucleo gratuito. */
+export function poolMeta(pass: boolean, corpus: CorpusType = 'all'): QuestionMeta[] {
+  const all = bankMeta();
+  return pass && corpus !== 'initial' ? all : all.filter(m => m.core);
+}
 
 // Initialize or update stats for a question
 export function getQuestionStats(stats: UserStats, questionId: string) {
@@ -27,21 +55,27 @@ export function getQuestionStats(stats: UserStats, questionId: string) {
 }
 
 // Select questions for practice using SuperMemo-2 (SM-2) algorithm
-export function selectPracticeQuestions(stats: UserStats, options: { 
-  numQuestions?: number, 
-  mode?: 'standard' | 'weakness' | 'blitz' | 'category' | 'recall' | 'smart', 
-  category?: string,
-  corpus?: CorpusType
-} = {}): Question[] {
-  const { numQuestions = 10, mode = 'standard', category, corpus = 'all' } = options;
+export interface PracticeOptions {
+  numQuestions?: number;
+  mode?: 'standard' | 'weakness' | 'blitz' | 'category' | 'recall' | 'smart';
+  category?: string;
+  corpus?: CorpusType;
+  /** Senza Pass (default) il pool è sempre il nucleo gratuito. */
+  pass?: boolean;
+}
+
+/** Sceglie gli id delle domande da studiare. Lavora solo sull'indice leggero: le domande intere arrivano dal provider. */
+export function selectPracticeIds(stats: UserStats, options: PracticeOptions = {}): string[] {
+  const { numQuestions = 10, mode = 'standard', category, corpus = 'all', pass = false } = options;
   const now = Date.now();
   
-  let pool = getQuestionsByCorpus(corpus);
+  const base = poolMeta(pass, corpus);
+  let pool = base;
   if (category && mode === 'category') {
     if (category === 'corpus:initial') {
-      pool = getQuestionsByCorpus('initial');
+      pool = poolMeta(pass, 'initial');
     } else if (category === 'corpus:all') {
-      pool = questions;
+      pool = base;
     } else if (category.startsWith('level:')) {
       pool = pool.filter(q => q.level === category.substring(6));
     } else if (category.startsWith('topic:')) {
@@ -54,7 +88,7 @@ export function selectPracticeQuestions(stats: UserStats, options: {
   }
 
   if (pool.length === 0) {
-    pool = getQuestionsByCorpus(corpus);
+    pool = base;
   }
 
   const scoredQuestions = pool.map(q => {
@@ -65,10 +99,10 @@ export function selectPracticeQuestions(stats: UserStats, options: {
       // Prioritize questions with lowest easiness, highest incorrect/correct ratio
       const totalAttempts = qStats.correct + qStats.incorrect;
       if (totalAttempts === 0) {
-        score = 0; // Not seen yet, not a weakness
+        score = Math.random(); // Not seen yet, not a weakness
       } else {
         const errorRate = qStats.incorrect / totalAttempts;
-        score = (errorRate * 1000) + ((5 - qStats.easiness) * 100);
+        score = (errorRate * 1000) + ((5 - qStats.easiness) * 100) + Math.random();
       }
     } else if (mode === 'smart') {
       // Academic approach for ADHD & Low Conscientiousness:
@@ -116,17 +150,23 @@ export function selectPracticeQuestions(stats: UserStats, options: {
       }
     }
 
-    return { question: q, score };
+    return { id: q.id, score };
   });
 
   // Sort by score descending
   scoredQuestions.sort((a, b) => b.score - a.score);
 
-  return scoredQuestions.slice(0, numQuestions).map(sq => sq.question);
+  return scoredQuestions.slice(0, numQuestions).map(sq => sq.id);
+}
+
+/** Versione con le domande intere dal bundle, per chi non passa dal provider (diagnostico, test). */
+export function selectPracticeQuestions(stats: UserStats, options: PracticeOptions = {}): Question[] {
+  const byId = new Map(questions.map(q => [q.id, q]));
+  return selectPracticeIds(stats, options).map(id => byId.get(id)).filter((q): q is Question => !!q);
 }
 
 // Helper to calculate total word count and complexity for a question (Prompt + Options)
-export function calculateItemTextMetrics(question?: Question) {
+export function calculateItemTextMetrics(question?: QuizLike) {
   if (!question) {
     return { wordCount: 8, charCount: 40 };
   }
@@ -139,7 +179,7 @@ export function calculateItemTextMetrics(question?: Question) {
 }
 
 // Calculate the item-specific expected time (in ms) adapting to item length and user speed baseline
-export function calculateExpectedResponseTimeMs(question?: Question, userSpeedFactor: number = 1.0, userWpm: number = 180): number {
+export function calculateExpectedResponseTimeMs(question?: QuizLike, userSpeedFactor: number = 1.0, userWpm: number = 180): number {
   const { wordCount, charCount } = calculateItemTextMetrics(question);
   
   // Cognitive reading time: WPM to ms + character processing sanity floor (50ms/char)
@@ -169,7 +209,7 @@ export function calculateContinuousQuality(
   attempts: number = 1,
   confidence: 'low' | 'medium' | 'high' = 'high',
   telemetry?: QuestionTelemetry,
-  question?: Question
+  question?: QuizLike
 ): number {
   if (!isCorrect) {
     return 0;
@@ -284,7 +324,9 @@ export function updateStats(
   timeTakenMs: number = 0, 
   attempts: number = 1, 
   confidence: 'low' | 'medium' | 'high' = 'high',
-  telemetry?: QuestionTelemetry
+  telemetry?: QuestionTelemetry,
+  // La domanda come l'ha vista l'utente (opzioni nell'ordine mostrato, con la risposta esatta). Se manca la cerco nel banco.
+  quiz?: QuizLike
 ): AppState {
   const stats = appState.stats;
   const speedStats = appState.speedStats || { 
@@ -296,7 +338,7 @@ export function updateStats(
     speedFactor: 1.0 
   };
   const qStats = getQuestionStats(stats, questionId);
-  const question = questions.find(q => q.id === questionId);
+  const question: QuizLike | undefined = quiz ?? questions.find(q => q.id === questionId);
   
   let newRepetitions = qStats.box;
   let newEasiness = qStats.easiness;

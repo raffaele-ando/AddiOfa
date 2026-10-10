@@ -1,0 +1,1702 @@
+[
+  {
+    "id": "q401",
+    "prompt": "The restaurant _____ we had dinner is very expensive.",
+    "options": [
+      "where",
+      "which",
+      "that",
+      "who"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Where' refers to a place.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q402",
+    "prompt": "This is the man _____ dog bit me.",
+    "options": [
+      "whose",
+      "who",
+      "which",
+      "that"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Whose' shows possession.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q403",
+    "prompt": "My sister, _____ lives in London, is coming to visit.",
+    "options": [
+      "who",
+      "that",
+      "which",
+      "where"
+    ],
+    "correctIndex": 0,
+    "explanation": "Non-defining relative clauses for people use 'who', not 'that'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q404",
+    "prompt": "Translate: 'Il film che abbiamo visto ieri era noioso.'",
+    "options": [
+      "The movie which we watched yesterday was boring.",
+      "The movie who we watched yesterday was boring.",
+      "The movie where we watched yesterday was boring.",
+      "The movie whose we watched yesterday was boring."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Which' or 'that' is used for things.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q405",
+    "prompt": "Translate: 'La donna la cui auto è stata rubata è la mia vicina.'",
+    "options": [
+      "The woman whose car was stolen is my neighbor.",
+      "The woman who car was stolen is my neighbor.",
+      "The woman which car was stolen is my neighbor.",
+      "The woman that car was stolen is my neighbor."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Whose' translates 'la cui / il cui'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q406",
+    "prompt": "The days _____ I was young were the best.",
+    "options": [
+      "when",
+      "where",
+      "which",
+      "who"
+    ],
+    "correctIndex": 0,
+    "explanation": "'When' refers to a time.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q407",
+    "prompt": "I know a place _____ you can hide.",
+    "options": [
+      "where",
+      "which",
+      "that",
+      "when"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Where' refers to a location.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q408",
+    "prompt": "The student _____ got the highest grade is from Spain.",
+    "options": [
+      "who",
+      "which",
+      "where",
+      "whose"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Who' refers to people.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q409",
+    "prompt": "Translate: 'Questo è il libro di cui ti parlavo.'",
+    "options": [
+      "This is the book which I was telling you about.",
+      "This is the book who I was telling you about.",
+      "This is the book where I was telling you about.",
+      "This is the book whose I was telling you about."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Which' is used for things.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q410",
+    "prompt": "Translate: 'Parigi, che è la capitale della Francia, è bellissima.'",
+    "options": [
+      "Paris, which is the capital of France, is beautiful.",
+      "Paris, who is the capital of France, is beautiful.",
+      "Paris, where is the capital of France, is beautiful.",
+      "Paris, that is the capital of France, is beautiful."
+    ],
+    "correctIndex": 0,
+    "explanation": "Non-defining relative clauses for things use 'which'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q411",
+    "prompt": "Someone _____ travels a lot is lucky.",
+    "options": [
+      "who",
+      "which",
+      "whose",
+      "where"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Who' refers to a person.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q412",
+    "prompt": "The cake _____ she made was delicious.",
+    "options": [
+      "which",
+      "who",
+      "whose",
+      "where"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Which' refers to things.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q413",
+    "prompt": "A library is a place _____ you can borrow books.",
+    "options": [
+      "where",
+      "which",
+      "who",
+      "when"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Where' is for places.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q414",
+    "prompt": "The boy _____ sister is in my class is very tall.",
+    "options": [
+      "whose",
+      "who",
+      "which",
+      "that"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Whose' indicates possession (the sister of the boy).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q415",
+    "prompt": "Winter is the season _____ it snows.",
+    "options": [
+      "when",
+      "which",
+      "where",
+      "who"
+    ],
+    "correctIndex": 0,
+    "explanation": "'When' is used for periods of time.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q416",
+    "prompt": "I always try to avoid _____ in traffic during rush hour.",
+    "options": [
+      "driving",
+      "to drive",
+      "drive",
+      "drove"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Avoid' is always followed by the -ing form (gerund), never by the infinitive: 'avoid driving'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q417",
+    "prompt": "We hope _____ you again soon.",
+    "options": [
+      "to see",
+      "seeing",
+      "see",
+      "saw"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Hope' is followed by the infinitive with 'to'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q418",
+    "prompt": "Avoid _____ mistakes by checking your work.",
+    "options": [
+      "making",
+      "to make",
+      "make",
+      "made"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Avoid' takes the gerund (-ing form).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q419",
+    "prompt": "She promised _____ me with my homework.",
+    "options": [
+      "to help",
+      "helping",
+      "help",
+      "helped"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Promise' takes the infinitive with 'to'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q420",
+    "prompt": "Translate: 'Ho finito di leggere il libro.'",
+    "options": [
+      "I finished reading the book.",
+      "I finished to read the book.",
+      "I finished read the book.",
+      "I finish reading the book."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Finish' is followed by a gerund.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q421",
+    "prompt": "Translate: 'Lui ha deciso di studiare all'estero.'",
+    "options": [
+      "He decided to study abroad.",
+      "He decided studying abroad.",
+      "He decided study abroad.",
+      "He decides to study abroad."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Decide' is followed by the infinitive.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q422",
+    "prompt": "Are you planning _____ to the party?",
+    "options": [
+      "to go",
+      "going",
+      "go",
+      "went"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Plan' takes the infinitive with 'to'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q423",
+    "prompt": "I miss _____ near the sea.",
+    "options": [
+      "living",
+      "to live",
+      "live",
+      "lived"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Miss' is followed by the gerund.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q424",
+    "prompt": "Translate: 'Non mi dispiace alzarmi presto.'",
+    "options": [
+      "I don't mind getting up early.",
+      "I don't mind to get up early.",
+      "I don't mind get up early.",
+      "I not mind getting up early."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Don't mind' takes the gerund.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q425",
+    "prompt": "Translate: 'Loro vogliono comprare una casa nuova.'",
+    "options": [
+      "They want to buy a new house.",
+      "They want buying a new house.",
+      "They want buy a new house.",
+      "They want to buying a new house."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Want' is followed by the infinitive.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q426",
+    "prompt": "He offered _____ for dinner.",
+    "options": [
+      "to pay",
+      "paying",
+      "pay",
+      "paid"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Offer' takes the infinitive with 'to'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q427",
+    "prompt": "Keep _____ until you reach the station.",
+    "options": [
+      "walking",
+      "to walk",
+      "walk",
+      "walked"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Keep' is followed by the gerund.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q428",
+    "prompt": "I would like _____ a pizza.",
+    "options": [
+      "to order",
+      "ordering",
+      "order",
+      "ordered"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Would like' is followed by the infinitive with 'to'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q429",
+    "prompt": "Stop _____ noise!",
+    "options": [
+      "making",
+      "to make",
+      "make",
+      "made"
+    ],
+    "correctIndex": 0,
+    "explanation": "Stop + -ing means to quit an action.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q430",
+    "prompt": "I remembered _____ the door before leaving.",
+    "options": [
+      "to lock",
+      "to locking",
+      "lock",
+      "locked"
+    ],
+    "correctIndex": 0,
+    "explanation": "Remember + to-infinitive means 'not forget to do something' ('I remembered to lock the door'); after 'to' we always use the base form, never -ing.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q431",
+    "prompt": "If I _____ more time, I would learn a new language.",
+    "options": [
+      "had",
+      "have",
+      "would have",
+      "will have"
+    ],
+    "correctIndex": 0,
+    "explanation": "Second Conditional: If + past simple.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q432",
+    "prompt": "What would you do if you _____ a ghost?",
+    "options": [
+      "saw",
+      "see",
+      "would see",
+      "will see"
+    ],
+    "correctIndex": 0,
+    "explanation": "Second Conditional: If + past simple.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q433",
+    "prompt": "If she _____ closer, we would see her more often.",
+    "options": [
+      "lived",
+      "lives",
+      "would live",
+      "will live"
+    ],
+    "correctIndex": 0,
+    "explanation": "Second Conditional: If + past simple.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q434",
+    "prompt": "Translate: 'Se fossi ricco, viaggerei per il mondo.'",
+    "options": [
+      "If I were rich, I would travel the world.",
+      "If I am rich, I will travel the world.",
+      "If I was rich, I travel the world.",
+      "If I would be rich, I traveled the world."
+    ],
+    "correctIndex": 0,
+    "explanation": "Second Conditional uses 'were' for all persons and 'would + verb'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q435",
+    "prompt": "Translate: 'Se lei sapesse la verità, si arrabbierebbe.'",
+    "options": [
+      "If she knew the truth, she would be angry.",
+      "If she knows the truth, she will be angry.",
+      "If she would know the truth, she was angry.",
+      "If she knew the truth, she will be angry."
+    ],
+    "correctIndex": 0,
+    "explanation": "Past simple in the if-clause, would in the main clause.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q436",
+    "prompt": "If they _____ so much pizza, they wouldn't feel sick.",
+    "options": [
+      "didn't eat",
+      "don't eat",
+      "wouldn't eat",
+      "won't eat"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative if-clause in Second Conditional uses 'didn't + verb'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q437",
+    "prompt": "I would buy that car if it _____ cheaper.",
+    "options": [
+      "were",
+      "is",
+      "would be",
+      "will be"
+    ],
+    "correctIndex": 0,
+    "explanation": "'were' is used for the verb 'to be' in the Second Conditional.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q438",
+    "prompt": "If you _____ more, you would pass the exam.",
+    "options": [
+      "studied",
+      "study",
+      "would study",
+      "will study"
+    ],
+    "correctIndex": 0,
+    "explanation": "Second Conditional: If + Past Simple ('studied'), would + base verb, for an unreal or unlikely present situation.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q439",
+    "prompt": "Translate: 'Non andrei lì se fossi in te.'",
+    "options": [
+      "I wouldn't go there if I were you.",
+      "I won't go there if I am you.",
+      "I didn't go there if I were you.",
+      "I don't go there if I was you."
+    ],
+    "correctIndex": 0,
+    "explanation": "'If I were you' is standard for giving advice.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q440",
+    "prompt": "Translate: 'Se avessimo una macchina, potremmo andare in montagna.'",
+    "options": [
+      "If we had a car, we could go to the mountains.",
+      "If we have a car, we can go to the mountains.",
+      "If we had a car, we will go to the mountains.",
+      "If we would have a car, we went to the mountains."
+    ],
+    "correctIndex": 0,
+    "explanation": "'could' is the conditional form of 'can'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q441",
+    "prompt": "If he _____ his job, he would travel more.",
+    "options": [
+      "quit",
+      "quits",
+      "will quit",
+      "would quit"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past simple of 'quit' is 'quit'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q442",
+    "prompt": "She would be happier if she _____ a better job.",
+    "options": [
+      "found",
+      "finds",
+      "will find",
+      "would find"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past simple in the if-clause.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q443",
+    "prompt": "If it _____ snowing, we could go for a walk.",
+    "options": [
+      "stopped",
+      "stops",
+      "will stop",
+      "would stop"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past simple of stop is stopped.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q444",
+    "prompt": "I _____ you if I knew the answer.",
+    "options": [
+      "would tell",
+      "tell",
+      "told",
+      "will tell"
+    ],
+    "correctIndex": 0,
+    "explanation": "Main clause requires 'would + verb'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q445",
+    "prompt": "If we _____ in a big city, we would use public transport.",
+    "options": [
+      "lived",
+      "live",
+      "will live",
+      "would live"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past simple in the if-clause.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q446",
+    "prompt": "Translate: 'Se parlassi francese, mi trasferirei a Parigi.'",
+    "options": [
+      "If I spoke French, I would move to Paris.",
+      "If I speak French, I will move to Paris.",
+      "If I would speak French, I moved to Paris.",
+      "If I spoke French, I will move to Paris."
+    ],
+    "correctIndex": 0,
+    "explanation": "If + past simple, would + infinitive.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q447",
+    "prompt": "If I _____ earlier, I would have caught the train.",
+    "options": [
+      "had woken up",
+      "woke up",
+      "would wake up",
+      "have woken up"
+    ],
+    "correctIndex": 0,
+    "explanation": "Third Conditional uses If + Past Perfect.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q448",
+    "prompt": "She would have passed if she _____ harder.",
+    "options": [
+      "had studied",
+      "studied",
+      "would study",
+      "has studied"
+    ],
+    "correctIndex": 0,
+    "explanation": "If + Past Perfect (had + past participle).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q449",
+    "prompt": "If we had known, we _____ you.",
+    "options": [
+      "would have helped",
+      "would help",
+      "helped",
+      "had helped"
+    ],
+    "correctIndex": 0,
+    "explanation": "Main clause uses 'would have + past participle'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q450",
+    "prompt": "Translate: 'Se fossi andato a letto presto, non sarei stato stanco.'",
+    "options": [
+      "If I had gone to bed early, I wouldn't have been tired.",
+      "If I went to bed early, I wouldn't be tired.",
+      "If I had gone to bed early, I wasn't tired.",
+      "If I would go to bed early, I wouldn't have been tired."
+    ],
+    "correctIndex": 0,
+    "explanation": "Third conditional talks about impossible past situations.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q451",
+    "prompt": "Translate: 'Se avesse piovuto, saremmo rimasti a casa.'",
+    "options": [
+      "If it had rained, we would have stayed at home.",
+      "If it rained, we would stay at home.",
+      "If it had rained, we stayed at home.",
+      "If it rains, we will stay at home."
+    ],
+    "correctIndex": 0,
+    "explanation": "If + Past Perfect, would have + past participle.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q452",
+    "prompt": "If he had driven carefully, he _____ the accident.",
+    "options": [
+      "wouldn't have had",
+      "wouldn't have",
+      "didn't have",
+      "hadn't had"
+    ],
+    "correctIndex": 0,
+    "explanation": "Main clause negative is 'wouldn't have + past participle'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q453",
+    "prompt": "They would have won if they _____ better.",
+    "options": [
+      "had played",
+      "played",
+      "would play",
+      "have played"
+    ],
+    "correctIndex": 0,
+    "explanation": "If clause uses Past Perfect.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q454",
+    "prompt": "If I _____ the umbrella, I would have gotten wet.",
+    "options": [
+      "hadn't taken",
+      "didn't take",
+      "wouldn't take",
+      "haven't taken"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative if-clause uses 'hadn't + past participle'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q455",
+    "prompt": "Translate: 'Cosa avresti fatto se lo avessi saputo?'",
+    "options": [
+      "What would you have done if you had known?",
+      "What would you do if you knew?",
+      "What did you do if you had known?",
+      "What have you done if you knew?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Interrogative third conditional structure.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q456",
+    "prompt": "Translate: 'Se avessi visto il messaggio, ti avrei risposto.'",
+    "options": [
+      "If I had seen the message, I would have replied.",
+      "If I saw the message, I would reply.",
+      "If I would have seen the message, I replied.",
+      "If I had seen the message, I had replied."
+    ],
+    "correctIndex": 0,
+    "explanation": "Standard third conditional structure.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q457",
+    "prompt": "If she _____ the directions, she wouldn't have gotten lost.",
+    "options": [
+      "had followed",
+      "followed",
+      "would follow",
+      "has followed"
+    ],
+    "correctIndex": 0,
+    "explanation": "Third Conditional: If + Past Perfect ('had followed'), would have + past participle, for an imaginary situation in the past.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q458",
+    "prompt": "I _____ to the party if they had invited me.",
+    "options": [
+      "would have gone",
+      "would go",
+      "went",
+      "had gone"
+    ],
+    "correctIndex": 0,
+    "explanation": "Main clause requires 'would have + past participle'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q459",
+    "prompt": "If it _____ so cold, we would have gone swimming.",
+    "options": [
+      "hadn't been",
+      "wasn't",
+      "wouldn't be",
+      "hasn't been"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative Past Perfect.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q460",
+    "prompt": "We would have bought the house if it _____ cheaper.",
+    "options": [
+      "had been",
+      "was",
+      "would be",
+      "has been"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Perfect of 'to be' is 'had been'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q461",
+    "prompt": "If you had asked me, I _____ yes.",
+    "options": [
+      "would have said",
+      "would say",
+      "said",
+      "had said"
+    ],
+    "correctIndex": 0,
+    "explanation": "Main clause uses 'would have + past participle'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q462",
+    "prompt": "Translate: 'Sarebbe venuta se avesse avuto tempo.'",
+    "options": [
+      "She would have come if she had had time.",
+      "She would come if she had time.",
+      "She came if she had had time.",
+      "She would have came if she had time."
+    ],
+    "correctIndex": 0,
+    "explanation": "'had had' is the Past Perfect of 'have'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q463",
+    "prompt": "The Mona Lisa _____ by Leonardo da Vinci.",
+    "options": [
+      "was painted",
+      "painted",
+      "is painted",
+      "paints"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Simple passive: was + past participle.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q464",
+    "prompt": "English _____ in many countries around the world.",
+    "options": [
+      "is spoken",
+      "speaks",
+      "was spoken",
+      "has spoken"
+    ],
+    "correctIndex": 0,
+    "explanation": "Present Simple passive for facts.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q465",
+    "prompt": "My car _____ at the moment.",
+    "options": [
+      "is being repaired",
+      "is repairing",
+      "repairs",
+      "has repaired"
+    ],
+    "correctIndex": 0,
+    "explanation": "Present Continuous passive for ongoing actions.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q466",
+    "prompt": "Translate: 'Il libro è stato scritto nel 1990.'",
+    "options": [
+      "The book was written in 1990.",
+      "The book is written in 1990.",
+      "The book wrote in 1990.",
+      "The book has been written in 1990."
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Simple passive for a completed action in the past.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q467",
+    "prompt": "Translate: 'La stanza viene pulita ogni giorno.'",
+    "options": [
+      "The room is cleaned every day.",
+      "The room was cleaned every day.",
+      "The room is being cleaned every day.",
+      "The room cleans every day."
+    ],
+    "correctIndex": 0,
+    "explanation": "Present Simple passive for routines.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q468",
+    "prompt": "A new supermarket _____ in our town next year.",
+    "options": [
+      "will be built",
+      "will build",
+      "is built",
+      "was built"
+    ],
+    "correctIndex": 0,
+    "explanation": "Future passive: will be + past participle.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q469",
+    "prompt": "The thieves _____ by the police yesterday.",
+    "options": [
+      "were caught",
+      "caught",
+      "are caught",
+      "have caught"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Simple passive (plural).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q470",
+    "prompt": "This picture _____ by my grandfather.",
+    "options": [
+      "was taken",
+      "took",
+      "is taken",
+      "takes"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Simple passive.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q471",
+    "prompt": "Translate: 'I biglietti sono già stati venduti.'",
+    "options": [
+      "The tickets have already been sold.",
+      "The tickets are already sold.",
+      "The tickets were already sold.",
+      "The tickets already sold."
+    ],
+    "correctIndex": 0,
+    "explanation": "Present Perfect passive: have been + past participle.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q472",
+    "prompt": "Translate: 'Il problema deve essere risolto subito.'",
+    "options": [
+      "The problem must be solved immediately.",
+      "The problem must solve immediately.",
+      "The problem has to solve immediately.",
+      "The problem must been solved immediately."
+    ],
+    "correctIndex": 0,
+    "explanation": "Modal passive: modal + be + past participle.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q473",
+    "prompt": "The emails _____ every morning at 8 am.",
+    "options": [
+      "are sent",
+      "send",
+      "were sent",
+      "have sent"
+    ],
+    "correctIndex": 0,
+    "explanation": "Present Simple passive for routines.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q474",
+    "prompt": "The dinner _____ when the guests arrived.",
+    "options": [
+      "was being cooked",
+      "was cooking",
+      "is cooked",
+      "has been cooked"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Continuous passive for interrupted past actions.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q475",
+    "prompt": "The bridge _____ in 2005.",
+    "options": [
+      "was built",
+      "built",
+      "is built",
+      "has built"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Simple passive.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q476",
+    "prompt": "All the cake _____ by the children before I came.",
+    "options": [
+      "had been eaten",
+      "had eaten",
+      "was eating",
+      "is eaten"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Perfect passive.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q477",
+    "prompt": "The keys _____ on the table yesterday.",
+    "options": [
+      "were left",
+      "left",
+      "are left",
+      "have left"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Simple passive.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q478",
+    "prompt": "Translate: 'La mia bicicletta è stata rubata ieri.'",
+    "options": [
+      "My bicycle was stolen yesterday.",
+      "My bicycle is stolen yesterday.",
+      "My bicycle has been stolen yesterday.",
+      "My bicycle stole yesterday."
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Simple passive.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q479",
+    "prompt": "He said, 'I like apples.' -> He said that he _____ apples.",
+    "options": [
+      "liked",
+      "likes",
+      "like",
+      "had liked"
+    ],
+    "correctIndex": 0,
+    "explanation": "Present simple shifts to past simple.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q480",
+    "prompt": "She said, 'I am watching TV.' -> She said that she _____ TV.",
+    "options": [
+      "was watching",
+      "is watching",
+      "watches",
+      "had watched"
+    ],
+    "correctIndex": 0,
+    "explanation": "Present continuous shifts to past continuous.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q481",
+    "prompt": "'I will go,' he said. -> He said that he _____ go.",
+    "options": [
+      "would",
+      "will",
+      "can",
+      "could"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Will' shifts to 'would'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q482",
+    "prompt": "Translate: 'Mi ha detto che era stanco.'",
+    "options": [
+      "He told me that he was tired.",
+      "He said me that he was tired.",
+      "He told to me that he was tired.",
+      "He said that he is tired."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Tell' must be followed by an object pronoun (me).",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q483",
+    "prompt": "Translate: 'Lei disse che non sapeva la risposta.'",
+    "options": [
+      "She said that she didn't know the answer.",
+      "She told that she didn't know the answer.",
+      "She said that she doesn't know the answer.",
+      "She told me that she hasn't known the answer."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Said' doesn't need an object pronoun.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q484",
+    "prompt": "'I have finished,' she said. -> She said that she _____ finished.",
+    "options": [
+      "had",
+      "has",
+      "was",
+      "is"
+    ],
+    "correctIndex": 0,
+    "explanation": "Present perfect shifts to past perfect.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q485",
+    "prompt": "He asked me where I _____.",
+    "options": [
+      "lived",
+      "live",
+      "did I live",
+      "do I live"
+    ],
+    "correctIndex": 0,
+    "explanation": "Reported questions use affirmative word order, without 'do/did'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q486",
+    "prompt": "She asked if I _____ coffee.",
+    "options": [
+      "liked",
+      "like",
+      "did I like",
+      "do I like"
+    ],
+    "correctIndex": 0,
+    "explanation": "Yes/No reported questions use 'if' + affirmative past simple.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q487",
+    "prompt": "Translate: 'Mi ha chiesto se volessi venire.'",
+    "options": [
+      "He asked me if I wanted to come.",
+      "He asked me do I want to come.",
+      "He said me if I wanted to come.",
+      "He told me if I wanted to come."
+    ],
+    "correctIndex": 0,
+    "explanation": "Reported questions use 'ask' + if + subject + verb.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q488",
+    "prompt": "Translate: 'Ha detto che avrebbe chiamato più tardi.'",
+    "options": [
+      "He said that he would call later.",
+      "He said that he will call later.",
+      "He told that he would call later.",
+      "He said that he would called later."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Would' is the reported version of 'will'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q489",
+    "prompt": "'Don't touch that!' he said. -> He told me _____ that.",
+    "options": [
+      "not to touch",
+      "don't touch",
+      "didn't touch",
+      "not touch"
+    ],
+    "correctIndex": 0,
+    "explanation": "Reported negative commands use 'not to + infinitive'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q490",
+    "prompt": "'Open the door,' she said. -> She told me _____ the door.",
+    "options": [
+      "to open",
+      "open",
+      "opened",
+      "opening"
+    ],
+    "correctIndex": 0,
+    "explanation": "Reported commands use 'to + infinitive'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q491",
+    "prompt": "He said, 'I can swim.' -> He said that he _____ swim.",
+    "options": [
+      "could",
+      "can",
+      "would",
+      "might"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Can' shifts to 'could'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q492",
+    "prompt": "She asked, 'Are you okay?' -> She asked me _____ okay.",
+    "options": [
+      "if I was",
+      "if was I",
+      "are you",
+      "if you are"
+    ],
+    "correctIndex": 0,
+    "explanation": "Reported questions use subject + verb order.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q493",
+    "prompt": "'I must go,' he said. -> He said that he _____ go.",
+    "options": [
+      "had to",
+      "musts",
+      "must to",
+      "have to"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Must' usually shifts to 'had to' in reported speech; 'must' never takes -s or 'to', and 'have to' would need to become 'had to'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q494",
+    "prompt": "Translate: 'Mi ha consigliato di studiare.'",
+    "options": [
+      "He advised me to study.",
+      "He advised to study.",
+      "He said me to study.",
+      "He told to me to study."
+    ],
+    "correctIndex": 0,
+    "explanation": "Advise takes object + to-infinitive.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q495",
+    "prompt": "By the time we arrived, the movie _____.",
+    "options": [
+      "had started",
+      "started",
+      "has started",
+      "starts"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Perfect is used for the action that happened first in the past.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q496",
+    "prompt": "I realized I _____ my keys at home.",
+    "options": [
+      "had left",
+      "left",
+      "have left",
+      "leave"
+    ],
+    "correctIndex": 0,
+    "explanation": "You left them before you realized it.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q497",
+    "prompt": "She was tired because she _____ all day.",
+    "options": [
+      "had worked",
+      "worked",
+      "has worked",
+      "works"
+    ],
+    "correctIndex": 0,
+    "explanation": "Action leading up to a past state.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q498",
+    "prompt": "Translate: 'Avevo appena finito di mangiare quando ha bussato.'",
+    "options": [
+      "I had just finished eating when he knocked.",
+      "I just finished eating when he knocked.",
+      "I have just finished eating when he knocked.",
+      "I had just finished to eat when he knocked."
+    ],
+    "correctIndex": 0,
+    "explanation": "Past perfect + just for an action completed moments before another past action.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q499",
+    "prompt": "Translate: 'Non avevo mai visto quel film prima di ieri.'",
+    "options": [
+      "I had never seen that movie before yesterday.",
+      "I never saw that movie before yesterday.",
+      "I have never seen that movie before yesterday.",
+      "I hadn't never seen that movie before yesterday."
+    ],
+    "correctIndex": 0,
+    "explanation": "Past perfect + never for experiences before a specific past point.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q500",
+    "prompt": "When I got to the station, the train _____.",
+    "options": [
+      "had left",
+      "left",
+      "has left",
+      "leaves"
+    ],
+    "correctIndex": 0,
+    "explanation": "The train left before I arrived.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "duplicata-di:q387"
+  }
+]

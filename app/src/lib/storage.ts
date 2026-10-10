@@ -1,6 +1,5 @@
 import { AppState, UserStats, ExamHistory } from '../types';
-import { db } from './firebase';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { getDb, isDemoMode } from './firebase';
 
 const STORAGE_KEY = 'ofa_polimi_app_state'; // chiave storica: non cambiarla o si perdono i progressi salvati
 
@@ -62,17 +61,21 @@ export function toCloudState(state: AppState): AppState {
   };
 }
 
+// Il cloud si usa solo con un utente collegato e mai in demo (Firebase si carica qui, al primo uso)
 export async function syncToCloud(userId: string, state: AppState) {
+  if (!userId || isDemoMode()) return;
   try {
+    const [db, { doc, setDoc }] = await Promise.all([getDb(), import('firebase/firestore')]);
     await setDoc(doc(db, "users", userId), toCloudState(state), { merge: true });
-    console.log("State synced to cloud.");
   } catch (err) {
     console.error('Error syncing to cloud', err);
   }
 }
 
 export async function syncFromCloud(userId: string, localState: AppState): Promise<AppState> {
+  if (!userId || isDemoMode()) return localState;
   try {
+    const [db, { doc, getDoc }] = await Promise.all([getDb(), import('firebase/firestore')]);
     const docRef = doc(db, "users", userId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
@@ -221,7 +224,9 @@ export function importData(file: File): Promise<AppState> {
       try {
         const importedState = JSON.parse(event.target?.result as string);
         // Basic validation
-        if (typeof importedState.streak !== 'number') throw new Error("Invalid format");
+        if (typeof importedState.streak !== 'number' || !Array.isArray(importedState.history) || typeof importedState.stats !== 'object' || importedState.stats === null) {
+          throw new Error("Invalid format");
+        }
         resolve(importedState);
       } catch (e) {
         reject(e);

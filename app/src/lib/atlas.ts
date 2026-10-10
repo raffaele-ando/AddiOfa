@@ -1,4 +1,4 @@
-import { auth } from './firebase';
+import { getIdToken } from './firebase';
 import { ATLAS_API_URL, CONSENT_VERSION, ECOSYSTEM, ScopeId } from '../config/ecosystem';
 
 // Client dell'API ATLAS (Worker Cloudflare in atlas/). Ogni chiamata usa il token del login Google.
@@ -41,8 +41,8 @@ export const isAtlasOnline = () => !!ATLAS_API_URL;
 async function call<T>(path: string, init: RequestInit = {}, requireAuth = true): Promise<T> {
   if (!ATLAS_API_URL) throw new Error(`${ECOSYSTEM.engineName} non è configurato`);
   const headers = new Headers(init.headers);
-  const user = auth.currentUser;
-  if (user) headers.set('Authorization', `Bearer ${await user.getIdToken()}`);
+  const token = await getIdToken();
+  if (token) headers.set('Authorization', `Bearer ${token}`);
   else if (requireAuth) throw new Error('login richiesto');
   if (init.body) headers.set('Content-Type', 'application/json');
   const res = await fetch(`${ATLAS_API_URL}${path}`, { ...init, headers });

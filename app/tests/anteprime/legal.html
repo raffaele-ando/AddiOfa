@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Anteprima Legal</title>
+<script>
+  // ?tema=dark|light e ?s=termini|privacy|cookie|recesso
+  const q = new URLSearchParams(location.search);
+  if (q.get('tema') === 'dark') document.documentElement.classList.add('dark');
+</script>
+</head>
+<body class="m-0">
+<div id="root" style="height:100vh"></div>
+<script type="module" src="./legal.tsx"></script>
+</body>
+</html>

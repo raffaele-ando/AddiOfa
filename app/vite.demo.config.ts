@@ -25,8 +25,14 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), viteSingleFile(), htmlPerArtifact()],
   resolve: {
     dedupe: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'react-dom/client'],
-    alias: { '@': path.resolve(__dirname, '.') },
+    alias: [
+      // Il catalogo ?brand non entra nella demo: lo sostituisce uno stub (App.tsx lo importa da './brand/BrandKit').
+      { find: /^(\.{1,2}\/)+(brand\/)?BrandKit$/, replacement: path.resolve(__dirname, 'src/brand/BrandKitStub.tsx') },
+      { find: '@', replacement: path.resolve(__dirname, '.') },
+    ],
   },
+  // La demo non parla con nessun server: Firebase e le altre integrazioni restano spente.
+  define: { 'import.meta.env.VITE_MODE': JSON.stringify('demo') },
   build: {
     outDir: 'dist-demo',
     emptyOutDir: true,

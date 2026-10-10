@@ -1,0 +1,930 @@
+[
+  {
+    "a": {
+      "id": "q2",
+      "prompt": "Choose the correct question: '_____ a table in this room?'",
+      "opzioni": [
+        "Is it",
+        "There is",
+        "Is there",
+        "Are there"
+      ],
+      "esatta": "Is there",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q47",
+      "prompt": "Complete the sentence: '_____ is a table in the room.'",
+      "opzioni": [
+        "There",
+        "It",
+        "This",
+        "Here"
+      ],
+      "esatta": "There",
+      "stato": "da-riscrivere"
+    },
+    "similarita": 0.71,
+    "esito": "distinta",
+    "note": "q2 è la forma interrogativa (Is there...?), q47 la frase affermativa (There is...)."
+  },
+  {
+    "a": {
+      "id": "q3",
+      "prompt": "Which sentence is correct?",
+      "opzioni": [
+        "Did you meet Mr. Smith's wife?",
+        "Did you met Mr. Smith's wife?",
+        "Have you meet Mr. Smith's wife?",
+        "Did you meet the Mr. Smith wife?"
+      ],
+      "esatta": "Did you meet Mr. Smith's wife?",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q623",
+      "prompt": "Have you met ...... ?",
+      "opzioni": [
+        "The Mr Smith wife",
+        "the wife of Mr Smith",
+        "Mr Smith wife",
+        "Mr Smith's wife"
+      ],
+      "esatta": "Mr Smith's wife",
+      "stato": "duplicata-di:q3"
+    },
+    "similarita": 0.86,
+    "esito": "duplicata-di:q3",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q17",
+      "prompt": "Choose the grammatically correct sentence:",
+      "opzioni": [
+        "She gone to the cinema yesterday.",
+        "She has went to the cinema yesterday.",
+        "She went to the cinema yesterday.",
+        "She goes to the cinema yesterday."
+      ],
+      "esatta": "She went to the cinema yesterday.",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q608",
+      "prompt": "She ...... to the cinema yesterday.",
+      "opzioni": [
+        "gone",
+        "has gone",
+        "is gone",
+        "went"
+      ],
+      "esatta": "went",
+      "stato": "duplicata-di:q17"
+    },
+    "similarita": 0.71,
+    "esito": "duplicata-di:q17",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q19",
+      "prompt": "Complete the sentence: 'I _____ my husband in 1996.'",
+      "opzioni": [
+        "meet",
+        "have met",
+        "met",
+        "was meeting"
+      ],
+      "esatta": "met",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q634",
+      "prompt": "I ...... my husband in 1996",
+      "opzioni": [
+        "have known",
+        "meet",
+        "know",
+        "met"
+      ],
+      "esatta": "met",
+      "stato": "duplicata-di:q19"
+    },
+    "similarita": 1,
+    "esito": "duplicata-di:q19",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q20",
+      "prompt": "Complete the sentence: 'This plate is dirty, can I have a clean _____?'",
+      "opzioni": [
+        "a one",
+        "one",
+        "ones",
+        "it"
+      ],
+      "esatta": "one",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q614",
+      "prompt": "This plate is dirty. Can I have ...... ?",
+      "opzioni": [
+        "a clean one",
+        "clean",
+        "a clean",
+        "clean one"
+      ],
+      "esatta": "a clean one",
+      "stato": "duplicata-di:q20"
+    },
+    "similarita": 0.83,
+    "esito": "duplicata-di:q20",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q22",
+      "prompt": "Complete the sentence: 'How many companies have you worked for _____ you left school?'",
+      "opzioni": [
+        "from",
+        "since",
+        "for",
+        "after"
+      ],
+      "esatta": "since",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q610",
+      "prompt": "How many companies ...... since you left school?",
+      "opzioni": [
+        "are you work for",
+        "have you worked for",
+        "do you work for",
+        "you work for"
+      ],
+      "esatta": "have you worked for",
+      "stato": "duplicata-di:q22"
+    },
+    "similarita": 0.8,
+    "esito": "duplicata-di:q22",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q25",
+      "prompt": "Combine the sentences correctly: 'I saw Tom this morning. He was waiting at the bus stop.'",
+      "opzioni": [
+        "I saw Tom this morning while he waits at the bus stop.",
+        "I saw Tom this morning while he was waiting at the bus stop.",
+        "I saw Tom this morning during he was waiting at the bus stop.",
+        "I saw Tom this morning waiting to the bus stop."
+      ],
+      "esatta": "I saw Tom this morning while he was waiting at the bus stop.",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q618",
+      "prompt": "I saw Tom this morning. He ...... at the bus stop.",
+      "opzioni": [
+        "was waiting",
+        "were waiting",
+        "was waited",
+        "waited"
+      ],
+      "esatta": "was waiting",
+      "stato": "duplicata-di:q25"
+    },
+    "similarita": 0.67,
+    "esito": "duplicata-di:q25",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q28",
+      "prompt": "Complete the sentence: 'Is she going with _____ friends?'",
+      "opzioni": [
+        "much",
+        "a",
+        "some",
+        "any of"
+      ],
+      "esatta": "some",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q56",
+      "prompt": "Complete the sentence: 'Is she _____ with friends?'",
+      "opzioni": [
+        "gone",
+        "go",
+        "going",
+        "goes"
+      ],
+      "esatta": "going",
+      "stato": "da-riscrivere"
+    },
+    "similarita": 0.67,
+    "esito": "distinta",
+    "note": "Argomenti diversi (quantificatori e going to): coincidono solo le parole \"friends\" e \"she\"."
+  },
+  {
+    "a": {
+      "id": "q29",
+      "prompt": "Complete the sentence: 'I _____ a new pair of shoes yesterday.'",
+      "opzioni": [
+        "buy",
+        "buyed",
+        "bought",
+        "have bought"
+      ],
+      "esatta": "bought",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q636",
+      "prompt": "I ...... a new pair of shoes yesterday. Do you like them?",
+      "opzioni": [
+        "have buyed",
+        "buyer",
+        "bought",
+        "have bought"
+      ],
+      "esatta": "bought",
+      "stato": "duplicata-di:q29"
+    },
+    "similarita": 0.63,
+    "esito": "duplicata-di:q29",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q30",
+      "prompt": "Complete the sentence: 'What time does the train leave tomorrow? It _____ at 9.'",
+      "opzioni": [
+        "leave",
+        "will leaves",
+        "leaving",
+        "leaves"
+      ],
+      "esatta": "leaves",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q633",
+      "prompt": "What time does the train leave tomorrow? It ...... at 9.",
+      "opzioni": [
+        "leave",
+        "will leave",
+        "is leave",
+        "leaves"
+      ],
+      "esatta": "leaves",
+      "stato": "duplicata-di:q30"
+    },
+    "similarita": 1,
+    "esito": "duplicata-di:q30",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q31",
+      "prompt": "Choose the correct negative sentence:",
+      "opzioni": [
+        "There isn't no milk in the fridge.",
+        "There isn't any milk in the fridge.",
+        "There is any milk in the fridge.",
+        "There aren't any milk in the fridge."
+      ],
+      "esatta": "There isn't any milk in the fridge.",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q621",
+      "prompt": "...... any milk in the fridge",
+      "opzioni": [
+        "There is",
+        "There isn't",
+        "There aren't",
+        "There are"
+      ],
+      "esatta": "There isn't",
+      "stato": "da-riscrivere"
+    },
+    "similarita": 0.75,
+    "esito": "distinta",
+    "note": "q31 chiede la forma negativa corretta, q621 completa con there is/isn't/are: item diversi."
+  },
+  {
+    "a": {
+      "id": "q32",
+      "prompt": "Complete the sentence: 'How long _____ you studied English?'",
+      "opzioni": [
+        "did",
+        "do",
+        "are",
+        "have"
+      ],
+      "esatta": "have",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q627",
+      "prompt": "How long ...... English?",
+      "opzioni": [
+        "you study",
+        "you studied",
+        "are you study",
+        "have you studied"
+      ],
+      "esatta": "have you studied",
+      "stato": "duplicata-di:q32"
+    },
+    "similarita": 0.83,
+    "esito": "duplicata-di:q32",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q32",
+      "prompt": "Complete the sentence: 'How long _____ you studied English?'",
+      "opzioni": [
+        "did",
+        "do",
+        "are",
+        "have"
+      ],
+      "esatta": "have",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q630",
+      "prompt": "...... have you studied English?",
+      "opzioni": [
+        "How far",
+        "How much",
+        "How long",
+        "How many"
+      ],
+      "esatta": "How long",
+      "stato": "da-riscrivere"
+    },
+    "similarita": 0.63,
+    "esito": "distinta",
+    "note": "q630 chiede la parola interrogativa (How long), q32 l'ausiliare (have)."
+  },
+  {
+    "a": {
+      "id": "q34",
+      "prompt": "Complete the sentence: 'How many people _____ to the party?'",
+      "opzioni": [
+        "did came",
+        "comes",
+        "came",
+        "comed"
+      ],
+      "esatta": "came",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q631",
+      "prompt": "How ...... people came to the party?",
+      "opzioni": [
+        "few",
+        "much",
+        "many",
+        "any"
+      ],
+      "esatta": "many",
+      "stato": "da-riscrivere"
+    },
+    "similarita": 0.6,
+    "esito": "distinta",
+    "note": "q631 verifica many/few/much, q34 il passato di come: item diversi."
+  },
+  {
+    "a": {
+      "id": "q37",
+      "prompt": "Complete the sentence: 'When _____ you meet Mr. Brown?'",
+      "opzioni": [
+        "have",
+        "did",
+        "were",
+        "do"
+      ],
+      "esatta": "did",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q625",
+      "prompt": "When ...... Mr. Brown?",
+      "opzioni": [
+        "did you meet",
+        "have you met",
+        "you met",
+        "do you met"
+      ],
+      "esatta": "did you meet",
+      "stato": "duplicata-di:q37"
+    },
+    "similarita": 0.83,
+    "esito": "duplicata-di:q37",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q39",
+      "prompt": "Complete the sentence: 'Tom is away. He has been away _____ Monday.'",
+      "opzioni": [
+        "for",
+        "since",
+        "from",
+        "until"
+      ],
+      "esatta": "since",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q53",
+      "prompt": "Complete the sentence: 'Tom is away. He _____ away since Monday.'",
+      "opzioni": [
+        "was",
+        "is",
+        "has been",
+        "had been"
+      ],
+      "esatta": "has been",
+      "stato": "duplicata-di:q39"
+    },
+    "similarita": 0.86,
+    "esito": "duplicata-di:q39",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q39",
+      "prompt": "Complete the sentence: 'Tom is away. He has been away _____ Monday.'",
+      "opzioni": [
+        "for",
+        "since",
+        "from",
+        "until"
+      ],
+      "esatta": "since",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q607",
+      "prompt": "Tom is away. He's been away ...... Monday.",
+      "opzioni": [
+        "at",
+        "since",
+        "on",
+        "for"
+      ],
+      "esatta": "since",
+      "stato": "duplicata-di:q39"
+    },
+    "similarita": 0.67,
+    "esito": "duplicata-di:q39",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q41",
+      "prompt": "Complete the sentence: 'Hurry, the bus _____ in 2 minutes.'",
+      "opzioni": [
+        "leaves",
+        "left",
+        "is leave",
+        "leaving"
+      ],
+      "esatta": "leaves",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q626",
+      "prompt": "Hurry! The bus leaves ...... 2 minutes.",
+      "opzioni": [
+        "at",
+        "for",
+        "in",
+        "on"
+      ],
+      "esatta": "in",
+      "stato": "duplicata-di:q41"
+    },
+    "similarita": 0.8,
+    "esito": "duplicata-di:q41",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q42",
+      "prompt": "Complete the sentence: 'She's the most beautiful girl I've _____ seen.'",
+      "opzioni": [
+        "never",
+        "always",
+        "ever",
+        "just"
+      ],
+      "esatta": "ever",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q624",
+      "prompt": "She's the ...... beautiful girl I've ever seen.",
+      "opzioni": [
+        "more",
+        "most",
+        "much more",
+        "very"
+      ],
+      "esatta": "most",
+      "stato": "duplicata-di:q42"
+    },
+    "similarita": 0.71,
+    "esito": "duplicata-di:q42",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q43",
+      "prompt": "Complete the sentence: 'I _____ to Africa in 2001.'",
+      "opzioni": [
+        "have gone",
+        "was going",
+        "went",
+        "go"
+      ],
+      "esatta": "went",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q622",
+      "prompt": "I ...... Africa in 2001",
+      "opzioni": [
+        "was at",
+        "went in",
+        "went to",
+        "was to"
+      ],
+      "esatta": "went to",
+      "stato": "duplicata-di:q43"
+    },
+    "similarita": 1,
+    "esito": "duplicata-di:q43",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q47",
+      "prompt": "Complete the sentence: '_____ is a table in the room.'",
+      "opzioni": [
+        "There",
+        "It",
+        "This",
+        "Here"
+      ],
+      "esatta": "There",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q609",
+      "prompt": "There ...... a table in the room.",
+      "opzioni": [
+        "are",
+        "has",
+        "have",
+        "is"
+      ],
+      "esatta": "is",
+      "stato": "da-riscrivere"
+    },
+    "similarita": 0.67,
+    "esito": "duplicata-di:q47",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q53",
+      "prompt": "Complete the sentence: 'Tom is away. He _____ away since Monday.'",
+      "opzioni": [
+        "was",
+        "is",
+        "has been",
+        "had been"
+      ],
+      "esatta": "has been",
+      "stato": "duplicata-di:q39"
+    },
+    "b": {
+      "id": "q607",
+      "prompt": "Tom is away. He's been away ...... Monday.",
+      "opzioni": [
+        "at",
+        "since",
+        "on",
+        "for"
+      ],
+      "esatta": "since",
+      "stato": "duplicata-di:q39"
+    },
+    "similarita": 0.71,
+    "esito": "duplicata-di:q39",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q55",
+      "prompt": "Complete the sentence: 'Have you ever _____ to Brazil?'",
+      "opzioni": [
+        "been",
+        "gone",
+        "go",
+        "went"
+      ],
+      "esatta": "been",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q613",
+      "prompt": "Have you ever ...... Brazil?",
+      "opzioni": [
+        "gone in",
+        "been in",
+        "been to",
+        "gone to"
+      ],
+      "esatta": "been to",
+      "stato": "duplicata-di:q55"
+    },
+    "similarita": 1,
+    "esito": "duplicata-di:q55",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q56",
+      "prompt": "Complete the sentence: 'Is she _____ with friends?'",
+      "opzioni": [
+        "gone",
+        "go",
+        "going",
+        "goes"
+      ],
+      "esatta": "going",
+      "stato": "da-riscrivere"
+    },
+    "b": {
+      "id": "q611",
+      "prompt": "...... with friends?",
+      "opzioni": [
+        "Is she go",
+        "She goes",
+        "Is she going",
+        "She go"
+      ],
+      "esatta": "Is she going",
+      "stato": "duplicata-di:q56"
+    },
+    "similarita": 0.83,
+    "esito": "duplicata-di:q56",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q63",
+      "prompt": "Complete the sentence: '_____ any milk in the fridge?'",
+      "opzioni": [
+        "Is there",
+        "Are there",
+        "There is",
+        "There are"
+      ],
+      "esatta": "Is there",
+      "stato": "originale"
+    },
+    "b": {
+      "id": "q621",
+      "prompt": "...... any milk in the fridge",
+      "opzioni": [
+        "There is",
+        "There isn't",
+        "There aren't",
+        "There are"
+      ],
+      "esatta": "There isn't",
+      "stato": "da-riscrivere"
+    },
+    "similarita": 1,
+    "esito": "distinta",
+    "note": "q63 verifica Is there + any, q621 sceglie tra is/isn't/are: item diversi."
+  },
+  {
+    "a": {
+      "id": "q78",
+      "prompt": "Complete the sentence: 'If you study hard, you _____ the exam.'",
+      "opzioni": [
+        "will pass",
+        "pass",
+        "would pass",
+        "passed"
+      ],
+      "esatta": "will pass",
+      "stato": "originale"
+    },
+    "b": {
+      "id": "q438",
+      "prompt": "If you _____ more, you would pass the exam.",
+      "opzioni": [
+        "studied",
+        "study",
+        "would study",
+        "will study"
+      ],
+      "esatta": "studied",
+      "stato": "originale"
+    },
+    "similarita": 0.6,
+    "esito": "distinta",
+    "note": "Primo condizionale (will pass) contro secondo condizionale (studied): item diversi."
+  },
+  {
+    "a": {
+      "id": "q185",
+      "prompt": "Complete: 'Does he _____ in London?'",
+      "opzioni": [
+        "live",
+        "lives",
+        "living",
+        "lived"
+      ],
+      "esatta": "live",
+      "stato": "originale"
+    },
+    "b": {
+      "id": "q274",
+      "prompt": "Complete: 'He lives _____ London.'",
+      "opzioni": [
+        "in",
+        "at",
+        "on",
+        "by"
+      ],
+      "esatta": "in",
+      "stato": "originale"
+    },
+    "similarita": 0.67,
+    "esito": "distinta",
+    "note": "q185 verifica la forma base dopo does, q274 la preposizione in: item diversi."
+  },
+  {
+    "a": {
+      "id": "q387",
+      "prompt": "Complete the sentence: 'When I arrived at the station, the train _____.'",
+      "opzioni": [
+        "already left",
+        "has already left",
+        "had already left",
+        "already leaves"
+      ],
+      "esatta": "had already left",
+      "stato": "originale"
+    },
+    "b": {
+      "id": "q500",
+      "prompt": "When I got to the station, the train _____.",
+      "opzioni": [
+        "had left",
+        "left",
+        "has left",
+        "leaves"
+      ],
+      "esatta": "had left",
+      "stato": "duplicata-di:q387"
+    },
+    "similarita": 0.67,
+    "esito": "duplicata-di:q387",
+    "note": ""
+  },
+  {
+    "a": {
+      "id": "q394",
+      "prompt": "Complete the sentence: 'You are Italian, _____?'",
+      "opzioni": [
+        "are you",
+        "aren't you",
+        "don't you",
+        "isn't it"
+      ],
+      "esatta": "aren't you",
+      "stato": "originale"
+    },
+    "b": {
+      "id": "q530",
+      "prompt": "Translate: 'Siete italiani, vero?'",
+      "opzioni": [
+        "You are Italian, aren't you?",
+        "You are Italian, isn't it?",
+        "You are Italian, don't you?",
+        "You are Italian, are you?"
+      ],
+      "esatta": "You are Italian, aren't you?",
+      "stato": "originale"
+    },
+    "similarita": 0.67,
+    "esito": "distinta",
+    "note": "Stessa frase ma formato diverso (completamento contro traduzione): si tengono entrambe."
+  },
+  {
+    "a": {
+      "id": "q481",
+      "prompt": "'I will go,' he said. -> He said that he _____ go.",
+      "opzioni": [
+        "would",
+        "will",
+        "can",
+        "could"
+      ],
+      "esatta": "would",
+      "stato": "originale"
+    },
+    "b": {
+      "id": "q491",
+      "prompt": "He said, 'I can swim.' -> He said that he _____ swim.",
+      "opzioni": [
+        "could",
+        "can",
+        "would",
+        "might"
+      ],
+      "esatta": "could",
+      "stato": "originale"
+    },
+    "similarita": 0.64,
+    "esito": "distinta",
+    "note": "Reported speech con will->would contro can->could: backshift diversi."
+  },
+  {
+    "a": {
+      "id": "q481",
+      "prompt": "'I will go,' he said. -> He said that he _____ go.",
+      "opzioni": [
+        "would",
+        "will",
+        "can",
+        "could"
+      ],
+      "esatta": "would",
+      "stato": "originale"
+    },
+    "b": {
+      "id": "q493",
+      "prompt": "'I must go,' he said. -> He said that he _____ go.",
+      "opzioni": [
+        "had to",
+        "musts",
+        "must to",
+        "have to"
+      ],
+      "esatta": "had to",
+      "stato": "originale"
+    },
+    "similarita": 0.71,
+    "esito": "distinta",
+    "note": "Reported speech con will->would contro must->had to: backshift diversi."
+  },
+  {
+    "a": {
+      "id": "q539",
+      "prompt": "I am right, _____?",
+      "opzioni": [
+        "aren't I",
+        "am not I",
+        "don't I",
+        "isn't I"
+      ],
+      "esatta": "aren't I",
+      "stato": "originale"
+    },
+    "b": {
+      "id": "q576",
+      "prompt": "Complete the sentence: 'I am on the right train, _____?'",
+      "opzioni": [
+        "aren't I",
+        "am not I",
+        "amn't I",
+        "isn't I"
+      ],
+      "esatta": "aren't I",
+      "stato": "duplicata-di:q539"
+    },
+    "similarita": 0.75,
+    "esito": "duplicata-di:q539",
+    "note": ""
+  }
+]

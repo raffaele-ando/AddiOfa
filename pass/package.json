@@ -1,0 +1,19 @@
+{
+  "name": "addiofa-pass",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/smoke.mjs",
+    "migrate:local": "wrangler d1 migrations apply addiofa-pass --local",
+    "migrate:remote": "wrangler d1 migrations apply addiofa-pass --remote"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260927.1",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.141.0"
+  }
+}

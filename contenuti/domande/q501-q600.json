@@ -1,0 +1,1702 @@
+[
+  {
+    "id": "q501",
+    "prompt": "By the time the manager called, they _____ the project.",
+    "options": [
+      "had finished",
+      "finished",
+      "have finished",
+      "finish"
+    ],
+    "correctIndex": 0,
+    "explanation": "'By the time' + a past event requires the Past Perfect ('had finished') for the action completed before that moment.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q502",
+    "prompt": "He didn't want to eat because he _____ lunch.",
+    "options": [
+      "had already had",
+      "already had",
+      "has already had",
+      "already has"
+    ],
+    "correctIndex": 0,
+    "explanation": "The Past Perfect ('had already had') shows the earlier action: he had lunch first, so later he wasn't hungry.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q503",
+    "prompt": "Translate: 'Ero arrabbiato perché avevo perso il portafoglio.'",
+    "options": [
+      "I was angry because I had lost my wallet.",
+      "I was angry because I lost my wallet.",
+      "I was angry because I have lost my wallet.",
+      "I was angry because I had lose my wallet."
+    ],
+    "correctIndex": 0,
+    "explanation": "Cause and effect in the past.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q504",
+    "prompt": "Translate: 'Avevano vissuto lì per dieci anni prima di trasferirsi.'",
+    "options": [
+      "They had lived there for ten years before moving.",
+      "They lived there for ten years before moving.",
+      "They have lived there for ten years before moving.",
+      "They had lived there since ten years before moving."
+    ],
+    "correctIndex": 0,
+    "explanation": "Duration before a past action.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q505",
+    "prompt": "I _____ him before that day.",
+    "options": [
+      "had never met",
+      "never met",
+      "have never met",
+      "never meet"
+    ],
+    "correctIndex": 0,
+    "explanation": "Experience before a past event.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q506",
+    "prompt": "The grass was yellow because it _____ all summer.",
+    "options": [
+      "hadn't rained",
+      "didn't rain",
+      "hasn't rained",
+      "doesn't rain"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative past perfect.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q507",
+    "prompt": "She passed the test because she _____ hard.",
+    "options": [
+      "had studied",
+      "had study",
+      "has studied",
+      "studies"
+    ],
+    "correctIndex": 0,
+    "explanation": "The Past Perfect ('had' + past participle 'studied') shows that the studying happened before she passed the test; 'had study' has no past participle and 'has studied/studies' don't fit a past story.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q508",
+    "prompt": "I couldn't open the door because I _____ the key.",
+    "options": [
+      "had lost",
+      "lost",
+      "have lost",
+      "lose"
+    ],
+    "correctIndex": 0,
+    "explanation": "Lost the key before trying to open.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q509",
+    "prompt": "By the time I woke up, everyone _____.",
+    "options": [
+      "had gone",
+      "went",
+      "has gone",
+      "goes"
+    ],
+    "correctIndex": 0,
+    "explanation": "'By the time' is a strong trigger for the Past Perfect.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q510",
+    "prompt": "Translate: 'La festa era già finita quando siamo arrivati.'",
+    "options": [
+      "The party had already ended when we arrived.",
+      "The party already ended when we arrived.",
+      "The party has already ended when we arrived.",
+      "The party had already ending when we arrived."
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Perfect with 'already'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q511",
+    "prompt": "I _____ eat a lot of chocolate, but now I don't.",
+    "options": [
+      "used to",
+      "use to",
+      "was used to",
+      "am used to"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past habit that is no longer true.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q512",
+    "prompt": "_____ you use to play video games when you were a kid?",
+    "options": [
+      "Did",
+      "Do",
+      "Were",
+      "Are"
+    ],
+    "correctIndex": 0,
+    "explanation": "Interrogative form requires 'Did' + 'use to' (without d).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q513",
+    "prompt": "She _____ like coffee, but now she loves it.",
+    "options": [
+      "didn't use to",
+      "didn't used to",
+      "doesn't use to",
+      "wasn't used to"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative form is 'didn't use to'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q514",
+    "prompt": "Translate: 'Abitavamo a Londra quando ero piccolo.'",
+    "options": [
+      "We used to live in London when I was a kid.",
+      "We used to lived in London when I was a kid.",
+      "We are used to live in London when I was a kid.",
+      "We use to live in London when I was a kid."
+    ],
+    "correctIndex": 0,
+    "explanation": "Used to + infinitive.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q515",
+    "prompt": "Translate: 'Non fumava, ma ora fuma un pacchetto al giorno.'",
+    "options": [
+      "He didn't use to smoke, but now he smokes a pack a day.",
+      "He didn't used to smoke, but now he smokes a pack a day.",
+      "He wasn't used to smoke, but now he smokes a pack a day.",
+      "He hasn't used to smoke, but now he smokes a pack a day."
+    ],
+    "correctIndex": 0,
+    "explanation": "The negative of 'used to' is 'didn't use to' (no -d after 'didn't', because 'did' already shows the past); 'un pacchetto al giorno' is 'a pack a day'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q516",
+    "prompt": "There _____ be a park here, but now there is a supermarket.",
+    "options": [
+      "used to",
+      "use to",
+      "was",
+      "is"
+    ],
+    "correctIndex": 0,
+    "explanation": "'There used to be' describes a past state.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q517",
+    "prompt": "I _____ have a dog, but he died last year.",
+    "options": [
+      "used to",
+      "use to",
+      "was used to",
+      "am used to"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Used to' + base verb describes a past state that is no longer true (I had a dog, but now I don't).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q518",
+    "prompt": "What did you _____ do on Sundays?",
+    "options": [
+      "use to",
+      "used to",
+      "use",
+      "used"
+    ],
+    "correctIndex": 0,
+    "explanation": "After 'did', use the base form 'use to'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q519",
+    "prompt": "Translate: 'Andavamo al mare ogni estate.'",
+    "options": [
+      "We used to go to the sea every summer.",
+      "We use to go to the sea every summer.",
+      "We were used to go to the sea every summer.",
+      "We had gone to the sea every summer."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Used to' + base verb describes a repeated action in the past that doesn't happen now ('andavamo' = we used to go).",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q520",
+    "prompt": "Translate: 'Aveva i capelli lunghi, vero?'",
+    "options": [
+      "She used to have long hair, didn't she?",
+      "She used to have long hair, doesn't she?",
+      "She used to had long hair, didn't she?",
+      "She use to have long hair, didn't she?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Question tag for used to is 'didn't'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q521",
+    "prompt": "He _____ be so grumpy when he was younger.",
+    "options": [
+      "didn't use to",
+      "didn't used to",
+      "wasn't use to",
+      "not used to"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative past habit.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q522",
+    "prompt": "We _____ walk to school every day.",
+    "options": [
+      "used to",
+      "use to",
+      "were used to",
+      "are used to"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Used to' + base verb describes a past habit or routine; 'be used to' means 'essere abituato' and is a different structure.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q523",
+    "prompt": "Did she _____ work in a bank?",
+    "options": [
+      "use to",
+      "used to",
+      "use",
+      "used"
+    ],
+    "correctIndex": 0,
+    "explanation": "Question form drops the 'd' in use.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q524",
+    "prompt": "I _____ think that spiders were insects.",
+    "options": [
+      "used to",
+      "use to",
+      "was used to",
+      "am used to"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past belief that changed.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q525",
+    "prompt": "They _____ travel a lot before they had children.",
+    "options": [
+      "used to",
+      "use to",
+      "were used to",
+      "are used to"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Used to' + base verb describes a past habit that has stopped (they travelled a lot before having children).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q526",
+    "prompt": "Translate: 'Prima non mi piaceva la verdura.'",
+    "options": [
+      "I didn't use to like vegetables.",
+      "I didn't used to like vegetables.",
+      "I wasn't used to like vegetables.",
+      "I hadn't used to like vegetables."
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative past state.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q527",
+    "prompt": "It's a beautiful day, _____?",
+    "options": [
+      "isn't it",
+      "is it",
+      "does it",
+      "doesn't it"
+    ],
+    "correctIndex": 0,
+    "explanation": "Affirmative statement -> negative tag.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q528",
+    "prompt": "You don't like coffee, _____?",
+    "options": [
+      "do you",
+      "don't you",
+      "are you",
+      "aren't you"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative statement -> affirmative tag.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q529",
+    "prompt": "She went to Paris, _____?",
+    "options": [
+      "didn't she",
+      "did she",
+      "doesn't she",
+      "wasn't she"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past simple affirmative -> didn't.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q530",
+    "prompt": "Translate: 'Siete italiani, vero?'",
+    "options": [
+      "You are Italian, aren't you?",
+      "You are Italian, isn't it?",
+      "You are Italian, don't you?",
+      "You are Italian, are you?"
+    ],
+    "correctIndex": 0,
+    "explanation": "The tag must match the subject (you) and auxiliary (are).",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q531",
+    "prompt": "Translate: 'Non hai visto il film, vero?'",
+    "options": [
+      "You haven't seen the movie, have you?",
+      "You haven't seen the movie, haven't you?",
+      "You didn't see the movie, have you?",
+      "You haven't seen the movie, did you?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Present perfect negative -> affirmative 'have' tag.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q532",
+    "prompt": "They have finished the project, _____?",
+    "options": [
+      "haven't they",
+      "have they",
+      "didn't they",
+      "don't they"
+    ],
+    "correctIndex": 0,
+    "explanation": "Present perfect affirmative -> haven't.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q533",
+    "prompt": "He can speak Spanish, _____?",
+    "options": [
+      "can't he",
+      "can he",
+      "doesn't he",
+      "isn't he"
+    ],
+    "correctIndex": 0,
+    "explanation": "Modal 'can' -> can't.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q534",
+    "prompt": "You will come to the party, _____?",
+    "options": [
+      "won't you",
+      "will you",
+      "don't you",
+      "aren't you"
+    ],
+    "correctIndex": 0,
+    "explanation": "Future 'will' -> won't.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q535",
+    "prompt": "Translate: 'Fa freddo oggi, no?'",
+    "options": [
+      "It's cold today, isn't it?",
+      "It's cold today, is it?",
+      "It's cold today, doesn't it?",
+      "It's cold today, wasn't it?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Verb to be -> isn't.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q536",
+    "prompt": "Translate: 'Lui non sa nuotare, vero?'",
+    "options": [
+      "He can't swim, can he?",
+      "He can't swim, can't he?",
+      "He doesn't know to swim, doesn't he?",
+      "He can't swim, does he?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative can't -> affirmative can.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q537",
+    "prompt": "We should leave now, _____?",
+    "options": [
+      "shouldn't we",
+      "should we",
+      "don't we",
+      "aren't we"
+    ],
+    "correctIndex": 0,
+    "explanation": "Modal 'should' -> shouldn't.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q538",
+    "prompt": "She was at home, _____?",
+    "options": [
+      "wasn't she",
+      "was she",
+      "didn't she",
+      "isn't she"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past simple to be -> wasn't.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q539",
+    "prompt": "I am right, _____?",
+    "options": [
+      "aren't I",
+      "am not I",
+      "don't I",
+      "isn't I"
+    ],
+    "correctIndex": 0,
+    "explanation": "'I am' always takes the tag 'aren't I?'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q540",
+    "prompt": "Let's go for a walk, _____?",
+    "options": [
+      "shall we",
+      "will we",
+      "do we",
+      "are we"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Let's' always takes the tag 'shall we?'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q541",
+    "prompt": "You wouldn't do that, _____?",
+    "options": [
+      "would you",
+      "wouldn't you",
+      "do you",
+      "did you"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative wouldn't -> affirmative would.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q542",
+    "prompt": "Translate: 'Tua sorella vive qui, vero?'",
+    "options": [
+      "Your sister lives here, doesn't she?",
+      "Your sister lives here, isn't she?",
+      "Your sister lives here, doesn't it?",
+      "Your sister lives here, don't she?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Present simple action verb -> doesn't.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q543",
+    "prompt": "They have been traveling all day. They _____ be tired.",
+    "options": [
+      "must",
+      "can't",
+      "might",
+      "should"
+    ],
+    "correctIndex": 0,
+    "explanation": "Strong logical deduction.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q544",
+    "prompt": "He just ate a huge meal. He _____ be hungry.",
+    "options": [
+      "can't",
+      "must",
+      "might",
+      "could"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative logical deduction (impossible).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q545",
+    "prompt": "I can't find my phone. It _____ be in the car, but I'm not sure.",
+    "options": [
+      "might",
+      "must",
+      "can't",
+      "should"
+    ],
+    "correctIndex": 0,
+    "explanation": "Possibility without certainty.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q546",
+    "prompt": "Translate: 'Deve essere tardi, è già buio.'",
+    "options": [
+      "It must be late, it's already dark.",
+      "It can be late, it's already dark.",
+      "It may to be late, it's already dark.",
+      "It should be late, it's already dark."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Must' + base verb is used for a logical deduction based on evidence (it's already dark); modals are never followed by 'to'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q547",
+    "prompt": "Translate: 'Non può essere vero!'",
+    "options": [
+      "It can't be true!",
+      "It mustn't be true!",
+      "It shouldn't be true!",
+      "It might not be true!"
+    ],
+    "correctIndex": 0,
+    "explanation": "Can't is the opposite of must for deductions.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q548",
+    "prompt": "That _____ be John's car. His car is blue, not red.",
+    "options": [
+      "can't",
+      "must",
+      "might",
+      "could"
+    ],
+    "correctIndex": 0,
+    "explanation": "Logical impossibility.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q549",
+    "prompt": "You've been working since 6 AM. You _____ be exhausted!",
+    "options": [
+      "must",
+      "can't",
+      "might",
+      "can"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Must' + base verb expresses a strong, logical certainty based on evidence (you've been working since 6 AM).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q550",
+    "prompt": "Take an umbrella. It _____ rain later.",
+    "options": [
+      "might",
+      "must",
+      "can't",
+      "should"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Might' + base verb expresses a possibility in the future: it may rain later, but we aren't sure.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q551",
+    "prompt": "Translate: 'Potrebbe piovere più tardi.'",
+    "options": [
+      "It might rain later.",
+      "It must rain later.",
+      "It can rain later.",
+      "It will rain later."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Might' or 'could' indicates possibility.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q552",
+    "prompt": "Translate: 'Quello dev'essere il tuo nuovo capo.'",
+    "options": [
+      "That must be your new boss.",
+      "That can be your new boss.",
+      "That should be your new boss.",
+      "That must to be your new boss."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Must' + base verb ('must be') expresses a logical deduction we are almost sure about ('dev'essere'); modals are never followed by 'to'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q553",
+    "prompt": "She speaks perfect French, has a French passport and her parents live in Paris. She _____ be from France.",
+    "options": [
+      "must",
+      "can't",
+      "might",
+      "should"
+    ],
+    "correctIndex": 0,
+    "explanation": "When the evidence makes us almost certain, we use 'must' + base verb for a positive deduction; 'might' would express only a possibility.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q554",
+    "prompt": "He is holding a cinema ticket for tonight's film. He _____ be going to the cinema.",
+    "options": [
+      "must",
+      "can't",
+      "might",
+      "should"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Must be' + -ing makes a strong deduction about what someone is doing now or soon, based on clear evidence (a cinema ticket for tonight).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q555",
+    "prompt": "It's 3 a.m., the lights are out and the house is silent. They _____ be asleep.",
+    "options": [
+      "must",
+      "can't",
+      "might",
+      "won't"
+    ],
+    "correctIndex": 0,
+    "explanation": "At 3 a.m. with the lights out and total silence we are almost sure, so we use 'must' + base verb for a certain deduction.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q556",
+    "prompt": "She _____ be at home, but I haven't checked.",
+    "options": [
+      "could",
+      "must",
+      "can't",
+      "won't"
+    ],
+    "correctIndex": 0,
+    "explanation": "Possibility (similar to might).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q557",
+    "prompt": "This _____ be the right way. The map says to go left.",
+    "options": [
+      "can't",
+      "must",
+      "might",
+      "could"
+    ],
+    "correctIndex": 0,
+    "explanation": "Logical impossibility.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q558",
+    "prompt": "Translate: 'Questa non può essere la casa giusta.'",
+    "options": [
+      "This can't be the right house.",
+      "This mustn't be the right house.",
+      "This shouldn't be the right house.",
+      "This wouldn't be the right house."
+    ],
+    "correctIndex": 0,
+    "explanation": "Can't for negative deduction.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q559",
+    "prompt": "Complete the sentence: 'Don't forget _____ the front door before you go to bed.'",
+    "options": [
+      "to lock",
+      "locking",
+      "lock",
+      "locked"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Forget + to-infinitive' refers to a duty or future action that must not be forgotten (Ricordati di fare qualcosa).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q560",
+    "prompt": "Complete the sentence: 'I will never forget _____ the Colosseum for the very first time.'",
+    "options": [
+      "seeing",
+      "to see",
+      "see",
+      "saw"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Forget + -ing' refers to the memory of a past event: 'I will never forget seeing the Colosseum' = non dimenticherò mai la prima volta che ho visto il Colosseo.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q561",
+    "prompt": "Complete the sentence: 'On the road trip, we stopped _____ a coffee and stretch our legs.'",
+    "options": [
+      "to have",
+      "having",
+      "have",
+      "had"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Stop + to-infinitive' expresses purpose (ci siamo fermati per prendere un caffè).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q562",
+    "prompt": "Complete the sentence: 'The doctor told him that he must stop _____ immediately for his health.'",
+    "options": [
+      "smoking",
+      "to smoke",
+      "smoke",
+      "smoked"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Stop + -ing' means to quit an action or habit completely (smettere di fumare).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q563",
+    "prompt": "Complete the sentence: 'If the app keeps crashing, try _____ your smartphone.'",
+    "options": [
+      "restarting",
+      "to restart",
+      "restart",
+      "restarted"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Try + -ing' means doing something as an experiment, to see if it solves a problem (prova a riavviare); 'try + to-infinitive' means making an effort to do something difficult.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q564",
+    "prompt": "Complete the sentence: 'I tried _____ the heavy wardrobe, but it was impossible alone.'",
+    "options": [
+      "to lift",
+      "lifting",
+      "lift",
+      "lifted"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Try + to-infinitive' means to make a physical or mental effort to achieve something difficult.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q565",
+    "prompt": "Complete the sentence: 'Look at the kitchen floor! It really needs _____.'",
+    "options": [
+      "cleaning",
+      "to clean",
+      "clean",
+      "cleaned"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Need + -ing' has a passive meaning (= needs to be cleaned). Classic CEFR B1 structure!",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q566",
+    "prompt": "Complete the sentence: 'I am really looking forward to _____ you at the conference next week.'",
+    "options": [
+      "meeting",
+      "meet",
+      "to meet",
+      "met"
+    ],
+    "correctIndex": 0,
+    "explanation": "In 'look forward to', 'to' is a preposition, so it must be followed by a gerund (-ing form).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q567",
+    "prompt": "Translate: 'Non riesco a fare a meno di ridere quando sento quella barzelletta.'",
+    "options": [
+      "I can't help laughing when I hear that joke.",
+      "I can't help to laugh when I hear that joke.",
+      "I can't stop to laugh when I hear that joke.",
+      "I can't avoid to laugh when I hear that joke."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Can't help + -ing' is a fixed idiom meaning unable to prevent yourself from doing something.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q568",
+    "prompt": "Translate: 'È inutile piangere sul latte versato.'",
+    "options": [
+      "It's no use crying over spilled milk.",
+      "It's no use to cry over spilled milk.",
+      "It's not useful crying on spilled milk.",
+      "It has no use to cry on spilled milk."
+    ],
+    "correctIndex": 0,
+    "explanation": "'It's no use + -ing' is an idiomatic structure followed by the gerund.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q569",
+    "prompt": "Complete the sentence: 'Could you please give me _____ about the flight schedule?'",
+    "options": [
+      "some information",
+      "an information",
+      "some informations",
+      "many informations"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Information' is an uncountable noun in English: it never takes an 's' and cannot be preceded by 'an'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Quantifiers",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q570",
+    "prompt": "Complete the sentence: 'My grandfather gave me a very useful _____ before my interview.'",
+    "options": [
+      "piece of advice",
+      "advice",
+      "advices",
+      "piece of advices"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Advice' is uncountable. To refer to a single unit, use 'a piece of advice'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Quantifiers",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q571",
+    "prompt": "Complete the sentence: 'The news _____ so surprising that nobody believed it at first.'",
+    "options": [
+      "was",
+      "were",
+      "are",
+      "have been"
+    ],
+    "correctIndex": 0,
+    "explanation": "Even though 'news' ends in 's', it is a singular uncountable noun and takes a singular verb ('was').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Quantifiers",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q572",
+    "prompt": "Complete the sentence: 'All the furniture in their new apartment _____ made of solid oak.'",
+    "options": [
+      "is",
+      "are",
+      "were",
+      "have been"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Furniture' is uncountable in English and always takes a singular verb ('is').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Quantifiers",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q573",
+    "prompt": "Complete the sentence: 'How _____ luggage are you planning to take on the flight?'",
+    "options": [
+      "much",
+      "many",
+      "few",
+      "a few"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Luggage' (or baggage) is uncountable, so it is quantified with 'much' (or 'a lot of').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Quantifiers",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q574",
+    "prompt": "Complete the sentence: 'The police _____ investigating the cause of the fire.'",
+    "options": [
+      "are",
+      "is",
+      "was",
+      "has been"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Police' is a plural collective noun with no 's', but it ALWAYS takes a plural verb ('are / were').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Quantifiers",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q575",
+    "prompt": "Translate: 'Non ho molti compiti per domani.'",
+    "options": [
+      "I don't have much homework for tomorrow.",
+      "I don't have many homeworks for tomorrow.",
+      "I don't have many homework for tomorrow.",
+      "I haven't much homeworks for tomorrow."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Homework' is uncountable in English, so we use 'much homework' and never 'homeworks'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Quantifiers",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q576",
+    "prompt": "Complete the sentence: 'I am on the right train, _____?'",
+    "options": [
+      "aren't I",
+      "am not I",
+      "amn't I",
+      "isn't I"
+    ],
+    "correctIndex": 0,
+    "explanation": "The question tag for 'I am' is irregularly 'aren't I?'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "duplicata-di:q539"
+  },
+  {
+    "id": "q577",
+    "prompt": "Complete the sentence: 'Let's take a short break, _____?'",
+    "options": [
+      "shall we",
+      "will we",
+      "don't we",
+      "aren't we"
+    ],
+    "correctIndex": 0,
+    "explanation": "Suggestions starting with 'Let's' always take the question tag 'shall we?'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q578",
+    "prompt": "Complete the sentence: 'Close the window, _____?'",
+    "options": [
+      "will you",
+      "do you",
+      "don't you",
+      "shall you"
+    ],
+    "correctIndex": 0,
+    "explanation": "Imperative sentences (requests/commands) take 'will you?' (or 'won't you?') as question tag.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q579",
+    "prompt": "Complete the sentence: 'She never drinks alcohol, _____?'",
+    "options": [
+      "does she",
+      "doesn't she",
+      "is she",
+      "isn't she"
+    ],
+    "correctIndex": 0,
+    "explanation": "Words with negative meaning (never, seldom, rarely) make the clause negative, requiring an affirmative tag ('does she?').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q580",
+    "prompt": "Complete the sentence: 'Nobody phoned while I was away, _____?'",
+    "options": [
+      "did they",
+      "didn't they",
+      "did he",
+      "didn't he"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Nobody' has negative meaning (so the tag is positive) and uses the plural pronoun 'they' ('did they?').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q581",
+    "prompt": "Complete the sentence: 'Nothing went wrong during the test, _____?'",
+    "options": [
+      "did it",
+      "didn't it",
+      "did they",
+      "was it"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Nothing' is negative (requiring positive tag) and refers to a thing, represented by 'it' ('did it?').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q582",
+    "prompt": "Complete the sentence: 'Everybody is ready for the presentation, _____?'",
+    "options": [
+      "aren't they",
+      "isn't he",
+      "isn't it",
+      "are they"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Everybody' takes a singular verb in the main clause ('is'), but takes 'they' with a plural verb in the tag ('aren't they?').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q583",
+    "prompt": "Complete the sentence: 'I will call you as soon as I _____ at the airport.'",
+    "options": [
+      "arrive",
+      "will arrive",
+      "am arriving",
+      "arrived"
+    ],
+    "correctIndex": 0,
+    "explanation": "In time clauses introduced by 'as soon as', 'when', 'until', etc., we use the Present Simple, NOT 'will'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q584",
+    "prompt": "Complete the sentence: 'We will stay inside until the heavy rain _____.'",
+    "options": [
+      "stops",
+      "will stop",
+      "stopped",
+      "is stopping"
+    ],
+    "correctIndex": 0,
+    "explanation": "After 'until', English uses the Present Simple for future references (never 'will').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q585",
+    "prompt": "Complete the sentence: 'You won't pass your driving test unless you _____ every day.'",
+    "options": [
+      "practice",
+      "don't practice",
+      "will practice",
+      "won't practice"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Unless' means 'if not', so it already contains a negative meaning. Do not use double negatives or 'will'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "First Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q586",
+    "prompt": "Complete the sentence: 'Take an umbrella with you in case it _____ later.'",
+    "options": [
+      "rains",
+      "will rain",
+      "rained",
+      "is raining"
+    ],
+    "correctIndex": 0,
+    "explanation": "'In case' (per precauzione) is followed by the Present Simple when referring to the future.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q587",
+    "prompt": "Translate: 'Te lo dirò non appena lo saprò.'",
+    "options": [
+      "I will tell you as soon as I know.",
+      "I will tell you as soon as I will know.",
+      "I tell you as soon as I will know.",
+      "I will tell to you as soon as I know."
+    ],
+    "correctIndex": 0,
+    "explanation": "Time clause rule: 'as soon as I know' (Present Simple, never 'will know').",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q588",
+    "prompt": "Complete the sentence: 'I _____ what you mean, but I still disagree with your conclusion.'",
+    "options": [
+      "understand",
+      "am understanding",
+      "have understand",
+      "understanding"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Understand' is a stative verb (mental state) and is not normally used in the continuous form.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q589",
+    "prompt": "Complete the sentence: 'Please don't disturb Marco right now; he _____ lunch with a client.'",
+    "options": [
+      "is having",
+      "has",
+      "have",
+      "had"
+    ],
+    "correctIndex": 0,
+    "explanation": "When 'have' means eating/drinking ('having lunch'), it is a dynamic action and CAN be continuous!",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q590",
+    "prompt": "Complete the sentence: 'Be quiet for a minute! I _____ about how to solve this math problem.'",
+    "options": [
+      "am thinking",
+      "think",
+      "thinks",
+      "thought"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Think' in the continuous form ('am thinking') refers to an active mental process at this moment.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Continuous",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q591",
+    "prompt": "Complete the sentence: 'I _____ that learning English is essential for your career.'",
+    "options": [
+      "think",
+      "am thinking",
+      "thinking",
+      "thought"
+    ],
+    "correctIndex": 0,
+    "explanation": "When 'think' expresses an opinion ('I think that...'), it is stative and cannot be continuous.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q592",
+    "prompt": "Complete the sentence: 'This delicious pasta dish _____ of fresh tomatoes and basil.'",
+    "options": [
+      "tastes",
+      "is tasting",
+      "taste",
+      "was tasting"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Taste' describing the flavor of food is a stative verb (takes Present Simple).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q593",
+    "prompt": "Complete the sentence: 'For _____ details regarding the hotel booking, contact customer support.'",
+    "options": [
+      "further",
+      "farther",
+      "farthest",
+      "more far"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Further' means 'additional/more' (figurative), while 'farther' strictly refers to physical distance.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Comparatives and Superlatives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q594",
+    "prompt": "Complete the sentence: 'Today the traffic is _____ than it was yesterday morning.'",
+    "options": [
+      "heavier",
+      "more heavy",
+      "more heavier",
+      "heaviest"
+    ],
+    "correctIndex": 0,
+    "explanation": "Two-syllable adjectives ending in '-y' change '-y' to '-ier' (heavy -> heavier).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Comparatives and Superlatives",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q595",
+    "prompt": "Complete the sentence: 'The new laptop is great, but it is not _____ fast as I expected.'",
+    "options": [
+      "as",
+      "so much",
+      "more",
+      "like"
+    ],
+    "correctIndex": 0,
+    "explanation": "Equality comparatives in the negative use 'not as ... as' (or 'not so ... as').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Comparatives and Superlatives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q596",
+    "prompt": "Complete the sentence: 'The _____ you practice speaking, the _____ confident you will feel.'",
+    "options": [
+      "more / more",
+      "most / most",
+      "better / better",
+      "much / much"
+    ],
+    "correctIndex": 0,
+    "explanation": "The double comparative structure 'The more..., the more...' expresses proportional change.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Comparatives and Superlatives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q597",
+    "prompt": "Translate: 'Mio fratello maggiore vive a Londra.'",
+    "options": [
+      "My elder brother lives in London.",
+      "My elder brother living in London.",
+      "My more old brother lives in London.",
+      "My eldest brother live in London."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Elder' (like the more common 'older') describes the older of two family members and is used only before a noun ('my elder brother'). With 'brother' the verb needs the third person -s ('lives').",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Comparatives and Superlatives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q598",
+    "prompt": "Complete the sentence: 'When I moved to the UK, it took me a long time to get used to _____ on the left.'",
+    "options": [
+      "driving",
+      "drive",
+      "drove",
+      "driven"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Get used to + -ing' means the process of becoming accustomed to something.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q599",
+    "prompt": "Complete the sentence: 'I am a nurse, so I am used to _____ night shifts.'",
+    "options": [
+      "working",
+      "work",
+      "worked",
+      "to work"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Be used to + -ing' means to be already accustomed/familiar with a situation.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q600",
+    "prompt": "Complete the sentence: 'I _____ drink coffee when I was younger, but now I drink three cups a day.'",
+    "options": [
+      "didn't use to",
+      "didn't used to",
+      "not used to",
+      "wasn't used to"
+    ],
+    "correctIndex": 0,
+    "explanation": "The negative of 'used to' is 'didn't use to': 'did' already carries the past, so 'use' has no -d. 'Wasn't used to' means 'non ero abituato' and needs a noun or -ing form.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  }
+]

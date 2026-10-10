@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { AppState, CorpusType } from '../types';
-import { Volume2, VolumeX, Moon, Sun, Flame, Upload, Download, Bug, Fingerprint, ChevronRight } from 'lucide-react';
+import { AppState, CorpusType, LegalSection, PaywallReason } from '../types';
+import { Volume2, VolumeX, Moon, Sun, Flame, Upload, Download, Bug, Fingerprint, ChevronRight, Lock, KeyRound } from 'lucide-react';
 import { User } from 'firebase/auth';
 import { useTheme } from '../hooks/useTheme';
 import { cn } from '../lib/utils';
 import { questions, getQuestionsByCorpus, INITIAL_CORPUS_COUNT } from '../data/questions';
 import { playTapSound, isAudioMuted, setAudioMuted } from '../lib/audio';
 import { ECOSYSTEM } from '../config/ecosystem';
-import { DISCLAIMER } from '../config/offer';
+import { DISCLAIMER, FEATURE_FLAGS } from '../config/offer';
+import { useAccess } from '../access/context';
+import { remainingFreeSims } from '../access/entitlement';
+import Footer from '../screens/Footer';
 import { PoweredByAtlas } from './ui';
 import { IconaChip, NOMI_ICONE } from '../brand/componenti';
 import { Illustrazione } from '../brand/Illustrazione';
@@ -22,13 +25,21 @@ interface MenuProps {
   onStartLearn: () => void;
   onStartExam: () => void;
   onOpenStats: () => void;
-  onExport: () => void;
-  onImport: () => void;
-  onLogin: () => void;
-  onLogout: () => void;
+  /** Assente = il pulsante non si vede (in demo l'esportazione è un download). */
+  onExport?: () => void;
+  onImport?: () => void;
+  /** Assente = login non mostrato (spento nel lancio e in demo). */
+  onLogin?: () => void;
+  onLogout?: () => void;
   onOpenDebug?: () => void;
   onSelectCorpus?: (corpus: CorpusType) => void;
-  onOpenPlans?: () => void;
+  /** Corpus in uso (nella parte gratuita è sempre il nucleo). */
+  corpus?: CorpusType;
+  onOpenPaywall: () => void;
+  onNeedPass: (reason: PaywallReason) => void;
+  onStartErrors: () => void;
+  onOpenTheory: () => void;
+  onOpenLegal: (s: LegalSection) => void;
   onOpenCheatSheet?: () => void;
   onOpenDiagnostic?: () => void;
   onOpenProfile?: () => void;
@@ -36,7 +47,7 @@ interface MenuProps {
   onNaviga?: (s: Scheda) => void;
 }
 
-function Strumento({ icona, titolo, testo, onClick }: { icona: typeof NOMI_ICONE[number]; titolo: string; testo: string; onClick?: () => void }) {
+function Strumento({ icona, titolo, testo, onClick, bloccato }: { icona: typeof NOMI_ICONE[number]; titolo: string; testo: string; onClick?: () => void; bloccato?: boolean }) {
   if (!onClick) return null;
   return (
     <button onClick={() => { playTapSound(); onClick(); }}
@@ -46,15 +57,24 @@ function Strumento({ icona, titolo, testo, onClick }: { icona: typeof NOMI_ICONE
         <span className="block text-[15px] font-semibold text-[#0F172A] dark:text-[#F8FAFC] truncate">{titolo}</span>
         <span className="block text-xs text-[#6B7280] dark:text-[#94A3B8] truncate">{testo}</span>
       </span>
+      {bloccato && <Lock size={16} className="shrink-0 text-[#6B7280] dark:text-[#94A3B8]" aria-label="Richiede il Pass" />}
     </button>
   );
 }
 
-export default function Menu({ appState, user, onStartSmart, onStartLearn, onStartExam, onOpenStats, onExport, onImport, onLogin, onOpenDebug, onSelectCorpus, onOpenPlans, onOpenCheatSheet, onOpenDiagnostic, onOpenProfile, onOpenLeaderboard, onNaviga }: MenuProps) {
+export default function Menu({ appState, user, corpus, onStartSmart, onStartLearn, onStartExam, onOpenStats, onExport, onImport, onLogin, onOpenDebug, onSelectCorpus, onOpenPaywall, onNeedPass, onStartErrors, onOpenTheory, onOpenLegal, onOpenCheatSheet, onOpenDiagnostic, onOpenProfile, onOpenLeaderboard, onNaviga }: MenuProps) {
   const { isDark, toggleTheme } = useTheme();
+  const { pass, entitlement, simsDone, provider } = useAccess();
   const [muted, setMuted] = useState(isAudioMuted());
 
-  const selectedCorpus: CorpusType = appState.selectedCorpus || 'all';
+  const simsRimaste = remainingFreeSims(entitlement, simsDone);
+  const testoSim = pass
+    ? 'Simulazioni illimitate'
+    : simsRimaste > 0
+      ? `${simsRimaste} ${simsRimaste === 1 ? 'simulazione gratuita' : 'simulazioni gratuite'}`
+      : 'La simulazione gratuita è già usata';
+  const simBloccata = !pass && simsRimaste === 0;
+  const selectedCorpus: CorpusType = corpus ?? appState.selectedCorpus ?? 'all';
   const activeQuestions = getQuestionsByCorpus(selectedCorpus);
   const totalQuestions = activeQuestions.length;
   const masteredQuestions = activeQuestions.filter(q => (appState.stats[q.id]?.box ?? 0) > 0).length;
@@ -87,13 +107,18 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
             </button>
             <button onClick={() => { playTapSound(); toggleTheme(); }} className={icona} title="Tema">{isDark ? <Sun size={20} /> : <Moon size={20} />}</button>
             <span className="flex items-center gap-1 text-[#F59E0B] font-semibold text-sm px-2" title="Giorni di fila"><Flame size={17} fill="currentColor" />{appState.streak}</span>
+            {!pass && (
+              <button onClick={() => { playTapSound(); onOpenPaywall(); }} className="brand-premibile flex items-center gap-1.5 text-[13px] font-semibold text-white bg-[#EF4444] px-3 py-2 rounded-xl">
+                <KeyRound size={15} aria-hidden="true" /> Pass
+              </button>
+            )}
             {user ? (
               <button onClick={() => { playTapSound(); onOpenProfile?.(); }} className="rounded-full ring-2 ring-[#E5E7EB] hover:ring-[#EF4444] transition-all" title={ECOSYSTEM.accountName}>
                 {user.photoURL
                   ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer" className="w-9 h-9 rounded-full" />
                   : <span className="w-9 h-9 rounded-full bg-[#FEE2E2] text-[#B91C1C] flex items-center justify-center font-semibold">{(user.displayName || '?')[0]}</span>}
               </button>
-            ) : (
+            ) : onLogin && (
               <button onClick={() => { playTapSound(); onLogin(); }} className="brand-premibile flex items-center gap-1.5 text-[13px] font-semibold text-white bg-[#0F172A] px-3 py-2 rounded-xl">
                 <Fingerprint size={15} /> Accedi
               </button>
@@ -119,7 +144,7 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
           <span className="flex-1">
             <span className="block text-[17px] font-bold">Continua a studiare</span>
             <span className="block text-[13px] text-white/85">
-              {selectedCorpus === 'initial' ? `Primo Corpus · ${INITIAL_CORPUS_COUNT} frasi` : `Sessione di 10 domande · ${questions.length} nel banco`}
+              {selectedCorpus === 'initial' ? `${pass ? 'Primo Corpus' : 'Nucleo gratuito'} · ${INITIAL_CORPUS_COUNT} frasi` : `Sessione di 10 domande · ${questions.length} nel banco`}
             </span>
           </span>
           <ChevronRight size={20} />
@@ -158,7 +183,7 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
               <button key={id} onClick={() => { playTapSound(); onSelectCorpus(id); }}
                 className={cn('rounded-lg py-2 text-[13px] font-semibold transition-colors',
                   selectedCorpus === id ? 'bg-white dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] shadow-sm' : 'text-[#6B7280]')}>
-                {testo}
+                {testo}{id === 'all' && !pass && <Lock size={12} className="inline ml-1 -mt-0.5" aria-label="Richiede il Pass" />}
               </button>
             ))}
           </div>
@@ -168,22 +193,27 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
         <section className="flex flex-col gap-2.5">
           <h2 className="text-[17px] font-bold text-[#0F172A] dark:text-[#F8FAFC]">Strumenti</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            <Strumento icona="quiz" titolo="Simulazione d'esame" testo="30 domande, 15 minuti" onClick={onStartExam} />
+            <Strumento icona="quiz" titolo="Simulazione d'esame" testo={`30 domande, 15 minuti · ${testoSim}`} onClick={onStartExam} bloccato={simBloccata} />
             <Strumento icona="studio" titolo="Esercizi mirati" testo="Punti deboli, blitz, richiamo attivo" onClick={onStartLearn} />
+            <Strumento icona="errore" titolo="Ripasso sugli errori" testo="Riparti da ciò che hai sbagliato" onClick={() => (pass ? onStartErrors() : onNeedPass('errori'))} bloccato={!pass} />
+            <Strumento icona="contenuti" titolo="Teoria" testo={pass ? 'Tutti i 31 argomenti' : 'Una scheda gratis, le altre con il Pass'} onClick={onOpenTheory} bloccato={!pass} />
             <Strumento icona="contenuti" titolo="Prontuario" testo="Le 24 regole e le trappole" onClick={onOpenCheatSheet} />
             <Strumento icona="completato" titolo="Verifica il livello" testo="10 domande, 3 minuti" onClick={onOpenDiagnostic} />
-            <Strumento icona="statistiche" titolo="Statistiche" testo="Argomenti, simulazioni, costanza" onClick={onOpenStats} />
-            <Strumento icona="successo" titolo={`Classifica ${ECOSYSTEM.rankingName}`} testo="Chi sa più regole" onClick={onOpenLeaderboard} />
-            <Strumento icona="costo" titolo="Piani" testo="Simulatore, CRAM Pass, garanzia" onClick={onOpenPlans} />
+            <Strumento icona="statistiche" titolo="Statistiche" testo={pass ? 'Argomenti, simulazioni, costanza' : 'Quelle complete con il Pass'} onClick={onOpenStats} bloccato={!pass} />
+            {FEATURE_FLAGS.leaderboard && <Strumento icona="successo" titolo={`Classifica ${ECOSYSTEM.rankingName}`} testo="Chi sa più regole" onClick={onOpenLeaderboard} />}
+            {!pass && <Strumento icona="costo" titolo="Pass AddiOFA" testo="Tutto sbloccato, un solo pagamento" onClick={onOpenPaywall} />}
           </div>
         </section>
 
-        <div className="flex justify-center gap-6 text-[12px] text-[#6B7280]">
-          <button onClick={() => { playTapSound(); onImport(); }} className="flex items-center gap-1.5 hover:text-[#0F172A]"><Upload size={14} /> Importa progressi</button>
-          <button onClick={() => { playTapSound(); onExport(); }} className="flex items-center gap-1.5 hover:text-[#0F172A]"><Download size={14} /> Esporta progressi</button>
-        </div>
+        {(onImport || onExport) && (
+          <div className="flex justify-center gap-6 text-[12px] text-[#6B7280]">
+            {onImport && <button onClick={() => { playTapSound(); onImport(); }} className="flex items-center gap-1.5 hover:text-[#0F172A]"><Upload size={14} /> Importa progressi</button>}
+            {onExport && <button onClick={() => { playTapSound(); onExport(); }} className="flex items-center gap-1.5 hover:text-[#0F172A]"><Download size={14} /> Esporta progressi</button>}
+          </div>
+        )}
         <p className="text-center text-[10px] text-[#9CA3AF]">{DISCLAIMER}</p>
-        <PoweredByAtlas className="-mt-2" />
+        {FEATURE_FLAGS.projectId && provider.mode !== 'demo' && <PoweredByAtlas className="-mt-2" />}
+        <Footer onOpenLegal={onOpenLegal} />
       </div>
       {onNaviga && <Navigazione attiva="home" onVai={onNaviga} />}
     </div>

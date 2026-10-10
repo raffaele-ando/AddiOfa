@@ -1,0 +1,1702 @@
+[
+  {
+    "id": "q301",
+    "prompt": "Translate 'Non dimenticare le chiavi.'",
+    "options": [
+      "Don't forget your keys.",
+      "Not forget your keys.",
+      "No forget your keys.",
+      "Don't missing your keys."
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative command with 'Don't'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q302",
+    "prompt": "Translate 'Chiudi la porta, per favore.'",
+    "options": [
+      "Close the door, please.",
+      "Closing the door, please.",
+      "To close the door, please.",
+      "You close the door, please."
+    ],
+    "correctIndex": 0,
+    "explanation": "Base verb for command.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q303",
+    "prompt": "Translate 'Non parlare durante l'esame.'",
+    "options": [
+      "Don't speak during the exam.",
+      "Not speak during the exam.",
+      "Doesn't speak during the exam.",
+      "Don't speaking during the exam."
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative imperatives use 'Don't' + base verb ('Don't speak'), not 'Not', 'Doesn't' or 'Don't' + -ing.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q304",
+    "prompt": "Translate 'Aspetta qui un momento.'",
+    "options": [
+      "Wait here a moment.",
+      "Waiting here a moment.",
+      "Wait here a time.",
+      "Stay here a moment."
+    ],
+    "correctIndex": 0,
+    "explanation": "The imperative is the base form of the verb ('Wait here'); 'aspettare' is 'wait' (not 'stay'), and 'un momento' is 'a moment', not 'a time'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q305",
+    "prompt": "Translate 'Scrivete i vostri nomi sul foglio.'",
+    "options": [
+      "Write your names on the paper.",
+      "Writing your names on the paper.",
+      "You write your names on the paper.",
+      "To write your names on the paper."
+    ],
+    "correctIndex": 0,
+    "explanation": "Imperative is the same for singular and plural 'you'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q306",
+    "prompt": "Translate 'Non fumare in questa stanza.'",
+    "options": [
+      "Don't smoke in this room.",
+      "Smoke not in this room.",
+      "Not smoke in this room.",
+      "Doesn't smoke in this room."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Don't' + base verb forms the negative imperative ('Don't smoke'); 'Not smoke', 'Smoke not' and 'Doesn't smoke' are not correct imperative forms.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Imperative",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q307",
+    "prompt": "Complete: 'I _____ to visit my grandparents this weekend.'",
+    "options": [
+      "am going",
+      "go",
+      "going",
+      "will going"
+    ],
+    "correctIndex": 0,
+    "explanation": "We use 'am going to' for planned future intentions.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q308",
+    "prompt": "Complete: 'Look at those dark clouds. It _____ rain.'",
+    "options": [
+      "is going to",
+      "will",
+      "going to",
+      "rains"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Going to' is used when there is present evidence for a future event.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q309",
+    "prompt": "Complete: 'What _____ you going to do tonight?'",
+    "options": [
+      "are",
+      "do",
+      "is",
+      "will"
+    ],
+    "correctIndex": 0,
+    "explanation": "Question form requires the verb 'to be' (are) before the subject.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q310",
+    "prompt": "Complete: 'She _____ not going to buy a new car.'",
+    "options": [
+      "is",
+      "does",
+      "has",
+      "will"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative form uses 'to be' + not + going to.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q311",
+    "prompt": "Complete: 'We are going to _____ a movie after dinner.'",
+    "options": [
+      "watch",
+      "watching",
+      "watched",
+      "watches"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Going to' is followed by the base form of the verb.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q312",
+    "prompt": "Complete: '_____ he going to invite her to the party?'",
+    "options": [
+      "Is",
+      "Does",
+      "Will",
+      "Has"
+    ],
+    "correctIndex": 0,
+    "explanation": "Question form for third person singular uses 'Is'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q313",
+    "prompt": "Complete: 'They _____ going to start a new business next year.'",
+    "options": [
+      "are",
+      "will",
+      "do",
+      "have"
+    ],
+    "correctIndex": 0,
+    "explanation": "Plural subject takes 'are'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q314",
+    "prompt": "Complete: 'I'm going to _____ English in London.'",
+    "options": [
+      "study",
+      "studying",
+      "studied",
+      "studies"
+    ],
+    "correctIndex": 0,
+    "explanation": "Base verb 'study' after 'going to'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q315",
+    "prompt": "Complete: 'My parents are _____ to travel to Spain.'",
+    "options": [
+      "going",
+      "go",
+      "will",
+      "goes"
+    ],
+    "correctIndex": 0,
+    "explanation": "Part of the structure 'are going to'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q316",
+    "prompt": "Translate 'Cosa hai intenzione di fare?'",
+    "options": [
+      "What are you going to do?",
+      "What will you do?",
+      "What do you do?",
+      "What you are going to do?"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Avere intenzione di' (a plan or intention) is expressed with 'be going to' + base verb: 'What are you going to do?'. In questions the verb 'be' comes before the subject ('are you', not 'you are').",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q317",
+    "prompt": "Translate 'Non ho intenzione di aspettare tutto il giorno.'",
+    "options": [
+      "I am not going to wait all day.",
+      "I don't go to wait all day.",
+      "I won't to wait all day.",
+      "I am not going to waiting all day."
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative 'going to'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q318",
+    "prompt": "Translate 'Lui studierà medicina all'università.' (intenzione)",
+    "options": [
+      "He is going to study medicine at university.",
+      "He will study medicine at university.",
+      "He is studying medicine at university.",
+      "He studies medicine at university."
+    ],
+    "correctIndex": 0,
+    "explanation": "Intentions use 'going to'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q319",
+    "prompt": "Translate 'Abbiamo intenzione di comprare una nuova casa.'",
+    "options": [
+      "We are going to buy a new house.",
+      "We will buy a new house.",
+      "We are going buy a new house.",
+      "We buy a new house."
+    ],
+    "correctIndex": 0,
+    "explanation": "An intention or a decision already made uses 'be going to' + base verb ('We are going to buy'); 'to' cannot be left out.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q320",
+    "prompt": "Translate 'Pioverà a breve.' (guardando il cielo scuro)",
+    "options": [
+      "It is going to rain soon.",
+      "It will rain soon.",
+      "It is raining soon.",
+      "It rains soon."
+    ],
+    "correctIndex": 0,
+    "explanation": "Prediction based on evidence uses 'going to'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q321",
+    "prompt": "Translate 'Non parteciperanno all'incontro.' (intenzione)",
+    "options": [
+      "They aren't going to attend the meeting.",
+      "They won't attend the meeting.",
+      "They don't attend the meeting.",
+      "They aren't attending the meeting."
+    ],
+    "correctIndex": 0,
+    "explanation": "A negative intention uses 'be not going to' + base verb: 'They aren't going to attend the meeting.'",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q322",
+    "prompt": "Translate 'Cosa mangerai a cena?' (che programmi hai)",
+    "options": [
+      "What are you going to eat for dinner?",
+      "What will you eat for dinner?",
+      "What do you eat for dinner?",
+      "What you going to eat for dinner?"
+    ],
+    "correctIndex": 0,
+    "explanation": "To ask about plans already made, we use 'be going to' in the question form: 'What are you going to eat?'",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q323",
+    "prompt": "Translate 'Venderà la sua macchina?' (ha intenzione di)",
+    "options": [
+      "Is she going to sell her car?",
+      "Will she sell her car?",
+      "Does she sell her car?",
+      "Is she sell her car?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Question about intention.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q324",
+    "prompt": "Translate 'Cadrà!' (lo vedi correre sul ghiaccio)",
+    "options": [
+      "He's going to fall!",
+      "He is going fall!",
+      "He falls!",
+      "He falling!"
+    ],
+    "correctIndex": 0,
+    "explanation": "When we predict something from evidence we can see now (he's running on the ice), we use 'be going to' + base verb: 'He's going to fall!'",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Future: going to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q325",
+    "prompt": "Complete: 'I _____ TV when the phone rang.'",
+    "options": [
+      "was watching",
+      "watched",
+      "am watching",
+      "were watching"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past continuous for a long action interrupted by a short one.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q326",
+    "prompt": "Complete: 'While she was reading, her brother _____ video games.'",
+    "options": [
+      "was playing",
+      "played",
+      "playing",
+      "is playing"
+    ],
+    "correctIndex": 0,
+    "explanation": "Two long actions happening at the same time in the past.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q327",
+    "prompt": "Complete: 'What _____ you doing at 8 PM yesterday?'",
+    "options": [
+      "were",
+      "was",
+      "are",
+      "did"
+    ],
+    "correctIndex": 0,
+    "explanation": "'You' takes the auxiliary 'were' in the past continuous.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q328",
+    "prompt": "Complete: 'They _____ in the park when it started to rain.'",
+    "options": [
+      "were walking",
+      "was walking",
+      "are walking",
+      "walking"
+    ],
+    "correctIndex": 0,
+    "explanation": "The Past Continuous ('were walking', plural subject) describes the longer background action interrupted by a shorter Past Simple action ('it started to rain').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q329",
+    "prompt": "Complete: 'He _____ (not) listening to the teacher.'",
+    "options": [
+      "wasn't",
+      "weren't",
+      "didn't",
+      "isn't"
+    ],
+    "correctIndex": 0,
+    "explanation": "'He' takes 'wasn't' in negative past continuous.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q330",
+    "prompt": "Complete: 'While I _____ home, I saw a car accident.'",
+    "options": [
+      "was driving",
+      "drove",
+      "am driving",
+      "was drive"
+    ],
+    "correctIndex": 0,
+    "explanation": "Continuous action in the past ('while' often signals continuous).",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q331",
+    "prompt": "Complete: 'We were having dinner when the lights _____ out.'",
+    "options": [
+      "went",
+      "were going",
+      "go",
+      "gone"
+    ],
+    "correctIndex": 0,
+    "explanation": "The interrupting action is in the past simple ('went').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q332",
+    "prompt": "Complete: '_____ it raining when you left?'",
+    "options": [
+      "Was",
+      "Were",
+      "Did",
+      "Is"
+    ],
+    "correctIndex": 0,
+    "explanation": "In the Past Continuous, the singular subject 'it' takes 'was': 'Was it raining when you left?'",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q333",
+    "prompt": "Complete: 'I broke my leg while I _____ football.'",
+    "options": [
+      "was playing",
+      "played",
+      "am playing",
+      "play"
+    ],
+    "correctIndex": 0,
+    "explanation": "Long background action in past continuous.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q334",
+    "prompt": "Translate 'Cosa stavi facendo quando ti ho chiamato?'",
+    "options": [
+      "What were you doing when I called you?",
+      "What did you do when I called you?",
+      "What was you doing when I called you?",
+      "What are you doing when I called you?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Question in past continuous, interrupting action in past simple.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q335",
+    "prompt": "Translate 'Stavo dormendo quando l'allarme ha suonato.'",
+    "options": [
+      "I was sleeping when the alarm rang.",
+      "I slept when the alarm was ringing.",
+      "I was sleeping when the alarm was ringing.",
+      "I slept when the alarm rang."
+    ],
+    "correctIndex": 0,
+    "explanation": "Background action (sleeping), interruption (rang).",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q336",
+    "prompt": "Translate 'Mentre camminavamo, abbiamo trovato dei soldi.'",
+    "options": [
+      "While we were walking, we found some money.",
+      "While we walked, we were finding some money.",
+      "When we were walking, we were finding some money.",
+      "While we walking, we found some money."
+    ],
+    "correctIndex": 0,
+    "explanation": "'While' + past continuous, then past simple.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q337",
+    "prompt": "Translate 'Lei non stava guardando la TV, stava leggendo.'",
+    "options": [
+      "She wasn't watching TV, she was reading.",
+      "She didn't watch TV, she was reading.",
+      "She wasn't watching TV, she read.",
+      "She wasn't watch TV, she was reading."
+    ],
+    "correctIndex": 0,
+    "explanation": "Both actions are past continuous.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q338",
+    "prompt": "Translate 'Mentre cucinavo, lui ascoltava la musica.'",
+    "options": [
+      "While I was cooking, he was listening to music.",
+      "While I was cook, he was listening to music.",
+      "While I cooking, he was listening to music.",
+      "While I was cooking, he were listening to music."
+    ],
+    "correctIndex": 0,
+    "explanation": "Two long actions in progress at the same time in the past both take the Past Continuous (was/were + -ing); with 'he' we use 'was', not 'were'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q339",
+    "prompt": "Translate 'Pioveva forte ieri mattina?'",
+    "options": [
+      "Was it raining hard yesterday morning?",
+      "Did it raining hard yesterday morning?",
+      "Were it raining hard yesterday morning?",
+      "Is it raining hard yesterday morning?"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Pioveva' describes an action in progress at a past time, so we use the Past Continuous question 'Was it raining...?'; 'it' takes 'was', and 'did' is never followed by -ing.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q340",
+    "prompt": "Translate 'Non stavamo andando troppo veloci.'",
+    "options": [
+      "We weren't going too fast.",
+      "We didn't go too fast.",
+      "We wasn't going too fast.",
+      "We aren't going too fast."
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative past continuous with 'were'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q341",
+    "prompt": "Translate 'Cosa pensavi in quel momento?'",
+    "options": [
+      "What were you thinking at that moment?",
+      "What did you think at that moment?",
+      "What was you thinking at that moment?",
+      "What are you thinking at that moment?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Asking about ongoing thoughts at a past moment.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q342",
+    "prompt": "Translate 'Loro ridevano quando sono entrato.'",
+    "options": [
+      "They were laughing when I entered.",
+      "They laughed when I was entering.",
+      "They were laughing when I was entering.",
+      "They laughed when I entered."
+    ],
+    "correctIndex": 0,
+    "explanation": "Background action (laughing), short interruption (entered).",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Continuous",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q343",
+    "prompt": "Complete: 'You look tired. You _____ go to bed early.'",
+    "options": [
+      "should",
+      "have to",
+      "mustn't",
+      "don't have to"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Should' is used for advice.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q344",
+    "prompt": "Complete: 'In many countries, you _____ wear a seatbelt when driving.'",
+    "options": [
+      "have to",
+      "should",
+      "don't have to",
+      "mustn't"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Have to' is used for a strong obligation or law.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q345",
+    "prompt": "Complete: 'Tomorrow is Sunday, so I _____ wake up early.'",
+    "options": [
+      "don't have to",
+      "mustn't",
+      "shouldn't",
+      "haven't to"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Don't have to' means it's not necessary (lack of obligation).",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q346",
+    "prompt": "Complete: 'You _____ use your phone during the exam! It's forbidden.'",
+    "options": [
+      "mustn't",
+      "don't have to",
+      "shouldn't",
+      "haven't to"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Mustn't' means it is strictly prohibited.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q347",
+    "prompt": "Complete: '_____ I wear a suit to the interview?'",
+    "options": [
+      "Should",
+      "Does",
+      "Have to",
+      "Do I must"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Should' is used to ask for an opinion or advice ('Should I...?'); 'have to' needs 'do' in questions ('Do I have to...?'), and modals like 'must' never combine with 'do'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q348",
+    "prompt": "Complete: 'We have plenty of time. We _____ hurry.'",
+    "options": [
+      "don't have to",
+      "mustn't",
+      "shouldn't",
+      "don't must"
+    ],
+    "correctIndex": 0,
+    "explanation": "No obligation to hurry.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q349",
+    "prompt": "Complete: 'All visitors _____ wear a helmet on the building site. It's the law.'",
+    "options": [
+      "must",
+      "mustn't",
+      "don't have to",
+      "musts"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Must' + base verb expresses a strong obligation or a rule ('It's the law'); 'mustn't' means it is forbidden, 'don't have to' that it isn't necessary, and 'must' never takes -s.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q350",
+    "prompt": "Complete: 'He _____ wear glasses to read because his eyesight is bad.'",
+    "options": [
+      "has to",
+      "must to",
+      "musts",
+      "have to"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Has to' expresses a necessity (his eyesight is bad, so he needs glasses); with 'he' we use 'has to', not 'have to', and 'must' never takes -s or 'to'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q351",
+    "prompt": "Complete: 'Do I _____ pay for this ticket now?'",
+    "options": [
+      "have to",
+      "must",
+      "should",
+      "had to"
+    ],
+    "correctIndex": 0,
+    "explanation": "Question form for obligation is 'Do/Does ... have to'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q352",
+    "prompt": "Translate 'Dovresti mangiare più verdure.'",
+    "options": [
+      "You should eat more vegetables.",
+      "You must eat more vegetables.",
+      "You have to eat more vegetables.",
+      "You shouldn't eat more vegetables."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Should' + base verb gives advice ('Dovresti' = 'You should'); 'must' and 'have to' express obligation, not advice.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q353",
+    "prompt": "Translate 'Non devi per forza venire se sei stanco.'",
+    "options": [
+      "You don't have to come if you're tired.",
+      "You mustn't come if you're tired.",
+      "You shouldn't come if you're tired.",
+      "You haven't to come if you're tired."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Don't have to' means it isn't necessary (lack of obligation); 'mustn't' would mean it is forbidden.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q354",
+    "prompt": "Translate 'Non devi assolutamente toccare quel filo!'",
+    "options": [
+      "You mustn't touch that wire!",
+      "You don't have to touch that wire!",
+      "You shouldn't touch that wire!",
+      "You haven't to touch that wire!"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Mustn't' expresses a strong prohibition ('Non devi assolutamente'); 'don't have to' only means it isn't necessary.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q355",
+    "prompt": "Translate 'Lui deve lavorare fino a tardi oggi.' (obbligo esterno)",
+    "options": [
+      "He has to work late today.",
+      "He should work late today.",
+      "He have to work late today.",
+      "He musts work late today."
+    ],
+    "correctIndex": 0,
+    "explanation": "External obligation with 'has to'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q356",
+    "prompt": "Translate 'Non dovresti bere così tanto caffè.'",
+    "options": [
+      "You shouldn't drink so much coffee.",
+      "You mustn't drink so much coffee.",
+      "You don't have to drink so much coffee.",
+      "You haven't to drink so much coffee."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Shouldn't' + base verb gives negative advice ('Non dovresti'); 'mustn't' would be a prohibition, not advice.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q357",
+    "prompt": "Translate 'Devo togliermi le scarpe?'",
+    "options": [
+      "Do I have to take off my shoes?",
+      "Must I to take off my shoes?",
+      "Do I must take off my shoes?",
+      "Have I to take off my shoes?"
+    ],
+    "correctIndex": 0,
+    "explanation": "Questions about rules or obligation use 'Do I have to' + base verb; 'must' is never followed by 'to' or used with 'do', and 'Have I to' is not correct.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q358",
+    "prompt": "Translate 'Non hai bisogno di pagare, è gratis.'",
+    "options": [
+      "You don't have to pay, it's free.",
+      "You mustn't pay, it's free.",
+      "You shouldn't pay, it's free.",
+      "You haven't to pay, it's free."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Don't have to' means there is no obligation (it's free, so paying isn't necessary); 'mustn't' would mean that paying is forbidden.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q359",
+    "prompt": "Translate 'Cosa dovrei fare?'",
+    "options": [
+      "What should I do?",
+      "What must I do?",
+      "What have I to do?",
+      "What do I do?"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Should' is used to ask for advice: 'What should I do?' ('Cosa dovrei fare?').",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q360",
+    "prompt": "Translate 'Non devi dire niente a nessuno, è un segreto!'",
+    "options": [
+      "You mustn't tell anyone, it's a secret!",
+      "You don't have to tell anyone, it's a secret!",
+      "You shouldn't tell anyone, it's a secret!",
+      "You haven't to tell anyone, it's a secret!"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Mustn't' expresses prohibition: telling anyone is not allowed because it's a secret. 'Don't have to' would only mean it isn't necessary.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Modals of Obligation and Advice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q361",
+    "prompt": "Complete: 'She speaks English very _____.' (good/well)",
+    "options": [
+      "well",
+      "good",
+      "goodly",
+      "welling"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Well' is the adverb form of 'good'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q362",
+    "prompt": "Complete: 'He drives very _____. It's dangerous!'",
+    "options": [
+      "fast",
+      "fastly",
+      "quick",
+      "speedy"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Fast' is both an adjective and an adverb.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q363",
+    "prompt": "Complete: 'Please do your work _____. Take your time.'",
+    "options": [
+      "carefully",
+      "careful",
+      "careless",
+      "carelessly"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Carefully' describes how to do the work.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q364",
+    "prompt": "Complete: 'They won the game _____. They were much better.'",
+    "options": [
+      "easily",
+      "easy",
+      "easier",
+      "easying"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Easily' is the adverb form of 'easy' (y changes to i + ly).",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q365",
+    "prompt": "Complete: 'The old man walked _____ down the street.'",
+    "options": [
+      "slowly",
+      "slow",
+      "slower",
+      "slowingly"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Slowly' describes the verb 'walked'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q366",
+    "prompt": "Complete: 'She looked at him _____ when he broke the glass.'",
+    "options": [
+      "angrily",
+      "angry",
+      "angrier",
+      "angrying"
+    ],
+    "correctIndex": 0,
+    "explanation": "Adverb formed from 'angry'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q367",
+    "prompt": "Complete: 'He worked _____ to pass the exam.'",
+    "options": [
+      "hard",
+      "hardly",
+      "hardy",
+      "hards"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Hard' is an irregular adverb meaning 'with effort' (the same form as the adjective). 'Hardly' means 'almost not', and 'hardy' and 'hards' are not the adverb.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q368",
+    "prompt": "Complete: 'The children were playing _____ in the garden.'",
+    "options": [
+      "happily",
+      "happy",
+      "happier",
+      "happiness"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Happily' is the adverb of 'happy' (y becomes i + -ly); we need an adverb to describe how they were playing.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q369",
+    "prompt": "Complete: 'I can run very _____.'",
+    "options": [
+      "fast",
+      "fastly",
+      "quick",
+      "faster"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Fast' is an irregular adverb.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q370",
+    "prompt": "Translate 'Ha risposto alla domanda velocemente.'",
+    "options": [
+      "He answered the question quickly.",
+      "He answered the question quick.",
+      "He answered the question fastly.",
+      "He answered the question quicker."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Velocemente' is 'quickly'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q371",
+    "prompt": "Translate 'Canta davvero bene.'",
+    "options": [
+      "She sings really well.",
+      "She sings really good.",
+      "She sings really goodly.",
+      "She sings really nice."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Bene' is the adverb 'well'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q372",
+    "prompt": "Translate 'Hanno lavorato duramente tutto il giorno.'",
+    "options": [
+      "They worked hard all day.",
+      "They worked hardly all day.",
+      "They worked difficultly all day.",
+      "They worked heavy all day."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Duramente' (con fatica) is 'hard'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q373",
+    "prompt": "Translate 'Per favore, parla lentamente.'",
+    "options": [
+      "Please speak slowly.",
+      "Please speak slow.",
+      "Please speak slowlier.",
+      "Please speak slowingly."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Lentamente' is the adverb 'slowly' (adjective 'slow' + -ly); we need an adverb to describe how someone speaks.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q374",
+    "prompt": "Translate 'Ha chiuso la porta silenziosamente.'",
+    "options": [
+      "He closed the door quietly.",
+      "He closed the door quiet.",
+      "He closed the door quietlyly.",
+      "He closed the door silent."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Silenziosamente' is 'quietly'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q375",
+    "prompt": "Translate 'Hanno risolto il problema facilmente.'",
+    "options": [
+      "They solved the problem easily.",
+      "They solved the problem easy.",
+      "They solved the problem with easy.",
+      "They solved the problem easier."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Facilmente' is 'easily'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q376",
+    "prompt": "Translate 'Guida sempre con molta attenzione (attentamente).'",
+    "options": [
+      "He always drives carefully.",
+      "He always drives careful.",
+      "He always drives care.",
+      "He always drives with careful."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Attentamente' is 'carefully'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q377",
+    "prompt": "Translate 'L'insegnante ha spiegato la regola chiaramente.'",
+    "options": [
+      "The teacher explained the rule clearly.",
+      "The teacher explained the rule clear.",
+      "The teacher explained the rule cleary.",
+      "The teacher explained the rule clearing."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Chiaramente' is 'clearly'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q378",
+    "prompt": "Translate 'Ho capito perfettamente.'",
+    "options": [
+      "I understood perfectly.",
+      "I understood perfect.",
+      "I understood perfection.",
+      "I understood perfectlyly."
+    ],
+    "correctIndex": 0,
+    "explanation": "'Perfettamente' is 'perfectly'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Adverbs of Manner",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q379",
+    "prompt": "Complete the sentence: 'If I _____ the lottery, I would buy a big house.'",
+    "options": [
+      "win",
+      "won",
+      "will win",
+      "had won"
+    ],
+    "correctIndex": 1,
+    "explanation": "Second Conditional uses 'If + Past Simple, would + infinitive' for unreal present/future situations.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q380",
+    "prompt": "Translate 'Se fossi in te, studierei di più.'",
+    "options": [
+      "If I am you, I will study more.",
+      "If I were you, I would study more.",
+      "If I was you, I study more.",
+      "If I would be you, I studied more."
+    ],
+    "correctIndex": 1,
+    "explanation": "In the Second Conditional, 'were' is typically used for all subjects in the 'if' clause (If I were you).",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Second Conditional",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q381",
+    "prompt": "Complete the sentence: 'If I had studied, I _____ the exam.'",
+    "options": [
+      "would pass",
+      "passed",
+      "would have passed",
+      "will pass"
+    ],
+    "correctIndex": 2,
+    "explanation": "Third Conditional uses 'If + Past Perfect, would have + past participle' for impossible past situations.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q382",
+    "prompt": "Translate 'Se fossimo partiti prima, non avremmo perso il treno.'",
+    "options": [
+      "If we left earlier, we wouldn't miss the train.",
+      "If we had left earlier, we wouldn't have missed the train.",
+      "If we would leave earlier, we hadn't missed the train.",
+      "If we have left earlier, we didn't miss the train."
+    ],
+    "correctIndex": 1,
+    "explanation": "Third conditional structure for regrets about the past.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Third Conditional",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q383",
+    "prompt": "Complete the sentence: 'The letter _____ by John yesterday.'",
+    "options": [
+      "wrote",
+      "was written",
+      "is written",
+      "writes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Past Simple Passive structure is 'was/were + past participle'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q384",
+    "prompt": "Translate 'La casa viene costruita proprio ora.'",
+    "options": [
+      "The house is built right now.",
+      "The house builds right now.",
+      "The house is being built right now.",
+      "The house has been built right now."
+    ],
+    "correctIndex": 2,
+    "explanation": "Present Continuous Passive requires 'is/are being + past participle'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Passive Voice",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q385",
+    "prompt": "Change to reported speech: He said, 'I am tired.'",
+    "options": [
+      "He said that he is tired.",
+      "He said that I was tired.",
+      "He said that he was tired.",
+      "He said he has been tired."
+    ],
+    "correctIndex": 2,
+    "explanation": "In reported speech, present simple changes to past simple ('am' becomes 'was').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q386",
+    "prompt": "Change to reported speech: 'I will call you,' she told me.",
+    "options": [
+      "She told me she will call me.",
+      "She told me she would call me.",
+      "She told me I would call her.",
+      "She told me she called me."
+    ],
+    "correctIndex": 1,
+    "explanation": "In reported speech, 'will' changes to 'would'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Reported Speech",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q387",
+    "prompt": "Complete the sentence: 'When I arrived at the station, the train _____.'",
+    "options": [
+      "already left",
+      "has already left",
+      "had already left",
+      "already leaves"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Past Perfect ('had left') shows an action that happened before another past action ('arrived').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q388",
+    "prompt": "Translate 'Avevo già mangiato quando mi hai chiamato.'",
+    "options": [
+      "I already ate when you called me.",
+      "I had already eaten when you called me.",
+      "I have already eaten when you called me.",
+      "I was eating when you called me."
+    ],
+    "correctIndex": 1,
+    "explanation": "We use the Past Perfect ('had eaten') for the action that happened first.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Past Perfect",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q389",
+    "prompt": "Complete the sentence: 'I _____ tennis when I was young.'",
+    "options": [
+      "used to play",
+      "was playing",
+      "am used to play",
+      "use to play"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Used to + infinitive' describes a past habit that is no longer true.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q390",
+    "prompt": "Choose the correct negative form:",
+    "options": [
+      "She didn't used to like vegetables.",
+      "She hasn't used to like vegetables.",
+      "She didn't use to like vegetables.",
+      "She don't use to like vegetables."
+    ],
+    "correctIndex": 2,
+    "explanation": "The negative form is 'didn't use to' (without the 'd' in use).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Used to",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q391",
+    "prompt": "Complete the sentence: 'The man _____ lives next door is a doctor.'",
+    "options": [
+      "which",
+      "who",
+      "whose",
+      "where"
+    ],
+    "correctIndex": 1,
+    "explanation": "'Who' is the relative pronoun used for people.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q392",
+    "prompt": "Complete the sentence: 'That's the house _____ I grew up.'",
+    "options": [
+      "which",
+      "who",
+      "whose",
+      "where"
+    ],
+    "correctIndex": 3,
+    "explanation": "'Where' is used as a relative pronoun for places.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q393",
+    "prompt": "Complete the sentence: 'The girl _____ car was stolen is at the police station.'",
+    "options": [
+      "who",
+      "which",
+      "whose",
+      "that"
+    ],
+    "correctIndex": 2,
+    "explanation": "'Whose' indicates possession.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Relative Clauses",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q394",
+    "prompt": "Complete the sentence: 'You are Italian, _____?'",
+    "options": [
+      "are you",
+      "aren't you",
+      "don't you",
+      "isn't it"
+    ],
+    "correctIndex": 1,
+    "explanation": "Affirmative statements take a negative question tag ('aren't you?').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q395",
+    "prompt": "Complete the sentence: 'She didn't go to the party, _____?'",
+    "options": [
+      "did she",
+      "didn't she",
+      "does she",
+      "was she"
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative statements take an affirmative question tag ('did she?').",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Question Tags",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q396",
+    "prompt": "Complete the sentence: 'He has a Ferrari and a mansion. He _____ be very rich.'",
+    "options": [
+      "can",
+      "must",
+      "should",
+      "might"
+    ],
+    "correctIndex": 1,
+    "explanation": "'Must' is used for strong logical deductions based on evidence.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q397",
+    "prompt": "Complete the sentence: 'That _____ be Sarah. Sarah is currently in London.'",
+    "options": [
+      "mustn't",
+      "shouldn't",
+      "can't",
+      "might not"
+    ],
+    "correctIndex": 2,
+    "explanation": "'Can't' is the negative logical deduction (you are sure something is not true).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Modals of Deduction",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q398",
+    "prompt": "Complete the sentence: 'I really enjoy _____ books in my free time.'",
+    "options": [
+      "to read",
+      "read",
+      "reading",
+      "to reading"
+    ],
+    "correctIndex": 2,
+    "explanation": "The verb 'enjoy' is followed by a gerund (-ing form).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": true,
+    "stato": "originale"
+  },
+  {
+    "id": "q399",
+    "prompt": "Complete the sentence: 'She decided _____ a new car.'",
+    "options": [
+      "buying",
+      "to buy",
+      "buy",
+      "bought"
+    ],
+    "correctIndex": 1,
+    "explanation": "The verb 'decide' is followed by an infinitive with 'to'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  },
+  {
+    "id": "q400",
+    "prompt": "Complete the sentence: 'Do you mind _____ the window?'",
+    "options": [
+      "open",
+      "to open",
+      "opening",
+      "opened"
+    ],
+    "correctIndex": 2,
+    "explanation": "The verb 'mind' is followed by a gerund (-ing form).",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Gerunds vs Infinitives",
+    "core": false,
+    "stato": "originale"
+  }
+]

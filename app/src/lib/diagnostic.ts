@@ -1,5 +1,5 @@
 import { Question } from '../types';
-import { questions } from '../data/questions';
+import { getQuestionsByCorpus } from '../data/questions';
 import { calculateSimilarity, shuffleArray, shuffleQuestion } from './utils';
 import { REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS } from '../config/offer';
 
@@ -8,24 +8,36 @@ export const DIAGNOSTIC_LENGTH = 10;
 // Stessa proporzione di livelli del banco (circa 30% A1, 20% A2, 50% B1), argomenti tutti diversi
 const LEVEL_MIX: Record<string, number> = { A1: 3, A2: 2, B1: 5 };
 
-export function pickDiagnosticQuestions(pool: Question[] = questions): Question[] {
+/** Il diagnostico usa solo il nucleo gratuito, che sta già nell'app: funziona anche senza rete e senza Pass. */
+export function diagnosticPool(): Question[] {
+  return getQuestionsByCorpus('initial');
+}
+
+// Versione sincrona sul bundle: le domande del nucleo gratuito sono sempre nell'app, anche in produzione.
+export function pickDiagnosticQuestions(pool: Question[] = diagnosticPool()): Question[] {
   const selected: Question[] = [];
   const usedTopics = new Set<string>();
+  const topicOf = (q: Question) => q.grammarTopic || q.category;
+  const free = (q: Question, strict: boolean) =>
+    !selected.some(s => s.id === q.id) &&
+    !(strict && usedTopics.has(topicOf(q))) &&
+    !selected.some(s => calculateSimilarity(s.prompt, q.prompt) > 0.45);
 
-  for (const [level, count] of Object.entries(LEVEL_MIX)) {
-    let taken = 0;
-    for (const q of shuffleArray(pool.filter(q => q.level === level))) {
-      if (taken >= count) break;
-      const topic = q.grammarTopic || q.category;
-      if (usedTopics.has(topic)) continue;
-      if (selected.some(s => calculateSimilarity(s.prompt, q.prompt) > 0.45)) continue;
-      selected.push(q);
-      usedTopics.add(topic);
-      taken++;
+  // Prima passata: livelli e argomenti diversi; seconda: stessi livelli ma argomenti che si possono ripetere
+  for (const strict of [true, false]) {
+    for (const [level, count] of Object.entries(LEVEL_MIX)) {
+      let taken = selected.filter(q => q.level === level).length;
+      for (const q of shuffleArray(pool.filter(q => q.level === level))) {
+        if (taken >= count) break;
+        if (!free(q, strict)) continue;
+        selected.push(q);
+        usedTopics.add(topicOf(q));
+        taken++;
+      }
     }
   }
 
-  // Se mancano domande (banco filtrato o piccolo) completa con altre a caso
+  // Se mancano ancora domande (nucleo piccolo o senza livelli) completa con altre a caso
   for (const q of shuffleArray(pool)) {
     if (selected.length >= DIAGNOSTIC_LENGTH) break;
     if (!selected.some(s => s.id === q.id)) selected.push(q);
