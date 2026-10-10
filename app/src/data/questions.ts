@@ -5,7 +5,7 @@ import type { Question, CorpusType } from '../types';
 export const INITIAL_CORPUS_COUNT = 100;
 
 /** Id delle domande del nucleo gratuito. */
-const CORE_IDS: ReadonlySet<string> = new Set(["q61","q67","q69","q71","q75","q84","q91","q95","q98","q107","q111","q114","q121","q122","q133","q134","q135","q136","q137","q139","q143","q145","q146","q148","q150","q157","q160","q162","q165","q171","q172","q179","q190","q191","q199","q210","q213","q214","q217","q222","q227","q237","q242","q251","q256","q258","q270","q271","q272","q280","q291","q296","q301","q311","q312","q322","q325","q326","q328","q335","q346","q347","q354","q363","q367","q370","q380","q381","q389","q396","q398","q404","q406","q425","q432","q436","q450","q459","q465","q468","q472","q489","q490","q494","q495","q499","q507","q521","q526","q529","q535","q546","q553","q566","q570","q581","q584","q590","q594","q605"]);
+const CORE_IDS: ReadonlySet<string> = new Set(["q61","q67","q69","q71","q75","q84","q91","q95","q98","q107","q111","q114","q121","q122","q133","q134","q135","q136","q137","q139","q143","q145","q146","q148","q150","q157","q160","q162","q165","q171","q172","q190","q191","q199","q210","q213","q214","q217","q222","q227","q237","q242","q251","q256","q258","q270","q271","q272","q280","q291","q296","q301","q311","q312","q322","q325","q326","q328","q335","q346","q347","q354","q363","q367","q370","q380","q381","q389","q396","q398","q404","q406","q425","q432","q436","q450","q459","q465","q468","q472","q489","q490","q494","q495","q499","q507","q521","q526","q529","q535","q546","q553","q566","q570","q581","q584","q590","q594","q605","q632"]);
 
 export const isCoreId = (id: string): boolean => CORE_IDS.has(id);
 
@@ -19,847 +19,503 @@ export const getQuestionsByCorpus = (corpus: CorpusType = 'all'): Question[] => 
 export const questions: Question[] = [
   {
     "id": "q1",
-    "prompt": "Choose the correct translation for 'Sei mai stato in Brasile?'",
+    "prompt": "Which sentence is correct?",
     "options": [
-      "Are you ever been to Brazil?",
-      "Have you ever been to Brazil?",
-      "Did you ever went to Brazil?",
-      "Have you never been to Brazil?"
+      "Is your sister ever lived abroad?",
+      "Has your sister ever lived abroad?",
+      "Does your sister ever lived abroad?",
+      "Have your sister ever lived abroad?"
     ],
     "correctIndex": 1,
-    "explanation": "We use Present Perfect ('Have you ever been') for life experiences.",
+    "explanation": "Per le esperienze di vita (senza dire quando) si usa il Present Perfect: have/has + participio passato. Con 'your sister' l'ausiliare è 'has' e il verbo resta al participio ('lived'). 'Is' e 'does' non si usano per costruire questo tempo, e 'have' non concorda con il soggetto singolare.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Perfect"
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
   },
   {
     "id": "q2",
-    "prompt": "Choose the correct question: '_____ a table in this room?'",
+    "prompt": "Choose the correct question: '_____ a bank in this street?'",
     "options": [
-      "Is it",
-      "There is",
       "Is there",
-      "Are there"
+      "There is",
+      "Are there",
+      "Is it"
     ],
-    "correctIndex": 2,
-    "explanation": "'Is there' is the correct question form of 'there is' for singular nouns.",
+    "correctIndex": 0,
+    "explanation": "Per chiedere se qualcosa esiste si inverte 'there is' in 'Is there...?'. 'A bank' è singolare, quindi non va bene 'Are there'. 'There is' è la forma affermativa e 'Is it' non esprime esistenza.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q3",
     "prompt": "Which sentence is correct?",
     "options": [
-      "Did you meet Mr. Smith's wife?",
-      "Did you met Mr. Smith's wife?",
-      "Have you meet Mr. Smith's wife?",
-      "Did you meet the Mr. Smith wife?"
+      "Did your brother won the match last night?",
+      "Was your brother win the match last night?",
+      "Does your brother won the match last night?",
+      "Did your brother win the match last night?"
     ],
-    "correctIndex": 0,
-    "explanation": "After 'did', we use the base form of the verb ('meet', not 'met').",
+    "correctIndex": 3,
+    "explanation": "Nelle domande al Past Simple l'ausiliare 'did' porta già il passato: il verbo resta alla forma base ('win', non 'won'). 'Was' e 'does' non si combinano con questo verbo e con 'last night' serve il passato.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q4",
-    "prompt": "Translate 'Lunedì è il giorno peggiore della settimana.'",
+    "prompt": "Choose the correct translation for 'Agosto è il mese più caldo dell'anno.'",
     "options": [
-      "Monday is the badder day of the week.",
-      "Monday is the worst day of the week.",
-      "Monday is the worse day of the week.",
-      "Monday is the baddest day of the week."
+      "August is the most hot month of the year.",
+      "August is the hotter month of the year.",
+      "August is the hottest month of the year.",
+      "August is more hot month of the year."
     ],
-    "correctIndex": 1,
-    "explanation": "The superlative of 'bad' is 'worst'.",
+    "correctIndex": 2,
+    "explanation": "'Hot' è un aggettivo corto: il superlativo si fa con 'the + -est' e la consonante finale si raddoppia ('hottest'). 'Most hot' si usa solo con aggettivi lunghi, 'hotter' è il comparativo (si usa con 'than').",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q5",
-    "prompt": "Translate 'Sono stato in Africa nel 2009.'",
+    "prompt": "Choose the correct translation for 'Abbiamo comprato questa casa nel 2018.'",
     "options": [
-      "I have been to Africa in 2009.",
-      "I went to Africa in 2009.",
-      "I was in Africa on 2009.",
-      "I go to Africa in 2009."
+      "We have bought this house in 2018.",
+      "We bought this house in 2018.",
+      "We buyed this house in 2018.",
+      "We are buying this house in 2018."
     ],
     "correctIndex": 1,
-    "explanation": "With a finished time in the past ('in 2009'), we use the Past Simple ('went').",
+    "explanation": "Con un anno preciso nel passato ('in 2018') si usa il Past Simple, non il Present Perfect. 'Buy' è irregolare: il passato è 'bought', non 'buyed'. 'Are buying' è un presente.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q6",
-    "prompt": "Which sentence correctly compares the two cities?",
+    "prompt": "Which sentence compares the two bags correctly?",
     "options": [
-      "New York is more modern that London.",
-      "New York is modener than London.",
-      "New York is more modern than London.",
-      "New York is the most modern than London."
+      "The red bag is more expensive than the blue one.",
+      "The red bag is more expensive that the blue one.",
+      "The red bag is expensiver than the blue one.",
+      "The red bag is the most expensive than the blue one."
     ],
-    "correctIndex": 2,
-    "explanation": "We use 'more + adjective + than' for comparatives with long adjectives.",
+    "correctIndex": 0,
+    "explanation": "'Expensive' è un aggettivo lungo: il comparativo si fa con 'more + aggettivo' e il secondo termine si introduce con 'than'. 'That' non è il termine di paragone, '-er' va solo con aggettivi corti e 'the most' è un superlativo, che non si usa con 'than'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q7",
-    "prompt": "Complete the sentence: '_____ did you meet Mr. Smith?' - 'At the station.'",
+    "prompt": "Complete the sentence: '_____ did Anna buy that jacket?' - 'Last Saturday.'",
     "options": [
-      "When",
-      "How",
       "Where",
-      "Who"
+      "Who",
+      "When",
+      "Why"
     ],
     "correctIndex": 2,
-    "explanation": "'Where' is used to ask about a place.",
+    "explanation": "La risposta 'Last Saturday' indica un momento, quindi la domanda va introdotta da 'When'. 'Where' chiederebbe un luogo, 'Who' una persona e 'Why' un motivo.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q8",
-    "prompt": "Translate 'Quante persone ci sono alla festa?'",
+    "prompt": "Choose the correct translation for 'Quanti libri ci sono sullo scaffale?'",
     "options": [
-      "How much people are at the party?",
-      "How many peoples are at the party?",
-      "How many people are at the party?",
-      "How many people is in the party?"
+      "How much books are there on the shelf?",
+      "How many books is there on the shelf?",
+      "How many book are there on the shelf?",
+      "How many books are there on the shelf?"
     ],
-    "correctIndex": 2,
-    "explanation": "'People' is plural and countable, so we use 'How many are'.",
+    "correctIndex": 3,
+    "explanation": "'Libri' si può contare, quindi si usa 'How many' (non 'much', che è per i nomi non numerabili) seguito dal plurale ('books') e dal verbo al plurale ('are there'). 'Is there' e 'book' al singolare sono errori di concordanza.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q9",
-    "prompt": "Translate 'Il treno partirà tra 2 minuti.'",
+    "prompt": "Choose the correct translation for 'Il film comincerà tra un'ora.'",
     "options": [
-      "The train leaves between 2 minutes.",
-      "The train will leave in 2 minutes.",
-      "The train going to leave on 2 minutes.",
-      "The train part in 2 minutes."
+      "The film will start between an hour.",
+      "The film will start in an hour.",
+      "The film will start at an hour.",
+      "The film will start for an hour."
     ],
     "correctIndex": 1,
-    "explanation": "We use 'in' for future time limits ('in 2 minutes'). 'Will leave' expresses a future fact.",
+    "explanation": "Per dire 'tra' un certo tempo da adesso si usa 'in' + durata ('in an hour'). 'Between' richiede due punti (between two and three), 'at' va con l'orario preciso e 'for' indica quanto dura qualcosa.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Prepositions of Time"
+    "grammarTopic": "Prepositions of Time",
+    "theoryId": "prepositions-time"
   },
   {
     "id": "q10",
-    "prompt": "Translate 'Ti posso offrire qualcosa da bere?'",
+    "prompt": "Choose the correct translation for 'Posso usare il tuo telefono, per favore?'",
     "options": [
-      "Can I offer you anything for drink?",
-      "Can I offer you something to drink?",
-      "Can I offer you somewhat to drink?",
-      "Do I can offer you something to drink?"
+      "Can I use your phone, please?",
+      "Can I to use your phone, please?",
+      "Do I can use your phone, please?",
+      "Can I using your phone, please?"
     ],
-    "correctIndex": 1,
-    "explanation": "The error in the wrong options is 'for drink': after 'something/anything' we use the to-infinitive ('something to drink'). In offers 'something' is the most common choice, but 'anything' is also correct ('Can I offer you anything to drink?'). 'Somewhat' means 'a bit', and 'can' never takes 'do'.",
+    "correctIndex": 0,
+    "explanation": "Per chiedere il permesso si usa 'Can I + verbo base'. I verbi modali non vogliono 'to' dopo di sé, non usano 'do' nelle domande e non si usano con la forma in -ing.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Modals of Ability and Permission"
+    "grammarTopic": "Modals of Ability and Permission",
+    "theoryId": "modals-ability-permission"
   },
   {
     "id": "q11",
-    "prompt": "Translate 'Francesco lavora per Google.'",
+    "prompt": "Choose the correct translation for 'Laura vive a Napoli con i suoi genitori.'",
     "options": [
-      "Francesco work to Google.",
-      "Francesco works for Google.",
-      "Francesco is working by Google.",
-      "Francesco working for Google."
+      "Laura live in Naples with her parents.",
+      "Laura living in Naples with her parents.",
+      "Laura lives in Naples with her parents.",
+      "Laura lives in Naples with she parents."
     ],
-    "correctIndex": 1,
-    "explanation": "Third person singular in Present Simple requires an 's' ('works'). 'Work for' is the correct preposition.",
+    "correctIndex": 2,
+    "explanation": "Con il soggetto alla terza persona singolare (Laura = she) il Present Simple vuole la -s ('lives'). Senza verbo coniugato ('living') la frase non regge, e davanti a un nome serve l'aggettivo possessivo 'her', non il pronome 'she'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q12",
-    "prompt": "Choose the correct sentence to describe a current action.",
+    "prompt": "Choose the correct sentence to describe what is happening now.",
     "options": [
-      "Look! It's rain.",
-      "Look! It's raining.",
-      "Look! It rains.",
-      "Look! It raining."
+      "Be quiet! The baby is sleep.",
+      "Be quiet! The baby sleep.",
+      "Be quiet! The baby sleeped.",
+      "Be quiet! The baby is sleeping."
     ],
-    "correctIndex": 1,
-    "explanation": "Present Continuous ('is raining') is used for actions happening right now.",
+    "correctIndex": 3,
+    "explanation": "Per un'azione che sta succedendo adesso si usa il Present Continuous: 'is' + verbo in -ing ('is sleeping'). Le altre forme sono errate: manca il -ing, manca la -s della terza persona, e 'sleeped' non esiste ('sleep' è irregolare).",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q13",
     "prompt": "Choose the correct question:",
     "options": [
-      "Is there any milk in the fridge?",
-      "Are there some milk in the fridge?",
-      "Is there a milk in the fridge?",
-      "Is there any milks in the fridge?"
+      "Is there any rice in the cupboard?",
+      "Are there any rice in the cupboard?",
+      "Is there a rice in the cupboard?",
+      "Is there any rices in the cupboard?"
     ],
     "correctIndex": 0,
-    "explanation": "'Milk' is uncountable, so we use 'Is there' (not 'Are there'), with no 'a' and no plural -s. 'Any' is used in questions.",
+    "explanation": "'Rice' (riso) è un nome non numerabile: si usa 'Is there' (non 'Are there'), senza 'a' e senza plurale. Nelle domande si usa 'any'.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q14",
-    "prompt": "Translate 'Da quanto tempo studi l'inglese?'",
+    "prompt": "Choose the correct translation for 'Da quanto tempo abiti a Milano?'",
     "options": [
-      "How much time do you study English?",
-      "Since when you study English?",
-      "How long have you studied English?",
-      "How long are you studying English?"
+      "How long do you live in Milan?",
+      "How long have you lived in Milan?",
+      "How long you have lived in Milan?",
+      "How long did you lived in Milan?"
     ],
-    "correctIndex": 2,
-    "explanation": "We use Present Perfect ('have you studied') with 'How long' for actions starting in the past and continuing now.",
+    "correctIndex": 1,
+    "explanation": "Per chiedere da quanto dura una situazione ancora vera si usa 'How long have you + participio passato'. Il presente semplice non regge questa costruzione, nella domanda l'ausiliare va prima del soggetto e dopo 'did' il verbo non va al passato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Present Perfect"
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
   },
   {
     "id": "q15",
-    "prompt": "Translate 'Francesco riesce a parlare bene inglese.'",
+    "prompt": "Choose the correct translation for 'Mia nonna sa suonare il pianoforte.'",
     "options": [
-      "Francesco can to speak English well.",
-      "Francesco can speaks English well.",
-      "Francesco is able speak English good.",
-      "Francesco can speak English well."
+      "My grandmother can plays the piano.",
+      "My grandmother can to play the piano.",
+      "My grandmother knows play the piano.",
+      "My grandmother can play the piano."
     ],
     "correctIndex": 3,
-    "explanation": "Modal verb 'can' is followed by the base form without 'to' ('can speak').",
+    "explanation": "'Can' è un verbo modale: non prende la -s della terza persona e il verbo che segue è alla forma base, senza 'to'. 'Knows play' è sbagliato: 'know' vuole 'how to' ('knows how to play').",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Modals of Ability and Permission"
+    "grammarTopic": "Modals of Ability and Permission",
+    "theoryId": "modals-ability-permission"
   },
   {
     "id": "q16",
-    "prompt": "Translate 'Con chi è andata?'",
+    "prompt": "Choose the correct translation for 'Cosa ha mangiato Marco ieri sera?'",
     "options": [
-      "With who she went?",
-      "Who did she go with?",
-      "Who did she went with?",
-      "Who she went with?"
+      "What did Marco ate last night?",
+      "What Marco ate last night?",
+      "What did Marco eat last night?",
+      "What does Marco ate last night?"
     ],
-    "correctIndex": 1,
-    "explanation": "In WH- questions, the auxiliary 'did' is followed by the base verb 'go'. The preposition 'with' goes at the end.",
+    "correctIndex": 2,
+    "explanation": "Nelle domande al Past Simple l'ordine è parola interrogativa + 'did' + soggetto + verbo base ('eat'). Dopo 'did' il verbo non si mette al passato, senza 'did' la domanda non è formata e 'does' è un presente.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q17",
     "prompt": "Choose the grammatically correct sentence:",
     "options": [
-      "She gone to the cinema yesterday.",
-      "She has went to the cinema yesterday.",
-      "She went to the cinema yesterday.",
-      "She goes to the cinema yesterday."
+      "We have eaten pizza last Friday night.",
+      "We ate pizza last Friday night.",
+      "We eaten pizza last Friday night.",
+      "We eat pizza last Friday night."
     ],
-    "correctIndex": 2,
-    "explanation": "'Yesterday' requires the Past Simple ('went').",
+    "correctIndex": 1,
+    "explanation": "Con 'last Friday night', un momento concluso nel passato, serve il Past Simple ('ate'). Il Present Perfect non si usa con indicazioni di tempo concluse, 'eaten' da solo è un participio senza ausiliare e 'eat' è un presente.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q18",
-    "prompt": "Complete the sentence: 'There are many people living in Italy who _____ from abroad.'",
+    "prompt": "Complete the sentence: 'In my building there are many students who _____ to university by bike.'",
     "options": [
-      "coming",
-      "comes",
-      "are coming",
-      "come"
+      "go",
+      "goes",
+      "going",
+      "to go"
     ],
-    "correctIndex": 3,
-    "explanation": "'People' is plural, so the relative clause verb is plural ('come').",
+    "correctIndex": 0,
+    "explanation": "Nella frase relativa il verbo si accorda con l'antecedente: 'students' è plurale, quindi 'who go'. 'Goes' è singolare e 'going' e 'to go' non sono forme coniugate.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q19",
-    "prompt": "Complete the sentence: 'I _____ my husband in 1996.'",
+    "prompt": "Complete the sentence: 'My sister _____ her driving test in 2019.'",
     "options": [
-      "meet",
-      "have met",
-      "met",
-      "was meeting"
+      "pass",
+      "has passed",
+      "passed",
+      "is passing"
     ],
     "correctIndex": 2,
-    "explanation": "A specific time in the past ('in 1996') requires the Past Simple ('met').",
+    "explanation": "Con un anno preciso nel passato ('in 2019') si usa il Past Simple: 'passed'. Il Present Perfect ('has passed') non ammette un anno concluso e le altre forme sono al presente.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q20",
-    "prompt": "Complete the sentence: 'This plate is dirty, can I have a clean _____?'",
+    "prompt": "Complete the sentence: 'My umbrella is broken, so I need a new _____.'",
     "options": [
-      "a one",
-      "one",
       "ones",
-      "it"
+      "it",
+      "a one",
+      "one"
     ],
-    "correctIndex": 1,
-    "explanation": "We use the pronoun 'one' to avoid repeating a singular countable noun ('a clean one' = 'a clean plate'); 'ones' is plural and 'it' would mean the same dirty plate.",
+    "correctIndex": 3,
+    "explanation": "Per non ripetere un nome singolare già detto si usa 'one': 'a new one' = 'a new umbrella'. 'Ones' è plurale, 'it' indicherebbe proprio l'ombrello rotto e 'a one' dopo 'new' è sbagliato perché l'articolo c'è già.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q21",
-    "prompt": "Complete the sentence: 'By the year 2080, people could _____ on Mars.'",
+    "prompt": "Complete the sentence: 'The windows are open and I can hear music. Someone _____ at home.'",
     "options": [
-      "to live",
-      "be living",
-      "living",
-      "are living"
+      "must to be",
+      "must be",
+      "must is",
+      "must being"
     ],
     "correctIndex": 1,
-    "explanation": "'Could' is a modal and is followed by the bare infinitive ('be'), never by 'to' or a conjugated verb. 'Could be living' expresses a possible ongoing situation in the future.",
+    "explanation": "Per una deduzione quasi certa si usa 'must + verbo base': 'must be at home'. Dopo un modale non si mette 'to', né il verbo coniugato ('is'), né la forma in -ing.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q22",
-    "prompt": "Complete the sentence: 'How many companies have you worked for _____ you left school?'",
+    "prompt": "Complete the sentence: 'My sister has lived in Turin _____ she started university.'",
     "options": [
-      "from",
-      "since",
       "for",
-      "after"
+      "during",
+      "since",
+      "while"
     ],
-    "correctIndex": 1,
-    "explanation": "'Since' is used with Present Perfect to indicate a starting point in time.",
+    "correctIndex": 2,
+    "explanation": "'Since' indica il punto di partenza di una situazione che dura ancora, anche seguito da una frase ('since she started'). 'For' vuole una durata (for three years), 'during' un nome e 'while' non si usa con il Present Perfect in questo senso.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Perfect"
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
   },
   {
     "id": "q23",
-    "prompt": "Complete the sentence: 'What time _____ your plane take off?'",
+    "prompt": "Complete the sentence: 'What time _____ the concert begin tomorrow?'",
     "options": [
-      "do",
       "is",
       "does",
+      "do",
       "has"
     ],
-    "correctIndex": 2,
-    "explanation": "For scheduled future events, we use Present Simple. 'Plane' is 'it', so we use 'does'.",
+    "correctIndex": 1,
+    "explanation": "Per un evento programmato (orario di un concerto) si usa il Present Simple, che nelle domande vuole 'do/does'. 'The concert' è terza persona singolare, quindi 'does'. Con 'is' o 'has' il verbo 'begin' non starebbe in piedi.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q24",
-    "prompt": "Complete the sentence: 'When I was ten, I _____ swim across the lake, but now I can't.'",
+    "prompt": "Complete the sentence: 'When my uncle was young, he _____ run a marathon in under three hours, but now he can't.'",
     "options": [
       "could",
       "can",
-      "was able",
+      "is able to",
       "could to"
     ],
     "correctIndex": 0,
-    "explanation": "'Could' is the past of 'can' for a general ability in the past; 'can' is present, 'was able' needs 'to', and modals are never followed by 'to'.",
+    "explanation": "Per un'abilità generale nel passato si usa 'could' + verbo base. 'Can' e 'is able to' sono presenti e non vanno con 'when he was young'; dopo un modale non si mette 'to' ('could to' è errato).",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Ability and Permission"
+    "grammarTopic": "Modals of Ability and Permission",
+    "theoryId": "modals-ability-permission"
   },
   {
     "id": "q25",
-    "prompt": "Combine the sentences correctly: 'I saw Tom this morning. He was waiting at the bus stop.'",
+    "prompt": "Combine the sentences correctly: 'I called Laura yesterday evening. She was cooking dinner.'",
     "options": [
-      "I saw Tom this morning while he waits at the bus stop.",
-      "I saw Tom this morning while he was waiting at the bus stop.",
-      "I saw Tom this morning during he was waiting at the bus stop.",
-      "I saw Tom this morning waiting to the bus stop."
+      "I called Laura yesterday evening while she cooks dinner.",
+      "I called Laura yesterday evening during she was cooking dinner.",
+      "I called Laura yesterday evening while was cooking dinner.",
+      "I called Laura yesterday evening while she was cooking dinner."
     ],
-    "correctIndex": 1,
-    "explanation": "'While' introduces the longer background action, so we use the Past Continuous ('while he was waiting'); the Present Simple 'waits' doesn't match the past, and 'during' must be followed by a noun, not a clause.",
+    "correctIndex": 3,
+    "explanation": "'While' introduce l'azione in corso nel passato e vuole soggetto + Past Continuous ('she was cooking'). 'Cooks' è un presente che non si accorda con il passato, 'during' regge solo un nome e senza soggetto ('while was cooking') la frase è incompleta.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q26",
-    "prompt": "Complete the sentence: 'James can speak English very _____.'",
+    "prompt": "Complete the sentence: 'My sister always does her homework very _____.'",
     "options": [
-      "good",
-      "better",
-      "best",
-      "well"
+      "careful",
+      "carefully",
+      "carefulness",
+      "care"
     ],
-    "correctIndex": 3,
-    "explanation": "'Well' is the adverb form of 'good' and modifies the verb 'speak'.",
+    "correctIndex": 1,
+    "explanation": "Per descrivere come si fa un'azione serve un avverbio, che di solito si forma con -ly: 'carefully'. 'Careful' è un aggettivo, 'carefulness' e 'care' sono nomi.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q27",
-    "prompt": "Complete the sentence: 'The children want _____ to play with them.'",
+    "prompt": "Complete the sentence: 'Our teacher wants _____ to finish the project by Friday.'",
     "options": [
-      "I",
-      "that I",
-      "me",
-      "my"
+      "we",
+      "our",
+      "us",
+      "ours"
     ],
     "correctIndex": 2,
-    "explanation": "After 'want', we use an object pronoun ('me') + to-infinitive.",
+    "explanation": "Dopo 'want' si usa il pronome complemento + infinito con 'to': 'wants us to finish'. 'We' è un pronome soggetto, 'our' è un aggettivo possessivo e 'ours' un pronome possessivo: nessuno dei tre può stare qui.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q28",
-    "prompt": "Complete the sentence: 'Is she going with _____ friends?'",
+    "prompt": "Complete the sentence: 'I need to buy _____ apples for the cake.'",
     "options": [
-      "much",
       "a",
-      "some",
-      "any of"
+      "much",
+      "an",
+      "some"
     ],
-    "correctIndex": 2,
-    "explanation": "'Friends' is a plural countable noun, so we can use 'some' ('some friends'); 'much' is only for uncountable nouns, 'a' only for singular nouns, and 'any of' needs 'the/her' before the noun.",
+    "correctIndex": 3,
+    "explanation": "'Apples' è plurale e numerabile, quindi va bene 'some'. 'A' e 'an' vogliono un nome singolare e 'much' un nome non numerabile.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q29",
-    "prompt": "Complete the sentence: 'I _____ a new pair of shoes yesterday.'",
+    "prompt": "Complete the sentence: 'We _____ a great film at the cinema last night.'",
     "options": [
-      "buy",
-      "buyed",
-      "bought",
-      "have bought"
+      "saw",
+      "see",
+      "seen",
+      "have seen"
     ],
-    "correctIndex": 2,
-    "explanation": "'Yesterday' indicates Past Simple. The past of 'buy' is 'bought'.",
+    "correctIndex": 0,
+    "explanation": "Con 'last night' si usa il Past Simple. 'See' è irregolare: il passato è 'saw', mentre 'seen' è il participio (serve un ausiliare). Il Present Perfect non va con un tempo concluso.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q30",
-    "prompt": "Complete the sentence: 'What time does the train leave tomorrow? It _____ at 9.'",
+    "prompt": "Complete the sentence: 'The exam _____ at nine o'clock tomorrow, so don't be late.'",
     "options": [
-      "leave",
-      "will leaves",
-      "leaving",
-      "leaves"
+      "start",
+      "will starts",
+      "starts",
+      "starting"
     ],
-    "correctIndex": 3,
-    "explanation": "For a scheduled timetable in the future, we use the Present Simple with -s for 'it' ('leaves'); after 'will' the verb never takes -s.",
+    "correctIndex": 2,
+    "explanation": "Per un orario fissato (l'inizio di un esame) in inglese si usa il Present Simple anche se si parla del futuro, con la -s per 'it' ('starts'). 'Start' manca della -s, 'will starts' è sbagliato perché dopo 'will' non c'è -s e 'starting' non è coniugato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q31",
     "prompt": "Choose the correct negative sentence:",
     "options": [
-      "There isn't no milk in the fridge.",
-      "There isn't any milk in the fridge.",
-      "There is any milk in the fridge.",
-      "There aren't any milk in the fridge."
+      "There isn't no sugar in my coffee.",
+      "There isn't any sugar in my coffee.",
+      "There aren't any sugar in my coffee.",
+      "There is any sugar in my coffee."
     ],
     "correctIndex": 1,
-    "explanation": "We use 'any' in negative sentences. 'Milk' is uncountable, so we use 'isn't'.",
+    "explanation": "'Sugar' non è numerabile, quindi 'there isn't', non 'aren't'. Nelle frasi negative si usa 'any' ('isn't any'); 'isn't no' è una doppia negazione e 'any' non si usa in una frase affermativa.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q32",
-    "prompt": "Complete the sentence: 'How long _____ you studied English?'",
-    "options": [
-      "did",
-      "do",
-      "are",
-      "have"
-    ],
-    "correctIndex": 3,
-    "explanation": "Present Perfect uses the auxiliary 'have' + past participle ('studied').",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q33",
-    "prompt": "Complete the sentence: 'Look! It _____.'",
-    "options": [
-      "is raining",
-      "rains",
-      "rain",
-      "rained"
-    ],
-    "correctIndex": 0,
-    "explanation": "'Look!' implies an action happening right now (Present Continuous).",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Present Continuous"
-  },
-  {
-    "id": "q34",
-    "prompt": "Complete the sentence: 'How many people _____ to the party?'",
-    "options": [
-      "did came",
-      "comes",
-      "came",
-      "comed"
-    ],
-    "correctIndex": 2,
-    "explanation": "When the question word ('How many people') is the subject, we don't use 'did'. We just use the past verb ('came'); 'come' is irregular, so 'comed' does not exist.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple"
-  },
-  {
-    "id": "q35",
-    "prompt": "Translate 'Questa è la cosa migliore che io abbia mai mangiato.'",
-    "options": [
-      "This is the better thing I have ever eaten.",
-      "This is the best thing I have ever eaten.",
-      "This is the goodest thing I have ever eaten.",
-      "This is the most good thing I have ever eaten."
-    ],
-    "correctIndex": 1,
-    "explanation": "The superlative of 'good' is irregular: 'the best'. 'Better' is the comparative, and 'goodest' / 'most good' do not exist.",
-    "category": "Traduzione",
-    "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
-  },
-  {
-    "id": "q36",
-    "prompt": "Translate 'Steven lavora per Microsoft.'",
-    "options": [
-      "Steven works for Microsoft.",
-      "Steven work to Microsoft.",
-      "Steven works to Microsoft.",
-      "Steven working for Microsoft."
-    ],
-    "correctIndex": 0,
-    "explanation": "The Present Simple third person singular requires -s ('works'), and a sentence always needs a conjugated verb. The preposition with a company is 'for'.",
-    "category": "Traduzione",
-    "level": "A1",
-    "grammarTopic": "Present Simple"
-  },
-  {
-    "id": "q37",
-    "prompt": "Complete the sentence: 'When _____ you meet Mr. Brown?'",
-    "options": [
-      "have",
-      "did",
-      "were",
-      "do"
-    ],
-    "correctIndex": 1,
-    "explanation": "'When' asks for a specific past time, so we use Past Simple auxiliary 'did'.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple"
-  },
-  {
-    "id": "q38",
-    "prompt": "Complete the sentence: 'John, where do you come _____?'",
-    "options": [
-      "to",
-      "by",
-      "from",
-      "of"
-    ],
-    "correctIndex": 2,
-    "explanation": "The phrase to ask about origins is 'Where do you come from?'",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "Questions and Origins"
-  },
-  {
-    "id": "q39",
-    "prompt": "Complete the sentence: 'Tom is away. He has been away _____ Monday.'",
-    "options": [
-      "for",
-      "since",
-      "from",
-      "until"
-    ],
-    "correctIndex": 1,
-    "explanation": "'Since' is used with a specific point in time (Monday) to show when an action started.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q40",
-    "prompt": "Translate 'Non mi è piaciuto il cibo inglese.'",
-    "options": [
-      "I haven't liked English food.",
-      "I wasn't like English food.",
-      "I didn't like English food.",
-      "I don't liked English food."
-    ],
-    "correctIndex": 2,
-    "explanation": "Past Simple negative uses 'didn't' + base verb ('like').",
-    "category": "Traduzione",
-    "level": "A2",
-    "grammarTopic": "Past Simple"
-  },
-  {
-    "id": "q41",
-    "prompt": "Complete the sentence: 'Hurry, the bus _____ in 2 minutes.'",
-    "options": [
-      "leaves",
-      "left",
-      "is leave",
-      "leaving"
-    ],
-    "correctIndex": 0,
-    "explanation": "We use Present Simple ('leaves') for timetabled future events.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Simple"
-  },
-  {
-    "id": "q42",
-    "prompt": "Complete the sentence: 'She's the most beautiful girl I've _____ seen.'",
-    "options": [
-      "never",
-      "always",
-      "ever",
-      "just"
-    ],
-    "correctIndex": 2,
-    "explanation": "'Ever' is used with Present Perfect to mean 'at any time in my life'.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q43",
-    "prompt": "Complete the sentence: 'I _____ to Africa in 2001.'",
-    "options": [
-      "have gone",
-      "was going",
-      "went",
-      "go"
-    ],
-    "correctIndex": 2,
-    "explanation": "Past Simple ('went') is required for a specific finished past time ('in 2001').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple"
-  },
-  {
-    "id": "q44",
-    "prompt": "Translate 'Hai conosciuto la moglie del signor Smith?'",
-    "options": [
-      "Did you met Mr. Smith's wife?",
-      "Have you met Mr. Smith's wife?",
-      "Do you meet Mr. Smith's wife?",
-      "Have you meet Mr. Smith's wife?"
-    ],
-    "correctIndex": 1,
-    "explanation": "Present Perfect ('Have you met') is used for life experiences when the time is not specified.",
-    "category": "Traduzione",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q45",
-    "prompt": "Translate 'Conosco Luca da quando eravamo bambini.'",
-    "options": [
-      "I have known Luca since we were children.",
-      "I know Luca since we were children.",
-      "I have known Luca for we were children.",
-      "I am knowing Luca since we were children."
-    ],
-    "correctIndex": 0,
-    "explanation": "With 'since' + a starting point, English uses the Present Perfect ('have known') for a state that is still true; Italian uses the present ('conosco'), but 'I know... since' is wrong.",
-    "category": "Traduzione",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q46",
-    "prompt": "Translate 'Non mi piace il trucco di Sara.'",
-    "options": [
-      "I don't like Sara makeup.",
-      "I don't like Sara's makeup.",
-      "I'm not like Sara's makeup.",
-      "I don't like the makeup of Sara."
-    ],
-    "correctIndex": 1,
-    "explanation": "We use the possessive 's (Sara's) to show belonging.",
-    "category": "Traduzione",
-    "level": "A1",
-    "grammarTopic": "Possessive S"
-  },
-  {
-    "id": "q47",
-    "prompt": "Complete the sentence: '_____ is a table in the room.'",
-    "options": [
-      "There",
-      "It",
-      "This",
-      "Here"
-    ],
-    "correctIndex": 0,
-    "explanation": "We use 'There is' to express existence.",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "There is / There are"
-  },
-  {
-    "id": "q48",
-    "prompt": "Complete the sentence: 'He _____ his homework right now.'",
-    "options": [
-      "doing",
-      "does",
-      "is doing",
-      "do"
-    ],
-    "correctIndex": 2,
-    "explanation": "'Right now' indicates Present Continuous ('is doing').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Present Continuous"
-  },
-  {
-    "id": "q49",
-    "prompt": "Choose the correct sentence:",
-    "options": [
-      "If it rains, we will stay home.",
-      "If it will rain, we stay home.",
-      "If it rains, we would stay home.",
-      "If it rain, we will stay home."
-    ],
-    "correctIndex": 0,
-    "explanation": "First Conditional: If + Present Simple, will + base verb. We don't use 'will' in the if-clause, and 'would' belongs to the Second Conditional.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "First Conditional"
-  },
-  {
-    "id": "q50",
-    "prompt": "Complete the sentence: 'I _____ playing tennis since I was a child.'",
-    "options": [
-      "am",
-      "have been",
-      "was",
-      "had been"
-    ],
-    "correctIndex": 1,
-    "explanation": "'Since' + a point in the past requires the Present Perfect Continuous ('have been playing').",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q51",
-    "prompt": "Complete the sentence: 'Where _____ your last summer holiday?'",
-    "options": [
-      "did you spend",
-      "you spent",
-      "did you spent",
-      "do you spent"
-    ],
-    "correctIndex": 0,
-    "explanation": "Past Simple questions with a question word use 'did' + subject + base form ('did you spend'); after 'did' the verb never goes into the past form.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple"
-  },
-  {
-    "id": "q52",
-    "prompt": "Choose the correct sentence for comparing two cities:",
-    "options": [
-      "New York is more much modern than London.",
-      "New York is much more modern than London.",
-      "New York is most modern than London.",
-      "New York is much moderner than London."
-    ],
-    "correctIndex": 1,
-    "explanation": "To emphasize a comparative, we use 'much' before the comparative form ('much more modern').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
-  },
-  {
-    "id": "q54",
-    "prompt": "Complete the sentence: 'The sun _____ in the east and sets in the west.'",
-    "options": [
-      "rises",
-      "is rising",
-      "rise",
-      "rised"
-    ],
-    "correctIndex": 0,
-    "explanation": "We use the Present Simple for general truths and facts; with a third person singular subject the verb takes -s ('rises').",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Simple"
-  },
-  {
-    "id": "q55",
-    "prompt": "Complete the sentence: 'Have you ever _____ to Brazil?'",
-    "options": [
-      "been",
-      "gone",
-      "go",
-      "went"
-    ],
-    "correctIndex": 0,
-    "explanation": "We use 'been to' to mean 'visited and returned'.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q56",
-    "prompt": "Complete the sentence: 'Is she _____ with friends?'",
-    "options": [
-      "gone",
-      "go",
-      "going",
-      "goes"
-    ],
-    "correctIndex": 2,
-    "explanation": "The auxiliary 'Is' indicates Present Continuous, which requires the -ing form ('going').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Present Continuous"
-  },
-  {
-    "id": "q57",
-    "prompt": "Translate 'Hai mai mangiato sushi?'",
-    "options": [
-      "Have you ever eaten sushi?",
-      "Did you ever eat sushi?",
-      "Are you ever eat sushi?",
-      "Have you never eat sushi?"
-    ],
-    "correctIndex": 0,
-    "explanation": "We use Present Perfect ('Have you ever eaten') for life experiences.",
-    "category": "Traduzione",
-    "level": "B1",
-    "grammarTopic": "Present Perfect"
-  },
-  {
-    "id": "q58",
-    "prompt": "Complete the sentence: 'She _____ just finished her homework.'",
+    "prompt": "Complete the sentence: 'How long _____ your brother lived in London?'",
     "options": [
       "has",
       "have",
@@ -867,40 +523,459 @@ export const questions: Question[] = [
       "is"
     ],
     "correctIndex": 0,
-    "explanation": "'Just' is often used with Present Perfect, and 'She' takes 'has'.",
+    "explanation": "Il Present Perfect si forma con have/has + participio passato. 'Your brother' è terza persona singolare, quindi 'has'. 'Have' non concorda con il soggetto, 'did' vorrebbe il verbo base e 'is' non si usa qui.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Perfect"
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
+  },
+  {
+    "id": "q33",
+    "prompt": "Complete the sentence: 'Listen! Someone _____ at the door.'",
+    "options": [
+      "knocks",
+      "knock",
+      "knocked",
+      "is knocking"
+    ],
+    "correctIndex": 3,
+    "explanation": "'Listen!' indica che l'azione è in corso adesso: Present Continuous, 'is knocking'. Il presente semplice ('knocks') descrive abitudini, 'knock' manca della -s e 'knocked' è un passato.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
+  },
+  {
+    "id": "q34",
+    "prompt": "Complete the sentence: 'Who _____ the window in the kitchen?'",
+    "options": [
+      "did broke",
+      "breaked",
+      "broke",
+      "has broke"
+    ],
+    "correctIndex": 2,
+    "explanation": "Quando 'who' è il soggetto della domanda non si usa 'did': il verbo va direttamente al passato ('Who broke...?'). 'Break' è irregolare, quindi 'breaked' non esiste; 'did broke' e 'has broke' sono forme errate.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
+  },
+  {
+    "id": "q35",
+    "prompt": "Choose the correct translation for 'Questa è la città più bella che io abbia mai visitato.'",
+    "options": [
+      "This is the more beautiful city I have ever visited.",
+      "This is the most beautiful city I have ever visited.",
+      "This is the beautifullest city I have ever visited.",
+      "This is the most beautifully city I have ever visited."
+    ],
+    "correctIndex": 1,
+    "explanation": "'Beautiful' è un aggettivo lungo: il superlativo si fa con 'the most + aggettivo'. 'More' è un comparativo, '-est' non si aggiunge ad aggettivi lunghi e 'beautifully' è un avverbio, non può stare davanti a un nome.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
+  },
+  {
+    "id": "q36",
+    "prompt": "Choose the correct translation for 'Mio fratello gioca a calcio ogni sabato.'",
+    "options": [
+      "My brother plays football every Saturday.",
+      "My brother play football every Saturday.",
+      "My brother is play football every Saturday.",
+      "My brother plays to football every Saturday."
+    ],
+    "correctIndex": 0,
+    "explanation": "Un'abitudine (ogni sabato) si esprime con il Present Simple, e alla terza persona singolare il verbo prende la -s ('plays'). Con gli sport si dice 'play football', senza preposizione, e non si mescola 'is' con il verbo base.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
+  },
+  {
+    "id": "q37",
+    "prompt": "Complete the sentence: 'What time _____ the film finish last night?'",
+    "options": [
+      "do",
+      "have",
+      "did",
+      "was"
+    ],
+    "correctIndex": 2,
+    "explanation": "Per una domanda su un momento passato si usa l'ausiliare 'did' seguito dal verbo base. 'Do' è presente, 'have' vorrebbe il participio e 'was' non si combina con 'finish'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
+  },
+  {
+    "id": "q38",
+    "prompt": "Complete the sentence: 'Excuse me, where is your friend _____? Is he Spanish?'",
+    "options": [
+      "of",
+      "from",
+      "by",
+      "at"
+    ],
+    "correctIndex": 1,
+    "explanation": "Per chiedere la provenienza si usa la preposizione 'from' ('Where is he from?'). 'Of', 'by' e 'at' non hanno questo significato.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins"
+  },
+  {
+    "id": "q39",
+    "prompt": "Complete the sentence: 'The shop has been closed _____ last Tuesday.'",
+    "options": [
+      "for",
+      "since",
+      "from",
+      "until"
+    ],
+    "correctIndex": 1,
+    "explanation": "Con il Present Perfect e un punto preciso nel tempo ('last Tuesday') si usa 'since'. 'For' vuole una durata (for three days), 'from' non regge il Present Perfect in questo modo e 'until' indica un limite finale.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
+  },
+  {
+    "id": "q40",
+    "prompt": "Choose the correct translation for 'Ieri non ho studiato per l'esame.'",
+    "options": [
+      "I didn't study for the exam yesterday.",
+      "I didn't studied for the exam yesterday.",
+      "I wasn't study for the exam yesterday.",
+      "I don't studied for the exam yesterday."
+    ],
+    "correctIndex": 0,
+    "explanation": "La negazione del Past Simple si fa con 'didn't' + verbo base: 'I didn't study'. Il passato lo porta già 'didn't', quindi 'studied' è un errore; 'wasn't' e 'don't' non sono corretti qui.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
+  },
+  {
+    "id": "q41",
+    "prompt": "Complete the sentence: 'The last ferry to the island _____ at 11 p.m., so we mustn't miss it.'",
+    "options": [
+      "leaving",
+      "leave",
+      "left",
+      "leaves"
+    ],
+    "correctIndex": 3,
+    "explanation": "Per un orario ufficiale (l'ultimo traghetto) si usa il Present Simple, con la -s per la terza persona ('leaves'). 'Leave' manca della -s, 'left' è un passato e 'leaving' non è coniugato.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
+  },
+  {
+    "id": "q42",
+    "prompt": "Complete the sentence: 'He is the kindest teacher I have _____ met.'",
+    "options": [
+      "never",
+      "always",
+      "ever",
+      "still"
+    ],
+    "correctIndex": 2,
+    "explanation": "Dopo un superlativo con il Present Perfect si usa 'ever' ('il più gentile che abbia mai incontrato'). 'Never' contraddice il senso, 'always' e 'still' non hanno senso con 'met'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
+  },
+  {
+    "id": "q43",
+    "prompt": "Complete the sentence: 'Our team _____ the national cup in 2016.'",
+    "options": [
+      "won",
+      "wins",
+      "has won",
+      "was winning"
+    ],
+    "correctIndex": 0,
+    "explanation": "Con un anno preciso nel passato serve il Past Simple: 'won'. 'Wins' è un presente, 'has won' non si usa con un anno concluso e 'was winning' indicherebbe un'azione in corso.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
+  },
+  {
+    "id": "q44",
+    "prompt": "Choose the correct translation for 'Hai già conosciuto il nuovo professore?'",
+    "options": [
+      "Did you already met the new professor?",
+      "Have you already met the new professor?",
+      "Have you already meet the new professor?",
+      "Are you already meeting the new professor?"
+    ],
+    "correctIndex": 1,
+    "explanation": "Per un'esperienza senza tempo preciso si usa il Present Perfect: 'Have you already met...?' con il participio 'met'. Dopo 'did' il verbo andrebbe alla forma base, 'meet' non è un participio e 'are you meeting' parla di un incontro in corso.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
+  },
+  {
+    "id": "q45",
+    "prompt": "Choose the correct translation for 'Lavoro qui da tre anni.'",
+    "options": [
+      "I have worked here for three years.",
+      "I work here since three years.",
+      "I have worked here since three years.",
+      "I am working here for three years."
+    ],
+    "correctIndex": 0,
+    "explanation": "Una situazione iniziata nel passato e ancora in corso si esprime con il Present Perfect. Con una durata (tre anni) si usa 'for', mentre 'since' vuole un punto di partenza. In italiano si dice 'lavoro', ma in inglese il presente semplice non va con 'for/since'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
+  },
+  {
+    "id": "q46",
+    "prompt": "Choose the correct translation for 'Mi piace la macchina di Paolo.'",
+    "options": [
+      "I like Paolo car.",
+      "I like the car's Paolo.",
+      "I like Paolo's car.",
+      "I'm like Paolo's car."
+    ],
+    "correctIndex": 2,
+    "explanation": "Il possesso si esprime con nome + 's ('Paolo's car'), senza articolo davanti. Senza 's manca il possessivo, l'ordine inverso è sbagliato e 'I'm like' non significa 'mi piace' (si dice 'I like').",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
+  },
+  {
+    "id": "q47",
+    "prompt": "Complete the sentence: 'In my town _____ are three cinemas.'",
+    "options": [
+      "It",
+      "This",
+      "That",
+      "There"
+    ],
+    "correctIndex": 3,
+    "explanation": "Per dire che qualcosa esiste si usa 'there is/there are'. 'It', 'this' e 'that' non introducono un'esistenza e non vanno con 'are' in questa frase.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
+  },
+  {
+    "id": "q48",
+    "prompt": "Complete the sentence: 'My parents _____ dinner in the kitchen at the moment.'",
+    "options": [
+      "are cooking",
+      "cook",
+      "cooking",
+      "cooks"
+    ],
+    "correctIndex": 0,
+    "explanation": "'At the moment' indica un'azione in corso adesso, quindi Present Continuous: 'are' + verbo in -ing. 'Cook' e 'cooks' sono presenti semplici (abitudini) e 'cooking' da solo non ha l'ausiliare.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
+  },
+  {
+    "id": "q49",
+    "prompt": "Choose the correct sentence:",
+    "options": [
+      "If the weather will be nice tomorrow, we go to the beach.",
+      "If the weather is nice tomorrow, we would go to the beach.",
+      "If the weather is nice tomorrow, we will go to the beach.",
+      "If the weather be nice tomorrow, we will go to the beach."
+    ],
+    "correctIndex": 2,
+    "explanation": "Il primo condizionale si forma con 'if + Present Simple' e 'will + verbo base' nella principale. Nella frase con 'if' non si mette 'will', 'would' appartiene al secondo condizionale e 'be' senza 'is' non è corretto.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional"
+  },
+  {
+    "id": "q50",
+    "prompt": "Complete the sentence: 'She _____ learning Chinese since she was twelve.'",
+    "options": [
+      "is",
+      "has been",
+      "was",
+      "had been"
+    ],
+    "correctIndex": 1,
+    "explanation": "'Since' con un punto di partenza nel passato e un'azione ancora in corso richiede il Present Perfect Continuous: 'has been learning'. 'Is' e 'was' non reggono 'since', e 'had been' si usa solo se c'è un altro momento passato di riferimento.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
+  },
+  {
+    "id": "q51",
+    "prompt": "Complete the sentence: 'What _____ for dinner last night?'",
+    "options": [
+      "did you cook",
+      "you cooked",
+      "did you cooked",
+      "are you cooking"
+    ],
+    "correctIndex": 0,
+    "explanation": "Nelle domande al Past Simple si usa 'did + soggetto + verbo base': 'What did you cook...?'. Senza 'did' la domanda non è formata, dopo 'did' il verbo non va al passato e 'are you cooking' è un presente.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
+  },
+  {
+    "id": "q52",
+    "prompt": "Choose the correct sentence for comparing two phones:",
+    "options": [
+      "This phone is more much cheaper than that one.",
+      "This phone is very cheaper than that one.",
+      "This phone is much cheaper as that one.",
+      "This phone is much cheaper than that one."
+    ],
+    "correctIndex": 3,
+    "explanation": "Per rafforzare un comparativo si mette 'much' davanti ('much cheaper') e il secondo termine si introduce con 'than'. 'Very' non si usa con i comparativi, 'more much' è nell'ordine sbagliato e 'as' non va con il comparativo.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
+  },
+  {
+    "id": "q53",
+    "prompt": "Complete the sentence: 'Anna is ill. She _____ in bed since Sunday.'",
+    "options": [
+      "was",
+      "is",
+      "has been",
+      "had been"
+    ],
+    "correctIndex": 2,
+    "explanation": "'Since Sunday' collega il passato al presente, quindi serve il Present Perfect: 'has been'. 'Was' e 'is' non vanno con 'since' e 'had been' ha bisogno di un altro momento passato di riferimento.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
+  },
+  {
+    "id": "q54",
+    "prompt": "Complete the sentence: 'The Moon _____ around the Earth every 27 days.'",
+    "options": [
+      "go",
+      "goes",
+      "went",
+      "is going"
+    ],
+    "correctIndex": 1,
+    "explanation": "Per un fatto che è sempre vero si usa il Present Simple, con la -s alla terza persona singolare: 'the Moon goes'. 'Go' manca della -s, 'went' è un passato e 'is going' descrive un'azione in corso, non un fatto ripetuto 'ogni 27 giorni'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
+  },
+  {
+    "id": "q55",
+    "prompt": "Complete the sentence: 'Where is Paolo?' - 'He has _____ to the supermarket. He'll be back in ten minutes.'",
+    "options": [
+      "been",
+      "go",
+      "went",
+      "gone"
+    ],
+    "correctIndex": 3,
+    "explanation": "'Has gone to' significa che è andato e non è ancora tornato; 'has been to' vuol dire che c'è stato ed è tornato. Qui Paolo non c'è ancora, quindi 'gone'. 'Go' e 'went' non sono participi passati.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
+  },
+  {
+    "id": "q56",
+    "prompt": "Complete the sentence: 'Are they _____ the match on TV?'",
+    "options": [
+      "watching",
+      "watch",
+      "watched",
+      "watches"
+    ],
+    "correctIndex": 0,
+    "explanation": "L'ausiliare 'are' introduce il Present Continuous, che vuole la forma in -ing: 'Are they watching...?'. Le altre forme non vanno dopo 'are'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
+  },
+  {
+    "id": "q57",
+    "prompt": "Choose the correct translation for 'Hai mai suonato la chitarra?'",
+    "options": [
+      "Did you ever played the guitar?",
+      "Are you ever played the guitar?",
+      "Have you ever played the guitar?",
+      "Have you never played the guitar?"
+    ],
+    "correctIndex": 2,
+    "explanation": "Per chiedere di un'esperienza di vita si usa il Present Perfect con 'ever': 'Have you ever played...?'. 'Did you ever played' ha il verbo al passato dopo 'did', 'are' non forma questo tempo e 'never' significa 'non... mai', non 'mai' in una domanda.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
+  },
+  {
+    "id": "q58",
+    "prompt": "Complete the sentence: 'The plane _____ just landed.'",
+    "options": [
+      "have",
+      "has",
+      "is",
+      "did"
+    ],
+    "correctIndex": 1,
+    "explanation": "'Just' si usa tipicamente con il Present Perfect: 'has just landed'. 'The plane' è singolare, quindi 'has' e non 'have'; 'is' e 'did' non si combinano con il participio 'landed' in questo modo.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
   },
   {
     "id": "q59",
-    "prompt": "Translate 'Non abbiamo ancora visto quel film.'",
+    "prompt": "Choose the correct translation for 'Marta non ha ancora risposto alla mia email.'",
     "options": [
-      "We haven't seen that movie yet.",
-      "We didn't see that movie yet.",
-      "We don't see that movie yet.",
-      "We haven't saw that movie yet."
+      "Marta hasn't answered my email yet.",
+      "Marta haven't answered my email yet.",
+      "Marta doesn't answer my email yet.",
+      "Marta hasn't answer my email yet."
     ],
     "correctIndex": 0,
-    "explanation": "Present perfect negative with 'yet' for something expected to happen.",
+    "explanation": "Per qualcosa di atteso che non è ancora successo si usa il Present Perfect negativo con 'yet': 'hasn't answered'. Con 'Marta' serve 'hasn't' (non 'haven't'), il verbo deve essere al participio, e il presente semplice non esprime 'non ancora'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Present Perfect"
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
   },
   {
     "id": "q60",
-    "prompt": "Complete the sentence: '_____ you ever flown in a helicopter?'",
+    "prompt": "Complete the sentence: '_____ your parents ever visited Scotland?'",
     "options": [
-      "Have",
+      "Has",
       "Did",
-      "Do",
-      "Are"
+      "Are",
+      "Have"
     ],
-    "correctIndex": 0,
-    "explanation": "Present Perfect is used for asking about life experiences.",
+    "correctIndex": 3,
+    "explanation": "Il Present Perfect si forma con have/has + participio. 'Your parents' è plurale, quindi 'Have'. 'Has' non concorda, 'did' vorrebbe il verbo base e 'are' non forma questo tempo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Perfect"
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
   },
   {
     "id": "q61",
@@ -912,10 +987,11 @@ export const questions: Question[] = [
       "He have lived here for ten years."
     ],
     "correctIndex": 0,
-    "explanation": "Italian 'vive qui da' + a period of time becomes the Present Perfect + 'for' in English ('has lived here for ten years'), because the state started in the past and continues now. 'Since' needs a starting point, not a period.",
+    "explanation": "Se un'azione iniziata nel passato continua ancora oggi (\"vive qui da dieci anni\") si usa il Present Perfect, non il presente. Dopo \"da\" con un periodo di tempo (dieci anni) in inglese si usa 'for'; 'since' vuole un punto di partenza preciso. 'He have' è sbagliato perché con 'he' serve 'has'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Present Perfect"
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect"
   },
   {
     "id": "q62",
@@ -927,10 +1003,11 @@ export const questions: Question[] = [
       "There have many cars on the street today."
     ],
     "correctIndex": 0,
-    "explanation": "We use 'There are' for plural existence.",
+    "explanation": "Per dire che qualcosa esiste o è presente, con un nome plurale (many cars) si usa 'There are'. 'They are' significa \"loro sono\" e non traduce \"ci sono\"; 'There is' e 'There have' non vanno con il plurale.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q63",
@@ -942,10 +1019,11 @@ export const questions: Question[] = [
       "There are"
     ],
     "correctIndex": 0,
-    "explanation": "'Milk' is uncountable, so we use 'Is there'.",
+    "explanation": "'Milk' è un nome non numerabile, quindi singolare: la domanda si fa con 'Is there'. Nella domanda l'ordine si inverte (Is there...?), per cui 'There is' e 'There are' sono forme affermative e non vanno qui.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q64",
@@ -954,13 +1032,14 @@ export const questions: Question[] = [
       "There is no problem.",
       "There isn't no problem.",
       "There are no problem.",
-      "It isn't a problem."
+      "There have no problem."
     ],
     "correctIndex": 0,
-    "explanation": "Singular negative existence.",
+    "explanation": "\"Non c'è nessun problema\" si dice 'There is no problem': 'no' contiene già la negazione, quindi non si aggiunge 'isn't' (doppia negazione). 'There are' non va con 'problem', che è singolare, e 'there have' non esiste: \"c'è/ci sono\" si traduce con 'there is/are'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q65",
@@ -972,10 +1051,11 @@ export const questions: Question[] = [
       "It is"
     ],
     "correctIndex": 0,
-    "explanation": "Plural affirmative existence.",
+    "explanation": "'Some apples' è plurale, quindi si dice 'There are some apples'. 'There is' è per il singolare, mentre 'They are' e 'It is' non servono a dire che qualcosa si trova da qualche parte.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q66",
@@ -987,10 +1067,11 @@ export const questions: Question[] = [
       "Does there a dog in the garden?"
     ],
     "correctIndex": 0,
-    "explanation": "Question form for singular existence.",
+    "explanation": "La domanda con \"c'è\" si forma invertendo: 'Is there a dog...?'. 'Are there' è plurale e non va con 'a dog', 'There is...?' non inverte, e 'Does there' non esiste perché 'there is' non usa 'do'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q67",
@@ -998,14 +1079,15 @@ export const questions: Question[] = [
     "options": [
       "went",
       "go",
-      "was going",
+      "am going",
       "have gone"
     ],
     "correctIndex": 0,
-    "explanation": "Past simple for a finished action at a specific time in the past.",
+    "explanation": "'Yesterday' indica un momento finito nel passato, quindi serve il Past Simple: 'went' (passato irregolare di 'go'). 'Go' e 'am going' sono presenti, e il Present Perfect ('have gone') non si usa con un tempo preciso come 'yesterday'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q68",
@@ -1017,10 +1099,11 @@ export const questions: Question[] = [
       "They haven't study for the exam."
     ],
     "correctIndex": 0,
-    "explanation": "Past simple negative uses 'didn't' + base verb.",
+    "explanation": "La negazione del Past Simple si forma con 'didn't' + verbo base (study), senza -ed: 'They didn't study'. In 'don't studied' e 'haven't study' il verbo o l'ausiliare sono sbagliati, e 'wasn't' non si usa con 'they'.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q69",
@@ -1032,10 +1115,11 @@ export const questions: Question[] = [
       "Were"
     ],
     "correctIndex": 0,
-    "explanation": "Past simple question uses auxiliary 'did'.",
+    "explanation": "Nelle domande al Past Simple l'ausiliare è 'Did' e il verbo resta alla forma base (Did you see...?). 'Do' è presente, 'Have' vorrebbe il participio passato (seen) e 'Were' non si usa con 'see'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q70",
@@ -1047,10 +1131,11 @@ export const questions: Question[] = [
       "She have bought a new phone last week."
     ],
     "correctIndex": 0,
-    "explanation": "The Past Simple of the irregular verb 'buy' is 'bought'; 'buyed' does not exist, and 'last week' excludes the Present Perfect.",
+    "explanation": "'Last week' indica un momento passato concluso, quindi si usa il Past Simple; 'buy' è irregolare e fa 'bought' ('buyed' non esiste). 'Buys' è un presente e 'have bought' (Present Perfect) non si usa con 'last week'.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q71",
@@ -1062,10 +1147,11 @@ export const questions: Question[] = [
       "have been"
     ],
     "correctIndex": 0,
-    "explanation": "Past simple of 'to be' for 'we' is 'were'.",
+    "explanation": "Il Past Simple di 'to be' con 'we' è 'were' (was è solo per I/he/she/it). 'Did be' non esiste, perché 'be' non usa 'did' qui, e 'have been' non è un passato semplice.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q72",
@@ -1077,10 +1163,11 @@ export const questions: Question[] = [
       "When have you arrived?"
     ],
     "correctIndex": 0,
-    "explanation": "Question word + did + subject + base verb.",
+    "explanation": "Nelle domande con una parola interrogativa al Past Simple: parola interrogativa + did + soggetto + verbo base (When did you arrive?). Senza 'did' la frase è sbagliata, e 'do' o 'have' non corrispondono al passato semplice.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple"
   },
   {
     "id": "q73",
@@ -1092,10 +1179,11 @@ export const questions: Question[] = [
       "am work"
     ],
     "correctIndex": 0,
-    "explanation": "Action happening right now requires present continuous.",
+    "explanation": "\"Please be quiet\" indica che l'azione si sta svolgendo ora, quindi serve il Present Continuous: am/is/are + verbo in -ing (I am working). 'Working' da solo manca di 'am', 'work' è il presente semplice e 'am work' non è una forma corretta.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q74",
@@ -1107,10 +1195,11 @@ export const questions: Question[] = [
       "What are they do?"
     ],
     "correctIndex": 0,
-    "explanation": "Present continuous question format.",
+    "explanation": "La domanda nel Present Continuous è: parola interrogativa + are/is + soggetto + verbo in -ing (What are they doing?). 'What do they do?' chiede cosa fanno di solito (professione o abitudine), mentre gli altri due ordinano male la frase o usano 'do' senza -ing.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q75",
@@ -1122,10 +1211,11 @@ export const questions: Question[] = [
       "listen"
     ],
     "correctIndex": 0,
-    "explanation": "'At the moment' indicates an ongoing action.",
+    "explanation": "'At the moment' indica un'azione in corso ora: serve il Present Continuous, 'She is listening'. 'Listens' è per le abitudini, mentre 'listening' senza 'is' e 'listen' senza -s non sono frasi corrette.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q76",
@@ -1137,10 +1227,11 @@ export const questions: Question[] = [
       "I not reading a book, I watching TV."
     ],
     "correctIndex": 0,
-    "explanation": "Present continuous for current contrasting actions.",
+    "explanation": "Per due azioni in corso adesso si usa il Present Continuous: 'I'm not reading, I'm watching'. Il presente semplice ('I don't read') esprime un'abitudine; 'not read' e 'I not reading' mancano dell'ausiliare corretto.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q77",
@@ -1152,25 +1243,27 @@ export const questions: Question[] = [
       "Do"
     ],
     "correctIndex": 0,
-    "explanation": "Auxiliary 'to be' is used for present continuous questions.",
+    "explanation": "Il Present Continuous si forma con 'to be' + -ing (it is raining), quindi la domanda comincia con 'Is it raining...?'. Con 'it' non vanno 'Does' e 'Do' (che vorrebbero il verbo base), né 'Are' (che va con you/we/they).",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q78",
     "prompt": "Complete the sentence: 'If you study hard, you _____ the exam.'",
     "options": [
       "will pass",
-      "pass",
+      "will passing",
       "would pass",
       "passed"
     ],
     "correctIndex": 0,
-    "explanation": "First conditional: If + present simple, will + base verb.",
+    "explanation": "Nel First Conditional (condizione reale e possibile) si usa if + presente semplice nella frase con 'if' e 'will' + verbo base nella principale: 'you will pass'. 'Would pass' è per situazioni ipotetiche, 'passed' è un passato e 'will passing' è sbagliato perché dopo 'will' serve il verbo base.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional"
   },
   {
     "id": "q79",
@@ -1182,10 +1275,11 @@ export const questions: Question[] = [
       "If it rains, we didn't go to the beach."
     ],
     "correctIndex": 0,
-    "explanation": "First conditional structure.",
+    "explanation": "Nel First Conditional il verbo dopo 'if' è al presente (it rains) e la principale ha 'will' (we won't go). 'If it will rain' è sbagliato perché dopo 'if' non si usa 'will', 'it rain' manca della -s e 'didn't' è un passato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional"
   },
   {
     "id": "q80",
@@ -1197,10 +1291,11 @@ export const questions: Question[] = [
       "hearing"
     ],
     "correctIndex": 0,
-    "explanation": "The 'if' clause uses the present simple.",
+    "explanation": "Dopo 'if' si usa il presente semplice anche se si parla del futuro: 'if I hear'. 'Will hear' dopo 'if' è un errore tipico, mentre 'heard' e 'hearing' non sono le forme richieste.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional"
   },
   {
     "id": "q81",
@@ -1212,10 +1307,11 @@ export const questions: Question[] = [
       "What will you do if you missed the train?"
     ],
     "correctIndex": 0,
-    "explanation": "First conditional question.",
+    "explanation": "La domanda del First Conditional ha 'will' nella principale e il presente semplice dopo 'if': 'What will you do if you miss the train?'. 'Would' e 'missed' appartengono a un'ipotesi irreale, e dopo 'if' non va 'will miss'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional"
   },
   {
     "id": "q82",
@@ -1227,10 +1323,11 @@ export const questions: Question[] = [
       "didn't"
     ],
     "correctIndex": 0,
-    "explanation": "Negative present simple in the 'if' clause.",
+    "explanation": "Con 'she' (terza persona singolare) la negazione del presente semplice si fa con 'doesn't': 'If she doesn't invite me'. 'Don't' va con I/you/we/they, 'won't' non si usa dopo 'if' in questo caso e 'didn't' è un passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional"
   },
   {
     "id": "q83",
@@ -1242,10 +1339,11 @@ export const questions: Question[] = [
       "If you don't hurry, we would be late."
     ],
     "correctIndex": 0,
-    "explanation": "First conditional with negative condition.",
+    "explanation": "Nel First Conditional: if + presente (anche negativo, 'don't hurry') e 'will' nella principale (we will be late). 'Won't hurry' dopo 'if' è sbagliato, 'aren't hurry' mescola 'to be' e un verbo, e 'would be' appartiene all'ipotesi irreale.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional"
   },
   {
     "id": "q84",
@@ -1257,10 +1355,11 @@ export const questions: Question[] = [
       "more large"
     ],
     "correctIndex": 0,
-    "explanation": "Superlative of short adjectives adds -est.",
+    "explanation": "Il superlativo degli aggettivi corti si forma con 'the' + -est: 'the largest'. 'Larger' è un comparativo (serve 'than'), mentre 'most large' e 'more large' non si usano con un aggettivo corto.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q85",
@@ -1272,10 +1371,11 @@ export const questions: Question[] = [
       "English is much easy than Chinese."
     ],
     "correctIndex": 0,
-    "explanation": "Comparative for 'easy' is 'easier', followed by 'than'.",
+    "explanation": "Il comparativo di maggioranza di 'easy' è 'easier' (la -y diventa -ier), seguito da 'than'. 'More easy' non si usa con un aggettivo corto, 'easiest' è il superlativo e 'much easy' non è un comparativo.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q86",
@@ -1287,10 +1387,11 @@ export const questions: Question[] = [
       "very"
     ],
     "correctIndex": 0,
-    "explanation": "Long adjectives use 'more' for comparative.",
+    "explanation": "Con gli aggettivi lunghi (interesting) il comparativo si forma con 'more' + aggettivo + 'than'. 'Most' è il superlativo, 'much' e 'very' non formano un comparativo e non possono stare prima di 'interesting than'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q87",
@@ -1302,10 +1403,11 @@ export const questions: Question[] = [
       "It's the most bad movie I've ever seen."
     ],
     "correctIndex": 0,
-    "explanation": "Superlative of 'bad' is 'worst'.",
+    "explanation": "'Bad' ha il comparativo e il superlativo irregolari: 'worse' e 'the worst'. 'The worse' è un comparativo, mentre 'baddest' e 'most bad' non esistono in inglese standard.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q88",
@@ -1317,10 +1419,11 @@ export const questions: Question[] = [
       "more tall"
     ],
     "correctIndex": 0,
-    "explanation": "Comparative of 'tall' is 'taller'. 'Much' emphasizes it.",
+    "explanation": "Dopo 'much' serve un comparativo, e il comparativo di 'tall' è 'taller' (+ than). 'Tall' è la forma base, 'tallest' è il superlativo e 'more tall' non si usa con un aggettivo corto.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q89",
@@ -1332,10 +1435,11 @@ export const questions: Question[] = [
       "This is most expensive city in Europe."
     ],
     "correctIndex": 0,
-    "explanation": "Superlative of long adjectives uses 'the most'.",
+    "explanation": "Con un aggettivo lungo (expensive) il superlativo si forma con 'the most': 'the most expensive city'. 'The more' è un comparativo, 'expensivest' non esiste e senza 'the' la frase è incompleta.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q90",
@@ -1347,10 +1451,11 @@ export const questions: Question[] = [
       "during"
     ],
     "correctIndex": 0,
-    "explanation": "'For' is used for a duration or period of time.",
+    "explanation": "Con un periodo di tempo (three years) si usa 'for'; 'since' vuole invece un punto di partenza (since 2020). 'From' e 'during' non si usano così con un'azione che dura fino ad ora.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Prepositions of Time"
+    "grammarTopic": "Prepositions of Time",
+    "theoryId": "prepositions-time"
   },
   {
     "id": "q91",
@@ -1362,10 +1467,11 @@ export const questions: Question[] = [
       "He has worked in that bank for 2015."
     ],
     "correctIndex": 0,
-    "explanation": "'Since' refers to the starting point of an action.",
+    "explanation": "\"Dal 2015\" indica un punto di partenza preciso, quindi si usa 'since' con il Present Perfect: 'has worked ... since 2015'. 'From 2015' con il presente è scorretto, 'worked' al passato indica un lavoro finito e 'for 2015' è sbagliato perché 2015 non è una durata.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Prepositions of Time"
+    "grammarTopic": "Prepositions of Time",
+    "theoryId": "prepositions-time"
   },
   {
     "id": "q92",
@@ -1377,10 +1483,11 @@ export const questions: Question[] = [
       "until"
     ],
     "correctIndex": 0,
-    "explanation": "'Yesterday morning' is a specific point in time, so we use 'since'.",
+    "explanation": "'Yesterday morning' è un momento preciso nel passato, cioè un punto di partenza: si usa 'since' con il Present Perfect (hasn't eaten). 'For' vuole invece una durata (for two days), e 'from' e 'until' non vanno bene qui.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Prepositions of Time"
+    "grammarTopic": "Prepositions of Time",
+    "theoryId": "prepositions-time"
   },
   {
     "id": "q93",
@@ -1392,10 +1499,11 @@ export const questions: Question[] = [
       "We wait for two hours."
     ],
     "correctIndex": 0,
-    "explanation": "Duration (two hours) requires 'for'.",
+    "explanation": "\"Due ore\" è una durata, quindi si usa 'for': 'We have been waiting for two hours'. 'Since two hours' è un errore tipico, perché 'since' vuole un punto di partenza (since 8 o'clock). Il presente semplice 'We wait' non esprime \"da due ore\".",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Prepositions of Time"
+    "grammarTopic": "Prepositions of Time",
+    "theoryId": "prepositions-time"
   },
   {
     "id": "q94",
@@ -1407,10 +1515,11 @@ export const questions: Question[] = [
       "from"
     ],
     "correctIndex": 0,
-    "explanation": "'A long time' is a period of time, so we use 'for'; 'since' needs a starting point ('since Monday'), and 'during'/'from' don't work with the Present Perfect here.",
+    "explanation": "'A long time' è una durata, quindi si usa 'for' (I haven't seen him for a long time). 'Since' richiederebbe un punto di partenza (since Monday), mentre 'during' e 'from' non si usano in questa frase.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Prepositions of Time"
+    "grammarTopic": "Prepositions of Time",
+    "theoryId": "prepositions-time"
   },
   {
     "id": "q95",
@@ -1422,10 +1531,11 @@ export const questions: Question[] = [
       "waked"
     ],
     "correctIndex": 0,
-    "explanation": "Routines require Present Simple, third person adds -s.",
+    "explanation": "'Usually' indica un'abitudine, quindi si usa il presente semplice; con 'he' il verbo prende la -s: 'wakes'. 'Wake' non ha la -s, 'is waking' è un'azione in corso e 'waked' non è un passato corretto.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q96",
@@ -1437,10 +1547,11 @@ export const questions: Question[] = [
       "My parents not live in London."
     ],
     "correctIndex": 0,
-    "explanation": "Plural subject negative uses 'don't'.",
+    "explanation": "Con un soggetto plurale (my parents) la negazione del presente semplice è 'don't' + verbo base. 'Doesn't' è solo per he/she/it, 'aren't live' mescola 'to be' e un verbo, e 'not live' manca dell'ausiliare.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q97",
@@ -1452,10 +1563,11 @@ export const questions: Question[] = [
       "Has"
     ],
     "correctIndex": 0,
-    "explanation": "Question auxiliary for third person singular is 'Does'.",
+    "explanation": "Nelle domande al presente semplice con he/she/it l'ausiliare è 'Does' e il verbo resta alla forma base (Does she like...?). 'Do' va con I/you/we/they, 'Is' e 'Has' non si usano con 'like' in questo modo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q98",
@@ -1467,10 +1579,11 @@ export const questions: Question[] = [
       "The train left at 8 o'clock."
     ],
     "correctIndex": 0,
-    "explanation": "Scheduled events (timetables) use the Present Simple: 'The train leaves at 8 o'clock.' A sentence cannot use the -ing form without 'is'.",
+    "explanation": "Gli orari e i programmi fissi (come quelli dei treni) si esprimono con il presente semplice: 'The train leaves at 8'. 'Leave' manca della -s, 'left' è un passato e 'leaving' da solo non è una frase corretta senza 'is'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q99",
@@ -1482,10 +1595,11 @@ export const questions: Question[] = [
       "boiled"
     ],
     "correctIndex": 0,
-    "explanation": "General facts use Present Simple.",
+    "explanation": "Le verità generali si esprimono con il presente semplice, e con un soggetto singolare ('water') il verbo prende la -s: 'boils'. 'Boil' manca della -s, 'is boiling' indica un'azione in corso e 'boiled' è un passato.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q100",
@@ -1497,25 +1611,27 @@ export const questions: Question[] = [
       "friends"
     ],
     "correctIndex": 0,
-    "explanation": "Singular possessive adds 's.",
+    "explanation": "Per un solo possessore si aggiunge 's al nome singolare: 'my friend's car' (la macchina di un amico). 'Friends'' indicherebbe più amici, mentre 'friend' e 'friends' senza apostrofo non esprimono il possesso.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q101",
     "prompt": "Translate 'Dov'è il computer di Marco?'",
     "options": [
       "Where is Marco's computer?",
-      "Where is the computer of Marco?",
+      "Where is the Marco's computer?",
       "Where is Marcos' computer?",
       "Where is Marco computer?"
     ],
     "correctIndex": 0,
-    "explanation": "Possessive 's is preferred for people.",
+    "explanation": "Per le persone l'inglese usa il genitivo sassone ('s): 'Marco's computer'. Con 's non si mette l'articolo ('the Marco's' è sbagliato), 'Marcos'' è scritto male e 'Marco computer' manca del 's.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q102",
@@ -1527,25 +1643,28 @@ export const questions: Question[] = [
       "dog"
     ],
     "correctIndex": 0,
-    "explanation": "Regular plural nouns just add an apostrophe after the 's'.",
+    "explanation": "I possessori sono più cani (plurale regolare in -s), quindi si aggiunge solo l'apostrofo: 'dogs''. 'Dog's' indica un solo cane, e 'dogs' e 'dog' senza apostrofo non esprimono il possesso.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s",
+    "extraOption": "of dogs"
   },
   {
     "id": "q103",
     "prompt": "Translate 'La borsa di Sarah è rossa.'",
     "options": [
       "Sarah's bag is red.",
-      "The bag of Sarah is red.",
+      "The Sarah's bag is red.",
       "Sarahs bag is red.",
       "Sarah' bag is red."
     ],
     "correctIndex": 0,
-    "explanation": "Possessive 's shows ownership.",
+    "explanation": "Per esprimere possesso con una persona si usa 's dopo il nome: 'Sarah's bag'. Con 's non si mette l'articolo ('the Sarah's' è sbagliato), 'Sarahs' non ha l'apostrofo e 'Sarah'' è scritto male per un nome singolare.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q104",
@@ -1557,10 +1676,12 @@ export const questions: Question[] = [
       "parent"
     ],
     "correctIndex": 0,
-    "explanation": "'Parents' is a regular plural ending in -s, so the possessive adds only an apostrophe at the end: 'my parents' house'. 'Parent's' would mean only one parent.",
+    "explanation": "'Parents' è un plurale regolare in -s, quindi il possesso si forma con il solo apostrofo finale: 'my parents' house'. 'Parent's' indicherebbe un solo genitore, mentre 'parents' e 'parent' senza apostrofo non esprimono il possesso.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s",
+    "extraOption": "parents's"
   },
   {
     "id": "q105",
@@ -1572,10 +1693,12 @@ export const questions: Question[] = [
       "any"
     ],
     "correctIndex": 0,
-    "explanation": "'Milk' is uncountable, so we use 'much'.",
+    "explanation": "'Milk' è non numerabile, quindi nelle domande sulla quantità si usa 'How much'. 'How many' è per i nomi numerabili plurali, mentre 'a lot of' e 'any' non completano 'How ... milk'.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers",
+    "extraOption": "lot"
   },
   {
     "id": "q106",
@@ -1587,10 +1710,12 @@ export const questions: Question[] = [
       "I don't have many friend."
     ],
     "correctIndex": 0,
-    "explanation": "'Friends' is a plural countable noun, so we use 'many' in negative sentences, and the noun must stay plural after 'many'.",
+    "explanation": "'Friends' è numerabile plurale, e nelle frasi negative per \"molti\" si usa 'many': 'I don't have many friends'. 'Much' si usa con i nomi non numerabili, 'a lot friends' manca di 'of', e dopo 'many' il nome resta al plurale ('friend' è sbagliato).",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers",
+    "extraOption": "I don't have a many friends."
   },
   {
     "id": "q107",
@@ -1602,10 +1727,11 @@ export const questions: Question[] = [
       "many of"
     ],
     "correctIndex": 0,
-    "explanation": "We use 'a lot of' for large quantities in affirmative sentences.",
+    "explanation": "Nelle frasi affermative per una grande quantità si usa 'a lot of' + nome: 'a lot of people'. 'Much' non si usa così in una frase affermativa e con 'people', 'a lot' senza 'of' e 'many of' non funzionano davanti a un nome.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q108",
@@ -1617,10 +1743,11 @@ export const questions: Question[] = [
       "What much sugar do you want in your coffee?"
     ],
     "correctIndex": 0,
-    "explanation": "Sugar is uncountable, so 'How much'.",
+    "explanation": "'Sugar' è non numerabile, quindi \"quanto\" si dice 'How much' e il nome segue direttamente. 'How many' è per i numerabili, 'much of sugar' non è corretto e 'What much' non esiste.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q109",
@@ -1632,10 +1759,11 @@ export const questions: Question[] = [
       "many"
     ],
     "correctIndex": 0,
-    "explanation": "'Time' is uncountable, so we use 'little' ('very little free time' = not much time); 'few', 'a few' and 'many' are only used with plural countable nouns.",
+    "explanation": "'Time' è non numerabile, quindi \"poco\" si dice 'little': 'very little free time'. 'Few' e 'a few' si usano solo con nomi numerabili plurali, e 'many' non va con un nome non numerabile.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q110",
@@ -1644,13 +1772,15 @@ export const questions: Question[] = [
       "There are too many cars in this city.",
       "There is too much cars in this city.",
       "There are too much cars in this city.",
-      "There are very many cars in this city."
+      "There are too many of cars in this city."
     ],
     "correctIndex": 0,
-    "explanation": "'Cars' is countable, so 'too many'.",
+    "explanation": "'Cars' è numerabile plurale, quindi \"troppe\" si dice 'too many'. 'Too much' si usa con i nomi non numerabili, e 'There is' non va con un plurale. 'Too many of cars' è sbagliato: 'of' si mette solo davanti a un articolo o a un pronome ('too many of the cars').",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers",
+    "extraOption": "There are too many car in this city."
   },
   {
     "id": "q111",
@@ -1662,10 +1792,12 @@ export const questions: Question[] = [
       "did"
     ],
     "correctIndex": 0,
-    "explanation": "Past of 'to be' for 'you' is 'were'.",
+    "explanation": "\"Dove sei nato?\" si dice 'Where were you born?', perché 'be born' si usa al passato e con 'you' il passato di 'to be' è 'were'. 'Was' è per I/he/she/it, 'are' è un presente e 'did' non si usa con 'born'.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins",
+    "extraOption": "have"
   },
   {
     "id": "q112",
@@ -1677,10 +1809,12 @@ export const questions: Question[] = [
       "Where does your brother comes from?"
     ],
     "correctIndex": 0,
-    "explanation": "Third person singular uses 'does' auxiliary.",
+    "explanation": "Con 'your brother' (terza persona singolare) la domanda al presente semplice usa 'does' e il verbo base: 'Where does your brother come from?'. 'Do' va con il plurale, 'is ... come' mescola due verbi e 'comes' dopo 'does' non è corretto (la -s è già in 'does').",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins",
+    "extraOption": "Where comes your brother from?"
   },
   {
     "id": "q113",
@@ -1692,10 +1826,11 @@ export const questions: Question[] = [
       "How"
     ],
     "correctIndex": 0,
-    "explanation": "'Which country' asks for one item from a set of possible countries ('What country' is also used). 'Where' and 'How' cannot be followed directly by a noun like 'country', and 'Whose' asks about possession.",
+    "explanation": "'Which' si usa con un nome che segue ('Which country') per scegliere tra più possibilità. 'Where' e 'How' non possono essere seguiti direttamente da 'country', e 'Whose' chiede di chi è qualcosa.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins"
   },
   {
     "id": "q114",
@@ -1707,25 +1842,28 @@ export const questions: Question[] = [
       "Is they Spanish?"
     ],
     "correctIndex": 0,
-    "explanation": "Simple 'to be' question.",
+    "explanation": "Con il verbo 'to be' la domanda si fa invertendo: 'Are they Spanish?'. 'Spain' è il paese, mentre 'Spanish' è l'aggettivo di nazionalità. 'Do they Spanish' non ha un verbo adatto e 'Is they' non concorda.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins",
+    "extraOption": "Are they from Spanish?"
   },
   {
     "id": "q115",
     "prompt": "Complete the sentence: '_____ is the capital of Italy?'",
     "options": [
       "What",
-      "Where",
-      "Which",
+      "When",
+      "How",
       "Who"
     ],
     "correctIndex": 0,
-    "explanation": "'What' asks for specific information.",
+    "explanation": "Per chiedere un'informazione come \"qual è la capitale\" si usa 'What is...?'. 'When' chiede un momento, 'Who' una persona e 'How' un modo o una condizione: nessuno dei tre chiede il nome di una città.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins"
   },
   {
     "id": "q116",
@@ -1733,14 +1871,15 @@ export const questions: Question[] = [
     "options": [
       "Where is Maria from?",
       "Where does Maria from?",
-      "From where is Maria?",
+      "Where is from Maria?",
       "Where Maria is from?"
     ],
     "correctIndex": 0,
-    "explanation": "Standard phrasing for asking origins.",
+    "explanation": "Per chiedere la provenienza la forma standard è 'Where is Maria from?', con la preposizione in fondo. 'Where does Maria from' ha 'does' ma manca un verbo, 'Where is from Maria' ha l'ordine delle parole sbagliato e 'Where Maria is from' non ha l'inversione della domanda.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins"
   },
   {
     "id": "q117",
@@ -1752,10 +1891,12 @@ export const questions: Question[] = [
       "This is longest book I have ever read."
     ],
     "correctIndex": 0,
-    "explanation": "Superlative of short adjectives takes -est.",
+    "explanation": "Il superlativo di un aggettivo corto (long) è 'the longest'. 'Most long' non si usa con un aggettivo corto, 'longer' è un comparativo e senza 'the' il superlativo è scorretto.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives",
+    "extraOption": "This is the most longest book I have ever read."
   },
   {
     "id": "q118",
@@ -1767,10 +1908,12 @@ export const questions: Question[] = [
       "the fastest"
     ],
     "correctIndex": 0,
-    "explanation": "Comparative of fast is faster.",
+    "explanation": "Dopo 'than' si usa un comparativo, e il comparativo di 'fast' è 'faster'. 'More fast' non si usa con un aggettivo corto, mentre 'fastest' e 'the fastest' sono superlativi e non vanno con 'than'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives",
+    "extraOption": "fast"
   },
   {
     "id": "q119",
@@ -1782,10 +1925,12 @@ export const questions: Question[] = [
       "Today is hotter that yesterday."
     ],
     "correctIndex": 0,
-    "explanation": "'much' emphasizes the comparative 'hotter'.",
+    "explanation": "Il comparativo di 'hot' è 'hotter' (si raddoppia la t) e si usa con 'than'. 'Much' rafforza il comparativo; 'much more hot' non è corretto con un aggettivo corto, 'very hotter' è sbagliato perché 'very' non va con i comparativi, e 'that' al posto di 'than' è un errore.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives",
+    "extraOption": "Today is much more hotter than yesterday."
   },
   {
     "id": "q120",
@@ -1797,10 +1942,12 @@ export const questions: Question[] = [
       "goodest"
     ],
     "correctIndex": 0,
-    "explanation": "Irregular superlative of good is best.",
+    "explanation": "'Good' ha il comparativo e il superlativo irregolari: 'better' e 'the best'. 'Better' è un comparativo, mentre 'most good' e 'goodest' non esistono.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives",
+    "extraOption": "most best"
   },
   {
     "id": "q121",
@@ -1812,10 +1959,12 @@ export const questions: Question[] = [
       "His sister is minor outgoing than him."
     ],
     "correctIndex": 0,
-    "explanation": "Less + adjective + than is used for inferior comparatives.",
+    "explanation": "Per il comparativo di minoranza si usa 'less' + aggettivo + 'than': 'less outgoing than him'. 'Least' è il superlativo, 'not outgoing than' non è una struttura comparativa e 'minor' non si usa così in inglese.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives",
+    "extraOption": "His sister is lesser outgoing than him."
   },
   {
     "id": "q122",
@@ -1827,10 +1976,11 @@ export const questions: Question[] = [
       "very"
     ],
     "correctIndex": 0,
-    "explanation": "Long adjectives use 'more' for comparative.",
+    "explanation": "Con un aggettivo lungo (difficult) il comparativo si forma con 'more' + aggettivo + 'than'. 'Most' è il superlativo, mentre 'much' e 'very' non formano un comparativo.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q123",
@@ -1842,10 +1992,12 @@ export const questions: Question[] = [
       "This is the most cheap place in town."
     ],
     "correctIndex": 0,
-    "explanation": "Superlative of inferiority is 'the least'.",
+    "explanation": "Il superlativo di minoranza si forma con 'the least' + aggettivo: 'the least expensive'. 'The less' è un comparativo, 'the not expensive' non è una forma grammaticale e 'most cheap' non è un superlativo corretto (si direbbe 'cheapest').",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives",
+    "extraOption": "This is the most less expensive place in town."
   },
   {
     "id": "q124",
@@ -1857,25 +2009,29 @@ export const questions: Question[] = [
       "small"
     ],
     "correctIndex": 0,
-    "explanation": "You can modify comparatives with words like slightly, much, a lot.",
+    "explanation": "Per attenuare un comparativo si usano avverbi come 'slightly' (leggermente), 'much' o 'a lot': 'slightly taller'. 'A little of' non è corretto, 'few' è per i nomi numerabili e 'small' è un aggettivo, non un avverbio.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives",
+    "extraOption": "a lot of"
   },
   {
     "id": "q125",
     "prompt": "Complete: 'If I have time, I _____ you.'",
     "options": [
       "will help",
-      "help",
+      "helping",
       "would help",
       "helped"
     ],
     "correctIndex": 0,
-    "explanation": "First conditional: if + present, will + base verb.",
+    "explanation": "Nel First Conditional (situazione reale) si usa if + presente semplice e 'will' + verbo base nella principale: 'I will help you'. 'Would help' e 'helped' sono per ipotesi irreali, mentre 'helping' non è una forma coniugata e da solo non può essere il verbo della frase.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional",
+    "extraOption": "will to help"
   },
   {
     "id": "q126",
@@ -1887,10 +2043,12 @@ export const questions: Question[] = [
       "If she studied, she will pass the test."
     ],
     "correctIndex": 0,
-    "explanation": "Present simple in the if clause, will in the main clause.",
+    "explanation": "Nel First Conditional dopo 'if' si usa il presente semplice (if she studies) e nella principale 'will': 'she will pass'. 'If she will study' è un errore tipico, 'she study' manca della -s e 'studied' è un passato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional",
+    "extraOption": "If she studies, she will to pass the test."
   },
   {
     "id": "q127",
@@ -1902,10 +2060,12 @@ export const questions: Question[] = [
       "raining"
     ],
     "correctIndex": 0,
-    "explanation": "If clause uses present simple.",
+    "explanation": "Dopo 'if' si usa il presente semplice anche per il futuro: 'if it rains' (terza persona, -s). 'Will rain' dopo 'if' è sbagliato, 'rain' manca della -s e 'raining' non è una forma verbale completa.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional",
+    "extraOption": "to rain"
   },
   {
     "id": "q128",
@@ -1917,25 +2077,29 @@ export const questions: Question[] = [
       "What would you say if he calls you?"
     ],
     "correctIndex": 0,
-    "explanation": "Question form: Wh- word + will + subject + verb + if + present simple.",
+    "explanation": "La domanda del First Conditional si forma con 'will' nella principale e il presente semplice dopo 'if': 'What will you say if he calls you?'. 'Will call' dopo 'if' è sbagliato, e 'would' con 'calls' mescola due tipi di condizionale.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional",
+    "extraOption": "What you will say if he calls you?"
   },
   {
     "id": "q129",
     "prompt": "Complete: 'If they don't hurry, they _____ the bus.'",
     "options": [
       "will miss",
-      "miss",
+      "will missing",
       "would miss",
       "missed"
     ],
     "correctIndex": 0,
-    "explanation": "Main clause uses will.",
+    "explanation": "Nella principale del First Conditional si usa 'will' + verbo base: 'they will miss the bus'. 'Will missing' è sbagliato perché dopo 'will' serve il verbo base, mentre 'would miss' e 'missed' sono forme dell'ipotesi irreale.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional",
+    "extraOption": "would have missed"
   },
   {
     "id": "q130",
@@ -1947,10 +2111,12 @@ export const questions: Question[] = [
       "If you didn't help me, I won't finish the project."
     ],
     "correctIndex": 0,
-    "explanation": "Negative present simple in if clause, won't in main clause.",
+    "explanation": "Nel First Conditional: 'if' + presente (don't help) e 'won't' + verbo base nella principale (I won't finish). 'Won't' dopo 'if' è sbagliato, 'you not help' manca di 'don't', e 'didn't' appartiene a un passato o a un'ipotesi irreale.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional",
+    "extraOption": "If you don't help me, I didn't finish the project."
   },
   {
     "id": "q131",
@@ -1962,10 +2128,12 @@ export const questions: Question[] = [
       "got"
     ],
     "correctIndex": 0,
-    "explanation": "Third person singular needs 's' in present simple.",
+    "explanation": "Con 'she' il presente semplice prende la -s: 'if she gets'. 'Get' manca della -s, 'will get' dopo 'if' è un errore tipico, e 'got' è un passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional",
+    "extraOption": "getting"
   },
   {
     "id": "q132",
@@ -1977,10 +2145,11 @@ export const questions: Question[] = [
       "I would talk to him if I see him."
     ],
     "correctIndex": 0,
-    "explanation": "Will in main clause, present in if clause.",
+    "explanation": "Nel First Conditional la principale usa 'will' (I will talk) e la frase con 'if' il presente (if I see him). 'If I will see' è sbagliato, e 'would talk' appartiene all'ipotesi irreale.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional"
   },
   {
     "id": "q133",
@@ -1992,10 +2161,12 @@ export const questions: Question[] = [
       "tried"
     ],
     "correctIndex": 0,
-    "explanation": "Unless means 'if not', so it's followed by an affirmative verb.",
+    "explanation": "'Unless' significa 'if ... not', quindi ha già un significato negativo e il verbo resta affermativo: 'Unless you try'. 'Don't try' darebbe un doppio negativo, 'will try' non si usa dopo 'unless' e 'tried' è un passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional",
+    "extraOption": "trying"
   },
   {
     "id": "q134",
@@ -2007,25 +2178,29 @@ export const questions: Question[] = [
       "Unless it will rain, we will go for a walk."
     ],
     "correctIndex": 0,
-    "explanation": "Unless is followed by affirmative present simple.",
+    "explanation": "'Unless' significa 'se non' e ha già il senso negativo, quindi il verbo che segue è affermativo al presente: 'Unless it rains'. 'Unless it doesn't rain' è un doppio negativo, 'If it unless rains' è mal costruita e 'unless it will rain' ha 'will' dopo la congiunzione.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional",
+    "extraOption": "Unless it is not raining, we will go for a walk."
   },
   {
     "id": "q135",
     "prompt": "Complete: 'I will buy that car if it _____ too expensive.'",
     "options": [
       "isn't",
-      "won't be",
+      "not is",
       "doesn't be",
       "aren't"
     ],
     "correctIndex": 0,
-    "explanation": "Verb 'to be' in present simple negative for third person singular.",
+    "explanation": "Dopo 'if' il verbo è al presente e, con 'it', la negazione di 'to be' è 'isn't': 'if it isn't too expensive'. 'Not is' ha l'ordine sbagliato, 'doesn't be' non esiste (con 'to be' non si usa 'do') e 'aren't' non concorda con 'it'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional",
+    "extraOption": "not be"
   },
   {
     "id": "q136",
@@ -2037,10 +2212,12 @@ export const questions: Question[] = [
       "to"
     ],
     "correctIndex": 0,
-    "explanation": "We use 'at' with clock times ('at 11 PM'); 'in' is for months, years and parts of the day, and 'on' for days and dates.",
+    "explanation": "Con gli orari precisi (11 PM) si usa 'at'. 'In' si usa con mesi, anni e parti del giorno (in the morning), 'on' con i giorni e le date, e 'to' non è una preposizione di tempo qui.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Prepositions of Time"
+    "grammarTopic": "Prepositions of Time",
+    "theoryId": "prepositions-time",
+    "extraOption": "during"
   },
   {
     "id": "q137",
@@ -2052,25 +2229,29 @@ export const questions: Question[] = [
       "I not like coffee."
     ],
     "correctIndex": 0,
-    "explanation": "Present simple negative for I/you/we/they uses 'don't'.",
+    "explanation": "La negazione del presente semplice con 'I' si forma con 'don't' + verbo base: 'I don't like coffee'. 'I'm not like' mescola 'to be' con un verbo, 'I doesn't' usa l'ausiliare della terza persona e 'I not like' manca di 'do'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple",
+    "extraOption": "I no like coffee."
   },
   {
     "id": "q138",
     "prompt": "Complete: 'They _____ to Paris next weekend.'",
     "options": [
       "are going",
-      "go",
+      "goes",
       "went",
       "have gone"
     ],
     "correctIndex": 0,
-    "explanation": "Present continuous can be used for arranged future plans.",
+    "explanation": "Per un programma già organizzato nel futuro ('next weekend') si usa il Present Continuous: 'They are going'. 'Goes' non concorda con 'they', mentre 'went' e 'have gone' sono tempi del passato.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous",
+    "extraOption": "will going"
   },
   {
     "id": "q139",
@@ -2082,10 +2263,12 @@ export const questions: Question[] = [
       "May I helping you?"
     ],
     "correctIndex": 0,
-    "explanation": "Modal verbs like 'can' form questions by inversion ('Can I help you?') without 'do', and they are followed by the base form of the verb.",
+    "explanation": "I verbi modali come 'can' formano la domanda per inversione, senza 'do': 'Can I help you?', e il verbo che segue è alla forma base. 'Do I can' è sbagliato, 'Am I help' mescola 'to be' con un verbo e 'May I helping' vuole la forma base e non -ing.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Modals of Ability and Permission"
+    "grammarTopic": "Modals of Ability and Permission",
+    "theoryId": "modals-ability-permission",
+    "extraOption": "Can I to help you?"
   },
   {
     "id": "q140",
@@ -2097,10 +2280,12 @@ export const questions: Question[] = [
       "learned"
     ],
     "correctIndex": 0,
-    "explanation": "After a preposition ('interested in') a verb must take the -ing form (gerund): 'interested in learning', never the infinitive.",
+    "explanation": "Dopo una preposizione ('in') il verbo prende la forma in -ing: 'interested in learning'. L'infinito ('to learn' o 'learn') e il passato ('learned') non si usano dopo una preposizione.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives",
+    "extraOption": "to learning"
   },
   {
     "id": "q141",
@@ -2112,10 +2297,12 @@ export const questions: Question[] = [
       "We need going now."
     ],
     "correctIndex": 0,
-    "explanation": "'Must' is followed by the base form of the verb.",
+    "explanation": "'Must' esprime obbligo ed è seguito dal verbo base senza 'to': 'We must go'. 'Have go' ha 'have' senza 'to' (servirebbe 'have to go'), 'are must' non esiste e 'need going' non è la struttura corretta.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "We must to go now."
   },
   {
     "id": "q142",
@@ -2127,10 +2314,12 @@ export const questions: Question[] = [
       "hear"
     ],
     "correctIndex": 0,
-    "explanation": "'Look forward to' is followed by the -ing form (gerund).",
+    "explanation": "In 'look forward to' la parola 'to' è una preposizione, quindi il verbo che segue è in -ing: 'to hearing'. L'infinito 'to hear' è l'errore tipico, e 'hearing' e 'hear' senza 'to' non completano l'espressione.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives",
+    "extraOption": "for hearing"
   },
   {
     "id": "q143",
@@ -2142,10 +2331,12 @@ export const questions: Question[] = [
       "I were very tired last night."
     ],
     "correctIndex": 0,
-    "explanation": "Past simple of 'to be' for 'I' is 'was'.",
+    "explanation": "\"Ero\" è un passato di 'to be': con 'I' si dice 'was'. 'Am' è un presente (e non va con 'last night'), 'had' non si usa con un aggettivo come 'tired', e 'were' è per you/we/they.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Past Simple"
+    "grammarTopic": "Past Simple",
+    "theoryId": "past-simple",
+    "extraOption": "I have been very tired last night."
   },
   {
     "id": "q144",
@@ -2157,10 +2348,12 @@ export const questions: Question[] = [
       "what"
     ],
     "correctIndex": 0,
-    "explanation": "Relative pronoun 'which' or 'that' is used for things.",
+    "explanation": "Per riferirsi a una cosa (the book) si usa il pronome relativo 'which' (o 'that'). 'Who' è per le persone, 'where' per i luoghi e 'what' non si usa come pronome relativo dopo un nome.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses",
+    "extraOption": "whose"
   },
   {
     "id": "q145",
@@ -2172,10 +2365,12 @@ export const questions: Question[] = [
       "She knows to swim very well."
     ],
     "correctIndex": 0,
-    "explanation": "Ability is expressed with 'can' + base verb ('can swim'); 'can' never takes -s, and 'sapere fare qualcosa' is not 'know (to) do' in English.",
+    "explanation": "Per l'abilità si usa 'can' + verbo base: 'She can swim'. 'Can' non prende mai la -s, e \"sapere\" nel senso di essere capace non si traduce con 'know' ('knows swim' e 'knows to swim' sono errori tipici).",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Modals of Ability and Permission"
+    "grammarTopic": "Modals of Ability and Permission",
+    "theoryId": "modals-ability-permission",
+    "extraOption": "She can to swim very well."
   },
   {
     "id": "q146",
@@ -2187,25 +2382,28 @@ export const questions: Question[] = [
       "aren't"
     ],
     "correctIndex": 0,
-    "explanation": "'Mustn't' expresses prohibition.",
+    "explanation": "'Mustn't' esprime un divieto: \"non si deve\" fumare. 'Don't have to' e 'needn't' dicono che non c'è bisogno, non che è vietato; 'aren't' non è una forma corretta con 'smoke'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "don't must"
   },
   {
     "id": "q147",
     "prompt": "Translate 'Non ho abbastanza soldi.'",
     "options": [
       "I don't have enough money.",
-      "I have not enough money.",
-      "I don't have money enough.",
+      "I not have enough money.",
+      "I don't have enough to money.",
       "I don't have enough of money."
     ],
     "correctIndex": 0,
-    "explanation": "In the negative we use 'don't have', and 'enough' goes directly before a noun ('enough money'), without 'of'.",
+    "explanation": "Nella frase negativa si dice 'I don't have enough money', con 'enough' direttamente davanti al nome. 'I not have' è sbagliato (la negazione vuole 'don't'), 'enough to money' e 'enough of money' sono errori: davanti a un nome senza articolo non si mette né 'to' né 'of'.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q148",
@@ -2217,10 +2415,12 @@ export const questions: Question[] = [
       "Toms"
     ],
     "correctIndex": 0,
-    "explanation": "Add 's to singular names.",
+    "explanation": "Per il possesso di una persona al singolare si aggiunge 's al nome: 'Tom's jacket'. 'Toms'' e 'Toms' sono scritti male, e 'Tom' da solo non esprime il possesso.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s",
+    "extraOption": "of Tom"
   },
   {
     "id": "q149",
@@ -2228,14 +2428,15 @@ export const questions: Question[] = [
     "options": [
       "My grandparents' house is big.",
       "My grandparent's house is big.",
-      "The house of my grandparents is big.",
+      "The house my grandparents is big.",
       "My grandparents house is big."
     ],
     "correctIndex": 0,
-    "explanation": "Plural nouns ending in -s just take an apostrophe.",
+    "explanation": "'Grandparents' è un plurale regolare in -s, quindi il possesso si forma con il solo apostrofo finale: 'my grandparents' house'. 'Grandparent's' indicherebbe un solo nonno, 'grandparents house' manca dell'apostrofo e 'the house my grandparents' non ha né 'of' né il possessivo.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q150",
@@ -2247,10 +2448,11 @@ export const questions: Question[] = [
       "the bands"
     ],
     "correctIndex": 0,
-    "explanation": "Singular noun 'band' takes 's.",
+    "explanation": "'Band' è singolare, quindi il possesso si forma con 's: 'the band's new song'. 'The bands'' indicherebbe più gruppi, mentre 'the band' e 'the bands' senza apostrofo non esprimono il possesso.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q151",
@@ -2259,28 +2461,30 @@ export const questions: Question[] = [
       "The children's toys are scattered everywhere.",
       "The childrens' toys are scattered everywhere.",
       "The children toys are scattered everywhere.",
-      "The toys of children are scattered everywhere."
+      "The childrens toys are scattered everywhere."
     ],
     "correctIndex": 0,
-    "explanation": "'Children' is an irregular plural not ending in -s, so its possessive is 's ('children's'); 'sparsi' is 'scattered'.",
+    "explanation": "'Children' è un plurale irregolare che non finisce in -s, quindi il possessivo si forma con 's: 'the children's toys'. 'Childrens'' è sbagliato perché l'apostrofo dopo la -s si usa solo con i plurali regolari, 'childrens toys' è sbagliato in più perché manca l'apostrofo, e 'the children toys' manca del possessivo.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q152",
     "prompt": "Complete: 'This is _____ desk.' (The desk belongs to the boss)",
     "options": [
       "the boss's",
-      "the boss'",
+      "the bosses'",
       "the boss",
       "the bosses"
     ],
     "correctIndex": 0,
-    "explanation": "Singular nouns ending in -s usually take 's.",
+    "explanation": "Il possessivo di un nome singolare si forma con 's, anche se il nome finisce in -s: 'the boss's desk'. 'The bosses'' è il possessivo di più capi, 'the boss' da solo non indica possesso e 'the bosses' è un plurale.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q153",
@@ -2288,14 +2492,15 @@ export const questions: Question[] = [
     "options": [
       "James's car is blue.",
       "James car is blue.",
-      "The car of James is blue.",
+      "The James's car is blue.",
       "Jame's car is blue."
     ],
     "correctIndex": 0,
-    "explanation": "Names ending in -s can take 's or just an apostrophe. 'James's' is common.",
+    "explanation": "Per dire 'di qualcuno' con una persona si usa il possessivo: nome + 's. I nomi che finiscono in -s, come James, prendono comunque 's ('James's car'). 'James car' non ha il possessivo, 'the James's' non vuole l'articolo e 'Jame's' cambia il nome.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q154",
@@ -2307,25 +2512,27 @@ export const questions: Question[] = [
       "bakers"
     ],
     "correctIndex": 0,
-    "explanation": "Possessive form is often used alone for shops/businesses.",
+    "explanation": "Per indicare un negozio o un'attività si usa il possessivo da solo, senza ripetere il nome: 'the baker's' (il negozio del panettiere, uno solo). 'Bakers'' sarebbe il possessivo plurale e 'baker' o 'bakers' non hanno l'apostrofo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q155",
     "prompt": "Translate 'È il compleanno di mia madre.'",
     "options": [
       "It's my mother's birthday.",
-      "It's the birthday of my mother.",
+      "It's the birthday my mother.",
       "It's my mothers birthday.",
       "It's my mother birthday."
     ],
     "correctIndex": 0,
-    "explanation": "Possessive 's for people.",
+    "explanation": "Per i possessori che sono persone si usa 's davanti al nome posseduto: 'my mother's birthday'. Senza apostrofo ('mothers') si scrive un plurale, 'my mother birthday' non esprime il possesso e 'the birthday my mother' non ha né 'of' né il possessivo.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q156",
@@ -2337,10 +2544,12 @@ export const questions: Question[] = [
       "Pauls"
     ],
     "correctIndex": 0,
-    "explanation": "Possessive form is often used alone for people's houses.",
+    "explanation": "Con i nomi di persona si usa il possessivo da solo per dire 'a casa di': 'at Paul's'. 'Pauls'' e 'Pauls' sono plurali sbagliati, e 'at Paul' significherebbe 'da Paul' senza la casa.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s",
+    "extraOption": "of Paul"
   },
   {
     "id": "q157",
@@ -2352,10 +2561,11 @@ export const questions: Question[] = [
       "Women shoes are on the second floor."
     ],
     "correctIndex": 0,
-    "explanation": "Irregular plural 'women' takes 's.",
+    "explanation": "'Women' è un plurale irregolare (non finisce in -s), quindi il possessivo è 's: 'women's shoes'. 'Womens'' è scritto male, 'woman's' è singolare ('di una donna') e 'women shoes' non ha il possessivo.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q158",
@@ -2363,29 +2573,31 @@ export const questions: Question[] = [
     "options": [
       "teachers'",
       "teacher's",
-      "teachers",
+      "teachers's",
       "teacher"
     ],
     "correctIndex": 0,
-    "explanation": "Plural 'teachers' takes an apostrophe after the s.",
+    "explanation": "'Teachers' è un plurale regolare in -s, quindi il possessivo si fa solo con l'apostrofo dopo la s: 'the teachers' room' (la stanza per gli insegnanti). 'Teacher's' sarebbe la stanza di un solo insegnante, 'teachers's' è una forma sbagliata e 'teacher' da solo non indica il possesso.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q159",
     "prompt": "Translate 'Hai visto le chiavi di Anna?'",
     "options": [
       "Have you seen Anna's keys?",
-      "Have you seen the keys of Anna?",
+      "Have you seen the Anna's keys?",
       "Have you seen Annas keys?",
       "Have you seen Anna keys?"
     ],
     "correctIndex": 0,
-    "explanation": "Singular name takes 's.",
+    "explanation": "Con un nome di persona singolare il possessivo è nome + 's: 'Anna's keys'. 'Annas keys' dimentica l'apostrofo, 'Anna keys' non esprime il possesso e 'the Anna's keys' non vuole l'articolo.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessive S"
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
   },
   {
     "id": "q160",
@@ -2397,10 +2609,12 @@ export const questions: Question[] = [
       "in"
     ],
     "correctIndex": 0,
-    "explanation": "'Since' indicates a specific starting point in the past.",
+    "explanation": "'Since' si usa con un punto di inizio nel tempo (qui il 2010) insieme al present perfect: 'I have known him since 2010'. 'For' si usa con una durata (for ten years), mentre 'from' e 'in' non esprimono 'da quando'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Prepositions of Time"
+    "grammarTopic": "Prepositions of Time",
+    "theoryId": "prepositions-time",
+    "extraOption": "during"
   },
   {
     "id": "q161",
@@ -2412,10 +2626,12 @@ export const questions: Question[] = [
       "They work here for many years."
     ],
     "correctIndex": 0,
-    "explanation": "'For' is used for a duration.",
+    "explanation": "'Da molti anni' con un'azione ancora in corso si traduce con il present perfect e 'for' (una durata): 'have worked here for many years'. 'Since' vuole una data o un momento preciso, e il present simple non va con 'da' in questo senso.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Prepositions of Time"
+    "grammarTopic": "Prepositions of Time",
+    "theoryId": "prepositions-time",
+    "extraOption": "They have worked here from many years."
   },
   {
     "id": "q162",
@@ -2427,10 +2643,12 @@ export const questions: Question[] = [
       "is playing"
     ],
     "correctIndex": 0,
-    "explanation": "Actions happening now use present continuous.",
+    "explanation": "'Right now' indica un'azione che accade in questo momento, quindi serve il present continuous: am/is/are + verbo in -ing. Il soggetto 'they' vuole 'are'; 'is playing' è per la terza persona singolare e 'playing' da solo manca dell'ausiliare.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous",
+    "extraOption": "are play"
   },
   {
     "id": "q163",
@@ -2442,25 +2660,28 @@ export const questions: Question[] = [
       "Why you cry?"
     ],
     "correctIndex": 0,
-    "explanation": "Question word + are + subject + verb-ing.",
+    "explanation": "Nella domanda al present continuous l'ordine è parola interrogativa + are/is + soggetto + verbo in -ing: 'Why are you crying?'. 'Why you are crying?' non inverte soggetto e ausiliare, e 'do you cry' parla di un'abitudine.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous",
+    "extraOption": "Why are you cry?"
   },
   {
     "id": "q164",
     "prompt": "Complete: 'I _____ to the doctor tomorrow afternoon.'",
     "options": [
       "am going",
-      "go",
+      "goes",
       "went",
       "going"
     ],
     "correctIndex": 0,
-    "explanation": "Present continuous is used for arranged future plans.",
+    "explanation": "Il present continuous si usa anche per un programma già deciso nel futuro vicino, con 'tomorrow afternoon': 'I am going to the doctor'. 'Goes' non concorda con 'I', 'went' è passato e 'going' senza 'am' non è completo.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q165",
@@ -2472,10 +2693,11 @@ export const questions: Question[] = [
       "The sun are shining."
     ],
     "correctIndex": 0,
-    "explanation": "Action happening now.",
+    "explanation": "Il sole che splende in questo momento è un'azione in corso: present continuous 'is shining'. 'Shines' indica un fatto abituale, 'shining' senza ausiliare è incompleto e 'are' non concorda con 'the sun'.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q166",
@@ -2487,10 +2709,12 @@ export const questions: Question[] = [
       "come"
     ],
     "correctIndex": 0,
-    "explanation": "'Look!' indicates an action happening at the moment.",
+    "explanation": "'Look!' introduce qualcosa che sta succedendo ora sotto i nostri occhi, quindi present continuous: 'The bus is coming'. 'Comes' e 'come' sono present simple (abitudini) e 'coming' da solo non ha l'ausiliare.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous",
+    "extraOption": "are coming"
   },
   {
     "id": "q167",
@@ -2502,10 +2726,12 @@ export const questions: Question[] = [
       "We isn't using the computer right now."
     ],
     "correctIndex": 0,
-    "explanation": "Negative present continuous.",
+    "explanation": "La forma negativa del present continuous è soggetto + be + not + verbo in -ing: 'We aren't using'. 'We don't use' è present simple e non va con 'right now', mentre 'We not using' manca di 'are' e 'isn't' non concorda con 'we'.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous",
+    "extraOption": "We don't using the computer right now."
   },
   {
     "id": "q168",
@@ -2517,25 +2743,29 @@ export const questions: Question[] = [
       "Do"
     ],
     "correctIndex": 0,
-    "explanation": "Auxiliary 'to be' for third person singular is 'is'.",
+    "explanation": "Per fare una domanda al present continuous si mette l'ausiliare 'be' prima del soggetto, ed è 'is' con 'he': 'Is he watching TV?'. 'Does' e 'Do' sono per il present simple e 'Are' è per 'you/we/they'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous",
+    "extraOption": "Has"
   },
   {
     "id": "q169",
     "prompt": "Translate 'Sto cercando le mie chiavi.'",
     "options": [
       "I am looking for my keys.",
-      "I look for my keys.",
-      "I am searching my keys.",
+      "I am look for my keys.",
+      "I am looking my keys.",
       "I looking for my keys."
     ],
     "correctIndex": 0,
-    "explanation": "'Look for' means 'cercare', present continuous for current action.",
+    "explanation": "'Cercare' si traduce 'look for', e un'azione che sta avvenendo ora vuole il present continuous: 'I am looking for my keys'. 'Am look' non è corretto (dopo 'am' serve -ing), 'looking my keys' manca della preposizione 'for' e 'I looking' manca di 'am'.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous",
+    "extraOption": "I am looking for to my keys."
   },
   {
     "id": "q170",
@@ -2547,10 +2777,11 @@ export const questions: Question[] = [
       "does"
     ],
     "correctIndex": 0,
-    "explanation": "Plural subject 'kids' takes 'are'.",
+    "explanation": "'Kids' è plurale, quindi l'ausiliare del present continuous è 'are': 'The kids are sleeping'. 'Is' è per il singolare, mentre 'do' e 'does' non si usano come ausiliari prima di un verbo in -ing.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q171",
@@ -2562,25 +2793,29 @@ export const questions: Question[] = [
       "since"
     ],
     "correctIndex": 0,
-    "explanation": "'Already' is used in affirmative sentences for completed actions.",
+    "explanation": "'Already' (già) si mette tra 'have' e il participio in una frase affermativa: 'I have already finished'. 'Yet' si usa nelle domande e nelle negative, 'ever' nelle domande sull'esperienza e 'since' vuole un punto di inizio nel tempo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Perfect"
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect",
+    "extraOption": "ago"
   },
   {
     "id": "q172",
     "prompt": "Translate 'È la prima volta che guido una macchina.'",
     "options": [
       "It's the first time I have driven a car.",
-      "It's the first time I drive a car.",
-      "It's the first time I drove a car.",
-      "It's the first time I am driving a car."
+      "It's the first time I driving a car.",
+      "It's the first time I have drove a car.",
+      "It's the first time I has driven a car."
     ],
     "correctIndex": 0,
-    "explanation": "'First time' expressions use the present perfect.",
+    "explanation": "Dopo 'It's the first time' si usa il present perfect: 'It's the first time I have driven a car'. 'I driving' non ha l'ausiliare, 'have drove' usa il passato semplice al posto del participio ('driven') e 'I has' non concorda con 'I'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Present Perfect"
+    "grammarTopic": "Present Perfect",
+    "theoryId": "present-perfect",
+    "extraOption": "It's the first time I am drive a car."
   },
   {
     "id": "q173",
@@ -2592,25 +2827,28 @@ export const questions: Question[] = [
       "drank"
     ],
     "correctIndex": 0,
-    "explanation": "Habits use present simple. Third person adds -s.",
+    "explanation": "'Every morning' indica un'abitudine, quindi present simple, e alla terza persona singolare (she) si aggiunge -s: 'drinks'. 'Drink' non ha la -s, 'is drinking' descrive un'azione in corso e 'drank' è passato.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple",
+    "extraOption": "drinking"
   },
   {
     "id": "q174",
     "prompt": "Translate 'Io lavoro in un ospedale.'",
     "options": [
       "I work in a hospital.",
-      "I am working in a hospital.",
+      "I working in a hospital.",
       "I works in a hospital.",
       "I work to a hospital."
     ],
     "correctIndex": 0,
-    "explanation": "Permanent situations use present simple.",
+    "explanation": "Per un lavoro stabile si usa il present simple: 'I work in a hospital'. 'I works' sbaglia la forma (la -s è solo per he/she/it), 'I working' non ha l'ausiliare e 'work to' non è la preposizione giusta, che è 'in'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q175",
@@ -2622,10 +2860,11 @@ export const questions: Question[] = [
       "isn't"
     ],
     "correctIndex": 0,
-    "explanation": "Plural negative present simple uses 'don't'.",
+    "explanation": "Con il soggetto plurale 'they' la negazione del present simple è 'don't' + verbo base: 'They don't play'. 'Doesn't' è per he/she/it, mentre 'aren't' e 'isn't' sono forme di 'be' e non si usano prima di 'play'.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q176",
@@ -2637,10 +2876,12 @@ export const questions: Question[] = [
       "He not understands the question."
     ],
     "correctIndex": 0,
-    "explanation": "Third person singular negative uses 'doesn't'.",
+    "explanation": "Con la terza persona singolare (he) la negazione del present simple è 'doesn't' + verbo base: 'He doesn't understand'. 'Don't' non concorda con 'he', 'isn't understand' mescola 'be' e verbo, e 'not understands' manca dell'ausiliare.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple",
+    "extraOption": "He doesn't understands the question."
   },
   {
     "id": "q177",
@@ -2652,10 +2893,11 @@ export const questions: Question[] = [
       "Is"
     ],
     "correctIndex": 0,
-    "explanation": "Question auxiliary for 'you' in present simple is 'do'.",
+    "explanation": "Le domande al present simple si fanno con 'do/does' + soggetto + verbo base, e con 'you' si usa 'do': 'Do you speak English?'. 'Are' e 'Is' vogliono un aggettivo o un participio, e 'does' è per he/she/it.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q178",
@@ -2667,10 +2909,12 @@ export const questions: Question[] = [
       "What is meaning this word?"
     ],
     "correctIndex": 0,
-    "explanation": "Question uses 'does' for third person singular ('this word').",
+    "explanation": "In una domanda al present simple 'this word' è terza persona singolare, quindi 'does' + verbo base: 'What does this word mean?'. 'What means this word?' non ha l'ausiliare, 'do ... mean' non concorda e 'is meaning' non si usa con un verbo di stato come 'mean'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple",
+    "extraOption": "What does mean this word?"
   },
   {
     "id": "q179",
@@ -2682,10 +2926,11 @@ export const questions: Question[] = [
       "rose"
     ],
     "correctIndex": 0,
-    "explanation": "Universal facts use present simple.",
+    "explanation": "Un fatto sempre vero si esprime con il present simple e, con 'the sun' (terza persona singolare), il verbo prende la -s: 'rises'. 'Rise' manca della -s, 'is rising' descrive un'azione in corso e 'rose' è passato.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q180",
@@ -2697,10 +2942,12 @@ export const questions: Question[] = [
       "How many times you go to the gym?"
     ],
     "correctIndex": 0,
-    "explanation": "'How often' asks about frequency.",
+    "explanation": "'How often' chiede la frequenza e nella domanda al present simple serve 'do' + soggetto: 'How often do you go to the gym?'. Senza 'do' la frase è sbagliata, e 'how much time' e 'how many times' non sono le forme corrette qui.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple",
+    "extraOption": "How often do you to go to the gym?"
   },
   {
     "id": "q181",
@@ -2712,10 +2959,12 @@ export const questions: Question[] = [
       "cleaned"
     ],
     "correctIndex": 0,
-    "explanation": "Adverbs of frequency are used with present simple.",
+    "explanation": "Con gli avverbi di frequenza come 'never' si usa il present simple, e con 'my brother' (he) il verbo prende la -s: 'cleans'. 'Clean' non ha la -s, 'is cleaning' non va con 'never' e 'cleaned' è passato.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple",
+    "extraOption": "cleaning"
   },
   {
     "id": "q182",
@@ -2727,10 +2976,11 @@ export const questions: Question[] = [
       "She got two cats and a dog."
     ],
     "correctIndex": 0,
-    "explanation": "Third person singular of 'have' is 'has'.",
+    "explanation": "Alla terza persona singolare il verbo 'have' diventa 'has': 'She has two cats'. 'She have' è sbagliato, 'is having' non si usa per il possesso e 'got' da solo è passato, non presente.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q183",
@@ -2742,25 +2992,27 @@ export const questions: Question[] = [
       "aren't"
     ],
     "correctIndex": 0,
-    "explanation": "Negative present simple for 'we'.",
+    "explanation": "Con 'we' la negazione del present simple è 'don't' + verbo base: 'We don't like'. 'Doesn't' è per he/she/it, 'not' da solo non basta senza ausiliare e 'aren't' non si usa prima di 'like'.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q184",
     "prompt": "Translate 'Il film inizia alle 20:30.'",
     "options": [
       "The movie starts at 8:30 PM.",
-      "The movie is starting at 8:30 PM.",
+      "The movie starting at 8:30 PM.",
       "The movie start at 8:30 PM.",
       "The movie will starting at 8:30 PM."
     ],
     "correctIndex": 0,
-    "explanation": "Timetables use present simple.",
+    "explanation": "Gli orari di film, treni e simili si esprimono con il present simple: 'The movie starts at 8:30 PM'. 'Start' manca della -s, 'starting' senza 'is' non è un verbo completo e 'will starting' è una forma impossibile.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q185",
@@ -2772,10 +3024,11 @@ export const questions: Question[] = [
       "lived"
     ],
     "correctIndex": 0,
-    "explanation": "After 'does', use the base form of the verb.",
+    "explanation": "Dopo 'does' il verbo resta alla forma base, perché la -s della terza persona è già sull'ausiliare: 'Does he live'. 'Lives' ripeterebbe la -s, mentre 'living' e 'lived' non sono forme base.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q186",
@@ -2787,10 +3040,11 @@ export const questions: Question[] = [
       "few"
     ],
     "correctIndex": 0,
-    "explanation": "Affirmative uncountable noun uses 'some'.",
+    "explanation": "'Money' è un nome non numerabile e in una frase affermativa si usa 'some': 'I have some money'. 'Any' si usa di solito nelle domande e nelle negative, mentre 'many' e 'few' vogliono nomi numerabili.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q187",
@@ -2802,40 +3056,44 @@ export const questions: Question[] = [
       "There are any apples."
     ],
     "correctIndex": 0,
-    "explanation": "Negative countable uses 'any'.",
+    "explanation": "Nelle frasi negative si usa 'any' con i nomi numerabili plurali: 'There aren't any apples'. 'Some' non va nella negativa, e 'aren't no' è una doppia negazione, mentre 'are any' non ha la negazione.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers",
+    "extraOption": "There don't have any apples."
   },
   {
     "id": "q188",
     "prompt": "Complete: 'Do you have _____ questions?'",
     "options": [
       "any",
-      "some",
+      "a",
       "much",
       "little"
     ],
     "correctIndex": 0,
-    "explanation": "Questions generally use 'any'.",
+    "explanation": "Nelle domande si usa normalmente 'any' con 'questions': 'Do you have any questions?'. 'A' non va con un plurale ('questions'), e 'much' e 'little' non vanno con un nome numerabile plurale.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q189",
     "prompt": "Translate 'Vorresti del tè?'",
     "options": [
       "Would you like some tea?",
-      "Would you like any tea?",
-      "Do you like some tea?",
-      "Would you like much tea?"
+      "Would you like to some tea?",
+      "Do you would like some tea?",
+      "Would you like many tea?"
     ],
     "correctIndex": 0,
-    "explanation": "Offers use 'some', not 'any'.",
+    "explanation": "Nelle offerte e nelle richieste cortesi si usa 'some' anche nella domanda: 'Would you like some tea?'. 'Would you like to some' ha un 'to' di troppo, 'Do you would like' mette insieme due ausiliari e 'many' non va con 'tea', che è non numerabile.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q190",
@@ -2847,10 +3105,11 @@ export const questions: Question[] = [
       "many"
     ],
     "correctIndex": 0,
-    "explanation": "'Students' is countable, so 'a few'.",
+    "explanation": "'Students' è numerabile plurale, quindi si usa 'a few' (alcuni): 'a few students'. 'Little' e 'much' vogliono nomi non numerabili, mentre 'a many' non esiste.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q191",
@@ -2862,10 +3121,11 @@ export const questions: Question[] = [
       "I have very small time."
     ],
     "correctIndex": 0,
-    "explanation": "'Time' is uncountable, so 'little'.",
+    "explanation": "'Time' è non numerabile, quindi 'pochissimo' si dice 'very little': 'I have very little time'. 'Few' si usa con i numerabili plurali, 'much little' non esiste e 'very small time' non è un'espressione corretta.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q192",
@@ -2877,10 +3137,11 @@ export const questions: Question[] = [
       "some"
     ],
     "correctIndex": 0,
-    "explanation": "The phrase is 'a lot of'.",
+    "explanation": "L'espressione è 'a lot of' davanti a un nome: 'a lot of books'. 'Many of' e 'much of' hanno un altro uso e non si usano con 'a', mentre 'a some of' non esiste.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q193",
@@ -2892,10 +3153,12 @@ export const questions: Question[] = [
       "We ate a lot pizza."
     ],
     "correctIndex": 0,
-    "explanation": "'Pizza' in general is uncountable, so 'too much'.",
+    "explanation": "In questa frase 'pizza' è usata in senso generale come non numerabile, quindi 'too much': 'too much pizza'. 'Too many' si usa con i nomi numerabili plurali, 'very much' non va davanti a un nome e 'a lot pizza' manca di 'of'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers",
+    "extraOption": "We ate too much of pizza."
   },
   {
     "id": "q194",
@@ -2907,10 +3170,11 @@ export const questions: Question[] = [
       "any"
     ],
     "correctIndex": 0,
-    "explanation": "'Apples' is countable, so 'How many'.",
+    "explanation": "'Apples' è numerabile plurale, quindi si chiede la quantità con 'How many': 'How many apples'. 'Much' si usa con i non numerabili, mentre 'some' e 'any' non si usano dopo 'how'.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q195",
@@ -2922,25 +3186,27 @@ export const questions: Question[] = [
       "We didn't buy some."
     ],
     "correctIndex": 0,
-    "explanation": "Negative sentence requires 'anything'.",
+    "explanation": "Nella negativa con 'didn't' si usa 'anything': 'We didn't buy anything'. 'Nothing' dopo 'didn't' sarebbe una doppia negazione, 'bought anything' non ha la negazione e 'some' da solo manca del nome.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q196",
     "prompt": "Complete: 'Is there _____ good on TV?'",
     "options": [
       "anything",
-      "something",
-      "nothing",
-      "everything"
+      "anythings",
+      "everything",
+      "somethings"
     ],
     "correctIndex": 0,
-    "explanation": "Questions generally use 'anything'.",
+    "explanation": "Nelle domande si usa di solito 'any-': 'Is there anything good on TV?'. 'Anything' e 'something' non hanno il plurale ('anythings', 'somethings' sono sbagliati) e 'everything' cambia il senso e non funziona con 'Is there...?' in questa frase.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q197",
@@ -2952,10 +3218,11 @@ export const questions: Question[] = [
       "Where"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for a person's identity requires 'Who'.",
+    "explanation": "Per chiedere l'identità di una persona si usa 'Who': 'Who is that man?'. 'What' si usa per le cose, 'Which' per scegliere in un gruppo e 'Where' chiede un luogo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins"
   },
   {
     "id": "q198",
@@ -2967,10 +3234,11 @@ export const questions: Question[] = [
       "Why do you late?"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for a reason requires 'Why'.",
+    "explanation": "'Perché' in una domanda è 'Why', seguito da verbo + soggetto: 'Why are you late?'. 'Because' è la risposta e non si usa per chiedere, mentre 'Why you are' non inverte l'ordine e 'Why do you late' non è corretto con 'be'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins"
   },
   {
     "id": "q199",
@@ -2982,10 +3250,11 @@ export const questions: Question[] = [
       "Which"
     ],
     "correctIndex": 0,
-    "explanation": "Asking about age uses 'How old'.",
+    "explanation": "L'età si chiede con 'How old': 'How old are you?'. 'What old', 'Who old' e 'Which old' non esistono in questa domanda.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins"
   },
   {
     "id": "q200",
@@ -2997,10 +3266,11 @@ export const questions: Question[] = [
       "How is your birthday?"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for time/date requires 'When'.",
+    "explanation": "Per chiedere una data o un momento si usa 'When': 'When is your birthday?'. 'Where' chiede un luogo, 'What' chiederebbe qual è il compleanno come oggetto e 'How' chiede il modo o lo stato.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins"
   },
   {
     "id": "q201",
@@ -3012,10 +3282,12 @@ export const questions: Question[] = [
       "When"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for a place requires 'Where'.",
+    "explanation": "Per chiedere un luogo si usa 'Where': 'Where do you live?'. 'What' e 'How' non chiedono dove, e 'When' chiede il tempo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins",
+    "extraOption": "Who"
   },
   {
     "id": "q202",
@@ -3027,10 +3299,12 @@ export const questions: Question[] = [
       "Why do you go to work?"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for method/manner requires 'How'.",
+    "explanation": "'Come' riferito al modo o al mezzo si dice 'How': 'How do you go to work?'. 'What' e 'Where' chiederebbero cosa e dove, e 'Why' chiederebbe il motivo.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins",
+    "extraOption": "Who do you go to work?"
   },
   {
     "id": "q203",
@@ -3042,10 +3316,12 @@ export const questions: Question[] = [
       "How"
     ],
     "correctIndex": 0,
-    "explanation": "We use 'What' to ask about a general preference ('What is your favorite color?'); 'Whose' asks about possession, 'Who' about people and 'How' about manner.",
+    "explanation": "Per chiedere qual è una preferenza si usa 'What': 'What is your favorite color?'. 'Whose' chiede di chi è una cosa, 'Who' chiede una persona e 'How' chiede il modo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins",
+    "extraOption": "When"
   },
   {
     "id": "q204",
@@ -3057,25 +3333,28 @@ export const questions: Question[] = [
       "What bag is this?"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for possession requires 'Whose'.",
+    "explanation": "'Di chi è' si dice 'Whose' + nome: 'Whose bag is this?'. 'Who bag' è sbagliato perché 'who' non si usa con un nome, mentre 'Which' e 'What' chiedono quale o cosa, non il proprietario.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins",
+    "extraOption": "Whom bag is this?"
   },
   {
     "id": "q205",
     "prompt": "Complete: '_____ time does the movie start?'",
     "options": [
       "What",
-      "Which",
-      "When",
+      "Where",
+      "Who",
       "How"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for a specific time uses 'What time'.",
+    "explanation": "L'ora si chiede con 'What time': 'What time does the movie start?'. 'Where' si usa per i luoghi, 'Who' per le persone e 'How time' non esiste.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins"
   },
   {
     "id": "q206",
@@ -3087,10 +3366,12 @@ export const questions: Question[] = [
       "What cost this book?"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for price uses 'How much'.",
+    "explanation": "Il prezzo si chiede con 'How much' e l'ausiliare 'does': 'How much does this book cost?'. 'How many' si usa con i numerabili, 'How price' non esiste e 'What cost this book' non ha l'ausiliare.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins",
+    "extraOption": "How much costs this book?"
   },
   {
     "id": "q207",
@@ -3102,10 +3383,12 @@ export const questions: Question[] = [
       "How long"
     ],
     "correctIndex": 0,
-    "explanation": "'Languages' is a plural countable noun, so we ask about the number with 'How many'; 'How much' is for uncountable nouns, 'How often' asks about frequency and 'How long' about duration.",
+    "explanation": "'Languages' è numerabile plurale e si chiede il numero con 'How many': 'How many languages do you speak?'. 'How much' è per i non numerabili, 'How often' chiede la frequenza e 'How long' la durata.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Questions and Origins"
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins",
+    "extraOption": "How far"
   },
   {
     "id": "q208",
@@ -3117,10 +3400,12 @@ export const questions: Question[] = [
       "They are"
     ],
     "correctIndex": 0,
-    "explanation": "Singular noun 'tree' requires 'There is'.",
+    "explanation": "'Tree' è singolare, quindi per dire 'c'è' si usa 'There is': 'There is a big tree'. 'There are' è per il plurale, mentre 'It is' e 'They are' non esprimono l'esistenza di qualcosa.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are",
+    "extraOption": "There has"
   },
   {
     "id": "q209",
@@ -3132,10 +3417,12 @@ export const questions: Question[] = [
       "Have three chairs in the room."
     ],
     "correctIndex": 0,
-    "explanation": "Plural noun 'chairs' requires 'There are'.",
+    "explanation": "'Chairs' è plurale, quindi 'ci sono' si traduce 'There are': 'There are three chairs'. 'They are' vuol dire 'sono' e non 'ci sono', 'There is' è singolare e 'Have' non si usa così.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are",
+    "extraOption": "There have three chairs in the room."
   },
   {
     "id": "q210",
@@ -3147,10 +3434,12 @@ export const questions: Question[] = [
       "Have there"
     ],
     "correctIndex": 0,
-    "explanation": "Question form for plural 'messages' is 'Are there'.",
+    "explanation": "In una domanda sull'esistenza di cose al plurale si usa 'Are there': 'Are there any messages for me?'. 'Is there' è singolare, mentre 'Do there' e 'Have there' non esistono.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are",
+    "extraOption": "Has there"
   },
   {
     "id": "q211",
@@ -3162,10 +3451,12 @@ export const questions: Question[] = [
       "Does there a good restaurant near here?"
     ],
     "correctIndex": 0,
-    "explanation": "Question form for singular noun.",
+    "explanation": "Con un nome singolare ('a good restaurant') la domanda è 'Is there...?': 'Is there a good restaurant near here?'. 'Are there' è plurale, 'There is' senza inversione non fa la domanda e 'Does there' non esiste.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are",
+    "extraOption": "Has there a good restaurant near here?"
   },
   {
     "id": "q212",
@@ -3177,10 +3468,11 @@ export const questions: Question[] = [
       "is"
     ],
     "correctIndex": 0,
-    "explanation": "'People' is plural, so 'were' for past.",
+    "explanation": "'Past' e 'people' (plurale) vogliono 'There were': 'There were a lot of people'. 'Was' è per il singolare, 'are been' non esiste e 'is' è presente singolare.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q213",
@@ -3192,40 +3484,44 @@ export const questions: Question[] = [
       "It was nobody at home."
     ],
     "correctIndex": 0,
-    "explanation": "Past singular existence with negative pronoun.",
+    "explanation": "Al passato 'There was' si usa con 'nobody', che è singolare: 'There was nobody at home'. 'Wasn't nobody' è una doppia negazione, 'were' è plurale e 'It was' non esprime 'non c'era'.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are",
+    "extraOption": "There is nobody at home."
   },
   {
     "id": "q214",
     "prompt": "Complete: '_____ going to be a storm tomorrow.'",
     "options": [
       "There is",
-      "It is",
       "There are",
-      "They are"
+      "They are",
+      "There have"
     ],
     "correctIndex": 0,
-    "explanation": "Future existence 'There is going to be'.",
+    "explanation": "Per dire che qualcosa ci sarà si usa 'There is going to be': 'There is going to be a storm tomorrow'. 'There are' è plurale mentre 'a storm' è singolare, 'They are' non esprime l'esistenza e 'There have' non si usa con 'going to'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q215",
     "prompt": "Translate 'Ci sono dei biscotti nella scatola?'",
     "options": [
       "Are there any biscuits in the box?",
-      "Is there any biscuits in the box?",
-      "Are there some biscuits in the box?",
+      "Is there a biscuits in the box?",
+      "Are there much biscuits in the box?",
       "Do there any biscuits in the box?"
     ],
     "correctIndex": 0,
-    "explanation": "Question plural existence with 'any'.",
+    "explanation": "Nelle domande sull'esistenza con un plurale si usa 'Are there' + 'any': 'Are there any biscuits in the box?'. 'Is there a' non va con un plurale, 'much' si usa solo con i nomi non numerabili e 'Do there' non esiste.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q216",
@@ -3237,10 +3533,11 @@ export const questions: Question[] = [
       "This is"
     ],
     "correctIndex": 0,
-    "explanation": "Singular existence 'mistake'.",
+    "explanation": "'Mistake' è singolare, quindi 'c'è' si dice 'There is': 'There is a mistake in this exercise'. 'There are' è plurale, mentre 'It is' e 'This is' non esprimono l'esistenza.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "There is / There are"
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
   },
   {
     "id": "q217",
@@ -3252,10 +3549,12 @@ export const questions: Question[] = [
       "yours'"
     ],
     "correctIndex": 0,
-    "explanation": "Pronoun 'yours' replaces 'your pen'.",
+    "explanation": "Quando il possessivo sostituisce il nome ('your pen') si usa il pronome possessivo: 'It is yours'. 'Your' vuole un nome dopo di sé, 'you' non è possessivo e 'yours'' ha un apostrofo che non esiste.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives",
+    "extraOption": "yourself"
   },
   {
     "id": "q218",
@@ -3267,10 +3566,11 @@ export const questions: Question[] = [
       "Hers'"
     ],
     "correctIndex": 0,
-    "explanation": "Adjective 'Her' describes the car.",
+    "explanation": "Davanti a un nome ('car') serve l'aggettivo possessivo: 'Her car'. 'Hers' si usa da solo senza nome, 'she' è un pronome soggetto e 'hers'' non esiste.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives"
   },
   {
     "id": "q219",
@@ -3282,10 +3582,12 @@ export const questions: Question[] = [
       "us"
     ],
     "correctIndex": 0,
-    "explanation": "Pronoun 'ours' replaces 'our house'.",
+    "explanation": "'That house is ___' non ha un nome dopo lo spazio, quindi serve il pronome possessivo 'ours'. 'Our' vuole un nome dopo di sé, mentre 'we' e 'us' non sono possessivi.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives",
+    "extraOption": "ourselves"
   },
   {
     "id": "q220",
@@ -3297,10 +3599,11 @@ export const questions: Question[] = [
       "his'"
     ],
     "correctIndex": 0,
-    "explanation": "Pronoun 'his' indicates possession by a male.",
+    "explanation": "'His' è sia aggettivo sia pronome possessivo di 'lui', e qui senza nome dopo funziona da pronome: 'Is this book his?'. 'Him' e 'he' non sono possessivi, e 'his'' non esiste.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives"
   },
   {
     "id": "q221",
@@ -3312,10 +3615,11 @@ export const questions: Question[] = [
       "I"
     ],
     "correctIndex": 0,
-    "explanation": "Adjective 'my' modifies shoes.",
+    "explanation": "Davanti al nome 'shoes' serve l'aggettivo possessivo 'my'. 'Mine' si usa da solo senza nome, mentre 'me' e 'I' non sono possessivi.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives"
   },
   {
     "id": "q222",
@@ -3327,10 +3631,12 @@ export const questions: Question[] = [
       "its'"
     ],
     "correctIndex": 0,
-    "explanation": "'Its' is the possessive adjective for animals/things without an apostrophe.",
+    "explanation": "Il possessivo di 'it' è 'its' senza apostrofo: 'its tail'. 'It's' significa 'it is' o 'it has', mentre 'it' non è possessivo e 'its'' non esiste.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives",
+    "extraOption": "itself"
   },
   {
     "id": "q223",
@@ -3342,10 +3648,11 @@ export const questions: Question[] = [
       "they"
     ],
     "correctIndex": 0,
-    "explanation": "Pronoun 'theirs' replaces 'their keys'.",
+    "explanation": "'Are those keys ___?' non ha un nome dopo lo spazio, quindi serve il pronome 'theirs': 'Are those keys theirs?'. 'Their' vuole un nome dopo di sé, mentre 'them' e 'they' non sono possessivi.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives"
   },
   {
     "id": "q224",
@@ -3357,10 +3664,12 @@ export const questions: Question[] = [
       "I"
     ],
     "correctIndex": 0,
-    "explanation": "Possessive adjective 'my' comes before the noun.",
+    "explanation": "Davanti al nome 'keys' serve l'aggettivo possessivo 'my': 'I lost my keys'. 'Mine' si usa da solo, e 'me' e 'I' non indicano possesso.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives",
+    "extraOption": "myself"
   },
   {
     "id": "q225",
@@ -3372,10 +3681,12 @@ export const questions: Question[] = [
       "I"
     ],
     "correctIndex": 0,
-    "explanation": "Pronoun 'mine' replaces 'my laptop'.",
+    "explanation": "Dopo 'is' e senza nome si usa il pronome possessivo 'mine', che sostituisce 'my laptop' ed è coordinato a 'yours'. 'My' vuole un nome, mentre 'me' e 'I' non sono possessivi.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives",
+    "extraOption": "mines"
   },
   {
     "id": "q226",
@@ -3387,10 +3698,12 @@ export const questions: Question[] = [
       "This book is I."
     ],
     "correctIndex": 0,
-    "explanation": "'Mio' at the end of the sentence is the pronoun 'mine'.",
+    "explanation": "'Mio' senza nome dopo è un pronome possessivo, in inglese 'mine': 'This book is mine'. 'My' vuole un nome dopo, mentre 'me' e 'I' non indicano il possesso.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives",
+    "extraOption": "This book is mines."
   },
   {
     "id": "q227",
@@ -3402,10 +3715,12 @@ export const questions: Question[] = [
       "Them house is very big."
     ],
     "correctIndex": 0,
-    "explanation": "'Loro' as an adjective before a noun is 'their'.",
+    "explanation": "'Loro' davanti a un nome è l'aggettivo possessivo 'their': 'Their house'. 'Theirs' si usa da solo, mentre 'they' e 'them' sono pronomi personali.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives",
+    "extraOption": "There house is very big."
   },
   {
     "id": "q228",
@@ -3417,10 +3732,12 @@ export const questions: Question[] = [
       "That is your jacket, not she."
     ],
     "correctIndex": 0,
-    "explanation": "'La sua' without the noun is the pronoun 'hers'.",
+    "explanation": "'La sua' senza il nome è un pronome possessivo, per 'lei' è 'hers': 'not hers'. 'Her' vuole un nome dopo, 'yours jacket' mette un pronome davanti a un nome e 'she' non è possessivo.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives",
+    "extraOption": "That is your jacket, not her's."
   },
   {
     "id": "q229",
@@ -3432,10 +3749,11 @@ export const questions: Question[] = [
       "Us friends are coming."
     ],
     "correctIndex": 0,
-    "explanation": "'Nostri' before the noun is 'our'.",
+    "explanation": "'Nostri' davanti a 'friends' è l'aggettivo possessivo 'our': 'Our friends'. 'Ours' si usa da solo senza nome, mentre 'we' e 'us' non esprimono il possesso.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives"
   },
   {
     "id": "q230",
@@ -3447,10 +3765,11 @@ export const questions: Question[] = [
       "Is this money you?"
     ],
     "correctIndex": 0,
-    "explanation": "Money is uncountable singular, 'vostri' as a pronoun is 'yours'.",
+    "explanation": "'Money' è non numerabile e singolare, quindi 'this money' e 'Is'; senza nome dopo lo spazio si usa il pronome 'yours': 'Is this money yours?'. 'Your' vuole un nome, 'Are these money' è sbagliato perché 'money' non ha plurale e 'you' non è possessivo.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives"
   },
   {
     "id": "q231",
@@ -3462,10 +3781,12 @@ export const questions: Question[] = [
       "His' phone is new."
     ],
     "correctIndex": 0,
-    "explanation": "'Suo' for a male is 'his'.",
+    "explanation": "'Suo' di lui davanti a un nome è 'his': 'His phone'. 'Him' e 'he' non sono possessivi e 'his'' ha un apostrofo che non esiste.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives",
+    "extraOption": "He's phone is new."
   },
   {
     "id": "q232",
@@ -3477,10 +3798,11 @@ export const questions: Question[] = [
       "My car is red, he is blue."
     ],
     "correctIndex": 0,
-    "explanation": "'La sua' as a pronoun for a male is 'his'.",
+    "explanation": "'My car' ha il nome, quindi si usa l'aggettivo 'my'; 'la sua' senza nome è il pronome 'his'. 'Mine car' mette un pronome davanti a un nome, mentre 'him' e 'he' non sono possessivi.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives"
   },
   {
     "id": "q233",
@@ -3492,10 +3814,11 @@ export const questions: Question[] = [
       "I forgot I umbrella."
     ],
     "correctIndex": 0,
-    "explanation": "'Il mio' before the noun is 'my'.",
+    "explanation": "'Il mio' davanti a 'umbrella' è l'aggettivo possessivo 'my': 'I forgot my umbrella'. 'Mine' non si usa davanti a un nome, mentre 'me' e 'I' non indicano il possesso.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives"
   },
   {
     "id": "q234",
@@ -3507,10 +3830,11 @@ export const questions: Question[] = [
       "Those pens are they."
     ],
     "correctIndex": 0,
-    "explanation": "'Loro' as a pronoun is 'theirs'.",
+    "explanation": "'Sono loro' senza il nome dopo vuole il pronome possessivo 'theirs': 'Those pens are theirs'. 'Their' vuole un nome, mentre 'them' e 'they' sono pronomi personali.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Possessives"
+    "grammarTopic": "Possessives",
+    "theoryId": "possessives"
   },
   {
     "id": "q235",
@@ -3522,10 +3846,11 @@ export const questions: Question[] = [
       "himself"
     ],
     "correctIndex": 0,
-    "explanation": "'Him' is the object pronoun for a male.",
+    "explanation": "Dopo un verbo come 'call' serve il pronome complemento: 'I call him'. 'He' è il soggetto, 'his' è possessivo e 'himself' è riflessivo, quindi qui non vanno.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q236",
@@ -3537,10 +3862,12 @@ export const questions: Question[] = [
       "mine"
     ],
     "correctIndex": 0,
-    "explanation": "'Me' is the object pronoun for first person singular.",
+    "explanation": "Dopo il verbo 'love' serve il pronome complemento: 'She loves me'. 'I' è il soggetto, mentre 'my' e 'mine' sono possessivi.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns",
+    "extraOption": "myself"
   },
   {
     "id": "q237",
@@ -3552,10 +3879,12 @@ export const questions: Question[] = [
       "ours"
     ],
     "correctIndex": 0,
-    "explanation": "'Us' is the object pronoun for 'we'.",
+    "explanation": "Dopo 'help' serve il pronome complemento: 'help us'. 'We' è il soggetto, mentre 'our' e 'ours' sono possessivi.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns",
+    "extraOption": "ourselves"
   },
   {
     "id": "q238",
@@ -3567,10 +3896,11 @@ export const questions: Question[] = [
       "theirs"
     ],
     "correctIndex": 0,
-    "explanation": "'Them' is the object pronoun for 'they'.",
+    "explanation": "Dopo 'know' serve il pronome complemento 'them': 'I don't know them'. 'They' è il soggetto, mentre 'their' e 'theirs' sono possessivi.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q239",
@@ -3582,10 +3912,11 @@ export const questions: Question[] = [
       "herself"
     ],
     "correctIndex": 0,
-    "explanation": "'Her' is the object pronoun after the preposition 'at'.",
+    "explanation": "Dopo una preposizione ('at') si usa il pronome complemento 'her': 'Look at her'. 'She' è il soggetto, 'hers' è un pronome possessivo e 'herself' è riflessivo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q240",
@@ -3597,10 +3928,11 @@ export const questions: Question[] = [
       "yourself"
     ],
     "correctIndex": 0,
-    "explanation": "'You' is the object pronoun.",
+    "explanation": "Dopo 'to' serve il pronome complemento 'you': 'speak to you'. 'Your' e 'yours' sono possessivi, mentre 'yourself' si usa quando il soggetto è già 'you', non 'he'.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q241",
@@ -3612,10 +3944,11 @@ export const questions: Question[] = [
       "itself"
     ],
     "correctIndex": 0,
-    "explanation": "'It' is the object pronoun for things/animals.",
+    "explanation": "Dopo il verbo 'give' serve un pronome complemento, e per una cosa il pronome è 'it' (\"dallo a me\"). 'Its' è un possessivo (\"suo\"), \"it's\" significa \"it is\" e 'itself' è riflessivo (\"se stesso\"): nessuno dei tre può essere l'oggetto di 'give'.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q242",
@@ -3627,10 +3960,12 @@ export const questions: Question[] = [
       "mine"
     ],
     "correctIndex": 0,
-    "explanation": "'Me' receives the action of visiting.",
+    "explanation": "Il soggetto è 'My parents', quindi dopo il verbo 'visiting' serve il pronome complemento 'me' (\"mi vengono a trovare\"). 'I' è un pronome soggetto, mentre 'my' e 'mine' sono possessivi e non possono stare da soli come oggetto.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns",
+    "extraOption": "myself"
   },
   {
     "id": "q243",
@@ -3642,10 +3977,11 @@ export const questions: Question[] = [
       "himself"
     ],
     "correctIndex": 0,
-    "explanation": "'Him' follows the preposition 'to'.",
+    "explanation": "Dopo una preposizione come 'to' si usa il pronome complemento: 'listening to him'. 'He' è un pronome soggetto, 'his' è possessivo e 'himself' si usa solo quando il soggetto e l'oggetto sono la stessa persona.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q244",
@@ -3657,10 +3993,12 @@ export const questions: Question[] = [
       "I don't understand it."
     ],
     "correctIndex": 0,
-    "explanation": "'Lo' referring to a man translates to 'him'.",
+    "explanation": "'Lo' riferito a un uomo (il suggerimento dice \"di lui\") si traduce con il pronome complemento 'him'. 'He' e 'his' sono soggetto e possessivo, mentre 'it' si usa per le cose, non per una persona.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns",
+    "extraOption": "I don't understand himself."
   },
   {
     "id": "q245",
@@ -3672,10 +4010,12 @@ export const questions: Question[] = [
       "Can you see me?"
     ],
     "correctIndex": 0,
-    "explanation": "'Ci' translates to the object pronoun 'us'.",
+    "explanation": "'Ci' in \"vederci\" significa \"vedere noi\", e il pronome complemento di 'we' è 'us'. 'We' è un pronome soggetto e 'our' è un possessivo, mentre 'me' indicherebbe solo una persona (io).",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns",
+    "extraOption": "Can you see ourselves?"
   },
   {
     "id": "q246",
@@ -3687,10 +4027,11 @@ export const questions: Question[] = [
       "I bought for her a present."
     ],
     "correctIndex": 0,
-    "explanation": "'Le' (to her) is translated with the object pronoun 'her'.",
+    "explanation": "'Le' (a lei) diventa il pronome complemento 'her', messo subito dopo il verbo: 'bought her a present'. 'She' è soggetto, 'hers' è un possessivo e 'for her' va dopo il regalo ('a present for her'), non prima.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q247",
@@ -3702,10 +4043,11 @@ export const questions: Question[] = [
       "I'm waiting they here."
     ],
     "correctIndex": 0,
-    "explanation": "'Li' is the object pronoun 'them', and 'wait' needs 'for' before its object: 'I'll wait for them here'. 'They' is a subject pronoun.",
+    "explanation": "'Li' = 'them' (pronome complemento), e in inglese 'wait' vuole 'for' prima dell'oggetto: 'wait for them'. 'They' è un pronome soggetto, e 'wait them' senza 'for' è sbagliato.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q248",
@@ -3717,10 +4059,12 @@ export const questions: Question[] = [
       "Give to me that book."
     ],
     "correctIndex": 0,
-    "explanation": "'Dammi' uses the object pronoun 'me'.",
+    "explanation": "Dopo 'give' serve il pronome complemento 'me': 'Give me that book'. 'I' è soggetto e 'my' è possessivo (andrebbe seguito da un nome), mentre 'Give to me that book' ha l'ordine delle parole sbagliato (sarebbe 'Give that book to me').",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns",
+    "extraOption": "Give myself that book."
   },
   {
     "id": "q249",
@@ -3732,10 +4076,12 @@ export const questions: Question[] = [
       "I not believe you."
     ],
     "correctIndex": 0,
-    "explanation": "'Ti' is the object pronoun 'you'.",
+    "explanation": "'Ti' si traduce con 'you', che in inglese è uguale come soggetto e come complemento. 'Your' è un possessivo, 'believe to you' ha una preposizione di troppo e 'I not believe' manca dell'ausiliare: la negazione si fa con 'don't'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns",
+    "extraOption": "I don't believe yourself."
   },
   {
     "id": "q250",
@@ -3743,14 +4089,15 @@ export const questions: Question[] = [
     "options": [
       "I want it now.",
       "I want him now.",
-      "I want that now.",
-      "I want this now."
+      "I want them now.",
+      "I want he now."
     ],
     "correctIndex": 0,
-    "explanation": "'Lo' for a thing is 'it'.",
+    "explanation": "Il suggerimento dice che 'lo' indica un oggetto singolare, e il pronome complemento per le cose è 'it'. 'Him' si usa solo per un uomo, 'them' è plurale e 'he' è un pronome soggetto, che dopo il verbo non si può usare.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q251",
@@ -3758,14 +4105,15 @@ export const questions: Question[] = [
     "options": [
       "Are you coming with us to the cinema?",
       "Are you coming with we to the cinema?",
-      "Do you come with us to the cinema?",
+      "Are you coming with our to the cinema?",
       "Are you coming to us to the cinema?"
     ],
     "correctIndex": 0,
-    "explanation": "'Con noi' uses the object pronoun 'us'.",
+    "explanation": "'Con noi' richiede il pronome complemento 'us' dopo la preposizione 'with'. 'With we' è sbagliato perché 'we' è soggetto, 'with our' è un aggettivo possessivo che vuole un nome, e 'coming to us' cambia il senso (\"vieni da noi\").",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q252",
@@ -3777,10 +4125,12 @@ export const questions: Question[] = [
       "I not know them."
     ],
     "correctIndex": 0,
-    "explanation": "'Li' is the object pronoun 'them'.",
+    "explanation": "'Li' = 'them', pronome complemento di 'they', dopo il verbo 'know'. 'They' è un pronome soggetto, 'their' è possessivo, e 'I not know' è sbagliato perché la negazione del presente semplice vuole 'don't'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Object Pronouns"
+    "grammarTopic": "Object Pronouns",
+    "theoryId": "object-pronouns",
+    "extraOption": "I don't know they're."
   },
   {
     "id": "q253",
@@ -3792,10 +4142,12 @@ export const questions: Question[] = [
       "That"
     ],
     "correctIndex": 0,
-    "explanation": "'This' is used for a singular person/thing near the speaker.",
+    "explanation": "'This' si usa per una persona o cosa singolare vicina a chi parla, e qui il suggerimento dice 'near'. 'These' e 'those' sono plurali ('is' va con il singolare) e 'that' indica qualcosa di lontano.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives",
+    "extraOption": "Them"
   },
   {
     "id": "q254",
@@ -3804,13 +4156,14 @@ export const questions: Question[] = [
       "those",
       "that",
       "this",
-      "these"
+      "a"
     ],
     "correctIndex": 0,
-    "explanation": "'Those' is used for plural things far from the speaker.",
+    "explanation": "'Birds' è plurale, quindi serve un dimostrativo plurale: gli uccelli sono nel cielo, lontani da chi parla, quindi 'those'. 'That' e 'this' sono singolari e 'a' non si usa davanti a un plurale.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives"
   },
   {
     "id": "q255",
@@ -3819,13 +4172,14 @@ export const questions: Question[] = [
       "these",
       "this",
       "that",
-      "those"
+      "a"
     ],
     "correctIndex": 0,
-    "explanation": "'These' is used for plural things near the speaker.",
+    "explanation": "'Shoes' è plurale e la frase dice 'here', quindi le scarpe sono vicine a chi parla: 'these'. 'This' e 'that' sono singolari e 'a' non si usa davanti a un plurale.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives"
   },
   {
     "id": "q256",
@@ -3837,10 +4191,12 @@ export const questions: Question[] = [
       "Those"
     ],
     "correctIndex": 0,
-    "explanation": "'That' is used for a singular thing far away.",
+    "explanation": "'Building' è singolare e 'over there' significa lontano, quindi 'That'. 'This' indica qualcosa di vicino, mentre 'these' e 'those' sono plurali e non vanno con 'building'.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives",
+    "extraOption": "There"
   },
   {
     "id": "q257",
@@ -3849,13 +4205,14 @@ export const questions: Question[] = [
       "These",
       "This",
       "That",
-      "Those"
+      "Each"
     ],
     "correctIndex": 0,
-    "explanation": "'These' refers to plural days in the current time.",
+    "explanation": "'Days' è plurale e 'are' è presente, quindi i giorni sono quelli di adesso e si usa 'These'. 'This' e 'That' sono singolari e non si accordano con 'days'; 'Each' vuole un nome singolare.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives"
   },
   {
     "id": "q258",
@@ -3867,10 +4224,11 @@ export const questions: Question[] = [
       "them"
     ],
     "correctIndex": 0,
-    "explanation": "'This kind' is singular.",
+    "explanation": "'Kind' è singolare, quindi serve un dimostrativo singolare, e il suggerimento 'near/current' dice di usare 'this'. 'These' e 'those' sono plurali, mentre 'them' è un pronome complemento, non un dimostrativo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives"
   },
   {
     "id": "q259",
@@ -3882,10 +4240,11 @@ export const questions: Question[] = [
       "them"
     ],
     "correctIndex": 0,
-    "explanation": "'Those apples' refers to plural items away or in the past.",
+    "explanation": "'Apples' è plurale e il suggerimento dice 'far/past', quindi 'those'. 'That' e 'this' sono singolari, e 'them' è un pronome complemento che non si può mettere davanti a un nome.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives"
   },
   {
     "id": "q260",
@@ -3897,10 +4256,11 @@ export const questions: Question[] = [
       "Them"
     ],
     "correctIndex": 0,
-    "explanation": "'This' refers to a singular item being held.",
+    "explanation": "'Is' e 'book' sono singolari, e se si ha il libro in mano è vicino: 'This'. 'These' e 'those' sono plurali, e 'Them' è un pronome complemento, che non può essere soggetto.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives"
   },
   {
     "id": "q261",
@@ -3912,10 +4272,12 @@ export const questions: Question[] = [
       "this"
     ],
     "correctIndex": 0,
-    "explanation": "'That' refers to a singular item out of reach.",
+    "explanation": "'Pen' è singolare e il suggerimento dice 'far', quindi 'that pen'. 'Those' e 'these' sono plurali (servirebbe 'pens'), mentre 'this' indica qualcosa di vicino.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives",
+    "extraOption": "them"
   },
   {
     "id": "q262",
@@ -3927,10 +4289,11 @@ export const questions: Question[] = [
       "Those is my cat."
     ],
     "correctIndex": 0,
-    "explanation": "'Questo' for one thing near the speaker is 'This'; 'that' is for something far away, and 'these/those' are plural.",
+    "explanation": "'Questo' vicino a chi parla, singolare, è 'this'. 'That' sarebbe \"quello\" (lontano), e 'these is' e 'those is' sono sbagliati perché 'these/those' sono plurali e non vanno con 'is'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives"
   },
   {
     "id": "q263",
@@ -3942,10 +4305,12 @@ export const questions: Question[] = [
       "This are my books."
     ],
     "correctIndex": 0,
-    "explanation": "'Quelli' (far plural) is 'Those'.",
+    "explanation": "'Quelli' sono cose lontane e plurali: 'those', e il verbo plurale è 'are'. 'That' e 'this' sono singolari (non vanno con 'are'), mentre 'these' significa \"questi\", cioè vicini.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives",
+    "extraOption": "Them are my books."
   },
   {
     "id": "q264",
@@ -3957,10 +4322,11 @@ export const questions: Question[] = [
       "It pizza is very good."
     ],
     "correctIndex": 0,
-    "explanation": "'Questa' (singular, near the speaker) is 'This': 'This pizza'; 'that' is for something far away and 'these' is plural.",
+    "explanation": "'Questa pizza' è singolare e vicina: 'This pizza'. 'That' vorrebbe dire \"quella\", 'These pizza' mischia plurale e singolare, e 'It' non è un dimostrativo e non può stare davanti a un nome.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives"
   },
   {
     "id": "q265",
@@ -3972,10 +4338,12 @@ export const questions: Question[] = [
       "That girls are Italian."
     ],
     "correctIndex": 0,
-    "explanation": "'Queste' (near plural) is 'These'.",
+    "explanation": "'Queste ragazze' è plurale e vicino: 'These girls'. 'This' e 'that' sono singolari e non vanno con 'girls', mentre 'those' vorrebbe dire \"quelle\" (lontane).",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives",
+    "extraOption": "These girl are Italian."
   },
   {
     "id": "q266",
@@ -3987,10 +4355,12 @@ export const questions: Question[] = [
       "The man is my father."
     ],
     "correctIndex": 0,
-    "explanation": "'Quell'' (far singular) is 'That'.",
+    "explanation": "'Quell'uomo' è singolare e lontano: 'That man'. 'This man' vorrebbe dire \"quest'uomo\", 'Those man' mischia plurale e singolare, e 'The man' non traduce l'idea di \"quello\".",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives",
+    "extraOption": "That men is my father."
   },
   {
     "id": "q267",
@@ -4002,10 +4372,12 @@ export const questions: Question[] = [
       "What are that things?"
     ],
     "correctIndex": 0,
-    "explanation": "'Quelle' (far plural) is 'those'.",
+    "explanation": "'Cose' è plurale e 'quelle' indica lontananza: 'those things', con 'are'. 'These' vorrebbe dire \"queste\", mentre 'that' e 'is that' non vanno con il plurale 'things'.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives",
+    "extraOption": "What is those things?"
   },
   {
     "id": "q268",
@@ -4017,10 +4389,12 @@ export const questions: Question[] = [
       "I prefer those dress."
     ],
     "correctIndex": 0,
-    "explanation": "'Questo' (singular, near the speaker) is 'this': 'this dress'; 'these' and 'those' are plural, and 'that' refers to something far away.",
+    "explanation": "'Questo vestito' è singolare e vicino: 'this dress'. 'These' e 'those' sono plurali e non vanno con 'dress' al singolare, mentre 'that' vorrebbe dire \"quel\" (lontano).",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives",
+    "extraOption": "I prefer them dress."
   },
   {
     "id": "q269",
@@ -4032,10 +4406,12 @@ export const questions: Question[] = [
       "Do you know this people?"
     ],
     "correctIndex": 0,
-    "explanation": "'Quelle' (far plural) is 'those'.",
+    "explanation": "'Quelle persone' è plurale e lontano: 'those people'. 'That' e 'this' sono singolari e non vanno con 'people' (che è plurale), mentre 'these' significa \"queste\".",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives",
+    "extraOption": "Do you know them people?"
   },
   {
     "id": "q270",
@@ -4047,10 +4423,12 @@ export const questions: Question[] = [
       "That are my notes."
     ],
     "correctIndex": 0,
-    "explanation": "'Questi' (near plural) is 'These'.",
+    "explanation": "'Questi' è plurale e vicino: 'These', seguito da 'are'. 'This' e 'that' sono singolari e non vanno con 'are', mentre 'those' vorrebbe dire \"quelli\" (lontani).",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Demonstratives"
+    "grammarTopic": "Demonstratives",
+    "theoryId": "demonstratives",
+    "extraOption": "Them are my notes."
   },
   {
     "id": "q271",
@@ -4062,10 +4440,11 @@ export const questions: Question[] = [
       "at"
     ],
     "correctIndex": 0,
-    "explanation": "'Under' means below or beneath something ('under the bed'); 'between' needs two things, and 'on'/'at' don't describe a place beneath.",
+    "explanation": "'Under' significa \"sotto\", ed è la posizione di un gatto che si nasconde sotto il letto. 'Between' richiede due cose in mezzo alle quali stare, e 'on' (sopra) e 'at' (in un punto) non descrivono qualcosa di sotto.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q272",
@@ -4077,10 +4456,11 @@ export const questions: Question[] = [
       "under"
     ],
     "correctIndex": 0,
-    "explanation": "Use 'at' for a specific point or location.",
+    "explanation": "Per aspettare a una fermata dell'autobus, cioè in un punto preciso, si usa 'at': 'at the bus stop'. 'In' significa dentro uno spazio chiuso, 'on' vuol dire sopra una superficie e 'under' sotto.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q273",
@@ -4092,10 +4472,12 @@ export const questions: Question[] = [
       "under"
     ],
     "correctIndex": 0,
-    "explanation": "Use 'on' for surfaces.",
+    "explanation": "Un quadro appeso sta su una superficie, quindi 'on the wall'. 'In' vorrebbe dire dentro il muro, 'at' non indica una superficie e 'under' vuol dire sotto.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place",
+    "extraOption": "into"
   },
   {
     "id": "q274",
@@ -4107,10 +4489,11 @@ export const questions: Question[] = [
       "by"
     ],
     "correctIndex": 0,
-    "explanation": "Use 'in' for cities, countries, and enclosed spaces.",
+    "explanation": "Per città e paesi si usa 'in': 'lives in London'. 'At' è per punti precisi (una fermata, la stazione), 'on' per le superfici e 'by' vuol dire \"vicino a\".",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q275",
@@ -4122,10 +4505,11 @@ export const questions: Question[] = [
       "on"
     ],
     "correctIndex": 0,
-    "explanation": "'Behind' means at the back of.",
+    "explanation": "'Behind' significa \"dietro\", ed è la posizione più normale per un'auto parcheggiata rispetto a una casa. 'Under', 'in' e 'on' (sotto, dentro, sopra la casa) non sono posti dove si parcheggia un'auto.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q276",
@@ -4137,10 +4521,11 @@ export const questions: Question[] = [
       "in"
     ],
     "correctIndex": 0,
-    "explanation": "'Between' is used for a position separating two things or people; 'among' is used for more than two.",
+    "explanation": "Con due persone ('her two best friends') si usa 'between', che indica la posizione in mezzo a due. 'Among' si usa con più di due, e 'under' e 'in' non descrivono sedersi in mezzo a due persone.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q277",
@@ -4152,10 +4537,11 @@ export const questions: Question[] = [
       "at"
     ],
     "correctIndex": 0,
-    "explanation": "'Next to' means beside.",
+    "explanation": "'Next to' significa \"accanto a\", e descrive due edifici vicini uno all'altro. 'In', 'on' e 'at' indicherebbero che la banca è dentro o sopra l'ufficio postale, oppure in un punto di esso.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q278",
@@ -4167,10 +4553,11 @@ export const questions: Question[] = [
       "at"
     ],
     "correctIndex": 0,
-    "explanation": "'Over' means above or across something: a bridge goes over (across) the river. 'Under' is below, and 'in'/'at' don't describe this position.",
+    "explanation": "Un ponte attraversa il fiume stando sopra di esso: 'over the river'. 'Under' vuol dire sotto, e 'in' e 'at' non descrivono la posizione di un ponte rispetto a un fiume.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q279",
@@ -4178,14 +4565,15 @@ export const questions: Question[] = [
     "options": [
       "on",
       "in",
-      "at",
+      "from",
       "between"
     ],
     "correctIndex": 0,
-    "explanation": "'On' is used for surfaces.",
+    "explanation": "Le chiavi appoggiate sul tavolo stanno su una superficie: 'on the table'. 'In' vuol dire dentro, 'from' indica provenienza e non va con 'left' in questa frase, 'between' ha bisogno di due cose.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q280",
@@ -4197,10 +4585,12 @@ export const questions: Question[] = [
       "The dog is in the table."
     ],
     "correctIndex": 0,
-    "explanation": "'Sotto' translates to 'under'.",
+    "explanation": "'Sotto' si traduce con 'under'. 'On' vuol dire sopra, 'at' indica un punto e 'in' vuol dire dentro: sono tutte posizioni diverse.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place",
+    "extraOption": "The dog is over the table."
   },
   {
     "id": "q281",
@@ -4212,10 +4602,12 @@ export const questions: Question[] = [
       "I am to the cinema."
     ],
     "correctIndex": 0,
-    "explanation": "'At' is used for a place where an activity happens (at the cinema, at school); 'into' shows movement, 'on' is for surfaces and 'to' for direction.",
+    "explanation": "'Al cinema' è un luogo dove si svolge un'attività, quindi 'at the cinema' (come 'at school'). 'Into' indica movimento verso l'interno, 'on' si usa per le superfici e 'to' indica direzione, non posizione.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place",
+    "extraOption": "I am over the cinema."
   },
   {
     "id": "q282",
@@ -4227,10 +4619,11 @@ export const questions: Question[] = [
       "There is a spider under the ceiling."
     ],
     "correctIndex": 0,
-    "explanation": "'Sul' for a surface like a ceiling is 'on'.",
+    "explanation": "Il soffitto è una superficie, quindi un ragno ci sta 'on the ceiling'. 'In' e 'at' non descrivono una superficie, mentre 'under' vuol dire sotto il soffitto.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q283",
@@ -4242,10 +4635,12 @@ export const questions: Question[] = [
       "The office is at the bank."
     ],
     "correctIndex": 0,
-    "explanation": "'Vicino a' is 'near' ('next to' means 'accanto a'); 'between' needs two places, and 'in'/'at' mean the office is inside or at the bank.",
+    "explanation": "'Vicino a' si traduce con 'near'. 'Between' ha bisogno di due luoghi, e 'in' e 'at' vorrebbero dire che l'ufficio è dentro la banca o in un punto della banca.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place",
+    "extraOption": "The office is over the bank."
   },
   {
     "id": "q284",
@@ -4257,10 +4652,11 @@ export const questions: Question[] = [
       "The child is in his parents."
     ],
     "correctIndex": 0,
-    "explanation": "'Tra' two people is 'between'; 'among' is used for more than two people or things.",
+    "explanation": "Un bambino con due genitori sta in mezzo a due persone: 'between'. 'Among' si usa con più di due, 'next to' vuol dire \"accanto a\" e 'in' vorrebbe dire \"dentro\" i genitori.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q285",
@@ -4272,10 +4668,12 @@ export const questions: Question[] = [
       "Hide in the door."
     ],
     "correctIndex": 0,
-    "explanation": "'Dietro' is 'behind'.",
+    "explanation": "'Dietro' si traduce con 'behind'. 'Under' vuol dire sotto, 'next to' accanto e 'in the door' dentro la porta, che non ha senso.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place",
+    "extraOption": "Hide in front of the door."
   },
   {
     "id": "q286",
@@ -4287,10 +4685,12 @@ export const questions: Question[] = [
       "Put the clothes to the wardrobe."
     ],
     "correctIndex": 0,
-    "explanation": "'Nel' meaning inside an enclosed space is 'in'; 'on' is for surfaces, 'at' for a point and 'to' for direction, not position.",
+    "explanation": "I vestiti si mettono dentro uno spazio chiuso, quindi 'in the wardrobe'. 'On' è per le superfici, 'at' per un punto e 'to' indica direzione verso un posto, non posizione.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place",
+    "extraOption": "Put the clothes by the wardrobe."
   },
   {
     "id": "q287",
@@ -4302,10 +4702,12 @@ export const questions: Question[] = [
       "I met Marco to the station."
     ],
     "correctIndex": 0,
-    "explanation": "'Alla' for a specific point or place is 'at' ('at the station'); 'into' shows movement inside, and 'on'/'to' are not used here.",
+    "explanation": "'Alla stazione' è un punto preciso dove ci si incontra, quindi 'at the station'. 'Into' indica movimento verso l'interno, mentre 'on' e 'to' non si usano in questo modo.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place",
+    "extraOption": "I met Marco over the station."
   },
   {
     "id": "q288",
@@ -4317,10 +4719,12 @@ export const questions: Question[] = [
       "There is a garden next to the house."
     ],
     "correctIndex": 0,
-    "explanation": "'Dietro' is 'behind'.",
+    "explanation": "'Dietro' si traduce con 'behind'. 'Under' vuol dire sotto, 'in' dentro e 'next to' accanto: tutte posizioni diverse da \"dietro la casa\".",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Prepositions of Place"
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place",
+    "extraOption": "There is a garden in front of the house."
   },
   {
     "id": "q289",
@@ -4332,10 +4736,11 @@ export const questions: Question[] = [
       "To listen"
     ],
     "correctIndex": 0,
-    "explanation": "Imperative uses the base form of the verb.",
+    "explanation": "L'imperativo si fa con la forma base del verbo, senza soggetto: 'Listen to me'. 'Listening', 'Listens' e 'To listen' non sono forme dell'imperativo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative"
   },
   {
     "id": "q290",
@@ -4347,10 +4752,12 @@ export const questions: Question[] = [
       "Doesn't"
     ],
     "correctIndex": 0,
-    "explanation": "Negative imperative uses 'Don't'.",
+    "explanation": "L'imperativo negativo si forma con 'Don't' + forma base: \"Don't open\". 'Not' e 'No' non si usano da soli all'inizio, e 'Doesn't' vale solo per la terza persona singolare, non per un ordine.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Aren't"
   },
   {
     "id": "q291",
@@ -4362,10 +4769,12 @@ export const questions: Question[] = [
       "To eat"
     ],
     "correctIndex": 0,
-    "explanation": "Use base verb for direct commands.",
+    "explanation": "Un ordine diretto usa la forma base del verbo: 'Eat your vegetables!'. 'Eating', 'Eats' e 'To eat' non sono forme dell'imperativo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Ate"
   },
   {
     "id": "q292",
@@ -4377,10 +4786,12 @@ export const questions: Question[] = [
       "No"
     ],
     "correctIndex": 0,
-    "explanation": "Negative commands usually start with 'Don't' + base verb ('Don't be late'); 'Not', 'No' and 'Doesn't' cannot form an imperative.",
+    "explanation": "L'imperativo negativo è 'Don't' + forma base ('Don't be late'), anche con il verbo 'be'. 'Not', 'No' e 'Doesn't' non possono aprire un ordine.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Isn't"
   },
   {
     "id": "q293",
@@ -4392,10 +4803,12 @@ export const questions: Question[] = [
       "Am"
     ],
     "correctIndex": 0,
-    "explanation": "Base form of 'to be' is used for commands.",
+    "explanation": "L'imperativo di 'to be' è la forma base 'Be': 'Be quiet, please.'. 'Are', 'Is' e 'Am' sono forme coniugate e hanno bisogno di un soggetto (you, he, I).",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Been"
   },
   {
     "id": "q294",
@@ -4407,10 +4820,11 @@ export const questions: Question[] = [
       "Doesn't"
     ],
     "correctIndex": 0,
-    "explanation": "Negative commands use 'Don't' + base verb ('Don't touch'); 'No', 'Not' and 'Doesn't' cannot form an imperative.",
+    "explanation": "L'imperativo negativo si forma con 'Don't' + forma base: \"Don't touch\". 'No', 'Not' e 'Doesn't' non possono aprire un ordine.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative"
   },
   {
     "id": "q295",
@@ -4422,10 +4836,12 @@ export const questions: Question[] = [
       "Did"
     ],
     "correctIndex": 0,
-    "explanation": "The imperative uses the base form of the verb ('Do your homework'), with no -s, -ing or past form.",
+    "explanation": "L'imperativo di 'do' è la forma base 'Do': 'Do your homework'. 'Does' vale solo per he/she/it, 'Doing' è la forma -ing e 'Did' è passato: nessuno è un imperativo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Make"
   },
   {
     "id": "q296",
@@ -4437,10 +4853,12 @@ export const questions: Question[] = [
       "To pass"
     ],
     "correctIndex": 0,
-    "explanation": "The imperative uses the base form of the verb with no subject: 'Pass me the salt, please.'",
+    "explanation": "L'imperativo è la forma base del verbo e non ha soggetto: 'Pass me the salt'. 'Passing', 'Passes' e 'To pass' non sono forme dell'imperativo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Passed"
   },
   {
     "id": "q297",
@@ -4452,10 +4870,12 @@ export const questions: Question[] = [
       "Doesn't"
     ],
     "correctIndex": 0,
-    "explanation": "Negative imperatives are formed with 'Don't' + base verb: 'Don't worry about it.'",
+    "explanation": "L'imperativo negativo si forma con 'Don't' + forma base: \"Don't worry\". 'Not' e 'No' da soli non bastano e 'Doesn't' non va con un ordine.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Aren't"
   },
   {
     "id": "q298",
@@ -4467,10 +4887,12 @@ export const questions: Question[] = [
       "Doesn't touch my phone."
     ],
     "correctIndex": 0,
-    "explanation": "Negative imperative is formed with 'Don't'.",
+    "explanation": "\"Non toccare\" si traduce con 'Don't touch', cioè 'Don't' + forma base. 'Not touch' e 'No touch' non sono frasi inglesi corrette, e 'Doesn't touch' è la terza persona singolare, non un ordine.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Don't to touch my phone."
   },
   {
     "id": "q299",
@@ -4482,10 +4904,12 @@ export const questions: Question[] = [
       "Attention you!"
     ],
     "correctIndex": 0,
-    "explanation": "'Fare attenzione' is 'pay attention'.",
+    "explanation": "\"Fare attenzione\" in inglese è 'pay attention', un'espressione fissa. 'Do attention' e 'Make attention' sono traduzioni letterali sbagliate, e 'Attention you!' non è una frase corretta.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Take attention!"
   },
   {
     "id": "q300",
@@ -4497,10 +4921,11 @@ export const questions: Question[] = [
       "Hear to me when I speak."
     ],
     "correctIndex": 0,
-    "explanation": "The English verb 'listen' needs 'to' before its object ('listen to me'); 'hear' means 'sentire' and never takes 'to'.",
+    "explanation": "In inglese 'listen' vuole 'to' prima dell'oggetto: 'Listen to me'. 'Listen me' manca di 'to', 'Hear' significa \"sentire\" (percepire un suono) e non vuole mai 'to', quindi 'Hear to me' è sbagliato.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative"
   },
   {
     "id": "q301",
@@ -4512,10 +4937,12 @@ export const questions: Question[] = [
       "Don't missing your keys."
     ],
     "correctIndex": 0,
-    "explanation": "Negative command with 'Don't'.",
+    "explanation": "\"Non dimenticare\" si traduce con 'Don't forget', cioè 'Don't' + forma base. 'Not forget' e 'No forget' non sono forme corrette, e 'Don't missing' sbaglia perché dopo 'don't' non si mette -ing (e 'miss' non significa \"dimenticare\").",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Don't to forget your keys."
   },
   {
     "id": "q302",
@@ -4524,13 +4951,15 @@ export const questions: Question[] = [
       "Close the door, please.",
       "Closing the door, please.",
       "To close the door, please.",
-      "You close the door, please."
+      "Closes the door, please."
     ],
     "correctIndex": 0,
-    "explanation": "Base verb for command.",
+    "explanation": "L'ordine si fa con la forma base del verbo: 'Close the door, please.'. 'Closing' e 'To close' non sono imperativi e 'Closes' è la terza persona singolare del presente.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Closed the door, please."
   },
   {
     "id": "q303",
@@ -4542,10 +4971,12 @@ export const questions: Question[] = [
       "Don't speaking during the exam."
     ],
     "correctIndex": 0,
-    "explanation": "Negative imperatives use 'Don't' + base verb ('Don't speak'), not 'Not', 'Doesn't' or 'Don't' + -ing.",
+    "explanation": "\"Non parlare\" è 'Don't speak': 'Don't' + forma base. 'Not speak' e 'Doesn't speak' non sono forme dell'imperativo, e dopo 'don't' non si mette -ing ('speaking').",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Don't to speak during the exam."
   },
   {
     "id": "q304",
@@ -4554,13 +4985,15 @@ export const questions: Question[] = [
       "Wait here a moment.",
       "Waiting here a moment.",
       "Wait here a time.",
-      "Stay here a moment."
+      "Waits here a moment."
     ],
     "correctIndex": 0,
-    "explanation": "The imperative is the base form of the verb ('Wait here'); 'aspettare' is 'wait' (not 'stay'), and 'un momento' is 'a moment', not 'a time'.",
+    "explanation": "L'imperativo è la forma base: 'Wait here'. 'Waiting' e 'Waits' non sono imperativi, e 'un momento' è 'a moment', non 'a time' (che vuol dire \"una volta\").",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Waited here a moment."
   },
   {
     "id": "q305",
@@ -4572,10 +5005,12 @@ export const questions: Question[] = [
       "To write your names on the paper."
     ],
     "correctIndex": 0,
-    "explanation": "Imperative is the same for singular and plural 'you'.",
+    "explanation": "L'imperativo è uguale per 'tu' e 'voi': 'Write your names...'. 'Writing' e 'To write' non sono imperativi, e 'You write' è una frase dichiarativa, non un ordine normale.",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Wrote your names on the paper."
   },
   {
     "id": "q306",
@@ -4587,10 +5022,12 @@ export const questions: Question[] = [
       "Doesn't smoke in this room."
     ],
     "correctIndex": 0,
-    "explanation": "'Don't' + base verb forms the negative imperative ('Don't smoke'); 'Not smoke', 'Smoke not' and 'Doesn't smoke' are not correct imperative forms.",
+    "explanation": "\"Non fumare\" si traduce con 'Don't smoke': 'Don't' + forma base. 'Not smoke' e 'Smoke not' non sono forme usate oggi, e 'Doesn't smoke' è una frase dichiarativa (\"lui non fuma\").",
     "category": "Traduzione",
     "level": "A1",
-    "grammarTopic": "Imperative"
+    "grammarTopic": "Imperative",
+    "theoryId": "imperative",
+    "extraOption": "Don't smoked in this room."
   },
   {
     "id": "q307",
@@ -4602,25 +5039,28 @@ export const questions: Question[] = [
       "will going"
     ],
     "correctIndex": 0,
-    "explanation": "We use 'am going to' for planned future intentions.",
+    "explanation": "Per un programma già deciso si usa 'be going to' + forma base: 'am going to visit'. 'Go' e 'going' da soli non esprimono il futuro (manca 'am ... to'), e 'will going' è una forma inesistente.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to",
+    "extraOption": "am go"
   },
   {
     "id": "q308",
     "prompt": "Complete: 'Look at those dark clouds. It _____ rain.'",
     "options": [
       "is going to",
-      "will",
+      "will to",
       "going to",
       "rains"
     ],
     "correctIndex": 0,
-    "explanation": "'Going to' is used when there is present evidence for a future event.",
+    "explanation": "'Going to' si usa per prevedere il futuro quando ci sono segnali evidenti adesso (nuvole scure): 'It is going to rain'. 'Going to' senza 'is' è incompleto, 'will to' è una forma sbagliata (dopo 'will' non c'è 'to') e 'rains' è un presente semplice che non esprime una previsione.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to"
   },
   {
     "id": "q309",
@@ -4632,10 +5072,12 @@ export const questions: Question[] = [
       "will"
     ],
     "correctIndex": 0,
-    "explanation": "Question form requires the verb 'to be' (are) before the subject.",
+    "explanation": "Nelle domande con 'going to' si usa il verbo 'be' coniugato prima del soggetto: 'What are you going to do?'. 'Do' e 'will' non sono parte di questa struttura, e 'is' non concorda con 'you'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to",
+    "extraOption": "have"
   },
   {
     "id": "q310",
@@ -4647,10 +5089,12 @@ export const questions: Question[] = [
       "will"
     ],
     "correctIndex": 0,
-    "explanation": "Negative form uses 'to be' + not + going to.",
+    "explanation": "La negazione di 'be going to' si fa con 'be' + not: 'is not going to'. 'Does', 'has' e 'will' non fanno parte della struttura e con 'going to' non si possono usare.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to",
+    "extraOption": "do"
   },
   {
     "id": "q311",
@@ -4662,10 +5106,11 @@ export const questions: Question[] = [
       "watches"
     ],
     "correctIndex": 0,
-    "explanation": "'Going to' is followed by the base form of the verb.",
+    "explanation": "Dopo 'going to' si usa la forma base del verbo: 'going to watch'. 'Watching', 'watched' e 'watches' non vanno dopo 'to' in questa struttura.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to"
   },
   {
     "id": "q312",
@@ -4677,10 +5122,11 @@ export const questions: Question[] = [
       "Has"
     ],
     "correctIndex": 0,
-    "explanation": "Question form for third person singular uses 'Is'.",
+    "explanation": "Per fare una domanda con 'going to' si inverte 'be' e il soggetto: 'Is he going to...?'. 'Does' non va con 'going to', 'Will' non è parte della struttura e 'Has' non c'entra.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to"
   },
   {
     "id": "q313",
@@ -4692,10 +5138,12 @@ export const questions: Question[] = [
       "have"
     ],
     "correctIndex": 0,
-    "explanation": "Plural subject takes 'are'.",
+    "explanation": "Il soggetto è 'They' (plurale), quindi 'be going to' diventa 'are going to'. 'Will' non può stare prima di 'going to' e 'do' e 'have' non fanno parte di questa struttura.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to",
+    "extraOption": "is"
   },
   {
     "id": "q314",
@@ -4707,10 +5155,12 @@ export const questions: Question[] = [
       "studies"
     ],
     "correctIndex": 0,
-    "explanation": "Base verb 'study' after 'going to'.",
+    "explanation": "Dopo 'going to' si usa la forma base: 'going to study'. 'Studying', 'studied' e 'studies' sono forme sbagliate dopo 'to' in questa struttura.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to",
+    "extraOption": "to study"
   },
   {
     "id": "q315",
@@ -4722,10 +5172,11 @@ export const questions: Question[] = [
       "goes"
     ],
     "correctIndex": 0,
-    "explanation": "Part of the structure 'are going to'.",
+    "explanation": "La struttura è 'be going to', quindi 'are going to travel'. 'Go' e 'goes' non sono la forma -ing necessaria, e 'will' non può sostituire 'going' in questa struttura.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to"
   },
   {
     "id": "q316",
@@ -4737,10 +5188,12 @@ export const questions: Question[] = [
       "What you are going to do?"
     ],
     "correctIndex": 0,
-    "explanation": "'Avere intenzione di' (a plan or intention) is expressed with 'be going to' + base verb: 'What are you going to do?'. In questions the verb 'be' comes before the subject ('are you', not 'you are').",
+    "explanation": "\"Avere intenzione di\" si esprime con 'be going to': 'What are you going to do?'. Nelle domande 'be' va prima del soggetto, quindi 'What you are going to do?' è sbagliato; 'What do you do?' significa \"che lavoro fai?\", cioè un'abitudine.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to",
+    "extraOption": "What are you going to doing?"
   },
   {
     "id": "q317",
@@ -4752,25 +5205,28 @@ export const questions: Question[] = [
       "I am not going to waiting all day."
     ],
     "correctIndex": 0,
-    "explanation": "Negative 'going to'.",
+    "explanation": "\"Non ho intenzione di\" si traduce con 'am not going to' + forma base. 'I don't go to wait' e 'I won't to wait' sono forme sbagliate (dopo 'won't' non ci va 'to'), e dopo 'going to' non ci va la forma -ing.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to",
+    "extraOption": "I am not going wait all day."
   },
   {
     "id": "q318",
     "prompt": "Translate 'Lui studierà medicina all'università.' (intenzione)",
     "options": [
       "He is going to study medicine at university.",
-      "He will study medicine at university.",
-      "He is studying medicine at university.",
-      "He studies medicine at university."
+      "He going to study medicine at university.",
+      "He is going to studying medicine at university.",
+      "He is going study medicine at university."
     ],
     "correctIndex": 0,
-    "explanation": "Intentions use 'going to'.",
+    "explanation": "Un'intenzione già decisa si esprime con 'be going to' + forma base: 'is going to study'. Le altre opzioni sbagliano la forma: manca 'is', oppure il verbo dopo 'to' è in -ing, oppure manca 'to'.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to"
   },
   {
     "id": "q319",
@@ -4782,70 +5238,76 @@ export const questions: Question[] = [
       "We buy a new house."
     ],
     "correctIndex": 0,
-    "explanation": "An intention or a decision already made uses 'be going to' + base verb ('We are going to buy'); 'to' cannot be left out.",
+    "explanation": "Un'intenzione o una decisione già presa si esprime con 'be going to' + forma base: 'We are going to buy'. 'Going buy' senza 'to' è sbagliato, e 'We buy' è un presente abituale.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to",
+    "extraOption": "We are going to buying a new house."
   },
   {
     "id": "q320",
     "prompt": "Translate 'Pioverà a breve.' (guardando il cielo scuro)",
     "options": [
       "It is going to rain soon.",
-      "It will rain soon.",
+      "It going to rain soon.",
       "It is raining soon.",
       "It rains soon."
     ],
     "correctIndex": 0,
-    "explanation": "Prediction based on evidence uses 'going to'.",
+    "explanation": "Una previsione basata su ciò che si vede ora (cielo scuro) usa 'be going to': 'It is going to rain soon'. 'It going to' non ha il verbo 'be', mentre 'It is raining' e 'It rains' non sono previsioni sul futuro.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to"
   },
   {
     "id": "q321",
     "prompt": "Translate 'Non parteciperanno all'incontro.' (intenzione)",
     "options": [
       "They aren't going to attend the meeting.",
-      "They won't attend the meeting.",
+      "They not going to attend the meeting.",
       "They don't attend the meeting.",
-      "They aren't attending the meeting."
+      "They aren't going to attending the meeting."
     ],
     "correctIndex": 0,
-    "explanation": "A negative intention uses 'be not going to' + base verb: 'They aren't going to attend the meeting.'",
+    "explanation": "Una negazione che esprime l'intenzione si fa con 'be not going to' + forma base: 'They aren't going to attend'. 'They not going to' non ha il verbo 'be', 'don't attend' è un presente abituale e dopo 'to' non va il verbo in -ing.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to"
   },
   {
     "id": "q322",
     "prompt": "Translate 'Cosa mangerai a cena?' (che programmi hai)",
     "options": [
       "What are you going to eat for dinner?",
-      "What will you eat for dinner?",
+      "What are you going eat for dinner?",
       "What do you eat for dinner?",
-      "What you going to eat for dinner?"
+      "What is you going to eat for dinner?"
     ],
     "correctIndex": 0,
-    "explanation": "To ask about plans already made, we use 'be going to' in the question form: 'What are you going to eat?'",
+    "explanation": "Il suggerimento indica che si parla di programmi già fatti, quindi 'be going to': 'What are you going to eat?'. Manca 'to' in 'going eat', 'is you' non si accorda (con 'you' serve 'are') e 'What do you eat?' parla di abitudine.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to"
   },
   {
     "id": "q323",
     "prompt": "Translate 'Venderà la sua macchina?' (ha intenzione di)",
     "options": [
       "Is she going to sell her car?",
-      "Will she sell her car?",
+      "Does she going to sell her car?",
       "Does she sell her car?",
       "Is she sell her car?"
     ],
     "correctIndex": 0,
-    "explanation": "Question about intention.",
+    "explanation": "Una domanda sull'intenzione si fa con 'be' + soggetto + 'going to': 'Is she going to sell her car?'. 'Does' non si combina con 'going to', 'Does she sell' parla di abitudine e dopo 'is' non si può usare la forma base.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to"
   },
   {
     "id": "q324",
@@ -4857,10 +5319,12 @@ export const questions: Question[] = [
       "He falling!"
     ],
     "correctIndex": 0,
-    "explanation": "When we predict something from evidence we can see now (he's running on the ice), we use 'be going to' + base verb: 'He's going to fall!'",
+    "explanation": "Una previsione basata su ciò che si vede ora (corre sul ghiaccio) usa 'be going to': \"He's going to fall!\". 'He is going fall' manca di 'to', 'He falls' è un presente abituale e 'He falling' non ha il verbo ausiliare.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Future: going to"
+    "grammarTopic": "Future: going to",
+    "theoryId": "going-to",
+    "extraOption": "He's go to fall!"
   },
   {
     "id": "q325",
@@ -4872,25 +5336,27 @@ export const questions: Question[] = [
       "were watching"
     ],
     "correctIndex": 0,
-    "explanation": "Past continuous for a long action interrupted by a short one.",
+    "explanation": "L'azione lunga in corso (guardare la TV) si mette al past continuous, quella breve che la interrompe (squilla il telefono) al past simple: 'was watching'. 'Were' non va con 'I', e 'watched' e 'am watching' non descrivono un'azione in corso nel passato.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q326",
     "prompt": "Complete: 'While she was reading, her brother _____ video games.'",
     "options": [
       "was playing",
-      "played",
+      "were playing",
       "playing",
       "is playing"
     ],
     "correctIndex": 0,
-    "explanation": "Two long actions happening at the same time in the past.",
+    "explanation": "'While' introduce due azioni che avvengono nello stesso momento nel passato, quindi anche la seconda va al past continuous: 'was playing' (soggetto singolare, 'her brother'). 'Were' non si accorda, 'playing' senza ausiliare è incompleto e 'is playing' è presente.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q327",
@@ -4902,10 +5368,12 @@ export const questions: Question[] = [
       "did"
     ],
     "correctIndex": 0,
-    "explanation": "'You' takes the auxiliary 'were' in the past continuous.",
+    "explanation": "Il past continuous si forma con 'was/were' + -ing, e con 'you' si usa 'were'. 'Was' va con I/he/she/it, 'are' è presente e 'did' richiederebbe la forma base ('did you do').",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous",
+    "extraOption": "have"
   },
   {
     "id": "q328",
@@ -4917,10 +5385,11 @@ export const questions: Question[] = [
       "walking"
     ],
     "correctIndex": 0,
-    "explanation": "The Past Continuous ('were walking', plural subject) describes the longer background action interrupted by a shorter Past Simple action ('it started to rain').",
+    "explanation": "L'azione lunga che fa da sfondo ('in the park') si mette al past continuous e il soggetto plurale vuole 'were walking'. 'Was walking' è singolare, 'are walking' è presente e 'walking' da solo manca dell'ausiliare.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q329",
@@ -4932,25 +5401,28 @@ export const questions: Question[] = [
       "isn't"
     ],
     "correctIndex": 0,
-    "explanation": "'He' takes 'wasn't' in negative past continuous.",
+    "explanation": "Il past continuous negativo si fa con 'was/were not' + -ing, e con 'He' si usa 'wasn't'. 'Weren't' va con you/we/they, 'didn't' vuole la forma base e 'isn't' è presente.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous",
+    "extraOption": "hasn't"
   },
   {
     "id": "q330",
     "prompt": "Complete: 'While I _____ home, I saw a car accident.'",
     "options": [
       "was driving",
-      "drove",
+      "were driving",
       "am driving",
       "was drive"
     ],
     "correctIndex": 0,
-    "explanation": "Continuous action in the past ('while' often signals continuous).",
+    "explanation": "'While' introduce un'azione in corso nel passato (past continuous), interrotta da un'altra breve ('I saw'): 'was driving'. Con 'I' si usa 'was', non 'were'; 'am driving' è presente e 'was drive' manca di -ing.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q331",
@@ -4962,10 +5434,11 @@ export const questions: Question[] = [
       "gone"
     ],
     "correctIndex": 0,
-    "explanation": "The interrupting action is in the past simple ('went').",
+    "explanation": "L'azione breve che interrompe (le luci che si spengono) va al Past Simple: 'went out'. 'Were going' non ha senso con 'lights' qui, e 'go' o 'gone' non sono forme di passato semplice.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q332",
@@ -4977,10 +5450,12 @@ export const questions: Question[] = [
       "Is"
     ],
     "correctIndex": 0,
-    "explanation": "In the Past Continuous, the singular subject 'it' takes 'was': 'Was it raining when you left?'",
+    "explanation": "Il Past Continuous si forma con was/were + -ing; con 'it' (singolare) si usa 'was'. 'Were' va con you/we/they, 'Did' vuole il verbo base (did it rain) e 'Is' è presente.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous",
+    "extraOption": "Has"
   },
   {
     "id": "q333",
@@ -4992,10 +5467,11 @@ export const questions: Question[] = [
       "play"
     ],
     "correctIndex": 0,
-    "explanation": "Long background action in past continuous.",
+    "explanation": "Mentre si svolge un'azione lunga (giocavo a calcio), un'altra la interrompe (mi sono rotto la gamba): l'azione di sfondo va al Past Continuous, 'was playing'. 'Am playing' e 'play' sono presente; 'played' non rende l'azione in corso.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q334",
@@ -5007,25 +5483,28 @@ export const questions: Question[] = [
       "What are you doing when I called you?"
     ],
     "correctIndex": 0,
-    "explanation": "Question in past continuous, interrupting action in past simple.",
+    "explanation": "'Cosa stavi facendo?' è un'azione in corso nel passato: Past Continuous, 'were you doing'. 'What was you' è sbagliato (con 'you' si usa sempre 'were'), 'did you do' chiede cosa hai fatto, non cosa stavi facendo, e 'are' è presente.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous",
+    "extraOption": "What were you do when I called you?"
   },
   {
     "id": "q335",
     "prompt": "Translate 'Stavo dormendo quando l'allarme ha suonato.'",
     "options": [
       "I was sleeping when the alarm rang.",
-      "I slept when the alarm was ringing.",
-      "I was sleeping when the alarm was ringing.",
-      "I slept when the alarm rang."
+      "I am sleeping when the alarm rang.",
+      "I was sleep when the alarm rang.",
+      "I was sleeping when the alarm ringed."
     ],
     "correctIndex": 0,
-    "explanation": "Background action (sleeping), interruption (rang).",
+    "explanation": "'Stavo dormendo' è l'azione lunga (Past Continuous: was sleeping), 'ha suonato' è l'evento breve che la interrompe (Past Simple: rang). 'Am sleeping' è presente, 'was sleep' manca di -ing e 'ringed' non è il passato di 'ring'.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q336",
@@ -5037,25 +5516,28 @@ export const questions: Question[] = [
       "While we walking, we found some money."
     ],
     "correctIndex": 0,
-    "explanation": "'While' + past continuous, then past simple.",
+    "explanation": "'While' introduce di solito l'azione in corso (Past Continuous: were walking), poi arriva l'evento breve al Past Simple (found). 'We walking' manca di 'were', e 'were finding' non va bene perché trovare dei soldi è un momento, non un'azione che dura.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q337",
     "prompt": "Translate 'Lei non stava guardando la TV, stava leggendo.'",
     "options": [
       "She wasn't watching TV, she was reading.",
-      "She didn't watch TV, she was reading.",
-      "She wasn't watching TV, she read.",
+      "She didn't watching TV, she was reading.",
+      "She wasn't watching TV, she reading.",
       "She wasn't watch TV, she was reading."
     ],
     "correctIndex": 0,
-    "explanation": "Both actions are past continuous.",
+    "explanation": "Entrambe le azioni sono in corso nel passato, quindi due Past Continuous: 'wasn't watching' e 'was reading'. Le altre opzioni hanno errori di forma: 'didn't watching' mescola ausiliare e -ing, 'she reading' non ha 'was', 'wasn't watch' manca di -ing.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous",
+    "extraOption": "She wasn't watched TV, she was reading."
   },
   {
     "id": "q338",
@@ -5067,10 +5549,11 @@ export const questions: Question[] = [
       "While I was cooking, he were listening to music."
     ],
     "correctIndex": 0,
-    "explanation": "Two long actions in progress at the same time in the past both take the Past Continuous (was/were + -ing); with 'he' we use 'was', not 'were'.",
+    "explanation": "Due azioni contemporanee e in corso nel passato vanno entrambe al Past Continuous: 'was cooking' e 'was listening'. Le altre opzioni hanno errori netti: 'was cook' senza -ing, 'I cooking' senza 'was', 'he were' (con he/she/it si usa 'was').",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q339",
@@ -5082,10 +5565,12 @@ export const questions: Question[] = [
       "Is it raining hard yesterday morning?"
     ],
     "correctIndex": 0,
-    "explanation": "'Pioveva' describes an action in progress at a past time, so we use the Past Continuous question 'Was it raining...?'; 'it' takes 'was', and 'did' is never followed by -ing.",
+    "explanation": "'Pioveva' è un'azione in corso in un momento del passato, quindi Past Continuous in forma interrogativa: 'Was it raining...?'. 'Did' non si usa con -ing, 'Were' non va con 'it' e 'Is' è presente.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous",
+    "extraOption": "Was it rain hard yesterday morning?"
   },
   {
     "id": "q340",
@@ -5097,40 +5582,45 @@ export const questions: Question[] = [
       "We aren't going too fast."
     ],
     "correctIndex": 0,
-    "explanation": "Negative past continuous with 'were'.",
+    "explanation": "La negativa del Past Continuous è wasn't/weren't + -ing; con 'we' si usa 'weren't'. 'We wasn't' è sbagliato, 'didn't go' è un passato semplice (non 'stavamo andando') e 'aren't' è presente.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous",
+    "extraOption": "We weren't go too fast."
   },
   {
     "id": "q341",
     "prompt": "Translate 'Cosa pensavi in quel momento?'",
     "options": [
       "What were you thinking at that moment?",
-      "What did you think at that moment?",
       "What was you thinking at that moment?",
-      "What are you thinking at that moment?"
+      "What are you thinking at that moment?",
+      "What did you thinking at that moment?"
     ],
     "correctIndex": 0,
-    "explanation": "Asking about ongoing thoughts at a past moment.",
+    "explanation": "'Cosa pensavi in quel momento' descrive qualcosa che era in corso: 'What were you thinking'. 'Was you' è sbagliato (con you sempre 'were'), 'are you thinking' è presente e 'did you thinking' mescola 'did' con la forma in -ing.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous",
+    "extraOption": "What were you think at that moment?"
   },
   {
     "id": "q342",
     "prompt": "Translate 'Loro ridevano quando sono entrato.'",
     "options": [
       "They were laughing when I entered.",
-      "They laughed when I was entering.",
-      "They were laughing when I was entering.",
-      "They laughed when I entered."
+      "They laughing when I entered.",
+      "They was laughing when I entered.",
+      "They were laugh when I entered."
     ],
     "correctIndex": 0,
-    "explanation": "Background action (laughing), short interruption (entered).",
+    "explanation": "'Ridevano' è lo sfondo (Past Continuous: were laughing), 'sono entrato' è l'evento breve (Past Simple: entered). Le altre opzioni sbagliano la forma: manca 'were', 'was' non si accorda con 'they', 'laugh' manca di -ing.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Past Continuous"
+    "grammarTopic": "Past Continuous",
+    "theoryId": "past-continuous"
   },
   {
     "id": "q343",
@@ -5142,25 +5632,27 @@ export const questions: Question[] = [
       "don't have to"
     ],
     "correctIndex": 0,
-    "explanation": "'Should' is used for advice.",
+    "explanation": "Per un consiglio ('dovresti andare a letto presto, sei stanco') si usa 'should'. 'Have to' esprime un obbligo, 'mustn't' un divieto e 'don't have to' dice che non è necessario: nessuno ha senso dopo 'You look tired'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q344",
     "prompt": "Complete: 'In many countries, you _____ wear a seatbelt when driving.'",
     "options": [
       "have to",
-      "should",
+      "has to",
       "don't have to",
       "mustn't"
     ],
     "correctIndex": 0,
-    "explanation": "'Have to' is used for a strong obligation or law.",
+    "explanation": "Una legge o una regola esterna si esprime con 'have to' (obbligo). 'Has to' non si accorda con 'you', 'don't have to' vuol dire non è necessario e 'mustn't' è un divieto, cioè il contrario di ciò che dice la legge sulle cinture.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q345",
@@ -5172,10 +5664,12 @@ export const questions: Question[] = [
       "haven't to"
     ],
     "correctIndex": 0,
-    "explanation": "'Don't have to' means it's not necessary (lack of obligation).",
+    "explanation": "Domani è domenica, quindi non è necessario svegliarsi presto: 'don't have to' indica assenza di obbligo. 'Mustn't' è un divieto, 'shouldn't' un consiglio negativo e 'haven't to' non esiste.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "doesn't have to"
   },
   {
     "id": "q346",
@@ -5187,10 +5681,11 @@ export const questions: Question[] = [
       "haven't to"
     ],
     "correctIndex": 0,
-    "explanation": "'Mustn't' means it is strictly prohibited.",
+    "explanation": "Se è vietato usare il telefono si usa 'mustn't', che indica divieto. 'Don't have to' significa solo che non è obbligatorio (non è proibito), 'shouldn't' è un consiglio e 'haven't to' non esiste.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q347",
@@ -5202,10 +5697,11 @@ export const questions: Question[] = [
       "Do I must"
     ],
     "correctIndex": 0,
-    "explanation": "'Should' is used to ask for an opinion or advice ('Should I...?'); 'have to' needs 'do' in questions ('Do I have to...?'), and modals like 'must' never combine with 'do'.",
+    "explanation": "Per chiedere un consiglio si usa 'Should I...?'. 'Does I' ha il verbo sbagliato, 'Have to' non fa una domanda senza 'Do I' davanti e 'Do I must' è errato perché 'must' non si usa con 'do'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q348",
@@ -5217,10 +5713,11 @@ export const questions: Question[] = [
       "don't must"
     ],
     "correctIndex": 0,
-    "explanation": "No obligation to hurry.",
+    "explanation": "C'è molto tempo, quindi non c'è bisogno di fare in fretta: 'don't have to' (assenza di obbligo). 'Mustn't' sarebbe un divieto, 'shouldn't' un consiglio negativo e 'don't must' non esiste, perché 'must' non vuole 'do'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q349",
@@ -5232,10 +5729,12 @@ export const questions: Question[] = [
       "musts"
     ],
     "correctIndex": 0,
-    "explanation": "'Must' + base verb expresses a strong obligation or a rule ('It's the law'); 'mustn't' means it is forbidden, 'don't have to' that it isn't necessary, and 'must' never takes -s.",
+    "explanation": "Per una regola o una legge si usa 'must' + verbo base. 'Mustn't' direbbe che indossare il casco è vietato, 'don't have to' che non serve, e 'musts' non esiste: i modali non prendono la -s.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "has to"
   },
   {
     "id": "q350",
@@ -5247,10 +5746,11 @@ export const questions: Question[] = [
       "have to"
     ],
     "correctIndex": 0,
-    "explanation": "'Has to' expresses a necessity (his eyesight is bad, so he needs glasses); with 'he' we use 'has to', not 'have to', and 'must' never takes -s or 'to'.",
+    "explanation": "Con 'he' si usa 'has to' per una necessità (ha la vista debole, quindi gli serve). 'Have to' è per I/you/we/they, 'must to' e 'musts' sono errate perché 'must' non vuole né 'to' né la -s.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q351",
@@ -5262,10 +5762,12 @@ export const questions: Question[] = [
       "had to"
     ],
     "correctIndex": 0,
-    "explanation": "Question form for obligation is 'Do/Does ... have to'.",
+    "explanation": "Nelle domande con 'do' il verbo che segue deve essere alla forma base: 'Do I have to pay?'. 'Do I must', 'Do I should' e 'Do I had to' sono errate: 'must' e 'should' non si usano con 'do', e dopo 'do' non va il passato.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "to have"
   },
   {
     "id": "q352",
@@ -5277,10 +5779,12 @@ export const questions: Question[] = [
       "You shouldn't eat more vegetables."
     ],
     "correctIndex": 0,
-    "explanation": "'Should' + base verb gives advice ('Dovresti' = 'You should'); 'must' and 'have to' express obligation, not advice.",
+    "explanation": "'Dovresti' è un consiglio, quindi 'should'. 'Must' e 'have to' esprimono obbligo (più forti), mentre 'shouldn't' dice l'opposto: non mangiare più verdure.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "You should to eat more vegetables."
   },
   {
     "id": "q353",
@@ -5292,10 +5796,12 @@ export const questions: Question[] = [
       "You haven't to come if you're tired."
     ],
     "correctIndex": 0,
-    "explanation": "'Don't have to' means it isn't necessary (lack of obligation); 'mustn't' would mean it is forbidden.",
+    "explanation": "'Non devi per forza' vuol dire che non è necessario: 'don't have to'. 'Mustn't' significa che è vietato, 'shouldn't' che è meglio non farlo e 'haven't to' non esiste.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "You don't must come if you're tired."
   },
   {
     "id": "q354",
@@ -5307,10 +5813,12 @@ export const questions: Question[] = [
       "You haven't to touch that wire!"
     ],
     "correctIndex": 0,
-    "explanation": "'Mustn't' expresses a strong prohibition ('Non devi assolutamente'); 'don't have to' only means it isn't necessary.",
+    "explanation": "'Non devi assolutamente' è un divieto forte: 'mustn't'. 'Don't have to' dice soltanto che non è necessario, 'shouldn't' è un consiglio più debole e 'haven't to' non esiste.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "You not must touch that wire!"
   },
   {
     "id": "q355",
@@ -5322,10 +5830,11 @@ export const questions: Question[] = [
       "He musts work late today."
     ],
     "correctIndex": 0,
-    "explanation": "External obligation with 'has to'.",
+    "explanation": "'Deve lavorare' per un obbligo esterno si traduce con 'has to' (he/she/it). 'Should' è un consiglio, 'he have to' non concorda e 'musts' non esiste perché i modali non prendono la -s.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q356",
@@ -5337,10 +5846,12 @@ export const questions: Question[] = [
       "You haven't to drink so much coffee."
     ],
     "correctIndex": 0,
-    "explanation": "'Shouldn't' + base verb gives negative advice ('Non dovresti'); 'mustn't' would be a prohibition, not advice.",
+    "explanation": "'Non dovresti' è un consiglio negativo: 'shouldn't' + verbo base. 'Mustn't' sarebbe un divieto, 'don't have to' dice che non è necessario e 'haven't to' non esiste.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "You shouldn't to drink so much coffee."
   },
   {
     "id": "q357",
@@ -5352,10 +5863,12 @@ export const questions: Question[] = [
       "Have I to take off my shoes?"
     ],
     "correctIndex": 0,
-    "explanation": "Questions about rules or obligation use 'Do I have to' + base verb; 'must' is never followed by 'to' or used with 'do', and 'Have I to' is not correct.",
+    "explanation": "La domanda su un obbligo si fa con 'Do I have to' + verbo base. 'Must I to' è errata perché 'must' non vuole 'to', 'Do I must' perché 'must' non si usa con 'do', e 'Have I to' non è inglese corretto moderno.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "Do I have take off my shoes?"
   },
   {
     "id": "q358",
@@ -5367,10 +5880,12 @@ export const questions: Question[] = [
       "You haven't to pay, it's free."
     ],
     "correctIndex": 0,
-    "explanation": "'Don't have to' means there is no obligation (it's free, so paying isn't necessary); 'mustn't' would mean that paying is forbidden.",
+    "explanation": "'Non hai bisogno di pagare' vuol dire che non è necessario: 'don't have to'. 'Mustn't' direbbe che pagare è vietato, 'shouldn't' che è meglio non pagare, e 'haven't to' non esiste.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice",
+    "extraOption": "You not have to pay, it's free."
   },
   {
     "id": "q359",
@@ -5382,10 +5897,11 @@ export const questions: Question[] = [
       "What do I do?"
     ],
     "correctIndex": 0,
-    "explanation": "'Should' is used to ask for advice: 'What should I do?' ('Cosa dovrei fare?').",
+    "explanation": "'Cosa dovrei fare?' chiede un consiglio, quindi 'What should I do?'. 'Must' esprime obbligo, 'What have I to do' non è corretto e 'What do I do?' è un presente generico, non 'dovrei'.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q360",
@@ -5397,10 +5913,11 @@ export const questions: Question[] = [
       "You haven't to tell anyone, it's a secret!"
     ],
     "correctIndex": 0,
-    "explanation": "'Mustn't' expresses prohibition: telling anyone is not allowed because it's a secret. 'Don't have to' would only mean it isn't necessary.",
+    "explanation": "Dire qualcosa a qualcuno è proibito perché è un segreto: 'mustn't' (divieto). 'Don't have to' direbbe che non è obbligatorio, 'shouldn't' è solo un consiglio e 'haven't to' non esiste.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Modals of Obligation and Advice"
+    "grammarTopic": "Modals of Obligation and Advice",
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q361",
@@ -5412,10 +5929,12 @@ export const questions: Question[] = [
       "welling"
     ],
     "correctIndex": 0,
-    "explanation": "'Well' is the adverb form of 'good'.",
+    "explanation": "Per descrivere come parla (un verbo) serve un avverbio; l'avverbio di 'good' è 'well'. 'Good' è un aggettivo, mentre 'goodly' e 'welling' non esistono.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner",
+    "extraOption": "bad"
   },
   {
     "id": "q362",
@@ -5427,10 +5946,11 @@ export const questions: Question[] = [
       "speedy"
     ],
     "correctIndex": 0,
-    "explanation": "'Fast' is both an adjective and an adverb.",
+    "explanation": "'Fast' è sia aggettivo sia avverbio e ha la stessa forma: 'drives fast'. 'Fastly' non esiste, e 'quick' è un aggettivo (l'avverbio sarebbe 'quickly').",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q363",
@@ -5442,10 +5962,12 @@ export const questions: Question[] = [
       "carelessly"
     ],
     "correctIndex": 0,
-    "explanation": "'Carefully' describes how to do the work.",
+    "explanation": "Serve un avverbio che dica come lavorare: 'carefully' (con attenzione). 'Careful' è un aggettivo, e 'careless/carelessly' significano senza attenzione, in contrasto con 'Take your time'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner",
+    "extraOption": "care"
   },
   {
     "id": "q364",
@@ -5457,25 +5979,29 @@ export const questions: Question[] = [
       "easying"
     ],
     "correctIndex": 0,
-    "explanation": "'Easily' is the adverb form of 'easy' (y changes to i + ly).",
+    "explanation": "Serve un avverbio per descrivere 'won': dall'aggettivo 'easy' si forma 'easily' (y diventa i + -ly). 'Easy' è aggettivo, 'easier' è un comparativo e 'easying' non esiste.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner",
+    "extraOption": "easiest"
   },
   {
     "id": "q365",
     "prompt": "Complete: 'The old man walked _____ down the street.'",
     "options": [
       "slowly",
-      "slow",
-      "slower",
-      "slowingly"
+      "slowlier",
+      "slowingly",
+      "slowness"
     ],
     "correctIndex": 0,
-    "explanation": "'Slowly' describes the verb 'walked'.",
+    "explanation": "'Walked' è un verbo, quindi serve un avverbio: 'slowly' (aggettivo slow + -ly). 'Slowlier' e 'slowingly' non esistono e 'slowness' è un nome.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner",
+    "extraOption": "slowy"
   },
   {
     "id": "q366",
@@ -5487,10 +6013,12 @@ export const questions: Question[] = [
       "angrying"
     ],
     "correctIndex": 0,
-    "explanation": "Adverb formed from 'angry'.",
+    "explanation": "Per dire come lo guardò serve un avverbio: da 'angry' si forma 'angrily' (y diventa i + -ly). 'Angry' è aggettivo, 'angrier' un comparativo e 'angrying' non esiste.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner",
+    "extraOption": "with angry"
   },
   {
     "id": "q367",
@@ -5502,10 +6030,11 @@ export const questions: Question[] = [
       "hards"
     ],
     "correctIndex": 0,
-    "explanation": "'Hard' is an irregular adverb meaning 'with effort' (the same form as the adjective). 'Hardly' means 'almost not', and 'hardy' and 'hards' are not the adverb.",
+    "explanation": "'Hard' è un avverbio irregolare con la stessa forma dell'aggettivo e vuol dire 'con impegno'. 'Hardly' significa 'quasi per niente' (cambia il senso), 'hardy' è un aggettivo (robusto) e 'hards' non esiste.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q368",
@@ -5517,10 +6046,12 @@ export const questions: Question[] = [
       "happiness"
     ],
     "correctIndex": 0,
-    "explanation": "'Happily' is the adverb of 'happy' (y becomes i + -ly); we need an adverb to describe how they were playing.",
+    "explanation": "Per descrivere come giocavano serve un avverbio: da 'happy' si ottiene 'happily'. 'Happy' è aggettivo, 'happier' comparativo e 'happiness' un nome.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner",
+    "extraOption": "happiest"
   },
   {
     "id": "q369",
@@ -5532,40 +6063,44 @@ export const questions: Question[] = [
       "faster"
     ],
     "correctIndex": 0,
-    "explanation": "'Fast' is an irregular adverb.",
+    "explanation": "'Fast' ha la stessa forma come aggettivo e avverbio: 'run very fast'. 'Fastly' non esiste, 'quick' è un aggettivo e 'faster' è un comparativo, che non si usa con 'very'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q370",
     "prompt": "Translate 'Ha risposto alla domanda velocemente.'",
     "options": [
       "He answered the question quickly.",
-      "He answered the question quick.",
+      "He answered the question quickily.",
       "He answered the question fastly.",
-      "He answered the question quicker."
+      "He answered the question quickness."
     ],
     "correctIndex": 0,
-    "explanation": "'Velocemente' is 'quickly'.",
+    "explanation": "'Velocemente' modifica il verbo, quindi serve l'avverbio 'quickly' (aggettivo quick + -ly). 'Quickily' ha l'ortografia sbagliata, 'fastly' non esiste ('fast' ha già la forma di avverbio) e 'quickness' è un nome.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner",
+    "extraOption": "He answered the question with quick."
   },
   {
     "id": "q371",
     "prompt": "Translate 'Canta davvero bene.'",
     "options": [
       "She sings really well.",
-      "She sings really good.",
       "She sings really goodly.",
-      "She sings really nice."
+      "She sing really well.",
+      "She is sings really well."
     ],
     "correctIndex": 0,
-    "explanation": "'Bene' is the adverb 'well'.",
+    "explanation": "Con il verbo 'sings' si usa l'avverbio 'well' (bene). 'Goodly' non esiste, 'She sing' non concorda (serve 'sings' con 'she') e 'is sings' mescola due forme verbali.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q372",
@@ -5577,40 +6112,43 @@ export const questions: Question[] = [
       "They worked heavy all day."
     ],
     "correctIndex": 0,
-    "explanation": "'Duramente' (con fatica) is 'hard'.",
+    "explanation": "'Duramente' nel senso di 'con fatica' è 'hard', avverbio con la stessa forma dell'aggettivo. 'Hardly' vuol dire 'quasi per niente' (senso opposto), 'difficultly' non esiste e 'heavy' è un aggettivo.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q373",
     "prompt": "Translate 'Per favore, parla lentamente.'",
     "options": [
       "Please speak slowly.",
-      "Please speak slow.",
+      "Please speak slowness.",
       "Please speak slowlier.",
       "Please speak slowingly."
     ],
     "correctIndex": 0,
-    "explanation": "'Lentamente' is the adverb 'slowly' (adjective 'slow' + -ly); we need an adverb to describe how someone speaks.",
+    "explanation": "Dopo 'speak' serve un avverbio: 'slowly' (aggettivo slow + -ly). 'Slowness' è un nome, 'slowlier' e 'slowingly' non esistono.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q374",
     "prompt": "Translate 'Ha chiuso la porta silenziosamente.'",
     "options": [
       "He closed the door quietly.",
-      "He closed the door quiet.",
+      "He closed the door quietness.",
       "He closed the door quietlyly.",
-      "He closed the door silent."
+      "He closed the door quietily."
     ],
     "correctIndex": 0,
-    "explanation": "'Silenziosamente' is 'quietly'.",
+    "explanation": "'Closed' è un verbo, quindi serve un avverbio: 'quietly'. 'Quietness' è un nome, 'quietlyly' ha il suffisso -ly doppio e 'quietily' ha l'ortografia sbagliata.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q375",
@@ -5622,10 +6160,11 @@ export const questions: Question[] = [
       "They solved the problem easier."
     ],
     "correctIndex": 0,
-    "explanation": "'Facilmente' is 'easily'.",
+    "explanation": "Serve un avverbio per 'solved': da 'easy' si forma 'easily'. 'Easy' è aggettivo, 'with easy' non è corretto e 'easier' è un comparativo.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q376",
@@ -5637,10 +6176,11 @@ export const questions: Question[] = [
       "He always drives with careful."
     ],
     "correctIndex": 0,
-    "explanation": "'Attentamente' is 'carefully'.",
+    "explanation": "Dopo 'drives' serve un avverbio, 'carefully' (careful + -ly). 'Careful' è aggettivo, 'care' è un nome e 'with careful' non è una costruzione corretta.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q377",
@@ -5652,10 +6192,11 @@ export const questions: Question[] = [
       "The teacher explained the rule clearing."
     ],
     "correctIndex": 0,
-    "explanation": "'Chiaramente' is 'clearly'.",
+    "explanation": "Per dire come ha spiegato serve un avverbio: 'clearly' (clear + -ly). 'Clear' è aggettivo, 'cleary' è scritto male e 'clearing' è un gerundio, non un avverbio.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q378",
@@ -5667,10 +6208,12 @@ export const questions: Question[] = [
       "I understood perfectlyly."
     ],
     "correctIndex": 0,
-    "explanation": "'Perfettamente' is 'perfectly'.",
+    "explanation": "'Understood' è un verbo, quindi serve un avverbio: 'perfectly'. 'Perfect' è aggettivo, 'perfection' è un nome e 'perfectlyly' ha il suffisso doppio.",
     "category": "Traduzione",
     "level": "A2",
-    "grammarTopic": "Adverbs of Manner"
+    "grammarTopic": "Adverbs of Manner",
+    "theoryId": "adverbs-manner",
+    "extraOption": "I understood perfectest."
   },
   {
     "id": "q379",
@@ -5682,10 +6225,12 @@ export const questions: Question[] = [
       "had won"
     ],
     "correctIndex": 1,
-    "explanation": "Second Conditional uses 'If + Past Simple, would + infinitive' for unreal present/future situations.",
+    "explanation": "Il Second Conditional per situazioni irreali o improbabili nel presente/futuro si forma 'If + Past Simple, would + verbo base'. Perciò 'won'; 'win' e 'will win' appartengono ad altri periodi ipotetici, 'had won' al terzo (passato).",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional",
+    "extraOption": "would win"
   },
   {
     "id": "q380",
@@ -5697,10 +6242,12 @@ export const questions: Question[] = [
       "If I would be you, I studied more."
     ],
     "correctIndex": 1,
-    "explanation": "In the Second Conditional, 'were' is typically used for all subjects in the 'if' clause (If I were you).",
+    "explanation": "Nel Second Conditional si dice 'If I were you, I would + verbo base' ('Se fossi in te'). Le altre opzioni mescolano i tempi o mettono 'would' nella frase con 'if', che non è corretto.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional",
+    "extraOption": "If I were you, I would studying more."
   },
   {
     "id": "q381",
@@ -5712,10 +6259,12 @@ export const questions: Question[] = [
       "will pass"
     ],
     "correctIndex": 2,
-    "explanation": "Third Conditional uses 'If + Past Perfect, would have + past participle' for impossible past situations.",
+    "explanation": "Con 'If + Past Perfect' (had studied) la frase principale è 'would have + participio passato': 'would have passed'. È il Third Conditional, per una situazione passata che non è più modificabile. 'Would pass' e 'will pass' sono tempi presenti/futuri.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional",
+    "extraOption": "would had passed"
   },
   {
     "id": "q382",
@@ -5727,10 +6276,12 @@ export const questions: Question[] = [
       "If we have left earlier, we didn't miss the train."
     ],
     "correctIndex": 1,
-    "explanation": "Third conditional structure for regrets about the past.",
+    "explanation": "'Se fossimo partiti prima, non avremmo perso' è un Third Conditional: 'If + had + participio, would(n't) have + participio'. Le altre opzioni usano tempi sbagliati (left, would leave, have left) o incrociano le due parti.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional",
+    "extraOption": "If we had left earlier, we wouldn't missed the train."
   },
   {
     "id": "q383",
@@ -5742,10 +6293,12 @@ export const questions: Question[] = [
       "writes"
     ],
     "correctIndex": 1,
-    "explanation": "Past Simple Passive structure is 'was/were + past participle'.",
+    "explanation": "'The letter' non scrive, viene scritta: passivo, e con 'yesterday' il Past Simple Passive è 'was written'. 'Wrote' e 'writes' sono attivi, 'is written' è presente.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice",
+    "extraOption": "has written"
   },
   {
     "id": "q384",
@@ -5757,70 +6310,76 @@ export const questions: Question[] = [
       "The house has been built right now."
     ],
     "correctIndex": 2,
-    "explanation": "Present Continuous Passive requires 'is/are being + past participle'.",
+    "explanation": "'Viene costruita proprio ora' è un'azione in corso nel presente: Present Continuous passivo, 'is being built'. 'Is built' indica un fatto abituale, 'builds' è attivo e 'has been built' dice che è già finita.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice",
+    "extraOption": "is been built"
   },
   {
     "id": "q385",
     "prompt": "Change to reported speech: He said, 'I am tired.'",
     "options": [
-      "He said that he is tired.",
+      "He said that he were tired.",
       "He said that I was tired.",
       "He said that he was tired.",
-      "He said he has been tired."
+      "He said that he is being tired."
     ],
     "correctIndex": 2,
-    "explanation": "In reported speech, present simple changes to past simple ('am' becomes 'was').",
+    "explanation": "Nel discorso indiretto, dopo 'said' il verbo fa un passo indietro: 'am' diventa 'was', e il pronome segue chi parla: 'he was tired'. 'I was tired' ha il pronome sbagliato, 'he were' non concorda e 'is being tired' non è un tempo adatto.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q386",
     "prompt": "Change to reported speech: 'I will call you,' she told me.",
     "options": [
-      "She told me she will call me.",
+      "She told me she would calling me.",
       "She told me she would call me.",
       "She told me I would call her.",
       "She told me she called me."
     ],
     "correctIndex": 1,
-    "explanation": "In reported speech, 'will' changes to 'would'.",
+    "explanation": "Nel discorso indiretto 'will' diventa 'would' (seguito dalla forma base) e il pronome 'I' diventa 'she', mentre 'you' diventa 'me': 'she would call me'. 'Would calling' è sbagliato, 'I would call her' scambia le persone e 'called' trasforma il futuro in passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q387",
     "prompt": "Complete the sentence: 'When I arrived at the station, the train _____.'",
     "options": [
-      "already left",
+      "will already leave",
       "has already left",
       "had already left",
       "already leaves"
     ],
     "correctIndex": 2,
-    "explanation": "The Past Perfect ('had left') shows an action that happened before another past action ('arrived').",
+    "explanation": "Di due azioni passate, quella avvenuta prima va al Past Perfect: il treno era già partito ('had already left') quando sono arrivato. 'Will leave' è futuro, 'has already left' è un Present Perfect e 'leaves' è presente.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q388",
     "prompt": "Translate 'Avevo già mangiato quando mi hai chiamato.'",
     "options": [
-      "I already ate when you called me.",
+      "I had already eat when you called me.",
       "I had already eaten when you called me.",
       "I have already eaten when you called me.",
       "I was eating when you called me."
     ],
     "correctIndex": 1,
-    "explanation": "We use the Past Perfect ('had eaten') for the action that happened first.",
+    "explanation": "L'azione avvenuta prima ('avevo già mangiato') va al Past Perfect: 'had already eaten'. 'Had eat' usa il participio sbagliato, 'have eaten' è Present Perfect e 'was eating' vorrebbe dire 'stavo mangiando'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q389",
@@ -5832,10 +6391,11 @@ export const questions: Question[] = [
       "use to play"
     ],
     "correctIndex": 0,
-    "explanation": "'Used to + infinitive' describes a past habit that is no longer true.",
+    "explanation": "Un'abitudine passata che ora non c'è più si dice con 'used to' + verbo base: 'used to play'. 'Was playing' descrive un'azione in corso, 'am used to play' è errato e 'use to' non va senza 'did' nelle frasi affermative.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q390",
@@ -5847,10 +6407,11 @@ export const questions: Question[] = [
       "She don't use to like vegetables."
     ],
     "correctIndex": 2,
-    "explanation": "The negative form is 'didn't use to' (without the 'd' in use).",
+    "explanation": "Nella forma negativa con 'didn't' il verbo torna alla forma base: 'didn't use to', senza la -d. 'Didn't used to' raddoppia il passato, 'hasn't used to' e 'don't use to' sono tempi sbagliati (e 'she don't' non concorda).",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q391",
@@ -5862,10 +6423,12 @@ export const questions: Question[] = [
       "where"
     ],
     "correctIndex": 1,
-    "explanation": "'Who' is the relative pronoun used for people.",
+    "explanation": "Per le persone nelle frasi relative si usa 'who': 'The man who lives next door'. 'Which' è per le cose, 'whose' indica possesso e 'where' i luoghi.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses",
+    "extraOption": "whom"
   },
   {
     "id": "q392",
@@ -5877,10 +6440,12 @@ export const questions: Question[] = [
       "where"
     ],
     "correctIndex": 3,
-    "explanation": "'Where' is used as a relative pronoun for places.",
+    "explanation": "Per un luogo si usa 'where' (nella casa dove sono cresciuto). 'Which' vorrebbe 'in which' o 'which I grew up in', 'who' è per le persone e 'whose' indica possesso.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses",
+    "extraOption": "what"
   },
   {
     "id": "q393",
@@ -5892,10 +6457,12 @@ export const questions: Question[] = [
       "that"
     ],
     "correctIndex": 2,
-    "explanation": "'Whose' indicates possession.",
+    "explanation": "'Whose' esprime il possesso (la ragazza la cui auto): 'whose car'. 'Who', 'which' e 'that' non si possono usare davanti a un nome posseduto come 'car'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses",
+    "extraOption": "who's"
   },
   {
     "id": "q394",
@@ -5907,10 +6474,12 @@ export const questions: Question[] = [
       "isn't it"
     ],
     "correctIndex": 1,
-    "explanation": "Affirmative statements take a negative question tag ('aren't you?').",
+    "explanation": "Dopo una frase affermativa la question tag è negativa e ripete il verbo: 'You are Italian, aren't you?'. 'Are you' è affermativa, 'don't you' ha l'ausiliare sbagliato e 'isn't it' non concorda con 'you'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags",
+    "extraOption": "won't you"
   },
   {
     "id": "q395",
@@ -5922,40 +6491,44 @@ export const questions: Question[] = [
       "was she"
     ],
     "correctIndex": 0,
-    "explanation": "Negative statements take an affirmative question tag ('did she?').",
+    "explanation": "Dopo una frase negativa la tag è affermativa e riprende l'ausiliare 'did' di 'didn't go': 'did she?'. 'Didn't she' è negativa, 'does' e 'was' sono ausiliari sbagliati per il passato di 'go'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags",
+    "extraOption": "has she"
   },
   {
     "id": "q396",
-    "prompt": "Complete the sentence: 'He has a Ferrari and a mansion. He _____ be very rich.'",
+    "prompt": "Complete the sentence: 'He has a Ferrari and a mansion. I am sure he _____ be very rich.'",
     "options": [
-      "can",
+      "can't",
       "must",
-      "should",
+      "mustn't",
       "might"
     ],
     "correctIndex": 1,
-    "explanation": "'Must' is used for strong logical deductions based on evidence.",
+    "explanation": "Quando le prove sono forti (Ferrari e villa) e si è sicuri, si usa 'must' per una deduzione quasi certa: 'He must be very rich'. 'Can't' e 'mustn't' dicono il contrario, e 'might' indica solo una possibilità debole, che non va con 'I am sure'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q397",
     "prompt": "Complete the sentence: 'That _____ be Sarah. Sarah is currently in London.'",
     "options": [
       "mustn't",
-      "shouldn't",
+      "will",
       "can't",
-      "might not"
+      "must"
     ],
     "correctIndex": 2,
-    "explanation": "'Can't' is the negative logical deduction (you are sure something is not true).",
+    "explanation": "Se Sarah è a Londra, sei sicuro che non può essere lei: 'can't' esprime la deduzione negativa forte. 'Mustn't' è un divieto, 'will' è futuro e 'must' direbbe l'opposto (sei sicuro che è lei).",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q398",
@@ -5967,10 +6540,12 @@ export const questions: Question[] = [
       "to reading"
     ],
     "correctIndex": 2,
-    "explanation": "The verb 'enjoy' is followed by a gerund (-ing form).",
+    "explanation": "'Enjoy' è seguito dal gerundio (-ing): 'enjoy reading'. L'infinito (to read, read) non si usa dopo 'enjoy', e 'to reading' non ha senso qui.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives",
+    "extraOption": "for reading"
   },
   {
     "id": "q399",
@@ -5982,10 +6557,12 @@ export const questions: Question[] = [
       "bought"
     ],
     "correctIndex": 1,
-    "explanation": "The verb 'decide' is followed by an infinitive with 'to'.",
+    "explanation": "'Decide' regge l'infinito con 'to': 'decided to buy'. Il gerundio (buying), il verbo base (buy) e il passato (bought) non si usano dopo 'decide'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives",
+    "extraOption": "for buying"
   },
   {
     "id": "q400",
@@ -5997,10 +6574,12 @@ export const questions: Question[] = [
       "opened"
     ],
     "correctIndex": 2,
-    "explanation": "The verb 'mind' is followed by a gerund (-ing form).",
+    "explanation": "'Mind' regge il gerundio: 'Do you mind opening...?'. Dopo 'do you mind' non si usa né il verbo base, né 'to open', né il passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives",
+    "extraOption": "for opening"
   },
   {
     "id": "q401",
@@ -6012,10 +6591,11 @@ export const questions: Question[] = [
       "who"
     ],
     "correctIndex": 0,
-    "explanation": "'Where' refers to a place.",
+    "explanation": "Il ristorante è un luogo e la frase continua con un soggetto ('we had dinner'), quindi serve 'where' (= in cui). 'Which' e 'that' richiederebbero una preposizione ('at which', 'which we had dinner at'), 'who' è per le persone.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q402",
@@ -6027,10 +6607,11 @@ export const questions: Question[] = [
       "that"
     ],
     "correctIndex": 0,
-    "explanation": "'Whose' shows possession.",
+    "explanation": "Il cane è dell'uomo: possesso, quindi 'whose'. Dopo 'who', 'which' e 'that' il nome 'dog' non può seguire direttamente per indicare il possessore.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q403",
@@ -6042,10 +6623,11 @@ export const questions: Question[] = [
       "where"
     ],
     "correctIndex": 0,
-    "explanation": "Non-defining relative clauses for people use 'who', not 'that'.",
+    "explanation": "Nella frase relativa non limitativa (tra virgole) riferita a una persona si usa 'who' e non si può usare 'that'. 'Which' è per le cose e 'where' per i luoghi.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q404",
@@ -6057,10 +6639,11 @@ export const questions: Question[] = [
       "The movie whose we watched yesterday was boring."
     ],
     "correctIndex": 0,
-    "explanation": "'Which' or 'that' is used for things.",
+    "explanation": "Il film è una cosa, quindi serve 'which'. 'Who' è per le persone, 'where' per i luoghi e 'whose' indica possesso.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q405",
@@ -6072,10 +6655,11 @@ export const questions: Question[] = [
       "The woman that car was stolen is my neighbor."
     ],
     "correctIndex": 0,
-    "explanation": "'Whose' translates 'la cui / il cui'.",
+    "explanation": "'La cui auto' esprime possesso e si traduce con 'whose': 'The woman whose car was stolen'. 'Who', 'which' e 'that' non si possono mettere davanti a 'car' con questo significato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q406",
@@ -6087,10 +6671,11 @@ export const questions: Question[] = [
       "who"
     ],
     "correctIndex": 0,
-    "explanation": "'When' refers to a time.",
+    "explanation": "Per un periodo di tempo ('i giorni in cui ero giovane') si usa 'when'. 'Where' è per i luoghi, 'who' per le persone e 'which' sostituisce una cosa, non un tempo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q407",
@@ -6102,10 +6687,11 @@ export const questions: Question[] = [
       "when"
     ],
     "correctIndex": 0,
-    "explanation": "'Where' refers to a location.",
+    "explanation": "Per un luogo in cui si può fare qualcosa si usa 'where': 'a place where you can hide'. 'Which' e 'that' richiederebbero 'in' alla fine ('which you can hide in'), mentre 'when' è per il tempo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q408",
@@ -6117,10 +6703,11 @@ export const questions: Question[] = [
       "whose"
     ],
     "correctIndex": 0,
-    "explanation": "'Who' refers to people.",
+    "explanation": "Lo studente è una persona e fa da soggetto: 'who'. 'Which' è per le cose, 'where' per i luoghi, 'whose' indica possesso e non ha senso con 'got the highest grade'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q409",
@@ -6132,10 +6719,11 @@ export const questions: Question[] = [
       "This is the book whose I was telling you about."
     ],
     "correctIndex": 0,
-    "explanation": "'Which' is used for things.",
+    "explanation": "'Il libro di cui ti parlavo' è una cosa: 'which', con la preposizione 'about' in fondo (I was telling you about). 'Who' è per le persone, 'where' per i luoghi e 'whose' indica possesso.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q410",
@@ -6147,10 +6735,11 @@ export const questions: Question[] = [
       "Paris, that is the capital of France, is beautiful."
     ],
     "correctIndex": 0,
-    "explanation": "Non-defining relative clauses for things use 'which'.",
+    "explanation": "Nella frase non limitativa (tra virgole) riferita a una cosa si usa 'which'. 'Who' è per le persone, 'where' non è corretto e 'that' non si usa dopo una virgola.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q411",
@@ -6162,10 +6751,11 @@ export const questions: Question[] = [
       "where"
     ],
     "correctIndex": 0,
-    "explanation": "'Who' refers to a person.",
+    "explanation": "'Someone' è una persona e fa da soggetto: 'who travels'. 'Which' è per le cose, 'whose' indica possesso e 'where' i luoghi.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q412",
@@ -6177,10 +6767,11 @@ export const questions: Question[] = [
       "where"
     ],
     "correctIndex": 0,
-    "explanation": "'Which' refers to things.",
+    "explanation": "'The cake' è una cosa: 'which' (la torta che lei ha fatto). 'Who' è per le persone, 'whose' indica possesso e 'where' i luoghi.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q413",
@@ -6192,10 +6783,11 @@ export const questions: Question[] = [
       "when"
     ],
     "correctIndex": 0,
-    "explanation": "'Where' is for places.",
+    "explanation": "Una biblioteca è un luogo in cui si fa qualcosa: 'where'. 'Which' richiederebbe 'in which', 'who' è per le persone e 'when' per il tempo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q414",
@@ -6207,10 +6799,11 @@ export const questions: Question[] = [
       "that"
     ],
     "correctIndex": 0,
-    "explanation": "'Whose' indicates possession (the sister of the boy).",
+    "explanation": "'Whose' indica possesso: la sorella del ragazzo. 'Who', 'which' e 'that' non si usano davanti a un nome posseduto come 'sister'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q415",
@@ -6222,10 +6815,11 @@ export const questions: Question[] = [
       "who"
     ],
     "correctIndex": 0,
-    "explanation": "'When' is used for periods of time.",
+    "explanation": "L'inverno è un periodo di tempo, quindi 'when it snows'. 'Which' e 'who' non hanno senso qui e 'where' è per i luoghi.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q416",
@@ -6237,10 +6831,11 @@ export const questions: Question[] = [
       "drove"
     ],
     "correctIndex": 0,
-    "explanation": "'Avoid' is always followed by the -ing form (gerund), never by the infinitive: 'avoid driving'.",
+    "explanation": "'Avoid' è seguito dal gerundio: 'avoid driving'. L'infinito 'to drive', il verbo base e il passato non si usano dopo 'avoid'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q417",
@@ -6252,10 +6847,11 @@ export const questions: Question[] = [
       "saw"
     ],
     "correctIndex": 0,
-    "explanation": "'Hope' is followed by the infinitive with 'to'.",
+    "explanation": "'Hope' regge l'infinito con 'to': 'hope to see'. Il gerundio (seeing), il verbo base (see) e il passato (saw) non si usano dopo 'hope'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q418",
@@ -6267,10 +6863,11 @@ export const questions: Question[] = [
       "made"
     ],
     "correctIndex": 0,
-    "explanation": "'Avoid' takes the gerund (-ing form).",
+    "explanation": "'Avoid' è seguito dal gerundio: 'avoid making mistakes'. 'To make', 'make' e 'made' non sono possibili dopo 'avoid'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q419",
@@ -6282,10 +6879,11 @@ export const questions: Question[] = [
       "helped"
     ],
     "correctIndex": 0,
-    "explanation": "'Promise' takes the infinitive with 'to'.",
+    "explanation": "'Promise' regge l'infinito con 'to': 'promised to help'. Dopo 'promise' non si usa il gerundio (helping), il verbo base o il passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q420",
@@ -6297,10 +6895,11 @@ export const questions: Question[] = [
       "I finish reading the book."
     ],
     "correctIndex": 0,
-    "explanation": "'Finish' is followed by a gerund.",
+    "explanation": "'Finish' regge il gerundio: 'finished reading'. 'Finished to read' e 'finished read' sono errati, e 'I finish' è presente mentre 'ho finito' è passato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q421",
@@ -6312,10 +6911,11 @@ export const questions: Question[] = [
       "He decides to study abroad."
     ],
     "correctIndex": 0,
-    "explanation": "'Decide' is followed by the infinitive.",
+    "explanation": "Il verbo decide vuole l'infinito con to (decided to study). L'italiano \"ha deciso\" è passato, quindi decides (presente) non va bene, e dopo decide non si usa né la forma in -ing né l'infinito senza to.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q422",
@@ -6327,10 +6927,11 @@ export const questions: Question[] = [
       "went"
     ],
     "correctIndex": 0,
-    "explanation": "'Plan' takes the infinitive with 'to'.",
+    "explanation": "Plan è seguito dall'infinito con to: plan to go. La forma in -ing (going) dopo plan è sbagliata, e went è un passato che non può stare dopo are you planning.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q423",
@@ -6342,10 +6943,11 @@ export const questions: Question[] = [
       "lived"
     ],
     "correctIndex": 0,
-    "explanation": "'Miss' is followed by the gerund.",
+    "explanation": "Dopo miss (sentire la mancanza di, rimpiangere) si usa la forma in -ing: miss living. To live, live e lived non sono costruzioni possibili dopo questo verbo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q424",
@@ -6357,10 +6959,11 @@ export const questions: Question[] = [
       "I not mind getting up early."
     ],
     "correctIndex": 0,
-    "explanation": "'Don't mind' takes the gerund.",
+    "explanation": "Dopo mind si usa la forma in -ing: don't mind getting up. Nella frase negativa serve don't (non \"I not mind\"), e dopo mind non si mette to + infinito.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q425",
@@ -6372,10 +6975,11 @@ export const questions: Question[] = [
       "They want to buying a new house."
     ],
     "correctIndex": 0,
-    "explanation": "'Want' is followed by the infinitive.",
+    "explanation": "Want è seguito dall'infinito con to: want to buy. Forme come \"want buying\" o \"want to buying\" mescolano due costruzioni e non esistono.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q426",
@@ -6387,10 +6991,11 @@ export const questions: Question[] = [
       "paid"
     ],
     "correctIndex": 0,
-    "explanation": "'Offer' takes the infinitive with 'to'.",
+    "explanation": "Offer vuole l'infinito con to: offered to pay (\"si è offerto di pagare\"). Paying e paid non sono possibili dopo offer.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q427",
@@ -6402,10 +7007,11 @@ export const questions: Question[] = [
       "walked"
     ],
     "correctIndex": 0,
-    "explanation": "'Keep' is followed by the gerund.",
+    "explanation": "Keep + -ing significa \"continuare a\": keep walking. Dopo keep non si usa l'infinito (to walk) né il verbo base.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q428",
@@ -6417,25 +7023,27 @@ export const questions: Question[] = [
       "ordered"
     ],
     "correctIndex": 0,
-    "explanation": "'Would like' is followed by the infinitive with 'to'.",
+    "explanation": "Would like (\"vorrei\") si costruisce con l'infinito con to: I would like to order. La forma in -ing non va bene dopo would like.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q429",
-    "prompt": "Stop _____ noise!",
+    "prompt": "Please stop _____ noise, the baby is sleeping.",
     "options": [
       "making",
-      "to make",
+      "to making",
       "make",
       "made"
     ],
     "correctIndex": 0,
-    "explanation": "Stop + -ing means to quit an action.",
+    "explanation": "Dopo stop si usa -ing per dire \"smettere di fare\": stop making noise. To making, make e made sono forme impossibili: dopo stop si può avere solo -ing oppure to + verbo base (con un altro significato).",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q430",
@@ -6447,10 +7055,11 @@ export const questions: Question[] = [
       "locked"
     ],
     "correctIndex": 0,
-    "explanation": "Remember + to-infinitive means 'not forget to do something' ('I remembered to lock the door'); after 'to' we always use the base form, never -ing.",
+    "explanation": "Remember + to + infinito vuol dire \"ricordarsi di fare\" (non dimenticare). Dopo to si usa sempre il verbo base: to lock, mai \"to locking\"; locked e lock da soli non completano la frase.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q431",
@@ -6462,10 +7071,11 @@ export const questions: Question[] = [
       "will have"
     ],
     "correctIndex": 0,
-    "explanation": "Second Conditional: If + past simple.",
+    "explanation": "Nel secondo condizionale (situazione irreale o improbabile) la frase con if usa il past simple: if I had. Would have e will have non si mettono mai dopo if in questo tipo di frase.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q432",
@@ -6477,10 +7087,11 @@ export const questions: Question[] = [
       "will see"
     ],
     "correctIndex": 0,
-    "explanation": "Second Conditional: If + past simple.",
+    "explanation": "Se la frase principale ha would (what would you do), nella parte con if serve il past simple: if you saw. Would see e will see dopo if sono sbagliati.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q433",
@@ -6492,10 +7103,11 @@ export const questions: Question[] = [
       "will live"
     ],
     "correctIndex": 0,
-    "explanation": "Second Conditional: If + past simple.",
+    "explanation": "Secondo condizionale: if + past simple (lived), poi would + verbo base nella frase principale. Dopo if non si mette would e nemmeno will.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q434",
@@ -6507,10 +7119,11 @@ export const questions: Question[] = [
       "If I would be rich, I traveled the world."
     ],
     "correctIndex": 0,
-    "explanation": "Second Conditional uses 'were' for all persons and 'would + verb'.",
+    "explanation": "Il secondo condizionale è if + past simple (con be si usa were), poi would + verbo base. Le altre opzioni mischiano i tempi: if I am + will è primo condizionale, e would dopo if è sbagliato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q435",
@@ -6522,10 +7135,11 @@ export const questions: Question[] = [
       "If she knew the truth, she will be angry."
     ],
     "correctIndex": 0,
-    "explanation": "Past simple in the if-clause, would in the main clause.",
+    "explanation": "\"Se sapesse\" si traduce con if she knew (past simple) e \"si arrabbierebbe\" con she would be angry. Nelle altre opzioni compaiono knows, would know o will be, che non rispettano lo schema if + past simple, would + verbo.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q436",
@@ -6537,10 +7151,11 @@ export const questions: Question[] = [
       "won't eat"
     ],
     "correctIndex": 0,
-    "explanation": "Negative if-clause in Second Conditional uses 'didn't + verb'.",
+    "explanation": "Nella frase con if negativa del secondo condizionale si usa didn't + verbo base: if they didn't eat. Wouldn't e won't non si usano dopo if, e don't eat è presente.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q437",
@@ -6552,10 +7167,11 @@ export const questions: Question[] = [
       "will be"
     ],
     "correctIndex": 0,
-    "explanation": "'were' is used for the verb 'to be' in the Second Conditional.",
+    "explanation": "Nel secondo condizionale il verbo be nella frase con if diventa were per tutte le persone: if it were cheaper. Is, would be e will be non vanno dopo if in questo schema.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q438",
@@ -6567,10 +7183,11 @@ export const questions: Question[] = [
       "will study"
     ],
     "correctIndex": 0,
-    "explanation": "Second Conditional: If + Past Simple ('studied'), would + base verb, for an unreal or unlikely present situation.",
+    "explanation": "Secondo condizionale: if + past simple (studied), poi would + verbo base (would pass). Study è presente e would study / will study non si usano dopo if.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q439",
@@ -6582,10 +7199,11 @@ export const questions: Question[] = [
       "I don't go there if I was you."
     ],
     "correctIndex": 0,
-    "explanation": "'If I were you' is standard for giving advice.",
+    "explanation": "If I were you è la formula standard per dare un consiglio, con la frase principale in would + verbo base (wouldn't go). Le altre opzioni usano won't, didn't o don't, che non sono tempi da secondo condizionale.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q440",
@@ -6597,10 +7215,11 @@ export const questions: Question[] = [
       "If we would have a car, we went to the mountains."
     ],
     "correctIndex": 0,
-    "explanation": "'could' is the conditional form of 'can'.",
+    "explanation": "Secondo condizionale: if we had a car (past simple) e nella principale un modale al condizionale come could (il condizionale di can). Can e will appartengono al primo condizionale, e would have dopo if è sbagliato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q441",
@@ -6612,10 +7231,11 @@ export const questions: Question[] = [
       "would quit"
     ],
     "correctIndex": 0,
-    "explanation": "Past simple of 'quit' is 'quit'.",
+    "explanation": "Nella frase con if serve il past simple, e quit ha lo stesso aspetto al presente e al passato: if he quit. Would quit non si mette dopo if, e quits o will quit non sono passati.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q442",
@@ -6627,10 +7247,11 @@ export const questions: Question[] = [
       "would find"
     ],
     "correctIndex": 0,
-    "explanation": "Past simple in the if-clause.",
+    "explanation": "Nel secondo condizionale la frase con if va al past simple: if she found. Finds e will find sono tempi presente e futuro, would find non va dopo if.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q443",
@@ -6642,10 +7263,11 @@ export const questions: Question[] = [
       "would stop"
     ],
     "correctIndex": 0,
-    "explanation": "Past simple of stop is stopped.",
+    "explanation": "Past simple dopo if: if it stopped snowing, we could go. Stops e will stop sono presente e futuro, would stop non si usa dopo if.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q444",
@@ -6657,10 +7279,11 @@ export const questions: Question[] = [
       "will tell"
     ],
     "correctIndex": 0,
-    "explanation": "Main clause requires 'would + verb'.",
+    "explanation": "Nella frase principale del secondo condizionale serve would + verbo base: I would tell you. Tell, told e will tell non danno il condizionale richiesto dalla frase con if knew.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q445",
@@ -6672,10 +7295,11 @@ export const questions: Question[] = [
       "would live"
     ],
     "correctIndex": 0,
-    "explanation": "Past simple in the if-clause.",
+    "explanation": "Secondo condizionale: dopo if si usa il past simple (lived), nella principale would use. Live, will live e would live non vanno dopo if.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q446",
@@ -6687,10 +7311,11 @@ export const questions: Question[] = [
       "If I spoke French, I will move to Paris."
     ],
     "correctIndex": 0,
-    "explanation": "If + past simple, would + infinitive.",
+    "explanation": "\"Se parlassi\" è if I spoke (past simple) e \"mi trasferirei\" è I would move. Le altre opzioni mescolano i tempi: speak + will è primo condizionale, would speak dopo if è sbagliato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Second Conditional"
+    "grammarTopic": "Second Conditional",
+    "theoryId": "second-conditional"
   },
   {
     "id": "q447",
@@ -6702,10 +7327,11 @@ export const questions: Question[] = [
       "have woken up"
     ],
     "correctIndex": 0,
-    "explanation": "Third Conditional uses If + Past Perfect.",
+    "explanation": "Terzo condizionale (passato irreale): if + past perfect (had woken up), poi would have + participio passato. Woke up e would wake up non esprimono ciò che non è successo nel passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q448",
@@ -6717,10 +7343,11 @@ export const questions: Question[] = [
       "has studied"
     ],
     "correctIndex": 0,
-    "explanation": "If + Past Perfect (had + past participle).",
+    "explanation": "Nel terzo condizionale la frase con if usa il past perfect: if she had studied. Studied da solo è un past simple, would study e has studied non completano la struttura.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q449",
@@ -6732,10 +7359,11 @@ export const questions: Question[] = [
       "had helped"
     ],
     "correctIndex": 0,
-    "explanation": "Main clause uses 'would have + past participle'.",
+    "explanation": "Nella frase principale del terzo condizionale serve would have + participio passato: we would have helped you. Would help è secondo condizionale e had helped è un past perfect, che non va nella principale.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q450",
@@ -6747,10 +7375,11 @@ export const questions: Question[] = [
       "If I would go to bed early, I wouldn't have been tired."
     ],
     "correctIndex": 0,
-    "explanation": "Third conditional talks about impossible past situations.",
+    "explanation": "\"Se fossi andato\" è if I had gone (past perfect) e \"non sarei stato\" è I wouldn't have been (would have + participio). Le altre opzioni usano tempi che parlano del presente o non rispettano lo schema del terzo condizionale.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q451",
@@ -6762,10 +7391,11 @@ export const questions: Question[] = [
       "If it rains, we will stay at home."
     ],
     "correctIndex": 0,
-    "explanation": "If + Past Perfect, would have + past participle.",
+    "explanation": "\"Se avesse piovuto, saremmo rimasti\" è if it had rained, we would have stayed. Se si usano rained o rains si parla di presente o futuro, e we stayed non è un condizionale.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q452",
@@ -6777,10 +7407,11 @@ export const questions: Question[] = [
       "hadn't had"
     ],
     "correctIndex": 0,
-    "explanation": "Main clause negative is 'wouldn't have + past participle'.",
+    "explanation": "Nella principale negativa del terzo condizionale si usa wouldn't have + participio passato: wouldn't have had the accident. Wouldn't have da solo non ha il participio, e didn't have e hadn't had non sono condizionali.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q453",
@@ -6792,10 +7423,11 @@ export const questions: Question[] = [
       "have played"
     ],
     "correctIndex": 0,
-    "explanation": "If clause uses Past Perfect.",
+    "explanation": "Nella frase con if del terzo condizionale serve il past perfect: if they had played. Played è un semplice passato, would play e have played non vanno dopo if in questo schema.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q454",
@@ -6807,10 +7439,11 @@ export const questions: Question[] = [
       "haven't taken"
     ],
     "correctIndex": 0,
-    "explanation": "Negative if-clause uses 'hadn't + past participle'.",
+    "explanation": "La frase con if negativa del terzo condizionale usa hadn't + participio passato: if I hadn't taken. Didn't take, wouldn't take e haven't taken non sono past perfect.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q455",
@@ -6822,10 +7455,11 @@ export const questions: Question[] = [
       "What have you done if you knew?"
     ],
     "correctIndex": 0,
-    "explanation": "Interrogative third conditional structure.",
+    "explanation": "Domanda al terzo condizionale: What would you have done if you had known? Le altre opzioni cambiano i tempi (would you do + knew è secondo condizionale) e non esprimono il passato irreale dell'italiano.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q456",
@@ -6837,10 +7471,11 @@ export const questions: Question[] = [
       "If I had seen the message, I had replied."
     ],
     "correctIndex": 0,
-    "explanation": "Standard third conditional structure.",
+    "explanation": "\"Se avessi visto, ti avrei risposto\" è if I had seen (past perfect), I would have replied. Would have dopo if (would have seen) e had replied nella principale sono sbagliati.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q457",
@@ -6852,10 +7487,11 @@ export const questions: Question[] = [
       "has followed"
     ],
     "correctIndex": 0,
-    "explanation": "Third Conditional: If + Past Perfect ('had followed'), would have + past participle, for an imaginary situation in the past.",
+    "explanation": "Terzo condizionale: if + past perfect (had followed), poi would have + participio (wouldn't have gotten lost). Followed da solo, would follow e has followed non rispettano la struttura.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q458",
@@ -6867,10 +7503,11 @@ export const questions: Question[] = [
       "had gone"
     ],
     "correctIndex": 0,
-    "explanation": "Main clause requires 'would have + past participle'.",
+    "explanation": "La principale del terzo condizionale usa would have + participio passato: I would have gone. Would go è secondo condizionale, went è un passato semplice e had gone è un past perfect, che qui non va.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q459",
@@ -6882,10 +7519,11 @@ export const questions: Question[] = [
       "hasn't been"
     ],
     "correctIndex": 0,
-    "explanation": "Negative Past Perfect.",
+    "explanation": "Nella frase con if negativa del terzo condizionale serve hadn't + participio: if it hadn't been so cold. Wasn't, wouldn't be e hasn't been non sono past perfect.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q460",
@@ -6897,10 +7535,11 @@ export const questions: Question[] = [
       "has been"
     ],
     "correctIndex": 0,
-    "explanation": "Past Perfect of 'to be' is 'had been'.",
+    "explanation": "Past perfect di be: had been (if it had been cheaper), perché si parla di un'occasione passata mancata. Was, would be e has been non vanno nel terzo condizionale dopo if.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q461",
@@ -6912,10 +7551,11 @@ export const questions: Question[] = [
       "had said"
     ],
     "correctIndex": 0,
-    "explanation": "Main clause uses 'would have + past participle'.",
+    "explanation": "Nella principale del terzo condizionale serve would have + participio passato: I would have said yes. Would say, said e had said non danno il senso di \"avrei detto\".",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q462",
@@ -6927,10 +7567,11 @@ export const questions: Question[] = [
       "She would have came if she had time."
     ],
     "correctIndex": 0,
-    "explanation": "'had had' is the Past Perfect of 'have'.",
+    "explanation": "\"Sarebbe venuta se avesse avuto\" è she would have come if she had had time: had had è il past perfect di have (had + participio had). Would have came è sbagliato perché dopo would have serve il participio (come, non came).",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Third Conditional"
+    "grammarTopic": "Third Conditional",
+    "theoryId": "third-conditional"
   },
   {
     "id": "q463",
@@ -6942,10 +7583,11 @@ export const questions: Question[] = [
       "paints"
     ],
     "correctIndex": 0,
-    "explanation": "Past Simple passive: was + past participle.",
+    "explanation": "Un dipinto fatto da Leonardo in passato richiede il passivo al past simple: was + participio passato (was painted). Painted da solo è attivo, is painted è presente e paints è attivo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q464",
@@ -6957,10 +7599,11 @@ export const questions: Question[] = [
       "has spoken"
     ],
     "correctIndex": 0,
-    "explanation": "Present Simple passive for facts.",
+    "explanation": "Per un fatto generale si usa il passivo al present simple: is + participio passato (is spoken). Speaks è attivo, was spoken è passato e has spoken è attivo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q465",
@@ -6972,10 +7615,11 @@ export const questions: Question[] = [
       "has repaired"
     ],
     "correctIndex": 0,
-    "explanation": "Present Continuous passive for ongoing actions.",
+    "explanation": "At the moment indica un'azione in corso, quindi passivo al present continuous: is being repaired. Is repairing è attivo (l'auto non ripara), repairs e has repaired sono tempi diversi.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q466",
@@ -6987,10 +7631,11 @@ export const questions: Question[] = [
       "The book has been written in 1990."
     ],
     "correctIndex": 0,
-    "explanation": "Past Simple passive for a completed action in the past.",
+    "explanation": "\"È stato scritto nel 1990\" ha una data precisa nel passato, quindi passivo al past simple: was written. Is written è presente, wrote è attivo e has been written non si usa con una data definita come 1990.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q467",
@@ -7002,10 +7647,11 @@ export const questions: Question[] = [
       "The room cleans every day."
     ],
     "correctIndex": 0,
-    "explanation": "Present Simple passive for routines.",
+    "explanation": "\"Viene pulita ogni giorno\" è un'abitudine: passivo al present simple, is cleaned. Was cleaned è passato, is being cleaned indica un'azione in corso e non una routine, cleans è attivo.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q468",
@@ -7017,10 +7663,11 @@ export const questions: Question[] = [
       "was built"
     ],
     "correctIndex": 0,
-    "explanation": "Future passive: will be + past participle.",
+    "explanation": "Con next year serve il futuro passivo: will be + participio passato (will be built). Will build è attivo (il supermercato non costruisce), is built e was built sono presente e passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q469",
@@ -7032,10 +7679,11 @@ export const questions: Question[] = [
       "have caught"
     ],
     "correctIndex": 0,
-    "explanation": "Past Simple passive (plural).",
+    "explanation": "Yesterday richiede il passato e i ladri subiscono l'azione, quindi passivo al past simple plurale: were caught. Caught è attivo, are caught è presente, have caught è attivo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q470",
@@ -7047,25 +7695,27 @@ export const questions: Question[] = [
       "takes"
     ],
     "correctIndex": 0,
-    "explanation": "Past Simple passive.",
+    "explanation": "Il quadro è stato fatto da qualcuno, in passato: passivo al past simple, was taken. Took è attivo, is taken è presente e takes è attivo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q471",
     "prompt": "Translate: 'I biglietti sono già stati venduti.'",
     "options": [
       "The tickets have already been sold.",
-      "The tickets are already sold.",
-      "The tickets were already sold.",
-      "The tickets already sold."
+      "The tickets has already been sold.",
+      "The tickets have already being sold.",
+      "The tickets have already be sold."
     ],
     "correctIndex": 0,
-    "explanation": "Present Perfect passive: have been + past participle.",
+    "explanation": "\"Sono già stati venduti\" è un passivo al present perfect: have + been + participio (have already been sold). Has non concorda con tickets (plurale), being è il gerundio e be è la forma base: nessuna delle due completa il passivo del present perfect.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q472",
@@ -7077,10 +7727,11 @@ export const questions: Question[] = [
       "The problem must been solved immediately."
     ],
     "correctIndex": 0,
-    "explanation": "Modal passive: modal + be + past participle.",
+    "explanation": "Con un verbo modale il passivo è modale + be + participio: must be solved. Must solve è attivo, has to solve è attivo e must been solved sbaglia perché dopo must serve be, non been.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q473",
@@ -7092,10 +7743,11 @@ export const questions: Question[] = [
       "have sent"
     ],
     "correctIndex": 0,
-    "explanation": "Present Simple passive for routines.",
+    "explanation": "Every morning indica un'abitudine, quindi passivo al present simple: are sent (le email sono inviate). Send è attivo, were sent è passato e have sent è attivo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q474",
@@ -7107,10 +7759,11 @@ export const questions: Question[] = [
       "has been cooked"
     ],
     "correctIndex": 0,
-    "explanation": "Past Continuous passive for interrupted past actions.",
+    "explanation": "When the guests arrived indica un'azione in corso nel passato: passivo al past continuous, was being cooked. Was cooking è attivo, is cooked è presente e has been cooked è un present perfect.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q475",
@@ -7122,10 +7775,11 @@ export const questions: Question[] = [
       "has built"
     ],
     "correctIndex": 0,
-    "explanation": "Past Simple passive.",
+    "explanation": "In 2005 è una data passata e il ponte è stato costruito (non costruisce), quindi passivo al past simple: was built. Built è attivo, is built è presente e has built è attivo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q476",
@@ -7137,10 +7791,11 @@ export const questions: Question[] = [
       "is eaten"
     ],
     "correctIndex": 0,
-    "explanation": "Past Perfect passive.",
+    "explanation": "Before I came indica un'azione conclusa prima di un altro momento passato, quindi past perfect passivo: had been eaten. Had eaten è attivo (il dolce non mangia), was eating e is eaten non mostrano il prima.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q477",
@@ -7152,10 +7807,11 @@ export const questions: Question[] = [
       "have left"
     ],
     "correctIndex": 0,
-    "explanation": "Past Simple passive.",
+    "explanation": "Yesterday richiede il passato e le chiavi subiscono l'azione: passivo al past simple, were left. Left è attivo, are left è presente e have left è attivo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q478",
@@ -7167,55 +7823,59 @@ export const questions: Question[] = [
       "My bicycle stole yesterday."
     ],
     "correctIndex": 0,
-    "explanation": "Past Simple passive.",
+    "explanation": "\"È stata rubata ieri\" ha un tempo passato preciso, quindi passivo al past simple: was stolen. Has been stolen non si usa con yesterday, is stolen è presente e stole è attivo.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Passive Voice"
+    "grammarTopic": "Passive Voice",
+    "theoryId": "passive-voice"
   },
   {
     "id": "q479",
     "prompt": "He said, 'I like apples.' -> He said that he _____ apples.",
     "options": [
       "liked",
-      "likes",
+      "was liking",
       "like",
-      "had liked"
+      "liking"
     ],
     "correctIndex": 0,
-    "explanation": "Present simple shifts to past simple.",
+    "explanation": "Nel discorso indiretto con said (passato) il present simple slitta al past simple: he liked apples. Like senza -s è sbagliato con he, e was liking e liking non vanno con un verbo di gusto come like.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q480",
     "prompt": "She said, 'I am watching TV.' -> She said that she _____ TV.",
     "options": [
       "was watching",
-      "is watching",
-      "watches",
+      "were watching",
+      "watching",
       "had watched"
     ],
     "correctIndex": 0,
-    "explanation": "Present continuous shifts to past continuous.",
+    "explanation": "Nel discorso indiretto il present continuous diventa past continuous: she was watching TV. Were non concorda con she, watching da solo non ha l'ausiliare, e had watched è un past perfect che indicherebbe un'azione finita prima, non in corso.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q481",
     "prompt": "'I will go,' he said. -> He said that he _____ go.",
     "options": [
       "would",
-      "will",
+      "going to",
       "can",
       "could"
     ],
     "correctIndex": 0,
-    "explanation": "'Will' shifts to 'would'.",
+    "explanation": "Nel discorso indiretto will diventa would: he said that he would go. Going to manca dell'ausiliare (was going to go), mentre can e could esprimono capacità o possibilità e non il futuro di \"I will go\".",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q482",
@@ -7227,10 +7887,11 @@ export const questions: Question[] = [
       "He said that he is tired."
     ],
     "correctIndex": 0,
-    "explanation": "'Tell' must be followed by an object pronoun (me).",
+    "explanation": "Tell vuole sempre un complemento di persona (told me), mentre say no: he told me that... Said me e told to me sono costruzioni sbagliate, e he is tired non rispetta lo slittamento al passato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q483",
@@ -7238,59 +7899,63 @@ export const questions: Question[] = [
     "options": [
       "She said that she didn't know the answer.",
       "She told that she didn't know the answer.",
-      "She said that she doesn't know the answer.",
+      "She said that she didn't knew the answer.",
       "She told me that she hasn't known the answer."
     ],
     "correctIndex": 0,
-    "explanation": "'Said' doesn't need an object pronoun.",
+    "explanation": "Said non vuole il pronome (she said that...), told sì. Dopo said il verbo slitta al passato: didn't know. She told that è sbagliato senza complemento, didn't knew ha il passato dopo didn't e hasn't known è un present perfect che non rende \"non sapeva\".",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q484",
     "prompt": "'I have finished,' she said. -> She said that she _____ finished.",
     "options": [
       "had",
-      "has",
-      "was",
-      "is"
+      "have",
+      "been",
+      "having"
     ],
     "correctIndex": 0,
-    "explanation": "Present perfect shifts to past perfect.",
+    "explanation": "Nel discorso indiretto il present perfect diventa past perfect: she had finished. Con she il verbo have non concorda (servirebbe has) e non è al passato; been e having non formano il perfetto con finished.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q485",
     "prompt": "He asked me where I _____.",
     "options": [
       "lived",
-      "live",
+      "living",
       "did I live",
       "do I live"
     ],
     "correctIndex": 0,
-    "explanation": "Reported questions use affirmative word order, without 'do/did'.",
+    "explanation": "Nelle domande indirette l'ordine è soggetto + verbo, senza do/did, e il tempo slitta al passato: where I lived. Did I live e do I live tengono l'ordine della domanda diretta, e living senza ausiliare non è un verbo coniugato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q486",
     "prompt": "She asked if I _____ coffee.",
     "options": [
       "liked",
-      "like",
+      "liking",
       "did I like",
       "do I like"
     ],
     "correctIndex": 0,
-    "explanation": "Yes/No reported questions use 'if' + affirmative past simple.",
+    "explanation": "Nelle domande sì/no indirette si usa if + soggetto + verbo al passato: if I liked coffee. Did I like e do I like mantengono l'ordine della domanda diretta, e liking senza ausiliare non è un verbo coniugato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q487",
@@ -7302,25 +7967,27 @@ export const questions: Question[] = [
       "He told me if I wanted to come."
     ],
     "correctIndex": 0,
-    "explanation": "Reported questions use 'ask' + if + subject + verb.",
+    "explanation": "Per le domande indirette si usa asked + if + soggetto + verbo, senza do e al passato: asked me if I wanted. Dopo ask non si usa la domanda diretta (do I want), e said / told me if non reggono if.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q488",
     "prompt": "Translate: 'Ha detto che avrebbe chiamato più tardi.'",
     "options": [
       "He said that he would call later.",
-      "He said that he will call later.",
+      "He said that he would to call later.",
       "He told that he would call later.",
       "He said that he would called later."
     ],
     "correctIndex": 0,
-    "explanation": "'Would' is the reported version of 'will'.",
+    "explanation": "Nel discorso indiretto will diventa would: he said that he would call later. Dopo would il verbo resta alla forma base, quindi would to call e would called sono sbagliati; told that senza me è sbagliato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q489",
@@ -7332,10 +7999,11 @@ export const questions: Question[] = [
       "not touch"
     ],
     "correctIndex": 0,
-    "explanation": "Reported negative commands use 'not to + infinitive'.",
+    "explanation": "Un ordine negativo riportato si costruisce con told + persona + not to + verbo base: not to touch. Don't touch e didn't touch non si usano nel discorso indiretto, e not touch senza to è sbagliato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q490",
@@ -7347,25 +8015,27 @@ export const questions: Question[] = [
       "opening"
     ],
     "correctIndex": 0,
-    "explanation": "Reported commands use 'to + infinitive'.",
+    "explanation": "Un ordine riportato si costruisce con told + persona + to + verbo base: told me to open. Open, opened e opening non si usano dopo told me.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q491",
     "prompt": "He said, 'I can swim.' -> He said that he _____ swim.",
     "options": [
       "could",
-      "can",
+      "can to",
       "would",
       "might"
     ],
     "correctIndex": 0,
-    "explanation": "'Can' shifts to 'could'.",
+    "explanation": "Nel discorso indiretto can diventa could: he said that he could swim. Can to è sbagliato (i modali non vogliono to), mentre would e might cambiano il significato e non rendono la capacità di nuotare.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q492",
@@ -7374,13 +8044,14 @@ export const questions: Question[] = [
       "if I was",
       "if was I",
       "are you",
-      "if you are"
+      "if am I"
     ],
     "correctIndex": 0,
-    "explanation": "Reported questions use subject + verb order.",
+    "explanation": "Nelle domande indirette il tempo slitta e l'ordine è soggetto + verbo: she asked me if I was okay. If was I e if am I mantengono l'ordine della domanda, e are you non ha if e non ha il verbo al passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q493",
@@ -7392,10 +8063,11 @@ export const questions: Question[] = [
       "have to"
     ],
     "correctIndex": 0,
-    "explanation": "'Must' usually shifts to 'had to' in reported speech; 'must' never takes -s or 'to', and 'have to' would need to become 'had to'.",
+    "explanation": "Nel discorso indiretto must di solito diventa had to: he said that he had to go. Musts e must to non esistono, e have to non concorda con he (dovrebbe essere has to).",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q494",
@@ -7407,10 +8079,11 @@ export const questions: Question[] = [
       "He told to me to study."
     ],
     "correctIndex": 0,
-    "explanation": "Advise takes object + to-infinitive.",
+    "explanation": "Advise vuole persona + to + verbo base: he advised me to study. Advised to study manca del complemento di persona, said me e told to me to sono costruzioni sbagliate.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Reported Speech"
+    "grammarTopic": "Reported Speech",
+    "theoryId": "reported-speech"
   },
   {
     "id": "q495",
@@ -7422,70 +8095,75 @@ export const questions: Question[] = [
       "starts"
     ],
     "correctIndex": 0,
-    "explanation": "Past Perfect is used for the action that happened first in the past.",
+    "explanation": "By the time + un momento passato richiede il past perfect per ciò che era già successo prima: the movie had started. Started, has started e starts non indicano un'azione anteriore a quella dell'arrivo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q496",
     "prompt": "I realized I _____ my keys at home.",
     "options": [
       "had left",
-      "left",
-      "have left",
-      "leave"
+      "has left",
+      "had leave",
+      "leaving"
     ],
     "correctIndex": 0,
-    "explanation": "You left them before you realized it.",
+    "explanation": "Prima hai lasciato le chiavi, poi te ne sei accorto (realized, passato): per l'azione più lontana serve il past perfect, had left. Has left non concorda con I, had leave non ha il participio e leaving non è un verbo coniugato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q497",
     "prompt": "She was tired because she _____ all day.",
     "options": [
       "had worked",
-      "worked",
+      "had work",
       "has worked",
       "works"
     ],
     "correctIndex": 0,
-    "explanation": "Action leading up to a past state.",
+    "explanation": "Era stanca (passato) perché aveva lavorato prima: past perfect, had worked. Had work non ha il participio, has worked e works non sono tempi del passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q498",
     "prompt": "Translate: 'Avevo appena finito di mangiare quando ha bussato.'",
     "options": [
       "I had just finished eating when he knocked.",
-      "I just finished eating when he knocked.",
+      "I had just finish eating when he knocked.",
       "I have just finished eating when he knocked.",
       "I had just finished to eat when he knocked."
     ],
     "correctIndex": 0,
-    "explanation": "Past perfect + just for an action completed moments before another past action.",
+    "explanation": "\"Avevo appena finito\" è un past perfect con just: had just finished. Had just finish non ha il participio, il present perfect (have just finished) lega l'azione a oggi, e dopo finished si usa -ing (finished eating), non to eat.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q499",
     "prompt": "Translate: 'Non avevo mai visto quel film prima di ieri.'",
     "options": [
       "I had never seen that movie before yesterday.",
-      "I never saw that movie before yesterday.",
+      "I had never saw that movie before yesterday.",
       "I have never seen that movie before yesterday.",
       "I hadn't never seen that movie before yesterday."
     ],
     "correctIndex": 0,
-    "explanation": "Past perfect + never for experiences before a specific past point.",
+    "explanation": "\"Non avevo mai visto\" prima di ieri è un past perfect con never: had never seen. Had never saw usa il past simple al posto del participio, have never seen lega al presente e hadn't never ha una doppia negazione.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q501",
@@ -7497,85 +8175,91 @@ export const questions: Question[] = [
       "finish"
     ],
     "correctIndex": 0,
-    "explanation": "'By the time' + a past event requires the Past Perfect ('had finished') for the action completed before that moment.",
+    "explanation": "By the time + passato richiede il past perfect per l'azione conclusa prima: they had finished. Finished, have finished e finish non mostrano che il progetto era già finito quando il manager ha chiamato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q502",
     "prompt": "He didn't want to eat because he _____ lunch.",
     "options": [
       "had already had",
-      "already had",
+      "had already have",
       "has already had",
       "already has"
     ],
     "correctIndex": 0,
-    "explanation": "The Past Perfect ('had already had') shows the earlier action: he had lunch first, so later he wasn't hungry.",
+    "explanation": "Non voleva mangiare perché aveva già pranzato prima: past perfect, had already had (had + participio had). Had already have non ha il participio, has already had e already has sono present perfect o presente.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q503",
     "prompt": "Translate: 'Ero arrabbiato perché avevo perso il portafoglio.'",
     "options": [
       "I was angry because I had lost my wallet.",
-      "I was angry because I lost my wallet.",
+      "I was angry because I was lost my wallet.",
       "I was angry because I have lost my wallet.",
       "I was angry because I had lose my wallet."
     ],
     "correctIndex": 0,
-    "explanation": "Cause and effect in the past.",
+    "explanation": "\"Avevo perso\" il portafoglio prima di arrabbiarsi: past perfect, had lost. Was lost my wallet non ha senso (was lost vuole un soggetto che si perde), have lost lega a oggi e had lose non ha il participio (lost).",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q504",
     "prompt": "Translate: 'Avevano vissuto lì per dieci anni prima di trasferirsi.'",
     "options": [
       "They had lived there for ten years before moving.",
-      "They lived there for ten years before moving.",
+      "They had live there for ten years before moving.",
       "They have lived there for ten years before moving.",
       "They had lived there since ten years before moving."
     ],
     "correctIndex": 0,
-    "explanation": "Duration before a past action.",
+    "explanation": "\"Avevano vissuto per dieci anni prima di trasferirsi\" è un past perfect: had lived there for ten years. Had live non ha il participio, have lived collega al presente e since ten years è sbagliato (con una durata si usa for).",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q505",
     "prompt": "I _____ him before that day.",
     "options": [
       "had never met",
-      "never met",
+      "had never meet",
       "have never met",
       "never meet"
     ],
     "correctIndex": 0,
-    "explanation": "Experience before a past event.",
+    "explanation": "Prima di quel giorno è un momento passato, quindi past perfect: had never met. Had never meet non ha il participio, have never met lega al presente e never meet è presente.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q506",
     "prompt": "The grass was yellow because it _____ all summer.",
     "options": [
       "hadn't rained",
-      "didn't rain",
+      "hadn't rain",
       "hasn't rained",
       "doesn't rain"
     ],
     "correctIndex": 0,
-    "explanation": "Negative past perfect.",
+    "explanation": "L'erba era gialla perché non aveva piovuto per tutta l'estate prima di allora: past perfect negativo, hadn't rained. Hadn't rain non ha il participio, hasn't rained lega al presente e doesn't rain è presente.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q507",
@@ -7587,25 +8271,27 @@ export const questions: Question[] = [
       "studies"
     ],
     "correctIndex": 0,
-    "explanation": "The Past Perfect ('had' + past participle 'studied') shows that the studying happened before she passed the test; 'had study' has no past participle and 'has studied/studies' don't fit a past story.",
+    "explanation": "Aveva studiato prima di superare il test: past perfect, had studied (had + participio). Had study non ha il participio passato, has studied e studies non vanno in un racconto al passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q508",
     "prompt": "I couldn't open the door because I _____ the key.",
     "options": [
       "had lost",
-      "lost",
+      "had lose",
       "have lost",
       "lose"
     ],
     "correctIndex": 0,
-    "explanation": "Lost the key before trying to open.",
+    "explanation": "Non riusciva ad aprire la porta perché aveva perso la chiave prima: past perfect, had lost. Had lose non ha il participio, have lost lega al presente e lose è presente.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q509",
@@ -7617,25 +8303,27 @@ export const questions: Question[] = [
       "goes"
     ],
     "correctIndex": 0,
-    "explanation": "'By the time' is a strong trigger for the Past Perfect.",
+    "explanation": "By the time + passato richiede il past perfect: everyone had gone, cioè erano già andati prima che mi svegliassi. Went, has gone e goes non esprimono ciò che era già successo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q510",
     "prompt": "Translate: 'La festa era già finita quando siamo arrivati.'",
     "options": [
       "The party had already ended when we arrived.",
-      "The party already ended when we arrived.",
+      "The party had already end when we arrived.",
       "The party has already ended when we arrived.",
       "The party had already ending when we arrived."
     ],
     "correctIndex": 0,
-    "explanation": "Past Perfect with 'already'.",
+    "explanation": "\"Era già finita quando siamo arrivati\" è un past perfect con already: had already ended. Had already end e had already ending non hanno il participio passato, e has already ended lega la festa al presente.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Past Perfect"
+    "grammarTopic": "Past Perfect",
+    "theoryId": "past-perfect"
   },
   {
     "id": "q511",
@@ -7647,10 +8335,11 @@ export const questions: Question[] = [
       "am used to"
     ],
     "correctIndex": 0,
-    "explanation": "Past habit that is no longer true.",
+    "explanation": "Per un'abitudine passata che ora non c'è più si usa 'used to' + verbo base. 'Use to' senza -d non funziona nelle frasi affermative, e 'was/am used to' vuol dire 'essere abituato', che richiede un nome o un verbo in -ing.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q512",
@@ -7662,25 +8351,27 @@ export const questions: Question[] = [
       "Are"
     ],
     "correctIndex": 0,
-    "explanation": "Interrogative form requires 'Did' + 'use to' (without d).",
+    "explanation": "Nelle domande sul passato si mette 'Did' all'inizio e 'use to' senza -d, perché 'did' porta già il passato. 'Do' e 'Are' sono al presente e 'Were' non si combina con 'use to'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q513",
     "prompt": "She _____ like coffee, but now she loves it.",
     "options": [
       "didn't use to",
-      "didn't used to",
+      "didn't using to",
       "doesn't use to",
       "wasn't used to"
     ],
     "correctIndex": 0,
-    "explanation": "Negative form is 'didn't use to'.",
+    "explanation": "Nella forma negativa si dice 'didn't use to' (senza -d), perché 'did' porta già il passato. 'Didn't using to' è impossibile, 'doesn't' è al presente e 'wasn't used to' significa 'non era abituata', non 'prima non le piaceva'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q514",
@@ -7692,10 +8383,11 @@ export const questions: Question[] = [
       "We use to live in London when I was a kid."
     ],
     "correctIndex": 0,
-    "explanation": "Used to + infinitive.",
+    "explanation": "Per le abitudini e le situazioni passate si usa 'used to' + verbo base: 'We used to live'. 'Used to lived' ha due passati, 'are used to' è un presente e vuol dire 'siamo abituati', e 'use to' senza -d è sbagliato nelle frasi affermative.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q515",
@@ -7707,10 +8399,11 @@ export const questions: Question[] = [
       "He hasn't used to smoke, but now he smokes a pack a day."
     ],
     "correctIndex": 0,
-    "explanation": "The negative of 'used to' is 'didn't use to' (no -d after 'didn't', because 'did' already shows the past); 'un pacchetto al giorno' is 'a pack a day'.",
+    "explanation": "Il negativo di 'used to' è 'didn't use to' + verbo base: dopo 'didn't' non va la -d. 'Wasn't used to' significa 'non era abituato' e 'hasn't used to' non esiste.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q516",
@@ -7722,10 +8415,11 @@ export const questions: Question[] = [
       "is"
     ],
     "correctIndex": 0,
-    "explanation": "'There used to be' describes a past state.",
+    "explanation": "'There used to be' indica una situazione che esisteva nel passato e ora non c'è più (il parco). 'Was' e 'is' non si possono mettere prima di 'be', e 'use to' senza -d è sbagliato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q517",
@@ -7737,10 +8431,11 @@ export const questions: Question[] = [
       "am used to"
     ],
     "correctIndex": 0,
-    "explanation": "'Used to' + base verb describes a past state that is no longer true (I had a dog, but now I don't).",
+    "explanation": "'Used to' + verbo base descrive qualcosa che era vero nel passato e ora non lo è più (avevo un cane, ora no). 'Was/am used to' significa 'ero/sono abituato' e vuole un nome o un verbo in -ing, non 'have'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q518",
@@ -7752,10 +8447,11 @@ export const questions: Question[] = [
       "used"
     ],
     "correctIndex": 0,
-    "explanation": "After 'did', use the base form 'use to'.",
+    "explanation": "Dopo 'did' il verbo resta alla forma base, quindi 'use to' senza -d: 'What did you use to do?'. 'Used to' ripeterebbe il passato, che 'did' ha già espresso.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q519",
@@ -7767,10 +8463,11 @@ export const questions: Question[] = [
       "We had gone to the sea every summer."
     ],
     "correctIndex": 0,
-    "explanation": "'Used to' + base verb describes a repeated action in the past that doesn't happen now ('andavamo' = we used to go).",
+    "explanation": "Per un'azione ripetuta nel passato e ora finita si usa 'used to' + verbo base: 'We used to go'. 'Use to' senza -d è sbagliato, 'were used to go' non esiste e 'had gone' è un trapassato che non rende 'andavamo'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q520",
@@ -7782,25 +8479,27 @@ export const questions: Question[] = [
       "She use to have long hair, didn't she?"
     ],
     "correctIndex": 0,
-    "explanation": "Question tag for used to is 'didn't'.",
+    "explanation": "'Used to' funziona come un verbo al passato semplice, quindi il tag è 'didn't she?'. 'Doesn't' è al presente, e 'used to had' o 'use to have' sono forme sbagliate.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q521",
     "prompt": "He _____ be so grumpy when he was younger.",
     "options": [
       "didn't use to",
-      "didn't used to",
+      "didn't using to",
       "wasn't use to",
       "not used to"
     ],
     "correctIndex": 0,
-    "explanation": "Negative past habit.",
+    "explanation": "Una caratteristica del passato che è cambiata si nega con 'didn't use to' + verbo base. Dopo 'didn't' non va -ing né -d, e 'wasn't use to' e 'not used to' non sono forme corrette qui.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q522",
@@ -7812,10 +8511,11 @@ export const questions: Question[] = [
       "are used to"
     ],
     "correctIndex": 0,
-    "explanation": "'Used to' + base verb describes a past habit or routine; 'be used to' means 'essere abituato' and is a different structure.",
+    "explanation": "'Used to' + verbo base indica un'abitudine passata (andavamo a scuola a piedi). 'Be used to' vuol dire 'essere abituato' e vuole il verbo in -ing, quindi 'were used to walk' è sbagliato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q523",
@@ -7827,10 +8527,11 @@ export const questions: Question[] = [
       "used"
     ],
     "correctIndex": 0,
-    "explanation": "Question form drops the 'd' in use.",
+    "explanation": "Nella domanda al passato 'did' porta il tempo, quindi 'use to' perde la -d: 'Did she use to...?'. 'Used to' dopo 'did' ripeterebbe il passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q524",
@@ -7842,10 +8543,11 @@ export const questions: Question[] = [
       "am used to"
     ],
     "correctIndex": 0,
-    "explanation": "Past belief that changed.",
+    "explanation": "Una convinzione che avevo nel passato e ora non ho più si esprime con 'used to' + verbo base. 'Use to' senza -d è sbagliato nelle frasi affermative e 'was/am used to' significa 'ero/sono abituato'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q525",
@@ -7857,10 +8559,11 @@ export const questions: Question[] = [
       "are used to"
     ],
     "correctIndex": 0,
-    "explanation": "'Used to' + base verb describes a past habit that has stopped (they travelled a lot before having children).",
+    "explanation": "'Used to' + verbo base indica un'abitudine passata che è finita (viaggiavano molto prima di avere figli). 'Were used to' significa 'erano abituati' e vuole un nome o un verbo in -ing.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q526",
@@ -7872,10 +8575,11 @@ export const questions: Question[] = [
       "I hadn't used to like vegetables."
     ],
     "correctIndex": 0,
-    "explanation": "Negative past state.",
+    "explanation": "Il negativo di 'used to' è 'didn't use to' + verbo base, senza -d. 'Wasn't used to' significa 'non ero abituato' e 'hadn't used to' non è una forma corretta.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q527",
@@ -7887,10 +8591,11 @@ export const questions: Question[] = [
       "doesn't it"
     ],
     "correctIndex": 0,
-    "explanation": "Affirmative statement -> negative tag.",
+    "explanation": "Se la frase è affermativa, il tag è negativo e ripete il verbo 'to be': 'It's ... isn't it?'. 'Does/doesn't it' userebbe un ausiliare che nella frase non c'è.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q528",
@@ -7902,10 +8607,11 @@ export const questions: Question[] = [
       "aren't you"
     ],
     "correctIndex": 0,
-    "explanation": "Negative statement -> affirmative tag.",
+    "explanation": "Se la frase è negativa, il tag è affermativo e usa lo stesso ausiliare ('don't' -> 'do you'). 'Don't you' sarebbe un tag negativo dopo una frase già negativa.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q529",
@@ -7917,10 +8623,11 @@ export const questions: Question[] = [
       "wasn't she"
     ],
     "correctIndex": 0,
-    "explanation": "Past simple affirmative -> didn't.",
+    "explanation": "Il tag riprende l'ausiliare del passato semplice, cioè 'did', e si inverte la polarità: frase affermativa, tag negativo 'didn't she?'. 'Doesn't' è al presente e 'wasn't' non c'entra con 'went'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q530",
@@ -7932,10 +8639,11 @@ export const questions: Question[] = [
       "You are Italian, are you?"
     ],
     "correctIndex": 0,
-    "explanation": "The tag must match the subject (you) and auxiliary (are).",
+    "explanation": "Il tag ripete il soggetto (you) e il verbo 'to be' (are) in forma negativa, perché la frase è affermativa: 'aren't you?'. 'Isn't it' non concorda con 'you' e 'don't you' usa un ausiliare sbagliato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q531",
@@ -7947,10 +8655,11 @@ export const questions: Question[] = [
       "You haven't seen the movie, did you?"
     ],
     "correctIndex": 0,
-    "explanation": "Present perfect negative -> affirmative 'have' tag.",
+    "explanation": "Nel present perfect negativo il tag è affermativo e usa 'have': 'haven't seen... have you?'. 'Haven't you' è negativo dopo una frase negativa e 'did you' non è l'ausiliare del present perfect.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q532",
@@ -7962,10 +8671,11 @@ export const questions: Question[] = [
       "don't they"
     ],
     "correctIndex": 0,
-    "explanation": "Present perfect affirmative -> haven't.",
+    "explanation": "Nel present perfect il tag riprende 'have' e, con una frase affermativa, è negativo: 'haven't they?'. 'Didn't' e 'don't' sono ausiliari del passato e del presente semplice.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q533",
@@ -7977,10 +8687,11 @@ export const questions: Question[] = [
       "isn't he"
     ],
     "correctIndex": 0,
-    "explanation": "Modal 'can' -> can't.",
+    "explanation": "Con un verbo modale il tag riprende lo stesso modale con polarità opposta: 'can' -> 'can't he?'. 'Doesn't he' e 'isn't he' non c'entrano con 'can'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q534",
@@ -7992,10 +8703,11 @@ export const questions: Question[] = [
       "aren't you"
     ],
     "correctIndex": 0,
-    "explanation": "Future 'will' -> won't.",
+    "explanation": "Il tag riprende l'ausiliare 'will' e, con la frase affermativa, è negativo: 'won't you?'. 'Don't' e 'aren't' sono ausiliari di altri tempi.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q535",
@@ -8007,10 +8719,11 @@ export const questions: Question[] = [
       "It's cold today, wasn't it?"
     ],
     "correctIndex": 0,
-    "explanation": "Verb to be -> isn't.",
+    "explanation": "Quando la frase usa 'to be' al presente, il tag riprende 'is' in negativo: 'It's cold today, isn't it?'. 'Is it' ripeterebbe la polarità affermativa e 'doesn't/wasn't' non sono corretti.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q536",
@@ -8022,10 +8735,11 @@ export const questions: Question[] = [
       "He can't swim, does he?"
     ],
     "correctIndex": 0,
-    "explanation": "Negative can't -> affirmative can.",
+    "explanation": "La frase è negativa ('can't swim'), quindi il tag è affermativo e riprende il modale: 'can he?'. 'Can't he' sarebbe negativo dopo una frase negativa, e 'does he' non riprende 'can'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q537",
@@ -8037,10 +8751,11 @@ export const questions: Question[] = [
       "aren't we"
     ],
     "correctIndex": 0,
-    "explanation": "Modal 'should' -> shouldn't.",
+    "explanation": "Con 'should' il tag usa lo stesso modale in negativo: 'shouldn't we?'. 'Don't we' e 'aren't we' usano ausiliari diversi da quello della frase.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q538",
@@ -8052,10 +8767,11 @@ export const questions: Question[] = [
       "isn't she"
     ],
     "correctIndex": 0,
-    "explanation": "Past simple to be -> wasn't.",
+    "explanation": "Con 'was' il tag riprende 'was' in negativo perché la frase è affermativa: 'wasn't she?'. 'Didn't' e 'isn't' non corrispondono al verbo della frase.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q539",
@@ -8067,10 +8783,11 @@ export const questions: Question[] = [
       "isn't I"
     ],
     "correctIndex": 0,
-    "explanation": "'I am' always takes the tag 'aren't I?'.",
+    "explanation": "Dopo 'I am' il tag è la forma irregolare 'aren't I?'. 'Am not I' e 'isn't I' non esistono, e 'don't I' userebbe l'ausiliare sbagliato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q540",
@@ -8082,10 +8799,11 @@ export const questions: Question[] = [
       "are we"
     ],
     "correctIndex": 0,
-    "explanation": "'Let's' always takes the tag 'shall we?'.",
+    "explanation": "Dopo 'Let's' (proposta) il tag fisso è 'shall we?'. 'Will we', 'do we' e 'are we' non si usano con questo tipo di frase.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q541",
@@ -8097,10 +8815,11 @@ export const questions: Question[] = [
       "did you"
     ],
     "correctIndex": 0,
-    "explanation": "Negative wouldn't -> affirmative would.",
+    "explanation": "'Wouldn't' è negativo, quindi il tag è affermativo e riprende lo stesso modale: 'would you?'. 'Wouldn't you' sarebbe negativo dopo una frase negativa.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q542",
@@ -8112,10 +8831,11 @@ export const questions: Question[] = [
       "Your sister lives here, don't she?"
     ],
     "correctIndex": 0,
-    "explanation": "Present simple action verb -> doesn't.",
+    "explanation": "Il verbo 'lives' è al presente semplice con 'she', quindi il tag usa 'does' in negativo: 'doesn't she?'. 'Isn't she' non riprende il verbo, 'doesn't it' ha il soggetto sbagliato e 'don't she' non concorda.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q543",
@@ -8123,14 +8843,15 @@ export const questions: Question[] = [
     "options": [
       "must",
       "can't",
-      "might",
-      "should"
+      "must to",
+      "ought"
     ],
     "correctIndex": 0,
-    "explanation": "Strong logical deduction.",
+    "explanation": "Hanno viaggiato tutto il giorno, quindi siamo quasi certi: per una deduzione forte si usa 'must'. 'Can't' direbbe che è impossibile, 'must to' è sbagliato (i modali non vogliono 'to') e 'ought' vuole 'to'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q544",
@@ -8138,14 +8859,15 @@ export const questions: Question[] = [
     "options": [
       "can't",
       "must",
-      "might",
-      "could"
+      "don't",
+      "must to"
     ],
     "correctIndex": 0,
-    "explanation": "Negative logical deduction (impossible).",
+    "explanation": "Ha appena mangiato tantissimo, quindi è quasi impossibile che abbia fame: per l'impossibilità si usa 'can't'. 'Must' direbbe l'opposto, 'don't' non regge con be e 'must to' è sbagliato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q545",
@@ -8157,10 +8879,11 @@ export const questions: Question[] = [
       "should"
     ],
     "correctIndex": 0,
-    "explanation": "Possibility without certainty.",
+    "explanation": "Dice 'non sono sicuro', quindi è solo una possibilità e serve 'might'. 'Must' esprimerebbe certezza e 'can't' impossibilità.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q546",
@@ -8172,10 +8895,11 @@ export const questions: Question[] = [
       "It should be late, it's already dark."
     ],
     "correctIndex": 0,
-    "explanation": "'Must' + base verb is used for a logical deduction based on evidence (it's already dark); modals are never followed by 'to'.",
+    "explanation": "Il buio è un indizio, quindi per una deduzione forte si usa 'must' + verbo base: 'It must be late'. 'May to be' è sbagliato perché dopo i modali non va 'to', e 'can' non esprime una deduzione positiva.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q547",
@@ -8187,10 +8911,11 @@ export const questions: Question[] = [
       "It might not be true!"
     ],
     "correctIndex": 0,
-    "explanation": "Can't is the opposite of must for deductions.",
+    "explanation": "'Non può essere vero' esprime impossibilità, e il contrario di 'must' nelle deduzioni è 'can't'. 'Mustn't' indica un divieto e non una deduzione.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q548",
@@ -8202,10 +8927,11 @@ export const questions: Question[] = [
       "could"
     ],
     "correctIndex": 0,
-    "explanation": "Logical impossibility.",
+    "explanation": "L'auto di John è blu, non rossa: quella rossa non può essere la sua. Per escludere qualcosa con certezza si usa 'can't', non 'must'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q549",
@@ -8213,14 +8939,15 @@ export const questions: Question[] = [
     "options": [
       "must",
       "can't",
-      "might",
-      "can"
+      "ought",
+      "must to"
     ],
     "correctIndex": 0,
-    "explanation": "'Must' + base verb expresses a strong, logical certainty based on evidence (you've been working since 6 AM).",
+    "explanation": "Lavori dalle 6 del mattino, quindi la conclusione è quasi certa: 'must' + verbo base. 'Can't' direbbe che è impossibile, 'ought' vuole 'to' e 'must to' è sbagliato (i modali non vogliono 'to').",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q550",
@@ -8229,13 +8956,14 @@ export const questions: Question[] = [
       "might",
       "must",
       "can't",
-      "should"
+      "ought"
     ],
     "correctIndex": 0,
-    "explanation": "'Might' + base verb expresses a possibility in the future: it may rain later, but we aren't sure.",
+    "explanation": "Prendere l'ombrello 'per sicurezza' significa che la pioggia è possibile ma non certa: serve 'might'. 'Must' esprimerebbe certezza, 'can't' escluderebbe la pioggia e 'ought' vuole 'to'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q551",
@@ -8247,25 +8975,27 @@ export const questions: Question[] = [
       "It will rain later."
     ],
     "correctIndex": 0,
-    "explanation": "'Might' or 'could' indicates possibility.",
+    "explanation": "'Potrebbe piovere' è una possibilità, e in inglese si rende con 'might' (o 'could'). 'Must' esprime certezza e 'will' è una previsione sicura.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q552",
     "prompt": "Translate: 'Quello dev'essere il tuo nuovo capo.'",
     "options": [
       "That must be your new boss.",
-      "That can be your new boss.",
-      "That should be your new boss.",
-      "That must to be your new boss."
+      "That can't be your new boss.",
+      "That must to be your new boss.",
+      "That musts be your new boss."
     ],
     "correctIndex": 0,
-    "explanation": "'Must' + base verb ('must be') expresses a logical deduction we are almost sure about ('dev'essere'); modals are never followed by 'to'.",
+    "explanation": "'Dev'essere' è una deduzione quasi certa: 'must' + verbo base. 'That can't be' direbbe che è impossibile, 'must to be' è sbagliato perché i modali non vogliono 'to', e 'musts' non esiste (i modali non prendono la -s).",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q553",
@@ -8273,14 +9003,15 @@ export const questions: Question[] = [
     "options": [
       "must",
       "can't",
-      "might",
-      "should"
+      "ought",
+      "must to"
     ],
     "correctIndex": 0,
-    "explanation": "When the evidence makes us almost certain, we use 'must' + base verb for a positive deduction; 'might' would express only a possibility.",
+    "explanation": "Lingua perfetta, passaporto e genitori a Parigi sono prove molto forti, quindi usiamo 'must' per una quasi certezza. 'Can't' direbbe il contrario, 'ought' vuole 'to' e 'must to' è sbagliato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q554",
@@ -8288,14 +9019,15 @@ export const questions: Question[] = [
     "options": [
       "must",
       "can't",
-      "might",
-      "should"
+      "ought",
+      "must to"
     ],
     "correctIndex": 0,
-    "explanation": "'Must be' + -ing makes a strong deduction about what someone is doing now or soon, based on clear evidence (a cinema ticket for tonight).",
+    "explanation": "Ha in mano il biglietto per stasera, quindi sono prove forti e usiamo 'must be going' per una deduzione. 'Can't' sarebbe l'opposto, 'ought' vuole 'to' e 'must to' è sbagliato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q555",
@@ -8303,14 +9035,15 @@ export const questions: Question[] = [
     "options": [
       "must",
       "can't",
-      "might",
-      "won't"
+      "ought",
+      "must to"
     ],
     "correctIndex": 0,
-    "explanation": "At 3 a.m. with the lights out and total silence we are almost sure, so we use 'must' + base verb for a certain deduction.",
+    "explanation": "Sono le 3, luci spente e casa silenziosa: tutto fa pensare che dormano, quindi 'must'. 'Can't' direbbe che è impossibile, 'ought' vuole 'to' e 'must to' è sbagliato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q556",
@@ -8322,25 +9055,27 @@ export const questions: Question[] = [
       "won't"
     ],
     "correctIndex": 0,
-    "explanation": "Possibility (similar to might).",
+    "explanation": "Chi parla non ha controllato, quindi esprime una semplice possibilità e 'could' va bene (come 'might'). 'Must' direbbe certezza e 'can't' impossibilità.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q557",
-    "prompt": "This _____ be the right way. The map says to go left.",
+    "prompt": "Tom is in Tokyo until Friday, so that _____ be him at the door.",
     "options": [
       "can't",
       "must",
-      "might",
-      "could"
+      "ought",
+      "must to"
     ],
     "correctIndex": 0,
-    "explanation": "Logical impossibility.",
+    "explanation": "Tom è a Tokyo fino a venerdì, quindi è impossibile che sia lui alla porta: per l'impossibilità si usa 'can't'. 'Must' direbbe che siamo certi che sia lui, 'ought' vuole 'to' e 'must to' è sbagliato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q558",
@@ -8352,10 +9087,11 @@ export const questions: Question[] = [
       "This wouldn't be the right house."
     ],
     "correctIndex": 0,
-    "explanation": "Can't for negative deduction.",
+    "explanation": "Per dire che qualcosa è impossibile in base a ciò che si sa, si usa 'can't be' ('non può essere'). 'Mustn't' esprime un divieto e non una deduzione.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Modals of Deduction"
+    "grammarTopic": "Modals of Deduction",
+    "theoryId": "modals-deduction"
   },
   {
     "id": "q559",
@@ -8367,10 +9103,11 @@ export const questions: Question[] = [
       "locked"
     ],
     "correctIndex": 0,
-    "explanation": "'Forget + to-infinitive' refers to a duty or future action that must not be forgotten (Ricordati di fare qualcosa).",
+    "explanation": "Dopo 'forget' si usa 'to' + verbo base quando si parla di un'azione da fare (non dimenticare di chiudere la porta). Con 'locking' avrebbe il senso di 'ricordare di aver chiuso'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q560",
@@ -8382,10 +9119,11 @@ export const questions: Question[] = [
       "saw"
     ],
     "correctIndex": 0,
-    "explanation": "'Forget + -ing' refers to the memory of a past event: 'I will never forget seeing the Colosseum' = non dimenticherò mai la prima volta che ho visto il Colosseo.",
+    "explanation": "Con 'forget' + -ing si parla di un ricordo di un'azione già avvenuta: non dimenticherò mai di aver visto il Colosseo. 'To see' indicherebbe un'azione ancora da compiere.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q561",
@@ -8397,10 +9135,11 @@ export const questions: Question[] = [
       "had"
     ],
     "correctIndex": 0,
-    "explanation": "'Stop + to-infinitive' expresses purpose (ci siamo fermati per prendere un caffè).",
+    "explanation": "Dopo 'stop' + 'to' + verbo base si indica lo scopo per cui ci si ferma (ci siamo fermati per prendere un caffè). Con 'having' sembrerebbe che avessero smesso di prendere il caffè.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q562",
@@ -8412,40 +9151,43 @@ export const questions: Question[] = [
       "smoked"
     ],
     "correctIndex": 0,
-    "explanation": "'Stop + -ing' means to quit an action or habit completely (smettere di fumare).",
+    "explanation": "'Stop' + -ing significa smettere di fare un'azione, quindi 'stop smoking' vuol dire smettere di fumare. 'Stop to smoke' vorrebbe dire fermarsi per fumare.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q563",
     "prompt": "Complete the sentence: 'If the app keeps crashing, try _____ your smartphone.'",
     "options": [
       "restarting",
-      "to restart",
+      "to restarting",
       "restart",
       "restarted"
     ],
     "correctIndex": 0,
-    "explanation": "'Try + -ing' means doing something as an experiment, to see if it solves a problem (prova a riavviare); 'try + to-infinitive' means making an effort to do something difficult.",
+    "explanation": "'Try' + -ing significa provare qualcosa come esperimento per risolvere un problema: prova a riavviare il telefono. 'To restarting' mescola le due costruzioni, 'restart' e 'restarted' non sono forme possibili dopo try in questa frase.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q564",
     "prompt": "Complete the sentence: 'I tried _____ the heavy wardrobe, but it was impossible alone.'",
     "options": [
       "to lift",
-      "lifting",
+      "to lifting",
       "lift",
       "lifted"
     ],
     "correctIndex": 0,
-    "explanation": "'Try + to-infinitive' means to make a physical or mental effort to achieve something difficult.",
+    "explanation": "'Try' + 'to' + verbo base indica lo sforzo di fare qualcosa di difficile (provai a sollevare l'armadio, ma era impossibile). 'To lifting' mescola le due costruzioni, 'lift' e 'lifted' non sono forme possibili dopo tried in questa frase.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q565",
@@ -8457,10 +9199,11 @@ export const questions: Question[] = [
       "cleaned"
     ],
     "correctIndex": 0,
-    "explanation": "'Need + -ing' has a passive meaning (= needs to be cleaned). Classic CEFR B1 structure!",
+    "explanation": "'Need' + -ing ha un significato passivo: il pavimento ha bisogno di essere pulito (needs cleaning). 'To clean' vorrebbe dire che è il pavimento a dover pulire qualcosa.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q566",
@@ -8472,10 +9215,11 @@ export const questions: Question[] = [
       "met"
     ],
     "correctIndex": 0,
-    "explanation": "In 'look forward to', 'to' is a preposition, so it must be followed by a gerund (-ing form).",
+    "explanation": "In 'look forward to' la parola 'to' è una preposizione, e dopo una preposizione si usa la forma in -ing: 'looking forward to meeting'. 'Meet' o 'to meet' sono sbagliati.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q567",
@@ -8487,25 +9231,27 @@ export const questions: Question[] = [
       "I can't avoid to laugh when I hear that joke."
     ],
     "correctIndex": 0,
-    "explanation": "'Can't help + -ing' is a fixed idiom meaning unable to prevent yourself from doing something.",
+    "explanation": "'Can't help' + -ing è un'espressione fissa che vuol dire 'non riuscire a fare a meno di'. 'Help to laugh', 'stop to laugh' e 'avoid to laugh' non esistono o hanno un altro significato.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q568",
     "prompt": "Translate: 'È inutile piangere sul latte versato.'",
     "options": [
       "It's no use crying over spilled milk.",
-      "It's no use to cry over spilled milk.",
+      "It's no use cry over spilled milk.",
       "It's not useful crying on spilled milk.",
       "It has no use to cry on spilled milk."
     ],
     "correctIndex": 0,
-    "explanation": "'It's no use + -ing' is an idiomatic structure followed by the gerund.",
+    "explanation": "'It's no use' è seguito dal gerundio: 'It's no use crying'. 'No use cry' non ha il gerundio, e le altre opzioni inventano costruzioni sbagliate ('not useful crying', 'has no use to cry on').",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Gerunds vs Infinitives"
+    "grammarTopic": "Gerunds vs Infinitives",
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q569",
@@ -8517,10 +9263,11 @@ export const questions: Question[] = [
       "many informations"
     ],
     "correctIndex": 0,
-    "explanation": "'Information' is an uncountable noun in English: it never takes an 's' and cannot be preceded by 'an'.",
+    "explanation": "'Information' è non numerabile: non prende l'articolo 'an' né la -s del plurale. Si dice 'some information', mai 'informations'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q570",
@@ -8532,10 +9279,11 @@ export const questions: Question[] = [
       "piece of advices"
     ],
     "correctIndex": 0,
-    "explanation": "'Advice' is uncountable. To refer to a single unit, use 'a piece of advice'.",
+    "explanation": "'Advice' è non numerabile e non ha plurale, per questo per un singolo consiglio si dice 'a piece of advice'. Dopo 'a very useful' serve un nome singolare numerabile, quindi 'advice' da solo non va.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q571",
@@ -8547,10 +9295,11 @@ export const questions: Question[] = [
       "have been"
     ],
     "correctIndex": 0,
-    "explanation": "Even though 'news' ends in 's', it is a singular uncountable noun and takes a singular verb ('was').",
+    "explanation": "'News' finisce in -s ma è singolare e non numerabile, quindi vuole il verbo al singolare. Si usa 'was', perché il contesto è al passato.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q572",
@@ -8562,10 +9311,11 @@ export const questions: Question[] = [
       "have been"
     ],
     "correctIndex": 0,
-    "explanation": "'Furniture' is uncountable in English and always takes a singular verb ('is').",
+    "explanation": "'Furniture' è non numerabile e vuole il verbo al singolare, quindi 'is'. 'Are', 'were' e 'have been' sono forme plurali.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q573",
@@ -8577,10 +9327,11 @@ export const questions: Question[] = [
       "a few"
     ],
     "correctIndex": 0,
-    "explanation": "'Luggage' (or baggage) is uncountable, so it is quantified with 'much' (or 'a lot of').",
+    "explanation": "'Luggage' è non numerabile, e con i non numerabili in una domanda di quantità si usa 'how much'. 'Many', 'few' e 'a few' vogliono i nomi numerabili al plurale.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q574",
@@ -8592,10 +9343,11 @@ export const questions: Question[] = [
       "has been"
     ],
     "correctIndex": 0,
-    "explanation": "'Police' is a plural collective noun with no 's', but it ALWAYS takes a plural verb ('are / were').",
+    "explanation": "'Police' è un nome collettivo plurale: vuole sempre il verbo al plurale ('are'). 'Is', 'was' e 'has been' sono singolari.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q575",
@@ -8607,10 +9359,11 @@ export const questions: Question[] = [
       "I haven't much homeworks for tomorrow."
     ],
     "correctIndex": 0,
-    "explanation": "'Homework' is uncountable in English, so we use 'much homework' and never 'homeworks'.",
+    "explanation": "'Homework' è non numerabile: non ha plurale ('homeworks' è sbagliato) e con una frase negativa si usa 'much', non 'many'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q577",
@@ -8622,10 +9375,11 @@ export const questions: Question[] = [
       "aren't we"
     ],
     "correctIndex": 0,
-    "explanation": "Suggestions starting with 'Let's' always take the question tag 'shall we?'.",
+    "explanation": "Dopo una proposta introdotta da 'Let's' il tag fisso è 'shall we?'. 'Will we', 'don't we' e 'aren't we' non si usano con 'Let's'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q578",
@@ -8637,10 +9391,11 @@ export const questions: Question[] = [
       "shall you"
     ],
     "correctIndex": 0,
-    "explanation": "Imperative sentences (requests/commands) take 'will you?' (or 'won't you?') as question tag.",
+    "explanation": "Dopo un imperativo (un ordine o una richiesta) il tag è 'will you?'. 'Do you', 'don't you' e 'shall you' non si usano con gli imperativi.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q579",
@@ -8652,10 +9407,11 @@ export const questions: Question[] = [
       "isn't she"
     ],
     "correctIndex": 0,
-    "explanation": "Words with negative meaning (never, seldom, rarely) make the clause negative, requiring an affirmative tag ('does she?').",
+    "explanation": "'Never' ha un significato negativo, quindi la frase conta come negativa e il tag è affermativo: 'does she?'. 'Doesn't she' sarebbe negativo dopo una frase già negativa.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q580",
@@ -8667,10 +9423,11 @@ export const questions: Question[] = [
       "didn't he"
     ],
     "correctIndex": 0,
-    "explanation": "'Nobody' has negative meaning (so the tag is positive) and uses the plural pronoun 'they' ('did they?').",
+    "explanation": "'Nobody' è negativo, quindi il tag è affermativo, e si riprende con 'they': 'did they?'. 'Didn't they' sarebbe negativo, e 'he' è meno corretto con 'nobody'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q581",
@@ -8682,10 +9439,11 @@ export const questions: Question[] = [
       "was it"
     ],
     "correctIndex": 0,
-    "explanation": "'Nothing' is negative (requiring positive tag) and refers to a thing, represented by 'it' ('did it?').",
+    "explanation": "'Nothing' è negativo, quindi il tag è affermativo, e si riprende con 'it' perché si tratta di una cosa: 'did it?'. 'Didn't it' sarebbe negativo e 'was it' non riprende 'went'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q582",
@@ -8697,10 +9455,11 @@ export const questions: Question[] = [
       "are they"
     ],
     "correctIndex": 0,
-    "explanation": "'Everybody' takes a singular verb in the main clause ('is'), but takes 'they' with a plural verb in the tag ('aren't they?').",
+    "explanation": "'Everybody is ready' è una frase affermativa, quindi il tag è negativo; per 'everybody' si usa 'they' e il verbo 'be' si ripete: 'aren't they?'. 'Are they' sarebbe affermativo dopo una frase affermativa.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Question Tags"
+    "grammarTopic": "Question Tags",
+    "theoryId": "question-tags"
   },
   {
     "id": "q583",
@@ -8712,10 +9471,11 @@ export const questions: Question[] = [
       "arrived"
     ],
     "correctIndex": 0,
-    "explanation": "In time clauses introduced by 'as soon as', 'when', 'until', etc., we use the Present Simple, NOT 'will'.",
+    "explanation": "Dopo 'as soon as' si usa il present simple anche se parliamo del futuro: 'as soon as I arrive'. 'Will arrive' è sbagliato nelle frasi temporali.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q584",
@@ -8727,10 +9487,11 @@ export const questions: Question[] = [
       "is stopping"
     ],
     "correctIndex": 0,
-    "explanation": "After 'until', English uses the Present Simple for future references (never 'will').",
+    "explanation": "Dopo 'until' per il futuro si usa il present simple, mai 'will': 'until the rain stops'. 'Will stop' non si usa in questa posizione.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q585",
@@ -8742,10 +9503,11 @@ export const questions: Question[] = [
       "won't practice"
     ],
     "correctIndex": 0,
-    "explanation": "'Unless' means 'if not', so it already contains a negative meaning. Do not use double negatives or 'will'.",
+    "explanation": "'Unless' significa già 'se non', quindi il verbo che segue è affermativo e al present simple: 'unless you practice'. 'Don't practice' crea una doppia negazione e 'will' non si usa dopo 'unless'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "First Conditional"
+    "grammarTopic": "First Conditional",
+    "theoryId": "first-conditional"
   },
   {
     "id": "q586",
@@ -8757,10 +9519,11 @@ export const questions: Question[] = [
       "is raining"
     ],
     "correctIndex": 0,
-    "explanation": "'In case' (per precauzione) is followed by the Present Simple when referring to the future.",
+    "explanation": "Dopo 'in case' per il futuro si usa il present simple: 'in case it rains'. 'Will rain' non si usa dopo 'in case'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q587",
@@ -8772,10 +9535,11 @@ export const questions: Question[] = [
       "I will tell to you as soon as I know."
     ],
     "correctIndex": 0,
-    "explanation": "Time clause rule: 'as soon as I know' (Present Simple, never 'will know').",
+    "explanation": "Dopo 'as soon as' si usa il present simple, quindi 'as soon as I know'. 'Will know' è sbagliato nelle frasi temporali, e 'tell to you' è un errore: dopo 'tell' non va 'to'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q588",
@@ -8787,10 +9551,11 @@ export const questions: Question[] = [
       "understanding"
     ],
     "correctIndex": 0,
-    "explanation": "'Understand' is a stative verb (mental state) and is not normally used in the continuous form.",
+    "explanation": "'Understand' è un verbo di stato (descrive una condizione mentale) e non si usa nella forma continua: 'I understand'. 'Am understanding' e 'have understand' sono sbagliati.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q589",
@@ -8802,10 +9567,11 @@ export const questions: Question[] = [
       "had"
     ],
     "correctIndex": 0,
-    "explanation": "When 'have' means eating/drinking ('having lunch'), it is a dynamic action and CAN be continuous!",
+    "explanation": "'Have' nel senso di 'mangiare' è un'azione e può stare nel present continuous. 'Right now' indica che succede in questo momento, quindi 'is having'. 'Has' darebbe l'idea di un'abitudine.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q590",
@@ -8817,10 +9583,11 @@ export const questions: Question[] = [
       "thought"
     ],
     "correctIndex": 0,
-    "explanation": "'Think' in the continuous form ('am thinking') refers to an active mental process at this moment.",
+    "explanation": "'Think' nel senso di 'riflettere' è un'azione in corso e vuole il present continuous. 'Be quiet for a minute' mostra che sta succedendo ora: 'I am thinking'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Continuous"
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
   },
   {
     "id": "q591",
@@ -8832,10 +9599,11 @@ export const questions: Question[] = [
       "thought"
     ],
     "correctIndex": 0,
-    "explanation": "When 'think' expresses an opinion ('I think that...'), it is stative and cannot be continuous.",
+    "explanation": "Quando 'think' esprime un'opinione è un verbo di stato e non si usa al continuous: 'I think that...'. 'Am thinking' indicherebbe l'azione di riflettere in questo momento.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q592",
@@ -8847,10 +9615,11 @@ export const questions: Question[] = [
       "was tasting"
     ],
     "correctIndex": 0,
-    "explanation": "'Taste' describing the flavor of food is a stative verb (takes Present Simple).",
+    "explanation": "'Taste' nel senso di 'avere sapore' è un verbo di stato e va al present simple. Con il soggetto 'dish' (terza persona singolare) serve la -s: 'tastes'.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q593",
@@ -8862,10 +9631,11 @@ export const questions: Question[] = [
       "more far"
     ],
     "correctIndex": 0,
-    "explanation": "'Further' means 'additional/more' (figurative), while 'farther' strictly refers to physical distance.",
+    "explanation": "Nel senso figurato di 'ulteriore' si usa 'further details'. 'Farther' si usa per la distanza fisica, e 'farthest' è un superlativo e 'more far' non esiste.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q594",
@@ -8877,10 +9647,11 @@ export const questions: Question[] = [
       "heaviest"
     ],
     "correctIndex": 0,
-    "explanation": "Two-syllable adjectives ending in '-y' change '-y' to '-ier' (heavy -> heavier).",
+    "explanation": "Gli aggettivi di due sillabe che finiscono in -y fanno il comparativo con -ier: 'heavy' -> 'heavier'. 'More heavy' e 'more heavier' sono sbagliati.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q595",
@@ -8892,10 +9663,11 @@ export const questions: Question[] = [
       "like"
     ],
     "correctIndex": 0,
-    "explanation": "Equality comparatives in the negative use 'not as ... as' (or 'not so ... as').",
+    "explanation": "Il comparativo di uguaglianza si forma con 'as ... as', anche in forma negativa: 'not as fast as'. 'So much', 'more' e 'like' non si usano così.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q596",
@@ -8907,10 +9679,11 @@ export const questions: Question[] = [
       "much / much"
     ],
     "correctIndex": 0,
-    "explanation": "The double comparative structure 'The more..., the more...' expresses proportional change.",
+    "explanation": "La struttura 'the + comparativo, the + comparativo' esprime due cose che crescono insieme: 'the more you practice, the more confident you feel'. 'Most' è un superlativo e 'much' non è un comparativo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q597",
@@ -8922,10 +9695,11 @@ export const questions: Question[] = [
       "My eldest brother live in London."
     ],
     "correctIndex": 0,
-    "explanation": "'Elder' (like the more common 'older') describes the older of two family members and is used only before a noun ('my elder brother'). With 'brother' the verb needs the third person -s ('lives').",
+    "explanation": "'Elder' (come 'older') si usa solo davanti a un nome per dire 'maggiore' tra fratelli: 'my elder brother'. Le altre opzioni sbagliano il verbo ('living' senza ausiliare, 'live' senza -s) o inventano 'more old'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q598",
@@ -8937,10 +9711,11 @@ export const questions: Question[] = [
       "driven"
     ],
     "correctIndex": 0,
-    "explanation": "'Get used to + -ing' means the process of becoming accustomed to something.",
+    "explanation": "In 'get used to' la parola 'to' è una preposizione, quindi segue la forma in -ing: 'get used to driving' (abituarsi a guidare). 'Drive' o 'drove' non vanno dopo una preposizione.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q599",
@@ -8952,25 +9727,27 @@ export const questions: Question[] = [
       "to work"
     ],
     "correctIndex": 0,
-    "explanation": "'Be used to + -ing' means to be already accustomed/familiar with a situation.",
+    "explanation": "In 'be used to' (essere abituato) la parola 'to' è una preposizione, quindi segue il verbo in -ing: 'used to working'. 'Work' e 'to work' sono sbagliati.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q600",
     "prompt": "Complete the sentence: 'I _____ drink coffee when I was younger, but now I drink three cups a day.'",
     "options": [
       "didn't use to",
-      "didn't used to",
+      "don't use to",
       "not used to",
       "wasn't used to"
     ],
     "correctIndex": 0,
-    "explanation": "The negative of 'used to' is 'didn't use to': 'did' already carries the past, so 'use' has no -d. 'Wasn't used to' means 'non ero abituato' and needs a noun or -ing form.",
+    "explanation": "Il negativo di 'used to' è 'didn't use to', perché 'did' porta già il passato. 'Don't use to' è al presente, 'wasn't used to' significa 'non ero abituato' e vuole un nome o -ing, mentre 'not used to' manca dell'ausiliare.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q601",
@@ -8982,10 +9759,11 @@ export const questions: Question[] = [
       "Did you get use to cold weather?"
     ],
     "correctIndex": 0,
-    "explanation": "'Get used to + noun' expresses becoming accustomed to a condition ('Have you got used to...?'); 'use to' without 'get' or 'be' cannot be followed by a noun.",
+    "explanation": "'Get used to' + nome significa 'abituarsi a'; al present perfect ('Have you got used to...?') chiede se l'abitudine si è già formata. 'Use to' da solo non regge un nome e 'get use' è sbagliato: manca il participio 'used'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Used to"
+    "grammarTopic": "Used to",
+    "theoryId": "used-to"
   },
   {
     "id": "q602",
@@ -8997,10 +9775,11 @@ export const questions: Question[] = [
       "what"
     ],
     "correctIndex": 0,
-    "explanation": "In non-defining relative clauses (between commas), you must use 'which' for things, NEVER 'that'.",
+    "explanation": "Nelle relative non restrittive (tra virgole) per le cose si usa 'which', mai 'that'. 'Where' non va bene perché Venice è il soggetto di 'is famous', e 'what' non è un pronome relativo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q603",
@@ -9012,10 +9791,11 @@ export const questions: Question[] = [
       "whose"
     ],
     "correctIndex": 0,
-    "explanation": "In non-defining clauses for people as object, 'whom' (or 'who') is used; 'that' is strictly prohibited between commas.",
+    "explanation": "Per una persona complemento oggetto in una relativa tra virgole si usa 'whom' ('you met' ha già il suo soggetto). 'That' non si usa tra virgole, 'which' è per le cose e 'whose' esprime possesso.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q604",
@@ -9027,10 +9807,11 @@ export const questions: Question[] = [
       "that's"
     ],
     "correctIndex": 0,
-    "explanation": "'Whose' is the relative pronoun used to indicate possession.",
+    "explanation": "'Whose' esprime possesso: 'the student whose backpack' significa 'lo studente il cui zaino'. 'Who's' e 'that's' sono contrazioni di 'who is' e 'that is', e 'which' è per le cose.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q605",
@@ -9042,10 +9823,11 @@ export const questions: Question[] = [
       "whose"
     ],
     "correctIndex": 0,
-    "explanation": "Because the preposition 'at' is at the end ('stayed at'), we use 'that' or 'which', NOT 'where'.",
+    "explanation": "'Stayed at' ha già la preposizione in fondo, quindi il pronome fa da oggetto e serve 'that' (o 'which'). 'Where' ripeterebbe il luogo ('where we stayed at'), 'whose' indica possesso e 'what' non è un pronome relativo.",
     "category": "Grammatica",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q606",
@@ -9057,204 +9839,218 @@ export const questions: Question[] = [
       "London, what is the capital of the UK, has many free museums."
     ],
     "correctIndex": 0,
-    "explanation": "In non-defining relative clauses (between commas), we must use 'which' for things, never 'that'; 'where' and 'what' are not relative pronouns for a subject here.",
+    "explanation": "Nelle relative non restrittive (tra virgole) per le cose si usa 'which', non 'that'. 'Where' si usa per un luogo e 'what' non è un pronome relativo: davanti a 'is the capital' serve 'which'.",
     "category": "Traduzione",
     "level": "B1",
-    "grammarTopic": "Relative Clauses"
+    "grammarTopic": "Relative Clauses",
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q612",
-    "prompt": "I ...... English Food",
+    "prompt": "Complete the sentence: 'Marco is a vegetarian, so he _____ meat.'",
     "options": [
-      "dcn't like",
-      "don't like",
-      "not like",
-      "liked not"
+      "eats not",
+      "don't eat",
+      "doesn't eat",
+      "not eats"
     ],
-    "correctIndex": 1,
-    "explanation": "Nel Present Simple la forma negativa per la prima persona singolare 'I' è 'don't like'.",
+    "correctIndex": 2,
+    "explanation": "Con he/she/it il present simple negativo si forma con 'doesn't' + verbo base senza -s: 'he doesn't eat'. 'Don't' va con I/you/we/they, mentre 'eats not' e 'not eats' non sono forme corrette.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Present Simple"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
   },
   {
     "id": "q615",
-    "prompt": "Monday is the ...... day of the week",
+    "prompt": "Complete the sentence: 'Of all the subjects I studied this year, physics was the _____.'",
     "options": [
-      "worst",
-      "baddest",
-      "worse",
-      "badest"
+      "hardly",
+      "hardest",
+      "most hard",
+      "more hard"
     ],
-    "correctIndex": 0,
-    "explanation": "Il superlativo relativo irregolare dell'aggettivo 'bad' è 'worst' ('the worst day').",
+    "correctIndex": 1,
+    "explanation": "Il superlativo degli aggettivi brevi si forma con 'the' + aggettivo + '-est': 'the hardest'. 'Most hard' e 'more hard' non si usano con un aggettivo di una sillaba, e 'hardly' è un avverbio che significa 'a malapena'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q616",
-    "prompt": "Can I offer you ...... to drink?",
+    "prompt": "Complete the sentence: 'We can't make pancakes because there isn't _____ flour left.'",
     "options": [
-      "something",
       "some",
-      "somewhat",
-      "any"
-    ],
-    "correctIndex": 0,
-    "explanation": "Nelle offerte ('Can I offer you...') si usa di solito il pronome 'something' seguito da 'to drink'; 'some' e 'any' da soli sono determinanti e 'somewhat' significa 'un po''.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Quantifiers"
-  },
-  {
-    "id": "q617",
-    "prompt": "No sugar please. I like coffee ...... sugar.",
-    "options": [
-      "without",
-      "and",
-      "with",
-      "no"
-    ],
-    "correctIndex": 0,
-    "explanation": "'Without' è la preposizione che significa 'senza', coerentemente con 'No sugar please'.",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "Present Simple"
-  },
-  {
-    "id": "q619",
-    "prompt": "She ...... meet her friends tomorrow.",
-    "options": [
-      "is",
-      "do",
-      "will",
-      "does"
-    ],
-    "correctIndex": 2,
-    "explanation": "'Will' esprime un'azione futura ed è seguito direttamente dalla forma base del verbo ('will meet').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Present Simple"
-  },
-  {
-    "id": "q620",
-    "prompt": "- choose the correct sentence -",
-    "options": [
-      "Look! It's raining",
-      "Look! it's raining",
-      "Look! it raining",
-      "Look! it raning"
-    ],
-    "correctIndex": 0,
-    "explanation": "Dopo il punto esclamativo la frase successiva inizia con lettera maiuscola ('It's') e la forma del Present Continuous è 'is raining'.",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "Present Continuous"
-  },
-  {
-    "id": "q621",
-    "prompt": "...... any milk in the fridge",
-    "options": [
-      "There is",
-      "There isn't",
-      "There aren't",
-      "There are"
-    ],
-    "correctIndex": 1,
-    "explanation": "'Milk' è non numerabile (richiede la forma singolare) e nelle frasi negative si usa 'any': 'There isn't any milk'.",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "There is / There are"
-  },
-  {
-    "id": "q628",
-    "prompt": "Steven works ...... Microsoft.",
-    "options": [
-      "for",
-      "on",
-      "in",
-      "to"
-    ],
-    "correctIndex": 0,
-    "explanation": "Si dice 'work for' seguito dall'azienda o dal datore di lavoro ('works for Microsoft').",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "Prepositions of Place"
-  },
-  {
-    "id": "q629",
-    "prompt": "I don't like ...... make-up.",
-    "options": [
-      "of Sara",
-      "Sara's",
-      "Saras",
-      "Sara"
-    ],
-    "correctIndex": 1,
-    "explanation": "Si usa il genitivo sassone con apostrofo e 's' per indicare il possesso riferito a una persona: 'Sara's make-up'.",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "Possessive S"
-  },
-  {
-    "id": "q630",
-    "prompt": "...... have you studied English?",
-    "options": [
-      "How far",
-      "How much",
-      "How long",
-      "How many"
-    ],
-    "correctIndex": 2,
-    "explanation": "'How long' è la domanda utilizzata per domandare la durata nel tempo ('Da quanto tempo').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Questions and Origins"
-  },
-  {
-    "id": "q631",
-    "prompt": "How ...... people came to the party?",
-    "options": [
-      "few",
-      "much",
+      "a",
       "many",
       "any"
     ],
-    "correctIndex": 2,
-    "explanation": "Con i sostantivi numerabili plurali come 'people' si utilizza 'How many'.",
+    "correctIndex": 3,
+    "explanation": "Con i nomi non numerabili come 'flour' nelle frasi negative si usa 'any', non 'some'. 'A' e 'many' richiedono nomi numerabili.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
+  },
+  {
+    "id": "q617",
+    "prompt": "Complete the sentence: 'Every morning Anna _____ to the university by bus.'",
+    "options": [
+      "goes",
+      "go",
+      "going",
+      "is go"
+    ],
+    "correctIndex": 0,
+    "explanation": "Con he/she/it il verbo al present simple prende -s/-es: 'Anna goes'. 'Go' va con I/you/we/they, 'going' avrebbe bisogno di 'is' e 'is go' non esiste.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Quantifiers"
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
+  },
+  {
+    "id": "q619",
+    "prompt": "Complete the sentence: 'How often _____ your sister visit your grandparents?'",
+    "options": [
+      "do",
+      "is",
+      "has",
+      "does"
+    ],
+    "correctIndex": 3,
+    "explanation": "Alla terza persona singolare la domanda al present simple si fa con 'does' + soggetto + verbo base: 'How often does your sister visit...?'. 'Do' va con I/you/we/they, mentre 'is' e 'has' non reggono il verbo base.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Simple",
+    "theoryId": "present-simple"
+  },
+  {
+    "id": "q620",
+    "prompt": "Choose the correct sentence.",
+    "options": [
+      "Look! The children playing in the garden.",
+      "Look! The children is playing in the garden.",
+      "Look! The children are playing in the garden.",
+      "Look! The children plays in the garden."
+    ],
+    "correctIndex": 2,
+    "explanation": "Per un'azione in corso adesso (Look!) si usa il present continuous: 'be' + -ing. Con 'the children' (plurale) l'ausiliare è 'are'; 'is' non concorda, e senza ausiliare o con 'plays' la forma è sbagliata.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Present Continuous",
+    "theoryId": "present-continuous"
+  },
+  {
+    "id": "q621",
+    "prompt": "Complete the sentence: '_____ a supermarket near the university?'",
+    "options": [
+      "Do there",
+      "Is there",
+      "Are there",
+      "Has there"
+    ],
+    "correctIndex": 1,
+    "explanation": "'A supermarket' è singolare, quindi la domanda è 'Is there...?'. 'Are there' si usa con i plurali, mentre 'Do there' e 'Has there' non esistono.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "theoryId": "there-is-are"
+  },
+  {
+    "id": "q628",
+    "prompt": "Complete the sentence: 'My grandparents live _____ a small village near Bergamo.'",
+    "options": [
+      "in",
+      "at",
+      "to",
+      "on"
+    ],
+    "correctIndex": 0,
+    "explanation": "Per dire dove si vive con città, paesi e villaggi si usa 'in': 'live in a small village'. 'At' è per punti precisi, 'on' per superfici e strade, 'to' indica movimento e non posizione.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Prepositions of Place",
+    "theoryId": "prepositions-place"
+  },
+  {
+    "id": "q629",
+    "prompt": "Complete the sentence: 'We went to my _____ house for dinner on Sunday.'",
+    "options": [
+      "grandmother",
+      "grandmothers",
+      "grandmothers's",
+      "grandmother's"
+    ],
+    "correctIndex": 3,
+    "explanation": "Il possesso di una persona si esprime con nome + 's: 'my grandmother's house'. 'Grandmother' senza 's non esprime possesso, 'grandmothers' è un plurale e 'grandmothers's' non esiste.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Possessive S",
+    "theoryId": "possessive-s"
+  },
+  {
+    "id": "q630",
+    "prompt": "Complete the sentence: '_____ does the library close on Fridays?' 'At six o'clock.'",
+    "options": [
+      "Who",
+      "What time",
+      "How much",
+      "Where"
+    ],
+    "correctIndex": 1,
+    "explanation": "Per chiedere a che ora accade qualcosa si usa 'What time'. 'Who' chiede una persona, 'how much' una quantità o un prezzo e 'where' un luogo: nessuno dei tre può avere per risposta 'At six o'clock'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Questions and Origins",
+    "theoryId": "questions-origins"
+  },
+  {
+    "id": "q631",
+    "prompt": "Complete the sentence: 'How _____ money do you spend on books every semester?'",
+    "options": [
+      "many",
+      "few",
+      "any",
+      "much"
+    ],
+    "correctIndex": 3,
+    "explanation": "'Money' è non numerabile, quindi si dice 'How much money'. 'Many' e 'few' si usano con i nomi numerabili plurali, e 'any' non si mette dopo 'how' in questa domanda.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Quantifiers",
+    "theoryId": "quantifiers"
   },
   {
     "id": "q632",
-    "prompt": "James ...... English very well.",
+    "prompt": "Complete the sentence: 'Sorry, I _____ come to the party on Saturday because I have to work.'",
     "options": [
-      "cans speak",
-      "can speak",
-      "can speaks",
-      "can to speak"
+      "not can",
+      "don't can",
+      "can't",
+      "can't to"
     ],
-    "correctIndex": 1,
-    "explanation": "Il verbo modale 'can' è invariabile (senza '-s' alla terza persona) ed è seguito dalla forma base senza 'to' ('can speak').",
+    "correctIndex": 2,
+    "explanation": "I verbi modali non usano 'do' nella negazione e vogliono il verbo base senza 'to': 'I can't come'. 'Not can' e 'don't can' sono sbagliate, e 'can't to' ha un 'to' di troppo.",
     "category": "Grammatica",
     "level": "A1",
-    "grammarTopic": "Modals of Ability and Permission"
+    "grammarTopic": "Modals of Ability and Permission",
+    "theoryId": "modals-ability-permission"
   },
   {
     "id": "q635",
-    "prompt": "New York is......than London.",
+    "prompt": "Complete the sentence: 'I think this book is _____ than the film.'",
     "options": [
-      "more moderner",
-      "more modern",
-      "modernest",
-      "modern"
+      "more interesting",
+      "interestinger",
+      "most interesting",
+      "very interesting"
     ],
-    "correctIndex": 1,
-    "explanation": "L'aggettivo 'modern' forma il comparativo di maggioranza con 'more' ('more modern than').",
+    "correctIndex": 0,
+    "explanation": "Gli aggettivi lunghi come 'interesting' formano il comparativo con 'more': 'more interesting than'. '-er' si usa solo con aggettivi brevi, 'most interesting' è un superlativo e 'very interesting' non regge 'than'.",
     "category": "Grammatica",
     "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives"
+    "grammarTopic": "Comparatives and Superlatives",
+    "theoryId": "comparatives-superlatives"
   }
 ];
