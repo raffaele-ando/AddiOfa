@@ -88,6 +88,7 @@ Provato in locale (Miniflare + D1 locale, 17 prove in `tests/smoke.mjs`): rotte,
 
 ## Limiti noti (scelte, non errori)
 
+- Il `seed.sql` di oggi (616 domande, 100 nel nucleo) non ha nessuna quinta opzione (`extra_option`): la simulazione TENG risponde `503 bank_too_small` finche' non ce ne sono almeno 30.
 - Un utente senza accesso e' un dispositivo: cancellando i dati del browser o cambiando dispositivo si perde il Pass e si riavrebbe una simulazione gratuita. Chi paga dovrebbe accedere con Google; il Checkout non lo impone.
 - La durata del diagnostico per gli inviti la dichiara il client: chi smanetta puo' falsarla. La verifica dell'email Polimi resta il freno principale.
 - Il tempo limite delle simulazioni si misura sull'orologio del server dall'avvio: se l'app resta in background oltre i 15 minuti e 20 secondi, la simulazione risulta fuori tempo.

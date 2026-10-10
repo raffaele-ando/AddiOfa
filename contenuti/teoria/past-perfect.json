@@ -1,0 +1,28 @@
+{
+  "id": "past-perfect",
+  "titolo": "Past Perfect: il passato del passato",
+  "livello": "B1",
+  "regola": [
+    "Si forma con *had* + participio passato, uguale per tutte le persone: *I had left*.",
+    "Indica l'azione più vecchia fra due azioni passate: quella già finita quando succede l'altra.",
+    "Di solito accanto c'è un verbo al Past Simple: *When I arrived, the train had left*.",
+    "Parole tipiche: *already, just, never, before, by the time, because*.",
+    "La negativa è *hadn't* + participio passato."
+  ],
+  "esempi": [
+    { "en": "When I arrived at the station, the train had already left.", "it": "Quando sono arrivato alla stazione, il treno era già partito." },
+    { "en": "I had never seen that movie before yesterday.", "it": "Non avevo mai visto quel film prima di ieri." },
+    { "en": "She passed the test because she had studied hard.", "it": "Ha superato il test perché aveva studiato molto." },
+    { "en": "By the time we arrived, the movie had started.", "it": "Quando siamo arrivati, il film era già iniziato." },
+    { "en": "The grass was yellow because it hadn't rained all summer.", "it": "L'erba era gialla perché non pioveva da tutta l'estate." },
+    { "en": "I couldn't open the door because I had lost the key.", "it": "Non riuscivo ad aprire la porta perché avevo perso la chiave." }
+  ],
+  "errori": [
+    { "sbagliato": "When I arrived, the train already left.", "giusto": "When I arrived, the train had already left.", "perche": "La partenza è avvenuta prima del mio arrivo, quindi serve il Past Perfect." },
+    { "sbagliato": "I had never saw that movie.", "giusto": "I had never seen that movie.", "perche": "Dopo *had* serve il participio passato (*seen*), non il Past Simple (*saw*)." },
+    { "sbagliato": "I hadn't never seen that movie.", "giusto": "I had never seen that movie.", "perche": "*Never* è già negativo: non si aggiunge un secondo *not*." },
+    { "sbagliato": "I have never seen that movie before yesterday.", "giusto": "I had never seen that movie before yesterday.", "perche": "Il punto di riferimento (*yesterday*) è nel passato, quindi non va il Present Perfect." }
+  ],
+  "consiglio": "Se la frase spiega qualcosa successo prima di un altro momento passato (*because, already, by the time*), prova il Past Perfect.",
+  "domande": ["q495", "q499", "q507"]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "demonstratives",
+  "titolo": "Dimostrativi: this, that, these, those",
+  "livello": "A1",
+  "regola": [
+    "*This* (singolare) e *these* (plurale) indicano ciò che è vicino a chi parla; *that* (singolare) e *those* (plurale) ciò che è lontano.",
+    "Concordano in numero con il nome: *this pen / these pens*, *that man / those men*.",
+    "Con *to be* il verbo segue il numero di ciò che si indica: *This is my cat*, *These are my notes*.",
+    "Valgono anche per il tempo: *this week* è la settimana in corso, *those days* indica un periodo lontano."
+  ],
+  "esempi": [
+    { "en": "This is my cat.", "it": "Questo è il mio gatto." },
+    { "en": "Those are my books.", "it": "Quelli sono i miei libri." },
+    { "en": "That building over there is a hospital.", "it": "Quell'edificio laggiù è un ospedale." },
+    { "en": "These are my notes.", "it": "Questi sono i miei appunti." },
+    { "en": "Do you know those people?", "it": "Conosci quelle persone?" },
+    { "en": "Can you pass me that pen?", "it": "Puoi passarmi quella penna?" }
+  ],
+  "errori": [
+    { "sbagliato": "This are my notes.", "giusto": "These are my notes.", "perche": "*Notes* è plurale: serve *these*." },
+    { "sbagliato": "Those man is my father.", "giusto": "That man is my father.", "perche": "*Man* è singolare, quindi *that*; *those* è il plurale." },
+    { "sbagliato": "Do you know that people?", "giusto": "Do you know those people?", "perche": "*People* è plurale: *those*." },
+    { "sbagliato": "These pizza is very good.", "giusto": "This pizza is very good.", "perche": "*Pizza* è singolare: *this*." }
+  ],
+  "consiglio": "Controlla per prima cosa se il nome è singolare o plurale, poi decidi vicino (*this/these*) o lontano (*that/those*).",
+  "domande": ["q256", "q258", "q270"]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "first-conditional",
+  "titolo": "Primo periodo ipotetico (First Conditional)",
+  "livello": "B1",
+  "regola": [
+    "Descrive una situazione futura possibile o probabile: *If it rains, we will stay home*.",
+    "Struttura: *if* + Present Simple, *will* + forma base. Nella parte con *if* non si mette *will*.",
+    "Le due parti si possono invertire: *I will call you if I hear any news* (senza virgola).",
+    "*Unless* significa \"se non\": *Unless you try, you won't succeed*. Dopo *unless* il verbo è affermativo."
+  ],
+  "esempi": [
+    { "en": "If you study hard, you will pass the exam.", "it": "Se studi molto, supererai l'esame." },
+    { "en": "I will call you if I hear any news.", "it": "Ti chiamerò se avrò notizie." },
+    { "en": "If it rains, we won't go to the beach.", "it": "Se piove, non andremo in spiaggia." },
+    { "en": "What will you do if you miss the train?", "it": "Cosa farai se perdi il treno?" },
+    { "en": "If you don't hurry, we will be late.", "it": "Se non ti sbrighi, faremo tardi." },
+    { "en": "Unless it rains, we will go for a walk.", "it": "A meno che non piova, andremo a fare una passeggiata." }
+  ],
+  "errori": [
+    { "sbagliato": "If it will rain, we will stay home.", "giusto": "If it rains, we will stay home.", "perche": "Dopo *if* si usa il Present Simple, anche se il senso è futuro." },
+    { "sbagliato": "If I would have time, I will help you.", "giusto": "If I have time, I will help you.", "perche": "Nel primo periodo ipotetico *would* non va mai dopo *if*." },
+    { "sbagliato": "Unless you don't try, you won't succeed.", "giusto": "Unless you try, you won't succeed.", "perche": "*Unless* contiene già la negazione, quindi il verbo resta affermativo." }
+  ],
+  "consiglio": "Nella parte con *if* o *unless* cerca il verbo al presente; *will* va solo nella parte principale.",
+  "domande": ["q131", "q133", "q135"]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "used-to",
+  "titolo": "Used to: abitudini del passato",
+  "livello": "B1",
+  "regola": [
+    "*Used to* + forma base indica un'abitudine o una situazione del passato che ora non c'è più: *I used to play tennis*.",
+    "Negativa e domanda si fanno con *did*: *didn't use to*, *Did you use to...?* Qui la forma è *use* senza -d, perché il passato è già in *did*.",
+    "*Be used to* e *get used to* + -ing significano \"essere abituato\" e \"abituarsi\": *I'm used to working nights*. Qui *to* è una preposizione, quindi segue il gerundio.",
+    "*Used to* esiste solo al passato: per il presente si usa il Present Simple."
+  ],
+  "esempi": [
+    { "en": "I used to play tennis when I was young.", "it": "Giocavo a tennis quando ero giovane." },
+    { "en": "She didn't use to like vegetables.", "it": "Una volta non le piacevano le verdure." },
+    { "en": "Did you use to play video games when you were a kid?", "it": "Giocavi ai videogiochi da bambino?" },
+    { "en": "There used to be a park here, but now there is a supermarket.", "it": "Qui c'era un parco, ma adesso c'è un supermercato." },
+    { "en": "I am used to working night shifts.", "it": "Sono abituato a fare i turni di notte." },
+    { "en": "Have you got used to the cold weather?", "it": "Ti sei abituato al clima freddo?" }
+  ],
+  "errori": [
+    { "sbagliato": "She didn't used to like vegetables.", "giusto": "She didn't use to like vegetables.", "perche": "Dopo *didn't* il verbo torna alla forma base: *use*, non *used*." },
+    { "sbagliato": "I use to play tennis when I was young.", "giusto": "I used to play tennis when I was young.", "perche": "Nelle frasi affermative la forma è *used to*, con la -d." },
+    { "sbagliato": "I'm used to work at night.", "giusto": "I'm used to working at night.", "perche": "Con *be used to* il verbo che segue va in -ing." },
+    { "sbagliato": "We used to lived in London.", "giusto": "We used to live in London.", "perche": "Dopo *used to* serve la forma base." }
+  ],
+  "consiglio": "Se nella frase c'è *did/didn't*, scrivi *use to* senza -d; se prima di *used to* c'è *be* o *get*, dopo ci vuole il gerundio.",
+  "domande": ["q511", "q521", "q526"]
+}

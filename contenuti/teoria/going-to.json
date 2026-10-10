@@ -1,0 +1,26 @@
+{
+  "id": "going-to",
+  "titolo": "Going to: intenzioni e previsioni",
+  "livello": "A2",
+  "regola": [
+    "Si forma con *am/is/are* + *going to* + forma base: *We are going to watch a movie*.",
+    "Esprime un'intenzione già decisa: *I'm going to visit my grandparents this weekend*.",
+    "Esprime anche una previsione basata su un'evidenza che vedi adesso: *Look at those clouds! It's going to rain*.",
+    "La negativa è *am/is/are not going to*; la domanda si fa con l'inversione di *be*: *Is he going to...?* (non con *do/does*)."
+  ],
+  "esempi": [
+    { "en": "I'm going to visit my grandparents this weekend.", "it": "Questo fine settimana andrò a trovare i miei nonni." },
+    { "en": "Look at those dark clouds. It's going to rain.", "it": "Guarda quelle nuvole scure. Sta per piovere." },
+    { "en": "What are you going to do tonight?", "it": "Cosa hai intenzione di fare stasera?" },
+    { "en": "She isn't going to buy a new car.", "it": "Non ha intenzione di comprare una macchina nuova." },
+    { "en": "Is he going to invite her to the party?", "it": "La inviterà alla festa?" },
+    { "en": "Look out! He's going to fall!", "it": "Attento! Sta per cadere!" }
+  ],
+  "errori": [
+    { "sbagliato": "We are going to watching a movie.", "giusto": "We are going to watch a movie.", "perche": "Dopo *going to* il verbo è alla forma base, senza -ing." },
+    { "sbagliato": "Does he going to invite her?", "giusto": "Is he going to invite her?", "perche": "La domanda si fa con *be*, perché *going* fa parte di una forma con *be*." },
+    { "sbagliato": "They going to start a new business.", "giusto": "They are going to start a new business.", "perche": "Manca *am/is/are* prima di *going to*." }
+  ],
+  "consiglio": "Se la frase esprime un piano o un indizio che vedi adesso, cerca *am/is/are going to* + forma base.",
+  "domande": ["q311", "q312", "q309"]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "object-pronouns",
+  "titolo": "Pronomi complemento: me, you, him, her, us, them",
+  "livello": "A1",
+  "regola": [
+    "I pronomi soggetto (*I, you, he, she, it, we, they*) stanno prima del verbo; quelli complemento (*me, you, him, her, it, us, them*) stanno dopo un verbo o una preposizione.",
+    "Corrispondono a «mi, ti, lo, la, ci, li, le» e a «a me, con noi…»: *Call me*, *with us*, *for them*.",
+    "In inglese il pronome complemento va sempre dopo il verbo (*I know them*), non prima come in italiano.",
+    "*It* si usa per cose e animali, *him* e *her* per le persone. Non vanno confusi con i possessivi (*my, mine*) né con i riflessivi (*myself*)."
+  ],
+  "esempi": [
+    { "en": "Can you help us with this exercise?", "it": "Puoi aiutarci con questo esercizio?" },
+    { "en": "My parents are visiting me.", "it": "I miei genitori vengono a trovarmi." },
+    { "en": "Are you coming with us to the cinema?", "it": "Vieni con noi al cinema?" },
+    { "en": "I don't understand him.", "it": "Non lo capisco." },
+    { "en": "I'll wait for them here.", "it": "Li aspetto qui." },
+    { "en": "I bought her a present.", "it": "Le ho comprato un regalo." }
+  ],
+  "errori": [
+    { "sbagliato": "I don't know they.", "giusto": "I don't know them.", "perche": "Dopo il verbo serve la forma complemento *them*, non il soggetto *they*." },
+    { "sbagliato": "Can you help we?", "giusto": "Can you help us?", "perche": "*Help* ha un complemento: *us*, non *we*." },
+    { "sbagliato": "Give I that book.", "giusto": "Give me that book.", "perche": "Chi riceve è un complemento: *me*." },
+    { "sbagliato": "I don't believe to you.", "giusto": "I don't believe you.", "perche": "*Believe* vuole il complemento diretto, senza *to*." }
+  ],
+  "consiglio": "Dopo un verbo o dopo una preposizione (*with, for, to*) scegli sempre tra *me, you, him, her, it, us, them*.",
+  "domande": ["q237", "q242", "q251"]
+}

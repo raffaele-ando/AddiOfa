@@ -17,6 +17,10 @@ Verificato: `npm run typecheck` pulito; `wrangler dev --local` con D1 locale; `w
 - Cancellazione account: ordini e richieste di recesso restano (obbligo di legge), senza legame con l'utente. Va scritto nell'informativa privacy.
 - Gli inviti usano `users.diag_seconds` (durata dichiarata dal client) e `users.verified_email UNIQUE`. Un solo Pass `invite` per utente (indice unico).
 
+## Trovato provando con il seed vero
+
+`pass/seed.sql` (616 domande, 100 nel nucleo) applicato su un D1 locale pulito: la simulazione `ente` gratuita esce con 30 domande del nucleo e 4 opzioni, le domande non del nucleo danno 403. **Nessuna domanda ha `extra_option`**: finche' non ce ne sono almeno 30, `exam/start` per `teng` risponde `503 bank_too_small`. Il contenuto va completato dal generatore. (`tests/smoke.mjs` usa gli id T001-T005 di `seed-prova.sql`: non gira sul seed vero.)
+
 ## Cosa non mi convince
 
 - Identita' anonima = chiave portatrice: facile da aggirare per la simulazione gratuita, e un Pass pagato da anonimo si perde con i dati del browser. Meglio spingere l'accesso con Google prima del pagamento.

@@ -1,0 +1,27 @@
+{
+  "id": "second-conditional",
+  "titolo": "Secondo periodo ipotetico (Second Conditional)",
+  "livello": "B1",
+  "regola": [
+    "Descrive situazioni immaginarie o poco probabili nel presente o nel futuro: *If I won the lottery, I would buy a big house*.",
+    "Struttura: *if* + Past Simple, *would* + forma base.",
+    "Il verbo dopo *if* è al passato ma non parla del passato: è la forma dell'irrealtà, come il congiuntivo imperfetto italiano.",
+    "Con *be* si usa *were* per tutte le persone, soprattutto nei consigli: *If I were you...*",
+    "Dopo *if* non si mette *would*."
+  ],
+  "esempi": [
+    { "en": "If I won the lottery, I would buy a big house.", "it": "Se vincessi alla lotteria, comprerei una grande casa." },
+    { "en": "If I were you, I would study more.", "it": "Se fossi in te, studierei di più." },
+    { "en": "What would you do if you saw a ghost?", "it": "Cosa faresti se vedessi un fantasma?" },
+    { "en": "If we had a car, we could go to the mountains.", "it": "Se avessimo una macchina, potremmo andare in montagna." },
+    { "en": "I wouldn't go there if I were you.", "it": "Non ci andrei, se fossi in te." },
+    { "en": "If she knew the truth, she would be angry.", "it": "Se sapesse la verità, si arrabbierebbe." }
+  ],
+  "errori": [
+    { "sbagliato": "If I would have more time, I would learn a new language.", "giusto": "If I had more time, I would learn a new language.", "perche": "Dopo *if* si usa il Past Simple, non *would*." },
+    { "sbagliato": "If I am you, I will study more.", "giusto": "If I were you, I would study more.", "perche": "È un'ipotesi irreale: servono *were* e *would*, non il presente e *will*." },
+    { "sbagliato": "If they don't eat so much pizza, they wouldn't feel sick.", "giusto": "If they didn't eat so much pizza, they wouldn't feel sick.", "perche": "Nella parte con *if* il verbo è al Past Simple (*didn't eat*), non al presente." }
+  ],
+  "consiglio": "Quando in italiano trovi \"se + congiuntivo imperfetto\" (*se avessi, se fossi*), pensa a *if* + Past Simple e *would* + forma base.",
+  "domande": ["q380", "q432", "q436"]
+}

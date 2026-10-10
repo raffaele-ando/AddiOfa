@@ -1,0 +1,27 @@
+{
+  "id": "imperative",
+  "titolo": "Imperativo",
+  "livello": "A1",
+  "regola": [
+    "L'imperativo affermativo è la forma base del verbo, senza soggetto e senza *to*: *Close the door*, *Listen to me*.",
+    "Il negativo si fa con *Don't* + forma base: *Don't touch that*. Non si usano *not*, *no* né *doesn't*.",
+    "Con il verbo *be* si dice *Be quiet*, *Don't be late* (non *Are quiet*).",
+    "*Please* rende l'ordine più cortese; per proporre qualcosa insieme si usa *Let's* + forma base (*Let's go*)."
+  ],
+  "esempi": [
+    { "en": "Pass me the salt, please.", "it": "Passami il sale, per favore." },
+    { "en": "Don't forget your keys.", "it": "Non dimenticare le chiavi." },
+    { "en": "Be quiet, please.", "it": "Fai silenzio, per favore." },
+    { "en": "Listen to me when I speak.", "it": "Ascoltami quando parlo." },
+    { "en": "Don't touch my phone.", "it": "Non toccare il mio telefono." },
+    { "en": "Do your homework before dinner.", "it": "Fai i compiti prima di cena." }
+  ],
+  "errori": [
+    { "sbagliato": "Not touch my phone.", "giusto": "Don't touch my phone.", "perche": "Il divieto si forma con *Don't* + forma base." },
+    { "sbagliato": "Closing the door, please.", "giusto": "Close the door, please.", "perche": "L'ordine usa la forma base, non il gerundio." },
+    { "sbagliato": "Listen me when I speak.", "giusto": "Listen to me when I speak.", "perche": "*Listen* vuole la preposizione *to* davanti al complemento." },
+    { "sbagliato": "Are quiet, please.", "giusto": "Be quiet, please.", "perche": "All'imperativo il verbo *be* diventa *be*." }
+  ],
+  "consiglio": "Per un ordine togli il soggetto e usa il verbo base; per un divieto aggiungi *Don't* davanti, qualunque sia il verbo.",
+  "domande": ["q291", "q296", "q301"]
+}
