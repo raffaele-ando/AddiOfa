@@ -24,15 +24,15 @@
       "Close the door, please.",
       "Closing the door, please.",
       "To close the door, please.",
-      "You close the door, please."
+      "Closes the door, please."
     ],
     "correctIndex": 0,
-    "explanation": "Base verb for command.",
+    "explanation": "L'ordine si fa con la forma base del verbo: 'Close the door, please.'. 'Closing' e 'To close' non sono imperativi e 'Closes' è la terza persona singolare del presente.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "stato": "originale",
+    "stato": "rivista",
     "extraOption": "Closed the door, please."
   },
   {
@@ -60,16 +60,16 @@
       "Wait here a moment.",
       "Waiting here a moment.",
       "Wait here a time.",
-      "Stay here a moment."
+      "Waits here a moment."
     ],
     "correctIndex": 0,
-    "explanation": "The imperative is the base form of the verb ('Wait here'); 'aspettare' is 'wait' (not 'stay'), and 'un momento' is 'a moment', not 'a time'.",
+    "explanation": "L'imperativo è la forma base: 'Wait here'. 'Waiting' e 'Waits' non sono imperativi, e 'un momento' è 'a moment', non 'a time' (che vuol dire \"una volta\").",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "stato": "originale",
-    "extraOption": "Waits here a moment."
+    "stato": "rivista",
+    "extraOption": "Waited here a moment."
   },
   {
     "id": "q305",
@@ -130,17 +130,17 @@
     "prompt": "Complete: 'Look at those dark clouds. It _____ rain.'",
     "options": [
       "is going to",
-      "will",
+      "will to",
       "going to",
       "rains"
     ],
     "correctIndex": 0,
-    "explanation": "'Going to' is used when there is present evidence for a future event.",
+    "explanation": "'Going to' si usa per prevedere il futuro quando ci sono segnali evidenti adesso (nuvole scure): 'It is going to rain'. 'Going to' senza 'is' è incompleto, 'will to' è una forma sbagliata (dopo 'will' non c'è 'to') e 'rains' è un presente semplice che non esprime una previsione.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q309",
@@ -306,17 +306,17 @@
     "prompt": "Translate 'Lui studierà medicina all'università.' (intenzione)",
     "options": [
       "He is going to study medicine at university.",
-      "He will study medicine at university.",
-      "He is studying medicine at university.",
-      "He studies medicine at university."
+      "He going to study medicine at university.",
+      "He is going to studying medicine at university.",
+      "He is going study medicine at university."
     ],
     "correctIndex": 0,
-    "explanation": "Intentions use 'going to'.",
+    "explanation": "Un'intenzione già decisa si esprime con 'be going to' + forma base: 'is going to study'. Le altre opzioni sbagliano la forma: manca 'is', oppure il verbo dopo 'to' è in -ing, oppure manca 'to'.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q319",
@@ -341,68 +341,68 @@
     "prompt": "Translate 'Pioverà a breve.' (guardando il cielo scuro)",
     "options": [
       "It is going to rain soon.",
-      "It will rain soon.",
+      "It going to rain soon.",
       "It is raining soon.",
       "It rains soon."
     ],
     "correctIndex": 0,
-    "explanation": "Prediction based on evidence uses 'going to'.",
+    "explanation": "Una previsione basata su ciò che si vede ora (cielo scuro) usa 'be going to': 'It is going to rain soon'. 'It going to' non ha il verbo 'be', mentre 'It is raining' e 'It rains' non sono previsioni sul futuro.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q321",
     "prompt": "Translate 'Non parteciperanno all'incontro.' (intenzione)",
     "options": [
       "They aren't going to attend the meeting.",
-      "They won't attend the meeting.",
+      "They not going to attend the meeting.",
       "They don't attend the meeting.",
-      "They aren't attending the meeting."
+      "They aren't going to attending the meeting."
     ],
     "correctIndex": 0,
-    "explanation": "A negative intention uses 'be not going to' + base verb: 'They aren't going to attend the meeting.'",
+    "explanation": "Una negazione che esprime l'intenzione si fa con 'be not going to' + forma base: 'They aren't going to attend'. 'They not going to' non ha il verbo 'be', 'don't attend' è un presente abituale e dopo 'to' non va il verbo in -ing.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q322",
     "prompt": "Translate 'Cosa mangerai a cena?' (che programmi hai)",
     "options": [
       "What are you going to eat for dinner?",
-      "What will you eat for dinner?",
+      "What are you going eat for dinner?",
       "What do you eat for dinner?",
-      "What you going to eat for dinner?"
+      "What is you going to eat for dinner?"
     ],
     "correctIndex": 0,
-    "explanation": "To ask about plans already made, we use 'be going to' in the question form: 'What are you going to eat?'",
+    "explanation": "Il suggerimento indica che si parla di programmi già fatti, quindi 'be going to': 'What are you going to eat?'. Manca 'to' in 'going eat', 'is you' non si accorda (con 'you' serve 'are') e 'What do you eat?' parla di abitudine.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": true,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q323",
     "prompt": "Translate 'Venderà la sua macchina?' (ha intenzione di)",
     "options": [
       "Is she going to sell her car?",
-      "Will she sell her car?",
+      "Does she going to sell her car?",
       "Does she sell her car?",
       "Is she sell her car?"
     ],
     "correctIndex": 0,
-    "explanation": "Question about intention.",
+    "explanation": "Una domanda sull'intenzione si fa con 'be' + soggetto + 'going to': 'Is she going to sell her car?'. 'Does' non si combina con 'going to', 'Does she sell' parla di abitudine e dopo 'is' non si può usare la forma base.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q324",
@@ -444,17 +444,17 @@
     "prompt": "Complete: 'While she was reading, her brother _____ video games.'",
     "options": [
       "was playing",
-      "played",
+      "were playing",
       "playing",
       "is playing"
     ],
     "correctIndex": 0,
-    "explanation": "Two long actions happening at the same time in the past.",
+    "explanation": "'While' introduce due azioni che avvengono nello stesso momento nel passato, quindi anche la seconda va al past continuous: 'was playing' (soggetto singolare, 'her brother'). 'Were' non si accorda, 'playing' senza ausiliare è incompleto e 'is playing' è presente.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": true,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q327",
@@ -514,17 +514,17 @@
     "prompt": "Complete: 'While I _____ home, I saw a car accident.'",
     "options": [
       "was driving",
-      "drove",
+      "were driving",
       "am driving",
       "was drive"
     ],
     "correctIndex": 0,
-    "explanation": "Continuous action in the past ('while' often signals continuous).",
+    "explanation": "'While' introduce un'azione in corso nel passato (past continuous), interrotta da un'altra breve ('I saw'): 'was driving'. Con 'I' si usa 'was', non 'were'; 'am driving' è presente e 'was drive' manca di -ing.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q331",
@@ -601,17 +601,17 @@
     "prompt": "Translate 'Stavo dormendo quando l'allarme ha suonato.'",
     "options": [
       "I was sleeping when the alarm rang.",
-      "I slept when the alarm was ringing.",
-      "I was sleeping when the alarm was ringing.",
-      "I slept when the alarm rang."
+      "I am sleeping when the alarm rang.",
+      "I was sleep when the alarm rang.",
+      "I was sleeping when the alarm ringed."
     ],
     "correctIndex": 0,
-    "explanation": "Background action (sleeping), interruption (rang).",
+    "explanation": "'Stavo dormendo' è l'azione lunga (Past Continuous: was sleeping), 'ha suonato' è l'evento breve che la interrompe (Past Simple: rang). 'Am sleeping' è presente, 'was sleep' manca di -ing e 'ringed' non è il passato di 'ring'.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": true,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q336",
@@ -635,17 +635,17 @@
     "prompt": "Translate 'Lei non stava guardando la TV, stava leggendo.'",
     "options": [
       "She wasn't watching TV, she was reading.",
-      "She didn't watch TV, she was reading.",
-      "She wasn't watching TV, she read.",
+      "She didn't watching TV, she was reading.",
+      "She wasn't watching TV, she reading.",
       "She wasn't watch TV, she was reading."
     ],
     "correctIndex": 0,
-    "explanation": "Both actions are past continuous.",
+    "explanation": "Entrambe le azioni sono in corso nel passato, quindi due Past Continuous: 'wasn't watching' e 'was reading'. Le altre opzioni hanno errori di forma: 'didn't watching' mescola ausiliare e -ing, 'she reading' non ha 'was', 'wasn't watch' manca di -ing.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale",
+    "stato": "rivista",
     "extraOption": "She wasn't watched TV, she was reading."
   },
   {
@@ -706,17 +706,17 @@
     "prompt": "Translate 'Cosa pensavi in quel momento?'",
     "options": [
       "What were you thinking at that moment?",
-      "What did you think at that moment?",
       "What was you thinking at that moment?",
-      "What are you thinking at that moment?"
+      "What are you thinking at that moment?",
+      "What did you thinking at that moment?"
     ],
     "correctIndex": 0,
-    "explanation": "Asking about ongoing thoughts at a past moment.",
+    "explanation": "'Cosa pensavi in quel momento' descrive qualcosa che era in corso: 'What were you thinking'. 'Was you' è sbagliato (con you sempre 'were'), 'are you thinking' è presente e 'did you thinking' mescola 'did' con la forma in -ing.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale",
+    "stato": "rivista",
     "extraOption": "What were you think at that moment?"
   },
   {
@@ -724,17 +724,17 @@
     "prompt": "Translate 'Loro ridevano quando sono entrato.'",
     "options": [
       "They were laughing when I entered.",
-      "They laughed when I was entering.",
-      "They were laughing when I was entering.",
-      "They laughed when I entered."
+      "They laughing when I entered.",
+      "They was laughing when I entered.",
+      "They were laugh when I entered."
     ],
     "correctIndex": 0,
-    "explanation": "Background action (laughing), short interruption (entered).",
+    "explanation": "'Ridevano' è lo sfondo (Past Continuous: were laughing), 'sono entrato' è l'evento breve (Past Simple: entered). Le altre opzioni sbagliano la forma: manca 'were', 'was' non si accorda con 'they', 'laugh' manca di -ing.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q343",
@@ -758,17 +758,17 @@
     "prompt": "Complete: 'In many countries, you _____ wear a seatbelt when driving.'",
     "options": [
       "have to",
-      "should",
+      "has to",
       "don't have to",
       "mustn't"
     ],
     "correctIndex": 0,
-    "explanation": "'Have to' is used for a strong obligation or law.",
+    "explanation": "Una legge o una regola esterna si esprime con 'have to' (obbligo). 'Has to' non si accorda con 'you', 'don't have to' vuol dire non è necessario e 'mustn't' è un divieto, cioè il contrario di ciò che dice la legge sulle cinture.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q345",
@@ -1127,18 +1127,18 @@
     "prompt": "Complete: 'The old man walked _____ down the street.'",
     "options": [
       "slowly",
-      "slow",
-      "slower",
-      "slowingly"
+      "slowlier",
+      "slowingly",
+      "slowness"
     ],
     "correctIndex": 0,
-    "explanation": "'Slowly' describes the verb 'walked'.",
+    "explanation": "'Walked' è un verbo, quindi serve un avverbio: 'slowly' (aggettivo slow + -ly). 'Slowlier' e 'slowingly' non esistono e 'slowness' è un nome.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "originale",
-    "extraOption": "slowest"
+    "stato": "rivista",
+    "extraOption": "slowy"
   },
   {
     "id": "q366",
@@ -1215,17 +1215,17 @@
     "prompt": "Translate 'Ha risposto alla domanda velocemente.'",
     "options": [
       "He answered the question quickly.",
-      "He answered the question quick.",
+      "He answered the question quickily.",
       "He answered the question fastly.",
-      "He answered the question quicker."
+      "He answered the question quickness."
     ],
     "correctIndex": 0,
-    "explanation": "'Velocemente' is 'quickly'.",
+    "explanation": "'Velocemente' modifica il verbo, quindi serve l'avverbio 'quickly' (aggettivo quick + -ly). 'Quickily' ha l'ortografia sbagliata, 'fastly' non esiste ('fast' ha già la forma di avverbio) e 'quickness' è un nome.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": true,
-    "stato": "originale",
+    "stato": "rivista",
     "extraOption": "He answered the question with quick."
   },
   {
@@ -1233,17 +1233,17 @@
     "prompt": "Translate 'Canta davvero bene.'",
     "options": [
       "She sings really well.",
-      "She sings really good.",
       "She sings really goodly.",
-      "She sings really nice."
+      "She sing really well.",
+      "She is sings really well."
     ],
     "correctIndex": 0,
-    "explanation": "'Bene' is the adverb 'well'.",
+    "explanation": "Con il verbo 'sings' si usa l'avverbio 'well' (bene). 'Goodly' non esiste, 'She sing' non concorda (serve 'sings' con 'she') e 'is sings' mescola due forme verbali.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q372",
@@ -1267,34 +1267,34 @@
     "prompt": "Translate 'Per favore, parla lentamente.'",
     "options": [
       "Please speak slowly.",
-      "Please speak slow.",
+      "Please speak slowness.",
       "Please speak slowlier.",
       "Please speak slowingly."
     ],
     "correctIndex": 0,
-    "explanation": "'Lentamente' is the adverb 'slowly' (adjective 'slow' + -ly); we need an adverb to describe how someone speaks.",
+    "explanation": "Dopo 'speak' serve un avverbio: 'slowly' (aggettivo slow + -ly). 'Slowness' è un nome, 'slowlier' e 'slowingly' non esistono.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q374",
     "prompt": "Translate 'Ha chiuso la porta silenziosamente.'",
     "options": [
       "He closed the door quietly.",
-      "He closed the door quiet.",
+      "He closed the door quietness.",
       "He closed the door quietlyly.",
-      "He closed the door silent."
+      "He closed the door quietily."
     ],
     "correctIndex": 0,
-    "explanation": "'Silenziosamente' is 'quietly'.",
+    "explanation": "'Closed' è un verbo, quindi serve un avverbio: 'quietly'. 'Quietness' è un nome, 'quietlyly' ha il suffisso -ly doppio e 'quietily' ha l'ortografia sbagliata.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q375",
@@ -1477,69 +1477,69 @@
     "id": "q385",
     "prompt": "Change to reported speech: He said, 'I am tired.'",
     "options": [
-      "He said that he is tired.",
+      "He said that he were tired.",
       "He said that I was tired.",
       "He said that he was tired.",
-      "He said he has been tired."
+      "He said that he is being tired."
     ],
     "correctIndex": 2,
-    "explanation": "In reported speech, present simple changes to past simple ('am' becomes 'was').",
+    "explanation": "Nel discorso indiretto, dopo 'said' il verbo fa un passo indietro: 'am' diventa 'was', e il pronome segue chi parla: 'he was tired'. 'I was tired' ha il pronome sbagliato, 'he were' non concorda e 'is being tired' non è un tempo adatto.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q386",
     "prompt": "Change to reported speech: 'I will call you,' she told me.",
     "options": [
-      "She told me she will call me.",
+      "She told me she would calling me.",
       "She told me she would call me.",
       "She told me I would call her.",
       "She told me she called me."
     ],
     "correctIndex": 1,
-    "explanation": "In reported speech, 'will' changes to 'would'.",
+    "explanation": "Nel discorso indiretto 'will' diventa 'would' (seguito dalla forma base) e il pronome 'I' diventa 'she', mentre 'you' diventa 'me': 'she would call me'. 'Would calling' è sbagliato, 'I would call her' scambia le persone e 'called' trasforma il futuro in passato.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q387",
     "prompt": "Complete the sentence: 'When I arrived at the station, the train _____.'",
     "options": [
-      "already left",
+      "will already leave",
       "has already left",
       "had already left",
       "already leaves"
     ],
     "correctIndex": 2,
-    "explanation": "The Past Perfect ('had left') shows an action that happened before another past action ('arrived').",
+    "explanation": "Di due azioni passate, quella avvenuta prima va al Past Perfect: il treno era già partito ('had already left') quando sono arrivato. 'Will leave' è futuro, 'has already left' è un Present Perfect e 'leaves' è presente.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q388",
     "prompt": "Translate 'Avevo già mangiato quando mi hai chiamato.'",
     "options": [
-      "I already ate when you called me.",
+      "I had already eat when you called me.",
       "I had already eaten when you called me.",
       "I have already eaten when you called me.",
       "I was eating when you called me."
     ],
     "correctIndex": 1,
-    "explanation": "We use the Past Perfect ('had eaten') for the action that happened first.",
+    "explanation": "L'azione avvenuta prima ('avevo già mangiato') va al Past Perfect: 'had already eaten'. 'Had eat' usa il participio sbagliato, 'have eaten' è Present Perfect e 'was eating' vorrebbe dire 'stavo mangiando'.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q389",
@@ -1667,37 +1667,37 @@
   },
   {
     "id": "q396",
-    "prompt": "Complete the sentence: 'He has a Ferrari and a mansion. He _____ be very rich.'",
+    "prompt": "Complete the sentence: 'He has a Ferrari and a mansion. I am sure he _____ be very rich.'",
     "options": [
-      "can",
+      "can't",
       "must",
-      "should",
+      "mustn't",
       "might"
     ],
     "correctIndex": 1,
-    "explanation": "'Must' is used for strong logical deductions based on evidence.",
+    "explanation": "Quando le prove sono forti (Ferrari e villa) e si è sicuri, si usa 'must' per una deduzione quasi certa: 'He must be very rich'. 'Can't' e 'mustn't' dicono il contrario, e 'might' indica solo una possibilità debole, che non va con 'I am sure'.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": true,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q397",
     "prompt": "Complete the sentence: 'That _____ be Sarah. Sarah is currently in London.'",
     "options": [
       "mustn't",
-      "shouldn't",
+      "will",
       "can't",
-      "might not"
+      "must"
     ],
     "correctIndex": 2,
-    "explanation": "'Can't' is the negative logical deduction (you are sure something is not true).",
+    "explanation": "Se Sarah è a Londra, sei sicuro che non può essere lei: 'can't' esprime la deduzione negativa forte. 'Mustn't' è un divieto, 'will' è futuro e 'must' direbbe l'opposto (sei sicuro che è lei).",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q398",

@@ -477,10 +477,10 @@
   },
   {
     "id": "q429",
-    "prompt": "Stop _____ noise!",
+    "prompt": "Please stop _____ noise, the baby is sleeping.",
     "options": [
       "making",
-      "to make",
+      "to making",
       "make",
       "made"
     ],
@@ -490,7 +490,7 @@
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q430",
@@ -1194,9 +1194,9 @@
     "prompt": "Translate: 'I biglietti sono già stati venduti.'",
     "options": [
       "The tickets have already been sold.",
-      "The tickets are already sold.",
-      "The tickets were already sold.",
-      "The tickets already sold."
+      "The tickets has already been sold.",
+      "The tickets have already being sold.",
+      "The tickets have already be sold."
     ],
     "correctIndex": 0,
     "explanation": "Present Perfect passive: have been + past participle.",
@@ -1204,7 +1204,7 @@
     "level": "B1",
     "grammarTopic": "Passive Voice",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q472",
@@ -1330,9 +1330,9 @@
     "prompt": "He said, 'I like apples.' -> He said that he _____ apples.",
     "options": [
       "liked",
-      "likes",
+      "was liking",
       "like",
-      "had liked"
+      "liking"
     ],
     "correctIndex": 0,
     "explanation": "Present simple shifts to past simple.",
@@ -1340,15 +1340,15 @@
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q480",
     "prompt": "She said, 'I am watching TV.' -> She said that she _____ TV.",
     "options": [
       "was watching",
-      "is watching",
-      "watches",
+      "were watching",
+      "watching",
       "had watched"
     ],
     "correctIndex": 0,
@@ -1357,14 +1357,14 @@
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q481",
     "prompt": "'I will go,' he said. -> He said that he _____ go.",
     "options": [
       "would",
-      "will",
+      "going to",
       "can",
       "could"
     ],
@@ -1374,7 +1374,7 @@
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q482",
@@ -1399,7 +1399,7 @@
     "options": [
       "She said that she didn't know the answer.",
       "She told that she didn't know the answer.",
-      "She said that she doesn't know the answer.",
+      "She said that she didn't knew the answer.",
       "She told me that she hasn't known the answer."
     ],
     "correctIndex": 0,
@@ -1408,16 +1408,16 @@
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q484",
     "prompt": "'I have finished,' she said. -> She said that she _____ finished.",
     "options": [
       "had",
-      "has",
-      "was",
-      "is"
+      "have",
+      "been",
+      "having"
     ],
     "correctIndex": 0,
     "explanation": "Present perfect shifts to past perfect.",
@@ -1425,14 +1425,14 @@
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q485",
     "prompt": "He asked me where I _____.",
     "options": [
       "lived",
-      "live",
+      "living",
       "did I live",
       "do I live"
     ],
@@ -1442,14 +1442,14 @@
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q486",
     "prompt": "She asked if I _____ coffee.",
     "options": [
       "liked",
-      "like",
+      "liking",
       "did I like",
       "do I like"
     ],
@@ -1459,7 +1459,7 @@
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q487",
@@ -1483,7 +1483,7 @@
     "prompt": "Translate: 'Ha detto che avrebbe chiamato più tardi.'",
     "options": [
       "He said that he would call later.",
-      "He said that he will call later.",
+      "He said that he would to call later.",
       "He told that he would call later.",
       "He said that he would called later."
     ],
@@ -1493,7 +1493,7 @@
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q489",
@@ -1534,7 +1534,7 @@
     "prompt": "He said, 'I can swim.' -> He said that he _____ swim.",
     "options": [
       "could",
-      "can",
+      "can to",
       "would",
       "might"
     ],
@@ -1544,7 +1544,7 @@
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q492",
@@ -1553,7 +1553,7 @@
       "if I was",
       "if was I",
       "are you",
-      "if you are"
+      "if am I"
     ],
     "correctIndex": 0,
     "explanation": "Reported questions use subject + verb order.",
@@ -1561,7 +1561,7 @@
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q493",
@@ -1619,9 +1619,9 @@
     "prompt": "I realized I _____ my keys at home.",
     "options": [
       "had left",
-      "left",
-      "have left",
-      "leave"
+      "has left",
+      "had leave",
+      "leaving"
     ],
     "correctIndex": 0,
     "explanation": "You left them before you realized it.",
@@ -1629,14 +1629,14 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q497",
     "prompt": "She was tired because she _____ all day.",
     "options": [
       "had worked",
-      "worked",
+      "had work",
       "has worked",
       "works"
     ],
@@ -1646,14 +1646,14 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q498",
     "prompt": "Translate: 'Avevo appena finito di mangiare quando ha bussato.'",
     "options": [
       "I had just finished eating when he knocked.",
-      "I just finished eating when he knocked.",
+      "I had just finish eating when he knocked.",
       "I have just finished eating when he knocked.",
       "I had just finished to eat when he knocked."
     ],
@@ -1663,14 +1663,14 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q499",
     "prompt": "Translate: 'Non avevo mai visto quel film prima di ieri.'",
     "options": [
       "I had never seen that movie before yesterday.",
-      "I never saw that movie before yesterday.",
+      "I had never saw that movie before yesterday.",
       "I have never seen that movie before yesterday.",
       "I hadn't never seen that movie before yesterday."
     ],
@@ -1680,7 +1680,7 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": true,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q500",

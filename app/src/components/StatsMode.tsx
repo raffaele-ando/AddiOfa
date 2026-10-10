@@ -304,7 +304,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                 <div>
                   <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Il quadro completo è nel Pass</h3>
                   <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">
-                    Radar per argomento, progresso per livello, le domande che sbagli di più e il dettaglio di ogni domanda. Il Pass costa una volta sola ({PASS.validMonths} mesi di accesso).
+                    Radar per argomento, progresso per livello, le domande che sbagli di più e il dettaglio di ogni domanda. Il Pass si paga una volta sola e dura {PASS.validMonths} mesi.
                   </p>
                 </div>
               </div>
@@ -577,7 +577,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
             className="w-full bg-[#EF4444] hover:bg-[#DC2626] border-[#2563EB] active:scale-[.99] text-white font-bold text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-all flex items-center justify-center gap-2"
           >
             <List className="w-5 h-5" />
-            Vedi Dettaglio domande
+            Vedi il dettaglio delle domande
           </button>
 
           {Object.keys(topicStats).length >= 3 ? (
@@ -766,7 +766,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               <span className="text-xs sm:text-sm font-bold text-[#F59E0B]">{totalXP} XP</span>
             </div>
             <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative">
-              <div className={cn("bg-[#F59E0B] h-full rounded-full transition-all duration-500 ease-out", progressPercent > 80 && "animate-pulse")} style={{ width: `${progressPercent}%` }} />
+              <div className={cn("bg-[#F59E0B] h-full rounded-full transition-all duration-500 ease-out", progressPercent > 80 && "animate-pulse motion-reduce:animate-none")} style={{ width: `${progressPercent}%` }} />
             </div>
           </div>
 
@@ -784,7 +784,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
             
             <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative mt-1">
               <div 
-                className={cn("bg-[#EF4444] h-full rounded-full transition-all duration-700 ease-out", phaseProgressPercent > 80 && "animate-pulse")} 
+                className={cn("bg-[#EF4444] h-full rounded-full transition-all duration-700 ease-out", phaseProgressPercent > 80 && "animate-pulse motion-reduce:animate-none")} 
                 style={{ width: `${phaseProgressPercent}%` }} 
               />
             </div>

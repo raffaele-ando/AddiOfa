@@ -21,7 +21,7 @@
     "prompt": "He didn't want to eat because he _____ lunch.",
     "options": [
       "had already had",
-      "already had",
+      "had already have",
       "has already had",
       "already has"
     ],
@@ -31,14 +31,14 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q503",
     "prompt": "Translate: 'Ero arrabbiato perché avevo perso il portafoglio.'",
     "options": [
       "I was angry because I had lost my wallet.",
-      "I was angry because I lost my wallet.",
+      "I was angry because I was lost my wallet.",
       "I was angry because I have lost my wallet.",
       "I was angry because I had lose my wallet."
     ],
@@ -48,14 +48,14 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q504",
     "prompt": "Translate: 'Avevano vissuto lì per dieci anni prima di trasferirsi.'",
     "options": [
       "They had lived there for ten years before moving.",
-      "They lived there for ten years before moving.",
+      "They had live there for ten years before moving.",
       "They have lived there for ten years before moving.",
       "They had lived there since ten years before moving."
     ],
@@ -65,14 +65,14 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q505",
     "prompt": "I _____ him before that day.",
     "options": [
       "had never met",
-      "never met",
+      "had never meet",
       "have never met",
       "never meet"
     ],
@@ -82,14 +82,14 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q506",
     "prompt": "The grass was yellow because it _____ all summer.",
     "options": [
       "hadn't rained",
-      "didn't rain",
+      "hadn't rain",
       "hasn't rained",
       "doesn't rain"
     ],
@@ -99,7 +99,7 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q507",
@@ -123,7 +123,7 @@
     "prompt": "I couldn't open the door because I _____ the key.",
     "options": [
       "had lost",
-      "lost",
+      "had lose",
       "have lost",
       "lose"
     ],
@@ -133,7 +133,7 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q509",
@@ -157,7 +157,7 @@
     "prompt": "Translate: 'La festa era già finita quando siamo arrivati.'",
     "options": [
       "The party had already ended when we arrived.",
-      "The party already ended when we arrived.",
+      "The party had already end when we arrived.",
       "The party has already ended when we arrived.",
       "The party had already ending when we arrived."
     ],
@@ -167,7 +167,7 @@
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q511",
@@ -208,7 +208,7 @@
     "prompt": "She _____ like coffee, but now she loves it.",
     "options": [
       "didn't use to",
-      "didn't used to",
+      "didn't using to",
       "doesn't use to",
       "wasn't used to"
     ],
@@ -218,7 +218,7 @@
     "level": "B1",
     "grammarTopic": "Used to",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q514",
@@ -344,7 +344,7 @@
     "prompt": "He _____ be so grumpy when he was younger.",
     "options": [
       "didn't use to",
-      "didn't used to",
+      "didn't using to",
       "wasn't use to",
       "not used to"
     ],
@@ -354,7 +354,7 @@
     "level": "B1",
     "grammarTopic": "Used to",
     "core": true,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q522",
@@ -719,8 +719,8 @@
     "options": [
       "must",
       "can't",
-      "might",
-      "should"
+      "must to",
+      "ought"
     ],
     "correctIndex": 0,
     "explanation": "Strong logical deduction.",
@@ -728,7 +728,7 @@
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q544",
@@ -736,8 +736,8 @@
     "options": [
       "can't",
       "must",
-      "might",
-      "could"
+      "don't",
+      "must to"
     ],
     "correctIndex": 0,
     "explanation": "Negative logical deduction (impossible).",
@@ -745,7 +745,7 @@
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q545",
@@ -821,8 +821,8 @@
     "options": [
       "must",
       "can't",
-      "might",
-      "can"
+      "ought",
+      "must to"
     ],
     "correctIndex": 0,
     "explanation": "'Must' + base verb expresses a strong, logical certainty based on evidence (you've been working since 6 AM).",
@@ -830,7 +830,7 @@
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q550",
@@ -839,7 +839,7 @@
       "might",
       "must",
       "can't",
-      "should"
+      "ought"
     ],
     "correctIndex": 0,
     "explanation": "'Might' + base verb expresses a possibility in the future: it may rain later, but we aren't sure.",
@@ -847,7 +847,7 @@
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q551",
@@ -871,9 +871,9 @@
     "prompt": "Translate: 'Quello dev'essere il tuo nuovo capo.'",
     "options": [
       "That must be your new boss.",
-      "That can be your new boss.",
-      "That should be your new boss.",
-      "That must to be your new boss."
+      "That can't be your new boss.",
+      "That must to be your new boss.",
+      "That musts be your new boss."
     ],
     "correctIndex": 0,
     "explanation": "'Must' + base verb ('must be') expresses a logical deduction we are almost sure about ('dev'essere'); modals are never followed by 'to'.",
@@ -881,7 +881,7 @@
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q553",
@@ -889,8 +889,8 @@
     "options": [
       "must",
       "can't",
-      "might",
-      "should"
+      "ought",
+      "must to"
     ],
     "correctIndex": 0,
     "explanation": "When the evidence makes us almost certain, we use 'must' + base verb for a positive deduction; 'might' would express only a possibility.",
@@ -898,7 +898,7 @@
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": true,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q554",
@@ -906,8 +906,8 @@
     "options": [
       "must",
       "can't",
-      "might",
-      "should"
+      "ought",
+      "must to"
     ],
     "correctIndex": 0,
     "explanation": "'Must be' + -ing makes a strong deduction about what someone is doing now or soon, based on clear evidence (a cinema ticket for tonight).",
@@ -915,7 +915,7 @@
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q555",
@@ -923,8 +923,8 @@
     "options": [
       "must",
       "can't",
-      "might",
-      "won't"
+      "ought",
+      "must to"
     ],
     "correctIndex": 0,
     "explanation": "At 3 a.m. with the lights out and total silence we are almost sure, so we use 'must' + base verb for a certain deduction.",
@@ -932,7 +932,7 @@
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q556",
@@ -953,20 +953,20 @@
   },
   {
     "id": "q557",
-    "prompt": "This _____ be the right way. The map says to go left.",
+    "prompt": "Tom is in Tokyo until Friday, so that _____ be him at the door.",
     "options": [
       "can't",
       "must",
-      "might",
-      "could"
+      "ought",
+      "must to"
     ],
     "correctIndex": 0,
-    "explanation": "Logical impossibility.",
+    "explanation": "Logical impossibility: Tom is far away, so it is impossible that it is him.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q558",
@@ -1058,7 +1058,7 @@
     "prompt": "Complete the sentence: 'If the app keeps crashing, try _____ your smartphone.'",
     "options": [
       "restarting",
-      "to restart",
+      "to restarting",
       "restart",
       "restarted"
     ],
@@ -1068,14 +1068,14 @@
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q564",
     "prompt": "Complete the sentence: 'I tried _____ the heavy wardrobe, but it was impossible alone.'",
     "options": [
       "to lift",
-      "lifting",
+      "to lifting",
       "lift",
       "lifted"
     ],
@@ -1085,7 +1085,7 @@
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q565",
@@ -1143,7 +1143,7 @@
     "prompt": "Translate: 'È inutile piangere sul latte versato.'",
     "options": [
       "It's no use crying over spilled milk.",
-      "It's no use to cry over spilled milk.",
+      "It's no use cry over spilled milk.",
       "It's not useful crying on spilled milk.",
       "It has no use to cry on spilled milk."
     ],
@@ -1153,7 +1153,7 @@
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q569",
@@ -1687,7 +1687,7 @@
     "prompt": "Complete the sentence: 'I _____ drink coffee when I was younger, but now I drink three cups a day.'",
     "options": [
       "didn't use to",
-      "didn't used to",
+      "don't use to",
       "not used to",
       "wasn't used to"
     ],
@@ -1697,6 +1697,6 @@
     "level": "B1",
     "grammarTopic": "Used to",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   }
 ]

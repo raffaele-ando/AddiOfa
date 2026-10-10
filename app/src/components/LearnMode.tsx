@@ -333,12 +333,12 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
           />
         </div>
         {streak > 1 && (
-          <div className="flex items-center gap-1 text-[#F59E0B] font-bold text-xs sm:text-sm animate-bounce">
+          <div className="flex items-center gap-1 text-[#F59E0B] font-bold text-xs sm:text-sm animate-bounce motion-reduce:animate-none">
             <Flame size={16} fill="currentColor" />
             <span>{streak}x</span>
           </div>
         )}
-        <div className={cn("font-bold text-sm w-8 text-center", timeLeft <= 5 ? "text-[#EF4444] animate-pulse" : "text-gray-500 dark:text-gray-400")}>
+        <div className={cn("font-bold text-sm w-8 text-center", timeLeft <= 5 ? "text-[#EF4444] animate-pulse motion-reduce:animate-none" : "text-gray-500 dark:text-gray-400")}>
           {timeLeft}s
         </div>
       </header>
@@ -526,7 +526,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                 )}
                 {result?.explanation && (
                   <div className="max-h-[28vh] overflow-y-auto">
-                    <p className="text-sm font-bold opacity-80 text-gray-700 dark:text-gray-200 leading-snug">
+                    <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 leading-snug">
                       {result.explanation}
                     </p>
                   </div>

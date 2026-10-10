@@ -354,7 +354,7 @@
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "riscritta"
+    "stato": "rivista"
   },
   {
     "id": "q22",
@@ -711,7 +711,7 @@
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
-    "stato": "riscritta"
+    "stato": "rivista"
   },
   {
     "id": "q43",
@@ -786,8 +786,8 @@
     "prompt": "Complete the sentence: 'In my town _____ are three cinemas.'",
     "options": [
       "It",
-      "Those",
-      "Here",
+      "This",
+      "That",
       "There"
     ],
     "correctIndex": 3,
@@ -796,7 +796,7 @@
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "riscritta"
+    "stato": "rivista"
   },
   {
     "id": "q48",
@@ -1077,7 +1077,7 @@
       "There is no problem.",
       "There isn't no problem.",
       "There are no problem.",
-      "It isn't a problem."
+      "There have no problem."
     ],
     "correctIndex": 0,
     "explanation": "Singular negative existence.",
@@ -1085,7 +1085,7 @@
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q65",
@@ -1127,7 +1127,7 @@
     "options": [
       "went",
       "go",
-      "was going",
+      "am going",
       "have gone"
     ],
     "correctIndex": 0,
@@ -1136,7 +1136,7 @@
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": true,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q68",
@@ -1313,7 +1313,7 @@
     "prompt": "Complete the sentence: 'If you study hard, you _____ the exam.'",
     "options": [
       "will pass",
-      "pass",
+      "will passing",
       "would pass",
       "passed"
     ],
@@ -1323,7 +1323,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q79",

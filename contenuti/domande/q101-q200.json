@@ -4,7 +4,7 @@
     "prompt": "Translate 'Dov'è il computer di Marco?'",
     "options": [
       "Where is Marco's computer?",
-      "Where is the computer of Marco?",
+      "Where is the Marco's computer?",
       "Where is Marcos' computer?",
       "Where is Marco computer?"
     ],
@@ -14,7 +14,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q102",
@@ -39,7 +39,7 @@
     "prompt": "Translate 'La borsa di Sarah è rossa.'",
     "options": [
       "Sarah's bag is red.",
-      "The bag of Sarah is red.",
+      "The Sarah's bag is red.",
       "Sarahs bag is red.",
       "Sarah' bag is red."
     ],
@@ -49,7 +49,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q104",
@@ -163,7 +163,7 @@
       "There are too many cars in this city.",
       "There is too much cars in this city.",
       "There are too much cars in this city.",
-      "There are very many cars in this city."
+      "There are too many of cars in this city."
     ],
     "correctIndex": 0,
     "explanation": "'Cars' is countable, so 'too many'.",
@@ -172,7 +172,7 @@
     "grammarTopic": "Quantifiers",
     "core": false,
     "extraOption": "There are too many car in this city.",
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q111",
@@ -250,8 +250,8 @@
     "prompt": "Complete the sentence: '_____ is the capital of Italy?'",
     "options": [
       "What",
-      "Where",
-      "Which",
+      "When",
+      "How",
       "Who"
     ],
     "correctIndex": 0,
@@ -260,7 +260,7 @@
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q116",
@@ -268,7 +268,7 @@
     "options": [
       "Where is Maria from?",
       "Where does Maria from?",
-      "From where is Maria?",
+      "Where is from Maria?",
       "Where Maria is from?"
     ],
     "correctIndex": 0,
@@ -277,7 +277,7 @@
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q117",
@@ -427,7 +427,7 @@
     "prompt": "Complete: 'If I have time, I _____ you.'",
     "options": [
       "will help",
-      "help",
+      "helping",
       "would help",
       "helped"
     ],
@@ -438,7 +438,7 @@
     "grammarTopic": "First Conditional",
     "core": false,
     "extraOption": "will to help",
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q126",
@@ -499,7 +499,7 @@
     "prompt": "Complete: 'If they don't hurry, they _____ the bus.'",
     "options": [
       "will miss",
-      "miss",
+      "will missing",
       "would miss",
       "missed"
     ],
@@ -510,7 +510,7 @@
     "grammarTopic": "First Conditional",
     "core": false,
     "extraOption": "would have missed",
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q130",
@@ -606,7 +606,7 @@
     "prompt": "Complete: 'I will buy that car if it _____ too expensive.'",
     "options": [
       "isn't",
-      "won't be",
+      "not is",
       "doesn't be",
       "aren't"
     ],
@@ -617,7 +617,7 @@
     "grammarTopic": "First Conditional",
     "core": true,
     "extraOption": "not be",
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q136",
@@ -660,7 +660,7 @@
     "prompt": "Complete: 'They _____ to Paris next weekend.'",
     "options": [
       "are going",
-      "go",
+      "goes",
       "went",
       "have gone"
     ],
@@ -671,7 +671,7 @@
     "grammarTopic": "Present Continuous",
     "core": false,
     "extraOption": "will going",
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q139",
@@ -822,8 +822,8 @@
     "prompt": "Translate 'Non ho abbastanza soldi.'",
     "options": [
       "I don't have enough money.",
-      "I have not enough money.",
-      "I don't have money enough.",
+      "I not have enough money.",
+      "I don't have enough to money.",
       "I don't have enough of money."
     ],
     "correctIndex": 0,
@@ -832,7 +832,7 @@
     "level": "A2",
     "grammarTopic": "Quantifiers",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q148",
@@ -858,7 +858,7 @@
     "options": [
       "My grandparents' house is big.",
       "My grandparent's house is big.",
-      "The house of my grandparents is big.",
+      "The house my grandparents is big.",
       "My grandparents house is big."
     ],
     "correctIndex": 0,
@@ -867,7 +867,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q150",
@@ -893,7 +893,7 @@
       "The children's toys are scattered everywhere.",
       "The childrens' toys are scattered everywhere.",
       "The children toys are scattered everywhere.",
-      "The toys of children are scattered everywhere."
+      "The childrens toys are scattered everywhere."
     ],
     "correctIndex": 0,
     "explanation": "'Children' is an irregular plural not ending in -s, so its possessive is 's ('children's'); 'sparsi' is 'scattered'.",
@@ -901,14 +901,14 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q152",
     "prompt": "Complete: 'This is _____ desk.' (The desk belongs to the boss)",
     "options": [
       "the boss's",
-      "the boss'",
+      "the bosses'",
       "the boss",
       "the bosses"
     ],
@@ -918,7 +918,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q153",
@@ -926,7 +926,7 @@
     "options": [
       "James's car is blue.",
       "James car is blue.",
-      "The car of James is blue.",
+      "The James's car is blue.",
       "Jame's car is blue."
     ],
     "correctIndex": 0,
@@ -935,7 +935,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q154",
@@ -959,7 +959,7 @@
     "prompt": "Translate 'È il compleanno di mia madre.'",
     "options": [
       "It's my mother's birthday.",
-      "It's the birthday of my mother.",
+      "It's the birthday my mother.",
       "It's my mothers birthday.",
       "It's my mother birthday."
     ],
@@ -969,7 +969,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q156",
@@ -1012,7 +1012,7 @@
     "options": [
       "teachers'",
       "teacher's",
-      "teachers",
+      "teachers's",
       "teacher"
     ],
     "correctIndex": 0,
@@ -1021,14 +1021,14 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q159",
     "prompt": "Translate 'Hai visto le chiavi di Anna?'",
     "options": [
       "Have you seen Anna's keys?",
-      "Have you seen the keys of Anna?",
+      "Have you seen the Anna's keys?",
       "Have you seen Annas keys?",
       "Have you seen Anna keys?"
     ],
@@ -1038,7 +1038,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q160",
@@ -1117,7 +1117,7 @@
     "prompt": "Complete: 'I _____ to the doctor tomorrow afternoon.'",
     "options": [
       "am going",
-      "go",
+      "goes",
       "went",
       "going"
     ],
@@ -1127,7 +1127,7 @@
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q165",
@@ -1205,8 +1205,8 @@
     "prompt": "Translate 'Sto cercando le mie chiavi.'",
     "options": [
       "I am looking for my keys.",
-      "I look for my keys.",
-      "I am searching my keys.",
+      "I am look for my keys.",
+      "I am looking my keys.",
       "I looking for my keys."
     ],
     "correctIndex": 0,
@@ -1215,8 +1215,8 @@
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
-    "extraOption": "I am looking my keys.",
-    "stato": "originale"
+    "extraOption": "I am looking for to my keys.",
+    "stato": "rivista"
   },
   {
     "id": "q170",
@@ -1258,9 +1258,9 @@
     "prompt": "Translate 'È la prima volta che guido una macchina.'",
     "options": [
       "It's the first time I have driven a car.",
-      "It's the first time I drive a car.",
-      "It's the first time I drove a car.",
-      "It's the first time I am driving a car."
+      "It's the first time I driving a car.",
+      "It's the first time I have drove a car.",
+      "It's the first time I has driven a car."
     ],
     "correctIndex": 0,
     "explanation": "'First time' expressions use the present perfect.",
@@ -1268,8 +1268,8 @@
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": true,
-    "extraOption": "It's the first time I have drove a car.",
-    "stato": "originale"
+    "extraOption": "It's the first time I am drive a car.",
+    "stato": "rivista"
   },
   {
     "id": "q173",
@@ -1294,7 +1294,7 @@
     "prompt": "Translate 'Io lavoro in un ospedale.'",
     "options": [
       "I work in a hospital.",
-      "I am working in a hospital.",
+      "I working in a hospital.",
       "I works in a hospital.",
       "I work to a hospital."
     ],
@@ -1304,7 +1304,7 @@
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q175",
@@ -1468,7 +1468,7 @@
     "prompt": "Translate 'Il film inizia alle 20:30.'",
     "options": [
       "The movie starts at 8:30 PM.",
-      "The movie is starting at 8:30 PM.",
+      "The movie starting at 8:30 PM.",
       "The movie start at 8:30 PM.",
       "The movie will starting at 8:30 PM."
     ],
@@ -1478,7 +1478,7 @@
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q185",
@@ -1537,7 +1537,7 @@
     "prompt": "Complete: 'Do you have _____ questions?'",
     "options": [
       "any",
-      "some",
+      "a",
       "much",
       "little"
     ],
@@ -1547,16 +1547,16 @@
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q189",
     "prompt": "Translate 'Vorresti del tè?'",
     "options": [
       "Would you like some tea?",
-      "Would you like any tea?",
-      "Do you like some tea?",
-      "Would you like much tea?"
+      "Would you like to some tea?",
+      "Do you would like some tea?",
+      "Would you like many tea?"
     ],
     "correctIndex": 0,
     "explanation": "Offers use 'some', not 'any'.",
@@ -1564,7 +1564,7 @@
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q190",
@@ -1674,9 +1674,9 @@
     "prompt": "Complete: 'Is there _____ good on TV?'",
     "options": [
       "anything",
-      "something",
-      "nothing",
-      "everything"
+      "anythings",
+      "everything",
+      "somethings"
     ],
     "correctIndex": 0,
     "explanation": "Questions generally use 'anything'.",
@@ -1684,7 +1684,7 @@
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q197",

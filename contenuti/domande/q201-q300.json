@@ -76,17 +76,17 @@
     "prompt": "Complete: '_____ time does the movie start?'",
     "options": [
       "What",
-      "Which",
-      "When",
+      "Where",
+      "Who",
       "How"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for a specific time uses 'What time'.",
+    "explanation": "L'ora si chiede con 'What time': 'What time does the movie start?'. 'Where' si usa per i luoghi, 'Who' per le persone e 'How time' non esiste.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q206",
@@ -236,34 +236,34 @@
     "prompt": "Complete: '_____ going to be a storm tomorrow.'",
     "options": [
       "There is",
-      "It is",
       "There are",
-      "They are"
+      "They are",
+      "There have"
     ],
     "correctIndex": 0,
-    "explanation": "Future existence 'There is going to be'.",
+    "explanation": "Per dire che qualcosa ci sarà si usa 'There is going to be': 'There is going to be a storm tomorrow'. 'There are' è plurale mentre 'a storm' è singolare, 'They are' non esprime l'esistenza e 'There have' non si usa con 'going to'.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "There is / There are",
     "core": true,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q215",
     "prompt": "Translate 'Ci sono dei biscotti nella scatola?'",
     "options": [
       "Are there any biscuits in the box?",
-      "Is there any biscuits in the box?",
-      "Are there some biscuits in the box?",
+      "Is there a biscuits in the box?",
+      "Are there much biscuits in the box?",
       "Do there any biscuits in the box?"
     ],
     "correctIndex": 0,
-    "explanation": "Question plural existence with 'any'.",
+    "explanation": "Nelle domande sull'esistenza con un plurale si usa 'Are there' + 'any': 'Are there any biscuits in the box?'. 'Is there a' non va con un plurale, 'much' si usa solo con i nomi non numerabili e 'Do there' non esiste.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q216",
@@ -865,16 +865,16 @@
     "options": [
       "I want it now.",
       "I want him now.",
-      "I want that now.",
-      "I want this now."
+      "I want them now.",
+      "I want he now."
     ],
     "correctIndex": 0,
-    "explanation": "'Lo' for a thing is 'it'.",
+    "explanation": "Il suggerimento dice che 'lo' indica un oggetto singolare, e il pronome complemento per le cose è 'it'. 'Him' si usa solo per un uomo, 'them' è plurale e 'he' è un pronome soggetto, che dopo il verbo non si può usare.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q251",
@@ -882,16 +882,16 @@
     "options": [
       "Are you coming with us to the cinema?",
       "Are you coming with we to the cinema?",
-      "Do you come with us to the cinema?",
+      "Are you coming with our to the cinema?",
       "Are you coming to us to the cinema?"
     ],
     "correctIndex": 0,
-    "explanation": "'Con noi' uses the object pronoun 'us'.",
+    "explanation": "'Con noi' richiede il pronome complemento 'us' dopo la preposizione 'with'. 'With we' è sbagliato perché 'we' è soggetto, 'with our' è un aggettivo possessivo che vuole un nome, e 'coming to us' cambia il senso (\"vieni da noi\").",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": true,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q252",
@@ -936,15 +936,15 @@
       "those",
       "that",
       "this",
-      "these"
+      "a"
     ],
     "correctIndex": 0,
-    "explanation": "'Those' is used for plural things far from the speaker.",
+    "explanation": "'Birds' è plurale, quindi serve un dimostrativo plurale: gli uccelli sono nel cielo, lontani da chi parla, quindi 'those'. 'That' e 'this' sono singolari e 'a' non si usa davanti a un plurale.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q255",
@@ -953,15 +953,15 @@
       "these",
       "this",
       "that",
-      "those"
+      "a"
     ],
     "correctIndex": 0,
-    "explanation": "'These' is used for plural things near the speaker.",
+    "explanation": "'Shoes' è plurale e la frase dice 'here', quindi le scarpe sono vicine a chi parla: 'these'. 'This' e 'that' sono singolari e 'a' non si usa davanti a un plurale.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q256",
@@ -988,15 +988,15 @@
       "These",
       "This",
       "That",
-      "Those"
+      "Each"
     ],
     "correctIndex": 0,
-    "explanation": "'These' refers to plural days in the current time.",
+    "explanation": "'Days' è plurale e 'are' è presente, quindi i giorni sono quelli di adesso e si usa 'These'. 'This' e 'That' sono singolari e non si accordano con 'days'; 'Each' vuole un nome singolare.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q258",
@@ -1370,16 +1370,16 @@
     "options": [
       "on",
       "in",
-      "at",
+      "from",
       "between"
     ],
     "correctIndex": 0,
-    "explanation": "'On' is used for surfaces.",
+    "explanation": "Le chiavi appoggiate sul tavolo stanno su una superficie: 'on the table'. 'In' vuol dire dentro, 'from' indica provenienza e non va con 'left' in questa frase, 'between' ha bisogno di due cose.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "stato": "originale"
+    "stato": "rivista"
   },
   {
     "id": "q280",

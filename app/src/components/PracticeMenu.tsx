@@ -149,7 +149,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
           <div className="flex items-center gap-4">
             <IconaChip nome="contenuti" lato={48} />
             <div>
-              <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Filtro Mirato</h3>
+              <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC] text-base sm:text-lg mb-0.5">Filtro mirato</h3>
               <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Allenati su una categoria, un livello o un argomento specifico.</p>
             </div>
           </div>
