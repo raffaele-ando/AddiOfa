@@ -56,7 +56,7 @@ export interface ExamResult {
 }
 
 export type TrackEvent =
-  | { name: 'diag_done'; audience?: PublicAudience }
+  | { name: 'diag_done'; audience?: PublicAudience; seconds?: number }
   | { name: 'paywall_seen' }
   | { name: 'waitlist_join'; audience: PublicAudience }
   | { name: 'sim_started'; format: FormatId }

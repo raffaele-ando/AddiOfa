@@ -1,0 +1,25 @@
+{
+  "id": "third-conditional",
+  "titolo": "Terzo periodo ipotetico (Third Conditional)",
+  "livello": "B1",
+  "regola": [
+    "Serve per parlare di qualcosa che nel passato non è successo e di che cosa sarebbe successo altrimenti.",
+    "Si forma con *If* + *had* + participio passato, poi *would have* + participio passato.",
+    "Le due parti si possono invertire: *We would have missed the bus if we hadn't left early.*",
+    "Nella parte con *if* non va mai *would*: ci vuole *had*."
+  ],
+  "esempi": [
+    { "en": "If I had studied more, I would have passed the exam.", "it": "Se avessi studiato di più, avrei superato l'esame." },
+    { "en": "If she had known about the party, she would have come.", "it": "Se avesse saputo della festa, sarebbe venuta." },
+    { "en": "We would have missed the bus if we hadn't left early.", "it": "Avremmo perso l'autobus se non fossimo usciti presto." },
+    { "en": "If it hadn't been so cold, we would have gone swimming.", "it": "Se non avesse fatto così freddo, saremmo andati a nuotare." },
+    { "en": "What would you have done if you had lost your passport?", "it": "Che cosa avresti fatto se avessi perso il passaporto?" }
+  ],
+  "errori": [
+    { "sbagliato": "If I would have known, I would have called you.", "giusto": "If I had known, I would have called you.", "perche": "Dopo *if* non si usa *would*: serve *had* + participio." },
+    { "sbagliato": "If we had left earlier, we didn't miss the train.", "giusto": "If we had left earlier, we wouldn't have missed the train.", "perche": "Nella principale serve *would have* + participio, non il Past Simple." },
+    { "sbagliato": "If I have seen the message, I would have replied.", "giusto": "If I had seen the message, I would have replied.", "perche": "Per il passato irreale ci vuole *had*, non *have*." }
+  ],
+  "consiglio": "Se la frase parla di qualcosa che non è accaduto, cerca *had* + participio dopo *if* e *would have* + participio nell'altra parte: se ne manca una, l'opzione è sbagliata.",
+  "domande": ["q381", "q450", "q459"]
+}

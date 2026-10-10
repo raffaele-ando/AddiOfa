@@ -1,976 +1,534 @@
 [
   {
     "id": "q1",
-    "prompt": "Choose the correct translation for 'Sei mai stato in Brasile?'",
+    "prompt": "Which sentence is correct?",
     "options": [
-      "Are you ever been to Brazil?",
-      "Have you ever been to Brazil?",
-      "Did you ever went to Brazil?",
-      "Have you never been to Brazil?"
+      "Is your sister ever lived abroad?",
+      "Has your sister ever lived abroad?",
+      "Does your sister ever lived abroad?",
+      "Have your sister ever lived abroad?"
     ],
     "correctIndex": 1,
-    "explanation": "We use Present Perfect ('Have you ever been') for life experiences.",
+    "explanation": "We use the Present Perfect for life experiences. With 'sister' (she) the auxiliary is 'has': 'Has your sister ever lived...?'",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q2",
-    "prompt": "Choose the correct question: '_____ a table in this room?'",
+    "prompt": "Choose the correct question: '_____ a bank in this street?'",
     "options": [
-      "Is it",
-      "There is",
       "Is there",
-      "Are there"
+      "There is",
+      "Are there",
+      "Is it"
     ],
-    "correctIndex": 2,
-    "explanation": "'Is there' is the correct question form of 'there is' for singular nouns.",
+    "correctIndex": 0,
+    "explanation": "'Is there' is the question form of 'there is' for a singular noun ('a bank').",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q3",
     "prompt": "Which sentence is correct?",
     "options": [
-      "Did you meet Mr. Smith's wife?",
-      "Did you met Mr. Smith's wife?",
-      "Have you meet Mr. Smith's wife?",
-      "Did you meet the Mr. Smith wife?"
+      "Did your brother won the match last night?",
+      "Was your brother win the match last night?",
+      "Does your brother won the match last night?",
+      "Did your brother win the match last night?"
     ],
-    "correctIndex": 0,
-    "explanation": "After 'did', we use the base form of the verb ('meet', not 'met').",
+    "correctIndex": 3,
+    "explanation": "After 'did' the verb is in the base form ('win'), not in the past.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q4",
-    "prompt": "Translate 'Lunedì è il giorno peggiore della settimana.'",
+    "prompt": "Choose the correct translation for 'Agosto è il mese più caldo dell'anno.'",
     "options": [
-      "Monday is the badder day of the week.",
-      "Monday is the worst day of the week.",
-      "Monday is the worse day of the week.",
-      "Monday is the baddest day of the week."
+      "August is the most hot month of the year.",
+      "August is the hotter month of the year.",
+      "August is the hottest month of the year.",
+      "August is more hot month of the year."
     ],
-    "correctIndex": 1,
-    "explanation": "The superlative of 'bad' is 'worst'.",
+    "correctIndex": 2,
+    "explanation": "'Hot' is a short adjective: the superlative is 'the hottest' (the double t is needed).",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q5",
-    "prompt": "Translate 'Sono stato in Africa nel 2009.'",
+    "prompt": "Choose the correct translation for 'Abbiamo comprato questa casa nel 2018.'",
     "options": [
-      "I have been to Africa in 2009.",
-      "I went to Africa in 2009.",
-      "I was in Africa on 2009.",
-      "I go to Africa in 2009."
+      "We have bought this house in 2018.",
+      "We bought this house in 2018.",
+      "We buyed this house in 2018.",
+      "We are buying this house in 2018."
     ],
     "correctIndex": 1,
-    "explanation": "With a finished time in the past ('in 2009'), we use the Past Simple ('went').",
+    "explanation": "With a finished time in the past ('in 2018') we use the Past Simple. 'Buy' is irregular: 'bought'.",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q6",
-    "prompt": "Which sentence correctly compares the two cities?",
+    "prompt": "Which sentence compares the two bags correctly?",
     "options": [
-      "New York is more modern that London.",
-      "New York is modener than London.",
-      "New York is more modern than London.",
-      "New York is the most modern than London."
+      "The red bag is more expensive than the blue one.",
+      "The red bag is more expensive that the blue one.",
+      "The red bag is expensiver than the blue one.",
+      "The red bag is the most expensive than the blue one."
     ],
-    "correctIndex": 2,
-    "explanation": "We use 'more + adjective + than' for comparatives with long adjectives.",
+    "correctIndex": 0,
+    "explanation": "Long adjectives form the comparative with 'more' and are followed by 'than'.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q7",
-    "prompt": "Complete the sentence: '_____ did you meet Mr. Smith?' - 'At the station.'",
+    "prompt": "Complete the sentence: '_____ did Anna buy that jacket?' - 'Last Saturday.'",
     "options": [
-      "When",
-      "How",
       "Where",
-      "Who"
+      "Who",
+      "When",
+      "Why"
     ],
     "correctIndex": 2,
-    "explanation": "'Where' is used to ask about a place.",
+    "explanation": "The answer 'Last Saturday' gives a time, so the question word is 'When'.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q8",
-    "prompt": "Translate 'Quante persone ci sono alla festa?'",
+    "prompt": "Choose the correct translation for 'Quanti libri ci sono sullo scaffale?'",
     "options": [
-      "How much people are at the party?",
-      "How many peoples are at the party?",
-      "How many people are at the party?",
-      "How many people is in the party?"
+      "How much books are there on the shelf?",
+      "How many books is there on the shelf?",
+      "How many book are there on the shelf?",
+      "How many books are there on the shelf?"
     ],
-    "correctIndex": 2,
-    "explanation": "'People' is plural and countable, so we use 'How many are'.",
+    "correctIndex": 3,
+    "explanation": "'Books' is plural and countable: 'How many' + plural noun + 'are there'.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q9",
-    "prompt": "Translate 'Il treno partirà tra 2 minuti.'",
+    "prompt": "Choose the correct translation for 'Il film comincerà tra un'ora.'",
     "options": [
-      "The train leaves between 2 minutes.",
-      "The train will leave in 2 minutes.",
-      "The train going to leave on 2 minutes.",
-      "The train part in 2 minutes."
+      "The film will start between an hour.",
+      "The film will start in an hour.",
+      "The film will start at an hour.",
+      "The film will start for an hour."
     ],
     "correctIndex": 1,
-    "explanation": "We use 'in' for future time limits ('in 2 minutes'). 'Will leave' expresses a future fact.",
+    "explanation": "'In' + a period of time means 'after that time from now' ('in an hour').",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Prepositions of Time",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q10",
-    "prompt": "Translate 'Ti posso offrire qualcosa da bere?'",
+    "prompt": "Choose the correct translation for 'Posso usare il tuo telefono, per favore?'",
     "options": [
-      "Can I offer you anything for drink?",
-      "Can I offer you something to drink?",
-      "Can I offer you somewhat to drink?",
-      "Do I can offer you something to drink?"
+      "Can I use your phone, please?",
+      "Can I to use your phone, please?",
+      "Do I can use your phone, please?",
+      "Can I using your phone, please?"
     ],
-    "correctIndex": 1,
-    "explanation": "The error in the wrong options is 'for drink': after 'something/anything' we use the to-infinitive ('something to drink'). In offers 'something' is the most common choice, but 'anything' is also correct ('Can I offer you anything to drink?'). 'Somewhat' means 'a bit', and 'can' never takes 'do'.",
+    "correctIndex": 0,
+    "explanation": "'Can' is followed by the base form of the verb, without 'to' and without 'do'.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Modals of Ability and Permission",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q11",
-    "prompt": "Translate 'Francesco lavora per Google.'",
+    "prompt": "Choose the correct translation for 'Laura vive a Napoli con i suoi genitori.'",
     "options": [
-      "Francesco work to Google.",
-      "Francesco works for Google.",
-      "Francesco is working by Google.",
-      "Francesco working for Google."
+      "Laura live in Naples with her parents.",
+      "Laura living in Naples with her parents.",
+      "Laura lives in Naples with her parents.",
+      "Laura lives in Naples with she parents."
     ],
-    "correctIndex": 1,
-    "explanation": "Third person singular in Present Simple requires an 's' ('works'). 'Work for' is the correct preposition.",
+    "correctIndex": 2,
+    "explanation": "Third person singular in the Present Simple takes -s ('lives'). The possessive for 'she' is 'her'.",
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q12",
-    "prompt": "Choose the correct sentence to describe a current action.",
+    "prompt": "Choose the correct sentence to describe what is happening now.",
     "options": [
-      "Look! It's rain.",
-      "Look! It's raining.",
-      "Look! It rains.",
-      "Look! It raining."
+      "Be quiet! The baby is sleep.",
+      "Be quiet! The baby sleep.",
+      "Be quiet! The baby sleeped.",
+      "Be quiet! The baby is sleeping."
     ],
-    "correctIndex": 1,
-    "explanation": "Present Continuous ('is raining') is used for actions happening right now.",
+    "correctIndex": 3,
+    "explanation": "We use the Present Continuous ('is sleeping') for an action happening right now.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q13",
     "prompt": "Choose the correct question:",
     "options": [
-      "Is there any milk in the fridge?",
-      "Are there some milk in the fridge?",
-      "Is there a milk in the fridge?",
-      "Is there any milks in the fridge?"
+      "Is there any rice in the cupboard?",
+      "Are there any rice in the cupboard?",
+      "Is there a rice in the cupboard?",
+      "Is there any rices in the cupboard?"
     ],
     "correctIndex": 0,
-    "explanation": "'Milk' is uncountable, so we use 'Is there' (not 'Are there'), with no 'a' and no plural -s. 'Any' is used in questions.",
+    "explanation": "'Rice' is uncountable: it takes 'Is there', no 'a' and no plural -s. 'Any' is used in questions.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q14",
-    "prompt": "Translate 'Da quanto tempo studi l'inglese?'",
+    "prompt": "Choose the correct translation for 'Da quanto tempo abiti a Milano?'",
     "options": [
-      "How much time do you study English?",
-      "Since when you study English?",
-      "How long have you studied English?",
-      "How long are you studying English?"
+      "How long do you live in Milan?",
+      "How long have you lived in Milan?",
+      "How long you have lived in Milan?",
+      "How long did you lived in Milan?"
     ],
-    "correctIndex": 2,
-    "explanation": "We use Present Perfect ('have you studied') with 'How long' for actions starting in the past and continuing now.",
+    "correctIndex": 1,
+    "explanation": "For something that started in the past and continues now, we use 'How long' + Present Perfect.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q15",
-    "prompt": "Translate 'Francesco riesce a parlare bene inglese.'",
+    "prompt": "Choose the correct translation for 'Mia nonna sa suonare il pianoforte.'",
     "options": [
-      "Francesco can to speak English well.",
-      "Francesco can speaks English well.",
-      "Francesco is able speak English good.",
-      "Francesco can speak English well."
+      "My grandmother can plays the piano.",
+      "My grandmother can to play the piano.",
+      "My grandmother knows play the piano.",
+      "My grandmother can play the piano."
     ],
     "correctIndex": 3,
-    "explanation": "Modal verb 'can' is followed by the base form without 'to' ('can speak').",
+    "explanation": "'Can' is followed by the base form without 'to' and without -s, even with 'she'.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Modals of Ability and Permission",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q16",
-    "prompt": "Translate 'Con chi è andata?'",
+    "prompt": "Choose the correct translation for 'Cosa ha mangiato Marco ieri sera?'",
     "options": [
-      "With who she went?",
-      "Who did she go with?",
-      "Who did she went with?",
-      "Who she went with?"
+      "What did Marco ate last night?",
+      "What Marco ate last night?",
+      "What did Marco eat last night?",
+      "What does Marco ate last night?"
     ],
-    "correctIndex": 1,
-    "explanation": "In WH- questions, the auxiliary 'did' is followed by the base verb 'go'. The preposition 'with' goes at the end.",
+    "correctIndex": 2,
+    "explanation": "In Past Simple questions we use 'did' + subject + base form ('eat').",
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q17",
     "prompt": "Choose the grammatically correct sentence:",
     "options": [
-      "She gone to the cinema yesterday.",
-      "She has went to the cinema yesterday.",
-      "She went to the cinema yesterday.",
-      "She goes to the cinema yesterday."
+      "We have eaten pizza last Friday night.",
+      "We ate pizza last Friday night.",
+      "We eaten pizza last Friday night.",
+      "We eat pizza last Friday night."
     ],
-    "correctIndex": 2,
-    "explanation": "'Yesterday' requires the Past Simple ('went').",
+    "correctIndex": 1,
+    "explanation": "'Last Friday night' is a finished time in the past: we use the Past Simple ('ate').",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q18",
-    "prompt": "Complete the sentence: 'There are many people living in Italy who _____ from abroad.'",
+    "prompt": "Complete the sentence: 'In my building there are many students who _____ to university by bike.'",
     "options": [
-      "coming",
-      "comes",
-      "are coming",
-      "come"
+      "go",
+      "goes",
+      "going",
+      "to go"
     ],
-    "correctIndex": 3,
-    "explanation": "'People' is plural, so the relative clause verb is plural ('come').",
+    "correctIndex": 0,
+    "explanation": "'Students' is plural, so the verb after 'who' is plural too: 'go'.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Relative Clauses",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q19",
-    "prompt": "Complete the sentence: 'I _____ my husband in 1996.'",
+    "prompt": "Complete the sentence: 'My sister _____ her driving test in 2019.'",
     "options": [
-      "meet",
-      "have met",
-      "met",
-      "was meeting"
+      "pass",
+      "has passed",
+      "passed",
+      "is passing"
     ],
     "correctIndex": 2,
-    "explanation": "A specific time in the past ('in 1996') requires the Past Simple ('met').",
+    "explanation": "A specific year in the past ('in 2019') needs the Past Simple ('passed').",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q20",
-    "prompt": "Complete the sentence: 'This plate is dirty, can I have a clean _____?'",
+    "prompt": "Complete the sentence: 'My umbrella is broken, so I need a new _____.'",
     "options": [
-      "a one",
-      "one",
       "ones",
-      "it"
+      "it",
+      "a one",
+      "one"
     ],
-    "correctIndex": 1,
-    "explanation": "We use the pronoun 'one' to avoid repeating a singular countable noun ('a clean one' = 'a clean plate'); 'ones' is plural and 'it' would mean the same dirty plate.",
+    "correctIndex": 3,
+    "explanation": "'One' replaces a singular countable noun already mentioned ('a new umbrella' = 'a new one').",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q21",
-    "prompt": "Complete the sentence: 'By the year 2080, people could _____ on Mars.'",
+    "prompt": "Complete the sentence: 'The windows are open and I can hear music. Someone _____ at home.'",
     "options": [
-      "to live",
-      "be living",
-      "living",
-      "are living"
+      "must to be",
+      "must be",
+      "must is",
+      "must being"
     ],
     "correctIndex": 1,
-    "explanation": "'Could' is a modal and is followed by the bare infinitive ('be'), never by 'to' or a conjugated verb. 'Could be living' expresses a possible ongoing situation in the future.",
+    "explanation": "We use 'must + be' for a strong deduction. After a modal we use the base form, never 'to' or '-ing'.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q22",
-    "prompt": "Complete the sentence: 'How many companies have you worked for _____ you left school?'",
+    "prompt": "Complete the sentence: 'My sister has lived in Turin _____ she started university.'",
     "options": [
-      "from",
-      "since",
       "for",
-      "after"
+      "during",
+      "since",
+      "while"
     ],
-    "correctIndex": 1,
-    "explanation": "'Since' is used with Present Perfect to indicate a starting point in time.",
+    "correctIndex": 2,
+    "explanation": "'Since' + a clause shows the starting point of a situation that continues now.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q23",
-    "prompt": "Complete the sentence: 'What time _____ your plane take off?'",
+    "prompt": "Complete the sentence: 'What time _____ the concert begin tomorrow?'",
     "options": [
-      "do",
       "is",
       "does",
+      "do",
       "has"
     ],
-    "correctIndex": 2,
-    "explanation": "For scheduled future events, we use Present Simple. 'Plane' is 'it', so we use 'does'.",
+    "correctIndex": 1,
+    "explanation": "For a scheduled future event we use the Present Simple. 'Concert' is 'it', so the auxiliary is 'does'.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q24",
-    "prompt": "Complete the sentence: 'When I was ten, I _____ swim across the lake, but now I can't.'",
+    "prompt": "Complete the sentence: 'When my uncle was young, he _____ run a marathon in under three hours, but now he can't.'",
     "options": [
       "could",
       "can",
-      "was able",
+      "is able to",
       "could to"
     ],
     "correctIndex": 0,
-    "explanation": "'Could' is the past of 'can' for a general ability in the past; 'can' is present, 'was able' needs 'to', and modals are never followed by 'to'.",
+    "explanation": "'Could' is the past of 'can' for a general ability in the past. A modal is never followed by 'to'.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Ability and Permission",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q25",
-    "prompt": "Combine the sentences correctly: 'I saw Tom this morning. He was waiting at the bus stop.'",
+    "prompt": "Combine the sentences correctly: 'I called Laura yesterday evening. She was cooking dinner.'",
     "options": [
-      "I saw Tom this morning while he waits at the bus stop.",
-      "I saw Tom this morning while he was waiting at the bus stop.",
-      "I saw Tom this morning during he was waiting at the bus stop.",
-      "I saw Tom this morning waiting to the bus stop."
+      "I called Laura yesterday evening while she cooks dinner.",
+      "I called Laura yesterday evening during she was cooking dinner.",
+      "I called Laura yesterday evening while was cooking dinner.",
+      "I called Laura yesterday evening while she was cooking dinner."
     ],
-    "correctIndex": 1,
-    "explanation": "'While' introduces the longer background action, so we use the Past Continuous ('while he was waiting'); the Present Simple 'waits' doesn't match the past, and 'during' must be followed by a noun, not a clause.",
+    "correctIndex": 3,
+    "explanation": "'While' introduces an action in progress in the past: 'while she was cooking'. 'During' is followed by a noun, not a clause.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Continuous",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q26",
-    "prompt": "Complete the sentence: 'James can speak English very _____.'",
+    "prompt": "Complete the sentence: 'My sister always does her homework very _____.'",
     "options": [
-      "good",
-      "better",
-      "best",
-      "well"
+      "careful",
+      "carefully",
+      "carefulness",
+      "care"
     ],
-    "correctIndex": 3,
-    "explanation": "'Well' is the adverb form of 'good' and modifies the verb 'speak'.",
+    "correctIndex": 1,
+    "explanation": "We need an adverb to describe the verb 'does': 'carefully'.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Adverbs of Manner",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q27",
-    "prompt": "Complete the sentence: 'The children want _____ to play with them.'",
+    "prompt": "Complete the sentence: 'Our teacher wants _____ to finish the project by Friday.'",
     "options": [
-      "I",
-      "that I",
-      "me",
-      "my"
+      "we",
+      "our",
+      "us",
+      "ours"
     ],
     "correctIndex": 2,
-    "explanation": "After 'want', we use an object pronoun ('me') + to-infinitive.",
+    "explanation": "After 'want' we use an object pronoun + to-infinitive: 'wants us to finish'.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q28",
-    "prompt": "Complete the sentence: 'Is she going with _____ friends?'",
+    "prompt": "Complete the sentence: 'I need to buy _____ apples for the cake.'",
     "options": [
-      "much",
       "a",
-      "some",
-      "any of"
+      "much",
+      "an",
+      "some"
     ],
-    "correctIndex": 2,
-    "explanation": "'Friends' is a plural countable noun, so we can use 'some' ('some friends'); 'much' is only for uncountable nouns, 'a' only for singular nouns, and 'any of' needs 'the/her' before the noun.",
+    "correctIndex": 3,
+    "explanation": "'Apples' is plural and countable: 'some apples'. 'A/an' are only for singular nouns and 'much' only for uncountable nouns.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Quantifiers",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q29",
-    "prompt": "Complete the sentence: 'I _____ a new pair of shoes yesterday.'",
+    "prompt": "Complete the sentence: 'We _____ a great film at the cinema last night.'",
     "options": [
-      "buy",
-      "buyed",
-      "bought",
-      "have bought"
+      "saw",
+      "see",
+      "seen",
+      "have seen"
     ],
-    "correctIndex": 2,
-    "explanation": "'Yesterday' indicates Past Simple. The past of 'buy' is 'bought'.",
+    "correctIndex": 0,
+    "explanation": "'Last night' needs the Past Simple. The past of 'see' is 'saw'.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q30",
-    "prompt": "Complete the sentence: 'What time does the train leave tomorrow? It _____ at 9.'",
+    "prompt": "Complete the sentence: 'The exam _____ at nine o'clock tomorrow, so don't be late.'",
     "options": [
-      "leave",
-      "will leaves",
-      "leaving",
-      "leaves"
+      "start",
+      "will starts",
+      "starts",
+      "starting"
     ],
-    "correctIndex": 3,
-    "explanation": "For a scheduled timetable in the future, we use the Present Simple with -s for 'it' ('leaves'); after 'will' the verb never takes -s.",
+    "correctIndex": 2,
+    "explanation": "For a fixed timetable in the future we use the Present Simple with -s for 'it': 'starts'. After 'will' the verb never takes -s.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Simple",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q31",
     "prompt": "Choose the correct negative sentence:",
     "options": [
-      "There isn't no milk in the fridge.",
-      "There isn't any milk in the fridge.",
-      "There is any milk in the fridge.",
-      "There aren't any milk in the fridge."
+      "There isn't no sugar in my coffee.",
+      "There isn't any sugar in my coffee.",
+      "There aren't any sugar in my coffee.",
+      "There is any sugar in my coffee."
     ],
     "correctIndex": 1,
-    "explanation": "We use 'any' in negative sentences. 'Milk' is uncountable, so we use 'isn't'.",
+    "explanation": "'Sugar' is uncountable, so we use 'isn't'. In negative sentences we use 'any', not 'no'.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
     "id": "q32",
-    "prompt": "Complete the sentence: 'How long _____ you studied English?'",
-    "options": [
-      "did",
-      "do",
-      "are",
-      "have"
-    ],
-    "correctIndex": 3,
-    "explanation": "Present Perfect uses the auxiliary 'have' + past participle ('studied').",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q33",
-    "prompt": "Complete the sentence: 'Look! It _____.'",
-    "options": [
-      "is raining",
-      "rains",
-      "rain",
-      "rained"
-    ],
-    "correctIndex": 0,
-    "explanation": "'Look!' implies an action happening right now (Present Continuous).",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Present Continuous",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q34",
-    "prompt": "Complete the sentence: 'How many people _____ to the party?'",
-    "options": [
-      "did came",
-      "comes",
-      "came",
-      "comed"
-    ],
-    "correctIndex": 2,
-    "explanation": "When the question word ('How many people') is the subject, we don't use 'did'. We just use the past verb ('came'); 'come' is irregular, so 'comed' does not exist.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q35",
-    "prompt": "Translate 'Questa è la cosa migliore che io abbia mai mangiato.'",
-    "options": [
-      "This is the better thing I have ever eaten.",
-      "This is the best thing I have ever eaten.",
-      "This is the goodest thing I have ever eaten.",
-      "This is the most good thing I have ever eaten."
-    ],
-    "correctIndex": 1,
-    "explanation": "The superlative of 'good' is irregular: 'the best'. 'Better' is the comparative, and 'goodest' / 'most good' do not exist.",
-    "category": "Traduzione",
-    "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q36",
-    "prompt": "Translate 'Steven lavora per Microsoft.'",
-    "options": [
-      "Steven works for Microsoft.",
-      "Steven work to Microsoft.",
-      "Steven works to Microsoft.",
-      "Steven working for Microsoft."
-    ],
-    "correctIndex": 0,
-    "explanation": "The Present Simple third person singular requires -s ('works'), and a sentence always needs a conjugated verb. The preposition with a company is 'for'.",
-    "category": "Traduzione",
-    "level": "A1",
-    "grammarTopic": "Present Simple",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q37",
-    "prompt": "Complete the sentence: 'When _____ you meet Mr. Brown?'",
-    "options": [
-      "have",
-      "did",
-      "were",
-      "do"
-    ],
-    "correctIndex": 1,
-    "explanation": "'When' asks for a specific past time, so we use Past Simple auxiliary 'did'.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q38",
-    "prompt": "Complete the sentence: 'John, where do you come _____?'",
-    "options": [
-      "to",
-      "by",
-      "from",
-      "of"
-    ],
-    "correctIndex": 2,
-    "explanation": "The phrase to ask about origins is 'Where do you come from?'",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "Questions and Origins",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q39",
-    "prompt": "Complete the sentence: 'Tom is away. He has been away _____ Monday.'",
-    "options": [
-      "for",
-      "since",
-      "from",
-      "until"
-    ],
-    "correctIndex": 1,
-    "explanation": "'Since' is used with a specific point in time (Monday) to show when an action started.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q40",
-    "prompt": "Translate 'Non mi è piaciuto il cibo inglese.'",
-    "options": [
-      "I haven't liked English food.",
-      "I wasn't like English food.",
-      "I didn't like English food.",
-      "I don't liked English food."
-    ],
-    "correctIndex": 2,
-    "explanation": "Past Simple negative uses 'didn't' + base verb ('like').",
-    "category": "Traduzione",
-    "level": "A2",
-    "grammarTopic": "Past Simple",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q41",
-    "prompt": "Complete the sentence: 'Hurry, the bus _____ in 2 minutes.'",
-    "options": [
-      "leaves",
-      "left",
-      "is leave",
-      "leaving"
-    ],
-    "correctIndex": 0,
-    "explanation": "We use Present Simple ('leaves') for timetabled future events.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Simple",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q42",
-    "prompt": "Complete the sentence: 'She's the most beautiful girl I've _____ seen.'",
-    "options": [
-      "never",
-      "always",
-      "ever",
-      "just"
-    ],
-    "correctIndex": 2,
-    "explanation": "'Ever' is used with Present Perfect to mean 'at any time in my life'.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q43",
-    "prompt": "Complete the sentence: 'I _____ to Africa in 2001.'",
-    "options": [
-      "have gone",
-      "was going",
-      "went",
-      "go"
-    ],
-    "correctIndex": 2,
-    "explanation": "Past Simple ('went') is required for a specific finished past time ('in 2001').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q44",
-    "prompt": "Translate 'Hai conosciuto la moglie del signor Smith?'",
-    "options": [
-      "Did you met Mr. Smith's wife?",
-      "Have you met Mr. Smith's wife?",
-      "Do you meet Mr. Smith's wife?",
-      "Have you meet Mr. Smith's wife?"
-    ],
-    "correctIndex": 1,
-    "explanation": "Present Perfect ('Have you met') is used for life experiences when the time is not specified.",
-    "category": "Traduzione",
-    "level": "B1",
-    "grammarTopic": "Present Perfect",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q45",
-    "prompt": "Translate 'Conosco Luca da quando eravamo bambini.'",
-    "options": [
-      "I have known Luca since we were children.",
-      "I know Luca since we were children.",
-      "I have known Luca for we were children.",
-      "I am knowing Luca since we were children."
-    ],
-    "correctIndex": 0,
-    "explanation": "With 'since' + a starting point, English uses the Present Perfect ('have known') for a state that is still true; Italian uses the present ('conosco'), but 'I know... since' is wrong.",
-    "category": "Traduzione",
-    "level": "B1",
-    "grammarTopic": "Present Perfect",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q46",
-    "prompt": "Translate 'Non mi piace il trucco di Sara.'",
-    "options": [
-      "I don't like Sara makeup.",
-      "I don't like Sara's makeup.",
-      "I'm not like Sara's makeup.",
-      "I don't like the makeup of Sara."
-    ],
-    "correctIndex": 1,
-    "explanation": "We use the possessive 's (Sara's) to show belonging.",
-    "category": "Traduzione",
-    "level": "A1",
-    "grammarTopic": "Possessive S",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q47",
-    "prompt": "Complete the sentence: '_____ is a table in the room.'",
-    "options": [
-      "There",
-      "It",
-      "This",
-      "Here"
-    ],
-    "correctIndex": 0,
-    "explanation": "We use 'There is' to express existence.",
-    "category": "Grammatica",
-    "level": "A1",
-    "grammarTopic": "There is / There are",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q48",
-    "prompt": "Complete the sentence: 'He _____ his homework right now.'",
-    "options": [
-      "doing",
-      "does",
-      "is doing",
-      "do"
-    ],
-    "correctIndex": 2,
-    "explanation": "'Right now' indicates Present Continuous ('is doing').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Present Continuous",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q49",
-    "prompt": "Choose the correct sentence:",
-    "options": [
-      "If it rains, we will stay home.",
-      "If it will rain, we stay home.",
-      "If it rains, we would stay home.",
-      "If it rain, we will stay home."
-    ],
-    "correctIndex": 0,
-    "explanation": "First Conditional: If + Present Simple, will + base verb. We don't use 'will' in the if-clause, and 'would' belongs to the Second Conditional.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "First Conditional",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q50",
-    "prompt": "Complete the sentence: 'I _____ playing tennis since I was a child.'",
-    "options": [
-      "am",
-      "have been",
-      "was",
-      "had been"
-    ],
-    "correctIndex": 1,
-    "explanation": "'Since' + a point in the past requires the Present Perfect Continuous ('have been playing').",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q51",
-    "prompt": "Complete the sentence: 'Where _____ your last summer holiday?'",
-    "options": [
-      "did you spend",
-      "you spent",
-      "did you spent",
-      "do you spent"
-    ],
-    "correctIndex": 0,
-    "explanation": "Past Simple questions with a question word use 'did' + subject + base form ('did you spend'); after 'did' the verb never goes into the past form.",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Past Simple",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q52",
-    "prompt": "Choose the correct sentence for comparing two cities:",
-    "options": [
-      "New York is more much modern than London.",
-      "New York is much more modern than London.",
-      "New York is most modern than London.",
-      "New York is much moderner than London."
-    ],
-    "correctIndex": 1,
-    "explanation": "To emphasize a comparative, we use 'much' before the comparative form ('much more modern').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Comparatives and Superlatives",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q53",
-    "prompt": "Complete the sentence: 'Tom is away. He _____ away since Monday.'",
-    "options": [
-      "was",
-      "is",
-      "has been",
-      "had been"
-    ],
-    "correctIndex": 2,
-    "explanation": "'Since Monday' requires Present Perfect ('has been') to connect the past to the present.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect",
-    "core": false,
-    "stato": "duplicata-di:q39"
-  },
-  {
-    "id": "q54",
-    "prompt": "Complete the sentence: 'The sun _____ in the east and sets in the west.'",
-    "options": [
-      "rises",
-      "is rising",
-      "rise",
-      "rised"
-    ],
-    "correctIndex": 0,
-    "explanation": "We use the Present Simple for general truths and facts; with a third person singular subject the verb takes -s ('rises').",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Simple",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q55",
-    "prompt": "Complete the sentence: 'Have you ever _____ to Brazil?'",
-    "options": [
-      "been",
-      "gone",
-      "go",
-      "went"
-    ],
-    "correctIndex": 0,
-    "explanation": "We use 'been to' to mean 'visited and returned'.",
-    "category": "Grammatica",
-    "level": "B1",
-    "grammarTopic": "Present Perfect",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q56",
-    "prompt": "Complete the sentence: 'Is she _____ with friends?'",
-    "options": [
-      "gone",
-      "go",
-      "going",
-      "goes"
-    ],
-    "correctIndex": 2,
-    "explanation": "The auxiliary 'Is' indicates Present Continuous, which requires the -ing form ('going').",
-    "category": "Grammatica",
-    "level": "A2",
-    "grammarTopic": "Present Continuous",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q57",
-    "prompt": "Translate 'Hai mai mangiato sushi?'",
-    "options": [
-      "Have you ever eaten sushi?",
-      "Did you ever eat sushi?",
-      "Are you ever eat sushi?",
-      "Have you never eat sushi?"
-    ],
-    "correctIndex": 0,
-    "explanation": "We use Present Perfect ('Have you ever eaten') for life experiences.",
-    "category": "Traduzione",
-    "level": "B1",
-    "grammarTopic": "Present Perfect",
-    "core": false,
-    "stato": "da-riscrivere"
-  },
-  {
-    "id": "q58",
-    "prompt": "Complete the sentence: 'She _____ just finished her homework.'",
+    "prompt": "Complete the sentence: 'How long _____ your brother lived in London?'",
     "options": [
       "has",
       "have",
@@ -978,46 +536,488 @@
       "is"
     ],
     "correctIndex": 0,
-    "explanation": "'Just' is often used with Present Perfect, and 'She' takes 'has'.",
+    "explanation": "Present Perfect: 'has' (with he/she/it) + past participle ('lived').",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
-    "id": "q59",
-    "prompt": "Translate 'Non abbiamo ancora visto quel film.'",
+    "id": "q33",
+    "prompt": "Complete the sentence: 'Listen! Someone _____ at the door.'",
     "options": [
-      "We haven't seen that movie yet.",
-      "We didn't see that movie yet.",
-      "We don't see that movie yet.",
-      "We haven't saw that movie yet."
+      "knocks",
+      "knock",
+      "knocked",
+      "is knocking"
+    ],
+    "correctIndex": 3,
+    "explanation": "'Listen!' points to an action happening right now: Present Continuous ('is knocking').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Continuous",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q34",
+    "prompt": "Complete the sentence: 'Who _____ the window in the kitchen?'",
+    "options": [
+      "did broke",
+      "breaked",
+      "broke",
+      "has broke"
+    ],
+    "correctIndex": 2,
+    "explanation": "When 'who' is the subject, we don't use 'did': we put the verb in the past ('broke').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q35",
+    "prompt": "Choose the correct translation for 'Questa è la città più bella che io abbia mai visitato.'",
+    "options": [
+      "This is the more beautiful city I have ever visited.",
+      "This is the most beautiful city I have ever visited.",
+      "This is the beautifullest city I have ever visited.",
+      "This is the most beautifully city I have ever visited."
+    ],
+    "correctIndex": 1,
+    "explanation": "'Beautiful' is a long adjective: the superlative is 'the most beautiful'.",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Comparatives and Superlatives",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q36",
+    "prompt": "Choose the correct translation for 'Mio fratello gioca a calcio ogni sabato.'",
+    "options": [
+      "My brother plays football every Saturday.",
+      "My brother play football every Saturday.",
+      "My brother is play football every Saturday.",
+      "My brother plays to football every Saturday."
     ],
     "correctIndex": 0,
-    "explanation": "Present perfect negative with 'yet' for something expected to happen.",
+    "explanation": "Habits use the Present Simple; with 'he' the verb takes -s ('plays'). We say 'play football' without 'to'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q37",
+    "prompt": "Complete the sentence: 'What time _____ the film finish last night?'",
+    "options": [
+      "do",
+      "have",
+      "did",
+      "was"
+    ],
+    "correctIndex": 2,
+    "explanation": "A question about a finished past time uses 'did' + base verb ('finish').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q38",
+    "prompt": "Complete the sentence: 'Excuse me, where is your friend _____? Is he Spanish?'",
+    "options": [
+      "of",
+      "from",
+      "by",
+      "at"
+    ],
+    "correctIndex": 1,
+    "explanation": "To ask about someone's country of origin we say 'Where is he from?'.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "Questions and Origins",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q39",
+    "prompt": "Complete the sentence: 'The shop has been closed _____ last Tuesday.'",
+    "options": [
+      "for",
+      "since",
+      "from",
+      "until"
+    ],
+    "correctIndex": 1,
+    "explanation": "'Since' is used with a point in time ('last Tuesday') to show when something started.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q40",
+    "prompt": "Choose the correct translation for 'Ieri non ho studiato per l'esame.'",
+    "options": [
+      "I didn't study for the exam yesterday.",
+      "I didn't studied for the exam yesterday.",
+      "I wasn't study for the exam yesterday.",
+      "I don't studied for the exam yesterday."
+    ],
+    "correctIndex": 0,
+    "explanation": "The negative Past Simple is 'didn't' + base verb ('study').",
+    "category": "Traduzione",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q41",
+    "prompt": "Complete the sentence: 'The last ferry to the island _____ at 11 p.m., so we mustn't miss it.'",
+    "options": [
+      "leaving",
+      "leave",
+      "left",
+      "leaves"
+    ],
+    "correctIndex": 3,
+    "explanation": "For a timetable we use the Present Simple. With 'ferry' (it) the verb takes -s: 'leaves'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q42",
+    "prompt": "Complete the sentence: 'He is the kindest teacher I have _____ met.'",
+    "options": [
+      "never",
+      "always",
+      "ever",
+      "still"
+    ],
+    "correctIndex": 2,
+    "explanation": "'Ever' ('at any time in my life') is used with the Present Perfect after a superlative.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q43",
+    "prompt": "Complete the sentence: 'Our team _____ the national cup in 2016.'",
+    "options": [
+      "won",
+      "wins",
+      "has won",
+      "was winning"
+    ],
+    "correctIndex": 0,
+    "explanation": "A finished time in the past ('in 2016') needs the Past Simple ('won').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q44",
+    "prompt": "Choose the correct translation for 'Hai già conosciuto il nuovo professore?'",
+    "options": [
+      "Did you already met the new professor?",
+      "Have you already met the new professor?",
+      "Have you already meet the new professor?",
+      "Are you already meeting the new professor?"
+    ],
+    "correctIndex": 1,
+    "explanation": "We use the Present Perfect ('Have you already met') for a recent experience with no definite time.",
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
   },
   {
-    "id": "q60",
-    "prompt": "Complete the sentence: '_____ you ever flown in a helicopter?'",
+    "id": "q45",
+    "prompt": "Choose the correct translation for 'Lavoro qui da tre anni.'",
     "options": [
-      "Have",
-      "Did",
-      "Do",
-      "Are"
+      "I have worked here for three years.",
+      "I work here since three years.",
+      "I have worked here since three years.",
+      "I am working here for three years."
     ],
     "correctIndex": 0,
-    "explanation": "Present Perfect is used for asking about life experiences.",
+    "explanation": "For a situation that started in the past and continues now we use the Present Perfect with 'for' + a period of time.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q46",
+    "prompt": "Choose the correct translation for 'Mi piace la macchina di Paolo.'",
+    "options": [
+      "I like Paolo car.",
+      "I like the car's Paolo.",
+      "I like Paolo's car.",
+      "I'm like Paolo's car."
+    ],
+    "correctIndex": 2,
+    "explanation": "We show possession with a person's name + 's: 'Paolo's car'.",
+    "category": "Traduzione",
+    "level": "A1",
+    "grammarTopic": "Possessive S",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q47",
+    "prompt": "Complete the sentence: 'In my town _____ are three cinemas.'",
+    "options": [
+      "It",
+      "Those",
+      "Here",
+      "There"
+    ],
+    "correctIndex": 3,
+    "explanation": "'There are' is used to say that something exists.",
+    "category": "Grammatica",
+    "level": "A1",
+    "grammarTopic": "There is / There are",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q48",
+    "prompt": "Complete the sentence: 'My parents _____ dinner in the kitchen at the moment.'",
+    "options": [
+      "are cooking",
+      "cook",
+      "cooking",
+      "cooks"
+    ],
+    "correctIndex": 0,
+    "explanation": "'At the moment' needs the Present Continuous: 'are cooking'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Continuous",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q49",
+    "prompt": "Choose the correct sentence:",
+    "options": [
+      "If the weather will be nice tomorrow, we go to the beach.",
+      "If the weather is nice tomorrow, we would go to the beach.",
+      "If the weather is nice tomorrow, we will go to the beach.",
+      "If the weather be nice tomorrow, we will go to the beach."
+    ],
+    "correctIndex": 2,
+    "explanation": "First Conditional: if + Present Simple, will + base verb. No 'will' in the if-clause.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "First Conditional",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q50",
+    "prompt": "Complete the sentence: 'She _____ learning Chinese since she was twelve.'",
+    "options": [
+      "is",
+      "has been",
+      "was",
+      "had been"
+    ],
+    "correctIndex": 1,
+    "explanation": "'Since' + a point in the past with an action that continues: Present Perfect Continuous ('has been learning').",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
-    "stato": "da-riscrivere"
+    "stato": "riscritta"
+  },
+  {
+    "id": "q51",
+    "prompt": "Complete the sentence: 'What _____ for dinner last night?'",
+    "options": [
+      "did you cook",
+      "you cooked",
+      "did you cooked",
+      "are you cooking"
+    ],
+    "correctIndex": 0,
+    "explanation": "Past Simple questions use 'did' + subject + base form ('did you cook').",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Past Simple",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q52",
+    "prompt": "Choose the correct sentence for comparing two phones:",
+    "options": [
+      "This phone is more much cheaper than that one.",
+      "This phone is very cheaper than that one.",
+      "This phone is much cheaper as that one.",
+      "This phone is much cheaper than that one."
+    ],
+    "correctIndex": 3,
+    "explanation": "To strengthen a comparative we put 'much' before it ('much cheaper'); the second term follows 'than'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Comparatives and Superlatives",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q53",
+    "prompt": "Complete the sentence: 'Anna is ill. She _____ in bed since Sunday.'",
+    "options": [
+      "was",
+      "is",
+      "has been",
+      "had been"
+    ],
+    "correctIndex": 2,
+    "explanation": "'Since Sunday' needs the Present Perfect ('has been') to link the past to now.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q54",
+    "prompt": "Complete the sentence: 'The Moon _____ around the Earth every 27 days.'",
+    "options": [
+      "go",
+      "goes",
+      "went",
+      "is going"
+    ],
+    "correctIndex": 1,
+    "explanation": "We use the Present Simple for facts that are always true; with 'the Moon' (it) the verb takes -s.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Simple",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q55",
+    "prompt": "Complete the sentence: 'Where is Paolo?' - 'He has _____ to the supermarket. He'll be back in ten minutes.'",
+    "options": [
+      "been",
+      "go",
+      "went",
+      "gone"
+    ],
+    "correctIndex": 3,
+    "explanation": "'Has gone to' means he went there and is still there. 'Has been to' means he went and came back.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q56",
+    "prompt": "Complete the sentence: 'Are they _____ the match on TV?'",
+    "options": [
+      "watching",
+      "watch",
+      "watched",
+      "watches"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Are' shows the Present Continuous, so the verb takes -ing: 'watching'.",
+    "category": "Grammatica",
+    "level": "A2",
+    "grammarTopic": "Present Continuous",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q57",
+    "prompt": "Choose the correct translation for 'Hai mai suonato la chitarra?'",
+    "options": [
+      "Did you ever played the guitar?",
+      "Are you ever played the guitar?",
+      "Have you ever played the guitar?",
+      "Have you never played the guitar?"
+    ],
+    "correctIndex": 2,
+    "explanation": "We use the Present Perfect ('Have you ever played') to ask about life experiences.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q58",
+    "prompt": "Complete the sentence: 'The plane _____ just landed.'",
+    "options": [
+      "have",
+      "has",
+      "is",
+      "did"
+    ],
+    "correctIndex": 1,
+    "explanation": "'Just' is often used with the Present Perfect. 'The plane' is 'it', so we use 'has'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q59",
+    "prompt": "Choose the correct translation for 'Marta non ha ancora risposto alla mia email.'",
+    "options": [
+      "Marta hasn't answered my email yet.",
+      "Marta haven't answered my email yet.",
+      "Marta doesn't answer my email yet.",
+      "Marta hasn't answer my email yet."
+    ],
+    "correctIndex": 0,
+    "explanation": "Negative Present Perfect + 'yet' for something expected but not done: 'hasn't answered'.",
+    "category": "Traduzione",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "riscritta"
+  },
+  {
+    "id": "q60",
+    "prompt": "Complete the sentence: '_____ your parents ever visited Scotland?'",
+    "options": [
+      "Has",
+      "Did",
+      "Are",
+      "Have"
+    ],
+    "correctIndex": 3,
+    "explanation": "'Your parents' is plural, so the Present Perfect auxiliary is 'Have'.",
+    "category": "Grammatica",
+    "level": "B1",
+    "grammarTopic": "Present Perfect",
+    "core": false,
+    "stato": "riscritta"
   },
   {
     "id": "q61",

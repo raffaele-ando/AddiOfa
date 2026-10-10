@@ -1,0 +1,27 @@
+{
+  "id": "relative-clauses",
+  "titolo": "Frasi relative: who, which, that, whose",
+  "livello": "B1",
+  "regola": [
+    "*who* si usa per le persone, *which* per le cose, *that* per entrambe quando la relativa serve a identificare il nome.",
+    "*whose* indica possesso: *the girl whose car was stolen*.",
+    "*where* si usa per i luoghi e *when* per i periodi di tempo: *the days when I was young*.",
+    "Se la relativa è tra virgole (informazione in più), *that* non si può usare: *Paris, which is the capital of France, is beautiful.*"
+  ],
+  "esempi": [
+    { "en": "The man who lives next door is a doctor.", "it": "L'uomo che abita accanto è un dottore." },
+    { "en": "This is the book which I borrowed from the library.", "it": "Questo è il libro che ho preso in prestito in biblioteca." },
+    { "en": "The girl whose car was stolen is at the police station.", "it": "La ragazza a cui hanno rubato l'auto è alla stazione di polizia." },
+    { "en": "That's the house where I grew up.", "it": "Quella è la casa in cui sono cresciuto." },
+    { "en": "Winter is the season when it snows.", "it": "L'inverno è la stagione in cui nevica." },
+    { "en": "Paris, which is the capital of France, is beautiful.", "it": "Parigi, che è la capitale della Francia, è bellissima." }
+  ],
+  "errori": [
+    { "sbagliato": "The book who I bought was boring.", "giusto": "The book which I bought was boring.", "perche": "*who* si usa solo per le persone; per le cose serve *which* o *that*." },
+    { "sbagliato": "The woman who car was stolen is my neighbor.", "giusto": "The woman whose car was stolen is my neighbor.", "perche": "Per il possesso ('la cui') serve *whose*." },
+    { "sbagliato": "Paris, that is the capital of France, is beautiful.", "giusto": "Paris, which is the capital of France, is beautiful.", "perche": "Tra virgole non si usa *that*." },
+    { "sbagliato": "The hotel where we stayed at was on the beach.", "giusto": "The hotel that we stayed at was on the beach.", "perche": "Con *where* non si aggiunge la preposizione: o *where we stayed* oppure *that we stayed at*." }
+  ],
+  "consiglio": "Guarda il nome che precede: persona = *who*, cosa = *which* o *that*, luogo = *where*, tempo = *when*, 'di cui è' = *whose*.",
+  "domande": ["q404", "q406", "q605"]
+}

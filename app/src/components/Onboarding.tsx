@@ -57,6 +57,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
   const stateRef = useRef(appState);
   stateRef.current = appState;
   const diagTracked = useRef(false);
+  const quizStartedAt = useRef<number | null>(null);
 
   useEffect(() => {
     let vivo = true;
@@ -68,7 +69,8 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
   useEffect(() => {
     if (step !== 'result' || diagTracked.current) return;
     diagTracked.current = true;
-    track({ name: 'diag_done', audience: hasOfa === 'yes' ? 'recupero' : 'prevenzione' });
+    const seconds = quizStartedAt.current ? Math.round((Date.now() - quizStartedAt.current) / 1000) : undefined;
+    track({ name: 'diag_done', audience: hasOfa === 'yes' ? 'recupero' : 'prevenzione', seconds });
   }, [step, hasOfa, track]);
 
   // Barra di avanzamento: il passo di accesso conta solo se c'è
@@ -198,7 +200,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           </p>
           <Scena nome="quiz-test" />
           <div className="mt-auto">
-            <PrimaryButton disabled={quiz.length === 0} onClick={() => { questionStart.current = Date.now(); setStep('quiz'); }}>Inizia il quiz</PrimaryButton>
+            <PrimaryButton disabled={quiz.length === 0} onClick={() => { questionStart.current = Date.now(); quizStartedAt.current = Date.now(); setStep('quiz'); }}>Inizia il quiz</PrimaryButton>
           </div>
         </Screen>
       );

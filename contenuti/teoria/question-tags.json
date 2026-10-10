@@ -1,0 +1,27 @@
+{
+  "id": "question-tags",
+  "titolo": "Question tags",
+  "livello": "B1",
+  "regola": [
+    "Il tag è la piccola domanda finale con cui si chiede conferma: *It's cold today, isn't it?*",
+    "Frase positiva → tag negativo; frase negativa → tag positivo.",
+    "Il tag riprende lo stesso ausiliare della frase (*can → can't he*, *will → won't you*); se non c'è, si usa *do/does/did*: *She went to Paris, didn't she?*",
+    "Casi particolari: *I am → aren't I*, *Let's → shall we*, imperativo → *will you*; con *nothing, nobody, never* la frase è già negativa, quindi il tag è positivo."
+  ],
+  "esempi": [
+    { "en": "You are Italian, aren't you?", "it": "Siete italiani, vero?" },
+    { "en": "She went to Paris, didn't she?", "it": "È andata a Parigi, vero?" },
+    { "en": "He can't swim, can he?", "it": "Non sa nuotare, vero?" },
+    { "en": "I am right, aren't I?", "it": "Ho ragione, vero?" },
+    { "en": "Let's take a short break, shall we?", "it": "Facciamo una breve pausa, ti va?" },
+    { "en": "Nothing went wrong during the test, did it?", "it": "Durante il test non è andato storto niente, vero?" }
+  ],
+  "errori": [
+    { "sbagliato": "She didn't go to the party, didn't she?", "giusto": "She didn't go to the party, did she?", "perche": "Dopo una frase negativa il tag è positivo." },
+    { "sbagliato": "I am right, am not I?", "giusto": "I am right, aren't I?", "perche": "Con *I am* il tag è *aren't I*." },
+    { "sbagliato": "She went to Paris, wasn't she?", "giusto": "She went to Paris, didn't she?", "perche": "Senza ausiliare nella frase si usa *did/do/does*, non *be*." },
+    { "sbagliato": "Nobody phoned, didn't they?", "giusto": "Nobody phoned, did they?", "perche": "*Nobody* rende già negativa la frase, quindi il tag è positivo." }
+  ],
+  "consiglio": "Individua il verbo della frase, ripeti lo stesso ausiliare (o *do/does/did*) con il segno opposto e chiudi con un pronome.",
+  "domande": ["q529", "q535", "q581"]
+}

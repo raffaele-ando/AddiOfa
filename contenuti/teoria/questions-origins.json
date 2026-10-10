@@ -1,0 +1,28 @@
+{
+  "id": "questions-origins",
+  "titolo": "Domande e provenienza: how, where, whose",
+  "livello": "A1",
+  "regola": [
+    "Le domande si aprono con una parola interrogativa: *what* (che cosa), *where* (dove), *when* (quando), *why* (perché), *who* (chi), *whose* (di chi), *how* (come).",
+    "Con *be* il verbo va prima del soggetto: *Where is Maria from?*, *Are they Spanish?*",
+    "Con gli altri verbi servono *do/does/did*: *Where does your brother come from?*",
+    "Per la provenienza si dice *Where are you from?* oppure *Where do you come from?*, con *from* in fondo.",
+    "*how* si combina con altre parole: *how old* (età), *how much* (non numerabili e prezzi), *how many* (numerabili)."
+  ],
+  "esempi": [
+    { "en": "Where does your brother come from?", "it": "Da dove viene tuo fratello?" },
+    { "en": "Where is Maria from?", "it": "Di dov'è Maria?" },
+    { "en": "Where were you born?", "it": "Dove sei nato?" },
+    { "en": "How old are you?", "it": "Quanti anni hai?" },
+    { "en": "Whose bag is this?", "it": "Di chi è questa borsa?" },
+    { "en": "How many languages do you speak?", "it": "Quante lingue parli?" }
+  ],
+  "errori": [
+    { "sbagliato": "Where is your brother come from?", "giusto": "Where does your brother come from?", "perche": "*come* è un verbo normale: la domanda si fa con *does*, non con *is*." },
+    { "sbagliato": "Are they Spain?", "giusto": "Are they Spanish?", "perche": "Per la nazionalità serve l'aggettivo (*Spanish*), non il nome del paese." },
+    { "sbagliato": "Why you are late?", "giusto": "Why are you late?", "perche": "Nella domanda il verbo *be* precede il soggetto." },
+    { "sbagliato": "Who bag is this?", "giusto": "Whose bag is this?", "perche": "Per il possesso ('di chi') si usa *whose*." }
+  ],
+  "consiglio": "Traduci bene la parola italiana (*dove* = where, *di chi* = whose, *quanti anni* = how old) e controlla che dopo ci sia verbo + soggetto, con *do/does/did* se il verbo non è *be*.",
+  "domande": ["q111", "q114", "q199"]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "reported-speech",
+  "titolo": "Discorso indiretto (Reported Speech)",
+  "livello": "B1",
+  "regola": [
+    "Quando riporti le parole di qualcuno con un verbo al passato (*said, told, asked*), i tempi fanno un passo indietro (*backshift*): *am/is → was*, presente → passato, *will → would*, *can → could*, *have finished → had finished*.",
+    "Cambiano anche i pronomi: *I* diventa *he* o *she*.",
+    "*say* non vuole la persona (*He said that…*); con la persona si usa *tell* (*He told me that…*).",
+    "Nelle domande riportate l'ordine è quello della frase affermativa, senza *do/does/did*: *She asked if I liked coffee.*",
+    "Per ordini e consigli: *tell/ask/advise* + persona + *to* + verbo, al negativo *not to*."
+  ],
+  "esempi": [
+    { "en": "She said that she was tired.", "it": "Disse che era stanca." },
+    { "en": "He told me he would call me later.", "it": "Mi disse che mi avrebbe chiamato più tardi." },
+    { "en": "He asked me where I lived.", "it": "Mi chiese dove abitassi." },
+    { "en": "She asked me if I was okay.", "it": "Mi chiese se stessi bene." },
+    { "en": "He told me not to touch that.", "it": "Mi disse di non toccare quella cosa." },
+    { "en": "He advised me to study.", "it": "Mi ha consigliato di studiare." }
+  ],
+  "errori": [
+    { "sbagliato": "He said me that he was tired.", "giusto": "He told me that he was tired.", "perche": "*say* non è seguito dalla persona; con la persona si usa *tell*." },
+    { "sbagliato": "She asked me where did I live.", "giusto": "She asked me where I lived.", "perche": "Nella domanda riportata non c'è inversione né *did*." },
+    { "sbagliato": "He said that he will call later.", "giusto": "He said that he would call later.", "perche": "Con *said* al passato *will* diventa *would*." },
+    { "sbagliato": "He told me don't touch that.", "giusto": "He told me not to touch that.", "perche": "Un ordine negativo riportato si fa con *not to* + verbo." }
+  ],
+  "consiglio": "Guarda prima il verbo che introduce (*said, told, asked*): se è al passato, sposta i tempi indietro, poi controlla *say/tell* e l'ordine delle parole.",
+  "domande": ["q489", "q492", "q494"]
+}

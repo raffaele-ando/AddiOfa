@@ -47,9 +47,10 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
 
   // Al cambio di vista il focus va al titolo: la lettura riparte dall'alto
   const titoloRef = useRef<HTMLHeadingElement>(null);
-  const primaVolta = useRef(true);
+  const precedente = useRef(topicId);
   useEffect(() => {
-    if (primaVolta.current) { primaVolta.current = false; return; }
+    if (precedente.current === topicId) return;
+    precedente.current = topicId;
     titoloRef.current?.focus();
     titoloRef.current?.scrollIntoView({ block: 'start' });
   }, [topicId]);

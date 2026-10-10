@@ -1,0 +1,27 @@
+{
+  "id": "passive-voice",
+  "titolo": "Forma passiva",
+  "livello": "B1",
+  "regola": [
+    "Si forma con *be* + participio passato: *The bridge was built in 2005.*",
+    "Si usa quando interessa l'azione o chi la subisce, e chi la compie non si sa o non conta.",
+    "Il tempo si vede da *be*: *is built* (presente), *was built* (passato), *will be built* (futuro), *has been built* (Present Perfect), *is being built* (azione in corso).",
+    "Chi compie l'azione, se serve, si aggiunge con *by*; dopo un modale si usa *be* + participio (*must be solved*)."
+  ],
+  "esempi": [
+    { "en": "English is spoken in many countries.", "it": "In molti paesi si parla inglese." },
+    { "en": "My bicycle was stolen yesterday.", "it": "La mia bicicletta è stata rubata ieri." },
+    { "en": "My car is being repaired at the moment.", "it": "La mia auto è in riparazione in questo momento." },
+    { "en": "A new library will be built next year.", "it": "L'anno prossimo verrà costruita una nuova biblioteca." },
+    { "en": "The tickets have already been sold.", "it": "I biglietti sono già stati venduti." },
+    { "en": "The problem must be solved immediately.", "it": "Il problema deve essere risolto subito." }
+  ],
+  "errori": [
+    { "sbagliato": "The bridge was build in 2005.", "giusto": "The bridge was built in 2005.", "perche": "Dopo *be* serve il participio passato, non la forma base." },
+    { "sbagliato": "My car is repairing at the moment.", "giusto": "My car is being repaired at the moment.", "perche": "Il passivo di un'azione in corso è *is being* + participio." },
+    { "sbagliato": "The letter wrote by John yesterday.", "giusto": "The letter was written by John yesterday.", "perche": "Nel passivo manca *be*: ci vuole *was* + participio." },
+    { "sbagliato": "The problem must solved immediately.", "giusto": "The problem must be solved immediately.", "perche": "Dopo il modale va *be* prima del participio." }
+  ],
+  "consiglio": "Chiediti se il soggetto fa l'azione o la subisce: se la subisce, scegli l'opzione con *be* nel tempo giusto + participio passato.",
+  "domande": ["q465", "q468", "q472"]
+}

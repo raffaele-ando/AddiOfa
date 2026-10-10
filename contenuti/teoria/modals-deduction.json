@@ -1,0 +1,27 @@
+{
+  "id": "modals-deduction",
+  "titolo": "Deduzione: must, can't, might",
+  "livello": "B1",
+  "regola": [
+    "Servono per dire che cosa pensi sia vero, in base agli indizi che hai.",
+    "*must be* = sono quasi sicuro che sia così; *can't be* = sono quasi sicuro che non sia così; *might be* (o *may*, *could*) = è possibile, ma non lo so.",
+    "Dopo il modale va la forma base senza *to*: *must be*, *can't be*.",
+    "Il contrario di *must* in una deduzione è *can't*, non *mustn't*, che esprime un divieto."
+  ],
+  "esempi": [
+    { "en": "He has a Ferrari and a mansion. He must be very rich.", "it": "Ha una Ferrari e una villa. Deve essere molto ricco." },
+    { "en": "That can't be Sarah. She's in London this week.", "it": "Non può essere Sarah. Questa settimana è a Londra." },
+    { "en": "It's dark and the house is silent. They must be asleep.", "it": "È buio e la casa è silenziosa. Devono dormire." },
+    { "en": "I can't find my phone. It might be in the car.", "it": "Non trovo il telefono. Potrebbe essere in macchina." },
+    { "en": "That can't be John's car. His is blue, not red.", "it": "Quella non può essere l'auto di John. La sua è blu, non rossa." },
+    { "en": "Take an umbrella. It might rain later.", "it": "Prendi un ombrello. Potrebbe piovere più tardi." }
+  ],
+  "errori": [
+    { "sbagliato": "It mustn't be him.", "giusto": "It can't be him.", "perche": "Per dire 'sono sicuro che non sia lui' si usa *can't*; *mustn't* è un divieto." },
+    { "sbagliato": "He just ate a huge meal. He must be hungry.", "giusto": "He just ate a huge meal. He can't be hungry.", "perche": "L'indizio porta a escludere la fame, quindi serve *can't*." },
+    { "sbagliato": "She must to be from France.", "giusto": "She must be from France.", "perche": "Dopo un modale non si mette *to*." },
+    { "sbagliato": "I haven't checked, but she must be at home.", "giusto": "I haven't checked, but she might be at home.", "perche": "Se non sei sicuro, *must* è troppo forte: serve *might* o *could*." }
+  ],
+  "consiglio": "Misura quanto sei sicuro: molto sicuro di sì = *must*, molto sicuro di no = *can't*, non sicuro = *might*.",
+  "domande": ["q396", "q546", "q548"]
+}

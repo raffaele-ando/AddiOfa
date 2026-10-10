@@ -1,0 +1,27 @@
+{
+  "id": "gerunds-infinitives",
+  "titolo": "Gerundio o infinito",
+  "livello": "B1",
+  "regola": [
+    "Dopo alcuni verbi va il gerundio (-ing): *enjoy, avoid, finish, mind, keep, miss, can't stand*.",
+    "Dopo altri va l'infinito con *to*: *want, decide, hope, plan, promise, offer, would like*.",
+    "Dopo una preposizione si usa sempre -ing: *interested in learning*, *look forward to meeting* (qui *to* è una preposizione).",
+    "*stop, remember, forget, try* cambiano significato: *stop to have a coffee* (mi fermo per prendere un caffè), *stop smoking* (smetto di fumare)."
+  ],
+  "esempi": [
+    { "en": "I really enjoy reading books in my free time.", "it": "Mi piace molto leggere libri nel tempo libero." },
+    { "en": "She decided to buy a new car.", "it": "Ha deciso di comprare un'auto nuova." },
+    { "en": "Do you mind opening the window?", "it": "Ti dispiace aprire la finestra?" },
+    { "en": "I look forward to meeting you next week.", "it": "Non vedo l'ora di incontrarti la settimana prossima." },
+    { "en": "We stopped to have a coffee.", "it": "Ci siamo fermati per prendere un caffè." },
+    { "en": "He stopped smoking last year.", "it": "Ha smesso di fumare l'anno scorso." }
+  ],
+  "errori": [
+    { "sbagliato": "I enjoy to swim.", "giusto": "I enjoy swimming.", "perche": "*enjoy* vuole il gerundio, non l'infinito." },
+    { "sbagliato": "They want buying a new house.", "giusto": "They want to buy a new house.", "perche": "*want* vuole l'infinito con *to*." },
+    { "sbagliato": "I look forward to meet you.", "giusto": "I look forward to meeting you.", "perche": "In *look forward to* il *to* è una preposizione, quindi segue -ing." },
+    { "sbagliato": "Stop to make noise!", "giusto": "Stop making noise!", "perche": "*stop to* + verbo vuol dire 'fermarsi per fare'; per 'smettere di' si usa -ing." }
+  ],
+  "consiglio": "Impara le due liste corte (*enjoy, avoid, finish, mind* + -ing; *want, decide, hope, plan* + *to*) e ricorda che dopo una preposizione c'è sempre -ing.",
+  "domande": ["q398", "q425", "q566"]
+}

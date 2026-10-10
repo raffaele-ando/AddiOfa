@@ -1,0 +1,27 @@
+{
+  "id": "modals-ability-permission",
+  "titolo": "Capacità e permesso: can, could, may",
+  "livello": "A1",
+  "regola": [
+    "*can* indica capacità (*She can swim*) e serve anche per chiedere o dare un permesso (*Can I help you?*).",
+    "Resta sempre uguale: niente -s alla terza persona e dopo va la forma base senza *to*.",
+    "Nella domanda *can* passa davanti al soggetto, senza *do*; la negazione è *can't* o *cannot*.",
+    "Per una capacità che avevi nel passato si usa *could*; *may* è più formale per chiedere permesso (*May I come in?*)."
+  ],
+  "esempi": [
+    { "en": "She can swim very well.", "it": "Sa nuotare molto bene." },
+    { "en": "Can I help you?", "it": "Posso aiutarti?" },
+    { "en": "Can I offer you something to drink?", "it": "Ti posso offrire qualcosa da bere?" },
+    { "en": "James can speak English very well.", "it": "James parla molto bene l'inglese." },
+    { "en": "When I was ten, I could swim across the lake.", "it": "Quando avevo dieci anni riuscivo ad attraversare il lago a nuoto." },
+    { "en": "May I open the window?", "it": "Posso aprire la finestra?" }
+  ],
+  "errori": [
+    { "sbagliato": "She can swims very well.", "giusto": "She can swim very well.", "perche": "Dopo *can* il verbo è alla forma base, anche con *she*." },
+    { "sbagliato": "Do I can help you?", "giusto": "Can I help you?", "perche": "*can* fa la domanda da solo: non vuole *do*." },
+    { "sbagliato": "Francesco can to speak English.", "giusto": "Francesco can speak English.", "perche": "Dopo *can* non si mette *to*." },
+    { "sbagliato": "She knows swim very well.", "giusto": "She can swim very well.", "perche": "Per 'sapere fare' si usa *can*, non *know*." }
+  ],
+  "consiglio": "Dopo *can* e *could* il verbo resta nudo: niente -s, niente *to*, niente *do* nelle domande.",
+  "domande": ["q139", "q145", "q24"]
+}

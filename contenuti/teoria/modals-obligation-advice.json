@@ -1,0 +1,27 @@
+{
+  "id": "modals-obligation-advice",
+  "titolo": "Obbligo e consiglio: must, have to, should",
+  "livello": "A2",
+  "regola": [
+    "*must* e *have to* esprimono obbligo; *have to* è più usato per regole e doveri che vengono da fuori (*He has to work late today*).",
+    "*should* dà un consiglio: *You should eat more vegetables.*",
+    "*mustn't* esprime un divieto; *don't have to* vuol dire che non è necessario, ma si può fare.",
+    "*must* e *should* sono seguiti dalla forma base senza *to*; *have to* si comporta come un verbo normale: *Do I have to…?*, *He has to…*"
+  ],
+  "esempi": [
+    { "en": "You mustn't use your phone during the exam.", "it": "Non devi usare il telefono durante l'esame." },
+    { "en": "You don't have to come if you're tired.", "it": "Non sei obbligato a venire se sei stanco." },
+    { "en": "You should drink more water.", "it": "Dovresti bere più acqua." },
+    { "en": "Should I wear a suit to the interview?", "it": "Dovrei mettere il completo per il colloquio?" },
+    { "en": "Do I have to take off my shoes?", "it": "Devo togliermi le scarpe?" },
+    { "en": "He has to work late today.", "it": "Oggi deve lavorare fino a tardi." }
+  ],
+  "errori": [
+    { "sbagliato": "You must to go now.", "giusto": "You must go now.", "perche": "Dopo un modale non si mette *to*." },
+    { "sbagliato": "You don't have to touch that wire! It's dangerous.", "giusto": "You mustn't touch that wire! It's dangerous.", "perche": "Per un divieto serve *mustn't*: *don't have to* vuol dire solo che non è necessario." },
+    { "sbagliato": "He musts work late today.", "giusto": "He has to work late today.", "perche": "*must* non prende la -s; alla terza persona si usa *has to*." },
+    { "sbagliato": "Do I must wear a suit?", "giusto": "Do I have to wear a suit?", "perche": "*must* non usa *do*: o *Must I…?* oppure *Do I have to…?*" }
+  ],
+  "consiglio": "Quando in italiano trovi 'non devi', chiediti se è un divieto (*mustn't*) o solo non necessario (*don't have to*).",
+  "domande": ["q347", "q354", "q358"]
+}
