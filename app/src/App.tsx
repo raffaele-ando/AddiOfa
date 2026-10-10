@@ -35,17 +35,8 @@ import Paywall from './screens/Paywall';
 import Waitlist from './screens/Waitlist';
 import Invites from './screens/Invites';
 import Legal from './screens/Legal';
-// La teoria arriva dopo (agente H) e pesa: si carica solo quando serve. Con il glob l'app parte anche se il file non c'è ancora.
-// Quando screens/Theory.tsx esiste basta sostituire con: lazy(() => import('./screens/Theory'))
-type TheoryProps = { onBack(): void; onOpenPaywall(): void; initialTopicId?: string };
-const moduliTeoria = import.meta.glob<{ default: React.ComponentType<TheoryProps> }>('./screens/Theory.tsx');
-const Theory = lazy(() => moduliTeoria['./screens/Theory.tsx']?.()
-  ?? Promise.resolve({ default: ({ onBack }: TheoryProps) => (
-    <div className="h-full w-full flex flex-col items-center justify-center gap-3 p-6 text-center bg-white dark:bg-[#1E293B] text-sm text-[#6B7280]">
-      <p>La teoria arriva presto.</p>
-      <button type="button" onClick={onBack} className="font-semibold text-[#EF4444]">Torna indietro</button>
-    </div>
-  ) }));
+// La teoria pesa: si carica solo quando serve
+const Theory = lazy(() => import('./screens/Theory'));
 // Strumenti da sviluppo: fuori dalla build di produzione
 const BrandKit = import.meta.env.DEV ? lazy(() => import('./brand/BrandKit')) : null;
 const DebugMode = import.meta.env.DEV ? lazy(() => import('./components/DebugMode')) : null;

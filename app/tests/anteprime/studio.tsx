@@ -38,8 +38,9 @@ const SENZA: Entitlement = { tier: 'free', source: 'none', expiresAt: null };
 // Il LocalProvider vero, con errori forzati e un TENG finto a richiesta
 class ProviderDiProva extends LocalProvider {
   private guasto = fallisci;
+  private restano = 2; // in sviluppo StrictMode avvia l'effetto due volte: la prima chiamata viene scartata
   async getQuestions(ids: string[]): Promise<PublicQuestion[]> {
-    if (this.guasto === 'domande') { this.guasto = null; throw new Error('network'); }
+    if (this.guasto === 'domande' && this.restano-- > 0) throw new Error('network');
     return super.getQuestions(ids);
   }
   async grade(id: string, i: number): Promise<GradeResult> {

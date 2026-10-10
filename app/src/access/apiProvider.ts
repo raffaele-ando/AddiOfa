@@ -19,11 +19,11 @@ let idMemoria: string | null = null;
 function idDispositivo(): string {
   try {
     const v = localStorage.getItem(KEY_DEVICE);
-    if (v) return v;
+    if (v && /^[A-Za-z0-9]{16,64}$/.test(v)) return v;
   } catch { /* ripiego sotto */ }
   if (!idMemoria) {
-    try { idMemoria = crypto.randomUUID(); }
-    catch { idMemoria = `d${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`; }
+    try { idMemoria = crypto.randomUUID().replace(/-/g, ''); }
+    catch { idMemoria = `d${Date.now().toString(36)}${Math.random().toString(36).slice(2, 12)}`.padEnd(16, '0'); }
     try { localStorage.setItem(KEY_DEVICE, idMemoria); } catch { /* resta in memoria */ }
   }
   return idMemoria;

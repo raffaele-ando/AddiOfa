@@ -52,6 +52,8 @@ export interface ExamResult {
   omitted: number;
   score: number;          // punteggio con la penalità del formato
   passed: boolean;        // rawCorrect >= soglia del formato
+  timedOut?: boolean;     // solo dal server: consegna oltre il tempo
+  elapsedSeconds?: number; // solo dal server
   perQuestion: ExamQuestionResult[];
 }
 

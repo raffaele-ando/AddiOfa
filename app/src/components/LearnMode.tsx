@@ -63,8 +63,9 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
 
   // Senza Pass non si entra nel ripasso sugli errori: lo decide già il menu, qui è una rete di sicurezza
   const blocked = !pass && mode === 'weakness';
+  const avvisato = useRef(false);
   useEffect(() => {
-    if (blocked) onNeedPass('errori');
+    if (blocked && !avvisato.current) { avvisato.current = true; onNeedPass('errori'); }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blocked]);
 

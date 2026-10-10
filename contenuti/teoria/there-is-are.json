@@ -1,0 +1,28 @@
+{
+  "id": "there-is-are",
+  "titolo": "There is / There are: esistenza e presenza",
+  "livello": "A1",
+  "regola": [
+    "Si usa per dire che qualcosa esiste o si trova in un posto: *there is* con il singolare e con i non numerabili, *there are* con il plurale.",
+    "Nel passato diventa *there was* / *there were*; la domanda si fa invertendo: *Is there a bank here?*, *Are there any messages?*",
+    "Nelle negative e nelle domande con i plurali e i non numerabili si usa *any*: *There aren't any chairs*, *Is there any milk?* Con *no* il verbo resta affermativo: *There is no problem*.",
+    "*There* indica che qualcosa c'è, *it* parla di qualcosa che già conosci: *There is a bus at six* ma *It is late*.",
+    "Non si usano *have* né *do* per dire \"c'è\": *Do there...?* e *There have...* sono sbagliati."
+  ],
+  "esempi": [
+    { "en": "There is a big tree in the garden.", "it": "C'è un grande albero in giardino." },
+    { "en": "There are three chairs in the room.", "it": "Ci sono tre sedie nella stanza." },
+    { "en": "Is there a good restaurant near here?", "it": "C'è un buon ristorante qui vicino?" },
+    { "en": "Are there any messages for me?", "it": "Ci sono messaggi per me?" },
+    { "en": "There isn't any sugar in my coffee.", "it": "Non c'è zucchero nel mio caffè." },
+    { "en": "There was nobody at home.", "it": "Non c'era nessuno in casa." }
+  ],
+  "errori": [
+    { "sbagliato": "There is people in the room.", "giusto": "There are people in the room.", "perche": "*People* è plurale, quindi serve *there are*." },
+    { "sbagliato": "They are many cars on the street.", "giusto": "There are many cars on the street.", "perche": "Per dire \"ci sono\" si usa *there are*, non *they are*." },
+    { "sbagliato": "There isn't no sugar in my coffee.", "giusto": "There isn't any sugar in my coffee.", "perche": "Una sola negazione: con *isn't* si usa *any*, non *no*." },
+    { "sbagliato": "Do there any biscuits in the box?", "giusto": "Are there any biscuits in the box?", "perche": "La domanda si fa con *are there*, senza *do*." }
+  ],
+  "consiglio": "Guarda il nome dopo il verbo: se è singolare o non numerabile scegli *is*, se è plurale scegli *are*.",
+  "domande": ["q210", "q213", "q62"]
+}
