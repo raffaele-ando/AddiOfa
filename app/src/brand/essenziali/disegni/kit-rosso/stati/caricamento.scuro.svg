@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 74 76" width="74" height="76">
+<title>Caricamento</title>
+<defs><linearGradient id="traccia-luce" gradientUnits="userSpaceOnUse" x1="9.4" y1="10.4" x2="64.6" y2="65.6"><stop offset="0" stop-color="#FDD0D1"/><stop offset="1" stop-color="#FEEBEB"/></linearGradient><linearGradient id="corto-luce" gradientUnits="userSpaceOnUse" x1="37" y1="10.4" x2="64.6" y2="38"><stop offset="0" stop-color="#FD9DA2"/><stop offset="1" stop-color="#FC8C92"/></linearGradient><linearGradient id="lungo-luce" gradientUnits="userSpaceOnUse" x1="9.4" y1="38" x2="37" y2="65.6"><stop offset="0" stop-color="#FD4048"/><stop offset="1" stop-color="#EE2A34"/></linearGradient></defs>
+<circle id="fondo" cx="37" cy="38" r="27.6" fill="#FFFFFF"/>
+<circle id="traccia" cx="37" cy="38" r="27.6" fill="none" stroke="url(#traccia-luce)" stroke-width="6.6"/>
+<g id="rotore" fill="none" stroke-width="6.6" stroke-linecap="round"><path id="arco-corto" d="M40.36 10.61 A27.6 27.6 0 0 1 61.59 25.47" stroke="url(#corto-luce)"/><path id="arco-lungo" d="M45.07 64.39 A27.6 27.6 0 0 1 9.82 42.79" stroke="url(#lungo-luce)"/><path id="arco-lungo-riflesso" d="M36.54 64.1 A26.1 26.1 0 0 1 12.8 47.78" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="1.2"/></g>
+</svg>

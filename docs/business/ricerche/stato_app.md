@@ -17,7 +17,7 @@ Il lavoro per arrivare a una vendita seria è di circa **33 giorni di lavoro**, 
 
 ## 1. Contenuti
 
-### 1.1 Numeri reali (`OfaEnglish/src/data/questions.ts`, 9.553 righe)
+### 1.1 Numeri reali (`app/src/data/questions.ts`, 9.553 righe)
 
 | Dato | Valore |
 |---|---|
@@ -61,7 +61,7 @@ Il lavoro per arrivare a una vendita seria è di circa **33 giorni di lavoro**, 
 - Il nucleo originale q1–q60 è costruito sulle stesse frasi, tradotte o riformulate: Brasile (q1↔q613), Africa 2009 (q5↔q622), Mr Smith's wife (q3↔q623), worst day (q4↔q615), New York more modern (q6↔q635), Tom away since Monday (q39/q53↔q607).
 - La skill dice che il nucleo andrebbe formato "dalle domande più frequenti all'esame (ricordate da chi l'ha già fatto o prese dalle simulazioni ufficiali)" (`.claude/skills/metodo-di-studio/references/adattamento-per-esame.md:23`).
 - Il REPORT scrive: "Se il nucleo ricalca le domande dell'esame vero, come fa pensare il nome…" (`REPORT.md:126`).
-- `docs/addiofa_strategia.md:435` e `:490` segnalano già l'origine delle 636 frasi come "da chiarire".
+- `docs/strategia/addiofa-strategia.md:435` e `:490` segnalano già l'origine delle 636 frasi come "da chiarire".
 - Non sono riuscito a identificare la fonte con una ricerca web.
 - **Rischio:** se sono domande del test di Ateneo, di un ente o di un placement test editoriale, venderle è riproduzione di materiale protetto o riservato. In più comprometterebbe la tua posizione in PoliNetwork.
 - **Cosa fare:** togliere o riscrivere q607–q636 e controllare q1–q60. Le restanti ~550 hanno lo stile uniforme da "generate a blocchi" (`tools/archivio/add_questions_*.cjs`) e non mostrano tracce di copia.
@@ -76,9 +76,9 @@ Il lavoro per arrivare a una vendita seria è di circa **33 giorni di lavoro**, 
 | Penalità | Nessuna | −0,25 per errore (vale solo per la graduatoria, non per la soglia OFA, `REPORT.md:50-55`) |
 
 - La frase "30 domande in 15 minuti, soglia 25/30" che ti è stata riferita mescola due cose: 30 domande in 15 minuti è il test reale, 25/30 è la soglia del simulatore. La soglia reale è 24.
-- **Punto critico per la vendita.** Chi ha già l'OFA non rifà il TOL: fa il **test di recupero presso gli enti convenzionati** (`offer.ts:12-17`, `docs/simulatore_ofa.md:14`). Il formato di quel test **non è verificato**:
-  - `docs/simulatore_ofa.md:10` dice "30 in 15 minuti, soglia 25/30, come il test degli enti convenzionati";
-  - `docs/addiofa_strategia.md:55` dice "di solito 15 domande in 30 minuti".
+- **Punto critico per la vendita.** Chi ha già l'OFA non rifà il TOL: fa il **test di recupero presso gli enti convenzionati** (`offer.ts:12-17`, `docs/strategia/simulatore-ofa.md:14`). Il formato di quel test **non è verificato**:
+  - `docs/strategia/simulatore-ofa.md:10` dice "30 in 15 minuti, soglia 25/30, come il test degli enti convenzionati";
+  - `docs/strategia/addiofa-strategia.md:55` dice "di solito 15 domande in 30 minuti".
   - Non ho trovato fonti online.
   - Bisogna verificarlo prima di promettere "simulazioni identiche al test" e soprattutto prima di offrire una garanzia legata a quel test.
 
@@ -129,7 +129,7 @@ Il lavoro per arrivare a una vendita seria è di circa **33 giorni di lavoro**, 
 
 ### 3.3 Regole Firestore
 
-- `OfaEnglish/firestore.rules:5-6`: ogni utente legge e scrive solo `users/{uid}`. Per la privacy è corretto, ma **non c'è alcuna validazione** di schema, dimensione o campi.
+- `app/firestore.rules:5-6`: ogni utente legge e scrive solo `users/{uid}`. Per la privacy è corretto, ma **non c'è alcuna validazione** di schema, dimensione o campi.
 - Nel repository non c'è un `firebase.json`, quindi non si può verificare se le regole pubblicate siano davvero queste.
 - `firebase-blueprint.json` è un residuo di AI Studio e non è usato.
 
@@ -141,7 +141,7 @@ Il lavoro per arrivare a una vendita seria è di circa **33 giorni di lavoro**, 
 ### 3.5 Chiavi e configurazione esposte
 
 - **Config Firebase in chiaro** in `src/lib/firebase.ts:5-13` (progetto `ofaenglish-f3719`, `apiKey`, `measurementId`). Per Firebase web è normale: la chiave non è segreta, la protezione sono le regole e i domini autorizzati. Conviene comunque limitare la chiave per referrer HTTP nella console Google Cloud.
-- **`OfaEnglish/firebase-applet-config.json`**: residuo di AI Studio con un **altro progetto** (`mimetic-resolver-7szp9`), `apiKey` e `oAuthClientId`. Non è usato dal codice ma è versionato in git: va tolto e la chiave va revocata se il progetto non serve più.
+- **`app/firebase-applet-config.json`**: residuo di AI Studio con un **altro progetto** (`mimetic-resolver-7szp9`), `apiKey` e `oAuthClientId`. Non è usato dal codice ma è versionato in git: va tolto e la chiave va revocata se il progetto non serve più.
 - `atlas/.dev.vars` contiene `ALLOW_TEST_TOKENS`. Non è versionato (`.gitignore`), ma in produzione non deve mai essere `true` (`atlas/src/index.ts:76`).
 - Nessun segreto di pagamento nel repository (i link di pagamento sono pubblici per natura).
 
@@ -153,14 +153,14 @@ Il lavoro per arrivare a una vendita seria è di circa **33 giorni di lavoro**, 
 
 ### 3.7 File da togliere o ripulire
 
-- **Repository.** `.git` pesa 644 MB, `OfaEnglish/brand/` 508 MB, `strumenti/` 21 MB (inclusi `__pycache__`). Alla radice ci sono 7 PNG da circa 1,3 MB ciascuno, `chat-idea-bozza.md` (375 KB, chat grezza con tattiche che `docs/addiofa_strategia.md` §8 giudica scorrette: meglio non renderla pubblica) e `design-concept/`. Il codice dell'app va separato dal laboratorio grafico, soprattutto se il repository diventa pubblico.
+- **Repository.** `.git` pesa 644 MB, `grafica/brand/` 508 MB, `strumenti/` 21 MB (inclusi `__pycache__`). Alla radice ci sono 7 PNG da circa 1,3 MB ciascuno, `chat-idea-bozza.md` (375 KB, chat grezza con tattiche che `docs/strategia/addiofa-strategia.md` §8 giudica scorrette: meglio non renderla pubblica) e `design-concept/`. Il codice dell'app va separato dal laboratorio grafico, soprattutto se il repository diventa pubblico.
 - **Residui di AI Studio:** `firebase-applet-config.json`, `firebase-blueprint.json`, `metadata.json`, commenti `DISABLE_HMR` in `vite.config.ts:35-40`.
-- **`tools/archivio/`**: fuori dal bundle, ma con dump completi del banco (`all_questions_detailed.txt`). Se il repository è pubblico, il banco è comunque già pubblico.
+- **`contenuti/archivio/`**: fuori dal bundle, ma con dump completi del banco (`all_questions_detailed.txt`). Se il repository è pubblico, il banco è comunque già pubblico.
 - **Peso della build:** 28 MB, di cui 20 MB di SVG. Le illustrazioni pesano 200–860 KB l'una e quella dell'intro, `studio-inglese`, circa 500–660 KB. Pesano sul primo caricamento da telefono, proprio nella prima schermata del funnel.
 
 ### 3.8 Compilazione
 
-- `npx tsc --noEmit` in OfaEnglish: **0 errori**.
+- `npx tsc --noEmit` in app: **0 errori**.
 - `vite build`: **riuscita** in 11 secondi, con avviso per i chunk oltre 500 KB (index 853 KB, firebase 671 KB, charts 408 KB).
 - `npx tsc --noEmit` in atlas: **0 errori**.
 
@@ -206,8 +206,8 @@ Il lavoro per arrivare a una vendita seria è di circa **33 giorni di lavoro**, 
 | README.md | 636 domande, 24 regole, pagamenti disattivati, serve la verifica lato server | **Coerente.** È il documento più aggiornato e onesto |
 | README.md, sezione Struttura | "funnel dei mockup … piani", "checkout esterno" | Coerente: il checkout esiste solo come link |
 | vite.config.ts:24 | "banco domande in file separati" | Falso: le domande sono nel chunk principale |
-| docs/simulatore_ofa.md:10 e docs/addiofa_strategia.md:55 | 30 in 15 min con soglia 25 / 15 in 30 min | Si contraddicono. Nessuno dei due è verificato per il test di recupero |
-| docs/simulatore_ofa.md:30 | "eliminare il salvataggio ogni 60 secondi e il documento unico", "togliere domande dal codice" | **Non fatto** (§3.4, §3.1) |
+| docs/strategia/simulatore-ofa.md:10 e docs/strategia/addiofa-strategia.md:55 | 30 in 15 min con soglia 25 / 15 in 30 min | Si contraddicono. Nessuno dei due è verificato per il test di recupero |
+| docs/strategia/simulatore-ofa.md:30 | "eliminare il salvataggio ogni 60 secondi e il documento unico", "togliere domande dal codice" | **Non fatto** (§3.4, §3.1) |
 | Skill metodo-di-studio (SKILL.md) | "gamification vera, non livelli/XP/streak" | L'app mostra ancora XP e livelli |
 | Skill, `assets/codice-ofa/` | Copia del codice dell'app | Diverge già dal codice attuale (es. `ExamMode.tsx`). Va presentata come esempio, non come codice dell'app |
 | sapere/*.md | Quasi tutto sul brand (logo, illustrazioni, strumenti) | Coerente, ma mostra dove è andato il lavoro: il brand è finito, monetizzazione e backend no |
@@ -239,5 +239,5 @@ Il lavoro per arrivare a una vendita seria è di circa **33 giorni di lavoro**, 
 1. **Provenienza di q607–q636 e del nucleo q1–q60.** Rischio di diritto d'autore e di riservatezza del test, oltre che di reputazione.
 2. **Nessuna protezione dei contenuti e nessuna verifica degli acquisti.** Pagare non sblocca nulla e il banco è già scaricabile gratis.
 3. **Garanzia di rimborso basata su dati falsificabili**, legata a un test (il recupero presso gli enti) di cui non si conosce il formato.
-4. **Legale e fiscale**: termini, privacy, recesso per contenuti digitali, partita IVA, uso di gruppi e canali dove hai un ruolo (`docs/simulatore_ofa.md:35`).
+4. **Legale e fiscale**: termini, privacy, recesso per contenuti digitali, partita IVA, uso di gruppi e canali dove hai un ruolo (`docs/strategia/simulatore-ofa.md:35`).
 5. **Nessuna analytics**: si lancia senza poter misurare se vende o se funziona.

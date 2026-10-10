@@ -1,0 +1,15 @@
+# Cartelle pesanti o rigenerabili: fuori dalle ricerche (grep, rg, Glob) per tenerle veloci.
+# Per cercarci dentro apposta: rg --no-ignore-parent -uu ... oppure indicare il percorso esplicito.
+node_modules/
+dist/
+dist-demo/
+.wrangler/
+grafica/brand/concept/
+grafica/brand/concept-svg/
+grafica/brand/tavole/
+grafica/brand/livelli/
+grafica/brand/vettori/
+grafica/fonti/
+contenuti/archivio/
+docs/archivio/
+**/__pycache__/

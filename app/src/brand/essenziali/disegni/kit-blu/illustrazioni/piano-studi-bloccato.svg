@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 159" width="202" height="159">
+<title>Piano di studi bloccato</title>
+<defs><filter id="sfuma-ombra" filterUnits="userSpaceOnUse" x="0" y="0" width="202" height="159"><feGaussianBlur stdDeviation="2.5"/></filter><linearGradient id="testata-luce" gradientUnits="userSpaceOnUse" x1="36" y1="43" x2="166" y2="68"><stop offset="0" stop-color="#6C9BF0"/><stop offset="1" stop-color="#3B72E6"/></linearGradient><linearGradient id="anello-luce" gradientUnits="userSpaceOnUse" x1="0" y1="31" x2="0" y2="58"><stop offset="0" stop-color="#3B6FE0"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient><linearGradient id="lucchetto-luce" gradientUnits="userSpaceOnUse" x1="130" y1="102" x2="181" y2="153"><stop offset="0" stop-color="#F87171"/><stop offset="0.5" stop-color="#EF4444"/><stop offset="1" stop-color="#DC2626"/></linearGradient><linearGradient id="arco-luce" gradientUnits="userSpaceOnUse" x1="0" y1="78" x2="0" y2="106"><stop offset="0" stop-color="#F87171"/><stop offset="1" stop-color="#DC2626"/></linearGradient></defs>
+<g id="nuvola" fill="#F2F6FE"><ellipse cx="104" cy="86" rx="92" ry="66"/><circle cx="36" cy="112" r="30"/></g>
+<rect id="ombra-foglio" x="40" y="148" width="122" height="7" rx="3.5" fill="#1D4ED8" opacity="0.12" filter="url(#sfuma-ombra)"/>
+<rect id="foglio" x="36" y="43" width="130" height="109" rx="10" fill="#FFFFFF" stroke="#DBEAFE" stroke-width="1.2"/>
+<path id="testata" d="M36 68 V53 A10 10 0 0 1 46 43 H156 A10 10 0 0 1 166 53 V68 Z" fill="url(#testata-luce)"/>
+<path id="testata-riflesso" d="M44 47 H158" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round"/>
+<g id="anelli"><rect id="anello-1" x="58.0" y="31" width="9" height="27" rx="4.5" fill="url(#anello-luce)"/><rect x="60.7" y="34" width="2.4" height="14" rx="1.2" fill="#FFFFFF" opacity="0.35"/><rect id="anello-2" x="134.0" y="31" width="9" height="27" rx="4.5" fill="url(#anello-luce)"/><rect x="136.7" y="34" width="2.4" height="14" rx="1.2" fill="#FFFFFF" opacity="0.35"/></g>
+<g id="caselle" fill="#DCE7FB"><rect x="57" y="81" width="20" height="21" rx="4.5"/><rect x="91" y="81" width="20" height="21" rx="4.5"/><rect x="125" y="81" width="20" height="21" rx="4.5"/><rect x="57" y="115" width="20" height="21" rx="4.5"/><rect x="91" y="115" width="20" height="21" rx="4.5"/><rect x="125" y="115" width="20" height="21" rx="4.5"/></g>
+<ellipse id="ombra-lucchetto" cx="156" cy="154" rx="24" ry="3" fill="#DC2626" opacity="0.2" filter="url(#sfuma-ombra)"/>
+<path id="lucchetto-arco" d="M141.5 106 V93 A14 14 0 0 1 169.5 93 V106" fill="none" stroke="url(#arco-luce)" stroke-width="9" stroke-linecap="round"/>
+<rect id="lucchetto-corpo" x="130" y="102" width="51" height="51" rx="8" fill="url(#lucchetto-luce)"/>
+<path id="lucchetto-riflesso" d="M136 110 H160" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round"/>
+<g id="buco-chiave" fill="#FFFFFF"><circle cx="155.5" cy="122" r="5.5"/><path d="M153.66 124 L157.34 124 C157.6 124 157.82 124.2 157.84 124.46 L158.87 137.38 C158.94 138.25 158.25 139 157.38 139 L153.62 139 C152.75 139 152.06 138.25 152.13 137.38 L153.16 124.46 C153.18 124.2 153.4 124 153.66 124 Z"/></g>
+</svg>

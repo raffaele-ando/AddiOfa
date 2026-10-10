@@ -18,7 +18,7 @@ npx wrangler login        # una volta sola
 npx wrangler deploy       # pubblica su https://atlas.<tuo-sottodominio>.workers.dev
 ```
 
-Poi, nell'app, imposta `VITE_ATLAS_API_URL` con quell'indirizzo (vedi `OfaEnglish/.env.example`) e ripubblica l'app.
+Poi, nell'app, imposta `VITE_ATLAS_API_URL` con quell'indirizzo (vedi `app/.env.example`) e ripubblica l'app.
 
 ## Sviluppo locale
 
@@ -59,7 +59,7 @@ Punteggio NOI = domande imparate × 100 + miglior simulazione: vince chi sa più
 | `noi.leaderboard` | no | @nome, domande imparate e miglior simulazione visibili in classifica |
 | `atlas.personalize` | no | ATLAS usa i dati dell'app per personalizzare le altre app |
 
-Cambiando testi o permessi, aumenta `CONSENT_VERSION` in `src/scopes.ts` e in `OfaEnglish/src/config/ecosystem.ts`: gli utenti rivedranno la schermata di consenso.
+Cambiando testi o permessi, aumenta `CONSENT_VERSION` in `src/scopes.ts` e in `app/src/config/ecosystem.ts`: gli utenti rivedranno la schermata di consenso.
 
 ## Limiti da sapere
 

@@ -45,7 +45,7 @@ Delle due conversazioni con l'altra AI regge circa un terzo. Reggono:
 
 Il resto sono numeri inventati, conti sbagliati e tattiche che in un ateneo chiuso come il Poli fanno perdere più soldi di quanti ne portano.
 
-Le due fonti lette per intero sono `chat-idea-bozza.md` e il riassunto `docs/addiofa_strategia.md`, quest'ultimo di una seconda chat che nel repository non c'è.
+Le due fonti lette per intero sono `docs/archivio/chat-idea-bozza.md` e il riassunto `docs/strategia/addiofa-strategia.md`, quest'ultimo di una seconda chat che nel repository non c'è.
 
 ### Le tue intuizioni giuste
 
@@ -484,7 +484,7 @@ Tutte aperte il 9 ottobre 2026. I rapporti completi delle ricerche, con il grado
 - [CISIA, dati TOLC 2025](https://www.cisiaonline.it/report-e-statistiche/analisi-TOLC-2025/dati-TOLC-2025)
 - [PoliTo, IELTS](https://www.polito.it/en/education/services-and-life-at-politecnico/polito-language-centre-cla/english/to-know-before-registering-for-the-ielts-test)
 - [Bicocca, idoneità linguistica](https://www.unimib.it/studiare/opportunita-studio/lingue-unimib/idoneita-ateneo-e-accertamento-linguistico)
-- Analisi aggregata delle graduatorie 2021-2026 e sondaggio di Gestionale: `polimi_rankings_analisi/` e chat nel repository.
+- Analisi aggregata delle graduatorie 2021-2026 e sondaggio di Gestionale: `docs/dati/graduatorie-polimi/` e chat nel repository.
 
 **Benchmark**
 

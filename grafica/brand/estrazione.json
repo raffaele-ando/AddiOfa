@@ -1,0 +1,3545 @@
+{
+ "elementi": [
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "studio-inglese",
+   "file": "elementi/kit-blu/illustrazioni/studio-inglese.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    20,
+    209,
+    238,
+    360
+   ],
+   "dimensioni": [
+    218,
+    151
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.186,
+    "max_255": 20.0,
+    "entro_2": 0.9985
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/studio-inglese.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.203,
+    "max_255": 3.0,
+    "entro_2": 0.9992
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "quiz-test",
+   "file": "elementi/kit-blu/illustrazioni/quiz-test.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    261,
+    189,
+    466,
+    355
+   ],
+   "dimensioni": [
+    205,
+    166
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.14,
+    "max_255": 3.0,
+    "entro_2": 0.9999
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/quiz-test.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.217,
+    "max_255": 3.0,
+    "entro_2": 0.999
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "risultato-probabilita",
+   "file": "elementi/kit-blu/illustrazioni/risultato-probabilita.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    462,
+    214,
+    723,
+    342
+   ],
+   "dimensioni": [
+    261,
+    128
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.172,
+    "max_255": 3.8,
+    "entro_2": 0.9987
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/risultato-probabilita.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.265,
+    "max_255": 3.0,
+    "entro_2": 0.9984
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "rischio-economico",
+   "file": "elementi/kit-blu/illustrazioni/rischio-economico.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    742,
+    198,
+    940,
+    354
+   ],
+   "dimensioni": [
+    198,
+    156
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.201,
+    "max_255": 6.0,
+    "entro_2": 0.9985
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/rischio-economico.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.248,
+    "max_255": 3.0,
+    "entro_2": 0.9988
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "piano-studi-bloccato",
+   "file": "elementi/kit-blu/illustrazioni/piano-studi-bloccato.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    965,
+    191,
+    1167,
+    350
+   ],
+   "dimensioni": [
+    202,
+    159
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.155,
+    "max_255": 13.1,
+    "entro_2": 0.9991
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/piano-studi-bloccato.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.183,
+    "max_255": 3.0,
+    "entro_2": 0.9984
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "superamento",
+   "file": "elementi/kit-blu/illustrazioni/superamento.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1201,
+    191,
+    1408,
+    352
+   ],
+   "dimensioni": [
+    207,
+    161
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.163,
+    "max_255": 3.0,
+    "entro_2": 0.9995
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/superamento.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.198,
+    "max_255": 3.0,
+    "entro_2": 0.9989
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "successo",
+   "file": "elementi/kit-blu/illustrazioni/successo.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1438,
+    185,
+    1629,
+    356
+   ],
+   "dimensioni": [
+    191,
+    171
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.185,
+    "max_255": 4.6,
+    "entro_2": 0.999
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/successo.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.213,
+    "max_255": 3.0,
+    "entro_2": 0.998
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "suggerimenti-consigli",
+   "file": "elementi/kit-blu/illustrazioni/suggerimenti-consigli.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1663,
+    193,
+    1848,
+    351
+   ],
+   "dimensioni": [
+    185,
+    158
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.181,
+    "max_255": 3.6,
+    "entro_2": 0.9994
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/suggerimenti-consigli.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.226,
+    "max_255": 3.0,
+    "entro_2": 0.9989
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "email-istituzionale",
+   "file": "elementi/kit-blu/illustrazioni/email-istituzionale.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    31,
+    451,
+    209,
+    564
+   ],
+   "dimensioni": [
+    178,
+    113
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.216,
+    "max_255": 6.4,
+    "entro_2": 0.9986
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/email-istituzionale.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.241,
+    "max_255": 3.0,
+    "entro_2": 0.9984
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "verifica-utente",
+   "file": "elementi/kit-blu/illustrazioni/verifica-utente.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    227,
+    456,
+    408,
+    559
+   ],
+   "dimensioni": [
+    181,
+    103
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.182,
+    "max_255": 3.0,
+    "entro_2": 0.9998
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/verifica-utente.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.232,
+    "max_255": 3.0,
+    "entro_2": 0.999
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "accesso-bloccato",
+   "file": "elementi/kit-blu/illustrazioni/accesso-bloccato.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    434,
+    445,
+    603,
+    557
+   ],
+   "dimensioni": [
+    169,
+    112
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.187,
+    "max_255": 3.0,
+    "entro_2": 0.9975
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/accesso-bloccato.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.289,
+    "max_255": 3.0,
+    "entro_2": 0.9934
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "mancato-superamento",
+   "file": "elementi/kit-blu/illustrazioni/mancato-superamento.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    630,
+    441,
+    779,
+    563
+   ],
+   "dimensioni": [
+    149,
+    122
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.191,
+    "max_255": 5.0,
+    "entro_2": 0.9975
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/mancato-superamento.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.238,
+    "max_255": 3.0,
+    "entro_2": 0.9961
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "progressi-statistiche",
+   "file": "elementi/kit-blu/illustrazioni/progressi-statistiche.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    812,
+    452,
+    958,
+    557
+   ],
+   "dimensioni": [
+    146,
+    105
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.225,
+    "max_255": 3.2,
+    "entro_2": 0.9999
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/progressi-statistiche.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.243,
+    "max_255": 3.0,
+    "entro_2": 0.9995
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "mondo-internazionale",
+   "file": "elementi/kit-blu/illustrazioni/mondo-internazionale.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    988,
+    442,
+    1144,
+    562
+   ],
+   "dimensioni": [
+    156,
+    120
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.218,
+    "max_255": 5.8,
+    "entro_2": 0.9988
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/mondo-internazionale.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.214,
+    "max_255": 3.0,
+    "entro_2": 0.9998
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "messaggi-supporto",
+   "file": "elementi/kit-blu/illustrazioni/messaggi-supporto.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1169,
+    443,
+    1310,
+    557
+   ],
+   "dimensioni": [
+    141,
+    114
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.185,
+    "max_255": 3.9,
+    "entro_2": 0.9983
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/messaggi-supporto.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.235,
+    "max_255": 3.0,
+    "entro_2": 0.9961
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "celebrazione",
+   "file": "elementi/kit-blu/illustrazioni/celebrazione.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1343,
+    442,
+    1482,
+    558
+   ],
+   "dimensioni": [
+    139,
+    116
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.502,
+    "max_255": 8.9,
+    "entro_2": 0.9913
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/celebrazione.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.491,
+    "max_255": 3.0,
+    "entro_2": 0.9944
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "attesa-caricamento",
+   "file": "elementi/kit-blu/illustrazioni/attesa-caricamento.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1525,
+    446,
+    1675,
+    564
+   ],
+   "dimensioni": [
+    150,
+    118
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.21,
+    "max_255": 5.6,
+    "entro_2": 0.9983
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/attesa-caricamento.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.256,
+    "max_255": 3.0,
+    "entro_2": 0.9997
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "illustrazioni",
+   "nome": "ricerca",
+   "file": "elementi/kit-blu/illustrazioni/ricerca.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1716,
+    437,
+    1846,
+    554
+   ],
+   "dimensioni": [
+    130,
+    117
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.2,
+    "max_255": 3.0,
+    "entro_2": 0.9998
+   },
+   "file_fondo_scuro": "elementi/kit-blu/fondo-scuro/ricerca.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.212,
+    "max_255": 3.0,
+    "entro_2": 0.9988
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "studio",
+   "file": "elementi/kit-blu/icone/studio.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    28,
+    648,
+    91,
+    710
+   ],
+   "dimensioni": [
+    63,
+    62
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.271,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "statistiche",
+   "file": "elementi/kit-blu/icone/statistiche.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    105,
+    647,
+    169,
+    711
+   ],
+   "dimensioni": [
+    64,
+    64
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.26,
+    "max_255": 2.4,
+    "entro_2": 0.9994
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "quiz",
+   "file": "elementi/kit-blu/icone/quiz.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    186,
+    648,
+    249,
+    711
+   ],
+   "dimensioni": [
+    63,
+    63
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.264,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "contenuti",
+   "file": "elementi/kit-blu/icone/contenuti.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    267,
+    648,
+    330,
+    711
+   ],
+   "dimensioni": [
+    63,
+    63
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.284,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "costo",
+   "file": "elementi/kit-blu/icone/costo.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    347,
+    647,
+    411,
+    711
+   ],
+   "dimensioni": [
+    64,
+    64
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.259,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "blocco",
+   "file": "elementi/kit-blu/icone/blocco.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    428,
+    648,
+    491,
+    710
+   ],
+   "dimensioni": [
+    63,
+    62
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.282,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "successo",
+   "file": "elementi/kit-blu/icone/successo.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    509,
+    647,
+    573,
+    711
+   ],
+   "dimensioni": [
+    64,
+    64
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.248,
+    "max_255": 2.4,
+    "entro_2": 0.9994
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "email",
+   "file": "elementi/kit-blu/icone/email.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    589,
+    648,
+    653,
+    711
+   ],
+   "dimensioni": [
+    64,
+    63
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.274,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "profilo",
+   "file": "elementi/kit-blu/icone/profilo.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    668,
+    648,
+    731,
+    710
+   ],
+   "dimensioni": [
+    63,
+    62
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.288,
+    "max_255": 2.3,
+    "entro_2": 0.9996
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "impostazioni",
+   "file": "elementi/kit-blu/icone/impostazioni.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    749,
+    648,
+    812,
+    711
+   ],
+   "dimensioni": [
+    63,
+    63
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.263,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "aiuto",
+   "file": "elementi/kit-blu/icone/aiuto.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    834,
+    648,
+    897,
+    711
+   ],
+   "dimensioni": [
+    63,
+    63
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.263,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "completato",
+   "file": "elementi/kit-blu/icone/completato.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    916,
+    647,
+    980,
+    710
+   ],
+   "dimensioni": [
+    64,
+    63
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.269,
+    "max_255": 2.3,
+    "entro_2": 0.9984
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "errore",
+   "file": "elementi/kit-blu/icone/errore.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    994,
+    648,
+    1057,
+    711
+   ],
+   "dimensioni": [
+    63,
+    63
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.276,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "icone",
+   "nome": "info",
+   "file": "elementi/kit-blu/icone/info.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1070,
+    647,
+    1135,
+    710
+   ],
+   "dimensioni": [
+    65,
+    63
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.278,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "stati",
+   "nome": "operazione-completata",
+   "file": "elementi/kit-blu/stati/operazione-completata.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1148,
+    656,
+    1321,
+    731
+   ],
+   "dimensioni": [
+    173,
+    75
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.125,
+    "max_255": 2.3,
+    "entro_2": 0.9995
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "stati",
+   "nome": "errore",
+   "file": "elementi/kit-blu/stati/errore.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1325,
+    657,
+    1498,
+    730
+   ],
+   "dimensioni": [
+    173,
+    73
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.134,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "stati",
+   "nome": "attenzione",
+   "file": "elementi/kit-blu/stati/attenzione.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1503,
+    656,
+    1677,
+    730
+   ],
+   "dimensioni": [
+    174,
+    74
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.132,
+    "max_255": 2.2,
+    "entro_2": 0.9998
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "stati",
+   "nome": "informazione",
+   "file": "elementi/kit-blu/stati/informazione.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1681,
+    657,
+    1855,
+    730
+   ],
+   "dimensioni": [
+    174,
+    73
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.121,
+    "max_255": 2.1,
+    "entro_2": 0.9999
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "pulsante-primario",
+   "file": "elementi/kit-blu/ui/pulsante-primario.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    22,
+    770,
+    191,
+    826
+   ],
+   "dimensioni": [
+    169,
+    56
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.248,
+    "max_255": 3.0,
+    "entro_2": 0.9982
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "pulsante-secondario",
+   "file": "elementi/kit-blu/ui/pulsante-secondario.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    192,
+    773,
+    346,
+    823
+   ],
+   "dimensioni": [
+    154,
+    50
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.161,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "pulsante-outline",
+   "file": "elementi/kit-blu/ui/pulsante-outline.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    348,
+    770,
+    501,
+    827
+   ],
+   "dimensioni": [
+    153,
+    57
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.212,
+    "max_255": 2.5,
+    "entro_2": 0.9997
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "interruttore-acceso",
+   "file": "elementi/kit-blu/ui/interruttore-acceso.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    522,
+    778,
+    589,
+    816
+   ],
+   "dimensioni": [
+    67,
+    38
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.39,
+    "max_255": 4.3,
+    "entro_2": 0.9939
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "interruttore-spento",
+   "file": "elementi/kit-blu/ui/interruttore-spento.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    594,
+    780,
+    646,
+    813
+   ],
+   "dimensioni": [
+    52,
+    33
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.334,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "casella-spuntata",
+   "file": "elementi/kit-blu/ui/casella-spuntata.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    662,
+    780,
+    705,
+    814
+   ],
+   "dimensioni": [
+    43,
+    34
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.416,
+    "max_255": 2.1,
+    "entro_2": 0.9989
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "casella-vuota",
+   "file": "elementi/kit-blu/ui/casella-vuota.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    716,
+    782,
+    746,
+    812
+   ],
+   "dimensioni": [
+    30,
+    30
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.348,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "radio-selezionato",
+   "file": "elementi/kit-blu/ui/radio-selezionato.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    765,
+    778,
+    809,
+    815
+   ],
+   "dimensioni": [
+    44,
+    37
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.434,
+    "max_255": 2.9,
+    "entro_2": 0.9975
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "radio-vuoto",
+   "file": "elementi/kit-blu/ui/radio-vuoto.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    824,
+    780,
+    857,
+    813
+   ],
+   "dimensioni": [
+    33,
+    33
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.348,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "indicatore-avanzamento",
+   "file": "elementi/kit-blu/ui/indicatore-avanzamento.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    901,
+    766,
+    1395,
+    824
+   ],
+   "dimensioni": [
+    494,
+    58
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.521,
+    "max_255": 6.5,
+    "entro_2": 0.9973
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "badge-piu-scelto",
+   "file": "elementi/kit-blu/ui/badge-piu-scelto.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1455,
+    776,
+    1567,
+    820
+   ],
+   "dimensioni": [
+    112,
+    44
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.199,
+    "max_255": 4.0,
+    "entro_2": 0.998
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "badge-massima-sicurezza",
+   "file": "elementi/kit-blu/ui/badge-massima-sicurezza.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1563,
+    776,
+    1733,
+    821
+   ],
+   "dimensioni": [
+    170,
+    45
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.196,
+    "max_255": 2.2,
+    "entro_2": 0.9997
+   }
+  },
+  {
+   "kit": "kit-blu",
+   "gruppo": "ui",
+   "nome": "badge-consigliato",
+   "file": "elementi/kit-blu/ui/badge-consigliato.png",
+   "sorgente": "kit-blu.png",
+   "riquadro": [
+    1734,
+    777,
+    1854,
+    820
+   ],
+   "dimensioni": [
+    120,
+    43
+   ],
+   "fondo": [
+    254,
+    253,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.195,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "ui",
+   "nome": "stile-illustrativo",
+   "file": "elementi/kit-rosso/ui/stile-illustrativo.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1128,
+    23,
+    1511,
+    103
+   ],
+   "dimensioni": [
+    383,
+    80
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.043,
+    "max_255": 1.1,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "studio-inglese",
+   "file": "elementi/kit-rosso/illustrazioni/studio-inglese.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    39,
+    158,
+    207,
+    322
+   ],
+   "dimensioni": [
+    168,
+    164
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.219,
+    "max_255": 32.8,
+    "entro_2": 0.9974
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/studio-inglese.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.245,
+    "max_255": 3.0,
+    "entro_2": 0.9999
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "quiz-test",
+   "file": "elementi/kit-rosso/illustrazioni/quiz-test.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    242,
+    172,
+    424,
+    310
+   ],
+   "dimensioni": [
+    182,
+    138
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.243,
+    "max_255": 3.0,
+    "entro_2": 0.9995
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/quiz-test.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.308,
+    "max_255": 3.0,
+    "entro_2": 0.9999
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "risultato-probabilita",
+   "file": "elementi/kit-rosso/illustrazioni/risultato-probabilita.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    450,
+    177,
+    678,
+    299
+   ],
+   "dimensioni": [
+    228,
+    122
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.262,
+    "max_255": 6.8,
+    "entro_2": 0.9989
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/risultato-probabilita.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.286,
+    "max_255": 3.0,
+    "entro_2": 0.9999
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "rischio-economico",
+   "file": "elementi/kit-rosso/illustrazioni/rischio-economico.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    711,
+    169,
+    883,
+    319
+   ],
+   "dimensioni": [
+    172,
+    150
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.216,
+    "max_255": 5.3,
+    "entro_2": 0.9986
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/rischio-economico.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.219,
+    "max_255": 3.0,
+    "entro_2": 0.9997
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "piano-studi-bloccato",
+   "file": "elementi/kit-rosso/illustrazioni/piano-studi-bloccato.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    946,
+    172,
+    1102,
+    309
+   ],
+   "dimensioni": [
+    156,
+    137
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.157,
+    "max_255": 2.8,
+    "entro_2": 0.9997
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/piano-studi-bloccato.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.177,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "piano-superamento",
+   "file": "elementi/kit-rosso/illustrazioni/piano-superamento.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1153,
+    158,
+    1319,
+    307
+   ],
+   "dimensioni": [
+    166,
+    149
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.149,
+    "max_255": 4.0,
+    "entro_2": 0.9992
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/piano-superamento.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.184,
+    "max_255": 3.0,
+    "entro_2": 0.9998
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "successo-superamento",
+   "file": "elementi/kit-rosso/illustrazioni/successo-superamento.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1353,
+    158,
+    1505,
+    322
+   ],
+   "dimensioni": [
+    152,
+    164
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.221,
+    "max_255": 4.5,
+    "entro_2": 0.9988
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/successo-superamento.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.229,
+    "max_255": 3.0,
+    "entro_2": 0.9992
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "email-istituzionale",
+   "file": "elementi/kit-rosso/illustrazioni/email-istituzionale.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    46,
+    419,
+    242,
+    527
+   ],
+   "dimensioni": [
+    196,
+    108
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.174,
+    "max_255": 5.8,
+    "entro_2": 0.9993
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/email-istituzionale.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.191,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "verifica-utente",
+   "file": "elementi/kit-rosso/illustrazioni/verifica-utente.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    276,
+    419,
+    475,
+    527
+   ],
+   "dimensioni": [
+    199,
+    108
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.114,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/verifica-utente.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.094,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "simulazione-esame",
+   "file": "elementi/kit-rosso/illustrazioni/simulazione-esame.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    516,
+    385,
+    679,
+    537
+   ],
+   "dimensioni": [
+    163,
+    152
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.127,
+    "max_255": 5.0,
+    "entro_2": 0.9993
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/simulazione-esame.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.173,
+    "max_255": 3.0,
+    "entro_2": 0.9999
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "attenzione-rischio",
+   "file": "elementi/kit-rosso/illustrazioni/attenzione-rischio.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    745,
+    397,
+    898,
+    543
+   ],
+   "dimensioni": [
+    153,
+    146
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.12,
+    "max_255": 3.0,
+    "entro_2": 0.9996
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/attenzione-rischio.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.167,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "progressi-statistiche",
+   "file": "elementi/kit-rosso/illustrazioni/progressi-statistiche.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    958,
+    396,
+    1130,
+    536
+   ],
+   "dimensioni": [
+    172,
+    140
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.092,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/progressi-statistiche.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.15,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "illustrazioni",
+   "nome": "suggerimenti-consigli",
+   "file": "elementi/kit-rosso/illustrazioni/suggerimenti-consigli.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1182,
+    392,
+    1324,
+    538
+   ],
+   "dimensioni": [
+    142,
+    146
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.253,
+    "max_255": 12.7,
+    "entro_2": 0.998
+   },
+   "file_fondo_scuro": "elementi/kit-rosso/fondo-scuro/suggerimenti-consigli.png",
+   "ricomposizione_fondo_scuro": {
+    "mae_255": 0.275,
+    "max_255": 3.0,
+    "entro_2": 0.9989
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "studio",
+   "file": "elementi/kit-rosso/icone/studio.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    28,
+    617,
+    95,
+    687
+   ],
+   "dimensioni": [
+    67,
+    70
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.187,
+    "max_255": 3.0,
+    "entro_2": 0.9984
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "statistiche",
+   "file": "elementi/kit-rosso/icone/statistiche.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    128,
+    617,
+    195,
+    687
+   ],
+   "dimensioni": [
+    67,
+    70
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.171,
+    "max_255": 3.0,
+    "entro_2": 0.9984
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "quiz",
+   "file": "elementi/kit-rosso/icone/quiz.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    229,
+    617,
+    296,
+    687
+   ],
+   "dimensioni": [
+    67,
+    70
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.157,
+    "max_255": 3.0,
+    "entro_2": 0.9996
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "contenuti",
+   "file": "elementi/kit-rosso/icone/contenuti.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    330,
+    616,
+    397,
+    683
+   ],
+   "dimensioni": [
+    67,
+    67
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.166,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "costo",
+   "file": "elementi/kit-rosso/icone/costo.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    430,
+    616,
+    497,
+    686
+   ],
+   "dimensioni": [
+    67,
+    70
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.146,
+    "max_255": 2.2,
+    "entro_2": 0.9998
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "blocco",
+   "file": "elementi/kit-rosso/icone/blocco.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    530,
+    617,
+    597,
+    684
+   ],
+   "dimensioni": [
+    67,
+    67
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.174,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "successo",
+   "file": "elementi/kit-rosso/icone/successo.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    629,
+    617,
+    697,
+    687
+   ],
+   "dimensioni": [
+    68,
+    70
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.181,
+    "max_255": 2.6,
+    "entro_2": 0.998
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "email",
+   "file": "elementi/kit-rosso/icone/email.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    730,
+    616,
+    798,
+    687
+   ],
+   "dimensioni": [
+    68,
+    71
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.168,
+    "max_255": 3.2,
+    "entro_2": 0.9969
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "profilo",
+   "file": "elementi/kit-rosso/icone/profilo.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    831,
+    617,
+    897,
+    684
+   ],
+   "dimensioni": [
+    66,
+    67
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.152,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "impostazioni",
+   "file": "elementi/kit-rosso/icone/impostazioni.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    931,
+    617,
+    998,
+    684
+   ],
+   "dimensioni": [
+    67,
+    67
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.171,
+    "max_255": 2.3,
+    "entro_2": 0.9996
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "aiuto",
+   "file": "elementi/kit-rosso/icone/aiuto.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1032,
+    617,
+    1099,
+    687
+   ],
+   "dimensioni": [
+    67,
+    70
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.175,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "completato",
+   "file": "elementi/kit-rosso/icone/completato.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1128,
+    613,
+    1201,
+    687
+   ],
+   "dimensioni": [
+    73,
+    74
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.296,
+    "max_255": 3.0,
+    "entro_2": 0.9991
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "errore",
+   "file": "elementi/kit-rosso/icone/errore.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1228,
+    613,
+    1299,
+    687
+   ],
+   "dimensioni": [
+    71,
+    74
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.293,
+    "max_255": 3.8,
+    "entro_2": 0.9894
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "icone",
+   "nome": "info",
+   "file": "elementi/kit-rosso/icone/info.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1332,
+    617,
+    1399,
+    683
+   ],
+   "dimensioni": [
+    67,
+    66
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.156,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "ui",
+   "nome": "pulsante-primario",
+   "file": "elementi/kit-rosso/ui/pulsante-primario.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    20,
+    769,
+    214,
+    836
+   ],
+   "dimensioni": [
+    194,
+    67
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.147,
+    "max_255": 2.4,
+    "entro_2": 0.9999
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "ui",
+   "nome": "pulsante-secondario",
+   "file": "elementi/kit-rosso/ui/pulsante-secondario.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    215,
+    772,
+    395,
+    833
+   ],
+   "dimensioni": [
+    180,
+    61
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.08,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "ui",
+   "nome": "pulsante-outline",
+   "file": "elementi/kit-rosso/ui/pulsante-outline.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    397,
+    770,
+    548,
+    836
+   ],
+   "dimensioni": [
+    151,
+    66
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.143,
+    "max_255": 2.0,
+    "entro_2": 0.9999
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "ui",
+   "nome": "interruttore-acceso",
+   "file": "elementi/kit-rosso/ui/interruttore-acceso.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    551,
+    768,
+    610,
+    803
+   ],
+   "dimensioni": [
+    59,
+    35
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.281,
+    "max_255": 3.0,
+    "entro_2": 0.9985
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "ui",
+   "nome": "interruttore-spento",
+   "file": "elementi/kit-rosso/ui/interruttore-spento.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    618,
+    769,
+    669,
+    802
+   ],
+   "dimensioni": [
+    51,
+    33
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.225,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "ui",
+   "nome": "casella-spuntata",
+   "file": "elementi/kit-rosso/ui/casella-spuntata.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    686,
+    768,
+    732,
+    805
+   ],
+   "dimensioni": [
+    46,
+    37
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.264,
+    "max_255": 3.9,
+    "entro_2": 0.9995
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "ui",
+   "nome": "radio-vuoto",
+   "file": "elementi/kit-rosso/ui/radio-vuoto.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    735,
+    770,
+    774,
+    801
+   ],
+   "dimensioni": [
+    39,
+    31
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.278,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "ui",
+   "nome": "barre-avanzamento",
+   "file": "elementi/kit-rosso/ui/barre-avanzamento.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    778,
+    767,
+    952,
+    836
+   ],
+   "dimensioni": [
+    174,
+    69
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.267,
+    "max_255": 5.8,
+    "entro_2": 0.9983
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "ui",
+   "nome": "indicatore-avanzamento",
+   "file": "elementi/kit-rosso/ui/indicatore-avanzamento.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    977,
+    769,
+    1502,
+    835
+   ],
+   "dimensioni": [
+    525,
+    66
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.309,
+    "max_255": 8.9,
+    "entro_2": 0.9978
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "ricerca",
+   "file": "elementi/kit-rosso/stati/ricerca.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    39,
+    892,
+    139,
+    972
+   ],
+   "dimensioni": [
+    100,
+    80
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.286,
+    "max_255": 4.3,
+    "entro_2": 0.9985
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "caricamento",
+   "file": "elementi/kit-rosso/stati/caricamento.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    168,
+    894,
+    242,
+    970
+   ],
+   "dimensioni": [
+    74,
+    76
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.182,
+    "max_255": 2.1,
+    "entro_2": 0.9998
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "completato",
+   "file": "elementi/kit-rosso/stati/completato.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    285,
+    888,
+    367,
+    972
+   ],
+   "dimensioni": [
+    82,
+    84
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.144,
+    "max_255": 6.8,
+    "entro_2": 0.9977
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "errore",
+   "file": "elementi/kit-rosso/stati/errore.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    392,
+    888,
+    474,
+    972
+   ],
+   "dimensioni": [
+    82,
+    84
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.131,
+    "max_255": 5.5,
+    "entro_2": 0.9993
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "vuoto",
+   "file": "elementi/kit-rosso/stati/vuoto.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    497,
+    891,
+    600,
+    960
+   ],
+   "dimensioni": [
+    103,
+    69
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.217,
+    "max_255": 3.0,
+    "entro_2": 0.9999
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "celebrazione",
+   "file": "elementi/kit-rosso/stati/celebrazione.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    631,
+    891,
+    709,
+    972
+   ],
+   "dimensioni": [
+    78,
+    81
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.393,
+    "max_255": 5.7,
+    "entro_2": 0.9966
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "notifica",
+   "file": "elementi/kit-rosso/stati/notifica.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    742,
+    898,
+    835,
+    966
+   ],
+   "dimensioni": [
+    93,
+    68
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.17,
+    "max_255": 2.3,
+    "entro_2": 0.9999
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "attesa",
+   "file": "elementi/kit-rosso/stati/attesa.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    859,
+    890,
+    916,
+    972
+   ],
+   "dimensioni": [
+    57,
+    82
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.243,
+    "max_255": 3.0,
+    "entro_2": 0.9965
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "in-corso",
+   "file": "elementi/kit-rosso/stati/in-corso.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    954,
+    885,
+    1039,
+    969
+   ],
+   "dimensioni": [
+    85,
+    84
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.128,
+    "max_255": 2.3,
+    "entro_2": 0.9999
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "obiettivo",
+   "file": "elementi/kit-rosso/stati/obiettivo.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1057,
+    884,
+    1149,
+    974
+   ],
+   "dimensioni": [
+    92,
+    90
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.204,
+    "max_255": 4.3,
+    "entro_2": 0.9989
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "messaggi",
+   "file": "elementi/kit-rosso/stati/messaggi.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1172,
+    884,
+    1352,
+    961
+   ],
+   "dimensioni": [
+    180,
+    77
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.189,
+    "max_255": 4.6,
+    "entro_2": 0.999
+   }
+  },
+  {
+   "kit": "kit-rosso",
+   "gruppo": "stati",
+   "nome": "mondo-internazionale",
+   "file": "elementi/kit-rosso/stati/mondo-internazionale.png",
+   "sorgente": "kit-rosso.png",
+   "riquadro": [
+    1385,
+    881,
+    1486,
+    975
+   ],
+   "dimensioni": [
+    101,
+    94
+   ],
+   "fondo": [
+    254,
+    254,
+    254
+   ],
+   "ricomposizione": {
+    "mae_255": 0.128,
+    "max_255": 2.0,
+    "entro_2": 1.0
+   }
+  },
+  {
+   "kit": "logo",
+   "gruppo": "logo",
+   "nome": "icona-app",
+   "file": "elementi/logo/logo/icona-app.png",
+   "sorgente": "logo-riferimento.png",
+   "riquadro": [
+    0,
+    0,
+    1254,
+    1254
+   ],
+   "dimensioni": [
+    1254,
+    1254
+   ],
+   "fondo": [
+    93,
+    114,
+    174
+   ],
+   "ricomposizione": {
+    "mae_255": 0.001,
+    "max_255": 0.9,
+    "entro_2": 1.0
+   }
+  }
+ ],
+ "palette": [
+  {
+   "kit": "kit-blu",
+   "nome": "primario",
+   "dichiarato": "#0F172A",
+   "misurato": "#101C32",
+   "scarto_255": 8.0,
+   "riquadro": [
+    745,
+    42,
+    851,
+    102
+   ]
+  },
+  {
+   "kit": "kit-blu",
+   "nome": "secondario",
+   "dichiarato": "#3B82F6",
+   "misurato": "#4F8EFC",
+   "scarto_255": 20.0,
+   "riquadro": [
+    851,
+    42,
+    952,
+    102
+   ]
+  },
+  {
+   "kit": "kit-blu",
+   "nome": "sfondo",
+   "dichiarato": "#F6F8FC",
+   "misurato": "#F1F5FE",
+   "scarto_255": 5.0,
+   "riquadro": [
+    956,
+    44,
+    1055,
+    99
+   ]
+  },
+  {
+   "kit": "kit-blu",
+   "nome": "superfici",
+   "dichiarato": "#E5E7EB",
+   "misurato": "#E2E5E9",
+   "scarto_255": 3.0,
+   "riquadro": [
+    1061,
+    44,
+    1158,
+    99
+   ]
+  },
+  {
+   "kit": "kit-blu",
+   "nome": "testo-secondario",
+   "dichiarato": "#6B7280",
+   "misurato": "#8891A0",
+   "scarto_255": 32.0,
+   "riquadro": [
+    1163,
+    42,
+    1275,
+    102
+   ]
+  },
+  {
+   "kit": "kit-blu",
+   "nome": "accento-rischio",
+   "dichiarato": "#EF4444",
+   "misurato": "#F8474A",
+   "scarto_255": 9.0,
+   "riquadro": [
+    1275,
+    42,
+    1402,
+    100
+   ]
+  },
+  {
+   "kit": "kit-blu",
+   "nome": "attenzione",
+   "dichiarato": "#F59E0B",
+   "misurato": "#FCA915",
+   "scarto_255": 11.0,
+   "riquadro": [
+    1404,
+    42,
+    1510,
+    101
+   ]
+  },
+  {
+   "kit": "kit-blu",
+   "nome": "successo",
+   "dichiarato": "#22C55E",
+   "misurato": "#26C35F",
+   "scarto_255": 4.0,
+   "riquadro": [
+    1507,
+    42,
+    1613,
+    102
+   ]
+  },
+  {
+   "kit": "kit-blu",
+   "nome": "quiz-apprendimento",
+   "dichiarato": "#8B5CF6",
+   "misurato": "#8C5BFA",
+   "scarto_255": 4.0,
+   "riquadro": [
+    1615,
+    42,
+    1751,
+    101
+   ]
+  }
+ ],
+ "schermate": [
+  {
+   "tavola": "funnel-14",
+   "n": 1,
+   "nome": "intro",
+   "file": "schermate/funnel-14/01-intro.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    19,
+    21,
+    271,
+    429
+   ],
+   "dimensioni": [
+    252,
+    408
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 2,
+   "nome": "certificazione",
+   "file": "schermate/funnel-14/02-certificazione.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    304,
+    20,
+    545,
+    429
+   ],
+   "dimensioni": [
+    241,
+    409
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 3,
+   "nome": "ofa-assegnato",
+   "file": "schermate/funnel-14/03-ofa-assegnato.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    574,
+    20,
+    807,
+    429
+   ],
+   "dimensioni": [
+    233,
+    409
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 4,
+   "nome": "verifica-livello",
+   "file": "schermate/funnel-14/04-verifica-livello.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    835,
+    20,
+    1069,
+    429
+   ],
+   "dimensioni": [
+    234,
+    409
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 5,
+   "nome": "domanda",
+   "file": "schermate/funnel-14/05-domanda.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    1094,
+    20,
+    1326,
+    429
+   ],
+   "dimensioni": [
+    232,
+    409
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 6,
+   "nome": "salva-risultati",
+   "file": "schermate/funnel-14/06-salva-risultati.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    1351,
+    20,
+    1603,
+    429
+   ],
+   "dimensioni": [
+    252,
+    409
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 7,
+   "nome": "se-non-superi",
+   "file": "schermate/funnel-14/07-se-non-superi.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    1630,
+    21,
+    1867,
+    429
+   ],
+   "dimensioni": [
+    237,
+    408
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 8,
+   "nome": "quiz-completato",
+   "file": "schermate/funnel-14/08-quiz-completato.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    21,
+    450,
+    278,
+    825
+   ],
+   "dimensioni": [
+    257,
+    375
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 9,
+   "nome": "momento-di-prepararti",
+   "file": "schermate/funnel-14/09-momento-di-prepararti.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    305,
+    450,
+    545,
+    825
+   ],
+   "dimensioni": [
+    240,
+    375
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 10,
+   "nome": "scelta-piano",
+   "file": "schermate/funnel-14/10-scelta-piano.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    569,
+    450,
+    837,
+    825
+   ],
+   "dimensioni": [
+    268,
+    375
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 11,
+   "nome": "cram-pass-pro",
+   "file": "schermate/funnel-14/11-cram-pass-pro.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    863,
+    450,
+    1100,
+    825
+   ],
+   "dimensioni": [
+    237,
+    375
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 12,
+   "nome": "pagamento",
+   "file": "schermate/funnel-14/12-pagamento.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    1124,
+    450,
+    1359,
+    825
+   ],
+   "dimensioni": [
+    235,
+    375
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 13,
+   "nome": "accesso-completato",
+   "file": "schermate/funnel-14/13-accesso-completato.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    1384,
+    450,
+    1625,
+    825
+   ],
+   "dimensioni": [
+    241,
+    375
+   ]
+  },
+  {
+   "tavola": "funnel-14",
+   "n": 14,
+   "nome": "obiettivo",
+   "file": "schermate/funnel-14/14-obiettivo.png",
+   "sorgente": "schermate-funnel-14.png",
+   "riquadro": [
+    1650,
+    451,
+    1866,
+    825
+   ],
+   "dimensioni": [
+    216,
+    374
+   ]
+  },
+  {
+   "tavola": "funnel-6",
+   "n": 1,
+   "nome": "sei-pronto",
+   "file": "schermate/funnel-6/01-sei-pronto.png",
+   "sorgente": "schermate-funnel-6.png",
+   "riquadro": [
+    21,
+    17,
+    366,
+    689
+   ],
+   "dimensioni": [
+    345,
+    672
+   ]
+  },
+  {
+   "tavola": "funnel-6",
+   "n": 2,
+   "nome": "risultato",
+   "file": "schermate/funnel-6/02-risultato.png",
+   "sorgente": "schermate-funnel-6.png",
+   "riquadro": [
+    392,
+    16,
+    733,
+    689
+   ],
+   "dimensioni": [
+    341,
+    673
+   ]
+  },
+  {
+   "tavola": "funnel-6",
+   "n": 3,
+   "nome": "come-prepararti",
+   "file": "schermate/funnel-6/03-come-prepararti.png",
+   "sorgente": "schermate-funnel-6.png",
+   "riquadro": [
+    758,
+    16,
+    1103,
+    689
+   ],
+   "dimensioni": [
+    345,
+    673
+   ]
+  },
+  {
+   "tavola": "funnel-6",
+   "n": 4,
+   "nome": "cram-pass-pro",
+   "file": "schermate/funnel-6/04-cram-pass-pro.png",
+   "sorgente": "schermate-funnel-6.png",
+   "riquadro": [
+    1135,
+    16,
+    1445,
+    689
+   ],
+   "dimensioni": [
+    310,
+    673
+   ]
+  },
+  {
+   "tavola": "funnel-6",
+   "n": 5,
+   "nome": "pagamento",
+   "file": "schermate/funnel-6/05-pagamento.png",
+   "sorgente": "schermate-funnel-6.png",
+   "riquadro": [
+    1470,
+    16,
+    1816,
+    689
+   ],
+   "dimensioni": [
+    346,
+    673
+   ]
+  },
+  {
+   "tavola": "funnel-6",
+   "n": 6,
+   "nome": "tutto-pronto",
+   "file": "schermate/funnel-6/06-tutto-pronto.png",
+   "sorgente": "schermate-funnel-6.png",
+   "riquadro": [
+    1848,
+    16,
+    2153,
+    689
+   ],
+   "dimensioni": [
+    305,
+    673
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 1,
+   "nome": "gia-superato",
+   "file": "schermate/inviti-13/01-gia-superato.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    29,
+    19,
+    265,
+    468
+   ],
+   "dimensioni": [
+    236,
+    449
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 2,
+   "nome": "certificazione",
+   "file": "schermate/inviti-13/02-certificazione.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    290,
+    18,
+    499,
+    468
+   ],
+   "dimensioni": [
+    209,
+    450
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 3,
+   "nome": "verifica-livello",
+   "file": "schermate/inviti-13/03-verifica-livello.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    520,
+    18,
+    721,
+    468
+   ],
+   "dimensioni": [
+    201,
+    450
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 4,
+   "nome": "domanda",
+   "file": "schermate/inviti-13/04-domanda.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    742,
+    18,
+    950,
+    468
+   ],
+   "dimensioni": [
+    208,
+    450
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 5,
+   "nome": "risultato",
+   "file": "schermate/inviti-13/05-risultato.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    971,
+    18,
+    1182,
+    469
+   ],
+   "dimensioni": [
+    211,
+    451
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 6,
+   "nome": "account-istituzionale",
+   "file": "schermate/inviti-13/06-account-istituzionale.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    1202,
+    17,
+    1412,
+    468
+   ],
+   "dimensioni": [
+    210,
+    451
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 7,
+   "nome": "sblocca-accesso",
+   "file": "schermate/inviti-13/07-sblocca-accesso.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    1431,
+    16,
+    1616,
+    470
+   ],
+   "dimensioni": [
+    185,
+    454
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 8,
+   "nome": "inviti",
+   "file": "schermate/inviti-13/08-inviti.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    31,
+    491,
+    280,
+    935
+   ],
+   "dimensioni": [
+    249,
+    444
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 9,
+   "nome": "condividi-link",
+   "file": "schermate/inviti-13/09-condividi-link.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    302,
+    491,
+    550,
+    936
+   ],
+   "dimensioni": [
+    248,
+    445
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 10,
+   "nome": "accesso-sbloccato",
+   "file": "schermate/inviti-13/10-accesso-sbloccato.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    573,
+    491,
+    813,
+    935
+   ],
+   "dimensioni": [
+    240,
+    444
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 11,
+   "nome": "home",
+   "file": "schermate/inviti-13/11-home.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    834,
+    492,
+    1082,
+    935
+   ],
+   "dimensioni": [
+    248,
+    443
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 12,
+   "nome": "classifica",
+   "file": "schermate/inviti-13/12-classifica.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    1103,
+    492,
+    1346,
+    936
+   ],
+   "dimensioni": [
+    243,
+    444
+   ]
+  },
+  {
+   "tavola": "inviti-13",
+   "n": 13,
+   "nome": "profilo",
+   "file": "schermate/inviti-13/13-profilo.png",
+   "sorgente": "schermate-inviti-13.png",
+   "riquadro": [
+    1367,
+    493,
+    1607,
+    936
+   ],
+   "dimensioni": [
+    240,
+    443
+   ]
+  }
+ ]
+}
