@@ -13,6 +13,7 @@ import { IconaChip, NOMI_ICONE } from '../brand/componenti';
 import { Illustrazione } from '../brand/Illustrazione';
 import { FONT } from '../brand/tokens';
 import Navigazione, { Scheda } from './Navigazione';
+import { urlIcona } from '../brand/risorse';
 
 interface MenuProps {
   appState: AppState;
@@ -73,7 +74,7 @@ export default function Menu({ appState, user, onStartSmart, onStartLearn, onSta
         {/* intestazione */}
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <img src="/favicon-64.png" alt="" className="w-9 h-9 rounded-[10px]" />
+            <img src={urlIcona} alt="" className="w-9 h-9 rounded-[10px]" />
             <div className="leading-tight">
               <div className="text-[17px] font-bold text-[#0F172A] dark:text-[#F8FAFC]">AddiOFA</div>
               <div className="text-[11px] text-[#6B7280] dark:text-[#94A3B8]">OFA di Inglese</div>

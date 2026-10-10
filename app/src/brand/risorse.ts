@@ -5,6 +5,7 @@
 const disegni = import.meta.glob('./essenziali/disegni/**/*.svg', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
 const glifi = import.meta.glob('./essenziali/glifi/**/*.svg', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
 import logoUrl from './essenziali/logo/addiofa-logo.svg?url';
+import iconaUrl from './essenziali/icone/favicon-64.png';
 
 export type KitId = 'kit-blu' | 'kit-rosso' | 'logo';
 
@@ -30,3 +31,6 @@ export function urlGlifo(kit: 'kit-blu' | 'kit-rosso', nome: string): string | u
 
 export const urlLogo = logoUrl;
 export const urlLogoTrasparente = logoUrl;
+
+/** Icona piccola dell'app (la stessa del favicon), incorporata nel bundle. */
+export const urlIcona = iconaUrl;

@@ -7,6 +7,7 @@ import { APP_NAME } from '../config/offer';
 import { atlas, ProjectAccount } from '../lib/atlas';
 import { Screen, TopBar, PoweredByAtlas } from './ui';
 import { Toggle } from './ProjectConsent';
+import { urlIcona } from '../brand/risorse';
 
 interface ProjectProfileProps {
   user: User;
@@ -114,7 +115,7 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
         <h3 className="text-xs font-bold text-gray-400">App collegate</h3>
         <div className="border border-gray-200 dark:border-[#334155] rounded-2xl">
           <div className="flex items-center gap-3 p-4 border-b-2 border-gray-100 dark:border-[#334155]">
-            <img src="/favicon-64.png" alt="" className="w-10 h-10 rounded-xl" />
+            <img src={urlIcona} alt="" className="w-10 h-10 rounded-xl" />
             <div className="flex-1">
               <div className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">{APP_NAME}</div>
               <div className="text-xs font-semibold text-gray-500">

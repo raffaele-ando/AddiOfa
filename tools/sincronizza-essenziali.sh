@@ -11,4 +11,5 @@ mkdir -p "$DEST/disegni" "$DEST/glifi" "$DEST/logo"
 cp -r "$RADICE/grafica/brand/glifi/"* "$DEST/glifi/"
 find "$DEST/glifi" -name '*.json' -delete
 cp "$RADICE/grafica/strumenti/brand/logo/addiofa-logo.svg" "$DEST/logo/"
+mkdir -p "$DEST/icone" && cp "$RADICE/app/public/favicon-64.png" "$DEST/icone/"
 du -sh "$DEST"; find "$DEST" -type f | wc -l

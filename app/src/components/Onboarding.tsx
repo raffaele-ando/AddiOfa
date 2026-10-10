@@ -12,6 +12,7 @@ import Plans from './Plans';
 import { Illustrazione } from '../brand/Illustrazione';
 import { IconaChip, Misuratore } from '../brand/componenti';
 import { ECOSYSTEM } from '../config/ecosystem';
+import { urlIcona } from '../brand/risorse';
 
 type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'save' | 'risk' | 'result' | 'ready' | 'plans' | 'goal';
 
@@ -85,7 +86,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
       return (
         <Screen>
           <div className="flex items-center gap-2 shrink-0">
-            <img src="/favicon-64.png" alt="" className="w-9 h-9 rounded-xl" />
+            <img src={urlIcona} alt="" className="w-9 h-9 rounded-xl" />
             <span className="font-bold text-lg text-[#0F172A] dark:text-[#F8FAFC]">{APP_NAME}</span>
           </div>
           <div className="mt-4">
