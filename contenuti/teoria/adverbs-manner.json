@@ -1,0 +1,27 @@
+{
+  "id": "adverbs-manner",
+  "titolo": "Avverbi di modo",
+  "livello": "A2",
+  "regola": [
+    "L'avverbio di modo dice *come* si fa un'azione e si forma di solito aggiungendo *-ly* all'aggettivo: *slow → slowly*, *careful → carefully*. Con *-y* finale diventa *-ily* (*easy → easily*).",
+    "Irregolare: *good* (aggettivo) → *well* (avverbio), mai *goodly*.",
+    "*Fast* e *hard* hanno la stessa forma come aggettivo e avverbio (*He drives fast*, *She works hard*); *hardly* significa «a malapena».",
+    "Dopo un verbo d'azione (*speak, work, drive*) serve l'avverbio; dopo *be* si usa l'aggettivo (*She is careful*)."
+  ],
+  "esempi": [
+    { "en": "She speaks English very well.", "it": "Parla l'inglese molto bene." },
+    { "en": "He drives very fast.", "it": "Guida molto veloce." },
+    { "en": "Please do your work carefully.", "it": "Per favore, fai il tuo lavoro con attenzione." },
+    { "en": "They won the game easily.", "it": "Hanno vinto la partita facilmente." },
+    { "en": "He worked hard to pass the exam.", "it": "Ha lavorato duramente per superare l'esame." },
+    { "en": "Please speak slowly.", "it": "Per favore, parla lentamente." }
+  ],
+  "errori": [
+    { "sbagliato": "He drives fastly.", "giusto": "He drives fast.", "perche": "*Fast* è già un avverbio: non prende *-ly*." },
+    { "sbagliato": "She speaks English very good.", "giusto": "She speaks English very well.", "perche": "Il verbo *speak* vuole l'avverbio *well*, non l'aggettivo *good*." },
+    { "sbagliato": "They worked hardly all day.", "giusto": "They worked hard all day.", "perche": "*Hardly* significa «a malapena»; «duramente» si dice *hard*." },
+    { "sbagliato": "He closed the door quiet.", "giusto": "He closed the door quietly.", "perche": "Per descrivere come si compie l'azione serve l'avverbio in *-ly*." }
+  ],
+  "consiglio": "Se la parola risponde alla domanda «come?» riferita a un verbo, cerca la forma in *-ly* e controlla prima le eccezioni *well, fast, hard*.",
+  "domande": ["q363", "q367", "q370"]
+}

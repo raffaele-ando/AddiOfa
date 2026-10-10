@@ -31,6 +31,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
+    "extraOption": "of dogs",
     "stato": "originale"
   },
   {
@@ -65,6 +66,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
+    "extraOption": "parents's",
     "stato": "originale"
   },
   {
@@ -82,6 +84,7 @@
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
+    "extraOption": "lot",
     "stato": "originale"
   },
   {
@@ -99,6 +102,7 @@
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
+    "extraOption": "I don't have a many friends.",
     "stato": "originale"
   },
   {
@@ -167,6 +171,7 @@
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
+    "extraOption": "There are too many car in this city.",
     "stato": "originale"
   },
   {
@@ -184,6 +189,7 @@
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": true,
+    "extraOption": "have",
     "stato": "originale"
   },
   {
@@ -201,6 +207,7 @@
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": false,
+    "extraOption": "Where comes your brother from?",
     "stato": "originale"
   },
   {
@@ -235,6 +242,7 @@
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": true,
+    "extraOption": "Are they from Spanish?",
     "stato": "originale"
   },
   {
@@ -286,6 +294,7 @@
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
+    "extraOption": "This is the most longest book I have ever read.",
     "stato": "originale"
   },
   {
@@ -303,6 +312,7 @@
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
+    "extraOption": "fast",
     "stato": "originale"
   },
   {
@@ -320,6 +330,7 @@
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
+    "extraOption": "Today is much more hotter than yesterday.",
     "stato": "originale"
   },
   {
@@ -337,6 +348,7 @@
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
+    "extraOption": "most best",
     "stato": "originale"
   },
   {
@@ -354,6 +366,7 @@
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": true,
+    "extraOption": "His sister is lesser outgoing than him.",
     "stato": "originale"
   },
   {
@@ -388,6 +401,7 @@
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
+    "extraOption": "This is the most less expensive place in town.",
     "stato": "originale"
   },
   {
@@ -405,6 +419,7 @@
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
+    "extraOption": "a lot of",
     "stato": "originale"
   },
   {
@@ -422,6 +437,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
+    "extraOption": "will to help",
     "stato": "originale"
   },
   {
@@ -439,6 +455,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
+    "extraOption": "If she studies, she will to pass the test.",
     "stato": "originale"
   },
   {
@@ -456,6 +473,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
+    "extraOption": "to rain",
     "stato": "originale"
   },
   {
@@ -473,6 +491,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
+    "extraOption": "What you will say if he calls you?",
     "stato": "originale"
   },
   {
@@ -490,6 +509,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
+    "extraOption": "would have missed",
     "stato": "originale"
   },
   {
@@ -507,6 +527,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
+    "extraOption": "If you don't help me, I didn't finish the project.",
     "stato": "originale"
   },
   {
@@ -524,6 +545,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
+    "extraOption": "getting",
     "stato": "originale"
   },
   {
@@ -558,6 +580,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": true,
+    "extraOption": "trying",
     "stato": "originale"
   },
   {
@@ -575,6 +598,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": true,
+    "extraOption": "Unless it is not raining, we will go for a walk.",
     "stato": "originale"
   },
   {
@@ -592,6 +616,7 @@
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": true,
+    "extraOption": "not be",
     "stato": "originale"
   },
   {
@@ -609,6 +634,7 @@
     "level": "A1",
     "grammarTopic": "Prepositions of Time",
     "core": true,
+    "extraOption": "during",
     "stato": "originale"
   },
   {
@@ -626,6 +652,7 @@
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": true,
+    "extraOption": "I no like coffee.",
     "stato": "originale"
   },
   {
@@ -643,6 +670,7 @@
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
+    "extraOption": "will going",
     "stato": "originale"
   },
   {
@@ -660,6 +688,7 @@
     "level": "A1",
     "grammarTopic": "Modals of Ability and Permission",
     "core": true,
+    "extraOption": "Can I to help you?",
     "stato": "originale"
   },
   {
@@ -677,6 +706,7 @@
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
+    "extraOption": "to learning",
     "stato": "originale"
   },
   {
@@ -694,6 +724,7 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": false,
+    "extraOption": "We must to go now.",
     "stato": "originale"
   },
   {
@@ -711,6 +742,7 @@
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
+    "extraOption": "for hearing",
     "stato": "originale"
   },
   {
@@ -728,6 +760,7 @@
     "level": "A1",
     "grammarTopic": "Past Simple",
     "core": true,
+    "extraOption": "I have been very tired last night.",
     "stato": "originale"
   },
   {
@@ -745,6 +778,7 @@
     "level": "B1",
     "grammarTopic": "Relative Clauses",
     "core": false,
+    "extraOption": "whose",
     "stato": "originale"
   },
   {
@@ -762,6 +796,7 @@
     "level": "A1",
     "grammarTopic": "Modals of Ability and Permission",
     "core": true,
+    "extraOption": "She can to swim very well.",
     "stato": "originale"
   },
   {
@@ -779,6 +814,7 @@
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
     "core": true,
+    "extraOption": "don't must",
     "stato": "originale"
   },
   {
@@ -813,6 +849,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": true,
+    "extraOption": "of Tom",
     "stato": "originale"
   },
   {
@@ -949,6 +986,7 @@
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
+    "extraOption": "of Paul",
     "stato": "originale"
   },
   {
@@ -1017,6 +1055,7 @@
     "level": "B1",
     "grammarTopic": "Prepositions of Time",
     "core": true,
+    "extraOption": "during",
     "stato": "originale"
   },
   {
@@ -1034,6 +1073,7 @@
     "level": "B1",
     "grammarTopic": "Prepositions of Time",
     "core": false,
+    "extraOption": "They have worked here from many years.",
     "stato": "originale"
   },
   {
@@ -1051,6 +1091,7 @@
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": true,
+    "extraOption": "are play",
     "stato": "originale"
   },
   {
@@ -1068,6 +1109,7 @@
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
+    "extraOption": "Why are you cry?",
     "stato": "originale"
   },
   {
@@ -1119,6 +1161,7 @@
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
+    "extraOption": "are coming",
     "stato": "originale"
   },
   {
@@ -1136,6 +1179,7 @@
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
+    "extraOption": "We don't using the computer right now.",
     "stato": "originale"
   },
   {
@@ -1153,6 +1197,7 @@
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
+    "extraOption": "Has",
     "stato": "originale"
   },
   {
@@ -1170,6 +1215,7 @@
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
+    "extraOption": "I am looking my keys.",
     "stato": "originale"
   },
   {
@@ -1204,6 +1250,7 @@
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": true,
+    "extraOption": "ago",
     "stato": "originale"
   },
   {
@@ -1221,6 +1268,7 @@
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": true,
+    "extraOption": "It's the first time I have drove a car.",
     "stato": "originale"
   },
   {
@@ -1238,6 +1286,7 @@
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
+    "extraOption": "drinking",
     "stato": "originale"
   },
   {
@@ -1289,6 +1338,7 @@
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
+    "extraOption": "He doesn't understands the question.",
     "stato": "originale"
   },
   {
@@ -1323,6 +1373,7 @@
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
+    "extraOption": "What does mean this word?",
     "stato": "originale"
   },
   {
@@ -1357,6 +1408,7 @@
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
+    "extraOption": "How often do you to go to the gym?",
     "stato": "originale"
   },
   {
@@ -1374,6 +1426,7 @@
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
+    "extraOption": "cleaning",
     "stato": "originale"
   },
   {
@@ -1476,6 +1529,7 @@
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
+    "extraOption": "There don't have any apples.",
     "stato": "originale"
   },
   {
@@ -1578,6 +1632,7 @@
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
+    "extraOption": "We ate too much of pizza.",
     "stato": "originale"
   },
   {

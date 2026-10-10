@@ -1,0 +1,27 @@
+{
+  "id": "comparatives-superlatives",
+  "titolo": "Comparativi e superlativi",
+  "livello": "A2",
+  "regola": [
+    "Aggettivi corti: comparativo con *-er than* (*taller than*), superlativo con *the -est* (*the tallest*). Con *-y* diventa *-ier* (*heavy → heavier*); dopo una consonante singola questa si raddoppia (*hot → hotter*).",
+    "Aggettivi lunghi: *more … than* e *the most …* (*more difficult, the most expensive*). Per il contrario si usa *less … than* e *the least …*.",
+    "Irregolari: *good → better → the best*, *bad → worse → the worst*.",
+    "Non si mescolano le due forme (mai *more* + *-er*) e il superlativo vuole *the*."
+  ],
+  "esempi": [
+    { "en": "My brother is much taller than me.", "it": "Mio fratello è molto più alto di me." },
+    { "en": "English is easier than Chinese.", "it": "L'inglese è più facile del cinese." },
+    { "en": "This exercise is more difficult than the previous one.", "it": "Questo esercizio è più difficile del precedente." },
+    { "en": "It's the worst movie I've ever seen.", "it": "È il film peggiore che abbia mai visto." },
+    { "en": "This is the most expensive city in Europe.", "it": "Questa è la città più costosa d'Europa." },
+    { "en": "Today is much hotter than yesterday.", "it": "Oggi è molto più caldo di ieri." }
+  ],
+  "errori": [
+    { "sbagliato": "English is more easy than Chinese.", "giusto": "English is easier than Chinese.", "perche": "*Easy* è un aggettivo corto (finisce in *-y*): forma *easier*." },
+    { "sbagliato": "It's the baddest movie I've ever seen.", "giusto": "It's the worst movie I've ever seen.", "perche": "*Bad* è irregolare: *worse*, *the worst*." },
+    { "sbagliato": "The traffic is more heavier today.", "giusto": "The traffic is heavier today.", "perche": "Si usa una sola forma di comparativo: *-er* oppure *more*, non entrambe." },
+    { "sbagliato": "New York is more modern that London.", "giusto": "New York is more modern than London.", "perche": "Il secondo termine del paragone è introdotto da *than*." }
+  ],
+  "consiglio": "Cerca nella frase *than* (comparativo) o *the* (superlativo), poi conta le sillabe dell'aggettivo e ricorda *good* e *bad*.",
+  "domande": ["q84", "q121", "q594"]
+}
