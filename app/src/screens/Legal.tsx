@@ -10,7 +10,7 @@ import { LEGAL_DOCS, LEGAL_DRAFT, LEGAL_TABS } from '../legal';
 const MISURA = 'mx-auto w-full max-w-[65ch]';
 const TESTO = 'text-[15px] leading-relaxed text-gray-700 dark:text-gray-300';
 const CAMPO =
-  'w-full rounded-xl border border-gray-300 dark:border-[#475569] bg-white dark:bg-[#0F172A] px-3 py-3 text-base text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#EF4444]';
+  'w-full rounded-xl border border-gray-300 dark:border-[#475569] bg-white dark:bg-[#0F172A] px-3 py-3 text-base text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB] dark:focus:ring-[#60A5FA]';
 
 const riduciMovimento = () =>
   typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -108,7 +108,7 @@ function ModuloRecesso() {
           <button
             type="submit"
             disabled={!pronto}
-            className="w-full rounded-2xl bg-[#EF4444] hover:bg-[#DC2626] active:scale-[.99] text-white font-bold text-base py-3.5 px-6 shadow-sm transition-all disabled:opacity-40 disabled:pointer-events-none"
+            className="w-full rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] active:scale-[.99] text-white font-bold text-base py-3.5 px-6 shadow-sm transition-all disabled:opacity-40 disabled:pointer-events-none"
           >
             {invio ? 'Invio in corso…' : 'Conferma recesso'}
           </button>
@@ -179,7 +179,7 @@ export default function Legal({ section, onBack, onSection }: {
                     <button
                       type="button"
                       onClick={() => vai(sid(i))}
-                      className="w-full py-1.5 text-left font-semibold text-[#DC2626] dark:text-[#F87171] hover:underline underline-offset-2"
+                      className="w-full py-1.5 text-left font-semibold text-[#1D4ED8] dark:text-[#60A5FA] hover:underline underline-offset-2"
                     >
                       {i + 1}. {s.titolo}
                     </button>

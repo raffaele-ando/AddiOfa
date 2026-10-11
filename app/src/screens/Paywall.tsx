@@ -42,7 +42,7 @@ const dataEstesa = (iso: string | number) =>
   new Date(typeof iso === 'number' ? iso : `${iso}T12:00:00`).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
 
 function Cella({ v }: { v: string | boolean }) {
-  if (v === true) return <Check size={18} strokeWidth={3.5} className="text-[#EF4444] mx-auto" aria-label="incluso" />;
+  if (v === true) return <Check size={18} strokeWidth={3.5} className="text-[#2563EB] dark:text-[#60A5FA] mx-auto" aria-label="incluso" />;
   if (v === false) return <Minus size={18} strokeWidth={3} className="text-gray-300 dark:text-gray-600 mx-auto" aria-label="non incluso" />;
   return <span>{v}</span>;
 }
@@ -70,7 +70,7 @@ function Casella({ spuntata, onChange, children }: { spuntata: boolean; onChange
         type="checkbox"
         checked={spuntata}
         onChange={e => { playTapSound(); onChange(e.target.checked); }}
-        className="mt-0.5 w-5 h-5 shrink-0 accent-[#EF4444]"
+        className="mt-0.5 w-5 h-5 shrink-0 accent-[#2563EB]"
       />
       <span>{children}</span>
     </label>
@@ -134,12 +134,12 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
         </div>
       )}
 
-      <div className="rounded-2xl border border-[#EF4444] bg-[#FEE2E2]/50 dark:bg-[#7F1D1D]/30 p-4">
+      <div className="rounded-2xl border border-[#2563EB] dark:border-[#60A5FA] bg-[#DBEAFE]/50 dark:bg-[#1E3A8A]/30 p-4">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <span className="text-4xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">{formatEur(prezzo)}</span>
           {lancio && <span className="text-lg font-semibold text-gray-500 dark:text-gray-400"><span className="sr-only">invece di </span><s>{formatEur(PASS.priceEur)}</s></span>}
         </div>
-        {lancio && <p className="text-sm font-bold text-[#B91C1C] dark:text-[#FCA5A5]">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>}
+        {lancio && <p className="text-sm font-bold text-[#1D4ED8] dark:text-[#93C5FD]">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>}
         <p className="mt-1 text-sm font-bold text-[#0F172A] dark:text-gray-200">
           Un solo pagamento, valido {PASS.validMonths} mesi, nessun abbonamento.
         </p>
@@ -150,7 +150,7 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
         <ul className="flex flex-col gap-2">
           {PASS.features.map(f => (
             <li key={f} className="flex items-start gap-2.5 text-sm font-semibold text-[#0F172A] dark:text-gray-200">
-              <Check size={16} strokeWidth={3.5} className="text-[#EF4444] shrink-0 mt-0.5" aria-hidden />
+              <Check size={16} strokeWidth={3.5} className="text-[#2563EB] dark:text-[#60A5FA] shrink-0 mt-0.5" aria-hidden />
               <span>{f}</span>
             </li>
           ))}
@@ -164,7 +164,7 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
             <tr className="text-left text-gray-500 dark:text-gray-400">
               <th scope="col" className="p-2.5 font-bold w-[40%]">Funzione</th>
               <th scope="col" className="p-2.5 font-bold text-center w-[30%]">Gratis</th>
-              <th scope="col" className="p-2.5 font-bold text-center w-[30%] text-[#EF4444]">Pass</th>
+              <th scope="col" className="p-2.5 font-bold text-center w-[30%] text-[#2563EB] dark:text-[#60A5FA]">Pass</th>
             </tr>
           </thead>
           <tbody>

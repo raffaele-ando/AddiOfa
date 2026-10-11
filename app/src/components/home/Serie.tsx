@@ -38,7 +38,7 @@ export function ProgressiCard({ imparate, totale, giorni, onVai }: { imparate: n
   const corpo = (
     <>
       <div className="flex items-center justify-between gap-1 text-[12.5px] font-medium text-[#6B7280] dark:text-[#94A3B8]">
-        <span className="flex items-center gap-1.5"><BarChart3 size={16} className="text-[#EF4444]" aria-hidden="true" /> I tuoi progressi</span>
+        <span className="flex items-center gap-1.5"><BarChart3 size={16} className="text-[#2563EB] dark:text-[#60A5FA]" aria-hidden="true" /> I tuoi progressi</span>
         {onVai && <ChevronRight size={15} aria-hidden="true" />}
       </div>
       <div className="text-[20px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-tight mt-1">
@@ -48,7 +48,7 @@ export function ProgressiCard({ imparate, totale, giorni, onVai }: { imparate: n
       {haDati && (
         <div className="flex items-end gap-1 h-[26px] mt-auto pt-2" role="img" aria-label="Risposte date negli ultimi 7 giorni">
           {giorni.map((g, i) => (
-            <motion.span key={g.data} className="flex-1 rounded-sm bg-[#EF4444]" style={{ opacity: g.conteggio ? 1 : 0.18, originY: 1 }}
+            <motion.span key={g.data} className="flex-1 rounded-sm bg-[#2563EB]" style={{ opacity: g.conteggio ? 1 : 0.18, originY: 1 }}
               initial={riduci ? false : { height: 3 }} animate={{ height: Math.max(3, Math.round((g.conteggio / max) * 24)) }}
               transition={{ duration: riduci ? 0 : 0.6, delay: riduci ? 0 : 0.5 + i * 0.05, ease: 'easeOut' }} />
           ))}

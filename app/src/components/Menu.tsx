@@ -134,15 +134,15 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
               </button>
               <button onClick={() => { playTapSound(); toggleTheme(); }} className={icona} title="Tema" aria-label={isDark ? 'Tema chiaro' : 'Tema scuro'}>{isDark ? <Sun size={19} /> : <Moon size={19} />}</button>
               {!pass && (
-                <button onClick={() => { playTapSound(); onOpenPaywall(); }} className="brand-premibile ml-1 flex items-center gap-1.5 text-[13px] font-semibold text-white bg-[#EF4444] px-3 py-2 rounded-xl">
+                <button onClick={() => { playTapSound(); onOpenPaywall(); }} className="brand-premibile ml-1 flex items-center gap-1.5 text-[13px] font-semibold text-white bg-[#2563EB] px-3 py-2 rounded-xl">
                   <KeyRound size={15} aria-hidden="true" /> Pass
                 </button>
               )}
               {user ? (
-                <button onClick={() => { playTapSound(); onOpenProfile?.(); }} className="ml-1 rounded-full ring-2 ring-[#E5E7EB] hover:ring-[#EF4444] transition-all" title={ECOSYSTEM.accountName}>
+                <button onClick={() => { playTapSound(); onOpenProfile?.(); }} className="ml-1 rounded-full ring-2 ring-[#E5E7EB] hover:ring-[#2563EB] transition-all" title={ECOSYSTEM.accountName}>
                   {user.photoURL
                     ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer" className="w-9 h-9 rounded-full" />
-                    : <span className="w-9 h-9 rounded-full bg-[#FEE2E2] text-[#B91C1C] flex items-center justify-center font-semibold">{(user.displayName || '?')[0]}</span>}
+                    : <span className="w-9 h-9 rounded-full bg-[#DBEAFE] text-[#1D4ED8] dark:text-[#93C5FD] flex items-center justify-center font-semibold">{(user.displayName || '?')[0]}</span>}
                 </button>
               ) : onLogin && (
                 <button onClick={() => { playTapSound(); onLogin(); }} className="brand-premibile ml-1 flex items-center gap-1.5 text-[13px] font-semibold text-white bg-[#0F172A] px-3 py-2 rounded-xl">

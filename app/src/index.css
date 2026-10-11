@@ -2,6 +2,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Colore d'azione dell'app (blu). Nel codice nuovo usare questi token (bg-azione, text-azione, ...) e non gli esadecimali. Il rosso resta solo per errore, sbagliato, tempo scaduto, pericolo e fascia bassa della probabilità. */
+@theme {
+  --color-azione: #2563EB;
+  --color-azione-scuro: #1D4ED8;
+  --color-azione-tinta: #DBEAFE;
+  --color-azione-tinta-scura: #1E3A8A;
+  --color-azione-chiaro: #60A5FA;
+}
+
 @layer base {
   html, body, #root {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;

@@ -1,8 +1,11 @@
 // Valori misurati sulle immagini del Brand Kit (grafica/strumenti/brand/misura.py → grafica/brand/misure.json).
-// Due kit: "blu" (Brand Kit con palette) e "rosso" (Brand Kit stile Duolingo).
+// Due kit: "blu" (Brand Kit con palette, quello dell'app) e "rosso" (Brand Kit stile Duolingo, non toccare).
 // Cambiare un colore qui lo cambia in tutti i componenti di quel kit.
 
 export type Kit = 'blu' | 'rosso';
+
+/** Kit usato dalle schermate dell'app: il colore d'azione è il blu. Il kit "rosso" resta qui per il catalogo ?brand e per altri usi. */
+export const KIT_APP: Kit = 'blu';
 
 export const FONT = "'Inter', 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', sans-serif";
 
@@ -12,7 +15,8 @@ export const PALETTE = {
   sfondo: '#F6F8FC',
   superfici: '#E5E7EB',
   testoSecondario: '#6B7280',
-  accento: '#EF4444',
+  accento: '#2563EB', // colore d'azione dell'app (era il rosso #EF4444)
+  errore: '#EF4444', // rosso solo per significati semantici: errore, sbagliato, tempo scaduto, pericolo
   attenzione: '#F59E0B',
   successo: '#22C55E',
   quiz: '#8B5CF6',
@@ -36,7 +40,7 @@ export const KIT: Record<Kit, TokenKit> = {
   blu: {
     sfondoTavola: '#FEFDFE',
     pulsante: {
-      primario: { w: 151, h: 45, r: 10, fondo: '#F4393F', testo: '#FFFFFF', ombra: '0 3px 8px rgba(244, 57, 63, 0.16)', corpo: 14, freccia: true },
+      primario: { w: 151, h: 45, r: 10, fondo: '#2563EB', testo: '#FFFFFF', ombra: '0 3px 8px rgba(37, 99, 235, 0.16)', corpo: 14, freccia: true },
       secondario: { w: 148, h: 44, r: 10, fondo: '#F4F6F9', testo: '#0D1B3B', ombra: '0 1px 2px rgba(15, 23, 42, 0.06)', corpo: 14, freccia: true },
       outline: { w: 140, h: 45, r: 9, fondo: '#FFFFFF', bordo: '#81ABFC', testo: '#155EFA', corpo: 14, freccia: true },
     },

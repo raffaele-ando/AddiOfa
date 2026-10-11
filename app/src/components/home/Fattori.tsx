@@ -9,7 +9,7 @@ function Riga({ f, icona, indice, onVai, piccolo }: { f: Fattore; icona?: React.
     <>
       <span className="flex items-center justify-between gap-1.5">
         <span className="flex items-center gap-1.5 min-w-0 text-[14px] font-semibold text-[#0F172A] dark:text-[#F8FAFC]">
-          {icona && <span className="text-[#EF4444] shrink-0" aria-hidden="true">{icona}</span>}
+          {icona && <span className="text-[#2563EB] dark:text-[#60A5FA] shrink-0" aria-hidden="true">{icona}</span>}
           <span className="truncate">{f.nome}</span>
         </span>
         <span className={`text-[13px] tabular-nums shrink-0 ${dato ? 'font-bold text-[#0F172A] dark:text-[#F8FAFC]' : 'text-[#6B7280] dark:text-[#94A3B8]'}`}>{dato ? `${f.percento}%` : '\u2013'}</span>

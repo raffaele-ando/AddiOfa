@@ -10,7 +10,7 @@ export default function LezioneCard({ lezione, onApri }: { lezione: Lezione; onA
   return (
     <Carta indice={3} className="p-4">
       <div className="flex items-start gap-3">
-        <span className="w-11 h-11 rounded-2xl bg-[#F1F5F9] dark:bg-[#0F172A] text-[#EF4444] flex items-center justify-center shrink-0"><FileText size={22} aria-hidden="true" /></span>
+        <span className="w-11 h-11 rounded-2xl bg-[#F1F5F9] dark:bg-[#0F172A] text-[#2563EB] dark:text-[#60A5FA] flex items-center justify-center shrink-0"><FileText size={22} aria-hidden="true" /></span>
         <div className="min-w-0">
           <div className="text-[12.5px] font-medium text-[#6B7280] dark:text-[#94A3B8]">Prossima lezione consigliata</div>
           <div className="text-[16px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-snug">{lezione.topic.titolo}</div>
@@ -19,7 +19,7 @@ export default function LezioneCard({ lezione, onApri }: { lezione: Lezione; onA
       </div>
       <div className="mt-3">
         <Cta compatto onClick={onApri} bloccato={lezione.bloccata}
-          icona={lezione.bloccata ? <Lock size={14} className="text-[#EF4444]" aria-hidden="true" /> : undefined}
+          icona={lezione.bloccata ? <Lock size={14} className="text-[#2563EB] dark:text-[#60A5FA]" aria-hidden="true" /> : undefined}
           sotto={<span className="inline-flex items-center gap-1"><Clock size={12} aria-hidden="true" /> {lezione.minuti} min{lezione.bloccata ? ' · con il Pass' : ''}</span>}>
           Inizia la lezione
         </Cta>

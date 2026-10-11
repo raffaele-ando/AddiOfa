@@ -20,7 +20,7 @@ export default function Strumenti({ voci }: { voci: VoceStrumento[] }) {
         {presenti.map((v, i) => (
           <li key={v.id} className={i > 0 ? 'border-t border-[#EEF1F6] dark:border-[#334155]' : ''}>
             <button type="button" onClick={() => { playTapSound(); v.onClick!(); }} className="brand-premibile w-full flex items-center gap-3 px-2.5 py-2.5 text-left rounded-2xl">
-              <span className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${v.evidenza ? 'bg-[#EF4444] text-white' : 'bg-[#FEEEEE] dark:bg-[#EF4444]/15 text-[#EF4444]'}`} aria-hidden="true">{ICONE[v.id]}</span>
+              <span className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${v.evidenza ? 'bg-[#2563EB] text-white' : 'bg-[#EFF6FF] dark:bg-[#2563EB]/15 text-[#2563EB] dark:text-[#60A5FA]'}`} aria-hidden="true">{ICONE[v.id]}</span>
               <span className="flex-1 min-w-0">
                 <span className="block text-[14.5px] font-semibold text-[#0F172A] dark:text-[#F8FAFC] truncate">{v.titolo}</span>
                 <span className="block text-[12px] leading-snug text-[#6B7280] dark:text-[#94A3B8]">{v.testo}</span>

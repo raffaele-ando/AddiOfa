@@ -13,7 +13,7 @@ const PASSI = ['Verifica', 'Quiz', 'Risultato', 'Piani', 'Pagamento', 'Successo'
 function StileIllustrativo() {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 16, width: 375, height: 72, padding: '0 22px', boxSizing: 'border-box', borderRadius: 12, background: '#FEF1F1', font: `500 13px/1.4 ${FONT}` }}>
-      <img src={urlGlifo('kit-rosso', 'studio')} alt="" width={52} height={52} style={{ margin: '-6px' }} />
+      <img src={urlGlifo('kit-blu', 'studio')} alt="" width={52} height={52} style={{ margin: '-6px' }} />
       <div>
         <div style={{ color: '#121729', fontWeight: 600, fontSize: 14 }}>Stile illustrativo ispirato a Duolingo</div>
         <div style={{ color: '#4B5563' }}>Semplice, amichevole, chiaro, coerente.</div>
@@ -68,7 +68,7 @@ function Scheda({ v }: { v: Voce }) {
       </div>
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
         <span style={{ font: `700 10px ${FONT}`, textTransform: 'uppercase', letterSpacing: '.08em', color: '#fff', background: colore, padding: '3px 8px', borderRadius: 6 }}>{v.tipo}</span>
-        <span style={{ font: `700 10px ${FONT}`, textTransform: 'uppercase', letterSpacing: '.08em', color: v.cliccabile ? '#B91C1C' : '#6B7280', background: v.cliccabile ? '#FEE2E2' : '#F3F4F6', padding: '3px 8px', borderRadius: 6 }}>
+        <span style={{ font: `700 10px ${FONT}`, textTransform: 'uppercase', letterSpacing: '.08em', color: v.cliccabile ? '#1D4ED8' : '#6B7280', background: v.cliccabile ? '#DBEAFE' : '#F3F4F6', padding: '3px 8px', borderRadius: 6 }}>
           {v.cliccabile ? 'cliccabile' : 'non cliccabile'}
         </span>
         {v.componente && <code style={{ font: `600 11px ui-monospace, monospace`, color: '#374151' }}>&lt;{v.componente}/&gt;</code>}

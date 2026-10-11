@@ -128,7 +128,7 @@ function Riga({ t, pass, gratis, onOpen }: { t: TheoryTopic; pass: boolean; grat
     stato === 'arrivo' ? (
       <span className={cn(BADGE, 'gap-1 bg-gray-100 text-gray-600 dark:bg-[#334155] dark:text-gray-300')}><Clock size={12} aria-hidden /> In arrivo</span>
     ) : stato === 'pass' ? (
-      <span className={cn(BADGE, 'gap-1 bg-[#FEE2E2] text-[#B91C1C] dark:bg-[#7F1D1D]/50 dark:text-[#FCA5A5]')}><Lock size={12} aria-hidden /> Nel Pass</span>
+      <span className={cn(BADGE, 'gap-1 bg-[#DBEAFE] text-[#1D4ED8] dark:text-[#93C5FD] dark:bg-[#1E3A8A]/50 dark:text-[#93C5FD]')}><Lock size={12} aria-hidden /> Nel Pass</span>
     ) : (
       <span className={cn(BADGE, 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300')}>{gratis && !pass ? 'Gratis' : 'Aperta'}</span>
     );
@@ -161,7 +161,7 @@ function Riga({ t, pass, gratis, onOpen }: { t: TheoryTopic; pass: boolean; grat
         className={cn(
           base,
           'border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] transition-colors motion-reduce:transition-none',
-          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#EF4444]',
+          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] dark:focus-visible:outline-[#60A5FA]',
         )}
       >
         {contenuto}
@@ -276,9 +276,9 @@ function Vicino({ t, verso, bloccato, onGo }: { t: TheoryTopic; verso: 'prec' | 
       className={cn(
         'w-full flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-colors motion-reduce:transition-none',
         succ
-          ? 'border-[#EF4444] bg-[#FEE2E2]/50 dark:bg-[#7F1D1D]/30 hover:bg-[#FEE2E2] dark:hover:bg-[#7F1D1D]/50'
+          ? 'border-[#2563EB] dark:border-[#60A5FA] bg-[#DBEAFE]/50 dark:bg-[#1E3A8A]/30 hover:bg-[#DBEAFE] dark:hover:bg-[#1E3A8A]/50'
           : 'border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B]',
-        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#EF4444]',
+        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] dark:focus-visible:outline-[#60A5FA]',
       )}
     >
       {!succ && <ChevronLeft size={20} className="shrink-0 text-gray-400" aria-hidden />}
@@ -286,7 +286,7 @@ function Vicino({ t, verso, bloccato, onGo }: { t: TheoryTopic; verso: 'prec' | 
         <span className="block text-xs font-bold text-gray-600 dark:text-gray-400">{succ ? 'Argomento successivo' : 'Argomento precedente'}</span>
         <span className="block font-bold leading-snug text-[#0F172A] dark:text-[#F8FAFC] break-words">{t.titolo}</span>
         {bloccato && (
-          <span className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-[#B91C1C] dark:text-[#FCA5A5]"><Lock size={12} aria-hidden /> Nel Pass</span>
+          <span className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-[#1D4ED8] dark:text-[#93C5FD]"><Lock size={12} aria-hidden /> Nel Pass</span>
         )}
       </span>
       {succ && <ChevronRight size={20} className="shrink-0 text-gray-400" aria-hidden />}

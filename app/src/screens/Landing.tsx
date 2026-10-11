@@ -32,7 +32,7 @@ function Titolo({ children }: { children: string }) {
 function Voce({ children }: { children: string }) {
   return (
     <li className="flex items-start gap-2.5 text-sm font-semibold text-[#0F172A] dark:text-gray-200">
-      <Check size={16} strokeWidth={3.5} className="text-[#EF4444] shrink-0 mt-0.5" aria-hidden />
+      <Check size={16} strokeWidth={3.5} className="text-[#2563EB] dark:text-[#60A5FA] shrink-0 mt-0.5" aria-hidden />
       <span>{children}</span>
     </li>
   );
@@ -63,7 +63,7 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal }: Land
 
       <div className="mt-2">
         <h1 className="text-4xl font-bold leading-tight text-[#0F172A] dark:text-[#F8FAFC]">
-          Hai l'OFA di <span className="text-[#EF4444]">inglese?</span>
+          Hai l'OFA di <span className="text-[#2563EB] dark:text-[#60A5FA]">inglese?</span>
         </h1>
         <p className="mt-3 text-base font-semibold text-gray-500 dark:text-gray-400">
           Scopri a che punto sei in 3 minuti. Il diagnostico è gratuito: {FREE_LIMITS.diagnostic} domande e una probabilità stimata di superare il test (servono {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}).
@@ -71,7 +71,7 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal }: Land
       </div>
 
       <div className="mx-auto flex items-center justify-center" style={{ minHeight: 140 }}>
-        <Illustrazione kit="kit-rosso" nome="studio-inglese" lato={190} fondoScuro={scuro} />
+        <Illustrazione kit="kit-blu" nome="studio-inglese" lato={190} fondoScuro={scuro} />
       </div>
 
       <div className="flex flex-col gap-3">
@@ -98,7 +98,7 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal }: Land
       <ol className="flex flex-col gap-3">
         {passi.map((p, i) => (
           <li key={p.titolo} className="flex items-start gap-3">
-            <span className="w-8 h-8 rounded-full bg-[#EF4444] text-white font-bold flex items-center justify-center shrink-0" aria-hidden>{i + 1}</span>
+            <span className="w-8 h-8 rounded-full bg-[#2563EB] text-white font-bold flex items-center justify-center shrink-0" aria-hidden>{i + 1}</span>
             <span>
               <span className="block font-bold text-[#0F172A] dark:text-[#F8FAFC]">{p.titolo}</span>
               <span className="block text-sm font-semibold text-gray-500 dark:text-gray-400">{p.testo}</span>
@@ -113,7 +113,7 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal }: Land
           <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-2">Gratis</h3>
           <ul className="flex flex-col gap-2">{FREE_FEATURES.map(f => <Voce key={f}>{f}</Voce>)}</ul>
         </div>
-        <div className="rounded-2xl border border-[#EF4444] bg-[#FEE2E2]/50 dark:bg-[#7F1D1D]/30 p-4">
+        <div className="rounded-2xl border border-[#2563EB] dark:border-[#60A5FA] bg-[#DBEAFE]/50 dark:bg-[#1E3A8A]/30 p-4">
           <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-2">{PASS.name}</h3>
           <ul className="flex flex-col gap-2">{PASS.features.map(f => <Voce key={f}>{f}</Voce>)}</ul>
           <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -125,7 +125,7 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal }: Land
             )}
           </div>
           {lancio && (
-            <p className="text-sm font-bold text-[#B91C1C] dark:text-[#FCA5A5]">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>
+            <p className="text-sm font-bold text-[#1D4ED8] dark:text-[#93C5FD]">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>
           )}
           <p className="mt-1 text-xs font-semibold text-gray-500 dark:text-gray-400">
             Un solo pagamento, valido {PASS.validMonths} mesi, nessun abbonamento.

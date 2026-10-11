@@ -280,7 +280,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory 
       <Screen>
         <TopBar onBack={onExit} />
         <div className="flex flex-col items-center text-center shrink-0">
-          <Illustrazione kit="kit-rosso" nome="simulazione-esame" lato={110} />
+          <Illustrazione kit="kit-blu" nome="quiz-test" lato={110} />
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mt-2">Simulazione</h2>
           <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">
             Scegli il formato. Nessun feedback durante la prova: le risposte e le spiegazioni arrivano alla consegna.
@@ -331,8 +331,8 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory 
                     className={cn(
                       "w-full py-3.5 px-5 rounded-2xl font-bold text-base flex items-center justify-center gap-2 transition-all duration-150 active:scale-[.99] disabled:opacity-50 disabled:pointer-events-none",
                       locked
-                        ? "bg-white dark:bg-[#1E293B] border border-[#EF4444] text-[#EF4444]"
-                        : "bg-[#EF4444] hover:bg-[#DC2626] text-white"
+                        ? "bg-white dark:bg-[#1E293B] border border-[#2563EB] dark:border-[#60A5FA] text-[#2563EB] dark:text-[#60A5FA]"
+                        : "bg-[#2563EB] hover:bg-[#1D4ED8] text-white"
                     )}
                   >
                     {starting ? <><Loader2 size={18} className="animate-spin" /> Preparo le domande</>
@@ -358,14 +358,14 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory 
       <Screen className="items-center justify-center text-center">
         {phase === 'submitting' ? (
           <>
-            <Loader2 size={36} className="animate-spin text-[#EF4444]" />
+            <Loader2 size={36} className="animate-spin text-[#2563EB] dark:text-[#60A5FA]" />
             <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Consegno e correggo…</p>
           </>
         ) : (
           <>
             <p role="alert" className="font-bold text-[#B91C1C] dark:text-[#FCA5A5] max-w-sm">{error}</p>
             <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 max-w-sm">Le tue risposte sono ancora qui. Il tempo è fermo: riprova a consegnare.</p>
-            <button onClick={() => { playTapSound(); void finish(); }} className="w-full max-w-xs bg-[#EF4444] hover:bg-[#DC2626] text-white font-bold py-3.5 rounded-2xl transition-all active:scale-[.99]">
+            <button onClick={() => { playTapSound(); void finish(); }} className="w-full max-w-xs bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold py-3.5 rounded-2xl transition-all active:scale-[.99]">
               Riprova a consegnare
             </button>
             <button onClick={onExit} className="text-sm font-bold text-gray-500 dark:text-gray-400 underline">Esci senza salvare</button>
@@ -416,7 +416,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory 
             </p>
           </div>
 
-          <button onClick={onExit} className="w-full max-w-sm mx-auto mb-4 sm:mb-6 bg-[#EF4444] hover:bg-[#DC2626] active:scale-[.99] text-white font-bold text-base py-3.5 rounded-2xl transition-all shrink-0">
+          <button onClick={onExit} className="w-full max-w-sm mx-auto mb-4 sm:mb-6 bg-[#2563EB] hover:bg-[#1D4ED8] active:scale-[.99] text-white font-bold text-base py-3.5 rounded-2xl transition-all shrink-0">
             Torna al menu
           </button>
 
@@ -505,7 +505,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory 
           </div>
           <button
             onClick={requestSubmit}
-            className="text-[10px] sm:text-xs font-bold text-[#EF4444] hover:bg-[#FEE2E2] dark:hover:bg-[#7F1D1D]/40 border border-[#FCA5A5] px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl transition-colors"
+            className="text-[10px] sm:text-xs font-bold text-[#2563EB] dark:text-[#60A5FA] hover:bg-[#DBEAFE] dark:hover:bg-[#1E3A8A]/40 border border-[#93C5FD] px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl transition-colors"
           >
             Consegna
           </button>
@@ -513,7 +513,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory 
         <div className="flex items-center gap-2 mt-1 sm:mt-2">
           <span className="text-[10px] sm:text-xs font-bold text-gray-400 dark:text-gray-500 w-8 sm:w-10 text-right">{answeredCount}/{questions.length}</span>
           <div className="flex-1 bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden transition-colors">
-            <div className="bg-[#EF4444] h-full rounded-full transition-all" style={{ width: `${progress}%` }} />
+            <div className="bg-[#2563EB] h-full rounded-full transition-all" style={{ width: `${progress}%` }} />
           </div>
         </div>
       </header>
@@ -540,13 +540,13 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory 
                 className={cn(
                   "p-3 sm:p-3.5 text-left border rounded-2xl group transition-all duration-150 flex items-center min-h-[56px]",
                   isSelected
-                    ? "bg-[#FEF2F2] dark:bg-[#7F1D1D]/40 border-[#EF4444] text-[#0F172A] dark:text-[#F8FAFC]"
+                    ? "bg-[#EFF6FF] dark:bg-[#1E3A8A]/40 border-[#2563EB] dark:border-[#60A5FA] text-[#0F172A] dark:text-[#F8FAFC]"
                     : "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] hover:border-gray-300 dark:hover:border-gray-400 text-[#0F172A] dark:text-gray-200 active:scale-[.99]"
                 )}
               >
                 <div className="flex items-center gap-4 w-full">
                   <span className={cn("w-8 h-8 text-sm flex shrink-0 items-center justify-center border rounded-full font-bold transition-colors",
-                    isSelected ? "border-[#EF4444] bg-[#EF4444] text-white" : "border-gray-200 dark:border-[#334155] text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#1E293B]"
+                    isSelected ? "border-[#2563EB] dark:border-[#60A5FA] bg-[#2563EB] text-white" : "border-gray-200 dark:border-[#334155] text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#1E293B]"
                   )}>
                     {String.fromCharCode(65 + idx)}
                   </span>
@@ -577,7 +577,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory 
                 aria-label={`Vai alla domanda ${idx + 1}`}
                 className={cn(
                   "h-1.5 sm:h-2 min-w-[6px] sm:min-w-[8px] flex-1 rounded-full transition-all cursor-pointer",
-                  currentIndex === idx ? "bg-[#0F172A] dark:bg-[#F8FAFC] h-2.5 sm:h-3" : answers[q.id] !== undefined ? "bg-[#EF4444]" : "bg-gray-200 dark:bg-[#334155]"
+                  currentIndex === idx ? "bg-[#0F172A] dark:bg-[#F8FAFC] h-2.5 sm:h-3" : answers[q.id] !== undefined ? "bg-[#2563EB]" : "bg-gray-200 dark:bg-[#334155]"
                 )}
               />
             ))}

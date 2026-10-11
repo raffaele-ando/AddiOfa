@@ -8,9 +8,9 @@ export default function Cta({ onClick, children, sotto, bloccato, compatto, icon
 }) {
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }}
-      className={`brand-premibile w-full flex items-center gap-3 rounded-2xl bg-[#EF4444] text-white text-left shadow-[0_6px_16px_rgba(239,68,68,0.26)] ${compatto ? 'px-3 py-2.5' : 'px-4 py-3.5'}`}>
+      className={`brand-premibile w-full flex items-center gap-3 rounded-2xl bg-[#2563EB] text-white text-left shadow-[0_6px_16px_rgba(37,99,235,0.26)] ${compatto ? 'px-3 py-2.5' : 'px-4 py-3.5'}`}>
       <span className={`${compatto ? 'w-8 h-8' : 'w-10 h-10'} rounded-full bg-white flex items-center justify-center shrink-0`}>
-        {icona ?? <svg width="14" height="16" viewBox="0 0 16 18" aria-hidden="true"><path d="M2 1.5 14 9 2 16.5Z" fill="#EF4444" /></svg>}
+        {icona ?? <svg width="14" height="16" viewBox="0 0 16 18" aria-hidden="true"><path d="M2 1.5 14 9 2 16.5Z" fill="#2563EB" /></svg>}
       </span>
       <span className="flex-1 min-w-0">
         <span className={`block font-bold ${compatto ? 'text-[15px]' : 'text-[17px]'} leading-tight`}>{children}</span>

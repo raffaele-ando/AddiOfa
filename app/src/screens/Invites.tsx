@@ -73,14 +73,14 @@ export default function Invites({ onBack }: InvitesProps) {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-[#EF4444] bg-[#FEE2E2]/50 dark:bg-[#7F1D1D]/30 p-4 flex flex-col gap-3">
+      <div className="rounded-2xl border border-[#2563EB] dark:border-[#60A5FA] bg-[#DBEAFE]/50 dark:bg-[#1E3A8A]/30 p-4 flex flex-col gap-3">
         <span className="text-xs font-bold text-gray-500 dark:text-gray-400">Il tuo codice</span>
         {codice ? (
           <>
             <span className="select-all break-all text-3xl font-bold tracking-widest text-[#0F172A] dark:text-[#F8FAFC]" aria-label={`Il tuo codice è ${codice}`}>{codice}</span>
             <button
               onClick={() => { playTapSound(); void copiaCodice(); }}
-              className="self-start inline-flex items-center gap-2 rounded-xl border border-[#EF4444] text-[#B91C1C] dark:text-[#FCA5A5] font-bold text-sm px-4 py-2.5"
+              className="self-start inline-flex items-center gap-2 rounded-xl border border-[#2563EB] dark:border-[#60A5FA] text-[#1D4ED8] dark:text-[#93C5FD] font-bold text-sm px-4 py-2.5"
             >
               <Copy size={16} aria-hidden /> Copia il codice
             </button>
@@ -98,7 +98,7 @@ export default function Invites({ onBack }: InvitesProps) {
         </div>
         <div className="mt-2 flex gap-1.5" aria-hidden>
           {Array.from({ length: richiesti }, (_, i) => (
-            <div key={i} className={cn('h-2.5 flex-1 rounded-full', i < verificati ? 'bg-[#EF4444]' : 'bg-gray-200 dark:bg-[#334155]')} />
+            <div key={i} className={cn('h-2.5 flex-1 rounded-full', i < verificati ? 'bg-[#2563EB]' : 'bg-gray-200 dark:bg-[#334155]')} />
           ))}
         </div>
       </div>
@@ -128,12 +128,12 @@ export default function Invites({ onBack }: InvitesProps) {
             autoComplete="off"
             spellCheck={false}
             placeholder="Scrivilo qui"
-            className="min-w-0 flex-1 rounded-2xl border border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] px-4 py-3 font-bold tracking-widest text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-gray-400 placeholder:tracking-normal placeholder:font-semibold focus:outline-none focus:border-[#EF4444] focus:ring-2 focus:ring-[#EF4444]/30"
+            className="min-w-0 flex-1 rounded-2xl border border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] px-4 py-3 font-bold tracking-widest text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-gray-400 placeholder:tracking-normal placeholder:font-semibold focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/30"
           />
           <button
             onClick={() => { playTapSound(); void usa(); }}
             disabled={!inserito.trim() || invio}
-            className="shrink-0 rounded-2xl bg-[#EF4444] text-white font-bold px-5 disabled:opacity-40 disabled:pointer-events-none"
+            className="shrink-0 rounded-2xl bg-[#2563EB] text-white font-bold px-5 disabled:opacity-40 disabled:pointer-events-none"
           >
             Usa il codice
           </button>

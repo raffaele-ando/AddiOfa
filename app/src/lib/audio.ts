@@ -211,7 +211,7 @@ export function playVictorySound() {
 export function triggerConfetti(type: 'burst' | 'cannon' | 'celebration' | 'mini' = 'burst') {
   if (typeof window === 'undefined') return;
 
-  const polimiColors = ['#3B82F6', '#22C55E', '#F59E0B', '#8B5CF6', '#EF4444', '#2DD4BF'];
+  const polimiColors = ['#3B82F6', '#22C55E', '#F59E0B', '#8B5CF6', '#2563EB', '#2DD4BF'];
 
   if (type === 'mini') {
     // Quick burst on single correct answer

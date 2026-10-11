@@ -2,15 +2,15 @@
 // tools/sincronizza-essenziali.sh (illustrazioni pulite chiare e scure, glifi delle icone, logo).
 // I PNG originali e gli SVG ricalcati (25 MB) restano in grafica/brand/ e non entrano nel bundle.
 
-// In demo (VITE_MODE='demo') il kit blu e il logo grande non entrano nel bundle: li usa solo il catalogo ?brand,
-// che nella demo è sostituito da uno stub. Il ternario con costante viene tolto dal build.
+// L'app usa il kit blu (colore d'azione blu). In demo (VITE_MODE='demo') il kit rosso e il logo grande non entrano
+// nel bundle: li usa solo il catalogo ?brand, che nella demo è sostituito da uno stub. Il ternario con costante viene tolto dal build.
 const DEMO = import.meta.env.VITE_MODE === 'demo';
 
 type Mappa = Record<string, string>;
-const disegniRosso = import.meta.glob('./essenziali/disegni/kit-rosso/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
-const glifiRosso = import.meta.glob('./essenziali/glifi/kit-rosso/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
-const disegniBlu: Mappa = DEMO ? {} : import.meta.glob('./essenziali/disegni/kit-blu/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
-const glifiBlu: Mappa = DEMO ? {} : import.meta.glob('./essenziali/glifi/kit-blu/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
+const disegniRosso: Mappa = DEMO ? {} : import.meta.glob('./essenziali/disegni/kit-rosso/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
+const glifiRosso: Mappa = DEMO ? {} : import.meta.glob('./essenziali/glifi/kit-rosso/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
+const disegniBlu = import.meta.glob('./essenziali/disegni/kit-blu/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
+const glifiBlu = import.meta.glob('./essenziali/glifi/kit-blu/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
 const disegni: Mappa = { ...disegniRosso, ...disegniBlu };
 const glifi: Mappa = { ...glifiRosso, ...glifiBlu };
 import logoGrande from './essenziali/logo/addiofa-logo.svg?url';

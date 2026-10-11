@@ -29,7 +29,7 @@ export default function PaymentThanks({ onContinue }: { onContinue: () => void }
   return (
     <Screen>
       <div className="mx-auto my-4 flex items-center justify-center" style={{ minHeight: 140 }}>
-        <Illustrazione kit="kit-rosso" nome="celebrazione" gruppo="stati" lato={170} fondoScuro={scuro} />
+        <Illustrazione kit="kit-blu" nome="celebrazione" lato={170} fondoScuro={scuro} />
       </div>
       <h1 className="text-3xl sm:text-4xl font-bold text-center text-[#0F172A] dark:text-[#F8FAFC]">Grazie</h1>
       <p className="text-center font-semibold text-gray-500 dark:text-gray-400">
@@ -51,7 +51,7 @@ export default function PaymentThanks({ onContinue }: { onContinue: () => void }
           <button
             onClick={() => { playTapSound(); void ricontrolla(); }}
             disabled={controllo}
-            className="mt-3 rounded-xl border border-[#EF4444] text-[#B91C1C] dark:text-[#FCA5A5] font-bold text-sm px-4 py-2.5 disabled:opacity-40"
+            className="mt-3 rounded-xl border border-[#2563EB] dark:border-[#60A5FA] text-[#1D4ED8] dark:text-[#93C5FD] font-bold text-sm px-4 py-2.5 disabled:opacity-40"
           >
             Ricontrolla il Pass
           </button>

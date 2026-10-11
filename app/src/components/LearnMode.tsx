@@ -161,7 +161,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   if (loadState === 'loading') {
     return (
       <Screen className="items-center justify-center text-center">
-        <Loader2 size={32} className="animate-spin text-[#EF4444]" />
+        <Loader2 size={32} className="animate-spin text-[#2563EB] dark:text-[#60A5FA]" />
         <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Preparo le domande…</p>
       </Screen>
     );
@@ -170,7 +170,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
     return (
       <Screen className="items-center justify-center text-center">
         <p role="alert" className="font-bold text-[#B91C1C] dark:text-[#FCA5A5] max-w-sm">Non riesco a caricare le domande. Controlla la connessione e riprova.</p>
-        <button onClick={() => { playTapSound(); setLoadKey(k => k + 1); }} className="w-full max-w-xs bg-[#EF4444] hover:bg-[#DC2626] text-white font-bold py-3.5 rounded-2xl transition-all active:scale-[.99]">Riprova</button>
+        <button onClick={() => { playTapSound(); setLoadKey(k => k + 1); }} className="w-full max-w-xs bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold py-3.5 rounded-2xl transition-all active:scale-[.99]">Riprova</button>
         <button onClick={onExit} className="text-sm font-bold text-gray-500 dark:text-gray-400 underline">Torna indietro</button>
       </Screen>
     );
@@ -300,7 +300,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
     return (
       <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm p-4 sm:p-6 items-center justify-center text-center transition-colors duration-300">
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="mb-4">
-          <Illustrazione kit="kit-rosso" gruppo="stati" nome="completato" lato={150} />
+          <Illustrazione kit="kit-blu" nome="successo" lato={150} />
         </motion.div>
         <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-2">Sessione completata!</h2>
         <p className="text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 font-semibold text-base">
@@ -308,7 +308,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
         </p>
         <button
           onClick={() => { playTapSound(); onExit(); }}
-          className="w-full max-w-sm bg-[#EF4444] hover:bg-[#DC2626] active:scale-[.99] text-white font-bold text-base py-3.5 px-6 rounded-2xl transition-all"
+          className="w-full max-w-sm bg-[#2563EB] hover:bg-[#1D4ED8] active:scale-[.99] text-white font-bold text-base py-3.5 px-6 rounded-2xl transition-all"
         >
           Continua
         </button>
@@ -327,7 +327,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
         </button>
         <div className="flex-1 bg-gray-100 dark:bg-[#334155] h-2 rounded-full overflow-hidden transition-colors">
           <motion.div 
-            className="bg-[#EF4444] h-full rounded-full transition-all duration-500"
+            className="bg-[#2563EB] h-full rounded-full transition-all duration-500"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
           />
@@ -462,8 +462,8 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                   stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] opacity-40";
                 }
               } else if (selectedOption === idx) {
-                stateClass = "bg-[#FEF2F2] dark:bg-[#7F1D1D]/40 border-[#EF4444] text-[#0F172A] dark:text-[#F8FAFC]";
-                numberClass = "border-[#EF4444] bg-[#EF4444] text-white";
+                stateClass = "bg-[#EFF6FF] dark:bg-[#1E3A8A]/40 border-[#2563EB] dark:border-[#60A5FA] text-[#0F172A] dark:text-[#F8FAFC]";
+                numberClass = "border-[#2563EB] dark:border-[#60A5FA] bg-[#2563EB] text-white";
               } else if (wrongOptions.has(idx)) {
                 stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40";
               }
@@ -550,7 +550,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
               <button
                 onClick={() => handleCheck('low')}
                 disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
-                className="flex-1 sm:flex-none bg-[#EF4444] hover:bg-[#DC2626] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-all active:scale-[.99] duration-150"
+                className="flex-1 sm:flex-none bg-[#2563EB] hover:bg-[#1D4ED8] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-all active:scale-[.99] duration-150"
               >
                 Indovino
               </button>

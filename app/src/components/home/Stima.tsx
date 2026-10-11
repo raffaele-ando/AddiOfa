@@ -49,7 +49,7 @@ export default function StimaCard({ stima, haRisposte, corpoCta, onStudia, onDia
     return (
       <Carta indice={0} className="p-5">
         <div className="flex items-center gap-3 mb-1">
-          <span className="w-11 h-11 rounded-2xl bg-[#FEEEEE] dark:bg-[#EF4444]/15 text-[#EF4444] flex items-center justify-center shrink-0"><Stethoscope size={22} aria-hidden="true" /></span>
+          <span className="w-11 h-11 rounded-2xl bg-[#EFF6FF] dark:bg-[#2563EB]/15 text-[#2563EB] dark:text-[#60A5FA] flex items-center justify-center shrink-0"><Stethoscope size={22} aria-hidden="true" /></span>
           <h2 className="text-[19px] leading-tight font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Scopri a che punto sei</h2>
         </div>
         <p className="text-[14px] leading-snug text-[#6B7280] dark:text-[#94A3B8] mt-2 mb-4">

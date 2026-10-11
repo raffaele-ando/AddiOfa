@@ -34,12 +34,12 @@ const SHOW_LOGIN = FEATURE_FLAGS.projectId && import.meta.env.VITE_MODE !== 'dem
 const dataEstesa = (iso: string) =>
   new Date(`${iso}T12:00:00`).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
 
-// Illustrazioni del Brand Kit (kit rosso). Il tema scuro usa la variante con aloni semitrasparenti.
+// Illustrazioni del Brand Kit (kit blu). Il tema scuro usa la variante con aloni semitrasparenti.
 function Scena({ nome, gruppo }: { nome: string; gruppo?: string }) {
   const scuro = document.documentElement.classList.contains('dark');
   return (
     <div className="mx-auto my-3 flex items-center justify-center" style={{ minHeight: 150 }}>
-      <Illustrazione kit="kit-rosso" nome={nome} gruppo={gruppo} lato={200} fondoScuro={scuro} />
+      <Illustrazione kit="kit-blu" nome={nome} gruppo={gruppo} lato={200} fondoScuro={scuro} />
     </div>
   );
 }
@@ -123,7 +123,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           </div>
           <div className="mt-4">
             <h1 className="text-4xl sm:text-5xl font-bold leading-tight text-balance text-[#0F172A] dark:text-[#F8FAFC]">
-              Due domande su di te, poi <span className="text-[#EF4444]">{DIAGNOSTIC_LENGTH} di inglese.</span>
+              Due domande su di te, poi <span className="text-[#2563EB] dark:text-[#60A5FA]">{DIAGNOSTIC_LENGTH} di inglese.</span>
             </h1>
             <p className="mt-3 text-base sm:text-lg font-semibold text-gray-500 dark:text-gray-400">
               Circa 3 minuti. Non serve un account e il risultato è subito sullo schermo.
@@ -159,7 +159,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
       return (
         <Screen>
           <TopBar onBack={() => setStep('certification')} />
-          <Scena nome="piano-superamento" />
+          <Scena nome="superamento" />
           <h2 className={`${titolo} text-center`}>Forse non ti serve il test</h2>
           <p className={`text-center ${sotto}`}>
             Se la tua certificazione è tra quelle accettate dal Politecnico, potresti non dover fare il test. Controlla l'elenco e i livelli minimi sul sito del tuo corso prima di pagare qualsiasi cosa.
@@ -176,7 +176,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
         <Screen>
           <TopBar {...bar} onBack={() => setStep('certification')} />
           <h2 className={titolo}>
-            Hai l'<span className="text-[#EF4444]">OFA</span> di inglese assegnato?
+            Hai l'<span className="text-[#2563EB] dark:text-[#60A5FA]">OFA</span> di inglese assegnato?
           </h2>
           <p className="text-sm font-semibold text-gray-500 dark:text-gray-400">Se non sei sicuro, scegli «Non lo so ancora»: puoi allenarti lo stesso.</p>
           <div className="flex flex-col gap-3 mt-2">
@@ -315,13 +315,13 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             <ul className="flex flex-col gap-2">
               {FREE_FEATURES.map(f => (
                 <li key={f} className="flex items-start gap-2.5 text-sm font-semibold text-[#0F172A] dark:text-gray-200">
-                  <Check size={16} strokeWidth={3.5} className="text-[#EF4444] shrink-0 mt-0.5" aria-hidden />
+                  <Check size={16} strokeWidth={3.5} className="text-[#2563EB] dark:text-[#60A5FA] shrink-0 mt-0.5" aria-hidden />
                   <span>{f}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-2xl border border-[#EF4444] bg-[#FEE2E2]/50 dark:bg-[#7F1D1D]/30 p-4">
+          <div className="rounded-2xl border border-[#2563EB] dark:border-[#60A5FA] bg-[#DBEAFE]/50 dark:bg-[#1E3A8A]/30 p-4">
             <div className="flex flex-wrap items-baseline justify-between gap-x-3">
               <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">{PASS.name}</h3>
               <span className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">
@@ -329,11 +329,11 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
                 {lancio && <span className="ml-2 text-sm font-semibold text-gray-500 dark:text-gray-400"><span className="sr-only">invece di </span><s>{formatEur(PASS.priceEur)}</s></span>}
               </span>
             </div>
-            {lancio && <p className="text-xs font-bold text-[#B91C1C] dark:text-[#FCA5A5]">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>}
+            {lancio && <p className="text-xs font-bold text-[#1D4ED8] dark:text-[#93C5FD]">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>}
             <ul className="mt-2 flex flex-col gap-2">
               {PASS.features.map(f => (
                 <li key={f} className="flex items-start gap-2.5 text-sm font-semibold text-[#0F172A] dark:text-gray-200">
-                  <Check size={16} strokeWidth={3.5} className="text-[#EF4444] shrink-0 mt-0.5" aria-hidden />
+                  <Check size={16} strokeWidth={3.5} className="text-[#2563EB] dark:text-[#60A5FA] shrink-0 mt-0.5" aria-hidden />
                   <span>{f}</span>
                 </li>
               ))}

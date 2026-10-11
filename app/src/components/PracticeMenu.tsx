@@ -69,7 +69,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
             className={cn(
               "flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5",
               corpus !== 'initial'
-                ? "bg-white dark:bg-[#1E293B] text-[#EF4444] shadow-xs border border-gray-200/50 dark:border-[#334155]"
+                ? "bg-white dark:bg-[#1E293B] text-[#2563EB] dark:text-[#60A5FA] shadow-xs border border-gray-200/50 dark:border-[#334155]"
                 : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             )}
           >
@@ -155,7 +155,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
           </div>
           <div className="flex flex-row gap-3 mt-auto">
             <select 
-              className="flex-1 min-w-0 bg-gray-50 dark:bg-[#1E293B] border border-gray-200 dark:border-[#334155] rounded-xl px-4 py-3 text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] outline-none focus:border-[#EF4444] transition-colors appearance-none"
+              className="flex-1 min-w-0 bg-gray-50 dark:bg-[#1E293B] border border-gray-200 dark:border-[#334155] rounded-xl px-4 py-3 text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] outline-none focus:border-[#2563EB] transition-colors appearance-none"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
@@ -183,7 +183,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
             <button
               disabled={!selectedCategory}
               onClick={() => { playTapSound(); startFilter(); }}
-              className="brand-premibile bg-[#EF4444] hover:bg-[#DC2626] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:text-gray-400 text-white font-semibold px-6 sm:px-8 py-3 text-sm sm:text-base rounded-xl"
+              className="brand-premibile bg-[#2563EB] hover:bg-[#1D4ED8] disabled:bg-gray-200 disabled:dark:bg-[#334155] disabled:text-gray-400 text-white font-semibold px-6 sm:px-8 py-3 text-sm sm:text-base rounded-xl"
             >
               Inizia
             </button>

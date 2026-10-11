@@ -2,7 +2,9 @@
 // Interattivi: Pulsante, Interruttore, Casella, Radio (e IconaChip se riceve onClick).
 // Solo visivi: Avanzamento, Barra, Badge, Stato, Misuratore, Caricamento.
 import { CSSProperties, ReactNode, useEffect, useId, useState } from 'react';
-import { KIT, Kit, FONT, STATI, BADGE } from './tokens';
+import { COLORI_STATO } from '../components/home/Indicatore';
+import { livelloDi } from '../components/home/stima';
+import { KIT, KIT_APP, Kit, FONT, STATI, BADGE } from './tokens';
 import { urlGlifo } from './risorse';
 import './brand.css';
 
@@ -146,7 +148,7 @@ export function Avanzamento({ passi, attuale, kit = 'blu', larghezza = 480 }: {
   );
 }
 
-export function Barra({ valore, segmenti, kit = 'rosso', larghezza = 168 }: {
+export function Barra({ valore, segmenti, kit = KIT_APP, larghezza = 168 }: {
   valore: number; segmenti?: number; kit?: Kit; larghezza?: number; // valore 0-1
 }) {
   const t = KIT[kit].barra;
@@ -236,8 +238,8 @@ const CERCHI: Record<string, string> = {
 export const NOMI_ICONE = ['studio', 'statistiche', 'quiz', 'contenuti', 'costo', 'blocco', 'successo', 'email', 'profilo', 'impostazioni', 'aiuto', 'completato', 'errore', 'info'] as const;
 
 /** Icona: cerchio in codice (colore modificabile) + glifo vettoriale. Cliccabile solo se riceve onClick.
- * L'app usa il kit rosso (quello delle schermate); il Brand Kit mostra entrambi. */
-export function IconaChip({ nome, kit = 'rosso', lato = 57, cerchio, onClick, etichetta }: {
+ * L'app usa il kit blu (KIT_APP); il Brand Kit mostra entrambi. */
+export function IconaChip({ nome, kit = KIT_APP, lato = 57, cerchio, onClick, etichetta }: {
   nome: typeof NOMI_ICONE[number]; kit?: Kit; lato?: number; cerchio?: string; onClick?: () => void; etichetta?: string;
 }) {
   const chiave = `kit-${kit}/${nome}`;
@@ -255,6 +257,8 @@ export function Misuratore({ valore, larghezza = 232, etichetta, animato = true 
   valore: number; larghezza?: number; etichetta?: string; animato?: boolean; // 0-100
 }) {
   const id = useId().replace(/:/g, '');
+  // Colore semantico della probabilità (rosso basso, giallo medio, verde alto), non il colore d'azione
+  const col = COLORI_STATO[livelloDi(valore / 100)];
   const [mostrato, setMostrato] = useState(animato ? 0 : valore);
   useEffect(() => {
     if (!animato) { setMostrato(valore); return; }
@@ -278,14 +282,14 @@ export function Misuratore({ valore, larghezza = 232, etichetta, animato = true 
     <svg width={larghezza} height={larghezza * 0.62} viewBox="0 0 232 144" role="img" aria-label={etichetta ?? `${Math.round(valore)}%`}>
       <defs>
         <linearGradient id={`g${id}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#F87171" /><stop offset="1" stopColor="#E11D2B" />
+          <stop offset="0" stopColor={col.arco[0]} /><stop offset="1" stopColor={col.arco[1]} />
         </linearGradient>
       </defs>
-      <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" stroke="#EEF0F4" strokeWidth="16" strokeLinecap="round" />
+      <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" className="stroke-[#EEF0F4] dark:stroke-[#334155]" strokeWidth="16" strokeLinecap="round" />
       <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" stroke={`url(#g${id})`} strokeWidth="16" strokeLinecap="round"
         strokeDasharray={`${lung * frazione} ${lung}`} />
-      <circle cx={px} cy={py} r="11" fill="#EF4444" stroke="#fff" strokeWidth="4" />
-      <text x={cx} y={cy + 8} textAnchor="middle" fill="#E5252F" style={{ font: `800 48px ${FONT}` }}>{Math.round(mostrato)}%</text>
+      <circle cx={px} cy={py} r="11" fill={col.punto} stroke="#fff" strokeWidth="4" />
+      <text x={cx} y={cy + 8} textAnchor="middle" fill="currentColor" className={col.numero} style={{ font: `800 48px ${FONT}` }}>{Math.round(mostrato)}%</text>
     </svg>
   );
 }
@@ -294,8 +298,8 @@ export function Misuratore({ valore, larghezza = 232, etichetta, animato = true 
 export function Caricamento({ lato = 64, etichetta = 'Caricamento' }: { lato?: number; etichetta?: string }) {
   return (
     <svg width={lato} height={lato} viewBox="0 0 64 64" role="img" aria-label={etichetta} className="brand-anim-gira">
-      <circle cx="32" cy="32" r="26" fill="none" stroke="#FDD9DB" strokeWidth="8" />
-      <path d="M32 6a26 26 0 0 1 26 26" fill="none" stroke="#F0303B" strokeWidth="8" strokeLinecap="round" />
+      <circle cx="32" cy="32" r="26" fill="none" stroke="#BFDBFE" strokeWidth="8" />
+      <path d="M32 6a26 26 0 0 1 26 26" fill="none" stroke="#2563EB" strokeWidth="8" strokeLinecap="round" />
     </svg>
   );
 }

@@ -47,7 +47,7 @@ export default function Waitlist({ onBack, onDone, onOpenLegal }: WaitlistProps)
       <Screen>
         <TopBar />
         <div className="mx-auto my-4 flex items-center justify-center" style={{ minHeight: 140 }}>
-          <Illustrazione kit="kit-rosso" nome="completato" gruppo="stati" lato={160} fondoScuro={scuro} />
+          <Illustrazione kit="kit-blu" nome="successo" lato={160} fondoScuro={scuro} />
         </div>
         <h1 className="text-3xl font-bold text-center text-[#0F172A] dark:text-[#F8FAFC]">Fatto</h1>
         <p className="text-center font-semibold text-gray-500 dark:text-gray-400" role="status">{esito.message}</p>
@@ -81,7 +81,7 @@ export default function Waitlist({ onBack, onDone, onOpenLegal }: WaitlistProps)
           aria-invalid={toccata && !emailValida}
           aria-describedby="waitlist-email-err"
           placeholder="nome@esempio.it"
-          className="w-full rounded-2xl border border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] px-4 py-3.5 font-semibold text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-gray-400 focus:outline-none focus:border-[#EF4444] focus:ring-2 focus:ring-[#EF4444]/30"
+          className="w-full rounded-2xl border border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] px-4 py-3.5 font-semibold text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-gray-400 focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/30"
         />
         <p id="waitlist-email-err" className="text-xs font-bold text-[#B91C1C] dark:text-[#FCA5A5] min-h-4">
           {toccata && !emailValida ? 'Controlla l\'indirizzo: deve essere del tipo nome@esempio.it.' : ''}
@@ -99,7 +99,7 @@ export default function Waitlist({ onBack, onDone, onOpenLegal }: WaitlistProps)
           type="checkbox"
           checked={consenso}
           onChange={e => { playTapSound(); setConsenso(e.target.checked); }}
-          className="mt-0.5 w-5 h-5 shrink-0 accent-[#EF4444]"
+          className="mt-0.5 w-5 h-5 shrink-0 accent-[#2563EB]"
         />
         <span>Voglio ricevere una sola email quando i pagamenti aprono.</span>
       </label>

@@ -260,7 +260,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               <h2 className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Progressi</h2>
               <p className="text-sm text-[#6B7280] dark:text-gray-400">Quanto sai, in breve.</p>
             </div>
-            <Illustrazione kit="kit-rosso" nome="progressi-statistiche" lato={84} />
+            <Illustrazione kit="kit-blu" nome="progressi-statistiche" lato={84} />
           </header>
 
           <main className="flex-1 overflow-y-auto scrollbar-hide p-4 sm:p-6 flex flex-col gap-4 sm:gap-6 max-w-2xl w-full mx-auto">
@@ -310,7 +310,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               </div>
               <button
                 onClick={() => onNeedPass('statistiche')}
-                className="self-start text-sm font-bold text-[#EF4444] border border-[#FCA5A5] hover:bg-[#FEE2E2] dark:hover:bg-[#7F1D1D]/40 px-4 py-2 rounded-xl transition-colors"
+                className="self-start text-sm font-bold text-[#2563EB] dark:text-[#60A5FA] border border-[#93C5FD] hover:bg-[#DBEAFE] dark:hover:bg-[#1E3A8A]/40 px-4 py-2 rounded-xl transition-colors"
               >
                 Scopri il Pass
               </button>
@@ -350,7 +350,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           </div>
           <button
             onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-            className="flex items-center gap-2 text-sm font-bold text-[#EF4444] hover:text-[#DC2626] transition-colors"
+            className="flex items-center gap-2 text-sm font-bold text-[#2563EB] dark:text-[#60A5FA] hover:text-[#1D4ED8] dark:hover:text-[#93C5FD] transition-colors"
           >
             <ArrowDownUp size={16} />
             {sortOrder === 'asc' ? 'Peggiori prima' : 'Migliori prima'}
@@ -495,7 +495,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           <h2 className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Progressi</h2>
           <p className="text-sm text-[#6B7280] dark:text-gray-400">Quanto sai, argomento per argomento.</p>
         </div>
-        <Illustrazione kit="kit-rosso" nome="progressi-statistiche" lato={84} />
+        <Illustrazione kit="kit-blu" nome="progressi-statistiche" lato={84} />
       </header>
 
       <main className="flex-1 overflow-y-auto scrollbar-hide p-4 sm:p-6 flex flex-col gap-4 sm:gap-6">
@@ -534,7 +534,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                     cursor={{ fill: '#F3F4F6' }}
                     contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
                   />
-                  <Bar dataKey="domande" name="Domande" fill="#EF4444" radius={[4, 4, 0, 0]} maxBarSize={30} />
+                  <Bar dataKey="domande" name="Domande" fill="#2563EB" radius={[4, 4, 0, 0]} maxBarSize={30} />
                   <Bar dataKey="minuti" name="Minuti" fill="#22C55E" radius={[4, 4, 0, 0]} maxBarSize={30} />
                 </BarChart>
               </ResponsiveContainer>
@@ -574,7 +574,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           {/* Go to detailed view button */}
           <button 
             onClick={() => setShowDetailedStats(true)}
-            className="w-full bg-[#EF4444] hover:bg-[#DC2626] border-[#2563EB] active:scale-[.99] text-white font-bold text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-all flex items-center justify-center gap-2"
+            className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] border-[#2563EB] active:scale-[.99] text-white font-bold text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-all flex items-center justify-center gap-2"
           >
             <List className="w-5 h-5" />
             Vedi il dettaglio delle domande
@@ -613,8 +613,8 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                     <Radar
                       name="Padronanza"
                       dataKey="A"
-                      stroke="#EF4444"
-                      fill="#EF4444"
+                      stroke="#2563EB"
+                      fill="#2563EB"
                       fillOpacity={0.5}
                     />
                     <Tooltip 
@@ -627,7 +627,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                         color: '#0F172A',
                         padding: '8px 12px'
                       }}
-                      itemStyle={{ color: '#EF4444', fontWeight: '900' }}
+                      itemStyle={{ color: '#2563EB', fontWeight: '900' }}
                     />
                   </RadarChart>
                 </ResponsiveContainer>
@@ -635,7 +635,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
             </div>
           ) : (
             <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-6 transition-colors flex-1 flex flex-col justify-center items-center text-center min-h-[300px]">
-              <AlertCircle className="text-[#EF4444] dark:text-[#F87171] w-10 h-10 mb-3 opacity-50" />
+              <AlertCircle className="text-[#2563EB] dark:text-[#60A5FA] w-10 h-10 mb-3 opacity-50" />
               <p className="text-sm font-bold text-gray-400">Rispondi a più domande su diversi argomenti per vedere il tuo profilo per argomento.</p>
             </div>
           )}
@@ -681,7 +681,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                     contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
                     formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]}
                   />
-                  <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#EF4444" radius={[0, 0, 0, 0]} maxBarSize={20} />
+                  <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#2563EB" radius={[0, 0, 0, 0]} maxBarSize={20} />
                   <Bar dataKey="daImparare" name="Da imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={20} />
                 </BarChart>
               </ResponsiveContainer>
@@ -775,16 +775,16 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
             <div className="flex justify-between items-center z-10 leading-none">
               <span className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] flex items-center gap-2">
                 Sfida Quotidiana
-                <span className="bg-[#EF4444] text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-lg">
+                <span className="bg-[#2563EB] text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-lg">
                   Fase {milestoneIndex + 1}
                 </span>
               </span>
-              <span className="text-sm sm:text-lg font-bold text-[#EF4444]">{currentTotalDaily}/{currentMilestone}</span>
+              <span className="text-sm sm:text-lg font-bold text-[#2563EB] dark:text-[#60A5FA]">{currentTotalDaily}/{currentMilestone}</span>
             </div>
             
             <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative mt-1">
               <div 
-                className={cn("bg-[#EF4444] h-full rounded-full transition-all duration-700 ease-out", phaseProgressPercent > 80 && "animate-pulse motion-reduce:animate-none")} 
+                className={cn("bg-[#2563EB] h-full rounded-full transition-all duration-700 ease-out", phaseProgressPercent > 80 && "animate-pulse motion-reduce:animate-none")} 
                 style={{ width: `${phaseProgressPercent}%` }} 
               />
             </div>
