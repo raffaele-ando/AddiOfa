@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { AppState, QuestionClickEvent, QuestionTelemetry, PaywallReason } from '../types';
+import { AppState, QuestionClickEvent, QuestionTelemetry, PaywallReason, UserStats } from '../types';
 import { selectPracticeIds, updateStats, poolMeta } from '../lib/spacedRepetition';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowRight, RotateCcw, Lightbulb, Flame, BookOpen, Loader2 } from 'lucide-react';
-import { Illustrazione } from '../brand/Illustrazione';
+import FineSessione, { type DomandaDaRiprendere } from './esito/FineSessione';
 import { cn, shuffleArray, prefersReducedMotion } from '../lib/utils';
 import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound, triggerConfetti } from '../lib/audio';
 import { useAccess } from '../access/context';
@@ -38,7 +38,9 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   const [checking, setChecking] = useState(false);
   const [checkError, setCheckError] = useState<string | null>(null);
   const [result, setResult] = useState<GradeResult | null>(null);
-  const [sessionStats, setSessionStats] = useState({ correct: 0, total: 0 });
+  // Una voce per domanda, scritta al primo tentativo: serve alla schermata finale
+  const [esiti, setEsiti] = useState<{ id: string; prompt: string; argomento: string; theoryId?: string; giusta: boolean }[]>([]);
+  const [secondiSessione, setSecondiSessione] = useState(0);
   const [streak, setStreak] = useState(0);
   const [optionsRevealed, setOptionsRevealed] = useState(mode !== 'recall');
   
@@ -52,6 +54,13 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   const [recallWords, setRecallWords] = useState<string[]>([]);
   const [selectedRecallWords, setSelectedRecallWords] = useState<number[]>([]);
   const [showHint, setShowHint] = useState(false);
+
+  // Domande imparate (ripetizioni > 0) nel gruppo che l'utente può studiare: prima della sessione si fotografa una volta
+  const gruppoIds = useMemo(() => poolMeta(pass, appState.selectedCorpus ?? 'all').map(m => m.id), [pass, appState.selectedCorpus]);
+  const contaImparate = (st: UserStats) => gruppoIds.reduce((n, id) => n + ((st[id]?.box ?? 0) > 0 ? 1 : 0), 0);
+  const imparatePrima = useRef<number | null>(null);
+  if (imparatePrima.current === null) imparatePrima.current = contaImparate(appState.stats);
+  const inizioRef = useRef(Date.now());
 
   const checkingRef = useRef(false);
   const lastCheckRef = useRef<{ confidence: 'low' | 'medium' | 'high'; isTimeout: boolean } | null>(null);
@@ -92,6 +101,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
           return { q: { ...q, options: order.map(i => q.options[i]) }, order };
         }));
         setCurrentIndex(0);
+        inizioRef.current = Date.now();
         setLoadState('ready');
       })
       .catch(() => { if (alive) setLoadState('error'); });
@@ -249,6 +259,9 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       clickEvents: history.map(h => ({ ...h, isCorrect: h.optionIndex === correctIdx })),
     };
     const quiz = { prompt: question.prompt, options: question.options, correctIndex: correctIdx };
+    if (currentAttempts === 1) {
+      setEsiti(prev => [...prev, { id: question.id, prompt: question.prompt, argomento: question.grammarTopic || question.category, theoryId: res.theoryId, giusta: correct }]);
+    }
 
     setResult(res);
     setHasChecked(true);
@@ -265,7 +278,6 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       if (!prefersReducedMotion()) triggerConfetti(nextStreak >= 4 ? 'cannon' : (nextStreak >= 2 ? 'burst' : 'mini'));
 
       onUpdateAppState(updateStats(appStateRef.current, question.id, true, timeTakenMs, currentAttempts, confidence, telemetry, quiz));
-      setSessionStats(prev => ({ ...prev, correct: prev.correct + (currentAttempts === 1 ? 1 : 0), total: prev.total + 1 }));
     } else {
       setStreak(0);
       playIncorrectSound();
@@ -293,26 +305,52 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
     setHasChecked(false);
     setSelectionHistory([]);
     setLastSelectionTimestamp(null);
+    if (currentIndex + 1 >= questions.length) setSecondiSessione(Math.max(1, Math.round((Date.now() - inizioRef.current) / 1000)));
     setCurrentIndex(prev => prev + 1);
   };
 
+  // "Continua da qui": nuova sessione dello stesso tipo, scelta sui dati aggiornati
+  const riparti = () => {
+    imparatePrima.current = contaImparate(appStateRef.current.stats);
+    setItems([]);
+    setEsiti([]);
+    setStreak(0);
+    setCurrentIndex(0);
+    setSecondiSessione(0);
+    setLoadKey(k => k + 1);
+  };
+
   if (currentIndex >= questions.length) {
+    const daRiprendere: DomandaDaRiprendere[] = esiti.filter(e => !e.giusta).map(e => ({ id: e.id, prompt: e.prompt, argomento: e.argomento }));
+    // L'argomento con più errori che ha una scheda di teoria
+    const perArgomento = new Map<string, { n: number; theoryId?: string }>();
+    esiti.filter(e => !e.giusta).forEach(e => {
+      const v = perArgomento.get(e.argomento) ?? { n: 0 };
+      perArgomento.set(e.argomento, { n: v.n + 1, theoryId: v.theoryId ?? e.theoryId });
+    });
+    const peggiore = [...perArgomento.entries()].filter(([, v]) => v.theoryId).sort((x, y) => y[1].n - x[1].n)[0];
+    const nuove = gruppoIds.reduce((n, id) => n + (appState.stats[id]?.lastSeen ? 0 : 1), 0);
+    const prossima = mode === 'weakness' ? 'Altre 10 domande sui tuoi punti deboli.'
+      : mode === 'blitz' ? 'Altre 10 domande a tempo.'
+      : mode === 'category' ? 'Altre 10 domande dello stesso gruppo.'
+      : mode === 'recall' ? 'Altre 10 domande da ricostruire.'
+      : 'Altre 10 domande, scelte in base a come hai risposto.';
     return (
-      <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm p-4 sm:p-6 items-center justify-center text-center transition-colors duration-300">
-        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="mb-4">
-          <Illustrazione kit="kit-blu" nome="successo" lato={150} />
-        </motion.div>
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-2">Sessione completata!</h2>
-        <p className="text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 font-semibold text-base">
-          Hai risposto a {sessionStats.correct} su {sessionStats.total} correttamente al primo tentativo.
-        </p>
-        <button
-          onClick={() => { playTapSound(); onExit(); }}
-          className="w-full max-w-sm bg-[#2563EB] hover:bg-[#1D4ED8] active:scale-[.99] text-white font-bold text-base py-3.5 px-6 rounded-2xl transition-all"
-        >
-          Continua
-        </button>
-      </div>
+      <FineSessione
+        corrette={esiti.filter(e => e.giusta).length}
+        totale={esiti.length}
+        secondi={secondiSessione}
+        prima={imparatePrima.current ?? 0}
+        dopo={contaImparate(appState.stats)}
+        gruppo={gruppoIds.length}
+        nuove={nuove}
+        daRiprendere={daRiprendere}
+        regola={peggiore ? { nome: peggiore[0], theoryId: peggiore[1].theoryId! } : undefined}
+        prossima={prossima}
+        onContinua={riparti}
+        onExit={onExit}
+        onOpenTheory={onOpenTheory}
+      />
     );
   }
 

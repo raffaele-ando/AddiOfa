@@ -5,6 +5,9 @@
 //   &tengfinto=1   il TENG parte con una quinta opzione finta (per provare la penalità), altrimenti "In arrivo"
 //   &fallisci=start|submit|grade|domande   forza un errore del provider alla prima chiamata
 //   &tema=dark
+//   &rs=40   (s=exam) passa risposteStima, per provare il rimando a FoglioStima
+//   &dati=1   (s=learn) una dozzina di domande del nucleo già imparate, per vedere "prima" diverso da zero
+// Per i test automatici: window.__giusto[testo della domanda] = testo dell'opzione esatta (si riempie da getQuestions e startExam).
 // Registro per Playwright: window.__log (onNeedPass, onComplete, onExit, track).
 import { StrictMode, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -17,6 +20,8 @@ import { countFreeSims } from '../../src/access/entitlement';
 import type { Entitlement, ExamSession, GradeResult, PublicQuestion, ExamResult } from '../../src/access/provider';
 import type { FormatId } from '../../src/config/offer';
 import type { AppState, ExamHistory, PaywallReason } from '../../src/types';
+import { bankMeta } from '../../src/lib/spacedRepetition';
+import { questions as banco } from '../../src/data/questions';
 import ExamMode from '../../src/components/ExamMode';
 import LearnMode from '../../src/components/LearnMode';
 import PracticeMenu from '../../src/components/PracticeMenu';
@@ -28,8 +33,9 @@ if (q.get('tema') === 'dark') document.documentElement.classList.add('dark');
 const conPass = q.get('pass') === '1';
 const fallisci = q.get('fallisci');
 
-declare global { interface Window { __log: unknown[] } }
+declare global { interface Window { __log: unknown[]; __giusto: Record<string, string> } }
 window.__log = [];
+window.__giusto = {};
 const registra = (voce: unknown) => { window.__log.push(voce); console.log('LOG', JSON.stringify(voce)); };
 
 const CON_PASS: Entitlement = { tier: 'pass', source: 'demo', expiresAt: Date.now() + 365 * 864e5 };
@@ -41,11 +47,15 @@ class ProviderDiProva extends LocalProvider {
   private restano = 2; // in sviluppo StrictMode avvia l'effetto due volte: la prima chiamata viene scartata
   async getQuestions(ids: string[]): Promise<PublicQuestion[]> {
     if (this.guasto === 'domande' && this.restano-- > 0) throw new Error('network');
-    return super.getQuestions(ids);
+    const lista = await super.getQuestions(ids);
+    for (const d of lista) { const b = banco.find(x => x.id === d.id); if (b) window.__giusto[d.prompt] = b.options[b.correctIndex]; }
+    return lista;
   }
   async grade(id: string, i: number): Promise<GradeResult> {
     if (this.guasto === 'grade') { this.guasto = null; throw new Error('network'); }
-    return super.grade(id, i);
+    const r = await super.grade(id, i);
+    // il LocalProvider non restituisce ancora la scheda di teoria: qui si prende dal banco
+    return { ...r, theoryId: banco.find(x => x.id === id)?.theoryId };
   }
   async startExam(format: FormatId): Promise<ExamSession> {
     if (this.guasto === 'start') { this.guasto = null; throw new Error('network'); }
@@ -53,13 +63,17 @@ class ProviderDiProva extends LocalProvider {
       const s = await super.startExam('ente');
       // @ts-expect-error campo privato: nella prova si promuove la sessione a TENG
       this.sessioni.get(s.id).format = 'teng';
+      for (const d of s.questions) { const b = banco.find(x => x.id === d.id); if (b) window.__giusto[d.prompt] = b.options[b.correctIndex]; }
       return { ...s, format: 'teng', questions: s.questions.map(d => ({ ...d, options: [...d.options, 'None of the above'] })) };
     }
-    return super.startExam(format);
+    const sess = await super.startExam(format);
+    for (const d of sess.questions) { const b = banco.find(x => x.id === d.id); if (b) window.__giusto[d.prompt] = b.options[b.correctIndex]; }
+    return sess;
   }
   async submitExam(id: string, a: Record<string, number | null>, t: number): Promise<ExamResult> {
     if (this.guasto === 'submit') { this.guasto = null; throw new Error('network'); }
-    return super.submitExam(id, a, t);
+    const r = await super.submitExam(id, a, t);
+    return { ...r, perQuestion: r.perQuestion.map(p => ({ ...p, theoryId: banco.find(x => x.id === p.id)?.theoryId })) };
   }
 }
 const provider = new ProviderDiProva();
@@ -68,9 +82,13 @@ function storicoFinto(n: number): ExamHistory[] {
   return Array.from({ length: n }, (_, i) => ({ id: `h${i}`, date: Date.now() - 864e5, score: 22, passed: false, timeSpentSeconds: 700, format: 'ente' as const }));
 }
 
+const s0 = q.get('s');
+
 function App() {
   const [stato, setStato] = useState<AppState>({
-    stats: {}, history: storicoFinto(Number(q.get('sims') ?? 0)), streak: 0, lastActiveDate: null,
+    stats: s0 === 'learn' && q.get('dati') === '1'
+      ? Object.fromEntries(bankMeta().filter(m => m.core).slice(0, 12).map(m => [m.id, { correct: 2, incorrect: 0, lastSeen: Date.now() - 864e5, box: 2, easiness: 2.5, interval: 3 }]))
+      : {}, history: storicoFinto(Number(q.get('sims') ?? 0)), streak: 0, lastActiveDate: null,
     selectedCorpus: 'all',
   } as AppState);
   const access = useMemo<AccessValue>(() => ({
@@ -90,7 +108,7 @@ function App() {
 
   let corpo;
   if (s === 'exam') {
-    corpo = <ExamMode onNeedPass={bisogno} onExit={esci} onOpenTheory={teoria}
+    corpo = <ExamMode risposteStima={q.get('rs') ? Number(q.get('rs')) : undefined} onNeedPass={bisogno} onExit={esci} onOpenTheory={teoria}
       onComplete={(h, cat, res) => { registra({ onComplete: { format: h.format, score: h.score, passed: h.passed, secondi: h.timeSpentSeconds, domande: h.questionIds?.length, logs: h.questionLogs?.length, cat: Object.keys(cat).length, esiti: Object.keys(res ?? {}).length } }); setStato(p => ({ ...p, history: [...p.history, h] })); }} />;
   } else if (s === 'learn') {
     corpo = <LearnMode appState={stato} mode={(q.get('mode') ?? 'smart') as 'smart'} category={q.get('cat') ?? undefined}

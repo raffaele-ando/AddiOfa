@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { ExamHistory, ExamQuestionLog, QuestionClickEvent, CorpusType, PaywallReason } from '../types';
-import { X, Clock, ChevronLeft, ChevronRight, Lock, BookOpen, Loader2 } from 'lucide-react';
-import { cn, formatDuration, formatNumber, errorCode, prefersReducedMotion } from '../lib/utils';
+import { X, Clock, ChevronLeft, ChevronRight, Lock, Loader2 } from 'lucide-react';
+import { cn, formatNumber, errorCode, prefersReducedMotion } from '../lib/utils';
 import { playTapSound, playVictorySound, triggerConfetti } from '../lib/audio';
 import { Illustrazione } from '../brand/Illustrazione';
 import { Screen, TopBar } from './ui';
 import ConfirmDialog from './ConfirmDialog';
+import EsitoSimulazione from './esito/EsitoSimulazione';
 import { useAccess } from '../access/context';
 import { canStartSim, remainingFreeSims, isPass } from '../access/entitlement';
 import type { ExamResult, ExamSession, PublicQuestion } from '../access/provider';
@@ -21,6 +22,8 @@ interface ExamModeProps {
   onNeedPass: (reason: PaywallReason) => void;
   /** Se c'è, sotto una domanda sbagliata compare "Studia la regola". */
   onOpenTheory?: (id: string) => void;
+  /** Quante risposte entrano nella stima (diagnostico + simulazioni): serve al foglio "Come viene calcolata la stima" dell'esito. Facoltativa. */
+  risposteStima?: number;
   /** Non più usato: la simulazione prende le domande dal formato scelto. Resta perché App lo passa ancora. */
   corpus?: CorpusType;
 }
@@ -35,7 +38,7 @@ function messaggioErrore(e: unknown): string {
   return 'Qualcosa è andato storto. Riprova tra un momento.';
 }
 
-export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory }: ExamModeProps) {
+export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory, risposteStima }: ExamModeProps) {
   const { provider, entitlement, simsDone, track } = useAccess();
 
   const [phase, setPhase] = useState<Phase>('select');
@@ -71,13 +74,14 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory 
   const questions: PublicQuestion[] = session?.questions ?? [];
 
   // ---- Avvio
-  const startFormat = async (id: FormatId) => {
-    if (phase !== 'select') return;
+  const startFormat = async (id: FormatId, rifai = false) => {
+    if (phase !== 'select' && !(rifai && phase === 'done')) return;
     if (!canStartSim(entitlement, id, simsDone)) {
       onNeedPass(id === 'teng' ? 'teng' : 'simulazione');
       return;
     }
     setError(null);
+    setResult(null);
     setPhase('starting');
     try {
       const s = await provider.startExam(id);
@@ -377,111 +381,22 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory 
 
   // ================== Esito ==================
   if (phase === 'done' && result) {
-    const total = format.questions;
-    const passed = result.passed;
-    const categoryTotals: Record<string, { correct: number; total: number }> = {};
-    const perQ = new Map(result.perQuestion.map(r => [r.id, r]));
-    questions.forEach(q => {
-      const c = categoryTotals[q.category] || (categoryTotals[q.category] = { correct: 0, total: 0 });
-      c.total++;
-      if (perQ.get(q.id)?.correct === true) c.correct++;
-    });
-    const wrongQuestions = questions.filter(q => perQ.get(q.id)?.correct !== true);
-
     return (
-      <div className="h-full w-full overflow-hidden bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] shadow-sm transition-colors duration-300">
-        <div className="flex flex-col h-full p-4 sm:p-6 text-center">
-          <div className="py-3 sm:py-6 shrink-0">
-            <p className="text-xs font-bold text-gray-400 dark:text-gray-500 mb-1">{format.name}</p>
-            <h2 className={cn("text-2xl sm:text-3xl font-bold mb-1 sm:mb-2", passed ? "text-[#16A34A] dark:text-[#10B981]" : "text-[#EF4444] dark:text-[#F87171]")}>
-              {passed ? 'Superata' : 'Non superata'}
-            </h2>
-            <div className="text-5xl sm:text-6xl leading-none font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-1 sm:mb-2">{result.rawCorrect}/{total}</div>
-            <p className="text-sm font-bold text-gray-500 dark:text-gray-400">
-              {passed
-                ? `Soglia ${format.passMark} su ${total}: raggiunta.`
-                : `Soglia ${format.passMark} su ${total}: ${format.passMark - result.rawCorrect === 1 ? 'ti è mancata 1 risposta' : `ti sono mancate ${format.passMark - result.rawCorrect} risposte`}.`}
-            </p>
-            {format.penalty > 0 && (
-              <p className="text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] mt-1">
-                Punteggio con penalità: {formatNumber(result.score)}
-                <span className="font-semibold text-gray-500 dark:text-gray-400"> ({formatNumber(format.penalty)} per ognuna delle {result.wrong} sbagliate)</span>
-              </p>
-            )}
-            <p className="text-gray-400 dark:text-gray-500 font-bold text-xs mt-3">
-              {result.rawCorrect} giuste, {result.wrong} sbagliate, {result.omitted} senza risposta. Tempo: {formatDuration(elapsedFinal)}
-            </p>
-            <p className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 mt-1 max-w-md mx-auto">
-              È una simulazione: ti dice come stai andando, non prevede il risultato del test vero.
-            </p>
-          </div>
-
-          <button onClick={onExit} className="w-full max-w-sm mx-auto mb-4 sm:mb-6 bg-[#2563EB] hover:bg-[#1D4ED8] active:scale-[.99] text-white font-bold text-base py-3.5 rounded-2xl transition-all shrink-0">
-            Torna al menu
-          </button>
-
-          <div className="text-left max-w-2xl mx-auto w-full flex-1 overflow-y-auto scrollbar-hide">
-            {Object.keys(categoryTotals).length > 0 && (
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                {Object.entries(categoryTotals).map(([cat, r]) => (
-                  <div key={cat} className="bg-gray-50 dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-3 sm:p-4">
-                    <div className="text-[10px] sm:text-xs font-bold text-gray-400 dark:text-gray-500">{cat}</div>
-                    <div className="text-xl sm:text-2xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">{r.correct}/{r.total}</div>
-                  </div>
-                ))}
-              </div>
-            )}
-            <h3 className="text-base sm:text-xl font-bold text-gray-400 dark:text-gray-500 mb-4 sm:mb-6">Rivedi le risposte sbagliate</h3>
-            <div className="space-y-4 sm:space-y-6 pb-6">
-              {wrongQuestions.map(q => {
-                const r = perQ.get(q.id);
-                const given = answers[q.id];
-                return (
-                  <div key={q.id} className="bg-[#FEE2E2] dark:bg-[#7F1D1D] border border-[#EF4444] rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm transition-colors">
-                    <div className="mb-2">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-white/70 dark:bg-black/30 border border-[#EF4444]/30 text-[#B91C1C] dark:text-[#FCA5A5]">
-                        Categoria: {q.category}{q.grammarTopic ? ` • ${q.grammarTopic}` : ''}
-                      </span>
-                    </div>
-                    <p className="font-bold text-base sm:text-lg text-[#1E293B] dark:text-[#F8FAFC] mb-3 sm:mb-4">{q.prompt}</p>
-                    <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-                      <div className="flex gap-2 items-center flex-wrap">
-                        <span className="font-bold text-[#B91C1C] dark:text-[#FCA5A5] text-[10px] sm:text-xs">La tua risposta:</span>
-                        <span className={cn("text-[#B91C1C] dark:text-[#FCA5A5] font-medium", given !== undefined && "line-through")}>
-                          {given !== undefined ? q.options[given] : 'Nessuna risposta'}
-                        </span>
-                      </div>
-                      <div className="flex gap-2 items-center flex-wrap">
-                        <span className="font-bold text-[#15803D] dark:text-[#34D399] text-[10px] sm:text-xs">Corretta:</span>
-                        <span className="text-[#15803D] dark:text-[#34D399] font-bold">{r ? q.options[r.correctIndex] : ''}</span>
-                      </div>
-                      {r?.explanation && (
-                        <p className="text-[#0F172A] dark:text-gray-200 font-medium mt-3 sm:mt-4 bg-white/60 dark:bg-black/20 p-3 sm:p-4 rounded-xl border border-[#EF4444]/20">
-                          {r.explanation}
-                        </p>
-                      )}
-                      {r?.theoryId && onOpenTheory && (
-                        <button
-                          onClick={() => { playTapSound(); onOpenTheory(r.theoryId!); }}
-                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#B91C1C] dark:text-[#FCA5A5] underline underline-offset-2"
-                        >
-                          <BookOpen size={14} /> Studia la regola
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-              {wrongQuestions.length === 0 && (
-                <p className="text-[#15803D] dark:text-[#10B981] font-bold text-center p-4 sm:p-6 bg-[#DCFCE7] dark:bg-[#064E3B] rounded-2xl sm:rounded-3xl border border-[#22C55E] dark:border-[#16A34A] transition-colors">
-                  Punteggio perfetto: niente da rivedere.
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
+      <>
+        <EsitoSimulazione
+          format={format}
+          result={result}
+          questions={questions}
+          answers={answers}
+          elapsedSeconds={elapsedFinal}
+          onExit={onExit}
+          onOpenTheory={onOpenTheory}
+          risposteStima={risposteStima}
+          retryLocked={!canStartSim(entitlement, format.id, simsDone)}
+          onRetry={() => void startFormat(format.id, true)}
+        />
         {dialog}
-      </div>
+      </>
     );
   }
 

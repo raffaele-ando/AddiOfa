@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Check } from 'lucide-react';
+import { Check, Info } from 'lucide-react';
 import type { User } from 'firebase/auth';
 import { AppState, OnboardingResult, Question } from '../types';
 import {
@@ -15,8 +15,12 @@ import { Illustrazione } from '../brand/Illustrazione';
 import { IconaChip, Misuratore } from '../brand/componenti';
 import { ECOSYSTEM } from '../config/ecosystem';
 import { urlIcona } from '../brand/risorse';
+import FoglioStima from './FoglioStima';
+import CalcoloRisultato from './CalcoloRisultato';
+import { useRiduci, BarraCresce } from './home/comune';
+import { livelloDi, type Livello } from './home/stima';
 
-type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'save' | 'risk' | 'result' | 'ready';
+type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'save' | 'risk' | 'calcolo' | 'result' | 'ready';
 
 interface OnboardingProps {
   appState: AppState;
@@ -33,6 +37,24 @@ const SHOW_LOGIN = FEATURE_FLAGS.projectId && import.meta.env.VITE_MODE !== 'dem
 
 const dataEstesa = (iso: string) =>
   new Date(`${iso}T12:00:00`).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// Messaggio per fascia di probabilità: onesto, senza allarmismi e senza promesse
+const MESSAGGI: Record<Livello, { titolo: string; testo: string }> = {
+  alto: { titolo: 'Hai buone basi', testo: 'Con queste risposte la stima è favorevole, ma dieci domande sono poche per dirlo con sicurezza. Una simulazione da 30 domande lo conferma o lo corregge.' },
+  medio: { titolo: 'Ci sei a metà', testo: 'Oggi potrebbe andare in un modo o nell\'altro. Ripassare gli argomenti sbagliati qui sotto e fare una simulazione ti dice meglio a che punto sei.' },
+  basso: { titolo: 'Serve allenamento mirato', testo: 'Per ora la stima è bassa: non è un giudizio su di te, dice solo dove sei partito. Comincia dagli argomenti sbagliati qui sotto, poi misurati con una simulazione.' },
+};
+
+// Tessera "n su m" per area o livello: mai percentuali precise su così poche domande
+function Tessera({ nome, n, m, ritardo }: { nome: string; n: number; m: number; ritardo: number }) {
+  return (
+    <div className="rounded-2xl border border-[#E8ECF3] dark:border-[#334155] bg-white dark:bg-[#0F172A] p-3">
+      <div className="text-xs font-bold text-gray-500 dark:text-gray-400">{nome}</div>
+      <div className="mt-0.5 text-lg font-extrabold leading-tight text-[#0F172A] dark:text-[#F8FAFC]">{n} <span className="text-sm font-bold text-gray-500 dark:text-gray-400">su {m}</span></div>
+      <div className="mt-2"><BarraCresce valore={m ? (n / m) * 100 : 0} colore="#2563EB" ritardo={ritardo} alta={6} /></div>
+    </div>
+  );
+}
 
 // Illustrazioni del Brand Kit (kit blu). Il tema scuro usa la variante con aloni semitrasparenti.
 function Scena({ nome, gruppo }: { nome: string; gruppo?: string }) {
@@ -58,6 +80,9 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
   stateRef.current = appState;
   const diagTracked = useRef(false);
   const quizStartedAt = useRef<number | null>(null);
+  const riduci = useRiduci();
+  const [foglio, setFoglio] = useState(false);
+  const [daCalcolo, setDaCalcolo] = useState(false);
 
   useEffect(() => {
     let vivo = true;
@@ -78,7 +103,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
     () => ['certification', 'ofa', 'quizIntro', 'quiz', ...(SHOW_LOGIN ? ['save' as const] : []), 'risk', 'result', 'ready'],
     []
   );
-  const progressIndex = progressSteps.indexOf(step);
+  const progressIndex = progressSteps.indexOf(step === 'calcolo' ? 'result' : step);
   const bar = progressIndex >= 0 ? { step: progressIndex + 1, totalSteps: progressSteps.length } : {};
 
   const answered = quiz.length > 0 && Object.keys(answers).length === quiz.length;
@@ -266,40 +291,79 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           </ul>
           <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">{OFA_RULES_NOTE}</p>
           <div className="mt-auto">
-            <PrimaryButton onClick={() => setStep('result')}>Vedi il tuo risultato</PrimaryButton>
+            <PrimaryButton onClick={() => { setDaCalcolo(false); setStep(riduci ? 'result' : 'calcolo'); }}>Vedi il tuo risultato</PrimaryButton>
           </div>
         </Screen>
       );
 
+    case 'calcolo': {
+      const livelli = ['A1', 'A2', 'B1'].map(l => [l, quiz.filter(q => q.level === l).length] as const).filter(([, n]) => n > 0).map(([l, n]) => `${n} ${l}`).join(', ');
+      return (
+        <Screen>
+          <TopBar {...bar} />
+          <CalcoloRisultato
+            dati={{ percento: passPercent, esatte: correct, totale: quiz.length, livelli: livelli || 'livelli misti', soglia: REAL_TEST_PASS_MARK, domandeTest: REAL_TEST_QUESTIONS }}
+            onFine={() => { setDaCalcolo(true); setStep('result'); }}
+          />
+        </Screen>
+      );
+    }
+
     case 'result': {
       const weak = weakTopics(quiz, answers);
+      const msg = MESSAGGI[livelloDi(passPercent / 100)];
+      const conta = (filtro: (q: Question) => boolean) => {
+        const dom = quiz.filter(filtro);
+        return { m: dom.length, n: dom.filter(q => answers[q.id] === q.correctIndex).length };
+      };
+      const aree = ['Grammatica', 'Traduzione'].map(nome => ({ nome, ...conta(q => q.category === nome) })).filter(x => x.m > 0);
+      const livelli = ['A1', 'A2', 'B1'].map(nome => ({ nome, ...conta(q => q.level === nome) })).filter(x => x.m >= 3);
+      const tessere = [...aree, ...livelli];
       return (
         <Screen>
           <TopBar {...bar} />
           <div className="text-center">
-            <h2 className={titolo}>Quiz completato</h2>
+            <h2 className={titolo}>Il tuo risultato</h2>
             <p className={sotto}>Hai risposto bene a {correct} {correct === 1 ? 'domanda' : 'domande'} su {quiz.length}.</p>
           </div>
-          <div className="flex justify-center"><Misuratore valore={passPercent} larghezza={250} etichetta={passPercent === 0 ? '< 1%' : passPercent === 100 ? '> 99%' : `${passPercent}%`} /></div>
-          <p className="text-center font-bold text-[#0F172A] dark:text-[#F8FAFC] -mt-2">
-            Probabilità stimata di superare il test oggi
-          </p>
-          <p className="text-center text-xs font-semibold text-gray-500 dark:text-gray-400">
-            Calcolata sulle tue {quiz.length} risposte: al test servono {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}. Con così poche domande è una stima prudente e approssimativa; si affina con le simulazioni.
-          </p>
-          {weak.length > 0 && (
+          <div className="flex justify-center -mb-1"><Misuratore valore={passPercent} larghezza={300} animato={!daCalcolo && !riduci} etichetta={`${passPercent} per cento`} /></div>
+          <div className="text-center -mt-1">
+            <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Probabilità stimata di superare il test oggi</p>
+            <button type="button" onClick={() => setFoglio(true)} aria-haspopup="dialog"
+              className="mt-1 inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+              Calcolata sulle tue {quiz.length} risposte
+              <Info size={16} strokeWidth={2.5} className="text-azione dark:text-azione-chiaro" aria-hidden />
+              <span className="sr-only">: come viene calcolata e perché è solo una stima</span>
+            </button>
+          </div>
+          <div className="rounded-2xl border border-[#E8ECF3] dark:border-[#334155] bg-[#F4F7FC] dark:bg-[#0F172A] p-4">
+            <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">{msg.titolo}</h3>
+            <p className="mt-1 text-sm font-semibold text-gray-600 dark:text-gray-300">{msg.testo}</p>
+          </div>
+          {tessere.length > 0 && (
             <div className="flex flex-col gap-2">
-              <span className="text-xs font-bold text-gray-500 dark:text-gray-400">Da ripassare</span>
+              <span className="text-xs font-bold text-gray-500 dark:text-gray-400">Per area e per livello</span>
+              <div className={`grid grid-cols-2 gap-2.5 ${tessere.length === 4 ? 'sm:grid-cols-4' : 'sm:grid-cols-3'}`}>
+                {tessere.map((x, i) => <Tessera key={x.nome} nome={x.nome} n={x.n} m={x.m} ritardo={i * 0.08} />)}
+              </div>
+            </div>
+          )}
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-bold text-gray-500 dark:text-gray-400">Da ripassare</span>
+            {weak.length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {weak.map(t => (
                   <span key={t} className="px-3 py-1 rounded-full text-xs font-bold bg-[#FEE2E2] text-[#B91C1C] dark:bg-[#7F1D1D]/40 dark:text-[#FCA5A5]">{t}</span>
                 ))}
               </div>
-            </div>
-          )}
-          <div className="mt-auto">
+            ) : (
+              <p className="text-sm font-semibold text-gray-600 dark:text-gray-300">Nessun errore in queste {quiz.length} domande.</p>
+            )}
+          </div>
+          <div className="mt-auto pt-1">
             <PrimaryButton onClick={() => { setStep('ready'); }}>Scopri come prepararti</PrimaryButton>
           </div>
+          <FoglioStima aperto={foglio} onChiudi={() => setFoglio(false)} tipo="diagnostico" risposte={quiz.length} />
         </Screen>
       );
     }
