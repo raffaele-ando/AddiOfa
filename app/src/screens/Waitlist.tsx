@@ -4,7 +4,7 @@ import { DISCLAIMER, PASS, PublicAudience } from '../config/offer';
 import { useAccess } from '../access/context';
 import { playTapSound } from '../lib/audio';
 import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard } from '../components/ui';
-import { Illustrazione } from '../brand/Illustrazione';
+import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 
 interface WaitlistProps {
   onBack(): void;
@@ -26,7 +26,6 @@ export default function Waitlist({ onBack, onDone, onOpenLegal }: WaitlistProps)
   const pulita = email.trim();
   const emailValida = EMAIL_OK.test(pulita);
   const pronto = emailValida && audience !== null && consenso && !invio;
-  const scuro = document.documentElement.classList.contains('dark');
 
   const invia = async () => {
     if (!pronto || !audience) return;
@@ -47,7 +46,7 @@ export default function Waitlist({ onBack, onDone, onOpenLegal }: WaitlistProps)
       <Screen>
         <TopBar />
         <div className="mx-auto my-4 flex items-center justify-center" style={{ minHeight: 140 }}>
-          <Illustrazione kit="kit-blu" nome="successo" lato={160} fondoScuro={scuro} />
+          <IllustrazioneAnimata nome="successo" lato={160} />
         </div>
         <h1 className="text-3xl font-bold text-center text-[#0F172A] dark:text-[#F8FAFC]">Fatto</h1>
         <p className="text-center font-semibold text-gray-500 dark:text-gray-400" role="status">{esito.message}</p>

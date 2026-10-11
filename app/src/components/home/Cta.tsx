@@ -2,21 +2,19 @@ import { ReactNode } from 'react';
 import { ArrowRight, Lock } from 'lucide-react';
 import { playTapSound } from '../../lib/audio';
 
-/** Pulsante d'azione rosso (colore d'azione del kit) con cerchio bianco e freccia, come nel design. */
-export default function Cta({ onClick, children, sotto, bloccato, compatto, icona }: {
-  onClick: () => void; children: ReactNode; sotto?: ReactNode; bloccato?: boolean; compatto?: boolean; icona?: ReactNode;
+/** Pulsante d'azione a tutta larghezza: gradiente blu, cerchio bianco con "play", testo, freccia (concept 14). */
+export default function Cta({ onClick, children, bloccato, icona }: {
+  onClick: () => void; children: ReactNode; bloccato?: boolean; icona?: ReactNode;
 }) {
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }}
-      className={`brand-premibile w-full flex items-center gap-3 rounded-2xl bg-[#2563EB] text-white text-left shadow-[0_6px_16px_rgba(37,99,235,0.26)] ${compatto ? 'px-3 py-2.5' : 'px-4 py-3.5'}`}>
-      <span className={`${compatto ? 'w-8 h-8' : 'w-10 h-10'} rounded-full bg-white flex items-center justify-center shrink-0`}>
-        {icona ?? <svg width="14" height="16" viewBox="0 0 16 18" aria-hidden="true"><path d="M2 1.5 14 9 2 16.5Z" fill="#2563EB" /></svg>}
+      className="brand-premibile w-full h-[60px] flex items-center gap-[25px] rounded-[13px] pl-[12px] pr-[12px] text-left text-azione-su shadow-[0_2px_8px_rgba(37,99,235,0.24)] dark:shadow-none"
+      style={{ background: 'linear-gradient(90deg, var(--color-azione-da), var(--color-azione-a))' }}>
+      <span className="w-[37px] h-[37px] rounded-full bg-white flex items-center justify-center shrink-0 text-azione-a">
+        {icona ?? <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6a.8.8 0 0 0 1.2.7l11-6.8a.8.8 0 0 0 0-1.4L9.2 4.5A.8.8 0 0 0 8 5.2z" fill="currentColor" stroke="currentColor" strokeWidth="0.6" strokeLinejoin="round" /></svg>}
       </span>
-      <span className="flex-1 min-w-0">
-        <span className={`block font-bold ${compatto ? 'text-[15px]' : 'text-[17px]'} leading-tight`}>{children}</span>
-        {sotto && <span className="block text-[12.5px] text-white/85 leading-tight mt-0.5">{sotto}</span>}
-      </span>
-      {bloccato ? <Lock size={18} className="shrink-0" aria-label="Richiede il Pass" /> : <ArrowRight size={20} className="shrink-0" aria-hidden="true" />}
+      <span className="flex-1 min-w-0 text-[16px] font-semibold leading-tight">{children}</span>
+      {bloccato ? <Lock size={20} className="shrink-0" aria-label="Richiede il Pass" /> : <ArrowRight size={24} strokeWidth={1.7} className="shrink-0" aria-hidden="true" />}
     </button>
   );
 }

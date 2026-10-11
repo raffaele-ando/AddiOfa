@@ -3,7 +3,7 @@ import { ExamHistory, ExamQuestionLog, QuestionClickEvent, CorpusType, PaywallRe
 import { X, Clock, ChevronLeft, ChevronRight, Lock, Loader2 } from 'lucide-react';
 import { cn, formatNumber, errorCode } from '../lib/utils';
 import { playTapSound, playVictorySound } from '../lib/audio';
-import { Illustrazione } from '../brand/Illustrazione';
+import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 import { Screen, TopBar } from './ui';
 import ConfirmDialog from './ConfirmDialog';
 import EsitoSimulazione from './esito/EsitoSimulazione';
@@ -281,7 +281,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
       <Screen>
         <TopBar onBack={onExit} />
         <div className="flex flex-col items-center text-center shrink-0">
-          <Illustrazione kit="kit-blu" nome="quiz-test" lato={110} />
+          <IllustrazioneAnimata nome="quiz-test" lato={110} />
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mt-2">Simulazione</h2>
           <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">
             Scegli il formato. Nessun feedback durante la prova: le risposte e le spiegazioni arrivano alla consegna.
@@ -359,7 +359,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
       <Screen className="items-center justify-center text-center">
         {phase === 'submitting' ? (
           <>
-            <Loader2 size={36} className="animate-spin text-[#2563EB] dark:text-[#60A5FA]" />
+            <IllustrazioneAnimata nome="attesa-caricamento" lato={110} />
             <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Consegno e correggo…</p>
           </>
         ) : (

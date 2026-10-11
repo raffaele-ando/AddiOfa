@@ -1,14 +1,86 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
+/* Schermi bassi (meno di 820 px di altezza, o la versione demo con la banda in alto): la home restringe i vuoti per restare in una schermata. */
+@custom-variant corto (@media (max-height: 820px));
 
-/* Colore d'azione dell'app (blu). Nel codice nuovo usare questi token (bg-azione, text-azione, ...) e non gli esadecimali. Il rosso resta solo per errore, sbagliato, tempo scaduto, pericolo e fascia bassa della probabilità. */
-@theme {
+/* Token di colore dell'app. Nel codice nuovo si usano le classi (bg-fondo, bg-superficie, bg-superficie-2, text-testo, text-testo-tenue, border-linea, bg-azione, ...)
+   e non gli esadecimali. Il tema scuro cambia solo i valori qui sotto (blocco .dark): le classi restano le stesse.
+   Il rosso resta per errore, sbagliato, tempo scaduto e pericolo. Le fasce della probabilità (corallo, ambra, verde) hanno i loro token. */
+@theme static {
+  /* sfondi e testo */
+  --color-fondo: #F7F9FD;
+  --color-superficie: #FFFFFF;
+  --color-superficie-2: #F2F5FB;
+  --color-testo: #0E1B3F;
+  --color-testo-tenue: #5F6B85;
+  --color-linea: #E6EBF5;
+  --color-tacca: #D3DAE6;
+
+  /* azione (blu) */
   --color-azione: #2563EB;
   --color-azione-scuro: #1D4ED8;
   --color-azione-tinta: #DBEAFE;
   --color-azione-tinta-scura: #1E3A8A;
   --color-azione-chiaro: #60A5FA;
+  --color-azione-da: #3B82F6;
+  --color-azione-a: #2563EB;
+  --color-azione-su: #FFFFFF;
+  --color-marchio: #1D6BFF;
+
+  /* fasce della probabilità: tinta del banner, colore pieno, inizio del gradiente dell'arco, numero e etichetta */
+  --color-basso: #F5303B;
+  --color-basso-chiaro: #FF8E8E;
+  --color-basso-testo: #A31217;
+  --color-basso-numero: #E8101E;
+  --color-basso-tinta: #FEF0F0;
+  --color-medio: #FFA92D;
+  --color-medio-chiaro: #FFD98A;
+  --color-medio-testo: #B45F06;
+  --color-medio-numero: #F59A1B;
+  --color-medio-tinta: #FFF8EC;
+  --color-alto: #0BB474;
+  --color-alto-chiaro: #8DE3B9;
+  --color-alto-testo: #0B7A4A;
+  --color-alto-numero: #079A62;
+  --color-alto-tinta: #EEF9F3;
+}
+
+/* Tema scuro: stessi nomi, valori desaturati. Le tinte dei banner sono tinte morbide sulla superficie, niente riquadri fangosi. */
+.dark {
+  --color-fondo: #0A101F;
+  --color-superficie: #111A2E;
+  --color-superficie-2: #17223A;
+  --color-testo: #EAF0FC;
+  --color-testo-tenue: #97A5C4;
+  --color-linea: #1F2B45;
+  --color-tacca: #2A3858;
+
+  --color-azione: #4F8BFF;
+  --color-azione-scuro: #7FA8FF;
+  --color-azione-tinta: #16264A;
+  --color-azione-tinta-scura: #16264A;
+  --color-azione-chiaro: #7FA8FF;
+  --color-azione-da: #5B93FF;
+  --color-azione-a: #3B78F2;
+  --color-azione-su: #0A101F;
+  --color-marchio: #5C95FF;
+
+  --color-basso: #F2766B;
+  --color-basso-chiaro: #F9A59D;
+  --color-basso-testo: #F59A91;
+  --color-basso-numero: #F2766B;
+  --color-basso-tinta: #26283D;
+  --color-medio: #E8B04A;
+  --color-medio-chiaro: #F3CF8A;
+  --color-medio-testo: #EBC272;
+  --color-medio-numero: #E8B04A;
+  --color-medio-tinta: #262C3B;
+  --color-alto: #4CC38A;
+  --color-alto-chiaro: #92DDB9;
+  --color-alto-testo: #7ED6A9;
+  --color-alto-numero: #4CC38A;
+  --color-alto-tinta: #1B2D40;
 }
 
 @layer base {
@@ -16,4 +88,3 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 }
-

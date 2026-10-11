@@ -1,5 +1,5 @@
 // Anteprima della home con un AccessContext finto e dati di prova.
-// Uso: /tests/anteprime/home.html?stato=nuovo|basso|medio|alto  &pass=1  &tema=dark  &sim=0|1  &punti=1..5 (punti del grafico: diagnostico + simulazioni)  &focus=0 (barre non cliccabili)
+// Uso: /tests/anteprime/home.html?vista=home|lezioni|impostazioni  &stato=nuovo|basso|medio|alto  &pass=1  &tema=dark  &sim=0|1  &punti=1..5 (punti del grafico: diagnostico + simulazioni)  &focus=0 (barre non cliccabili)
 // Registro per Playwright: window.__log (callback chiamate).
 import { StrictMode, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -13,11 +13,16 @@ import type { Entitlement } from '../../src/access/provider';
 import type { AppState, ExamHistory } from '../../src/types';
 import { questions } from '../../src/data/questions';
 import Menu from '../../src/components/Menu';
+import Lezioni from '../../src/screens/Lezioni';
+import Impostazioni from '../../src/screens/Impostazioni';
+import Misuratore from '../../src/components/home/Misuratore';
+import { BannerStato } from '../../src/components/home/Stima';
 
 const q = new URLSearchParams(location.search);
 if (q.get('tema') === 'dark') document.documentElement.classList.add('dark');
 const conPass = q.get('pass') === '1';
 const stato = q.get('stato') ?? 'medio';
+const vista = q.get('vista') ?? 'home';
 
 declare global { interface Window { __log: unknown[] } }
 window.__log = [];
@@ -66,13 +71,31 @@ function App() {
   return (
     <AccessContext.Provider value={access}>
       <Layout>
-        <Menu appState={appState} user={null} corpus={conPass ? 'all' : 'initial'}
-          onStartSmart={reg('onStartSmart')} onStartLearn={reg('onStartLearn')} onStartExam={reg('onStartExam')} onOpenStats={reg('onOpenStats')}
-          onImport={reg('onImport')} onSelectCorpus={reg('onSelectCorpus')} onOpenPaywall={reg('onOpenPaywall')} onNeedPass={reg('onNeedPass')}
-          onStartErrors={reg('onStartErrors')} onOpenTheory={reg('onOpenTheory')} onOpenTheoryTopic={reg('onOpenTheoryTopic')}
-          onStartFocus={q.get('focus') === '0' ? undefined : reg('onStartFocus')}
-          onOpenLegal={reg('onOpenLegal')} onOpenCheatSheet={reg('onOpenCheatSheet')} onOpenDiagnostic={reg('onOpenDiagnostic')}
-          onNaviga={reg('onNaviga')} />
+        {vista === 'misuratore' ? (
+          // taratura contro il concept 14: ?vista=misuratore&p=82&liv=basso (solo il misuratore e il banner, a 390 px)
+          <div style={{ width: 390, background: 'var(--color-superficie)' }} className="mx-auto pt-[44px]">
+            <Misuratore percento={Number(q.get('p') ?? 82)} livello={(q.get('liv') as 'basso' | 'medio' | 'alto') ?? 'basso'} etichetta="Probabilità stimata di superare" sotto="il test OFA di inglese" onInfo={() => undefined} />
+            <div className="px-6 mt-[14px]"><BannerStato chiave="margine" onClick={() => undefined} /></div>
+          </div>
+        ) : vista === 'lezioni' ? (
+          <Lezioni appState={appState} corpus={conPass ? 'all' : 'initial'}
+            onStartLearn={reg('onStartLearn')} onOpenStats={reg('onOpenStats')} onStartErrors={reg('onStartErrors')}
+            onOpenTheory={reg('onOpenTheory')} onOpenTheoryTopic={reg('onOpenTheoryTopic')}
+            onStartFocus={q.get('focus') === '0' ? undefined : reg('onStartFocus')}
+            onOpenCheatSheet={reg('onOpenCheatSheet')} onOpenDiagnostic={reg('onOpenDiagnostic')}
+            onSelectCorpus={reg('onSelectCorpus')} onOpenPaywall={reg('onOpenPaywall')} onNeedPass={reg('onNeedPass')} onNaviga={reg('onNaviga')} />
+        ) : vista === 'impostazioni' ? (
+          <Impostazioni onBack={reg('onBack')} onOpenPaywall={reg('onOpenPaywall')} onOpenLegal={reg('onOpenLegal')}
+            onImport={reg('onImport')} onExport={q.get('esporta') === '0' ? undefined : reg('onExport')}
+            onLogin={q.get('login') === '1' ? reg('onLogin') : undefined}
+            utente={q.get('utente') === '1' ? { displayName: 'Raffaele Rossi', email: 'raffaele@example.com' } : null}
+            onLogout={reg('onLogout')} onOpenProfile={reg('onOpenProfile')} />
+        ) : (
+          <Menu appState={appState} corpus={conPass ? 'all' : 'initial'}
+            onStartSmart={reg('onStartSmart')} onStartExam={reg('onStartExam')} onNeedPass={reg('onNeedPass')}
+            onOpenTheory={reg('onOpenTheory')} onOpenTheoryTopic={reg('onOpenTheoryTopic')}
+            onOpenDiagnostic={reg('onOpenDiagnostic')} onOpenImpostazioni={reg('onOpenImpostazioni')} onNaviga={reg('onNaviga')} />
+        )}
       </Layout>
     </AccessContext.Provider>
   );

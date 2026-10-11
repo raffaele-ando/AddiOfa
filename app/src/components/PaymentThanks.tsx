@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Illustrazione } from '../brand/Illustrazione';
+import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 import { useAccess } from '../access/context';
 import { playTapSound } from '../lib/audio';
 import { Screen, PrimaryButton } from './ui';
@@ -11,7 +11,6 @@ export default function PaymentThanks({ onContinue }: { onContinue: () => void }
   const { pass, entitlement, refresh } = useAccess();
   const [controllo, setControllo] = useState(false);
   const [provato, setProvato] = useState(false);
-  const scuro = document.documentElement.classList.contains('dark');
 
   const ricontrolla = async () => {
     setControllo(true);
@@ -29,7 +28,7 @@ export default function PaymentThanks({ onContinue }: { onContinue: () => void }
   return (
     <Screen>
       <div className="mx-auto my-4 flex items-center justify-center" style={{ minHeight: 140 }}>
-        <Illustrazione kit="kit-blu" nome="celebrazione" lato={170} fondoScuro={scuro} />
+        <IllustrazioneAnimata nome="celebrazione" lato={170} />
       </div>
       <h1 className="text-3xl sm:text-4xl font-bold text-center text-[#0F172A] dark:text-[#F8FAFC]">Grazie</h1>
       <p className="text-center font-semibold text-gray-500 dark:text-gray-400">

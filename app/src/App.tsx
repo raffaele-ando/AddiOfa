@@ -18,6 +18,8 @@ import { AccessProvider } from './access/AccessProvider';
 import { useAccess } from './access/context';
 import { canStartSim } from './access/entitlement';
 import Menu from './components/Menu';
+import Lezioni from './screens/Lezioni';
+import Impostazioni from './screens/Impostazioni';
 import PracticeMenu from './components/PracticeMenu';
 import LearnMode from './components/LearnMode';
 import ExamMode from './components/ExamMode';
@@ -43,7 +45,7 @@ const BrandKit = import.meta.env.DEV ? lazy(() => import('./brand/BrandKit')) : 
 const DebugMode = import.meta.env.DEV ? lazy(() => import('./components/DebugMode')) : null;
 
 type View = 'landing' | 'onboarding' | 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'stats' | 'cheatsheet'
-  | 'paywall' | 'waitlist' | 'invites' | 'theory' | 'legal' | 'thanks' | 'brand' | 'debug' | 'profile' | 'leaderboard';
+  | 'paywall' | 'waitlist' | 'invites' | 'theory' | 'legal' | 'thanks' | 'brand' | 'debug' | 'profile' | 'leaderboard' | 'lezioni' | 'impostazioni';
 
 // Il tempo di studio conta solo mentre si studia davvero
 const STUDY_VIEWS: View[] = ['learn', 'exam', 'onboarding'];
@@ -254,6 +256,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   };
 
   const apriTeoria = (id: string) => { setTeoriaId(id); setView('theory'); };
+  // dalla home o dalle Lezioni: la freccia indietro riporta lì
+  const apriTeoriaDa = (id: string) => { setTeoriaId(id); apri('theory'); };
 
   const handleExamComplete = (
     historyEntry: ExamHistory, 
@@ -410,13 +414,13 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [view, user, appState.projectLink]);
 
-  // schede della barra in basso
+  // Barra in basso, tre voci: Home, Simulazioni (scelta e avvio della simulazione), Lezioni (hub di teoria, esercizi, ripasso, progressi).
+  // Le pagine che si aprono dalle Lezioni (teoria, esercizi, progressi) mostrano la barra con "Lezioni" attiva.
   const vaiScheda = (s: Scheda) => {
-    if (s === 'pass') { apriPaywall('generico'); return; }
-    setView(({ home: 'menu', esercizi: 'practiceMenu', teoria: 'theory', progressi: 'stats', classifica: 'leaderboard' } as const)[s]);
+    setView(({ home: 'menu', simulazioni: 'exam', lezioni: 'lezioni' } as const)[s]);
   };
-  const conBarra = (scheda: Scheda, pagina: React.ReactNode) => (
-    <div className="h-full w-full flex flex-col overflow-hidden sm:rounded-[28px] sm:border sm:border-[#E5E7EB] bg-white dark:bg-[#1E293B]">
+  const conBarra = (scheda: Scheda | null, pagina: React.ReactNode) => (
+    <div className="h-full w-full flex flex-col overflow-hidden sm:rounded-[28px] sm:border sm:border-linea bg-superficie">
       <div className="flex-1 min-h-0 [&>*]:sm:rounded-none [&>*]:sm:border-0">{pagina}</div>
       <Navigazione attiva={scheda} onVai={vaiScheda} />
     </div>
@@ -455,35 +459,54 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         />
       )}
       {view === 'menu' && (
-        <Menu 
-          appState={statoVista} 
-          user={user}
+        <Menu
+          appState={statoVista}
           corpus={corpusAttivo}
           onStartSmart={() => {
             setLearnMode('smart');
             setLearnCategory(undefined);
             setView('learn');
           }}
-          onStartLearn={() => setView('practiceMenu')}
           onStartExam={avviaSimulazione}
-          onOpenStats={() => setView('stats')}
-          onExport={isDemo ? undefined : () => exportData(appState)}
-          onImport={() => fileInputRef.current?.click()}
-          onLogin={loginOn ? handleLogin : undefined}
-          onOpenDebug={import.meta.env.DEV ? () => setView('debug') : undefined}
+          onNeedPass={apriPaywall}
+          onOpenTheory={() => { setTeoriaId(undefined); apri('theory'); }}
+          onOpenTheoryTopic={apriTeoriaDa}
+          onOpenDiagnostic={() => setView('onboarding')}
+          onOpenImpostazioni={() => apri('impostazioni')}
+          onNaviga={vaiScheda}
+        />
+      )}
+      {view === 'lezioni' && (
+        <Lezioni
+          appState={statoVista}
+          corpus={corpusAttivo}
+          onStartLearn={() => apri('practiceMenu')}
+          onOpenStats={() => apri('stats')}
+          onStartErrors={() => { setLearnMode('weakness'); setLearnCategory(undefined); setView('learn'); }}
+          onOpenTheory={() => { setTeoriaId(undefined); apri('theory'); }}
+          onOpenTheoryTopic={apriTeoriaDa}
+          onStartFocus={f => { setLearnMode('category'); setLearnCategory(f); setView('learn'); }}
+          onOpenCheatSheet={() => apri('cheatsheet')}
+          onOpenDiagnostic={() => setView('onboarding')}
+          onOpenLeaderboard={FEATURE_FLAGS.leaderboard ? () => apri('leaderboard') : undefined}
           onSelectCorpus={handleSelectCorpus}
           onOpenPaywall={() => apriPaywall('generico')}
           onNeedPass={apriPaywall}
-          onStartErrors={() => { setLearnMode('weakness'); setLearnCategory(undefined); setView('learn'); }}
-          onOpenTheory={() => { setTeoriaId(undefined); setView('theory'); }}
-          onOpenTheoryTopic={apriTeoria}
-          onStartFocus={f => { setLearnMode('category'); setLearnCategory(f); setView('learn'); }}
-          onOpenLegal={apriLegale}
-          onOpenCheatSheet={() => setView('cheatsheet')}
-          onOpenDiagnostic={() => setView('onboarding')}
-          onOpenProfile={FEATURE_FLAGS.projectId ? () => setView('profile') : undefined}
-          onOpenLeaderboard={FEATURE_FLAGS.leaderboard ? () => setView('leaderboard') : undefined}
           onNaviga={vaiScheda}
+        />
+      )}
+      {view === 'impostazioni' && (
+        <Impostazioni
+          utente={user}
+          onBack={indietro}
+          onOpenPaywall={() => apriPaywall('generico')}
+          onOpenLegal={apriLegale}
+          onImport={() => fileInputRef.current?.click()}
+          onExport={isDemo ? undefined : () => exportData(appState)}
+          onLogin={loginOn ? handleLogin : undefined}
+          onLogout={loginOn && user ? () => { logout(); } : undefined}
+          onOpenProfile={FEATURE_FLAGS.projectId && user ? () => apri('profile') : undefined}
+          onOpenDebug={import.meta.env.DEV ? () => apri('debug') : undefined}
         />
       )}
       {FEATURE_FLAGS.projectId && view === 'profile' && user && (
@@ -491,7 +514,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           user={user}
           account={projectAccount}
           appState={appState}
-          onBack={() => setView('menu')}
+          onBack={indietro}
           onAccountChange={setProjectAccount}
           onChangeScopes={handleChangeScopes}
           onUnlink={handleUnlink}
@@ -500,11 +523,11 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         />
       )}
       {FEATURE_FLAGS.leaderboard && view === 'leaderboard' && (
-        conBarra('classifica', <>
+        conBarra(null, <>
         <Leaderboard
           user={user}
           appState={appState}
-          onBack={() => setView('menu')}
+          onBack={indietro}
           onLogin={handleLogin}
           onJoin={() => handleChangeScopes(Array.from(new Set([...(appState.projectLink?.scopes ?? ['profile']), 'noi.leaderboard'])) as ScopeId[])}
         />
@@ -544,9 +567,9 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         <Invites onBack={indietro} />
       )}
       {view === 'theory' && (
-        conBarra('teoria', (
+        conBarra('lezioni', (
           <Suspense fallback={<Caricamento />}>
-            <Theory key={teoriaId ?? 'elenco'} initialTopicId={teoriaId} onBack={() => setView('menu')} onOpenPaywall={() => apriPaywall('teoria')} />
+            <Theory key={teoriaId ?? 'elenco'} initialTopicId={teoriaId} onBack={indietro} onOpenPaywall={() => apriPaywall('teoria')} />
           </Suspense>
         ))
       )}
@@ -554,7 +577,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         <Legal section={legalSection} onBack={indietro} onSection={setLegalSection} />
       )}
       {view === 'cheatsheet' && (
-        <CheatSheet onBack={() => setView('menu')} onNeedPass={apriPaywall} />
+        <CheatSheet onBack={indietro} onNeedPass={apriPaywall} />
       )}
       {view === 'thanks' && (
         <PaymentThanks onContinue={() => {
@@ -564,7 +587,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         }} />
       )}
       {view === 'practiceMenu' && (
-        conBarra('esercizi', <>
+        conBarra('lezioni', <>
         <PracticeMenu 
           selectedCorpus={corpusAttivo}
           onSelectCorpus={handleSelectCorpus}
@@ -573,7 +596,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
             setLearnCategory(category);
             setView('learn');
           }}
-          onBack={() => setView('menu')}
+          onBack={indietro}
           onNeedPass={apriPaywall}
         />
         </>)
@@ -599,10 +622,10 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         />
       )}
       {view === 'stats' && (
-        conBarra('progressi', <>
+        conBarra('lezioni', <>
         <StatsMode 
           appState={appState}
-          onExit={() => setView('menu')}
+          onExit={indietro}
           onNeedPass={apriPaywall}
         />
         </>)
@@ -616,7 +639,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
       />
       {DebugMode && view === 'debug' && (
         <Suspense fallback={<Caricamento />}>
-          <DebugMode onBack={() => setView('menu')} />
+          <DebugMode onBack={indietro} />
         </Suspense>
       )}
     </Layout>

@@ -12,6 +12,7 @@ import { playTapSound } from '../lib/audio';
 import { useAccess } from '../access/context';
 import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard } from './ui';
 import { Illustrazione } from '../brand/Illustrazione';
+import { IllustrazioneAnimata, eAnimata } from '../brand/IllustrazioneAnimata';
 import { IconaChip, Misuratore } from '../brand/componenti';
 import { ECOSYSTEM } from '../config/ecosystem';
 import { urlIcona } from '../brand/risorse';
@@ -62,7 +63,9 @@ function Scena({ nome, gruppo }: { nome: string; gruppo?: string }) {
   const scuro = document.documentElement.classList.contains('dark');
   return (
     <div className="mx-auto my-3 flex items-center justify-center" style={{ minHeight: 150 }}>
-      <Illustrazione kit="kit-blu" nome={nome} gruppo={gruppo} lato={200} fondoScuro={scuro} />
+      {eAnimata(nome)
+        ? <IllustrazioneAnimata nome={nome} lato={200} />
+        : <Illustrazione kit="kit-blu" nome={nome} gruppo={gruppo} lato={200} fondoScuro={scuro} />}
     </div>
   );
 }

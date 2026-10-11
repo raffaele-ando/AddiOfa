@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { AppState, QuestionClickEvent, QuestionTelemetry, PaywallReason, UserStats } from '../types';
 import { selectPracticeIds, updateStats, poolMeta, countLearned } from '../lib/spacedRepetition';
-import { X, ArrowRight, RotateCcw, Lightbulb, Flame, BookOpen, Loader2 } from 'lucide-react';
+import { X, ArrowRight, RotateCcw, Lightbulb, Flame, BookOpen } from 'lucide-react';
 import FineSessione, { type DomandaDaRiprendere } from './esito/FineSessione';
 import { cn, shuffleArray } from '../lib/utils';
 import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound } from '../lib/audio';
 import { useAccess } from '../access/context';
 import type { GradeResult, PublicQuestion } from '../access/provider';
 import { Screen } from './ui';
+import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 
 interface LearnModeProps {
   appState: AppState;
@@ -170,7 +171,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   if (loadState === 'loading') {
     return (
       <Screen className="items-center justify-center text-center">
-        <Loader2 size={32} className="animate-spin text-[#2563EB] dark:text-[#60A5FA]" />
+        <IllustrazioneAnimata nome="attesa-caricamento" lato={110} />
         <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Preparo le domande…</p>
       </Screen>
     );

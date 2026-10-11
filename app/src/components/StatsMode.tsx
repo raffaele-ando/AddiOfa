@@ -6,7 +6,7 @@ import { REGOLA_IMPARATA } from './home/comune';
 import { confidenceFromEasiness, bankMeta, poolMeta, countLearned, isLearned } from '../lib/spacedRepetition';
 import GuaranteeTracker from './GuaranteeTracker';
 import { IconaChip } from '../brand/componenti';
-import { Illustrazione } from '../brand/Illustrazione';
+import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 import { PoweredByAtlas } from './ui';
 import { useAccess } from '../access/context';
 import { FEATURE_FLAGS, FORMATS, PASS } from '../config/offer';
@@ -261,7 +261,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               <h2 className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Progressi</h2>
               <p className="text-sm text-[#6B7280] dark:text-gray-400">Quanto sai, in breve.</p>
             </div>
-            <Illustrazione kit="kit-blu" nome="progressi-statistiche" lato={84} />
+            <IllustrazioneAnimata nome="progressi-statistiche" lato={84} />
           </header>
 
           <main className="flex-1 overflow-y-auto scrollbar-hide p-4 sm:p-6 flex flex-col gap-4 sm:gap-6 max-w-2xl w-full mx-auto">
@@ -497,7 +497,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           <h2 className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Progressi</h2>
           <p className="text-sm text-[#6B7280] dark:text-gray-400">Quanto sai, argomento per argomento.</p>
         </div>
-        <Illustrazione kit="kit-blu" nome="progressi-statistiche" lato={84} />
+        <IllustrazioneAnimata nome="progressi-statistiche" lato={84} />
       </header>
 
       <main className="flex-1 overflow-y-auto scrollbar-hide p-4 sm:p-6 flex flex-col gap-4 sm:gap-6">

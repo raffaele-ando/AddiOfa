@@ -1,5 +1,5 @@
 import { FREE_LIMITS } from '../../config/offer';
-import { Illustrazione } from '../../brand/Illustrazione';
+import { IllustrazioneAnimata } from '../../brand/IllustrazioneAnimata';
 import { BottoneAzione, Colonna } from './comune';
 
 // Chiusura: un solo invito, senza scadenze finte.
@@ -28,7 +28,7 @@ export default function CtaFinale({ scuro, onStart, onSkip }: { scuro: boolean; 
                 </div>
               </div>
               <div className="hidden md:block rounded-3xl bg-white/95 dark:bg-[#0F172A]/80 p-3">
-                <Illustrazione kit="kit-blu" nome="superamento" lato={170} fondoScuro={scuro} />
+                <IllustrazioneAnimata nome="superamento" lato={170} quandoVisibile />
               </div>
             </div>
           </div>

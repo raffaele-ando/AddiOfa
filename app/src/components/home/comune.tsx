@@ -4,14 +4,13 @@ import { formatPunteggio, type IntervalloStima } from '../../lib/diagnostic';
 import { REAL_TEST_PASS_MARK } from '../../config/offer';
 
 /** Colore semantico di un valore 0-100 (sempre accompagnato dal numero scritto, mai solo colore). */
-export function coloreValore(v: number): string { return v < 40 ? '#EF4444' : v < 70 ? '#F59E0B' : '#22C55E'; }
+export function coloreValore(v: number): string { return v < 40 ? 'var(--color-basso)' : v < 70 ? 'var(--color-medio)' : 'var(--color-alto)'; }
 
-/** Card della home: bianca, angoli larghi, ombra morbida. Ferma. */
+/** Carta chiara come nel concept: tinta della superficie-2, angoli larghi, niente bordo né ombra. Ferma. */
 export function Carta({ className, children, tinta }: { className?: string; children: ReactNode; tinta?: string }) {
   return (
     <section
-      className={cn('rounded-3xl border shadow-[0_8px_24px_rgba(15,23,42,0.05)] dark:shadow-none',
-        tinta ?? 'bg-white dark:bg-[#1E293B] border-[#E8ECF3] dark:border-[#334155]', className)}>
+      className={cn('rounded-[12px]', tinta ?? 'bg-superficie-2', className)}>
       {children}
     </section>
   );
@@ -20,7 +19,7 @@ export function Carta({ className, children, tinta }: { className?: string; chil
 /** Barra di avanzamento: la larghezza è subito quella finale. */
 export function Barra({ valore, colore, alta = 8, sfondo }: { valore: number; colore: string; alta?: number; sfondo?: string }) {
   return (
-    <div className={cn('rounded-full overflow-hidden', sfondo ?? 'bg-[#EEF1F6] dark:bg-[#334155]')} style={{ height: alta }}>
+    <div className={cn('rounded-full overflow-hidden', sfondo ?? 'bg-linea')} style={{ height: alta }}>
       <div className="h-full rounded-full" style={{ background: colore, width: `${Math.max(0, Math.min(100, valore))}%` }} />
     </div>
   );
@@ -35,7 +34,7 @@ export const RISPOSTE_PER_STIMA_STRETTA = 90;
  */
 export function RigaIntervallo({ intervallo, className }: { intervallo: IntervalloStima; className?: string }) {
   return (
-    <p className={cn('text-[12px] leading-snug text-[#6B7280] dark:text-[#94A3B8] text-center', className)}>
+    <p className={cn('text-[12px] leading-snug text-testo-tenue text-center', className)}>
       Punteggio probabile al test: <span className="font-bold whitespace-nowrap">{formatPunteggio(intervallo)}</span> (soglia {REAL_TEST_PASS_MARK}).
     </p>
   );

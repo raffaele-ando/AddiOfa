@@ -1,7 +1,7 @@
 // Fine di una sessione di studio: com'è andata, quante domande si sanno prima e dopo, cosa riprendere, cosa fare ora.
 // Niente punti, livelli o serie: solo numeri veri presi dalle risposte della sessione.
 import { ArrowRight, BookOpen, Check, Clock, Plus, RotateCcw } from 'lucide-react';
-import { Illustrazione } from '../../brand/Illustrazione';
+import { IllustrazioneAnimata } from '../../brand/IllustrazioneAnimata';
 import { cn, formatDuration } from '../../lib/utils';
 import { REGOLA_IMPARATA } from '../home/comune';
 import { playTapSound } from '../../lib/audio';
@@ -38,7 +38,7 @@ export default function FineSessione({ corrette, totale, secondi, prima, dopo, g
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="max-w-xl mx-auto w-full p-4 sm:p-6 flex flex-col gap-4">
           <div className="flex flex-col items-center text-center pt-1">
-            <Illustrazione kit="kit-blu" nome="successo" lato={104} />
+            <IllustrazioneAnimata nome="successo" lato={104} />
             <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mt-1">Sessione finita</h2>
             <p className="text-sm sm:text-base font-semibold text-gray-500 dark:text-gray-400 mt-1">
               Al primo tentativo hai risposto bene a {corrette} domande su {totale}.

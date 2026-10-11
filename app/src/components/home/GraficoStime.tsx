@@ -1,93 +1,76 @@
-import { useId, useState } from 'react';
+import { useId } from 'react';
 import { Info } from 'lucide-react';
 import type { PuntoStima } from './stima';
+import { livelloDi } from './stima';
+import { TitoloSezione } from './Stima';
 import { formatProbabilita } from '../../lib/diagnostic';
 import { playTapSound } from '../../lib/audio';
 
-// Scala unica 0-100 per tutti i punti, tracciato su 360 x 112.
-const W = 360, ALTO = 112, SU = 12, GIU = 98;
-const yDi = (p: number) => GIU - ((Math.max(0, Math.min(100, p)) / 100) * (GIU - SU));
-
-// Colore secondo il valore (rosso, giallo, verde): la stessa funzione dà il gradiente della linea e il colore dei punti.
-const STOP: [number, [number, number, number]][] = [[0, [239, 68, 68]], [28, [239, 68, 68]], [40, [245, 158, 11]], [58, [245, 158, 11]], [70, [34, 197, 94]], [100, [34, 197, 94]]];
-function coloreDi(v: number): string {
-  for (let i = 1; i < STOP.length; i++) {
-    if (v <= STOP[i][0]) {
-      const [a, ca] = STOP[i - 1], [b, cb] = STOP[i];
-      const t = b === a ? 0 : (v - a) / (b - a);
-      return `rgb(${ca.map((x, k) => Math.round(x + (cb[k] - x) * t)).join(',')})`;
-    }
-  }
-  return 'rgb(34,197,94)';
-}
+// Disegno su 343 x 100: la scala è unica (0-100) per tutti i punti, così l'altezza dice davvero quanto vale la stima.
+const W = 342.8, ALTO = 84, SU = 6, GIU = 38;
+const yDi = (p: number) => GIU - (Math.max(0, Math.min(100, p)) / 100) * (GIU - SU);
+// Punti sulla stessa griglia del concept: dal 8 % al 91 % della larghezza (un punto solo: al centro)
+const xDi = (i: number, n: number) => (n === 1 ? 0.5 : 0.08 + (0.832 * i) / (n - 1)) * W;
 
 /**
- * "Come cambia la tua probabilità": solo punti MISURATI (la stima dopo il diagnostico e dopo ogni simulazione, ultimi 5).
- * Nessuna proiezione. Con un solo punto si vede il punto e l'invito a fare una simulazione.
+ * "Come cambia la tua probabilità": solo punti MISURATI (la stima dopo il diagnostico e dopo ogni simulazione, ultimi 5), linea a gradiente
+ * dal colore di un punto a quello del successivo, valore e nome sotto ogni punto. Nessuna proiezione.
+ * Con un solo punto si vede il punto e l'invito a fare una simulazione.
  */
-export default function GraficoStime({ punti, onSimulazione }: { punti: PuntoStima[]; onSimulazione?: () => void }) {
+export default function GraficoStime({ punti, onSimulazione, onInfo }: { punti: PuntoStima[]; onSimulazione?: () => void; onInfo?: () => void }) {
   const id = useId().replace(/:/g, '');
-  const [info, setInfo] = useState(false);
   const n = punti.length;
   if (n === 0) return null;
-  const xs = punti.map((_, i) => ((i + 0.5) / n) * W);
   const val = punti.map(p => p.p * 100);
+  const xs = punti.map((_, i) => xDi(i, n));
   const ys = val.map(yDi);
+  const fasce = punti.map(p => livelloDi(p.p));
   const linea = xs.map((x, i) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)} ${ys[i].toFixed(1)}`).join('');
   const descrizione = punti.map((p, i) => `${i === n - 1 ? 'Oggi' : p.nome}: ${formatProbabilita(p.p)}`).join('; ');
+  const alto = ALTO; // spazio per valore e nome sotto il punto più basso
   return (
-    <section aria-labelledby="titolo-grafico" className="flex flex-col gap-1">
-      <div className="flex items-center gap-1.5 px-0.5">
-        <h2 id="titolo-grafico" className="text-[19px] leading-tight font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Come cambia la tua probabilità</h2>
-        <button type="button" onClick={() => { playTapSound(); setInfo(v => !v); }} aria-expanded={info} aria-controls="info-grafico" aria-label="Cosa mostra il grafico"
-          className="p-1.5 -m-0.5 rounded-full text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-[#F8FAFC]"><Info size={19} aria-hidden="true" /></button>
-      </div>
-      {info && (
-        <p id="info-grafico" className="mt-1 rounded-xl bg-[#F1F5F9] dark:bg-[#1E293B] px-3 py-2.5 text-[12.5px] leading-snug text-[#475569] dark:text-[#CBD5E1]">
-          Ogni punto è una stima che hai avuto davvero: dopo il diagnostico e dopo ciascuna simulazione, con le risposte date fino a quel momento. Non è una previsione: il grafico non dice cosa succederà.
-        </p>
-      )}
-
-      <div role="img" aria-label={`Come cambia la stima. ${descrizione}`}>
-        <svg viewBox={`0 0 ${W} ${ALTO}`} className="block w-full h-auto mt-1" aria-hidden="true">
-          <defs>
-            {/* gradiente in unità del disegno: il colore dipende dal valore, anche con la linea piatta */}
-            <linearGradient id={`l${id}`} gradientUnits="userSpaceOnUse" x1="0" y1={yDi(100)} x2="0" y2={yDi(0)}>
-              <stop offset="0" stopColor="#22C55E" /><stop offset="0.3" stopColor="#22C55E" />
-              <stop offset="0.42" stopColor="#F59E0B" /><stop offset="0.6" stopColor="#F59E0B" />
-              <stop offset="0.72" stopColor="#EF4444" /><stop offset="1" stopColor="#EF4444" />
-            </linearGradient>
-          </defs>
-          <line x1="0" y1={GIU + 6} x2={W} y2={GIU + 6} strokeWidth="1.5" className="stroke-[#E3E8F0] dark:stroke-[#334155]" />
-          {n > 1 && (
-            <path d={linea} fill="none" stroke={`url(#l${id})`} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+    <section aria-labelledby="titolo-grafico" className="flex flex-col gap-[8px]">
+      <TitoloSezione id="titolo-grafico" destra={undefined}>
+        <span className="inline-flex items-center gap-2">
+          Come cambia la tua probabilità
+          {onInfo && (
+            <button type="button" onClick={() => { playTapSound(); onInfo(); }} aria-label="Come è calcolata la stima"
+              className="grid place-items-center w-7 h-7 -m-1.5 rounded-full text-testo-tenue hover:text-testo"><Info size={16} strokeWidth={1.8} aria-hidden="true" /></button>
           )}
-          {xs.map((x, i) => (
-            <g key={i}>
-              <line x1={x} y1={ys[i] + 8} x2={x} y2={GIU + 6} strokeWidth="1.5" strokeDasharray="2 4" strokeLinecap="round" className="stroke-[#D5DBE6] dark:stroke-[#475569]" />
-              <circle cx={x} cy={ys[i]} r={i === n - 1 ? 9 : 7} fill={coloreDi(val[i])} stroke="#fff" strokeWidth={i === n - 1 ? 4 : 3.5} className="dark:stroke-[#0F172A]" />
-            </g>
-          ))}
+        </span>
+      </TitoloSezione>
+
+      <div role="img" aria-label={`Come cambia la stima. ${descrizione}`} className="relative w-full" style={{ aspectRatio: `${W} / ${alto}` }}>
+        <svg viewBox={`0 0 ${W} ${alto}`} className="absolute inset-0 w-full h-full" aria-hidden="true">
+          <defs>
+            {n > 1 && (
+              <linearGradient id={`l${id}`} gradientUnits="userSpaceOnUse" x1={xs[0]} y1="0" x2={xs[n - 1]} y2="0">
+                {fasce.map((f, i) => <stop key={i} offset={i / (n - 1)} style={{ stopColor: `var(--color-${f})` }} />)}
+              </linearGradient>
+            )}
+          </defs>
+          {n > 1 && <path d={linea} fill="none" stroke={`url(#l${id})`} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />}
+          {/* come nel concept: un filo sotto il punto di oggi */}
+          <line x1={xs[n - 1]} y1={ys[n - 1] + 8} x2={xs[n - 1]} y2={ys[n - 1] + 15} strokeWidth="1.4" strokeLinecap="round" style={{ stroke: `var(--color-${fasce[n - 1]})`, opacity: 0.45 }} />
+          {xs.map((x, i) => <circle key={i} cx={x} cy={ys[i]} r="5.64" style={{ fill: `var(--color-${fasce[i]})` }} />)}
         </svg>
-        <div className="grid" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}>
-          {punti.map((p, i) => {
-            const ultimo = i === n - 1;
-            return (
-              <div key={i} className="flex flex-col items-center text-center min-w-0 px-0.5">
-                <span className={`font-extrabold tabular-nums whitespace-nowrap leading-tight text-[#0F172A] dark:text-[#F8FAFC] ${ultimo ? 'text-[16px]' : 'text-[14px]'}`}>{formatProbabilita(p.p)}</span>
-                <span className={`text-[11px] whitespace-nowrap leading-tight ${ultimo ? 'font-semibold text-[#0F172A] dark:text-[#F8FAFC]' : 'text-[#6B7280] dark:text-[#94A3B8]'}`}>{ultimo ? 'Oggi' : p.nome}</span>
-                {ultimo && n === 1 && <span className="text-[11px] leading-tight text-[#6B7280] dark:text-[#94A3B8]">{p.nome}</span>}
-                {ultimo && n > 1 && <span className="text-[10.5px] whitespace-nowrap leading-tight text-[#6B7280] dark:text-[#94A3B8]">{p.nome}</span>}
-              </div>
-            );
-          })}
-        </div>
+        {punti.map((p, i) => {
+          const ultimo = i === n - 1;
+          return (
+            <div key={i} className="absolute flex flex-col items-center text-center whitespace-nowrap leading-none -translate-x-1/2"
+              style={{ left: `${(xs[i] / W) * 100}%`, top: `${((ys[i] + (ultimo ? 17 : 11)) / alto) * 100}%` }}>
+              <span className="text-[12.5px] leading-[15px] font-bold tabular-nums" style={{ color: `var(--color-${fasce[i]}-numero)` }}>{formatProbabilita(p.p).replace(/\s+%/, '%')}</span>
+              <span className={`${n >= 4 ? 'text-[11px]' : 'text-[12px]'} leading-[15px] text-testo-tenue`}>{ultimo ? 'Oggi' : p.nome}</span>
+              {ultimo && n === 1 && <span className="text-[11px] leading-[14px] text-testo-tenue opacity-80">{p.nome}</span>}
+            </div>
+          );
+        })}
       </div>
 
       {n === 1 && (
         onSimulazione
-          ? <button type="button" onClick={() => { playTapSound(); onSimulazione(); }} className="mt-2 self-center text-[13.5px] font-semibold text-azione-scuro dark:text-azione-chiaro underline underline-offset-4 decoration-1">Fai una simulazione per vedere come cambia</button>
-          : <p className="mt-2 text-center text-[13.5px] text-[#475569] dark:text-[#CBD5E1]">Fai una simulazione per vedere come cambia</p>
+          ? <button type="button" onClick={() => { playTapSound(); onSimulazione(); }} className="self-center text-[13.5px] font-semibold text-azione underline underline-offset-4 decoration-1">Fai una simulazione per vedere come cambia</button>
+          : <p className="text-center text-[13.5px] text-testo-tenue">Fai una simulazione per vedere come cambia</p>
       )}
     </section>
   );

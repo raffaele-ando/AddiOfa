@@ -8,6 +8,7 @@ import { useAccess, type AccessValue } from '../access/context';
 import { playTapSound } from '../lib/audio';
 import { cn } from '../lib/utils';
 import { Screen, TopBar, PrimaryButton } from '../components/ui';
+import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 
 interface PaywallProps {
   onBack(): void;
@@ -129,7 +130,8 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
         </div>
       ) : (
         <div>
-          <h1 className="text-3xl font-bold leading-tight text-[#0F172A] dark:text-[#F8FAFC]">{testa.titolo}</h1>
+          <div className="flex justify-center"><IllustrazioneAnimata nome="piano-studi-bloccato" lato={130} /></div>
+          <h1 className="mt-2 text-3xl font-bold leading-tight text-[#0F172A] dark:text-[#F8FAFC]">{testa.titolo}</h1>
           <p className="mt-2 font-semibold text-gray-500 dark:text-gray-400">{testa.testo}</p>
         </div>
       )}
