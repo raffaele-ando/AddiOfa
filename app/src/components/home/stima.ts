@@ -71,20 +71,6 @@ export function esitoSimulazione(h: AppState['history'][number]): EsitoSim {
   return { esatte: ok, totale, date: totale };
 }
 
-/**
- * Stima con lo stesso modello del diagnostico (estimatePassProbability), alimentato dalle risposte che
- * misurano davvero il livello: il diagnostico e le simulazioni. Le sessioni di ripasso no: scelgono le domande
- * più difficili e darebbero una stima troppo severa.
- *
- * Regole (provate in app/tests/unit/stima.test.ts):
- * - niente diagnostico e niente simulazioni valide: null (mai la probabilità a priori);
- * - il diagnostico si riconta sempre da esatte/totali (la percentuale salvata può venire da una soglia vecchia);
- *   se ci sono solo i conteggi o solo la percentuale si usa quello che c'è;
- * - simulazioni: le ultime SIMULAZIONI_NELLA_STIMA per data, ognuna una volta sola (stesso id = stessa simulazione),
- *   escluse quelle senza nessuna risposta data (aperta e lasciata scadere: non misura niente);
- * - le omesse contano come errori, le scadute sono simulazioni normali con molte omesse;
- * - con almeno SIMULAZIONI_CHE_SOSTITUISCONO_DIAGNOSTICO simulazioni il diagnostico non entra più nel calcolo.
- */
 interface DatiStima {
   /** Diagnostico: esatte, totale e probabilità; assente se non c'è (o non è valido). */
   diag?: { dc: number; dt: number; p0: number };
