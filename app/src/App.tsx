@@ -83,6 +83,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   const [view, setViewRaw] = useState<View>(() => initialView(appState));
   const [learnMode, setLearnMode] = useState<'standard' | 'weakness' | 'blitz' | 'category' | 'recall' | 'smart'>('smart');
   const [learnCategory, setLearnCategory] = useState<string | undefined>(undefined);
+  const [teoriaId, setTeoriaId] = useState<string | undefined>(undefined);
   const [paywallReason, setPaywallReason] = useState<PaywallReason>('generico');
   const [legalSection, setLegalSection] = useState<LegalSection>('termini');
   const viewRef = useRef(view);
@@ -250,6 +251,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   const handleUpdateAppState = (newState: AppState) => {
     commit(pass ? newState : { ...newState, selectedCorpus: appState.selectedCorpus });
   };
+
+  const apriTeoria = (id: string) => { setTeoriaId(id); setView('theory'); };
 
   const handleExamComplete = (
     historyEntry: ExamHistory, 
@@ -474,7 +477,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onOpenPaywall={() => apriPaywall('generico')}
           onNeedPass={apriPaywall}
           onStartErrors={() => { setLearnMode('weakness'); setLearnCategory(undefined); setView('learn'); }}
-          onOpenTheory={() => setView('theory')}
+          onOpenTheory={() => { setTeoriaId(undefined); setView('theory'); }}
           onOpenLegal={apriLegale}
           onOpenCheatSheet={() => setView('cheatsheet')}
           onOpenDiagnostic={() => setView('onboarding')}
@@ -543,7 +546,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
       {view === 'theory' && (
         conBarra('teoria', (
           <Suspense fallback={<Caricamento />}>
-            <Theory onBack={() => setView('menu')} onOpenPaywall={() => apriPaywall('teoria')} />
+            <Theory key={teoriaId ?? 'elenco'} initialTopicId={teoriaId} onBack={() => setView('menu')} onOpenPaywall={() => apriPaywall('teoria')} />
           </Suspense>
         ))
       )}
@@ -583,6 +586,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onUpdateAppState={handleUpdateAppState}
           onExit={() => setView('menu')}
           onNeedPass={apriPaywall}
+          onOpenTheory={apriTeoria}
         />
       )}
       {view === 'exam' && (
@@ -591,6 +595,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onComplete={handleExamComplete}
           onExit={() => setView('menu')}
           onNeedPass={apriPaywall}
+          onOpenTheory={apriTeoria}
         />
       )}
       {view === 'stats' && (

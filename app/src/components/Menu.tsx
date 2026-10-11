@@ -1,22 +1,28 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { AppState, CorpusType, LegalSection, PaywallReason } from '../types';
-import { Volume2, VolumeX, Moon, Sun, Flame, Upload, Download, Bug, Fingerprint, ChevronRight, Lock, KeyRound } from 'lucide-react';
+import { Volume2, VolumeX, Moon, Sun, Upload, Download, Bug, Fingerprint, Lock, KeyRound, Quote } from 'lucide-react';
 import { User } from 'firebase/auth';
 import { useTheme } from '../hooks/useTheme';
 import { cn } from '../lib/utils';
 import { questions, getQuestionsByCorpus, INITIAL_CORPUS_COUNT } from '../data/questions';
 import { playTapSound, isAudioMuted, setAudioMuted } from '../lib/audio';
 import { ECOSYSTEM } from '../config/ecosystem';
-import { FEATURE_FLAGS } from '../config/offer';
+import { FEATURE_FLAGS, FORMATS } from '../config/offer';
 import { useAccess } from '../access/context';
 import { remainingFreeSims } from '../access/entitlement';
 import Footer from '../screens/Footer';
 import { PoweredByAtlas } from './ui';
-import { IconaChip, NOMI_ICONE } from '../brand/componenti';
-import { Illustrazione } from '../brand/Illustrazione';
 import { FONT } from '../brand/tokens';
 import Navigazione, { Scheda } from './Navigazione';
 import { urlIcona } from '../brand/risorse';
+import { Carta } from './home/comune';
+import StimaCard, { SOTTO_CIAO } from './home/Stima';
+import Fattori from './home/Fattori';
+import ObiettivoCard from './home/Obiettivo';
+import LezioneCard from './home/Lezione';
+import { SerieCard, ProgressiCard } from './home/Serie';
+import Strumenti, { VoceStrumento } from './home/Strumenti';
+import { calcolaFattori, calcolaStima, lezioneConsigliata, livelloDi, ultimaSimulazione, ultimiGiorni } from './home/stima';
 
 interface MenuProps {
   appState: AppState;
@@ -39,6 +45,10 @@ interface MenuProps {
   onNeedPass: (reason: PaywallReason) => void;
   onStartErrors: () => void;
   onOpenTheory: () => void;
+  /** Apre la scheda di teoria di un argomento (id di TheoryTopic). Assente = si apre l'elenco con onOpenTheory. */
+  onOpenTheoryTopic?: (id: string) => void;
+  /** Avvia l'allenamento mirato su un filtro come "category:Grammatica" o "level:A2" (stesso formato di PracticeMenu). Assente = le barre non sono cliccabili. */
+  onStartFocus?: (filtro: string) => void;
   onOpenLegal: (s: LegalSection) => void;
   onOpenCheatSheet?: () => void;
   onOpenDiagnostic?: () => void;
@@ -47,22 +57,7 @@ interface MenuProps {
   onNaviga?: (s: Scheda) => void;
 }
 
-function Strumento({ icona, titolo, testo, onClick, bloccato }: { icona: typeof NOMI_ICONE[number]; titolo: string; testo: string; onClick?: () => void; bloccato?: boolean }) {
-  if (!onClick) return null;
-  return (
-    <button onClick={() => { playTapSound(); onClick(); }}
-      className="brand-premibile flex items-center gap-3 text-left bg-white dark:bg-[#1E293B] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-3 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
-      <IconaChip nome={icona} lato={44} />
-      <span className="flex-1 min-w-0">
-        <span className="block text-[15px] font-semibold text-[#0F172A] dark:text-[#F8FAFC] truncate">{titolo}</span>
-        <span className="block text-xs text-[#6B7280] dark:text-[#94A3B8] truncate">{testo}</span>
-      </span>
-      {bloccato && <Lock size={16} className="shrink-0 text-[#6B7280] dark:text-[#94A3B8]" aria-label="Richiede il Pass" />}
-    </button>
-  );
-}
-
-export default function Menu({ appState, user, corpus, onStartSmart, onStartLearn, onStartExam, onOpenStats, onExport, onImport, onLogin, onOpenDebug, onSelectCorpus, onOpenPaywall, onNeedPass, onStartErrors, onOpenTheory, onOpenLegal, onOpenCheatSheet, onOpenDiagnostic, onOpenProfile, onOpenLeaderboard, onNaviga }: MenuProps) {
+export default function Menu({ appState, user, corpus, onStartSmart, onStartLearn, onStartExam, onOpenStats, onExport, onImport, onLogin, onOpenDebug, onSelectCorpus, onOpenPaywall, onNeedPass, onStartErrors, onOpenTheory, onOpenTheoryTopic, onStartFocus, onOpenLegal, onOpenCheatSheet, onOpenDiagnostic, onOpenProfile, onOpenLeaderboard, onNaviga }: MenuProps) {
   const { isDark, toggleTheme } = useTheme();
   const { pass, entitlement, simsDone, provider } = useAccess();
   const [muted, setMuted] = useState(isAudioMuted());
@@ -78,141 +73,138 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
   const activeQuestions = getQuestionsByCorpus(selectedCorpus);
   const totalQuestions = activeQuestions.length;
   const masteredQuestions = activeQuestions.filter(q => (appState.stats[q.id]?.box ?? 0) > 0).length;
-  const masteryPercent = totalQuestions > 0 ? Math.min(100, Math.round((masteredQuestions / totalQuestions) * 100)) : 0;
-  let totalCorrect = 0, totalIncorrect = 0;
-  activeQuestions.forEach(q => { const s = appState.stats[q.id]; if (s) { totalCorrect += s.correct; totalIncorrect += s.incorrect; } });
-  const totalAttempts = totalCorrect + totalIncorrect;
-  const accuracyPercent = totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
   const nome = user?.displayName?.split(' ')[0];
-  const probabilita = appState.onboarding?.passProbability;
 
-  const icona = 'text-[#6B7280] hover:text-[#0F172A] dark:text-[#94A3B8] dark:hover:text-[#F8FAFC] transition-colors p-1';
+  // Tutti i numeri della home vengono da qui: stima, aree, ultima simulazione, lezione, attività
+  const dati = useMemo(() => ({
+    stima: calcolaStima(appState),
+    fattori: calcolaFattori(appState),
+    ultima: ultimaSimulazione(appState),
+    lezione: lezioneConsigliata(appState, pass),
+    giorni: ultimiGiorni(appState),
+  }), [appState, pass]);
+  const { stima, fattori, ultima, lezione, giorni } = dati;
+  const haRisposte = fattori.risposteTotali > 0;
+  const livello = stima ? livelloDi(stima.p) : null;
+
+  const faiSimulazione = () => (simBloccata ? onNeedPass('simulazione') : onStartExam());
+  const apriLezione = () => {
+    if (!lezione) return;
+    if (lezione.bloccata) onNeedPass('teoria');
+    else if (onOpenTheoryTopic) onOpenTheoryTopic(lezione.topic.id);
+    else onOpenTheory();
+  };
+  const descrizioneSessione = selectedCorpus === 'initial'
+    ? `${pass ? 'Nucleo' : 'Nucleo gratuito'} · ${INITIAL_CORPUS_COUNT} frasi`
+    : `Sessione di 10 domande · ${questions.length} nel banco`;
+  // Il pulsante principale cambia con lo stato: inizia, continua, oppure mettiti alla prova
+  const cta = livello === 'alto' && !simBloccata
+    ? { etichetta: 'Fai una simulazione', sotto: `${FORMATS.ente.questions} domande, ${FORMATS.ente.minutes} minuti · soglia ${FORMATS.ente.passMark}`, azione: onStartExam }
+    : { etichetta: haRisposte ? 'Continua a studiare' : 'Inizia a studiare', sotto: descrizioneSessione, azione: onStartSmart };
+
+  const voci: VoceStrumento[] = [
+    { id: 'simulazione', titolo: "Simulazione d'esame", testo: `30 domande, 15 minuti · ${testoSim}`, onClick: onStartExam, bloccato: simBloccata },
+    { id: 'esercizi', titolo: 'Esercizi mirati', testo: 'Punti deboli, blitz, richiamo attivo', onClick: onStartLearn },
+    { id: 'errori', titolo: 'Ripasso sugli errori', testo: 'Riparti da ciò che hai sbagliato', onClick: () => (pass ? onStartErrors() : onNeedPass('errori')), bloccato: !pass },
+    { id: 'teoria', titolo: 'Teoria', testo: pass ? 'Tutti i 31 argomenti' : 'Una scheda gratis, le altre con il Pass', onClick: onOpenTheory, bloccato: !pass },
+    { id: 'prontuario', titolo: 'Prontuario', testo: 'Le 24 regole e le trappole', onClick: onOpenCheatSheet },
+    { id: 'livello', titolo: 'Verifica il livello', testo: '10 domande, 3 minuti', onClick: onOpenDiagnostic },
+    { id: 'statistiche', titolo: 'Statistiche', testo: pass ? 'Argomenti, simulazioni, costanza' : 'Quelle complete con il Pass', onClick: onOpenStats, bloccato: !pass },
+    ...(FEATURE_FLAGS.leaderboard ? [{ id: 'classifica', titolo: `Classifica ${ECOSYSTEM.rankingName}`, testo: 'Chi sa più regole', onClick: onOpenLeaderboard }] : []),
+    ...(!pass ? [{ id: 'pass', titolo: 'Pass AddiOFA', testo: 'Tutto sbloccato, un solo pagamento', onClick: onOpenPaywall, evidenza: true }] : []),
+  ];
+
+  const icona = 'text-[#6B7280] hover:text-[#0F172A] dark:text-[#94A3B8] dark:hover:text-[#F8FAFC] transition-colors p-1.5';
 
   return (
     <div className="h-full w-full bg-[#F6F8FC] dark:bg-[#0F172A] sm:rounded-[28px] sm:border sm:border-[#E5E7EB] dark:sm:border-[#334155] overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
-      <div className="flex-1 overflow-y-auto scrollbar-hide px-4 sm:px-6 pt-4 pb-5 flex flex-col gap-4">
-        {/* intestazione */}
-        <header className="flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <img src={urlIcona} alt="" className="w-9 h-9 rounded-[10px]" />
-            <div className="leading-tight">
-              <div className="text-[17px] font-bold text-[#0F172A] dark:text-[#F8FAFC]">AddiOFA</div>
-              <div className="text-[11px] text-[#6B7280] dark:text-[#94A3B8]">OFA di Inglese</div>
+      <div className="flex-1 overflow-y-auto scrollbar-hide px-4 sm:px-6 pt-4 pb-6">
+        <div className="mx-auto w-full max-w-[560px] flex flex-col gap-3.5">
+          {/* intestazione */}
+          <header className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <img src={urlIcona} alt="" className="w-9 h-9 rounded-[10px] shrink-0" />
+              <div className="text-[19px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-none">AddiOFA</div>
             </div>
-          </div>
-          <div className="flex items-center gap-1">
-            {onOpenDebug && <button onClick={onOpenDebug} className={icona} title="Debug (solo sviluppo)"><Bug size={20} /></button>}
-            <button onClick={() => { const n = !muted; setMuted(n); setAudioMuted(n); if (!n) playTapSound(); }} className={icona} title={muted ? 'Riattiva suoni' : 'Disattiva suoni'}>
-              {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-            </button>
-            <button onClick={() => { playTapSound(); toggleTheme(); }} className={icona} title="Tema">{isDark ? <Sun size={20} /> : <Moon size={20} />}</button>
-            <span className="flex items-center gap-1 text-[#F59E0B] font-semibold text-sm px-2" title="Giorni di fila"><Flame size={17} fill="currentColor" />{appState.streak}</span>
-            {!pass && (
-              <button onClick={() => { playTapSound(); onOpenPaywall(); }} className="brand-premibile flex items-center gap-1.5 text-[13px] font-semibold text-white bg-[#EF4444] px-3 py-2 rounded-xl">
-                <KeyRound size={15} aria-hidden="true" /> Pass
+            <div className="flex items-center gap-0.5 shrink-0">
+              {onOpenDebug && <button onClick={onOpenDebug} className={icona} title="Debug (solo sviluppo)" aria-label="Debug"><Bug size={19} /></button>}
+              <button onClick={() => { const n = !muted; setMuted(n); setAudioMuted(n); if (!n) playTapSound(); }} className={icona}
+                title={muted ? 'Riattiva suoni' : 'Disattiva suoni'} aria-label={muted ? 'Riattiva suoni' : 'Disattiva suoni'}>
+                {muted ? <VolumeX size={19} /> : <Volume2 size={19} />}
               </button>
-            )}
-            {user ? (
-              <button onClick={() => { playTapSound(); onOpenProfile?.(); }} className="rounded-full ring-2 ring-[#E5E7EB] hover:ring-[#EF4444] transition-all" title={ECOSYSTEM.accountName}>
-                {user.photoURL
-                  ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer" className="w-9 h-9 rounded-full" />
-                  : <span className="w-9 h-9 rounded-full bg-[#FEE2E2] text-[#B91C1C] flex items-center justify-center font-semibold">{(user.displayName || '?')[0]}</span>}
-              </button>
-            ) : onLogin && (
-              <button onClick={() => { playTapSound(); onLogin(); }} className="brand-premibile flex items-center gap-1.5 text-[13px] font-semibold text-white bg-[#0F172A] px-3 py-2 rounded-xl">
-                <Fingerprint size={15} /> Accedi
-              </button>
-            )}
-          </div>
-        </header>
-
-        {/* saluto */}
-        <section className="flex items-center gap-3">
-          <div className="flex-1">
-            <h1 className="text-[26px] leading-tight font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">{nome ? `Ciao, ${nome}` : 'Ciao!'}</h1>
-            <p className="text-sm text-[#6B7280] dark:text-[#94A3B8] mt-1">Continua la tua preparazione per superare l'OFA.</p>
-          </div>
-          <Illustrazione kit="kit-rosso" nome="studio-inglese" lato={112} fondoScuro={isDark} />
-        </section>
-
-        {/* inizia */}
-        <button onClick={() => { playTapSound(); onStartSmart(); }}
-          className="brand-premibile w-full flex items-center gap-4 rounded-2xl bg-[#EF4444] text-white px-5 py-4 text-left shadow-[0_6px_16px_rgba(239,68,68,0.28)]">
-          <span className="w-11 h-11 rounded-full bg-white flex items-center justify-center shrink-0">
-            <svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5 14 9 2 16.5Z" fill="#EF4444" /></svg>
-          </span>
-          <span className="flex-1">
-            <span className="block text-[17px] font-bold">Continua a studiare</span>
-            <span className="block text-[13px] text-white/85">
-              {selectedCorpus === 'initial' ? `${pass ? 'Primo Corpus' : 'Nucleo gratuito'} · ${INITIAL_CORPUS_COUNT} frasi` : `Sessione di 10 domande · ${questions.length} nel banco`}
-            </span>
-          </span>
-          <ChevronRight size={20} />
-        </button>
-
-        {/* progressi */}
-        <section className="bg-white dark:bg-[#1E293B] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-4 grid grid-cols-2 gap-4">
-          <div>
-            <div className="text-xs font-medium text-[#6B7280] dark:text-[#94A3B8]">Domande imparate</div>
-            <div className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">{masteryPercent}%</div>
-            <div className="h-2 rounded-full bg-[#EEF1F6] dark:bg-[#334155] overflow-hidden mt-1.5">
-              <div className="h-full rounded-full bg-[#22C55E] transition-all duration-700" style={{ width: `${masteryPercent}%` }} />
+              <button onClick={() => { playTapSound(); toggleTheme(); }} className={icona} title="Tema" aria-label={isDark ? 'Tema chiaro' : 'Tema scuro'}>{isDark ? <Sun size={19} /> : <Moon size={19} />}</button>
+              {!pass && (
+                <button onClick={() => { playTapSound(); onOpenPaywall(); }} className="brand-premibile ml-1 flex items-center gap-1.5 text-[13px] font-semibold text-white bg-[#EF4444] px-3 py-2 rounded-xl">
+                  <KeyRound size={15} aria-hidden="true" /> Pass
+                </button>
+              )}
+              {user ? (
+                <button onClick={() => { playTapSound(); onOpenProfile?.(); }} className="ml-1 rounded-full ring-2 ring-[#E5E7EB] hover:ring-[#EF4444] transition-all" title={ECOSYSTEM.accountName}>
+                  {user.photoURL
+                    ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer" className="w-9 h-9 rounded-full" />
+                    : <span className="w-9 h-9 rounded-full bg-[#FEE2E2] text-[#B91C1C] flex items-center justify-center font-semibold">{(user.displayName || '?')[0]}</span>}
+                </button>
+              ) : onLogin && (
+                <button onClick={() => { playTapSound(); onLogin(); }} className="brand-premibile ml-1 flex items-center gap-1.5 text-[13px] font-semibold text-white bg-[#0F172A] px-3 py-2 rounded-xl">
+                  <Fingerprint size={15} /> Accedi
+                </button>
+              )}
             </div>
-            <div className="text-[11px] text-[#6B7280] mt-1">{masteredQuestions} su {totalQuestions}</div>
+          </header>
+
+          {/* saluto */}
+          <div className="px-1 pt-1">
+            <h1 className="text-[27px] leading-tight font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">{nome ? `Ciao, ${nome}` : 'Ciao!'}</h1>
+            <p className="text-[15px] text-[#6B7280] dark:text-[#94A3B8] mt-0.5">{SOTTO_CIAO[livello ?? 'nuovo']}</p>
           </div>
-          <div>
-            <div className="text-xs font-medium text-[#6B7280] dark:text-[#94A3B8]">Accuratezza</div>
-            <div className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">{accuracyPercent}%</div>
-            <div className="h-2 rounded-full bg-[#EEF1F6] dark:bg-[#334155] overflow-hidden mt-1.5">
-              <div className="h-full rounded-full bg-[#8B5CF6] transition-all duration-700" style={{ width: `${accuracyPercent}%` }} />
+
+          {/* probabilità stimata, oppure invito al diagnostico */}
+          <StimaCard stima={stima} haRisposte={haRisposte} corpoCta={cta} onStudia={onStartSmart} onDiagnostico={onOpenDiagnostic} />
+
+          {/* aree */}
+          {haRisposte && <Fattori categorie={fattori.categorie} livelli={fattori.livelli} onVai={onStartFocus} />}
+
+          {/* obiettivo */}
+          <ObiettivoCard ultima={ultima} bloccata={simBloccata} onVai={faiSimulazione} />
+
+          {/* lezione consigliata */}
+          {lezione && <LezioneCard lezione={lezione} onApri={apriLezione} />}
+
+          {/* serie e progressi */}
+          <div className="grid grid-cols-2 gap-3 items-stretch">
+            <SerieCard serie={appState.streak} giorni={giorni} />
+            <ProgressiCard imparate={masteredQuestions} totale={totalQuestions} giorni={giorni} onVai={onOpenStats} />
+          </div>
+
+          <Carta indice={6} tinta="bg-[#EEF2FA] dark:bg-[#1E293B]/60 border-transparent" className="px-4 py-3 flex items-start gap-3">
+            <Quote size={22} className="shrink-0 text-[#94A3B8] mt-0.5" aria-hidden="true" />
+            <p className="text-[13.5px] leading-snug text-[#475569] dark:text-[#CBD5E1]">Poche domande al giorno, fatte con costanza, valgono più di una maratona la sera prima.</p>
+          </Carta>
+
+          {/* materiale */}
+          {onSelectCorpus && (
+            <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-[#EEF1F6] dark:bg-[#1E293B]">
+              {([['all', `Tutte le frasi (${questions.length})`], ['initial', `Nucleo (${INITIAL_CORPUS_COUNT})`]] as const).map(([id, testo]) => (
+                <button key={id} onClick={() => { playTapSound(); onSelectCorpus(id); }}
+                  className={cn('rounded-lg py-2 text-[13px] font-semibold transition-colors',
+                    selectedCorpus === id ? 'bg-white dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] shadow-sm' : 'text-[#6B7280]')}>
+                  {testo}{id === 'all' && !pass && <Lock size={12} className="inline ml-1 -mt-0.5" aria-label="Richiede il Pass" />}
+                </button>
+              ))}
             </div>
-            <div className="text-[11px] text-[#6B7280] mt-1">{totalAttempts} risposte date</div>
-          </div>
-          {probabilita !== undefined && (
-            <button onClick={() => { playTapSound(); onOpenDiagnostic?.(); }} className="col-span-2 flex items-center justify-between text-left bg-[#F6F8FC] dark:bg-[#0F172A] rounded-xl px-3 py-2">
-              <span className="text-xs text-[#6B7280]">Probabilità stimata di superare il test</span>
-              <span className="text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC]">{Math.round(probabilita * 100)}%</span>
-            </button>
           )}
-        </section>
 
-        {/* materiale */}
-        {onSelectCorpus && (
-          <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-[#EEF1F6] dark:bg-[#1E293B]">
-            {([['all', `Tutte le frasi (${questions.length})`], ['initial', `Primo Corpus (${INITIAL_CORPUS_COUNT})`]] as const).map(([id, testo]) => (
-              <button key={id} onClick={() => { playTapSound(); onSelectCorpus(id); }}
-                className={cn('rounded-lg py-2 text-[13px] font-semibold transition-colors',
-                  selectedCorpus === id ? 'bg-white dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] shadow-sm' : 'text-[#6B7280]')}>
-                {testo}{id === 'all' && !pass && <Lock size={12} className="inline ml-1 -mt-0.5" aria-label="Richiede il Pass" />}
-              </button>
-            ))}
-          </div>
-        )}
+          <Strumenti voci={voci} />
 
-        {/* strumenti */}
-        <section className="flex flex-col gap-2.5">
-          <h2 className="text-[17px] font-bold text-[#0F172A] dark:text-[#F8FAFC]">Strumenti</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            <Strumento icona="quiz" titolo="Simulazione d'esame" testo={`30 domande, 15 minuti · ${testoSim}`} onClick={onStartExam} bloccato={simBloccata} />
-            <Strumento icona="studio" titolo="Esercizi mirati" testo="Punti deboli, blitz, richiamo attivo" onClick={onStartLearn} />
-            <Strumento icona="errore" titolo="Ripasso sugli errori" testo="Riparti da ciò che hai sbagliato" onClick={() => (pass ? onStartErrors() : onNeedPass('errori'))} bloccato={!pass} />
-            <Strumento icona="contenuti" titolo="Teoria" testo={pass ? 'Tutti i 31 argomenti' : 'Una scheda gratis, le altre con il Pass'} onClick={onOpenTheory} bloccato={!pass} />
-            <Strumento icona="contenuti" titolo="Prontuario" testo="Le 24 regole e le trappole" onClick={onOpenCheatSheet} />
-            <Strumento icona="completato" titolo="Verifica il livello" testo="10 domande, 3 minuti" onClick={onOpenDiagnostic} />
-            <Strumento icona="statistiche" titolo="Statistiche" testo={pass ? 'Argomenti, simulazioni, costanza' : 'Quelle complete con il Pass'} onClick={onOpenStats} bloccato={!pass} />
-            {FEATURE_FLAGS.leaderboard && <Strumento icona="successo" titolo={`Classifica ${ECOSYSTEM.rankingName}`} testo="Chi sa più regole" onClick={onOpenLeaderboard} />}
-            {!pass && <Strumento icona="costo" titolo="Pass AddiOFA" testo="Tutto sbloccato, un solo pagamento" onClick={onOpenPaywall} />}
-          </div>
-        </section>
-
-        {(onImport || onExport) && (
-          <div className="flex justify-center gap-6 text-[12px] text-[#6B7280]">
-            {onImport && <button onClick={() => { playTapSound(); onImport(); }} className="flex items-center gap-1.5 hover:text-[#0F172A]"><Upload size={14} /> Importa progressi</button>}
-            {onExport && <button onClick={() => { playTapSound(); onExport(); }} className="flex items-center gap-1.5 hover:text-[#0F172A]"><Download size={14} /> Esporta progressi</button>}
-          </div>
-        )}
-        {FEATURE_FLAGS.projectId && provider.mode !== 'demo' && <PoweredByAtlas className="-mt-2" />}
-        <Footer onOpenLegal={onOpenLegal} />
+          {(onImport || onExport) && (
+            <div className="flex justify-center gap-6 text-[12px] text-[#6B7280]">
+              {onImport && <button onClick={() => { playTapSound(); onImport(); }} className="flex items-center gap-1.5 hover:text-[#0F172A] dark:hover:text-[#F8FAFC]"><Upload size={14} /> Importa progressi</button>}
+              {onExport && <button onClick={() => { playTapSound(); onExport(); }} className="flex items-center gap-1.5 hover:text-[#0F172A] dark:hover:text-[#F8FAFC]"><Download size={14} /> Esporta progressi</button>}
+            </div>
+          )}
+          {FEATURE_FLAGS.projectId && provider.mode !== 'demo' && <PoweredByAtlas className="-mt-2" />}
+          <Footer onOpenLegal={onOpenLegal} />
+        </div>
       </div>
       {onNaviga && <Navigazione attiva="home" onVai={onNaviga} />}
     </div>
