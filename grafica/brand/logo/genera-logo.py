@@ -184,9 +184,11 @@ def sparkle(cx: float, cy: float, R: float) -> str:
 
 
 
-# ---------------------------------------------------------------- la A con la scintilla (concept 07 e 35)
-# Forma misurata sul concept 07 (ingrandito): A piena con la cima piatta e il vuoto sotto tra i piedi; al centro, al posto
-# della scintilla a quattro punte, la stella a cinque punte con la base piatta (quella dell'icona 3D), ritagliata. Altezza 100, centro x = 0, simmetrica. Larghezza 101,6.
+# ---------------------------------------------------------------- la A piena (concept 07 e 35) con la scintilla o con la stella
+# Forma misurata sul concept 07 (ingrandito): A piena con la cima piatta e il vuoto sotto tra i piedi. Altezza 100, centro x = 0.
+# Al centro un vuoto ritagliato: la scintilla a quattro punte del concept («scintilla») oppure la stella a cinque punte con la
+# base piatta dell'icona 3D («piena»), questa ridisegnata perché stia bene nella A: stella più grande, spigoli più morbidi,
+# fascia sotto la stella spessa quanto i piedi, vuoto tra i piedi alzato.
 A_SCINT = [
     (-18.3, 0.0, 3.0), (18.3, 0.0, 3.0),            # cima piatta
     (50.8, 100.0, 3.2), (27.0, 100.0, 1.4),          # piede destro (fuori, dentro)
@@ -194,13 +196,31 @@ A_SCINT = [
     (-27.0, 100.0, 1.4), (-50.8, 100.0, 3.2),
 ]
 A_SCINT_LARG = 101.6
-A_STELLA_ALT, A_STELLA_TOP = 46.0, 29.0              # la stella dalla base piatta (PORTA) nel vuoto: altezza e quota della punta
+A_SCINT_CY, A_SCINT_R = 53.4, 24.4                   # centro e mezza altezza della scintilla
+A_PIENA = [
+    (-22.0, 0.0, 3.4), (22.0, 0.0, 3.4),
+    (53.0, 100.0, 3.4), (30.0, 100.0, 1.6),
+    (25.0, 76.0, 2.8), (-25.0, 76.0, 2.8),
+    (-30.0, 100.0, 1.6), (-53.0, 100.0, 3.4),
+]
+A_PIENA_LARG = 106.0
+A_PIENA_STELLA_ALT, A_PIENA_STELLA_TOP = 46.0, 18.0   # altezza e quota della punta della stella dalla base piatta
+# raggi di raccordo della stella (in unità della stella a altezza 100): punta, braccia, incavi, base
+PORTA_RAGGI = (9.0, 7.0, 4.0, 2.5)
 
 
-def a_scint_path(cx: float, top: float, k: float) -> str:
-    """Contorno della A piena + la stella dalla base piatta come secondo percorso: va usato con fill-rule evenodd (la stella è un vuoto)."""
-    ks = A_STELLA_ALT / 100.0 * k
-    return rpath(A_SCINT, cx, top, k) + porta_path(cx, top + A_STELLA_TOP * k, ks)
+def porta_morbida(cx: float, top: float, k: float) -> str:
+    t, a, i, b = PORTA_RAGGI
+    pts = [(0.0, 0.0, t), (20.4, 35.4, i), (54.9, 42.4, a), (33.2, 68.8, i * 1.3), (33.2, 100.0, b),
+           (-33.2, 100.0, b), (-33.2, 68.8, i * 1.3), (-54.9, 42.4, a), (-20.4, 35.4, i)]
+    return rpath(compensa(pts), cx, top, k)
+
+
+def a_scint_path(cx: float, top: float, k: float, tipo: str = "scintilla") -> str:
+    """Contorno della A piena + il vuoto come secondo percorso: va usato con fill-rule evenodd."""
+    if tipo == "piena":
+        return rpath(A_PIENA, cx, top, k) + porta_morbida(cx, top + A_PIENA_STELLA_TOP * k, A_PIENA_STELLA_ALT / 100.0 * k)
+    return rpath(A_SCINT, cx, top, k) + sparkle(cx, top + A_SCINT_CY * k, A_SCINT_R * k)
 
 
 # ---------------------------------------------------------------- lettere (Inter ExtraBold con spigoli raccordati)
@@ -455,12 +475,12 @@ def lm_cerchio(g: str, modo: str, uid: str) -> Pezzo:
     return Pezzo(corpo, TILE, TILE)
 
 
-def lm_scint(g: str, modo: str, uid: str) -> Pezzo:
+def lm_scint(g: str, modo: str, uid: str, tipo: str = "scintilla") -> Pezzo:
     """Lettermark con la scintilla a quattro punte (concept 07/35): A nuda, a contorno, in quadrato o in cerchio."""
     c = colori(g)
     ev = 'fill-rule="evenodd"'
     if modo in ("blu", "navy", "contorno"):
-        d = a_scint_path(LM_W / 2, LM_PAD, 1.0)
+        d = a_scint_path(LM_W / 2, LM_PAD, 1.0, tipo)
         if modo == "blu":
             col = BLU if g == "chiaro" else (BLU_CH if g == "notte" else BIANCO)
             corpo = f'<path id="lettera-a" d="{d}" {ev} fill="{col}"/>'
@@ -472,7 +492,7 @@ def lm_scint(g: str, modo: str, uid: str) -> Pezzo:
         return Pezzo(corpo, LM_W, LM_H)
     k = 0.648 if modo.startswith("tile") else 0.60
     top = (TILE - A_ALT * k) / 2
-    d = a_scint_path(TILE / 2, top, k)
+    d = a_scint_path(TILE / 2, top, k, tipo)
     if modo == "tile-blu":
         fondo, lettera, forma = (BLU_TILE if g != "azione" else BIANCO), (BIANCO if g != "azione" else BLU), "tile"
     elif modo == "tile-notte":
@@ -500,17 +520,26 @@ LETTERMARK = {
     "tile-chiaro": (lambda g, u: lm_tile(g, "chiaro", u), "A bicolore nel quadrato chiaro: per profili e miniature su fondo scuro.", "15 + 35", "derivata"),
     "cerchio-blu": (lambda g, u: lm_cerchio(g, "blu", u), "A bianca nel cerchio blu (come la scintilla nel cerchio dei concept 35, 37).", "35, 37", "derivata"),
     "cerchio-notte": (lambda g, u: lm_cerchio(g, "notte", u), "A bianca nel cerchio blu notte: avatar dei profili social.", "37", "derivata"),
+    # la A piena (forma del concept 07/35) con la scintilla a 4 punte ritagliata al centro (pannello «Icon / Lettermark»)
+    "scintilla-blu": (lambda g, u: lm_scint(g, "blu", u), "La A piena blu con la scintilla a 4 punte al centro: il lettermark dei concept 07 e 35.", "07, 35", "concept"),
+    "scintilla-navy": (lambda g, u: lm_scint(g, "navy", u), "La A con la scintilla tutta navy (bianca su fondo scuro): timbri, stampa, filigrana.", "07, 35", "derivata"),
+    "scintilla-contorno": (lambda g, u: lm_scint(g, "contorno", u), "La A con la scintilla solo a contorno.", "—", "derivata"),
+    "scintilla-tile-blu": (lambda g, u: lm_scint(g, "tile-blu", u), "La A con la scintilla, bianca nel quadrato blu: avatar e profilo.", "35", "derivata"),
+    "scintilla-tile-notte": (lambda g, u: lm_scint(g, "tile-notte", u), "La A con la scintilla, bianca nel quadrato blu notte.", "35", "derivata"),
+    "scintilla-cerchio-blu": (lambda g, u: lm_scint(g, "cerchio-blu", u), "La A con la scintilla, bianca nel cerchio blu: avatar social tondi.", "35, 37", "derivata"),
     # la A piena (forma del concept 07/35) con la stella dalla base piatta ritagliata al centro (scelta dell'utente)
-    "piena-blu": (lambda g, u: lm_scint(g, "blu", u), "La A piena blu (la forma del concept 07/35) con dentro la stella a 5 punte dalla base piatta, ritagliata.", "07, 35", "concept"),
-    "piena-navy": (lambda g, u: lm_scint(g, "navy", u), "La A piena con la stella dalla base piatta, tutta navy (bianca su fondo scuro): timbri, stampa, filigrana.", "07, 35", "derivata"),
-    "piena-contorno": (lambda g, u: lm_scint(g, "contorno", u), "La A piena con la stella dalla base piatta, solo a contorno.", "—", "derivata"),
-    "piena-tile-blu": (lambda g, u: lm_scint(g, "tile-blu", u), "La A piena con la stella dalla base piatta, bianca nel quadrato blu: avatar e profilo.", "35", "derivata"),
-    "piena-tile-notte": (lambda g, u: lm_scint(g, "tile-notte", u), "La A piena con la stella dalla base piatta, bianca nel quadrato blu notte.", "35", "derivata"),
-    "piena-cerchio-blu": (lambda g, u: lm_scint(g, "cerchio-blu", u), "La A piena con la stella dalla base piatta, bianca nel cerchio blu: avatar social tondi.", "35, 37", "derivata"),
+    "piena-blu": (lambda g, u: lm_scint(g, "blu", u, "piena"), "La A piena blu (la forma del concept 07/35) con dentro la stella a 5 punte dalla base piatta, ritagliata.", "07, 35", "concept"),
+    "piena-navy": (lambda g, u: lm_scint(g, "navy", u, "piena"), "La A piena con la stella dalla base piatta, tutta navy (bianca su fondo scuro): timbri, stampa, filigrana.", "07, 35", "derivata"),
+    "piena-contorno": (lambda g, u: lm_scint(g, "contorno", u, "piena"), "La A piena con la stella dalla base piatta, solo a contorno.", "—", "derivata"),
+    "piena-tile-blu": (lambda g, u: lm_scint(g, "tile-blu", u, "piena"), "La A piena con la stella dalla base piatta, bianca nel quadrato blu: avatar e profilo.", "35", "derivata"),
+    "piena-tile-notte": (lambda g, u: lm_scint(g, "tile-notte", u, "piena"), "La A piena con la stella dalla base piatta, bianca nel quadrato blu notte.", "35", "derivata"),
+    "piena-cerchio-blu": (lambda g, u: lm_scint(g, "cerchio-blu", u, "piena"), "La A piena con la stella dalla base piatta, bianca nel cerchio blu: avatar social tondi.", "35, 37", "derivata"),
 }
 # larghezza visibile di ogni lettermark (la A con la scintilla è più stretta della A con la stella)
 def larghezza_visibile(nome: str) -> float:
-    return A_SCINT_LARG if nome.startswith("piena") and "tile" not in nome and "cerchio" not in nome else A_LARG
+    if "tile" in nome or "cerchio" in nome:
+        return A_LARG
+    return A_PIENA_LARG if nome.startswith("piena") else (A_SCINT_LARG if nome.startswith("scintilla") else A_LARG)
 
 
 # ---------------------------------------------------------------- wordmark
@@ -760,6 +789,9 @@ LOCKUP = {
     "orizzontale-tile-notte": ("o", "tile-notte", "primario", "Quadrato blu notte con la A + wordmark.", "35", "derivata"),
     "orizzontale-cerchio": ("o", "cerchio-blu", "primario", "Cerchio blu con la A + wordmark (per intestazioni compatte).", "35", "derivata"),
     "verticale-tile": ("v", "tile-blu", "con-tagline", "Quadrato con la A sopra, wordmark e motto centrati.", "07, 28", "derivata"),
+    "orizzontale-scintilla": ("o", "scintilla-blu", "primario", "La A con la scintilla + wordmark: il lockup coerente con la scintilla nella O (concept 07/35).", "07, 35", "concept"),
+    "orizzontale-scintilla-tagline": ("o", "scintilla-blu", "con-tagline", "La A con la scintilla + wordmark con il motto.", "07, 35", "derivata"),
+    "verticale-scintilla": ("v", "scintilla-blu", "primario", "La A con la scintilla sopra il wordmark.", "07, 35", "derivata"),
     "orizzontale-piena": ("o", "piena-blu", "primario", "La A piena con la stella dalla base piatta + wordmark primario.", "07, 35", "concept"),
     "orizzontale-piena-tagline": ("o", "piena-blu", "con-tagline", "La A piena con la stella dalla base piatta + wordmark con il motto.", "07, 35", "derivata"),
     "verticale-piena": ("v", "piena-blu", "primario", "La A piena con la stella dalla base piatta sopra il wordmark.", "07, 35", "derivata"),

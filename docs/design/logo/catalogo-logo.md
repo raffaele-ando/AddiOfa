@@ -19,7 +19,9 @@ La galleria per scegliere è `galleria-logo.html` (in `app/dist-demo/`, non nel 
 | Cerchio blu | `lettermark-cerchio-blu.svg` | 35, 37 | derivata | A bianca nel cerchio blu (come la scintilla nel cerchio dei concept 35, 37). Avatar social tondi. |
 | Cerchio blu notte | `lettermark-cerchio-notte.svg` | 37 | derivata | A bianca nel cerchio blu notte: avatar dei profili social. Avatar social tondi, versione scura. |
 
-### Lettermark «A piena» con la stella dalla base piatta (forma del concept 07/35)
+### Lettermark «A piena» (forma del concept 07/35): con la stella dalla base piatta (`piena-*`) e con la scintilla a 4 punte (`scintilla-*`)
+
+La A piena con la stella è ridisegnata per stare nella A (stella più grande e morbida, fascia sotto di pari spessore dei piedi). Le varianti `scintilla-*` (A con la scintilla del concept 07/35, 6 lettermark e 3 lockup) restano come alternativa.
 
 | Variante | File | Fonte (NN) | Tipo | Cos'è / come si usa |
 |---|---|---|---|---|
