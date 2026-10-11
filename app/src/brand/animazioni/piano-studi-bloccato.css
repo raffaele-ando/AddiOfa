@@ -1,0 +1,37 @@
+/* piano-studi-bloccato: calendario con lucchetto rosso. Il lucchetto arriva aperto e si chiude.
+   Sequenza (2 s): il calendario compare, le sei caselle si accendono una dopo l'altra, il lucchetto sale con l'arco sollevato, l'arco scende e chiude.
+   Id usati: ombra-foglio, foglio, testata, testata-riflesso, anelli, caselle (figli in ordine), ombra-lucchetto, lucchetto-arco, lucchetto-corpo, lucchetto-riflesso, buco-chiave. */
+.anim-piano-studi-bloccato.in [id$="--ombra-foglio"] { animation: a-pb-dissolve 500ms var(--e-soft) backwards; }
+.anim-piano-studi-bloccato.in [id$="--foglio"],
+.anim-piano-studi-bloccato.in [id$="--testata"],
+.anim-piano-studi-bloccato.in [id$="--testata-riflesso"],
+.anim-piano-studi-bloccato.in [id$="--anelli"] { animation: a-pb-entra 550ms var(--e-out) backwards, a-pb-dissolve 220ms linear backwards; }
+
+.anim-piano-studi-bloccato.in [id$="--caselle"] > * { animation: a-pb-casella 320ms var(--e-out) backwards, a-pb-dissolve 150ms linear backwards; }
+.anim-piano-studi-bloccato.in [id$="--caselle"] > :nth-child(1) { animation-delay: 450ms; }
+.anim-piano-studi-bloccato.in [id$="--caselle"] > :nth-child(2) { animation-delay: 520ms; }
+.anim-piano-studi-bloccato.in [id$="--caselle"] > :nth-child(3) { animation-delay: 590ms; }
+.anim-piano-studi-bloccato.in [id$="--caselle"] > :nth-child(4) { animation-delay: 660ms; }
+.anim-piano-studi-bloccato.in [id$="--caselle"] > :nth-child(5) { animation-delay: 730ms; }
+.anim-piano-studi-bloccato.in [id$="--caselle"] > :nth-child(6) { animation-delay: 800ms; }
+
+.anim-piano-studi-bloccato.in [id$="--ombra-lucchetto"] { animation: a-pb-dissolve 500ms var(--e-soft) 900ms backwards; }
+.anim-piano-studi-bloccato.in [id$="--lucchetto-corpo"],
+.anim-piano-studi-bloccato.in [id$="--lucchetto-riflesso"],
+.anim-piano-studi-bloccato.in [id$="--buco-chiave"] { animation: a-pb-sale 500ms var(--e-out) 900ms backwards, a-pb-dissolve 200ms linear 900ms backwards; }
+/* l'arco sale con il corpo, resta sollevato e inclinato (aperto), poi scende e chiude */
+.anim-piano-studi-bloccato.in [id$="--lucchetto-arco"] {
+  transform-origin: 169.5px 106px;
+  animation: a-pb-arco 1050ms linear 900ms backwards, a-pb-dissolve 200ms linear 900ms backwards;
+}
+
+@keyframes a-pb-dissolve { from { opacity: 0; } }
+@keyframes a-pb-entra    { from { translate: 0 8px; } }
+@keyframes a-pb-casella  { from { translate: 0 4px; } }
+@keyframes a-pb-sale     { from { translate: 0 10px; } }
+@keyframes a-pb-arco {
+  0%   { translate: 0 1px; rotate: -12deg; animation-timing-function: cubic-bezier(.22, .61, .36, 1); }
+  45%  { translate: 0 -9px; rotate: -12deg; animation-timing-function: linear; }
+  55%  { translate: 0 -9px; rotate: -12deg; animation-timing-function: cubic-bezier(.45, .05, .25, 1); }
+  100% { translate: 0 0; rotate: 0deg; }
+}

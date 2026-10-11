@@ -1,0 +1,26 @@
+/* attesa-caricamento: clessidra. Si capovolge e la sabbia comincia a scendere.
+   Sequenza (2,2 s): la clessidra compare capovolta, ruota di mezzo giro, il filo di sabbia si forma, il livello di sopra scende e il mucchio di sotto cresce.
+   Id usati: ombra, clessidra, filo-sabbia, sabbia-sopra, sabbia-sopra-luce, sabbia-sotto.
+   Nota: all'inizio il livello della sabbia è quello di "appena finita" (sopra più alto, sotto più basso) così il capovolgimento ha senso. */
+.anim-attesa-caricamento.in [id$="--ombra"] { animation: a-ac-dissolve 500ms var(--e-soft) backwards; }
+.anim-attesa-caricamento.in [id$="--clessidra"] {
+  transform-origin: 75.5px 56.5px;
+  animation: a-ac-gira 900ms var(--e-in-out) 250ms backwards, a-ac-dissolve 300ms var(--e-soft) backwards;
+}
+.anim-attesa-caricamento.in [id$="--filo-sabbia"] {
+  transform-box: fill-box; transform-origin: 50% 0%;
+  animation: a-ac-filo 350ms linear 1150ms backwards;
+}
+.anim-attesa-caricamento.in [id$="--sabbia-sopra"] {
+  transform-box: fill-box; transform-origin: 50% 100%;
+  animation: a-ac-sopra 1000ms linear 1150ms backwards;
+}
+.anim-attesa-caricamento.in [id$="--sabbia-sopra-luce"] { animation: a-ac-luce 1000ms linear 1150ms backwards; }
+.anim-attesa-caricamento.in [id$="--sabbia-sotto"]      { animation: a-ac-sotto 1000ms linear 1150ms backwards; }
+
+@keyframes a-ac-dissolve { from { opacity: 0; } }
+@keyframes a-ac-gira     { from { rotate: -180deg; } }
+@keyframes a-ac-filo     { from { scale: 1 0; } }
+@keyframes a-ac-sopra    { from { scale: 1 1.2; } }
+@keyframes a-ac-luce     { from { translate: 0 -4.8px; } }
+@keyframes a-ac-sotto    { from { translate: 0 6px; } }

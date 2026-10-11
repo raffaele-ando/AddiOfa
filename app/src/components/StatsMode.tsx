@@ -533,12 +533,12 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
                   <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} />
                   <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} allowDecimals={false} />
-                  <Tooltip 
+                  <Tooltip isAnimationActive={false}
                     cursor={{ fill: '#F3F4F6' }}
                     contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
                   />
-                  <Bar dataKey="domande" name="Domande" fill="#2563EB" radius={[4, 4, 0, 0]} maxBarSize={30} />
-                  <Bar dataKey="minuti" name="Minuti" fill="#22C55E" radius={[4, 4, 0, 0]} maxBarSize={30} />
+                  <Bar isAnimationActive={false} dataKey="domande" name="Domande" fill="#2563EB" radius={[4, 4, 0, 0]} maxBarSize={30} />
+                  <Bar isAnimationActive={false} dataKey="minuti" name="Minuti" fill="#22C55E" radius={[4, 4, 0, 0]} maxBarSize={30} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -613,14 +613,14 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                       tick={false} 
                       axisLine={false}
                     />
-                    <Radar
+                    <Radar isAnimationActive={false}
                       name="Padronanza"
                       dataKey="A"
                       stroke="#2563EB"
                       fill="#2563EB"
                       fillOpacity={0.5}
                     />
-                    <Tooltip 
+                    <Tooltip isAnimationActive={false}
                       contentStyle={{ 
                         borderRadius: '12px', 
                         border: '2px solid #E5E7EB',
@@ -655,13 +655,13 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                   <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#E5E7EB" className="dark:stroke-[#334155]" />
                   <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} allowDecimals={false} />
                   <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} />
-                  <Tooltip 
+                  <Tooltip isAnimationActive={false}
                     cursor={{ fill: '#F3F4F6' }}
                     contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
                     formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]}
                   />
-                  <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#22C55E" radius={[0, 0, 0, 0]} maxBarSize={30} />
-                  <Bar dataKey="daImparare" name="Da imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={30} />
+                  <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill="#22C55E" radius={[0, 0, 0, 0]} maxBarSize={30} />
+                  <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={30} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -679,13 +679,13 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                   <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#E5E7EB" className="dark:stroke-[#334155]" />
                   <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} allowDecimals={false} />
                   <YAxis type="category" dataKey="name" width={120} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#9CA3AF', fontWeight: 'bold' }} />
-                  <Tooltip 
+                  <Tooltip isAnimationActive={false}
                     cursor={{ fill: '#F3F4F6' }}
                     contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
                     formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]}
                   />
-                  <Bar dataKey="imparate" name="Imparate" stackId="a" fill="#2563EB" radius={[0, 0, 0, 0]} maxBarSize={20} />
-                  <Bar dataKey="daImparare" name="Da imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={20} />
+                  <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill="#2563EB" radius={[0, 0, 0, 0]} maxBarSize={20} />
+                  <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={20} />
                 </BarChart>
               </ResponsiveContainer>
             </div>

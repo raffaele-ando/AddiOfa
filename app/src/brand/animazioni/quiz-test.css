@@ -1,0 +1,29 @@
+/* quiz-test: due fogli, tre risposte; l'ultima ad apparire è la spunta, che si traccia.
+   Sequenza (1,7 s): foglio dietro, foglio davanti, le tre risposte da sinistra con le righe che si tracciano, spunta.
+   Id usati: foglio-dietro, foglio, risposta-1..3, risposta-N-riga-lunga/-corta, risposta-2-segno.
+   Attenzione: foglio e foglio-dietro hanno già un transform="rotate(...)": qui si usa solo la proprietà `translate`, che si compone. */
+.anim-quiz-test.in [id$="--foglio-dietro"] { animation: a-qt-dietro 550ms var(--e-out) backwards, a-qt-appare 200ms linear backwards; }
+.anim-quiz-test.in [id$="--foglio"]        { animation: a-qt-davanti 600ms var(--e-out) 120ms backwards, a-qt-appare 200ms linear 120ms backwards; }
+
+.anim-quiz-test.in [id$="--risposta-1"] { animation: a-qt-riga 480ms var(--e-out) 560ms backwards, a-qt-appare 220ms linear 560ms backwards; }
+.anim-quiz-test.in [id$="--risposta-2"] { animation: a-qt-riga 480ms var(--e-out) 760ms backwards, a-qt-appare 220ms linear 760ms backwards; }
+.anim-quiz-test.in [id$="--risposta-3"] { animation: a-qt-riga 480ms var(--e-out) 960ms backwards, a-qt-appare 220ms linear 960ms backwards; }
+
+/* righe di testo accanto alle caselle: si tracciano da sinistra */
+.anim-quiz-test.in [id$="-riga-lunga"] { --l: 50px; stroke-dasharray: var(--l) var(--l); }
+.anim-quiz-test.in [id$="-riga-corta"] { --l: 26px; stroke-dasharray: var(--l) var(--l); }
+.anim-quiz-test.in [id$="--risposta-1-riga-lunga"] { animation: a-qt-traccia 380ms var(--e-in-out) 700ms backwards; }
+.anim-quiz-test.in [id$="--risposta-1-riga-corta"] { animation: a-qt-traccia 300ms var(--e-in-out) 800ms backwards; }
+.anim-quiz-test.in [id$="--risposta-2-riga-lunga"] { animation: a-qt-traccia 380ms var(--e-in-out) 900ms backwards; }
+.anim-quiz-test.in [id$="--risposta-2-riga-corta"] { animation: a-qt-traccia 300ms var(--e-in-out) 1000ms backwards; }
+.anim-quiz-test.in [id$="--risposta-3-riga-lunga"] { animation: a-qt-traccia 380ms var(--e-in-out) 1100ms backwards; }
+.anim-quiz-test.in [id$="--risposta-3-riga-corta"] { animation: a-qt-traccia 300ms var(--e-in-out) 1200ms backwards; }
+
+/* la spunta bianca nella casella rossa: si traccia per ultima */
+.anim-quiz-test.in [id$="--risposta-2-segno"] { --l: 23px; stroke-dasharray: var(--l) var(--l); animation: a-qt-traccia 450ms var(--e-in-out) 1350ms backwards; }
+
+@keyframes a-qt-appare  { from { opacity: 0; } }
+@keyframes a-qt-dietro  { from { translate: -10px 4px; } }
+@keyframes a-qt-davanti { from { translate: 0 12px; } }
+@keyframes a-qt-riga    { from { translate: -8px 0; } }
+@keyframes a-qt-traccia { from { stroke-dashoffset: calc(var(--l) + 1px); } }

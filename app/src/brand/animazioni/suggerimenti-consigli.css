@@ -1,0 +1,19 @@
+/* suggerimenti-consigli: lampadina che si accende.
+   Sequenza (1,5 s): la lampadina compare spenta (senza colore), si accende, il filamento si traccia, i cinque raggi si accendono uno dopo l'altro.
+   Id usati: ombra, lampadina, bulbo, filamento, raggio-1..5. */
+.anim-suggerimenti-consigli.in [id$="--ombra"]    { animation: a-sc-appare 400ms var(--e-soft) backwards; }
+.anim-suggerimenti-consigli.in [id$="--lampadina"] { animation: a-sc-sale 500ms var(--e-out) backwards, a-sc-appare 200ms linear backwards; }
+.anim-suggerimenti-consigli.in [id$="--bulbo"]     { animation: a-sc-accendi 450ms var(--e-soft) 450ms backwards; }
+.anim-suggerimenti-consigli.in [id$="--filamento"] { --l: 42px; stroke-dasharray: var(--l) var(--l); animation: a-sc-traccia 450ms var(--e-in-out) 650ms backwards; }
+
+.anim-suggerimenti-consigli.in [id*="--raggio-"] { --l: 18px; stroke-dasharray: var(--l) var(--l); }
+.anim-suggerimenti-consigli.in [id$="--raggio-3"] { animation: a-sc-traccia 320ms var(--e-out) 950ms backwards; }
+.anim-suggerimenti-consigli.in [id$="--raggio-2"] { animation: a-sc-traccia 320ms var(--e-out) 1030ms backwards; }
+.anim-suggerimenti-consigli.in [id$="--raggio-4"] { animation: a-sc-traccia 320ms var(--e-out) 1030ms backwards; }
+.anim-suggerimenti-consigli.in [id$="--raggio-1"] { animation: a-sc-traccia 320ms var(--e-out) 1110ms backwards; }
+.anim-suggerimenti-consigli.in [id$="--raggio-5"] { animation: a-sc-traccia 320ms var(--e-out) 1110ms backwards; }
+
+@keyframes a-sc-appare  { from { opacity: 0; } }
+@keyframes a-sc-sale    { from { translate: 0 6px; } }
+@keyframes a-sc-accendi { from { filter: grayscale(1) brightness(1.05); } }
+@keyframes a-sc-traccia { from { stroke-dashoffset: calc(var(--l) + 1px); } }

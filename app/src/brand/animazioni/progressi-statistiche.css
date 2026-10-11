@@ -1,0 +1,14 @@
+/* progressi-statistiche: quattro barre crescenti.
+   Sequenza (1,5 s): l'ombra compare, le barre crescono dalla base una dopo l'altra, da sinistra a destra.
+   Id usati: ombra, barra-1..4 (gruppi, con corpo e riflesso). */
+.anim-progressi-statistiche.in [id$="--ombra"] { animation: a-ps-dissolve 500ms var(--e-soft) backwards; }
+.anim-progressi-statistiche.in [id*="--barra-"]:not([id*="-corpo"]):not([id*="-riflesso"]) {
+  transform-box: fill-box; transform-origin: 50% 100%;
+}
+.anim-progressi-statistiche.in [id$="--barra-1"] { animation: a-ps-cresce 620ms var(--e-out) 200ms backwards; }
+.anim-progressi-statistiche.in [id$="--barra-2"] { animation: a-ps-cresce 620ms var(--e-out) 380ms backwards; }
+.anim-progressi-statistiche.in [id$="--barra-3"] { animation: a-ps-cresce 620ms var(--e-out) 560ms backwards; }
+.anim-progressi-statistiche.in [id$="--barra-4"] { animation: a-ps-cresce 620ms var(--e-out) 740ms backwards; }
+
+@keyframes a-ps-dissolve { from { opacity: 0; } }
+@keyframes a-ps-cresce   { from { scale: 1 0; } }

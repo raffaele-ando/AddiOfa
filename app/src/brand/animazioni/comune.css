@@ -1,0 +1,17 @@
+/* Animazioni delle illustrazioni: base comune.
+   Ogni illustrazione ha il suo file <nome>.css con le regole sul wrapper `.anim-<nome>`.
+   Il wrapper ha le classi `anim anim-<nome>`; la classe `in` avvia l'animazione (togliere e rimettere `in` la riavvia).
+   Senza `in` l'illustrazione resta nel suo stato finale (quello statico). Le regole stanno tutte sotto `.in`. */
+.anim {
+  --e-out: cubic-bezier(.22, .61, .36, 1);      /* ingresso morbido, frena alla fine */
+  --e-in-out: cubic-bezier(.45, .05, .25, 1);   /* tracciati e archi */
+  --e-soft: cubic-bezier(.4, 0, .2, 1);         /* dissolvenze */
+  display: inline-block;
+  line-height: 0;
+}
+.anim > svg { display: block; max-width: 100%; height: auto; overflow: visible; }
+
+/* Movimento ridotto: stato finale subito, nessun movimento. */
+@media (prefers-reduced-motion: reduce) {
+  .anim.in, .anim.in * { animation: none !important; }
+}

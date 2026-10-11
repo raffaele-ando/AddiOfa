@@ -1,0 +1,21 @@
+/* mancato-superamento: documento con righe e distintivo rosso con la croce. Sobrio: nessuna festa.
+   Sequenza (1,8 s): il documento compare, le righe si tracciano, il distintivo si posa e la croce si traccia piano.
+   Id usati: documento, riga-1..4, distintivo-ombra, distintivo, distintivo-simbolo. */
+.anim-mancato-superamento.in [id$="--documento"] { animation: a-ms-entra 600ms var(--e-out) backwards, a-ms-dissolve 220ms linear backwards; }
+
+.anim-mancato-superamento.in [id*="--riga-"] { stroke-dasharray: var(--l) var(--l); }
+.anim-mancato-superamento.in [id$="--riga-1"] { --l: 38px; animation: a-ms-traccia 380ms var(--e-in-out) 500ms backwards; }
+.anim-mancato-superamento.in [id$="--riga-2"] { --l: 29px; animation: a-ms-traccia 320ms var(--e-in-out) 640ms backwards; }
+.anim-mancato-superamento.in [id$="--riga-3"] { --l: 22px; animation: a-ms-traccia 280ms var(--e-in-out) 780ms backwards; }
+.anim-mancato-superamento.in [id$="--riga-4"] { --l: 15px; animation: a-ms-traccia 240ms var(--e-in-out) 920ms backwards; }
+
+.anim-mancato-superamento.in [id$="--distintivo-ombra"] { animation: a-ms-dissolve 500ms var(--e-soft) 1000ms backwards; }
+.anim-mancato-superamento.in [id$="--distintivo"]       { animation: a-ms-entra 550ms var(--e-out) 1000ms backwards, a-ms-dissolve 200ms linear 1000ms backwards; }
+.anim-mancato-superamento.in [id$="--distintivo-simbolo"] {
+  --l: 46px; stroke-dasharray: var(--l) var(--l);
+  animation: a-ms-traccia 500ms var(--e-in-out) 1350ms backwards;
+}
+
+@keyframes a-ms-entra    { from { translate: 0 8px; } }
+@keyframes a-ms-dissolve { from { opacity: 0; } }
+@keyframes a-ms-traccia  { from { stroke-dashoffset: calc(var(--l) + 1px); } }

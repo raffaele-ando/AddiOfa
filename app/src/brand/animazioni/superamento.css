@@ -1,0 +1,23 @@
+/* superamento: fogli con righe e distintivo verde con la spunta (test superato).
+   Sequenza (1,9 s): il foglio dietro scivola, quello davanti sale, le righe si tracciano, il distintivo si posa e la spunta si traccia.
+   Id usati: foglio-dietro, foglio, foglio-riga-1..5, distintivo-ombra, distintivo, distintivo-simbolo.
+   foglio-dietro ha già un transform="rotate(...)": qui si usa solo `translate`, che si compone. */
+.anim-superamento.in [id$="--foglio-dietro"] { animation: a-sp-dietro 550ms var(--e-out) backwards, a-sp-appare 200ms linear backwards; }
+.anim-superamento.in [id$="--foglio"]        { animation: a-sp-davanti 600ms var(--e-out) 120ms backwards, a-sp-appare 200ms linear 120ms backwards; }
+
+.anim-superamento.in [id*="--foglio-riga-"] { stroke-dasharray: var(--l) var(--l); }
+.anim-superamento.in [id$="--foglio-riga-1"] { --l: 45px; animation: a-sp-traccia 380ms var(--e-in-out) 560ms backwards; }
+.anim-superamento.in [id$="--foglio-riga-2"] { --l: 61px; animation: a-sp-traccia 420ms var(--e-in-out) 680ms backwards; }
+.anim-superamento.in [id$="--foglio-riga-3"] { --l: 37px; animation: a-sp-traccia 340ms var(--e-in-out) 800ms backwards; }
+.anim-superamento.in [id$="--foglio-riga-4"] { --l: 29px; animation: a-sp-traccia 300ms var(--e-in-out) 920ms backwards; }
+.anim-superamento.in [id$="--foglio-riga-5"] { --l: 23px; animation: a-sp-traccia 260ms var(--e-in-out) 1040ms backwards; }
+
+.anim-superamento.in [id$="--distintivo-ombra"] { animation: a-sp-appare 500ms var(--e-soft) 1050ms backwards; }
+.anim-superamento.in [id$="--distintivo"]       { animation: a-sp-posa 550ms var(--e-out) 1050ms backwards, a-sp-appare 200ms linear 1050ms backwards; }
+.anim-superamento.in [id$="--distintivo-simbolo"] { --l: 33px; stroke-dasharray: var(--l) var(--l); animation: a-sp-traccia 450ms var(--e-in-out) 1400ms backwards; }
+
+@keyframes a-sp-appare  { from { opacity: 0; } }
+@keyframes a-sp-dietro  { from { translate: -10px 4px; } }
+@keyframes a-sp-davanti { from { translate: 0 12px; } }
+@keyframes a-sp-posa    { from { translate: 0 8px; } }
+@keyframes a-sp-traccia { from { stroke-dashoffset: calc(var(--l) + 1px); } }

@@ -1,0 +1,29 @@
+/* successo: coppa dorata con stella.
+   Sequenza (1,9 s): base e stelo, la coppa cala, un riflesso la attraversa, i manici si tracciano, la stella compare ruotando appena, i tre raggi si accendono insieme, dal centro verso fuori.
+   Id usati: ombra, base, base-riflesso, stelo, coppa, coppa-orlo, coppa-riflesso, manico-sinistro, manico-destro, stella, raggi. */
+.anim-successo.in [id$="--ombra"]          { animation: a-su-dissolve 500ms var(--e-soft) backwards; }
+.anim-successo.in [id$="--base"],
+.anim-successo.in [id$="--base-riflesso"]  { animation: a-su-sale 450ms var(--e-out) backwards, a-su-dissolve 180ms linear backwards; }
+.anim-successo.in [id$="--stelo"]          { animation: a-su-sale 450ms var(--e-out) 140ms backwards, a-su-dissolve 180ms linear 140ms backwards; }
+
+.anim-successo.in [id$="--coppa"],
+.anim-successo.in [id$="--coppa-orlo"]     { animation: a-su-cala 650ms var(--e-out) 320ms backwards, a-su-dissolve 200ms linear 320ms backwards; }
+.anim-successo.in [id$="--coppa-riflesso"] {
+  --l: 53px; stroke-dasharray: var(--l) var(--l);
+  animation: a-su-cala 650ms var(--e-out) 320ms backwards, a-su-dissolve 200ms linear 320ms backwards, a-su-traccia 550ms var(--e-in-out) 850ms backwards;
+}
+
+.anim-successo.in [id$="--manico-sinistro"],
+.anim-successo.in [id$="--manico-destro"]  { --l: 80px; stroke-dasharray: var(--l) var(--l); animation: a-su-traccia 500ms var(--e-in-out) 850ms backwards; }
+
+.anim-successo.in [id$="--stella"] {
+  transform-box: fill-box; transform-origin: center;
+  animation: a-su-stella 600ms var(--e-out) 1050ms backwards;
+}
+.anim-successo.in [id$="--raggi"] { --l: 21px; stroke-dasharray: var(--l) var(--l); animation: a-su-traccia 480ms var(--e-in-out) 1350ms backwards; }
+
+@keyframes a-su-dissolve { from { opacity: 0; } }
+@keyframes a-su-sale     { from { translate: 0 8px; } }
+@keyframes a-su-cala     { from { translate: 0 -16px; } }
+@keyframes a-su-traccia  { from { stroke-dashoffset: calc(var(--l) + 1px); } }
+@keyframes a-su-stella   { from { opacity: 0; rotate: -50deg; } }

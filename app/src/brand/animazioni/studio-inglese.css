@@ -1,0 +1,26 @@
+/* studio-inglese: due libri impilati con la bandiera inglese.
+   Sequenza (1,6 s): ombra, libro giallo sale, libro blu scende sopra, le righe delle pagine si tracciano, la bandiera si posa.
+   Id usati: ombra, libro-giallo, libro-blu, libro-{giallo,blu}-riga-1..3, ombra-bandiera, bandiera. */
+.anim-studio-inglese.in [id$="--ombra"]          { animation: a-si-dissolve 500ms var(--e-soft) backwards; }
+.anim-studio-inglese.in [id$="--libro-giallo"]   { animation: a-si-sale 650ms var(--e-out) backwards, a-si-appare 200ms linear backwards; }
+.anim-studio-inglese.in [id$="--libro-blu"]      { animation: a-si-scende 650ms var(--e-out) 280ms backwards, a-si-appare 200ms linear 280ms backwards; }
+
+/* righe delle pagine: tracciate una dopo l'altra, prima il libro giallo poi il blu */
+.anim-studio-inglese.in [id*="--libro-"][id*="-riga-"] { --l: 71px; stroke-dasharray: var(--l) var(--l); }
+.anim-studio-inglese.in [id$="--libro-giallo-riga-1"] { animation: a-si-traccia 380ms var(--e-in-out) 780ms backwards; }
+.anim-studio-inglese.in [id$="--libro-giallo-riga-2"] { animation: a-si-traccia 380ms var(--e-in-out) 880ms backwards; }
+.anim-studio-inglese.in [id$="--libro-giallo-riga-3"] { animation: a-si-traccia 380ms var(--e-in-out) 980ms backwards; }
+.anim-studio-inglese.in [id$="--libro-blu-riga-1"]    { animation: a-si-traccia 380ms var(--e-in-out) 900ms backwards; }
+.anim-studio-inglese.in [id$="--libro-blu-riga-2"]    { animation: a-si-traccia 380ms var(--e-in-out) 1000ms backwards; }
+.anim-studio-inglese.in [id$="--libro-blu-riga-3"]    { animation: a-si-traccia 380ms var(--e-in-out) 1100ms backwards; }
+
+/* la bandiera arriva da in alto a sinistra e si posa; l'ombra compare con lei */
+.anim-studio-inglese.in [id$="--bandiera"]        { animation: a-si-posa 650ms var(--e-out) 1000ms backwards, a-si-appare 200ms linear 1000ms backwards; }
+.anim-studio-inglese.in [id$="--ombra-bandiera"]  { animation: a-si-dissolve 650ms var(--e-soft) 1000ms backwards; }
+
+@keyframes a-si-dissolve { from { opacity: 0; } }
+@keyframes a-si-appare   { from { opacity: 0; } }
+@keyframes a-si-sale     { from { translate: 0 14px; } }
+@keyframes a-si-scende   { from { translate: 0 -16px; } }
+@keyframes a-si-posa     { from { translate: -10px -12px; } }
+@keyframes a-si-traccia  { from { stroke-dashoffset: calc(var(--l) + 1px); } }

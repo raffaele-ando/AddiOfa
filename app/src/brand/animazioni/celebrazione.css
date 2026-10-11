@@ -1,0 +1,27 @@
+/* celebrazione: cono di coriandoli.
+   Sequenza (1,6 s): il cono entra dall'angolo, i dieci coriandoli escono dalla bocca (da dietro il cono) e si distendono nel posto finale.
+   Id usati: cono, coriandolo-1..10. Ogni coriandolo ha --dx/--dy: dove parte rispetto al posto finale (verso la bocca del cono). */
+.anim-celebrazione.in [id$="--cono"] { animation: a-ce-cono 500ms var(--e-out) backwards, a-ce-dissolve 180ms linear backwards; }
+
+.anim-celebrazione.in [id*="--coriandolo-"] {
+  --l: 15px; stroke-dasharray: var(--l) var(--l);
+  animation:
+    a-ce-vola 850ms cubic-bezier(.16, .84, .3, 1) var(--t) backwards,
+    a-ce-traccia 650ms cubic-bezier(.16, .84, .3, 1) var(--t) backwards,
+    a-ce-dissolve 160ms linear var(--t) backwards;
+}
+.anim-celebrazione.in [id$="--coriandolo-1"]  { --t: 300ms; --dx: 27px;  --dy: 45px; }
+.anim-celebrazione.in [id$="--coriandolo-2"]  { --t: 340ms; --dx: -20px; --dy: 43px; }
+.anim-celebrazione.in [id$="--coriandolo-3"]  { --t: 380ms; --dx: 0px;   --dy: 28px; }
+.anim-celebrazione.in [id$="--coriandolo-4"]  { --t: 420ms; --dx: 40px;  --dy: 18px; }
+.anim-celebrazione.in [id$="--coriandolo-5"]  { --t: 460ms; --dx: -43px; --dy: 27px; }
+.anim-celebrazione.in [id$="--coriandolo-6"]  { --t: 500ms; --dx: -16px; --dy: 17px; }
+.anim-celebrazione.in [id$="--coriandolo-7"]  { --t: 540ms; --dx: -27px; --dy: 5px; }
+.anim-celebrazione.in [id$="--coriandolo-8"]  { --t: 580ms; --dx: -54px; --dy: 7px; }
+.anim-celebrazione.in [id$="--coriandolo-9"]  { --t: 620ms; --dx: -40px; --dy: -16px; }
+.anim-celebrazione.in [id$="--coriandolo-10"] { --t: 660ms; --dx: -25px; --dy: -37px; }
+
+@keyframes a-ce-cono     { from { translate: -8px 8px; } }
+@keyframes a-ce-vola     { from { translate: var(--dx) var(--dy); } }
+@keyframes a-ce-traccia  { from { stroke-dashoffset: calc(var(--l) + 1px); } }
+@keyframes a-ce-dissolve { from { opacity: 0; } }

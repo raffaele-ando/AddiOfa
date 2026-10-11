@@ -1,0 +1,23 @@
+/* risultato-probabilita: indicatore ad arco con cursore e percentuale.
+   Sequenza (1,7 s): il binario grigio compare, l'arco si carica da sinistra con il cursore sulla punta, compare la percentuale.
+   Id usati: binario, arco-pieno, arco-luce-bordo, cursore, percentuale-cifre.
+   Il cursore segue l'arco con offset-path (percorso relativo alla sua posizione finale, così a fine corsa è dov'è nel disegno). */
+.anim-risultato-probabilita.in [id$="--binario"] { animation: a-rp-dissolve 350ms var(--e-soft) backwards; }
+
+.anim-risultato-probabilita.in [id$="--arco-pieno"] {
+  --l: 259px; stroke-dasharray: var(--l) var(--l);
+  animation: a-rp-traccia 1200ms cubic-bezier(.3, .1, .2, 1) 120ms backwards;
+}
+.anim-risultato-probabilita.in [id$="--cursore"] {
+  offset-path: path('M-184.43 53.58 a100 100 0 0 1 184.43 -53.58');
+  offset-rotate: 0deg;
+  offset-distance: 100%;
+  animation: a-rp-corri 1200ms cubic-bezier(.3, .1, .2, 1) 120ms backwards, a-rp-dissolve 200ms linear 120ms backwards;
+}
+.anim-risultato-probabilita.in [id$="--arco-luce-bordo"]    { animation: a-rp-dissolve 500ms var(--e-soft) 950ms backwards; }
+.anim-risultato-probabilita.in [id$="--percentuale-cifre"]  { animation: a-rp-cifre 600ms var(--e-out) 1000ms backwards; }
+
+@keyframes a-rp-dissolve { from { opacity: 0; } }
+@keyframes a-rp-traccia  { from { stroke-dashoffset: calc(var(--l) + 1px); } }
+@keyframes a-rp-corri    { from { offset-distance: 0%; } }
+@keyframes a-rp-cifre    { from { opacity: 0; translate: 0 6px; } }
