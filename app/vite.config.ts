@@ -23,7 +23,6 @@ export default defineConfig(() => {
           manualChunks: {
             firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
             charts: ['recharts'],
-            motion: ['motion/react', 'canvas-confetti'],
           },
         },
       },

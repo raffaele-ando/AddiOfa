@@ -10,8 +10,7 @@ import './brand.css';
  * - formato "png": identica al pixel all'originale
  * - formato "svg": ricalco vettoriale automatico
  * - fondoScuro: per il tema scuro, con la nuvola di sfondo quasi trasparente invece che bianca
- * - animazione: nessuna di default (l'app è statica); si applica solo se il chiamante la passa esplicitamente e non è "nessuna".
-   L'app non la passa mai; l'unica classe rimasta in brand.css è 'gira' (lo spinner).
+ * - animazione: l'app è statica, quindi si applica solo 'gira' (lo spinner); ogni altro valore è ignorato.
  * - tinta: rotazione del colore in gradi, per prove veloci (per un cambio preciso: grafica/strumenti/brand/ricolora.py)
  */
 export function Illustrazione({ nome, kit = 'kit-blu', gruppo, lato, formato = 'disegno', fondoScuro = false, animazione, tinta, alt = '', style }: {
@@ -23,9 +22,9 @@ export function Illustrazione({ nome, kit = 'kit-blu', gruppo, lato, formato = '
   const src = formato === 'svg' ? urlSvg(kit, gr, nome)
     : formato === 'disegno' ? (urlDisegno(kit, gr, nome, fondoScuro) ?? urlPng(kit, gr, nome, fondoScuro))
     : urlPng(kit, gr, nome, fondoScuro);
-  const anim = animazione;
+  const anim = animazione === 'gira' ? animazione : undefined; // solo lo spinner gira; ogni altra animazione è ignorata
   return (
-    <span className={anim && anim !== 'nessuna' ? `brand-anim-${anim}` : undefined} style={{ display: 'inline-block', lineHeight: 0, ...style }}>
+    <span className={anim ? `brand-anim-${anim}` : undefined} style={{ display: 'inline-block', lineHeight: 0, ...style }}>
       <img src={src} alt={alt} draggable={false}
         style={{ width: lato, height: 'auto', maxWidth: '100%', filter: tinta ? `hue-rotate(${tinta}deg)` : undefined }} />
     </span>
