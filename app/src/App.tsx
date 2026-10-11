@@ -478,6 +478,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onNeedPass={apriPaywall}
           onStartErrors={() => { setLearnMode('weakness'); setLearnCategory(undefined); setView('learn'); }}
           onOpenTheory={() => { setTeoriaId(undefined); setView('theory'); }}
+          onOpenTheoryTopic={apriTeoria}
+          onStartFocus={f => { setLearnMode('category'); setLearnCategory(f); setView('learn'); }}
           onOpenLegal={apriLegale}
           onOpenCheatSheet={() => setView('cheatsheet')}
           onOpenDiagnostic={() => setView('onboarding')}
