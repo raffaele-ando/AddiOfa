@@ -19,16 +19,16 @@ La galleria per scegliere è `galleria-logo.html` (in `app/dist-demo/`, non nel 
 | Cerchio blu | `lettermark-cerchio-blu.svg` | 35, 37 | derivata | A bianca nel cerchio blu (come la scintilla nel cerchio dei concept 35, 37). Avatar social tondi. |
 | Cerchio blu notte | `lettermark-cerchio-notte.svg` | 37 | derivata | A bianca nel cerchio blu notte: avatar dei profili social. Avatar social tondi, versione scura. |
 
-### Lettermark con la scintilla a 4 punte (concept 07 e 35)
+### Lettermark «A piena» con la stella dalla base piatta (forma del concept 07/35)
 
 | Variante | File | Fonte (NN) | Tipo | Cos'è / come si usa |
 |---|---|---|---|---|
-| A blu con scintilla | `lettermark-scintilla-blu.svg` | 07, 35 | concept | A piena con la scintilla a 4 punte ritagliata al centro: coerente con la scintilla nella O del wordmark. |
-| Navy, una tinta | `lettermark-scintilla-navy.svg` | 07, 35 | derivata | Monocromatica per timbri e stampa. |
-| Solo contorno | `lettermark-scintilla-contorno.svg` | nessuna | derivata | A contorno, filigrana. |
-| Quadrato blu / blu notte | `lettermark-scintilla-tile-blu.svg`, `lettermark-scintilla-tile-notte.svg` | 35 | derivata | Avatar e profilo. |
-| Cerchio blu | `lettermark-scintilla-cerchio-blu.svg` | 35, 37 | derivata | Avatar social tondi. |
-| Lockup | `lockup-orizzontale-scintilla.svg`, `lockup-orizzontale-scintilla-tagline.svg`, `lockup-verticale-scintilla.svg` | 07, 35 | derivata | A con la scintilla + wordmark primario. |
+| A piena blu | `lettermark-piena-blu.svg` | 07, 35 + stella del 15 | concept | A piena a cima piatta con la stella a 5 punte dalla base piatta ritagliata al centro. Lettermark scelto dall'utente. |
+| Navy, una tinta | `lettermark-piena-navy.svg` | — | derivata | Monocromatica per timbri e stampa. |
+| Solo contorno | `lettermark-piena-contorno.svg` | — | derivata | Filigrana. |
+| Quadrato blu / blu notte | `lettermark-piena-tile-blu.svg`, `lettermark-piena-tile-notte.svg` | 35 | derivata | Avatar e profilo. |
+| Cerchio blu | `lettermark-piena-cerchio-blu.svg` | 35, 37 | derivata | Avatar social tondi. |
+| Lockup | `lockup-orizzontale-piena.svg`, `lockup-orizzontale-piena-tagline.svg`, `lockup-verticale-piena.svg` | 07, 35 | derivata | A piena + wordmark primario. |
 
 ## Wordmark
 

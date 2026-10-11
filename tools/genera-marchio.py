@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Genera app/src/brand/marchio.generato.ts dal lettermark e dal wordmark scelti (grafica/brand/logo/).
-Scelta dell'utente (galleria loghi, 11/10): lettermark «Blu pieno» + wordmark «Primario, scintilla nella O», orizzontale.
+Scelta dell'utente (galleria loghi, 11/10): lettermark «A piena con la stella a base piatta» + wordmark «Primario, scintilla nella O», orizzontale.
 Uso (dalla radice): python3 tools/genera-marchio.py   # serve Chromium (Playwright) solo per misurare gli ingombri."""
 import json, re, pathlib
 from playwright.sync_api import sync_playwright
 
 R = pathlib.Path(__file__).resolve().parent.parent
 LOGO = R / 'grafica/brand/logo'
-lm = (LOGO / 'lettermark-blu.svg').read_text()
+lm = (LOGO / 'lettermark-piena-blu.svg').read_text()
 wm = (LOGO / 'wordmark-primario.svg').read_text()
 
 lm_d = re.search(r'<path id="lettera-a" d="([^"]+)"', lm).group(1)

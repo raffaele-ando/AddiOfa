@@ -27,7 +27,7 @@ export default function Marchio({ disposizione = 'orizzontale', altezza = 32, cl
   let W: number, H: number, corpo: React.ReactNode;
   if (disposizione === 'lettermark') {
     [, , W, H] = L.vb;
-    corpo = <path d={L.d} transform={`translate(${-L.vb[0]} ${-L.vb[1]})`} className="fill-marchio" />;
+    corpo = <path d={L.d} transform={`translate(${-L.vb[0]} ${-L.vb[1]})`} fillRule="evenodd" className="fill-marchio" />;
   } else if (disposizione === 'wordmark') {
     const [x, y, w, h] = MARCHIO.wordmark.vb; W = w; H = h;
     corpo = <Parole tx={-x} ty={-y} />;
@@ -36,7 +36,7 @@ export default function Marchio({ disposizione = 'orizzontale', altezza = 32, cl
     W = d.W; H = d.H;
     const [lx, ly, k] = d.lm; const [wx, wy] = d.wm;
     corpo = (<>
-      <path d={L.d} transform={`translate(${lx} ${ly}) scale(${k})`} className="fill-marchio" />
+      <path d={L.d} transform={`translate(${lx} ${ly}) scale(${k})`} fillRule="evenodd" className="fill-marchio" />
       <Parole tx={wx} ty={wy} />
     </>);
   }
