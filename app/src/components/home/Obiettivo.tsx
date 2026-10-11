@@ -29,7 +29,7 @@ export default function ObiettivoCard({ ultima, bloccata, onVai }: { ultima: Obi
       <button type="button" onClick={() => { playTapSound(); onVai(); }} className="brand-premibile w-full flex items-center gap-3 p-4 text-left rounded-3xl">
         <span className="w-11 h-11 rounded-2xl bg-white dark:bg-[#0F172A] text-[#16A34A] flex items-center justify-center shrink-0"><Target size={24} aria-hidden="true" /></span>
         <span className="flex-1 min-w-0">
-          <span className="block text-[16px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Il tuo obiettivo</span>
+          <span className="block text-[16px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Soglia della simulazione</span>
           {ultima ? (
             <span className="block text-[13px] leading-snug text-[#475569] dark:text-[#CBD5E1] mt-0.5">
               Ultima simulazione: {ultima.esatte} su {ultima.totale}, soglia {ultima.soglia}.{' '}

@@ -1,5 +1,5 @@
 // Anteprima della home con un AccessContext finto e dati di prova.
-// Uso: /tests/anteprime/home.html?stato=nuovo|basso|medio|alto  &pass=1  &tema=dark  &sim=0|1  &focus=0 (barre non cliccabili)
+// Uso: /tests/anteprime/home.html?stato=nuovo|basso|medio|alto  &pass=1  &tema=dark  &sim=0|1  &punti=1..5 (punti del grafico: diagnostico + simulazioni)  &focus=0 (barre non cliccabili)
 // Registro per Playwright: window.__log (callback chiamate).
 import { StrictMode, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -40,8 +40,14 @@ function costruisci(): AppState {
     nStats[qq.id] = { correct: ok ? 3 : 1, incorrect: ok ? 1 : 3, lastSeen: Date.now(), box: ok && i % 3 ? 2 : 0, easiness: 2.3 };
   });
   const diagOk = stato === 'basso' ? 5 : stato === 'medio' ? 8 : 10;
-  const sim = q.get('sim') === '1' || stato === 'alto';
-  const history: ExamHistory[] = sim ? [{ id: 'h1', date: Date.now() - 864e5, score: stato === 'alto' ? 27 : 21, passed: stato === 'alto', timeSpentSeconds: 800, format: 'ente' }] : [];
+  // punti=N: N punti misurati nel grafico = diagnostico + (N-1) simulazioni; senza, vale sim=1 (o lo stato alto)
+  const punti = Number(q.get('punti'));
+  const nSim = punti >= 1 ? Math.min(4, Math.floor(punti) - 1) : (q.get('sim') === '1' || stato === 'alto' ? 1 : 0);
+  const punteggi = stato === 'alto' ? [26, 27, 28, 29] : stato === 'medio' ? [24, 25, 25, 26] : [12, 15, 17, 20];
+  const history: ExamHistory[] = Array.from({ length: nSim }, (_, i) => {
+    const score = punteggi[i];
+    return { id: `h${i + 1}`, date: Date.now() - (nSim - i) * 864e5, score, passed: score >= 25, timeSpentSeconds: 800, format: 'ente' as const };
+  });
   return {
     ...base, stats: nStats, history, streak: stato === 'basso' ? 1 : 3, lastActiveDate: Date.now(),
     onboarding: { completedAt: Date.now() - 3 * 864e5, hasCertification: false, hasOfa: 'unknown', diagnosticCorrect: diagOk, diagnosticTotal: 10 },

@@ -4,5 +4,5 @@ Le scelte si fanno nella galleria (Artifact «Galleria Design AddiOFA», sezione
 
 | Sezione | Variante scelta | Fonte | Data | Stato |
 |---|---|---|---|---|
-| Home | `home-n14-a`: misuratore a tutta larghezza, prossimo obiettivo, grafico dei punti misurati | concept 14 · schermata 1 | 11/10/2026 | in implementazione (adattata: probabilità stimata, niente proiezioni) |
+| Home | `home-n14-a`: misuratore a tutta larghezza, prossimo obiettivo, grafico dei punti misurati | concept 14 · schermata 1 | 11/10/2026 | implementata e pubblicata (adattata: probabilità stimata, solo punti misurati) |
 | Landing, funnel, risultato, paywall, simulazione, statistiche, inviti, brand e altre | da scegliere | | | |

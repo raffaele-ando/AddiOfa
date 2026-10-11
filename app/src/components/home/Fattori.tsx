@@ -31,7 +31,7 @@ function Riga({ f, icona, indice, onVai, piccolo }: { f: Fattore; icona?: React.
 export default function Fattori({ categorie, livelli, onVai }: { categorie: Fattore[]; livelli: Fattore[]; onVai?: (filtro: string) => void }) {
   return (
     <Carta indice={1} className="p-4">
-      <h2 className="text-[17px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Dove stai andando meglio</h2>
+      <h2 className="text-[17px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Dove sei più solido</h2>
       <p className="text-[12.5px] text-[#6B7280] dark:text-[#94A3B8] mt-0.5 mb-3">Accuratezza sulle domande a cui hai risposto. Sotto 5 risposte non mostriamo la percentuale.</p>
       <div className="grid grid-cols-2 gap-2">
         {categorie.map((f, i) => <Riga key={f.id} f={f} indice={i} onVai={onVai} />)}

@@ -4,6 +4,7 @@ import { questions } from '../../data/questions';
 import { theoryTopics, type TheoryTopic } from '../../data/theory';
 import { estimatePassProbability, intervalloStima, normalizzaConteggio, type IntervalloStima } from '../../lib/diagnostic';
 import { chiaveGiorno } from '../../lib/utils';
+import { countLearned } from '../../lib/spacedRepetition';
 import { FORMATS, FREE_LIMITS, type FormatId } from '../../config/offer';
 
 export const MIN_RISPOSTE = 5; // sotto questa soglia una percentuale per area non è affidabile
@@ -253,6 +254,23 @@ export function lezioneConsigliata(stato: AppState, pass: boolean): Lezione | nu
   }
   const nuovo = ordinati.find(t => !tot[t.id]) ?? ordinati[0];
   return { topic: nuovo, minuti: minutiLettura(nuovo), bloccata: !pass && !gratisIds.has(nuovo.id), motivo: 'inizio' };
+}
+
+/** Avanzamento su un argomento: domande imparate (isLearned) su quelle dell'argomento, e l'area (categoria più frequente). */
+export interface ProgressoArgomento { area: string; imparate: number; totale: number }
+
+/**
+ * `pool` = gli id che l'utente può studiare adesso (corpus attivo): conta solo quelli.
+ * Se nel pool l'argomento non ha domande si contano tutte quelle del banco, così non si mostra mai "0 su 0".
+ */
+export function progressoArgomento(stato: AppState, topicId: string, pool?: ReadonlySet<string>): ProgressoArgomento {
+  const dellArgomento = questions.filter(q => q.theoryId === topicId);
+  const nelPool = pool ? dellArgomento.filter(q => pool.has(q.id)) : dellArgomento;
+  const usate = nelPool.length > 0 ? nelPool : dellArgomento;
+  const perCategoria = new Map<string, number>();
+  for (const q of dellArgomento) perCategoria.set(q.category, (perCategoria.get(q.category) ?? 0) + 1);
+  const area = [...perCategoria.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? '';
+  return { area, imparate: countLearned(stato.stats, usate.map(q => q.id)), totale: usate.length };
 }
 
 // ---- Ultima simulazione contro la soglia

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { AppState, CorpusType, LegalSection, PaywallReason } from '../types';
-import { Volume2, VolumeX, Moon, Sun, Upload, Download, Bug, Fingerprint, Lock, KeyRound, Quote } from 'lucide-react';
+import { Volume2, VolumeX, Moon, Sun, Upload, Download, Bug, Fingerprint, Lock, KeyRound } from 'lucide-react';
 import { User } from 'firebase/auth';
 import { useTheme } from '../hooks/useTheme';
 import { cn } from '../lib/utils';
@@ -15,15 +15,17 @@ import { PoweredByAtlas } from './ui';
 import { FONT } from '../brand/tokens';
 import Navigazione, { Scheda } from './Navigazione';
 import { urlIcona } from '../brand/risorse';
-import { Carta } from './home/comune';
-import StimaCard, { SOTTO_CIAO } from './home/Stima';
+import Cta from './home/Cta';
+import FoglioStima from './FoglioStima';
+import { StimaSezione, BannerStato, ScopriCard, chiaveBanner } from './home/Stima';
+import GraficoStime from './home/GraficoStime';
 import Fattori from './home/Fattori';
 import ObiettivoCard from './home/Obiettivo';
-import LezioneCard from './home/Lezione';
+import ProssimoObiettivo from './home/Lezione';
 import { SerieCard, ProgressiCard } from './home/Serie';
 import Strumenti, { VoceStrumento } from './home/Strumenti';
 import { countLearned } from '../lib/spacedRepetition';
-import { calcolaFattori, calcolaStima, lezioneConsigliata, livelloDi, ultimaSimulazione, ultimiGiorni } from './home/stima';
+import { calcolaFattori, calcolaStima, lezioneConsigliata, livelloDi, progressoArgomento, serieStime, ultimaSimulazione, ultimiGiorni } from './home/stima';
 
 interface MenuProps {
   appState: AppState;
@@ -62,6 +64,7 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
   const { isDark, toggleTheme } = useTheme();
   const { pass, entitlement, simsDone, provider } = useAccess();
   const [muted, setMuted] = useState(isAudioMuted());
+  const [foglio, setFoglio] = useState(false);
 
   const simsRimaste = remainingFreeSims(entitlement, simsDone);
   const testoSim = pass
@@ -83,10 +86,16 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
     ultima: ultimaSimulazione(appState),
     lezione: lezioneConsigliata(appState, pass),
     giorni: ultimiGiorni(appState),
+    punti: serieStime(appState),
   }), [appState, pass]);
-  const { stima, fattori, ultima, lezione, giorni } = dati;
+  const { stima, fattori, ultima, lezione, giorni, punti } = dati;
   const haRisposte = fattori.risposteTotali > 0;
   const livello = stima ? livelloDi(stima.p) : null;
+  const progresso = useMemo(
+    () => (lezione ? progressoArgomento(appState, lezione.topic.id, new Set(activeQuestions.map(q => q.id))) : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [appState, lezione, selectedCorpus],
+  );
 
   const faiSimulazione = () => (simBloccata ? onNeedPass('simulazione') : onStartExam());
   const apriLezione = () => {
@@ -153,34 +162,38 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
             </div>
           </header>
 
-          {/* saluto */}
-          <div className="px-1 pt-1">
-            <h1 className="text-[27px] leading-tight font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">{nome ? `Ciao, ${nome}` : 'Ciao!'}</h1>
-            <p className="text-[15px] text-[#6B7280] dark:text-[#94A3B8] mt-0.5">{SOTTO_CIAO[livello ?? 'nuovo']}</p>
-          </div>
+          {/* saluto: solo se l'utente è collegato */}
+          {nome && <p className="px-1 text-[15px] text-[#6B7280] dark:text-[#94A3B8] -mb-1.5">Ciao, <span className="font-semibold text-[#0F172A] dark:text-[#F8FAFC]">{nome}</span></p>}
 
-          {/* probabilità stimata, oppure invito al diagnostico */}
-          <StimaCard stima={stima} haRisposte={haRisposte} corpoCta={cta} onStudia={onStartSmart} onDiagnostico={onOpenDiagnostic} />
+          {stima && livello ? (
+            <>
+              {/* misuratore a tutta larghezza, con (i) che apre il foglio della stima */}
+              <StimaSezione stima={stima} livello={livello} onInfo={() => setFoglio(true)} />
 
-          {/* aree */}
+              {/* stato: tocco = pratica, oppure simulazione se la stima è alta */}
+              <BannerStato chiave={chiaveBanner(stima, livello)} onClick={livello === 'alto' && !simBloccata ? onStartExam : onStartSmart} />
+
+              {/* pulsante principale */}
+              <Cta onClick={cta.azione} sotto={cta.sotto}>{cta.etichetta}</Cta>
+            </>
+          ) : (
+            /* nessuna stima: niente misuratore finto, si invita al diagnostico */
+            <ScopriCard haRisposte={haRisposte} onDiagnostico={onOpenDiagnostic} onStudia={onStartSmart} etichettaStudia="Oppure inizia a studiare" />
+          )}
+
+          {/* prossimo obiettivo: argomento più debole, o il primo da toccare */}
+          {lezione && progresso && <ProssimoObiettivo lezione={lezione} progresso={progresso} onApri={apriLezione} onPercorso={onOpenTheory} />}
+
+          {/* solo punti misurati: diagnostico e simulazioni */}
+          {punti.length > 0 && <GraficoStime punti={punti} onSimulazione={faiSimulazione} />}
+
+          {/* blocchi secondari, compatti */}
           {haRisposte && <Fattori categorie={fattori.categorie} livelli={fattori.livelli} onVai={onStartFocus} />}
-
-          {/* obiettivo */}
           <ObiettivoCard ultima={ultima} bloccata={simBloccata} onVai={faiSimulazione} />
-
-          {/* lezione consigliata */}
-          {lezione && <LezioneCard lezione={lezione} onApri={apriLezione} />}
-
-          {/* serie e progressi */}
           <div className="grid grid-cols-2 gap-3 items-stretch">
             <SerieCard serie={appState.streak} giorni={giorni} />
             <ProgressiCard imparate={masteredQuestions} totale={totalQuestions} giorni={giorni} onVai={onOpenStats} />
           </div>
-
-          <Carta indice={6} tinta="bg-[#EEF2FA] dark:bg-[#1E293B]/60 border-transparent" className="px-4 py-3 flex items-start gap-3">
-            <Quote size={22} className="shrink-0 text-[#94A3B8] mt-0.5" aria-hidden="true" />
-            <p className="text-[13.5px] leading-snug text-[#475569] dark:text-[#CBD5E1]">Poche domande al giorno, fatte con costanza, valgono più di una maratona la sera prima.</p>
-          </Carta>
 
           {/* materiale */}
           {onSelectCorpus && (
@@ -207,6 +220,7 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
           <Footer onOpenLegal={onOpenLegal} />
         </div>
       </div>
+      {stima && <FoglioStima aperto={foglio} onChiudi={() => setFoglio(false)} tipo={stima.fonte === 'diagnostico' ? 'diagnostico' : 'simulazione'} risposte={stima.risposte} />}
       {onNaviga && <Navigazione attiva="home" onVai={onNaviga} />}
     </div>
   );
