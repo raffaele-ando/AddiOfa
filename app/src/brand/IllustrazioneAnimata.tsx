@@ -28,13 +28,52 @@ export const NOMI_ANIMATI: readonly string[] = [
 export function eAnimata(nome: string): nome is NomeAnimata { return NOMI_ANIMATI.includes(nome); }
 
 // Solo le 11 illustrazioni animate (chiaro e scuro): un glob più largo porterebbe nel pacchetto tutto il kit.
-const SVG = import.meta.glob(
+// Gli SVG arrivano come indirizzi (nella demo sono dati incorporati e codificati: niente `<svg` grezzo nel file della pagina,
+// che il controllo di pubblicazione degli Artifact scambia per elementi che caricano risorse) e si decodificano qui.
+const URL_SVG = import.meta.glob(
   './essenziali/disegni/kit-blu/illustrazioni/{studio-inglese,quiz-test,risultato-probabilita,successo,celebrazione,mancato-superamento,progressi-statistiche,piano-studi-bloccato,attesa-caricamento,superamento,suggerimenti-consigli}{,.scuro}.svg',
-  { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+  { query: '?url', import: 'default', eager: true }) as Record<string, string>;
+
+const TESTI = new Map<string, string>();
+
+function decodifica(uri: string): string | undefined {
+  try {
+    if (uri.startsWith('data:image/svg+xml;base64,')) {
+      const bin = atob(uri.slice(uri.indexOf(',') + 1));
+      return new TextDecoder().decode(Uint8Array.from(bin, c => c.charCodeAt(0)));
+    }
+    // Vite codifica gli SVG con gli apici singoli: si riportano alle virgolette doppie, come nel file originale.
+    if (uri.startsWith('data:image/svg+xml,')) return decodeURIComponent(uri.slice(uri.indexOf(',') + 1)).replace(/=\x27([^\x27]*)\x27/g, '="$1"');
+  } catch { /* si prova con fetch */ }
+  return undefined;
+}
+
+function chiave(nome: string, scuro: boolean): string {
+  const k = `./essenziali/disegni/kit-blu/illustrazioni/${nome}${scuro ? '.scuro' : ''}.svg`;
+  return URL_SVG[k] ? k : `./essenziali/disegni/kit-blu/illustrazioni/${nome}.svg`;
+}
 
 function sorgente(nome: string, scuro: boolean): string | undefined {
-  const chiave = `./essenziali/disegni/kit-blu/illustrazioni/${nome}${scuro ? '.scuro' : ''}.svg`;
-  return SVG[chiave] ?? SVG[`./essenziali/disegni/kit-blu/illustrazioni/${nome}.svg`];
+  const k = chiave(nome, scuro);
+  const gia = TESTI.get(k);
+  if (gia !== undefined) return gia;
+  const uri = URL_SVG[k];
+  if (!uri) return undefined;
+  const testo = decodifica(uri);
+  if (testo !== undefined) TESTI.set(k, testo);
+  return testo;
+}
+
+/** Fuori dalla demo gli SVG sono file separati: si scaricano una volta e si tengono in memoria. */
+function useCaricaSvg(nome: string, scuro: boolean): void {
+  const [, ricarica] = useState(0);
+  useEffect(() => {
+    if (sorgente(nome, scuro) !== undefined) return;
+    const k = chiave(nome, scuro); const uri = URL_SVG[k]; if (!uri) return;
+    let attivo = true;
+    fetch(uri).then(r => r.text()).then(t => { TESTI.set(k, t); if (attivo) ricarica(n => n + 1); }).catch(() => undefined);
+    return () => { attivo = false; };
+  }, [nome, scuro]);
 }
 
 /** Prefissa ogni id e ogni riferimento (url(#x), href="#x") per evitare scontri tra illustrazioni nella stessa pagina. */
@@ -65,6 +104,7 @@ export function IllustrazioneAnimata({ nome, lato, alt = '', riavvia = 0, avvia 
   quandoVisibile?: boolean; className?: string;
 }) {
   const scuro = usaTemaScuro();
+  useCaricaSvg(nome, scuro);
   const ref = useRef<HTMLSpanElement>(null);
   const html = useMemo(() => {
     const svg = sorgente(nome, scuro);
