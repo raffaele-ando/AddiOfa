@@ -1,4 +1,5 @@
 import React from 'react';
+import { chiaveGiorno } from '../lib/utils';
 
 interface ActivityChartProps {
   dailyActivity?: Record<string, number>;
@@ -17,7 +18,7 @@ export function ActivityChart({ dailyActivity }: ActivityChartProps) {
   for (let i = 0; i < 28; i++) {
     const d = new Date(startDate);
     d.setDate(startDate.getDate() + i);
-    const dateStr = d.toISOString().split('T')[0];
+    const dateStr = chiaveGiorno(d);
     const isFuture = d > today;
     
     days.push({

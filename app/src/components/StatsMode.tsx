@@ -1,8 +1,9 @@
 import { useState, useMemo, useEffect } from 'react';
 import { AppState, PaywallReason } from '../types';
 import { X, Trophy, TrendingUp, AlertCircle, Clock, Target, List, ArrowLeft, Activity, Filter, ArrowDownUp, ArrowUp, ArrowDown, Minus, Crown, Check, Lock, Loader2 } from 'lucide-react';
-import { cn } from '../lib/utils';
-import { confidenceFromEasiness, bankMeta, poolMeta } from '../lib/spacedRepetition';
+import { cn, chiaveGiorno } from '../lib/utils';
+import { REGOLA_IMPARATA } from './home/comune';
+import { confidenceFromEasiness, bankMeta, poolMeta, countLearned, isLearned } from '../lib/spacedRepetition';
 import GuaranteeTracker from './GuaranteeTracker';
 import { IconaChip } from '../brand/componenti';
 import { Illustrazione } from '../brand/Illustrazione';
@@ -48,7 +49,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
   // Compute stats
   // Stesso materiale del menu: con il nucleo di base la percentuale è calcolata su quelle domande
   const totalQuestions = activeMeta.length;
-  const masteredQuestions = activeMeta.filter(q => (appState.stats[q.id]?.box ?? 0) > 0).length;
+  const masteredQuestions = countLearned(appState.stats, activeMeta.map(q => q.id));
   const masteryPercentage = Math.round((masteredQuestions / totalQuestions) * 100) || 0;
   
   const examsTaken = appState.history.length;
@@ -135,7 +136,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
     for (let i = 6; i >= 0; i--) {
       const d = new Date(today);
       d.setDate(d.getDate() - i);
-      const dateStr = d.toISOString().split('T')[0];
+      const dateStr = chiaveGiorno(d);
       const displayStr = d.toLocaleDateString('it-IT', { weekday: 'short' });
       data.push({
         name: displayStr,
@@ -155,7 +156,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
       }
       stats[level].total += 1;
       const stat = appState.stats[q.id];
-      if (stat && stat.box > 0) {
+      if (isLearned(stat)) {
         stats[level].imparate += 1;
       }
     });
@@ -176,7 +177,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
       }
       stats[topic].total += 1;
       const stat = appState.stats[q.id];
-      if (stat && stat.box > 0) {
+      if (isLearned(stat)) {
         stats[topic].imparate += 1;
       }
     });
@@ -199,7 +200,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
   const progressPercent = Math.min(100, Math.max(0, ((totalXP - xpForCurrentLevel) / (xpForNextLevel - xpForCurrentLevel)) * 100));
 
   // Sfida quotidiana: conta solo le domande fatte oggi
-  const todayStr = new Date().toISOString().split('T')[0];
+  const todayStr = chiaveGiorno();
   const currentTotalDaily = appState.dailyActivity?.[todayStr] || 0;
   
   const milestones = [10, 25, 50, 100, 150, 250, 400, 600, 1000, 99999];
@@ -275,6 +276,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                   <span className="text-xs text-[#6B7280] dark:text-gray-400">{nome}</span>
                 </div>
               ))}
+              <p className="min-[420px]:col-span-2 -mt-1 text-xs leading-snug text-[#6B7280] dark:text-gray-400">{REGOLA_IMPARATA}</p>
               <div className="min-[420px]:col-span-2 bg-white dark:bg-[#0F172A] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-4 flex flex-col gap-2">
                 <IconaChip nome="quiz" lato={40} />
                 {lastExam && lastExamFormat ? (
@@ -517,6 +519,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               </div>
             ))}
           </div>
+          <p className="-mt-1 text-xs leading-snug text-[#6B7280] dark:text-gray-400">{REGOLA_IMPARATA}</p>
 
           {/* Activity Chart */}
           <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">

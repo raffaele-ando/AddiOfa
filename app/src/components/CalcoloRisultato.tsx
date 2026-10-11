@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Check, Loader2 } from 'lucide-react';
 import { Misuratore } from '../brand/componenti';
+import { formatProbabilita } from '../lib/diagnostic';
 
 const DURATA_MS = 3000;
 
 export interface DatiCalcolo {
-  /** Probabilità finale in percentuale (0-100), già calcolata. */
+  /** Probabilità finale in percentuale (0-100), già calcolata e non arrotondata. */
   percento: number;
   esatte: number;
   totale: number;
@@ -40,6 +41,8 @@ export default function CalcoloRisultato({ dati, onFine }: { dati: DatiCalcolo; 
 
   const tappa = Math.min(3, Math.floor(t / (DURATA_MS / 3)));   // 0, 1, 2: in corso; 3: tutte fatte
   const valore = dati.percento * salita(t / (DURATA_MS - 200));
+  // Mentre sale si vede il numero intero; quando arriva si scrive la forma onesta ('<1 %', '>99 %')
+  const arrivato = t >= DURATA_MS - 200;
 
   const tappe = [
     { nome: `Controllo le ${dati.totale} risposte`, esito: `${dati.esatte} esatte su ${dati.totale}` },
@@ -54,7 +57,7 @@ export default function CalcoloRisultato({ dati, onFine }: { dati: DatiCalcolo; 
         <p className="mt-1 font-semibold text-gray-500 dark:text-gray-400">Ci vogliono pochi secondi.</p>
       </div>
       <div className="flex justify-center" aria-hidden>
-        <Misuratore valore={valore} larghezza={300} animato={false} />
+        <Misuratore valore={valore} larghezza={300} animato={false} testo={arrivato ? formatProbabilita(dati.percento / 100) : undefined} />
       </div>
       <ol className="flex flex-col gap-2.5 rounded-2xl bg-[#F4F7FC] dark:bg-[#0F172A] border border-[#E8ECF3] dark:border-[#334155] p-4" aria-label="Tappe del calcolo">
         {tappe.map((x, i) => {

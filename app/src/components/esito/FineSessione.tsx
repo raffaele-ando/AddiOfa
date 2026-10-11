@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight, BookOpen, Check, Clock, Plus, RotateCcw } from 'lucide-react';
 import { Illustrazione } from '../../brand/Illustrazione';
 import { cn, formatDuration } from '../../lib/utils';
+import { REGOLA_IMPARATA } from '../home/comune';
 import { playTapSound } from '../../lib/audio';
 
 export interface DomandaDaRiprendere { id: string; prompt: string; argomento: string }
@@ -96,9 +97,9 @@ export default function FineSessione({ corrette, totale, secondi, prima, dopo, g
               </div>
               <p className="mt-2.5 text-xs font-semibold text-gray-500 dark:text-gray-400 leading-relaxed">
                 {differenza > 0
-                  ? 'Una domanda conta come imparata quando l\u2019hai risposta bene e il ripasso la rimanda a più avanti. Il segno nero è dove eri prima.'
+                  ? `${REGOLA_IMPARATA} Il segno nero è dove eri prima.`
                   : differenza === 0
-                    ? 'Questa volta il numero non è cambiato: rispondere bene più volte alla stessa domanda la fa contare come imparata.'
+                    ? `Questa volta il numero non è cambiato. ${REGOLA_IMPARATA} Le domande risposte bene una sola volta sono «in corso»: la seconda risposta esatta, a distanza di tempo, le fa contare.`
                     : 'Qualche domanda è tornata da ripassare: succede quando si sbaglia qualcosa che sembrava già saputo. Il ripasso la riprende.'}
               </p>
             </motion.section>

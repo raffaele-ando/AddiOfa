@@ -22,6 +22,7 @@ import ObiettivoCard from './home/Obiettivo';
 import LezioneCard from './home/Lezione';
 import { SerieCard, ProgressiCard } from './home/Serie';
 import Strumenti, { VoceStrumento } from './home/Strumenti';
+import { countLearned } from '../lib/spacedRepetition';
 import { calcolaFattori, calcolaStima, lezioneConsigliata, livelloDi, ultimaSimulazione, ultimiGiorni } from './home/stima';
 
 interface MenuProps {
@@ -72,7 +73,7 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
   const selectedCorpus: CorpusType = corpus ?? appState.selectedCorpus ?? 'all';
   const activeQuestions = getQuestionsByCorpus(selectedCorpus);
   const totalQuestions = activeQuestions.length;
-  const masteredQuestions = activeQuestions.filter(q => (appState.stats[q.id]?.box ?? 0) > 0).length;
+  const masteredQuestions = countLearned(appState.stats, activeQuestions.map(q => q.id));
   const nome = user?.displayName?.split(' ')[0];
 
   // Tutti i numeri della home vengono da qui: stima, aree, ultima simulazione, lezione, attività

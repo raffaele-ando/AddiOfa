@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { AlertCircle, BarChart3, CheckCircle2, Info, ArrowUp, ArrowDown, Stethoscope } from 'lucide-react';
 import Indicatore from './Indicatore';
 import Cta from './Cta';
-import { Carta } from './comune';
+import { Carta, RigaIntervallo, RISPOSTE_PER_STIMA_STRETTA } from './comune';
 import { livelloDi, type Livello, type Stima } from './stima';
 import { REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS } from '../../config/offer';
 import { playTapSound } from '../../lib/audio';
 
 const MESSAGGI: Record<Livello, { titolo: string; testo: string; Icona: typeof Info; fondo: string; icona: string; testoTitolo: string }> = {
   basso: {
-    titolo: 'Probabilità ancora bassa', testo: 'Per ora il livello non basta per la soglia. Con un po’ di pratica ogni giorno può salire.', Icona: AlertCircle,
+    titolo: 'Probabilità ancora bassa', testo: `La soglia è alta (${REAL_TEST_PASS_MARK} su ${REAL_TEST_QUESTIONS}): la stima parte bassa anche con un buon risultato. Con un po’ di pratica ogni giorno può salire.`, Icona: AlertCircle,
     fondo: 'bg-[#FEF1F1] border-[#FBD9D9] dark:bg-[#EF4444]/10 dark:border-[#EF4444]/25', icona: 'text-[#EF4444]', testoTitolo: 'text-[#B91C1C] dark:text-[#FCA5A5]',
   },
   medio: {
-    titolo: 'Probabilità media', testo: 'Sei a metà strada. Continua a studiare per avvicinarti alla soglia.', Icona: BarChart3,
+    titolo: 'Probabilità media', testo: 'Sei vicino alla soglia, ma non ancora sicuro. Continua a studiare e fai una simulazione per capire se ci sei.', Icona: BarChart3,
     fondo: 'bg-[#FFF8E8] border-[#FBE9BE] dark:bg-[#F59E0B]/10 dark:border-[#F59E0B]/25', icona: 'text-[#D97706]', testoTitolo: 'text-[#92400E] dark:text-[#FCD34D]',
   },
   alto: {
@@ -66,7 +66,7 @@ export default function StimaCard({ stima, haRisposte, corpoCta, onStudia, onDia
     );
   }
 
-  const percento = Math.round(stima.p * 100);
+  const percento = stima.p * 100;
   const livello = livelloDi(stima.p);
   const m = MESSAGGI[livello];
   return (
@@ -92,12 +92,13 @@ export default function StimaCard({ stima, haRisposte, corpoCta, onStudia, onDia
       </div>
       {info && (
         <p id="info-stima" className="mt-3 rounded-xl bg-[#F1F5F9] dark:bg-[#0F172A] px-3 py-2.5 text-[12.5px] leading-snug text-[#475569] dark:text-[#CBD5E1]">
-          È una stima approssimativa, non una garanzia. Dice quanto è probabile fare almeno {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}, partendo dalle risposte date nel diagnostico e nelle simulazioni. Con poche risposte può sbagliare anche di molto. Le sessioni di ripasso non contano: scelgono le domande più difficili.
+          È una stima approssimativa, non una garanzia. Dice quanto è probabile fare almeno {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}, partendo dalle risposte date nel diagnostico e nelle simulazioni. Con poche risposte può sbagliare anche di molto: per questo sotto la percentuale trovi anche il punteggio probabile su {REAL_TEST_QUESTIONS}, un intervallo in cui il tuo livello cade con probabilità 80 %. Le sessioni di ripasso non contano: scelgono le domande più difficili.
         </p>
       )}
 
       <div className="mt-1">
         <Indicatore percento={percento} livello={livello} etichetta="di superare il test" sotto={fonteTesto(stima)} />
+        {stima.risposte < RISPOSTE_PER_STIMA_STRETTA && <RigaIntervallo intervallo={stima.intervallo} className="mt-1.5 px-2" />}
       </div>
 
       <div className={`flex items-start gap-3 rounded-2xl border px-3.5 py-3 mt-1 ${m.fondo}`}>

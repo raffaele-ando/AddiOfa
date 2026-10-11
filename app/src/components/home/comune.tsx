@@ -1,6 +1,8 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { motion, animate, useReducedMotion } from 'motion/react';
 import { cn } from '../../lib/utils';
+import { formatPunteggio, type IntervalloStima } from '../../lib/diagnostic';
+import { REAL_TEST_PASS_MARK } from '../../config/offer';
 
 /** Vero se l'utente ha chiesto meno movimento: tutte le animazioni della home partono dal valore finale. */
 export function useRiduci(): boolean { return !!useReducedMotion(); }
@@ -46,3 +48,21 @@ export function useContaSu(valore: number, durataMs = 900): number {
   }, [valore, riduci, durataMs]);
   return v;
 }
+
+/** Sotto questo numero di risposte la stima è larga: accanto alla percentuale si mostra anche il punteggio probabile su 30. */
+export const RISPOSTE_PER_STIMA_STRETTA = 90;
+
+/**
+ * Una riga piccola e onesta sotto la percentuale: l'intervallo all'80 % del punteggio al test (intervalloStima).
+ * Con poche risposte la percentuale da sola è larga (con 8 su 10 va da meno di 1 a 91 %): il punteggio dice di più.
+ */
+export function RigaIntervallo({ intervallo, className }: { intervallo: IntervalloStima; className?: string }) {
+  return (
+    <p className={cn('text-[12px] leading-snug text-[#6B7280] dark:text-[#94A3B8] text-center', className)}>
+      Punteggio probabile al test: <span className="font-bold whitespace-nowrap">{formatPunteggio(intervallo)}</span> (soglia {REAL_TEST_PASS_MARK}).
+    </p>
+  );
+}
+
+/** La regola di "domanda imparata" (isLearned in lib/spacedRepetition.ts), scritta una volta sola per tutta l'app. */
+export const REGOLA_IMPARATA = 'Una domanda conta come imparata quando l’hai risposta bene due volte, a distanza di almeno mezza giornata.';

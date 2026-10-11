@@ -4,6 +4,7 @@
 import { CSSProperties, ReactNode, useEffect, useId, useState } from 'react';
 import { COLORI_STATO } from '../components/home/Indicatore';
 import { livelloDi } from '../components/home/stima';
+import { formatProbabilita } from '../lib/diagnostic';
 import { KIT, KIT_APP, Kit, FONT, STATI, BADGE } from './tokens';
 import { urlGlifo } from './risorse';
 import './brand.css';
@@ -253,8 +254,10 @@ export function IconaChip({ nome, kit = KIT_APP, lato = 57, cerchio, onClick, et
 }
 
 /** Misuratore (illustrazione "Risultato / Probabilità") ricreato in codice: il valore è vero e si anima. */
-export function Misuratore({ valore, larghezza = 232, etichetta, animato = true }: {
+export function Misuratore({ valore, larghezza = 232, etichetta, animato = true, testo }: {
   valore: number; larghezza?: number; etichetta?: string; animato?: boolean; // 0-100
+  /** Testo finale al posto del numero (es. '<1 %'). Senza, con `animato` il numero finale è formatProbabilita(valore). */
+  testo?: string;
 }) {
   const id = useId().replace(/:/g, '');
   // Colore semantico della probabilità (rosso basso, giallo medio, verde alto), non il colore d'azione
@@ -278,8 +281,10 @@ export function Misuratore({ valore, larghezza = 232, etichetta, animato = true 
   const lung = (Math.PI * r * ampiezza) / 180;
   const frazione = Math.max(0, Math.min(1, mostrato / 100));
   const [px, py] = punto(da + ampiezza * frazione);
+  const finale = testo ?? (animato ? formatProbabilita(valore / 100) : undefined);
+  const scritto = finale !== undefined && mostrato >= valore - 0.001 ? finale : `${Math.round(mostrato)} %`;
   return (
-    <svg width={larghezza} height={larghezza * 0.62} viewBox="0 0 232 144" role="img" aria-label={etichetta ?? `${Math.round(valore)}%`}>
+    <svg width={larghezza} height={larghezza * 0.62} viewBox="0 0 232 144" role="img" aria-label={etichetta ?? finale ?? `${Math.round(valore)} %`}>
       <defs>
         <linearGradient id={`g${id}`} x1="0" y1="0" x2="1" y2="0">
           <stop offset="0" stopColor={col.arco[0]} /><stop offset="1" stopColor={col.arco[1]} />
@@ -289,7 +294,7 @@ export function Misuratore({ valore, larghezza = 232, etichetta, animato = true 
       <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" stroke={`url(#g${id})`} strokeWidth="16" strokeLinecap="round"
         strokeDasharray={`${lung * frazione} ${lung}`} />
       <circle cx={px} cy={py} r="11" fill={col.punto} stroke="#fff" strokeWidth="4" />
-      <text x={cx} y={cy + 8} textAnchor="middle" fill="currentColor" className={col.numero} style={{ font: `800 48px ${FONT}` }}>{Math.round(mostrato)}%</text>
+      <text x={cx} y={cy + 8} textAnchor="middle" fill="currentColor" className={col.numero} style={{ font: `800 48px ${FONT}` }}>{scritto}</text>
     </svg>
   );
 }

@@ -9,7 +9,8 @@ import { ECOSYSTEM, CONSENT_VERSION, ScopeId } from './config/ecosystem';
 import { FEATURE_FLAGS, type FormatId } from './config/offer';
 import { atlas, isAtlasOnline, ProjectAccount } from './lib/atlas';
 import { loadState, saveState, updateStreak, exportData, importData, syncToCloud, syncFromCloud } from './lib/storage';
-import { getQuestionStats, applySm2, calculateContinuousQuality, calculateExpectedResponseTimeMs } from './lib/spacedRepetition';
+import { getQuestionStats, applySm2, qualityForResult, countLearned } from './lib/spacedRepetition';
+import { chiaveGiorno } from './lib/utils';
 import { questions } from './data/questions';
 import { signInWithGoogle, logout, onAuthChange } from './lib/firebase';
 import type { User } from 'firebase/auth';
@@ -206,7 +207,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     const interval = setInterval(() => {
       if (document.visibilityState === 'visible' && STUDY_VIEWS.includes(viewRef.current)) {
         setAppState(prev => {
-          const dateString = new Date().toISOString().split('T')[0];
+          const dateString = chiaveGiorno();
           const newDailyTimeSpent = { ...(prev.dailyTimeSpent || {}) };
           newDailyTimeSpent[dateString] = (newDailyTimeSpent[dateString] || 0) + 10;
           
@@ -264,7 +265,9 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     const entry: ExamHistory = { ...historyEntry, format: historyEntry.format ?? format ?? 'ente' };
     track({ name: 'sim_done', format: entry.format ?? 'ente', passed: entry.passed });
     setAppState(prev => {
-      const mergedCategoryStats = { ...(prev.examCategoryStats || {}) };
+      // Copia profonda: gli oggetti di `prev` non si toccano (in StrictMode l'aggiornamento gira due volte e il conteggio raddoppierebbe)
+      const mergedCategoryStats: Record<string, { correct: number; total: number }> =
+        Object.fromEntries(Object.entries(prev.examCategoryStats || {}).map(([k, v]) => [k, { ...v }]));
       for (const [cat, stats] of Object.entries(categoryUpdates)) {
         if (!mergedCategoryStats[cat]) {
           mergedCategoryStats[cat] = { correct: 0, total: 0 };
@@ -273,6 +276,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         mergedCategoryStats[cat].total += stats.total;
       }
 
+      const adesso = Date.now();
       const newStats: UserStats = { ...(prev.stats || {}) };
       let answeredCount = 0;
       if (questionResults) {
@@ -286,18 +290,11 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           const question = questions.find(q => q.id === qId);
           if (result !== 'omitted') answeredCount++;
 
-          // Le risposte della simulazione aggiornano SM-2 come in allenamento:
-          // giusta → voto continuo da tempo e cambi di opzione; sbagliata o omessa → 0
-          let quality = 0;
-          if (result === 'correct') {
-            const expectedMs = calculateExpectedResponseTimeMs(question, speed?.speedFactor ?? 1.0, speed?.avgWpm ?? 180);
-            quality = calculateContinuousQuality(true, log?.timeSpentMs ?? expectedMs, expectedMs, 1, 'high', {
-              switchCount: log?.switchCount ?? 0,
-              trajectory: log?.trajectory ?? [],
-              firstOptionIndex: log?.firstOptionIndex,
-            }, question);
-          }
-          const sm2 = applySm2({ repetitions: currentQ.box, interval: currentQ.interval, easiness: currentQ.easiness }, quality);
+          // Le risposte della simulazione aggiornano SM-2 come in allenamento: giusta = voto continuo da tempo e cambi
+          // di opzione, sbagliata = 0, omessa = QUALITY_OMITTED (torna domani ma toglie meno facilità di un errore).
+          // Con `lastSeen` una simulazione fatta subito dopo una sessione non fa avanzare il box.
+          const quality = qualityForResult(result, question, log, speed);
+          const sm2 = applySm2({ repetitions: currentQ.box, interval: currentQ.interval, easiness: currentQ.easiness, lastSeen: currentQ.lastSeen }, quality, adesso);
 
           newStats[qId] = {
             ...currentQ,
@@ -309,7 +306,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
             easiness: sm2.easiness,
             previousEasiness: currentQ.easiness,
             lastQuality: quality,
-            lastSeen: Date.now(),
+            lastSeen: adesso,
             lastResponseTimeMs: log?.timeSpentMs ?? currentQ.lastResponseTimeMs,
             lastFirstClickTimeMs: log?.firstClickTimeMs ?? currentQ.lastFirstClickTimeMs,
             lastSwitchCount: log?.switchCount ?? currentQ.lastSwitchCount,
@@ -318,7 +315,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         }
       }
       
-      const dateString = new Date().toISOString().split('T')[0];
+      const dateString = chiaveGiorno();
       const newDailyActivity = { ...(prev.dailyActivity || {}) };
       newDailyActivity[dateString] = (newDailyActivity[dateString] || 0) + answeredCount;
 
@@ -407,7 +404,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   // Punteggio NOI: si aggiorna tornando al menu, solo con il consenso alla classifica
   useEffect(() => {
     if (!FEATURE_FLAGS.leaderboard || view !== 'menu' || !user || !isAtlasOnline() || !appState.projectLink?.scopes.includes('noi.leaderboard')) return;
-    const mastered = questions.filter(q => (appState.stats[q.id]?.box ?? 0) > 0).length;
+    const mastered = countLearned(appState.stats, questions.map(q => q.id));
     const bestSim = Math.max(0, ...appState.history.map(h => h.score));
     atlas.postScore(ECOSYSTEM.appId, mastered, bestSim).catch(err => console.error('NOI', err));
   // eslint-disable-next-line react-hooks/exhaustive-deps

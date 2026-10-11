@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { AppState, QuestionClickEvent, QuestionTelemetry, PaywallReason, UserStats } from '../types';
-import { selectPracticeIds, updateStats, poolMeta } from '../lib/spacedRepetition';
+import { selectPracticeIds, updateStats, poolMeta, countLearned } from '../lib/spacedRepetition';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowRight, RotateCcw, Lightbulb, Flame, BookOpen, Loader2 } from 'lucide-react';
 import FineSessione, { type DomandaDaRiprendere } from './esito/FineSessione';
@@ -55,9 +55,9 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   const [selectedRecallWords, setSelectedRecallWords] = useState<number[]>([]);
   const [showHint, setShowHint] = useState(false);
 
-  // Domande imparate (ripetizioni > 0) nel gruppo che l'utente può studiare: prima della sessione si fotografa una volta
+  // Domande imparate (isLearned: due risposte esatte a distanza di tempo) nel gruppo che l'utente può studiare: prima della sessione si fotografa una volta
   const gruppoIds = useMemo(() => poolMeta(pass, appState.selectedCorpus ?? 'all').map(m => m.id), [pass, appState.selectedCorpus]);
-  const contaImparate = (st: UserStats) => gruppoIds.reduce((n, id) => n + ((st[id]?.box ?? 0) > 0 ? 1 : 0), 0);
+  const contaImparate = (st: UserStats) => countLearned(st, gruppoIds);
   const imparatePrima = useRef<number | null>(null);
   if (imparatePrima.current === null) imparatePrima.current = contaImparate(appState.stats);
   const inizioRef = useRef(Date.now());
@@ -273,13 +273,16 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
 
     if (recall) setSelectedOption(correct ? correctIdx : -1);
 
+    // Nessuna risposta data (tempo scaduto senza scelta, frase che non corrisponde a nessuna opzione): conta come omessa, non come errore
+    const omessa = isTimeout && (chosen === null || chosen < 0);
+
     if (correct) {
       const nextStreak = streak + 1;
       setStreak(nextStreak);
       playCorrectSound(nextStreak);
       if (!prefersReducedMotion()) triggerConfetti(nextStreak >= 4 ? 'cannon' : (nextStreak >= 2 ? 'burst' : 'mini'));
 
-      onUpdateAppState(updateStats(appStateRef.current, question.id, true, timeTakenMs, currentAttempts, confidence, telemetry, quiz));
+      onUpdateAppState(updateStats(appStateRef.current, question.id, true, timeTakenMs, currentAttempts, confidence, telemetry, quiz, false));
     } else {
       setStreak(0);
       playIncorrectSound();
@@ -288,7 +291,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       }
       // La prima risposta sbagliata conta come errore; i tentativi dopo no
       if (currentAttempts === 1) {
-        onUpdateAppState(updateStats(appStateRef.current, question.id, false, timeTakenMs, currentAttempts, confidence, telemetry, quiz));
+        onUpdateAppState(updateStats(appStateRef.current, question.id, false, timeTakenMs, currentAttempts, confidence, telemetry, quiz, omessa));
       }
     }
   };

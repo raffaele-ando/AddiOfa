@@ -6,7 +6,7 @@ import {
   APP_NAME, DISCLAIMER, FEATURE_FLAGS, FREE_FEATURES, OFA_CONSEQUENCES, OFA_RULES_NOTE, PASS,
   REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, currentPriceEur, isLaunchPrice, formatEur,
 } from '../config/offer';
-import { pickDiagnosticQuestions, estimatePassProbability, weakTopics, DIAGNOSTIC_LENGTH } from '../lib/diagnostic';
+import { pickDiagnosticQuestions, estimatePassProbability, intervalloStima, formatProbabilita, weakTopics, DIAGNOSTIC_LENGTH } from '../lib/diagnostic';
 import { updateStats } from '../lib/spacedRepetition';
 import { playTapSound } from '../lib/audio';
 import { useAccess } from '../access/context';
@@ -17,7 +17,7 @@ import { ECOSYSTEM } from '../config/ecosystem';
 import { urlIcona } from '../brand/risorse';
 import FoglioStima from './FoglioStima';
 import CalcoloRisultato from './CalcoloRisultato';
-import { useRiduci, BarraCresce } from './home/comune';
+import { useRiduci, BarraCresce, RigaIntervallo } from './home/comune';
 import { livelloDi, type Livello } from './home/stima';
 
 type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'save' | 'risk' | 'calcolo' | 'result' | 'ready';
@@ -39,10 +39,11 @@ const dataEstesa = (iso: string) =>
   new Date(`${iso}T12:00:00`).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
 
 // Messaggio per fascia di probabilità: onesto, senza allarmismi e senza promesse
+// La soglia (25 su 30) è alta: la fascia 'basso' comprende anche chi ha risposto bene a 8 domande su 10, e il testo lo dice.
 const MESSAGGI: Record<Livello, { titolo: string; testo: string }> = {
   alto: { titolo: 'Hai buone basi', testo: 'Con queste risposte la stima è favorevole, ma dieci domande sono poche per dirlo con sicurezza. Una simulazione da 30 domande lo conferma o lo corregge.' },
-  medio: { titolo: 'Ci sei a metà', testo: 'Oggi potrebbe andare in un modo o nell\'altro. Ripassare gli argomenti sbagliati qui sotto e fare una simulazione ti dice meglio a che punto sei.' },
-  basso: { titolo: 'Serve allenamento mirato', testo: 'Per ora la stima è bassa: non è un giudizio su di te, dice solo dove sei partito. Comincia dagli argomenti sbagliati qui sotto, poi misurati con una simulazione.' },
+  medio: { titolo: 'Sei vicino alla soglia', testo: 'Oggi potrebbe andare in un modo o nell\'altro. Ripassare gli argomenti sbagliati qui sotto e fare una simulazione ti dice meglio a che punto sei.' },
+  basso: { titolo: 'Hai margine per migliorare', testo: `Per superare il test servono ${REAL_TEST_PASS_MARK} risposte esatte su ${REAL_TEST_QUESTIONS}, quindi la stima parte bassa anche con un buon risultato. Non è un giudizio su di te: ripassa gli argomenti sbagliati qui sotto, poi misurati con una simulazione.` },
 };
 
 // Tessera "n su m" per area o livello: mai percentuali precise su così poche domande
@@ -108,10 +109,12 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
 
   const answered = quiz.length > 0 && Object.keys(answers).length === quiz.length;
   const correct = quiz.filter(q => answers[q.id] === q.correctIndex).length;
-  const passPercent = useMemo(
-    () => Math.round(estimatePassProbability(correct, quiz.length || DIAGNOSTIC_LENGTH) * 100),
+  // Probabilità esatta (0-1): non si arrotonda né si salva arrotondata; per scriverla si usa formatProbabilita
+  const passProb = useMemo(
+    () => estimatePassProbability(correct, quiz.length || DIAGNOSTIC_LENGTH),
     [correct, quiz.length]
   );
+  const intervallo = useMemo(() => intervalloStima(correct, quiz.length || DIAGNOSTIC_LENGTH), [correct, quiz.length]);
 
   const result = (): OnboardingResult => ({
     completedAt: Date.now(),
@@ -119,7 +122,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
     hasOfa: hasOfa ?? 'unknown',
     diagnosticCorrect: answered ? correct : undefined,
     diagnosticTotal: answered ? quiz.length : undefined,
-    passProbability: answered ? passPercent / 100 : undefined,
+    passProbability: answered ? passProb : undefined,
   });
 
   const handleQuizNext = () => {
@@ -302,7 +305,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
         <Screen>
           <TopBar {...bar} />
           <CalcoloRisultato
-            dati={{ percento: passPercent, esatte: correct, totale: quiz.length, livelli: livelli || 'livelli misti', soglia: REAL_TEST_PASS_MARK, domandeTest: REAL_TEST_QUESTIONS }}
+            dati={{ percento: passProb * 100, esatte: correct, totale: quiz.length, livelli: livelli || 'livelli misti', soglia: REAL_TEST_PASS_MARK, domandeTest: REAL_TEST_QUESTIONS }}
             onFine={() => { setDaCalcolo(true); setStep('result'); }}
           />
         </Screen>
@@ -311,7 +314,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
 
     case 'result': {
       const weak = weakTopics(quiz, answers);
-      const msg = MESSAGGI[livelloDi(passPercent / 100)];
+      const msg = MESSAGGI[livelloDi(passProb)];
       const conta = (filtro: (q: Question) => boolean) => {
         const dom = quiz.filter(filtro);
         return { m: dom.length, n: dom.filter(q => answers[q.id] === q.correctIndex).length };
@@ -326,7 +329,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             <h2 className={titolo}>Il tuo risultato</h2>
             <p className={sotto}>Hai risposto bene a {correct} {correct === 1 ? 'domanda' : 'domande'} su {quiz.length}.</p>
           </div>
-          <div className="flex justify-center -mb-1"><Misuratore valore={passPercent} larghezza={300} animato={!daCalcolo && !riduci} etichetta={`${passPercent} per cento`} /></div>
+          <div className="flex justify-center -mb-1"><Misuratore valore={passProb * 100} larghezza={300} animato={!daCalcolo && !riduci} testo={formatProbabilita(passProb)} etichetta={`Probabilità ${formatProbabilita(passProb)}`} /></div>
           <div className="text-center -mt-1">
             <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Probabilità stimata di superare il test oggi</p>
             <button type="button" onClick={() => setFoglio(true)} aria-haspopup="dialog"
@@ -335,6 +338,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
               <Info size={16} strokeWidth={2.5} className="text-azione dark:text-azione-chiaro" aria-hidden />
               <span className="sr-only">: come viene calcolata e perché è solo una stima</span>
             </button>
+            <RigaIntervallo intervallo={intervallo} className="mt-1 px-2" />
           </div>
           <div className="rounded-2xl border border-[#E8ECF3] dark:border-[#334155] bg-[#F4F7FC] dark:bg-[#0F172A] p-4">
             <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">{msg.titolo}</h3>
