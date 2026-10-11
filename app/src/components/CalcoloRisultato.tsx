@@ -23,18 +23,18 @@ export default function CalcoloRisultato({ dati, onFine }: { dati: DatiCalcolo; 
   return (
     <>
       <div className="text-center">
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">Ecco come ho calcolato la stima</h2>
-        <p className="mt-1 font-semibold text-gray-500 dark:text-gray-400">Tre passaggi, con i tuoi dati.</p>
+        <h2 className="text-2xl sm:text-3xl font-bold text-testo">Ecco come ho calcolato la stima</h2>
+        <p className="mt-1 font-semibold text-testo-tenue">Tre passaggi, con i tuoi dati.</p>
       </div>
-      <ol className="flex flex-col gap-2.5 rounded-2xl bg-[#F4F7FC] dark:bg-[#0F172A] border border-[#E8ECF3] dark:border-[#334155] p-4" aria-label="Tappe del calcolo">
+      <ol className="flex flex-col gap-2.5 rounded-2xl bg-superficie-2 border border-linea p-4" aria-label="Tappe del calcolo">
         {tappe.map(x => (
           <li key={x.nome} className="flex items-center gap-3 min-h-[40px]">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-azione text-white">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-azione text-azione-su">
               <Check size={16} strokeWidth={3.5} aria-hidden />
             </span>
             <span className="flex min-w-0 flex-col leading-tight">
-              <span className="text-[15px] font-bold text-[#0F172A] dark:text-[#F8FAFC]">{x.nome}</span>
-              <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">{x.esito}</span>
+              <span className="text-[15px] font-bold text-testo">{x.nome}</span>
+              <span className="text-xs font-semibold text-testo-tenue">{x.esito}</span>
             </span>
           </li>
         ))}

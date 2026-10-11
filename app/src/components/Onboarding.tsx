@@ -50,10 +50,10 @@ const MESSAGGI: Record<Livello, { titolo: string; testo: string }> = {
 // Tessera "n su m" per area o livello: mai percentuali precise su così poche domande
 function Tessera({ nome, n, m }: { nome: string; n: number; m: number }) {
   return (
-    <div className="rounded-2xl border border-[#E8ECF3] dark:border-[#334155] bg-white dark:bg-[#0F172A] p-3">
-      <div className="text-xs font-bold text-gray-500 dark:text-gray-400">{nome}</div>
-      <div className="mt-0.5 text-lg font-extrabold leading-tight text-[#0F172A] dark:text-[#F8FAFC]">{n} <span className="text-sm font-bold text-gray-500 dark:text-gray-400">su {m}</span></div>
-      <div className="mt-2"><Barra valore={m ? (n / m) * 100 : 0} colore="#2563EB" alta={6} /></div>
+    <div className="rounded-2xl border border-linea bg-superficie-2 p-3">
+      <div className="text-xs font-bold text-testo-tenue">{nome}</div>
+      <div className="mt-0.5 text-lg font-extrabold leading-tight text-testo">{n} <span className="text-sm font-bold text-testo-tenue">su {m}</span></div>
+      <div className="mt-2"><Barra valore={m ? (n / m) * 100 : 0} colore="var(--color-azione)" alta={6} /></div>
     </div>
   );
 }
@@ -139,8 +139,8 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
     }
   };
 
-  const titolo = 'text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC]';
-  const sotto = 'font-semibold text-gray-500 dark:text-gray-400';
+  const titolo = 'text-2xl sm:text-3xl font-bold text-testo';
+  const sotto = 'font-semibold text-testo-tenue';
 
   switch (step) {
     case 'intro':
@@ -148,23 +148,23 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
         <Screen>
           <div className="flex items-center gap-2 shrink-0">
             <img src={urlIcona} alt="" className="w-9 h-9 rounded-xl" />
-            <span className="font-bold text-lg text-[#0F172A] dark:text-[#F8FAFC]">{APP_NAME}</span>
+            <span className="font-bold text-lg text-testo">{APP_NAME}</span>
           </div>
           <div className="mt-4">
-            <h1 className="text-4xl sm:text-5xl font-bold leading-tight text-balance text-[#0F172A] dark:text-[#F8FAFC]">
-              Due domande su di te, poi <span className="text-[#2563EB] dark:text-[#60A5FA]">{DIAGNOSTIC_LENGTH} di inglese.</span>
+            <h1 className="text-4xl sm:text-5xl font-bold leading-tight text-balance text-testo">
+              Due domande su di te, poi <span className="text-azione">{DIAGNOSTIC_LENGTH} di inglese.</span>
             </h1>
-            <p className="mt-3 text-base sm:text-lg font-semibold text-gray-500 dark:text-gray-400">
+            <p className="mt-3 text-base sm:text-lg font-semibold text-testo-tenue">
               Circa 3 minuti. Non serve un account e il risultato è subito sullo schermo.
             </p>
           </div>
           <Scena nome="studio-inglese" />
           <div className="mt-auto flex flex-col gap-3">
             <PrimaryButton onClick={() => setStep('certification')}>Inizia il diagnostico</PrimaryButton>
-            <button onClick={() => { playTapSound(); onFinish(result()); }} className="text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 py-1">
+            <button onClick={() => { playTapSound(); onFinish(result()); }} className="text-sm font-bold text-testo-tenue hover:text-testo py-1">
               Salta e vai all'app
             </button>
-            <p className="text-center text-[10px] font-semibold text-gray-400">{DISCLAIMER}</p>
+            <p className="text-center text-[10px] font-semibold text-testo-tenue">{DISCLAIMER}</p>
           </div>
         </Screen>
       );
@@ -205,9 +205,9 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
         <Screen>
           <TopBar {...bar} onBack={() => setStep('certification')} />
           <h2 className={titolo}>
-            Hai l'<span className="text-[#2563EB] dark:text-[#60A5FA]">OFA</span> di inglese assegnato?
+            Hai l'<span className="text-azione">OFA</span> di inglese assegnato?
           </h2>
-          <p className="text-sm font-semibold text-gray-500 dark:text-gray-400">Se non sei sicuro, scegli «Non lo so ancora»: puoi allenarti lo stesso.</p>
+          <p className="text-sm font-semibold text-testo-tenue">Se non sei sicuro, scegli «Non lo so ancora»: puoi allenarti lo stesso.</p>
           <div className="flex flex-col gap-3 mt-2">
             <ChoiceCard selected={hasOfa === 'yes'} onClick={() => setHasOfa('yes')} title="Sì, ho l'OFA di inglese" subtitle="Devo recuperarlo" />
             <ChoiceCard selected={hasOfa === 'no'} onClick={() => setHasOfa('no')} title="No, non ho l'OFA di inglese" subtitle="Preparo il test d'ingresso o mi alleno" />
@@ -247,8 +247,8 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
       return (
         <Screen>
           <TopBar {...bar} onBack={quizIndex > 0 ? () => setQuizIndex(quizIndex - 1) : () => setStep('quizIntro')} />
-          <span className="text-xs font-bold text-gray-500 dark:text-gray-400">Domanda {quizIndex + 1} di {quiz.length}</span>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#0F172A] dark:text-[#F8FAFC] leading-snug">{q.prompt}</h2>
+          <span className="text-xs font-bold text-testo-tenue">Domanda {quizIndex + 1} di {quiz.length}</span>
+          <h2 className="text-xl sm:text-2xl font-bold text-testo leading-snug">{q.prompt}</h2>
           <div className="flex flex-col gap-2.5">
             {q.options.map((opt, i) => (
               <ChoiceCard key={i} selected={answers[q.id] === i} onClick={() => setAnswers({ ...answers, [q.id]: i })} title={opt} />
@@ -287,13 +287,13 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           <h2 className={titolo}>Se non superi l'OFA…</h2>
           <ul className="flex flex-col gap-3">
             {OFA_CONSEQUENCES.map((c, i) => (
-              <li key={c} className="flex gap-3 items-center font-semibold text-sm text-[#0F172A] dark:text-gray-200">
+              <li key={c} className="flex gap-3 items-center font-semibold text-sm text-testo">
                 <IconaChip nome={(['costo', 'blocco', 'info'] as const)[i % 3]} lato={36} />
                 {c}
               </li>
             ))}
           </ul>
-          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">{OFA_RULES_NOTE}</p>
+          <p className="text-xs font-semibold text-testo-tenue">{OFA_RULES_NOTE}</p>
           <div className="mt-auto">
             <PrimaryButton onClick={() => setStep('calcolo')}>Vedi il tuo risultato</PrimaryButton>
           </div>
@@ -332,37 +332,37 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           </div>
           <div className="flex justify-center -mb-1"><Misuratore valore={passProb * 100} larghezza={300} testo={formatProbabilita(passProb)} etichetta={`Probabilità ${formatProbabilita(passProb)}`} /></div>
           <div className="text-center -mt-1">
-            <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Probabilità stimata di superare il test oggi</p>
+            <p className="font-bold text-testo">Probabilità stimata di superare il test oggi</p>
             <button type="button" onClick={() => setFoglio(true)} aria-haspopup="dialog"
-              className="mt-1 inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+              className="mt-1 inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-semibold text-testo-tenue hover:text-testo">
               Calcolata sulle tue {quiz.length} risposte
-              <Info size={16} strokeWidth={2.5} className="text-azione dark:text-azione-chiaro" aria-hidden />
+              <Info size={16} strokeWidth={2.5} className="text-azione " aria-hidden />
               <span className="sr-only">: come viene calcolata e perché è solo una stima</span>
             </button>
             <RigaIntervallo intervallo={intervallo} className="mt-1 px-2" />
           </div>
-          <div className="rounded-2xl border border-[#E8ECF3] dark:border-[#334155] bg-[#F4F7FC] dark:bg-[#0F172A] p-4">
-            <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">{msg.titolo}</h3>
-            <p className="mt-1 text-sm font-semibold text-gray-600 dark:text-gray-300">{msg.testo}</p>
+          <div className="rounded-2xl border border-linea bg-superficie-2 p-4">
+            <h3 className="font-bold text-testo">{msg.titolo}</h3>
+            <p className="mt-1 text-sm font-semibold text-testo-tenue">{msg.testo}</p>
           </div>
           {tessere.length > 0 && (
             <div className="flex flex-col gap-2">
-              <span className="text-xs font-bold text-gray-500 dark:text-gray-400">Per area e per livello</span>
+              <span className="text-xs font-bold text-testo-tenue">Per area e per livello</span>
               <div className={`grid grid-cols-2 gap-2.5 ${tessere.length === 4 ? 'sm:grid-cols-4' : 'sm:grid-cols-3'}`}>
                 {tessere.map(x => <Tessera key={x.nome} nome={x.nome} n={x.n} m={x.m} />)}
               </div>
             </div>
           )}
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-bold text-gray-500 dark:text-gray-400">Da ripassare</span>
+            <span className="text-xs font-bold text-testo-tenue">Da ripassare</span>
             {weak.length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {weak.map(t => (
-                  <span key={t} className="px-3 py-1 rounded-full text-xs font-bold bg-[#FEE2E2] text-[#B91C1C] dark:bg-[#7F1D1D]/40 dark:text-[#FCA5A5]">{t}</span>
+                  <span key={t} className="px-3 py-1 rounded-full text-xs font-bold bg-basso-tinta text-basso-testo">{t}</span>
                 ))}
               </div>
             ) : (
-              <p className="text-sm font-semibold text-gray-600 dark:text-gray-300">Nessun errore in queste {quiz.length} domande.</p>
+              <p className="text-sm font-semibold text-testo-tenue">Nessun errore in queste {quiz.length} domande.</p>
             )}
           </div>
           <div className="mt-auto pt-1">
@@ -379,30 +379,30 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
         <Screen>
           <TopBar {...bar} onBack={() => setStep('result')} />
           <h2 className={titolo}>Cosa ottieni gratis e cosa c'è nel Pass</h2>
-          <div className="rounded-2xl border border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] p-4">
-            <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-2">Gratis, da subito</h3>
+          <div className="rounded-2xl border border-linea bg-superficie-2 p-4">
+            <h3 className="font-bold text-testo mb-2">Gratis, da subito</h3>
             <ul className="flex flex-col gap-2">
               {FREE_FEATURES.map(f => (
-                <li key={f} className="flex items-start gap-2.5 text-sm font-semibold text-[#0F172A] dark:text-gray-200">
-                  <Check size={16} strokeWidth={3.5} className="text-[#2563EB] dark:text-[#60A5FA] shrink-0 mt-0.5" aria-hidden />
+                <li key={f} className="flex items-start gap-2.5 text-sm font-semibold text-testo">
+                  <Check size={16} strokeWidth={3.5} className="text-azione shrink-0 mt-0.5" aria-hidden />
                   <span>{f}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-2xl border border-[#2563EB] dark:border-[#60A5FA] bg-[#DBEAFE]/50 dark:bg-[#1E3A8A]/30 p-4">
+          <div className="rounded-2xl border border-azione/30 bg-azione-tinta/50 p-4">
             <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-              <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">{PASS.name}</h3>
-              <span className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">
+              <h3 className="font-bold text-testo">{PASS.name}</h3>
+              <span className="font-bold text-testo">
                 {formatEur(currentPriceEur())}
-                {lancio && <span className="ml-2 text-sm font-semibold text-gray-500 dark:text-gray-400"><span className="sr-only">invece di </span><s>{formatEur(PASS.priceEur)}</s></span>}
+                {lancio && <span className="ml-2 text-sm font-semibold text-testo-tenue"><span className="sr-only">invece di </span><s>{formatEur(PASS.priceEur)}</s></span>}
               </span>
             </div>
-            {lancio && <p className="text-xs font-bold text-[#1D4ED8] dark:text-[#93C5FD]">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>}
+            {lancio && <p className="text-xs font-bold text-azione-scuro">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>}
             <ul className="mt-2 flex flex-col gap-2">
               {PASS.features.map(f => (
-                <li key={f} className="flex items-start gap-2.5 text-sm font-semibold text-[#0F172A] dark:text-gray-200">
-                  <Check size={16} strokeWidth={3.5} className="text-[#2563EB] dark:text-[#60A5FA] shrink-0 mt-0.5" aria-hidden />
+                <li key={f} className="flex items-start gap-2.5 text-sm font-semibold text-testo">
+                  <Check size={16} strokeWidth={3.5} className="text-azione shrink-0 mt-0.5" aria-hidden />
                   <span>{f}</span>
                 </li>
               ))}
@@ -413,7 +413,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             {onOpenPaywall && (
               <SecondaryButton onClick={() => { onFinish(result()); onOpenPaywall(); }}>Vedi il Pass</SecondaryButton>
             )}
-            <p className="text-center text-[10px] font-semibold text-gray-400">{DISCLAIMER}</p>
+            <p className="text-center text-[10px] font-semibold text-testo-tenue">{DISCLAIMER}</p>
           </div>
         </Screen>
       );

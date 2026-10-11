@@ -59,9 +59,9 @@ export default function GraficoStime({ punti, onSimulazione, onInfo }: { punti: 
           return (
             <div key={i} className="absolute flex flex-col items-center text-center whitespace-nowrap leading-none -translate-x-1/2"
               style={{ left: `${(xs[i] / W) * 100}%`, top: `${((ys[i] + (ultimo ? 17 : 11)) / alto) * 100}%` }}>
-              <span className="text-[12.5px] leading-[15px] font-bold tabular-nums" style={{ color: `var(--color-${fasce[i]}-numero)` }}>{formatProbabilita(p.p).replace(/\s+%/, '%')}</span>
+              <span className="text-[12.5px] leading-[15px] font-bold tabular-nums" style={{ color: `var(--color-${fasce[i]}-testo)` }}>{formatProbabilita(p.p).replace(/\s+%/, '%')}</span>
               <span className={`${n >= 4 ? 'text-[11px]' : 'text-[12px]'} leading-[15px] text-testo-tenue`}>{ultimo ? 'Oggi' : p.nome}</span>
-              {ultimo && n === 1 && <span className="text-[11px] leading-[14px] text-testo-tenue opacity-80">{p.nome}</span>}
+              {ultimo && n === 1 && <span className="text-[11px] leading-[14px] text-testo-tenue">{p.nome}</span>}
             </div>
           );
         })}

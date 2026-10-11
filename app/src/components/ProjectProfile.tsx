@@ -66,68 +66,68 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
     <Screen>
       <TopBar onBack={onBack} />
       <div className="flex items-center gap-2">
-        <Fingerprint className="text-[#0F172A] dark:text-[#F8FAFC]" size={22} />
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">{ECOSYSTEM.accountName}</h2>
+        <Fingerprint className="text-testo" size={22} />
+        <h2 className="text-2xl sm:text-3xl font-bold text-testo">{ECOSYSTEM.accountName}</h2>
       </div>
 
-      <div className="bg-gradient-to-br from-[#0F172A] to-[#1D4ED8] text-white rounded-3xl p-5 flex items-center gap-4 shrink-0">
+      <div className="bg-gradient-to-br from-azione-da to-azione-a text-azione-su rounded-3xl p-5 flex items-center gap-4 shrink-0">
         {user.photoURL ? (
           <img src={user.photoURL} alt="" referrerPolicy="no-referrer" className="w-16 h-16 rounded-full border border-white/40" />
         ) : (
-          <span className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-2xl font-bold">
+          <span className="w-16 h-16 rounded-full bg-azione-su/20 flex items-center justify-center text-2xl font-bold">
             {(user.displayName || '?').charAt(0).toUpperCase()}
           </span>
         )}
         <div className="flex-1 min-w-0">
           <div className="font-bold text-lg truncate">{account?.displayName ?? user.displayName}</div>
-          {account && <div className="font-bold text-white/80 text-sm">@{account.handle}</div>}
-          <div className="text-xs font-semibold text-white/60 truncate">{user.email}</div>
-          <div className="mt-1 text-[10px] font-bold text-white/60">
+          {account && <div className="font-bold text-azione-su/80 text-sm">@{account.handle}</div>}
+          <div className="text-xs font-semibold text-azione-su/70 truncate">{user.email}</div>
+          <div className="mt-1 text-[10px] font-bold text-azione-su/70">
             {account ? account.id : 'Solo su questo dispositivo'}
           </div>
         </div>
         {account && !editing && (
-          <button onClick={() => setEditing(true)} className="p-2 rounded-xl bg-white/10 hover:bg-white/20" aria-label="Modifica profilo">
+          <button onClick={() => setEditing(true)} className="p-2 rounded-xl bg-azione-su/10 hover:bg-azione-su/20" aria-label="Modifica profilo">
             <Pencil size={18} />
           </button>
         )}
       </div>
 
       {editing && (
-        <div className="flex flex-col gap-2 bg-gray-50 dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4">
-          <label className="text-xs font-bold text-gray-400">Nome</label>
+        <div className="flex flex-col gap-2 bg-superficie-2 border border-linea rounded-2xl p-4">
+          <label className="text-xs font-bold text-testo-tenue">Nome</label>
           <input value={displayName} onChange={e => setDisplayName(e.target.value)} maxLength={60}
-            className="bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-[#334155] rounded-xl px-3 py-2 font-bold text-[#0F172A] dark:text-[#F8FAFC]" />
-          <label className="text-xs font-bold text-gray-400 mt-1">Nome utente (visibile in {ECOSYSTEM.rankingName})</label>
-          <div className="flex items-center bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-[#334155] rounded-xl px-3">
-            <span className="font-bold text-gray-400">@</span>
+            className="bg-superficie border border-linea rounded-xl px-3 py-2 font-bold text-testo" />
+          <label className="text-xs font-bold text-testo-tenue mt-1">Nome utente (visibile in {ECOSYSTEM.rankingName})</label>
+          <div className="flex items-center bg-superficie border border-linea rounded-xl px-3">
+            <span className="font-bold text-testo-tenue">@</span>
             <input value={handle} onChange={e => setHandle(e.target.value.toLowerCase())} maxLength={20}
-              className="flex-1 bg-transparent py-2 font-bold outline-none text-[#0F172A] dark:text-[#F8FAFC]" />
+              className="flex-1 bg-transparent py-2 font-bold outline-none text-testo" />
           </div>
           <div className="flex gap-2 mt-2">
-            <button onClick={() => setEditing(false)} className="flex-1 py-2.5 rounded-xl font-bold text-gray-500 border border-gray-200 dark:border-[#334155]">Annulla</button>
-            <button onClick={saveProfile} disabled={busy} className="flex-1 py-2.5 rounded-xl font-bold text-white bg-[#2563EB] hover:bg-[#1D4ED8] disabled:opacity-50">Salva</button>
+            <button onClick={() => setEditing(false)} className="flex-1 py-2.5 rounded-xl font-bold text-testo-tenue border border-linea">Annulla</button>
+            <button onClick={saveProfile} disabled={busy} className="flex-1 py-2.5 rounded-xl font-bold text-azione-su bg-azione hover:bg-azione-scuro disabled:opacity-50">Salva</button>
           </div>
         </div>
       )}
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-xs font-bold text-gray-400">App collegate</h3>
-        <div className="border border-gray-200 dark:border-[#334155] rounded-2xl">
-          <div className="flex items-center gap-3 p-4 border-b-2 border-gray-100 dark:border-[#334155]">
+        <h3 className="text-xs font-bold text-testo-tenue">App collegate</h3>
+        <div className="border border-linea rounded-2xl">
+          <div className="flex items-center gap-3 p-4 border-b border-linea">
             <img src={urlIcona} alt="" className="w-10 h-10 rounded-xl" />
             <div className="flex-1">
-              <div className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">{APP_NAME}</div>
-              <div className="text-xs font-semibold text-gray-500">
+              <div className="font-bold text-testo">{APP_NAME}</div>
+              <div className="text-xs font-semibold text-testo-tenue">
                 {link ? `Collegata dal ${new Date(link.grantedAt).toLocaleDateString('it-IT')}` : 'Non collegata'}
               </div>
             </div>
           </div>
           {link && SCOPES.map(s => (
-            <div key={s.id} className="flex items-start gap-3 p-3.5 border-b-2 last:border-b-0 border-gray-100 dark:border-[#334155]">
+            <div key={s.id} className="flex items-start gap-3 p-3.5 border-b last:border-b-0 border-linea">
               <div className="flex-1">
-                <div className="font-bold text-sm text-[#0F172A] dark:text-[#F8FAFC]">{s.title}</div>
-                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">{s.description}</p>
+                <div className="font-bold text-sm text-testo">{s.title}</div>
+                <p className="text-xs font-semibold text-testo-tenue">{s.description}</p>
               </div>
               <Toggle on={s.required || link.scopes.includes(s.id)} disabled={s.required || busy} onChange={v => toggleScope(s.id, v)} label={s.title} />
             </div>
@@ -135,21 +135,21 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
         </div>
         {link && (
           <button onClick={() => run(onUnlink)} disabled={busy}
-            className="flex items-center justify-center gap-2 py-3 rounded-2xl font-bold text-sm text-gray-500 border border-gray-200 dark:border-[#334155]">
+            className="flex items-center justify-center gap-2 py-3 rounded-2xl font-bold text-sm text-testo-tenue border border-linea">
             <Unlink size={16} /> Scollega {APP_NAME}
           </button>
         )}
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-xs font-bold text-gray-400">I tuoi dati</h3>
+        <h3 className="text-xs font-bold text-testo-tenue">I tuoi dati</h3>
         <button onClick={exportData} disabled={busy}
-          className="flex items-center gap-3 p-3.5 rounded-2xl border border-gray-200 dark:border-[#334155] font-bold text-sm text-[#0F172A] dark:text-[#F8FAFC]">
-          <Download size={18} className="text-[#2563EB] dark:text-[#60A5FA]" /> Scarica una copia dei tuoi dati
+          className="flex items-center gap-3 p-3.5 rounded-2xl border border-linea font-bold text-sm text-testo">
+          <Download size={18} className="text-azione" /> Scarica una copia dei tuoi dati
         </button>
         <button onClick={onLogout}
-          className="flex items-center gap-3 p-3.5 rounded-2xl border border-gray-200 dark:border-[#334155] font-bold text-sm text-[#0F172A] dark:text-[#F8FAFC]">
-          <LogOut size={18} className="text-gray-400" /> Esci
+          className="flex items-center gap-3 p-3.5 rounded-2xl border border-linea font-bold text-sm text-testo">
+          <LogOut size={18} className="text-testo-tenue" /> Esci
         </button>
         <button
           onClick={() => {
@@ -158,14 +158,14 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
             }
           }}
           disabled={busy}
-          className="flex items-center gap-3 p-3.5 rounded-2xl border border-[#EF4444]/40 font-bold text-sm text-[#B91C1C] dark:text-[#FCA5A5]">
+          className="flex items-center gap-3 p-3.5 rounded-2xl border border-basso/40 font-bold text-sm text-basso-testo">
           <Trash2 size={18} /> Elimina {ECOSYSTEM.accountName}
         </button>
       </div>
 
-      {error && <p className="text-xs font-bold text-[#B91C1C] bg-[#FEE2E2] rounded-xl p-2.5 text-center">{error}</p>}
+      {error && <p className="text-xs font-bold text-basso-testo bg-basso-tinta rounded-xl p-2.5 text-center">{error}</p>}
       {!ATLAS_API_URL && (
-        <p className="text-xs font-semibold text-gray-400 text-center">
+        <p className="text-xs font-semibold text-testo-tenue text-center">
           Il servizio {ECOSYSTEM.engineName} non è ancora attivo: il {ECOSYSTEM.accountName} e i consensi sono salvati solo sul tuo account Google e su questo dispositivo.
         </p>
       )}

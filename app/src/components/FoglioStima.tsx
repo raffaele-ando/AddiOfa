@@ -19,12 +19,12 @@ const FOCALIZZABILI = 'button, [href], input, select, textarea, [tabindex]:not([
 function Voce({ icona, titolo, children }: { icona: ReactNode; titolo: string; children: ReactNode }) {
   return (
     <li className="flex gap-3">
-      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-azione-tinta text-azione-scuro dark:bg-azione-tinta-scura/60 dark:text-azione-chiaro" aria-hidden>
+      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-azione-tinta text-azione-scuro " aria-hidden>
         {icona}
       </span>
       <div className="min-w-0">
-        <h4 className="text-[15px] font-bold leading-snug text-[#0F172A] dark:text-[#F8FAFC]">{titolo}</h4>
-        <p className="mt-0.5 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{children}</p>
+        <h4 className="text-[15px] font-bold leading-snug text-testo">{titolo}</h4>
+        <p className="mt-0.5 text-sm leading-relaxed text-testo-tenue">{children}</p>
       </div>
     </li>
   );
@@ -65,24 +65,24 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center" onKeyDown={tastiera}>
-      <div className="absolute inset-0 bg-black/55" onClick={onChiudi} aria-hidden />
+      <div className="absolute inset-0 bg-black/60" onClick={onChiudi} aria-hidden />
       <div
         ref={pannelloRef}
         role="dialog" aria-modal="true" aria-labelledby="foglio-stima-titolo"
-        className="relative flex max-h-[88vh] w-full max-w-xl flex-col rounded-t-3xl bg-white shadow-2xl dark:bg-[#1E293B] dark:border-t dark:border-[#334155]"
+        className="relative flex max-h-[88vh] w-full max-w-xl flex-col rounded-t-3xl bg-superficie-2 border border-b-0 border-linea shadow-2xl dark:shadow-none"
       >
         <div className="flex items-start justify-between gap-3 px-5 pt-5 pb-3 shrink-0">
-          <h2 id="foglio-stima-titolo" ref={titoloRef} tabIndex={-1} className="text-xl font-bold leading-snug text-[#0F172A] outline-none dark:text-[#F8FAFC]">
+          <h2 id="foglio-stima-titolo" ref={titoloRef} tabIndex={-1} className="text-xl font-bold leading-snug text-testo outline-none">
             Come viene calcolata la stima
           </h2>
           <button type="button" onClick={onChiudi} aria-label="Chiudi"
-            className="-mr-1 shrink-0 rounded-full p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-[#334155] dark:hover:text-gray-200">
+            className="-mr-1 shrink-0 rounded-full p-1.5 text-testo-tenue hover:bg-linea hover:text-testo">
             <X size={22} strokeWidth={2.5} />
           </button>
         </div>
 
         <div className="overflow-y-auto px-5 pb-2 scrollbar-hide">
-          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+          <p className="text-sm leading-relaxed text-testo-tenue">
             La percentuale risponde a una sola domanda: se facessi oggi un test da {REAL_TEST_QUESTIONS} domande, quanto è probabile che tu ne azzecchi almeno {REAL_TEST_PASS_MARK}?
           </p>
 
@@ -106,7 +106,7 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
             </Voce>
           </ul>
 
-          <h3 className="mt-6 text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC]">Perché è solo una stima?</h3>
+          <h3 className="mt-6 text-lg font-bold text-testo">Perché è solo una stima?</h3>
           <ul className="mt-3 flex flex-col gap-4">
             <Voce icona={<Layers size={18} strokeWidth={2.5} />} titolo={soloDiagnostico ? `${DIAGNOSTIC_LENGTH} domande sono poche` : 'Più risposte, stima più stabile'}>
               {soloDiagnostico
@@ -126,7 +126,7 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
 
         <div className="px-5 pt-3 pb-5 shrink-0">
           <button type="button" onClick={onChiudi}
-            className="w-full rounded-2xl bg-azione py-3.5 text-base font-bold text-white hover:bg-azione-scuro transition-colors duration-100">
+            className="w-full rounded-2xl bg-azione py-3.5 text-base font-bold text-azione-su hover:bg-azione-scuro transition-colors duration-100">
             Ho capito
           </button>
         </div>

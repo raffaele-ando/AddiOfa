@@ -19,18 +19,18 @@ const FILTRI: { id: Filtro; etichetta: string }[] = [
 const STATO = {
   giusta: {
     parola: 'Giusta', Icona: Check,
-    riga: 'border-[#86EFAC] dark:border-[#16A34A]/60 bg-[#F0FDF4] dark:bg-[#064E3B]/30',
-    badge: 'bg-[#16A34A] text-white', testo: 'text-[#15803D] dark:text-[#34D399]',
+    riga: 'border-alto/30 bg-alto-tinta',
+    badge: 'bg-alto-pieno text-azione-su', testo: 'text-alto-testo',
   },
   sbagliata: {
     parola: 'Sbagliata', Icona: X,
-    riga: 'border-[#FCA5A5] dark:border-[#EF4444]/50 bg-[#FEF2F2] dark:bg-[#7F1D1D]/25',
-    badge: 'bg-[#DC2626] text-white', testo: 'text-[#B91C1C] dark:text-[#FCA5A5]',
+    riga: 'border-basso/30 bg-basso-tinta',
+    badge: 'bg-basso-pieno text-azione-su', testo: 'text-basso-testo',
   },
   vuota: {
     parola: 'Senza risposta', Icona: Minus,
-    riga: 'border-gray-200 dark:border-[#475569] bg-gray-50 dark:bg-[#0F172A]',
-    badge: 'bg-gray-500 dark:bg-gray-400 text-white dark:text-[#0F172A]', testo: 'text-gray-600 dark:text-gray-300',
+    riga: 'border-linea bg-superficie-2',
+    badge: 'bg-testo-tenue text-superficie', testo: 'text-testo-tenue',
   },
 } as const;
 
@@ -63,8 +63,8 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
 
   return (
     <section aria-labelledby={`${idBase}-titolo`} className="text-left">
-      <h3 id={`${idBase}-titolo`} className="text-xl font-bold text-[#0F172A] dark:text-[#F8FAFC]">Correzioni</h3>
-      <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3">
+      <h3 id={`${idBase}-titolo`} className="text-xl font-bold text-testo">Correzioni</h3>
+      <p className="text-sm font-semibold text-testo-tenue mb-3">
         {conteggi.giusta} su {righe.length} risposte esatte. Le domande sono numerate come nella prova.
       </p>
 
@@ -85,11 +85,11 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               className={cn(
                 'shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-bold border transition-colors duration-100 min-h-[40px]',
                 attivo
-                  ? 'bg-azione text-white border-azione'
-                  : 'bg-white dark:bg-[#0F172A] text-gray-600 dark:text-gray-300 border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-[#1E293B]'
+                  ? 'bg-azione text-azione-su border-azione'
+                  : 'bg-superficie-2 text-testo-tenue border-linea hover:bg-linea'
               )}>
               {f.etichetta}
-              <span className={cn('tabular-nums text-xs rounded-full px-1.5 py-0.5', attivo ? 'bg-white/25' : 'bg-gray-100 dark:bg-[#334155]')}>{conteggi[f.id]}</span>
+              <span className={cn('tabular-nums text-xs rounded-full px-1.5 py-0.5', attivo ? 'bg-azione-su text-azione' : 'bg-superficie-2')}>{conteggi[f.id]}</span>
             </button>
           );
         })}
@@ -97,7 +97,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
 
       <div role="tabpanel" id={`${idBase}-pannello`} aria-labelledby={`${idBase}-${filtro}`} className="mt-2 space-y-3">
         {visibili.length === 0 && (
-          <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 text-center py-6 rounded-2xl border border-dashed border-gray-300 dark:border-[#475569]">
+          <p className="text-sm font-semibold text-testo-tenue text-center py-6 rounded-2xl border border-dashed border-linea">
             {filtro === 'sbagliata' ? 'Nessuna risposta sbagliata.' : filtro === 'vuota' ? 'Hai risposto a tutte le domande.' : 'Nessuna domanda in questo elenco.'}
           </p>
         )}
@@ -113,32 +113,32 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               aria-label={`Domanda ${n}: ${s.parola.toLowerCase()}`}
               className={cn('rounded-2xl border p-3.5 sm:p-4', s.riga)}>
               <div className="flex items-center gap-2.5 mb-2">
-                <span className="w-7 h-7 rounded-full bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-[#475569] text-xs font-bold tabular-nums text-gray-600 dark:text-gray-300 flex items-center justify-center shrink-0">{n}</span>
+                <span className="w-7 h-7 rounded-full bg-superficie border border-linea text-xs font-bold tabular-nums text-testo-tenue flex items-center justify-center shrink-0">{n}</span>
                 <span className={cn('inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full pl-1.5 pr-2.5 py-0.5 text-xs font-bold', s.badge)}>
                   <s.Icona size={13} strokeWidth={3.5} aria-hidden /> {s.parola}
                 </span>
-                <span className="ml-auto min-w-0 text-[11px] font-semibold text-gray-500 dark:text-gray-400 text-right truncate">{q.grammarTopic || q.category}</span>
+                <span className="ml-auto min-w-0 text-[11px] font-semibold text-testo-tenue text-right truncate">{q.grammarTopic || q.category}</span>
               </div>
-              <p className="font-bold text-[15px] sm:text-base text-[#0F172A] dark:text-[#F8FAFC] leading-snug mb-2.5">{q.prompt}</p>
+              <p className="font-bold text-[15px] sm:text-base text-testo leading-snug mb-2.5">{q.prompt}</p>
 
               <dl className="space-y-1.5 text-sm">
                 <div className="flex gap-2 items-baseline">
-                  <dt className="shrink-0 text-xs font-bold text-gray-500 dark:text-gray-400 w-[88px]">La tua risposta</dt>
-                  <dd className={cn('font-semibold', dato === undefined ? 'italic text-gray-500 dark:text-gray-400' : stato === 'sbagliata' ? 'text-[#B91C1C] dark:text-[#FCA5A5]' : 'text-[#0F172A] dark:text-[#F8FAFC]')}>
-                    {dato === undefined ? 'Nessuna risposta' : <>{lettera(dato)}. <span className={cn(stato === 'sbagliata' && 'line-through decoration-[#B91C1C]/60')}>{q.options[dato]}</span></>}
+                  <dt className="shrink-0 text-xs font-bold text-testo-tenue w-[88px]">La tua risposta</dt>
+                  <dd className={cn('font-semibold', dato === undefined ? 'italic text-testo-tenue' : stato === 'sbagliata' ? 'text-basso-testo' : 'text-testo')}>
+                    {dato === undefined ? 'Nessuna risposta' : <>{lettera(dato)}. <span className={cn(stato === 'sbagliata' && 'line-through decoration-basso/60')}>{q.options[dato]}</span></>}
                   </dd>
                 </div>
                 {stato !== 'giusta' && r && (
                   <div className="flex gap-2 items-baseline">
-                    <dt className="shrink-0 text-xs font-bold text-[#15803D] dark:text-[#34D399] w-[88px]">Corretta</dt>
-                    <dd className="font-bold text-[#15803D] dark:text-[#34D399]">{lettera(r.correctIndex)}. {q.options[r.correctIndex]}</dd>
+                    <dt className="shrink-0 text-xs font-bold text-alto-testo w-[88px]">Corretta</dt>
+                    <dd className="font-bold text-alto-testo">{lettera(r.correctIndex)}. {q.options[r.correctIndex]}</dd>
                   </div>
                 )}
               </dl>
 
               {compatta && r?.explanation && (
                 <button type="button" onClick={() => { playTapSound(); alterna(q.id); }} aria-expanded={apertaSpieg} aria-controls={idSpieg}
-                  className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-azione dark:text-azione-chiaro">
+                  className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-azione-scuro">
                   {apertaSpieg ? 'Nascondi la spiegazione' : 'Vedi la spiegazione'}
                   <ChevronDown size={14} strokeWidth={3} className={apertaSpieg ? 'rotate-180' : undefined} aria-hidden />
                 </button>
@@ -146,11 +146,11 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               {apertaSpieg && (r?.explanation || (r?.theoryId && onOpenTheory)) && (
                 <div id={idSpieg} className="mt-2.5">
                   {r?.explanation && (
-                    <p className="text-[13.5px] font-medium leading-relaxed text-[#1E293B] dark:text-gray-200 bg-white/80 dark:bg-black/20 border border-black/5 dark:border-white/10 rounded-xl p-3">{r.explanation}</p>
+                    <p className="text-[13.5px] font-medium leading-relaxed text-testo bg-superficie/70 border border-linea rounded-xl p-3">{r.explanation}</p>
                   )}
                   {r?.theoryId && onOpenTheory && (
                     <button type="button" onClick={() => { playTapSound(); onOpenTheory(r.theoryId!); }}
-                      className="mt-2 inline-flex items-center gap-1.5 text-sm font-bold text-azione dark:text-azione-chiaro underline underline-offset-2 min-h-[32px]">
+                      className="mt-2 inline-flex items-center gap-1.5 text-sm font-bold text-azione-scuro underline underline-offset-2 min-h-[32px]">
                       <BookOpen size={15} aria-hidden /> Studia la regola
                     </button>
                   )}

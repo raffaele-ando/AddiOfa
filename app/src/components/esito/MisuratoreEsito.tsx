@@ -18,20 +18,20 @@ export default function MisuratoreEsito({ giuste, totale, soglia, superata }: { 
     <div className="relative mx-auto w-full max-w-[280px]" role="img"
       aria-label={`${giuste} risposte esatte su ${totale}. Soglia: ${soglia}. ${superata ? 'Soglia raggiunta.' : 'Soglia non raggiunta.'}`}>
       <svg viewBox="0 0 232 150" className="w-full h-auto block" aria-hidden>
-        <path d={arco} fill="none" strokeWidth="16" strokeLinecap="round" className="stroke-[#E5E9F0] dark:stroke-[#334155]" />
+        <path d={arco} fill="none" strokeWidth="16" strokeLinecap="round" className="stroke-linea" />
         {frazione > 0 && (
           <path d={arco} fill="none" strokeWidth="16" strokeLinecap="round"
-            className={superata ? 'stroke-[#16A34A] dark:stroke-[#10B981]' : 'stroke-azione dark:stroke-azione-chiaro'}
+            className={superata ? 'stroke-alto-testo' : 'stroke-azione '}
             strokeDasharray={`${lung * frazione} ${lung}`} />
         )}
         {/* segno della soglia */}
-        <line x1={t0x} y1={t0y} x2={t1x} y2={t1y} strokeWidth="4" strokeLinecap="round" className="stroke-[#0F172A] dark:stroke-[#F8FAFC]" />
+        <line x1={t0x} y1={t0y} x2={t1x} y2={t1y} strokeWidth="4" strokeLinecap="round" className="stroke-testo" />
       </svg>
       <div className="absolute inset-x-0 top-[33%] flex flex-col items-center leading-none pointer-events-none">
-        <div className="text-[44px] font-extrabold tabular-nums text-[#0F172A] dark:text-[#F8FAFC]">
-          {giuste}<span className="text-xl font-bold text-gray-400 dark:text-gray-500">/{totale}</span>
+        <div className="text-[44px] font-extrabold tabular-nums text-testo">
+          {giuste}<span className="text-xl font-bold text-testo-tenue">/{totale}</span>
         </div>
-        <div className="mt-1.5 text-xs font-bold text-gray-500 dark:text-gray-400">risposte esatte</div>
+        <div className="mt-1.5 text-xs font-bold text-testo-tenue">risposte esatte</div>
       </div>
     </div>
   );

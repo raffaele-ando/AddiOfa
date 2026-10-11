@@ -3,9 +3,9 @@ import type { Livello } from './stima';
 import { formatProbabilita } from '../../lib/diagnostic';
 
 export const COLORI_STATO: Record<Livello, { arco: [string, string]; punto: string; numero: string }> = {
-  basso: { arco: ['#FCA5A5', '#EF4444'], punto: '#EF4444', numero: 'text-[#C81E1E] dark:text-[#FCA5A5]' },
-  medio: { arco: ['#FDE68A', '#F59E0B'], punto: '#F59E0B', numero: 'text-[#B45309] dark:text-[#FCD34D]' },
-  alto: { arco: ['#86EFAC', '#22C55E'], punto: '#22C55E', numero: 'text-[#15803D] dark:text-[#86EFAC]' },
+  basso: { arco: ['var(--color-basso-chiaro)', 'var(--color-basso)'], punto: 'var(--color-basso)', numero: 'text-basso-numero' },
+  medio: { arco: ['var(--color-medio-chiaro)', 'var(--color-medio)'], punto: 'var(--color-medio)', numero: 'text-medio-numero' },
+  alto: { arco: ['var(--color-alto-chiaro)', 'var(--color-alto)'], punto: 'var(--color-alto)', numero: 'text-alto-numero' },
 };
 
 // Arco di 210° che si apre in basso, con tacche: stessa idea del design, riempito dal valore vero.
@@ -31,9 +31,9 @@ export default function Indicatore({ percento, livello, etichetta, sotto }: { pe
         </defs>
         {tacche.map((g, i) => {
           const [a, b] = pt(g, 126); const [e, f] = pt(g, i % 2 === 0 ? 138 : 133);
-          return <line key={i} x1={a} y1={b} x2={e} y2={f} strokeWidth="2.5" strokeLinecap="round" className="stroke-[#D9DEE8] dark:stroke-[#475569]" />;
+          return <line key={i} x1={a} y1={b} x2={e} y2={f} strokeWidth="2.5" strokeLinecap="round" className="stroke-tacca" />;
         })}
-        <path d={d} fill="none" strokeWidth="18" strokeLinecap="round" className="stroke-[#E9EDF4] dark:stroke-[#334155]" />
+        <path d={d} fill="none" strokeWidth="18" strokeLinecap="round" className="stroke-linea" />
         {frazione > 0 && (
           <path d={d} fill="none" stroke={`url(#g${id})`} strokeWidth="18" strokeLinecap="round" strokeDasharray={`${lung * frazione} ${lung}`} />
         )}
@@ -42,9 +42,9 @@ export default function Indicatore({ percento, livello, etichetta, sotto }: { pe
       </svg>
       <div className="absolute inset-x-0 top-[44%] flex flex-col items-center text-center pointer-events-none">
         <div className={`text-[52px] leading-none font-extrabold tabular-nums whitespace-nowrap ${c.numero}`}>{formatProbabilita(percento / 100)}</div>
-        <div className="mt-1.5 text-[14px] font-bold text-[#0F172A] dark:text-[#F8FAFC] px-6 leading-tight">{etichetta}</div>
+        <div className="mt-1.5 text-[14px] font-bold text-testo px-6 leading-tight">{etichetta}</div>
       </div>
-      <div className="text-[12px] text-[#6B7280] dark:text-[#94A3B8] text-center leading-snug -mt-1">{sotto}</div>
+      <div className="text-[12px] text-testo-tenue text-center leading-snug -mt-1">{sotto}</div>
     </div>
   );
 }

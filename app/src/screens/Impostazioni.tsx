@@ -35,7 +35,7 @@ function Sezione({ titolo, nota, children }: { titolo: string; nota?: ReactNode;
   return (
     <section aria-label={titolo} className="mt-[22px]">
       <h2 className="px-1 pb-[7px] text-[12px] leading-[14px] font-semibold uppercase tracking-[0.06em] text-testo-tenue">{titolo}</h2>
-      <div className="rounded-[12px] bg-superficie overflow-hidden divide-y divide-linea">{children}</div>
+      <div className="rounded-[12px] bg-superficie-2 overflow-hidden divide-y divide-linea">{children}</div>
       {nota && <p className="px-1 pt-2 text-[12px] leading-[17px] text-testo-tenue">{nota}</p>}
     </section>
   );
@@ -100,7 +100,7 @@ export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLega
     : 'Non ha una scadenza.';
 
   return (
-    <div className="h-full w-full bg-fondo text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
+    <div className="h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="mx-auto w-full max-w-[440px] px-4 pt-[max(8px,env(safe-area-inset-top))] pb-8">
           <div className="flex items-center h-11">
@@ -115,10 +115,10 @@ export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLega
             <div className="flex items-center gap-3 px-3.5 py-[11px] min-h-[52px]">
               <Icona><Moon size={17} /></Icona>
               <span className="text-[15px] text-testo shrink-0">Tema</span>
-              <div role="radiogroup" aria-label="Tema" className="ml-auto grid grid-cols-3 gap-0.5 p-0.5 rounded-[9px] bg-superficie-2">
+              <div role="radiogroup" aria-label="Tema" className="ml-auto grid grid-cols-3 gap-0.5 p-0.5 rounded-[9px] bg-superficie">
                 {TEMI.map(t => (
                   <button key={t.id} type="button" role="radio" aria-checked={modo === t.id} onClick={() => { playTapSound(); setModo(t.id); }}
-                    className={cn('rounded-[7px] px-2.5 py-1.5 text-[13px] font-semibold', modo === t.id ? 'bg-superficie text-testo shadow-[0_1px_3px_rgba(15,23,42,0.1)] dark:shadow-none dark:border dark:border-linea' : 'text-testo-tenue')}>
+                    className={cn('rounded-[7px] px-2.5 py-1.5 text-[13px] font-semibold', modo === t.id ? 'bg-superficie-2 text-testo shadow-[0_1px_3px_rgba(15,23,42,0.1)] dark:shadow-none dark:border dark:border-tacca' : 'text-testo-tenue')}>
                     {t.nome}
                   </button>
                 ))}

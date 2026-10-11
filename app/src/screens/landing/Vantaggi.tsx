@@ -18,12 +18,12 @@ export default function Vantaggi() {
         <ul className={cn(SCHEDA, 'grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-5 p-5 sm:p-6')} aria-label="I vantaggi in breve">
           {VANTAGGI.map(({ Icona, titolo, testo }) => (
             <li key={titolo} className="flex items-start gap-3">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-azione-tinta dark:bg-azione-tinta-scura/60 text-azione-scuro dark:text-azione-chiaro">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-azione-tinta text-azione-scuro ">
                 <Icona size={22} aria-hidden />
               </span>
               <span>
-                <span className="block text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC]">{titolo}</span>
-                <span className="mt-0.5 block text-sm font-medium text-gray-600 dark:text-gray-300">{testo}</span>
+                <span className="block text-sm font-bold text-testo">{titolo}</span>
+                <span className="mt-0.5 block text-sm font-medium text-testo-tenue">{testo}</span>
               </span>
             </li>
           ))}

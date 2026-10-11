@@ -8,53 +8,53 @@ interface DebugModeProps {
 
 export default function DebugMode({ onBack }: DebugModeProps) {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col">
-      <header className="flex items-center gap-4 p-4 border-b border-gray-200 dark:border-gray-800">
+    <div className="min-h-screen bg-superficie text-testo flex flex-col">
+      <header className="flex items-center gap-4 p-4 border-b border-linea">
         <button
           onClick={onBack}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors duration-100"
+          className="p-2 hover:bg-linea rounded-full transition-colors duration-100"
         >
           <ArrowLeft size={24} />
         </button>
-        <h1 className="text-xl font-black uppercase tracking-widest text-gray-800 dark:text-white">
+        <h1 className="text-xl font-black uppercase tracking-widest text-testo">
           Firebase Debug Info
         </h1>
       </header>
 
       <main className="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full">
-        <div className="bg-[#FEE2E2] dark:bg-[#7F1D1D]/30 border-2 border-[#EF4444] dark:border-[#EF4444] rounded-2xl p-4 md:p-6 mb-8 flex flex-col md:flex-row gap-4 items-start">
-          <ShieldAlert className="text-[#EF4444] dark:text-[#FCA5A5] shrink-0" size={32} />
+        <div className="bg-basso-tinta border border-basso/30 rounded-2xl p-4 md:p-6 mb-8 flex flex-col md:flex-row gap-4 items-start">
+          <ShieldAlert className="text-basso-testo shrink-0" size={32} />
           <div>
-            <h2 className="text-lg font-black text-[#B91C1C] dark:text-[#FCA5A5] uppercase tracking-widest mb-2">
+            <h2 className="text-lg font-black text-basso-testo uppercase tracking-widest mb-2">
               Configurazione Attuale
             </h2>
-            <p className="text-sm text-gray-800 dark:text-gray-200 mb-4 font-medium">
+            <p className="text-sm text-testo mb-4 font-medium">
               Questi sono i dati esatti che l'app sta utilizzando per connettersi a Firebase in questo momento.
               Puoi verificare se corrispondono a quelli del tuo progetto.
             </p>
           </div>
         </div>
 
-        <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-700 shadow-sm overflow-x-auto">
+        <div className="bg-superficie-2 rounded-2xl p-6 border border-linea shadow-sm dark:shadow-none overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b-2 border-gray-200 dark:border-gray-700">
-                <th className="py-3 px-4 font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider text-xs">
+              <tr className="border-b border-linea">
+                <th className="py-3 px-4 font-bold text-testo-tenue uppercase tracking-wider text-xs">
                   Chiave
                 </th>
-                <th className="py-3 px-4 font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider text-xs">
+                <th className="py-3 px-4 font-bold text-testo-tenue uppercase tracking-wider text-xs">
                   Valore Utilizzato
                 </th>
               </tr>
             </thead>
             <tbody>
               {Object.entries(firebaseConfig).map(([key, value]) => (
-                <tr key={key} className="border-b border-gray-200 dark:border-gray-700 last:border-0 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors duration-100">
-                  <td className="py-3 px-4 text-sm font-bold text-gray-800 dark:text-gray-200">
+                <tr key={key} className="border-b border-linea last:border-0 hover:bg-linea transition-colors duration-100">
+                  <td className="py-3 px-4 text-sm font-bold text-testo">
                     {key}
                   </td>
-                  <td className="py-3 px-4 text-sm font-mono text-[#3B82F6] dark:text-[#60A5FA] break-all">
-                    {value || <span className="text-gray-400 italic">Non impostato</span>}
+                  <td className="py-3 px-4 text-sm font-mono text-azione break-all">
+                    {value || <span className="text-testo-tenue italic">Non impostato</span>}
                   </td>
                 </tr>
               ))}

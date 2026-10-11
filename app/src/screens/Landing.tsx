@@ -33,9 +33,9 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal, onOpen
   }, []);
 
   return (
-    <div className="fixed inset-0 z-40 overflow-y-auto overflow-x-hidden bg-[#F6F8FC] dark:bg-[#111B21] text-[#0F172A] dark:text-[#E2E8F0]">
+    <div className="fixed inset-0 z-40 overflow-y-auto overflow-x-hidden bg-fondo text-testo">
       {import.meta.env.VITE_MODE === 'demo' && (
-        <p role="note" className="bg-[#0F172A] dark:bg-[#1E293B] px-4 py-1.5 text-center text-[11px] leading-snug text-white">
+        <p role="note" className="bg-[#0E1B3F] dark:bg-superficie-2 px-4 py-1.5 text-center text-[11px] leading-snug text-white dark:text-testo">
           Versione dimostrativa: nessun pagamento, i dati restano su questo dispositivo.
         </p>
       )}

@@ -15,9 +15,9 @@ export function useToast(): Mostra {
 
 const ICONE = { ok: CheckCircle2, errore: AlertCircle, info: Info } as const;
 const COLORI: Record<Tipo, string> = {
-  ok: 'text-[#16A34A]',
-  errore: 'text-[#EF4444]',
-  info: 'text-[#2563EB] dark:text-[#60A5FA]',
+  ok: 'text-alto-testo',
+  errore: 'text-basso-testo',
+  info: 'text-azione',
 };
 
 export function ToastProvider({ children }: { children: ReactNode }) {
@@ -48,10 +48,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         {lista.map(m => {
           const Icona = ICONE[m.tipo];
           return (
-            <div key={m.id} className="pointer-events-auto w-full max-w-sm flex items-start gap-2.5 rounded-2xl bg-white dark:bg-[#1E293B] border border-[#E5E7EB] dark:border-[#334155] px-3.5 py-3 shadow-lg">
+            <div key={m.id} className="pointer-events-auto w-full max-w-sm flex items-start gap-2.5 rounded-2xl bg-superficie-2 border border-linea px-3.5 py-3 shadow-lg dark:shadow-none">
               <Icona size={18} className={`mt-0.5 shrink-0 ${COLORI[m.tipo]}`} aria-hidden="true" />
-              <p className="flex-1 min-w-0 text-sm text-[#0F172A] dark:text-[#F8FAFC] break-words">{m.testo}</p>
-              <button type="button" onClick={() => chiudi(m.id)} aria-label="Chiudi il messaggio" className="shrink-0 text-[#6B7280] hover:text-[#0F172A] dark:hover:text-[#F8FAFC] p-0.5">
+              <p className="flex-1 min-w-0 text-sm text-testo break-words">{m.testo}</p>
+              <button type="button" onClick={() => chiudi(m.id)} aria-label="Chiudi il messaggio" className="shrink-0 text-testo-tenue hover:text-testo p-0.5">
                 <X size={16} />
               </button>
             </div>

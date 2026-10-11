@@ -47,10 +47,10 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
           aria-controls={`${id}-p`}
           id={`${id}-b`}
           onClick={onToggle}
-          className={cn('flex w-full items-center justify-between gap-4 rounded-3xl px-5 py-4 text-left text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] sm:px-6', FOCUS)}
+          className={cn('flex w-full items-center justify-between gap-4 rounded-3xl px-5 py-4 text-left text-base font-bold text-testo sm:px-6', FOCUS)}
         >
           <span>{voce.d}</span>
-          <ChevronDown size={20} aria-hidden className={cn('shrink-0 text-azione dark:text-azione-chiaro', aperta && 'rotate-180')} />
+          <ChevronDown size={20} aria-hidden className={cn('shrink-0 text-azione ', aperta && 'rotate-180')} />
         </button>
       </h3>
       {/* la riga si apre subito; chiusa, il contenuto esce dal giro della tastiera con inert */}
@@ -63,9 +63,9 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
       >
         <div className="overflow-hidden">
           <div className="px-5 pb-5 sm:px-6">
-            <p className="text-sm font-medium leading-relaxed text-gray-700 dark:text-gray-300">{voce.r}</p>
+            <p className="text-sm font-medium leading-relaxed text-testo">{voce.r}</p>
             {voce.legale && (
-              <button type="button" onClick={() => onOpenLegal(voce.legale!.sezione)} className={cn('mt-2 rounded text-sm font-bold text-azione-scuro dark:text-[#93C5FD] underline underline-offset-2', FOCUS)}>
+              <button type="button" onClick={() => onOpenLegal(voce.legale!.sezione)} className={cn('mt-2 rounded text-sm font-bold text-azione-scuro underline underline-offset-2', FOCUS)}>
                 {voce.legale.testo}
               </button>
             )}
@@ -79,7 +79,7 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
 export default function Faq({ onOpenLegal }: { onOpenLegal(s: LegalSection): void }) {
   const [aperta, setAperta] = useState<number | null>(0);
   return (
-    <Sezione id="domande" titoloId="t-faq" className="bg-white dark:bg-[#0F172A]/50">
+    <Sezione id="domande" titoloId="t-faq" className="bg-superficie-2">
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
         <div className="lg:sticky lg:top-24 lg:self-start">
           <TitoloSezione id="t-faq" occhiello="Domande" sotto="Le risposte brevi. Per il resto ci sono i testi legali in fondo alla pagina.">

@@ -30,15 +30,15 @@ export default function PaymentThanks({ onContinue }: { onContinue: () => void }
       <div className="mx-auto my-4 flex items-center justify-center" style={{ minHeight: 140 }}>
         <IllustrazioneAnimata nome="celebrazione" lato={170} />
       </div>
-      <h1 className="text-3xl sm:text-4xl font-bold text-center text-[#0F172A] dark:text-[#F8FAFC]">Grazie</h1>
-      <p className="text-center font-semibold text-gray-500 dark:text-gray-400">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center text-testo">Grazie</h1>
+      <p className="text-center font-semibold text-testo-tenue">
         Se il pagamento è andato a buon fine, riceverai la ricevuta via email.
       </p>
-      <div className="rounded-2xl border border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#0F172A] p-4 text-center" role="status">
+      <div className="rounded-2xl border border-linea bg-superficie-2 p-4 text-center" role="status">
         {pass ? (
-          <p className="font-bold text-[#15803D] dark:text-[#34D399]">Il Pass è attivo{scadenza ? ` fino al ${scadenza}` : ''}.</p>
+          <p className="font-bold text-alto-testo">Il Pass è attivo{scadenza ? ` fino al ${scadenza}` : ''}.</p>
         ) : (
-          <p className="text-sm font-semibold text-gray-600 dark:text-gray-300">
+          <p className="text-sm font-semibold text-testo-tenue">
             {controllo
               ? 'Controllo il tuo Pass…'
               : provato
@@ -50,7 +50,7 @@ export default function PaymentThanks({ onContinue }: { onContinue: () => void }
           <button
             onClick={() => { playTapSound(); void ricontrolla(); }}
             disabled={controllo}
-            className="mt-3 rounded-xl border border-[#2563EB] dark:border-[#60A5FA] text-[#1D4ED8] dark:text-[#93C5FD] font-bold text-sm px-4 py-2.5 disabled:opacity-40"
+            className="mt-3 rounded-xl border border-azione text-azione-scuro font-bold text-sm px-4 py-2.5 disabled:opacity-40"
           >
             Ricontrolla il Pass
           </button>

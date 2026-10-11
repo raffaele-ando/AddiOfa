@@ -6,7 +6,7 @@ import { playTapSound } from '../../lib/audio';
 // Pezzi condivisi dalle sezioni della landing: contenitore, titoli, pulsanti, data.
 
 export const FOCUS =
-  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione dark:focus-visible:outline-azione-chiaro';
+  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione ';
 
 export const dataEstesa = (iso: string) =>
   new Date(`${iso}T12:00:00`).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -26,7 +26,7 @@ export function Sezione({ id, titoloId, className, children }: { id?: string; ti
 
 export function Occhiello({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-block rounded-full bg-azione-tinta dark:bg-azione-tinta-scura/60 px-3 py-1 text-xs font-bold tracking-wide text-azione-scuro dark:text-[#BFDBFE]">
+    <span className="inline-block rounded-full bg-azione-tinta px-3 py-1 text-xs font-bold tracking-wide text-azione-scuro">
       {children}
     </span>
   );
@@ -36,14 +36,14 @@ export function TitoloSezione({ id, occhiello, children, sotto, className }: { i
   return (
     <div className={cn('max-w-2xl', className)}>
       {occhiello && <Occhiello>{occhiello}</Occhiello>}
-      <h2 id={id} className={cn('text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-[#0F172A] dark:text-[#F8FAFC]', occhiello && 'mt-3')}>{children}</h2>
-      {sotto && <p className="mt-3 text-base sm:text-lg font-medium text-gray-600 dark:text-gray-300">{sotto}</p>}
+      <h2 id={id} className={cn('text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-testo', occhiello && 'mt-3')}>{children}</h2>
+      {sotto && <p className="mt-3 text-base sm:text-lg font-medium text-testo-tenue">{sotto}</p>}
     </div>
   );
 }
 
 export function Evidenza({ children }: { children: ReactNode }) {
-  return <span className="text-azione dark:text-azione-chiaro">{children}</span>;
+  return <span className="text-azione ">{children}</span>;
 }
 
 /** Pulsante pieno blu (#2563EB con testo bianco). */
@@ -53,7 +53,7 @@ export function BottoneAzione({ children, onClick, className, freccia = true }: 
       type="button"
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-2xl bg-azione hover:bg-azione-scuro  text-white font-bold text-base sm:text-lg py-3.5 px-6 shadow-[0_8px_20px_rgba(37,99,235,0.25)] dark:shadow-none transition-colors duration-100 ',
+        'inline-flex items-center justify-center gap-2 rounded-2xl bg-azione hover:bg-azione-scuro text-azione-su font-bold text-base sm:text-lg py-3.5 px-6 shadow-[0_8px_20px_rgba(37,99,235,0.25)] dark:shadow-none transition-colors duration-100 ',
         FOCUS, className,
       )}
     >
@@ -70,7 +70,7 @@ export function BottoneContorno({ children, onClick, className }: { children: Re
       type="button"
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-300 dark:border-[#475569] bg-white/70 dark:bg-[#0F172A]/60 hover:bg-white dark:hover:bg-[#1E293B]  text-[#0F172A] dark:text-[#F8FAFC] font-bold text-base py-3.5 px-6 transition-colors duration-100 ',
+        'inline-flex items-center justify-center gap-2 rounded-2xl border border-linea bg-superficie-2/70 hover:bg-linea text-testo font-bold text-base py-3.5 px-6 transition-colors duration-100 ',
         FOCUS, className,
       )}
     >
@@ -81,4 +81,4 @@ export function BottoneContorno({ children, onClick, className }: { children: Re
 
 /** Superficie bianca con bordo morbido, usata dalle schede. */
 export const SCHEDA =
-  'rounded-3xl border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] shadow-[0_8px_24px_rgba(15,23,42,0.05)] dark:shadow-none';
+  'rounded-3xl border border-linea bg-superficie shadow-[0_8px_24px_rgba(15,23,42,0.05)] dark:shadow-none';

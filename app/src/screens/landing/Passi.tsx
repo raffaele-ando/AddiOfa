@@ -40,14 +40,14 @@ export default function Passi() {
             <div className="relative pl-16 lg:pl-0 lg:pt-16">
               {/* linea di collegamento: sotto il cerchio sul telefono, a destra del cerchio da 1024 px */}
               {i < PASSI.length - 1 && (
-                <span aria-hidden className="absolute left-[19px] top-12 -bottom-6 w-0.5 bg-azione/30 dark:bg-azione-chiaro/30 lg:left-12 lg:right-[-1.25rem] lg:top-[19px] lg:bottom-auto lg:h-0.5 lg:w-auto" />
+                <span aria-hidden className="absolute left-[19px] top-12 -bottom-6 w-0.5 bg-azione/30 lg:left-12 lg:right-[-1.25rem] lg:top-[19px] lg:bottom-auto lg:h-0.5 lg:w-auto" />
               )}
-              <span aria-hidden className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full bg-azione text-base font-extrabold text-white ring-[6px] ring-[#F6F8FC] dark:ring-[#111B21]">
+              <span aria-hidden className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full bg-azione text-base font-extrabold text-azione-su ring-[6px] ring-fondo">
                 {i + 1}
               </span>
-              <h3 className="text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] lg:pr-4">{p.titolo}</h3>
-              <p className="mt-1.5 text-sm font-medium text-gray-600 dark:text-gray-300 lg:pr-4">{p.testo}</p>
-              <p className="mt-3 inline-block rounded-full bg-azione-tinta dark:bg-azione-tinta-scura/60 px-3 py-1 text-xs font-bold text-azione-scuro dark:text-[#BFDBFE]">{p.nota}</p>
+              <h3 className="text-lg font-bold text-testo lg:pr-4">{p.titolo}</h3>
+              <p className="mt-1.5 text-sm font-medium text-testo-tenue lg:pr-4">{p.testo}</p>
+              <p className="mt-3 inline-block rounded-full bg-azione-tinta px-3 py-1 text-xs font-bold text-azione-scuro">{p.nota}</p>
             </div>
           </li>
         ))}

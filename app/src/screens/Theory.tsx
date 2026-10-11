@@ -81,11 +81,11 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
     <Screen>
       <TopBar onBack={onBack} />
       <header className="shrink-0">
-        <h1 ref={titoloRef} tabIndex={-1} className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-[#F8FAFC] outline-none">Teoria</h1>
-        <p className="mt-1 max-w-[65ch] text-sm font-medium text-gray-600 dark:text-gray-400 leading-relaxed">
+        <h1 ref={titoloRef} tabIndex={-1} className="text-2xl sm:text-3xl font-bold text-testo outline-none">Teoria</h1>
+        <p className="mt-1 max-w-[65ch] text-sm font-medium text-testo-tenue leading-relaxed">
           {theoryTopics.length} argomenti in tre livelli. Ogni scheda ha la regola, qualche esempio e gli errori tipici di chi parla italiano.
         </p>
-        <p className="mt-2 max-w-[65ch] text-sm font-medium text-gray-600 dark:text-gray-400 leading-relaxed">
+        <p className="mt-2 max-w-[65ch] text-sm font-medium text-testo-tenue leading-relaxed">
           {pass
             ? 'Hai il Pass: tutte le schede pronte sono aperte.'
             : `Una scheda è gratis, le altre sono nel Pass.`}
@@ -93,7 +93,7 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
       </header>
 
       {nPronti === 0 && (
-        <p role="status" className="shrink-0 max-w-[65ch] rounded-2xl border border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#0F172A] px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-300 leading-relaxed">
+        <p role="status" className="shrink-0 max-w-[65ch] rounded-2xl border border-linea bg-superficie-2 px-4 py-3 text-sm font-medium text-testo leading-relaxed">
           Le schede sono ancora in preparazione e per ora nessuna è pronta. Quando lo saranno le trovi qui, nello stesso ordine.
         </p>
       )}
@@ -105,9 +105,9 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
           const idTitolo = `liv-${l.id}`;
           return (
             <section key={l.id} aria-labelledby={idTitolo}>
-              <h2 id={idTitolo} className="flex items-baseline gap-2 text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC]">
+              <h2 id={idTitolo} className="flex items-baseline gap-2 text-lg font-bold text-testo">
                 {l.nome}
-                <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">{l.sotto}</span>
+                <span className="text-xs font-semibold text-testo-tenue">{l.sotto}</span>
               </h2>
               <ul className="mt-2 flex flex-col gap-2">
                 {lista.map(t => <Riga key={t.id} t={t} pass={pass} gratis={gratisIds.has(t.id)} onOpen={apri} />)}
@@ -126,30 +126,30 @@ function Riga({ t, pass, gratis, onOpen }: { t: TheoryTopic; pass: boolean; grat
 
   const etichetta =
     stato === 'arrivo' ? (
-      <span className={cn(BADGE, 'gap-1 bg-gray-100 text-gray-600 dark:bg-[#334155] dark:text-gray-300')}><Clock size={12} aria-hidden /> In arrivo</span>
+      <span className={cn(BADGE, 'gap-1 bg-superficie-2 text-testo-tenue')}><Clock size={12} aria-hidden /> In arrivo</span>
     ) : stato === 'pass' ? (
-      <span className={cn(BADGE, 'gap-1 bg-[#DBEAFE] text-[#1D4ED8] dark:text-[#93C5FD] dark:bg-[#1E3A8A]/50 dark:text-[#93C5FD]')}><Lock size={12} aria-hidden /> Nel Pass</span>
+      <span className={cn(BADGE, 'gap-1 bg-azione-tinta text-azione-scuro')}><Lock size={12} aria-hidden /> Nel Pass</span>
     ) : (
-      <span className={cn(BADGE, 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300')}>{gratis && !pass ? 'Gratis' : 'Aperta'}</span>
+      <span className={cn(BADGE, 'bg-alto-tinta text-alto-testo')}>{gratis && !pass ? 'Gratis' : 'Aperta'}</span>
     );
 
   const contenuto = (
     <>
       <span className="min-w-0 flex-1">
-        <span className={cn('block font-bold leading-snug break-words', stato === 'arrivo' ? 'text-gray-500 dark:text-gray-400' : 'text-[#0F172A] dark:text-[#F8FAFC]')}>{t.titolo}</span>
+        <span className={cn('block font-bold leading-snug break-words', stato === 'arrivo' ? 'text-testo-tenue' : 'text-testo')}>{t.titolo}</span>
         <span className="mt-1 flex flex-wrap items-center gap-2">
-          <span className="text-xs font-bold text-gray-500 dark:text-gray-400">{t.livello}</span>
+          <span className="text-xs font-bold text-testo-tenue">{t.livello}</span>
           {etichetta}
         </span>
       </span>
-      {stato !== 'arrivo' && <ChevronRight size={20} className="shrink-0 text-gray-400" aria-hidden />}
+      {stato !== 'arrivo' && <ChevronRight size={20} className="shrink-0 text-testo-tenue" aria-hidden />}
     </>
   );
 
   if (stato === 'arrivo') {
     return (
       <li>
-        <div className={cn(base, 'border-dashed border-gray-200 dark:border-[#334155] bg-transparent')}>{contenuto}</div>
+        <div className={cn(base, 'border-dashed border-linea bg-transparent')}>{contenuto}</div>
       </li>
     );
   }
@@ -160,8 +160,8 @@ function Riga({ t, pass, gratis, onOpen }: { t: TheoryTopic; pass: boolean; grat
         onClick={() => { playTapSound(); onOpen(t); }}
         className={cn(
           base,
-          'border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] transition-colors duration-100 ',
-          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] dark:focus-visible:outline-[#60A5FA]',
+          'border-linea bg-superficie-2 hover:bg-linea transition-colors duration-100 ',
+          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione',
         )}
       >
         {contenuto}
@@ -179,18 +179,18 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
   onList: () => void;
   onGo: (t: TheoryTopic) => void;
 }) {
-  const h2 = 'text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC]';
-  const corpo = 'max-w-[65ch] text-base font-medium text-gray-800 dark:text-gray-200 leading-relaxed';
+  const h2 = 'text-lg font-bold text-testo';
+  const corpo = 'max-w-[65ch] text-base font-medium text-testo leading-relaxed';
   return (
     <Screen>
       <TopBar onBack={onList} />
       <article className="flex flex-col gap-6 pb-2">
         <header>
-          <p className="flex items-center gap-2 text-xs font-bold text-gray-500 dark:text-gray-400">
-            <span className={cn(BADGE, 'bg-[#EDE9FE] text-[#6D28D9] dark:bg-[#4C1D95]/50 dark:text-[#C4B5FD]')}>{topic.livello}</span>
+          <p className="flex items-center gap-2 text-xs font-bold text-testo-tenue">
+            <span className={cn(BADGE, 'bg-azione-tinta text-azione-scuro')}>{topic.livello}</span>
             Teoria
           </p>
-          <h1 ref={titoloRef} tabIndex={-1} className="mt-2 text-2xl sm:text-3xl font-bold leading-tight text-[#0F172A] dark:text-[#F8FAFC] outline-none break-words">
+          <h1 ref={titoloRef} tabIndex={-1} className="mt-2 text-2xl sm:text-3xl font-bold leading-tight text-testo outline-none break-words">
             {topic.titolo}
           </h1>
         </header>
@@ -205,9 +205,9 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
             <h2 id="t-esempi" className={h2}>Esempi</h2>
             <ul className="mt-3 flex flex-col gap-3">
               {topic.esempi.map((e, i) => (
-                <li key={i} className="max-w-[65ch] border-l-4 border-[#8B5CF6] pl-3">
-                  <p lang="en" className="font-bold text-[#0F172A] dark:text-[#F8FAFC] leading-snug"><RichText text={e.en} /></p>
-                  <p className="mt-0.5 text-sm font-medium text-gray-600 dark:text-gray-400 leading-snug"><RichText text={e.it} /></p>
+                <li key={i} className="max-w-[65ch] border-l-2 border-azione pl-3">
+                  <p lang="en" className="font-bold text-testo leading-snug"><RichText text={e.en} /></p>
+                  <p className="mt-0.5 text-sm font-medium text-testo-tenue leading-snug"><RichText text={e.it} /></p>
                 </li>
               ))}
             </ul>
@@ -219,22 +219,22 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
             <h2 id="t-errori" className={h2}>Errori tipici</h2>
             <ul className="mt-3 flex flex-col gap-3">
               {topic.errori.map((e, i) => (
-                <li key={i} className="max-w-[65ch] rounded-2xl border border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] p-4 flex flex-col gap-3">
+                <li key={i} className="max-w-[65ch] rounded-2xl border border-linea bg-superficie-2 p-4 flex flex-col gap-3">
                   <h3 className="sr-only">Errore {i + 1}</h3>
                   <p className="flex gap-2.5 items-start">
-                    <span className="mt-0.5 inline-flex items-center gap-1 shrink-0 rounded-full bg-[#FEE2E2] text-[#B91C1C] dark:bg-[#7F1D1D]/50 dark:text-[#FCA5A5] px-2 py-0.5 text-[11px] font-bold">
+                    <span className="mt-0.5 inline-flex items-center gap-1 shrink-0 rounded-full bg-basso-tinta text-basso-testo px-2 py-0.5 text-[11px] font-bold">
                       <X size={12} strokeWidth={3.5} aria-hidden /> Sbagliato
                     </span>
-                    <span lang="en" className="font-semibold text-gray-700 dark:text-gray-300 line-through decoration-[#EF4444]/60 leading-snug break-words min-w-0">{e.sbagliato}</span>
+                    <span lang="en" className="font-semibold text-testo line-through decoration-basso/60 leading-snug break-words min-w-0">{e.sbagliato}</span>
                   </p>
                   <p className="flex gap-2.5 items-start">
-                    <span className="mt-0.5 inline-flex items-center gap-1 shrink-0 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 px-2 py-0.5 text-[11px] font-bold">
+                    <span className="mt-0.5 inline-flex items-center gap-1 shrink-0 rounded-full bg-alto-tinta text-alto-testo px-2 py-0.5 text-[11px] font-bold">
                       <Check size={12} strokeWidth={3.5} aria-hidden /> Giusto
                     </span>
-                    <span lang="en" className="font-bold text-[#0F172A] dark:text-[#F8FAFC] leading-snug break-words min-w-0">{e.giusto}</span>
+                    <span lang="en" className="font-bold text-testo leading-snug break-words min-w-0">{e.giusto}</span>
                   </p>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400 leading-relaxed">
-                    <span className="font-bold text-gray-700 dark:text-gray-300">Perché: </span><RichText text={e.perche} />
+                  <p className="text-sm font-medium text-testo-tenue leading-relaxed">
+                    <span className="font-bold text-testo">Perché: </span><RichText text={e.perche} />
                   </p>
                 </li>
               ))}
@@ -243,11 +243,11 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
         )}
 
         {topic.consiglio && (
-          <section aria-labelledby="t-consiglio" className="max-w-[65ch] rounded-2xl bg-[#EFF6FF] dark:bg-[#1E3A8A]/25 border border-[#BFDBFE] dark:border-[#1E40AF]/60 p-4">
-            <h2 id="t-consiglio" className="flex items-center gap-2 text-base font-bold text-[#1D4ED8] dark:text-[#93C5FD]">
+          <section aria-labelledby="t-consiglio" className="max-w-[65ch] rounded-2xl bg-azione-tinta border border-azione/30 p-4">
+            <h2 id="t-consiglio" className="flex items-center gap-2 text-base font-bold text-azione-scuro">
               <Lightbulb size={18} aria-hidden /> Per il test
             </h2>
-            <p className="mt-1.5 font-medium text-[#0F172A] dark:text-gray-200 leading-relaxed"><RichText text={topic.consiglio} /></p>
+            <p className="mt-1.5 font-medium text-testo leading-relaxed"><RichText text={topic.consiglio} /></p>
           </section>
         )}
 
@@ -257,7 +257,7 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
           <button
             type="button"
             onClick={() => { playTapSound(); onList(); }}
-            className="w-full py-3 px-6 font-bold text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 underline-offset-4 hover:underline"
+            className="w-full py-3 px-6 font-bold text-sm text-testo-tenue hover:text-testo underline-offset-4 hover:underline"
           >
             Tutti gli argomenti
           </button>
@@ -276,20 +276,20 @@ function Vicino({ t, verso, bloccato, onGo }: { t: TheoryTopic; verso: 'prec' | 
       className={cn(
         'w-full flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-colors duration-100 ',
         succ
-          ? 'border-[#2563EB] dark:border-[#60A5FA] bg-[#DBEAFE]/50 dark:bg-[#1E3A8A]/30 hover:bg-[#DBEAFE] dark:hover:bg-[#1E3A8A]/50'
-          : 'border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B]',
-        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] dark:focus-visible:outline-[#60A5FA]',
+          ? 'border-azione/40 bg-azione-tinta/50 hover:bg-azione-tinta'
+          : 'border-linea bg-superficie-2 hover:bg-linea',
+        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione',
       )}
     >
-      {!succ && <ChevronLeft size={20} className="shrink-0 text-gray-400" aria-hidden />}
+      {!succ && <ChevronLeft size={20} className="shrink-0 text-testo-tenue" aria-hidden />}
       <span className="min-w-0 flex-1">
-        <span className="block text-xs font-bold text-gray-600 dark:text-gray-400">{succ ? 'Argomento successivo' : 'Argomento precedente'}</span>
-        <span className="block font-bold leading-snug text-[#0F172A] dark:text-[#F8FAFC] break-words">{t.titolo}</span>
+        <span className="block text-xs font-bold text-testo-tenue">{succ ? 'Argomento successivo' : 'Argomento precedente'}</span>
+        <span className="block font-bold leading-snug text-testo break-words">{t.titolo}</span>
         {bloccato && (
-          <span className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-[#1D4ED8] dark:text-[#93C5FD]"><Lock size={12} aria-hidden /> Nel Pass</span>
+          <span className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-azione-scuro"><Lock size={12} aria-hidden /> Nel Pass</span>
         )}
       </span>
-      {succ && <ChevronRight size={20} className="shrink-0 text-gray-400" aria-hidden />}
+      {succ && <ChevronRight size={20} className="shrink-0 text-testo-tenue" aria-hidden />}
     </button>
   );
 }

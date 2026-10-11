@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { AppState, QuestionClickEvent, QuestionTelemetry, PaywallReason, UserStats } from '../types';
 import { selectPracticeIds, updateStats, poolMeta, countLearned } from '../lib/spacedRepetition';
-import { X, ArrowRight, RotateCcw, Lightbulb, Flame, BookOpen } from 'lucide-react';
+import { X, ArrowRight, RotateCcw, Lightbulb, Flame, BookOpen, Check } from 'lucide-react';
 import FineSessione, { type DomandaDaRiprendere } from './esito/FineSessione';
 import { cn, shuffleArray } from '../lib/utils';
 import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound } from '../lib/audio';
@@ -172,16 +172,16 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
     return (
       <Screen className="items-center justify-center text-center">
         <IllustrazioneAnimata nome="attesa-caricamento" lato={110} />
-        <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Preparo le domande…</p>
+        <p className="font-bold text-testo">Preparo le domande…</p>
       </Screen>
     );
   }
   if (loadState === 'error') {
     return (
       <Screen className="items-center justify-center text-center">
-        <p role="alert" className="font-bold text-[#B91C1C] dark:text-[#FCA5A5] max-w-sm">Non riesco a caricare le domande. Controlla la connessione e riprova.</p>
-        <button onClick={() => { playTapSound(); setLoadKey(k => k + 1); }} className="w-full max-w-xs bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold py-3.5 rounded-2xl transition-colors duration-100">Riprova</button>
-        <button onClick={onExit} className="text-sm font-bold text-gray-500 dark:text-gray-400 underline">Torna indietro</button>
+        <p role="alert" className="font-bold text-basso-testo max-w-sm">Non riesco a caricare le domande. Controlla la connessione e riprova.</p>
+        <button onClick={() => { playTapSound(); setLoadKey(k => k + 1); }} className="w-full max-w-xs bg-azione hover:bg-azione-scuro text-azione-su font-bold py-3.5 rounded-2xl transition-colors duration-100">Riprova</button>
+        <button onClick={onExit} className="text-sm font-bold text-testo-tenue underline">Torna indietro</button>
       </Screen>
     );
   }
@@ -359,22 +359,22 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   const progress = (currentIndex / questions.length) * 100;
 
   return (
-    <div className="flex flex-col h-full w-full sm:max-h-[calc(100dvh-3rem)] bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-100">
+    <div className="flex flex-col h-full w-full sm:max-h-[calc(100dvh-3rem)] bg-superficie sm:rounded-[32px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
       {/* Header & Progress */}
-      <header className="flex items-center gap-3 sm:gap-4 p-3 border-b border-gray-100 dark:border-[#334155] h-12 shrink-0 transition-colors duration-100">
-        <button onClick={() => { playTapSound(); onExit(); }} className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 rounded-full transition-colors duration-100">
+      <header className="flex items-center gap-3 sm:gap-4 p-3 border-b border-linea h-12 shrink-0 transition-colors duration-100">
+        <button onClick={() => { playTapSound(); onExit(); }} className="p-1 text-testo-tenue hover:text-testo rounded-full transition-colors duration-100">
           <X size={18} strokeWidth={3} />
         </button>
-        <div className="flex-1 bg-gray-100 dark:bg-[#334155] h-2 rounded-full overflow-hidden transition-colors duration-100">
-          <div className="bg-[#2563EB] h-full rounded-full" style={{ width: `${progress}%` }} />
+        <div className="flex-1 bg-superficie-2 h-2 rounded-full overflow-hidden transition-colors duration-100">
+          <div className="bg-azione h-full rounded-full" style={{ width: `${progress}%` }} />
         </div>
         {streak > 1 && (
-          <div className="flex items-center gap-1 text-[#F59E0B] font-bold text-xs sm:text-sm">
+          <div className="flex items-center gap-1 text-medio-testo font-bold text-xs sm:text-sm">
             <Flame size={16} fill="currentColor" />
             <span>{streak}x</span>
           </div>
         )}
-        <div className={cn("font-bold text-sm w-8 text-center", timeLeft <= 5 ? "text-[#EF4444]" : "text-gray-500 dark:text-gray-400")}>
+        <div className={cn("font-bold text-sm w-8 text-center", timeLeft <= 5 ? "text-basso-testo" : "text-testo-tenue")}>
           {timeLeft}s
         </div>
       </header>
@@ -382,16 +382,16 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       {/* Main Content */}
       <main className="flex-1 p-4 sm:p-8 flex flex-col w-full overflow-y-auto scrollbar-hide">
         <div className="mb-4 shrink-0 flex items-center justify-between">
-          <span className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400">
+          <span className="text-xs sm:text-sm font-semibold text-testo-tenue">
             Domanda {currentIndex + 1} di {questions.length}
           </span>
           {(!pass || category === 'corpus:initial' || appState.selectedCorpus === 'initial') && (
-            <span className="px-3 py-1 bg-[#22C55E]/10 text-[#16A34A] dark:text-[#34D399] border border-[#22C55E]/30 text-xs font-bold rounded-full">
+            <span className="px-3 py-1 bg-alto/10 text-alto-testo border border-alto/30 text-xs font-bold rounded-full">
               {pass ? 'Nucleo di base' : 'Nucleo gratuito'} ({poolMeta(false).length})
             </span>
           )}
         </div>
-        <h2 className="text-xl sm:text-2xl font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-5 sm:mb-6 leading-snug shrink-0">
+        <h2 className="text-xl sm:text-2xl font-bold text-testo mb-5 sm:mb-6 leading-snug shrink-0">
           {question.prompt}
         </h2>
 
@@ -403,13 +403,13 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
               {!showHint ? (
                 <button 
                   onClick={() => { playTapSound(); setShowHint(true); }}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400 font-bold rounded-xl hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors duration-100"
+                  className="flex items-center gap-2 px-4 py-2 bg-azione-tinta text-azione-scuro font-bold rounded-xl hover:bg-azione-tinta/70 transition-colors duration-100"
                 >
                   <Lightbulb size={20} />
                   Mostra Suggerimento
                 </button>
               ) : (
-                <div className="bg-[#DBEAFE] dark:bg-[#1D4ED8] text-[#2563EB] dark:text-[#DBEAFE] px-4 py-2 rounded-xl text-sm font-bold text-center">
+                <div className="bg-azione-tinta text-azione-scuro px-4 py-2 rounded-xl text-sm font-bold text-center">
                   Argomento: {question.grammarTopic || question.category} {question.level && `(${question.level})`}
                 </div>
               )}
@@ -417,11 +417,11 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
 
             {/* Answer Box */}
             <div className={cn(
-              "min-h-[100px] w-full p-4 flex flex-wrap content-start gap-2 items-center bg-gray-50/50 dark:bg-[#0F172A]/50 rounded-t-2xl transition-colors duration-100",
-              hasChecked && !isCorrect ? "border-[#EF4444] bg-[#FEE2E2]/50 dark:bg-[#7F1D1D]/50" : "border-gray-300 dark:border-[#475569]"
+              "min-h-[100px] w-full p-4 flex flex-wrap content-start gap-2 items-center bg-superficie-2/50 rounded-t-2xl transition-colors duration-100",
+              hasChecked && !isCorrect ? "border-basso/30 bg-basso-tinta/50" : "border-linea"
             )}>
               {selectedRecallWords.length === 0 && (
-                <span className="text-gray-400 font-bold px-2 py-1">Tocca le parole per formare la frase...</span>
+                <span className="text-testo-tenue font-bold px-2 py-1">Tocca le parole per formare la frase...</span>
               )}
               {selectedRecallWords.map((wordIndex) => (
                 <button
@@ -434,8 +434,8 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                   }}
                   disabled={hasChecked}
                   className={cn(
-                    "bg-white dark:bg-[#1E293B] border text-[#0F172A] dark:text-[#F8FAFC] px-4 py-2 rounded-xl font-bold shadow-sm transition-colors duration-100",
-                    hasChecked ? "border-gray-200 dark:border-[#475569] opacity-80" : "border-gray-200 dark:border-[#475569]  hover:border-gray-300"
+                    "bg-superficie border text-testo px-4 py-2 rounded-xl font-bold shadow-sm dark:shadow-none transition-colors duration-100",
+                    hasChecked ? "border-linea opacity-80" : "border-linea hover:border-tacca"
                   )}
                 >
                   {recallWords[wordIndex]}
@@ -460,8 +460,8 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                     className={cn(
                       "px-5 py-2.5 rounded-[16px] font-bold transition-colors duration-100 text-sm sm:text-base",
                       isSelected 
-                        ? "bg-gray-200 dark:bg-[#334155] text-transparent border border-gray-200 dark:border-[#334155] cursor-default shadow-none" 
-                        : "bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-[#475569] text-[#0F172A] dark:text-[#F8FAFC]  cursor-pointer hover:bg-gray-50 dark:hover:bg-[#0F172A]"
+                        ? "bg-tacca text-transparent border border-linea cursor-default shadow-none" 
+                        : "bg-superficie border border-linea text-testo cursor-pointer hover:bg-linea"
                     )}
                   >
                     {word}
@@ -473,7 +473,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
             <div className="mt-8 flex flex-col items-center gap-4 pt-4">
               <button
                 onClick={() => { playTapSound(); setOptionsRevealed(true); }}
-                className="text-gray-400 font-bold text-xs sm:text-sm hover:text-gray-600 transition-colors duration-100"
+                className="text-testo-tenue font-bold text-xs sm:text-sm hover:text-testo transition-colors duration-100"
               >
                 Troppo difficile? Usa le opzioni multiple
               </button>
@@ -482,26 +482,26 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 content-start">
             {question.options.map((opt, idx) => {
-              let stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] hover:border-gray-300 dark:hover:border-gray-400 text-[#0F172A] dark:text-gray-200 ";
-              let numberClass = "border-gray-200 dark:border-[#334155] text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#1E293B]";
+              let stateClass = "border-linea bg-superficie-2 hover:bg-linea hover:border-tacca text-testo  ";
+              let numberClass = "border-linea text-testo-tenue bg-superficie";
               
               if (hasChecked) {
                 if (idx === correctDisplay) {
-                  stateClass = "border-[#22C55E] dark:border-[#16A34A] bg-[#F0FDF4] dark:bg-[#064E3B] text-[#16A34A] dark:text-[#10B981]";
-                  numberClass = "border-[#22C55E] dark:border-[#16A34A] bg-white dark:bg-[#064E3B] text-[#22C55E] dark:text-[#10B981]";
+                  stateClass = "border-alto/30 bg-alto-tinta text-testo";
+                  numberClass = "border-alto bg-alto-pieno text-azione-su";
                 } else if (idx === selectedOption) {
-                  stateClass = "border-[#EF4444] dark:border-[#EF4444] bg-[#FEE2E2] dark:bg-[#7F1D1D] text-[#B91C1C] dark:text-[#F87171]";
-                  numberClass = "border-[#EF4444] dark:border-[#EF4444] bg-white dark:bg-[#7F1D1D] text-[#EF4444] dark:text-[#F87171]";
+                  stateClass = "border-basso/30 bg-basso-tinta text-testo";
+                  numberClass = "border-basso bg-basso-pieno text-azione-su";
                 } else if (wrongOptions.has(idx)) {
-                  stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40";
+                  stateClass = "border-linea bg-superficie opacity-40";
                 } else {
-                  stateClass = "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] opacity-40";
+                  stateClass = "border-linea bg-superficie-2 opacity-40";
                 }
               } else if (selectedOption === idx) {
-                stateClass = "bg-[#EFF6FF] dark:bg-[#1E3A8A]/40 border-[#2563EB] dark:border-[#60A5FA] text-[#0F172A] dark:text-[#F8FAFC]";
-                numberClass = "border-[#2563EB] dark:border-[#60A5FA] bg-[#2563EB] text-white";
+                stateClass = "bg-azione-tinta border-azione text-testo";
+                numberClass = "border-azione bg-azione text-azione-su";
               } else if (wrongOptions.has(idx)) {
-                stateClass = "border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#1E293B] opacity-40";
+                stateClass = "border-linea bg-superficie opacity-40";
               }
 
               return (
@@ -519,6 +519,8 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                       {String.fromCharCode(65 + idx)}
                     </span>
                     <span className="text-[15px] sm:text-base font-semibold leading-snug flex-1">{opt}</span>
+                    {hasChecked && idx === correctDisplay && <><Check size={20} strokeWidth={3} className="shrink-0 text-alto-testo" aria-hidden="true" /><span className="sr-only">Risposta giusta</span></>}
+                    {hasChecked && idx !== correctDisplay && idx === selectedOption && <><X size={20} strokeWidth={3} className="shrink-0 text-basso-testo" aria-hidden="true" /><span className="sr-only">La tua risposta, sbagliata</span></>}
                   </div>
                 </button>
               );
@@ -528,38 +530,38 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       </main>
 
       {checkError && (
-        <div role="alert" className="shrink-0 flex items-center justify-between gap-3 px-4 py-2 bg-[#FEE2E2] dark:bg-[#7F1D1D] text-[#B91C1C] dark:text-[#FCA5A5] text-sm font-bold">
+        <div role="alert" className="shrink-0 flex items-center justify-between gap-3 px-4 py-2 bg-basso-tinta text-basso-testo text-sm font-bold">
           <span>{checkError}</span>
           <button onClick={() => { const l = lastCheckRef.current; if (l) void handleCheck(l.confidence, l.isTimeout); }} className="underline shrink-0">Riprova</button>
         </div>
       )}
       {/* Bottom Action Bar */}
-      <div className={cn("border-t border-gray-100 dark:border-[#334155] shrink-0 p-4 transition-colors duration-100", hasChecked ? (isCorrect ? "bg-[#DCFCE7] dark:bg-[#064E3B] border-[#22C55E] dark:border-[#16A34A]" : "bg-[#FEE2E2] dark:bg-[#7F1D1D] border-[#EF4444] dark:border-[#EF4444]") : "bg-white dark:bg-[#1E293B]")}>
+      <div className={cn("border-t border-linea shrink-0 p-4 transition-colors duration-100", hasChecked ? (isCorrect ? "bg-alto-tinta border-alto/30" : "bg-basso-tinta border-basso/30") : "bg-superficie")}>
         <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-between">
           {hasChecked && (
               <div
                 className={cn(
                   "font-bold flex flex-col gap-1 text-center sm:text-left w-full sm:w-auto",
-                  isCorrect ? "text-[#22C55E] dark:text-[#10B981]" : "text-[#EF4444] dark:text-[#F87171]"
+                  isCorrect ? "text-alto-testo" : "text-basso-testo"
                 )}
               >
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                   <span className="text-xl sm:text-2xl">{isCorrect ? (streak > 2 ? `Fantastico, ${streak} di fila!` : "Ottimo!") : "Errata."}</span>
                   {isCorrect && question.category && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/80 dark:bg-black/30 text-[#16A34A] dark:text-[#34D399] border border-[#22C55E]/30 dark:border-[#10B981]/30 shadow-xs">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-superficie/80 text-alto-testo border border-alto/30 shadow-xs dark:shadow-none">
                       <span>Categoria:</span>
                       <span className="font-extrabold">{question.category}{question.grammarTopic ? ` (${question.grammarTopic})` : ''}</span>
                     </span>
                   )}
                 </div>
                 {!isCorrect && (
-                  <p className="text-sm font-bold opacity-80 text-gray-700 dark:text-gray-200">
+                  <p className="text-sm font-bold opacity-80 text-testo">
                     Riprova!
                   </p>
                 )}
                 {result?.explanation && (
                   <div className="max-h-[28vh] overflow-y-auto">
-                    <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 leading-snug">
+                    <p className="text-sm font-semibold text-testo leading-snug">
                       {result.explanation}
                     </p>
                   </div>
@@ -567,7 +569,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                 {result?.theoryId && onOpenTheory && (
                   <button
                     onClick={() => { playTapSound(); onOpenTheory(result.theoryId!); }}
-                    className="inline-flex items-center justify-center sm:justify-start gap-1.5 text-sm font-bold text-gray-700 dark:text-gray-200 underline underline-offset-2"
+                    className="inline-flex items-center justify-center sm:justify-start gap-1.5 text-sm font-bold text-testo underline underline-offset-2"
                   >
                     <BookOpen size={15} /> Studia la regola
                   </button>
@@ -577,26 +579,26 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
 
           {!hasChecked ? (
             <div className="w-full sm:w-auto flex flex-col gap-2">
-              <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 text-center sm:text-right">Quanto sei sicuro della risposta?</span>
+              <span className="text-xs font-semibold text-testo-tenue text-center sm:text-right">Quanto sei sicuro della risposta?</span>
               <div className="flex flex-row gap-2 justify-between sm:justify-end">
               <button
                 onClick={() => handleCheck('low')}
                 disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
-                className="flex-1 sm:flex-none bg-[#2563EB] hover:bg-[#1D4ED8] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-colors duration-100"
+                className="flex-1 sm:flex-none bg-azione-tinta border border-azione/30 hover:border-azione disabled:bg-superficie-2 disabled:border-linea disabled:text-testo-tenue text-azione-scuro font-bold text-sm py-3.5 px-5 rounded-2xl transition-colors duration-100"
               >
                 Indovino
               </button>
               <button
                 onClick={() => handleCheck('medium')}
                 disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
-                className="flex-1 sm:flex-none bg-[#F59E0B] hover:bg-[#D97706] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-colors duration-100"
+                className="flex-1 sm:flex-none bg-medio-tinta border border-medio/30 hover:border-medio disabled:bg-superficie-2 disabled:border-linea disabled:text-testo-tenue text-medio-testo font-bold text-sm py-3.5 px-5 rounded-2xl transition-colors duration-100"
               >
                 Incerto
               </button>
               <button
                 onClick={() => handleCheck('high')}
                 disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
-                className="flex-1 sm:flex-none bg-[#22C55E] hover:bg-[#16A34A] disabled:bg-gray-100 disabled:dark:bg-[#334155] disabled:text-gray-400 disabled:dark:text-gray-500 text-white font-bold text-sm py-3.5 px-5 rounded-2xl transition-colors duration-100"
+                className="flex-1 sm:flex-none bg-alto-tinta border border-alto/30 hover:border-alto disabled:bg-superficie-2 disabled:border-linea disabled:text-testo-tenue text-alto-testo font-bold text-sm py-3.5 px-5 rounded-2xl transition-colors duration-100"
               >
                 Sicuro
               </button>
@@ -606,8 +608,8 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
             <button
               onClick={handleNext}
               className={cn(
-                "w-full sm:w-auto text-white font-bold text-base py-3.5 px-8 rounded-2xl transition-colors duration-100 flex items-center justify-center gap-2 ",
-                isCorrect ? "bg-[#22C55E] hover:bg-[#16A34A] border-[#16A34A] dark:bg-[#10B981] dark:border-[#059669]" : "bg-[#EF4444] hover:bg-[#DC2626] border-[#B91C1C] dark:bg-[#EF4444] dark:border-[#DC2626]"
+                "w-full sm:w-auto text-azione-su font-bold text-base py-3.5 px-8 rounded-2xl transition-colors duration-100 flex items-center justify-center gap-2 ",
+                isCorrect ? "bg-alto-pieno" : "bg-basso-pieno"
               )}
             >
               {isCorrect ? (

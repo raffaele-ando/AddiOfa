@@ -236,6 +236,15 @@ const CERCHI: Record<string, string> = {
   'kit-rosso/errore': '#FEE7E9', 'kit-rosso/info': '#E8EDFE',
 };
 
+// Nel tema scuro il cerchio pastel diventa la tinta tenue del token (niente macchie chiare sul fondo blu-nero).
+const CERCHIO_SCURO: Record<string, string> = {
+  studio: 'dark:bg-azione-tinta', quiz: 'dark:bg-azione-tinta', profilo: 'dark:bg-azione-tinta', info: 'dark:bg-azione-tinta',
+  statistiche: 'dark:bg-medio-tinta',
+  contenuti: 'dark:bg-basso-tinta', costo: 'dark:bg-basso-tinta', blocco: 'dark:bg-basso-tinta', email: 'dark:bg-basso-tinta', errore: 'dark:bg-basso-tinta',
+  successo: 'dark:bg-alto-tinta', completato: 'dark:bg-alto-tinta',
+  impostazioni: 'dark:bg-superficie-2', aiuto: 'dark:bg-superficie-2',
+};
+
 export const NOMI_ICONE = ['studio', 'statistiche', 'quiz', 'contenuti', 'costo', 'blocco', 'successo', 'email', 'profilo', 'impostazioni', 'aiuto', 'completato', 'errore', 'info'] as const;
 
 /** Icona: cerchio in codice (colore modificabile) + glifo vettoriale. Cliccabile solo se riceve onClick.
@@ -245,7 +254,8 @@ export function IconaChip({ nome, kit = KIT_APP, lato = 57, cerchio, onClick, et
 }) {
   const chiave = `kit-${kit}/${nome}`;
   const contenuto = (
-    <span style={{ display: 'inline-block', width: lato, height: lato, borderRadius: '50%', background: cerchio ?? CERCHI[chiave], position: 'relative' }}>
+    <span className={cerchio ? undefined : `bg-[var(--cerchio)] ${CERCHIO_SCURO[nome]}`}
+      style={{ display: 'inline-block', width: lato, height: lato, borderRadius: '50%', background: cerchio, ['--cerchio' as string]: CERCHI[chiave], position: 'relative' }}>
       <img src={urlGlifo(`kit-${kit}`, nome)} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
     </span>
   );
@@ -278,7 +288,7 @@ export function Misuratore({ valore, larghezza = 232, etichetta, testo }: {
           <stop offset="0" stopColor={col.arco[0]} /><stop offset="1" stopColor={col.arco[1]} />
         </linearGradient>
       </defs>
-      <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" className="stroke-[#EEF0F4] dark:stroke-[#334155]" strokeWidth="16" strokeLinecap="round" />
+      <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" className="stroke-linea" strokeWidth="16" strokeLinecap="round" />
       <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" stroke={`url(#g${id})`} strokeWidth="16" strokeLinecap="round"
         strokeDasharray={`${lung * frazione} ${lung}`} />
       <circle cx={px} cy={py} r="11" fill={col.punto} stroke="#fff" strokeWidth="4" />
@@ -291,8 +301,8 @@ export function Misuratore({ valore, larghezza = 232, etichetta, testo }: {
 export function Caricamento({ lato = 64, etichetta = 'Caricamento' }: { lato?: number; etichetta?: string }) {
   return (
     <svg width={lato} height={lato} viewBox="0 0 64 64" role="img" aria-label={etichetta} className="brand-anim-gira">
-      <circle cx="32" cy="32" r="26" fill="none" stroke="#BFDBFE" strokeWidth="8" />
-      <path d="M32 6a26 26 0 0 1 26 26" fill="none" stroke="#2563EB" strokeWidth="8" strokeLinecap="round" />
+      <circle cx="32" cy="32" r="26" fill="none" stroke="var(--color-azione-tinta)" strokeWidth="8" />
+      <path d="M32 6a26 26 0 0 1 26 26" fill="none" stroke="var(--color-azione)" strokeWidth="8" strokeLinecap="round" />
     </svg>
   );
 }

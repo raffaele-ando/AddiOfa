@@ -24,7 +24,7 @@ export default function Navigazione({ attiva, onVai }: { attiva: Scheda | null; 
         const { d, pieno } = ICONE[id];
         return (
           <button key={id} type="button" onClick={() => { playTapSound(); onVai(id); }} aria-current={on ? 'page' : undefined}
-            className={`flex-1 min-w-0 flex flex-col items-center gap-0.5 py-1 text-[12px] leading-[16px] ${on ? 'text-azione font-semibold' : 'text-[#6B7794] dark:text-testo-tenue font-medium'}`}>
+            className={`flex-1 min-w-0 flex flex-col items-center gap-0.5 py-1 text-[12px] leading-[16px] ${on ? 'text-azione font-semibold' : 'text-testo-tenue font-medium'}`}>
             <svg width="30" height="30" viewBox="0 0 24 24" fill={on && pieno ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={on && pieno ? 0.8 : 2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d={d} />
             </svg>

@@ -7,21 +7,21 @@ import { LEGAL_TABS } from '../legal';
 export default function Footer({ onOpenLegal }: { onOpenLegal: (s: LegalSection) => void }) {
   return (
     <footer className="shrink-0 pt-2 text-center">
-      <nav aria-label="Informazioni legali" className="flex flex-wrap items-center justify-center text-xs font-semibold text-gray-500 dark:text-gray-400">
+      <nav aria-label="Informazioni legali" className="flex flex-wrap items-center justify-center text-xs font-semibold text-testo-tenue">
         {LEGAL_TABS.map((t, i) => (
           <Fragment key={t.id}>
-            {i > 0 && <span aria-hidden className="text-gray-300 dark:text-[#475569]">·</span>}
+            {i > 0 && <span aria-hidden className="text-testo-tenue">·</span>}
             <button
               type="button"
               onClick={() => onOpenLegal(t.id)}
-              className="px-2.5 py-2 underline-offset-2 hover:underline hover:text-gray-700 dark:hover:text-gray-200"
+              className="px-2.5 py-2 underline-offset-2 hover:underline hover:text-testo"
             >
               {t.label}
             </button>
           </Fragment>
         ))}
       </nav>
-      <p className="mx-auto max-w-[44ch] text-[11px] leading-snug text-gray-500 dark:text-gray-400">{DISCLAIMER}</p>
+      <p className="mx-auto max-w-[44ch] text-[11px] leading-snug text-testo-tenue">{DISCLAIMER}</p>
     </footer>
   );
 }

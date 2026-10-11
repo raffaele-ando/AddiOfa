@@ -13,7 +13,7 @@
   --color-superficie: #FFFFFF;
   --color-superficie-2: #F2F5FB;
   --color-testo: #0E1B3F;
-  --color-testo-tenue: #5F6B85;
+  --color-testo-tenue: #566279;
   --color-linea: #E6EBF5;
   --color-tacca: #D3DAE6;
 
@@ -23,31 +23,35 @@
   --color-azione-tinta: #DBEAFE;
   --color-azione-tinta-scura: #1E3A8A;
   --color-azione-chiaro: #60A5FA;
-  --color-azione-da: #3B82F6;
+  --color-azione-da: #2C6BEA;
   --color-azione-a: #2563EB;
   --color-azione-su: #FFFFFF;
   --color-marchio: #1D6BFF;
 
-  /* fasce della probabilità: tinta del banner, colore pieno, inizio del gradiente dell'arco, numero e etichetta */
+  /* fasce della probabilità: tinta del banner, colore pieno, inizio del gradiente dell'arco, numero e etichetta; -pieno = fondo di pulsanti e badge con testo azione-su sopra */
   --color-basso: #F5303B;
   --color-basso-chiaro: #FF8E8E;
   --color-basso-testo: #A31217;
   --color-basso-numero: #E8101E;
   --color-basso-tinta: #FEF0F0;
+  --color-basso-pieno: #D12A33;
   --color-medio: #FFA92D;
   --color-medio-chiaro: #FFD98A;
-  --color-medio-testo: #B45F06;
-  --color-medio-numero: #F59A1B;
+  --color-medio-testo: #A65705;
+  --color-medio-numero: #D4780A;
   --color-medio-tinta: #FFF8EC;
+  --color-medio-pieno: #B05A04;
   --color-alto: #0BB474;
   --color-alto-chiaro: #8DE3B9;
   --color-alto-testo: #0B7A4A;
   --color-alto-numero: #079A62;
   --color-alto-tinta: #EEF9F3;
+  --color-alto-pieno: #0A8350;
 }
 
 /* Tema scuro: stessi nomi, valori desaturati. Le tinte dei banner sono tinte morbide sulla superficie, niente riquadri fangosi. */
 .dark {
+  color-scheme: dark;
   --color-fondo: #0A101F;
   --color-superficie: #111A2E;
   --color-superficie-2: #17223A;
@@ -56,7 +60,7 @@
   --color-linea: #1F2B45;
   --color-tacca: #2A3858;
 
-  --color-azione: #4F8BFF;
+  --color-azione: #5A92FF;
   --color-azione-scuro: #7FA8FF;
   --color-azione-tinta: #16264A;
   --color-azione-tinta-scura: #16264A;
@@ -71,16 +75,19 @@
   --color-basso-testo: #F59A91;
   --color-basso-numero: #F2766B;
   --color-basso-tinta: #26283D;
+  --color-basso-pieno: #F2766B;
   --color-medio: #E8B04A;
   --color-medio-chiaro: #F3CF8A;
   --color-medio-testo: #EBC272;
   --color-medio-numero: #E8B04A;
   --color-medio-tinta: #262C3B;
+  --color-medio-pieno: #E8B04A;
   --color-alto: #4CC38A;
   --color-alto-chiaro: #92DDB9;
   --color-alto-testo: #7ED6A9;
   --color-alto-numero: #4CC38A;
   --color-alto-tinta: #1B2D40;
+  --color-alto-pieno: #4CC38A;
 }
 
 @layer base {

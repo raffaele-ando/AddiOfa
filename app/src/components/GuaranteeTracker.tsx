@@ -8,31 +8,31 @@ export default function GuaranteeTracker({ appState }: { appState: AppState }) {
   const progress = computeGuaranteeProgress(appState);
 
   return (
-    <div className="bg-[#F0FDF4] dark:bg-[#064E3B]/40 border border-[#22C55E]/40 rounded-2xl p-4 flex flex-col gap-3">
+    <div className="bg-alto-tinta border border-alto/30 rounded-2xl p-4 flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        <ShieldCheck size={20} className="text-[#16A34A]" />
-        <span className="font-bold text-sm text-[#15803D] dark:text-[#34D399]">
+        <ShieldCheck size={20} className="text-alto-testo" />
+        <span className="font-bold text-sm text-alto-testo">
           Stato della garanzia
         </span>
       </div>
       {progress.checks.map(c => (
         <div key={c.label} className="flex flex-col gap-1">
-          <div className="flex justify-between text-xs sm:text-sm font-bold text-[#0F172A] dark:text-gray-200">
+          <div className="flex justify-between text-xs sm:text-sm font-bold text-testo">
             <span className="flex items-center gap-1.5">
-              {c.done && <Check size={14} strokeWidth={3.5} className="text-[#16A34A]" />}
+              {c.done && <Check size={14} strokeWidth={3.5} className="text-alto-testo" />}
               {c.label}
             </span>
             <span>{c.current}/{c.target}</span>
           </div>
-          <div className="h-2 bg-white dark:bg-[#0F172A] rounded-full overflow-hidden">
+          <div className="h-2 bg-superficie-2 rounded-full overflow-hidden">
             <div
-              className={cn("h-full rounded-full transition-colors duration-100", c.done ? "bg-[#22C55E]" : "bg-[#F59E0B]")}
+              className={cn("h-full rounded-full transition-colors duration-100", c.done ? "bg-alto-pieno" : "bg-medio-pieno")}
               style={{ width: `${(c.current / c.target) * 100}%` }}
             />
           </div>
         </div>
       ))}
-      <p className="text-xs font-bold text-gray-600 dark:text-gray-300">
+      <p className="text-xs font-bold text-testo-tenue">
         {progress.qualified
           ? 'Hai tutti i requisiti: se non superi il test hai diritto al rimborso.'
           : 'Completa tutti i requisiti prima del test per avere diritto al rimborso.'}

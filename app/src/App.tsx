@@ -61,7 +61,7 @@ function initialView(state: AppState): View {
 }
 
 function Caricamento() {
-  return <div className="h-full w-full flex items-center justify-center text-sm text-[#6B7280]" role="status">Caricamento…</div>;
+  return <div className="h-full w-full flex items-center justify-center text-sm text-testo-tenue" role="status">Caricamento…</div>;
 }
 
 // Lo stato dei progressi sta qui perché AccessProvider ha bisogno dello storico per contare le simulazioni gratuite

@@ -35,18 +35,18 @@ export class ErrorBoundary extends Component<Props, State> {
   public render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div className="h-[100dvh] w-full flex items-center justify-center p-6 bg-[#F6F8FC] dark:bg-[#111B21] text-[#0F172A] dark:text-[#E2E8F0]">
-          <div className="max-w-md w-full bg-white dark:bg-[#1E293B] rounded-3xl p-6 sm:p-8 border-2 border-gray-200 dark:border-[#334155] shadow-lg text-center flex flex-col items-center">
-            <div className="bg-[#FEE2E2] dark:bg-[#7F1D1D]/30 text-[#EF4444] dark:text-[#F87171] p-4 rounded-2xl mb-4">
+        <div className="h-[100dvh] w-full flex items-center justify-center p-6 bg-fondo text-testo">
+          <div className="max-w-md w-full bg-superficie rounded-3xl p-6 sm:p-8 border border-linea shadow-lg dark:shadow-none text-center flex flex-col items-center">
+            <div className="bg-basso-tinta text-basso-testo p-4 rounded-2xl mb-4">
               <AlertTriangle size={36} strokeWidth={2.5} />
             </div>
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-2">Qualcosa è andato storto</h2>
-            <p className="text-sm font-bold text-gray-500 dark:text-gray-400 mb-6">
+            <p className="text-sm font-bold text-testo-tenue mb-6">
               Si è verificato un problema imprevisto. Puoi riavviare l'applicazione in sicurezza.
             </p>
             <button
               onClick={this.handleReset}
-              className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] border-[#2563EB] text-white font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 transition-colors duration-100"
+              className="w-full bg-azione hover:bg-azione-scuro border-azione text-azione-su font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 transition-colors duration-100"
             >
               <RotateCcw size={18} strokeWidth={2.5} />
               Ricarica App

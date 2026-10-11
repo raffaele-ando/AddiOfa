@@ -9,8 +9,8 @@ import { cn } from '../../lib/utils';
 
 function Voce({ children }: { children: string }) {
   return (
-    <li className="flex items-start gap-2.5 text-sm font-semibold text-[#0F172A] dark:text-gray-200">
-      <Check size={17} strokeWidth={3.5} className="mt-0.5 shrink-0 text-azione dark:text-azione-chiaro" aria-hidden />
+    <li className="flex items-start gap-2.5 text-sm font-semibold text-testo">
+      <Check size={17} strokeWidth={3.5} className="mt-0.5 shrink-0 text-azione " aria-hidden />
       <span>{children}</span>
     </li>
   );
@@ -41,8 +41,8 @@ export default function Offerta({ scuro, onStart, onOpenPass, onOpenLegal }: Pro
           <div className={cn(SCHEDA, 'flex flex-col p-6 sm:p-7')}>
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-xl font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Gratis</h3>
-                <p className="mt-1 text-sm font-medium text-gray-600 dark:text-gray-300">Senza account e senza carta.</p>
+                <h3 className="text-xl font-extrabold text-testo">Gratis</h3>
+                <p className="mt-1 text-sm font-medium text-testo-tenue">Senza account e senza carta.</p>
               </div>
               <div className="shrink-0"><IllustrazioneAnimata nome="quiz-test" lato={84} quandoVisibile /></div>
             </div>
@@ -54,34 +54,34 @@ export default function Offerta({ scuro, onStart, onOpenPass, onOpenLegal }: Pro
         </div>
 
         <div>
-          <div id="prezzo" className="relative scroll-mt-20 rounded-3xl border-2 border-azione dark:border-azione-chiaro bg-white dark:bg-[#1E293B] p-6 shadow-[0_12px_32px_rgba(37,99,235,0.14)] dark:shadow-none sm:p-7">
+          <div id="prezzo" className="relative scroll-mt-20 rounded-3xl border border-azione bg-superficie p-6 shadow-[0_12px_32px_rgba(37,99,235,0.14)] dark:shadow-none sm:p-7">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-xl font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">{PASS.name}</h3>
-                <p className="mt-1 text-sm font-medium text-gray-600 dark:text-gray-300">Tutto quello che c'è nell'app.</p>
+                <h3 className="text-xl font-extrabold text-testo">{PASS.name}</h3>
+                <p className="mt-1 text-sm font-medium text-testo-tenue">Tutto quello che c'è nell'app.</p>
               </div>
               <div className="shrink-0"><IllustrazioneAnimata nome="progressi-statistiche" lato={84} quandoVisibile /></div>
             </div>
             <ul className="mt-5 flex flex-col gap-3">{PASS.features.map(f => <Voce key={f}>{f}</Voce>)}</ul>
 
-            <div className="mt-6 border-t border-[#E2E8F0] dark:border-[#334155] pt-5">
+            <div className="mt-6 border-t border-linea pt-5">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span className="text-4xl font-extrabold tracking-tight text-[#0F172A] dark:text-[#F8FAFC]">{formatEur(prezzo)}</span>
+                <span className="text-4xl font-extrabold tracking-tight text-testo">{formatEur(prezzo)}</span>
                 {lancio && (
-                  <span className="text-base font-semibold text-gray-600 dark:text-gray-300">
+                  <span className="text-base font-semibold text-testo-tenue">
                     <span className="sr-only">invece di </span><s>{formatEur(PASS.priceEur)}</s>
                   </span>
                 )}
-                <span className="text-sm font-semibold text-gray-600 dark:text-gray-300">una tantum</span>
+                <span className="text-sm font-semibold text-testo-tenue">una tantum</span>
               </div>
               {lancio && (
-                <p className="mt-1 text-sm font-bold text-azione-scuro dark:text-[#93C5FD]">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>
+                <p className="mt-1 text-sm font-bold text-azione-scuro">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>
               )}
-              <p className="mt-2 text-sm font-medium text-gray-600 dark:text-gray-300">
+              <p className="mt-2 text-sm font-medium text-testo-tenue">
                 Un solo pagamento, valido {PASS.validMonths} mesi, nessun abbonamento e nessun rinnovo.
               </p>
               {!PAYMENTS_ENABLED && (
-                <p className="mt-2 text-sm font-medium text-gray-600 dark:text-gray-300">
+                <p className="mt-2 text-sm font-medium text-testo-tenue">
                   I pagamenti non sono ancora attivi. Puoi lasciare la tua email: ti scriviamo una sola volta quando il Pass apre. La lista d'attesa non è un ordine e non blocca il prezzo.
                 </p>
               )}
@@ -90,7 +90,7 @@ export default function Offerta({ scuro, onStart, onOpenPass, onOpenLegal }: Pro
                   {PAYMENTS_ENABLED ? 'Prendi il Pass' : "Entra in lista d'attesa"}
                 </BottoneAzione>
               )}
-              <p className="mt-3 text-xs font-medium text-gray-600 dark:text-gray-400">
+              <p className="mt-3 text-xs font-medium text-testo-tenue">
                 Se compri da consumatore hai 14 giorni per recedere, nei casi previsti dalla legge:{' '}
                 <button type="button" onClick={() => onOpenLegal('recesso')} className={cn('font-bold underline underline-offset-2 rounded', FOCUS)}>leggi le condizioni</button>.
               </p>

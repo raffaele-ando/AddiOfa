@@ -67,58 +67,58 @@ export default function Invites({ onBack }: InvitesProps) {
     <Screen>
       <TopBar onBack={onBack} />
       <div>
-        <h1 className="text-3xl font-bold leading-tight text-[#0F172A] dark:text-[#F8FAFC]">Invita 3 compagni, il Pass è gratis</h1>
-        <p className="mt-2 font-semibold text-gray-500 dark:text-gray-400">
+        <h1 className="text-3xl font-bold leading-tight text-testo">Invita 3 compagni, il Pass è gratis</h1>
+        <p className="mt-2 font-semibold text-testo-tenue">
           Condividi il tuo codice con chi deve preparare il test d'inglese.
         </p>
       </div>
 
-      <div className="rounded-2xl border border-[#2563EB] dark:border-[#60A5FA] bg-[#DBEAFE]/50 dark:bg-[#1E3A8A]/30 p-4 flex flex-col gap-3">
-        <span className="text-xs font-bold text-gray-500 dark:text-gray-400">Il tuo codice</span>
+      <div className="rounded-2xl border border-azione/30 bg-azione-tinta/50 p-4 flex flex-col gap-3">
+        <span className="text-xs font-bold text-testo-tenue">Il tuo codice</span>
         {codice ? (
           <>
-            <span className="select-all break-all text-3xl font-bold tracking-widest text-[#0F172A] dark:text-[#F8FAFC]" aria-label={`Il tuo codice è ${codice}`}>{codice}</span>
+            <span className="select-all break-all text-3xl font-bold tracking-widest text-testo" aria-label={`Il tuo codice è ${codice}`}>{codice}</span>
             <button
               onClick={() => { playTapSound(); void copiaCodice(); }}
-              className="self-start inline-flex items-center gap-2 rounded-xl border border-[#2563EB] dark:border-[#60A5FA] text-[#1D4ED8] dark:text-[#93C5FD] font-bold text-sm px-4 py-2.5"
+              className="self-start inline-flex items-center gap-2 rounded-xl border border-azione text-azione-scuro font-bold text-sm px-4 py-2.5"
             >
               <Copy size={16} aria-hidden /> Copia il codice
             </button>
-            {copia && <p className="text-xs font-bold text-gray-600 dark:text-gray-300" role="status">{copia}</p>}
+            {copia && <p className="text-xs font-bold text-testo-tenue" role="status">{copia}</p>}
           </>
         ) : (
-          <span className="text-sm font-semibold text-gray-500 dark:text-gray-400" role={errore ? 'alert' : 'status'}>{errore ?? 'Preparo il tuo codice…'}</span>
+          <span className="text-sm font-semibold text-testo-tenue" role={errore ? 'alert' : 'status'}>{errore ?? 'Preparo il tuo codice…'}</span>
         )}
       </div>
 
       <div>
         <div className="flex justify-between items-baseline">
-          <h2 className="font-bold text-lg text-[#0F172A] dark:text-[#F8FAFC]">Compagni verificati</h2>
-          <span className="font-bold text-lg text-[#0F172A] dark:text-[#F8FAFC]" aria-label={`${verificati} su ${richiesti}`}>{verificati}/{richiesti}</span>
+          <h2 className="font-bold text-lg text-testo">Compagni verificati</h2>
+          <span className="font-bold text-lg text-testo" aria-label={`${verificati} su ${richiesti}`}>{verificati}/{richiesti}</span>
         </div>
         <div className="mt-2 flex gap-1.5" aria-hidden>
           {Array.from({ length: richiesti }, (_, i) => (
-            <div key={i} className={cn('h-2.5 flex-1 rounded-full', i < verificati ? 'bg-[#2563EB]' : 'bg-gray-200 dark:bg-[#334155]')} />
+            <div key={i} className={cn('h-2.5 flex-1 rounded-full', i < verificati ? 'bg-azione' : 'bg-tacca')} />
           ))}
         </div>
       </div>
 
       <div>
-        <h2 className="font-bold text-lg text-[#0F172A] dark:text-[#F8FAFC] mb-2">Le regole</h2>
-        <ul className="flex flex-col gap-2 text-sm font-semibold text-[#0F172A] dark:text-gray-200 list-disc pl-5">
+        <h2 className="font-bold text-lg text-testo mb-2">Le regole</h2>
+        <ul className="flex flex-col gap-2 text-sm font-semibold text-testo list-disc pl-5">
           <li>Il {PASS.name} diventa gratis quando {INVITE.required} compagni con email @{INVITE.emailDomain} verificata finiscono il diagnostico, impiegando almeno {minuti} minuti.</li>
           <li>Chi usa il tuo codice ha il {INVITE.inviteeDiscountPct} % di sconto sul Pass.</li>
           <li>Conta finire il diagnostico, non il punteggio: non c'è nessun premio per chi sbaglia apposta.</li>
         </ul>
         {provider.mode === 'demo' && (
-          <p className="mt-3 rounded-2xl bg-[#FEF3C7] dark:bg-[#78350F]/30 p-3 text-xs font-bold text-[#78350F] dark:text-[#FDE68A]">
+          <p className="mt-3 rounded-2xl bg-medio-tinta p-3 text-xs font-bold text-medio-testo">
             In questa versione dimostrativa la verifica delle email non è attiva: il conteggio non può essere confermato e non si sblocca nessun Pass.
           </p>
         )}
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="invito-codice" className="font-bold text-lg text-[#0F172A] dark:text-[#F8FAFC]">Hai un codice?</label>
+        <label htmlFor="invito-codice" className="font-bold text-lg text-testo">Hai un codice?</label>
         <div className="flex gap-2">
           <input
             id="invito-codice"
@@ -128,18 +128,18 @@ export default function Invites({ onBack }: InvitesProps) {
             autoComplete="off"
             spellCheck={false}
             placeholder="Scrivilo qui"
-            className="min-w-0 flex-1 rounded-2xl border border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] px-4 py-3 font-bold tracking-widest text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-gray-400 placeholder:tracking-normal placeholder:font-semibold focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/30"
+            className="min-w-0 flex-1 rounded-2xl border border-linea bg-superficie-2 px-4 py-3 font-bold tracking-widest text-testo placeholder:text-testo-tenue placeholder:tracking-normal placeholder:font-semibold focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30"
           />
           <button
             onClick={() => { playTapSound(); void usa(); }}
             disabled={!inserito.trim() || invio}
-            className="shrink-0 rounded-2xl bg-[#2563EB] text-white font-bold px-5 disabled:opacity-40 disabled:pointer-events-none"
+            className="shrink-0 rounded-2xl bg-azione text-azione-su font-bold px-5 disabled:opacity-40 disabled:pointer-events-none"
           >
             Usa il codice
           </button>
         </div>
         {esito && (
-          <p className={cn('text-sm font-bold', esito.ok ? 'text-[#15803D] dark:text-[#34D399]' : 'text-[#B91C1C] dark:text-[#FCA5A5]')} role="status">{esito.message}</p>
+          <p className={cn('text-sm font-bold', esito.ok ? 'text-alto-testo' : 'text-basso-testo')} role="status">{esito.message}</p>
         )}
       </div>
 

@@ -12,6 +12,15 @@ import { useAccess } from '../access/context';
 import { FEATURE_FLAGS, FORMATS, PASS } from '../config/offer';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 
+// Grafici (Recharts): colori dai token, così il tema scuro li cambia da solo.
+const GRIGLIA = 'var(--color-linea)';
+const ASSE = 'var(--color-testo-tenue)';
+const AZIONE = 'var(--color-azione)';
+const ALTO = 'var(--color-alto)';
+const TRACCIA = 'var(--color-tacca)';
+const CURSORE = 'color-mix(in srgb, var(--color-testo) 6%, transparent)';
+const TOOLTIP = { borderRadius: '12px', border: '1px solid var(--color-linea)', fontWeight: 'bold', color: 'var(--color-testo)', backgroundColor: 'var(--color-superficie)', boxShadow: 'none' } as const;
+
 interface StatsModeProps {
   appState: AppState;
   onExit: () => void;
@@ -254,12 +263,12 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
   // ================== Senza Pass: i numeri di base e un invito ==================
   if (!pass) {
     return (
-      <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-100">
+      <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
         <div className="flex flex-col h-full p-2 sm:p-4">
           <header className="flex items-end justify-between px-2 pt-2 pb-1 shrink-0">
             <div>
-              <h2 className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Progressi</h2>
-              <p className="text-sm text-[#6B7280] dark:text-gray-400">Quanto sai, in breve.</p>
+              <h2 className="text-[26px] font-extrabold text-testo">Progressi</h2>
+              <p className="text-sm text-testo-tenue">Quanto sai, in breve.</p>
             </div>
             <IllustrazioneAnimata nome="progressi-statistiche" lato={84} />
           </header>
@@ -270,54 +279,54 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                 ['completato', `${masteryPercentage}%`, `Domande imparate (su ${totalQuestions})`],
                 ['successo', `${globalAccuracy}%`, 'Accuratezza'],
               ] as const).map(([icona, valore, nome]) => (
-                <div key={nome} className="bg-white dark:bg-[#0F172A] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-4 flex flex-col gap-2">
+                <div key={nome} className="bg-superficie-2 border border-linea rounded-2xl p-4 flex flex-col gap-2">
                   <IconaChip nome={icona} lato={40} />
-                  <span className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-none">{valore}</span>
-                  <span className="text-xs text-[#6B7280] dark:text-gray-400">{nome}</span>
+                  <span className="text-[26px] font-extrabold text-testo leading-none">{valore}</span>
+                  <span className="text-xs text-testo-tenue">{nome}</span>
                 </div>
               ))}
-              <p className="min-[420px]:col-span-2 -mt-1 text-xs leading-snug text-[#6B7280] dark:text-gray-400">{REGOLA_IMPARATA}</p>
-              <div className="min-[420px]:col-span-2 bg-white dark:bg-[#0F172A] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-4 flex flex-col gap-2">
+              <p className="min-[420px]:col-span-2 -mt-1 text-xs leading-snug text-testo-tenue">{REGOLA_IMPARATA}</p>
+              <div className="min-[420px]:col-span-2 bg-superficie-2 border border-linea rounded-2xl p-4 flex flex-col gap-2">
                 <IconaChip nome="quiz" lato={40} />
                 {lastExam && lastExamFormat ? (
                   <>
-                    <span className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-none">
+                    <span className="text-[26px] font-extrabold text-testo leading-none">
                       {lastExam.score}/{lastExamFormat.questions}
-                      <span className={cn("ml-3 text-base font-bold", lastExam.passed ? "text-[#16A34A] dark:text-[#10B981]" : "text-[#EF4444] dark:text-[#F87171]")}>
+                      <span className={cn("ml-3 text-base font-bold", lastExam.passed ? "text-alto-testo" : "text-basso-testo")}>
                         {lastExam.passed ? 'Superata' : 'Non superata'}
                       </span>
                     </span>
-                    <span className="text-xs text-[#6B7280] dark:text-gray-400">
+                    <span className="text-xs text-testo-tenue">
                       Ultimo esame, {new Date(lastExam.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'long' })}. Soglia {lastExamFormat.passMark} su {lastExamFormat.questions}.
                     </span>
                   </>
                 ) : (
                   <>
-                    <span className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-none">-</span>
-                    <span className="text-xs text-[#6B7280] dark:text-gray-400">Ultimo esame: non ne hai ancora fatto uno.</span>
+                    <span className="text-[26px] font-extrabold text-testo leading-none">-</span>
+                    <span className="text-xs text-testo-tenue">Ultimo esame: non ne hai ancora fatto uno.</span>
                   </>
                 )}
               </div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
+            <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
               <div className="flex items-start gap-3">
-                <Lock size={18} className="mt-0.5 shrink-0 text-gray-500 dark:text-gray-400" />
+                <Lock size={18} className="mt-0.5 shrink-0 text-testo-tenue" />
                 <div>
-                  <h3 className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Il quadro completo è nel Pass</h3>
-                  <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">
+                  <h3 className="font-bold text-testo">Il quadro completo è nel Pass</h3>
+                  <p className="text-sm font-semibold text-testo-tenue mt-1">
                     Radar per argomento, progresso per livello, le domande che sbagli di più e il dettaglio di ogni domanda. Il Pass si paga una volta sola e dura {PASS.validMonths} mesi.
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => onNeedPass('statistiche')}
-                className="self-start text-sm font-bold text-[#2563EB] dark:text-[#60A5FA] border border-[#93C5FD] hover:bg-[#DBEAFE] dark:hover:bg-[#1E3A8A]/40 px-4 py-2 rounded-xl transition-colors duration-100"
+                className="self-start text-sm font-bold text-azione border border-azione/60 hover:bg-azione-tinta px-4 py-2 rounded-xl transition-colors duration-100"
               >
                 Scopri il Pass
               </button>
             </div>
-            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500">I numeri contano il nucleo gratuito ({coreCount} domande).</p>
+            <p className="text-xs font-semibold text-testo-tenue">I numeri contano il nucleo gratuito ({coreCount} domande).</p>
           </main>
         </div>
       </div>
@@ -326,24 +335,24 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
 
   if (showDetailedStats) {
     return (
-      <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-100 flex flex-col">
-        <header className="flex items-center justify-between p-4 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors duration-100">
-          <button onClick={() => setShowDetailedStats(false)} className="flex items-center gap-2 text-sm sm:text-base font-bold text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-100">
+      <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col">
+        <header className="flex items-center justify-between p-4 border-b border-linea shrink-0 transition-colors duration-100">
+          <button onClick={() => setShowDetailedStats(false)} className="flex items-center gap-2 text-sm sm:text-base font-bold text-testo-tenue hover:text-testo transition-colors duration-100">
             <ArrowLeft size={20} />
             Indietro
           </button>
           <div className="flex flex-col items-end">
-            <h2 className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Dettaglio domande</h2>
-            <span className="text-xs font-bold text-gray-400">{filteredAndSortedQuestions.length} domande totali</span>
+            <h2 className="text-sm sm:text-lg font-bold text-testo leading-tight">Dettaglio domande</h2>
+            <span className="text-xs font-bold text-testo-tenue">{filteredAndSortedQuestions.length} domande totali</span>
           </div>
         </header>
-        <div className="flex items-center justify-between p-4 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors duration-100 bg-gray-50 dark:bg-[#0F172A]">
+        <div className="flex items-center justify-between p-4 border-b border-linea shrink-0 transition-colors duration-100 bg-superficie-2">
           <div className="flex items-center gap-2">
-            <Filter size={16} className="text-gray-500 dark:text-gray-400" />
+            <Filter size={16} className="text-testo-tenue" />
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="bg-transparent border-none text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] focus:ring-0 cursor-pointer"
+              className="bg-transparent border-none text-sm font-bold text-testo focus:ring-0 cursor-pointer"
             >
               <option value="all">Tutte le categorie</option>
               <option value="corpus:initial">Nucleo di base ({coreCount} domande)</option>
@@ -352,7 +361,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           </div>
           <button
             onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-            className="flex items-center gap-2 text-sm font-bold text-[#2563EB] dark:text-[#60A5FA] hover:text-[#1D4ED8] dark:hover:text-[#93C5FD] transition-colors duration-100"
+            className="flex items-center gap-2 text-sm font-bold text-azione hover:text-azione-scuro transition-colors duration-100"
           >
             <ArrowDownUp size={16} />
             {sortOrder === 'asc' ? 'Peggiori prima' : 'Migliori prima'}
@@ -360,10 +369,10 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
         </div>
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col gap-4">
           {promptsState === 'loading' && (
-            <p className="flex items-center gap-2 text-sm font-bold text-gray-500 dark:text-gray-400"><Loader2 size={16} className="animate-spin" /> Carico le domande…</p>
+            <p className="flex items-center gap-2 text-sm font-bold text-testo-tenue"><Loader2 size={16} className="animate-spin" /> Carico le domande…</p>
           )}
           {promptsState === 'error' && (
-            <p role="alert" className="text-sm font-bold text-[#B91C1C] dark:text-[#FCA5A5] bg-[#FEE2E2] dark:bg-[#7F1D1D]/40 rounded-xl px-3 py-2">
+            <p role="alert" className="text-sm font-bold text-basso-testo bg-basso-tinta rounded-xl px-3 py-2">
               Non riesco a caricare il testo delle domande. Controlla la connessione e riapri il dettaglio.
             </p>
           )}
@@ -384,22 +393,22 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
             }
 
             return (
-              <div key={q.id} className="bg-gray-50 dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+              <div key={q.id} className="bg-superficie-2 border border-linea p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <div className="flex-1 flex gap-3 sm:gap-4 items-start">
-                  <span className="text-gray-400 dark:text-gray-500 font-bold text-sm sm:text-base mt-0.5 shrink-0 w-6 sm:w-8 text-right">{index + 1}.</span>
+                  <span className="text-testo-tenue font-bold text-sm sm:text-base mt-0.5 shrink-0 w-6 sm:w-8 text-right">{index + 1}.</span>
                   <div className="flex-1">
-                    <p className="font-bold text-[#1E293B] dark:text-[#F8FAFC] text-sm sm:text-base mb-1">{prompts[q.id] ?? '…'}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 font-bold flex items-center gap-2 flex-wrap">
+                    <p className="font-bold text-testo text-sm sm:text-base mb-1">{prompts[q.id] ?? '…'}</p>
+                    <p className="text-xs text-testo-tenue font-bold flex items-center gap-2 flex-wrap">
                       <span>{q.category}</span>
                       {q.level && (
                         <>
-                          <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-                          <span className="bg-[#3B82F6]/10 text-[#3B82F6] px-1.5 py-0.5 rounded">{q.level}</span>
+                          <span className="w-1 h-1 rounded-full bg-tacca"></span>
+                          <span className="bg-azione/10 text-azione px-1.5 py-0.5 rounded">{q.level}</span>
                         </>
                       )}
                       {q.grammarTopic && (
                         <>
-                          <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
+                          <span className="w-1 h-1 rounded-full bg-tacca"></span>
                           <span>{q.grammarTopic}</span>
                         </>
                       )}
@@ -410,8 +419,8 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                       <span className={cn(
                         "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
                         correctCount > 0 
-                          ? "bg-[#DCFCE7] dark:bg-[#059669]/20 text-[#16A34A] dark:text-[#34D399] border-[#22C55E]/30" 
-                          : "bg-white dark:bg-[#1E293B] text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
+                          ? "bg-alto-tinta text-alto-testo border-alto/30" 
+                          : "bg-superficie text-testo-tenue border-linea"
                       )}>
                         <Check size={12} strokeWidth={3} />
                         {correctCount} {correctCount === 1 ? 'giusta' : 'giuste'}
@@ -420,8 +429,8 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                       <span className={cn(
                         "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
                         incorrectCount > 0 
-                          ? "bg-[#FEE2E2] dark:bg-[#7F1D1D]/30 text-[#B91C1C] dark:text-[#FCA5A5] border-[#EF4444]/30" 
-                          : "bg-white dark:bg-[#1E293B] text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
+                          ? "bg-basso-tinta text-basso-testo border-basso/30" 
+                          : "bg-superficie text-testo-tenue border-linea"
                       )}>
                         <X size={12} strokeWidth={3} />
                         {incorrectCount} {incorrectCount === 1 ? 'sbagliata' : 'sbagliate'}
@@ -430,21 +439,21 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                       <span className={cn(
                         "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
                         omittedCount > 0 
-                          ? "bg-[#FFF4E5] dark:bg-[#F59E0B]/20 text-[#D97706] dark:text-[#FBBF24] border-[#F59E0B]/30" 
-                          : "bg-white dark:bg-[#1E293B] text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
+                          ? "bg-medio-tinta text-medio-testo border-medio/30" 
+                          : "bg-superficie text-testo-tenue border-linea"
                       )}>
                         <Minus size={12} strokeWidth={3} />
                         {omittedCount} {omittedCount === 1 ? 'omessa' : 'omesse'}
                       </span>
 
                       {stat?.lastSwitchCount !== undefined && stat.lastSwitchCount > 0 && (
-                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-lg bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border border-amber-300/40">
+                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-lg bg-medio-tinta text-medio-testo border border-medio/30">
                           {stat.lastSwitchCount} {stat.lastSwitchCount === 1 ? 'cambio' : 'cambi'}
                         </span>
                       )}
 
                       {stat?.lastResponseTimeMs !== undefined && (
-                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
+                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-lg bg-azione-tinta text-azione border border-azione/30">
                           <Clock size={11} /> {(stat.lastResponseTimeMs / 1000).toFixed(1)}s
                         </span>
                       )}
@@ -455,28 +464,28 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                   {hasSeen ? (
                     <>
                       <div className="flex flex-col items-center sm:items-end">
-                        <span className="text-[10px] sm:text-xs font-bold text-gray-400">Accuratezza</span>
-                        <span className={cn("text-sm sm:text-base font-bold", accuracy > 70 ? "text-[#22C55E]" : accuracy > 40 ? "text-[#F59E0B]" : "text-[#EF4444]")}>
+                        <span className="text-[10px] sm:text-xs font-bold text-testo-tenue">Accuratezza</span>
+                        <span className={cn("text-sm sm:text-base font-bold", accuracy > 70 ? "text-alto-testo" : accuracy > 40 ? "text-medio-testo" : "text-basso-testo")}>
                           {accuracy}%
                         </span>
                       </div>
                       <div className="flex flex-col items-center sm:items-end w-full sm:w-24">
                         <div className="flex justify-between w-full mb-1 items-center">
-                          <span className="text-[10px] sm:text-xs font-bold text-gray-400 flex items-center gap-1">
+                          <span className="text-[10px] sm:text-xs font-bold text-testo-tenue flex items-center gap-1">
                             Confidenza
-                            {trend === 'up' && <ArrowUp size={12} className="text-[#22C55E]" />}
-                            {trend === 'down' && <ArrowDown size={12} className="text-[#EF4444]" />}
-                            {trend === 'same' && <Minus size={12} className="text-gray-400" />}
+                            {trend === 'up' && <ArrowUp size={12} className="text-alto-testo" />}
+                            {trend === 'down' && <ArrowDown size={12} className="text-basso-testo" />}
+                            {trend === 'same' && <Minus size={12} className="text-testo-tenue" />}
                           </span>
-                          <span className="text-[10px] sm:text-xs font-bold text-[#3B82F6]">{confidenceScore}%</span>
+                          <span className="text-[10px] sm:text-xs font-bold text-azione">{confidenceScore}%</span>
                         </div>
-                        <div className="w-full bg-gray-200 dark:bg-[#334155] h-2 rounded-full overflow-hidden">
-                          <div className="bg-[#3B82F6] h-full transition-colors duration-100" style={{ width: `${confidenceScore}%` }} />
+                        <div className="w-full bg-tacca h-2 rounded-full overflow-hidden">
+                          <div className="bg-azione h-full transition-colors duration-100" style={{ width: `${confidenceScore}%` }} />
                         </div>
                       </div>
                     </>
                   ) : (
-                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 px-3 py-1 bg-gray-200 dark:bg-[#334155] rounded-full">
+                    <span className="text-xs font-bold text-testo-tenue px-3 py-1 bg-tacca rounded-full">
                       Mai vista
                     </span>
                   )}
@@ -490,12 +499,12 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
   }
 
   return (
-    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-100">
+    <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
       <div className="flex flex-col h-full p-2 sm:p-4">
       <header className="flex items-end justify-between px-2 pt-2 pb-1 shrink-0">
         <div>
-          <h2 className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Progressi</h2>
-          <p className="text-sm text-[#6B7280] dark:text-gray-400">Quanto sai, argomento per argomento.</p>
+          <h2 className="text-[26px] font-extrabold text-testo">Progressi</h2>
+          <p className="text-sm text-testo-tenue">Quanto sai, argomento per argomento.</p>
         </div>
         <IllustrazioneAnimata nome="progressi-statistiche" lato={84} />
       </header>
@@ -512,56 +521,56 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               ['statistiche', `${passRate}%`, 'Simulazioni superate'],
               ['quiz', `${bestScore}/30`, 'Miglior simulazione'],
             ] as const).map(([icona, valore, nome]) => (
-              <div key={nome} className="bg-white dark:bg-[#0F172A] border border-[#E5E7EB] dark:border-[#334155] rounded-2xl p-4 flex flex-col gap-2">
+              <div key={nome} className="bg-superficie-2 border border-linea rounded-2xl p-4 flex flex-col gap-2">
                 <IconaChip nome={icona} lato={40} />
-                <span className="text-[26px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-none">{valore}</span>
-                <span className="text-xs text-[#6B7280] dark:text-gray-400">{nome}</span>
+                <span className="text-[26px] font-extrabold text-testo leading-none">{valore}</span>
+                <span className="text-xs text-testo-tenue">{nome}</span>
               </div>
             ))}
           </div>
-          <p className="-mt-1 text-xs leading-snug text-[#6B7280] dark:text-gray-400">{REGOLA_IMPARATA}</p>
+          <p className="-mt-1 text-xs leading-snug text-testo-tenue">{REGOLA_IMPARATA}</p>
 
           {/* Activity Chart */}
-          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[250px]">
-             <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
-              <Activity className="text-[#F59E0B] dark:text-[#FBBF24] w-5 h-5" />
+          <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[250px]">
+             <h3 className="text-sm sm:text-base font-bold text-testo mb-4 flex items-center gap-2 shrink-0">
+              <Activity className="text-medio-testo w-5 h-5" />
               Costanza (ultimi 7 giorni)
             </h3>
             <div className="flex-1 min-h-[150px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={activityData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
-                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} />
-                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} allowDecimals={false} />
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={GRIGLIA} />
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
                   <Tooltip isAnimationActive={false}
-                    cursor={{ fill: '#F3F4F6' }}
-                    contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
+                    cursor={{ fill: CURSORE }}
+                    contentStyle={TOOLTIP}
                   />
-                  <Bar isAnimationActive={false} dataKey="domande" name="Domande" fill="#2563EB" radius={[4, 4, 0, 0]} maxBarSize={30} />
-                  <Bar isAnimationActive={false} dataKey="minuti" name="Minuti" fill="#22C55E" radius={[4, 4, 0, 0]} maxBarSize={30} />
+                  <Bar isAnimationActive={false} dataKey="domande" name="Domande" fill={AZIONE} radius={[4, 4, 0, 0]} maxBarSize={30} />
+                  <Bar isAnimationActive={false} dataKey="minuti" name="Minuti" fill={ALTO} radius={[4, 4, 0, 0]} maxBarSize={30} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
 
           {/* Exam Stats */}
-          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col justify-center">
-            <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-3 flex items-center gap-2 shrink-0">
-              <Clock className="text-[#8B5CF6] dark:text-[#A78BFA] w-5 h-5" />
+          <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col justify-center">
+            <h3 className="text-sm sm:text-base font-bold text-testo mb-3 flex items-center gap-2 shrink-0">
+              <Clock className="text-azione w-5 h-5" />
               Simulazioni
             </h3>
             <div className="flex flex-col gap-3">
-              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-[#334155]">
-                <span className="text-sm sm:text-base font-bold text-gray-500 dark:text-gray-400">Esami completati</span>
-                <span className="text-base sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC]">{examsTaken}</span>
+              <div className="flex justify-between items-center py-2 border-b border-linea">
+                <span className="text-sm sm:text-base font-bold text-testo-tenue">Esami completati</span>
+                <span className="text-base sm:text-lg font-bold text-testo">{examsTaken}</span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-[#334155]">
-                <span className="text-sm sm:text-base font-bold text-gray-500 dark:text-gray-400">Esami superati</span>
-                <span className="text-base sm:text-lg font-bold text-[#22C55E] dark:text-[#10B981]">{passedExams}</span>
+              <div className="flex justify-between items-center py-2 border-b border-linea">
+                <span className="text-sm sm:text-base font-bold text-testo-tenue">Esami superati</span>
+                <span className="text-base sm:text-lg font-bold text-alto-testo">{passedExams}</span>
               </div>
               <div className="flex justify-between items-center py-2">
-                <span className="text-sm sm:text-base font-bold text-gray-500 dark:text-gray-400">Miglior punteggio</span>
-                <span className="text-base sm:text-lg font-bold text-[#F59E0B] dark:text-[#FBBF24]">{examsTaken > 0 ? `${bestScore}/30` : '-'}</span>
+                <span className="text-sm sm:text-base font-bold text-testo-tenue">Miglior punteggio</span>
+                <span className="text-base sm:text-lg font-bold text-medio-testo">{examsTaken > 0 ? `${bestScore}/30` : '-'}</span>
               </div>
             </div>
           </div>
@@ -577,16 +586,16 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           {/* Go to detailed view button */}
           <button 
             onClick={() => setShowDetailedStats(true)}
-            className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] border-[#2563EB] text-white font-bold text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-colors duration-100 flex items-center justify-center gap-2"
+            className="w-full bg-azione hover:bg-azione-scuro border-azione text-azione-su font-bold text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-colors duration-100 flex items-center justify-center gap-2"
           >
             <List className="w-5 h-5" />
             Vedi il dettaglio delle domande
           </button>
 
           {Object.keys(topicStats).length >= 3 ? (
-            <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col h-full min-h-[300px]">
-              <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
-                <Target className="text-[#3B82F6] dark:text-[#60A5FA] w-5 h-5" />
+            <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col h-full min-h-[300px]">
+              <h3 className="text-sm sm:text-base font-bold text-testo mb-4 flex items-center gap-2 shrink-0">
+                <Target className="text-azione w-5 h-5" />
                 Profilo per argomento
               </h3>
               
@@ -602,10 +611,10 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                       fullMark: 100,
                     }))}
                   >
-                    <PolarGrid stroke="#e5e7eb" className="dark:stroke-[#334155]" />
+                    <PolarGrid stroke={GRIGLIA} className="" />
                     <PolarAngleAxis 
                       dataKey="subject" 
-                      tick={{ fill: '#9CA3AF', fontSize: 10, fontWeight: 'bold' }} 
+                      tick={{ fill: ASSE, fontSize: 10, fontWeight: 'bold' }} 
                     />
                     <PolarRadiusAxis 
                       angle={30} 
@@ -616,90 +625,82 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                     <Radar isAnimationActive={false}
                       name="Padronanza"
                       dataKey="A"
-                      stroke="#2563EB"
-                      fill="#2563EB"
-                      fillOpacity={0.5}
+                      stroke={AZIONE}
+                      fill={AZIONE}
+                      fillOpacity={0.35}
                     />
                     <Tooltip isAnimationActive={false}
-                      contentStyle={{ 
-                        borderRadius: '12px', 
-                        border: '2px solid #E5E7EB',
-                        fontWeight: 'bold',
-                        fontSize: '14px',
-                        backgroundColor: '#fff',
-                        color: '#0F172A',
-                        padding: '8px 12px'
-                      }}
-                      itemStyle={{ color: '#2563EB', fontWeight: '900' }}
+                      contentStyle={{ ...TOOLTIP, fontSize: '14px', padding: '8px 12px' }}
+                      itemStyle={{ color: AZIONE, fontWeight: '900' }}
                     />
                   </RadarChart>
                 </ResponsiveContainer>
               </div>
             </div>
           ) : (
-            <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-6 transition-colors duration-100 flex-1 flex flex-col justify-center items-center text-center min-h-[300px]">
-              <AlertCircle className="text-[#2563EB] dark:text-[#60A5FA] w-10 h-10 mb-3 opacity-50" />
-              <p className="text-sm font-bold text-gray-400">Rispondi a più domande su diversi argomenti per vedere il tuo profilo per argomento.</p>
+            <div className="bg-superficie-2 border border-linea rounded-2xl p-6 transition-colors duration-100 flex-1 flex flex-col justify-center items-center text-center min-h-[300px]">
+              <AlertCircle className="text-azione w-10 h-10 mb-3 opacity-50" />
+              <p className="text-sm font-bold text-testo-tenue">Rispondi a più domande su diversi argomenti per vedere il tuo profilo per argomento.</p>
             </div>
           )}
 
           {/* Progresso per livello */}
-          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[250px]">
-             <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
-              <TrendingUp className="text-[#F59E0B] dark:text-[#FBBF24] w-5 h-5" />
+          <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[250px]">
+             <h3 className="text-sm sm:text-base font-bold text-testo mb-4 flex items-center gap-2 shrink-0">
+              <TrendingUp className="text-medio-testo w-5 h-5" />
               Progresso per livello
             </h3>
             <div className="flex-1 min-h-[150px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={levelStatsData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#E5E7EB" className="dark:stroke-[#334155]" />
-                  <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} allowDecimals={false} />
-                  <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} />
+                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={GRIGLIA} className="" />
+                  <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
+                  <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} />
                   <Tooltip isAnimationActive={false}
-                    cursor={{ fill: '#F3F4F6' }}
-                    contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
+                    cursor={{ fill: CURSORE }}
+                    contentStyle={TOOLTIP}
                     formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]}
                   />
-                  <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill="#22C55E" radius={[0, 0, 0, 0]} maxBarSize={30} />
-                  <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={30} />
+                  <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill={ALTO} radius={[0, 0, 0, 0]} maxBarSize={30} />
+                  <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill={TRACCIA} radius={[0, 4, 4, 0]} maxBarSize={30} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
 
           {/* Progresso per argomento */}
-          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[350px]">
-             <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
-              <List className="text-[#8B5CF6] dark:text-[#A78BFA] w-5 h-5" />
+          <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[350px]">
+             <h3 className="text-sm sm:text-base font-bold text-testo mb-4 flex items-center gap-2 shrink-0">
+              <List className="text-azione w-5 h-5" />
               Progresso per argomento
             </h3>
             <div className="flex-1 min-h-[250px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={topicStatsData} margin={{ top: 10, right: 10, left: 30, bottom: 0 }} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#E5E7EB" className="dark:stroke-[#334155]" />
-                  <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF', fontWeight: 'bold' }} allowDecimals={false} />
-                  <YAxis type="category" dataKey="name" width={120} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#9CA3AF', fontWeight: 'bold' }} />
+                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={GRIGLIA} className="" />
+                  <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
+                  <YAxis type="category" dataKey="name" width={120} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: ASSE, fontWeight: 'bold' }} />
                   <Tooltip isAnimationActive={false}
-                    cursor={{ fill: '#F3F4F6' }}
-                    contentStyle={{ borderRadius: '12px', border: '2px solid #E5E7EB', fontWeight: 'bold', color: '#0F172A' }}
+                    cursor={{ fill: CURSORE }}
+                    contentStyle={TOOLTIP}
                     formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]}
                   />
-                  <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill="#2563EB" radius={[0, 0, 0, 0]} maxBarSize={20} />
-                  <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill="#E5E7EB" radius={[0, 4, 4, 0]} maxBarSize={20} />
+                  <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill={AZIONE} radius={[0, 0, 0, 0]} maxBarSize={20} />
+                  <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill={TRACCIA} radius={[0, 4, 4, 0]} maxBarSize={20} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
 
           {/* Errori frequenti */}
-          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col">
-            <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-3 flex items-center gap-2 shrink-0">
-              <AlertCircle className="text-[#EF4444] dark:text-[#F87171] w-5 h-5" />
+          <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col">
+            <h3 className="text-sm sm:text-base font-bold text-testo mb-3 flex items-center gap-2 shrink-0">
+              <AlertCircle className="text-basso-testo w-5 h-5" />
               Errori frequenti
             </h3>
             {topErrors.length === 0 ? (
               <div className="py-6 flex items-center justify-center text-center">
-                <span className="font-bold text-sm text-gray-400 dark:text-gray-500">Non ci sono ancora dati sufficienti.</span>
+                <span className="font-bold text-sm text-testo-tenue">Non ci sono ancora dati sufficienti.</span>
               </div>
             ) : (
               <div className="space-y-3">
@@ -707,22 +708,22 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                   const text = prompts[err.qId];
                   const rightAnswer = answersText[err.qId];
                   return (
-                    <div key={err.qId} className="bg-[#FEE2E2] dark:bg-[#7F1D1D]/25 border border-[#EF4444] dark:border-[#EF4444] rounded-xl p-3 sm:p-4 shadow-sm transition-colors duration-100 flex flex-col gap-2.5">
-                      <p className="font-bold text-sm sm:text-base text-[#1E293B] dark:text-[#F8FAFC] line-clamp-2 leading-tight">{text ?? '…'}</p>
+                    <div key={err.qId} className="bg-basso-tinta border border-basso/30 rounded-xl p-3 sm:p-4 shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col gap-2.5">
+                      <p className="font-bold text-sm sm:text-base text-testo line-clamp-2 leading-tight">{text ?? '…'}</p>
                       
                       {/* Breakdown: Giuste, Sbagliate, Omesse */}
                       <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                         <span className={cn(
                           "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
                           err.correct > 0 
-                            ? "bg-[#DCFCE7] dark:bg-[#059669]/30 text-[#16A34A] dark:text-[#34D399] border-[#22C55E]/30" 
-                            : "bg-white/80 dark:bg-black/20 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
+                            ? "bg-alto-tinta text-alto-testo border-alto/30" 
+                            : "bg-superficie/80 text-testo-tenue border-linea"
                         )}>
                           <Check size={11} strokeWidth={3} />
                           {err.correct} {err.correct === 1 ? 'giusta' : 'giuste'}
                         </span>
 
-                        <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border bg-white dark:bg-[#450A0A] text-[#B91C1C] dark:text-[#FCA5A5] border-[#EF4444]/30">
+                        <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border bg-superficie text-basso-testo border-basso/30">
                           <X size={11} strokeWidth={3} />
                           {err.incorrect} {err.incorrect === 1 ? 'sbagliata' : 'sbagliate'}
                         </span>
@@ -730,19 +731,19 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                         <span className={cn(
                           "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
                           err.omitted > 0 
-                            ? "bg-[#FFF4E5] dark:bg-[#F59E0B]/30 text-[#D97706] dark:text-[#FBBF24] border-[#F59E0B]/30" 
-                            : "bg-white/80 dark:bg-black/20 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
+                            ? "bg-medio-tinta text-medio-testo border-medio/30" 
+                            : "bg-superficie/80 text-testo-tenue border-linea"
                         )}>
                           <Minus size={11} strokeWidth={3} />
                           {err.omitted} {err.omitted === 1 ? 'omessa' : 'omesse'}
                         </span>
                       </div>
 
-                      <div className="flex items-center justify-between pt-1 border-t border-[#EF4444]/20 dark:border-[#EF4444]/20">
-                        <span className="text-xs sm:text-sm font-bold text-[#B91C1C] dark:text-[#FCA5A5]">
+                      <div className="flex items-center justify-between pt-1 border-t border-basso/20">
+                        <span className="text-xs sm:text-sm font-bold text-basso-testo">
                           {Math.round(err.errorRate * 100)}% errore
                         </span>
-                        <span className="text-xs sm:text-sm font-bold text-[#16A34A] dark:text-[#34D399] truncate max-w-[50%]">
+                        <span className="text-xs sm:text-sm font-bold text-alto-testo truncate max-w-[50%]">
                           {rightAnswer ?? ''}
                         </span>
                       </div>
@@ -758,36 +759,36 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
         {/* Bottom Full Width Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 shrink-0">
           {/* XP & Level Bar */}
-          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border border-gray-200 dark:border-[#334155] flex flex-col justify-center gap-2 shadow-sm transition-colors duration-100">
+          <div className="bg-superficie-2 rounded-2xl p-4 sm:p-5 border border-linea flex flex-col justify-center gap-2 shadow-sm dark:shadow-none transition-colors duration-100">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
-                <div className="bg-[#F59E0B] text-white p-1.5 rounded-lg shadow-sm">
+                <div className="bg-medio-pieno text-azione-su p-1.5 rounded-lg shadow-sm dark:shadow-none">
                   <Crown size={18} strokeWidth={3} />
                 </div>
-                <span className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC]">Liv. {currentLevel}</span>
+                <span className="text-sm sm:text-lg font-bold text-testo">Liv. {currentLevel}</span>
               </div>
-              <span className="text-xs sm:text-sm font-bold text-[#F59E0B]">{totalXP} XP</span>
+              <span className="text-xs sm:text-sm font-bold text-medio-testo">{totalXP} XP</span>
             </div>
-            <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative">
-              <div className={cn("bg-[#F59E0B] h-full rounded-full transition-colors duration-100")} style={{ width: `${progressPercent}%` }} />
+            <div className="w-full bg-tacca h-3 sm:h-4 rounded-full overflow-hidden flex relative">
+              <div className={cn("bg-medio-pieno h-full rounded-full transition-colors duration-100")} style={{ width: `${progressPercent}%` }} />
             </div>
           </div>
 
           {/* Daily Goal Endless */}
-          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border border-gray-200 dark:border-[#334155] flex flex-col justify-center gap-2 shadow-sm transition-colors duration-100 relative overflow-hidden group">
+          <div className="bg-superficie-2 rounded-2xl p-4 sm:p-5 border border-linea flex flex-col justify-center gap-2 shadow-sm dark:shadow-none transition-colors duration-100 relative overflow-hidden group">
             <div className="flex justify-between items-center z-10 leading-none">
-              <span className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] flex items-center gap-2">
+              <span className="text-sm sm:text-lg font-bold text-testo flex items-center gap-2">
                 Sfida Quotidiana
-                <span className="bg-[#2563EB] text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-lg">
+                <span className="bg-azione text-azione-su text-[10px] sm:text-xs px-2 py-0.5 rounded-lg">
                   Fase {milestoneIndex + 1}
                 </span>
               </span>
-              <span className="text-sm sm:text-lg font-bold text-[#2563EB] dark:text-[#60A5FA]">{currentTotalDaily}/{currentMilestone}</span>
+              <span className="text-sm sm:text-lg font-bold text-azione">{currentTotalDaily}/{currentMilestone}</span>
             </div>
             
-            <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative mt-1">
+            <div className="w-full bg-tacca h-3 sm:h-4 rounded-full overflow-hidden flex relative mt-1">
               <div 
-                className={cn("bg-[#2563EB] h-full rounded-full transition-colors duration-100")} 
+                className={cn("bg-azione h-full rounded-full transition-colors duration-100")} 
                 style={{ width: `${phaseProgressPercent}%` }} 
               />
             </div>

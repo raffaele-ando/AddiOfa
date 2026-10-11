@@ -8,15 +8,15 @@ import { useAccess } from '../access/context';
 import { LEGAL_DOCS, LEGAL_DRAFT, LEGAL_TABS } from '../legal';
 
 const MISURA = 'mx-auto w-full max-w-[65ch]';
-const TESTO = 'text-[15px] leading-relaxed text-gray-700 dark:text-gray-300';
+const TESTO = 'text-[15px] leading-relaxed text-testo';
 const CAMPO =
-  'w-full rounded-xl border border-gray-300 dark:border-[#475569] bg-white dark:bg-[#0F172A] px-3 py-3 text-base text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB] dark:focus:ring-[#60A5FA]';
+  'w-full rounded-xl border border-linea bg-superficie-2 px-3 py-3 text-base text-testo placeholder:text-testo-tenue focus:outline-none focus:ring-2 focus:ring-azione';
 
 function Bozza({ aggiornato }: { aggiornato: string }) {
   return (
     <div
       role="note"
-      className="flex gap-2.5 rounded-xl border border-[#F59E0B]/50 bg-[#FEF7EC] dark:bg-[#F59E0B]/10 p-3 text-sm text-[#8A5A03] dark:text-[#FCD34D]"
+      className="flex gap-2.5 rounded-xl border border-medio/30 bg-medio-tinta p-3 text-sm text-medio-testo"
     >
       <AlertTriangle size={18} className="mt-0.5 shrink-0" aria-hidden />
       <p>
@@ -63,16 +63,16 @@ function ModuloRecesso() {
     new Date(ms).toLocaleString('it-IT', { dateStyle: 'long', timeStyle: 'medium' });
 
   return (
-    <div id="modulo-recesso" className="my-4 rounded-2xl border border-gray-200 dark:border-[#334155] bg-gray-50 dark:bg-[#0F172A] p-4">
-      <h3 className="text-lg font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Recedi dal contratto qui</h3>
+    <div id="modulo-recesso" className="my-4 rounded-2xl border border-linea bg-superficie-2 p-4">
+      <h3 className="text-lg font-extrabold text-testo">Recedi dal contratto qui</h3>
       {!PAYMENTS_ENABLED && (
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+        <p className="mt-1 text-sm text-testo-tenue">
           Oggi il Pass non è ancora in vendita, quindi non c'è un acquisto da annullare. Il modulo resta visibile e funziona come funzionerà dopo l'apertura.
         </p>
       )}
 
       {ricevuta ? (
-        <div role="status" className="mt-3 rounded-xl border border-[#22C55E]/50 bg-[#EDF9F1] dark:bg-[#22C55E]/10 p-3 text-sm text-[#14633B] dark:text-[#86EFAC]">
+        <div role="status" className="mt-3 rounded-xl border border-alto/30 bg-alto-tinta p-3 text-sm text-alto-testo">
           <p className="flex items-center gap-2 font-bold">
             <CheckCircle2 size={18} aria-hidden /> Richiesta di recesso ricevuta
           </p>
@@ -88,24 +88,24 @@ function ModuloRecesso() {
       ) : (
         <form onSubmit={invia} className="mt-3 space-y-3" noValidate>
           <div>
-            <label htmlFor="rec-nome" className="mb-1 block text-sm font-semibold text-[#0F172A] dark:text-[#F8FAFC]">Nome e cognome</label>
+            <label htmlFor="rec-nome" className="mb-1 block text-sm font-semibold text-testo">Nome e cognome</label>
             <input id="rec-nome" className={CAMPO} value={nome} onChange={(e) => setNome(e.target.value)} autoComplete="name" required />
           </div>
           <div>
-            <label htmlFor="rec-email" className="mb-1 block text-sm font-semibold text-[#0F172A] dark:text-[#F8FAFC]">Email usata per l'ordine</label>
+            <label htmlFor="rec-email" className="mb-1 block text-sm font-semibold text-testo">Email usata per l'ordine</label>
             <input id="rec-email" type="email" inputMode="email" className={CAMPO} value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" required />
           </div>
           <div>
-            <label htmlFor="rec-rif" className="mb-1 block text-sm font-semibold text-[#0F172A] dark:text-[#F8FAFC]">
-              Riferimento dell'ordine <span className="font-normal text-gray-500 dark:text-gray-400">(facoltativo)</span>
+            <label htmlFor="rec-rif" className="mb-1 block text-sm font-semibold text-testo">
+              Riferimento dell'ordine <span className="font-normal text-testo-tenue">(facoltativo)</span>
             </label>
             <input id="rec-rif" className={CAMPO} value={rif} onChange={(e) => setRif(e.target.value)} />
           </div>
-          {errore && <p role="alert" className="text-sm font-semibold text-[#B91C1C] dark:text-[#FCA5A5]">{errore}</p>}
+          {errore && <p role="alert" className="text-sm font-semibold text-basso-testo">{errore}</p>}
           <button
             type="submit"
             disabled={!pronto}
-            className="w-full rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-base py-3.5 px-6 shadow-sm transition-colors duration-100 disabled:opacity-40 disabled:pointer-events-none"
+            className="w-full rounded-2xl bg-azione hover:bg-azione-scuro text-azione-su font-bold text-base py-3.5 px-6 shadow-sm dark:shadow-none transition-colors duration-100 disabled:opacity-40 disabled:pointer-events-none"
           >
             {invio ? 'Invio in corso…' : 'Conferma recesso'}
           </button>
@@ -138,7 +138,7 @@ export default function Legal({ section, onBack, onSection }: {
       <TopBar onBack={onBack} />
       <div ref={cima} className="-mt-2" />
       <div className={cn(MISURA, 'flex flex-col gap-4 pb-6')}>
-        <div role="tablist" aria-label="Documenti legali" className="grid grid-cols-4 gap-1 rounded-xl bg-gray-100 dark:bg-[#0F172A] p-1">
+        <div role="tablist" aria-label="Documenti legali" className="grid grid-cols-4 gap-1 rounded-xl bg-superficie-2 p-1">
           {LEGAL_TABS.map((t) => (
             <button
               key={t.id}
@@ -150,8 +150,8 @@ export default function Legal({ section, onBack, onSection }: {
               className={cn(
                 'rounded-lg px-1 py-2 text-[13px] font-bold transition-colors duration-100',
                 t.id === section
-                  ? 'bg-white dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                  ? 'bg-superficie text-testo shadow-sm dark:shadow-none'
+                  : 'text-testo-tenue hover:text-testo'
               )}
             >
               {t.label}
@@ -160,15 +160,15 @@ export default function Legal({ section, onBack, onSection }: {
         </div>
 
         <article id="legal-pannello" role="tabpanel" aria-labelledby={`tab-${section}`} className="flex flex-col gap-3">
-          <h1 className="text-2xl font-extrabold leading-tight text-[#0F172A] dark:text-[#F8FAFC]">{doc.titolo}</h1>
+          <h1 className="text-2xl font-extrabold leading-tight text-testo">{doc.titolo}</h1>
           {LEGAL_DRAFT && <Bozza aggiornato={doc.aggiornato} />}
-          {!LEGAL_DRAFT && <p className="text-sm text-gray-500 dark:text-gray-400">Aggiornato il {doc.aggiornato}</p>}
+          {!LEGAL_DRAFT && <p className="text-sm text-testo-tenue">Aggiornato il {doc.aggiornato}</p>}
 
-          <nav aria-label="In questa pagina" className="rounded-xl border border-gray-200 dark:border-[#334155]">
+          <nav aria-label="In questa pagina" className="rounded-xl border border-linea">
             <details className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-3 text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] [&::-webkit-details-marker]:hidden">
-                <h2 className="text-sm font-bold">In questa pagina <span className="font-normal text-gray-500 dark:text-gray-400">({doc.sezioni.length} sezioni)</span></h2>
-                <ChevronDown size={18} aria-hidden className="shrink-0 text-gray-500 group-open:rotate-180" />
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-3 text-sm font-bold text-testo [&::-webkit-details-marker]:hidden">
+                <h2 className="text-sm font-bold">In questa pagina <span className="font-normal text-testo-tenue">({doc.sezioni.length} sezioni)</span></h2>
+                <ChevronDown size={18} aria-hidden className="shrink-0 text-testo-tenue group-open:rotate-180" />
               </summary>
               <ol className="space-y-0.5 px-3 pb-3 text-sm">
                 {doc.sezioni.map((s, i) => (
@@ -176,7 +176,7 @@ export default function Legal({ section, onBack, onSection }: {
                     <button
                       type="button"
                       onClick={() => vai(sid(i))}
-                      className="w-full py-1.5 text-left font-semibold text-[#1D4ED8] dark:text-[#60A5FA] hover:underline underline-offset-2"
+                      className="w-full py-1.5 text-left font-semibold text-azione-scuro hover:underline underline-offset-2"
                     >
                       {i + 1}. {s.titolo}
                     </button>
@@ -188,14 +188,14 @@ export default function Legal({ section, onBack, onSection }: {
 
           {doc.sezioni.map((s, i) => (
             <section key={sid(i)} id={sid(i)} className="scroll-mt-4 pt-2">
-              <h2 className="text-lg font-extrabold leading-snug text-[#0F172A] dark:text-[#F8FAFC]">
+              <h2 className="text-lg font-extrabold leading-snug text-testo">
                 {i + 1}. {s.titolo}
               </h2>
               {s.paragrafi.map((p, j) => (
                 <p key={j} className={cn(TESTO, 'mt-2')}>{p}</p>
               ))}
               {s.elenco && (
-                <ul className={cn(TESTO, 'mt-2 list-disc space-y-1.5 pl-5 marker:text-gray-400')}>
+                <ul className={cn(TESTO, 'mt-2 list-disc space-y-1.5 pl-5 marker:text-testo-tenue')}>
                   {s.elenco.map((e, j) => <li key={j}>{e}</li>)}
                 </ul>
               )}
