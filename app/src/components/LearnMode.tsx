@@ -115,8 +115,10 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   useEffect(() => {
     if (questions.length > 0 && currentIndex >= questions.length) {
       playVictorySound();
-      if (!prefersReducedMotion()) triggerConfetti('celebration');
+      // Coriandoli solo quando tutte le domande erano giuste al primo tentativo
+      if (!prefersReducedMotion() && esiti.length > 0 && esiti.every(e => e.giusta)) triggerConfetti('celebration');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, questions.length]);
 
   useEffect(() => {
