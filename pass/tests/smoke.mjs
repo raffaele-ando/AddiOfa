@@ -118,6 +118,11 @@ test('entitlement gratuito e domanda del nucleo senza risposta nel payload', asy
   assert.deepEqual(chk.data, { correct: true, correctIndex: 1, explanation: 'Con she serve la -s del present simple: goes.', theoryId: 'present-simple' });
   assert.equal((await api('POST', '/v1/q/T001/check', { device, body: { idx: 0 } })).data.correct, false);
   assert.equal((await api('POST', '/v1/q/T001/check', { device, body: { idx: 9 } })).status, 400);
+  assert.equal((await api('POST', '/v1/q/T001/check', { device, body: { idx: -2 } })).status, 400);
+  // idx -1 = nessuna risposta (tempo scaduto): risposta esatta e spiegazione, mai correct: true
+  const nessuna = await api('POST', '/v1/q/T001/check', { device, body: { idx: -1 } });
+  assert.equal(nessuna.status, 200);
+  assert.deepEqual(nessuna.data, { correct: false, correctIndex: 1, explanation: 'Con she serve la -s del present simple: goes.', theoryId: 'present-simple' });
   assert.equal((await api('POST', '/v1/q/NESSUNA/check', { device, body: { idx: 0 } })).status, 404);
 });
 
@@ -131,6 +136,10 @@ test('domanda non del nucleo: 403 pass_required', async () => {
   assert.equal(c.status, 403);
   assert.equal(c.data.error, 'pass_required');
   assert.ok(!/explanation|correctIndex/.test(c.text));
+  // anche "nessuna risposta" non fa uscire la soluzione di una domanda del Pass
+  const senza = await api('POST', '/v1/q/T004/check', { device, body: { idx: -1 } });
+  assert.equal(senza.status, 403);
+  assert.ok(!/explanation|correctIndex/.test(senza.text));
 });
 
 test('webhook Stripe: firma valida, errata, vecchia e consegna ripetuta', async () => {

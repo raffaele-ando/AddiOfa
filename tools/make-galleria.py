@@ -5,6 +5,24 @@ import base64, io, json, re, sys
 from pathlib import Path
 from PIL import Image
 
+CACHE = Path('/tmp/galleria-cache')
+_browser = {}
+
+def svg_a_png(path):
+    """Rasterizza un SVG con Chromium (larghezza 880 px) e restituisce il PNG nella cache."""
+    CACHE.mkdir(exist_ok=True)
+    out = CACHE / (re.sub(r'[^A-Za-z0-9]+', '_', str(path.relative_to(RADICE))) + '.png')
+    if out.is_file(): return out
+    from playwright.sync_api import sync_playwright
+    if 'b' not in _browser:
+        pw = sync_playwright().start(); _browser['pw'] = pw
+        _browser['b'] = pw.chromium.launch(executable_path='/opt/pw-browsers/chromium')
+    pg = _browser['b'].new_page(viewport={'width': 880, 'height': 600})
+    pg.set_content(f'<body style="margin:0;background:#fff"><img id="i" src="file://{path}" style="display:block;width:880px;height:auto"></body>')
+    pg.wait_for_function('document.getElementById("i").complete')
+    pg.locator('#i').screenshot(path=str(out)); pg.close()
+    return out
+
 RADICE = Path(__file__).resolve().parents[1]
 JSON_IN = RADICE / 'docs/design/galleria.json'
 ATTUALE = RADICE / 'docs/design/attuale'
@@ -72,6 +90,7 @@ def costruisci(dati, fattore):
                 continue
             p = RADICE / v.get('immagine', '')
             if not v.get('immagine') or not p.is_file(): mancanti.append(v.get('id')); continue
+            if p.suffix == '.svg': p = svg_a_png(p)
             w, h = dim(p); base_w = 900 if w / h > 1.25 else 440
             imgs[v['id']] = immagine(p, base_w)[0]; v['rapporto'] = round(h / w, 2); v['largo'] = w / h > 1.25
             v.pop('immagine', None); varianti.append(v)
@@ -86,6 +105,7 @@ def main():
         sezioni, imgs, peso, mancanti = costruisci(dati, fattore)
         if peso <= BUDGET: break
         fattore *= 0.85
+    if 'b' in _browser: _browser['b'].close(); _browser['pw'].stop()
     modello = MODELLO.read_text(encoding='utf-8')
     for s in sezioni:
         for v in s['varianti']: v.pop('immagine', None)

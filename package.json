@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "npm --prefix app run dev",
     "lint": "npm --prefix app run lint",
+    "test": "npm --prefix app run test",
     "build": "npm --prefix app run build",
     "build:demo": "npm --prefix app run build:demo",
     "pass:typecheck": "npm --prefix pass run typecheck",

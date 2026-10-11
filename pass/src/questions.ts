@@ -82,10 +82,14 @@ export async function questionsBatch(request: Request, env: Env): Promise<Respon
   return json({ questions });
 }
 
+/** idx = -1 significa "nessuna risposta" (tempo scaduto, frase che non corrisponde a nessuna opzione): si restituisce
+ *  la risposta esatta con la spiegazione e `correct: false`. Il server non conta tentativi: nessun altro effetto. */
+export const IDX_NESSUNA_RISPOSTA = -1;
+
 export async function questionCheck(request: Request, env: Env, id: string): Promise<Response> {
   const body = await readJson<{ idx?: unknown }>(request);
-  if (typeof body.idx !== 'number' || !Number.isInteger(body.idx) || body.idx < 0) {
-    throw badRequest("Serve l'indice dell'opzione scelta (idx).");
+  if (typeof body.idx !== 'number' || !Number.isInteger(body.idx) || body.idx < IDX_NESSUNA_RISPOSTA) {
+    throw badRequest("Serve l'indice dell'opzione scelta (idx), oppure -1 se non è stata data nessuna risposta.");
   }
   const user = await requireUser(request, env);
   await limitUser(env, request, user.id);
@@ -101,7 +105,7 @@ export async function questionCheck(request: Request, env: Env, id: string): Pro
   if (body.idx >= parseOptions(row.options).length) throw badRequest('Opzione inesistente.');
 
   const result: { correct: boolean; correctIndex: number; explanation: string; theoryId?: string } = {
-    correct: body.idx === row.correct_index,
+    correct: body.idx !== IDX_NESSUNA_RISPOSTA && body.idx === row.correct_index,
     correctIndex: row.correct_index,
     explanation: row.explanation_it,
   };

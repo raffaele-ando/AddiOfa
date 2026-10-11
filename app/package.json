@@ -12,6 +12,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
+    "test": "node --import ./tests/unit/register.mjs --test \"tests/unit/*.test.ts\"",
     "build:demo": "vite build --config vite.demo.config.ts && node ../tools/make-artifact.mjs && node ../tools/check-artifact.mjs",
     "check:demo": "node ../tools/check-artifact.mjs"
   },

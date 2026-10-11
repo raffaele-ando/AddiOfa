@@ -2,13 +2,26 @@
 import type { AppState } from '../../types';
 import { questions } from '../../data/questions';
 import { theoryTopics, type TheoryTopic } from '../../data/theory';
-import { estimatePassProbability } from '../../lib/diagnostic';
+import { estimatePassProbability, intervalloStima, normalizzaConteggio, type IntervalloStima } from '../../lib/diagnostic';
+import { chiaveGiorno } from '../../lib/utils';
 import { FORMATS, FREE_LIMITS, type FormatId } from '../../config/offer';
 
 export const MIN_RISPOSTE = 5; // sotto questa soglia una percentuale per area non è affidabile
 
+/**
+ * Fasce della stima. Con la soglia 25/30 (83 % di risposte esatte) il modello dà, sul diagnostico da 10 domande:
+ * 7/10 = 18 %, 8/10 = 36 %, 9/10 = 62 %, 10/10 = 87 %; su una simulazione 25/30 = 52 %, 26/30 = 66 %, 28/30 = 88 %.
+ * Le soglie 40 e 70 restano giuste: 'medio' coincide con "sul filo della soglia" (25-26 su 30, 9 su 10), 'alto' con
+ * "ci si arriva con margine" (27 su 30 o più, 10 su 10). 8 su 10 è 'basso' (36 %): è onesto, perché serve l'83 %.
+ */
+export const SOGLIA_MEDIO = 0.4;
+export const SOGLIA_ALTO = 0.7;
+
 export type Livello = 'basso' | 'medio' | 'alto';
-export function livelloDi(p: number): Livello { return p < 0.4 ? 'basso' : p < 0.7 ? 'medio' : 'alto'; }
+export function livelloDi(p: number): Livello {
+  if (!Number.isFinite(p)) return 'basso';
+  return p < SOGLIA_MEDIO ? 'basso' : p < SOGLIA_ALTO ? 'medio' : 'alto';
+}
 
 // ---- Stima di superare il test
 export interface Stima {
@@ -17,38 +30,110 @@ export interface Stima {
   fonte: 'diagnostico' | 'simulazioni' | 'entrambi';
   /** Differenza in punti rispetto alla stima del solo diagnostico: solo con due stime vere. */
   delta?: number;
+  /** Intervallo credibile all'80 % (intervalloStima) sulle stesse risposte: per dire "tra X e Y %". */
+  intervallo: IntervalloStima;
 }
 
-/** Risposte esatte e domande di una simulazione (i log, se ci sono; altrimenti il punteggio). */
-export function esitoSimulazione(h: AppState['history'][number]): { esatte: number; totale: number } {
-  const totale = h.questionIds?.length ?? h.questionLogs?.length ?? FORMATS[h.format ?? 'ente'].questions;
-  const esatte = h.questionLogs ? h.questionLogs.filter(l => l.isCorrect).length : Math.round(h.score);
-  return { esatte: Math.max(0, Math.min(totale, esatte)), totale };
+/** Quante simulazioni, le più recenti, entrano nella stima: chi migliora non deve restare ancorato ai risultati di settimane fa. */
+export const SIMULAZIONI_NELLA_STIMA = 3;
+/** Con almeno questa quantità di simulazioni recenti le 10 domande del diagnostico (più vecchie e meno precise) escono dalla stima. */
+export const SIMULAZIONI_CHE_SOSTITUISCONO_DIAGNOSTICO = 2;
+
+export interface EsitoSim { esatte: number; totale: number; /** risposte date (le omesse no) */ date: number }
+
+/**
+ * Risposte esatte e domande di una simulazione (i log, se ci sono; altrimenti il punteggio).
+ * - le risposte omesse sono nel totale e non tra le esatte: al test vero valgono zero, quindi per la stima sono come errori
+ *   (per la conoscenza, invece, non sono errori: calcolaFattori e SM-2 le trattano a parte);
+ * - la stessa domanda ripetuta nei log o negli id vale una volta;
+ * - senza log il punteggio del TENG ha la penalità sugli errori: si ricava il numero di esatte dall'esito (superato o no).
+ */
+export function esitoSimulazione(h: AppState['history'][number]): EsitoSim {
+  const formato = FORMATS[h.format ?? 'ente'] ?? FORMATS.ente;
+  if (Array.isArray(h.questionLogs) && h.questionLogs.length > 0) {
+    const perId = new Map<string, { esatta: boolean; data: boolean }>();
+    for (const l of h.questionLogs) {
+      if (!l || typeof l.questionId !== 'string' || perId.has(l.questionId)) continue;
+      perId.set(l.questionId, { esatta: l.isCorrect === true, data: l.userAnswerIndex !== null && l.userAnswerIndex !== undefined });
+    }
+    const totale = perId.size;
+    let esatte = 0, date = 0;
+    for (const v of perId.values()) { if (v.esatta) esatte++; if (v.data) date++; }
+    return { esatte, totale, date };
+  }
+  const ids = Array.isArray(h.questionIds) ? new Set(h.questionIds).size : 0;
+  const totale = ids > 0 ? ids : formato.questions;
+  const punteggio = Number.isFinite(h.score) ? Math.round(h.score) : 0;
+  // Senza log si sa solo il punteggio. Lo conferma l'esito: superata => almeno la soglia; non superata => meno della soglia.
+  const esatte = h.passed === true ? Math.max(punteggio, formato.passMark) : Math.min(Math.max(punteggio, 0), formato.passMark - 1);
+  const ok = Math.max(0, Math.min(totale, esatte));
+  // senza log non si sa quante risposte sono state date: si assume che siano tutte (come prima di questa regola)
+  return { esatte: ok, totale, date: totale };
 }
 
 /**
  * Stima con lo stesso modello del diagnostico (estimatePassProbability), alimentato dalle risposte che
  * misurano davvero il livello: il diagnostico e le simulazioni. Le sessioni di ripasso no: scelgono le domande
  * più difficili e darebbero una stima troppo severa.
+ *
+ * Regole (provate in app/tests/unit/stima.test.ts):
+ * - niente diagnostico e niente simulazioni valide: null (mai la probabilità a priori);
+ * - il diagnostico si riconta sempre da esatte/totali (la percentuale salvata può venire da una soglia vecchia);
+ *   se ci sono solo i conteggi o solo la percentuale si usa quello che c'è;
+ * - simulazioni: le ultime SIMULAZIONI_NELLA_STIMA per data, ognuna una volta sola (stesso id = stessa simulazione),
+ *   escluse quelle senza nessuna risposta data (aperta e lasciata scadere: non misura niente);
+ * - le omesse contano come errori, le scadute sono simulazioni normali con molte omesse;
+ * - con almeno SIMULAZIONI_CHE_SOSTITUISCONO_DIAGNOSTICO simulazioni il diagnostico non entra più nel calcolo.
  */
 export function calcolaStima(stato: AppState): Stima | null {
-  const o = stato.onboarding;
-  const haDiag = !!o && (o.passProbability !== undefined || o.diagnosticTotal !== undefined);
+  const o = stato?.onboarding;
+
+  // diagnostico
   let dc = 0, dt = 0, p0: number | undefined;
-  if (o && haDiag) {
-    dt = o.diagnosticTotal ?? FREE_LIMITS.diagnostic;
-    dc = o.diagnosticCorrect ?? 0;
-    p0 = o.passProbability ?? (o.diagnosticTotal !== undefined && o.diagnosticCorrect !== undefined ? estimatePassProbability(dc, dt) : undefined);
-    if (p0 === undefined) dt = 0;
+  if (o && typeof o === 'object') {
+    const haConteggi = Number.isFinite(o.diagnosticTotal) && (o.diagnosticTotal ?? 0) > 0 && Number.isFinite(o.diagnosticCorrect);
+    if (haConteggi) {
+      ({ correct: dc, total: dt } = normalizzaConteggio(o.diagnosticCorrect as number, o.diagnosticTotal as number));
+      p0 = estimatePassProbability(dc, dt);
+    } else if (typeof o.passProbability === 'number' && Number.isFinite(o.passProbability)) {
+      // salvataggio vecchio: solo la percentuale. Si risale al numero di esatte (su 10) che la produce.
+      p0 = Math.min(1, Math.max(0, o.passProbability));
+      dt = FREE_LIMITS.diagnostic;
+      let migliore = 0, scarto = Infinity;
+      for (let c = 0; c <= dt; c++) {
+        const d = Math.abs(estimatePassProbability(c, dt) - p0);
+        if (d < scarto) { scarto = d; migliore = c; }
+      }
+      dc = migliore;
+    }
   }
+
+  // simulazioni: ordine per data, una sola volta per id, solo con almeno una risposta data
+  const viste = new Set<string>();
+  const valide = (Array.isArray(stato?.history) ? stato.history : [])
+    .filter(h => h && typeof h === 'object' && Number.isFinite(h.date))
+    .sort((a, b) => a.date - b.date)
+    .filter(h => {
+      if (typeof h.id === 'string' && h.id) { if (viste.has(h.id)) return false; viste.add(h.id); }
+      return true;
+    })
+    .map(esitoSimulazione)
+    .filter(e => e.totale > 0 && e.date > 0)
+    .slice(-SIMULAZIONI_NELLA_STIMA);
   let sc = 0, st = 0;
-  for (const h of stato.history) { const e = esitoSimulazione(h); sc += e.esatte; st += e.totale; }
+  for (const e of valide) { sc += e.esatte; st += e.totale; }
+
   if (p0 === undefined && st === 0) return null;
-  if (st === 0) return { p: p0!, risposte: dt, fonte: 'diagnostico' };
-  const p = estimatePassProbability(dc + sc, dt + st);
-  if (p0 === undefined) return { p, risposte: st, fonte: 'simulazioni' };
+  if (st === 0) return { p: p0!, risposte: dt, fonte: 'diagnostico', intervallo: intervalloStima(dc, dt) };
+
+  const diagnosticoEntra = p0 !== undefined && valide.length < SIMULAZIONI_CHE_SOSTITUISCONO_DIAGNOSTICO;
+  const c = sc + (diagnosticoEntra ? dc : 0);
+  const t = st + (diagnosticoEntra ? dt : 0);
+  const p = estimatePassProbability(c, t);
+  const base = { p, risposte: t, intervallo: intervalloStima(c, t) };
+  if (p0 === undefined) return { ...base, fonte: 'simulazioni' };
   const delta = Math.round((p - p0) * 100);
-  return { p, risposte: dt + st, fonte: 'entrambi', delta: Math.abs(delta) >= 1 ? delta : undefined };
+  return { ...base, fonte: diagnosticoEntra ? 'entrambi' : 'simulazioni', delta: Math.abs(delta) >= 1 ? delta : undefined };
 }
 
 // ---- Fattori: accuratezza per categoria e per livello
@@ -62,12 +147,14 @@ export function calcolaFattori(stato: AppState): { categorie: Fattore[]; livelli
     const r = (per[chiave] ??= { c: 0, t: 0 }); r.c += c; r.t += t;
   };
   for (const q of questions) {
-    const s = stato.stats[q.id];
+    const s = stato.stats?.[q.id];
     if (!s) continue;
-    const t = s.correct + s.incorrect;
+    // solo risposte date: le omesse (simulazioni) non sono errori di conoscenza
+    const c = Math.max(0, Number.isFinite(s.correct) ? s.correct : 0);
+    const t = c + Math.max(0, Number.isFinite(s.incorrect) ? s.incorrect : 0);
     risposteTotali += t;
-    somma(`category:${q.category}`, s.correct, t);
-    somma(q.level ? `level:${q.level}` : undefined, s.correct, t);
+    somma(`category:${q.category}`, c, t);
+    somma(q.level ? `level:${q.level}` : undefined, c, t);
   }
   const voce = (filtro: string, nome: string): Fattore => {
     const r = per[filtro] ?? { c: 0, t: 0 };
@@ -107,10 +194,11 @@ export function lezioneConsigliata(stato: AppState, pass: boolean): Lezione | nu
   if (ordinati.length === 0) return null;
   const tot: Record<string, { c: number; t: number }> = {};
   for (const q of questions) {
-    const s = stato.stats[q.id];
+    const s = stato.stats?.[q.id];
     if (!s || !q.theoryId) continue;
     const r = (tot[q.theoryId] ??= { c: 0, t: 0 });
-    r.c += s.correct; r.t += s.correct + s.incorrect;
+    const c = Math.max(0, Number.isFinite(s.correct) ? s.correct : 0);
+    r.c += c; r.t += c + Math.max(0, Number.isFinite(s.incorrect) ? s.incorrect : 0);
   }
   const candidati = ordinati.filter(t => (tot[t.id]?.t ?? 0) >= 3)
     .map(t => ({ topic: t, perc: Math.round((tot[t.id].c / tot[t.id].t) * 100), n: tot[t.id].t }))
@@ -126,9 +214,10 @@ export function lezioneConsigliata(stato: AppState, pass: boolean): Lezione | nu
 // ---- Ultima simulazione contro la soglia
 export interface Obiettivo { formato: FormatId; esatte: number; totale: number; soglia: number; superata: boolean }
 export function ultimaSimulazione(stato: AppState): Obiettivo | null {
-  if (stato.history.length === 0) return null;
-  const h = [...stato.history].sort((a, b) => b.date - a.date)[0];
-  const formato: FormatId = h.format ?? 'ente';
+  const storico = (Array.isArray(stato.history) ? stato.history : []).filter(h => h && Number.isFinite(h.date));
+  if (storico.length === 0) return null;
+  const h = [...storico].sort((a, b) => b.date - a.date)[0];
+  const formato: FormatId = FORMATS[h.format ?? 'ente'] ? (h.format ?? 'ente') : 'ente';
   const { esatte, totale } = esitoSimulazione(h);
   const soglia = FORMATS[formato].passMark;
   return { formato, esatte, totale, soglia, superata: esatte >= soglia };
@@ -140,7 +229,7 @@ export function ultimiGiorni(stato: AppState, n = 7): { data: string; conteggio:
   const oggi = new Date();
   for (let i = n - 1; i >= 0; i--) {
     const d = new Date(oggi); d.setDate(oggi.getDate() - i);
-    const data = d.toISOString().split('T')[0];
+    const data = chiaveGiorno(d);
     out.push({ data, conteggio: stato.dailyActivity?.[data] ?? 0, lettera: 'DLMMGVS'[d.getDay()] });
   }
   return out;

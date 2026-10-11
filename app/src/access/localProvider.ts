@@ -80,7 +80,10 @@ export class LocalProvider implements DataProvider {
   async grade(questionId: string, optionIndex: number): Promise<GradeResult> {
     const q = this.perId.get(questionId);
     if (!q) throw new Error('Domanda non trovata.');
-    return { correct: optionIndex === q.correctIndex, correctIndex: q.correctIndex, explanation: q.explanation, ...(q.theoryId ? { theoryId: q.theoryId } : {}) };
+    // Stessa regola del Worker (pass/src/questions.ts): -1 = nessuna risposta (tempo scaduto), correct: false;
+    // un indice che non esiste o non è intero è un errore, come il 400 del server.
+    if (!Number.isInteger(optionIndex) || optionIndex < -1 || optionIndex >= q.options.length) throw new Error('Opzione inesistente.');
+    return { correct: optionIndex >= 0 && optionIndex === q.correctIndex, correctIndex: q.correctIndex, explanation: q.explanation, ...(q.theoryId ? { theoryId: q.theoryId } : {}) };
   }
 
   async startExam(format: FormatId): Promise<ExamSession> {

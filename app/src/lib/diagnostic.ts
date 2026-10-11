@@ -72,7 +72,7 @@ export function pickDiagnosticQuestions(pool: Question[] = diagnosticPool(), evi
   for (const conSomiglianza of [false, true]) {
     for (const q of ordinato(pool)) {
       if (selected.length >= DIAGNOSTIC_LENGTH) break;
-      if (conSomiglianza ? !selected.some(s => s.id === q.id) : !distinta(q)) continue;
+      if (conSomiglianza ? selected.some(s => s.id === q.id) : !distinta(q)) continue;
       selected.push(q);
     }
   }
@@ -223,9 +223,19 @@ export function intervalloStima(
 export function formatIntervallo(i: IntervalloStima): string {
   const lo = Math.round(i.probabilita.min * 100);
   const hi = Math.round(i.probabilita.max * 100);
+  if (hi < 1) return 'meno di 1 %';
+  if (lo > 99) return 'più di 99 %';
   const a = lo < 1 ? 'meno di 1' : String(lo);
   const b = hi > 99 ? 'più di 99' : String(hi);
   return `tra ${a} e ${b} %`;
+}
+
+/**
+ * "tra 18 e 27 su 30": il punteggio atteso al test. Su poche domande dice più della probabilità, perché la
+ * probabilità cambia molto con l'accuratezza vera e il suo intervallo è sempre largo.
+ */
+export function formatPunteggio(i: IntervalloStima, testQuestions = REAL_TEST_QUESTIONS): string {
+  return i.punteggio.min === i.punteggio.max ? `${i.punteggio.min} su ${testQuestions}` : `tra ${i.punteggio.min} e ${i.punteggio.max} su ${testQuestions}`;
 }
 
 export function weakTopics(asked: Question[], answers: Record<string, number>): string[] {
