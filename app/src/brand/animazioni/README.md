@@ -15,6 +15,9 @@ e aprire `app/dist-demo/prova-animazioni.html` (build:demo svuota la cartella: r
 5. `prefers-reduced-motion: reduce`: già in `comune.css` (`animation: none` su tutto sotto `.in`): stato finale subito.
 6. Importare `comune.css` e i CSS delle sole illustrazioni usate. Dimensioni: `width`/`height` sull'`<svg>` (o `lato`); `overflow: visible` è già impostato perché alcuni pezzi partono qualche pixel fuori dal riquadro.
 
+Il componente `IllustrazioneAnimata` (`app/src/brand/IllustrazioneAnimata.tsx`) fa già tutto questo. Opzioni: `riavvia={n}` (cambiando il numero riparte), `avvia={false}`, `quandoVisibile` (per le illustrazioni fuori schermo, come in fondo alla landing: restano nascoste e partono quando compaiono per metà). `eAnimata(nome)` dice se un nome ha l'animazione (usarla prima di ripiegare su `Illustrazione`).
+Attenzione: React 19 riscrive l'`innerHTML` a ogni render se l'oggetto `dangerouslySetInnerHTML` cambia; il componente lo memorizza, altrimenti l'animazione ripartirebbe a ogni render del genitore.
+
 Selettori: `.anim-<nome>.in [id$="--<id>"]`. Le regole stanno tutte sotto `.in`, quindi togliendola l'SVG torna intatto.
 Sui pezzi che hanno già un `transform="..."` (foglio, foglio-dietro, bandiera) si usano solo le proprietà `translate` e `opacity`, che si compongono con l'attributo: non impostare `transform-origin` su di loro.
 Tracciati: `stroke-dasharray: L L` con `--l` poco più lungo del tracciato (misurato con `getTotalLength()`), `stroke-dashoffset` da `L+1` a 0. Se cambia la geometria di un tracciato animato, rimisurare `--l`.

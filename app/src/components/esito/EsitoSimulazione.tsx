@@ -8,6 +8,7 @@ import { playTapSound } from '../../lib/audio';
 import MisuratoreEsito from './MisuratoreEsito';
 import CorrezioniComplete from './CorrezioniComplete';
 import InfoPunteggio from './InfoPunteggio';
+import { IllustrazioneAnimata } from '../../brand/IllustrazioneAnimata';
 
 interface Props {
   format: ExamFormat;
@@ -42,6 +43,7 @@ function Tessera({ Icona, valore, etichetta, tono, aria }: { Icona: typeof Check
 
 export default function EsitoSimulazione({ format, result, questions, answers, elapsedSeconds, onExit, onRetry, retryLocked, onOpenTheory, risposteStima }: Props) {
   const [info, setInfo] = useState(false);
+  const [rivedi, setRivedi] = useState(0);
   const infoBtn = useRef<HTMLButtonElement>(null);
   const correzioniRef = useRef<HTMLDivElement>(null);
   const totale = format.questions;
@@ -80,7 +82,12 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
             </button>
           </header>
 
-          <section aria-label="Risultato" className="rounded-3xl border border-gray-200 dark:border-[#334155] bg-gray-50/70 dark:bg-[#0F172A]/70 px-4 pt-5 pb-4 text-center">
+          <section aria-label="Risultato" className="rounded-3xl border border-gray-200 dark:border-[#334155] bg-gray-50/70 dark:bg-[#0F172A]/70 px-4 pt-3 pb-4 text-center">
+            {/* L'animazione parte una volta all'apertura; toccandola si rivede (Invio e Spazio compresi). */}
+            <button type="button" onClick={() => setRivedi(n => n + 1)} aria-label="Rivedi l'animazione"
+              className="mx-auto mb-1 block rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione dark:focus-visible:outline-azione-chiaro">
+              <IllustrazioneAnimata nome={superata ? 'successo' : 'mancato-superamento'} lato={120} riavvia={rivedi} />
+            </button>
             <MisuratoreEsito giuste={result.rawCorrect} totale={totale} soglia={format.passMark} superata={superata} />
             <div className="-mt-1 flex justify-center">
               <span className={cn(

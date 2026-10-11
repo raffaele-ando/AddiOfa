@@ -74,6 +74,8 @@ export function IllustrazioneAnimata({ nome, lato, alt = '', riavvia = 0, avvia 
       `<svg${a.replace(/\s(width|height)="[^"]*"/g, '')}${dim} aria-hidden="true" focusable="false">`);
   }, [nome, scuro, lato, alt]);
 
+  // Stesso oggetto a ogni render: React 19 riscrive l'innerHTML se l'oggetto cambia, e l'animazione ripartirebbe a ogni render del genitore.
+  const innerHtml = useMemo(() => ({ __html: html }), [html]);
   const [visto, setVisto] = useState(!quandoVisibile);
   useEffect(() => {
     if (!quandoVisibile || visto) return;
@@ -95,6 +97,6 @@ export function IllustrazioneAnimata({ nome, lato, alt = '', riavvia = 0, avvia 
   return (
     <span ref={ref} className={`anim anim-${nome}${className ? ` ${className}` : ''}`} role={alt ? 'img' : undefined} aria-label={alt || undefined}
       style={visto ? undefined : { opacity: 0 }}
-      dangerouslySetInnerHTML={{ __html: html }} />
+      dangerouslySetInnerHTML={innerHtml} />
   );
 }
