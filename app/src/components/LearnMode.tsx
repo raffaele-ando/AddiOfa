@@ -359,7 +359,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   const progress = (currentIndex / questions.length) * 100;
 
   return (
-    <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
+    <div className="flex flex-col h-full w-full sm:max-h-[calc(100dvh-3rem)] bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
       {/* Header & Progress */}
       <header className="flex items-center gap-3 sm:gap-4 p-3 border-b border-gray-100 dark:border-[#334155] h-12 shrink-0 transition-colors">
         <button onClick={() => { playTapSound(); onExit(); }} className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 rounded-full transition-colors">

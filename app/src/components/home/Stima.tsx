@@ -13,7 +13,7 @@ const MESSAGGI: Record<Livello, { titolo: string; testo: string; Icona: typeof I
     fondo: 'bg-[#FEF1F1] border-[#FBD9D9] dark:bg-[#EF4444]/10 dark:border-[#EF4444]/25', icona: 'text-[#EF4444]', testoTitolo: 'text-[#B91C1C] dark:text-[#FCA5A5]',
   },
   medio: {
-    titolo: 'Probabilità media', testo: 'Stai migliorando. Continua a studiare per avvicinarti alla soglia.', Icona: BarChart3,
+    titolo: 'Probabilità media', testo: 'Sei a metà strada. Continua a studiare per avvicinarti alla soglia.', Icona: BarChart3,
     fondo: 'bg-[#FFF8E8] border-[#FBE9BE] dark:bg-[#F59E0B]/10 dark:border-[#F59E0B]/25', icona: 'text-[#D97706]', testoTitolo: 'text-[#92400E] dark:text-[#FCD34D]',
   },
   alto: {

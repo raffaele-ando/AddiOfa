@@ -409,7 +409,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
   const timeStr = `${m}:${s.toString().padStart(2, '0')}`;
 
   return (
-    <div className="flex flex-col h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
+    <div className="flex flex-col h-full w-full sm:max-h-[calc(100dvh-3rem)] bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
       <header className="flex flex-col gap-2 p-3 sm:p-4 border-b border-gray-100 dark:border-[#334155] shrink-0 transition-colors">
         <div className="flex items-center justify-between">
           <button onClick={requestExit} aria-label="Esci dalla simulazione" className="p-1 sm:p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#334155] rounded-full transition-colors">

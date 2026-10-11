@@ -15,7 +15,7 @@ App web (PWA) per preparare il test d'inglese dell'OFA del Politecnico di Milano
 | `atlas/` | Worker Project ID e classifica NOI (rimandato, non serve al lancio) | quasi mai |
 | `contenuti/` | Fonte unica di domande, teoria e spiegazioni; genera i file in `app/src/data/` e il seed del Worker | si cambiano i contenuti |
 | `grafica/` | Officina grafica: `brand/` (risultati), `strumenti/` (programmi Python), `sapere/` (metodo), `fonti/` (immagini di partenza) | si ridisegna o si estrae grafica |
-| `docs/` | `business/` (piano, conti, ricerche), `strategia/`, `dati/` (graduatorie), `archivio/` (storico) | si leggono o scrivono documenti |
+| `docs/` | `business/` (piano, conti, ricerche), `design/` (catalogo dei concept), `lavoro/` (note degli agenti), `strategia/`, `dati/` (graduatorie), `archivio/` (storico) | si leggono o scrivono documenti |
 | `tools/` | Script di repository (`sincronizza-essenziali.sh`, `check-links.mjs`, build demo) | si automatizza |
 | `.claude/skills/` | `metodo-di-studio`, `ricreare-grafica` | si usano le skill |
 

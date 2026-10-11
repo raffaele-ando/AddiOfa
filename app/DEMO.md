@@ -52,3 +52,10 @@ Non c'è, per scelta della versione online:
 - Il vero controllo dell'accesso lo fa il server in `pass/`, non questa pagina.
 
 Prova di fattibilità (10 ottobre 2026): il bundle a file unico parte con `<script type="module">` incorporato, font Inter incorporato, tema chiaro e scuro, nessun errore in console con la rete esterna bloccata (provato in Chromium locale; la CSP reale della pagina online non è riproducibile qui).
+
+## Stato dell'11 ottobre 2026
+
+- Prova di flusso in Chromium (400 e 1280 px, chiaro e scuro, rete esterna bloccata): landing, diagnostico (8 su 10), calcolo del risultato, home, prima simulazione `ente` (26/30, superata), seconda simulazione chiusa dal blocco, "Sblocca il Pass in prova", simulazione `teng` con la quinta opzione e la penalità (22/30, punteggio 20), progressi, ricarica con progressi e Pass conservati. Zero errori in console e zero scorrimento orizzontale in tutte e quattro le combinazioni.
+- Non provato: Safari e Firefox, telefoni veri, lettori di schermo, il Worker `pass/` collegato all'app, i pagamenti.
+- Colore d'azione: blu (`azione` in `src/index.css`); il rosso resta per errori e risposte sbagliate.
+- Schermate dei concept ancora da fare: `docs/design/CATALOGO-SCHERMATE.md`.

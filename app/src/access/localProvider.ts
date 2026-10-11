@@ -80,7 +80,7 @@ export class LocalProvider implements DataProvider {
   async grade(questionId: string, optionIndex: number): Promise<GradeResult> {
     const q = this.perId.get(questionId);
     if (!q) throw new Error('Domanda non trovata.');
-    return { correct: optionIndex === q.correctIndex, correctIndex: q.correctIndex, explanation: q.explanation };
+    return { correct: optionIndex === q.correctIndex, correctIndex: q.correctIndex, explanation: q.explanation, ...(q.theoryId ? { theoryId: q.theoryId } : {}) };
   }
 
   async startExam(format: FormatId): Promise<ExamSession> {
@@ -106,6 +106,7 @@ export class LocalProvider implements DataProvider {
         correct: a === null || a === undefined ? null : a === q.correctIndex,
         correctIndex: q.correctIndex,
         explanation: q.explanation,
+        ...(q.theoryId ? { theoryId: q.theoryId } : {}),
       };
     });
     this.sessioni.delete(sessionId);
