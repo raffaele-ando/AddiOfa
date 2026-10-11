@@ -6,6 +6,7 @@ import { useAccess } from '../access/context';
 import { remainingFreeSims } from '../access/entitlement';
 import { playTapSound } from '../lib/audio';
 import { FONT } from '../brand/tokens';
+import Marchio from '../brand/Marchio';
 import Navigazione, { Scheda } from './Navigazione';
 import Cta from './home/Cta';
 import FoglioStima from './FoglioStima';
@@ -84,9 +85,7 @@ export default function Menu({ appState, corpus, onStartSmart, onStartExam, onNe
         <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(16px,env(safe-area-inset-top))] corto:pt-[max(10px,env(safe-area-inset-top))] pb-4">
           {/* intestazione: marchio testuale a sinistra, una sola icona tonda a destra */}
           <header className="flex items-center justify-between h-9">
-            <div className="text-[26px] leading-none font-extrabold tracking-[-0.02em] select-none" aria-label="AddiOFA">
-              <span className="text-testo">Addi</span><span className="text-marchio">OFA</span>
-            </div>
+            <Marchio disposizione="orizzontale" altezza={34} />
             {onOpenImpostazioni && (
               <button type="button" onClick={() => { playTapSound(); onOpenImpostazioni(); }} aria-label="Impostazioni e profilo"
                 className="brand-premibile w-9 h-9 rounded-full bg-superficie-2 text-testo grid place-items-center">

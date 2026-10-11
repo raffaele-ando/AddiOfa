@@ -1,6 +1,6 @@
 # Note del lavoro sul logo
 
-Agente: loghi puliti, galleria con mescolatore, icone degli store. Cartelle mie: `grafica/brand/logo/`, `tools/make-galleria-logo.py`, `app/dist-demo/galleria-logo.html`, `docs/design/store/`, `docs/design/logo/`.
+Agente: loghi puliti, galleria con mescolatore, icone degli store. Cartelle mie: `grafica/brand/logo/`, `tools/make-galleria-logo.py`, `galleria-logo.html` (in `app/dist-demo/`, non nel repository), `docs/design/store/`, `docs/design/logo/`.
 Non toccati: `app/src/**`, il logo 3D (`addiofa-logo.svg`, `app/public/icon-*.png`). Nessun git, nessun rm (due file di prova spostati nello scratchpad).
 
 ## Fatto

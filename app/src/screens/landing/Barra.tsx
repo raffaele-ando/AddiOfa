@@ -1,6 +1,5 @@
-import { APP_NAME } from '../../config/offer';
-import { urlIcona } from '../../brand/risorse';
 import { playTapSound } from '../../lib/audio';
+import Marchio from '../../brand/Marchio';
 import { FOCUS } from './comune';
 import { cn } from '../../lib/utils';
 
@@ -26,9 +25,8 @@ export default function Barra({ onStart }: { onStart(): void }) {
   return (
     <header className="sticky top-0 z-30 border-b border-linea/80 bg-superficie-2/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-        <div className="flex items-center gap-2.5 shrink-0">
-          <img src={urlIcona} alt="" width={36} height={36} className="h-9 w-9 rounded-xl" />
-          <span className="text-lg font-extrabold tracking-tight text-testo">{APP_NAME}</span>
+        <div className="flex items-center shrink-0">
+          <Marchio disposizione="orizzontale" altezza={36} />
         </div>
 
         <nav aria-label="Sezioni della pagina" className="hidden lg:flex items-center gap-1 rounded-full border border-linea bg-superficie/70 p-1">

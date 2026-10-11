@@ -2,7 +2,7 @@
 
 Tabella generata dal `manifest.json` di `grafica/brand/logo/` (cartella con i vettori puliti). Per ogni variante: file (su fondo chiaro), versioni per fondo scuro in `su-scuro/` e per fondo blu in `su-blu/` con lo stesso nome, numero NN dei concept in `grafica/fonti/design-concept/` (vedi `grafica/fonti/INDICE.md`) e tipo: **concept** = riprodotta da un'immagine, **derivata** = mescolanza nuova di elementi dei concept, **copia** = copiata da `grafica/brand/concept-svg/logo/`.
 
-La galleria per scegliere è `app/dist-demo/galleria-logo.html` (si ricostruisce con `python3 tools/make-galleria-logo.py`). Il logo 3D (`grafica/strumenti/brand/logo/addiofa-logo.svg`) resta l'icona dell'app e degli store: non è toccato (icone in `docs/design/store/`).
+La galleria per scegliere è `galleria-logo.html` (in `app/dist-demo/`, non nel repository) (si ricostruisce con `python3 tools/make-galleria-logo.py`). Il logo 3D (`grafica/strumenti/brand/logo/addiofa-logo.svg`) resta l'icona dell'app e degli store: non è toccato (icone in `docs/design/store/`).
 
 ## Lettermark (la A con la stella a cinque punte, base piatta)
 

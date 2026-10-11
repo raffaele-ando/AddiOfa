@@ -3,7 +3,7 @@ import { Check, Info } from 'lucide-react';
 import type { User } from 'firebase/auth';
 import { AppState, OnboardingResult, Question } from '../types';
 import {
-  APP_NAME, DISCLAIMER, FEATURE_FLAGS, FREE_FEATURES, OFA_CONSEQUENCES, OFA_RULES_NOTE, PASS,
+  DISCLAIMER, FEATURE_FLAGS, FREE_FEATURES, OFA_CONSEQUENCES, OFA_RULES_NOTE, PASS,
   REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, currentPriceEur, isLaunchPrice, formatEur,
 } from '../config/offer';
 import { pickDiagnosticQuestions, estimatePassProbability, intervalloStima, formatProbabilita, weakTopics, DIAGNOSTIC_LENGTH } from '../lib/diagnostic';
@@ -15,7 +15,7 @@ import { Illustrazione } from '../brand/Illustrazione';
 import { IllustrazioneAnimata, eAnimata } from '../brand/IllustrazioneAnimata';
 import { IconaChip, Misuratore } from '../brand/componenti';
 import { ECOSYSTEM } from '../config/ecosystem';
-import { urlIcona } from '../brand/risorse';
+import Marchio from '../brand/Marchio';
 import FoglioStima from './FoglioStima';
 import CalcoloRisultato from './CalcoloRisultato';
 import { Barra, RigaIntervallo } from './home/comune';
@@ -147,8 +147,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
       return (
         <Screen>
           <div className="flex items-center gap-2 shrink-0">
-            <img src={urlIcona} alt="" className="w-9 h-9 rounded-xl" />
-            <span className="font-bold text-lg text-testo">{APP_NAME}</span>
+            <Marchio disposizione="orizzontale" altezza={34} />
           </div>
           <div className="mt-4">
             <h1 className="text-4xl sm:text-5xl font-bold leading-tight text-balance text-testo">

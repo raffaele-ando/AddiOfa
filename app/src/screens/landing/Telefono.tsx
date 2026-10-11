@@ -1,8 +1,7 @@
 import { BookOpen, Dumbbell, Home, ListChecks, Timer, BarChart3 } from 'lucide-react';
 import Indicatore from '../../components/home/Indicatore';
 import { Barra } from '../../components/home/comune';
-import { APP_NAME } from '../../config/offer';
-import { urlIcona } from '../../brand/risorse';
+import Marchio from '../../brand/Marchio';
 import { cn } from '../../lib/utils';
 
 // Telefono con la home dell'app: usa il vero Indicatore con un valore di esempio, dichiarato tale.
@@ -42,8 +41,7 @@ export default function Telefono() {
           <div className="mx-auto mt-2 h-4 w-20 rounded-full bg-[#0E1B3F] dark:bg-tacca" />
           <div className="px-3.5 pb-3 pt-2">
             <div className="flex items-center gap-1.5">
-              <img src={urlIcona} alt="" className="h-6 w-6 rounded-lg" />
-              <span className="text-sm font-extrabold text-testo">{APP_NAME}</span>
+              <Marchio disposizione="orizzontale" altezza={22} />
               <span className="ml-auto rounded-full bg-azione-tinta px-2 py-0.5 text-[10px] font-bold text-azione-scuro">Esempio</span>
             </div>
 
