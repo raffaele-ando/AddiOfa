@@ -120,6 +120,78 @@
   "h": 120.0
  },
  {
+  "categoria": "lettermark",
+  "nome": "scintilla-blu",
+  "file": "lettermark-scintilla-blu.svg",
+  "titolo": "AddiOFA lettermark scintilla-blu",
+  "descrizione": "La A piena blu con la scintilla a 4 punte al centro: il lettermark dei concept 07 e 35.",
+  "fonte": "07, 35",
+  "tipo": "concept",
+  "pad": 0.0,
+  "w": 120.0,
+  "h": 110.0
+ },
+ {
+  "categoria": "lettermark",
+  "nome": "scintilla-navy",
+  "file": "lettermark-scintilla-navy.svg",
+  "titolo": "AddiOFA lettermark scintilla-navy",
+  "descrizione": "La A con la scintilla tutta navy (bianca su fondo scuro): timbri, stampa, filigrana.",
+  "fonte": "07, 35",
+  "tipo": "derivata",
+  "pad": 0.0,
+  "w": 120.0,
+  "h": 110.0
+ },
+ {
+  "categoria": "lettermark",
+  "nome": "scintilla-contorno",
+  "file": "lettermark-scintilla-contorno.svg",
+  "titolo": "AddiOFA lettermark scintilla-contorno",
+  "descrizione": "La A con la scintilla solo a contorno.",
+  "fonte": "—",
+  "tipo": "derivata",
+  "pad": 0.0,
+  "w": 120.0,
+  "h": 110.0
+ },
+ {
+  "categoria": "lettermark",
+  "nome": "scintilla-tile-blu",
+  "file": "lettermark-scintilla-tile-blu.svg",
+  "titolo": "AddiOFA lettermark scintilla-tile-blu",
+  "descrizione": "La A con la scintilla, bianca nel quadrato blu: avatar e profilo.",
+  "fonte": "35",
+  "tipo": "derivata",
+  "pad": 0.0,
+  "w": 120.0,
+  "h": 120.0
+ },
+ {
+  "categoria": "lettermark",
+  "nome": "scintilla-tile-notte",
+  "file": "lettermark-scintilla-tile-notte.svg",
+  "titolo": "AddiOFA lettermark scintilla-tile-notte",
+  "descrizione": "La A con la scintilla, bianca nel quadrato blu notte.",
+  "fonte": "35",
+  "tipo": "derivata",
+  "pad": 0.0,
+  "w": 120.0,
+  "h": 120.0
+ },
+ {
+  "categoria": "lettermark",
+  "nome": "scintilla-cerchio-blu",
+  "file": "lettermark-scintilla-cerchio-blu.svg",
+  "titolo": "AddiOFA lettermark scintilla-cerchio-blu",
+  "descrizione": "La A con la scintilla, bianca nel cerchio blu: avatar social tondi.",
+  "fonte": "35, 37",
+  "tipo": "derivata",
+  "pad": 0.0,
+  "w": 120.0,
+  "h": 120.0
+ },
+ {
   "categoria": "wordmark",
   "nome": "primario",
   "file": "wordmark-primario.svg",
@@ -310,6 +382,42 @@
   "pad": 6.0,
   "w": 368.04,
   "h": 283.38
+ },
+ {
+  "categoria": "lockup",
+  "nome": "orizzontale-scintilla",
+  "file": "lockup-orizzontale-scintilla.svg",
+  "titolo": "AddiOFA lockup orizzontale-scintilla",
+  "descrizione": "La A con la scintilla + wordmark: il lockup coerente con la scintilla nella O (concept 07/35).",
+  "fonte": "07, 35",
+  "tipo": "concept",
+  "pad": 6.0,
+  "w": 466.71,
+  "h": 86.98
+ },
+ {
+  "categoria": "lockup",
+  "nome": "orizzontale-scintilla-tagline",
+  "file": "lockup-orizzontale-scintilla-tagline.svg",
+  "titolo": "AddiOFA lockup orizzontale-scintilla-tagline",
+  "descrizione": "La A con la scintilla + wordmark con il motto.",
+  "fonte": "07, 35",
+  "tipo": "derivata",
+  "pad": 6.0,
+  "w": 466.71,
+  "h": 103.94
+ },
+ {
+  "categoria": "lockup",
+  "nome": "verticale-scintilla",
+  "file": "lockup-verticale-scintilla.svg",
+  "titolo": "AddiOFA lockup verticale-scintilla",
+  "descrizione": "La A con la scintilla sopra il wordmark.",
+  "fonte": "07, 35",
+  "tipo": "derivata",
+  "pad": 6.0,
+  "w": 368.04,
+  "h": 245.33
  },
  {
   "categoria": "lockup",

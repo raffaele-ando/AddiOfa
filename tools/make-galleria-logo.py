@@ -23,6 +23,11 @@ ETICHETTE = {
     'lettermark/contorno': 'Solo contorno', 'lettermark/tile-blu': 'Quadrato blu', 'lettermark/tile-notte': 'Quadrato blu notte',
     'lettermark/tile-sfumato': 'Quadrato sfumato', 'lettermark/tile-chiaro': 'Quadrato chiaro, A bicolore',
     'lettermark/cerchio-blu': 'Cerchio blu', 'lettermark/cerchio-notte': 'Cerchio blu notte',
+    'lettermark/scintilla-blu': 'Scintilla a 4 punte, A blu', 'lettermark/scintilla-navy': 'Scintilla a 4 punte, navy',
+    'lettermark/scintilla-contorno': 'Scintilla a 4 punte, contorno', 'lettermark/scintilla-tile-blu': 'Scintilla, quadrato blu',
+    'lettermark/scintilla-tile-notte': 'Scintilla, quadrato blu notte', 'lettermark/scintilla-cerchio-blu': 'Scintilla, cerchio blu',
+    'lockup/orizzontale-scintilla': 'Orizzontale, A con la scintilla', 'lockup/orizzontale-scintilla-tagline': 'Orizzontale, A con la scintilla e motto',
+    'lockup/verticale-scintilla': 'Verticale, A con la scintilla',
     'wordmark/primario': 'Primario, scintilla nella O', 'wordmark/o-stella5': 'Stella a 5 punte nella O',
     'wordmark/o-semplice': 'O semplice, senza stella', 'wordmark/solo-o-blu': 'Tutto navy, solo la O blu',
     'wordmark/con-tagline': 'Con il motto in maiuscole', 'wordmark/con-tagline-studia': '«Studia oggi, sblocca il tuo domani»',
@@ -44,7 +49,7 @@ ETICHETTE = {
     'stella/scintilla-tile': 'Scintilla nel quadrato blu',
 }
 SEZIONI = [
-    ('lettermark', 'A', 'Lettermark', 'La A con la stella a cinque punte (base piatta): il vuoto tra le gambe della A è la stella, che si apre sulla linea di base. Ricostruita dai concept 15 e rifinita a mano; i concept 07 e 35 avevano la scintilla a 4 punte, qui corretta. Ogni scheda mostra la versione su chiaro e su scuro.'),
+    ('lettermark', 'A', 'Lettermark', 'Due famiglie: la A con la stella a cinque punte dalla base piatta (concept 15: il vuoto tra le gambe è la stella, aperta sulla linea di base) e la A piena con la scintilla a 4 punte ritagliata al centro (concept 07 e 35, «scintilla» nel nome). Ricostruite dai concept e rifinite a mano. Ogni scheda mostra la versione su chiaro e su scuro.'),
     ('wordmark', 'B', 'Wordmark', '«AddiOFA» in Inter Bold con gli spigoli raccordati, la O è un disco con la stella (scintilla a 4 punte come nei concept, oppure la stella a 5 punte con la base piatta, coerente con la A) o una O semplice. Varianti con il motto, monocromatiche.'),
     ('lockup', 'C', 'Lockup', 'Lettermark e wordmark insieme, in orizzontale e in verticale. Due varianti (3D) tengono l\'icona 3D com\'è nei concept. Se vuoi un abbinamento diverso, usa il mescolatore (F).'),
     ('stella', 'D', 'Stelle e simboli', 'La stella con la base piatta («la porta»), la stella regolare a 5 punte e la scintilla a 4 punte, nei contenitori dei concept: quadrato, cerchio, tondo chiaro.'),
@@ -83,8 +88,9 @@ def main():
                  tipo=TIPO.get(m['tipo'], m['tipo']), descrizione=m['descrizione'], w=m['w'], h=m['h'], pad=pad,
                  soloChiaro=bool(m.get('solo_chiaro')))
         if cat == 'lettermark':
-            tile = nome.startswith(('tile', 'cerchio'))
-            v['vis'] = [0, 0, 120, 120] if tile else [4.6, 5, 110.8, 100]
+            tile = 'tile' in nome or 'cerchio' in nome
+            scint = nome.startswith('scintilla') and not tile
+            v['vis'] = [0, 0, 120, 120] if tile else ([9.6, 5, 101.6, 100] if scint else [4.6, 5, 110.8, 100])
             v['tile'] = tile
         if cat == 'wordmark':
             v['iw'] = round(m['w'] - 2 * pad, 2); v['ih'] = round(m['h'] - 2 * pad, 2)

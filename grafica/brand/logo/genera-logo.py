@@ -183,6 +183,25 @@ def sparkle(cx: float, cy: float, R: float) -> str:
     return d + "Z"
 
 
+
+# ---------------------------------------------------------------- la A con la scintilla (concept 07 e 35)
+# Misurata sul concept 07 (ingrandito): A piena con la cima piatta, il vuoto sotto tra i piedi e la scintilla a quattro
+# punte ritagliata al centro. Altezza 100, centro x = 0, simmetrica. Larghezza 101,6.
+A_SCINT = [
+    (-18.3, 0.0, 3.0), (18.3, 0.0, 3.0),            # cima piatta
+    (50.8, 100.0, 3.2), (27.0, 100.0, 1.4),          # piede destro (fuori, dentro)
+    (21.2, 85.2, 2.6), (-21.2, 85.2, 2.6),           # soffitto del vuoto tra i piedi
+    (-27.0, 100.0, 1.4), (-50.8, 100.0, 3.2),
+]
+A_SCINT_LARG = 101.6
+A_SCINT_CY, A_SCINT_R = 53.4, 24.4                   # centro e mezza altezza della scintilla
+
+
+def a_scint_path(cx: float, top: float, k: float) -> str:
+    """Contorno della A + scintilla come secondo percorso: va usato con fill-rule evenodd (la scintilla è un vuoto)."""
+    return rpath(A_SCINT, cx, top, k) + sparkle(cx, top + A_SCINT_CY * k, A_SCINT_R * k)
+
+
 # ---------------------------------------------------------------- lettere (Inter ExtraBold con spigoli raccordati)
 _font = {}
 
@@ -435,6 +454,39 @@ def lm_cerchio(g: str, modo: str, uid: str) -> Pezzo:
     return Pezzo(corpo, TILE, TILE)
 
 
+def lm_scint(g: str, modo: str, uid: str) -> Pezzo:
+    """Lettermark con la scintilla a quattro punte (concept 07/35): A nuda, a contorno, in quadrato o in cerchio."""
+    c = colori(g)
+    ev = 'fill-rule="evenodd"'
+    if modo in ("blu", "navy", "contorno"):
+        d = a_scint_path(LM_W / 2, LM_PAD, 1.0)
+        if modo == "blu":
+            col = BLU if g == "chiaro" else (BLU_CH if g == "notte" else BIANCO)
+            corpo = f'<path id="lettera-a" d="{d}" {ev} fill="{col}"/>'
+        elif modo == "navy":
+            corpo = f'<path id="lettera-a" d="{d}" {ev} fill="{c["ink"]}"/>'
+        else:
+            col = NAVY if g == "chiaro" else BIANCO
+            corpo = f'<path id="lettera-a" d="{d}" {ev} fill="none" stroke="{col}" stroke-width="4.2" stroke-linejoin="round"/>'
+        return Pezzo(corpo, LM_W, LM_H)
+    k = 0.648 if modo.startswith("tile") else 0.60
+    top = (TILE - A_ALT * k) / 2
+    d = a_scint_path(TILE / 2, top, k)
+    if modo == "tile-blu":
+        fondo, lettera, forma = (BLU_TILE if g != "azione" else BIANCO), (BIANCO if g != "azione" else BLU), "tile"
+    elif modo == "tile-notte":
+        fondo, lettera, forma = (NAVY if g != "notte" else "#12285F"), BIANCO, "tile"
+    elif modo == "cerchio-blu":
+        fondo, lettera, forma = (BLU if g != "azione" else BIANCO), (BIANCO if g != "azione" else BLU), "cerchio"
+    else:
+        raise ValueError(modo)
+    if forma == "tile":
+        sfondo = f'<rect id="tile" width="{f(TILE)}" height="{f(TILE)}" rx="27" fill="{fondo}"/>'
+    else:
+        sfondo = f'<circle id="cerchio" cx="{f(TILE / 2)}" cy="{f(TILE / 2)}" r="{f(TILE / 2)}" fill="{fondo}"/>'
+    return Pezzo(sfondo + f'<path id="lettera-a" d="{d}" {ev} fill="{lettera}"/>', TILE, TILE)
+
+
 LETTERMARK = {
     # nome: (builder, descrizione, fonte, tipo)
     "bicolore": (lambda g, u: lm_a_nuda(g, "bicolore", u), "A navy con il piede destro blu: la versione dei concept 15.", "15", "concept"),
@@ -447,7 +499,17 @@ LETTERMARK = {
     "tile-chiaro": (lambda g, u: lm_tile(g, "chiaro", u), "A bicolore nel quadrato chiaro: per profili e miniature su fondo scuro.", "15 + 35", "derivata"),
     "cerchio-blu": (lambda g, u: lm_cerchio(g, "blu", u), "A bianca nel cerchio blu (come la scintilla nel cerchio dei concept 35, 37).", "35, 37", "derivata"),
     "cerchio-notte": (lambda g, u: lm_cerchio(g, "notte", u), "A bianca nel cerchio blu notte: avatar dei profili social.", "37", "derivata"),
+    # la A con la scintilla a 4 punte ritagliata al centro (concept 07 e 35, pannello «Icon / Lettermark»)
+    "scintilla-blu": (lambda g, u: lm_scint(g, "blu", u), "La A piena blu con la scintilla a 4 punte al centro: il lettermark dei concept 07 e 35.", "07, 35", "concept"),
+    "scintilla-navy": (lambda g, u: lm_scint(g, "navy", u), "La A con la scintilla tutta navy (bianca su fondo scuro): timbri, stampa, filigrana.", "07, 35", "derivata"),
+    "scintilla-contorno": (lambda g, u: lm_scint(g, "contorno", u), "La A con la scintilla solo a contorno.", "—", "derivata"),
+    "scintilla-tile-blu": (lambda g, u: lm_scint(g, "tile-blu", u), "La A con la scintilla, bianca nel quadrato blu: avatar e profilo.", "35", "derivata"),
+    "scintilla-tile-notte": (lambda g, u: lm_scint(g, "tile-notte", u), "La A con la scintilla, bianca nel quadrato blu notte.", "35", "derivata"),
+    "scintilla-cerchio-blu": (lambda g, u: lm_scint(g, "cerchio-blu", u), "La A con la scintilla, bianca nel cerchio blu: avatar social tondi.", "35, 37", "derivata"),
 }
+# larghezza visibile di ogni lettermark (la A con la scintilla è più stretta della A con la stella)
+def larghezza_visibile(nome: str) -> float:
+    return A_SCINT_LARG if nome.startswith("scintilla") and "tile" not in nome and "cerchio" not in nome else A_LARG
 
 
 # ---------------------------------------------------------------- wordmark
@@ -662,12 +724,12 @@ def lockup(nome: str, g: str, uid: str) -> Pezzo:
     ori, lm_nome, wm_nome = LOCKUP[nome][:3]
     lm = LETTERMARK[lm_nome][0](g, uid + "l") if lm_nome in LETTERMARK else None
     wm = WORDMARK[wm_nome][0](g, uid + "w")
-    is_tile = lm_nome.startswith(("tile", "cerchio"))
+    is_tile = "tile" in lm_nome or "cerchio" in lm_nome
     # parte visibile del lettermark: la A nuda ha 5 px di margine sopra e sotto
     vis_h = TILE if is_tile else A_ALT
     off_y = 0.0 if is_tile else LM_PAD
-    vis_w = TILE if is_tile else A_LARG
-    off_x = 0.0 if is_tile else (LM_W - A_LARG) / 2
+    vis_w = TILE if is_tile else larghezza_visibile(lm_nome)
+    off_x = 0.0 if is_tile else (LM_W - vis_w) / 2
     if ori == "o":     # orizzontale: lettermark a sinistra
         h_ref = wm.h
         target = max(1.5 * CAPH, h_ref * 0.98) if is_tile else 1.15 * CAPH
@@ -697,6 +759,9 @@ LOCKUP = {
     "orizzontale-tile-notte": ("o", "tile-notte", "primario", "Quadrato blu notte con la A + wordmark.", "35", "derivata"),
     "orizzontale-cerchio": ("o", "cerchio-blu", "primario", "Cerchio blu con la A + wordmark (per intestazioni compatte).", "35", "derivata"),
     "verticale-tile": ("v", "tile-blu", "con-tagline", "Quadrato con la A sopra, wordmark e motto centrati.", "07, 28", "derivata"),
+    "orizzontale-scintilla": ("o", "scintilla-blu", "primario", "La A con la scintilla + wordmark: il lockup coerente con la scintilla nella O (concept 07/35).", "07, 35", "concept"),
+    "orizzontale-scintilla-tagline": ("o", "scintilla-blu", "con-tagline", "La A con la scintilla + wordmark con il motto.", "07, 35", "derivata"),
+    "verticale-scintilla": ("v", "scintilla-blu", "primario", "La A con la scintilla sopra il wordmark.", "07, 35", "derivata"),
     "verticale-bicolore": ("v", "bicolore", "primario", "A bicolore sopra il wordmark.", "15", "derivata"),
     "verticale-bicolore-tagline": ("v", "bicolore", "con-tagline", "A bicolore sopra il wordmark con il motto.", "15, 07", "derivata"),
 }
