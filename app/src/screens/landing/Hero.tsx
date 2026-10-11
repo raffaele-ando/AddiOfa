@@ -32,9 +32,9 @@ export default function Hero({ onStart, onSkip }: { onStart(): void; onSkip(): v
             AddiOFA ti aiuta a prepararti al test d'inglese del Politecnico di Milano. Parti dal diagnostico gratuito: {FREE_LIMITS.diagnostic} domande
             e una probabilità stimata di superare il test, con gli argomenti da ripassare. Vale anche se prepari il test d'ingresso e vuoi evitare l'OFA.
           </motion.p>
-          <motion.div {...entra(3)} className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <BottoneAzione onClick={onStart} className="sm:min-w-[17rem]">Fai il diagnostico gratuito</BottoneAzione>
-            <BottoneContorno onClick={onSkip}>Salta e vai all'app</BottoneContorno>
+          <motion.div {...entra(3)} className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start xl:flex-row xl:items-center">
+            <BottoneAzione onClick={onStart} className="whitespace-nowrap">Fai il diagnostico gratuito</BottoneAzione>
+            <BottoneContorno onClick={onSkip} className="whitespace-nowrap">Salta e vai all'app</BottoneContorno>
           </motion.div>
           <motion.ul {...entra(4)} className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-gray-700 dark:text-gray-300" aria-label="In breve">
             {FATTI.map(({ Icona, testo }) => (

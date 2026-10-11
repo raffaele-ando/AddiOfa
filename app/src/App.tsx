@@ -454,6 +454,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onStartDiagnostic={() => setView('onboarding')}
           onSkip={() => setView('menu')}
           onOpenLegal={apriLegale}
+          onOpenPass={() => apriPaywall('generico')}
         />
       )}
       {view === 'menu' && (

@@ -10,6 +10,14 @@ export default function InfoPunteggio({ format, aperto, onChiudi, risposteStima 
   const chiudiRef = useRef<HTMLButtonElement>(null);
   const [stima, setStima] = useState(false);
   useEffect(() => { if (aperto) chiudiRef.current?.focus(); else setStima(false); }, [aperto]);
+  // Tornando da FoglioStima il focus riparte da qui; Esc chiude il foglio anche se il focus è sul fondo pagina
+  useEffect(() => { if (aperto && !stima) chiudiRef.current?.focus(); }, [stima, aperto]);
+  useEffect(() => {
+    if (!aperto || stima) return;
+    const su = (e: KeyboardEvent) => { if (e.key === 'Escape') onChiudi(); };
+    window.addEventListener('keydown', su);
+    return () => window.removeEventListener('keydown', su);
+  }, [aperto, stima, onChiudi]);
   if (!aperto) return null;
 
   if (stima && risposteStima !== undefined) {
@@ -18,7 +26,7 @@ export default function InfoPunteggio({ format, aperto, onChiudi, risposteStima 
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-4" role="dialog" aria-modal="true" aria-labelledby="info-punteggio-titolo"
-      onKeyDown={e => { if (e.key === 'Escape') onChiudi(); }} onClick={e => { if (e.target === e.currentTarget) onChiudi(); }}>
+      onClick={e => { if (e.target === e.currentTarget) onChiudi(); }}>
       <div className="w-full max-w-md rounded-2xl bg-white dark:bg-[#1E293B] p-5 shadow-xl max-h-[85dvh] overflow-y-auto">
         <div className="flex items-start justify-between gap-3">
           <h2 id="info-punteggio-titolo" className="text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC]">Come viene calcolato il punteggio</h2>
