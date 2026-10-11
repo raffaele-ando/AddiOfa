@@ -1,5 +1,4 @@
 import { useId } from 'react';
-import { useContaSu } from './comune';
 import type { Livello } from './stima';
 import { formatProbabilita } from '../../lib/diagnostic';
 
@@ -15,13 +14,10 @@ const pt = (g: number, r = R) => [CX + r * Math.cos((g * Math.PI) / 180), CY + r
 
 export default function Indicatore({ percento, livello, etichetta, sotto }: { percento: number; livello: Livello; etichetta: string; sotto: string }) {
   const id = useId().replace(/:/g, '');
-  const mostrato = useContaSu(percento);
-  // durante il conteggio si vede il numero che sale; alla fine la forma onesta ('<1 %', '>99 %')
-  const finito = mostrato >= percento - 0.001;
   const c = COLORI_STATO[livello];
   const [x0, y0] = pt(INIZIO); const [x1, y1] = pt(INIZIO + AMPIEZZA);
   const lung = (Math.PI * R * AMPIEZZA) / 180;
-  const frazione = Math.max(0, Math.min(1, mostrato / 100));
+  const frazione = Math.max(0, Math.min(1, percento / 100));
   const [px, py] = pt(INIZIO + AMPIEZZA * frazione);
   const d = `M${x0.toFixed(2)} ${y0.toFixed(2)}A${R} ${R} 0 1 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
   const tacche = Array.from({ length: 15 }, (_, i) => INIZIO + (AMPIEZZA * i) / 14);
@@ -45,7 +41,7 @@ export default function Indicatore({ percento, livello, etichetta, sotto }: { pe
         <circle cx={px} cy={py} r="10" fill={c.punto} stroke="#fff" strokeWidth="4.5" />
       </svg>
       <div className="absolute inset-x-0 top-[44%] flex flex-col items-center text-center pointer-events-none">
-        <div className={`text-[52px] leading-none font-extrabold tabular-nums whitespace-nowrap ${c.numero}`}>{finito ? formatProbabilita(percento / 100) : `${Math.round(mostrato)} %`}</div>
+        <div className={`text-[52px] leading-none font-extrabold tabular-nums whitespace-nowrap ${c.numero}`}>{formatProbabilita(percento / 100)}</div>
         <div className="mt-1.5 text-[14px] font-bold text-[#0F172A] dark:text-[#F8FAFC] px-6 leading-tight">{etichetta}</div>
       </div>
       <div className="text-[12px] text-[#6B7280] dark:text-[#94A3B8] text-center leading-snug -mt-1">{sotto}</div>

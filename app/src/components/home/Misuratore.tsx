@@ -1,6 +1,5 @@
 import { useId } from 'react';
 import { Info } from 'lucide-react';
-import { useContaSu } from './comune';
 import type { Livello } from './stima';
 import { formatProbabilita } from '../../lib/diagnostic';
 
@@ -23,16 +22,13 @@ interface Props {
   onInfo: () => void;
 }
 
-/** Misuratore a tutta larghezza: arco che si riempie, tacche, pallino sull'arco, (i) in alto al centro, percentuale grande. */
+/** Misuratore a tutta larghezza: arco fermo già al valore, tacche, pallino sull'arco, (i) in alto al centro, percentuale grande. */
 export default function Misuratore({ percento, livello, etichetta, onInfo }: Props) {
   const id = useId().replace(/:/g, '');
-  const mostrato = useContaSu(percento, 1100);
-  // durante il conteggio si vede il numero che sale; alla fine la forma onesta ('<1 %', '>99 %')
-  const finito = mostrato >= percento - 0.001;
   const c = COLORI[livello];
   const [x0, y0] = pt(INIZIO); const [x1, y1] = pt(INIZIO + AMPIEZZA);
   const lung = (Math.PI * R * AMPIEZZA) / 180;
-  const frazione = Math.max(0, Math.min(1, mostrato / 100));
+  const frazione = Math.max(0, Math.min(1, percento / 100));
   const [px, py] = pt(INIZIO + AMPIEZZA * frazione);
   const d = `M${x0.toFixed(2)} ${y0.toFixed(2)}A${R} ${R} 0 1 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
   const tacche = Array.from({ length: 21 }, (_, i) => INIZIO + (AMPIEZZA * i) / 20);
@@ -63,7 +59,7 @@ export default function Misuratore({ percento, livello, etichetta, onInfo }: Pro
 
       <div className="absolute inset-x-0 flex flex-col items-center text-center pointer-events-none" style={{ top: '38%' }}>
         <div className={`font-extrabold tabular-nums whitespace-nowrap leading-none ${c.numero}`} style={{ fontSize: 'min(19cqw, 92px)' }}>
-          {finito ? formatProbabilita(percento / 100) : `${Math.round(mostrato)} %`}
+          {formatProbabilita(percento / 100)}
         </div>
         <div className="mt-2 text-[15px] font-bold text-[#0F172A] dark:text-[#F8FAFC] max-w-[56%] text-balance leading-tight">{etichetta}</div>
       </div>

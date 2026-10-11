@@ -1,7 +1,5 @@
 import { useId, useState } from 'react';
-import { motion } from 'motion/react';
 import { Info } from 'lucide-react';
-import { useRiduci } from './comune';
 import type { PuntoStima } from './stima';
 import { formatProbabilita } from '../../lib/diagnostic';
 import { playTapSound } from '../../lib/audio';
@@ -29,7 +27,6 @@ function coloreDi(v: number): string {
  */
 export default function GraficoStime({ punti, onSimulazione }: { punti: PuntoStima[]; onSimulazione?: () => void }) {
   const id = useId().replace(/:/g, '');
-  const riduci = useRiduci();
   const [info, setInfo] = useState(false);
   const n = punti.length;
   if (n === 0) return null;
@@ -63,17 +60,12 @@ export default function GraficoStime({ punti, onSimulazione }: { punti: PuntoSti
           </defs>
           <line x1="0" y1={GIU + 6} x2={W} y2={GIU + 6} strokeWidth="1.5" className="stroke-[#E3E8F0] dark:stroke-[#334155]" />
           {n > 1 && (
-            <motion.path d={linea} fill="none" stroke={`url(#l${id})`} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"
-              initial={riduci ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: riduci ? 0 : 1, delay: riduci ? 0 : 0.35, ease: 'easeOut' }} />
+            <path d={linea} fill="none" stroke={`url(#l${id})`} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
           )}
           {xs.map((x, i) => (
             <g key={i}>
               <line x1={x} y1={ys[i] + 8} x2={x} y2={GIU + 6} strokeWidth="1.5" strokeDasharray="2 4" strokeLinecap="round" className="stroke-[#D5DBE6] dark:stroke-[#475569]" />
-              <motion.g initial={riduci ? false : { opacity: 0, scale: 0.4 }} animate={{ opacity: 1, scale: 1 }}
-                style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
-                transition={{ duration: riduci ? 0 : 0.3, delay: riduci ? 0 : 0.35 + (n > 1 ? (i / (n - 1)) * 1 : 0.2) }}>
-                <circle cx={x} cy={ys[i]} r={i === n - 1 ? 9 : 7} fill={coloreDi(val[i])} stroke="#fff" strokeWidth={i === n - 1 ? 4 : 3.5} className="dark:stroke-[#0F172A]" />
-              </motion.g>
+              <circle cx={x} cy={ys[i]} r={i === n - 1 ? 9 : 7} fill={coloreDi(val[i])} stroke="#fff" strokeWidth={i === n - 1 ? 4 : 3.5} className="dark:stroke-[#0F172A]" />
             </g>
           ))}
         </svg>

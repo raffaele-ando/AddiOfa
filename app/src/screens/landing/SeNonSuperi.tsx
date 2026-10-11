@@ -1,6 +1,6 @@
 import { CalendarDays, Layers, Target, Wallet } from 'lucide-react';
 import { FORMATS, OFA_CONSEQUENCES, OFA_DEADLINES, OFA_RULES_NOTE } from '../../config/offer';
-import { BottoneAzione, Ingresso, Sezione, TitoloSezione, SCHEDA, Evidenza } from './comune';
+import { BottoneAzione, Sezione, TitoloSezione, SCHEDA, Evidenza } from './comune';
 import { cn } from '../../lib/utils';
 
 function Anello({ Icona }: { Icona: typeof Target }) {
@@ -17,7 +17,7 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
   return (
     <Sezione titoloId="t-ofa" className="bg-white dark:bg-[#0F172A]/50">
       <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-        <Ingresso className="lg:sticky lg:top-24 lg:self-start">
+        <div className="lg:sticky lg:top-24 lg:self-start">
           <TitoloSezione
             id="t-ofa"
             occhiello="Cosa c'è in gioco"
@@ -28,13 +28,13 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
           <p className="mt-6 max-w-md text-sm font-medium text-gray-600 dark:text-gray-300">
             AddiOFA non cambia le regole né sostituisce il test: ti aiuta a sapere a che punto sei prima di affrontarlo.
           </p>
-        </Ingresso>
+        </div>
 
         <ol className="relative flex flex-col gap-4">
           <span aria-hidden className="absolute left-[2.1rem] top-10 bottom-10 z-0 w-0.5 bg-azione/25 dark:bg-azione-chiaro/25" />
 
           <li className="relative z-10">
-            <Ingresso ritardo={0.05}>
+            <div>
               <div className={scheda}>
                 <Anello Icona={Target} />
                 <div>
@@ -44,10 +44,10 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
                   </p>
                 </div>
               </div>
-            </Ingresso>
+            </div>
           </li>
           <li className="relative z-10">
-            <Ingresso ritardo={0.1}>
+            <div>
               <div className={scheda}>
                 <Anello Icona={Wallet} />
                 <div>
@@ -55,10 +55,10 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
                   <p className="mt-1 text-sm font-medium text-gray-600 dark:text-gray-300">{OFA_CONSEQUENCES[0]}.</p>
                 </div>
               </div>
-            </Ingresso>
+            </div>
           </li>
           <li className="relative z-10">
-            <Ingresso ritardo={0.15}>
+            <div>
               <div className={scheda}>
                 <Anello Icona={Layers} />
                 <div>
@@ -66,10 +66,10 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
                   <p className="mt-1 text-sm font-medium text-gray-600 dark:text-gray-300">{OFA_CONSEQUENCES[1]}.</p>
                 </div>
               </div>
-            </Ingresso>
+            </div>
           </li>
           <li className="relative z-10">
-            <Ingresso ritardo={0.2}>
+            <div>
               <div className={scheda}>
                 <Anello Icona={CalendarDays} />
                 <div className="min-w-0 flex-1">
@@ -84,10 +84,10 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
                   <p className="mt-2 text-xs font-medium text-gray-600 dark:text-gray-400">Calendario 2026/27 del Politecnico. {OFA_RULES_NOTE}</p>
                 </div>
               </div>
-            </Ingresso>
+            </div>
           </li>
           <li className="relative z-10">
-            <Ingresso ritardo={0.25}>
+            <div>
               <div className="rounded-3xl bg-azione p-5 sm:p-6 text-white shadow-[0_12px_28px_rgba(37,99,235,0.28)] dark:shadow-none">
                 <h3 className="text-lg font-bold">Con il diagnostico lo sai prima</h3>
                 <p className="mt-1.5 text-sm font-medium text-white/95">
@@ -95,7 +95,7 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
                 </p>
                 <BottoneAzione onClick={onStart} className="mt-4 !bg-white !text-azione-scuro hover:!bg-azione-tinta !shadow-none focus-visible:!outline-white">Fai il diagnostico gratuito</BottoneAzione>
               </div>
-            </Ingresso>
+            </div>
           </li>
         </ol>
       </div>

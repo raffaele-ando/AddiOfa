@@ -12,9 +12,6 @@ const TESTO = 'text-[15px] leading-relaxed text-gray-700 dark:text-gray-300';
 const CAMPO =
   'w-full rounded-xl border border-gray-300 dark:border-[#475569] bg-white dark:bg-[#0F172A] px-3 py-3 text-base text-[#0F172A] dark:text-[#F8FAFC] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB] dark:focus:ring-[#60A5FA]';
 
-const riduciMovimento = () =>
-  typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-
 function Bozza({ aggiornato }: { aggiornato: string }) {
   return (
     <div
@@ -108,7 +105,7 @@ function ModuloRecesso() {
           <button
             type="submit"
             disabled={!pronto}
-            className="w-full rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] active:scale-[.99] text-white font-bold text-base py-3.5 px-6 shadow-sm transition-all disabled:opacity-40 disabled:pointer-events-none"
+            className="w-full rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-base py-3.5 px-6 shadow-sm transition-colors duration-100 disabled:opacity-40 disabled:pointer-events-none"
           >
             {invio ? 'Invio in corso…' : 'Conferma recesso'}
           </button>
@@ -132,7 +129,7 @@ export default function Legal({ section, onBack, onSection }: {
   }, [section]);
 
   const vai = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: riduciMovimento() ? 'auto' : 'smooth', block: 'start' });
+    document.getElementById(id)?.scrollIntoView({ block: 'start' });
 
   const sid = (i: number) => `${section}-s${i}`;
 
@@ -151,7 +148,7 @@ export default function Legal({ section, onBack, onSection }: {
               aria-controls="legal-pannello"
               onClick={() => onSection(t.id)}
               className={cn(
-                'rounded-lg px-1 py-2 text-[13px] font-bold transition-colors',
+                'rounded-lg px-1 py-2 text-[13px] font-bold transition-colors duration-100',
                 t.id === section
                   ? 'bg-white dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] shadow-sm'
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
@@ -171,7 +168,7 @@ export default function Legal({ section, onBack, onSection }: {
             <details className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-3 text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] [&::-webkit-details-marker]:hidden">
                 <h2 className="text-sm font-bold">In questa pagina <span className="font-normal text-gray-500 dark:text-gray-400">({doc.sezioni.length} sezioni)</span></h2>
-                <ChevronDown size={18} aria-hidden className="shrink-0 text-gray-500 transition-transform group-open:rotate-180" />
+                <ChevronDown size={18} aria-hidden className="shrink-0 text-gray-500 group-open:rotate-180" />
               </summary>
               <ol className="space-y-0.5 px-3 pb-3 text-sm">
                 {doc.sezioni.map((s, i) => (

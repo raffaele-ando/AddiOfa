@@ -214,7 +214,7 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
           </p>
           <button
             onClick={() => { playTapSound(); void prova(); }}
-            className="w-full rounded-2xl bg-[#0F172A] dark:bg-white text-white dark:text-[#0F172A] font-bold py-3.5 px-6 active:scale-[.99] transition-transform"
+            className="w-full rounded-2xl bg-[#0F172A] dark:bg-white text-white dark:text-[#0F172A] font-bold py-3.5 px-6"
           >
             Sblocca il Pass in prova
           </button>

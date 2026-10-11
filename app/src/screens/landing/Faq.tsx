@@ -2,7 +2,7 @@ import { useId, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import type { LegalSection } from '../../types';
 import { DISCLAIMER, FREE_LIMITS, PASS } from '../../config/offer';
-import { FOCUS, Ingresso, Sezione, TitoloSezione, SCHEDA } from './comune';
+import { FOCUS, Sezione, TitoloSezione, SCHEDA } from './comune';
 import { cn } from '../../lib/utils';
 
 interface Voce { d: string; r: string; legale?: { sezione: LegalSection; testo: string } }
@@ -50,16 +50,16 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
           className={cn('flex w-full items-center justify-between gap-4 rounded-3xl px-5 py-4 text-left text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] sm:px-6', FOCUS)}
         >
           <span>{voce.d}</span>
-          <ChevronDown size={20} aria-hidden className={cn('shrink-0 text-azione dark:text-azione-chiaro transition-transform duration-300 motion-reduce:transition-none', aperta && 'rotate-180')} />
+          <ChevronDown size={20} aria-hidden className={cn('shrink-0 text-azione dark:text-azione-chiaro', aperta && 'rotate-180')} />
         </button>
       </h3>
-      {/* la riga si apre con una transizione di altezza; chiusa, il contenuto esce dal giro della tastiera con inert */}
+      {/* la riga si apre subito; chiusa, il contenuto esce dal giro della tastiera con inert */}
       <div
         id={`${id}-p`}
         role="region"
         aria-labelledby={`${id}-b`}
         inert={!aperta}
-        className={cn('grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none', aperta ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')}
+        className={cn('grid', aperta ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')}
       >
         <div className="overflow-hidden">
           <div className="px-5 pb-5 sm:px-6">
@@ -81,16 +81,16 @@ export default function Faq({ onOpenLegal }: { onOpenLegal(s: LegalSection): voi
   return (
     <Sezione id="domande" titoloId="t-faq" className="bg-white dark:bg-[#0F172A]/50">
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
-        <Ingresso className="lg:sticky lg:top-24 lg:self-start">
+        <div className="lg:sticky lg:top-24 lg:self-start">
           <TitoloSezione id="t-faq" occhiello="Domande" sotto="Le risposte brevi. Per il resto ci sono i testi legali in fondo alla pagina.">
             Domande frequenti
           </TitoloSezione>
-        </Ingresso>
+        </div>
         <div className="flex flex-col gap-3">
           {VOCI.map((v, i) => (
-            <Ingresso key={v.d} ritardo={i * 0.05}>
+            <div key={v.d}>
               <Domanda voce={v} aperta={aperta === i} onToggle={() => setAperta(aperta === i ? null : i)} onOpenLegal={onOpenLegal} />
-            </Ingresso>
+            </div>
           ))}
         </div>
       </div>

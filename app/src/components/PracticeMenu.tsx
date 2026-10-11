@@ -36,13 +36,13 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
   };
 
   return (
-    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300 flex flex-col">
+    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-100 flex flex-col">
       <div className="flex flex-col h-full p-4 sm:p-6 gap-3 sm:gap-4 flex-1 min-h-0 overflow-y-auto scrollbar-hide">
       <header className="flex items-center justify-between gap-3 shrink-0">
         <div className="flex items-center gap-3">
           <button 
             onClick={() => { playTapSound(); onBack(); }}
-            className="p-2 -ml-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-full"
+            className="p-2 -ml-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-100 rounded-full"
           >
             <ArrowLeft size={24} strokeWidth={3} />
           </button>
@@ -67,7 +67,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
               else onSelectCorpus?.('all');
             }}
             className={cn(
-              "flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5",
+              "flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-100 flex items-center justify-center gap-1.5",
               corpus !== 'initial'
                 ? "bg-white dark:bg-[#1E293B] text-[#2563EB] dark:text-[#60A5FA] shadow-xs border border-gray-200/50 dark:border-[#334155]"
                 : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
@@ -80,7 +80,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
             type="button"
             onClick={() => { playTapSound(); onSelectCorpus?.('initial'); }}
             className={cn(
-              "flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5",
+              "flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-100 flex items-center justify-center gap-1.5",
               corpus === 'initial'
                 ? "bg-white dark:bg-[#1E293B] text-[#16A34A] dark:text-[#34D399] shadow-xs border border-gray-200/50 dark:border-[#334155]"
                 : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
@@ -100,7 +100,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
       <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 min-h-0 items-stretch">
         <button
           onClick={() => { playTapSound(); onSelectMode('standard'); }}
-          className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-2xl transition-all duration-200 active:scale-[.99] flex items-center gap-4 h-full"
+          className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-2xl transition-colors duration-100 flex items-center gap-4 h-full"
         >
           <IconaChip nome="studio" lato={48} />
           <div>
@@ -111,7 +111,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
 
         <button
           onClick={() => { playTapSound(); if (!pass) onNeedPass('errori'); else onSelectMode('weakness'); }}
-          className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-2xl transition-all duration-200 active:scale-[.99] flex items-center gap-4 h-full"
+          className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-2xl transition-colors duration-100 flex items-center gap-4 h-full"
         >
           <IconaChip nome="errore" lato={48} />
           <div>
@@ -125,7 +125,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
 
         <button
           onClick={() => { playTapSound(); onSelectMode('blitz'); }}
-          className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-2xl transition-all duration-200 active:scale-[.99] flex items-center gap-4 h-full"
+          className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-2xl transition-colors duration-100 flex items-center gap-4 h-full"
         >
           <IconaChip nome="quiz" lato={48} />
           <div>
@@ -136,7 +136,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
 
         <button
           onClick={() => { playTapSound(); onSelectMode('recall'); }}
-          className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-2xl transition-all duration-200 active:scale-[.99] flex items-center gap-4 h-full"
+          className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-[#1E293B] text-left p-4 sm:p-5 rounded-2xl transition-colors duration-100 flex items-center gap-4 h-full"
         >
           <IconaChip nome="aiuto" lato={48} />
           <div>
@@ -155,7 +155,7 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
           </div>
           <div className="flex flex-row gap-3 mt-auto">
             <select 
-              className="flex-1 min-w-0 bg-gray-50 dark:bg-[#1E293B] border border-gray-200 dark:border-[#334155] rounded-xl px-4 py-3 text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] outline-none focus:border-[#2563EB] transition-colors appearance-none"
+              className="flex-1 min-w-0 bg-gray-50 dark:bg-[#1E293B] border border-gray-200 dark:border-[#334155] rounded-xl px-4 py-3 text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] outline-none focus:border-[#2563EB] transition-colors duration-100 appearance-none"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >

@@ -8,7 +8,7 @@ import { ECOSYSTEM } from '../config/ecosystem';
 
 export function Screen({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
+    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-100">
       <div className={cn("flex flex-col h-full p-5 sm:p-8 gap-4 overflow-y-auto scrollbar-hide", className)}>
         {children}
       </div>
@@ -22,7 +22,7 @@ export function TopBar({ step, totalSteps, onBack }: { step?: number; totalSteps
       {onBack ? (
         <button
           onClick={() => { playTapSound(); onBack(); }}
-          className="p-1 -ml-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          className="p-1 -ml-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-100"
           aria-label="Indietro"
         >
           <ChevronLeft size={26} strokeWidth={2.5} />
@@ -36,7 +36,7 @@ export function TopBar({ step, totalSteps, onBack }: { step?: number; totalSteps
             <div
               key={i}
               className={cn(
-                "h-1.5 flex-1 rounded-full transition-colors",
+                "h-1.5 flex-1 rounded-full transition-colors duration-100",
                 i < step ? "bg-[#2563EB]" : "bg-gray-200 dark:bg-[#334155]"
               )}
             />
@@ -58,7 +58,7 @@ export function PrimaryButton({ children, onClick, disabled, className }: {
       onClick={() => { playTapSound(); onClick(); }}
       disabled={disabled}
       className={cn(
-        "w-full bg-[#2563EB] hover:bg-[#1D4ED8] border-[#1D4ED8] active:scale-[.99] text-white font-bold text-base sm:text-lg py-4 px-6 rounded-2xl shadow-sm flex items-center justify-center gap-2 transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none shrink-0",
+        "w-full bg-[#2563EB] hover:bg-[#1D4ED8] border-[#1D4ED8]  text-white font-bold text-base sm:text-lg py-4 px-6 rounded-2xl shadow-sm flex items-center justify-center gap-2 transition-colors duration-100 disabled:opacity-40 disabled:pointer-events-none shrink-0",
         className
       )}
     >
@@ -73,7 +73,7 @@ export function SecondaryButton({ children, onClick, className }: { children: Re
     <button
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        "w-full py-3 px-6 font-bold text-sm sm:text-base text-gray-500 dark:text-gray-400 bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl active:scale-[.99] hover:bg-gray-50 dark:hover:bg-[#1E293B] transition-all shrink-0",
+        "w-full py-3 px-6 font-bold text-sm sm:text-base text-gray-500 dark:text-gray-400 bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl  hover:bg-gray-50 dark:hover:bg-[#1E293B] transition-colors duration-100 shrink-0",
         className
       )}
     >
@@ -92,14 +92,14 @@ export function ChoiceCard({ selected, onClick, title, subtitle }: {
     <button
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        "w-full text-left p-4 sm:p-5 rounded-2xl border flex items-center gap-4 transition-all",
+        "w-full text-left p-4 sm:p-5 rounded-2xl border flex items-center gap-4 transition-colors duration-100",
         selected
           ? "border-[#2563EB] dark:border-[#60A5FA] bg-[#DBEAFE]/60 dark:bg-[#1E3A8A]/40"
           : "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B]"
       )}
     >
       <span className={cn(
-        "w-7 h-7 rounded-full border flex items-center justify-center shrink-0 transition-colors",
+        "w-7 h-7 rounded-full border flex items-center justify-center shrink-0 transition-colors duration-100",
         selected ? "bg-[#2563EB] border-[#2563EB] dark:border-[#60A5FA] text-white" : "border-gray-300 dark:border-[#475569] text-transparent"
       )}>
         <Check size={16} strokeWidth={3.5} />

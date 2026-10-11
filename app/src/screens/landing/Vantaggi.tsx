@@ -1,6 +1,6 @@
 import { Gauge, Repeat2, Timer, Languages } from 'lucide-react';
 import { FORMATS, FREE_LIMITS } from '../../config/offer';
-import { Colonna, Ingresso, SCHEDA } from './comune';
+import { Colonna, SCHEDA } from './comune';
 import { cn } from '../../lib/utils';
 
 const VANTAGGI = [
@@ -14,7 +14,7 @@ const VANTAGGI = [
 export default function Vantaggi() {
   return (
     <Colonna className="relative z-10 -mt-1 sm:-mt-4">
-      <Ingresso>
+      <div>
         <ul className={cn(SCHEDA, 'grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-5 p-5 sm:p-6')} aria-label="I vantaggi in breve">
           {VANTAGGI.map(({ Icona, titolo, testo }) => (
             <li key={titolo} className="flex items-start gap-3">
@@ -28,7 +28,7 @@ export default function Vantaggi() {
             </li>
           ))}
         </ul>
-      </Ingresso>
+      </div>
     </Colonna>
   );
 }

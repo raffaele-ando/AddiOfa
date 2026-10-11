@@ -254,7 +254,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
   // ================== Senza Pass: i numeri di base e un invito ==================
   if (!pass) {
     return (
-      <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
+      <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-100">
         <div className="flex flex-col h-full p-2 sm:p-4">
           <header className="flex items-end justify-between px-2 pt-2 pb-1 shrink-0">
             <div>
@@ -312,7 +312,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               </div>
               <button
                 onClick={() => onNeedPass('statistiche')}
-                className="self-start text-sm font-bold text-[#2563EB] dark:text-[#60A5FA] border border-[#93C5FD] hover:bg-[#DBEAFE] dark:hover:bg-[#1E3A8A]/40 px-4 py-2 rounded-xl transition-colors"
+                className="self-start text-sm font-bold text-[#2563EB] dark:text-[#60A5FA] border border-[#93C5FD] hover:bg-[#DBEAFE] dark:hover:bg-[#1E3A8A]/40 px-4 py-2 rounded-xl transition-colors duration-100"
               >
                 Scopri il Pass
               </button>
@@ -326,9 +326,9 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
 
   if (showDetailedStats) {
     return (
-      <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300 flex flex-col">
-        <header className="flex items-center justify-between p-4 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors">
-          <button onClick={() => setShowDetailedStats(false)} className="flex items-center gap-2 text-sm sm:text-base font-bold text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
+      <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-100 flex flex-col">
+        <header className="flex items-center justify-between p-4 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors duration-100">
+          <button onClick={() => setShowDetailedStats(false)} className="flex items-center gap-2 text-sm sm:text-base font-bold text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-100">
             <ArrowLeft size={20} />
             Indietro
           </button>
@@ -337,7 +337,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
             <span className="text-xs font-bold text-gray-400">{filteredAndSortedQuestions.length} domande totali</span>
           </div>
         </header>
-        <div className="flex items-center justify-between p-4 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors bg-gray-50 dark:bg-[#0F172A]">
+        <div className="flex items-center justify-between p-4 border-b-2 border-gray-200 dark:border-[#334155] shrink-0 transition-colors duration-100 bg-gray-50 dark:bg-[#0F172A]">
           <div className="flex items-center gap-2">
             <Filter size={16} className="text-gray-500 dark:text-gray-400" />
             <select
@@ -352,7 +352,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           </div>
           <button
             onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-            className="flex items-center gap-2 text-sm font-bold text-[#2563EB] dark:text-[#60A5FA] hover:text-[#1D4ED8] dark:hover:text-[#93C5FD] transition-colors"
+            className="flex items-center gap-2 text-sm font-bold text-[#2563EB] dark:text-[#60A5FA] hover:text-[#1D4ED8] dark:hover:text-[#93C5FD] transition-colors duration-100"
           >
             <ArrowDownUp size={16} />
             {sortOrder === 'asc' ? 'Peggiori prima' : 'Migliori prima'}
@@ -408,7 +408,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                     {/* Breakdown: Giuste, Sbagliate, Omesse + Telemetria Cognitiva */}
                     <div className="flex items-center gap-1.5 sm:gap-2 mt-2.5 flex-wrap">
                       <span className={cn(
-                        "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors",
+                        "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
                         correctCount > 0 
                           ? "bg-[#DCFCE7] dark:bg-[#059669]/20 text-[#16A34A] dark:text-[#34D399] border-[#22C55E]/30" 
                           : "bg-white dark:bg-[#1E293B] text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
@@ -418,7 +418,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                       </span>
 
                       <span className={cn(
-                        "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors",
+                        "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
                         incorrectCount > 0 
                           ? "bg-[#FEE2E2] dark:bg-[#7F1D1D]/30 text-[#B91C1C] dark:text-[#FCA5A5] border-[#EF4444]/30" 
                           : "bg-white dark:bg-[#1E293B] text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
@@ -428,7 +428,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                       </span>
 
                       <span className={cn(
-                        "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors",
+                        "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
                         omittedCount > 0 
                           ? "bg-[#FFF4E5] dark:bg-[#F59E0B]/20 text-[#D97706] dark:text-[#FBBF24] border-[#F59E0B]/30" 
                           : "bg-white dark:bg-[#1E293B] text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
@@ -471,7 +471,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                           <span className="text-[10px] sm:text-xs font-bold text-[#3B82F6]">{confidenceScore}%</span>
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-[#334155] h-2 rounded-full overflow-hidden">
-                          <div className="bg-[#3B82F6] h-full transition-all" style={{ width: `${confidenceScore}%` }} />
+                          <div className="bg-[#3B82F6] h-full transition-colors duration-100" style={{ width: `${confidenceScore}%` }} />
                         </div>
                       </div>
                     </>
@@ -490,7 +490,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
   }
 
   return (
-    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
+    <div className="h-full w-full bg-white dark:bg-[#1E293B] sm:rounded-[28px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-100">
       <div className="flex flex-col h-full p-2 sm:p-4">
       <header className="flex items-end justify-between px-2 pt-2 pb-1 shrink-0">
         <div>
@@ -522,7 +522,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           <p className="-mt-1 text-xs leading-snug text-[#6B7280] dark:text-gray-400">{REGOLA_IMPARATA}</p>
 
           {/* Activity Chart */}
-          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[250px]">
              <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
               <Activity className="text-[#F59E0B] dark:text-[#FBBF24] w-5 h-5" />
               Costanza (ultimi 7 giorni)
@@ -545,7 +545,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           </div>
 
           {/* Exam Stats */}
-          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col justify-center">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col justify-center">
             <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-3 flex items-center gap-2 shrink-0">
               <Clock className="text-[#8B5CF6] dark:text-[#A78BFA] w-5 h-5" />
               Simulazioni
@@ -577,14 +577,14 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           {/* Go to detailed view button */}
           <button 
             onClick={() => setShowDetailedStats(true)}
-            className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] border-[#2563EB] active:scale-[.99] text-white font-bold text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-all flex items-center justify-center gap-2"
+            className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] border-[#2563EB] text-white font-bold text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-colors duration-100 flex items-center justify-center gap-2"
           >
             <List className="w-5 h-5" />
             Vedi il dettaglio delle domande
           </button>
 
           {Object.keys(topicStats).length >= 3 ? (
-            <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col h-full min-h-[300px]">
+            <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col h-full min-h-[300px]">
               <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
                 <Target className="text-[#3B82F6] dark:text-[#60A5FA] w-5 h-5" />
                 Profilo per argomento
@@ -637,14 +637,14 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               </div>
             </div>
           ) : (
-            <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-6 transition-colors flex-1 flex flex-col justify-center items-center text-center min-h-[300px]">
+            <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-6 transition-colors duration-100 flex-1 flex flex-col justify-center items-center text-center min-h-[300px]">
               <AlertCircle className="text-[#2563EB] dark:text-[#60A5FA] w-10 h-10 mb-3 opacity-50" />
               <p className="text-sm font-bold text-gray-400">Rispondi a più domande su diversi argomenti per vedere il tuo profilo per argomento.</p>
             </div>
           )}
 
           {/* Progresso per livello */}
-          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[250px]">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[250px]">
              <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
               <TrendingUp className="text-[#F59E0B] dark:text-[#FBBF24] w-5 h-5" />
               Progresso per livello
@@ -668,7 +668,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           </div>
 
           {/* Progresso per argomento */}
-          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col min-h-[350px]">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[350px]">
              <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-4 flex items-center gap-2 shrink-0">
               <List className="text-[#8B5CF6] dark:text-[#A78BFA] w-5 h-5" />
               Progresso per argomento
@@ -692,7 +692,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
           </div>
 
           {/* Errori frequenti */}
-          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors flex flex-col">
+          <div className="bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#334155] rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col">
             <h3 className="text-sm sm:text-base font-bold text-[#0F172A] dark:text-[#F8FAFC] mb-3 flex items-center gap-2 shrink-0">
               <AlertCircle className="text-[#EF4444] dark:text-[#F87171] w-5 h-5" />
               Errori frequenti
@@ -707,13 +707,13 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                   const text = prompts[err.qId];
                   const rightAnswer = answersText[err.qId];
                   return (
-                    <div key={err.qId} className="bg-[#FEE2E2] dark:bg-[#7F1D1D]/25 border border-[#EF4444] dark:border-[#EF4444] rounded-xl p-3 sm:p-4 shadow-sm transition-colors flex flex-col gap-2.5">
+                    <div key={err.qId} className="bg-[#FEE2E2] dark:bg-[#7F1D1D]/25 border border-[#EF4444] dark:border-[#EF4444] rounded-xl p-3 sm:p-4 shadow-sm transition-colors duration-100 flex flex-col gap-2.5">
                       <p className="font-bold text-sm sm:text-base text-[#1E293B] dark:text-[#F8FAFC] line-clamp-2 leading-tight">{text ?? '…'}</p>
                       
                       {/* Breakdown: Giuste, Sbagliate, Omesse */}
                       <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                         <span className={cn(
-                          "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors",
+                          "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
                           err.correct > 0 
                             ? "bg-[#DCFCE7] dark:bg-[#059669]/30 text-[#16A34A] dark:text-[#34D399] border-[#22C55E]/30" 
                             : "bg-white/80 dark:bg-black/20 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
@@ -728,7 +728,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                         </span>
 
                         <span className={cn(
-                          "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors",
+                          "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
                           err.omitted > 0 
                             ? "bg-[#FFF4E5] dark:bg-[#F59E0B]/30 text-[#D97706] dark:text-[#FBBF24] border-[#F59E0B]/30" 
                             : "bg-white/80 dark:bg-black/20 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700"
@@ -758,7 +758,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
         {/* Bottom Full Width Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 shrink-0">
           {/* XP & Level Bar */}
-          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border border-gray-200 dark:border-[#334155] flex flex-col justify-center gap-2 shadow-sm transition-colors">
+          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border border-gray-200 dark:border-[#334155] flex flex-col justify-center gap-2 shadow-sm transition-colors duration-100">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="bg-[#F59E0B] text-white p-1.5 rounded-lg shadow-sm">
@@ -769,12 +769,12 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               <span className="text-xs sm:text-sm font-bold text-[#F59E0B]">{totalXP} XP</span>
             </div>
             <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative">
-              <div className={cn("bg-[#F59E0B] h-full rounded-full transition-all duration-500 ease-out", progressPercent > 80 && "animate-pulse motion-reduce:animate-none")} style={{ width: `${progressPercent}%` }} />
+              <div className={cn("bg-[#F59E0B] h-full rounded-full transition-colors duration-100")} style={{ width: `${progressPercent}%` }} />
             </div>
           </div>
 
           {/* Daily Goal Endless */}
-          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border border-gray-200 dark:border-[#334155] flex flex-col justify-center gap-2 shadow-sm transition-colors relative overflow-hidden group">
+          <div className="bg-white dark:bg-[#0F172A] rounded-2xl p-4 sm:p-5 border border-gray-200 dark:border-[#334155] flex flex-col justify-center gap-2 shadow-sm transition-colors duration-100 relative overflow-hidden group">
             <div className="flex justify-between items-center z-10 leading-none">
               <span className="text-sm sm:text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] flex items-center gap-2">
                 Sfida Quotidiana
@@ -787,7 +787,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
             
             <div className="w-full bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden flex relative mt-1">
               <div 
-                className={cn("bg-[#2563EB] h-full rounded-full transition-all duration-700 ease-out", phaseProgressPercent > 80 && "animate-pulse motion-reduce:animate-none")} 
+                className={cn("bg-[#2563EB] h-full rounded-full transition-colors duration-100")} 
                 style={{ width: `${phaseProgressPercent}%` }} 
               />
             </div>

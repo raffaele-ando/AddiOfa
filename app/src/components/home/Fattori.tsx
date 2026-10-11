@@ -1,9 +1,9 @@
 import { ChevronRight } from 'lucide-react';
-import { Carta, BarraCresce, coloreValore } from './comune';
+import { Carta, Barra, coloreValore } from './comune';
 import type { Fattore } from './stima';
 import { playTapSound } from '../../lib/audio';
 
-function Riga({ f, icona, indice, onVai, piccolo }: { f: Fattore; icona?: React.ReactNode; indice: number; onVai?: (filtro: string) => void; piccolo?: boolean }) {
+function Riga({ f, icona, onVai, piccolo }: { f: Fattore; icona?: React.ReactNode; onVai?: (filtro: string) => void; piccolo?: boolean }) {
   const dato = f.percento !== null;
   const corpo = (
     <>
@@ -14,7 +14,7 @@ function Riga({ f, icona, indice, onVai, piccolo }: { f: Fattore; icona?: React.
         </span>
         <span className={`text-[13px] tabular-nums shrink-0 ${dato ? 'font-bold text-[#0F172A] dark:text-[#F8FAFC]' : 'text-[#6B7280] dark:text-[#94A3B8]'}`}>{dato ? `${f.percento}%` : '\u2013'}</span>
       </span>
-      <span className="block mt-2"><BarraCresce valore={dato ? f.percento! : 0} colore={dato ? coloreValore(f.percento!) : 'transparent'} ritardo={indice * 0.08} alta={piccolo ? 6 : 7} /></span>
+      <span className="block mt-2"><Barra valore={dato ? f.percento! : 0} colore={dato ? coloreValore(f.percento!) : 'transparent'} alta={piccolo ? 6 : 7} /></span>
       <span className="flex items-center justify-between text-[11px] leading-tight text-[#6B7280] dark:text-[#94A3B8] mt-1.5">
         <span className="truncate">{dato ? `${f.risposte} risposte` : 'Poche risposte'}</span>
         {onVai && <ChevronRight size={14} className="shrink-0 text-[#94A3B8]" aria-hidden="true" />}
@@ -30,14 +30,14 @@ function Riga({ f, icona, indice, onVai, piccolo }: { f: Fattore; icona?: React.
 /** Aree reali dell'app: categoria (Grammatica, Traduzione) e livello (A1, A2, B1). */
 export default function Fattori({ categorie, livelli, onVai }: { categorie: Fattore[]; livelli: Fattore[]; onVai?: (filtro: string) => void }) {
   return (
-    <Carta indice={1} className="p-4">
+    <Carta className="p-4">
       <h2 className="text-[17px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Dove sei più solido</h2>
       <p className="text-[12.5px] text-[#6B7280] dark:text-[#94A3B8] mt-0.5 mb-3">Accuratezza sulle domande a cui hai risposto. Sotto 5 risposte non mostriamo la percentuale.</p>
       <div className="grid grid-cols-2 gap-2">
-        {categorie.map((f, i) => <Riga key={f.id} f={f} indice={i} onVai={onVai} />)}
+        {categorie.map(f => <Riga key={f.id} f={f} onVai={onVai} />)}
       </div>
       <div className="grid grid-cols-3 gap-2 mt-2">
-        {livelli.map((f, i) => <Riga key={f.id} f={f} indice={i + 2} onVai={onVai} piccolo />)}
+        {livelli.map(f => <Riga key={f.id} f={f} onVai={onVai} piccolo />)}
       </div>
     </Carta>
   );

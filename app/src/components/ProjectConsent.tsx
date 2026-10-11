@@ -25,11 +25,11 @@ export function Toggle({ on, disabled, onChange, label }: { on: boolean; disable
       disabled={disabled}
       onClick={() => { playTapSound(); onChange(!on); }}
       className={cn(
-        "relative w-12 h-7 rounded-full transition-colors shrink-0 disabled:opacity-60",
+        "relative w-12 h-7 rounded-full transition-colors duration-100 shrink-0 disabled:opacity-60",
         on ? "bg-[#2563EB]" : "bg-gray-300 dark:bg-[#475569]"
       )}
     >
-      <span className={cn("absolute top-1 left-1 w-5 h-5 rounded-full bg-white shadow transition-transform", on && "translate-x-5")} />
+      <span className={cn("absolute top-1 left-1 w-5 h-5 rounded-full bg-white shadow ", on && "translate-x-5")} />
     </button>
   );
 }

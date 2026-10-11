@@ -1,5 +1,5 @@
 import { FORMATS, FREE_LIMITS } from '../../config/offer';
-import { Evidenza, Ingresso, Sezione, TitoloSezione } from './comune';
+import { Evidenza, Sezione, TitoloSezione } from './comune';
 
 const PASSI = [
   {
@@ -28,16 +28,16 @@ const PASSI = [
 export default function Passi() {
   return (
     <Sezione id="come-funziona" titoloId="t-passi">
-      <Ingresso>
+      <div>
         <TitoloSezione id="t-passi" occhiello="Come funziona" sotto="Dal diagnostico al test vero, un passo alla volta.">
           Come funziona in <Evidenza>4 passi</Evidenza>
         </TitoloSezione>
-      </Ingresso>
+      </div>
 
       <ol className="mt-10 grid gap-6 lg:grid-cols-4 lg:gap-5">
         {PASSI.map((p, i) => (
           <li key={p.titolo}>
-            <Ingresso ritardo={i * 0.1} className="relative pl-16 lg:pl-0 lg:pt-16">
+            <div className="relative pl-16 lg:pl-0 lg:pt-16">
               {/* linea di collegamento: sotto il cerchio sul telefono, a destra del cerchio da 1024 px */}
               {i < PASSI.length - 1 && (
                 <span aria-hidden className="absolute left-[19px] top-12 -bottom-6 w-0.5 bg-azione/30 dark:bg-azione-chiaro/30 lg:left-12 lg:right-[-1.25rem] lg:top-[19px] lg:bottom-auto lg:h-0.5 lg:w-auto" />
@@ -48,7 +48,7 @@ export default function Passi() {
               <h3 className="text-lg font-bold text-[#0F172A] dark:text-[#F8FAFC] lg:pr-4">{p.titolo}</h3>
               <p className="mt-1.5 text-sm font-medium text-gray-600 dark:text-gray-300 lg:pr-4">{p.testo}</p>
               <p className="mt-3 inline-block rounded-full bg-azione-tinta dark:bg-azione-tinta-scura/60 px-3 py-1 text-xs font-bold text-azione-scuro dark:text-[#BFDBFE]">{p.nota}</p>
-            </Ingresso>
+            </div>
           </li>
         ))}
       </ol>

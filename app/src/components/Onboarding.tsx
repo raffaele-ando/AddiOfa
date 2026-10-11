@@ -17,7 +17,7 @@ import { ECOSYSTEM } from '../config/ecosystem';
 import { urlIcona } from '../brand/risorse';
 import FoglioStima from './FoglioStima';
 import CalcoloRisultato from './CalcoloRisultato';
-import { useRiduci, BarraCresce, RigaIntervallo } from './home/comune';
+import { Barra, RigaIntervallo } from './home/comune';
 import { livelloDi, type Livello } from './home/stima';
 
 type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'save' | 'risk' | 'calcolo' | 'result' | 'ready';
@@ -47,12 +47,12 @@ const MESSAGGI: Record<Livello, { titolo: string; testo: string }> = {
 };
 
 // Tessera "n su m" per area o livello: mai percentuali precise su così poche domande
-function Tessera({ nome, n, m, ritardo }: { nome: string; n: number; m: number; ritardo: number }) {
+function Tessera({ nome, n, m }: { nome: string; n: number; m: number }) {
   return (
     <div className="rounded-2xl border border-[#E8ECF3] dark:border-[#334155] bg-white dark:bg-[#0F172A] p-3">
       <div className="text-xs font-bold text-gray-500 dark:text-gray-400">{nome}</div>
       <div className="mt-0.5 text-lg font-extrabold leading-tight text-[#0F172A] dark:text-[#F8FAFC]">{n} <span className="text-sm font-bold text-gray-500 dark:text-gray-400">su {m}</span></div>
-      <div className="mt-2"><BarraCresce valore={m ? (n / m) * 100 : 0} colore="#2563EB" ritardo={ritardo} alta={6} /></div>
+      <div className="mt-2"><Barra valore={m ? (n / m) * 100 : 0} colore="#2563EB" alta={6} /></div>
     </div>
   );
 }
@@ -81,9 +81,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
   stateRef.current = appState;
   const diagTracked = useRef(false);
   const quizStartedAt = useRef<number | null>(null);
-  const riduci = useRiduci();
   const [foglio, setFoglio] = useState(false);
-  const [daCalcolo, setDaCalcolo] = useState(false);
 
   useEffect(() => {
     let vivo = true;
@@ -294,7 +292,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           </ul>
           <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">{OFA_RULES_NOTE}</p>
           <div className="mt-auto">
-            <PrimaryButton onClick={() => { setDaCalcolo(false); setStep(riduci ? 'result' : 'calcolo'); }}>Vedi il tuo risultato</PrimaryButton>
+            <PrimaryButton onClick={() => setStep('calcolo')}>Vedi il tuo risultato</PrimaryButton>
           </div>
         </Screen>
       );
@@ -305,8 +303,8 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
         <Screen>
           <TopBar {...bar} />
           <CalcoloRisultato
-            dati={{ percento: passProb * 100, esatte: correct, totale: quiz.length, livelli: livelli || 'livelli misti', soglia: REAL_TEST_PASS_MARK, domandeTest: REAL_TEST_QUESTIONS }}
-            onFine={() => { setDaCalcolo(true); setStep('result'); }}
+            dati={{ esatte: correct, totale: quiz.length, livelli: livelli || 'livelli misti', soglia: REAL_TEST_PASS_MARK, domandeTest: REAL_TEST_QUESTIONS }}
+            onFine={() => setStep('result')}
           />
         </Screen>
       );
@@ -329,7 +327,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             <h2 className={titolo}>Il tuo risultato</h2>
             <p className={sotto}>Hai risposto bene a {correct} {correct === 1 ? 'domanda' : 'domande'} su {quiz.length}.</p>
           </div>
-          <div className="flex justify-center -mb-1"><Misuratore valore={passProb * 100} larghezza={300} animato={!daCalcolo && !riduci} testo={formatProbabilita(passProb)} etichetta={`Probabilità ${formatProbabilita(passProb)}`} /></div>
+          <div className="flex justify-center -mb-1"><Misuratore valore={passProb * 100} larghezza={300} testo={formatProbabilita(passProb)} etichetta={`Probabilità ${formatProbabilita(passProb)}`} /></div>
           <div className="text-center -mt-1">
             <p className="font-bold text-[#0F172A] dark:text-[#F8FAFC]">Probabilità stimata di superare il test oggi</p>
             <button type="button" onClick={() => setFoglio(true)} aria-haspopup="dialog"
@@ -348,7 +346,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             <div className="flex flex-col gap-2">
               <span className="text-xs font-bold text-gray-500 dark:text-gray-400">Per area e per livello</span>
               <div className={`grid grid-cols-2 gap-2.5 ${tessere.length === 4 ? 'sm:grid-cols-4' : 'sm:grid-cols-3'}`}>
-                {tessere.map((x, i) => <Tessera key={x.nome} nome={x.nome} n={x.n} m={x.m} ritardo={i * 0.08} />)}
+                {tessere.map(x => <Tessera key={x.nome} nome={x.nome} n={x.n} m={x.m} />)}
               </div>
             </div>
           )}

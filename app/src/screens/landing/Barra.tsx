@@ -15,8 +15,7 @@ export const ANCORE = [
 export function vaiA(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
-  const riduci = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-  el.scrollIntoView({ behavior: riduci ? 'auto' : 'smooth', block: 'start' });
+  el.scrollIntoView({ behavior: 'auto', block: 'start' });
   // il focus segue lo scorrimento, così chi usa la tastiera continua da lì
   const titolo = el.querySelector<HTMLElement>('h2');
   if (titolo) { titolo.tabIndex = -1; titolo.focus({ preventScroll: true }); }
@@ -38,7 +37,7 @@ export default function Barra({ onStart }: { onStart(): void }) {
               key={a.id}
               href={`#${a.id}`}
               onClick={e => { e.preventDefault(); playTapSound(); vaiA(a.id); }}
-              className={cn('rounded-full px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-azione-tinta hover:text-azione-scuro dark:hover:bg-azione-tinta-scura/50 dark:hover:text-white transition-colors', FOCUS)}
+              className={cn('rounded-full px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-azione-tinta hover:text-azione-scuro dark:hover:bg-azione-tinta-scura/50 dark:hover:text-white transition-colors duration-100', FOCUS)}
             >
               {a.label}
             </a>
@@ -48,7 +47,7 @@ export default function Barra({ onStart }: { onStart(): void }) {
         <button
           type="button"
           onClick={() => { playTapSound(); onStart(); }}
-          className={cn('shrink-0 rounded-xl bg-azione hover:bg-azione-scuro px-4 py-2.5 text-sm font-bold text-white transition-colors', FOCUS)}
+          className={cn('shrink-0 rounded-xl bg-azione hover:bg-azione-scuro px-4 py-2.5 text-sm font-bold text-white transition-colors duration-100', FOCUS)}
         >
           <span className="sm:hidden">Inizia</span>
           <span className="hidden sm:inline">Fai il diagnostico</span>

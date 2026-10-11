@@ -3,7 +3,6 @@
 // Registro per Playwright: window.__log (callback chiamate).
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { MotionConfig } from 'motion/react';
 import '../../src/index.css';
 import '../../src/brand/brand.css';
 import Landing from '../../src/screens/Landing';
@@ -17,13 +16,11 @@ const reg = (nome: string) => (...a: unknown[]) => { window.__log.push({ [nome]:
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <MotionConfig reducedMotion="user">
       <Landing
         onStartDiagnostic={reg('onStartDiagnostic')}
         onSkip={reg('onSkip')}
         onOpenLegal={reg('onOpenLegal')}
         onOpenPass={q.get('pass') === '0' ? undefined : reg('onOpenPass')}
       />
-    </MotionConfig>
   </StrictMode>,
 );

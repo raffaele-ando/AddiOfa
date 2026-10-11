@@ -12,7 +12,7 @@ export default function DebugMode({ onBack }: DebugModeProps) {
       <header className="flex items-center gap-4 p-4 border-b border-gray-200 dark:border-gray-800">
         <button
           onClick={onBack}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors duration-100"
         >
           <ArrowLeft size={24} />
         </button>
@@ -49,7 +49,7 @@ export default function DebugMode({ onBack }: DebugModeProps) {
             </thead>
             <tbody>
               {Object.entries(firebaseConfig).map(([key, value]) => (
-                <tr key={key} className="border-b border-gray-200 dark:border-gray-700 last:border-0 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors">
+                <tr key={key} className="border-b border-gray-200 dark:border-gray-700 last:border-0 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors duration-100">
                   <td className="py-3 px-4 text-sm font-bold text-gray-800 dark:text-gray-200">
                     {key}
                   </td>

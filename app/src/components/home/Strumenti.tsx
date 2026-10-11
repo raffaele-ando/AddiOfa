@@ -14,7 +14,7 @@ const ICONE: Record<string, ReactNode> = {
 export default function Strumenti({ voci }: { voci: VoceStrumento[] }) {
   const presenti = voci.filter(v => v.onClick);
   return (
-    <Carta indice={7} className="p-2">
+    <Carta className="p-2">
       <h2 className="text-[15px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] px-2.5 pt-2 pb-1">Strumenti</h2>
       <ul>
         {presenti.map((v, i) => (

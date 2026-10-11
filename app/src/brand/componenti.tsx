@@ -1,7 +1,7 @@
 // Componenti del Brand Kit ricreati in codice, con le misure prese dalle immagini.
 // Interattivi: Pulsante, Interruttore, Casella, Radio (e IconaChip se riceve onClick).
 // Solo visivi: Avanzamento, Barra, Badge, Stato, Misuratore, Caricamento.
-import { CSSProperties, ReactNode, useEffect, useId, useState } from 'react';
+import { CSSProperties, ReactNode, useId } from 'react';
 import { COLORI_STATO } from '../components/home/Indicatore';
 import { livelloDi } from '../components/home/stima';
 import { formatProbabilita } from '../lib/diagnostic';
@@ -61,12 +61,12 @@ export function Interruttore({ acceso, onChange, kit = 'blu', etichetta, disable
         background: acceso ? t.acceso : t.spento,
         border: !acceso && t.spentoBordo ? `1px solid ${t.spentoBordo}` : 'none',
         boxShadow: acceso ? `0 3px 8px ${t.alone}` : 'inset 0 1px 2px rgba(15, 23, 42, 0.06)',
-        transition: 'background .2s ease',
+        transition: 'background .1s ease',
       }}
     >
       <span style={{
         position: 'absolute', top: 3, left: acceso ? t.w - pom - 3 : 3, width: pom, height: pom, borderRadius: '50%',
-        background: t.pomello, boxShadow: '0 1px 3px rgba(15, 23, 42, 0.25)', transition: 'left .2s ease',
+        background: t.pomello, boxShadow: '0 1px 3px rgba(15, 23, 42, 0.25)',
       }} />
     </button>
   );
@@ -83,7 +83,7 @@ export function Casella({ spuntata, onChange, kit = 'blu', etichetta, children }
       <span className="brand-premibile" aria-hidden style={{
         width: t.lato, height: t.lato, borderRadius: t.r, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
         background: spuntata ? t.piena : '#FFFFFF', border: spuntata ? 'none' : `1.5px solid ${t.bordo}`,
-        boxShadow: spuntata ? `0 1px 3px ${t.piena}30` : 'none', transition: 'background .15s ease',
+        boxShadow: spuntata ? `0 1px 3px ${t.piena}30` : 'none', transition: 'background .1s ease',
       }}>
         {spuntata && (
           <svg width={t.lato * 0.62} height={t.lato * 0.62} viewBox="0 0 16 16">
@@ -159,7 +159,7 @@ export function Barra({ valore, segmenti, kit = KIT_APP, larghezza = 168 }: {
     return (
       <div role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(v * 100)} style={{ display: 'flex', gap: 4, width: larghezza }}>
         {Array.from({ length: segmenti }, (_, i) => (
-          <span key={i} style={{ flex: 1, height: 8, borderRadius: 4, transition: 'background .3s ease',
+          <span key={i} style={{ flex: 1, height: 8, borderRadius: 4, transition: 'background .1s ease',
             background: i < Math.floor(pieni) ? t.pieno : i < pieni + 0.999 && pieni % 1 > 0 ? t.chiaro : t.vuoto }} />
         ))}
       </div>
@@ -168,7 +168,7 @@ export function Barra({ valore, segmenti, kit = KIT_APP, larghezza = 168 }: {
   return (
     <div role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(v * 100)}
       style={{ width: larghezza, height: 12, borderRadius: 6, background: t.vuoto, overflow: 'hidden' }}>
-      <div style={{ width: `${v * 100}%`, height: '100%', borderRadius: 6, background: `linear-gradient(90deg, ${t.gradiente[0]}, ${t.gradiente[1]})`, transition: 'width .6s ease' }} />
+      <div style={{ width: `${v * 100}%`, height: '100%', borderRadius: 6, background: `linear-gradient(90deg, ${t.gradiente[0]}, ${t.gradiente[1]})` }} />
     </div>
   );
 }
@@ -253,27 +253,16 @@ export function IconaChip({ nome, kit = KIT_APP, lato = 57, cerchio, onClick, et
   return <button className="brand-premibile" aria-label={etichetta ?? nome} onClick={onClick} style={{ border: 'none', padding: 0, background: 'none', borderRadius: '50%' }}>{contenuto}</button>;
 }
 
-/** Misuratore (illustrazione "Risultato / Probabilità") ricreato in codice: il valore è vero e si anima. */
-export function Misuratore({ valore, larghezza = 232, etichetta, animato = true, testo }: {
-  valore: number; larghezza?: number; etichetta?: string; animato?: boolean; // 0-100
-  /** Testo finale al posto del numero (es. '<1 %'). Senza, con `animato` il numero finale è formatProbabilita(valore). */
+/** Misuratore (illustrazione "Risultato / Probabilità") ricreato in codice: il valore è vero e l'arco è fermo, già al valore finale. */
+export function Misuratore({ valore, larghezza = 232, etichetta, testo }: {
+  valore: number; larghezza?: number; etichetta?: string; // 0-100
+  /** Testo al posto del numero (es. '<1 %'). Senza, il numero è formatProbabilita(valore). */
   testo?: string;
 }) {
   const id = useId().replace(/:/g, '');
   // Colore semantico della probabilità (rosso basso, giallo medio, verde alto), non il colore d'azione
   const col = COLORI_STATO[livelloDi(valore / 100)];
-  const [mostrato, setMostrato] = useState(animato ? 0 : valore);
-  useEffect(() => {
-    if (!animato) { setMostrato(valore); return; }
-    let raf = 0; const inizio = performance.now();
-    const passo = (ora: number) => {
-      const k = Math.min(1, (ora - inizio) / 900);
-      setMostrato(valore * (1 - Math.pow(1 - k, 3)));
-      if (k < 1) raf = requestAnimationFrame(passo);
-    };
-    raf = requestAnimationFrame(passo);
-    return () => cancelAnimationFrame(raf);
-  }, [valore, animato]);
+  const mostrato = valore;
   // arco di 220° che si apre in basso, come nel kit: dal basso a sinistra, sopra, al basso a destra
   const cx = 116, cy = 104, r = 90, da = 160, ampiezza = 220;
   const punto = (g: number) => [cx + r * Math.cos((g * Math.PI) / 180), cy + r * Math.sin((g * Math.PI) / 180)];
@@ -281,10 +270,9 @@ export function Misuratore({ valore, larghezza = 232, etichetta, animato = true,
   const lung = (Math.PI * r * ampiezza) / 180;
   const frazione = Math.max(0, Math.min(1, mostrato / 100));
   const [px, py] = punto(da + ampiezza * frazione);
-  const finale = testo ?? (animato ? formatProbabilita(valore / 100) : undefined);
-  const scritto = finale !== undefined && mostrato >= valore - 0.001 ? finale : `${Math.round(mostrato)} %`;
+  const scritto = testo ?? formatProbabilita(valore / 100);
   return (
-    <svg width={larghezza} height={larghezza * 0.62} viewBox="0 0 232 144" role="img" aria-label={etichetta ?? finale ?? `${Math.round(valore)} %`}>
+    <svg width={larghezza} height={larghezza * 0.62} viewBox="0 0 232 144" role="img" aria-label={etichetta ?? scritto}>
       <defs>
         <linearGradient id={`g${id}`} x1="0" y1="0" x2="1" y2="0">
           <stop offset="0" stopColor={col.arco[0]} /><stop offset="1" stopColor={col.arco[1]} />

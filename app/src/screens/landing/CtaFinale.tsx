@@ -1,13 +1,13 @@
 import { FREE_LIMITS } from '../../config/offer';
 import { Illustrazione } from '../../brand/Illustrazione';
-import { BottoneAzione, Colonna, Ingresso } from './comune';
+import { BottoneAzione, Colonna } from './comune';
 
 // Chiusura: un solo invito, senza scadenze finte.
 export default function CtaFinale({ scuro, onStart, onSkip }: { scuro: boolean; onStart(): void; onSkip(): void }) {
   return (
     <section aria-labelledby="t-fine" className="py-14 sm:py-20">
       <Colonna>
-        <Ingresso>
+        <div>
           <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-azione via-[#2F6BEE] to-azione-scuro p-7 text-white shadow-[0_20px_44px_rgba(37,99,235,0.3)] dark:shadow-none sm:p-12">
             <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/10" />
             <div className="relative grid items-center gap-6 md:grid-cols-[1fr_auto]">
@@ -32,7 +32,7 @@ export default function CtaFinale({ scuro, onStart, onSkip }: { scuro: boolean; 
               </div>
             </div>
           </div>
-        </Ingresso>
+        </div>
       </Colonna>
     </section>
   );

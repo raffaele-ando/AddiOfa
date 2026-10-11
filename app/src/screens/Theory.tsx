@@ -160,7 +160,7 @@ function Riga({ t, pass, gratis, onOpen }: { t: TheoryTopic; pass: boolean; grat
         onClick={() => { playTapSound(); onOpen(t); }}
         className={cn(
           base,
-          'border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] transition-colors motion-reduce:transition-none',
+          'border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] transition-colors duration-100 ',
           'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] dark:focus-visible:outline-[#60A5FA]',
         )}
       >
@@ -274,7 +274,7 @@ function Vicino({ t, verso, bloccato, onGo }: { t: TheoryTopic; verso: 'prec' | 
       type="button"
       onClick={() => { playTapSound(); onGo(t); }}
       className={cn(
-        'w-full flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-colors motion-reduce:transition-none',
+        'w-full flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-colors duration-100 ',
         succ
           ? 'border-[#2563EB] dark:border-[#60A5FA] bg-[#DBEAFE]/50 dark:bg-[#1E3A8A]/30 hover:bg-[#DBEAFE] dark:hover:bg-[#1E3A8A]/50'
           : 'border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B]',

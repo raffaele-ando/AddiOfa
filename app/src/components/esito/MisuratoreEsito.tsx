@@ -1,20 +1,11 @@
 // Misuratore dell'esito: quante risposte esatte rispetto alla soglia del formato.
-// Il numero è un testo vero (non nell'SVG) e l'arco si riempie una sola volta, senza animazione se il sistema la chiede ridotta.
-import { useEffect, useState } from 'react';
-import { prefersReducedMotion } from '../../lib/utils';
+// Il numero è un testo vero (non nell'SVG) e l'arco è fermo, già al valore finale.
 
 const CX = 116, CY = 104, R = 88, DA = 160, AMP = 220;
 const punto = (gradi: number, r = R): [number, number] => [CX + r * Math.cos((gradi * Math.PI) / 180), CY + r * Math.sin((gradi * Math.PI) / 180)];
 
 export default function MisuratoreEsito({ giuste, totale, soglia, superata }: { giuste: number; totale: number; soglia: number; superata: boolean }) {
   const frazione = totale > 0 ? Math.max(0, Math.min(1, giuste / totale)) : 0;
-  const [mostrata, setMostrata] = useState(prefersReducedMotion() ? frazione : 0);
-  useEffect(() => {
-    if (prefersReducedMotion()) { setMostrata(frazione); return; }
-    const t = requestAnimationFrame(() => setMostrata(frazione));
-    return () => cancelAnimationFrame(t);
-  }, [frazione]);
-
   const [x0, y0] = punto(DA);
   const [x1, y1] = punto(DA + AMP);
   const arco = `M${x0} ${y0}A${R} ${R} 0 1 1 ${x1} ${y1}`;
@@ -31,8 +22,7 @@ export default function MisuratoreEsito({ giuste, totale, soglia, superata }: { 
         {frazione > 0 && (
           <path d={arco} fill="none" strokeWidth="16" strokeLinecap="round"
             className={superata ? 'stroke-[#16A34A] dark:stroke-[#10B981]' : 'stroke-azione dark:stroke-azione-chiaro'}
-            strokeDasharray={`${lung * mostrata} ${lung}`}
-            style={{ transition: 'stroke-dasharray 900ms cubic-bezier(.22,.8,.3,1)' }} />
+            strokeDasharray={`${lung * frazione} ${lung}`} />
         )}
         {/* segno della soglia */}
         <line x1={t0x} y1={t0y} x2={t1x} y2={t1y} strokeWidth="4" strokeLinecap="round" className="stroke-[#0F172A] dark:stroke-[#F8FAFC]" />

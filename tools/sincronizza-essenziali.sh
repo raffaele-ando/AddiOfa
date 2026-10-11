@@ -14,5 +14,7 @@ cp "$RADICE/grafica/strumenti/brand/logo/addiofa-logo.svg" "$DEST/logo/"
 # ottimizzazione senza cambiare l'aspetto (percorsi relativi, niente metadati): i glifi ricalcati pesano 3 volte meno
 node "$RADICE/tools/ottimizza-svg.mjs" "$DEST/glifi" 1
 node "$RADICE/tools/ottimizza-svg.mjs" "$DEST/disegni" 2
+# la nuvoletta chiara dietro alle illustrazioni non si usa più
+node "$RADICE/tools/togli-nuvole.mjs" "$DEST/disegni"
 mkdir -p "$DEST/icone" && cp "$RADICE/app/public/favicon-64.png" "$DEST/icone/"
 du -sh "$DEST"; find "$DEST" -type f | wc -l

@@ -40,7 +40,7 @@ export function ActivityChart({ dailyActivity }: ActivityChartProps) {
   };
 
   return (
-    <div className="h-full bg-white dark:bg-[#0F172A] rounded-xl sm:rounded-2xl p-2 sm:p-4 border-2 border-gray-200 dark:border-[#334155] border-b-4 shadow-sm transition-colors flex flex-col justify-between min-h-0">
+    <div className="h-full bg-white dark:bg-[#0F172A] rounded-xl sm:rounded-2xl p-2 sm:p-4 border-2 border-gray-200 dark:border-[#334155] border-b-4 shadow-sm transition-colors duration-100 flex flex-col justify-between min-h-0">
       <div className="flex justify-between items-end mb-1 sm:mb-2 shrink-0">
         <div>
           <h3 className="text-xs sm:text-sm font-black text-[#0F172A] dark:text-[#F8FAFC] leading-tight">Costanza</h3>
@@ -64,7 +64,7 @@ export function ActivityChart({ dailyActivity }: ActivityChartProps) {
             <div 
               key={day.date}
               title={`${day.date}: ${day.count} ${day.count === 1 ? 'domanda' : 'domande'}`}
-              className={`w-full h-full min-h-[6px] sm:min-h-[12px] rounded-[2px] sm:rounded-sm border ${getColor(day.count, day.isFuture)} transition-all duration-300`}
+              className={`w-full h-full min-h-[6px] sm:min-h-[12px] rounded-[2px] sm:rounded-sm border ${getColor(day.count, day.isFuture)} transition-colors duration-100 `}
             />
           ))}
         </div>

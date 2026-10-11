@@ -17,7 +17,7 @@ export function DemoBanner() {
 
 export function Layout({ children, banner }: { children: ReactNode; banner?: ReactNode }) {
   return (
-    <div className="h-[100dvh] w-full bg-[#F6F8FC] dark:bg-[#111B21] text-[#0F172A] dark:text-[#E2E8F0] font-['Inter',sans-serif] selection:bg-[#DBEAFE] dark:selection:bg-[#1E3A8A] transition-colors duration-300 overflow-hidden sm:overflow-y-auto sm:p-6 flex flex-col">
+    <div className="h-[100dvh] w-full bg-[#F6F8FC] dark:bg-[#111B21] text-[#0F172A] dark:text-[#E2E8F0] font-['Inter',sans-serif] selection:bg-[#DBEAFE] dark:selection:bg-[#1E3A8A] transition-colors duration-100 overflow-hidden sm:overflow-y-auto sm:p-6 flex flex-col">
       {banner}
       <div className="w-full max-w-3xl mx-auto flex-1 min-h-0 sm:flex-none sm:h-[800px] sm:min-h-[800px] sm:my-auto flex flex-col relative">
         {children}

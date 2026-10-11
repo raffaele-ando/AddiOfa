@@ -3,7 +3,6 @@
 // Registro per Playwright: window.__log (callback chiamate).
 import { StrictMode, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
-import { MotionConfig } from 'motion/react';
 import '../../src/index.css';
 import '../../src/brand/brand.css';
 import { Layout } from '../../src/components/Layout';
@@ -79,4 +78,4 @@ function App() {
   );
 }
 
-createRoot(document.getElementById('root')!).render(<StrictMode><MotionConfig reducedMotion="user"><App /></MotionConfig></StrictMode>);
+createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>);

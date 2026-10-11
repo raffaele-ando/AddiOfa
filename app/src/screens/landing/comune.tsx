@@ -1,33 +1,15 @@
 import { ReactNode } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { playTapSound } from '../../lib/audio';
 
-// Pezzi condivisi dalle sezioni della landing: ingresso in sequenza, contenitore, titoli, pulsanti, data.
+// Pezzi condivisi dalle sezioni della landing: contenitore, titoli, pulsanti, data.
 
 export const FOCUS =
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione dark:focus-visible:outline-azione-chiaro';
 
 export const dataEstesa = (iso: string) =>
   new Date(`${iso}T12:00:00`).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-
-/** Compare salendo di poco quando entra nello schermo; con "riduci movimento" è già al suo posto. */
-export function Ingresso({ children, ritardo = 0, className, daSinistra }: { children: ReactNode; ritardo?: number; className?: string; daSinistra?: boolean }) {
-  const riduci = useReducedMotion();
-  if (riduci) return <div className={className}>{children}</div>;
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: daSinistra ? 0 : 16, x: daSinistra ? -16 : 0 }}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.5, delay: ritardo, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 /** Colonna centrata della pagina: sensata a 1280 px, a tutta larghezza sotto. */
 export function Colonna({ children, className }: { children: ReactNode; className?: string }) {
@@ -71,7 +53,7 @@ export function BottoneAzione({ children, onClick, className, freccia = true }: 
       type="button"
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-2xl bg-azione hover:bg-azione-scuro active:scale-[.99] text-white font-bold text-base sm:text-lg py-3.5 px-6 shadow-[0_8px_20px_rgba(37,99,235,0.25)] dark:shadow-none transition-all duration-150',
+        'inline-flex items-center justify-center gap-2 rounded-2xl bg-azione hover:bg-azione-scuro  text-white font-bold text-base sm:text-lg py-3.5 px-6 shadow-[0_8px_20px_rgba(37,99,235,0.25)] dark:shadow-none transition-colors duration-100 ',
         FOCUS, className,
       )}
     >
@@ -88,7 +70,7 @@ export function BottoneContorno({ children, onClick, className }: { children: Re
       type="button"
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-300 dark:border-[#475569] bg-white/70 dark:bg-[#0F172A]/60 hover:bg-white dark:hover:bg-[#1E293B] active:scale-[.99] text-[#0F172A] dark:text-[#F8FAFC] font-bold text-base py-3.5 px-6 transition-all duration-150',
+        'inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-300 dark:border-[#475569] bg-white/70 dark:bg-[#0F172A]/60 hover:bg-white dark:hover:bg-[#1E293B]  text-[#0F172A] dark:text-[#F8FAFC] font-bold text-base py-3.5 px-6 transition-colors duration-100 ',
         FOCUS, className,
       )}
     >

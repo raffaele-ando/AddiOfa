@@ -1,7 +1,6 @@
 // Correzioni complete: tutte le domande, numerate come nella prova, con filtro e spiegazione.
 // Lo stato di ogni riga si capisce da icona e parola, non solo dal colore.
 import { useId, useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
 import { BookOpen, Check, ChevronDown, Minus, X } from 'lucide-react';
 import type { ExamQuestionResult, PublicQuestion } from '../../access/provider';
 import { cn } from '../../lib/utils';
@@ -50,7 +49,6 @@ function statoDi(r: ExamQuestionResult | undefined, dato: number | undefined): S
 export default function CorrezioniComplete({ questions, perQuestion, answers, onOpenTheory }: Props) {
   const [filtro, setFiltro] = useState<Filtro>('tutte');
   const [aperte, setAperte] = useState<Set<string>>(new Set());
-  const ridotto = useReducedMotion();
   const idBase = useId();
 
   const righe = questions.map((q, i) => ({ q, n: i + 1, r: perQuestion.get(q.id), stato: statoDi(perQuestion.get(q.id), answers[q.id]) }));
@@ -85,7 +83,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
             <button key={f.id} type="button" role="tab" id={`${idBase}-${f.id}`} aria-selected={attivo} aria-controls={`${idBase}-pannello`} tabIndex={attivo ? 0 : -1}
               onClick={() => { playTapSound(); setFiltro(f.id); }}
               className={cn(
-                'shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-bold border transition-colors min-h-[40px]',
+                'shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-bold border transition-colors duration-100 min-h-[40px]',
                 attivo
                   ? 'bg-azione text-white border-azione'
                   : 'bg-white dark:bg-[#0F172A] text-gray-600 dark:text-gray-300 border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-[#1E293B]'
@@ -103,7 +101,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
             {filtro === 'sbagliata' ? 'Nessuna risposta sbagliata.' : filtro === 'vuota' ? 'Hai risposto a tutte le domande.' : 'Nessuna domanda in questo elenco.'}
           </p>
         )}
-        {visibili.map(({ q, n, r, stato }, k) => {
+        {visibili.map(({ q, n, r, stato }) => {
           const s = STATO[stato];
           const dato = answers[q.id];
           const lettera = (i: number) => String.fromCharCode(65 + i);
@@ -111,9 +109,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
           const apertaSpieg = !compatta || aperte.has(q.id);
           const idSpieg = `${idBase}-sp-${q.id}`;
           return (
-            <motion.article key={`${filtro}-${q.id}`}
-              initial={ridotto ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.22, delay: ridotto ? 0 : Math.min(k, 6) * 0.03 }}
+            <article key={`${filtro}-${q.id}`}
               aria-label={`Domanda ${n}: ${s.parola.toLowerCase()}`}
               className={cn('rounded-2xl border p-3.5 sm:p-4', s.riga)}>
               <div className="flex items-center gap-2.5 mb-2">
@@ -144,7 +140,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
                 <button type="button" onClick={() => { playTapSound(); alterna(q.id); }} aria-expanded={apertaSpieg} aria-controls={idSpieg}
                   className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-azione dark:text-azione-chiaro">
                   {apertaSpieg ? 'Nascondi la spiegazione' : 'Vedi la spiegazione'}
-                  <ChevronDown size={14} strokeWidth={3} className={cn('transition-transform', apertaSpieg && 'rotate-180')} aria-hidden />
+                  <ChevronDown size={14} strokeWidth={3} className={apertaSpieg ? 'rotate-180' : undefined} aria-hidden />
                 </button>
               )}
               {apertaSpieg && (r?.explanation || (r?.theoryId && onOpenTheory)) && (
@@ -160,7 +156,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
                   )}
                 </div>
               )}
-            </motion.article>
+            </article>
           );
         })}
       </div>

@@ -61,7 +61,7 @@ export function chiaveBanner(stima: Stima, livello: Livello): keyof typeof BANNE
 export function BannerStato({ chiave, onClick }: { chiave: keyof typeof BANNER; onClick: () => void }) {
   const m = BANNER[chiave];
   return (
-    <Carta indice={1} tinta={m.fondo} className="p-0">
+    <Carta tinta={m.fondo} className="p-0">
       <button type="button" onClick={() => { playTapSound(); onClick(); }} className="brand-premibile w-full flex items-center gap-3 px-4 py-3.5 text-left rounded-3xl">
         <span className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 ${m.chip}`}><m.Icona size={24} className={m.icona} aria-hidden="true" /></span>
         <span className="flex-1 min-w-0">
@@ -79,7 +79,7 @@ export function ScopriCard({ haRisposte, onDiagnostico, onStudia, etichettaStudi
   haRisposte: boolean; onDiagnostico?: () => void; onStudia: () => void; etichettaStudia: string; sotto?: ReactNode;
 }) {
   return (
-    <Carta indice={0} className="p-5">
+    <Carta className="p-5">
       <div className="flex items-center gap-3 mb-1">
         <span className="w-11 h-11 rounded-2xl bg-[#EFF6FF] dark:bg-[#2563EB]/15 text-azione dark:text-azione-chiaro flex items-center justify-center shrink-0"><Stethoscope size={22} aria-hidden="true" /></span>
         <h2 className="text-[19px] leading-tight font-extrabold text-[#0F172A] dark:text-[#F8FAFC]">Scopri a che punto sei</h2>

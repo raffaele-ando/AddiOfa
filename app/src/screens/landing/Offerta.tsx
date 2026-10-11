@@ -4,7 +4,7 @@ import {
   FREE_FEATURES, PASS, PAYMENTS_ENABLED, currentPriceEur, isLaunchPrice, formatEur,
 } from '../../config/offer';
 import { Illustrazione } from '../../brand/Illustrazione';
-import { BottoneAzione, FOCUS, Ingresso, Sezione, TitoloSezione, SCHEDA, dataEstesa } from './comune';
+import { BottoneAzione, FOCUS, Sezione, TitoloSezione, SCHEDA, dataEstesa } from './comune';
 import { cn } from '../../lib/utils';
 
 function Voce({ children }: { children: string }) {
@@ -30,14 +30,14 @@ export default function Offerta({ scuro, onStart, onOpenPass, onOpenLegal }: Pro
 
   return (
     <Sezione id="cosa-ottieni" titoloId="t-offerta">
-      <Ingresso>
+      <div>
         <TitoloSezione id="t-offerta" occhiello="Cosa ottieni" sotto="Il diagnostico e il ripasso di base sono gratis. Il Pass apre tutto il resto, con un solo pagamento.">
           Cosa ottieni gratis e cosa c'è nel Pass
         </TitoloSezione>
-      </Ingresso>
+      </div>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
-        <Ingresso>
+        <div>
           <div className={cn(SCHEDA, 'flex flex-col p-6 sm:p-7')}>
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -51,9 +51,9 @@ export default function Offerta({ scuro, onStart, onOpenPass, onOpenLegal }: Pro
               <BottoneAzione onClick={onStart} className="w-full sm:w-auto">Fai il diagnostico gratuito</BottoneAzione>
             </div>
           </div>
-        </Ingresso>
+        </div>
 
-        <Ingresso ritardo={0.1}>
+        <div>
           <div id="prezzo" className="relative scroll-mt-20 rounded-3xl border-2 border-azione dark:border-azione-chiaro bg-white dark:bg-[#1E293B] p-6 shadow-[0_12px_32px_rgba(37,99,235,0.14)] dark:shadow-none sm:p-7">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -96,7 +96,7 @@ export default function Offerta({ scuro, onStart, onOpenPass, onOpenLegal }: Pro
               </p>
             </div>
           </div>
-        </Ingresso>
+        </div>
       </div>
     </Sezione>
   );

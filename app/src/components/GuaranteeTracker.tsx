@@ -26,7 +26,7 @@ export default function GuaranteeTracker({ appState }: { appState: AppState }) {
           </div>
           <div className="h-2 bg-white dark:bg-[#0F172A] rounded-full overflow-hidden">
             <div
-              className={cn("h-full rounded-full transition-all", c.done ? "bg-[#22C55E]" : "bg-[#F59E0B]")}
+              className={cn("h-full rounded-full transition-colors duration-100", c.done ? "bg-[#22C55E]" : "bg-[#F59E0B]")}
               style={{ width: `${(c.current / c.target) * 100}%` }}
             />
           </div>

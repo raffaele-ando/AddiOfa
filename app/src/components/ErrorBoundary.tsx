@@ -46,7 +46,7 @@ export class ErrorBoundary extends Component<Props, State> {
             </p>
             <button
               onClick={this.handleReset}
-              className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] border-[#2563EB] active:scale-[.99] text-white font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 transition-all"
+              className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] border-[#2563EB] text-white font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 transition-colors duration-100"
             >
               <RotateCcw size={18} strokeWidth={2.5} />
               Ricarica App

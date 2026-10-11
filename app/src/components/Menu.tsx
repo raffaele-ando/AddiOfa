@@ -124,7 +124,7 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
     ...(!pass ? [{ id: 'pass', titolo: 'Pass AddiOFA', testo: 'Tutto sbloccato, un solo pagamento', onClick: onOpenPaywall, evidenza: true }] : []),
   ];
 
-  const icona = 'text-[#6B7280] hover:text-[#0F172A] dark:text-[#94A3B8] dark:hover:text-[#F8FAFC] transition-colors p-1.5';
+  const icona = 'text-[#6B7280] hover:text-[#0F172A] dark:text-[#94A3B8] dark:hover:text-[#F8FAFC] transition-colors duration-100 p-1.5';
 
   return (
     <div className="h-full w-full bg-[#F6F8FC] dark:bg-[#0F172A] sm:rounded-[28px] sm:border sm:border-[#E5E7EB] dark:sm:border-[#334155] overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
@@ -149,7 +149,7 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
                 </button>
               )}
               {user ? (
-                <button onClick={() => { playTapSound(); onOpenProfile?.(); }} className="ml-1 rounded-full ring-2 ring-[#E5E7EB] hover:ring-[#2563EB] transition-all" title={ECOSYSTEM.accountName}>
+                <button onClick={() => { playTapSound(); onOpenProfile?.(); }} className="ml-1 rounded-full ring-2 ring-[#E5E7EB] hover:ring-[#2563EB] transition-colors duration-100" title={ECOSYSTEM.accountName}>
                   {user.photoURL
                     ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer" className="w-9 h-9 rounded-full" />
                     : <span className="w-9 h-9 rounded-full bg-[#DBEAFE] text-[#1D4ED8] dark:text-[#93C5FD] flex items-center justify-center font-semibold">{(user.displayName || '?')[0]}</span>}
@@ -200,7 +200,7 @@ export default function Menu({ appState, user, corpus, onStartSmart, onStartLear
             <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-[#EEF1F6] dark:bg-[#1E293B]">
               {([['all', `Tutte le frasi (${questions.length})`], ['initial', `Nucleo (${INITIAL_CORPUS_COUNT})`]] as const).map(([id, testo]) => (
                 <button key={id} onClick={() => { playTapSound(); onSelectCorpus(id); }}
-                  className={cn('rounded-lg py-2 text-[13px] font-semibold transition-colors',
+                  className={cn('rounded-lg py-2 text-[13px] font-semibold transition-colors duration-100',
                     selectedCorpus === id ? 'bg-white dark:bg-[#334155] text-[#0F172A] dark:text-[#F8FAFC] shadow-sm' : 'text-[#6B7280]')}>
                   {testo}{id === 'all' && !pass && <Lock size={12} className="inline ml-1 -mt-0.5" aria-label="Richiede il Pass" />}
                 </button>

@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { ExamHistory, ExamQuestionLog, QuestionClickEvent, CorpusType, PaywallReason } from '../types';
 import { X, Clock, ChevronLeft, ChevronRight, Lock, Loader2 } from 'lucide-react';
-import { cn, formatNumber, errorCode, prefersReducedMotion } from '../lib/utils';
-import { playTapSound, playVictorySound, triggerConfetti } from '../lib/audio';
+import { cn, formatNumber, errorCode } from '../lib/utils';
+import { playTapSound, playVictorySound } from '../lib/audio';
 import { Illustrazione } from '../brand/Illustrazione';
 import { Screen, TopBar } from './ui';
 import ConfirmDialog from './ConfirmDialog';
@@ -205,10 +205,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
       });
     }
 
-    if (res.passed) {
-      playVictorySound();
-      if (!prefersReducedMotion()) triggerConfetti('celebration');
-    }
+    if (res.passed) playVictorySound();
     track({ name: 'sim_done', format: session.format, passed: res.passed });
     setResult(res);
     setPhase('done');
@@ -333,7 +330,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
                     disabled={starting || soon}
                     onClick={() => { playTapSound(); void startFormat(f.id); }}
                     className={cn(
-                      "w-full py-3.5 px-5 rounded-2xl font-bold text-base flex items-center justify-center gap-2 transition-all duration-150 active:scale-[.99] disabled:opacity-50 disabled:pointer-events-none",
+                      "w-full py-3.5 px-5 rounded-2xl font-bold text-base flex items-center justify-center gap-2 transition-colors duration-100 disabled:opacity-50 disabled:pointer-events-none",
                       locked
                         ? "bg-white dark:bg-[#1E293B] border border-[#2563EB] dark:border-[#60A5FA] text-[#2563EB] dark:text-[#60A5FA]"
                         : "bg-[#2563EB] hover:bg-[#1D4ED8] text-white"
@@ -369,7 +366,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
           <>
             <p role="alert" className="font-bold text-[#B91C1C] dark:text-[#FCA5A5] max-w-sm">{error}</p>
             <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 max-w-sm">Le tue risposte sono ancora qui. Il tempo è fermo: riprova a consegnare.</p>
-            <button onClick={() => { playTapSound(); void finish(); }} className="w-full max-w-xs bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold py-3.5 rounded-2xl transition-all active:scale-[.99]">
+            <button onClick={() => { playTapSound(); void finish(); }} className="w-full max-w-xs bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold py-3.5 rounded-2xl transition-colors duration-100">
               Riprova a consegnare
             </button>
             <button onClick={onExit} className="text-sm font-bold text-gray-500 dark:text-gray-400 underline">Esci senza salvare</button>
@@ -409,10 +406,10 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
   const timeStr = `${m}:${s.toString().padStart(2, '0')}`;
 
   return (
-    <div className="flex flex-col h-full w-full sm:max-h-[calc(100dvh-3rem)] bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-300">
-      <header className="flex flex-col gap-2 p-3 sm:p-4 border-b border-gray-100 dark:border-[#334155] shrink-0 transition-colors">
+    <div className="flex flex-col h-full w-full sm:max-h-[calc(100dvh-3rem)] bg-white dark:bg-[#1E293B] sm:rounded-[32px] sm:border sm:border-gray-200 dark:sm:border-[#334155] overflow-hidden shadow-sm transition-colors duration-100">
+      <header className="flex flex-col gap-2 p-3 sm:p-4 border-b border-gray-100 dark:border-[#334155] shrink-0 transition-colors duration-100">
         <div className="flex items-center justify-between">
-          <button onClick={requestExit} aria-label="Esci dalla simulazione" className="p-1 sm:p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#334155] rounded-full transition-colors">
+          <button onClick={requestExit} aria-label="Esci dalla simulazione" className="p-1 sm:p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#334155] rounded-full transition-colors duration-100">
             <X size={20} className="sm:w-6 sm:h-6" strokeWidth={3} />
           </button>
           <div role="timer" aria-label="Tempo rimasto" className={cn("font-bold tabular-nums text-base sm:text-xl flex items-center gap-1 sm:gap-2", timeLeft < 120 ? "text-[#EF4444]" : "text-[#0F172A] dark:text-[#F8FAFC]")}>
@@ -420,15 +417,15 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
           </div>
           <button
             onClick={requestSubmit}
-            className="text-[10px] sm:text-xs font-bold text-[#2563EB] dark:text-[#60A5FA] hover:bg-[#DBEAFE] dark:hover:bg-[#1E3A8A]/40 border border-[#93C5FD] px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl transition-colors"
+            className="text-[10px] sm:text-xs font-bold text-[#2563EB] dark:text-[#60A5FA] hover:bg-[#DBEAFE] dark:hover:bg-[#1E3A8A]/40 border border-[#93C5FD] px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl transition-colors duration-100"
           >
             Consegna
           </button>
         </div>
         <div className="flex items-center gap-2 mt-1 sm:mt-2">
           <span className="text-[10px] sm:text-xs font-bold text-gray-400 dark:text-gray-500 w-8 sm:w-10 text-right">{answeredCount}/{questions.length}</span>
-          <div className="flex-1 bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden transition-colors">
-            <div className="bg-[#2563EB] h-full rounded-full transition-all" style={{ width: `${progress}%` }} />
+          <div className="flex-1 bg-gray-200 dark:bg-[#334155] h-3 sm:h-4 rounded-full overflow-hidden transition-colors duration-100">
+            <div className="bg-[#2563EB] h-full rounded-full transition-colors duration-100" style={{ width: `${progress}%` }} />
           </div>
         </div>
       </header>
@@ -453,14 +450,14 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
                 onClick={() => handleOptionSelect(question.id, idx)}
                 aria-pressed={isSelected}
                 className={cn(
-                  "p-3 sm:p-3.5 text-left border rounded-2xl group transition-all duration-150 flex items-center min-h-[56px]",
+                  "p-3 sm:p-3.5 text-left border rounded-2xl group transition-colors duration-100 flex items-center min-h-[56px]",
                   isSelected
                     ? "bg-[#EFF6FF] dark:bg-[#1E3A8A]/40 border-[#2563EB] dark:border-[#60A5FA] text-[#0F172A] dark:text-[#F8FAFC]"
-                    : "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] hover:border-gray-300 dark:hover:border-gray-400 text-[#0F172A] dark:text-gray-200 active:scale-[.99]"
+                    : "border-gray-200 dark:border-[#334155] bg-white dark:bg-[#0F172A] hover:bg-gray-50 dark:hover:bg-[#1E293B] hover:border-gray-300 dark:hover:border-gray-400 text-[#0F172A] dark:text-gray-200 "
                 )}
               >
                 <div className="flex items-center gap-4 w-full">
-                  <span className={cn("w-8 h-8 text-sm flex shrink-0 items-center justify-center border rounded-full font-bold transition-colors",
+                  <span className={cn("w-8 h-8 text-sm flex shrink-0 items-center justify-center border rounded-full font-bold transition-colors duration-100",
                     isSelected ? "border-[#2563EB] dark:border-[#60A5FA] bg-[#2563EB] text-white" : "border-gray-200 dark:border-[#334155] text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#1E293B]"
                   )}>
                     {String.fromCharCode(65 + idx)}
@@ -473,13 +470,13 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
         </div>
       </main>
 
-      <div className="p-3 sm:p-4 border-t border-gray-100 dark:border-[#334155] bg-white dark:bg-[#1E293B] shrink-0 flex items-center transition-colors min-h-[70px] sm:min-h-[80px]">
+      <div className="p-3 sm:p-4 border-t border-gray-100 dark:border-[#334155] bg-white dark:bg-[#1E293B] shrink-0 flex items-center transition-colors duration-100 min-h-[70px] sm:min-h-[80px]">
         <div className="max-w-4xl w-full mx-auto flex justify-between items-center px-2 sm:px-4">
           <button
             onClick={() => goTo(currentIndex - 1)}
             disabled={currentIndex === 0}
             aria-label="Domanda precedente"
-            className="p-2 sm:p-3 text-gray-400 dark:text-gray-500 disabled:opacity-30 rounded-xl hover:bg-gray-100 dark:hover:bg-[#334155] transition-colors border border-transparent active:bg-gray-200 dark:active:bg-[#475569]"
+            className="p-2 sm:p-3 text-gray-400 dark:text-gray-500 disabled:opacity-30 rounded-xl hover:bg-gray-100 dark:hover:bg-[#334155] transition-colors duration-100 border border-transparent active:bg-gray-200 dark:active:bg-[#475569]"
           >
             <ChevronLeft size={24} className="sm:w-8 sm:h-8" strokeWidth={3} />
           </button>
@@ -491,7 +488,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
                 onClick={() => goTo(idx)}
                 aria-label={`Vai alla domanda ${idx + 1}`}
                 className={cn(
-                  "h-1.5 sm:h-2 min-w-[6px] sm:min-w-[8px] flex-1 rounded-full transition-all cursor-pointer",
+                  "h-1.5 sm:h-2 min-w-[6px] sm:min-w-[8px] flex-1 rounded-full transition-colors duration-100 cursor-pointer",
                   currentIndex === idx ? "bg-[#0F172A] dark:bg-[#F8FAFC] h-2.5 sm:h-3" : answers[q.id] !== undefined ? "bg-[#2563EB]" : "bg-gray-200 dark:bg-[#334155]"
                 )}
               />
@@ -502,7 +499,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
             onClick={() => goTo(currentIndex + 1)}
             disabled={currentIndex === questions.length - 1}
             aria-label="Domanda successiva"
-            className="p-2 sm:p-3 text-gray-400 dark:text-gray-500 disabled:opacity-30 rounded-xl hover:bg-gray-100 dark:hover:bg-[#334155] transition-colors border border-transparent active:bg-gray-200 dark:active:bg-[#475569]"
+            className="p-2 sm:p-3 text-gray-400 dark:text-gray-500 disabled:opacity-30 rounded-xl hover:bg-gray-100 dark:hover:bg-[#334155] transition-colors duration-100 border border-transparent active:bg-gray-200 dark:active:bg-[#475569]"
           >
             <ChevronRight size={24} className="sm:w-8 sm:h-8" strokeWidth={3} />
           </button>

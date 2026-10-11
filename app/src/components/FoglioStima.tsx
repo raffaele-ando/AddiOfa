@@ -1,11 +1,9 @@
 // Foglio dal basso che spiega la stima di superare il test. I numeri vengono dal codice che calcola
 // (lib/diagnostic.ts, config/offer.ts): se cambiano le soglie, cambia anche il testo.
 import { ReactNode, useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
 import { X, ListChecks, Target, Dices, Ban, Layers, Scale, TrendingUp, Ruler } from 'lucide-react';
 import { estimatePassProbability, intervalloStima, formatProbabilita, formatPunteggio, DIAGNOSTIC_LENGTH } from '../lib/diagnostic';
 import { FORMATS, FREE_LIMITS, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS } from '../config/offer';
-import { useRiduci } from './home/comune';
 
 interface Props {
   aperto: boolean;
@@ -33,7 +31,6 @@ function Voce({ icona, titolo, children }: { icona: ReactNode; titolo: string; c
 }
 
 export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOSTIC_LENGTH }: Props) {
-  const riduci = useRiduci();
   const titoloRef = useRef<HTMLHeadingElement>(null);
   const pannelloRef = useRef<HTMLDivElement>(null);
   const chiudiRef = useRef(onChiudi);
@@ -69,12 +66,9 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center" onKeyDown={tastiera}>
       <div className="absolute inset-0 bg-black/55" onClick={onChiudi} aria-hidden />
-      <motion.div
+      <div
         ref={pannelloRef}
         role="dialog" aria-modal="true" aria-labelledby="foglio-stima-titolo"
-        initial={riduci ? false : { y: 48, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: riduci ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
         className="relative flex max-h-[88vh] w-full max-w-xl flex-col rounded-t-3xl bg-white shadow-2xl dark:bg-[#1E293B] dark:border-t dark:border-[#334155]"
       >
         <div className="flex items-start justify-between gap-3 px-5 pt-5 pb-3 shrink-0">
@@ -132,11 +126,11 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
 
         <div className="px-5 pt-3 pb-5 shrink-0">
           <button type="button" onClick={onChiudi}
-            className="w-full rounded-2xl bg-azione py-3.5 text-base font-bold text-white hover:bg-azione-scuro active:scale-[.99] transition-all">
+            className="w-full rounded-2xl bg-azione py-3.5 text-base font-bold text-white hover:bg-azione-scuro transition-colors duration-100">
             Ho capito
           </button>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

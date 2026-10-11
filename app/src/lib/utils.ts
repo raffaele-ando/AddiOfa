@@ -81,15 +81,6 @@ export function chiaveGiorno(d: Date = new Date()): string {
   return `${d.getFullYear()}-${due(d.getMonth() + 1)}-${due(d.getDate())}`;
 }
 
-// Rispetta la preferenza di sistema per le animazioni ridotte (i coriandoli non sempre la guardano da soli)
-export function prefersReducedMotion(): boolean {
-  try {
-    return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  } catch {
-    return false;
-  }
-}
-
 // 12,5 e non 12.5; i numeri interi restano interi
 export function formatNumber(value: number): string {
   return value.toLocaleString('it-IT', { maximumFractionDigits: 2 });

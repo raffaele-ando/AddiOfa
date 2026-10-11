@@ -54,7 +54,6 @@ function Ricreato({ v, interattivo = true }: { v: Voce; interattivo?: boolean })
 }
 
 function Scheda({ v }: { v: Voce }) {
-  const [animato, setAnimato] = useState(false);
   // gli elementi larghi (indicatore di avanzamento, banner) occupano tutta la riga, uno sopra l'altro
   const largo = v.componente === 'Avanzamento' || v.nome === 'stile-illustrativo';
   const originale = urlPng(v.kit, v.gruppo, v.nome);
@@ -81,17 +80,14 @@ function Scheda({ v }: { v: Voce }) {
           <figcaption style={{ font: `500 10px ${FONT}`, color: '#9CA3AF', marginTop: 4 }}>originale</figcaption>
         </figure>
         <figure style={{ margin: 0, textAlign: 'center' }}>
-          <div className={animato && v.animazione ? `brand-anim-${v.animazione}` : undefined}
-            style={{ minHeight: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', transform: 'scale(1)' }}>
+          <div style={{ minHeight: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
             <div style={{ maxWidth: '100%', overflow: 'hidden' }}><Ricreato v={v} /></div>
           </div>
           <figcaption style={{ font: `500 10px ${FONT}`, color: '#9CA3AF', marginTop: 4 }}>{v.tipo !== 'grafica' ? 'in codice' : urlDisegno(v.kit, v.gruppo, v.nome) ? 'disegnato in SVG' : 'ricalco SVG'}</figcaption>
         </figure>
       </div>
       {v.animazione && (
-        <label style={{ font: `500 12px ${FONT}`, color: '#374151', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <input type="checkbox" checked={animato} onChange={e => setAnimato(e.target.checked)} /> animazione «{v.animazione}»
-        </label>
+        <p style={{ margin: 0, font: `500 12px ${FONT}`, color: '#6B7280' }}>animazione suggerita «{v.animazione}»: non attiva, l'app è statica</p>
       )}
       {v.nota && <p style={{ margin: 0, font: `500 11px/1.4 ${FONT}`, color: '#6B7280' }}>{v.nota}</p>}
     </div>

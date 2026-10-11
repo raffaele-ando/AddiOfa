@@ -1,5 +1,5 @@
 import { BookOpen, ChevronRight, Lock } from 'lucide-react';
-import { Carta, BarraCresce } from './comune';
+import { Carta, Barra } from './comune';
 import type { Lezione, ProgressoArgomento } from './stima';
 import { playTapSound } from '../../lib/audio';
 
@@ -21,14 +21,14 @@ export default function ProssimoObiettivo({ lezione, progresso, onApri, onPercor
           Vedi percorso <ChevronRight size={16} aria-hidden="true" />
         </button>
       </div>
-      <Carta indice={3} className="p-0">
+      <Carta className="p-0">
         <button type="button" onClick={() => { playTapSound(); onApri(); }} className="brand-premibile w-full flex items-center gap-3.5 p-3.5 text-left rounded-3xl">
           <span className="w-14 h-14 rounded-2xl bg-azione-tinta/60 dark:bg-azione-tinta-scura/50 text-azione dark:text-azione-chiaro flex items-center justify-center shrink-0"><BookOpen size={28} aria-hidden="true" /></span>
           <span className="flex-1 min-w-0">
             {progresso.area && <span className="block text-[12px] font-semibold tracking-wide uppercase text-[#6B7280] dark:text-[#94A3B8] leading-tight">{progresso.area}</span>}
             <span className="block text-[17px] font-extrabold text-[#0F172A] dark:text-[#F8FAFC] leading-snug">{lezione.topic.titolo}</span>
             <span className="mt-1.5 flex items-center gap-2.5">
-              <span className="flex-1 min-w-[48px]"><BarraCresce valore={valore} colore="#2563EB" alta={7} /></span>
+              <span className="flex-1 min-w-[48px]"><Barra valore={valore} colore="#2563EB" alta={7} /></span>
               <span className="shrink-0 text-[12.5px] text-[#6B7280] dark:text-[#94A3B8] tabular-nums">{imparate}/{totale} domande imparate</span>
             </span>
             {lezione.bloccata && <span className="mt-1 flex items-center gap-1 text-[12px] font-semibold text-[#475569] dark:text-[#CBD5E1]"><Lock size={12} aria-hidden="true" /> Questa scheda richiede il Pass</span>}
