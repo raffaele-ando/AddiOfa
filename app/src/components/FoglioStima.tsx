@@ -98,7 +98,7 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
                 : `Il calcolo parte da quante risposte esatte hai dato in tutto: ${risposte} tra il diagnostico e le simulazioni che hai fatto. Gli esercizi di ripasso non contano, perché scelgono le domande più difficili e darebbero una stima troppo severa.`}
             </Voce>
             <Voce icona={<Target size={18} strokeWidth={2.5} />} titolo={`La soglia: ${REAL_TEST_PASS_MARK} su ${REAL_TEST_QUESTIONS}`}>
-              Il calcolo usa la soglia del TENG: {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}. Il test di recupero di LinguaViva chiede {sogliaEnte} su {FORMATS.ente.questions}: con quella soglia la probabilità è un po' più bassa. Controlla sempre la soglia del test che farai davvero.
+              Il calcolo usa la soglia del test di recupero di LinguaViva: {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}. Il TENG del test d'ingresso ne chiede {FORMATS.teng.passMark}: con quella soglia la probabilità è un po' più alta. Controlla sempre la soglia del test che farai davvero.
             </Voce>
             <Voce icona={<Dices size={18} strokeWidth={2.5} />} titolo="Dal tuo livello a 30 domande">
               Non sappiamo quanto sei bravo davvero: lo deduciamo dalle risposte. Il calcolo considera tutti i livelli di preparazione compatibili con quello che hai risposto e, per ciascuno, quanto è probabile fare almeno {REAL_TEST_PASS_MARK} su {REAL_TEST_QUESTIONS}. La percentuale è la media di tutte queste possibilità.

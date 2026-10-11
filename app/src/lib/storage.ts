@@ -17,16 +17,51 @@ const defaultState: AppState = {
   examCategoryStats: {}
 };
 
+const isObj = (v: unknown): v is Record<string, any> => typeof v === 'object' && v !== null && !Array.isArray(v);
+const finito = (v: unknown, ripiego: number) => (typeof v === 'number' && Number.isFinite(v) ? v : ripiego);
+
+function statoVuoto(): AppState {
+  return { ...defaultState, stats: {}, history: [], speedStats: { ...defaultState.speedStats! }, examCategoryStats: {} };
+}
+
+/**
+ * Porta qualunque cosa sia stata salvata (versioni vecchie, JSON rovinato, import o cloud) a un AppState usabile:
+ * `stats` oggetto, `history` elenco di simulazioni, `streak` numero. Non butta via i dati buoni.
+ */
+export function normalizeState(raw: unknown): AppState {
+  const out = statoVuoto();
+  if (!isObj(raw)) return out;
+  const stats: UserStats = {};
+  if (isObj(raw.stats)) {
+    for (const [id, st] of Object.entries(raw.stats)) if (isObj(st)) stats[id] = st as UserStats[string];
+  }
+  const history = Array.isArray(raw.history)
+    ? raw.history.filter((h): h is ExamHistory => isObj(h) && typeof h.date === 'number' && Number.isFinite(h.date))
+    : [];
+  return {
+    ...raw,
+    stats,
+    history,
+    streak: Math.max(0, Math.floor(finito(raw.streak, 0))),
+    lastActiveDate: typeof raw.lastActiveDate === 'number' && Number.isFinite(raw.lastActiveDate) ? raw.lastActiveDate : null,
+    speedStats: isObj(raw.speedStats) ? (raw.speedStats as AppState['speedStats']) : out.speedStats,
+    examCategoryStats: isObj(raw.examCategoryStats) ? (raw.examCategoryStats as AppState['examCategoryStats']) : {},
+    dailyActivity: isObj(raw.dailyActivity) ? (raw.dailyActivity as AppState['dailyActivity']) : undefined,
+    dailyTimeSpent: isObj(raw.dailyTimeSpent) ? (raw.dailyTimeSpent as AppState['dailyTimeSpent']) : undefined,
+    onboarding: isObj(raw.onboarding) ? (raw.onboarding as AppState['onboarding']) : undefined,
+  } as AppState;
+}
+
 export function loadState(): AppState {
   try {
     const serializedState = localStorage.getItem(STORAGE_KEY);
     if (serializedState === null) {
-      return defaultState;
+      return statoVuoto();
     }
-    return JSON.parse(serializedState);
+    return normalizeState(JSON.parse(serializedState));
   } catch (err) {
     console.error('Error loading state', err);
-    return defaultState;
+    return statoVuoto();
   }
 }
 
@@ -46,7 +81,8 @@ const CLOUD_HISTORY_WITH_LOGS = 50;
 export function toCloudState(state: AppState): AppState {
   const history = state.history || [];
   const firstWithLogs = Math.max(0, history.length - CLOUD_HISTORY_WITH_LOGS);
-  return {
+  // Firestore rifiuta i campi `undefined` (ce ne sono nelle statistiche e nell'onboarding): il passaggio da JSON li toglie
+  return JSON.parse(JSON.stringify({
     ...state,
     history: history.map((h, i) => {
       if (i < firstWithLogs) {
@@ -58,7 +94,7 @@ export function toCloudState(state: AppState): AppState {
         questionLogs: h.questionLogs?.map(({ clickEvents, trajectory, ...log }) => log),
       };
     }),
-  };
+  }));
 }
 
 // Il cloud si usa solo con un utente collegato e mai in demo (Firebase si carica qui, al primo uso)
@@ -79,14 +115,21 @@ export async function syncFromCloud(userId: string, localState: AppState): Promi
     const docRef = doc(db, "users", userId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      const cloudState = docSnap.data() as AppState;
-      const mergedState = { ...localState };
+      const cloudState = normalizeState(docSnap.data());
+      // copie dei contenitori che si modificano sotto: lo stato locale (anche quello di React) non si muta
+      const mergedState: AppState = {
+        ...localState,
+        stats: { ...(localState.stats ?? {}) },
+        dailyActivity: { ...(localState.dailyActivity ?? {}) },
+        dailyTimeSpent: { ...(localState.dailyTimeSpent ?? {}) },
+        examCategoryStats: { ...(localState.examCategoryStats ?? {}) },
+      };
       
       // 1. Merge history uniquely by date
-      const historyMap = new Map<number, any>();
+      const historyMap = new Map<number | string, any>();
       // Prima il cloud, poi il locale: a parità di esame vince la copia locale, che ha i log completi
-      cloudState.history?.forEach(h => historyMap.set(h.date, h));
-      localState.history?.forEach(h => historyMap.set(h.date, h));
+      cloudState.history?.forEach(h => historyMap.set(h.id ?? h.date, h));
+      localState.history?.forEach(h => historyMap.set(h.id ?? h.date, h));
       mergedState.history = Array.from(historyMap.values()).sort((a, b) => a.date - b.date);
 
       // 2. Reconstruct examCategoryStats perfectly from merged history
@@ -105,7 +148,6 @@ export async function syncFromCloud(userId: string, localState: AppState): Promi
         mergedState.examCategoryStats = newExamCategoryStats;
       } else if (cloudState.examCategoryStats) {
         // Fallback for legacy data without categoryStats in history
-        if (!mergedState.examCategoryStats) mergedState.examCategoryStats = {};
         for (const cat in cloudState.examCategoryStats) {
           const cloudCat = cloudState.examCategoryStats[cat];
           const localCat = mergedState.examCategoryStats[cat];
@@ -117,11 +159,10 @@ export async function syncFromCloud(userId: string, localState: AppState): Promi
       
       // 3. Merge Question stats based on lastSeen timestamp (most recent state wins)
       if (cloudState.stats) {
-        if (!mergedState.stats) mergedState.stats = {};
         for (const qId in cloudState.stats) {
           const cloudStat = cloudState.stats[qId];
           const localStat = mergedState.stats[qId];
-          if (!localStat || cloudStat.lastSeen > localStat.lastSeen) {
+          if (!localStat || (cloudStat.lastSeen ?? 0) > (localStat.lastSeen ?? 0)) {
             mergedState.stats[qId] = cloudStat;
           }
         }
@@ -129,7 +170,7 @@ export async function syncFromCloud(userId: string, localState: AppState): Promi
 
       // 4. Merge speedStats (keep the one with most answers)
       if (cloudState.speedStats) {
-        if (!mergedState.speedStats || cloudState.speedStats.totalAnswers > mergedState.speedStats.totalAnswers) {
+        if (!mergedState.speedStats || (cloudState.speedStats.totalAnswers ?? 0) > (mergedState.speedStats.totalAnswers ?? 0)) {
           mergedState.speedStats = cloudState.speedStats;
         }
       }
@@ -141,12 +182,11 @@ export async function syncFromCloud(userId: string, localState: AppState): Promi
          mergedState.lastActiveDate = cloudLastActive;
          mergedState.streak = cloudState.streak;
       } else if (cloudLastActive === localLastActive) {
-         mergedState.streak = Math.max(cloudState.streak, mergedState.streak);
+         mergedState.streak = Math.max(cloudState.streak, finito(mergedState.streak, 0));
       }
 
       // 6. Merge dailyActivity
       if (cloudState.dailyActivity) {
-        if (!mergedState.dailyActivity) mergedState.dailyActivity = {};
         for (const [dateStr, count] of Object.entries(cloudState.dailyActivity)) {
           mergedState.dailyActivity[dateStr] = Math.max(mergedState.dailyActivity[dateStr] || 0, count);
         }
@@ -154,7 +194,6 @@ export async function syncFromCloud(userId: string, localState: AppState): Promi
       
       // 7. Merge dailyTimeSpent
       if (cloudState.dailyTimeSpent) {
-        if (!mergedState.dailyTimeSpent) mergedState.dailyTimeSpent = {};
         for (const [dateStr, time] of Object.entries(cloudState.dailyTimeSpent)) {
           mergedState.dailyTimeSpent[dateStr] = Math.max(mergedState.dailyTimeSpent[dateStr] || 0, time);
         }
@@ -181,8 +220,9 @@ export function updateStreak(state: AppState): AppState {
   const ONE_DAY = 86400000;
 
   const newState = { ...state };
+  newState.streak = Math.max(0, Math.floor(finito(newState.streak, 0)));
 
-  if (!newState.lastActiveDate) {
+  if (!newState.lastActiveDate || !Number.isFinite(newState.lastActiveDate)) {
     newState.streak = 1;
     newState.lastActiveDate = now.getTime();
   } else {
@@ -203,6 +243,8 @@ export function updateStreak(state: AppState): AppState {
       newState.lastActiveDate = now.getTime();
     }
   }
+  // chi è attivo oggi ha almeno 1 giorno di serie (uno stato importato può avere serie 0 con data di oggi)
+  if (newState.streak < 1) newState.streak = 1;
 
   return newState;
 }
@@ -227,7 +269,7 @@ export function importData(file: File): Promise<AppState> {
         if (typeof importedState.streak !== 'number' || !Array.isArray(importedState.history) || typeof importedState.stats !== 'object' || importedState.stats === null) {
           throw new Error("Invalid format");
         }
-        resolve(importedState);
+        resolve(normalizeState(importedState));
       } catch (e) {
         reject(e);
       }

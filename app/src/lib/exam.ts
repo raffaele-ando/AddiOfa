@@ -14,6 +14,7 @@ export function selectExamQuestions(pool: Question[], format: ExamFormat): Quest
   const selected: Question[] = [];
   for (const q of shuffled) {
     if (selected.length >= format.questions) break;
+    if (selected.some(s => s.id === q.id)) continue; // lo stesso id due volte nel pool (banco servito male) non entra due volte
     if (!selected.some(s => calculateSimilarity(s.prompt, q.prompt) > 0.45)) selected.push(q);
   }
   for (const q of shuffled) {

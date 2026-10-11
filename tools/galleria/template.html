@@ -1,0 +1,246 @@
+<title>Galleria Design AddiOFA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: barra fissa in alto, indice delle sezioni a scorrimento, poi una sezione per tipo di schermata con le varianti in griglia. */
+:root{
+  --bg:#F5F7FB; --surface:#FFFFFF; --ink:#0E1A33; --muted:#5B6782; --line:#DDE3EF;
+  --accent:#2563EB; --accent-ink:#FFFFFF; --accent-soft:#E6EEFF;
+  --ok:#0E7A47; --ok-soft:#DDF5E8; --warn:#8A5A00; --warn-soft:#FFF0CC; --off:#5B6782; --off-soft:#E9EDF5;
+  --shadow:0 1px 2px rgba(14,26,51,.06),0 6px 18px rgba(14,26,51,.06);
+  --font:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B1220; --surface:#131C30; --ink:#E7ECF7; --muted:#9AA7C2; --line:#25324D;
+  --accent:#6EA0FF; --accent-ink:#0B1220; --accent-soft:#17274A;
+  --ok:#67D79F; --ok-soft:#10301F; --warn:#F2C35B; --warn-soft:#33270B; --off:#9AA7C2; --off-soft:#1B2640;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1220; --surface:#131C30; --ink:#E7ECF7; --muted:#9AA7C2; --line:#25324D;
+  --accent:#6EA0FF; --accent-ink:#0B1220; --accent-soft:#17274A;
+  --ok:#67D79F; --ok-soft:#10301F; --warn:#F2C35B; --warn-soft:#33270B; --off:#9AA7C2; --off-soft:#1B2640;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:0}
+h1,h2,h3{text-wrap:balance;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-inline:-16px;padding:10px 16px 8px;border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:1280px;margin:0 auto}
+.top h1{font-size:18px;font-weight:800;letter-spacing:-.01em;flex:1 1 auto;min-width:0}
+.prog{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.btn{border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:10px;font-weight:600;font-size:14px}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.nav{display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px;max-width:1280px;margin:0 auto;scrollbar-width:thin}
+.nav a{flex:0 0 auto;text-decoration:none;color:var(--muted);font-size:13px;font-weight:600;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);white-space:nowrap}
+.nav a.done{color:var(--ok);border-color:var(--ok)}
+.nav a:hover{color:var(--ink)}
+main{max-width:1280px;margin:0 auto;padding-block:20px 80px}
+.intro{max-width:70ch;color:var(--muted);margin:4px 0 24px}
+section.sez{margin-block:0 44px;scroll-margin-top:110px}
+.sez-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.sez h2{font-size:24px;font-weight:800;letter-spacing:-.015em}
+.sez .desc{color:var(--muted);max-width:75ch;margin:0 0 12px}
+.scelta-stato{font-size:13px;font-family:var(--mono);color:var(--muted)}
+.scelta-stato b{color:var(--ok);font-weight:500}
+.nota{display:flex;gap:8px;align-items:center;margin:0 0 14px;flex-wrap:wrap}
+.nota input{flex:1 1 260px;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit;font-size:14px}
+.gruppo{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:18px 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:14px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.card.wide{grid-column:span 2}
+.card.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent),var(--shadow)}
+.thumb{display:block;border:0;background:var(--off-soft);padding:0;width:100%;position:relative}
+.thumb img{display:block;width:100%;height:auto;max-height:420px;object-fit:contain;background:var(--off-soft);min-height:120px}
+.thumb .vuota{display:block;padding:40px 8px;color:var(--muted);font-size:12px;text-align:center}
+.card .body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.badge{align-self:flex-start;font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px;background:var(--off-soft);color:var(--off)}
+.badge.attuale{background:var(--accent-soft);color:var(--accent)}
+.badge.parte{background:var(--warn-soft);color:var(--warn)}
+.badge.riferimento{background:var(--ok-soft);color:var(--ok)}
+.card h3{font-size:14px;font-weight:700;line-height:1.25}
+.fonte{font-family:var(--mono);font-size:11px;color:var(--muted);overflow-wrap:anywhere}
+.card p{margin:0;font-size:13px;color:var(--muted)}
+details{font-size:13px;color:var(--muted)}
+details summary{cursor:pointer;font-weight:600;color:var(--ink)}
+details p{margin-top:6px}
+.adatta{color:var(--warn)}
+.pick{margin-top:4px;width:100%;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px}
+.pick[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tema{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;align-self:flex-start}
+.tema button{border:0;background:transparent;padding:2px 8px;font-size:11px;font-family:var(--mono);color:var(--muted)}
+.tema button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
+dialog{border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);padding:0;max-width:min(96vw,1100px);width:100%;max-height:92vh;overflow:auto}
+dialog::backdrop{background:rgba(8,14,28,.66)}
+.dlg-head{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--surface);z-index:1}
+.dlg-head h2{font-size:17px}
+.dlg-body{padding:16px}
+.lb-img{display:block;max-width:100%;max-height:68vh;margin:0 auto;object-fit:contain}
+.lb-meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin-top:12px}
+.sum{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:0 0 14px;padding:0;list-style:none}
+.sum li{display:flex;gap:10px;border:1px solid var(--line);border-radius:12px;padding:8px;align-items:flex-start;min-width:0}
+.sum img{width:56px;height:auto;max-height:96px;object-fit:cover;border-radius:6px;background:var(--off-soft)}
+.sum b{display:block;font-size:13px}
+.sum span{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+textarea.copia{width:100%;min-height:150px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-family:var(--mono);font-size:12px;padding:10px}
+.stato-salvataggio{font-size:12px;color:var(--muted);margin:6px 0}
+@media (max-width:520px){.card.wide{grid-column:span 1}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.sez h2{font-size:21px}}
+@media (prefers-reduced-motion:no-preference){.card{transition:box-shadow .15s,border-color .15s}}
+</style>
+
+<div class="top">
+  <div class="top-row">
+    <h1>Galleria design AddiOFA</h1>
+    <span class="prog" id="prog" aria-live="polite"></span>
+    <button class="btn primary" id="apri-riepilogo" type="button">Riepilogo scelte</button>
+  </div>
+  <nav class="nav" id="nav" aria-label="Sezioni"></nav>
+</div>
+<main>
+  <p class="intro">Qui ci sono tutte le varianti dei tuoi concept, sezione per sezione, più come è oggi l'app. Tocca un'immagine per ingrandirla. In ogni sezione premi «Scelgo questa» sulla variante che vuoi usare (una per sezione) e, se serve, scrivi una nota. Le scelte vengono salvate e le leggo io.</p>
+  <div id="sezioni"></div>
+</main>
+
+<dialog id="lb" aria-labelledby="lb-titolo">
+  <div class="dlg-head"><h2 id="lb-titolo"></h2><button class="btn" id="lb-chiudi" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <img class="lb-img" id="lb-img" alt="">
+    <div class="lb-meta">
+      <div><span class="badge" id="lb-badge"></span> <span class="fonte" id="lb-fonte"></span></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" id="lb-prec" type="button">‹ Precedente</button>
+        <button class="btn" id="lb-succ" type="button">Successiva ›</button>
+        <button class="btn primary pick-lb" id="lb-pick" type="button" aria-pressed="false">Scelgo questa</button>
+      </div>
+    </div>
+    <p id="lb-note" style="color:var(--muted);margin:12px 0 0"></p>
+    <p id="lb-adatta" class="adatta" style="margin:6px 0 0"></p>
+  </div>
+</dialog>
+
+<dialog id="riep" aria-labelledby="riep-titolo">
+  <div class="dlg-head"><h2 id="riep-titolo">Riepilogo delle scelte</h2><button class="btn" id="riep-chiudi" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <ul class="sum" id="riep-lista"></ul>
+    <p class="stato-salvataggio" id="salvataggio"></p>
+    <label for="copia" style="font-size:13px;font-weight:600">Testo da incollare nella chat</label>
+    <textarea class="copia" id="copia" readonly></textarea>
+    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="copia-btn" type="button">Copia il testo</button><span id="copia-esito" class="stato-salvataggio" role="status"></span></div>
+  </div>
+</dialog>
+
+<script>
+const DATA = __DATA__;
+const IMGS = __IMGS__;
+</script>
+<script>
+(function(){
+  const STATI={'attuale':['Come è oggi','attuale'],'non-implementato':['Non implementato',''],'implementato-in-parte':['Imitato in parte','parte'],'rimandato':['Fuori dal lancio',''],'riferimento':['Riferimento','riferimento']};
+  const LS='galleria-scelte-v1';
+  let scelte={}; let db=null; let tema=null;
+  try{scelte=JSON.parse(localStorage.getItem(LS)||'{}')||{}}catch(e){scelte={}}
+  const $=(s,r)=> (r||document).querySelector(s);
+  const el=(t,c,x)=>{const e=document.createElement(t); if(c) e.className=c; if(x!=null) e.textContent=x; return e};
+  const sceltaTema=()=> (document.documentElement.dataset.theme==='dark'||(!document.documentElement.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches))?'scuro':'chiaro';
+  const tutte=[]; DATA.sezioni.forEach(s=>s.varianti.forEach(v=>{v._s=s.id; tutte.push(v)}));
+  const byId=Object.fromEntries(tutte.map(v=>[v.id,v]));
+  function src(v,t){const m=IMGS[v.id]; if(!m) return ''; return typeof m==='string'?m:(m[t]||m.chiaro||m.scuro||'')}
+  function salvaLocale(){try{localStorage.setItem(LS,JSON.stringify(scelte))}catch(e){}}
+  async function salvaDb(sid){
+    if(!db) return;
+    try{const sc=scelte[sid]; const ref=db.doc('scelte/'+sid);
+      if(sc) await ref.set({variante:sc.variante,titolo:(byId[sc.variante]||{}).titolo||'',fonte:(byId[sc.variante]||{}).fonte||'',nota:sc.nota||'',aggiornato:new Date().toISOString()}); else await ref.delete();
+      statoSalv('Salvato: lo leggo io da qui.')}catch(e){statoSalv('Salvato solo su questo dispositivo (il salvataggio condiviso non è disponibile).')}
+  }
+  function statoSalv(t){const n=$('#salvataggio'); if(n) n.textContent=t}
+  function aggiorna(){
+    const fatte=DATA.sezioni.filter(s=>scelte[s.id]&&scelte[s.id].variante).length;
+    $('#prog').textContent=fatte+' di '+DATA.sezioni.length+' sezioni scelte';
+    DATA.sezioni.forEach(s=>{
+      const a=$('#nav a[href="#'+s.id+'"]'); if(a) a.classList.toggle('done',!!(scelte[s.id]&&scelte[s.id].variante));
+      const st=$('#st-'+s.id); const sc=scelte[s.id]; const v=sc&&byId[sc.variante];
+      if(st){st.textContent=''; if(v){const b=el('b',null,'Scelta: '); st.append(b,document.createTextNode(v.titolo))} else st.textContent='Nessuna scelta ancora'}
+      document.querySelectorAll('[data-sez="'+s.id+'"] .card').forEach(c=>{const on=sc&&sc.variante===c.dataset.id; c.classList.toggle('sel',!!on); const p=c.querySelector('.pick'); if(p){p.setAttribute('aria-pressed',on?'true':'false'); p.textContent=on?'Scelta ✓':'Scelgo questa'}});
+    });
+  }
+  function scegli(v){
+    const sid=v._s; const cur=scelte[sid]||{};
+    if(cur.variante===v.id){delete scelte[sid]} else scelte[sid]={variante:v.id,nota:cur.nota||''};
+    salvaLocale(); aggiorna(); salvaDb(sid); if(lb.open) aggiornaLb();
+  }
+  function card(v,tmp){
+    const c=el('article','card'); c.dataset.id=v.id;
+    const th=el('button','thumb'); th.type='button'; th.setAttribute('aria-label','Ingrandisci: '+v.titolo);
+    const im=el('img'); im.alt=v.titolo+' ('+(v.fonte||'')+')'; im.loading='lazy'; im.decoding='async';
+    const s=src(v,sceltaTema()); if(s) im.src=s; else {th.append(el('span','vuota','Immagine non disponibile'))}
+    if(s) th.append(im); th.addEventListener('click',()=>apriLb(v));
+    c.append(th);
+    const b=el('div','body'); const st=STATI[v.stato]||['',''];
+    b.append(el('span','badge '+st[1],st[0]));
+    if(typeof IMGS[v.id]==='object'&&IMGS[v.id]&&IMGS[v.id].chiaro&&IMGS[v.id].scuro){
+      const t=el('div','tema'); ['chiaro','scuro'].forEach(k=>{const bt=el('button',null,k); bt.type='button'; bt.setAttribute('aria-pressed',String(k===sceltaTema())); bt.addEventListener('click',()=>{im.src=src(v,k); t.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===bt)))}); t.append(bt)}); b.append(t);
+    }
+    b.append(el('h3',null,v.titolo)); if(v.fonte) b.append(el('div','fonte',v.fonte));
+    if(v.note||v.daAdattare){const d=el('details'); d.append(el('summary',null,'Dettagli')); if(v.note) d.append(el('p',null,v.note)); if(v.daAdattare){const p=el('p','adatta'); p.textContent='Da adattare: '+v.daAdattare; d.append(p)} b.append(d)}
+    const p=el('button','pick','Scelgo questa'); p.type='button'; p.setAttribute('aria-pressed','false'); p.addEventListener('click',()=>scegli(v)); b.append(p);
+    c.append(b); return c;
+  }
+  function costruisci(){
+    const nav=$('#nav'), root=$('#sezioni');
+    DATA.sezioni.forEach(s=>{
+      const a=el('a',null,s.titolo); a.href='#'+s.id; nav.append(a);
+      const sec=el('section','sez'); sec.id=s.id; sec.dataset.sez=s.id;
+      const h=el('div','sez-head'); h.append(el('h2',null,s.titolo)); const st=el('span','scelta-stato'); st.id='st-'+s.id; h.append(st); sec.append(h);
+      if(s.descrizione) sec.append(el('p','desc',s.descrizione));
+      const nt=el('div','nota'); const lab=el('label',null,'Nota'); lab.style.cssText='font-size:13px;font-weight:600'; const inp=el('input'); inp.type='text'; inp.id='nota-'+s.id; lab.htmlFor=inp.id; inp.placeholder='Facoltativa: per esempio «questa, ma con il pulsante blu»';
+      inp.value=(scelte[s.id]&&scelte[s.id].nota)||''; inp.addEventListener('change',()=>{const c=scelte[s.id]||{variante:''}; c.nota=inp.value; scelte[s.id]=c; if(!c.variante&&!c.nota) delete scelte[s.id]; salvaLocale(); salvaDb(s.id)}); nt.append(lab,inp); sec.append(nt);
+      let gr=null, grid=null;
+      s.varianti.forEach(v=>{
+        const g=v.gruppo||''; if(!grid||g!==gr){gr=g; if(g) sec.append(el('div','gruppo',g)); grid=el('div','grid'); sec.append(grid)}
+        const c=card(v); if(v.largo) c.classList.add('wide'); grid.append(c);
+      });
+      root.append(sec);
+    });
+  }
+  const lb=$('#lb'); let lbIdx=0, lbLista=[];
+  function aggiornaLb(){const v=lbLista[lbIdx]; if(!v) return; $('#lb-titolo').textContent=v.titolo; const t=sceltaTema(); const li=$('#lb-img'); li.src=src(v,t); li.alt=v.titolo; li.style.maxHeight=(v.rapporto>1.8)?'none':''; li.style.width=(v.rapporto>1.8)?'min(100%,520px)':'';
+    const st=STATI[v.stato]||['','']; const b=$('#lb-badge'); b.className='badge '+st[1]; b.textContent=st[0]; $('#lb-fonte').textContent=v.fonte||''; $('#lb-note').textContent=v.note||''; $('#lb-adatta').textContent=v.daAdattare?('Da adattare: '+v.daAdattare):'';
+    const on=scelte[v._s]&&scelte[v._s].variante===v.id; const p=$('#lb-pick'); p.setAttribute('aria-pressed',on?'true':'false'); p.textContent=on?'Scelta ✓':'Scelgo questa';}
+  function apriLb(v){lbLista=DATA.sezioni.find(s=>s.id===v._s).varianti; lbIdx=lbLista.indexOf(v); aggiornaLb(); if(!lb.open) lb.showModal()}
+  $('#lb-chiudi').addEventListener('click',()=>lb.close());
+  $('#lb-prec').addEventListener('click',()=>{lbIdx=(lbIdx-1+lbLista.length)%lbLista.length; aggiornaLb()});
+  $('#lb-succ').addEventListener('click',()=>{lbIdx=(lbIdx+1)%lbLista.length; aggiornaLb()});
+  $('#lb-pick').addEventListener('click',()=>scegli(lbLista[lbIdx]));
+  lb.addEventListener('keydown',e=>{if(e.key==='ArrowLeft') $('#lb-prec').click(); if(e.key==='ArrowRight') $('#lb-succ').click()});
+  lb.addEventListener('click',e=>{if(e.target===lb) lb.close()});
+  const riep=$('#riep');
+  function testoRiepilogo(){
+    const righe=['Le mie scelte per AddiOFA:'];
+    DATA.sezioni.forEach(s=>{const sc=scelte[s.id]; const v=sc&&byId[sc.variante]; righe.push('- '+s.titolo+': '+(v?(v.titolo+' ['+(v.fonte||v.id)+']'):'nessuna scelta')+(sc&&sc.nota?(' · nota: '+sc.nota):''))});
+    return righe.join('\n');
+  }
+  function apriRiepilogo(){
+    const ul=$('#riep-lista'); ul.textContent='';
+    DATA.sezioni.forEach(s=>{const sc=scelte[s.id]; const v=sc&&byId[sc.variante]; const li=document.createElement('li');
+      if(v){const im=el('img'); im.alt=''; const x=src(v,sceltaTema()); if(x) im.src=x; li.append(im)}
+      const d=el('div'); d.append(el('b',null,s.titolo)); d.append(el('span',null,v?v.titolo+(sc.nota?' · '+sc.nota:''):'Nessuna scelta')); li.append(d); ul.append(li)});
+    $('#copia').value=testoRiepilogo(); $('#copia-esito').textContent='';
+    statoSalv(db?'Le scelte sono salvate nello spazio condiviso di questa pagina.':'Le scelte sono salvate solo su questo dispositivo: incolla il testo nella chat.');
+    riep.showModal();
+  }
+  $('#apri-riepilogo').addEventListener('click',apriRiepilogo);
+  $('#riep-chiudi').addEventListener('click',()=>riep.close());
+  riep.addEventListener('click',e=>{if(e.target===riep) riep.close()});
+  $('#copia-btn').addEventListener('click',async()=>{const t=$('#copia'); try{await navigator.clipboard.writeText(t.value); $('#copia-esito').textContent='Copiato.'}catch(e){t.focus(); t.select(); $('#copia-esito').textContent='Seleziona il testo e copialo a mano.'}});
+  costruisci(); aggiorna();
+  (async function(){
+    try{
+      if(!window.claude||!claude.use) return;
+      db=await claude.use('db'); if(!db) return;
+      const snap=await db.collection('scelte').get();
+      snap.docs.forEach(d=>{const x=d.data(); if(x&&x.variante&&byId[x.variante]) scelte[d.id]={variante:x.variante,nota:x.nota||''}});
+      salvaLocale(); DATA.sezioni.forEach(s=>{const i=$('#nota-'+s.id); if(i) i.value=(scelte[s.id]&&scelte[s.id].nota)||''}); aggiorna();
+    }catch(e){db=null}
+  })();
+})();
+</script>

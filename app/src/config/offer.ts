@@ -6,10 +6,11 @@ export const APP_NAME = 'AddiOFA';
 export const DISCLAIMER =
   "Progetto studentesco indipendente e non ufficiale. Non affiliato, autorizzato o collegato al Politecnico di Milano.";
 
-// ---- Il test reale (fonti ufficiali del Politecnico, a.a. 2026/27)
-// Il TENG è la sezione di inglese del test d'ingresso: 30 domande in 15 minuti, OFA se meno di 24 risposte esatte.
+// ---- Il test di riferimento della stima
+// La stima di superare il test usa il test di recupero di LinguaViva: 30 domande, si supera con 25 risposte esatte.
+// Il TENG (test d'ingresso) ha soglia 24: vedi FORMATS.teng.passMark.
 export const REAL_TEST_QUESTIONS = 30;
-export const REAL_TEST_PASS_MARK = 24;
+export const REAL_TEST_PASS_MARK = 25;
 
 // Costo di un tentativo del test di recupero presso gli enti convenzionati (27,50 - 30,50 €)
 export const RETAKE_COST_EUR = 30;

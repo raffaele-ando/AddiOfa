@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Question } from "../types";
+import type { Question } from "../types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -55,7 +55,11 @@ export function calculateSimilarity(str1: string, str2: string): number {
   const set1 = tokenize(str1);
   const set2 = tokenize(str2);
 
-  if (set1.size === 0 && set2.size === 0) return 0;
+  // Due frasi fatte solo di parole comuni (es. "Choose the correct sentence") non hanno parole da confrontare:
+  // se sono lo stesso testo sono la stessa domanda, altrimenti non si può dire che si somiglino.
+  if (set1.size === 0 && set2.size === 0) {
+    return str1.trim().toLowerCase() === str2.trim().toLowerCase() ? 1 : 0;
+  }
 
   let intersection = 0;
   for (const word of set1) {
@@ -66,6 +70,15 @@ export function calculateSimilarity(str1: string, str2: string): number {
 
   const union = set1.size + set2.size - intersection;
   return intersection / union;
+}
+
+/**
+ * Chiave del giorno nel fuso locale ("2026-10-11"), per dailyActivity, dailyTimeSpent e il grafico dei sette giorni.
+ * Non usare toISOString(): è in UTC e tra mezzanotte e le 2 (ora italiana) darebbe il giorno prima.
+ */
+export function chiaveGiorno(d: Date = new Date()): string {
+  const due = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${due(d.getMonth() + 1)}-${due(d.getDate())}`;
 }
 
 // Rispetta la preferenza di sistema per le animazioni ridotte (i coriandoli non sempre la guardano da soli)
