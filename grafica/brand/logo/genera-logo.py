@@ -9,7 +9,7 @@ le versioni per fondo scuro in `su-scuro/` e per fondo blu in `su-blu/`, e `mani
 
 Geometria misurata dai concept (NN 15, 07, 35, 28, 24) e sovrapposta a vista; nessun <text>:
 le lettere sono tracciati di Inter ExtraBold (come l'app) con gli spigoli raccordati.
-Dipendenze: fontTools, shapely non serve. Il font è `app/node_modules/@fontsource/inter`.
+Dipendenze: fontTools (e Pillow/Playwright solo per gli altri script). Il font è `app/node_modules/@fontsource/inter`.
 """
 from __future__ import annotations
 
@@ -670,7 +670,7 @@ def lockup(nome: str, g: str, uid: str) -> Pezzo:
     off_x = 0.0 if is_tile else (LM_W - A_LARG) / 2
     if ori == "o":     # orizzontale: lettermark a sinistra
         h_ref = wm.h
-        target = max(1.5 * CAPH, h_ref * 0.98) if is_tile else 1.3 * CAPH
+        target = max(1.5 * CAPH, h_ref * 0.98) if is_tile else 1.15 * CAPH
         kh = target / vis_h
         lh, lw = vis_h * kh, vis_w * kh
         gap = lh * (0.24 if is_tile else 0.30)
