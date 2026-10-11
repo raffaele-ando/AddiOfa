@@ -171,7 +171,7 @@ const IMGS = __IMGS__;
   function card(v,tmp){
     const c=el('article','card'); c.dataset.id=v.id;
     const th=el('button','thumb'); th.type='button'; th.setAttribute('aria-label','Ingrandisci: '+v.titolo);
-    const im=el('img'); im.alt=v.titolo+' ('+(v.fonte||'')+')'; im.loading='lazy'; im.decoding='async';
+    const im=el('img'); im.alt=v.titolo+' ('+(v.fonte||'')+')'; im.decoding='async';
     const s=src(v,sceltaTema()); if(s) im.src=s; else {th.append(el('span','vuota','Immagine non disponibile'))}
     if(s) th.append(im); th.addEventListener('click',()=>apriLb(v));
     c.append(th);

@@ -85,26 +85,34 @@ export function esitoSimulazione(h: AppState['history'][number]): EsitoSim {
  * - le omesse contano come errori, le scadute sono simulazioni normali con molte omesse;
  * - con almeno SIMULAZIONI_CHE_SOSTITUISCONO_DIAGNOSTICO simulazioni il diagnostico non entra più nel calcolo.
  */
-export function calcolaStima(stato: AppState): Stima | null {
+interface DatiStima {
+  /** Diagnostico: esatte, totale e probabilità; assente se non c'è (o non è valido). */
+  diag?: { dc: number; dt: number; p0: number };
+  /** Simulazioni valide in ordine di data (tutte, non solo la finestra). */
+  valide: EsitoSim[];
+}
+
+/** Legge dallo stato i dati che alimentano la stima: il diagnostico e le simulazioni valide, in ordine di data. */
+function datiStima(stato: AppState): DatiStima {
   const o = stato?.onboarding;
 
   // diagnostico
-  let dc = 0, dt = 0, p0: number | undefined;
+  let diag: DatiStima['diag'];
   if (o && typeof o === 'object') {
     const haConteggi = Number.isFinite(o.diagnosticTotal) && (o.diagnosticTotal ?? 0) > 0 && Number.isFinite(o.diagnosticCorrect);
     if (haConteggi) {
-      ({ correct: dc, total: dt } = normalizzaConteggio(o.diagnosticCorrect as number, o.diagnosticTotal as number));
-      p0 = estimatePassProbability(dc, dt);
+      const { correct: dc, total: dt } = normalizzaConteggio(o.diagnosticCorrect as number, o.diagnosticTotal as number);
+      diag = { dc, dt, p0: estimatePassProbability(dc, dt) };
     } else if (typeof o.passProbability === 'number' && Number.isFinite(o.passProbability)) {
       // salvataggio vecchio: solo la percentuale. Si risale al numero di esatte (su 10) che la produce.
-      p0 = Math.min(1, Math.max(0, o.passProbability));
-      dt = FREE_LIMITS.diagnostic;
+      const p0 = Math.min(1, Math.max(0, o.passProbability));
+      const dt = FREE_LIMITS.diagnostic;
       let migliore = 0, scarto = Infinity;
       for (let c = 0; c <= dt; c++) {
         const d = Math.abs(estimatePassProbability(c, dt) - p0);
         if (d < scarto) { scarto = d; migliore = c; }
       }
-      dc = migliore;
+      diag = { dc: migliore, dt, p0 };
     }
   }
 
@@ -118,22 +126,72 @@ export function calcolaStima(stato: AppState): Stima | null {
       return true;
     })
     .map(esitoSimulazione)
-    .filter(e => e.totale > 0 && e.date > 0)
-    .slice(-SIMULAZIONI_NELLA_STIMA);
+    .filter(e => e.totale > 0 && e.date > 0);
+  return { diag, valide };
+}
+
+/** Stima dopo le prime `fino` simulazioni valide (0 = solo diagnostico): la stessa regola di calcolaStima, applicata a quel momento. */
+function stimaDopo(d: DatiStima, fino: number): Stima | null {
+  const finestra = d.valide.slice(Math.max(0, fino - SIMULAZIONI_NELLA_STIMA), fino);
   let sc = 0, st = 0;
-  for (const e of valide) { sc += e.esatte; st += e.totale; }
+  for (const e of finestra) { sc += e.esatte; st += e.totale; }
 
-  if (p0 === undefined && st === 0) return null;
-  if (st === 0) return { p: p0!, risposte: dt, fonte: 'diagnostico', intervallo: intervalloStima(dc, dt) };
+  if (!d.diag && st === 0) return null;
+  if (st === 0) return { p: d.diag!.p0, risposte: d.diag!.dt, fonte: 'diagnostico', intervallo: intervalloStima(d.diag!.dc, d.diag!.dt) };
 
-  const diagnosticoEntra = p0 !== undefined && valide.length < SIMULAZIONI_CHE_SOSTITUISCONO_DIAGNOSTICO;
-  const c = sc + (diagnosticoEntra ? dc : 0);
-  const t = st + (diagnosticoEntra ? dt : 0);
+  const diagnosticoEntra = !!d.diag && finestra.length < SIMULAZIONI_CHE_SOSTITUISCONO_DIAGNOSTICO;
+  const c = sc + (diagnosticoEntra ? d.diag!.dc : 0);
+  const t = st + (diagnosticoEntra ? d.diag!.dt : 0);
   const p = estimatePassProbability(c, t);
   const base = { p, risposte: t, intervallo: intervalloStima(c, t) };
-  if (p0 === undefined) return { ...base, fonte: 'simulazioni' };
-  const delta = Math.round((p - p0) * 100);
+  if (!d.diag) return { ...base, fonte: 'simulazioni' };
+  const delta = Math.round((p - d.diag.p0) * 100);
   return { ...base, fonte: diagnosticoEntra ? 'entrambi' : 'simulazioni', delta: Math.abs(delta) >= 1 ? delta : undefined };
+}
+
+/**
+ * Stima con lo stesso modello del diagnostico (estimatePassProbability), alimentato dalle risposte che
+ * misurano davvero il livello: il diagnostico e le simulazioni. Le sessioni di ripasso no: scelgono le domande
+ * più difficili e darebbero una stima troppo severa.
+ *
+ * Regole (provate in app/tests/unit/stima.test.ts):
+ * - niente diagnostico e niente simulazioni valide: null (mai la probabilità a priori);
+ * - il diagnostico si riconta sempre da esatte/totali (la percentuale salvata può venire da una soglia vecchia);
+ *   se ci sono solo i conteggi o solo la percentuale si usa quello che c'è;
+ * - simulazioni: le ultime SIMULAZIONI_NELLA_STIMA per data, ognuna una volta sola (stesso id = stessa simulazione),
+ *   escluse quelle senza nessuna risposta data (aperta e lasciata scadere: non misura niente);
+ * - le omesse contano come errori, le scadute sono simulazioni normali con molte omesse;
+ * - con almeno SIMULAZIONI_CHE_SOSTITUISCONO_DIAGNOSTICO simulazioni il diagnostico non entra più nel calcolo.
+ */
+export function calcolaStima(stato: AppState): Stima | null {
+  const d = datiStima(stato);
+  return stimaDopo(d, d.valide.length);
+}
+
+/** Un punto misurato della serie: la stima che si aveva dopo il diagnostico o dopo una simulazione. */
+export interface PuntoStima {
+  /** 0-1, la stima in quel momento (stesso modello di calcolaStima). */
+  p: number;
+  /** 'Diagnostico' oppure 'Dopo sim. N' (N = numero d'ordine della simulazione tra quelle valide). */
+  nome: string;
+  tipo: 'diagnostico' | 'simulazione';
+}
+
+/**
+ * Serie delle stime MISURATE, in ordine, per il grafico "Come cambia la tua probabilità": la stima dopo il diagnostico
+ * e quella dopo ciascuna simulazione (ricalcolata con la stessa finestra e la stessa regola di calcolaStima).
+ * L'ultimo punto coincide sempre con calcolaStima(stato).p. Mai proiezioni: niente punti che non sono stati misurati.
+ * Restano gli ultimi `max` punti; la numerazione delle simulazioni è quella assoluta ("Dopo sim. 3" resta tale).
+ */
+export function serieStime(stato: AppState, max = 5): PuntoStima[] {
+  const d = datiStima(stato);
+  const punti: PuntoStima[] = [];
+  if (d.diag) { const s = stimaDopo(d, 0); if (s) punti.push({ p: s.p, nome: 'Diagnostico', tipo: 'diagnostico' }); }
+  for (let k = 1; k <= d.valide.length; k++) {
+    const s = stimaDopo(d, k);
+    if (s) punti.push({ p: s.p, nome: `Dopo sim. ${k}`, tipo: 'simulazione' });
+  }
+  return max > 0 ? punti.slice(-max) : punti;
 }
 
 // ---- Fattori: accuratezza per categoria e per livello
