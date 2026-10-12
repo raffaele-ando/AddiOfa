@@ -46,6 +46,15 @@ La A piena con la stella è ridisegnata per stare nella A (stella più grande e 
 | Monocromatico navy | `wordmark-mono-navy.svg` | 28 | concept | Monocromatica, un solo colore (navy, bianco su scuro). |
 | Monocromatico grigio | `wordmark-mono-grigio.svg` | 28 | concept | Monocromatica grigia: versione discreta, per filigrana. |
 
+### Wordmark con il lettermark dentro, monocolore (12/10)
+
+| Variante | File | Cos'è |
+|---|---|---|
+| O semplice | `wordmark-lettermark-o-semplice.svg` | La A piena con la stella è la prima A di AddiOFA; un solo colore (navy, bianco su scuro, la stella è un vuoto); la O è un anello. Usato nell'app. |
+| O con scintilla | `wordmark-lettermark-o-scintilla.svg` | Come sopra con il disco della O e la scintilla a 4 punte. |
+| O con la stella | `wordmark-lettermark-o-stella5.svg` | Come sopra con il disco della O e la stessa stella a base piatta. |
+| Con il motto | `wordmark-lettermark-con-tagline.svg` | O semplice con il motto in maiuscole sotto. |
+
 ## Lockup
 
 | Variante | File | Fonte (NN) | Tipo | Cos'è / come si usa |
