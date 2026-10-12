@@ -55,6 +55,7 @@ const NO_RETURN: View[] = ['learn', 'thanks', 'brand', 'debug'];
 function initialView(state: AppState): View {
   const params = new URLSearchParams(window.location.search);
   if (params.get('pagamento') === 'ok') return 'thanks';
+  if (params.has('landing')) return 'landing';
   if (import.meta.env.DEV && params.has('brand')) return 'brand';
   const isNewUser = !state.onboarding && state.history.length === 0 && Object.keys(state.stats).length === 0;
   return isNewUser ? 'landing' : 'menu';
@@ -500,6 +501,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           utente={user}
           onBack={indietro}
           onOpenPaywall={() => apriPaywall('generico')}
+          onOpenLanding={() => setView('landing')}
           onOpenLegal={apriLegale}
           onImport={() => fileInputRef.current?.click()}
           onExport={isDemo ? undefined : () => exportData(appState)}

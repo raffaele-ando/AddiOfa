@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { Bug, ChevronLeft, ChevronRight, Download, FileText, KeyRound, LogIn, LogOut, Moon, ShieldCheck, Sparkles, Upload, UserRound, Volume2 } from 'lucide-react';
+import { Bug, ChevronLeft, Globe, ChevronRight, Download, FileText, KeyRound, LogIn, LogOut, Moon, ShieldCheck, Sparkles, Upload, UserRound, Volume2 } from 'lucide-react';
 import type { LegalSection } from '../types';
 import { useAccess } from '../access/context';
 import { useTheme, type ModoTema } from '../hooks/useTheme';
@@ -19,6 +19,8 @@ interface Props {
   utente?: { displayName?: string | null; email?: string | null } | null;
   onBack: () => void;
   onOpenPaywall: () => void;
+  /** Apre la pagina di presentazione (landing) senza cancellare i progressi. */
+  onOpenLanding?: () => void;
   onOpenLegal: (s: LegalSection) => void;
   /** Assente = la riga non si vede (in demo l'esportazione è un download). */
   onImport?: () => void;
@@ -80,7 +82,7 @@ const TEMI: { id: ModoTema; nome: string }[] = [
   { id: 'scuro', nome: 'Scuro' },
 ];
 
-export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLegal, onImport, onExport, onLogin, onLogout, onOpenProfile, onOpenDebug }: Props) {
+export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLanding, onOpenLegal, onImport, onExport, onLogin, onLogout, onOpenProfile, onOpenDebug }: Props) {
   const { pass, entitlement, provider, unlockDemo } = useAccess();
   const { modo, setModo } = useTheme();
   const toast = useToast();
@@ -125,6 +127,12 @@ export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLega
               </div>
             </div>
           </Sezione>
+
+          {onOpenLanding && (
+            <Sezione titolo="Sito">
+              <Riga icona={<Globe size={17} />} titolo="Pagina di presentazione" testo="La pagina che vede chi arriva la prima volta" onClick={onOpenLanding} />
+            </Sezione>
+          )}
 
           <Sezione titolo="Suoni">
             <Riga icona={<Volume2 size={17} />} titolo="Suoni dell'app" testo="Tocchi, risposte giuste e sbagliate"
