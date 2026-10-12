@@ -31,3 +31,9 @@ Niente 12.000+ studenti/avatar, 82 %, «ufficiale», stemma o scritte Politecnic
 - Animazioni: solo `piano-studi-bloccato` (hero) e `superamento` (passo 4), una volta, `quandoVisibile`; il resto è fermo (carte inclinate con `rotate`, cambi di colore ≤120 ms).
 - Pagine legali: restano bozze da far rivedere; `PAYMENTS_ENABLED` non toccato (false).
 - `app/tests/anteprime/landing.*` (anteprima della versione precedente) non verificato dopo il rifacimento.
+
+## Rifinitura del coordinatore (12/10)
+- La lastra disegnata a mano dall'agente è stata sostituita dal logo 3D vero (`addiofa-logo-scena.svg`: il logo senza il rettangolo di fondo chiaro, creato da `tools/sincronizza-essenziali.sh`) nella scena dell'hero e nei blocchi in fondo (`Lastra.tsx`): luce e profondità come nei concept. La demo pesa ~2,69 MB (limite pubblicazione 16 MB).
+- Hero su telefono: scena spostata a sinistra perché la stella non resti tagliata.
+- `PASS.features` in `config/offer.ts`: tolto «TENG».
+- Prove: `npm test` 99/99, `npm run check`, flusso completo `e2e3.py` a 400 e 1280 px chiaro/scuro: 0 errori in console, 0 scorrimento orizzontale.
