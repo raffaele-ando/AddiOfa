@@ -5,7 +5,8 @@ import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { nomeVisibile } from '../../../lib/profilo/dati';
 import { formatoDurata, riassuntoStudio } from '../../../lib/profilo/giorni';
-import { livelloAttuale, SOGLIA_LIVELLO } from '../../../lib/profilo/livello';
+import { livelloConNucleo, SOGLIA_LIVELLO } from '../../../lib/profilo/livello';
+import { countLearned } from '../../../lib/spacedRepetition';
 import { Barra, Carta } from '../../../components/home/comune';
 import { SCHERMATE } from '../registro';
 import { useExtra } from '../contesto';
@@ -25,12 +26,12 @@ export default function Profilo() {
   const { appState, pass, vai, apriImpostazioni, apriPaywall, apriInviti, avviaEsercizi } = useExtra();
   const { entitlement } = useAccess();
   const { profilo } = useProfilo();
-  const { pool } = useBanco();
+  const { pool, nucleo } = useBanco();
   const badge = useBadge();
 
   const studio = useMemo(() => riassuntoStudio(appState), [appState]);
-  const livello = useMemo(() => livelloAttuale(appState.stats, pool), [appState.stats, pool]);
-  const imparate = livello.quote.reduce((s, q) => s + q.imparate, 0);
+  const livello = useMemo(() => livelloConNucleo(appState.stats, pool, nucleo), [appState.stats, pool, nucleo]);
+  const imparate = useMemo(() => countLearned(appState.stats, pool.map(q => q.id)), [appState.stats, pool]);
   const sbloccati = badge.filter(b => b.sbloccato).length;
   const haStudiato = studio.giorniDiStudio > 0 || imparate > 0 || studio.simulazioni > 0;
   const prossimo = livello.prossimo;
@@ -94,6 +95,7 @@ export default function Profilo() {
         ) : (
           <p className="mt-2 text-[13px] leading-[18px] text-testo">Hai raggiunto l'ultimo livello delle domande.</p>
         )}
+        {livello.dalNucleo && <p className="mt-2 text-[12px] leading-[17px] text-testo-tenue">Questo livello l'hai raggiunto sulle domande del nucleo gratuito e resta tuo.</p>}
         <p className="mt-2 text-[12px] leading-[17px] text-testo-tenue">
           Si calcola dalle domande che hai imparato: un livello è raggiunto quando ne hai imparate il {Math.round(SOGLIA_LIVELLO * 100)} % di quel livello. Non è una certificazione.
         </p>

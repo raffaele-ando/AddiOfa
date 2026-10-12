@@ -57,3 +57,17 @@ export function livelloAttuale(stats: UserStats | undefined | null, banco: reado
   const mancanti = prossimo ? Math.max(0, Math.ceil(soglia * prossimo.totale - 1e-9) - prossimo.imparate) : 0;
   return { livello, prossimo, mancanti, quote };
 }
+
+const posizione = (l: Livello | null) => (l ? LIVELLI.indexOf(l) : -1);
+
+/**
+ * Il livello migliore tra quello sulle domande studiabili adesso (`pool`) e quello sul nucleo gratuito.
+ * Serve perché con il Pass il banco è molto più grande: chi aveva raggiunto A1 sul nucleo non deve «perderlo» il giorno in cui compra il Pass.
+ * A parità vale il `pool`, che è quello che l'utente sta studiando.
+ */
+export function livelloConNucleo(stats: UserStats | undefined | null, pool: readonly DomandaBanco[], nucleo: readonly DomandaBanco[]): LivelloAttuale & { dalNucleo: boolean } {
+  const sulPool = livelloAttuale(stats, pool);
+  if (nucleo === pool || nucleo.length === 0) return { ...sulPool, dalNucleo: false };
+  const sulNucleo = livelloAttuale(stats, nucleo);
+  return posizione(sulNucleo.livello) > posizione(sulPool.livello) ? { ...sulNucleo, dalNucleo: true } : { ...sulPool, dalNucleo: false };
+}

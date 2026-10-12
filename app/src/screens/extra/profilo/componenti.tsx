@@ -90,7 +90,7 @@ export function useProfilo() {
 export function useBanco() {
   const { appState, pass } = useExtra();
   const corpus: CorpusType = pass ? (appState.selectedCorpus || 'all') : 'initial';
-  return useMemo(() => ({ pool: getQuestionsByCorpus(corpus), tutte: questions, corpus }), [corpus]);
+  return useMemo(() => ({ pool: getQuestionsByCorpus(corpus), nucleo: getQuestionsByCorpus('initial'), tutte: questions, corpus }), [corpus]);
 }
 
 /** Oggi, fissato al montaggio della schermata. */
@@ -104,12 +104,12 @@ export function useOggi(): Date {
  */
 export function useBadge(): BadgeValutato[] {
   const { appState } = useExtra();
-  const { pool, tutte } = useBanco();
+  const { pool, nucleo, tutte } = useBanco();
   const [salvati, salva] = useExtraDati<Record<string, number>>('badge-sbloccati', {});
   const chiave = Object.keys(salvati).sort().join(',');
   const valutati = useMemo(
-    () => valutaBadge({ stato: appState, pool, tutte }, chiave ? chiave.split(',') : []),
-    [appState, pool, tutte, chiave],
+    () => valutaBadge({ stato: appState, pool, nucleo, tutte }, chiave ? chiave.split(',') : []),
+    [appState, pool, nucleo, tutte, chiave],
   );
   useEffect(() => {
     const nuovi = valutati.filter(b => b.sbloccato && !(b.id in salvati));

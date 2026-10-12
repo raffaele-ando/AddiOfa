@@ -1,7 +1,7 @@
 // Profilo: livello attuale e badge, calcolati dalle domande imparate. Banco finto, numeri verificabili a mano.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { livelloAttuale } from '../../src/lib/profilo/livello';
+import { livelloAttuale, livelloConNucleo } from '../../src/lib/profilo/livello';
 import { BADGE, valutaBadge, argomentiPadroneggiati, type ContestoBadge } from '../../src/lib/profilo/badge';
 import { normalizzaProfilo, nomeVisibile, iniziale, NOME_MAX, PROFILO_INIZIALE } from '../../src/lib/profilo/dati';
 import { statoVuoto, simulazione, GIORNO } from './aiuti';
@@ -146,4 +146,22 @@ test('profilo: nome, avatar e corso ripuliti; senza nome è «Studente»', () =>
   assert.equal(nomeVisibile(PROFILO_INIZIALE), 'Studente');
   assert.equal(iniziale(PROFILO_INIZIALE), 'S');
   assert.equal(iniziale({ ...PROFILO_INIZIALE, nome: 'élodie' }), 'É');
+});
+
+test('livello con Pass: il livello raggiunto sul nucleo non si perde quando il banco si allarga', () => {
+  const nucleo = banco().filter(q => q.id.endsWith('-0') || q.id.endsWith('-1') || q.id.endsWith('-2')); // 3 domande per livello
+  const tutto = banco();
+  const stats = imparate(['a1-0', 'a1-1']); // 2 su 3 = 67 % sul nucleo, 2 su 10 sul banco intero
+  assert.equal(livelloAttuale(stats, tutto).livello, null);
+  const r = livelloConNucleo(stats, tutto, nucleo);
+  assert.equal(r.livello, 'A1');
+  assert.equal(r.dalNucleo, true);
+  // se il banco intero dà un livello uguale o migliore vale il banco intero
+  const molte = imparate(ids('a1', 0, 6));
+  const r2 = livelloConNucleo(molte, tutto, nucleo);
+  assert.equal(r2.livello, 'A1');
+  assert.equal(r2.dalNucleo, false);
+  // senza nucleo distinto non cambia nulla
+  assert.equal(livelloConNucleo(stats, tutto, tutto).livello, null);
+  assert.equal(livelloConNucleo(stats, tutto, []).dalNucleo, false);
 });

@@ -133,8 +133,10 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               ) : (
                 // Confronto affiancato: a sinistra cosa hai risposto, a destra la risposta corretta
                 <dl className="grid grid-cols-2 gap-2 text-sm">
-                  <div className="rounded-xl border border-basso/30 bg-superficie/70 p-2.5">
-                    <dt className="flex items-center gap-1 text-xs font-bold text-basso-testo"><X size={13} strokeWidth={3.5} aria-hidden /> La tua risposta</dt>
+                  <div className={cn('rounded-xl border bg-superficie/70 p-2.5', dato === undefined ? 'border-linea' : 'border-basso/30')}>
+                    <dt className={cn('flex items-center gap-1 text-xs font-bold', dato === undefined ? 'text-testo-tenue' : 'text-basso-testo')}>
+                      {dato === undefined ? <Minus size={13} strokeWidth={3.5} aria-hidden /> : <X size={13} strokeWidth={3.5} aria-hidden />} La tua risposta
+                    </dt>
                     <dd className={cn('mt-1 font-semibold break-words', dato === undefined ? 'italic text-testo-tenue' : 'text-testo')}>
                       {dato === undefined
                         ? 'Nessuna risposta'

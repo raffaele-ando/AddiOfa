@@ -6,7 +6,7 @@ import { FORMATS } from '../../config/offer';
 import { esitoSimulazione } from '../../components/home/stima';
 import { getQuestionStats, isLearned } from '../spacedRepetition';
 import { riassuntoStudio } from './giorni';
-import { livelloAttuale, LIVELLI, type Livello } from './livello';
+import { livelloConNucleo, LIVELLI, type Livello } from './livello';
 import type { DomandaBanco } from './tipi';
 
 export type GruppoBadge = 'studio' | 'simulazioni' | 'costanza' | 'livello';
@@ -31,6 +31,8 @@ export interface ContestoBadge {
   pool: readonly DomandaBanco[];
   /** Tutto il banco: serve a sapere quanti argomenti esistono. */
   tutte: readonly DomandaBanco[];
+  /** Il nucleo gratuito: il livello raggiunto su di esso resta valido anche con il Pass (vedi livelloConNucleo). Assente = solo il `pool`. */
+  nucleo?: readonly DomandaBanco[];
 }
 
 export interface ValutazioneBadge {
@@ -67,7 +69,7 @@ export interface Misure {
   simulazioniSuperate: number;
   giorniDiStudio: number;
   secondiTotali: number;
-  livelli: ReturnType<typeof livelloAttuale>;
+  livelli: ReturnType<typeof livelloConNucleo>;
 }
 
 function perArgomento(banco: readonly DomandaBanco[]): Map<string, string[]> {
@@ -117,7 +119,7 @@ export function misura(c: ContestoBadge): Misure {
     simulazioniSuperate: storico.filter(h => esitoSimulazione(h).esatte >= FORMATS.ente.passMark).length,
     giorniDiStudio: studio.giorniDiStudio,
     secondiTotali: studio.secondiTotali,
-    livelli: livelloAttuale(stats, pool),
+    livelli: livelloConNucleo(stats, pool, c.nucleo ?? pool),
   };
 }
 
