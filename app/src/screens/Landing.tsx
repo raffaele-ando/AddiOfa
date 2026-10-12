@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Barra from './landing/Barra';
 import Hero from './landing/Hero';
 import Vantaggi from './landing/Vantaggi';
+import Perche from './landing/Perche';
 import Passi from './landing/Passi';
 import SeNonSuperi from './landing/SeNonSuperi';
 import Offerta from './landing/Offerta';
@@ -40,14 +41,15 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal, onOpen
         </p>
       )}
       <Barra onStart={onStartDiagnostic} />
-      <main>
-        <Hero onStart={onStartDiagnostic} onSkip={onSkip} />
+      <main className="landing-pagina">
+        <Hero onStart={onStartDiagnostic} onSkip={onSkip} scuro={scuro} />
         <Vantaggi />
-        <Passi />
         <SeNonSuperi onStart={onStartDiagnostic} />
+        <Perche onStart={onStartDiagnostic} />
+        <Passi onStart={onStartDiagnostic} />
         <Offerta scuro={scuro} onStart={onStartDiagnostic} onOpenPass={onOpenPass} onOpenLegal={onOpenLegal} />
         <Faq onOpenLegal={onOpenLegal} />
-        <CtaFinale scuro={scuro} onStart={onStartDiagnostic} onSkip={onSkip} />
+        <CtaFinale onStart={onStartDiagnostic} onSkip={onSkip} />
       </main>
       <Colonna className="pb-8">
         <Footer onOpenLegal={onOpenLegal} />

@@ -25,16 +25,18 @@ const SCHEDE = [
   { Icona: BarChart3, nome: 'Progressi' },
 ];
 
-export default function Telefono() {
+export default function Telefono({ pillole = true }: { pillole?: boolean }) {
   return (
     <figure className="relative mx-auto w-full max-w-[520px] pb-2 pt-6 m-0">
       {/* alone e forme dietro il telefono */}
       <div aria-hidden className="absolute left-1/2 top-1/2 h-[88%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-[56px] bg-gradient-to-br from-azione-tinta via-azione/30 to-azione/50 rotate-[6deg]" />
       <div aria-hidden className="absolute -right-2 top-4 h-24 w-24 rounded-full bg-azione-tinta blur-sm" />
 
-      <Pillola Icona={Timer} className="-left-4 top-20">Diagnostico gratis</Pillola>
-      <Pillola Icona={BookOpen} className="-right-4 top-[46%]">Teoria in italiano</Pillola>
-      <Pillola Icona={ListChecks} className="bottom-14 -left-10">Simulazioni 30/15</Pillola>
+      {pillole && <>
+        <Pillola Icona={Timer} className="-left-4 top-20">Diagnostico gratis</Pillola>
+        <Pillola Icona={BookOpen} className="-right-4 top-[46%]">Teoria in italiano</Pillola>
+        <Pillola Icona={ListChecks} className="bottom-14 -left-10">Simulazioni 30/15</Pillola>
+      </>}
 
       <div className="relative mx-auto w-[272px]">
         <div aria-hidden className="relative rounded-[42px] border-[8px] border-[#0E1B3F] dark:border-tacca bg-fondo shadow-[0_30px_60px_rgba(30,64,175,0.28)] dark:shadow-none dark:shadow-[0_30px_60px_rgba(0,0,0,0.5)] overflow-hidden">

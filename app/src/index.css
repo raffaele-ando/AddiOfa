@@ -95,3 +95,81 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 }
+
+/* Landing pubblica: scena dell'hero e carte di vetro (prefisso --landing-*). Il tema scuro rende la scena notturna, con il bagliore caldo della porta. */
+:root {
+  --landing-cielo-alto: #7DB2FF;
+  --landing-cielo-medio: #BCD8FF;
+  --landing-cielo-basso: #EEF5FF;
+  --landing-lastra-1: #3B7BFF;
+  --landing-lastra-2: #1446B8;
+  --landing-lastra-3: #0A2A82;
+  --landing-lastra-fianco: #0B2C86;
+  --landing-gradino-sopra: #FDFEFF;
+  --landing-gradino-fronte: #A6BFEC;
+  --landing-gradino-ombra: #7C9DDA;
+  --landing-muro-1: #EDF4FF;
+  --landing-muro-2: #A3BBEA;
+  --landing-luce: #FFF6D2;
+  --landing-luce-bordo: #FFB54A;
+  --landing-vetro: rgba(255, 255, 255, 0.58);
+  --landing-vetro-forte: rgba(255, 255, 255, 0.78);
+  --landing-vetro-bordo: rgba(255, 255, 255, 0.9);
+  --landing-vetro-ombra: 0 22px 44px -16px rgba(30, 64, 175, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --landing-barra: rgba(247, 249, 253, 0.72);
+  --landing-fascia: rgba(255, 255, 255, 0.82);
+  --landing-pagina-da: #EAF2FF;
+  --landing-blocco-scuro-da: #0E1B3F;
+  --landing-blocco-scuro-a: #1B2F73;
+  --landing-blocco-blu-da: #2358D6;
+  --landing-blocco-blu-a: #123EA8;
+  --landing-rosso-linea: #F5303B;
+}
+.dark {
+  --landing-cielo-alto: #050A1E;
+  --landing-cielo-medio: #0F1E55;
+  --landing-cielo-basso: #26418F;
+  --landing-lastra-1: #3A6CE0;
+  --landing-lastra-2: #1B3C9C;
+  --landing-lastra-3: #0B1D63;
+  --landing-lastra-fianco: #0A1A57;
+  --landing-gradino-sopra: #5C709F;
+  --landing-gradino-fronte: #2A3961;
+  --landing-gradino-ombra: #1A2547;
+  --landing-muro-1: #3C4C7C;
+  --landing-muro-2: #1C2850;
+  --landing-luce: #FFE9A8;
+  --landing-luce-bordo: #FF9F2E;
+  --landing-vetro: rgba(24, 36, 66, 0.62);
+  --landing-vetro-forte: rgba(24, 36, 66, 0.85);
+  --landing-vetro-bordo: rgba(150, 180, 255, 0.28);
+  --landing-vetro-ombra: 0 22px 44px -16px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(180, 205, 255, 0.18);
+  --landing-barra: rgba(10, 16, 31, 0.7);
+  --landing-fascia: rgba(17, 26, 46, 0.85);
+  --landing-pagina-da: #0D1936;
+  --landing-blocco-scuro-da: #0B1330;
+  --landing-blocco-scuro-a: #17285F;
+  --landing-blocco-blu-da: #1F4DB8;
+  --landing-blocco-blu-a: #0F2A78;
+  --landing-rosso-linea: #F2766B;
+}
+/* Carta di vetro: fondo traslucido, bordo chiaro, ombra morbida. Ferma (al più inclinata con rotate). */
+.vetro {
+  background: var(--landing-vetro);
+  border: 1px solid var(--landing-vetro-bordo);
+  box-shadow: var(--landing-vetro-ombra);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: blur(14px) saturate(1.25);
+}
+.vetro-forte { background: var(--landing-vetro-forte); }
+/* Aloni azzurri dietro le sezioni: danno al vetro qualcosa da sfocare. Fermi. */
+:root { --landing-alone-1: rgba(96, 165, 250, 0.2); --landing-alone-2: rgba(147, 197, 253, 0.28); }
+.dark { --landing-alone-1: rgba(59, 120, 242, 0.16); --landing-alone-2: rgba(46, 90, 190, 0.14); }
+.landing-pagina {
+  background-image:
+    radial-gradient(46% 380px at 88% 140px, var(--landing-alone-1), transparent),
+    radial-gradient(42% 420px at 6% 760px, var(--landing-alone-2), transparent),
+    radial-gradient(40% 340px at 70% 1180px, var(--landing-alone-1), transparent);
+  background-size: 100% 1500px;
+  background-repeat: repeat-y;
+}

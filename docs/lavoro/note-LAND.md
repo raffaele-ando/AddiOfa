@@ -1,27 +1,33 @@
-# Note LAND: landing rifatta (mobile e desktop)
+# NOTE agente LAND: landing pubblica rifatta sui concept
 
-## Cosa ho fatto
-- `app/src/screens/Landing.tsx` ora compone le sezioni in `app/src/screens/landing/`: `Barra` (logo, ancore Come funziona / Cosa ottieni / Prezzo / Domande solo da 1024 px, pulsante sempre), `Hero` (due colonne da 1024 px, pila sul telefono) con `Telefono` (home disegnata in HTML/CSS con l'`Indicatore` vero e un valore di esempio dichiarato tale: etichetta "Esempio" e didascalia "Schermata di esempio con dati di prova"), `Vantaggi` (4 vantaggi), `Passi` (4 passi con linea di collegamento, verticale sul telefono e orizzontale da 1024 px), `SeNonSuperi` (fatti di `OFA_*`, soglie di `FORMATS`, scadenze), `Offerta` (gratis e Pass con `PASS`, `FREE_FEATURES`, `currentPriceEur()`, `isLaunchPrice()`), `Faq` (accordion con `aria-expanded`, `aria-controls`, regione e `inert` a riga chiusa), `CtaFinale`, poi `Footer` esistente. `comune.tsx` ha i pezzi condivisi (ingresso, pulsanti, titoli).
-- Colori solo coi token `azione` (nessun rosso). Illustrazioni `kit-blu`: `quiz-test`, `progressi-statistiche`, `superamento`. Nessuna risorsa esterna, niente emoji.
-- Animazioni con `motion`: ingresso in sequenza dell'hero, ingresso all'ingresso nello schermo delle sezioni, telefono e pillole che galleggiano. Con `prefers-reduced-motion` tutto è fermo e già al suo posto (verificato: 0 elementi animati nel telefono).
-- Disclaimer di non affiliazione: sotto i pulsanti dell'hero (visibile subito) e nel footer; anche nella risposta della FAQ.
-- Anteprima: `app/tests/anteprime/landing.html` + `landing.tsx` (`?tema=dark`, `?pass=0`).
+Sostituisce la nota della versione precedente (landing piatta di testo e riquadri).
 
-## Scelte da sapere
-- La landing è un livello `fixed inset-0` con il suo scorrimento: il `Layout` dell'app la chiuderebbe in 768 x 800 px e non permetterebbe due colonne. Copre il banner della demo, quindi in demo (`VITE_MODE=demo`) mostra lei la stessa riga di avviso. Se App.tsx la metterà fuori dal `Layout`, funziona uguale.
-- Prop in più, facoltativa: `onOpenPass?(): void`. Le tre prop richieste sono invariate. Il pulsante "Entra in lista d'attesa" (con `PAYMENTS_ENABLED` falso; "Prendi il Pass" se vero) compare nella card del Pass solo se la prop c'è, perché senza non saprebbe dove portare. Senza, restano il testo sulla lista d'attesa e il diagnostico.
-- Il tema scuro si legge dalla classe `dark` su `<html>` con un osservatore (per le illustrazioni a fondo scuro).
-- Testi con affermazioni solo vere: niente numeri di utenti, percentuali, testimonianze, "ufficiale", garanzia, timer. La lista d'attesa "non blocca il prezzo" (dai Termini). Recesso di 14 giorni con rimando alla pagina legale.
-- Non copiati dai concept: foto con il Politecnico, 82 %, avatar, badge negli store, "Scarica l'app" (qui è "Fai il diagnostico"), video, "Storie", piano personalizzato.
+## Cosa è stato fatto
+Landing riscritta nello stile dei concept 41/45/51/12, in chiaro e in scuro, con gli stessi contenuti veri di prima (FAQ, Gratis e Pass con prezzo e data veri, scadenze OFA, «Se non superi», disclaimer, link legali nel footer).
 
-## Richieste ad altri (App.tsx)
-- Passare a `Landing` la prop `onOpenPass` (apre il Paywall o la lista d'attesa).
-- Facoltativo: renderizzare `Landing` fuori da `Layout` (ora la copre con `fixed`).
+- **Scena hero costruita nel codice** (`app/src/brand/hero/`): `Lastra.tsx` (lastra blu con porta di luce a stella, stessa geometria del logo, pochi tracciati, colori da token `--landing-*`) e `Scena.tsx` (cielo con sfumatura, scalinata a 8 gradini con fianchi, luce che sale dalla porta, scia di luce, carte di vetro inclinate con il Misuratore vero, l'illustrazione `quiz-test`, `piano-studi-bloccato` animata con `quandoVisibile`, tre pillole). Il palco è di 1000x680 unità e si scala alla larghezza (ResizeObserver, nessuna animazione). In scuro il cielo diventa notturno con bagliore caldo dalla porta. Non si usa il logo SVG da 460 KB (nella demo `urlLogo` è il PNG da 64 px): la lastra è disegnata, quindi nitida a ogni scala.
+- **Landing** (`app/src/screens/landing/`): `Barra` (menu a pillola Home / Come funziona / Perché AddiOFA / Prezzi / FAQ con voce attiva che segue lo scorrimento, pulsante «Fai il diagnostico»; su telefono «Inizia» + menu a tendina), `Hero` (titolo grande con riga blu, CTA a pillola con freccia nel cerchio, scena a destra che esce dal bordo da 1024 px; sotto 640 px la scena sta dietro il testo con un velo; da 640 a 1023 sotto il testo), `Vantaggi` (fascia con 4 benefit), `SeNonSuperi` («Cos'è l'OFA di inglese?»: catena di 4 carte di vetro + carta blu, scadenze), `Perche` (nuovo: «Più di un semplice quiz», 4 carte, esempio del misuratore dichiarato «Esempio», blocco scuro con la lastra), `Passi` (4 passi con mini-schermate da 1024 px; sotto, elenco e telefono a destra come nel concept 12), `Offerta` (Gratis a vetro, Pass in blocco blu), `Faq`, `CtaFinale` (blocco blu con la lastra), `comune.tsx` (titoli, pulsanti a pillola, `SCHEDA` = vetro), `Telefono.tsx` (solo prop `pillole`).
+- `Landing.tsx`: nuovo ordine (Hero, Vantaggi, Cos'è l'OFA, Perché, Come funziona, Prezzi, FAQ, CTA); `scuro` passato all'hero; `CtaFinale` non usa più `scuro`. Le prop pubbliche di `Landing` sono invariate.
+- `index.css`: solo token nuovi `--landing-*`, classi `.vetro`, `.vetro-forte`, `.landing-pagina` (aloni fermi dietro le sezioni). Nessun token esistente cambiato.
+- Ancore: `vaiA` e `ANCORE` restano esportate da `Barra.tsx`; id: `home`, `come-funziona`, `perche`, `prezzo`, `domande` (prima `cosa-ottieni`; nessun altro file lo usava).
 
-## Verifica
-`npx tsc --noEmit` pulito, `npm run build:demo` superato. Chromium: 400, 768, 1024 e 1280 px, chiaro e scuro, scorrimento orizzontale 0, zero errori in console (il solo avviso di motion con "riduci movimento" attivo è del modo sviluppo). Provati: ancore (portano alla sezione e spostano il focus sul titolo), accordion con mouse, Invio e Spazio, tutte le callback (`onStartDiagnostic`, `onSkip`, `onOpenLegal`, `onOpenPass`), anello di focus blu visibile (chiaro `#2563EB`, scuro `#60A5FA`), un solo h1 e h2 in ordine, landing dentro l'app vera (`/`, clic su "Fai il diagnostico" porta all'onboarding).
-Non provato: Safari e Firefox, lettore di schermo, schermi sotto i 360 px, tema che cambia mentre la pagina è aperta (l'osservatore c'è ma non l'ho esercitato).
+## Cosa NON è stato copiato (regole di prodotto)
+Niente 12.000+ studenti/avatar, 82 %, «ufficiale», stemma o scritte Politecnico sugli edifici, badge store (ci sono «Fai il diagnostico» e «Salta e vai all'app»), CRAM, «Piano su misura» (c'è «Ripasso su misura»), urgenza finta, scritta a mano (niente font). Indicatore «Probabilità stimata di superare il test» con valore 72 % marcato «Esempio». Niente TENG nei testi scritti da me (hero, OFA, passi, FAQ).
 
-## Cosa non mi convince
-- Nel telefono il valore 62 % è di esempio: se si preferisce nessun numero, si può sostituire con uno stato "nuovo" senza percentuale.
-- Le illustrazioni sono solo nelle due card dell'offerta e nel banner finale; altrove icone `lucide-react`.
+## Prove fatte (numeri)
+- `cd app && npx tsc --noEmit` e `npm run lint`: 0 errori. `npm test` dalla radice: 99/99.
+- `npm run build:demo`: controllo superato; `artifact.html` 2.124.715 byte (prima ~2.091.000, +34 KB; limite 2,6 MB).
+- Playwright (Chromium, demo da `file://`, richieste esterne bloccate): `scrollWidth - innerWidth` = 0 a 390, 400, 768, 1280 px, in chiaro e scuro (8 combinazioni, anche sul livello con scorrimento della landing); 0 errori/avvisi in console.
+- `tools/controlla-contrasto.py --schermate landing` a 400 e 1280 px, chiaro e scuro: 0 violazioni. Una prima passata ne aveva 13 (blocchi blu con testo al 90 %, «62 %» arancio, «prima» blu su blu): corrette scurendo il blu del blocco, testo bianco pieno, esempio al 72 % (fascia «alto»), carta blu su tinta chiara.
+- Flussi in demo: «Fai il diagnostico gratuito» apre il diagnostico («Due domande su di te, poi 10 di inglese»); «Entra in lista d'attesa» apre la schermata del Pass; «Salta e vai all'app» apre l'app; i 5 link del menu scorrono alla sezione e colorano la voce attiva; il menu a tendina a 400 px funziona.
+- Confronti affiancati (render a sinistra, concept a destra) in `docs/lavoro/land/`: `confronto-1280-light-concept41.png`, `confronto-1280-light-concept45.png`, `confronto-1280-dark-concept51.png`, `confronto-400-light-concept12.png`, `confronto-400-dark-concept12.png` (il render include la banda «versione dimostrativa» in alto).
+
+## Limiti e cose da sapere
+- La somiglianza è per composizione, gerarchia e materiali (vetro, lastra, scalinata, fasce, blocchi scuro e blu), non per le foto: niente persona, edifici, telefoni 3D, nuvole. La scena è più semplice dei concept e la lastra è più piccola.
+- Il testo del Pass nella scheda prezzo viene da `config/offer.ts` (`PASS.features`) e cita ancora «test di recupero e TENG»: non l'ho toccato; se si vuole togliere va cambiato lì.
+- «Home» nel menu porta a 27 px dall'alto (altezza della banda demo), non a 0.
+- Non provati: Safari/Firefox (la scena usa `mask-composite`, `backdrop-filter`, container query nei Misuratori), 360 px, 1920 px, lettori di schermo, tastiera oltre al focus visibile già presente. Tutte le prove sono in Chromium.
+- Le carte di vetro nella scena hanno testo piccolo a 640-800 px: decorative, `aria-hidden`; il contenuto equivalente è nel testo della pagina.
+- Animazioni: solo `piano-studi-bloccato` (hero) e `superamento` (passo 4), una volta, `quandoVisibile`; il resto è fermo (carte inclinate con `rotate`, cambi di colore ≤120 ms).
+- Pagine legali: restano bozze da far rivedere; `PAYMENTS_ENABLED` non toccato (false).
+- `app/tests/anteprime/landing.*` (anteprima della versione precedente) non verificato dopo il rifacimento.

@@ -10,7 +10,7 @@ interface Voce { d: string; r: string; legale?: { sezione: LegalSection; testo: 
 const VOCI: Voce[] = [
   {
     d: 'Cos\'è il Pass AddiOFA?',
-    r: `È l'accesso completo all'app per ${PASS.validMonths} mesi, con un solo pagamento: tutte le domande del banco con la spiegazione in italiano, simulazioni illimitate nei due formati (test di recupero e TENG), la teoria dei 31 argomenti, il ripasso sugli errori e le statistiche complete. Non è un abbonamento e non si rinnova da solo.`,
+    r: `È l'accesso completo all'app per ${PASS.validMonths} mesi, con un solo pagamento: tutte le domande del banco con la spiegazione in italiano, simulazioni illimitate nel formato del test di recupero, la teoria dei 31 argomenti, il ripasso sugli errori e le statistiche complete. Non è un abbonamento e non si rinnova da solo.`,
   },
   {
     d: 'Cosa posso fare senza pagare?',
@@ -39,7 +39,7 @@ const VOCI: Voce[] = [
 function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: boolean; onToggle(): void; onOpenLegal(s: LegalSection): void }) {
   const id = useId();
   return (
-    <div className={cn(SCHEDA, 'overflow-hidden')}>
+    <div className={cn(SCHEDA, 'overflow-hidden !rounded-[24px]')}>
       <h3>
         <button
           type="button"
@@ -47,7 +47,7 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
           aria-controls={`${id}-p`}
           id={`${id}-b`}
           onClick={onToggle}
-          className={cn('flex w-full items-center justify-between gap-4 rounded-3xl px-5 py-4 text-left text-base font-bold text-testo sm:px-6', FOCUS)}
+          className={cn('flex w-full items-center justify-between gap-4 rounded-[24px] px-5 py-4 text-left text-base font-bold text-testo sm:px-6', FOCUS)}
         >
           <span>{voce.d}</span>
           <ChevronDown size={20} aria-hidden className={cn('shrink-0 text-azione ', aperta && 'rotate-180')} />
@@ -79,10 +79,10 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
 export default function Faq({ onOpenLegal }: { onOpenLegal(s: LegalSection): void }) {
   const [aperta, setAperta] = useState<number | null>(0);
   return (
-    <Sezione id="domande" titoloId="t-faq" className="bg-superficie-2">
+    <Sezione id="domande" titoloId="t-faq">
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <TitoloSezione id="t-faq" occhiello="Domande" sotto="Le risposte brevi. Per il resto ci sono i testi legali in fondo alla pagina.">
+          <TitoloSezione id="t-faq" occhiello="FAQ" sotto="Le risposte brevi. Per il resto ci sono i testi legali in fondo alla pagina.">
             Domande frequenti
           </TitoloSezione>
         </div>

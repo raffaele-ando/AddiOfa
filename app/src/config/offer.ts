@@ -77,7 +77,7 @@ export const PASS = {
   summary: 'Tutte le domande, simulazioni illimitate, spiegazioni in italiano e teoria per ogni argomento. Pagamento una tantum, nessun abbonamento.',
   features: [
     'Tutte le domande del banco, con spiegazione in italiano',
-    'Simulazioni illimitate nei due formati: test di recupero e TENG',
+    'Simulazioni illimitate: 30 domande in 15 minuti, come il test di recupero',
     'Scheda di teoria per ognuno dei 31 argomenti',
     'Ripasso intelligente sugli errori e statistiche complete',
     'Valido 12 mesi, un solo pagamento',

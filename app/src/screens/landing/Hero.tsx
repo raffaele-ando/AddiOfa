@@ -1,7 +1,8 @@
 import { Clock, UserX, Gift } from 'lucide-react';
-import { DISCLAIMER, FREE_LIMITS } from '../../config/offer';
-import { BottoneAzione, BottoneContorno, Colonna, Evidenza } from './comune';
-import Telefono from './Telefono';
+import { DISCLAIMER, FORMATS, FREE_LIMITS } from '../../config/offer';
+import Scena from '../../brand/hero/Scena';
+import { BottoneAzione, BottoneContorno, Colonna } from './comune';
+import { vaiA } from './Barra';
 
 const FATTI = [
   { Icona: Gift, testo: 'Gratis' },
@@ -9,45 +10,50 @@ const FATTI = [
   { Icona: Clock, testo: 'Circa 3 minuti' },
 ];
 
-export default function Hero({ onStart, onSkip }: { onStart(): void; onSkip(): void }) {
+// Hero: titolo grande a sinistra, scena a destra che esce dal bordo. Sul telefono la scena sta dietro e sotto il testo.
+export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSkip(): void; scuro: boolean }) {
   return (
-    <div className="relative overflow-hidden bg-gradient-to-b from-azione-tinta/50 to-superficie">
-      <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-azione/10 blur-3xl" />
-      <Colonna className="relative grid items-center gap-10 pb-12 pt-10 sm:pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6 lg:pb-20 lg:pt-16">
-        <div>
-          <p className="inline-block rounded-full border border-azione/20 bg-superficie/80 px-3.5 py-1.5 text-xs font-bold text-azione-scuro">
-            Per chi deve fare l'inglese dell'OFA
+    <section id="home" aria-labelledby="t-hero" className="relative overflow-hidden scroll-mt-0">
+      <Colonna className="relative z-10 pb-10 pt-[5.5rem] sm:pt-28 lg:pb-20 lg:pt-28 xl:pt-32">
+        <div className="max-w-[26rem] sm:max-w-xl lg:max-w-[32rem] xl:max-w-[40rem]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-testo sm:text-xs">
+            Per chi ha l'OFA di inglese
           </p>
-          <h1 className="mt-4 text-[2.6rem] sm:text-6xl font-extrabold leading-[1.05] tracking-tight text-testo">
-            Hai l'OFA di <Evidenza>inglese?</Evidenza>
+          <h1 id="t-hero" className="mt-3 text-[2.55rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-testo sm:text-6xl lg:text-[3.2rem] xl:text-[3.9rem]">
+            Oltre l'OFA,
+            <span className="block text-azione">un passo<br className="sm:hidden" /> in più.</span>
           </h1>
-          <p className="mt-5 max-w-xl text-base sm:text-lg font-medium text-testo">
-            AddiOFA ti aiuta a prepararti al test d'inglese del Politecnico di Milano. Parti dal diagnostico gratuito: {FREE_LIMITS.diagnostic} domande
-            e una probabilità stimata di superare il test, con gli argomenti da ripassare. Vale anche se prepari il test d'ingresso e vuoi evitare l'OFA.
+          <p className="mt-4 max-w-[15.5rem] text-base font-medium leading-relaxed text-testo sm:max-w-md lg:text-[1.05rem]">
+            Scopri a che punto sei con {FREE_LIMITS.diagnostic} domande, vedi la probabilità stimata di superare il test e ripassa dai tuoi errori.
           </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start xl:flex-row xl:items-center">
-            <BottoneAzione onClick={onStart} className="whitespace-nowrap">Fai il diagnostico gratuito</BottoneAzione>
-            <BottoneContorno onClick={onSkip} className="whitespace-nowrap">Salta e vai all'app</BottoneContorno>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <BottoneAzione onClick={onStart} className="w-full whitespace-nowrap sm:w-auto">Fai il diagnostico gratuito</BottoneAzione>
+            <BottoneContorno onClick={() => vaiA('come-funziona')} freccia className="hidden whitespace-nowrap sm:inline-flex">Come funziona</BottoneContorno>
           </div>
-          <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-testo" aria-label="In breve">
+          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-testo" aria-label="In breve">
             {FATTI.map(({ Icona, testo }) => (
               <li key={testo} className="flex items-center gap-1.5">
                 <Icona size={16} className="text-azione " aria-hidden />{testo}
               </li>
             ))}
+            <li className="flex items-center gap-1.5">
+              <button type="button" onClick={() => { onSkip(); }} className="rounded font-semibold underline underline-offset-4 hover:text-azione focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione">
+                Salta e vai all'app
+              </button>
+            </li>
           </ul>
-          <p className="mt-3 max-w-md text-xs font-medium text-testo-tenue">
-            La probabilità è una stima prudente: con così poche domande resta approssimativa e non garantisce l'esito del test.
+          <p className="mt-4 max-w-sm text-[11px] font-medium leading-snug text-testo-tenue sm:max-w-lg sm:text-xs">
+            Il test di riferimento è quello di recupero nel formato LinguaViva: {FORMATS.ente.questions} domande in {FORMATS.ente.minutes} minuti, soglia {FORMATS.ente.passMark}/{FORMATS.ente.questions}.
+            La probabilità è una stima e non garantisce l'esito. {DISCLAIMER}
           </p>
-          <p className="mt-2 max-w-md text-xs font-semibold text-testo">
-            {DISCLAIMER}
-          </p>
-        </div>
-
-        <div>
-          <Telefono />
         </div>
       </Colonna>
-    </div>
+
+      {/* sul telefono: velo sotto il testo, perché il testo resti leggibile sopra la scalinata */}
+      <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 z-[5] w-[78%] bg-gradient-to-r from-fondo via-fondo/80 to-transparent sm:hidden" />
+      <div aria-hidden className="pointer-events-none absolute left-[-26%] top-14 w-[150%] sm:relative sm:left-auto sm:top-auto sm:-mt-6 sm:w-full lg:absolute lg:right-0 lg:top-10 lg:mt-0 lg:w-[70%] xl:w-[68%] min-[1500px]:w-[64%]">
+        <Scena scuro={scuro} />
+      </div>
+    </section>
   );
 }
