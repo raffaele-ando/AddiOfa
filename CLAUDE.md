@@ -10,7 +10,7 @@ App web (PWA) per preparare il test d'inglese dell'OFA del Politecnico di Milano
 
 | Cartella | Cosa c'è | Si lavora qui quando |
 |---|---|---|
-| `app/` | App React 19 + Vite 6 + Tailwind 4 (`src/components`, `src/screens`, `src/access`, `src/lib`, `src/config`, `src/data`, `src/brand`) | si cambia l'app |
+| `app/` | App React 19 + Vite 6 + Tailwind 4 (`src/components`, `src/screens` (le schermate extra stanno in `src/screens/extra/<area>/` e si registrano in `registro.ts`, contratto in `extra/contesto.tsx`), `src/access`, `src/lib`, `src/config`, `src/data`, `src/brand`) | si cambia l'app |
 | `pass/` | Worker Cloudflare + D1: domande servite, entitlement, Stripe, lista d'attesa, inviti | si cambia il server |
 | `atlas/` | Worker Project ID e classifica NOI (rimandato, non serve al lancio) | quasi mai |
 | `contenuti/` | Fonte unica di domande, teoria e spiegazioni; genera i file in `app/src/data/` e il seed del Worker | si cambiano i contenuti |

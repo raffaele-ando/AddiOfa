@@ -30,7 +30,8 @@ interface ExamModeProps {
 
 type Phase = 'select' | 'starting' | 'running' | 'submitting' | 'submitError' | 'done';
 
-const FORMAT_LIST: ExamFormat[] = [FORMATS.ente, FORMATS.teng];
+// Solo il test di recupero LinguaViva: il TENG resta dormiente nel codice e nel Worker, non si offre.
+const FORMAT_LIST: ExamFormat[] = [FORMATS.ente];
 
 function messaggioErrore(e: unknown): string {
   const code = errorCode(e);

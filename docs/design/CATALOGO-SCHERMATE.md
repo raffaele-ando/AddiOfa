@@ -35,3 +35,16 @@ Non si copiano (contraddicono le regole di prodotto): numeri e testimonianze inv
 | Frasi e vocaboli con preferiti e audio | 36, 49 | Rimandato | bassa |
 | Splash, pulsante "Segnala", stati vuoti/errore | 13, 16, 17 | Rimandato | bassa |
 | Sfide, Classifica, Amici, Badge, Project ID, ATLAS, social, locandine | 22, 34, 00, 26, 37, 48 | Fuori dal lancio | — |
+
+## Stato al 12/10: schermate dei concept e della strategia ora nell'app
+
+Tutte le schermate dei concept sono nell'app, adattate alle regole di prodotto (dati veri, stati vuoti onesti dove manca il servizio). Elenco, id e note di ogni area: `docs/lavoro/extra/NOTE-{PROFILO,SFIDE,STUDIO,SERVIZI}.md`; contratto comune `docs/lavoro/extra/BRIEF.md`.
+
+| Area | Schermate (id) | Da dove si apre |
+|---|---|---|
+| Profilo | profilo, profilo-modifica, obiettivi, calendario, badge, attività, Impostazioni complete | icona del profilo nella Home |
+| Sfide | sfide (sfida del giorno, duello con link), sfida-gioco, sfida-risultato, sfida-accetta (`?sfida=`), amici, classifica, condividi, accesso-sbloccato, Inviti | Lezioni → Sfide; Profilo |
+| Studio | percorso, lezione-dettaglio, frasi e vocaboli, simulazioni (elenco e dettaglio), statistiche, correzioni con confronto | Lezioni; barra Simulazioni |
+| Servizi | esplora, projectid, atlas-analisi, noi, agora, faq, segnala, stato-vuoto, offline, splash | Lezioni → Esplora; Profilo; Impostazioni → Aiuto |
+
+Fuori per scelta di prodotto: email istituzionale obbligatoria, garanzia di rimborso, punti/livelli/serie, classifiche e utenti inventati. Servono un server e account per: classifica NOI, Agorà, invio delle segnalazioni, sblocco dell'invitato.

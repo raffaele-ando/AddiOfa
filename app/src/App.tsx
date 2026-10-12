@@ -39,6 +39,7 @@ import Waitlist from './screens/Waitlist';
 import Invites from './screens/Invites';
 import Legal from './screens/Legal';
 import { ExtraProvider, type ExtraCtx } from './screens/extra/contesto';
+import Splash from './brand/Splash';
 import { SCHERMATE } from './screens/extra/registro';
 // La teoria pesa: si carica solo quando serve
 const Theory = lazy(() => import('./screens/Theory'));
@@ -74,7 +75,7 @@ function initialView(state: AppState): View {
 }
 
 function Caricamento() {
-  return <div className="h-full w-full flex items-center justify-center text-sm text-testo-tenue" role="status">Caricamento…</div>;
+  return <Splash />;
 }
 
 // Lo stato dei progressi sta qui perché AccessProvider ha bisogno dello storico per contare le simulazioni gratuite
@@ -103,6 +104,11 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     return { id: SCHERMATE[id] || id === 'sfida-accetta' ? id : 'profilo', params: Object.fromEntries(q.entries()) };
   });
   const extraPila = useRef<{ id: string; params: Record<string, string> }[]>([]);
+  // il codice della sfida è già stato letto: si toglie dall'indirizzo, così un ricaricamento non riapre «Hai già giocato»
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    if (q.has('sfida')) window.history.replaceState(null, '', window.location.pathname);
+  }, []);
   const [learnMode, setLearnMode] = useState<'standard' | 'weakness' | 'blitz' | 'category' | 'recall' | 'smart'>('smart');
   const [learnCategory, setLearnCategory] = useState<string | undefined>(undefined);
   const [teoriaId, setTeoriaId] = useState<string | undefined>(undefined);
@@ -446,6 +452,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   // Barra in basso, tre voci: Home, Simulazioni (scelta e avvio della simulazione), Lezioni (hub di teoria, esercizi, ripasso, progressi).
   // Le pagine che si aprono dalle Lezioni (teoria, esercizi, progressi) mostrano la barra con "Lezioni" attiva.
   const vaiScheda = (s: Scheda) => {
+    if (s === 'simulazioni' && SCHERMATE.simulazioni) { extraPila.current = []; setExtra({ id: 'simulazioni', params: {} }); setView('extra'); return; }
     setView(({ home: 'menu', simulazioni: 'exam', lezioni: 'lezioni' } as const)[s]);
   };
   const conBarra = (scheda: Scheda | null, pagina: React.ReactNode) => (
@@ -522,7 +529,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onOpenTheory={() => { setTeoriaId(undefined); apri('theory'); }}
           onOpenTheoryTopic={apriTeoriaDa}
           onOpenDiagnostic={() => setView('onboarding')}
-          onOpenImpostazioni={() => apri('impostazioni')}
+          onOpenImpostazioni={() => (SCHERMATE.profilo ? vaiExtra('profilo') : apri('impostazioni'))}
           onNaviga={vaiScheda}
         />
       )}
@@ -543,6 +550,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onOpenPaywall={() => apriPaywall('generico')}
           onNeedPass={apriPaywall}
           onNaviga={vaiScheda}
+          onOpenExtra={vaiExtra}
         />
       )}
       {view === 'extra' && !SCHERMATE[extra.id] && conBarra('home', (
@@ -568,6 +576,9 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onBack={indietro}
           onOpenPaywall={() => apriPaywall('generico')}
           onOpenLanding={() => setView('landing')}
+          onVai={vaiExtra}
+          corpus={corpusAttivo}
+          onCambiaCorpus={handleSelectCorpus}
           onOpenLegal={apriLegale}
           onImport={() => fileInputRef.current?.click()}
           onExport={isDemo ? undefined : () => exportData(appState)}
