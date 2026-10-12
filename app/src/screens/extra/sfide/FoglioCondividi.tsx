@@ -6,6 +6,12 @@ import { Link2, MessageCircle, MessageSquare, Send, Share2, X } from 'lucide-rea
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 
+/** Apre il link di condivisione: sempre da un clic dell'utente (un pulsante, non un collegamento scritto nella pagina). */
+function apriLink(l: { id: string; href: string }) {
+  if (l.id === 'messaggi') window.location.assign(l.href);
+  else window.open(l.href, '_blank', 'noopener,noreferrer');
+}
+
 export interface LinkCondivisione { id: string; nome: string; href: string }
 
 /** Gli indirizzi di condivisione. Funzione pura (si prova senza interfaccia). */
@@ -57,10 +63,9 @@ export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { te
       <ul className="grid grid-cols-3 gap-2.5">
         {linkCondivisione(testo, url).map(l => (
           <li key={l.id}>
-            <a href={l.href} {...(l.id === 'messaggi' ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
-              onClick={() => playTapSound()} className={piastrella}>
+            <button type="button" onClick={() => { playTapSound(); apriLink(l); }} className={cn(piastrella, 'w-full')}>
               <span className={cerchio} aria-hidden>{ICONE[l.id]}</span>{l.nome}
-            </a>
+            </button>
           </li>
         ))}
         {puoCondividere && (

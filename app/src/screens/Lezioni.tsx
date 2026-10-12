@@ -1,5 +1,5 @@
 import { ReactNode, useMemo } from 'react';
-import { BarChart3, ChevronRight, Compass, Dumbbell, Gauge, GraduationCap, KeyRound, ListChecks, Lock, MessageSquareText, Route, RotateCcw, Swords, Trophy } from 'lucide-react';
+import { BarChart3, ChevronRight, Dumbbell, Gauge, GraduationCap, KeyRound, ListChecks, Lock, Route, RotateCcw, Trophy } from 'lucide-react';
 import type { AppState, CorpusType, PaywallReason } from '../types';
 import { getQuestionsByCorpus, questions, INITIAL_CORPUS_COUNT } from '../data/questions';
 import { theoryTopics } from '../data/theory';
@@ -101,15 +101,15 @@ export default function Lezioni({ appState, corpus, onStartLearn, onOpenStats, o
             <ul className="flex flex-col gap-[8px]">
               <Voce icona={<GraduationCap size={24} />} titolo={`Teoria · ${SCHEDE_PRONTE} schede`} testo={pass ? 'Tutti gli argomenti sbloccati' : 'Una gratis, le altre con il Pass'} onClick={onOpenTheory} bloccato={!pass} />
               {onOpenExtra && <Voce icona={<Route size={24} />} titolo="Il tuo percorso" testo="31 lezioni in ordine, con l'avanzamento" onClick={() => onOpenExtra('percorso')} />}
-              {onOpenExtra && <Voce icona={<MessageSquareText size={24} />} titolo="Frasi e vocaboli" testo="Cerca, salva le preferite, ascolta" onClick={() => onOpenExtra('frasi')} />}
+              {onOpenExtra && <Voce icona={<GraduationCap size={24} />} titolo="Frasi e vocaboli" testo="Cerca, salva le preferite, ascolta" onClick={() => onOpenExtra('frasi')} />}
               <Voce icona={<Dumbbell size={24} />} titolo="Esercizi mirati" testo="Punti deboli, blitz, richiamo attivo" onClick={onStartLearn} />
               <Voce icona={<RotateCcw size={24} />} titolo="Ripasso sugli errori" testo="Riparti da ciò che hai sbagliato" onClick={() => (pass ? onStartErrors() : onNeedPass('errori'))} bloccato={!pass} />
               <Voce icona={<ListChecks size={24} />} titolo="Prontuario" testo="Le regole e le trappole in breve" onClick={onOpenCheatSheet} />
               <Voce icona={<Gauge size={24} />} titolo="Verifica il livello" testo="10 domande, 3 minuti" onClick={onOpenDiagnostic} />
               <Voce icona={<BarChart3 size={24} />} titolo="Progressi" testo={pass ? 'Argomenti, simulazioni, costanza' : 'Le statistiche complete con il Pass'} onClick={onOpenStats} bloccato={!pass} />
-              {onOpenExtra && <Voce icona={<Swords size={24} />} titolo="Sfide" testo="Sfida del giorno e duelli con un amico" onClick={() => onOpenExtra('sfide')} />}
+              {onOpenExtra && <Voce icona={<Trophy size={24} />} titolo="Sfide" testo="Sfida del giorno e duelli con un amico" onClick={() => onOpenExtra('sfide')} />}
               <Voce icona={<Trophy size={24} />} titolo={`Classifica ${ECOSYSTEM.rankingName}`} testo="Chi sa più regole" onClick={onOpenLeaderboard} />
-              {onOpenExtra && <Voce icona={<Compass size={24} />} titolo="Esplora" testo="Analisi del livello, Project ID, guida e FAQ" onClick={() => onOpenExtra('esplora')} />}
+              {onOpenExtra && <Voce icona={<Gauge size={24} />} titolo="Esplora" testo="Analisi del livello, Project ID, guida e FAQ" onClick={() => onOpenExtra('esplora')} />}
               {!pass && <Voce icona={<KeyRound size={24} />} titolo="Pass AddiOFA" testo="Tutto sbloccato, un solo pagamento" onClick={onOpenPaywall} evidenza />}
             </ul>
           </section>

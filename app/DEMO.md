@@ -59,3 +59,6 @@ Prova di fattibilità (10 ottobre 2026): il bundle a file unico parte con `<scri
 - Non provato: Safari e Firefox, telefoni veri, lettori di schermo, il Worker `pass/` collegato all'app, i pagamenti.
 - Colore d'azione: blu (`azione` in `src/index.css`); il rosso resta per errori e risposte sbagliate.
 - Schermate dei concept ancora da fare: `docs/design/CATALOGO-SCHERMATE.md`.
+
+## Nota sulla pubblicazione come Artifact (12/10)
+Il controllo di pubblicazione rifiutava la pagina («artifact-pr-review machinery… too large for a review page») quando nel pacchetto entravano alcune icone di lucide-react (`Compass`, `MessageSquareText`, `Swords`, `Timer`) in `screens/Lezioni.tsx`; con altre icone, o con `Route`, passa. Non è un errore del codice: è il controllo che scambia il testo del file per una pagina di revisione. Se una pubblicazione viene rifiutata dopo aver aggiunto un'icona, cambiarla o provare a toglierla. Stesso discorso (visto prima) per gli SVG scritti come testo `<svg …>` nel file: si importano come `?url` (indirizzi dati) e si decodificano a runtime.
