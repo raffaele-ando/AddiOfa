@@ -50,7 +50,7 @@ La A piena con la stella è ridisegnata per stare nella A (stella più grande e 
 
 | Variante | File | Cos'è |
 |---|---|---|
-| O semplice | `wordmark-lettermark-o-semplice.svg` | La A piena con la stella è la prima A di AddiOFA; un solo colore (navy, bianco su scuro, la stella è un vuoto); la O è un anello. Usato nell'app. |
+| O semplice | `wordmark-lettermark-o-semplice.svg` | La A piena con la stella sostituisce entrambe le A di AddiOFA; un solo colore (navy, bianco su scuro, la stella è un vuoto); la O è un anello. Usato nell'app. |
 | O con scintilla | `wordmark-lettermark-o-scintilla.svg` | Come sopra con il disco della O e la scintilla a 4 punte. |
 | O con la stella | `wordmark-lettermark-o-stella5.svg` | Come sopra con il disco della O e la stessa stella a base piatta. |
 | Con il motto | `wordmark-lettermark-con-tagline.svg` | O semplice con il motto in maiuscole sotto. |

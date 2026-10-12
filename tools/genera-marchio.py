@@ -29,6 +29,6 @@ out = {
   'lettermark': {'vb': [f(bl[0] + t[0]), f(bl[1] + t[1]), f(bl[2]), f(bl[3])]},
 }
 dest = R / 'app/src/brand/marchio.generato.ts'
-dest.write_text('// GENERATO da tools/genera-marchio.py: non modificare. Wordmark con il lettermark come prima A, monocolore.\n'
+dest.write_text('// GENERATO da tools/genera-marchio.py: non modificare. Wordmark con il lettermark al posto di tutte le A, monocolore.\n'
                 'export const MARCHIO = ' + json.dumps(out, separators=(',', ':'), ensure_ascii=False) + ' as const;\n')
 print(dest, len(dest.read_text()), 'byte')

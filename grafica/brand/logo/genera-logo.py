@@ -583,7 +583,7 @@ def wordmark_corpo(g: str, o: str, uid: str, tagline: str | None = None, mono: s
     pos, disco = wm_geometria(o == "vera")
     lm_k = CAPH / 100.0
     if lm:
-        # la A iniziale diventa il lettermark (A piena con la stella a base piatta): le lettere dopo si spostano della differenza di larghezza
+        # la A iniziale e quella finale diventano il lettermark (A piena con la stella a base piatta): le lettere dopo la prima si spostano della differenza di larghezza
         bA = ink_box("A", PESO)
         ink_a = (bA[2] - bA[0]) * S
         delta = A_PIENA_LARG * lm_k - ink_a
@@ -599,10 +599,15 @@ def wordmark_corpo(g: str, o: str, uid: str, tagline: str | None = None, mono: s
         if o == "blu-scintilla" and nome in ("F", "A2"):
             col = ink
         b_ = ink_box(ch, PESO)
-        if lm and nome == "A":
+        if lm and nome in ("A", "A2"):
             x0 = ox + b_[0] * S
+            if nome == "A2":
+                # l'ultima A: la parte alta del lettermark è larga (cima piatta), quindi la si stacca di 4,5 px dal braccio centrale della F (misurati a metà altezza, dove il lato inclinato della A è più vicino)
+                xf = [o for n, c_, o in pos if n == "F"][0]
+                f_dx = xf + ink_box("F", PESO)[2] * S
+                x0 = f_dx + 4.5 - (A_PIENA_LARG / 2 - 22.0 - 0.31 * 50.0) * lm_k
             d = a_scint_path(x0 + A_PIENA_LARG * lm_k / 2, 0.0, lm_k, "piena")
-            parti.append(f'<path id="lettermark" d="{d}" fill-rule="evenodd" fill="{col}"/>')
+            parti.append(f'<path id="{"lettermark" if nome == "A" else "lettermark-2"}" d="{d}" fill-rule="evenodd" fill="{col}"/>')
             xmin, xmax = min(xmin, x0), max(xmax, x0 + A_PIENA_LARG * lm_k)
             continue
         d = glifo_path(ch, PESO, S, ox, BASE)
@@ -682,9 +687,9 @@ WORDMARK = {
     "stella5-con-tagline": (lambda g, u: wordmark_corpo(g, "stella5", u, "maiuscole"), "O con la stella a 5 punte e il motto in maiuscole.", "—", "derivata"),
     # il lettermark (A piena con la stella a base piatta) dentro il wordmark, al posto della A iniziale; monocolore (navy, bianco su scuro)
     "lettermark-o-scintilla": (lambda g, u: wordmark_corpo(g, "scintilla", u, None, mono=(NAVY if g == "chiaro" else BIANCO), lm=True), "Il lettermark come prima A di AddiOFA; un solo colore; la O è il disco con la scintilla a 4 punte (vuoto).", "07, 35", "derivata"),
-    "lettermark-o-stella5": (lambda g, u: wordmark_corpo(g, "stella5", u, None, mono=(NAVY if g == "chiaro" else BIANCO), lm=True), "Il lettermark come prima A; un solo colore; la O è il disco con la stessa stella a base piatta della A.", "—", "derivata"),
-    "lettermark-o-semplice": (lambda g, u: wordmark_corpo(g, "vera", u, None, mono=(NAVY if g == "chiaro" else BIANCO), lm=True), "Il lettermark come prima A; un solo colore; la O è un anello semplice: la stella c'è solo nella A.", "15", "derivata"),
-    "lettermark-con-tagline": (lambda g, u: wordmark_corpo(g, "vera", u, "maiuscole", mono=(NAVY if g == "chiaro" else BIANCO), lm=True), "Il lettermark come prima A, O semplice, con il motto in maiuscole sotto; un solo colore.", "15, 07", "derivata"),
+    "lettermark-o-stella5": (lambda g, u: wordmark_corpo(g, "stella5", u, None, mono=(NAVY if g == "chiaro" else BIANCO), lm=True), "Il lettermark al posto di tutte e due le A; un solo colore; la O è il disco con la stessa stella a base piatta della A.", "—", "derivata"),
+    "lettermark-o-semplice": (lambda g, u: wordmark_corpo(g, "vera", u, None, mono=(NAVY if g == "chiaro" else BIANCO), lm=True), "Il lettermark al posto di tutte e due le A; un solo colore; la O è un anello semplice: la stella c'è solo nelle A.", "15", "derivata"),
+    "lettermark-con-tagline": (lambda g, u: wordmark_corpo(g, "vera", u, "maiuscole", mono=(NAVY if g == "chiaro" else BIANCO), lm=True), "Il lettermark al posto di tutte e due le A, O semplice, con il motto in maiuscole sotto; un solo colore.", "15, 07", "derivata"),
     "mono-navy": (lambda g, u: wordmark_corpo(g, "scintilla", u, None, mono=(NAVY if g == "chiaro" else BIANCO)), "Monocromatica, un solo colore (navy, bianco su scuro).", "28", "concept"),
     "mono-grigio": (lambda g, u: wordmark_corpo(g, "scintilla", u, None, mono=(GRIGIO if g != "azione" else "#CFE0FF")), "Monocromatica grigia: versione discreta, per filigrana.", "28", "concept"),
 }

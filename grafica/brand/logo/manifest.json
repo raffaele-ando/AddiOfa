@@ -356,7 +356,7 @@
   "fonte": "07, 35",
   "tipo": "derivata",
   "pad": 6.0,
-  "w": 374.53,
+  "w": 383.27,
   "h": 83.83
  },
  {
@@ -364,11 +364,11 @@
   "nome": "lettermark-o-stella5",
   "file": "wordmark-lettermark-o-stella5.svg",
   "titolo": "AddiOFA wordmark lettermark-o-stella5",
-  "descrizione": "Il lettermark come prima A; un solo colore; la O è il disco con la stessa stella a base piatta della A.",
+  "descrizione": "Il lettermark al posto di tutte e due le A; un solo colore; la O è il disco con la stessa stella a base piatta della A.",
   "fonte": "—",
   "tipo": "derivata",
   "pad": 6.0,
-  "w": 374.53,
+  "w": 383.27,
   "h": 83.83
  },
  {
@@ -376,11 +376,11 @@
   "nome": "lettermark-o-semplice",
   "file": "wordmark-lettermark-o-semplice.svg",
   "titolo": "AddiOFA wordmark lettermark-o-semplice",
-  "descrizione": "Il lettermark come prima A; un solo colore; la O è un anello semplice: la stella c'è solo nella A.",
+  "descrizione": "Il lettermark al posto di tutte e due le A; un solo colore; la O è un anello semplice: la stella c'è solo nelle A.",
   "fonte": "15",
   "tipo": "derivata",
   "pad": 6.0,
-  "w": 368.65,
+  "w": 377.39,
   "h": 81.67
  },
  {
@@ -388,11 +388,11 @@
   "nome": "lettermark-con-tagline",
   "file": "wordmark-lettermark-con-tagline.svg",
   "titolo": "AddiOFA wordmark lettermark-con-tagline",
-  "descrizione": "Il lettermark come prima A, O semplice, con il motto in maiuscole sotto; un solo colore.",
+  "descrizione": "Il lettermark al posto di tutte e due le A, O semplice, con il motto in maiuscole sotto; un solo colore.",
   "fonte": "15, 07",
   "tipo": "derivata",
   "pad": 6.0,
-  "w": 368.65,
+  "w": 377.39,
   "h": 103.94
  },
  {
