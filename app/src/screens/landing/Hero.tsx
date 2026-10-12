@@ -10,11 +10,15 @@ const FATTI = [
   { Icona: Clock, testo: 'Circa 3 minuti' },
 ];
 
-// Hero: titolo grande a sinistra, scena a destra che esce dal bordo. Sul telefono la scena sta dietro e sotto il testo.
+// Hero: titolo grande a sinistra, scena a destra che esce dal bordo. Sul telefono la scena sta sopra il testo.
 export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSkip(): void; scuro: boolean }) {
   return (
     <section id="home" aria-labelledby="t-hero" className="relative overflow-hidden scroll-mt-0">
-      <Colonna className="relative z-10 pb-10 pt-[5.5rem] sm:pt-28 lg:pb-20 lg:pt-28 xl:pt-32">
+      {/* sul telefono la scena sta sopra il testo, a tutta larghezza */}
+      <div aria-hidden className="pointer-events-none relative mt-[4.25rem] sm:hidden">
+        <Scena scuro={scuro} conCarte={false} />
+      </div>
+      <Colonna className="relative z-10 pb-10 pt-1 sm:pt-28 lg:pb-20 lg:pt-28 xl:pt-32">
         <div className="max-w-[26rem] sm:max-w-xl lg:max-w-[32rem] xl:max-w-[40rem]">
           <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-testo sm:text-xs">
             Per chi ha l'OFA di inglese
@@ -49,9 +53,7 @@ export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSk
         </div>
       </Colonna>
 
-      {/* sul telefono: velo sotto il testo, perché il testo resti leggibile sopra la scalinata */}
-      <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 z-[5] w-[78%] bg-gradient-to-r from-fondo via-fondo/80 to-transparent sm:hidden" />
-      <div aria-hidden className="pointer-events-none absolute left-[-26%] top-14 w-[150%] sm:relative sm:left-auto sm:top-auto sm:-mt-6 sm:w-full lg:absolute lg:right-0 lg:top-10 lg:mt-0 lg:w-[70%] xl:w-[68%] min-[1500px]:w-[64%]">
+      <div aria-hidden className="pointer-events-none absolute hidden sm:relative sm:left-auto sm:top-auto sm:-mt-6 sm:block sm:w-full lg:absolute lg:right-0 lg:top-10 lg:mt-0 lg:w-[70%] xl:w-[68%] min-[1500px]:w-[64%]">
         <Scena scuro={scuro} />
       </div>
     </section>
