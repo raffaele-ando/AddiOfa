@@ -1,16 +1,19 @@
 import { useState, useMemo, useEffect } from 'react';
 import { AppState, PaywallReason } from '../types';
-import { X, Trophy, TrendingUp, AlertCircle, Clock, Target, List, ArrowLeft, Activity, Filter, ArrowDownUp, ArrowUp, ArrowDown, Minus, Crown, Check, Lock, Loader2 } from 'lucide-react';
+import { X, TrendingUp, AlertCircle, Clock, List, ArrowLeft, Activity, Filter, ArrowDownUp, ArrowUp, ArrowDown, Minus, Check, Lock, Loader2, ChevronLeft } from 'lucide-react';
 import { cn, chiaveGiorno } from '../lib/utils';
 import { REGOLA_IMPARATA } from './home/comune';
 import { confidenceFromEasiness, bankMeta, poolMeta, countLearned, isLearned } from '../lib/spacedRepetition';
 import GuaranteeTracker from './GuaranteeTracker';
-import { IconaChip } from '../brand/componenti';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 import { PoweredByAtlas } from './ui';
 import { useAccess } from '../access/context';
 import { FEATURE_FLAGS, FORMATS, PASS } from '../config/offer';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { serieStime } from './home/stima';
+import GraficoStime from './home/GraficoStime';
+import { Tessere, AndamentoSimulazioni, PerArgomento, Obiettivi } from '../screens/extra/studio/StatistichePezzi';
+import { playTapSound } from '../lib/audio';
 
 // Grafici (Recharts): colori dai token, così il tema scuro li cambia da solo.
 const GRIGLIA = 'var(--color-linea)';
@@ -25,6 +28,11 @@ interface StatsModeProps {
   appState: AppState;
   onExit: () => void;
   onNeedPass: (reason: PaywallReason) => void;
+  /** Aprono il percorso e una lezione (schermate extra): se assenti, «Per argomento» resta senza collegamenti. */
+  onVaiPercorso?: () => void;
+  onApriLezione?: (topicId: string) => void;
+  /** Dentro la struttura extra la pagina ha già la sua cornice: si toglie solo l'arrotondamento esterno. */
+  incorniciata?: boolean;
 }
 
 // Scarica il testo delle domande dal provider a gruppi, senza ripetere quelle già in mano
@@ -42,7 +50,24 @@ async function fetchPrompts(
   return out;
 }
 
-export default function StatsMode({ appState, onExit, onNeedPass }: StatsModeProps) {
+/** Intestazione della schermata: freccia indietro, titolo del concept e illustrazione. */
+function Intestazione({ sotto, onExit }: { sotto: string; onExit: () => void }) {
+  return (
+    <header className="flex items-center gap-1 shrink-0">
+      <button type="button" onClick={() => { playTapSound(); onExit(); }} aria-label="Indietro"
+        className="-ml-2 grid place-items-center w-10 h-10 shrink-0 rounded-full text-testo-tenue hover:text-testo">
+        <ChevronLeft size={28} strokeWidth={2.2} aria-hidden="true" />
+      </button>
+      <div className="min-w-0 flex-1">
+        <h1 className="text-[26px] leading-[32px] font-extrabold tracking-[-0.02em] text-testo">Le tue statistiche</h1>
+        <p className="text-sm text-testo-tenue">{sotto}</p>
+      </div>
+      <IllustrazioneAnimata nome="progressi-statistiche" lato={84} />
+    </header>
+  );
+}
+
+export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso, onApriLezione }: StatsModeProps) {
   const { provider, pass } = useAccess();
   const [showDetailedStats, setShowDetailedStats] = useState(false);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
@@ -77,23 +102,6 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
   const globalAccuracy = (totalCorrect + totalIncorrect) > 0 
     ? Math.round((totalCorrect / (totalCorrect + totalIncorrect)) * 100) 
     : 0;
-
-  const topicStats = useMemo(() => {
-    const stats: Record<string, { correct: number; total: number }> = {};
-    allMeta.forEach(q => {
-      if (q.grammarTopic) {
-        const stat = appState.stats[q.id];
-        if (stat) {
-          if (!stats[q.grammarTopic]) {
-            stats[q.grammarTopic] = { correct: 0, total: 0 };
-          }
-          stats[q.grammarTopic].correct += stat.correct;
-          stats[q.grammarTopic].total += stat.correct + stat.incorrect;
-        }
-      }
-    });
-    return stats;
-  }, [appState.stats, allMeta]);
 
   // Find most frequent errors
   const errorRates = Object.keys(appState.stats)
@@ -177,51 +185,8 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
     })).sort((a, b) => a.name.localeCompare(b.name));
   }, [appState.stats, allMeta]);
 
-  const topicStatsData = useMemo(() => {
-    const stats: Record<string, { imparate: number; total: number }> = {};
-    allMeta.forEach(q => {
-      const topic = q.grammarTopic || 'Altro';
-      if (!stats[topic]) {
-        stats[topic] = { imparate: 0, total: 0 };
-      }
-      stats[topic].total += 1;
-      const stat = appState.stats[q.id];
-      if (isLearned(stat)) {
-        stats[topic].imparate += 1;
-      }
-    });
-    return Object.entries(stats).map(([name, data]) => ({
-      name,
-      imparate: data.imparate,
-      daImparare: data.total - data.imparate,
-      total: data.total
-    })).sort((a, b) => b.total - a.total);
-  }, [appState.stats, allMeta]);
-
   const categories = useMemo(() => Array.from(new Set(allMeta.map(q => q.category))), [allMeta]);
   const coreCount = useMemo(() => poolMeta(false).length, []);
-
-  // Livello e punti: solo da risposte vere, senza punti regalati
-  const totalXP = Object.values(appState.stats).reduce((sum, stat) => sum + stat.correct, 0) * 10;
-  const currentLevel = Math.floor(Math.sqrt(totalXP / 50)) + 1;
-  const xpForCurrentLevel = Math.pow(currentLevel - 1, 2) * 50;
-  const xpForNextLevel = Math.pow(currentLevel, 2) * 50;
-  const progressPercent = Math.min(100, Math.max(0, ((totalXP - xpForCurrentLevel) / (xpForNextLevel - xpForCurrentLevel)) * 100));
-
-  // Sfida quotidiana: conta solo le domande fatte oggi
-  const todayStr = chiaveGiorno();
-  const currentTotalDaily = appState.dailyActivity?.[todayStr] || 0;
-  
-  const milestones = [10, 25, 50, 100, 150, 250, 400, 600, 1000, 99999];
-  let milestoneIndex = 0;
-  while (milestoneIndex < milestones.length - 1 && currentTotalDaily >= milestones[milestoneIndex]) {
-    milestoneIndex++;
-  }
-  const currentMilestone = milestones[milestoneIndex];
-  const previousMilestone = milestoneIndex === 0 ? 0 : milestones[milestoneIndex - 1];
-  const currentPhaseProgress = currentTotalDaily - previousMilestone;
-  const currentPhaseGoal = currentMilestone - previousMilestone;
-  const phaseProgressPercent = Math.min(100, (currentPhaseProgress / currentPhaseGoal) * 100);
 
   const filteredAndSortedQuestions = useMemo(() => {
     let filtered = allMeta;
@@ -259,35 +224,31 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
   }, [showDetailedStats, pass, provider]);
 
   const lastExamFormat = lastExam ? FORMATS[lastExam.format ?? 'ente'] : null;
+  // Probabilità stimata: solo punti misurati (diagnostico e simulazioni)
+  const punti = useMemo(() => serieStime(appState), [appState]);
 
   // ================== Senza Pass: i numeri di base e un invito ==================
   if (!pass) {
     return (
       <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
-        <div className="flex flex-col h-full p-2 sm:p-4">
-          <header className="flex items-end justify-between px-2 pt-2 pb-1 shrink-0">
-            <div>
-              <h2 className="text-[26px] font-extrabold text-testo">Progressi</h2>
-              <p className="text-sm text-testo-tenue">Quanto sai, in breve.</p>
-            </div>
-            <IllustrazioneAnimata nome="progressi-statistiche" lato={84} />
-          </header>
+        <div className="h-full overflow-y-auto scrollbar-hide">
+          <div className="mx-auto w-full max-w-[560px] px-5 pt-3 pb-8 flex flex-col gap-5">
+            <Intestazione sotto="Quanto sai, in breve." onExit={onExit} />
 
-          <main className="flex-1 overflow-y-auto scrollbar-hide p-4 sm:p-6 flex flex-col gap-4 sm:gap-6 max-w-2xl w-full mx-auto">
-            <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-3 sm:gap-4">
+            <Tessere stato={appState} />
+
+            <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-3">
               {([
-                ['completato', `${masteryPercentage}%`, `Domande imparate (su ${totalQuestions})`],
-                ['successo', `${globalAccuracy}%`, 'Accuratezza'],
-              ] as const).map(([icona, valore, nome]) => (
-                <div key={nome} className="bg-superficie-2 border border-linea rounded-2xl p-4 flex flex-col gap-2">
-                  <IconaChip nome={icona} lato={40} />
+                [`${masteryPercentage}%`, `Domande imparate (su ${totalQuestions})`],
+                [`${globalAccuracy}%`, 'Accuratezza'],
+              ] as const).map(([valore, nome]) => (
+                <div key={nome} className="bg-superficie-2 rounded-[12px] p-4 flex flex-col gap-1.5">
                   <span className="text-[26px] font-extrabold text-testo leading-none">{valore}</span>
                   <span className="text-xs text-testo-tenue">{nome}</span>
                 </div>
               ))}
               <p className="min-[420px]:col-span-2 -mt-1 text-xs leading-snug text-testo-tenue">{REGOLA_IMPARATA}</p>
-              <div className="min-[420px]:col-span-2 bg-superficie-2 border border-linea rounded-2xl p-4 flex flex-col gap-2">
-                <IconaChip nome="quiz" lato={40} />
+              <div className="min-[420px]:col-span-2 bg-superficie-2 rounded-[12px] p-4 flex flex-col gap-1.5">
                 {lastExam && lastExamFormat ? (
                   <>
                     <span className="text-[26px] font-extrabold text-testo leading-none">
@@ -309,13 +270,15 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               </div>
             </div>
 
-            <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
+            <Obiettivi stato={appState} />
+
+            <div className="bg-superficie-2 rounded-[12px] p-4 sm:p-5 flex flex-col gap-3">
               <div className="flex items-start gap-3">
                 <Lock size={18} className="mt-0.5 shrink-0 text-testo-tenue" />
                 <div>
                   <h3 className="font-bold text-testo">Il quadro completo è nel Pass</h3>
                   <p className="text-sm font-semibold text-testo-tenue mt-1">
-                    Radar per argomento, progresso per livello, le domande che sbagli di più e il dettaglio di ogni domanda. Il Pass si paga una volta sola e dura {PASS.validMonths} mesi.
+                    Andamento dei risultati, padronanza per argomento, le domande che sbagli di più e il dettaglio di ogni domanda. Il Pass si paga una volta sola e dura {PASS.validMonths} mesi.
                   </p>
                 </div>
               </div>
@@ -327,7 +290,7 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
               </button>
             </div>
             <p className="text-xs font-semibold text-testo-tenue">I numeri contano il nucleo gratuito ({coreCount} domande).</p>
-          </main>
+          </div>
         </div>
       </div>
     );
@@ -500,206 +463,74 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
 
   return (
     <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
-      <div className="flex flex-col h-full p-2 sm:p-4">
-      <header className="flex items-end justify-between px-2 pt-2 pb-1 shrink-0">
-        <div>
-          <h2 className="text-[26px] font-extrabold text-testo">Progressi</h2>
-          <p className="text-sm text-testo-tenue">Quanto sai, argomento per argomento.</p>
-        </div>
-        <IllustrazioneAnimata nome="progressi-statistiche" lato={84} />
-      </header>
+      <div className="h-full overflow-y-auto scrollbar-hide">
+        <div className="mx-auto w-full max-w-[560px] px-5 pt-3 pb-8 flex flex-col gap-6">
+          <Intestazione sotto="Quanto sai, argomento per argomento." onExit={onExit} />
 
-      <main className="flex-1 overflow-y-auto scrollbar-hide p-4 sm:p-6 flex flex-col gap-4 sm:gap-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 items-stretch">
-        {/* Left Column */}
-        <div className="flex flex-col gap-4 sm:gap-6">
-          {/* Overview Cards */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            {([
-              ['completato', `${masteryPercentage}%`, 'Domande imparate'],
-              ['successo', `${globalAccuracy}%`, 'Accuratezza'],
-              ['statistiche', `${passRate}%`, 'Simulazioni superate'],
-              ['quiz', `${bestScore}/30`, 'Miglior simulazione'],
-            ] as const).map(([icona, valore, nome]) => (
-              <div key={nome} className="bg-superficie-2 border border-linea rounded-2xl p-4 flex flex-col gap-2">
-                <IconaChip nome={icona} lato={40} />
-                <span className="text-[26px] font-extrabold text-testo leading-none">{valore}</span>
-                <span className="text-xs text-testo-tenue">{nome}</span>
-              </div>
-            ))}
-          </div>
-          <p className="-mt-1 text-xs leading-snug text-testo-tenue">{REGOLA_IMPARATA}</p>
+          <Tessere stato={appState} />
+          <p className="-mt-3 text-xs leading-snug text-testo-tenue">{REGOLA_IMPARATA}</p>
 
-          {/* Activity Chart */}
-          <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[250px]">
-             <h3 className="text-sm sm:text-base font-bold text-testo mb-4 flex items-center gap-2 shrink-0">
-              <Activity className="text-medio-testo w-5 h-5" />
-              Costanza (ultimi 7 giorni)
-            </h3>
-            <div className="flex-1 min-h-[150px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={activityData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={GRIGLIA} />
-                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} />
-                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
-                  <Tooltip isAnimationActive={false}
-                    cursor={{ fill: CURSORE }}
-                    contentStyle={TOOLTIP}
-                  />
-                  <Bar isAnimationActive={false} dataKey="domande" name="Domande" fill={AZIONE} radius={[4, 4, 0, 0]} maxBarSize={30} />
-                  <Bar isAnimationActive={false} dataKey="minuti" name="Minuti" fill={ALTO} radius={[4, 4, 0, 0]} maxBarSize={30} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+          <AndamentoSimulazioni stato={appState} />
 
-          {/* Exam Stats */}
-          <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col justify-center">
-            <h3 className="text-sm sm:text-base font-bold text-testo mb-3 flex items-center gap-2 shrink-0">
-              <Clock className="text-azione w-5 h-5" />
-              Simulazioni
-            </h3>
-            <div className="flex flex-col gap-3">
-              <div className="flex justify-between items-center py-2 border-b border-linea">
-                <span className="text-sm sm:text-base font-bold text-testo-tenue">Esami completati</span>
-                <span className="text-base sm:text-lg font-bold text-testo">{examsTaken}</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-linea">
-                <span className="text-sm sm:text-base font-bold text-testo-tenue">Esami superati</span>
-                <span className="text-base sm:text-lg font-bold text-alto-testo">{passedExams}</span>
-              </div>
-              <div className="flex justify-between items-center py-2">
-                <span className="text-sm sm:text-base font-bold text-testo-tenue">Miglior punteggio</span>
-                <span className="text-base sm:text-lg font-bold text-medio-testo">{examsTaken > 0 ? `${bestScore}/30` : '-'}</span>
-              </div>
-            </div>
-          </div>
+          {punti.length > 0 && <GraficoStime punti={punti} />}
 
-          {FEATURE_FLAGS.guarantee && <GuaranteeTracker appState={appState} />}
-          <PoweredByAtlas />
+          <PerArgomento stato={appState} pass={pass} onVaiPercorso={onVaiPercorso} onApriLezione={onApriLezione} />
 
-        </div>
+          <Obiettivi stato={appState} />
 
-        {/* Right Column */}
-        <div className="flex flex-col gap-4 sm:gap-6">
-          
-          {/* Go to detailed view button */}
-          <button 
-            onClick={() => setShowDetailedStats(true)}
-            className="w-full bg-azione hover:bg-azione-scuro border-azione text-azione-su font-bold text-sm sm:text-base py-3 sm:py-4 px-4 rounded-xl sm:rounded-2xl transition-colors duration-100 flex items-center justify-center gap-2"
+          <button
+            onClick={() => { playTapSound(); setShowDetailedStats(true); }}
+            className="w-full min-h-[48px] bg-azione hover:bg-azione-scuro text-azione-su font-bold text-[15px] py-3 px-4 rounded-[12px] transition-colors duration-100 flex items-center justify-center gap-2"
           >
             <List className="w-5 h-5" />
             Vedi il dettaglio delle domande
           </button>
 
-          {Object.keys(topicStats).length >= 3 ? (
-            <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col h-full min-h-[300px]">
-              <h3 className="text-sm sm:text-base font-bold text-testo mb-4 flex items-center gap-2 shrink-0">
-                <Target className="text-azione w-5 h-5" />
-                Profilo per argomento
-              </h3>
-              
-              <div className="flex-1 min-h-0 relative">
-                <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart 
-                    cx="50%" 
-                    cy="50%" 
-                    outerRadius="70%" 
-                    data={Object.entries(topicStats).map(([cat, stats]: [string, { correct: number; total: number }]) => ({
-                      subject: cat,
-                      A: stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0,
-                      fullMark: 100,
-                    }))}
-                  >
-                    <PolarGrid stroke={GRIGLIA} className="" />
-                    <PolarAngleAxis 
-                      dataKey="subject" 
-                      tick={{ fill: ASSE, fontSize: 10, fontWeight: 'bold' }} 
-                    />
-                    <PolarRadiusAxis 
-                      angle={30} 
-                      domain={[0, 100]} 
-                      tick={false} 
-                      axisLine={false}
-                    />
-                    <Radar isAnimationActive={false}
-                      name="Padronanza"
-                      dataKey="A"
-                      stroke={AZIONE}
-                      fill={AZIONE}
-                      fillOpacity={0.35}
-                    />
-                    <Tooltip isAnimationActive={false}
-                      contentStyle={{ ...TOOLTIP, fontSize: '14px', padding: '8px 12px' }}
-                      itemStyle={{ color: AZIONE, fontWeight: '900' }}
-                    />
-                  </RadarChart>
+          {/* Costanza */}
+          <section aria-labelledby="titolo-costanza" className="flex flex-col gap-2.5">
+            <h2 id="titolo-costanza" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><Activity className="text-medio-testo w-5 h-5" />Costanza (ultimi 7 giorni)</h2>
+            <div className="bg-superficie-2 rounded-[12px] p-4 flex flex-col">
+              <div className="w-full">
+                <ResponsiveContainer width="100%" height={170}>
+                  <BarChart data={activityData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={GRIGLIA} />
+                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} />
+                    <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
+                    <Tooltip isAnimationActive={false} cursor={{ fill: CURSORE }} contentStyle={TOOLTIP} />
+                    <Bar isAnimationActive={false} dataKey="domande" name="Domande" fill={AZIONE} radius={[4, 4, 0, 0]} maxBarSize={30} />
+                    <Bar isAnimationActive={false} dataKey="minuti" name="Minuti" fill={ALTO} radius={[4, 4, 0, 0]} maxBarSize={30} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="mt-1 text-xs text-testo-tenue"><span className="inline-block w-2.5 h-2.5 rounded-sm align-middle mr-1" style={{ background: AZIONE }} />Domande risposte <span className="inline-block w-2.5 h-2.5 rounded-sm align-middle ml-3 mr-1" style={{ background: ALTO }} />Minuti di studio</p>
+            </div>
+          </section>
+
+          {/* Progresso per livello */}
+          <section aria-labelledby="titolo-livello" className="flex flex-col gap-2.5">
+            <h2 id="titolo-livello" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><TrendingUp className="text-medio-testo w-5 h-5" />Progresso per livello</h2>
+            <div className="bg-superficie-2 rounded-[12px] p-4 flex flex-col">
+              <div className="w-full">
+                <ResponsiveContainer width="100%" height={150}>
+                  <BarChart data={levelStatsData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }} layout="vertical">
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={GRIGLIA} />
+                    <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
+                    <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} />
+                    <Tooltip isAnimationActive={false} cursor={{ fill: CURSORE }} contentStyle={TOOLTIP}
+                      formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]} />
+                    <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill={ALTO} radius={[0, 0, 0, 0]} maxBarSize={30} />
+                    <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill={TRACCIA} radius={[0, 4, 4, 0]} maxBarSize={30} />
+                  </BarChart>
                 </ResponsiveContainer>
               </div>
             </div>
-          ) : (
-            <div className="bg-superficie-2 border border-linea rounded-2xl p-6 transition-colors duration-100 flex-1 flex flex-col justify-center items-center text-center min-h-[300px]">
-              <AlertCircle className="text-azione w-10 h-10 mb-3 opacity-50" />
-              <p className="text-sm font-bold text-testo-tenue">Rispondi a più domande su diversi argomenti per vedere il tuo profilo per argomento.</p>
-            </div>
-          )}
-
-          {/* Progresso per livello */}
-          <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[250px]">
-             <h3 className="text-sm sm:text-base font-bold text-testo mb-4 flex items-center gap-2 shrink-0">
-              <TrendingUp className="text-medio-testo w-5 h-5" />
-              Progresso per livello
-            </h3>
-            <div className="flex-1 min-h-[150px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={levelStatsData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={GRIGLIA} className="" />
-                  <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
-                  <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} />
-                  <Tooltip isAnimationActive={false}
-                    cursor={{ fill: CURSORE }}
-                    contentStyle={TOOLTIP}
-                    formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]}
-                  />
-                  <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill={ALTO} radius={[0, 0, 0, 0]} maxBarSize={30} />
-                  <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill={TRACCIA} radius={[0, 4, 4, 0]} maxBarSize={30} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          {/* Progresso per argomento */}
-          <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col min-h-[350px]">
-             <h3 className="text-sm sm:text-base font-bold text-testo mb-4 flex items-center gap-2 shrink-0">
-              <List className="text-azione w-5 h-5" />
-              Progresso per argomento
-            </h3>
-            <div className="flex-1 min-h-[250px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={topicStatsData} margin={{ top: 10, right: 10, left: 30, bottom: 0 }} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={GRIGLIA} className="" />
-                  <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
-                  <YAxis type="category" dataKey="name" width={120} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: ASSE, fontWeight: 'bold' }} />
-                  <Tooltip isAnimationActive={false}
-                    cursor={{ fill: CURSORE }}
-                    contentStyle={TOOLTIP}
-                    formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]}
-                  />
-                  <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill={AZIONE} radius={[0, 0, 0, 0]} maxBarSize={20} />
-                  <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill={TRACCIA} radius={[0, 4, 4, 0]} maxBarSize={20} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+          </section>
 
           {/* Errori frequenti */}
-          <div className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-6 transition-colors duration-100 flex flex-col">
-            <h3 className="text-sm sm:text-base font-bold text-testo mb-3 flex items-center gap-2 shrink-0">
-              <AlertCircle className="text-basso-testo w-5 h-5" />
-              Errori frequenti
-            </h3>
+          <section aria-labelledby="titolo-errori" className="flex flex-col gap-2.5">
+            <h2 id="titolo-errori" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><AlertCircle className="text-basso-testo w-5 h-5" />Errori frequenti</h2>
             {topErrors.length === 0 ? (
-              <div className="py-6 flex items-center justify-center text-center">
+              <div className="bg-superficie-2 rounded-[12px] py-6 flex items-center justify-center text-center">
                 <span className="font-bold text-sm text-testo-tenue">Non ci sono ancora dati sufficienti.</span>
               </div>
             ) : (
@@ -710,92 +541,40 @@ export default function StatsMode({ appState, onExit, onNeedPass }: StatsModePro
                   return (
                     <div key={err.qId} className="bg-basso-tinta border border-basso/30 rounded-xl p-3 sm:p-4 shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col gap-2.5">
                       <p className="font-bold text-sm sm:text-base text-testo line-clamp-2 leading-tight">{text ?? '…'}</p>
-                      
-                      {/* Breakdown: Giuste, Sbagliate, Omesse */}
                       <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                         <span className={cn(
                           "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
-                          err.correct > 0 
-                            ? "bg-alto-tinta text-alto-testo border-alto/30" 
-                            : "bg-superficie/80 text-testo-tenue border-linea"
+                          err.correct > 0 ? "bg-alto-tinta text-alto-testo border-alto/30" : "bg-superficie/80 text-testo-tenue border-linea"
                         )}>
                           <Check size={11} strokeWidth={3} />
                           {err.correct} {err.correct === 1 ? 'giusta' : 'giuste'}
                         </span>
-
                         <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border bg-superficie text-basso-testo border-basso/30">
                           <X size={11} strokeWidth={3} />
                           {err.incorrect} {err.incorrect === 1 ? 'sbagliata' : 'sbagliate'}
                         </span>
-
                         <span className={cn(
                           "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
-                          err.omitted > 0 
-                            ? "bg-medio-tinta text-medio-testo border-medio/30" 
-                            : "bg-superficie/80 text-testo-tenue border-linea"
+                          err.omitted > 0 ? "bg-medio-tinta text-medio-testo border-medio/30" : "bg-superficie/80 text-testo-tenue border-linea"
                         )}>
                           <Minus size={11} strokeWidth={3} />
                           {err.omitted} {err.omitted === 1 ? 'omessa' : 'omesse'}
                         </span>
                       </div>
-
                       <div className="flex items-center justify-between pt-1 border-t border-basso/20">
-                        <span className="text-xs sm:text-sm font-bold text-basso-testo">
-                          {Math.round(err.errorRate * 100)}% errore
-                        </span>
-                        <span className="text-xs sm:text-sm font-bold text-alto-testo truncate max-w-[50%]">
-                          {rightAnswer ?? ''}
-                        </span>
+                        <span className="text-xs sm:text-sm font-bold text-basso-testo">{Math.round(err.errorRate * 100)}% errore</span>
+                        <span className="text-xs sm:text-sm font-bold text-alto-testo truncate max-w-[50%]">{rightAnswer ?? ''}</span>
                       </div>
                     </div>
                   );
                 })}
               </div>
             )}
-          </div>
-        </div>
-        </div>
+          </section>
 
-        {/* Bottom Full Width Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 shrink-0">
-          {/* XP & Level Bar */}
-          <div className="bg-superficie-2 rounded-2xl p-4 sm:p-5 border border-linea flex flex-col justify-center gap-2 shadow-sm dark:shadow-none transition-colors duration-100">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <div className="bg-medio-pieno text-azione-su p-1.5 rounded-lg shadow-sm dark:shadow-none">
-                  <Crown size={18} strokeWidth={3} />
-                </div>
-                <span className="text-sm sm:text-lg font-bold text-testo">Liv. {currentLevel}</span>
-              </div>
-              <span className="text-xs sm:text-sm font-bold text-medio-testo">{totalXP} XP</span>
-            </div>
-            <div className="w-full bg-tacca h-3 sm:h-4 rounded-full overflow-hidden flex relative">
-              <div className={cn("bg-medio-pieno h-full rounded-full transition-colors duration-100")} style={{ width: `${progressPercent}%` }} />
-            </div>
-          </div>
-
-          {/* Daily Goal Endless */}
-          <div className="bg-superficie-2 rounded-2xl p-4 sm:p-5 border border-linea flex flex-col justify-center gap-2 shadow-sm dark:shadow-none transition-colors duration-100 relative overflow-hidden group">
-            <div className="flex justify-between items-center z-10 leading-none">
-              <span className="text-sm sm:text-lg font-bold text-testo flex items-center gap-2">
-                Sfida Quotidiana
-                <span className="bg-azione text-azione-su text-[10px] sm:text-xs px-2 py-0.5 rounded-lg">
-                  Fase {milestoneIndex + 1}
-                </span>
-              </span>
-              <span className="text-sm sm:text-lg font-bold text-azione">{currentTotalDaily}/{currentMilestone}</span>
-            </div>
-            
-            <div className="w-full bg-tacca h-3 sm:h-4 rounded-full overflow-hidden flex relative mt-1">
-              <div 
-                className={cn("bg-azione h-full rounded-full transition-colors duration-100")} 
-                style={{ width: `${phaseProgressPercent}%` }} 
-              />
-            </div>
-          </div>
+          {FEATURE_FLAGS.guarantee && <GuaranteeTracker appState={appState} />}
+          <PoweredByAtlas />
         </div>
-
-      </main>
       </div>
     </div>
   );

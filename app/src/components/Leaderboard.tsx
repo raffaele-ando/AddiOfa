@@ -64,8 +64,8 @@ export default function Leaderboard({ user, appState, onBack, onLogin, onJoin }:
               <span className={cn("w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm",
                 e.rank <= 3 ? `${medal[e.rank - 1]} text-azione-su` : "bg-superficie-2 text-testo-tenue")}>{e.rank}</span>
               <div className="flex-1 min-w-0">
-                <div className="font-bold text-sm text-testo truncate">{e.displayName}</div>
-                <div className="text-xs font-semibold text-testo-tenue">@{e.handle}</div>
+                {/* solo il @nome utente: è ciò che il consenso dice che si vede (il nome vero resta nel Project ID) */}
+                <div className="font-bold text-sm text-testo truncate">@{e.handle}</div>
               </div>
               <div className="text-right">
                 <div className="font-bold text-alto-testo">{e.mastered}</div>

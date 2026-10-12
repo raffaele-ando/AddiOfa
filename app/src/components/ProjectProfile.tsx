@@ -21,22 +21,15 @@ interface ProjectProfileProps {
   onLogout: () => void;
 }
 
-function downloadJson(data: unknown, filename: string) {
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
 export default function ProjectProfile({ user, account, appState, onBack, onAccountChange, onChangeScopes, onUnlink, onDeleteAccount, onLogout }: ProjectProfileProps) {
   const [editing, setEditing] = useState(false);
   const [handle, setHandle] = useState(account?.handle ?? '');
   const [displayName, setDisplayName] = useState(account?.displayName ?? user.displayName ?? '');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [dati, setDati] = useState<string | null>(null);
+  const [copiato, setCopiato] = useState(false);
+  const [confermaElimina, setConfermaElimina] = useState(false);
   const link: ProjectLink | undefined = appState.projectLink;
 
   const run = async (fn: () => Promise<void>) => {
@@ -51,9 +44,12 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
     setEditing(false);
   });
 
+  // Niente scaricamento via link (non funziona nelle anteprime): i dati si mostrano e si copiano.
   const exportData = () => run(async () => {
     const remote = ATLAS_API_URL ? await atlas.exportMe() : null;
-    downloadJson({ projectId: remote, [ECOSYSTEM.appId]: appState }, 'project-id-dati.json');
+    const testo = JSON.stringify({ projectId: remote, [ECOSYSTEM.appId]: appState }, null, 2);
+    setDati(testo);
+    try { await navigator.clipboard.writeText(testo); setCopiato(true); } catch { setCopiato(false); }
   });
 
   const toggleScope = (id: ScopeId, on: boolean) => run(async () => {
@@ -145,22 +141,38 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
         <h3 className="text-xs font-bold text-testo-tenue">I tuoi dati</h3>
         <button onClick={exportData} disabled={busy}
           className="flex items-center gap-3 p-3.5 rounded-2xl border border-linea font-bold text-sm text-testo">
-          <Download size={18} className="text-azione" /> Scarica una copia dei tuoi dati
+          <Download size={18} className="text-azione" /> Copia i tuoi dati
         </button>
         <button onClick={onLogout}
           className="flex items-center gap-3 p-3.5 rounded-2xl border border-linea font-bold text-sm text-testo">
           <LogOut size={18} className="text-testo-tenue" /> Esci
         </button>
-        <button
-          onClick={() => {
-            if (window.confirm(`Eliminare il ${ECOSYSTEM.accountName}? Collegamenti, consensi e punteggi ${ECOSYSTEM.rankingName} vengono cancellati. I progressi restano su questo dispositivo.`)) {
-              run(onDeleteAccount);
-            }
-          }}
-          disabled={busy}
-          className="flex items-center gap-3 p-3.5 rounded-2xl border border-basso/40 font-bold text-sm text-basso-testo">
-          <Trash2 size={18} /> Elimina {ECOSYSTEM.accountName}
-        </button>
+        {dati && (
+          <div className="flex flex-col gap-1.5">
+            <p className="text-xs font-semibold text-testo-tenue" role="status">
+              {copiato ? 'Copiati negli appunti. Puoi anche selezionare il testo qui sotto.' : 'Non riesco a copiare da solo: seleziona il testo qui sotto e copialo a mano.'}
+            </p>
+            <textarea readOnly value={dati} rows={6} onFocus={e => e.currentTarget.select()} aria-label="I tuoi dati"
+              className="w-full resize-y rounded-xl border border-linea bg-superficie-2 p-3 font-mono text-[11px] text-testo" />
+          </div>
+        )}
+        {confermaElimina ? (
+          <div className="flex flex-col gap-2 rounded-2xl border border-basso/40 p-3.5" role="alertdialog" aria-label={`Conferma eliminazione del ${ECOSYSTEM.accountName}`}>
+            <p className="text-sm font-bold text-basso-testo">
+              Eliminare il {ECOSYSTEM.accountName}? Collegamenti, consensi e punteggi {ECOSYSTEM.rankingName} vengono cancellati. I progressi restano su questo dispositivo.
+            </p>
+            <div className="flex gap-2">
+              <button onClick={() => setConfermaElimina(false)} className="flex-1 py-2.5 rounded-xl font-bold text-testo-tenue border border-linea">Annulla</button>
+              <button onClick={() => { setConfermaElimina(false); run(onDeleteAccount); }} disabled={busy}
+                className="flex-1 py-2.5 rounded-xl font-bold text-basso-testo border border-basso/40">Elimina</button>
+            </div>
+          </div>
+        ) : (
+          <button onClick={() => setConfermaElimina(true)} disabled={busy}
+            className="flex items-center gap-3 p-3.5 rounded-2xl border border-basso/40 font-bold text-sm text-basso-testo">
+            <Trash2 size={18} /> Elimina {ECOSYSTEM.accountName}
+          </button>
+        )}
       </div>
 
       {error && <p className="text-xs font-bold text-basso-testo bg-basso-tinta rounded-xl p-2.5 text-center">{error}</p>}

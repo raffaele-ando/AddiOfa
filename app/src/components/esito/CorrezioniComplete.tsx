@@ -39,6 +39,8 @@ interface Props {
   perQuestion: Map<string, ExamQuestionResult>;
   answers: Record<string, number>;
   onOpenTheory?: (id: string) => void;
+  /** Per le simulazioni già svolte: l'ordine delle opzioni visto durante la prova non è salvato, quindi le lettere A, B, C, D non si mostrano. */
+  senzaLettere?: boolean;
 }
 
 function statoDi(r: ExamQuestionResult | undefined, dato: number | undefined): Stato {
@@ -46,7 +48,7 @@ function statoDi(r: ExamQuestionResult | undefined, dato: number | undefined): S
   return r?.correct === true ? 'giusta' : 'sbagliata';
 }
 
-export default function CorrezioniComplete({ questions, perQuestion, answers, onOpenTheory }: Props) {
+export default function CorrezioniComplete({ questions, perQuestion, answers, onOpenTheory, senzaLettere }: Props) {
   const [filtro, setFiltro] = useState<Filtro>('tutte');
   const [aperte, setAperte] = useState<Set<string>>(new Set());
   const idBase = useId();
@@ -104,7 +106,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
         {visibili.map(({ q, n, r, stato }) => {
           const s = STATO[stato];
           const dato = answers[q.id];
-          const lettera = (i: number) => String.fromCharCode(65 + i);
+          const lettera = (i: number) => (senzaLettere ? '' : `${String.fromCharCode(65 + i)}. `);
           const compatta = stato === 'giusta';
           const apertaSpieg = !compatta || aperte.has(q.id);
           const idSpieg = `${idBase}-sp-${q.id}`;
@@ -121,20 +123,32 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               </div>
               <p className="font-bold text-[15px] sm:text-base text-testo leading-snug mb-2.5">{q.prompt}</p>
 
-              <dl className="space-y-1.5 text-sm">
-                <div className="flex gap-2 items-baseline">
-                  <dt className="shrink-0 text-xs font-bold text-testo-tenue w-[88px]">La tua risposta</dt>
-                  <dd className={cn('font-semibold', dato === undefined ? 'italic text-testo-tenue' : stato === 'sbagliata' ? 'text-basso-testo' : 'text-testo')}>
-                    {dato === undefined ? 'Nessuna risposta' : <>{lettera(dato)}. <span className={cn(stato === 'sbagliata' && 'line-through decoration-basso/60')}>{q.options[dato]}</span></>}
-                  </dd>
-                </div>
-                {stato !== 'giusta' && r && (
+              {stato === 'giusta' ? (
+                <dl className="space-y-1.5 text-sm">
                   <div className="flex gap-2 items-baseline">
-                    <dt className="shrink-0 text-xs font-bold text-alto-testo w-[88px]">Corretta</dt>
-                    <dd className="font-bold text-alto-testo">{lettera(r.correctIndex)}. {q.options[r.correctIndex]}</dd>
+                    <dt className="shrink-0 text-xs font-bold text-testo-tenue w-[88px]">La tua risposta</dt>
+                    <dd className="font-semibold text-testo">{dato !== undefined && dato >= 0 ? <>{lettera(dato)}{q.options[dato]}</> : 'Giusta'}</dd>
                   </div>
-                )}
-              </dl>
+                </dl>
+              ) : (
+                // Confronto affiancato: a sinistra cosa hai risposto, a destra la risposta corretta
+                <dl className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="rounded-xl border border-basso/30 bg-superficie/70 p-2.5">
+                    <dt className="flex items-center gap-1 text-xs font-bold text-basso-testo"><X size={13} strokeWidth={3.5} aria-hidden /> La tua risposta</dt>
+                    <dd className={cn('mt-1 font-semibold break-words', dato === undefined ? 'italic text-testo-tenue' : 'text-testo')}>
+                      {dato === undefined
+                        ? 'Nessuna risposta'
+                        : dato < 0 || q.options[dato] === undefined
+                          ? <span className="italic text-testo-tenue">Sbagliata (il testo scelto non è salvato)</span>
+                          : <>{lettera(dato)}<span className="line-through decoration-basso/60">{q.options[dato]}</span></>}
+                    </dd>
+                  </div>
+                  <div className="rounded-xl border border-alto/30 bg-superficie/70 p-2.5">
+                    <dt className="flex items-center gap-1 text-xs font-bold text-alto-testo"><Check size={13} strokeWidth={3.5} aria-hidden /> Risposta corretta</dt>
+                    <dd className="mt-1 font-bold text-alto-testo break-words">{r ? <>{lettera(r.correctIndex)}{q.options[r.correctIndex]}</> : '…'}</dd>
+                  </div>
+                </dl>
+              )}
 
               {compatta && r?.explanation && (
                 <button type="button" onClick={() => { playTapSound(); alterna(q.id); }} aria-expanded={apertaSpieg} aria-controls={idSpieg}
@@ -143,10 +157,16 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
                   <ChevronDown size={14} strokeWidth={3} className={apertaSpieg ? 'rotate-180' : undefined} aria-hidden />
                 </button>
               )}
+              {!compatta && !r?.explanation && (
+                <p className="mt-2.5 text-xs font-semibold text-testo-tenue">Spiegazione non disponibile per questa domanda.</p>
+              )}
               {apertaSpieg && (r?.explanation || (r?.theoryId && onOpenTheory)) && (
                 <div id={idSpieg} className="mt-2.5">
                   {r?.explanation && (
-                    <p className="text-[13.5px] font-medium leading-relaxed text-testo bg-superficie/70 border border-linea rounded-xl p-3">{r.explanation}</p>
+                    <div className="text-[13.5px] font-medium leading-relaxed text-testo bg-superficie/70 border border-linea rounded-xl p-3">
+                      <p className="text-xs font-bold text-testo-tenue mb-1">Spiegazione</p>
+                      <p>{r.explanation}</p>
+                    </div>
                   )}
                   {r?.theoryId && onOpenTheory && (
                     <button type="button" onClick={() => { playTapSound(); onOpenTheory(r.theoryId!); }}
