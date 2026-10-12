@@ -38,6 +38,8 @@ import Paywall from './screens/Paywall';
 import Waitlist from './screens/Waitlist';
 import Invites from './screens/Invites';
 import Legal from './screens/Legal';
+import { ExtraProvider, type ExtraCtx } from './screens/extra/contesto';
+import { SCHERMATE } from './screens/extra/registro';
 // La teoria pesa: si carica solo quando serve
 const Theory = lazy(() => import('./screens/Theory'));
 // Strumenti da sviluppo: fuori dalla build di produzione
@@ -45,7 +47,15 @@ const BrandKit = import.meta.env.DEV ? lazy(() => import('./brand/BrandKit')) : 
 const DebugMode = import.meta.env.DEV ? lazy(() => import('./components/DebugMode')) : null;
 
 type View = 'landing' | 'onboarding' | 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'stats' | 'cheatsheet'
-  | 'paywall' | 'waitlist' | 'invites' | 'theory' | 'legal' | 'thanks' | 'brand' | 'debug' | 'profile' | 'leaderboard' | 'lezioni' | 'impostazioni';
+  | 'paywall' | 'waitlist' | 'invites' | 'theory' | 'legal' | 'thanks' | 'brand' | 'debug' | 'profile' | 'leaderboard' | 'lezioni' | 'impostazioni' | 'extra';
+
+// Schermate extra (screens/extra): componenti caricati solo quando servono
+const COMPONENTI_EXTRA = new Map<string, React.LazyExoticComponent<React.ComponentType>>();
+function componenteExtra(id: string) {
+  let c = COMPONENTI_EXTRA.get(id);
+  if (!c && SCHERMATE[id]) { c = lazy(SCHERMATE[id].carica); COMPONENTI_EXTRA.set(id, c); }
+  return c;
+}
 
 // Il tempo di studio conta solo mentre si studia davvero
 const STUDY_VIEWS: View[] = ['learn', 'exam', 'onboarding'];
@@ -56,6 +66,8 @@ function initialView(state: AppState): View {
   const params = new URLSearchParams(window.location.search);
   if (params.get('pagamento') === 'ok') return 'thanks';
   if (params.has('landing')) return 'landing';
+  if (params.has('vista') && SCHERMATE[params.get('vista') ?? '']) return 'extra';
+  if (params.has('sfida')) return 'extra';
   if (import.meta.env.DEV && params.has('brand')) return 'brand';
   const isNewUser = !state.onboarding && state.history.length === 0 && Object.keys(state.stats).length === 0;
   return isNewUser ? 'landing' : 'menu';
@@ -85,6 +97,12 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   const loginOn = FEATURE_FLAGS.projectId && !isDemo;
 
   const [view, setViewRaw] = useState<View>(() => initialView(appState));
+  const [extra, setExtra] = useState<{ id: string; params: Record<string, string> }>(() => {
+    const q = new URLSearchParams(window.location.search);
+    const id = q.has('sfida') && !q.has('vista') ? 'sfida-accetta' : (q.get('vista') ?? '');
+    return { id: SCHERMATE[id] || id === 'sfida-accetta' ? id : 'profilo', params: Object.fromEntries(q.entries()) };
+  });
+  const extraPila = useRef<{ id: string; params: Record<string, string> }[]>([]);
   const [learnMode, setLearnMode] = useState<'standard' | 'weakness' | 'blitz' | 'category' | 'recall' | 'smart'>('smart');
   const [learnCategory, setLearnCategory] = useState<string | undefined>(undefined);
   const [teoriaId, setTeoriaId] = useState<string | undefined>(undefined);
@@ -110,6 +128,16 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     let v = pila.current.pop() ?? 'menu';
     if (NO_RETURN.includes(v)) v = 'menu';
     setViewRaw(v);
+  };
+
+  // schermate extra: `vai` apre un'altra schermata extra ricordando la precedente; `indietro` torna lì, poi alla schermata da cui si è arrivati
+  const vaiExtra = (id: string, params: Record<string, string> = {}) => {
+    if (viewRef.current === 'extra') extraPila.current.push(extra); else { extraPila.current = []; apri('extra'); }
+    setExtra({ id, params });
+  };
+  const indietroExtra = () => {
+    const prec = extraPila.current.pop();
+    if (prec) setExtra(prec); else indietro();
   };
 
   const apriPaywall = (reason: PaywallReason = 'generico') => {
@@ -438,6 +466,27 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     setView('exam');
   };
 
+  const aggiornaExtra = (fn: (s: AppState) => AppState) => {
+    setAppState(prev => {
+      const nuovo = fn(prev);
+      saveState(nuovo);
+      return nuovo;
+    });
+  };
+  const ctxExtra: ExtraCtx = {
+    appState, aggiorna: aggiornaExtra, pass, demo: isDemo,
+    id: extra.id, params: extra.params, vai: vaiExtra, indietro: indietroExtra,
+    apriPaywall: () => apriPaywall('generico'),
+    apriTeoria: (id?: string) => { setTeoriaId(id); apri('theory'); },
+    apriImpostazioni: () => apri('impostazioni'),
+    apriLegale,
+    apriInviti: () => apri('invites'),
+    apriLanding: () => setView('landing'),
+    avviaEsercizi: (modo, categoria) => { setLearnMode(modo); setLearnCategory(categoria); setView('learn'); },
+    avviaSimulazione: avviaSimulazione,
+    vaiHome: () => setView('menu'),
+  };
+
   // Il Brand Kit usa tutta la finestra, fuori dalla cornice dell'app (solo in sviluppo)
   if (BrandKit && view === 'brand') {
     return (
@@ -496,6 +545,23 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onNaviga={vaiScheda}
         />
       )}
+      {view === 'extra' && !SCHERMATE[extra.id] && conBarra('home', (
+        <div className="flex h-full flex-col items-center justify-center gap-3 p-8 text-center">
+          <p className="text-base font-bold text-testo">Questa schermata non è ancora disponibile.</p>
+          <button type="button" onClick={indietroExtra} className="rounded-xl bg-azione px-5 py-3 text-sm font-bold text-azione-su">Indietro</button>
+        </div>
+      ))}
+      {view === 'extra' && SCHERMATE[extra.id] && (() => {
+        const Comp = componenteExtra(extra.id);
+        if (!Comp) return null;
+        const def = SCHERMATE[extra.id];
+        const pagina = (
+          <ExtraProvider valore={ctxExtra}>
+            <Suspense fallback={<Caricamento />}><Comp key={extra.id + JSON.stringify(extra.params)} /></Suspense>
+          </ExtraProvider>
+        );
+        return def.barra === null ? pagina : conBarra(def.barra ?? 'home', pagina);
+      })()}
       {view === 'impostazioni' && (
         <Impostazioni
           utente={user}

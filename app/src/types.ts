@@ -111,6 +111,8 @@ export interface AppState {
   selectedCorpus?: CorpusType;
   onboarding?: OnboardingResult;
   projectLink?: ProjectLink;
+  /** Dati delle schermate extra (profilo, sfide, frasi...): una chiave per schermata, vedi screens/extra/contesto.tsx. */
+  extra?: Record<string, unknown>;
 }
 
 // Consenso dato da questo utente al collegamento di AddiOFA con il suo Project ID
