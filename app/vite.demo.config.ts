@@ -1,4 +1,4 @@
-// Build "demo": un unico file HTML con tutto incorporato (JS, CSS, font, immagini), per la pagina online (Artifact).
+// Build a file unico: un solo file HTML con tutto incorporato (JS, CSS, font, immagini), comodo da pubblicare come pagina singola (Artifact).
 // Non tocca vite.config.ts (che resta quello dell'app normale). Uso: npm run build:demo → dist-demo/index.html
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
@@ -31,7 +31,7 @@ export default defineConfig({
       { find: '@', replacement: path.resolve(__dirname, '.') },
     ],
   },
-  // La demo non parla con nessun server: Firebase e le altre integrazioni restano spente.
+  // VITE_MODE=demo: nella build a file unico le immagini restano incorporate nel file (vedi src/brand/risorse.ts).
   define: { 'import.meta.env.VITE_MODE': JSON.stringify('demo') },
   build: {
     outDir: 'dist-demo',

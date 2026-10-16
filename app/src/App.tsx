@@ -318,7 +318,6 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
             setLearnCategory(undefined);
             setView('learn');
           }}
-          onStartExam={avviaSimulazione}
           onOpenTheory={() => { setTeoriaId(undefined); apri('theory'); }}
           onOpenTheoryTopic={apriTeoriaDa}
           onOpenDiagnostic={() => setView('onboarding')}

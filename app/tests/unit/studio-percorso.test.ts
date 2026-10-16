@@ -1,10 +1,10 @@
-// Percorso di studio (lib/studio/percorso.ts): ordine didattico, stato di ogni lezione dai progressi veri, blocco del Pass, tempo stimato.
+// Percorso di studio (lib/studio/percorso.ts): ordine didattico, stato di ogni lezione dai progressi veri, tempo stimato.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { questions, isCoreId } from '../../src/data/questions';
+import { questions } from '../../src/data/questions';
 import { theoryTopics } from '../../src/data/theory';
 import {
-  ORDINE_PERCORSO, ordinaPercorso, idTeoriaGratis, lezioniPercorso, prossimaLezione, tempoLezione, statoDaConteggi,
+  ORDINE_PERCORSO, ordinaPercorso, lezioniPercorso, prossimaLezione, tempoLezione, statoDaConteggi,
   filtroArgomento, obiettivoLezione, titoloBreve, QUOTA_LEZIONE_IMPARATA, SECONDI_PER_DOMANDA,
 } from '../../src/lib/studio/percorso';
 import { statoVuoto } from './aiuti';
@@ -38,15 +38,11 @@ test('l\'ordine va da A1 a B1 senza tornare indietro e comincia dai più comuni'
 
 test('una scheda nuova non elencata va in fondo al suo livello; una non pronta resta fuori', () => {
   const finta = { ...theoryTopics[0], id: 'nuovo-argomento', titolo: 'Nuovo', livello: 'A2' as const, pronta: true };
-  const nonPronta = { ...theoryTopics[1], id: 'in-arrivo', pronta: false };
+  const nonPronta = { ...theoryTopics[1], id: 'non-pronta', pronta: false };
   const o = ordinaPercorso([...theoryTopics, finta, nonPronta]);
-  assert.ok(!o.some(t => t.id === 'in-arrivo'));
+  assert.ok(!o.some(t => t.id === 'non-pronta'));
   const ultimoA2 = [...o].reverse().find(t => t.livello === 'A2')!;
   assert.equal(ultimoA2.id, 'nuovo-argomento');
-});
-
-test('la scheda gratis è la stessa di screens/Theory.tsx (la prima di A1 nell\'ordine del file)', () => {
-  assert.deepEqual([...idTeoriaGratis()], ['present-simple']);
 });
 
 test('stato di una lezione: da iniziare, in corso, imparata (soglia 80 %)', () => {
@@ -59,41 +55,29 @@ test('stato di una lezione: da iniziare, in corso, imparata (soglia 80 %)', () =
 });
 
 test('lezioniPercorso: senza progressi sono tutte da iniziare e numerate da 1', () => {
-  const l = lezioniPercorso(statoVuoto(), false);
+  const l = lezioniPercorso(statoVuoto());
   assert.equal(l.length, 31);
   assert.deepEqual(l.map(x => x.numero), Array.from({ length: 31 }, (_, i) => i + 1));
   assert.ok(l.every(x => x.stato === 'da-iniziare' && x.imparate === 0 && x.viste === 0));
   assert.equal(prossimaLezione(l)?.topic.id, 'present-simple');
 });
 
-test('lezioniPercorso con il Pass: conta tutte le domande dell\'argomento e sblocca la teoria', () => {
+test('lezioniPercorso: una lezione con tutte le domande imparate è «imparata» e la prossima la salta', () => {
   const ps = questions.filter(q => q.theoryId === 'present-simple');
   const stats = Object.fromEntries(ps.map(q => [q.id, imparata]));
-  const l = lezioniPercorso(statoVuoto({ stats }), true);
+  const l = lezioniPercorso(statoVuoto({ stats }));
   const prima = l[0];
   assert.equal(prima.topic.id, 'present-simple');
   assert.equal(prima.stato, 'imparata');
   assert.equal(prima.imparate, ps.length);
-  assert.equal(prima.disponibili, ps.length);
-  assert.ok(l.every(x => !x.teoriaBloccata));
+  assert.equal(prima.intere, ps.length);
   assert.equal(prossimaLezione(l)?.topic.id, l[1].topic.id, 'la prossima salta quelle imparate');
-});
-
-test('lezioniPercorso senza Pass: solo il nucleo gratuito, teoria bloccata tranne la gratuita', () => {
-  const ps = questions.filter(q => q.theoryId === 'present-simple' && isCoreId(q.id));
-  assert.ok(ps.length > 0 && ps.length < questions.filter(q => q.theoryId === 'present-simple').length);
-  const stats = Object.fromEntries(ps.map(q => [q.id, imparata]));
-  const l = lezioniPercorso(statoVuoto({ stats }), false);
-  assert.equal(l[0].disponibili, ps.length);
-  assert.equal(l[0].stato, 'imparata');
-  assert.equal(l[0].teoriaBloccata, false);
-  assert.ok(l.slice(1).every(x => x.teoriaBloccata));
-  assert.ok(l.every(x => x.disponibili > 0 && x.disponibili <= x.intere));
+  assert.ok(l.every(x => x.intere > 0), 'tutte le lezioni hanno domande: nessuna è bloccata o vuota');
 });
 
 test('una domanda vista una sola volta (box 1) rende la lezione «in corso» ma non imparata', () => {
-  const d = questions.find(q => q.theoryId === 'past-simple' && isCoreId(q.id))!;
-  const l = lezioniPercorso(statoVuoto({ stats: { [d.id]: { correct: 1, incorrect: 0, lastSeen: 1, box: 1 } } }), false);
+  const d = questions.find(q => q.theoryId === 'past-simple')!;
+  const l = lezioniPercorso(statoVuoto({ stats: { [d.id]: { correct: 1, incorrect: 0, lastSeen: 1, box: 1 } } }));
   const x = l.find(y => y.topic.id === 'past-simple')!;
   assert.equal(x.stato, 'in-corso');
   assert.equal(x.imparate, 0);

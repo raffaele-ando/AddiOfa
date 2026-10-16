@@ -1,8 +1,9 @@
-// Guida e FAQ: ricerca per categoria e per parole, testi coerenti con config/offer.ts.
+// Guida e FAQ: ricerca per categoria e per parole, testi coerenti con l'app gratuita e statica.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { CATEGORIE_FAQ, cercaFaq, normalizza, vociFaq } from '../../src/lib/servizi/faq';
-import { PAYMENTS_ENABLED, PASS } from '../../src/config/offer';
+import { EXAM } from '../../src/config/offer';
+import { questions } from '../../src/data/questions';
 
 const voci = vociFaq();
 
@@ -17,36 +18,41 @@ test('normalizza: senza accenti, senza punteggiatura', () => {
 });
 
 test('ricerca: tutte le parole devono comparire; accenti e maiuscole non contano', () => {
-  assert.ok(cercaFaq(voci, 'recesso').some(v => v.id === 'pass-recesso'));
+  assert.ok(cercaFaq(voci, 'cookie').some(v => v.id === 'dati-cookie'));
   assert.ok(cercaFaq(voci, 'PERCHE').length >= 0);
   assert.deepEqual(cercaFaq(voci, 'zzzzqqq'), []);
   assert.equal(cercaFaq(voci, '').length, voci.length);
   const a = cercaFaq(voci, 'diagnostico').length;
-  const b = cercaFaq(voci, 'diagnostico gratis').length;
+  const b = cercaFaq(voci, 'diagnostico browser').length;
   assert.ok(b <= a);
 });
 
 test('ricerca: la categoria restringe', () => {
   const t = cercaFaq(voci, '', 'test');
   assert.ok(t.length > 0 && t.every(v => v.categoria === 'test'));
-  assert.ok(cercaFaq(voci, 'privacy', 'pass').length === 0 || cercaFaq(voci, 'privacy', 'pass').every(v => v.categoria === 'pass'));
-  assert.ok(cercaFaq(voci, 'matricola', 'dati').length >= 1);
+  assert.ok(cercaFaq(voci, 'privacy', 'app').length === 0 || cercaFaq(voci, 'privacy', 'app').every(v => v.categoria === 'app'));
+  assert.ok(cercaFaq(voci, 'browser', 'dati').length >= 1);
 });
 
-test('pagamenti: la risposta dice la verità sull\'interruttore', () => {
-  const v = voci.find(x => x.id === 'pass-pagamenti')!;
-  const testo = v.risposta.join(' ');
-  if (!PAYMENTS_ENABLED) {
-    assert.match(testo, /non sono attivi/);
-    assert.match(testo, /lista d'attesa/);
+test('l\'app è gratuita e lo dice: nessuna voce parla di Pass, prezzi, pagamenti, lista d\'attesa, codici o account Project', () => {
+  // la sola voce che nomina i pagamenti è «È davvero gratis?», per dire che non ce ne sono
+  const tutto = voci.filter(v => v.id !== 'app-gratis').map(v => [v.domanda, ...v.risposta, v.chiavi ?? ''].join(' ')).join(' ').toLowerCase();
+  for (const vietata of ['il pass', 'pagamento', 'lista d\'attesa', 'invit', 'project id', 'garanzia', 'recesso', 'beta', 'dimostrativ']) {
+    assert.ok(!tutto.includes(vietata), `non deve comparire «${vietata}»`);
   }
-  assert.ok(testo.includes(',') || testo.length > 20);
-  assert.ok(voci.find(x => x.id === 'pass-cose')!.risposta.join(' ').includes(String(PASS.validMonths)));
+  assert.ok(voci.find(v => v.id === 'app-gratis')!.risposta.join(' ').includes('Nessun pagamento'));
+});
+
+test('i numeri della guida vengono dal banco e dal formato veri', () => {
+  const cosa = voci.find(v => v.id === 'studio-cosa-ce')!.risposta.join(' ');
+  assert.ok(cosa.includes(String(questions.length)));
+  const formato = voci.find(v => v.id === 'test-formato')!.risposta.join(' ');
+  assert.ok(formato.includes(`${EXAM.passMark} su ${EXAM.questions}`));
 });
 
 test('nessuna voce promette ciò che l\'app non fa', () => {
   const tutto = voci.map(v => [v.domanda, ...v.risposta].join(' ')).join(' ').toLowerCase();
-  for (const vietata of ['ufficiale del politecnico', 'garantiamo', 'sicuro di superare', 'teng', '100 %', 'studenti hanno già']) {
+  for (const vietata of ['ufficiale del politecnico', 'garantiamo', 'sicuro di superare', 'teng', '100 %', 'studenti hanno già', 'in arrivo', 'presto']) {
     assert.ok(!tutto.includes(vietata), `non deve comparire «${vietata}»`);
   }
 });

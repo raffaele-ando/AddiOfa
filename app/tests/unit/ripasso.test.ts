@@ -10,7 +10,7 @@ import { chiaveGiorno } from '../../src/lib/utils';
 import { statoVuoto, GIORNO } from './aiuti';
 import type { AppState, UserStats } from '../../src/types';
 
-const nucleoIds = poolMeta(false).map(m => m.id);
+const bancoIds = poolMeta().map(m => m.id);
 const ADESSO = Date.UTC(2026, 9, 11, 10, 0, 0);
 const base = { repetitions: 0, interval: 0, easiness: 2.5 };
 
@@ -232,7 +232,7 @@ function statsConScadute(scadute: string[], viste: string[] = []): UserStats {
 }
 
 test('selezione: 20 scadute e 80 nuove su 10 posti = 7 scadute e 3 nuove (le nuove non muoiono di fame)', () => {
-  const scadute = nucleoIds.slice(0, 20);
+  const scadute = bancoIds.slice(0, 20);
   const ids = selectPracticeIds(statsConScadute(scadute), { numQuestions: 10, now: ADESSO });
   assert.equal(ids.length, 10);
   assert.equal(new Set(ids).size, 10);
@@ -241,10 +241,10 @@ test('selezione: 20 scadute e 80 nuove su 10 posti = 7 scadute e 3 nuove (le nuo
   assert.deepEqual(ids.slice(0, 7).every(id => scadute.includes(id)), true, 'prima le scadute');
 });
 
-test('selezione: simulazione di 30 sessioni, ogni sessione porta almeno 3 domande nuove finché ce ne sono', () => {
+test('selezione: simulazione di sessioni a catena, ogni sessione porta almeno 3 domande nuove finché ce ne sono', () => {
   let stats: UserStats = {};
-  let nuove = nucleoIds.length;
-  for (let sessione = 0; sessione < 40 && nuove > 0; sessione++) {
+  let nuove = bancoIds.length;
+  for (let sessione = 0; sessione < 400 && nuove > 0; sessione++) {
     const ids = selectPracticeIds(stats, { numQuestions: 10, now: ADESSO });
     const nuoveScelte = ids.filter(id => !stats[id]).length;
     assert.ok(nuoveScelte >= Math.min(3, nuove), `sessione ${sessione}: ${nuoveScelte} nuove su ${nuove}`);
@@ -255,50 +255,50 @@ test('selezione: simulazione di 30 sessioni, ogni sessione porta almeno 3 domand
 });
 
 test('selezione: poche scadute (5) e tante nuove = 5 scadute + 5 nuove; tutte nuove = 10 nuove; tutte scadute = 10 scadute', () => {
-  const cinque = nucleoIds.slice(0, 5);
+  const cinque = bancoIds.slice(0, 5);
   let ids = selectPracticeIds(statsConScadute(cinque), { now: ADESSO });
   assert.equal(ids.filter(id => cinque.includes(id)).length, 5);
   assert.equal(selectPracticeIds({}, { now: ADESSO }).length, 10);
-  ids = selectPracticeIds(statsConScadute(nucleoIds), { now: ADESSO });
+  ids = selectPracticeIds(statsConScadute(bancoIds), { now: ADESSO });
   assert.equal(ids.length, 10);
 });
 
 test('selezione: senza nuove né scadute si riempie con le non ancora scadute (più vicine alla scadenza e più difficili prima)', () => {
-  const stats = statsConScadute([], nucleoIds);
+  const stats = statsConScadute([], bancoIds);
   const ids = selectPracticeIds(stats, { numQuestions: 10, now: ADESSO });
   assert.equal(ids.length, 10);
   assert.equal(new Set(ids).size, 10);
   // una domanda difficile (facilità 1,3, tre errori) non ancora scaduta passa avanti
-  stats[nucleoIds[50]] = { correct: 1, incorrect: 3, lastSeen: ADESSO - 1000, box: 0, easiness: 1.3, interval: 1 };
-  for (let i = 0; i < 5; i++) assert.ok(selectPracticeIds(stats, { numQuestions: 3, now: ADESSO }).includes(nucleoIds[50]));
+  stats[bancoIds[50]] = { correct: 1, incorrect: 3, lastSeen: ADESSO - 1000, box: 0, easiness: 1.3, interval: 1 };
+  for (let i = 0; i < 5; i++) assert.ok(selectPracticeIds(stats, { numQuestions: 3, now: ADESSO }).includes(bancoIds[50]));
 });
 
 test('selezione: 3 scadute, nessuna nuova = 3 scadute + 7 non scadute', () => {
-  const tre = nucleoIds.slice(0, 3);
-  const ids = selectPracticeIds(statsConScadute(tre, nucleoIds.slice(3)), { now: ADESSO });
+  const tre = bancoIds.slice(0, 3);
+  const ids = selectPracticeIds(statsConScadute(tre, bancoIds.slice(3)), { now: ADESSO });
   assert.equal(ids.filter(id => tre.includes(id)).length, 3);
   assert.equal(ids.length, 10);
 });
 
 test('selezione: data nel futuro (orologio spostato) non nasconde la domanda e non rompe l\'ordine', () => {
-  const stats = statsConScadute([], nucleoIds);
-  stats[nucleoIds[0]] = { correct: 1, incorrect: 0, lastSeen: ADESSO + 400 * GIORNO, box: 1, easiness: 2.5, interval: 1 };
-  const ids = selectPracticeIds(stats, { numQuestions: 100, now: ADESSO });
-  assert.equal(ids.length, nucleoIds.length);
-  assert.ok(ids.includes(nucleoIds[0]));
+  const stats = statsConScadute([], bancoIds);
+  stats[bancoIds[0]] = { correct: 1, incorrect: 0, lastSeen: ADESSO + 400 * GIORNO, box: 1, easiness: 2.5, interval: 1 };
+  const ids = selectPracticeIds(stats, { numQuestions: bancoIds.length, now: ADESSO });
+  assert.equal(ids.length, bancoIds.length);
+  assert.ok(ids.includes(bancoIds[0]));
 });
 
-test('selezione: numero di domande 0, NaN o oltre il pool; solo domande del nucleo senza Pass', () => {
+test('selezione: numero di domande 0, NaN o oltre il pool; il pool è tutto il banco', () => {
   assert.deepEqual(selectPracticeIds({}, { numQuestions: 0 }), []);
   assert.equal(selectPracticeIds({}, { numQuestions: NaN }).length, 10);
-  assert.equal(selectPracticeIds({}, { numQuestions: 100000 }).length, nucleoIds.length);
-  const set = new Set(nucleoIds);
+  assert.equal(selectPracticeIds({}, { numQuestions: 100000 }).length, bancoIds.length);
+  const set = new Set(bancoIds);
   assert.ok(selectPracticeIds({}, { numQuestions: 100000 }).every(id => set.has(id)));
-  assert.ok(selectPracticeIds({}, { numQuestions: 100000, pass: true }).length > nucleoIds.length);
+  assert.ok(bancoIds.length >= 600, 'nessun nucleo: tutte le domande');
 });
 
 test('selezione: statistiche rovinate o di id che non esistono più non rompono nulla', () => {
-  const stats = { [nucleoIds[0]]: null, [nucleoIds[1]]: { box: 'x', lastSeen: 'ieri' }, fantasma: { correct: 5, incorrect: 0, lastSeen: 1, box: 3 } } as unknown as UserStats;
+  const stats = { [bancoIds[0]]: null, [bancoIds[1]]: { box: 'x', lastSeen: 'ieri' }, fantasma: { correct: 5, incorrect: 0, lastSeen: 1, box: 3 } } as unknown as UserStats;
   for (const mode of ['standard', 'smart', 'weakness', 'blitz', 'recall'] as const) {
     const ids = selectPracticeIds(stats, { mode, now: ADESSO });
     assert.equal(ids.length, 10, mode);
@@ -309,16 +309,16 @@ test('selezione: statistiche rovinate o di id che non esistono più non rompono 
 
 test('selezione: il modo "weakness" mette per prime le domande con più errori e minore facilità', () => {
   const stats: UserStats = {};
-  nucleoIds.slice(0, 5).forEach((id, i) => { stats[id] = { correct: 1, incorrect: 5 - i, lastSeen: ADESSO, box: 0, easiness: 1.3 + i * 0.1, interval: 1 }; });
+  bancoIds.slice(0, 5).forEach((id, i) => { stats[id] = { correct: 1, incorrect: 5 - i, lastSeen: ADESSO, box: 0, easiness: 1.3 + i * 0.1, interval: 1 }; });
   const ids = selectPracticeIds(stats, { mode: 'weakness', numQuestions: 5, now: ADESSO });
-  assert.deepEqual(ids, nucleoIds.slice(0, 5));
+  assert.deepEqual(ids, bancoIds.slice(0, 5));
 });
 
 test('selezione: il modo "category" filtra per livello, il modo "smart" rispetta le stesse quote', () => {
   const ids = selectPracticeIds({}, { mode: 'category', category: 'level:A1', numQuestions: 8 });
-  const a1 = new Set(poolMeta(false).filter(m => m.level === 'A1').map(m => m.id));
+  const a1 = new Set(poolMeta().filter(m => m.level === 'A1').map(m => m.id));
   assert.ok(ids.length === 8 && ids.every(id => a1.has(id)));
-  const scadute = nucleoIds.slice(0, 20);
+  const scadute = bancoIds.slice(0, 20);
   const smart = selectPracticeIds(statsConScadute(scadute), { mode: 'smart', numQuestions: 10, now: ADESSO });
   assert.equal(smart.filter(id => !scadute.includes(id)).length, 3);
 });

@@ -1,3 +1,5 @@
+> **Nota del 16 ottobre 2026: piano superato.** L'utente ha deciso di non pensare più alla monetizzazione: l'app è gratuita, statica e senza account (niente Pass, pagamenti, lista d'attesa, inviti, Project ID, classifica NOI). Questo documento e i conti accanto restano come storico delle ipotesi e dei numeri; non descrivono più il prodotto. Per lo stato attuale: `CLAUDE.md` e `app/DEPLOY.md`.
+
 # AddiOFA — Piano definitivo e business model
 
 9 ottobre 2026 · Versione con grafici e commenti: https://claude.ai/code/artifact/1e348078-04e0-4bed-b6ee-5d64dfa449f0

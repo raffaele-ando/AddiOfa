@@ -42,10 +42,12 @@ test('startExam: 30 domande diverse con 4 opzioni, senza la risposta esatta; sub
   assert.equal(s.questions.length, EXAM.questions);
   assert.equal(new Set(s.questions.map(x => x.id)).size, EXAM.questions);
   assert.ok(s.questions.every(x => x.options.length === 4 && !('correctIndex' in x)));
-  // rispondo giusto alle prime 25 usando grade (come fa lo studente nella correzione), le altre sbagliate o lasciate vuote
+  // le opzioni sono rimescolate: l'indice esatto si ritrova dal testo della risposta esatta del banco
   const risposte: Record<string, number | null> = {};
   for (const [i, d] of s.questions.entries()) {
-    const esatta = (await p.grade(d.id, 0)).correctIndex;
+    const originale = questions.find(x => x.id === d.id)!;
+    const esatta = d.options.indexOf(originale.options[originale.correctIndex]);
+    assert.ok(esatta >= 0);
     risposte[d.id] = i < 25 ? esatta : i < 28 ? (esatta + 1) % 4 : null;
   }
   const r = await p.submitExam(s.id, risposte, 600);

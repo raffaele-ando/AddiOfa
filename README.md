@@ -1,31 +1,26 @@
 # AddiOFA
 
-App web per preparare il test d'inglese dell'OFA del Politecnico di Milano: ripasso intelligente, simulazioni nei formati dei test reali, diagnostico gratuito, Pass una tantum. Progetto studentesco indipendente, non affiliato al Politecnico di Milano.
+Sito web gratuito per preparare il test d'inglese dell'OFA del Politecnico di Milano: tutte le domande, le 31 schede di teoria, simulazioni illimitate (30 domande, 15 minuti, soglia 25/30), ripasso intelligente degli errori, statistiche, frasi e prontuario. Nessun account e nessun server: tutto sta nel browser e i progressi nel dispositivo (con esporta/importa). Progetto studentesco indipendente, non affiliato al Politecnico di Milano.
 
 ## Per cominciare
 
 ```bash
-cd app && npm ci && npm run dev      # app su http://localhost:3000
+cd app && npm ci && npm run dev      # sito su http://localhost:3000
 ```
 
-Dalla radice: `npm run check` (link dei documenti, tipi, build). La guida completa per chi lavora qui, con regole e mappa, è `CLAUDE.md`.
+Dalla radice: `npm run check` (link dei documenti, tipi, prove, build). Per pubblicare il sito: `app/DEPLOY.md`. La guida completa per chi lavora qui, con regole e mappa, è `CLAUDE.md`.
 
 ## Cartelle
 
 | | |
 |---|---|
-| `app/` | L'app React (`src/`), i file pubblici e la configurazione di Vite |
-| `pass/` | Il server Cloudflare per accessi, domande, pagamenti, lista d'attesa e inviti |
-| `atlas/` | Account Project ID e classifica NOI (rimandati) |
+| `app/` | Il sito (React, `src/`), i file pubblici e la configurazione di Vite |
 | `contenuti/` | Domande, teoria e spiegazioni: la fonte da cui si genera il banco dell'app |
 | `grafica/` | Logo, illustrazioni e schermate ridisegnate, con i programmi che le producono |
-| `docs/` | Piano di business e conti, strategia, dati sulle graduatorie, archivio |
+| `docs/` | Note di lavoro, design, dati sulle graduatorie, storico del vecchio piano di business, archivio |
 | `tools/` | Script del repository |
+| `pass/`, `atlas/` | Worker Cloudflare del vecchio progetto a pagamento: fuori uso, l'app non li chiama più |
 
 ## Da togliere (decide il proprietario)
 
-`app/firebase-applet-config.json` (residuo di AI Studio con la chiave di un altro progetto Firebase) e `app/bun.lock` (il progetto usa npm).
-
-## Stato
-
-Vedi `docs/business/AddiOFA_piano_definitivo.md` per decisioni, conti e roadmap, e `app/DEMO.md` per cosa è reale e cosa è dimostrativo nella versione online.
+`app/firebase-applet-config.json`, `app/firebase-blueprint.json`, `app/firestore.rules` (residui di AI Studio: l'app non usa più Firebase) e `app/bun.lock` (il progetto usa npm). Le dipendenze `firebase`, `canvas-confetti`, `@types/canvas-confetti`, `motion` non sono più importate: si tolgono con `npm uninstall`.

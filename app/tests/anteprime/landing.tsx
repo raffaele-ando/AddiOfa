@@ -1,5 +1,5 @@
 // Anteprima della landing, senza il resto dell'app.
-// Uso: /tests/anteprime/landing.html?tema=dark  &pass=0 (senza il pulsante verso il Pass)
+// Uso: /tests/anteprime/landing.html?tema=dark
 // Registro per Playwright: window.__log (callback chiamate).
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -20,7 +20,6 @@ createRoot(document.getElementById('root')!).render(
         onStartDiagnostic={reg('onStartDiagnostic')}
         onSkip={reg('onSkip')}
         onOpenLegal={reg('onOpenLegal')}
-        onOpenPass={q.get('pass') === '0' ? undefined : reg('onOpenPass')}
       />
   </StrictMode>,
 );

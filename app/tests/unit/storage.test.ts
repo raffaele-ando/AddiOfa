@@ -68,10 +68,9 @@ test('salvare e ricaricare conserva i progressi', () => {
 });
 
 test('normalizeState non butta i dati buoni e non inventa quelli mancanti', () => {
-  const n = normalizeState({ streak: 3.9, lastActiveDate: 5, onboarding: { completedAt: 1 }, selectedCorpus: 'initial', dailyActivity: { '2026-01-01': 4 } });
+  const n = normalizeState({ streak: 3.9, lastActiveDate: 5, onboarding: { completedAt: 1 }, dailyActivity: { '2026-01-01': 4 } });
   assert.equal(n.streak, 3);
   assert.equal(n.lastActiveDate, 5);
-  assert.equal(n.selectedCorpus, 'initial');
   assert.deepEqual(n.dailyActivity, { '2026-01-01': 4 });
   assert.equal(normalizeState(null).streak, 0);
 });

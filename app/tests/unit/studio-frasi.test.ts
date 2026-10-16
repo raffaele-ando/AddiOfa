@@ -1,14 +1,14 @@
 // Frasi e vocaboli (lib/studio/frasi.ts): le frasi vengono dal banco vero, senza doppioni, segnaposto o risposte sbagliate.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { questions, isCoreId } from '../../src/data/questions';
+import { questions } from '../../src/data/questions';
 import {
   estraiFrasi, fraseDaDomanda, chiaveFrase, primaFrase, maiuscolaGiusta, filtraFrasi, contaFrasi, statoFrase,
 } from '../../src/lib/studio/frasi';
 import type { Question } from '../../src/types';
 
 const q = (p: Partial<Question> & Pick<Question, 'id' | 'prompt' | 'options' | 'correctIndex'>): Question => ({ explanation: 'Si usa il Past Simple. Altro.', category: 'Grammatica', ...p });
-const frasi = estraiFrasi(questions, isCoreId);
+const frasi = estraiFrasi(questions);
 
 test('dal banco vero esce una frase per quasi ogni domanda, e nessuna domanda è scartata per errore', () => {
   assert.ok(frasi.length >= 600, `solo ${frasi.length} frasi`);
@@ -86,16 +86,13 @@ test('scarta le domande che non danno una frase completa e sicura', () => {
   assert.equal(r('Translate: senza apici', ['x'], 'Traduzione'), null, 'traduzione senza la frase italiana');
 });
 
-test('doppioni: vince la domanda del nucleo gratuito, poi quella con la traduzione; le altre restano tra le domande collegate', () => {
+test('doppioni: vince la domanda con la traduzione; le altre restano tra le domande collegate', () => {
   const a = q({ id: 'a', prompt: 'Which sentence is correct?', options: ["I don't know them.", 'x'], correctIndex: 0 });
   const b = q({ id: 'b', category: 'Traduzione', prompt: "Translate: 'Non li conosco.'", options: ["I don't know them", 'x'], correctIndex: 0 });
-  const unica = estraiFrasi([a, b], () => false);
+  const unica = estraiFrasi([a, b]);
   assert.equal(unica.length, 1);
-  assert.equal(unica[0].id, 'b', 'a parità di nucleo vince la traduzione');
+  assert.equal(unica[0].id, 'b', 'vince la traduzione');
   assert.deepEqual(unica[0].domande, ['b', 'a']);
-  const conNucleo = estraiFrasi([a, b], id => id === 'a');
-  assert.equal(conNucleo[0].id, 'a', 'il nucleo gratuito vince');
-  assert.equal(conNucleo[0].core, true);
 });
 
 test('primaFrase: prima frase della spiegazione, senza spezzare dentro le virgolette e con taglio pulito', () => {
@@ -115,14 +112,11 @@ test('maiuscolaGiusta: inizio frase maiuscola, metà frase minuscola solo per pa
   assert.equal(maiuscolaGiusta('where', 'Hello. '), 'Where');
 });
 
-test('filtri e conteggi: nucleo gratuito, da ripassare (sbagliate non imparate), già note (imparate), preferite, ricerca', () => {
-  const nucleo = frasi.filter(f => f.core);
-  assert.ok(nucleo.length >= 90 && nucleo.length <= 100);
-  const base = { preferite: new Set<string>(), stats: {}, pass: false };
-  assert.equal(filtraFrasi(frasi, { ...base, testo: '', filtro: 'tutte' }).length, nucleo.length, 'senza Pass solo il nucleo');
-  assert.equal(filtraFrasi(frasi, { ...base, pass: true, testo: '', filtro: 'tutte' }).length, frasi.length);
+test('filtri e conteggi: tutte, da ripassare (sbagliate non imparate), già note (imparate), preferite, ricerca', () => {
+  const base = { preferite: new Set<string>(), stats: {} };
+  assert.equal(filtraFrasi(frasi, { ...base, testo: '', filtro: 'tutte' }).length, frasi.length, 'tutte le frasi sono aperte');
 
-  const [a, b, c] = nucleo;
+  const [a, b, c] = frasi;
   const stats = {
     [a.domande[0]]: { correct: 0, incorrect: 2, lastSeen: 1, box: 0 },        // sbagliata
     [b.domande[0]]: { correct: 3, incorrect: 0, lastSeen: 1, box: 2 },        // imparata
@@ -136,10 +130,10 @@ test('filtri e conteggi: nucleo gratuito, da ripassare (sbagliate non imparate),
   assert.deepEqual(new Set(r('gia-note')), new Set([b.id, c.id]));
   const pref = new Set([b.id]);
   assert.deepEqual(filtraFrasi(frasi, { ...base, preferite: pref, testo: '', filtro: 'preferite' }).map(f => f.id), [b.id]);
-  assert.deepEqual(contaFrasi(frasi, { preferite: pref, stats, pass: false }), { tutte: nucleo.length, preferite: 1, 'da-ripassare': 1, 'gia-note': 2 });
+  assert.deepEqual(contaFrasi(frasi, { preferite: pref, stats }), { tutte: frasi.length, preferite: 1, 'da-ripassare': 1, 'gia-note': 2 });
 
   // ricerca: senza accenti e in inglese o in italiano
-  const t = filtraFrasi(frasi, { ...base, pass: true, testo: 'PERCHE', filtro: 'tutte' });
+  const t = filtraFrasi(frasi, { ...base, testo: 'PERCHE', filtro: 'tutte' });
   assert.ok(t.length > 0 && t.every(f => /perche/i.test(`${f.en} ${f.it} ${f.argomento ?? ''}`.normalize('NFD').replace(/[̀-ͯ]/g, ''))));
-  assert.equal(filtraFrasi(frasi, { ...base, pass: true, testo: 'zzzzqq', filtro: 'tutte' }).length, 0);
+  assert.equal(filtraFrasi(frasi, { ...base, testo: 'zzzzqq', filtro: 'tutte' }).length, 0);
 });

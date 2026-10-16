@@ -9,7 +9,7 @@ selettore, testo, rapporto, colori.
 Uso (dalla radice del repository, dopo `npm run build:demo` in app/):
   python3 tools/controlla-contrasto.py                      # 390 px, chiaro e scuro, tutte le schermate
   python3 tools/controlla-contrasto.py --larghezza 1280 --altezza 800 --schema dark
-  python3 tools/controlla-contrasto.py --schermate home,paywall --foto /tmp/foto
+  python3 tools/controlla-contrasto.py --schermate home,lezioni --foto /tmp/foto
   python3 tools/controlla-contrasto.py --pagina file:///.../altra.html --solo-pagina   # una sola pagina, senza il percorso della demo
 Opzioni: --risposte file.json  (testo domanda -> testo risposta giusta, per avere anche risposte esatte; senza, si tocca la prima opzione)
 
@@ -254,14 +254,7 @@ async def percorso(page, nome_schema, larghezza, risposte, foto, risultati, qual
         if await page.get_by_role('button', name=re.compile(nome_btn)).count():
             await page.get_by_role('button', name=re.compile(nome_btn)).first.click(); await page.wait_for_timeout(700)
             await c('correzioni'); break
-    # paywall (seconda simulazione) e Pass in prova
-    await ricarica_e_vai('Simulazioni'); await page.wait_for_timeout(500)
-    for nome_btn in ('Sblocca con il Pass', 'Altre simulazioni con il Pass'):
-        if await esiste(nome_btn): await clic(nome_btn); break
-    await page.wait_for_timeout(600); await c('paywall')
-    if await esiste('Sblocca il Pass in prova'):
-        await clic('Sblocca il Pass in prova'); await page.wait_for_timeout(1000); await c('pass-sbloccato')
-    # con il Pass: Progressi, Teoria, Esercizi, Prontuario, Classifica
+    # Progressi, Teoria, Esercizi, Prontuario
     for voce, nome in (('^Progressi', 'progressi'), ('^Teoria', 'teoria'), ('^Prontuario', 'prontuario'), ('^Esercizi mirati', 'esercizi')):
         await ricarica_e_vai('Lezioni')
         await page.get_by_role('button', name=re.compile(voce)).first.click(timeout=4000); await page.wait_for_timeout(1000)

@@ -19,10 +19,11 @@ export default defineConfig(() => {
     build: {
       rollupOptions: {
         output: {
-          // Bundle diviso: librerie pesanti e banco domande in file separati, meglio in cache
-          manualChunks: {
-            firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
-            charts: ['recharts'],
+          // Bundle diviso in file a parte, meglio in cache: il banco (domande e teoria, cambia solo con i contenuti) e i grafici
+          manualChunks(id: string) {
+            if (id.includes('/src/data/questions.ts') || id.includes('/src/data/theory.ts')) return 'banco';
+            if (id.includes('/node_modules/recharts/') || id.includes('/node_modules/d3-') || id.includes('/node_modules/victory-vendor/')) return 'charts';
+            return undefined;
           },
         },
       },

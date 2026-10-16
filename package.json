@@ -1,19 +1,17 @@
 {
   "name": "addiofa-repo",
   "private": true,
-  "description": "Script di comodo alla radice: i veri pacchetti sono in app/ e pass/ (nessun workspace).",
+  "description": "Script di comodo alla radice: l'app è un sito statico in app/ (nessun workspace).",
   "scripts": {
     "dev": "npm --prefix app run dev",
     "lint": "npm --prefix app run lint",
     "test": "npm --prefix app run test",
     "build": "npm --prefix app run build",
     "build:demo": "npm --prefix app run build:demo",
-    "pass:typecheck": "npm --prefix pass run typecheck",
-    "pass:dev": "npm --prefix pass run dev",
     "grafica:sync": "bash tools/sincronizza-essenziali.sh",
     "links": "node tools/check-links.mjs",
     "contenuti": "node contenuti/strumenti/genera.mjs",
     "contenuti:valida": "node contenuti/strumenti/valida.mjs",
-    "check": "npm run links && npm run lint && npm run build"
+    "check": "npm run links && npm run lint && npm run test && npm run build"
   }
 }

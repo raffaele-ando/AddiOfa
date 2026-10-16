@@ -1,7 +1,7 @@
 // Numeri delle Statistiche (lib/studio/statistiche.ts): tessere, andamento (solo punti veri), padronanza per argomento, obiettivi.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { questions, isCoreId } from '../../src/data/questions';
+import { questions } from '../../src/data/questions';
 import { tessereStatistiche, andamentoSimulazioni, formatTempoStudio, padronanzaArgomenti, leggiObiettivi } from '../../src/lib/studio/statistiche';
 import { chiaveGiorno } from '../../src/lib/utils';
 import { statoVuoto, simulazione, GIORNO } from './aiuti';
@@ -45,20 +45,18 @@ test('andamento: solo simulazioni vere (con almeno una risposta), in ordine di d
   assert.deepEqual(andamentoSimulazioni(statoVuoto()), []);
 });
 
-test('padronanza per argomento: imparate su domande dell\'argomento, nucleo gratuito senza Pass', () => {
+test('padronanza per argomento: imparate su domande dell\'argomento, tutto il banco', () => {
   const ps = questions.filter(q => q.theoryId === 'present-simple');
   const stats = Object.fromEntries(ps.slice(0, 7).map(q => [q.id, { correct: 3, incorrect: 1, lastSeen: 1, box: 2 }]));
-  const pass = padronanzaArgomenti(statoVuoto({ stats }), true).find(r => r.id === 'present-simple')!;
-  assert.equal(pass.totale, ps.length);
-  assert.equal(pass.imparate, 7);
-  assert.equal(pass.percento, Math.round((7 / ps.length) * 100));
-  assert.equal(pass.risposte, 28);
-  const core = ps.filter(q => isCoreId(q.id));
-  const free = padronanzaArgomenti(statoVuoto({ stats: Object.fromEntries(core.map(q => [q.id, { correct: 2, incorrect: 0, lastSeen: 1, box: 2 }])) }), false).find(r => r.id === 'present-simple')!;
-  assert.equal(free.totale, core.length);
-  assert.equal(free.percento, 100);
-  assert.equal(padronanzaArgomenti(statoVuoto(), true).length, 31);
-  assert.ok(padronanzaArgomenti(statoVuoto(), true).every(r => r.percento === 0 && r.risposte === 0));
+  const r = padronanzaArgomenti(statoVuoto({ stats })).find(x => x.id === 'present-simple')!;
+  assert.equal(r.totale, ps.length);
+  assert.equal(r.imparate, 7);
+  assert.equal(r.percento, Math.round((7 / ps.length) * 100));
+  assert.equal(r.risposte, 28);
+  const tutte = padronanzaArgomenti(statoVuoto({ stats: Object.fromEntries(ps.map(q => [q.id, { correct: 2, incorrect: 0, lastSeen: 1, box: 2 }])) })).find(x => x.id === 'present-simple')!;
+  assert.equal(tutte.percento, 100);
+  assert.equal(padronanzaArgomenti(statoVuoto()).length, 31);
+  assert.ok(padronanzaArgomenti(statoVuoto()).every(x => x.percento === 0 && x.risposte === 0));
 });
 
 test('obiettivi: assenza o forma sconosciuta non rompono niente', () => {

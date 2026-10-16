@@ -21,3 +21,13 @@
 .brand-ill-scura { display: none; }
 :is(.dark *) .brand-ill-chiara { display: none; }
 :is(.dark *) .brand-ill-scura { display: inline; }
+
+/* Scena dell'hero: chiara con maschera (sfuma nel fondo della pagina), scura con l'alfa già nell'immagine. */
+.brand-scena-chiara {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 30%), linear-gradient(to bottom, transparent 0%, #000 9%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 30%), linear-gradient(to bottom, transparent 0%, #000 9%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+.brand-scena-scura { display: none; }
+:is(.dark *) .brand-scena-chiara { display: none; }
+:is(.dark *) .brand-scena-scura { display: block; }

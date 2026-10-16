@@ -1,7 +1,7 @@
 // Profilo: livello attuale e badge, calcolati dalle domande imparate. Banco finto, numeri verificabili a mano.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { livelloAttuale, livelloConNucleo } from '../../src/lib/profilo/livello';
+import { livelloAttuale } from '../../src/lib/profilo/livello';
 import { BADGE, valutaBadge, argomentiPadroneggiati, type ContestoBadge } from '../../src/lib/profilo/badge';
 import { normalizzaProfilo, nomeVisibile, iniziale, NOME_MAX, PROFILO_INIZIALE } from '../../src/lib/profilo/dati';
 import { statoVuoto, simulazione, GIORNO } from './aiuti';
@@ -66,7 +66,7 @@ test('argomenti: servono almeno 3 domande nel banco e l\'80 % imparate', () => {
   assert.equal(argomentiPadroneggiati(imparate(['a1-0', 'a1-1', 'a1-2']), banco()).padroneggiati, 0, '3 su 5 = 60 %');
 });
 
-const ctx = (stato = statoVuoto()): ContestoBadge => ({ stato, pool: banco(), tutte: banco() });
+const ctx = (stato = statoVuoto()): ContestoBadge => ({ stato, banco: banco() });
 const badge = (stato: ReturnType<typeof statoVuoto>, giaSbloccati: string[] = []) =>
   Object.fromEntries(valutaBadge(ctx(stato), giaSbloccati).map(b => [b.id, b]));
 
@@ -87,11 +87,11 @@ test('badge: prima domanda e argomento padroneggiato', () => {
   assert.equal(b['domande-100'].raggiungibile, false, 'con 30 domande nel banco 100 non si raggiungono');
 });
 
-test('badge: simulazioni, solo formato ente; superata = 25 esatte su 30', () => {
-  const b = badge(statoVuoto({ history: [simulazione({ date: 1, esatte: 24 }), simulazione({ date: 2, esatte: 25 }), simulazione({ date: 3, esatte: 30, format: 'teng' })] }));
+test('badge: simulazioni; superata = 25 esatte su 30', () => {
+  const b = badge(statoVuoto({ history: [simulazione({ date: 1, esatte: 24 }), simulazione({ date: 2, esatte: 25 }), simulazione({ date: 3, esatte: 30 })] }));
   assert.equal(b['prima-simulazione'].sbloccato, true);
   assert.equal(b['simulazione-superata'].sbloccato, true);
-  assert.equal(b['simulazioni-superate-3'].avanzamento, '1 su 3 simulazioni superate', 'il TENG non conta');
+  assert.equal(b['simulazioni-superate-3'].avanzamento, '2 su 3 simulazioni superate');
   const nessuna = badge(statoVuoto({ history: [simulazione({ date: 1, esatte: 24 })] }));
   assert.equal(nessuna['prima-simulazione'].sbloccato, true);
   assert.equal(nessuna['simulazione-superata'].sbloccato, false);
@@ -146,22 +146,4 @@ test('profilo: nome, avatar e corso ripuliti; senza nome è «Studente»', () =>
   assert.equal(nomeVisibile(PROFILO_INIZIALE), 'Studente');
   assert.equal(iniziale(PROFILO_INIZIALE), 'S');
   assert.equal(iniziale({ ...PROFILO_INIZIALE, nome: 'élodie' }), 'É');
-});
-
-test('livello con Pass: il livello raggiunto sul nucleo non si perde quando il banco si allarga', () => {
-  const nucleo = banco().filter(q => q.id.endsWith('-0') || q.id.endsWith('-1') || q.id.endsWith('-2')); // 3 domande per livello
-  const tutto = banco();
-  const stats = imparate(['a1-0', 'a1-1']); // 2 su 3 = 67 % sul nucleo, 2 su 10 sul banco intero
-  assert.equal(livelloAttuale(stats, tutto).livello, null);
-  const r = livelloConNucleo(stats, tutto, nucleo);
-  assert.equal(r.livello, 'A1');
-  assert.equal(r.dalNucleo, true);
-  // se il banco intero dà un livello uguale o migliore vale il banco intero
-  const molte = imparate(ids('a1', 0, 6));
-  const r2 = livelloConNucleo(molte, tutto, nucleo);
-  assert.equal(r2.livello, 'A1');
-  assert.equal(r2.dalNucleo, false);
-  // senza nucleo distinto non cambia nulla
-  assert.equal(livelloConNucleo(stats, tutto, tutto).livello, null);
-  assert.equal(livelloConNucleo(stats, tutto, []).dalNucleo, false);
 });

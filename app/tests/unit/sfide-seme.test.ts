@@ -78,11 +78,12 @@ test('semi e identificativi nuovi hanno il formato che il codice accetta', () =>
   assert.notEqual(nuovoSeme(), nuovoSeme());
 });
 
-test('sul banco vero: le 10 domande del giorno esistono, sono del nucleo gratuito e nessuna ripetuta', () => {
-  const nucleo = poolMeta(false);
-  assert.ok(nucleo.length >= 30);
-  const ids = scegliDomande(nucleo, semeDelGiorno(new Date(2026, 9, 12)));
+test('sul banco vero: le 10 domande del giorno esistono, sono del banco e nessuna ripetuta', () => {
+  const banco = poolMeta();
+  assert.ok(banco.length >= 600);
+  const ids = scegliDomande(banco, semeDelGiorno(new Date(2026, 9, 12)));
   assert.equal(ids.length, DOMANDE_SFIDA);
-  assert.ok(ids.every(id => nucleo.some(m => m.id === id)));
-  assert.ok(bankMeta().length >= nucleo.length);
+  assert.ok(ids.every(id => banco.some(m => m.id === id)));
+  assert.equal(new Set(ids).size, ids.length);
+  assert.equal(bankMeta().length, banco.length);
 });

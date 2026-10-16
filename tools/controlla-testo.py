@@ -8,7 +8,7 @@ Esce con 1 se trova blocchi lunghi."""
 import argparse, json, re, sys
 from playwright.sync_api import sync_playwright
 
-STATO = {"history": [{"id": "x", "date": 1760000000000, "score": 22, "passed": False, "timeSpentSeconds": 600, "format": "ente"}],
+STATO = {"history": [{"id": "x", "date": 1760000000000, "score": 22, "passed": False, "timeSpentSeconds": 600}],
          "stats": {}, "streak": 0, "lastActiveDate": None,
          "onboarding": {"completedAt": 1760000000000, "hasCertification": False, "hasOfa": "yes", "diagnosticCorrect": 7, "diagnosticTotal": 10, "passProbability": 0.4}}
 JS = r"""(maxParole) => {
