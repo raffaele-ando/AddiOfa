@@ -108,7 +108,7 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
                   return (
                     <li key={nome}>
                       <div className="flex items-baseline justify-between gap-3 text-sm">
-                        <span className="font-bold text-testo">{nome}</span>
+                        <span data-testo-ok className="font-bold text-testo">{nome}</span>
                         <span className="font-bold tabular-nums text-testo">{a.correct}/{a.total}</span>
                       </div>
                       <div className="mt-1.5 h-2.5 rounded-full bg-tacca/60 overflow-hidden" role="progressbar" aria-valuemin={0} aria-valuemax={a.total} aria-valuenow={a.correct} aria-label={`${nome}: ${a.correct} su ${a.total}`}>

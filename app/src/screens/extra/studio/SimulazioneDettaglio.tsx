@@ -109,7 +109,7 @@ function Svolta({ chiave }: { chiave: string }) {
                 {righe.map(r => (
                   <li key={r.nome}>
                     <div className="flex items-baseline justify-between gap-3 text-[14px]">
-                      <span className="font-semibold text-testo break-words min-w-0">{r.nome}</span>
+                      <span data-testo-ok className="font-semibold text-testo break-words min-w-0">{r.nome}</span>
                       <span className="shrink-0 font-bold tabular-nums text-testo">{r.esatte}/{r.totale}</span>
                     </div>
                     <div className="mt-1.5"><Barra valore={r.percento} colore={coloreValore(r.percento)} alta={7} /></div>

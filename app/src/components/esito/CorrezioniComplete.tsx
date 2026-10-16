@@ -103,7 +103,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               <div className="flex items-center gap-2.5 mb-2">
                 <span className="w-7 h-7 rounded-full bg-superficie text-xs font-bold tabular-nums text-testo-tenue flex items-center justify-center shrink-0">{n}</span>
                 <span role="img" aria-label={s.parola} className={cn('grid h-7 w-7 shrink-0 place-items-center rounded-full', s.badge)}><Icona nome={s.nome} size={16} /></span>
-                <span className="ml-auto min-w-0 truncate text-right text-[11px] font-semibold text-testo-tenue">{q.grammarTopic || q.category}</span>
+                <span data-testo-ok className="ml-auto min-w-0 truncate text-right text-[11px] font-semibold text-testo-tenue">{q.grammarTopic || q.category}</span>
               </div>
               <p data-testo-ok className="font-bold text-[15px] sm:text-base text-testo leading-snug mb-2.5">{q.prompt}</p>
 

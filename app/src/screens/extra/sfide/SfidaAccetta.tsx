@@ -78,7 +78,7 @@ export default function SfidaAccetta() {
   const proprio = voci.find(v => v.id === idVoce('duello', dati.seme, 'sfidante'));
 
   if (mioSuo || (proprio && dati.tipo === 'd')) {
-    return <Messaggio tono="azione" icona="condividi" titolo="È la tua sfida" testo="Mandala a un amico."
+    return <Messaggio tono="azione" icona="condividi" titolo="Tua sfida"
       azione={proprio && <Bottone icona="correzioni" aria="Vedi la tua partita" onClick={() => vai('sfida-risultato', { voce: proprio.id })} />} />;
   }
   if (giaGiocata) {
