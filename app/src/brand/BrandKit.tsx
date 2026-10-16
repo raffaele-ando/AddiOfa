@@ -120,7 +120,7 @@ export default function BrandKit({ onEsci }: { onEsci: () => void }) {
       border: '1.5px solid #E5E7EB', background: filtro === id ? '#0F172A' : '#fff', color: filtro === id ? '#fff' : '#0F172A' }}>{children}</button>
   );
   return (
-    <div style={{ height: '100%', overflowY: 'auto', background: '#F6F8FC', padding: 20, boxSizing: 'border-box', font: `500 14px ${FONT}` }}>
+    <div className="brand-catalogo-chiaro" style={{ height: '100%', overflowY: 'auto', background: '#F6F8FC', padding: 20, boxSizing: 'border-box', font: `500 14px ${FONT}` }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 14 }}>
         <div>
           <h1 style={{ margin: 0, font: `800 26px ${FONT}`, color: '#0F172A' }}>Brand Kit AddiOFA</h1>

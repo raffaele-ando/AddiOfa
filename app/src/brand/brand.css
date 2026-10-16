@@ -31,3 +31,7 @@
 .brand-scena-scura { display: none; }
 :is(.dark *) .brand-scena-chiara { display: none; }
 :is(.dark *) .brand-scena-scura { display: block; }
+
+/* Il catalogo ?brand è sempre su fondo chiaro (colori scritti nel codice): lì le illustrazioni restano nella variante chiara anche in tema scuro. */
+.brand-catalogo-chiaro .brand-ill-chiara { display: inline; }
+.brand-catalogo-chiaro .brand-ill-scura { display: none; }

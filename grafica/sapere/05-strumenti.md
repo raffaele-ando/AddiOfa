@@ -35,7 +35,9 @@ Tutti in Python 3; rendono in Chromium con Playwright (`render.py`). Si lanciano
 | `controlla_disegno.py` | tavola originale / disegno (3x, scuro, 1x) + avvisi (ingombro, palette, `<text>`); `tutto` fa anche la tavola d'insieme |
 | `testo_svg.py` | lettere e numeri in tracciati con Inter |
 | `modifica_disegno.py` | colore / sposta / scala / ruota / nascondi un pezzo per id, su qualsiasi SVG con id |
-| `scuro_svg.py` | varianti per il tema scuro |
+| `scuro_svg.py` | varianti per il tema scuro: nuvola quasi trasparente + tabella `REGOLE` di ricolori per id (carte blu notte, blu schiariti, anelli bianchi) |
+| `glifi_puliti.py` | i 14 glifi del kit blu ridisegnati puliti (sostituiscono quelli ricalcati da `glifi.py`) |
+| `estrai_hero.py` | scena dell'hero: `scena-chiara` (ritaglio ripulito) e `scena-scura` (notte, alfa ai bordi) |
 | `adatta_svg.py`, `riempi_maglie.py`, `DISEGNI.md` | metodo 6 (fedeltà ai pixel): **non usarli** per le illustrazioni AI, copiano e deformano i difetti. Utili solo su originali puliti |
 | `vettorializza.py`, `disegna.py` | metodi 2–3, storici |
 
