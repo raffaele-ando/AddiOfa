@@ -3,6 +3,7 @@ import { cheatSheet } from '../data/cheatSheet';
 import { RichText } from './ui';
 import { Pagina } from '../screens/extra/ui';
 import { Icona } from '../brand/icone/Icona';
+import { Arte, StatoVuoto } from '../screens/extra/studio/comune';
 
 /** Prontuario: le regole che tornano più spesso. L'argomento è blu (studio), la trappola ha il filo corallo a sinistra: una sola riga di colore per carta. Il testo delle regole è contenuto. */
 export default function CheatSheet({ onBack }: { onBack: () => void }) {
@@ -13,7 +14,7 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
     : cheatSheet;
 
   return (
-    <Pagina titolo="Prontuario" onBack={onBack}>
+    <Pagina titolo="Prontuario" onBack={onBack} destra={<Arte nome="sfera-consigli" gruppo="sfere" lato={72} />}>
       <div className="mt-4 relative">
         <span aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none"><Icona nome="cerca" size={18} /></span>
         <input type="search" value={query} onChange={e => setQuery(e.target.value)} aria-label="Cerca"
@@ -44,12 +45,7 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
             )}
           </div>
         ))}
-        {rules.length === 0 && (
-          <div role="status" className="flex flex-col items-center gap-2 py-8 text-testo-tenue">
-            <Icona nome="cerca" size={28} />
-            <p className="text-[14px] font-semibold">Nessun risultato</p>
-          </div>
-        )}
+        {rules.length === 0 && <StatoVuoto illustrazione={{ nome: 'ricerca-scintille' }} titolo="Nessun risultato" />}
       </div>
     </Pagina>
   );
