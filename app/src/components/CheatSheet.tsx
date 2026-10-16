@@ -25,7 +25,7 @@ export default function CheatSheet({ onBack }: { onBack: () => void; onNeedPass?
       <div className="mt-4 relative">
         <Search size={18} aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none" />
         <input type="search" value={query} onChange={e => setQuery(e.target.value)} aria-label="Cerca un argomento"
-          placeholder="Cerca un argomento (es. since, conditional)" autoComplete="off" spellCheck={false}
+          placeholder="Cerca un argomento (es. since)" autoComplete="off" spellCheck={false}
           className="w-full h-[46px] rounded-[12px] border border-linea bg-superficie-2 pl-10 pr-10 text-[15px] text-testo placeholder:text-testo-tenue outline-none focus:border-azione" />
         {query && (
           <button type="button" onClick={() => setQuery('')} aria-label="Cancella la ricerca"
