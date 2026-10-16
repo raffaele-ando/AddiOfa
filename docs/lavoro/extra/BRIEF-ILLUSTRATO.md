@@ -1,0 +1,20 @@
+# Brief: seguire i concept e le illustrazioni; le icone solo dove servono
+
+Critica dell'utente (16/10): «Letteralmente non stai usando tutte le illustrazioni e i concept che si sono creati.» e, prima, «le icone hanno tolto le illustrazioni o i concept design che dovevi seguire: devi seguire più i concept design e poi mettere le icone dove servono». Il giro «tutto a icone» ha spogliato le schermate. Ora si ricostruisce **dai concept**: la schermata somiglia al concept (arte, proporzioni, gerarchia, corpo dei testi), le illustrazioni del Brand Kit hanno il ruolo che hanno nel concept, e le icone (lucide via `<Icona>`) stanno dove nel concept c'è un'icona o dove un pulsante/riga lo richiede.
+
+## Fonti da guardare (con Read: sono immagini)
+- Le schermate ricostruite e i ritagli dei concept: `grafica/brand/concept-svg/schermate/*` (SVG), `grafica/brand/concept/NN-*/` (anteprima.png, NNN-schermata.png), indice `grafica/fonti/INDICE.md`, schede in `docs/lavoro/catalogo-design-*.md` e `docs/design/CATALOGO-SCHERMATE.md`.
+- Le illustrazioni: `docs/design/ILLUSTRAZIONI.md` (scritto dall'agente ASSET: inventario, **piano d'uso schermata → illustrazione**, e `tools/controlla-illustrazioni.py`). Si usano con `<Illustrazione nome=… gruppo=… lato=…/>` (sceglie da sola chiaro/scuro). Se manca l'illustrazione che il concept mostra, segnalalo nella nota (non inventare un'icona al suo posto).
+- Struttura di navigazione decisa: barra **Home | Esercizi | Sfide**, profilo in alto a destra (hub a tessere); la Home ospita Lezioni (prossime tre) e Simulazione (ultima + ▶ + «Tutte»). Mappa: `docs/design/ARCHITETTURA.md` (da aggiornare) e `app/src/App.tsx`.
+
+## Regole di costruzione
+1. Per ogni schermata del tuo perimetro: trova il concept (o i concept) corrispondente, costruisci la schermata copiando geometria, spazi, corpo dei testi, colori e **uso dell'arte**; confronto affiancato in Chromium (concept | app, 400 px, chiaro e scuro) e correzioni finché somiglia; salva le coppie in `docs/lavoro/extra/illustrato/<area>/`.
+2. Le illustrazioni compaiono dove il concept le mostra: intestazioni di pagina, stati (vuoto, errore, successo, attesa), esiti, onboarding, carte di argomento. Una stessa illustrazione non deve fare due mestieri diversi nell'app (es. «celebrazione» solo per l'esito superato).
+3. Le icone: tab bar, righe e pulsanti piccoli, selettori, badge di stato. Una funzione = una icona (`node tools/genera-icone.mjs` segnala i doppioni). Non sostituiscono le illustrazioni.
+4. Testo: i concept hanno poche parole. Restano le regole del brief precedente: titoli di 1-2 parole, spiegazioni solo dietro la ⓘ, niente frasi che spiegano la funzione; `python3 tools/controlla-testo.py` non deve segnalare blocchi di più di 5 parole fuori da `data-testo-ok`.
+5. Tema scuro: le illustrazioni cambiano variante da sole; i colori della pagina dai token (`index.css`). Controlla in scuro ogni schermata, soprattutto aloni, fondi bianchi, testi su illustrazione, contrasto ≥ 4,5:1 (`tools/controlla-contrasto.py`).
+6. Dati veri soltanto: niente numeri, utenti, recensioni o urgenze inventati nei concept (82 %, 12.000 studenti, ecc.): al loro posto dati calcolati dall'app o lo stato vuoto onesto. Tutto è gratuito e senza limiti: niente Pass, lucchetti, prezzi, «demo», «beta».
+7. Nessuna animazione decorativa (CLAUDE.md); restano spinner e le animazioni a pezzi in `app/src/brand/animazioni/`.
+
+## Consegna
+Nota `docs/lavoro/extra/NOTE-ILLUSTRATO-<AREA>.md`: tabella schermata → concept → illustrazioni usate → cosa non somiglia ancora e perché; le richieste per `App.tsx` (lo modifica solo il coordinatore: elenca props e viste che servono); controlli eseguiti con numeri; cosa non provato. Prima di dire «fatto»: `cd app && npx tsc --noEmit`, `npm test` dalla radice, `python3 tools/controlla-testo.py`, screenshot letti a occhio a 400 e 1280 px in chiaro e scuro, console senza errori, nessuno scorrimento orizzontale. Non eseguire git, non cancellare file (elenca quelli da cancellare). Porte di prova: HOME 5261, STUDIO 5262, PROVE 5263, SFIDE 5264, PROFILO 5265, PROGETTO 5266.
