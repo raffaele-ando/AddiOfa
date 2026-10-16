@@ -19,7 +19,6 @@ import { bankMeta } from '../../src/lib/spacedRepetition';
 import { questions as banco } from '../../src/data/questions';
 import ExamMode from '../../src/components/ExamMode';
 import LearnMode from '../../src/components/LearnMode';
-import PracticeMenu from '../../src/components/PracticeMenu';
 import StatsMode from '../../src/components/StatsMode';
 import CheatSheet from '../../src/components/CheatSheet';
 
@@ -90,7 +89,7 @@ function App() {
     corpo = <LearnMode appState={stato} mode={(q.get('mode') ?? 'smart') as 'smart'} category={q.get('cat') ?? undefined}
       onUpdateAppState={st => { setStato(st); }} onExit={esci} onOpenTheory={q.get('teoria') === '1' ? teoria : undefined} />;
   } else if (s === 'practice') {
-    corpo = <PracticeMenu onSelectMode={(m, c) => registra({ onSelectMode: [m, c] })} onBack={esci} />;
+    corpo = <div className="p-6 text-sm">Il menu degli esercizi ora sta nella pagina Esercizi (screens/Esercizi.tsx).</div>;
   } else if (s === 'stats') {
     const conDati: AppState = q.get('dati') === '1' ? {
       ...stato,
