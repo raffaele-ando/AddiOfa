@@ -1,0 +1,47 @@
+"""
+Porta in `brand/disegni/` (la cartella da cui l'app sincronizza le illustrazioni, vedi tools/sincronizza-essenziali.sh)
+le grafiche già ridisegnate in `brand/concept-svg/` che prima restavano fuori dall'app:
+
+- `kit-blu/illustrazioni/`  cappello di laurea con cronometro, composizione di tre illustrazioni;
+- `kit-blu/sfere/`          le 13 icone «sfera» 3D (concept 28 e 35), col prefisso `sfera-`;
+- `kit-luminoso/illustrazioni/` il kit blu «vivo» (concept 17): stessi soggetti del kit blu, blu più acceso, per i formati grandi.
+
+Non si portano: `email-istituzionale-sigillo` e `email-polimi` (contengono il sigillo del Politecnico), i due
+`piano-studi-bloccato-lucchetto-*` (doppioni del kit blu col lucchetto di altro colore), le forme decorative dei layout.
+Le varianti scure si fanno dopo con `scuro_svg.py`.
+
+    python3 strumenti/brand/porta_in_disegni.py
+"""
+from __future__ import annotations
+
+import pathlib
+import shutil
+
+BRAND = pathlib.Path(__file__).resolve().parents[2] / "brand"
+CS = BRAND / "concept-svg"
+DIS = BRAND / "disegni"
+
+# (origine relativa a concept-svg, destinazione relativa a disegni)
+COPIE: list[tuple[str, str]] = [
+    ("illustrazioni/kit-blu/cappello-laurea-orologio.svg", "kit-blu/illustrazioni/cappello-laurea-orologio.svg"),
+    ("illustrazioni/kit-blu/composizione-misuratore-globo-calendario.svg", "kit-blu/illustrazioni/composizione-tre.svg"),
+]
+SFERE = ["addiofa", "app", "community", "consigli", "costi", "faq", "ofa", "opportunita", "polimi", "quiz", "risultati", "studio", "successi", "tips"]
+for s in SFERE:
+    COPIE.append((f"icone/sfera/{s}.svg", f"kit-blu/sfere/sfera-{s}.svg"))
+for f in sorted((CS / "illustrazioni-luminose" / "vivo").glob("*.svg")):
+    if f.name.endswith(".scuro.svg") or f.stem == "email-polimi":
+        continue
+    COPIE.append((f"illustrazioni-luminose/vivo/{f.name}", f"kit-luminoso/illustrazioni/{f.name}"))
+
+
+def main():
+    for o, d in COPIE:
+        dest = DIS / d
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(CS / o, dest)
+    print(len(COPIE), "file portati in brand/disegni")
+
+
+if __name__ == "__main__":
+    main()

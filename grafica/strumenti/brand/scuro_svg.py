@@ -12,6 +12,7 @@ Fa tre cose, nell'ordine:
 3. nessun'altra modifica: gli id restano uguali, perché le animazioni a pezzi agganciano gli id.
 
     python3 strumenti/brand/scuro_svg.py            # tutti i disegni: <nome>.svg -> <nome>.scuro.svg
+    (le icone «sfera» passano anche da `scuro_sfera`: vetro blu notte e oggetti bianchi -> carta blu)
 """
 from __future__ import annotations
 
@@ -31,6 +32,7 @@ RIGA = "#41629F"             # righe di testo disegnate (barre)
 RIGA_DIETRO = "#34508C"
 CASELLA = "#2F4679"          # caselle del calendario
 ANELLO = CARTA               # anello attorno ai bottoni: come la carta, non bianco
+SPESSORE = "#16223F"         # spessore (costa) di fogli e carte
 
 # Ogni voce: id (di un elemento o di un gradiente) -> {attributo: valore} oppure, per un gradiente, lista dei colori delle fermate.
 REGOLE: dict[str, dict[str, dict | list]] = {
@@ -103,6 +105,114 @@ REGOLE: dict[str, dict[str, dict | list]] = {
         "foto": {"fill": "#142146"},
         **{f"riga-{n}": {"stroke": "#4A6EB8"} for n in (1, 2, 3)},
     },
+
+    # --- illustrazioni portate dai concept (porta_in_disegni.py) ---
+    "cappello-laurea-orologio": {
+        "cronometro-quadrante": {"fill": "#EEF3FC"},
+    },
+    "composizione-tre": {
+        "sagome-pallide": {"fill": CARTA_DIETRO, "opacity": "0.5"},
+        "composizione-tre-i1-nuvola": {"opacity": "0.1"}, "composizione-tre-i2-nuvola": {"opacity": "0.1"}, "composizione-tre-i3-nuvola": {"opacity": "0.1"},
+        "composizione-tre-i1-binario-luce": ["#2B3858", "#232F4D"], "composizione-tre-i1-cursore-anello": {"fill": "#0F1729"},
+        "composizione-tre-i3-foglio": {"fill": CARTA, "stroke": BORDO}, "composizione-tre-i3-caselle": {"fill": CASELLA},
+    },
+    # kit luminoso (blu «vivo» del concept 17): stessa famiglia di regole, ids propri
+    "kit-luminoso/accesso-bloccato": {
+        "finestra-luce": [CARTA_ALTA, CARTA_BASSA], "finestra-spessore": {"fill": SPESSORE},
+    },
+    "kit-luminoso/attesa-caricamento": {
+        "clessidra-vetro": {"fill": "#2B3F73"},
+    },
+    "kit-luminoso/mancato-superamento": {
+        "foglio-luce": [CARTA_ALTA, CARTA, CARTA_BASSA], "foglio-destra-luce": [CARTA, CARTA_BASSA, CARTA_DIETRO],
+        "foglio-spessore": {"fill": SPESSORE}, "foglio-destra-spessore": {"fill": SPESSORE},
+        "foglio-faccia": {"stroke": BORDO}, "foglio-destra-faccia": {"stroke": BORDO},
+        **{f"testo-riga-{n}": {"stroke": RIGA} for n in (1, 2, 3, 4)},
+        "distintivo-bordo": {"fill": ANELLO},
+    },
+    "kit-luminoso/messaggi-supporto": {
+        "fumetto-1-luce": [CARTA_ALTA, CARTA_BASSA],
+    },
+    "kit-luminoso/piano-studi-bloccato": {
+        "corpo-luce": [CARTA_ALTA, CARTA_BASSA],
+        **{f"casella-{n}": {"fill": CASELLA} for n in (11, 12, 13, 21, 22, 23)},
+    },
+    "kit-luminoso/quiz-test": {
+        "foglio-dietro-luce": [CARTA_DIETRO, CARTA_DIETRO, CARTA_DIETRO], "foglio-luce": [CARTA_ALTA, CARTA, CARTA_BASSA],
+        "foglio-dietro-spessore": {"fill": SPESSORE}, "foglio-spessore": {"fill": SPESSORE},
+        "foglio-dietro-faccia": {"stroke": RIGA_DIETRO}, "foglio-faccia": {"stroke": BORDO},
+        **{f"riga-{n}-{t}": {"stroke": RIGA} for n in (1, 2, 3) for t in ("lunga", "corta")},
+    },
+    "kit-luminoso/risultato-probabilita": {
+        "arco-binario-luce": ["#2B3858", "#232F4D"], "pallina-anello": {"fill": "#0F1729"}, "numero": {"fill": "#F2F6FF"},
+    },
+    "kit-luminoso/studio-inglese": {
+        "libro-sotto-pagine-luce": ["#E9EEF8", "#C7D1E6"], "libro-sopra-pagine-luce": ["#E9EEF8", "#C7D1E6"],
+    },
+    "kit-luminoso/superamento": {
+        "foglio-luce": [CARTA_ALTA, CARTA, CARTA_BASSA], "foglio-sinistra-luce": ["#22345F", "#1F305A", "#1B2A4F"],
+        "foglio-spessore": {"fill": SPESSORE}, "foglio-faccia": {"stroke": BORDO}, "foglio-sinistra-faccia": {"stroke": RIGA_DIETRO},
+        **{f"testo-riga-{n}": {"stroke": RIGA} for n in (1, 2, 3, 4, 5, 6)},
+        "distintivo-bordo": {"fill": ANELLO},
+    },
+    "kit-luminoso/verifica-utente": {
+        "carta-luce": [CARTA_ALTA, CARTA, CARTA_BASSA], "carta-spessore": {"fill": SPESSORE}, "carta-faccia": {"stroke": BORDO},
+        "avatar-alone-tondo": {"fill": CARTA}, "avatar-testa-bordo": {"fill": CARTA}, "avatar-busto-bordo": {"fill": CARTA, "stroke": CARTA},
+    },
+
+    # --- varianti blu dei disegni del kit rosso (blu_da_rosso.py): stesse tre famiglie di regole ---
+    "piano-superamento": {
+        "foglio": {"fill": CARTA, "stroke": BORDO}, "foglio-dietro-destra": {"stroke": RIGA_DIETRO},
+        "casella-1-3": {"fill": CASELLA}, "casella-2-2": {"fill": CASELLA}, "casella-2-3": {"fill": CASELLA},
+        "dietro_rosa-luce": ["#22345F", "#1D2D55"], "anello-luce": ["#C9DAF8", "#9DB9EC"],
+    },
+    "simulazione-esame": {
+        "foglio-luce": [CARTA_ALTA, CARTA_BASSA], "righe-testo": {"stroke": RIGA},
+    },
+    "rischio-economico-ali": {
+        "faccia-luce": [CARTA_ALTA, CARTA_BASSA], "euro-luce": ["#8CB1F2", "#6A98EA"],
+        "ala-destra-forma": {"fill": "#DCE7FB"}, "ala-sinistra-forma": {"fill": "#DCE7FB"},
+    },
+    "progressi-statistiche-scheda": {
+        "scheda-luce": [CARTA_ALTA, CARTA_BASSA], "scheda": {"stroke": BORDO}, "righe-testo": {"stroke": RIGA},
+    },
+    "quiz-test-lista": {
+        "foglio-luce": [CARTA_ALTA, CARTA_BASSA], "foglio": {"stroke": BORDO},
+        **{f"risposta-{n}-testo": {"stroke": RIGA} for n in ("a", "b", "c")}, "risposta-scelta-testo": {"stroke": RIGA},
+    },
+    "attesa": {
+        "clessidra-vetro-luce": ["#2B3F73", "#3B5694", "#2B3F73"], "clessidra-vetro": {"stroke": "#7C9BDC"},
+    },
+    "completato": {
+        "foglio-luce": [CARTA_ALTA, CARTA_BASSA], "foglio-piega-luce": ["#3C5590", "#2B4175"], "foglio-carta": {"stroke": BORDO},
+        "foglio-righe": {"fill": RIGA}, "badge-bordo": {"fill": ANELLO},
+    },
+    "errore": {
+        "foglio-luce": [CARTA_ALTA, CARTA_BASSA], "foglio-piega-luce": ["#3C5590", "#2B4175"], "foglio-carta": {"stroke": BORDO},
+        "foglio-righe": {"fill": RIGA}, "badge-bordo": {"fill": ANELLO},
+    },
+    "in-corso": {
+        "foglio-luce": [CARTA_ALTA, CARTA_BASSA], "foglio-piega-luce": ["#3C5590", "#2B4175"], "foglio-carta": {"stroke": BORDO},
+        "foglio-righe": {"fill": RIGA}, "badge-bordo": {"fill": ANELLO},
+    },
+    "messaggi": {
+        "fumetto-centrale-luce": [CARTA_ALTA, CARTA, CARTA_BASSA], "fumetto-centrale-sagoma": {"stroke": BORDO},
+    },
+    "notifica": {
+        "busta-luce": ["#2C4378", "#243865"], "lembo-luce": ["#3C5590", "#2F4A82"], "tasca-luce": ["#2A4070", "#223660"],
+        "badge-bordo": {"fill": ANELLO},
+    },
+    "ricerca-scintille": {
+        "anello-luce": ["#B6CBF0", "#6F9CE4", "#4378D2"], "manico-luce": ["#7396D9", "#4A74C4"],
+        "vetro-luce": ["#F3F7FF", "#E1EBFB", "#D3E1FA"],
+    },
+    "vuoto": {
+        "nuvola-luce": ["#2B4175", "#243865", "#1F305A"], "occhi": {"fill": "#A9C0EC"}, "bocca": {"stroke": "#A9C0EC"},
+        "nuvola-riflesso": {"stroke-opacity": "0.25"},
+    },
+    "caricamento": {
+        "fondo": {"fill-opacity": "0"}, "traccia-luce": ["#2B4175", "#34508C"],
+    },
 }
 
 
@@ -150,6 +260,50 @@ def scuro(svg: str, nome: str = "") -> str:
     return svg
 
 
+# --- icone «sfera»: vetro blu notte, con regole generali trovate per forma e non per nome -----------------------------
+VETRO = ["#34497F", "#2B4075", "#243665", "#1D2C57"]       # disco della sfera, dal riflesso al bordo
+OGGETTO_ALTO, OGGETTO_BASSO = "#3A5393", "#2E4580"        # oggetti bianchi dentro la sfera (schede, fumetti, persone)
+RIVESTIMENTI_SFERA = {"bordo": {"stroke": "#4C6BB0"}, "bordo-esterno": {"stroke": "#33508F"},
+                      "anello-interno": {"stroke": "#42609F", "opacity": "0.6"}, "banda-luce": {"opacity": "0.16"}}
+CARTA_SFERA = {  # fill di oggetti bianchi che non hanno un gradiente (colonne, righe, code dei fumetti)
+    "fumetto-bianco-coda": OGGETTO_BASSO, "ornamento": OGGETTO_BASSO,
+    **{f"{p}-{n}": OGGETTO_ALTO for p in ("capitello", "base") for n in range(1, 6)},
+    **{f"riga-{l}-{n}": "#4E70B8" for l in "abc" for n in (1, 2)},
+}
+
+
+def _chiaro(c: str) -> bool:
+    return sum(int(c[i:i + 2], 16) for i in (1, 3, 5)) >= 590
+
+
+def _gradiente_sfera(m: re.Match) -> str:
+    testa, ident, corpo, coda = m.group(1), m.group(2), m.group(3), m.group(4)
+    colori = re.findall(r'stop-color="(#[0-9A-Fa-f]{6})"', corpo)
+    if not colori or "stop-opacity" in corpo or ident.endswith("-rd1") or len(set(colori)) == 1:
+        return m.group(0)
+    if ident.endswith("-rd2"):
+        nuovi = (VETRO + [VETRO[-1]] * len(colori))[:len(colori)]
+    elif all(_chiaro(c) for c in colori):
+        nuovi = [OGGETTO_ALTO] + [OGGETTO_BASSO] * (len(colori) - 1)
+    else:
+        return m.group(0)
+    it = iter(nuovi)
+    return testa + re.sub(r'stop-color="[^"]*"', lambda _: f'stop-color="{next(it)}"', corpo) + coda
+
+
+def scuro_sfera(svg: str) -> str:
+    """Disco di vetro scuro; gradienti di oggetti chiari -> carta blu; bordi e anelli chiari -> filo blu."""
+    svg = re.sub(r'(<(?:linearGradient|radialGradient)\s[^>]*\bid="([^"]+)"[^>]*>)(.*?)(</(?:linearGradient|radialGradient)>)',
+                 _gradiente_sfera, svg, flags=re.S)
+    for ident, cosa in RIVESTIMENTI_SFERA.items():
+        if re.search(rf'\bid="{ident}"', svg):
+            svg = _regola(svg, ident, cosa)
+    for ident, colore in CARTA_SFERA.items():
+        if re.search(rf'\bid="{ident}"', svg):
+            svg = _regola(svg, ident, {"fill": colore})
+    return svg
+
+
 def main():
     n = 0
     for f in sorted((BRAND / "disegni").rglob("*.svg")):
@@ -157,9 +311,16 @@ def main():
             continue
         dest = f.with_name(f.stem + ".scuro.svg")
         s = f.read_text()
-        # le regole a mano valgono per il kit blu (quello che l'app usa); il kit rosso resta con la sola nuvola
-        regole = f.stem if "kit-blu" in f.parts else ""
-        dest.write_text(scuro(s, regole))
+        # le regole a mano valgono per i kit che l'app usa; il kit rosso (solo catalogo ?brand) resta con la sola nuvola.
+        # Il kit luminoso ha gli stessi nomi del blu ma id diversi: le sue regole stanno sotto "kit-luminoso/<nome>".
+        if "kit-blu" in f.parts:
+            regole = f.stem
+        elif "kit-luminoso" in f.parts:
+            regole = f"kit-luminoso/{f.stem}"
+        else:
+            regole = ""
+        scritto = scuro(s, regole)
+        dest.write_text(scuro_sfera(scritto) if f.stem.startswith("sfera-") else scritto)
         n += 1
         if 'id="nuvola' not in s and 'id="alone' not in s and 'id="sfondo' not in s:
             print("senza nuvola:", f.relative_to(BRAND))

@@ -1,13 +1,31 @@
 // ATLAS: l'API condivisa dalle app Project.
-// Gestisce il Project ID (account), i collegamenti tra app con consenso esplicito e la classifica NOI.
+// Gestisce il Project ID (account), i collegamenti tra app con consenso esplicito, la classifica NOI
+// e le iscrizioni (nome, email PoliMi, consensi) raccolte dalle app.
 
 import { verifyFirebaseToken, AuthClaims } from './auth';
 import { CONSENT_VERSION, SCOPES, Scope, isScope } from './scopes';
+import { HttpError, json, readJson, readBodyText } from './http';
+import { enforceRateLimit, rateLimitKey } from './limite';
+import {
+  CSV_COLUMNS, SignupRow, consensiOf, exportSignups, getLinkedSignup, parseSignup, publicSignup, safeEqual,
+  normalizePolimiEmail, setPolimiEmail, toCsv, updateLinkedSignupFields, upsertSignup, validateProfileFields,
+} from './signups';
+
+const SIGNUP_BODY_MAX = 4096;          // byte
+const SIGNUP_LIMIT_DEFAULT = 10;       // richieste per IP ...
+const SIGNUP_WINDOW_MS = 60_000;       // ... al minuto
+const ADMIN_LIMIT = 20;                // tentativi per IP al minuto sulle rotte admin
 
 export interface Env {
   DB: D1Database;
   FIREBASE_PROJECT_ID: string;
-  ALLOWED_ORIGINS: string; // elenco separato da virgole, oppure *
+  // Origini del sito autorizzate dal browser, separate da virgole (es. https://addiofa.example). Vuoto = nessuna.
+  // "*" vale solo in sviluppo locale (cioè con ALLOW_TEST_TOKENS=true).
+  ALLOWED_ORIGINS: string;
+  // Segreto dell'autore per scaricare le iscrizioni (wrangler secret put ADMIN_TOKEN). Non impostato = rotta admin 404.
+  ADMIN_TOKEN?: string;
+  // Richieste al minuto per IP su POST /v1/signups (default 10)
+  SIGNUP_RATE_LIMIT?: string;
   ACCOUNT_ID_PREFIX: string; // es. PRJ
   // Solo sviluppo locale (.dev.vars): accetta token "test:<uid>:<nome>". Mai in produzione.
   ALLOW_TEST_TOKENS?: string;
@@ -20,6 +38,7 @@ interface AccountRow {
   display_name: string;
   handle: string;
   avatar_url: string | null;
+  polimi_email: string | null;
   created_at: number;
   updated_at: number;
 }
@@ -32,41 +51,23 @@ interface LinkRow {
   updated_at: number;
 }
 
-class HttpError extends Error {
-  constructor(public status: number, message: string) {
-    super(message);
-  }
-}
-
 const MAX_MASTERED = 5000;
 const MAX_SIM_SCORE = 30;
 
+// Origini consentite: elenco in ALLOWED_ORIGINS. Se l'origine della richiesta non è nell'elenco non si
+// manda nessun Access-Control-Allow-Origin e il browser blocca la risposta.
 function corsHeaders(request: Request, env: Env): Record<string, string> {
   const origin = request.headers.get('Origin') ?? '';
-  const allowed = (env.ALLOWED_ORIGINS || '*').split(',').map(s => s.trim());
-  const allowOrigin = allowed.includes('*') ? '*' : allowed.includes(origin) ? origin : allowed[0];
-  return {
-    'Access-Control-Allow-Origin': allowOrigin,
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Authorization, Content-Type',
-    'Access-Control-Max-Age': '86400',
-    Vary: 'Origin',
-  };
-}
-
-function json(data: unknown, status = 200): Response {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
-  });
-}
-
-async function readJson<T>(request: Request): Promise<T> {
-  try {
-    return (await request.json()) as T;
-  } catch {
-    throw new HttpError(400, 'JSON non valido');
-  }
+  const allowed = (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
+  const anyOrigin = allowed.includes('*') && env.ALLOW_TEST_TOKENS === 'true';
+  const headers: Record<string, string> = { Vary: 'Origin' };
+  if (anyOrigin) headers['Access-Control-Allow-Origin'] = '*';
+  else if (origin && allowed.includes(origin)) headers['Access-Control-Allow-Origin'] = origin;
+  else return headers;
+  headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, PATCH, DELETE, OPTIONS';
+  headers['Access-Control-Allow-Headers'] = 'Authorization, Content-Type';
+  headers['Access-Control-Max-Age'] = '86400';
+  return headers;
 }
 
 async function authenticate(request: Request, env: Env): Promise<AuthClaims> {
@@ -118,6 +119,7 @@ async function getOrCreateAccount(env: Env, claims: AuthClaims): Promise<Account
       display_name: displayName,
       handle: `${slugify(displayName)}${suffix}`,
       avatar_url: claims.picture ?? null,
+      polimi_email: null,
       created_at: now,
       updated_at: now,
     };
@@ -140,8 +142,26 @@ function publicAccount(a: AccountRow) {
     displayName: a.display_name,
     handle: a.handle,
     avatarUrl: a.avatar_url,
+    polimiEmail: a.polimi_email,
     createdAt: a.created_at,
   };
+}
+
+// Dati dell'iscrizione collegata al Project ID (nome, corso, sede, consensi), se c'è
+async function profileData(env: Env, account: AccountRow) {
+  const signup = await getLinkedSignup(env, account.id);
+  return {
+    profile: { nome: signup?.nome ?? account.display_name, corso: signup?.corso ?? null, sede: signup?.sede ?? null },
+    consensi: signup ? consensiOf(signup) : null,
+    signup: signup ? publicSignup(signup) : null,
+    signupRow: signup,
+  };
+}
+
+async function profilePayload(env: Env, account: AccountRow) {
+  const { signupRow, ...data } = await profileData(env, account);
+  void signupRow;
+  return data;
 }
 
 function publicLink(l: LinkRow) {
@@ -182,31 +202,96 @@ async function handle(request: Request, env: Env): Promise<Response> {
 
   if (path === '/v1/scopes' && method === 'GET') return json({ consentVersion: CONSENT_VERSION, scopes: SCOPES });
 
+  // --- Iscrizioni (pubbliche, senza token) ---------------------------------
+  if (path === '/v1/signups') {
+    if (method === 'POST') {
+      const limit = Math.max(1, Number(env.SIGNUP_RATE_LIMIT) || SIGNUP_LIMIT_DEFAULT);
+      await enforceRateLimit(env, await rateLimitKey(request, 'signups'), limit, SIGNUP_WINDOW_MS);
+      let body: unknown;
+      try {
+        body = JSON.parse(await readBodyText(request, SIGNUP_BODY_MAX));
+      } catch (err) {
+        throw err instanceof HttpError ? err : new HttpError(400, 'JSON non valido');
+      }
+      const input = parseSignup(body);
+      await requireApp(env, input.appId);
+      await upsertSignup(env, input);
+      return json({ ok: true });
+    }
+    // Niente DELETE pubblico: senza verificare l'email chiunque potrebbe cancellare l'iscrizione di un altro.
+    if (method === 'DELETE') {
+      throw new HttpError(405, 'cancellazione su richiesta: chi ha il Project ID usa DELETE /v1/me, gli altri scrivono all\'autore', { Allow: 'POST, OPTIONS' });
+    }
+    throw new HttpError(405, 'metodo non consentito', { Allow: 'POST, OPTIONS' });
+  }
+
+  // --- Esportazione per l'autore (protetta da ADMIN_TOKEN) -------------------
+  if (path === '/v1/admin/signups' && method === 'GET') {
+    if (!env.ADMIN_TOKEN) throw new HttpError(404, 'non trovato'); // rotta spenta finché non c'è il segreto
+    await enforceRateLimit(env, await rateLimitKey(request, 'admin'), ADMIN_LIMIT, SIGNUP_WINDOW_MS);
+    const header = request.headers.get('Authorization') ?? '';
+    const token = header.startsWith('Bearer ') ? header.slice(7) : '';
+    if (!token || !(await safeEqual(token, env.ADMIN_TOKEN))) throw new HttpError(401, 'non autorizzato');
+    const formato = (url.searchParams.get('formato') ?? 'json').toLowerCase();
+    if (formato !== 'csv' && formato !== 'json') throw new HttpError(400, 'formato: csv o json');
+    const rows = await exportSignups(env, url.searchParams.get('comunicazioni') === '1');
+    if (formato === 'csv') {
+      const day = new Date().toISOString().slice(0, 10);
+      return new Response(toCsv(rows), {
+        headers: {
+          'Content-Type': 'text/csv; charset=utf-8',
+          'Content-Disposition': `attachment; filename="iscrizioni-${day}.csv"`,
+          'Cache-Control': 'no-store',
+          'X-Content-Type-Options': 'nosniff',
+        },
+      });
+    }
+    return json({ colonne: CSV_COLUMNS, totale: rows.length, iscrizioni: rows });
+  }
+
   // --- Project ID ---------------------------------------------------------
   if (path === '/v1/me') {
     const claims = await authenticate(request, env);
     const account = await getOrCreateAccount(env, claims);
 
     if (method === 'GET') {
-      return json({ account: publicAccount(account), links: await listLinks(env, account.id) });
+      return json({ account: publicAccount(account), links: await listLinks(env, account.id), ...(await profilePayload(env, account)) });
     }
 
     if (method === 'PATCH') {
-      const body = await readJson<{ displayName?: string; handle?: string }>(request);
+      const body = await readJson<{
+        displayName?: string; handle?: string; polimiEmail?: string | null;
+        corso?: string | null; sede?: string | null; provenienza?: string | null;
+      }>(request);
       const displayName = body.displayName?.trim().slice(0, 60) || account.display_name;
       const handle = body.handle?.trim().toLowerCase() ?? account.handle;
       if (!HANDLE_RE.test(handle)) throw new HttpError(400, 'nome utente: 3-20 caratteri tra a-z, 0-9, _ e .');
       const taken = await env.DB.prepare('SELECT 1 FROM accounts WHERE handle = ? AND id != ?').bind(handle, account.id).first();
       if (taken) throw new HttpError(409, 'nome utente già in uso');
+      const profileFields = { corso: body.corso, sede: body.sede, provenienza: body.provenienza };
+      const touchesProfile = Object.values(profileFields).some(v => v !== undefined);
+      validateProfileFields(profileFields);
+      if (body.polimiEmail !== undefined && body.polimiEmail !== null && body.polimiEmail !== ''
+        && !normalizePolimiEmail(body.polimiEmail)) throw new HttpError(400, 'email PoliMi non valida (@polimi.it, @mail.polimi.it o @…polimi.it)');
       await env.DB.prepare('UPDATE accounts SET display_name = ?, handle = ?, updated_at = ? WHERE id = ?')
         .bind(displayName, handle, Date.now(), account.id).run();
+      if (body.polimiEmail !== undefined) await setPolimiEmail(env, account.id, body.polimiEmail);
+      if (touchesProfile) {
+        const linked = await getLinkedSignup(env, account.id);
+        if (!linked) throw new HttpError(409, 'nessuna iscrizione collegata: indica prima l\'email PoliMi usata nell\'iscrizione');
+        await updateLinkedSignupFields(env, linked, profileFields);
+      }
       const updated = await env.DB.prepare('SELECT * FROM accounts WHERE id = ?').bind(account.id).first<AccountRow>();
-      return json({ account: publicAccount(updated!) });
+      return json({ account: publicAccount(updated!), ...(await profilePayload(env, updated!)) });
     }
 
     if (method === 'DELETE') {
-      // ON DELETE CASCADE rimuove collegamenti, registro dei consensi e punteggi
-      await env.DB.prepare('DELETE FROM accounts WHERE id = ?').bind(account.id).run();
+      // ON DELETE CASCADE rimuove collegamenti, registro dei consensi e punteggi; l'iscrizione collegata
+      // (e il suo registro dei consensi) si cancella a parte, perché il legame è solo SET NULL.
+      await env.DB.batch([
+        env.DB.prepare('DELETE FROM signups WHERE account_id = ?').bind(account.id),
+        env.DB.prepare('DELETE FROM accounts WHERE id = ?').bind(account.id),
+      ]);
       return json({ deleted: true });
     }
   }
@@ -214,16 +299,25 @@ async function handle(request: Request, env: Env): Promise<Response> {
   if (path === '/v1/me/export' && method === 'GET') {
     const claims = await authenticate(request, env);
     const account = await getOrCreateAccount(env, claims);
-    const [consents, scores] = await Promise.all([
+    const extra = await profileData(env, account);
+    const [consents, scores, signupConsents] = await Promise.all([
       env.DB.prepare('SELECT app_id, action, scopes, consent_version, created_at FROM consent_log WHERE account_id = ? ORDER BY created_at')
         .bind(account.id).all(),
       env.DB.prepare('SELECT app_id, score, mastered, best_sim, updated_at FROM noi_scores WHERE account_id = ?')
         .bind(account.id).all(),
+      extra.signupRow
+        ? env.DB.prepare('SELECT app_id, action, scopes, consent_version, created_at FROM consent_log WHERE signup_id = ? ORDER BY created_at')
+          .bind(extra.signupRow.id).all()
+        : Promise.resolve({ results: [] }),
     ]);
     return json({
       exportedAt: Date.now(),
       account: publicAccount(account),
       links: await listLinks(env, account.id),
+      profile: extra.profile,
+      consensi: extra.consensi,
+      signup: extra.signup,
+      signupConsentLog: signupConsents.results,
       consentLog: consents.results,
       noiScores: scores.results,
     });
@@ -238,11 +332,13 @@ async function handle(request: Request, env: Env): Promise<Response> {
     const now = Date.now();
 
     if (method === 'PUT') {
-      const body = await readJson<{ scopes?: unknown[]; consentVersion?: string }>(request);
+      const body = await readJson<{ scopes?: unknown[]; consentVersion?: string; polimiEmail?: string | null }>(request);
       const scopes = Array.from(new Set((body.scopes ?? []).filter(isScope)));
       const missingRequired = (Object.keys(SCOPES) as Scope[]).filter(s => SCOPES[s].required && !scopes.includes(s));
       if (missingRequired.length) throw new HttpError(400, `permessi obbligatori mancanti: ${missingRequired.join(', ')}`);
       if (body.consentVersion !== CONSENT_VERSION) throw new HttpError(409, 'informativa aggiornata: mostra di nuovo il consenso');
+      if (body.polimiEmail !== undefined && body.polimiEmail !== null && body.polimiEmail !== ''
+        && !normalizePolimiEmail(body.polimiEmail)) throw new HttpError(400, 'email PoliMi non valida (@polimi.it, @mail.polimi.it o @…polimi.it)');
 
       const previous = await getLinkScopes(env, account.id, appId);
       const scopesJson = JSON.stringify(scopes);
@@ -262,7 +358,9 @@ async function handle(request: Request, env: Env): Promise<Response> {
         statements.push(env.DB.prepare('DELETE FROM noi_scores WHERE account_id = ? AND app_id = ?').bind(account.id, appId));
       }
       await env.DB.batch(statements);
-      return json({ links: await listLinks(env, account.id) });
+      if (body.polimiEmail !== undefined) await setPolimiEmail(env, account.id, body.polimiEmail);
+      const fresh = (await env.DB.prepare('SELECT * FROM accounts WHERE id = ?').bind(account.id).first<AccountRow>())!;
+      return json({ links: await listLinks(env, account.id), account: publicAccount(fresh), ...(await profilePayload(env, fresh)) });
     }
 
     if (method === 'DELETE') {
@@ -345,7 +443,9 @@ async function handle(request: Request, env: Env): Promise<Response> {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const cors = corsHeaders(request, env);
+    // Le rotte admin sono per curl dell'autore, non per il browser: niente CORS
+    const isAdmin = new URL(request.url).pathname.startsWith('/v1/admin');
+    const cors = isAdmin ? { Vary: 'Origin' } : corsHeaders(request, env);
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
     let response: Response;
     try {
@@ -353,7 +453,8 @@ export default {
     } catch (err) {
       const status = err instanceof HttpError ? err.status : 500;
       if (status === 500) console.error(err);
-      response = json({ error: err instanceof HttpError ? err.message : 'errore interno' }, status);
+      response = json({ error: err instanceof HttpError ? err.message : 'errore interno' }, status,
+        err instanceof HttpError ? err.headers : {});
     }
     const headers = new Headers(response.headers);
     for (const [k, v] of Object.entries(cors)) headers.set(k, v);
