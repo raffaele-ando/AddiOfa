@@ -31,6 +31,7 @@ export interface ExtraCtx {
   avviaEsercizi: (modo: 'smart' | 'weakness' | 'blitz' | 'category' | 'recall' | 'standard', categoria?: string) => void;
   avviaSimulazione: () => void;
   vaiHome: () => void;
+  avviaDiagnostico: () => void;
 }
 
 const Ctx = createContext<ExtraCtx | null>(null);

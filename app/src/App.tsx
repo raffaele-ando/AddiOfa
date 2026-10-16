@@ -492,6 +492,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     avviaEsercizi: (modo, categoria) => { setLearnMode(modo); setLearnCategory(categoria); setView('learn'); },
     avviaSimulazione: avviaSimulazione,
     vaiHome: () => setView('menu'),
+    avviaDiagnostico: () => setView('onboarding'),
   };
 
   // Il Brand Kit usa tutta la finestra, fuori dalla cornice dell'app (solo in sviluppo)
@@ -529,6 +530,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onOpenTheory={() => { setTeoriaId(undefined); apri('theory'); }}
           onOpenTheoryTopic={apriTeoriaDa}
           onOpenDiagnostic={() => setView('onboarding')}
+          onApriLezione={id => vaiExtra('lezione-dettaglio', { id })}
           onOpenImpostazioni={() => (SCHERMATE.profilo ? vaiExtra('profilo') : apri('impostazioni'))}
           onNaviga={vaiScheda}
         />
@@ -538,7 +540,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           appState={statoVista}
           corpus={corpusAttivo}
           onStartLearn={() => apri('practiceMenu')}
-          onOpenStats={() => apri('stats')}
+          onOpenStats={() => vaiExtra('progressi')}
+          onOpenProfilo={() => vaiExtra('profilo')}
           onStartErrors={() => { setLearnMode('weakness'); setLearnCategory(undefined); setView('learn'); }}
           onOpenTheory={() => { setTeoriaId(undefined); apri('theory'); }}
           onOpenTheoryTopic={apriTeoriaDa}
@@ -644,7 +647,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         <Waitlist onBack={indietro} onDone={() => setView('menu')} onOpenLegal={apriLegale} />
       )}
       {view === 'invites' && (
-        <Invites onBack={indietro} />
+        <Invites onBack={indietro} onOpenPaywall={() => apriPaywall('generico')} />
       )}
       {view === 'theory' && (
         conBarra('lezioni', (
