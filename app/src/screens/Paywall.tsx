@@ -18,7 +18,7 @@ interface PaywallProps {
 }
 
 const INTESTAZIONI: Record<PaywallReason, { titolo: string; testo: string }> = {
-  simulazione: { titolo: 'Hai usato la simulazione gratuita', testo: 'Con il Pass fai simulazioni illimitate, nel formato del test di recupero e nel TENG.' },
+  simulazione: { titolo: 'Hai usato la simulazione gratuita', testo: 'Con il Pass fai simulazioni illimitate, nel formato del test di recupero (30 domande in 15 minuti).' },
   domande: { titolo: 'Il resto del banco è nel Pass', testo: `Il nucleo di circa ${FREE_LIMITS.coreQuestions} domande resta gratis. Con il Pass hai tutte le altre, con la spiegazione in italiano.` },
   teng: { titolo: 'Il formato TENG è nel Pass', testo: '30 domande in 15 minuti, 5 opzioni e penalità per ogni errore, come nel test d\'ingresso.' },
   teoria: { titolo: 'La teoria completa è nel Pass', testo: 'Una scheda è gratis. Con il Pass hai la teoria di tutti i 31 argomenti.' },
@@ -32,7 +32,6 @@ const RIGHE: { voce: string; gratis: string | boolean; pass: string | boolean }[
   { voce: 'Quiz diagnostico con probabilità', gratis: `${FREE_LIMITS.diagnostic} domande`, pass: true },
   { voce: 'Ripasso intelligente', gratis: `nucleo di circa ${FREE_LIMITS.coreQuestions} domande`, pass: 'tutte le domande' },
   { voce: 'Simulazioni', gratis: `${FREE_LIMITS.freeSimulations} completa`, pass: 'illimitate' },
-  { voce: 'Formato TENG', gratis: false, pass: true },
   { voce: 'Spiegazioni in italiano', gratis: false, pass: true },
   { voce: 'Teoria', gratis: `${FREE_LIMITS.freeTheoryTopics} scheda`, pass: '31 argomenti' },
   { voce: 'Ripasso sugli errori', gratis: false, pass: true },
