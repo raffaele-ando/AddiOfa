@@ -14,11 +14,12 @@ import { Pagina, StatoVuoto } from './comune';
 let cache: Frase[] | null = null;
 const tutteLeFrasi = () => (cache ??= estraiFrasi(questions, isCoreId));
 
-const FILTRI: { id: FiltroFrasi; nome: string }[] = [
-  { id: 'tutte', nome: 'Tutte' },
-  { id: 'preferite', nome: 'Preferite' },
-  { id: 'da-ripassare', nome: 'Da ripassare' },
-  { id: 'gia-note', nome: 'Già note' },
+// Il filtro scelto prende il colore dell'etichetta che compare sulle righe: preferite ambra, da ripassare corallo, già note verde.
+const FILTRI: { id: FiltroFrasi; nome: string; attivo: string }[] = [
+  { id: 'tutte', nome: 'Tutte', attivo: 'bg-azione-tinta text-azione-scuro border-azione' },
+  { id: 'preferite', nome: 'Preferite', attivo: 'bg-medio-tinta text-medio-testo border-medio' },
+  { id: 'da-ripassare', nome: 'Da ripassare', attivo: 'bg-basso-tinta text-basso-testo border-basso' },
+  { id: 'gia-note', nome: 'Già note', attivo: 'bg-alto-tinta text-alto-testo border-alto' },
 ];
 const PAGINA = 40;
 
@@ -75,8 +76,8 @@ export default function Frasi() {
           return (
             <button key={f.id} type="button" aria-pressed={on} onClick={() => { playTapSound(); setFiltro(f.id); setQuante(PAGINA); }}
               className={cn('min-h-[38px] shrink-0 whitespace-nowrap rounded-full px-3.5 text-[13.5px] font-semibold border transition-colors duration-100',
-                on ? 'bg-azione text-azione-su border-azione' : 'bg-superficie text-testo-tenue border-linea hover:text-testo')}>
-              {f.nome}<span className={cn('ml-1.5 tabular-nums text-[12px]', on ? 'text-azione-su' : 'text-testo-tenue')}>{conteggi[f.id]}</span>
+                on ? f.attivo : 'bg-superficie text-testo-tenue border-linea hover:text-testo')}>
+              {f.nome}<span className="ml-1.5 tabular-nums text-[12px]">{conteggi[f.id]}</span>
             </button>
           );
         })}
@@ -104,7 +105,7 @@ export default function Frasi() {
               const stato = statoFrase(f, stats);
               const inCorso = inLettura === f.id;
               return (
-                <li key={f.id} className="rounded-[12px] bg-superficie-2">
+                <li key={f.id} className="rounded-[12px] border border-linea bg-superficie">
                   <div className="flex items-stretch">
                     {disponibile && (
                       <button type="button" aria-label={inCorso ? `Ferma la lettura: ${f.en}` : `Ascolta: ${f.en}`} aria-pressed={inCorso}
@@ -129,7 +130,7 @@ export default function Frasi() {
                     </button>
                     <button type="button" aria-label={pref ? `Togli dalle preferite: ${f.en}` : `Salva tra le preferite: ${f.en}`} aria-pressed={pref}
                       onClick={() => alternaPreferita(f.id)} className="shrink-0 grid place-items-center w-[48px] text-testo-tenue">
-                      <Star size={22} aria-hidden="true" strokeWidth={2} className={pref ? 'text-medio' : undefined} fill={pref ? 'currentColor' : 'none'} />
+                      <Star size={22} aria-hidden="true" strokeWidth={2} className={pref ? 'text-medio-numero' : undefined} fill={pref ? 'currentColor' : 'none'} />
                     </button>
                   </div>
                   {apertaOra && (

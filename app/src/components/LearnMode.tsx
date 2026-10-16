@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { AppState, QuestionClickEvent, QuestionTelemetry, PaywallReason, UserStats } from '../types';
 import { selectPracticeIds, updateStats, poolMeta, countLearned } from '../lib/spacedRepetition';
-import { X, ArrowRight, RotateCcw, Lightbulb, Flame, BookOpen, Check } from 'lucide-react';
+import { X, ArrowRight, RotateCcw, Lightbulb, Flame, BookOpen, Check, Clock } from 'lucide-react';
 import FineSessione, { type DomandaDaRiprendere } from './esito/FineSessione';
 import { cn, shuffleArray } from '../lib/utils';
 import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound } from '../lib/audio';
@@ -374,8 +374,8 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
             <span>{streak}x</span>
           </div>
         )}
-        <div className={cn("font-bold text-sm w-8 text-center", timeLeft <= 5 ? "text-basso-testo" : "text-testo-tenue")}>
-          {timeLeft}s
+        <div role="timer" aria-label="Tempo per questa domanda" className={cn("inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-bold tabular-nums text-sm", timeLeft <= 5 ? "bg-basso-tinta text-basso-testo" : "bg-medio-tinta text-medio-testo")}>
+          <Clock size={14} strokeWidth={2.8} aria-hidden="true" />{timeLeft}s
         </div>
       </header>
 
@@ -386,7 +386,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
             Domanda {currentIndex + 1} di {questions.length}
           </span>
           {(!pass || category === 'corpus:initial' || appState.selectedCorpus === 'initial') && (
-            <span className="px-3 py-1 bg-alto/10 text-alto-testo border border-alto/30 text-xs font-bold rounded-full">
+            <span className="px-3 py-1 bg-superficie-2 text-testo-tenue text-xs font-bold rounded-full">
               {pass ? 'Nucleo di base' : 'Nucleo gratuito'} ({poolMeta(false).length})
             </span>
           )}
@@ -584,23 +584,23 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
               <button
                 onClick={() => handleCheck('low')}
                 disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
-                className="flex-1 sm:flex-none bg-azione-tinta border border-azione/30 hover:border-azione disabled:bg-superficie-2 disabled:border-linea disabled:text-testo-tenue text-azione-scuro font-bold text-sm py-3.5 px-5 rounded-2xl transition-colors duration-100"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-superficie-2 border border-linea hover:border-basso disabled:opacity-50 text-testo font-bold text-sm py-3.5 px-4 rounded-[12px] transition-colors duration-100"
               >
-                Indovino
+                <span aria-hidden="true" className="w-2.5 h-2.5 rounded-full bg-basso" />Indovino
               </button>
               <button
                 onClick={() => handleCheck('medium')}
                 disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
-                className="flex-1 sm:flex-none bg-medio-tinta border border-medio/30 hover:border-medio disabled:bg-superficie-2 disabled:border-linea disabled:text-testo-tenue text-medio-testo font-bold text-sm py-3.5 px-5 rounded-2xl transition-colors duration-100"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-superficie-2 border border-linea hover:border-medio disabled:opacity-50 text-testo font-bold text-sm py-3.5 px-4 rounded-[12px] transition-colors duration-100"
               >
-                Incerto
+                <span aria-hidden="true" className="w-2.5 h-2.5 rounded-full bg-medio" />Incerto
               </button>
               <button
                 onClick={() => handleCheck('high')}
                 disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
-                className="flex-1 sm:flex-none bg-alto-tinta border border-alto/30 hover:border-alto disabled:bg-superficie-2 disabled:border-linea disabled:text-testo-tenue text-alto-testo font-bold text-sm py-3.5 px-5 rounded-2xl transition-colors duration-100"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-superficie-2 border border-linea hover:border-alto disabled:opacity-50 text-testo font-bold text-sm py-3.5 px-4 rounded-[12px] transition-colors duration-100"
               >
-                Sicuro
+                <span aria-hidden="true" className="w-2.5 h-2.5 rounded-full bg-alto" />Sicuro
               </button>
               </div>
             </div>
@@ -608,8 +608,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
             <button
               onClick={handleNext}
               className={cn(
-                "w-full sm:w-auto text-azione-su font-bold text-base py-3.5 px-8 rounded-2xl transition-colors duration-100 flex items-center justify-center gap-2 ",
-                isCorrect ? "bg-alto-pieno" : "bg-basso-pieno"
+                "w-full sm:w-auto bg-azione hover:bg-azione-scuro text-azione-su font-bold text-base py-3.5 px-8 rounded-[12px] transition-colors duration-100 flex items-center justify-center gap-2"
               )}
             >
               {isCorrect ? (

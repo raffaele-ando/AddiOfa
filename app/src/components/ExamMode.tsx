@@ -413,12 +413,12 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
           <button onClick={requestExit} aria-label="Esci dalla simulazione" className="p-1 sm:p-2 text-testo-tenue hover:text-testo hover:bg-linea rounded-full transition-colors duration-100">
             <X size={20} className="sm:w-6 sm:h-6" strokeWidth={3} />
           </button>
-          <div role="timer" aria-label="Tempo rimasto" className={cn("font-bold tabular-nums text-base sm:text-xl flex items-center gap-1 sm:gap-2", timeLeft < 120 ? "text-basso-testo" : "text-testo")}>
-            <Clock size={18} className="sm:w-5 sm:h-5" strokeWidth={3} /> {timeStr}
+          <div role="timer" aria-label="Tempo rimasto" className={cn("font-bold tabular-nums text-base sm:text-xl flex items-center gap-1.5 rounded-full px-3 py-1", timeLeft < 120 ? "bg-basso-tinta text-basso-testo" : "bg-medio-tinta text-medio-testo")}>
+            <Clock size={18} className="sm:w-5 sm:h-5" strokeWidth={3} aria-hidden="true" /> {timeStr}
           </div>
           <button
             onClick={requestSubmit}
-            className="text-[10px] sm:text-xs font-bold text-azione hover:bg-azione-tinta border border-azione/60 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl transition-colors duration-100"
+            className="text-xs sm:text-sm font-bold text-azione hover:bg-azione-tinta border border-azione/60 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-[10px] transition-colors duration-100"
           >
             Consegna
           </button>
