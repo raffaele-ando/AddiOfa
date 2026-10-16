@@ -1,6 +1,5 @@
 // Costruttori di stati e simulazioni per i test: niente dati veri dell'utente, solo numeri verificabili a mano.
 import type { AppState, ExamHistory, ExamQuestionLog } from '../../src/types';
-import type { FormatId } from '../../src/config/offer';
 
 export const GIORNO = 24 * 60 * 60 * 1000;
 
@@ -10,7 +9,7 @@ export function statoVuoto(extra: Partial<AppState> = {}): AppState {
 
 /** Simulazione con i log per domanda: `esatte` giuste, `sbagliate` errate, il resto omesse (totale 30 o `totale`). */
 export function simulazione(opz: {
-  id?: string; date?: number; esatte: number; sbagliate?: number; totale?: number; format?: FormatId; prefisso?: string;
+  id?: string; date?: number; esatte: number; sbagliate?: number; totale?: number; prefisso?: string;
 }): ExamHistory {
   const totale = opz.totale ?? 30;
   const sbagliate = opz.sbagliate ?? totale - opz.esatte;
@@ -35,6 +34,5 @@ export function simulazione(opz: {
     timeSpentSeconds: 600,
     questionLogs: logs,
     questionIds: logs.map(l => l.questionId),
-    format: opz.format,
   };
 }

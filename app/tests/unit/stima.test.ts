@@ -114,14 +114,12 @@ test('conta solo l\'ultima finestra di 3 simulazioni: chi migliora non resta anc
   assert.ok(vicino(s2.p, s.p));
 });
 
-test('TENG senza log: il punteggio ha la penalità, il numero di esatte si ricava dall\'esito', () => {
-  const base = { id: 't', date: 3, timeSpentSeconds: 800, format: 'teng' as const, questionIds: undefined };
-  // 24 esatte e 6 errate: 24 - 6 * 0,25 = 22,5; superato per l'OFA (24 esatte)
-  assert.equal(esitoSimulazione({ ...base, score: 22.5, passed: true }).esatte, 24);
-  // 23 esatte e 7 errate: 21,25; non superato: si arrotonda a 21, non a 24
-  assert.equal(esitoSimulazione({ ...base, score: 21.25, passed: false }).esatte, 21);
-  // test di recupero senza log: il punteggio è già il numero di esatte
-  assert.equal(esitoSimulazione({ id: 'e', date: 1, score: 27, passed: true, timeSpentSeconds: 1 }).esatte, 27);
+test('simulazione senza log: il numero di esatte si ricava dal punteggio e dall\'esito', () => {
+  const base = { id: 't', date: 3, timeSpentSeconds: 800, questionIds: undefined };
+  // superata: almeno la soglia (25); non superata: meno della soglia, mai di più
+  assert.equal(esitoSimulazione({ ...base, score: 27, passed: true }).esatte, 27);
+  assert.equal(esitoSimulazione({ ...base, score: 20, passed: false }).esatte, 20);
+  assert.equal(esitoSimulazione({ ...base, score: 29, passed: false }).esatte, 24, 'non superata: sotto la soglia');
   assert.equal(esitoSimulazione({ id: 'e', date: 1, score: 40, passed: true, timeSpentSeconds: 1 }).esatte, 30, 'mai oltre il totale');
 });
 
@@ -137,11 +135,11 @@ test('storico rovinato: voci nulle, date non valide, punteggi NaN, storico manca
   assert.equal(ultimaSimulazione({ history: undefined } as unknown as AppState), null);
 });
 
-test('ultimaSimulazione: usa la più recente per data e la soglia del suo formato', () => {
-  const stato = statoVuoto({ history: [simulazione({ id: 'a', date: 2, esatte: 20, format: 'teng' }), simulazione({ id: 'b', date: 1, esatte: 29 })] });
+test('ultimaSimulazione: usa la più recente per data e la soglia 25', () => {
+  const stato = statoVuoto({ history: [simulazione({ id: 'a', date: 2, esatte: 20 }), simulazione({ id: 'b', date: 1, esatte: 29 })] });
   const u = ultimaSimulazione(stato)!;
-  assert.equal(u.formato, 'teng');
-  assert.equal(u.soglia, 24);
+  assert.equal(u.soglia, 25);
+  assert.equal(u.esatte, 20);
   assert.equal(u.superata, false);
 });
 

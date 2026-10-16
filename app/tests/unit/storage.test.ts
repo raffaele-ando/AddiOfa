@@ -1,8 +1,7 @@
-// Caso 7: salvataggio, serie di giorni, stato rovinato, copia per il cloud, guarantee.
+// Caso 7: salvataggio, serie di giorni, stato rovinato, salvataggi di versioni precedenti.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { loadState, normalizeState, saveState, toCloudState, updateStreak } from '../../src/lib/storage';
-import { computeGuaranteeProgress } from '../../src/lib/guarantee';
+import { loadState, normalizeState, saveState, updateStreak } from '../../src/lib/storage';
 import { statoVuoto, simulazione, GIORNO } from './aiuti';
 import type { AppState } from '../../src/types';
 
@@ -94,31 +93,22 @@ test('serie di giorni: valori rovinati, data nel futuro, serie a 0 con data di o
   assert.equal(updateStreak(statoVuoto({ streak: 2, lastActiveDate: NaN })).streak, 1);
 });
 
-test('toCloudState: nessun campo undefined (Firestore li rifiuta) e i log pesanti restano solo in locale', () => {
-  const stato = statoVuoto({
-    stats: { q: { correct: 1, incorrect: 0, lastSeen: 3, box: 1, lastTrajectory: undefined, lastFirstClickTimeMs: undefined } },
-    onboarding: { completedAt: 1, hasCertification: false, hasOfa: 'no', diagnosticCorrect: undefined },
-    projectLink: undefined,
-    history: Array.from({ length: 60 }, (_, i) => simulazione({ id: `s${i}`, date: i + 1, esatte: 20 })),
-  });
-  const cloud = toCloudState(stato);
-  const cerca = (v: unknown, percorso: string): void => {
-    if (v === undefined) assert.fail(`undefined in ${percorso}`);
-    if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) cerca(x, `${percorso}.${k}`);
+test('normalizeState: i salvataggi delle versioni precedenti perdono ciò che non esiste più (formato TENG, nucleo, Project ID)', () => {
+  const vecchio = {
+    stats: {}, streak: 2, lastActiveDate: 5,
+    selectedCorpus: 'initial',
+    projectLink: { scopes: ['profile'], consentVersion: 'x', grantedAt: 1, updatedAt: 1 },
+    history: [
+      { id: 'a', date: 1, score: 26, passed: true, timeSpentSeconds: 100, format: 'ente' },
+      { id: 'b', date: 2, score: 22.5, passed: true, timeSpentSeconds: 100, format: 'teng' },
+      { id: 'c', date: 3, score: 20, passed: false, timeSpentSeconds: 100 },
+    ],
   };
-  cerca(cloud, 'stato');
-  assert.ok('stats' in cloud && !('lastTrajectory' in cloud.stats.q));
-  assert.equal(cloud.history[0].questionLogs, undefined, 'le più vecchie senza log');
-  assert.ok(cloud.history[59].questionLogs!.length === 30);
-  assert.equal(stato.history[0].questionLogs!.length, 30, 'lo stato locale non cambia');
-});
-
-test('guarantee: il TENG non conta come simulazione superata (punteggio con penalità, soglia diversa)', () => {
-  const stato = statoVuoto({ history: [
-    simulazione({ id: 'a', date: 1, esatte: 26 }),
-    simulazione({ id: 'b', date: 2, esatte: 27, format: 'teng' }),
-    simulazione({ id: 'c', date: 3, esatte: 25 }),
-  ] });
-  const g = computeGuaranteeProgress(stato);
-  assert.equal(g.passedSimulations, 2);
+  const s = normalizeState(vecchio) as unknown as Record<string, unknown>;
+  assert.equal('selectedCorpus' in s, false);
+  assert.equal('projectLink' in s, false);
+  const h = s.history as { id: string }[];
+  assert.deepEqual(h.map(x => x.id), ['a', 'c'], 'la simulazione TENG non si conta');
+  assert.ok(h.every(x => !('format' in x)));
+  assert.equal(s.streak, 2);
 });

@@ -1,13 +1,9 @@
-// Simulazioni svolte (lib/studio/simulazioni.ts): elenco, ricerca per id, riepilogo per argomento, limite gratuito.
+// Simulazioni svolte (lib/studio/simulazioni.ts): elenco, ricerca per id, riepilogo per argomento.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { elencoSimulazioni, trovaSimulazione, perArgomentoSimulazione, limiteGratuito, riepilogo, entrataStorico, FORMATO_SIMULAZIONE } from '../../src/lib/studio/simulazioni';
+import { elencoSimulazioni, trovaSimulazione, perArgomentoSimulazione, riepilogo, entrataStorico } from '../../src/lib/studio/simulazioni';
 import { statoVuoto, simulazione } from './aiuti';
 import type { ExamHistory } from '../../src/types';
-
-test('il formato proposto è il test di recupero (30 domande, soglia 25)', () => {
-  assert.equal(FORMATO_SIMULAZIONE, 'ente');
-});
 
 test('elenco: dalla più recente, numerazione cronologica, superata se almeno 25', () => {
   const h = [simulazione({ id: 'b', date: 20, esatte: 24 }), simulazione({ id: 'a', date: 10, esatte: 18 }), simulazione({ id: 'c', date: 30, esatte: 25 })];
@@ -65,16 +61,4 @@ test('per argomento: dal più debole, con i log; con lo storico vecchio ripiega 
   assert.equal(c.per, 'categoria');
   assert.deepEqual(c.righe.map(x => x.nome), ['Grammatica', 'Traduzione']);
   assert.deepEqual(perArgomentoSimulazione({ id: 'z', date: 1, score: 0, passed: false, timeSpentSeconds: 0 }).righe, []);
-});
-
-test('limite gratuito: una simulazione «ente»; con il Pass illimitate; il TENG non conta', () => {
-  const nessuna = limiteGratuito(statoVuoto(), false);
-  assert.deepEqual([nessuna.restanti, nessuna.puoiIniziare, nessuna.fatte, nessuna.gratuite], [1, true, 0, 1]);
-  const una = limiteGratuito(statoVuoto({ history: [simulazione({ id: 'a', date: 1, esatte: 20 })] }), false);
-  assert.deepEqual([una.restanti, una.puoiIniziare, una.fatte], [0, false, 1]);
-  const teng = limiteGratuito(statoVuoto({ history: [simulazione({ id: 't', date: 1, esatte: 20, format: 'teng' })] }), false);
-  assert.equal(teng.puoiIniziare, true, 'una simulazione TENG non consuma quella gratuita');
-  const pass = limiteGratuito(statoVuoto({ history: [simulazione({ id: 'a', date: 1, esatte: 20 })] }), true);
-  assert.equal(pass.restanti, Infinity);
-  assert.equal(pass.puoiIniziare, true);
 });
