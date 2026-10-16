@@ -20,5 +20,7 @@ node "$RADICE/tools/ottimizza-svg.mjs" "$DEST/disegni" 2
 node "$RADICE/tools/togli-nuvole.mjs" "$DEST/disegni"
 # scena dell'hero della landing (ritagliata dai concept con grafica/strumenti/brand/estrai_hero.py)
 mkdir -p "$DEST/hero" && cp "$RADICE/grafica/brand/hero/scena-chiara.webp" "$RADICE/grafica/brand/hero/scena-scura.webp" "$DEST/hero/"
+# banner con l'edificio e sfondo della chiusura della landing (grafica/strumenti/brand/estrai_landing.py)
+mkdir -p "$DEST/landing" && cp "$RADICE/grafica/brand/landing/"*.webp "$DEST/landing/"
 mkdir -p "$DEST/icone" && cp "$RADICE/app/public/favicon-64.png" "$DEST/icone/"
 du -sh "$DEST"; find "$DEST" -type f | wc -l

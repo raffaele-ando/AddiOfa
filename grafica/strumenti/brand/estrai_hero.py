@@ -3,6 +3,7 @@
 Scena del concept 41 (lastra blu con la porta di luce, scalinata, cielo, carte di vetro).
 Produce due file: `scena-chiara` (il ritaglio ripulito) e `scena-scura` (la stessa scena di notte: cielo e muri blu notte, lastra blu, la porta
 di luce che resta calda e luminosa; canale alfa che sfuma a sinistra, in alto e in basso, così sul fondo scuro della pagina non si vedono bordi).
+Aggiunge lo studente di spalle (ritagliato dal concept 51 con GrabCut) sull'ultimo gradino, davanti alla porta di luce.
 Cancella con l'inpainting l'insegna «Politecnico di Milano», la carta «82 %» e il contenuto delle due carte di vetro che il prodotto non ha più
 (quiz con bandiera, «Piano di studi bloccato»): restano due pannelli di vetro vuoti, e le carte vere (componenti, `brand/hero/Scena.tsx`)
 vi si appoggiano sopra, un po' più grandi, per coprire le sfumature del ripristino. I testi stanno nel codice. (Il concept 51, scuro, ha la scritta
@@ -72,6 +73,53 @@ def notte(rgb: np.ndarray) -> np.ndarray:
     return (np.dstack([np.clip(out, 0, 1), alfa]) * 255 + 0.5).astype(np.uint8)
 
 
+def studente(altezza=150):
+    """Lo studente di spalle del concept 51 (controluce davanti alla porta di luce), ritagliato con GrabCut a partire da un poligono
+    approssimato e rimpicciolito a `altezza` px. Restituisce (RGBA uint8, ascissa del centro dei piedi nel ritaglio)."""
+    c51 = np.array(Image.open(SRC / 'file_00000000fe4482108b4c6e950fe1b4ca.png').convert('RGB'))
+    x0, y0, x1, y1 = 790, 250, 890, 470
+    roi = c51[y0:y1, x0:x1]
+    S = 4
+    h, w = roi.shape[:2]
+    big = cv2.resize(roi, (w * S, h * S), interpolation=cv2.INTER_CUBIC)
+    mask = np.full(big.shape[:2], cv2.GC_BGD, np.uint8)
+    esterno = np.array([(42, 16), (62, 16), (66, 38), (78, 52), (82, 100), (70, 118), (68, 150), (56, 186), (60, 196), (54, 204), (36, 198), (40, 186), (34, 150), (30, 118), (20, 106), (16, 90), (24, 52), (34, 38)]) * S
+    interno = np.array([(46, 22), (58, 22), (62, 44), (72, 60), (72, 100), (62, 116), (60, 150), (52, 184), (42, 184), (38, 150), (34, 118), (24, 98), (26, 56), (36, 44)]) * S
+    nucleo = np.array([(46, 60), (60, 60), (60, 110), (40, 110)]) * S
+    cv2.fillPoly(mask, [esterno.astype(np.int32)], cv2.GC_PR_BGD)
+    cv2.fillPoly(mask, [interno.astype(np.int32)], cv2.GC_PR_FGD)
+    cv2.fillPoly(mask, [nucleo.astype(np.int32)], cv2.GC_FGD)
+    cv2.grabCut(big, mask, None, np.zeros((1, 65)), np.zeros((1, 65)), 8, cv2.GC_INIT_WITH_MASK)
+    m = ((mask == cv2.GC_FGD) | (mask == cv2.GC_PR_FGD)).astype(np.uint8) * 255
+    m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+    ys, xs = np.where(m > 0)
+    big, m = big[ys.min():ys.max() + 1, xs.min():xs.max() + 1], m[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+    k = altezza / big.shape[0]
+    pre = (big.astype(np.float32) * (m / 255.0)[..., None])               # premoltiplicato, per non avere frange chiare
+    nw, nh = max(1, round(big.shape[1] * k)), altezza
+    pre = cv2.resize(pre, (nw, nh), interpolation=cv2.INTER_AREA)
+    a = cv2.GaussianBlur(cv2.resize(m.astype(np.float32) / 255, (nw, nh), interpolation=cv2.INTER_AREA), (0, 0), 0.6)
+    rgb = np.clip(pre / np.maximum(a[..., None], 1e-3), 0, 255)
+    return np.dstack([rgb, a * 255]).astype(np.uint8), nw
+
+
+def metti_studente(base: Image.Image, scuro: bool, piedi=(486, 352), altezza=150) -> Image.Image:
+    """Appoggia lo studente sull'ultimo gradino, davanti alla porta, con una piccola ombra sotto i piedi. In scuro è un po' più cupo."""
+    st, nw = studente(altezza)
+    img = base.convert('RGBA')
+    ombra = Image.new('RGBA', img.size, (0, 0, 0, 0))
+    ov = np.zeros((img.size[1], img.size[0]), np.float32)
+    cv2.ellipse(ov, (piedi[0] + 4, piedi[1] - 2), (int(nw * 0.55), 5), 0, 0, 360, 1.0, -1)
+    ov = cv2.GaussianBlur(ov, (0, 0), 4) * (0.5 if scuro else 0.28)
+    ombra = Image.fromarray(np.dstack([np.zeros((*ov.shape, 3), np.uint8), (ov * 255).astype(np.uint8)]), 'RGBA')
+    img.alpha_composite(ombra)
+    if scuro:
+        st = st.copy()
+        st[..., :3] = (st[..., :3].astype(np.float32) * 0.82 + np.array([6, 10, 28]) * 0.18).astype(np.uint8)
+    img.alpha_composite(Image.fromarray(st, 'RGBA'), (piedi[0] - nw // 2, piedi[1] - altezza))
+    return img
+
+
 def main():
     # concept 41, in coordinate dell'originale 1536x1024
     c41 = Image.open(SRC / 'file_00000000c23c82108838e288ab528e67.png').convert('RGB')
@@ -90,9 +138,11 @@ def main():
     # scritte senza senso scritte sul pavimento dall'AI («SAME STUDENTS BRIGHTER…», «SMALL…»): via
     c41 = inpaint(c41, [(560 + 436, 70 + 438, 560 + 582, 70 + 490), (560 + 684, 70 + 452, 560 + 790, 70 + 490)], 7)
     ch = c41.crop((560, 70, 1536, 560))
+    scura = Image.fromarray(notte(np.array(ch)), 'RGBA')
+    ch = metti_studente(ch, False).convert('RGB')
+    scura = metti_studente(scura, True)
     ch.save(OUT / 'scena-chiara.png')
     ch.save(OUT / 'scena-chiara.webp', quality=82, method=6)
-    scura = Image.fromarray(notte(np.array(ch)), 'RGBA')
     scura.save(OUT / 'scena-scura.png')
     scura.save(OUT / 'scena-scura.webp', quality=80, method=6)
     print(ch.size, (OUT / 'scena-chiara.webp').stat().st_size, (OUT / 'scena-scura.webp').stat().st_size)

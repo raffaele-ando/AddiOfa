@@ -1,4 +1,4 @@
 # Landing
-Sezioni in ordine: Barra, Hero, Vantaggi, SeNonSuperi, Perche, Passi, Offerta, Faq, CtaFinale (le monta `screens/Landing.tsx`); `comune.tsx` ha i pezzi condivisi (Dato, Fatti, InfoFoglio «i»), `dati.tsx` i dati a icone usati anche da funnel e Pass (confronto Gratis/Pass, prezzo, «se non superi»).
-Niente frasi: icone, numeri, etichette di 1-3 parole; le spiegazioni dietro la «i». Marketing e legale sono `data-testo-ok`. La scena dell'hero (`brand/hero`) non si tocca.
-Prova: `/?landing` sul server demo; note in `docs/lavoro/extra/NOTE-INTUITIVO-INGRESSO.md`.
+Sezioni in ordine (le monta `screens/Landing.tsx`): Barra, Hero (scena `brand/hero` con lo studente e tre carte di vetro vere), Vantaggi (striscia dei 4), SeNonSuperi («Cos'è l'OFA di inglese?», carte di vetro su un filo rosso), Passi («Un percorso su misura, in 4 passi» + telefono), Perche («Tutto ciò che ti serve»: 4 schede con illustrazione, anello 25/30, banner con l'edificio), Faq, CtaFinale. `Offerta.tsx` è vuoto (storico), `dati.tsx` ha solo il testo dell'OFA.
+Arte: `brand/essenziali/landing/*.webp` si rigenera con `python3 strumenti/brand/estrai_landing.py` (da `grafica/`); la scena dell'hero con `estrai_hero.py`. La landing è l'unica pagina con paragrafi di marketing, dentro `data-testo-ok`. Nessun dato inventato: i numeri vengono da `config/offer.ts` e da `data/questions`.
+Prova: `/?landing` sul server demo; confronti con i concept e note in `docs/lavoro/extra/NOTE-LANDING.md`.

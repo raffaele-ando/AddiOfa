@@ -75,15 +75,15 @@ export default function Passi({ onStart }: { onStart(): void }) {
   return (
     <section id="come-funziona" aria-labelledby="t-passi" className="scroll-mt-20 py-14 sm:py-20">
       <Colonna>
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_3.2fr] lg:gap-8">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_2.9fr] lg:gap-8">
           <div className="lg:pt-8" data-testo-ok>
             <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-azione-scuro dark:text-azione">Come funziona</p>
-            <h2 id="t-passi" className="mt-3 text-[2.3rem] font-extrabold leading-[1.05] tracking-[-0.03em] text-testo sm:text-5xl lg:text-[2.6rem]">
+            <h2 id="t-passi" className="mt-3 text-[2.3rem] font-extrabold leading-[1.05] tracking-[-0.03em] text-testo sm:text-5xl lg:text-[2.25rem]">
               Un percorso su misura, in <span className="text-azione">4 passi</span>
             </h2>
             <p className="mt-4 max-w-sm text-base leading-relaxed text-testo-tenue">Dal test iniziale alla simulazione, tutto in un'unica app.</p>
             <div className="mt-6 hidden lg:block">
-              <BottoneAzione onClick={onStart}>Fai il diagnostico</BottoneAzione>
+              <BottoneAzione onClick={onStart} className="whitespace-nowrap">Fai il diagnostico</BottoneAzione>
             </div>
           </div>
 
