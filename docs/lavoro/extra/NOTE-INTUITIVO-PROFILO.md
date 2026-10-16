@@ -66,7 +66,7 @@ Fascia della Home: da iniziare = sprout, in partenza e da migliorare = trending-
 
 ## Richieste al coordinatore (App.tsx, contesto.tsx, altre aree)
 
-1. `Menu` ha la nuova prop `onApriLezione`: App la passa già (riga `onApriLezione={id => vaiExtra('lezione-dettaglio', { id })}` è per StatsMode; per Menu serve la stessa riga). Senza, la prossima lezione apre la teoria come prima.
+1. `Menu` ha la nuova prop `onApriLezione`: in App va passata anche a `<Menu ... onApriLezione={id => vaiExtra('lezione-dettaglio', { id })} />` (oggi la riga c'è solo per StatsMode). Senza, la prossima lezione apre la teoria come prima.
 2. Diagnostico da Progressi: manca in `ExtraCtx` una funzione `avviaDiagnostico: () => setView('onboarding')`. `Progressi.tsx` la cerca (`ctx.avviaDiagnostico`) e, se manca, porta alla Home (per chi ha già fatto il diagnostico la Home non lo propone: il pulsante è quindi un vicolo cieco finché non la aggiungete).
 3. `<Invites onBack={indietro} onOpenPaywall={() => apriPaywall('generico')} />` (altrimenti «Scopri» nella vista `invites` torna indietro).
 4. La vista `stats` (StatsMode) resta compilabile ma non va più raggiunta: `Lezioni` ha ancora `onOpenStats={() => apri('stats')}` (da ritirare o da portare a `vaiExtra('progressi')`); App può togliere la vista `stats` quando Lezioni non la usa più.
@@ -77,4 +77,7 @@ Fascia della Home: da iniziare = sprout, in partenza e da migliorare = trending-
 
 ## Prove (numeri onesti)
 
-Vedi la fine del file, sezione aggiornata dopo l'ultimo giro.
+- `cd app && npx tsc --noEmit` (= `npm run lint`): pulito. `npm test`: 216 test, 216 verdi (ho tolto da `servizi-collegamento.test.ts` i 2 test di Esplora, che non esiste più). `node tools/genera-icone.mjs`: 162 icone, nessun duplicato.
+- `tools/controlla-testo.py` a 400 px, soglia 5 parole: zero su home, profilo, progressi (anche `sezione=argomenti` e `calendario`), obiettivi, badge, pass, projectid, faq, segnala, profilo-modifica, stato-vuoto, offline; zero anche in tema scuro su home, profilo, progressi, pass, projectid, faq, segnala. Con soglia 3 restano solo nomi (titolo di lezione, «Memoria a lungo termine», «di superare il test» sul misuratore). Impostazioni (raggiunta con i clic dal Profilo): zero con soglia 5 e 3. Stati con il Pass in prova (Pass, Profilo, Progressi, Dettaglio domande): zero.
+- Screenshot letti a occhio (400 e 1280 px, chiaro e scuro, stato ricco e povero, 112 immagini in `dopo/`, 17 in `prima/`): nessuno scorrimento orizzontale, nessun errore in console tranne il 404 di `favicon.ico` del server di sviluppo.
+- Non provato: clic su «Condividi» fino alla schermata `condividi` (dell'agente prove), pulsante Diagnostico di Progressi con `avviaDiagnostico` (non esiste ancora in App: vedi richiesta 2), login e Project ID collegato (spenti), esito «Sbloccato» del Pass per invito (serve il server), build demo (`npm run build:demo`, non lanciata per regola del brief).
