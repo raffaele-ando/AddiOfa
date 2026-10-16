@@ -706,6 +706,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           appState={appState}
           onExit={indietro}
           onNeedPass={apriPaywall}
+          onVaiPercorso={() => vaiExtra('percorso')}
+          onApriLezione={id => vaiExtra('lezione-dettaglio', { id })}
         />
         </>)
       )}
