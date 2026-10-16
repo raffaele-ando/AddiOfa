@@ -47,6 +47,13 @@
   --color-alto-numero: #079A62;
   --color-alto-tinta: #EEF9F3;
   --color-alto-pieno: #0A8350;
+
+  /* viola: apprendimento, traguardi e badge (il viola del concept: quiz e apprendimento). Tinta, icona, testo (≥4,5:1 sulla tinta), pieno (testo bianco sopra). */
+  --color-viola: #8B5CF6;
+  --color-viola-chiaro: #C4B5FD;
+  --color-viola-testo: #5B21B6;
+  --color-viola-tinta: #F3EEFE;
+  --color-viola-pieno: #6D28D9;
 }
 
 /* Tema scuro: stessi nomi, valori desaturati. Le tinte dei banner sono tinte morbide sulla superficie, niente riquadri fangosi. */
@@ -88,6 +95,12 @@
   --color-alto-numero: #4CC38A;
   --color-alto-tinta: #1B2D40;
   --color-alto-pieno: #4CC38A;
+
+  --color-viola: #A78BFA;
+  --color-viola-chiaro: #C4B5FD;
+  --color-viola-testo: #C4B5FD;
+  --color-viola-tinta: #231C42;
+  --color-viola-pieno: #A78BFA;
 }
 
 @layer base {

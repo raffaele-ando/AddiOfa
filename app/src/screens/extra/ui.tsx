@@ -56,3 +56,37 @@ export function Sezione({ id, titolo, destra, children, className }: { id: strin
     </section>
   );
 }
+
+// ---------------------------------------------------------------------------------------------------------------
+// Colore con significato (teoria dei colori dei concept): il blu è l'azione e lo studio; il verde è ciò che è riuscito
+// (obiettivi, accuratezza, superato); l'ambra è sforzo e premio (giorni di studio, tempo, trofei); il corallo è il confronto
+// e il rischio (duelli, errori); il viola è apprendimento e traguardi (badge, quiz). Un solo colore per significato, mai
+// a caso: i toni non si mescolano nella stessa riga. Il testo grande resta navy: il colore sta in icone, barre e numeri chiave.
+export type Tono = 'azione' | 'alto' | 'medio' | 'basso' | 'viola';
+
+/** Classi complete (Tailwind le trova come testo): tinta di fondo, icona, testo di accento leggibile, barra piena, fondo di pulsante con testo bianco. */
+export const TONI: Record<Tono, { tinta: string; icona: string; testo: string; barra: string; pieno: string; bordo: string }> = {
+  azione: { tinta: 'bg-azione-tinta', icona: 'text-azione-scuro', testo: 'text-azione-scuro', barra: 'bg-azione', pieno: 'bg-azione text-azione-su', bordo: 'border-azione/30' },
+  alto: { tinta: 'bg-alto-tinta', icona: 'text-alto-numero', testo: 'text-alto-testo', barra: 'bg-alto', pieno: 'bg-alto-pieno text-azione-su', bordo: 'border-alto/30' },
+  medio: { tinta: 'bg-medio-tinta', icona: 'text-medio-numero', testo: 'text-medio-testo', barra: 'bg-medio', pieno: 'bg-medio-pieno text-azione-su', bordo: 'border-medio/30' },
+  basso: { tinta: 'bg-basso-tinta', icona: 'text-basso-numero', testo: 'text-basso-testo', barra: 'bg-basso', pieno: 'bg-basso-pieno text-azione-su', bordo: 'border-basso/30' },
+  viola: { tinta: 'bg-viola-tinta', icona: 'text-viola', testo: 'text-viola-testo', barra: 'bg-viola', pieno: 'bg-viola-pieno text-azione-su', bordo: 'border-viola/30' },
+};
+
+/** Tessera quadrata con l'icona, nel tono scelto (come le icone colorate dei concept). */
+export function IconaTono({ tono, children, lato = 40, className }: { tono: Tono; children: ReactNode; lato?: number; className?: string }) {
+  return (
+    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center rounded-[11px]', TONI[tono].tinta, TONI[tono].icona, className)} style={{ width: lato, height: lato }}>
+      {children}
+    </span>
+  );
+}
+
+/** Barra di avanzamento nel tono scelto. `valore` da 0 a 100. */
+export function BarraTono({ valore, tono = 'azione', className }: { valore: number; tono?: Tono; className?: string }) {
+  return (
+    <div className={cn('h-2 w-full overflow-hidden rounded-full bg-tacca/60', className)} role="presentation">
+      <div className={cn('h-full rounded-full', TONI[tono].barra)} style={{ width: `${Math.max(0, Math.min(100, valore))}%` }} />
+    </div>
+  );
+}
