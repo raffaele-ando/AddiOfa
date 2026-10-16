@@ -6,8 +6,20 @@ import { FIREBASE_CONFIG } from '../config/ecosystem';
 
 export const isDemoMode = (): boolean => import.meta.env.VITE_MODE === 'demo';
 
+// SOLO SVILUPPO (import.meta.env.DEV, assente da ogni build): con `?atlasProva=<uid>:<nome>` nell'indirizzo l'accesso è finto e usa il token
+// «test:<uid>:<nome>», che il Worker accetta soltanto in locale (ALLOW_TEST_TOKENS). Serve a provare per davvero l'invio e la classifica
+// contro `wrangler dev --local` senza un account Google. In produzione questo ramo non esiste.
+const PROVA: { uid: string; nome: string } | null = (() => {
+  if (!import.meta.env.DEV || typeof location === 'undefined') return null;
+  const v = new URLSearchParams(location.search).get('atlasProva');
+  if (!v) return null;
+  const [uid, ...resto] = v.split(':');
+  return uid ? { uid, nome: resto.join(':') || uid } : null;
+})();
+const utenteProva = (): User => ({ uid: PROVA!.uid, displayName: PROVA!.nome, email: `${PROVA!.uid}@example.test`, photoURL: null }) as unknown as User;
+
 /** L'accesso con Google si può offrire solo con la configurazione di Firebase e fuori dalla build a file unico. */
-export const loginDisponibile = (): boolean => !isDemoMode() && !!FIREBASE_CONFIG;
+export const loginDisponibile = (): boolean => !!PROVA || (!isDemoMode() && !!FIREBASE_CONFIG);
 
 /** Errore di login con un messaggio già pronto da mostrare nella pagina. */
 export class LoginError extends Error {}
@@ -30,6 +42,7 @@ async function carica(): Promise<Auth> {
 
 /** Token del login, se Firebase è già stato caricato e c'è un utente. Non carica nulla da solo. */
 export async function getIdToken(): Promise<string | null> {
+  if (PROVA) return `test:${PROVA.uid}:${PROVA.nome}`;
   if (!handle) return null;
   try {
     const auth = await handle;
@@ -55,6 +68,7 @@ function messaggioLogin(error: { code?: string }): string {
 
 /** Apre il login Google. Restituisce l'utente, null se chiudi la finestra, oppure lancia LoginError con un messaggio da mostrare. */
 export async function signInWithGoogle(): Promise<User | null> {
+  if (PROVA) return utenteProva();
   try {
     const auth = await carica();
     const { GoogleAuthProvider, signInWithPopup } = await import('firebase/auth');
@@ -68,7 +82,7 @@ export async function signInWithGoogle(): Promise<User | null> {
 }
 
 export async function logout(): Promise<void> {
-  if (!handle) return;
+  if (PROVA || !handle) return;
   try {
     const [auth, { signOut }] = await Promise.all([handle, import('firebase/auth')]);
     await signOut(auth);
@@ -79,6 +93,7 @@ export async function logout(): Promise<void> {
 
 /** Ascolta i cambi di login. Se l'accesso non è disponibile chiama subito con null e non carica Firebase. Restituisce la funzione per smettere. */
 export function onAuthChange(callback: (user: User | null) => void): () => void {
+  if (PROVA) { callback(utenteProva()); return () => undefined; }
   if (!loginDisponibile()) {
     callback(null);
     return () => undefined;

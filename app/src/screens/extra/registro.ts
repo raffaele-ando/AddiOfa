@@ -3,6 +3,7 @@ import { SCHERMATE_PROFILO } from './profilo';
 import { SCHERMATE_SFIDE } from './sfide';
 import { SCHERMATE_STUDIO } from './studio';
 import { SCHERMATE_SERVIZI } from './servizi';
+import { SCHERMATE_PROGETTO } from './progetto';
 
 /** Una schermata extra: `carica` è un import dinamico (le schermate si caricano solo quando servono). */
 export interface DefSchermata {
@@ -17,4 +18,5 @@ export const SCHERMATE: Record<string, DefSchermata> = {
   ...SCHERMATE_SFIDE,
   ...SCHERMATE_STUDIO,
   ...SCHERMATE_SERVIZI,
+  ...SCHERMATE_PROGETTO,
 };

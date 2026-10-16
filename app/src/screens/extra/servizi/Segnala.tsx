@@ -83,7 +83,7 @@ export default function Segnala() {
         </div>
       ) : (
         <>
-          <div className="mt-1 flex justify-center"><Disegno nome="messaggi" lato={120} /></div>
+          <div className="mt-1 flex justify-center"><Disegno nome="messaggi" lato={168} /></div>
           <div role="radiogroup" aria-label="Tipo" className="mt-3 grid grid-cols-4 gap-2">
             {TIPI_SEGNALAZIONE.map(t => {
               const on = tipo === t.id;

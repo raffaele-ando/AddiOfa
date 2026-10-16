@@ -67,7 +67,7 @@ export default function SfidaAccetta() {
         <PannelloEsito className="mt-5" esito={esito} nomeMio={io.nome ?? 'Tu'} io={io} nomeAltro={dati.nome} altro={altro} />
         <div className="mt-4 flex gap-2">
           <Bottone icona="correzioni" onClick={() => vai('sfida-risultato', { voce: mioDuello.id })}>Correzioni</Bottone>
-          <Bottone variante="secondario" icona="amici" aria="Amici" className="w-16 shrink-0 px-0" onClick={() => vai('amici')} />
+          <Bottone variante="secondario" icona="amici" className="w-auto shrink-0 px-4" onClick={() => vai('amici')}>Amici</Bottone>
         </div>
       </Pagina>
     );
@@ -80,7 +80,7 @@ export default function SfidaAccetta() {
 
   if (mioSuo || (proprio && dati.tipo === 'd')) {
     return <Messaggio tono="azione" illustrazione="attesa" titolo="Tua sfida"
-      azione={proprio && <Bottone icona="correzioni" onClick={() => vai('sfida-risultato', { voce: proprio.id })}>Correzioni</Bottone>} />;
+      azione={proprio && <Bottone icona="correzioni" onClick={() => vai('sfida-risultato', { voce: proprio.id })}>Risultato</Bottone>} />;
   }
   if (giaGiocata) {
     return (
@@ -119,7 +119,7 @@ export default function SfidaAccetta() {
     <div className="relative h-full">
       <Pagina titolo={`${dati.nome} ti sfida`} onBack={() => vai('sfide')} destra={<PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />}>
         <div className="mt-3 flex justify-center">
-          <Illustrazione kit="kit-luminoso" nome="successo" lato={150} />
+          <Illustrazione kit="kit-luminoso" nome="successo" lato={128} />
         </div>
         <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} className="mt-3 justify-center" />
         <Carta className="mt-5">

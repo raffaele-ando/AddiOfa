@@ -4,6 +4,7 @@ import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { AVATAR, CORSO_MAX, NOME_MAX, NOME_DI_RIPIEGO, normalizzaProfilo, type ProfiloDati } from '../../../lib/profilo/dati';
 import { useExtra } from '../contesto';
+import { Disegno } from '../servizi/componenti';
 import { Avatar, Pagina, Sezione, useProfilo } from './componenti';
 
 const CAMPO = 'w-full h-12 rounded-[12px] bg-superficie-2 border border-linea px-3.5 text-[16px] text-testo placeholder:text-testo-tenue focus:outline-none focus:border-azione';
@@ -45,6 +46,7 @@ export default function ProfiloModifica() {
       </Sezione>
 
       <Sezione titolo="Corso" id="titolo-corso">
+        <div className="flex justify-center"><Disegno nome="cappello-laurea-orologio" lato={120} /></div>
         <input type="text" value={bozza.corso} maxLength={CORSO_MAX} onChange={e => aggiorna({ corso: e.target.value })}
           aria-labelledby="titolo-corso" placeholder="Ingegneria informatica" autoComplete="off" className={CAMPO} />
       </Sezione>

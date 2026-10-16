@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { AppState, QuestionClickEvent, QuestionTelemetry, UserStats } from '../types';
-import { selectPracticeIds, updateStats, bankMeta, countLearned } from '../lib/spacedRepetition';
+import { selectPracticeIds, updateStats, bankMeta, countLearned, isLearned } from '../lib/spacedRepetition';
 import { Icona } from '../brand/icone/Icona';
 import { cn, shuffleArray } from '../lib/utils';
 import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound } from '../lib/audio';
@@ -8,6 +8,7 @@ import { provider } from '../access';
 import type { GradeResult, PublicQuestion } from '../access/provider';
 import { Screen } from './ui';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
+import { Illustrazione } from '../brand/Illustrazione';
 
 interface LearnModeProps {
   appState: AppState;
@@ -25,7 +26,15 @@ interface Item { q: PublicQuestion; order: number[]; }
 
 const words = (t: string) => t.split(' ').filter(w => w.trim() !== '');
 
-export default function LearnMode({ appState, mode, category, onUpdateAppState, onExit, onOpenTheory }: LearnModeProps) {
+export default function LearnMode({ appState, mode: modoIniziale, category, onUpdateAppState, onExit, onOpenTheory }: LearnModeProps) {
+  // La modalità può cambiare dentro la sessione: da «Punti deboli» senza errori si passa a «Intelligente» dallo stato vuoto
+  const [mode, setMode] = useState(modoIniziale);
+  // Punti deboli = gli errori ancora da ripassare (sbagliate almeno una volta e non ancora imparate), contati una volta all'apertura
+  const erroriAllaPartenza = useRef<number | null>(null);
+  if (erroriAllaPartenza.current === null) {
+    erroriAllaPartenza.current = Object.values(appState.stats ?? {}).filter(s => (s.incorrect ?? 0) > 0 && !isLearned(s)).length;
+  }
+  const nessunErrore = mode === 'weakness' && erroriAllaPartenza.current === 0;
   const [items, setItems] = useState<Item[]>([]);
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [loadKey, setLoadKey] = useState(0);
@@ -69,6 +78,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
 
   // Scelta degli id sul solo indice leggero, poi le domande (senza risposte) dal provider
   useEffect(() => {
+    if (nessunErrore) return; // stato vuoto: si carica solo quando si passa a un'altra modalità
     let alive = true;
     setLoadState('loading');
     const ids = selectPracticeIds(appStateRef.current.stats, {
@@ -152,6 +162,16 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, hasChecked, checking, attempts, loadState]);
 
+  if (nessunErrore) {
+    return (
+      <Screen className="items-center justify-center text-center">
+        <Illustrazione nome="documento-completato" gruppo="stati" lato={120} />
+        <p role="status" className="text-[18px] leading-[24px] font-bold text-testo">Niente da ripassare</p>
+        <button onClick={() => { playTapSound(); setMode('smart'); setLoadKey(k => k + 1); }} className="w-full max-w-xs inline-flex items-center justify-center gap-2 bg-azione hover:bg-azione-scuro text-azione-su font-bold py-3.5 rounded-2xl transition-colors duration-100"><Icona nome="studia" size={20} />Intelligente</button>
+        <button onClick={() => { playTapSound(); onExit(); }} className="inline-flex items-center gap-1.5 text-sm font-bold text-testo-tenue"><Icona nome="indietro" size={18} />Indietro</button>
+      </Screen>
+    );
+  }
   if (loadState === 'loading') {
     return (
       <Screen className="items-center justify-center text-center">
@@ -162,7 +182,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   if (loadState === 'error') {
     return (
       <Screen className="items-center justify-center text-center">
-        <span aria-hidden="true" className="grid h-14 w-14 place-items-center rounded-[16px] bg-basso-tinta text-basso-numero"><Icona nome="stato-risposta-sbagliata" size={30} /></span>
+ <Illustrazione nome="documento-errore" gruppo="stati" lato={110} />
         <p role="alert" className="font-bold text-basso-testo max-w-sm">Domande non caricate</p>
         <button onClick={() => { playTapSound(); setLoadKey(k => k + 1); }} className="w-full max-w-xs inline-flex items-center justify-center gap-2 bg-azione hover:bg-azione-scuro text-azione-su font-bold py-3.5 rounded-2xl transition-colors duration-100"><Icona nome="riprova" size={20} />Riprova</button>
         <button onClick={onExit} className="inline-flex items-center gap-1.5 text-sm font-bold text-testo-tenue"><Icona nome="indietro" size={18} />Indietro</button>
@@ -513,7 +533,8 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                   isCorrect ? "text-alto-testo" : "text-basso-testo"
                 )}
               >
-                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
+                  <Illustrazione nome={isCorrect ? 'documento-completato' : 'documento-errore'} gruppo="stati" lato={48} />
                   <span role="img" aria-label={isCorrect ? 'Giusta' : 'Sbagliata'}><Icona nome={isCorrect ? 'stato-risposta-giusta' : 'stato-risposta-sbagliata'} size={32} /></span>
                   {isCorrect && streak > 2 && (
                     <span className="inline-flex items-center gap-1 text-lg tabular-nums"><Icona nome="serie" size={20} />{streak}</span>
@@ -545,7 +566,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
                 disabled={checking || (!optionsRevealed ? selectedRecallWords.length === 0 : selectedOption === null)}
                 className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-superficie-2 border border-linea hover:border-basso disabled:opacity-50 text-testo font-bold text-sm py-3.5 px-4 rounded-[12px] transition-colors duration-100"
               >
-                <span aria-hidden="true" className="text-basso-numero"><Icona nome="fiducia-bassa" size={20} /></span>Indovino
+                <span aria-hidden="true" className="text-basso-numero"><Icona nome="fiducia-bassa" size={20} /></span>Non so
               </button>
               <button
                 onClick={() => handleCheck('medium')}
@@ -602,7 +623,7 @@ function FineSessione({ corrette, totale, secondi, prima, dopo, gruppo, daRipren
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="max-w-xl mx-auto w-full p-4 sm:p-6 flex flex-col gap-4">
           <div className="flex flex-col items-center text-center pt-1">
-            <IllustrazioneAnimata nome="successo" lato={104} />
+            <span aria-hidden="true" className="grid h-[132px] w-[132px] place-items-center rounded-full bg-azione-tinta"><IllustrazioneAnimata nome="successo" lato={92} /></span>
             <p role="img" aria-label={`${corrette} giuste su ${totale}`} className="mt-1 text-[40px] leading-[44px] font-extrabold tabular-nums text-testo">
               {corrette}<span className="text-[22px] font-bold text-testo-tenue">/{totale}</span>
             </p>
@@ -633,7 +654,8 @@ function FineSessione({ corrette, totale, secondi, prima, dopo, gruppo, daRipren
                   </span>
                 )}
               </div>
-              <div className="mt-3 flex items-center justify-center gap-4 text-center tabular-nums">
+              <div className="mt-2 flex justify-center"><Illustrazione nome="progressi-statistiche-scheda" lato={104} /></div>
+              <div className="mt-2 flex items-center justify-center gap-4 text-center tabular-nums">
                 <span className="text-3xl font-extrabold leading-none text-testo-tenue">{prima}</span>
                 <span className="text-testo-tenue"><Icona nome="avanti" size={26} /></span>
                 <span className="text-3xl font-extrabold leading-none text-alto-numero">{dopo}</span>

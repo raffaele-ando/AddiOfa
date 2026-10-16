@@ -12,7 +12,6 @@ import ConfirmDialog from '../../../components/ConfirmDialog';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { FONT } from '../../../brand/tokens';
-import { IllustrazioneAnimata } from '../../../brand/IllustrazioneAnimata';
 import { DOMANDE_SFIDA, SECONDI_SFIDA, scegliDomande, semeDelGiorno } from '../../../lib/sfide/seme';
 import { decodificaSfida, pulisciNome } from '../../../lib/sfide/codice';
 import { idVoce, type RuoloSfida, type TipoSfida, type VoceSfida } from '../../../lib/sfide/risultati';
@@ -160,7 +159,7 @@ export default function SfidaGioco() {
   if (fase === 'carico' || fase === 'consegna') {
     return (
       <div className={cn(cornice, 'items-center justify-center gap-3 p-8 text-center')} style={{ fontFamily: FONT }} role="status">
-        <IllustrazioneAnimata nome="attesa-caricamento" lato={110} />
+        <Illustrazione nome="attesa-caricamento" lato={110} />
         <p className="font-bold text-testo">{fase === 'carico' ? 'Preparo le domande…' : 'Consegno e correggo…'}</p>
       </div>
     );
@@ -208,7 +207,7 @@ export default function SfidaGioco() {
               <PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />
             </div>
             <div className="mt-1 flex flex-col items-center text-center">
-              <IllustrazioneAnimata nome="quiz-test" lato={120} />
+              <Illustrazione nome="quiz-test" lato={120} />
               <h1 className="mt-2 text-[28px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo">{titoloSfida}</h1>
             </div>
             <DatiSfida domande={domande.length} minuti={SECONDI_SFIDA / 60} className="mt-5 justify-center" />

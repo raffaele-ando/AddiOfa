@@ -82,8 +82,7 @@ export function useAccesso(haCollegamento: boolean): StatoAccesso {
     const u = await esegui(signInWithGoogle);
     if (!u) return false;
     setAttivo(true);
-    setUtente(u);
-    if (ATLAS_API_URL) await esegui(async () => { await ricarica(); });
+    setUtente(u); // il resto (lettura dell'account) lo fa l'ascolto dei cambi di accesso
     return true;
   }, [esegui, ricarica]);
 

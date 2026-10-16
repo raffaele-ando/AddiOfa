@@ -5,6 +5,7 @@ import { Screen, TopBar } from '../components/ui';
 import { cn } from '../lib/utils';
 import { LEGAL_DOCS, LEGAL_TABS } from '../legal';
 import { ICONE_LEGALI } from './Footer';
+import { Disegno } from './extra/servizi/componenti';
 
 const MISURA = 'mx-auto w-full max-w-[65ch]';
 const TESTO = 'text-[15px] leading-[1.7] text-testo';
@@ -55,6 +56,7 @@ export default function Legal({ section, onBack, onSection }: {
         </div>
 
         <article id="legal-pannello" data-testo-ok role="tabpanel" aria-labelledby={`tab-${section}`} className="flex flex-col gap-3">
+          <Disegno nome="sfera-addiofa" lato={56} />
           <h1 className="text-2xl font-extrabold leading-tight text-testo">{doc.titolo}</h1>
           <p className="text-sm text-testo-tenue">Aggiornato il {doc.aggiornato}</p>
 

@@ -26,7 +26,7 @@ function Voce({ icona, titolo, tono = 'azione', children }: { icona: ReactNode; 
       </span>
       <div className="min-w-0">
         <h4 className="text-[15px] font-bold leading-snug text-testo">{titolo}</h4>
-        <p className="mt-0.5 text-sm leading-relaxed text-testo-tenue">{children}</p>
+        <div className="mt-0.5 text-[13.5px] leading-snug text-testo-tenue">{children}</div>
       </div>
     </li>
   );
@@ -83,44 +83,54 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
         </div>
 
         <div className="overflow-y-auto px-5 pb-2 scrollbar-hide">
-          <p className="text-sm leading-relaxed text-testo-tenue">
-            La percentuale risponde a una sola domanda: se facessi oggi un test da {REAL_TEST_QUESTIONS} domande, quanto è probabile che tu ne azzecchi almeno {REAL_TEST_PASS_MARK}?
-          </p>
+          {/* Come nel concept 25: la domanda in un riquadro tinto, poi una riga per voce (icona, titolo, una frase breve). */}
+          <div className="flex items-start gap-3 rounded-2xl bg-azione-tinta p-3.5">
+            <Icona nome="soglia" size={22} className="mt-0.5 shrink-0 text-azione-scuro" />
+            <p className="text-[14.5px] leading-snug font-semibold text-testo">
+              Se facessi oggi un test da {REAL_TEST_QUESTIONS} domande, quanto è probabile azzeccarne almeno {REAL_TEST_PASS_MARK}?
+            </p>
+          </div>
 
-          <ul className="mt-4 flex flex-col gap-4">
+          <ul className="mt-4 flex flex-col gap-3.5">
             <Voce icona={<Icona nome="risposte" size={20} />} titolo={`Le tue ${risposte} risposte`}>
               {soloDiagnostico
-                ? `Il calcolo parte da quante risposte esatte hai dato sulle ${risposte} del diagnostico. Le domande sono prese con la stessa proporzione di livelli (A1, A2, B1) di tutto il banco, così non sono tutte facili né tutte difficili.`
-                : `Il calcolo parte da quante risposte esatte hai dato in tutto: ${risposte} tra il diagnostico e le simulazioni che hai fatto. Contano le ultime 3 simulazioni, così chi migliora non resta legato ai risultati vecchi, e dopo due simulazioni le 10 domande del diagnostico escono dal calcolo. Le domande lasciate senza risposta valgono come errori, perché al test vero valgono zero. Gli esercizi di ripasso non contano, perché scelgono le domande più difficili e darebbero una stima troppo severa.`}
+                ? `Le esatte sul diagnostico. Le domande hanno i livelli A1, A2, B1 in proporzione al banco.`
+                : `Diagnostico e simulazioni insieme. Contano le ultime 3 simulazioni; dopo due, il diagnostico esce. Le vuote valgono zero.`}
             </Voce>
-            <Voce icona={<Icona nome="soglia" size={20} />} titolo={`La soglia: ${REAL_TEST_PASS_MARK} su ${REAL_TEST_QUESTIONS}`}>
-              Il calcolo usa la soglia del test di recupero di LinguaViva: {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}. Controlla sempre la soglia del test che farai davvero.
+            <Voce icona={<Icona nome="soglia" size={20} />} titolo={`Soglia ${REAL_TEST_PASS_MARK} su ${REAL_TEST_QUESTIONS}`}>
+              La soglia del test di recupero di LinguaViva. Controlla sempre quella del test che farai.
             </Voce>
-            <Voce icona={<Icona nome="stima-modello" size={20} />} titolo="Dal tuo livello a 30 domande">
-              Non sappiamo quanto sei bravo davvero: lo deduciamo dalle risposte. Il calcolo considera tutti i livelli di preparazione compatibili con quello che hai risposto e, per ciascuno, quanto è probabile fare almeno {REAL_TEST_PASS_MARK} su {REAL_TEST_QUESTIONS}. La percentuale è la media di tutte queste possibilità.
+            <Voce icona={<Icona nome="stima-modello" size={20} />} titolo={`Dal livello alle ${REAL_TEST_QUESTIONS} domande`}>
+              Media su tutti i livelli compatibili con le tue risposte, ciascuno con la sua probabilità di arrivare a {REAL_TEST_PASS_MARK}.
             </Voce>
-            <Voce icona={<Icona nome="stima-intervallo" size={20} />} titolo="Il punteggio probabile">
-              Sotto la percentuale, finché le risposte sono poche, c'è una riga come «punteggio probabile: {formatPunteggio(largo)}». È l'intervallo in cui cade il tuo livello vero con probabilità 80 %, riportato a {REAL_TEST_QUESTIONS} domande. Con {esempio[1].k} esatte su {DIAGNOSTIC_LENGTH} è largo: va da sotto a sopra la soglia di {REAL_TEST_PASS_MARK}, e dice onestamente che con così poche risposte la percentuale da sola non basta. Più risposte dai, più si stringe. Se la stima è molto bassa o molto alta, la percentuale si scrive «&lt;1 %» o «&gt;99 %»: non è mai una certezza.
+            <Voce icona={<Icona nome="stima-intervallo" size={20} />} titolo="Punteggio probabile">
+              Intervallo all'80 %, su {REAL_TEST_QUESTIONS} domande: con poche risposte è largo (con {esempio[1].k} su {DIAGNOSTIC_LENGTH}: {formatPunteggio(largo)}) e si stringe man mano. Mai una certezza.
             </Voce>
             <Voce icona={<Icona nome="stima-escluso" size={20} />} titolo="Cosa non entra" tono="basso">
-              Non conta il tempo che hai impiegato e ogni risposta esatta vale uguale, facile o difficile. Non c'è nessun confronto con altri studenti.
+              Il tempo impiegato, gli esercizi di ripasso, il confronto con altri. Ogni esatta vale uguale.
             </Voce>
           </ul>
 
-          <h3 className="mt-6 text-lg font-bold text-testo">Perché è solo una stima?</h3>
-          <ul className="mt-3 flex flex-col gap-4">
-            <Voce icona={<Icona nome="stima-campione" size={20} />} titolo={soloDiagnostico ? `${DIAGNOSTIC_LENGTH} domande sono poche` : 'Più risposte, stima più stabile'} tono="medio">
+          <h3 className="mt-6 text-lg font-bold text-testo">Solo una stima</h3>
+          <ul className="mt-3 flex flex-col gap-3.5">
+            <Voce icona={<Icona nome="stima-campione" size={20} />} titolo={soloDiagnostico ? `${DIAGNOSTIC_LENGTH} domande sono poche` : 'Più risposte, più stabile'} tono="medio">
               {soloDiagnostico
-                ? <>Una risposta in più o in meno cambia molto il risultato: con {esempio[0].k} esatte su {DIAGNOSTIC_LENGTH} la stima è {esempio[0].p}, con {esempio[1].k} è {esempio[1].p}, con {esempio[2].k} è {esempio[2].p}. Un test vero ha {REAL_TEST_QUESTIONS} domande: un'altra mattina potresti rispondere diversamente.</>
-                : <>Ogni risposta in più rende la stima meno sensibile alla fortuna di un singolo quiz, ma una simulazione di {EXAM.questions} domande resta un campione: un'altra giornata potrebbe andare diversamente.</>}
+                ? <>Una risposta in più cambia molto il risultato.
+                    <span className="mt-2 grid grid-cols-3 gap-2">
+                      {esempio.map(e => (
+                        <span key={e.k} className="flex flex-col items-center rounded-xl bg-medio-tinta px-1 py-2 text-testo">
+                          <span className="text-[12.5px] font-bold tabular-nums text-testo-tenue">{e.k}/{DIAGNOSTIC_LENGTH}</span>
+                          <span className="text-[17px] leading-[22px] font-extrabold tabular-nums">{e.p}</span>
+                        </span>
+                      ))}
+                    </span></>
+                : <>Un quiz di {EXAM.questions} domande resta un campione: un'altra giornata può andare diversamente.</>}
             </Voce>
-            <Voce icona={<Icona nome="stima-garanzia" size={20} />} titolo="Non è una previsione né una garanzia" tono="medio">
-              AddiOFA è un progetto studentesco indipendente: non ha accesso alle domande né ai risultati del test vero e la stima non è collegata a quel test. Il giorno della prova contano anche la concentrazione e il tempo ({EXAM.minutes} minuti per {EXAM.questions} domande), che qui non misuriamo.
+            <Voce icona={<Icona nome="stima-garanzia" size={20} />} titolo="Non è una previsione" tono="medio">
+              Progetto studentesco indipendente: non conosce domande né risultati del test vero. Il giorno della prova contano anche concentrazione e tempo ({EXAM.minutes} minuti per {EXAM.questions} domande).
             </Voce>
             <Voce icona={<Icona nome="stima-miglioramento" size={20} />} titolo="Migliora con le simulazioni" tono="alto">
-              {soloDiagnostico
-                ? <>Ogni simulazione aggiunge {EXAM.questions} risposte alla stima, che si ricalcola da sola. Puoi farne quante vuoi.</>
-                : <>Ogni nuova simulazione aggiunge {EXAM.questions} risposte e la stima si ricalcola da sola.</>}
+              Ogni simulazione aggiunge {EXAM.questions} risposte e la stima si ricalcola da sola. Puoi farne quante vuoi.
             </Voce>
           </ul>
         </div>

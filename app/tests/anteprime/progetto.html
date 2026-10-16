@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Anteprima Progetto</title>
+<script>
+  // ?tema=dark|light  ?vista=esplora|projectid|atlas-analisi|noi|agora|completa-profilo|onboarding  ?stato=nuovo|profilo|collegato|diag  ?atlasProva=uid:Nome (solo dev)
+  const q = new URLSearchParams(location.search);
+  if (q.get('tema') === 'dark') document.documentElement.classList.add('dark');
+</script>
+</head>
+<body class="m-0">
+<div id="root" style="height:100vh"></div>
+<script type="module" src="./progetto.tsx"></script>
+</body>
+</html>

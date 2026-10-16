@@ -107,7 +107,7 @@ export default function SfidaRisultato() {
         ) : (
           <Carta tono={duello ? 'medio' : 'alto'} className="mt-5 flex items-center gap-4">
             <div className="min-w-0 flex-1" role="status" aria-label={`${voce.corrette} su ${voce.totale}, tempo ${tempoBreve(voce.secondi)} su ${tempoBreve(SECONDI_SFIDA)}`}>
-              <p aria-hidden className="text-[13px] font-semibold text-testo-tenue">{duello ? 'Il tuo risultato' : 'Sfida del giorno'}</p>
+              {duello && <p aria-hidden className="text-[13px] font-semibold text-testo-tenue">Il tuo risultato</p>}
               <p aria-hidden className="text-[34px] leading-[38px] font-extrabold tabular-nums text-testo">{voce.corrette}<span className="text-[18px] font-bold text-testo-tenue">/{voce.totale}</span></p>
               <p aria-hidden className="mt-0.5 text-[14px] font-semibold text-testo-tenue"><Tempo secondi={voce.secondi} /> / {tempoBreve(SECONDI_SFIDA)}</p>
             </div>

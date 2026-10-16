@@ -13,6 +13,7 @@ import type { ExamResult, ExamSession, PublicQuestion } from '../access/provider
 import { EXAM } from '../config/offer';
 import { loadState } from '../lib/storage';
 import { elencoSimulazioni } from '../lib/studio/simulazioni';
+import { calcolaStima } from './home/stima';
 import type { PuntiConfronto } from './esito/ConfrontoPrecedente';
 
 interface ExamModeProps {
@@ -49,6 +50,8 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
   // La simulazione svolta prima di questa (per il confronto prima/dopo) e se la prova si è chiusa perché il tempo è finito.
   const [precedente, setPrecedente] = useState<PuntiConfronto | null>(null);
   const [scaduto, setScaduto] = useState(false);
+  // Su quante risposte è calcolata la stima dopo questa simulazione (per il foglio «Come viene calcolata»), se App non lo passa.
+  const [risposteCalcolate, setRisposteCalcolate] = useState<number | undefined>(undefined);
 
   // Stato che non serve a disegnare lo schermo: tempi per domanda, clic, scadenza. Nei ref per non avere valori vecchi nel timer.
   const aliveRef = useRef(true);
@@ -215,7 +218,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
     setResult(res);
     setPhase('done');
 
-    onComplete({
+    const voce: ExamHistory = {
       id: session.id,
       date: Date.now(),
       score: res.rawCorrect,
@@ -225,7 +228,12 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
       questionLogs,
       answers: answered,
       questionIds: session.questions.map(q => q.id),
-    }, categoryUpdates, questionResults);
+    };
+    try {
+      const salvato = loadState();
+      setRisposteCalcolate(calcolaStima({ ...salvato, history: [...(storico ?? salvato.history).filter(h => h.id !== voce.id), voce] })?.risposte);
+    } catch { setRisposteCalcolate(undefined); }
+    onComplete(voce, categoryUpdates, questionResults);
   };
 
   // ---- Azioni durante la prova
@@ -353,7 +361,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
           elapsedSeconds={elapsedFinal}
           onExit={onExit}
           onOpenTheory={onOpenTheory}
-          risposteStima={risposteStima}
+          risposteStima={risposteStima ?? risposteCalcolate}
           onRetry={() => void avvia(true)}
           precedente={precedente}
           scaduto={scaduto}
