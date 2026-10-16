@@ -14,8 +14,7 @@ const SCOPI: [string, string][] = [
 export default function Agora() {
   const { vai, apriInviti } = useExtra();
   return (
-    <Pagina titolo="Agorà" sottotitolo="Il forum degli studenti: domande, idee, confronto."
-      figura={<MessagesSquare size={44} className="mt-1 shrink-0 text-azione" aria-hidden="true" />}>
+    <Pagina titolo="Agorà" sottotitolo="Il forum degli studenti: domande, idee, confronto.">
 
       <div className="mt-6 flex flex-col items-center text-center" role="status">
         <Disegno nome="messaggi-supporto" lato={168} />

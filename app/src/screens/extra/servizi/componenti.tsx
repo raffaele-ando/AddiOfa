@@ -26,31 +26,13 @@ export function Disegno({ nome, lato = 140, className }: { nome: string; lato?: 
   return <img src={src} alt="" draggable={false} width={lato} className={cn('h-auto max-w-full', className)} style={{ width: lato }} />;
 }
 
-/** Pagina: colonna centrata, freccia indietro e titolo. Il corpo scorre, la barra in basso la mette l'App. */
-export function Pagina({ titolo, sottotitolo, figura, children, indietroA }: {
+import { Pagina as PaginaBase } from '../ui';
+/** Pagina dei servizi: la pagina comune; la freccia torna alla schermata precedente (o a `indietroA`). `figura` non si disegna più (niente icone decorative). */
+export function Pagina({ titolo, sottotitolo, children, indietroA }: {
   titolo: string; sottotitolo?: string; figura?: ReactNode; children: ReactNode; indietroA?: () => void;
 }) {
   const { indietro } = useExtra();
-  return (
-    <div className="h-full w-full bg-superficie text-testo overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
-      <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
-        <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(12px,env(safe-area-inset-top))] pb-8">
-          <button type="button" onClick={() => { playTapSound(); (indietroA ?? indietro)(); }} aria-label="Indietro"
-            className="brand-premibile -ml-2 mb-1 flex h-11 w-11 items-center justify-center rounded-full text-testo-tenue hover:text-testo">
-            <ChevronLeft size={28} strokeWidth={2.2} aria-hidden="true" />
-          </button>
-          <header className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <h1 className="text-[28px] leading-[36px] font-extrabold tracking-[-0.02em] text-testo">{titolo}</h1>
-              {sottotitolo && <p className="mt-1 text-[14.5px] leading-[21px] text-testo-tenue">{sottotitolo}</p>}
-            </div>
-            {figura}
-          </header>
-          {children}
-        </div>
-      </div>
-    </div>
-  );
+  return <PaginaBase titolo={titolo} sottotitolo={sottotitolo} onBack={indietroA ?? indietro}>{children}</PaginaBase>;
 }
 
 /** Sezione con titolo (h2), per tenere i titoli in ordine per chi usa lo screen reader. */

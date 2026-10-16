@@ -5,7 +5,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Swords } from 'lucide-react';
 import { useExtra } from '../contesto';
-import { IllustrazioneAnimata } from '../../../brand/IllustrazioneAnimata';
 import { decodificaSfida, pulisciNome, NOME_MAX } from '../../../lib/sfide/codice';
 import { SECONDI_SFIDA } from '../../../lib/sfide/seme';
 import { agganciaRisposta, confronta, fraseEsito, idVoce, tempoBreve } from '../../../lib/sfide/risultati';
@@ -107,8 +106,7 @@ export default function SfidaAccetta() {
   };
 
   return (
-    <Pagina titolo={`${dati.nome} ti sfida`} sottotitolo="10 domande d'inglese, le stesse per tutti e due." onBack={() => vai('sfide')}
-      destra={<IllustrazioneAnimata nome="quiz-test" lato={84} />}>
+    <Pagina titolo={`${dati.nome} ti sfida`} sottotitolo="10 domande d'inglese, le stesse per tutti e due." onBack={() => vai('sfide')}>
       <Carta className="mt-5" tono="azione">
         <ul className="flex flex-col gap-1.5 text-[14.5px] leading-[20px] text-testo">
           <li><strong>10 domande</strong> in {SECONDI_SFIDA / 60} minuti, senza feedback finché non consegni.</li>

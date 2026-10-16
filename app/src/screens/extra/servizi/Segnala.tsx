@@ -52,8 +52,7 @@ export default function Segnala() {
   };
 
   return (
-    <Pagina titolo="Segnala" sottotitolo="Una domanda sbagliata, una spiegazione confusa o un problema dell'app."
-      figura={<Flag size={40} className="mt-1 shrink-0 text-azione" aria-hidden="true" />}>
+    <Pagina titolo="Segnala" sottotitolo="Una domanda sbagliata, una spiegazione confusa o un problema dell'app.">
 
       {fatta ? (
         <div className="mt-5" role="status">

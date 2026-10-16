@@ -46,8 +46,7 @@ export default function Noi() {
   const daCollegare = stato === 'da-collegare' || stato === 'da-aderire';
 
   return (
-    <Pagina titolo={`Classifica ${ECOSYSTEM.rankingName}`} sottotitolo="Chi sa più regole: domande imparate, poi miglior simulazione. Solo per chi sceglie di partecipare."
-      figura={<Trophy size={44} className="mt-1 shrink-0 text-azione" aria-hidden="true" />}>
+    <Pagina titolo={`Classifica ${ECOSYSTEM.rankingName}`} sottotitolo="Chi sa più regole: domande imparate, poi miglior simulazione. Solo per chi sceglie di partecipare.">
 
       <Nota tono={stato === 'aderito' ? 'azione' : 'attenzione'} className="mt-5">
         <p className="font-bold">{t.titolo}</p>

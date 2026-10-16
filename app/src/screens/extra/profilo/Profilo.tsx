@@ -23,7 +23,7 @@ function Tessera({ icona, valore, etichetta }: { icona: ReactNode; valore: strin
 
 /** Hub del profilo: chi sei, a che livello sei arrivato, i numeri veri del tuo studio, il Pass e la porta verso il resto. */
 export default function Profilo() {
-  const { appState, pass, vai, apriImpostazioni, apriPaywall, apriInviti, avviaEsercizi } = useExtra();
+  const { appState, pass, vai, indietro, apriImpostazioni, apriPaywall, apriInviti, avviaEsercizi } = useExtra();
   const { entitlement } = useAccess();
   const { profilo } = useProfilo();
   const { pool, nucleo } = useBanco();
@@ -61,7 +61,7 @@ export default function Profilo() {
   ].filter(Boolean);
 
   return (
-    <Pagina titolo="Il tuo profilo" destra={
+    <Pagina titolo="Il tuo profilo" indietro={indietro} destra={
       <button type="button" onClick={() => { playTapSound(); apriImpostazioni(); }} aria-label="Impostazioni"
         className="brand-premibile w-10 h-10 rounded-full bg-superficie-2 text-testo grid place-items-center">
         <Settings size={20} strokeWidth={1.8} aria-hidden="true" />
@@ -96,9 +96,7 @@ export default function Profilo() {
           <p className="mt-2 text-[13px] leading-[18px] text-testo">Hai raggiunto l'ultimo livello delle domande.</p>
         )}
         {livello.dalNucleo && <p className="mt-2 text-[12px] leading-[17px] text-testo-tenue">Questo livello l'hai raggiunto sulle domande del nucleo gratuito e resta tuo.</p>}
-        <p className="mt-2 text-[12px] leading-[17px] text-testo-tenue">
-          Si calcola dalle domande che hai imparato: un livello è raggiunto quando ne hai imparate il {Math.round(SOGLIA_LIVELLO * 100)} % di quel livello. Non è una certificazione.
-        </p>
+        <p className="mt-2 text-[12px] leading-[17px] text-testo-tenue">Non è una certificazione: dice quante domande di ogni livello hai imparato.</p>
       </Carta>
 
       <Sezione titolo="Il tuo studio" id="titolo-numeri">

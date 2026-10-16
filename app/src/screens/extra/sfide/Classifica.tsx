@@ -1,9 +1,9 @@
 // `classifica`: la classifica tra te e i tuoi rivali, calcolata dai duelli veri (podio solo se siete almeno in due),
 // e la sezione «Classifica NOI» con il suo stato onesto: richiede il Project ID, non attivo in questa versione. Nessuna posizione inventata.
-import { Crown, Lock, Swords } from 'lucide-react';
+import { ChevronRight, Crown, Lock, Swords } from 'lucide-react';
+import { playTapSound } from '../../../lib/audio';
 import { useExtra } from '../contesto';
 import { ECOSYSTEM } from '../../../config/ecosystem';
-import { FEATURE_FLAGS } from '../../../config/offer';
 import { cn, formatNumber } from '../../../lib/utils';
 import { costruisciClassifica, tempoBreve, type RigaClassifica } from '../../../lib/sfide/risultati';
 import { useProfiloSfide, useStorico } from './dati';
@@ -89,15 +89,13 @@ export default function Classifica() {
         )}
       </Sezione>
 
-      <Sezione id="titolo-noi" titolo={`Classifica ${ECOSYSTEM.rankingName}`} destra={<span className="inline-flex items-center gap-1 rounded-full border border-linea bg-superficie-2 px-2.5 py-0.5 text-[12px] font-bold text-testo-tenue"><Lock size={12} aria-hidden /> Non attiva</span>}>
-        <Carta>
-          <p className="text-[14.5px] leading-[21px] text-testo">
-            {ECOSYSTEM.rankingName} sarà la classifica di tutti gli studenti che la scelgono, per sapere chi conosce più regole. Per partecipare serve collegare AddiOFA al tuo {ECOSYSTEM.accountName}, e si entra solo con un consenso esplicito.
-          </p>
-          <p className="mt-2 text-[14px] leading-[20px] text-testo-tenue">
-            {FEATURE_FLAGS.leaderboard && FEATURE_FLAGS.projectId ? 'Il collegamento è in preparazione.' : `In questa versione il collegamento con ${ECOSYSTEM.accountName} non è attivo: non c'è nessuna classifica ${ECOSYSTEM.rankingName}, né posizioni o punteggi da mostrare.`}
-          </p>
-        </Carta>
+      <Sezione id="titolo-noi" titolo={`Classifica ${ECOSYSTEM.rankingName}`}>
+        <button type="button" onClick={() => { playTapSound(); vai('noi'); }}
+          className="brand-premibile flex w-full items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left">
+          <span className="min-w-0 flex-1 text-[14px] leading-[20px] text-testo">Tra tutti gli studenti che la scelgono: serve il Project ID e non è ancora attiva.</span>
+          <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-linea bg-superficie px-2.5 py-0.5 text-[12px] font-bold text-testo-tenue"><Lock size={12} aria-hidden /> Non attiva</span>
+          <ChevronRight size={20} className="shrink-0 text-testo-tenue" aria-hidden />
+        </button>
       </Sezione>
     </Pagina>
   );

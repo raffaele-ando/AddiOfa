@@ -17,33 +17,7 @@ export function useScuro(): boolean {
   return scuro;
 }
 
-/** Pagina a scorrimento nello stile di Lezioni: cornice, colonna centrata, intestazione con freccia indietro. */
-export function Pagina({ titolo, sottotitolo, onBack, destra, children }: {
-  titolo: string; sottotitolo?: string; onBack?: () => void; destra?: ReactNode; children: ReactNode;
-}) {
-  return (
-    <div className="h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
-      <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
-        <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(16px,env(safe-area-inset-top))] pb-8">
-          <header className="flex items-start justify-between gap-3">
-            <div className="min-w-0 flex-1">
-              {onBack && (
-                <button type="button" onClick={() => { playTapSound(); onBack(); }} aria-label="Indietro"
-                  className="brand-premibile -ml-2 mb-1 p-1 rounded-full text-testo-tenue hover:text-testo">
-                  <ChevronLeft size={26} strokeWidth={2.5} />
-                </button>
-              )}
-              <h1 className="text-[28px] leading-[36px] font-extrabold tracking-[-0.02em] text-testo">{titolo}</h1>
-              {sottotitolo && <p className="mt-1 text-[14px] leading-[20px] text-testo-tenue">{sottotitolo}</p>}
-            </div>
-            {destra && <div className="shrink-0">{destra}</div>}
-          </header>
-          {children}
-        </div>
-      </div>
-    </div>
-  );
-}
+export { Pagina } from '../ui';
 
 const SCHEDE = [['sfide', 'Sfide'], ['classifica', 'Classifica'], ['amici', 'Amici']] as const;
 
@@ -66,17 +40,7 @@ export function SchedeSfide({ attiva }: { attiva: 'sfide' | 'classifica' | 'amic
   );
 }
 
-export function Sezione({ id, titolo, destra, children, className }: { id: string; titolo: string; destra?: ReactNode; children: ReactNode; className?: string }) {
-  return (
-    <section aria-labelledby={id} className={cn('mt-6 flex flex-col gap-[10px]', className)}>
-      <div className="flex items-center justify-between gap-3">
-        <h2 id={id} className="text-[15.5px] leading-[20px] font-bold text-testo">{titolo}</h2>
-        {destra}
-      </div>
-      {children}
-    </section>
-  );
-}
+export { Sezione } from '../ui';
 
 export function Carta({ children, className, tono = 'neutro' }: { children: ReactNode; className?: string; tono?: 'neutro' | 'azione' | 'alto' | 'medio' }) {
   const toni = {

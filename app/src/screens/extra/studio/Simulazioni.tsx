@@ -5,7 +5,6 @@ import { CheckCircle2, ChevronRight, Clock, Lock, XCircle } from 'lucide-react';
 import { useExtra } from '../contesto';
 import { FORMATS } from '../../../config/offer';
 import { elencoSimulazioni, limiteGratuito, FORMATO_SIMULAZIONE } from '../../../lib/studio/simulazioni';
-import { IllustrazioneAnimata } from '../../../brand/IllustrazioneAnimata';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { Pagina, Carta, Bottone, StatoVuoto, TitoloSezione, dataBreve, minSec } from './comune';
@@ -18,9 +17,7 @@ export default function Simulazioni() {
   const migliore = elenco.length > 0 ? Math.max(...elenco.map(s => s.esatte)) : null;
 
   return (
-    <Pagina titolo="Simulazioni" onIndietro={indietro}
-      destra={<IllustrazioneAnimata nome="quiz-test" lato={84} />}
-      sotto="Allenati nel formato del test di recupero.">
+    <Pagina titolo="Simulazioni" sotto="Allenati nel formato del test di recupero.">
       <Carta className="mt-4 p-4">
         <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-testo-tenue">Nuova simulazione</p>
         <h2 className="mt-1 text-[18px] leading-[24px] font-extrabold text-testo">Test di recupero</h2>

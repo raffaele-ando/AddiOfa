@@ -5,7 +5,6 @@ import { cn, chiaveGiorno } from '../lib/utils';
 import { REGOLA_IMPARATA } from './home/comune';
 import { confidenceFromEasiness, bankMeta, poolMeta, countLearned, isLearned } from '../lib/spacedRepetition';
 import GuaranteeTracker from './GuaranteeTracker';
-import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 import { PoweredByAtlas } from './ui';
 import { useAccess } from '../access/context';
 import { FEATURE_FLAGS, FORMATS, PASS } from '../config/offer';
@@ -53,16 +52,15 @@ async function fetchPrompts(
 /** Intestazione della schermata: freccia indietro, titolo del concept e illustrazione. */
 function Intestazione({ sotto, onExit }: { sotto: string; onExit: () => void }) {
   return (
-    <header className="flex items-center gap-1 shrink-0">
+    <header className="flex items-start gap-1 shrink-0">
       <button type="button" onClick={() => { playTapSound(); onExit(); }} aria-label="Indietro"
-        className="-ml-2 grid place-items-center w-10 h-10 shrink-0 rounded-full text-testo-tenue hover:text-testo">
+        className="-ml-3 grid place-items-center w-10 h-10 shrink-0 rounded-full text-testo-tenue hover:text-testo">
         <ChevronLeft size={28} strokeWidth={2.2} aria-hidden="true" />
       </button>
       <div className="min-w-0 flex-1">
-        <h1 className="text-[26px] leading-[32px] font-extrabold tracking-[-0.02em] text-testo">Le tue statistiche</h1>
-        <p className="text-sm text-testo-tenue">{sotto}</p>
+        <h1 className="text-[26px] leading-[40px] font-extrabold tracking-[-0.02em] text-testo">Le tue statistiche</h1>
+        <p className="mt-0.5 text-[14px] leading-[20px] text-testo-tenue">{sotto}</p>
       </div>
-      <IllustrazioneAnimata nome="progressi-statistiche" lato={84} />
     </header>
   );
 }
@@ -232,12 +230,12 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
     return (
       <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
         <div className="h-full overflow-y-auto scrollbar-hide">
-          <div className="mx-auto w-full max-w-[560px] px-5 pt-3 pb-8 flex flex-col gap-5">
+          <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8 flex flex-col gap-5">
             <Intestazione sotto="Quanto sai, in breve." onExit={onExit} />
 
             <Tessere stato={appState} />
 
-            <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3">
               {([
                 [`${masteryPercentage}%`, `Domande imparate (su ${totalQuestions})`],
                 [`${globalAccuracy}%`, 'Accuratezza'],
@@ -247,8 +245,8 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
                   <span className="text-xs text-testo-tenue">{nome}</span>
                 </div>
               ))}
-              <p className="min-[420px]:col-span-2 -mt-1 text-xs leading-snug text-testo-tenue">{REGOLA_IMPARATA}</p>
-              <div className="min-[420px]:col-span-2 bg-superficie-2 rounded-[12px] p-4 flex flex-col gap-1.5">
+              <p className="col-span-2 -mt-1 text-xs leading-snug text-testo-tenue">{REGOLA_IMPARATA}</p>
+              <div className="col-span-2 bg-superficie-2 rounded-[12px] p-4 flex flex-col gap-1.5">
                 {lastExam && lastExamFormat ? (
                   <>
                     <span className="text-[26px] font-extrabold text-testo leading-none">
@@ -464,7 +462,7 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
   return (
     <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
       <div className="h-full overflow-y-auto scrollbar-hide">
-        <div className="mx-auto w-full max-w-[560px] px-5 pt-3 pb-8 flex flex-col gap-6">
+        <div className="mx-auto w-full max-w-[560px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8 flex flex-col gap-6">
           <Intestazione sotto="Quanto sai, argomento per argomento." onExit={onExit} />
 
           <Tessere stato={appState} />

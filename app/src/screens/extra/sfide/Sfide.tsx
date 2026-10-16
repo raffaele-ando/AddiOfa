@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { ChevronRight, Swords, CalendarCheck2, Clock } from 'lucide-react';
 import { useExtra } from '../contesto';
 import { playTapSound } from '../../../lib/audio';
-import { IllustrazioneAnimata } from '../../../brand/IllustrazioneAnimata';
 import { nuovoSeme, semeDelGiorno, DOMANDE_SFIDA, SECONDI_SFIDA } from '../../../lib/sfide/seme';
 import { estraiCodice, pulisciNome, NOME_MAX } from '../../../lib/sfide/codice';
 import { confronta, idVoce, tempoBreve, type VoceSfida } from '../../../lib/sfide/risultati';
@@ -39,7 +38,7 @@ function RigaStorico({ voce, onApri }: { voce: VoceSfida; onApri: () => void }) 
 }
 
 export default function Sfide() {
-  const { vai, vaiHome } = useExtra();
+  const { vai, indietro } = useExtra();
   const { voci } = useStorico();
   const { profilo } = useProfiloSfide();
   const [nome, setNome] = useState(profilo.nome ?? '');
@@ -62,7 +61,7 @@ export default function Sfide() {
 
   return (
     <Pagina titolo="Sfide" sottotitolo="Domande vere, contro il tempo e contro gli amici. Contano le risposte giuste e il tempo: nessun punto da collezionare."
-      onBack={vaiHome} destra={<IllustrazioneAnimata nome="quiz-test" lato={92} />}>
+      onBack={indietro}>
       <SchedeSfide attiva="sfide" />
 
       <Sezione id="titolo-giorno" titolo="Sfida del giorno" destra={<span className="text-[12.5px] font-semibold text-testo-tenue">{dataLunga()}</span>}>

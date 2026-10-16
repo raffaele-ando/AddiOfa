@@ -170,15 +170,15 @@ const livello = (l: Livello, titolo: string, illustrazione: string): Definizione
 });
 
 export const BADGE: DefinizioneBadge[] = [
-  domande('prima-domanda', 1, 'Prima domanda imparata', 'studio-inglese'),
+  domande('prima-domanda', 1, 'Prima domanda imparata', 'suggerimenti-consigli'),
   domande('domande-25', 25, '25 domande imparate', 'studio-inglese'),
   domande('domande-100', 100, '100 domande imparate', 'quiz-test'),
-  argomenti('argomento-1', 1, 'Primo argomento', 'successo'),
+  argomenti('argomento-1', 1, 'Primo argomento', 'ricerca'),
   argomenti('argomenti-10', 10, '10 argomenti', 'successo'),
-  argomenti('argomenti-20', 20, '20 argomenti', 'superamento'),
+  argomenti('argomenti-20', 20, '20 argomenti', 'risultato-probabilita'),
   argomenti('argomenti-tutti', 'tutti', 'Tutti gli argomenti', 'celebrazione'),
   {
-    id: 'memoria-10', gruppo: 'studio', titolo: 'Memoria a lungo termine', illustrazione: 'suggerimenti-consigli',
+    id: 'memoria-10', gruppo: 'studio', titolo: 'Memoria a lungo termine', illustrazione: 'attesa-caricamento',
     condizione: `Ricorda 10 domande imparate anche a distanza: il ripasso le ha portate a un intervallo di almeno ${GIORNI_MEMORIA} giorni.`,
     valuta: (c, m) => conteggio(m.ricordateA7Giorni, 10, 'domande ricordate a lungo', c.pool.length),
   },
@@ -218,10 +218,10 @@ export const BADGE: DefinizioneBadge[] = [
     valuta: (_c, m) => conteggio(m.simulazioniSuperate, 3, 'simulazioni superate'),
   },
   giorni('giorni-7', 7, '7 giorni di studio', 'progressi-statistiche'),
-  giorni('giorni-14', 14, '14 giorni di studio', 'progressi-statistiche'),
+  giorni('giorni-14', 14, '14 giorni di studio', 'studio-inglese'),
   giorni('giorni-31', 31, '31 giorni di studio', 'celebrazione'),
   livello('A1', 'Livello A1', 'suggerimenti-consigli'),
-  livello('A2', 'Livello A2', 'suggerimenti-consigli'),
+  livello('A2', 'Livello A2', 'verifica-utente'),
   livello('B1', 'Livello B1', 'superamento'),
 ];
 

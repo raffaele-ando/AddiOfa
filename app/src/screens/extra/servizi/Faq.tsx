@@ -43,8 +43,7 @@ export default function Faq() {
   const filtri: { id: CategoriaFaq | 'tutte'; nome: string }[] = [{ id: 'tutte', nome: 'Tutte' }, ...CATEGORIE_FAQ];
 
   return (
-    <Pagina titolo="Guida e FAQ" sottotitolo="Risposte brevi su test, Pass, dati e app."
-      figura={<CircleHelp size={44} className="mt-1 shrink-0 text-azione" aria-hidden="true" />}>
+    <Pagina titolo="Guida e FAQ" sottotitolo="Risposte brevi su test, Pass, dati e app.">
 
       <div className="mt-5">
         <label htmlFor={campo} className="sr-only">Cerca nelle domande</label>

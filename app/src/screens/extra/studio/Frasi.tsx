@@ -69,12 +69,12 @@ export default function Frasi() {
         )}
       </div>
 
-      <div role="group" aria-label="Filtra le frasi" className="mt-3 flex flex-wrap gap-2">
+      <div role="group" aria-label="Filtra le frasi" className="mt-3 -mx-6 flex gap-2 overflow-x-auto px-6 pb-1 scrollbar-hide">
         {FILTRI.map(f => {
           const on = filtro === f.id;
           return (
             <button key={f.id} type="button" aria-pressed={on} onClick={() => { playTapSound(); setFiltro(f.id); setQuante(PAGINA); }}
-              className={cn('min-h-[38px] rounded-full px-3.5 text-[13.5px] font-semibold border transition-colors duration-100',
+              className={cn('min-h-[38px] shrink-0 whitespace-nowrap rounded-full px-3.5 text-[13.5px] font-semibold border transition-colors duration-100',
                 on ? 'bg-azione text-azione-su border-azione' : 'bg-superficie text-testo-tenue border-linea hover:text-testo')}>
               {f.nome}<span className={cn('ml-1.5 tabular-nums text-[12px]', on ? 'text-azione-su' : 'text-testo-tenue')}>{conteggi[f.id]}</span>
             </button>

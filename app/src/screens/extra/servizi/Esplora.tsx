@@ -42,7 +42,7 @@ function Carta({ carta, disp, nota, etichetta, onClick }: { carta: CartaEsplora;
         <span className="flex-1 min-w-0">
           <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span className="text-[15.5px] leading-[20px] font-bold text-testo">{t.titolo}</span>
-            <span className={cn('rounded-full px-2 py-[2px] text-[11.5px] leading-[16px] font-bold', STILE_ETICHETTA[disp])}>{etichetta ?? ETICHETTA_DISPONIBILITA[disp]}</span>
+            {(disp !== 'ora' || etichetta) && <span className={cn('rounded-full px-2 py-[2px] text-[11.5px] leading-[16px] font-bold', STILE_ETICHETTA[disp])}>{etichetta ?? ETICHETTA_DISPONIBILITA[disp]}</span>}
           </span>
           <span className="mt-0.5 block text-[13px] leading-[18px] text-testo-tenue">{t.testo}</span>
           {nota && <span className="mt-1 block text-[12.5px] leading-[17px] text-testo-tenue">{nota}</span>}
@@ -74,7 +74,7 @@ export default function Esplora() {
   });
 
   return (
-    <Pagina titolo="Esplora" sottotitolo="Gli strumenti di AddiOFA e i servizi collegati. Ogni carta dice se puoi usarla adesso." figura={<Compass size={44} className="mt-1 shrink-0 text-azione" aria-hidden="true" />}>
+    <Pagina titolo="Esplora" sottotitolo="Gli strumenti di AddiOFA e i servizi collegati. Se una carta non è disponibile, te lo dice.">
       <Sezione id="esplora-studio" titolo="Per studiare"><ul className="flex flex-col gap-[8px]">{gruppo('studio')}</ul></Sezione>
       <Sezione id="esplora-eco" titolo={`Ecosistema ${ECOSYSTEM.name}`}><ul className="flex flex-col gap-[8px]">{gruppo('ecosistema')}</ul></Sezione>
       <Sezione id="esplora-aiuto" titolo="Aiuto"><ul className="flex flex-col gap-[8px]">{gruppo('aiuto')}</ul></Sezione>

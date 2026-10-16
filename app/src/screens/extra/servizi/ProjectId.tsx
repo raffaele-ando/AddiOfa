@@ -24,8 +24,7 @@ export default function ProjectId() {
   const premi = () => { if (stato.attivo) apriImpostazioni(); else setSpiega(true); };
 
   return (
-    <Pagina titolo={ECOSYSTEM.accountName} sottotitolo={`Un solo account facoltativo per le app ${ECOSYSTEM.name}. Non serve per studiare.`}
-      figura={<Fingerprint size={44} className="mt-1 shrink-0 text-azione" aria-hidden="true" />}>
+    <Pagina titolo={ECOSYSTEM.accountName} sottotitolo={`Un solo account facoltativo per le app ${ECOSYSTEM.name}. Non serve per studiare.`}>
 
       <Nota tono={stato.attivo ? 'azione' : 'attenzione'} className="mt-5">
         <p className="font-bold">{stato.attivo ? (link ? 'Collegato su questo dispositivo' : 'Il collegamento è disponibile') : 'Il collegamento non è ancora attivo'}</p>

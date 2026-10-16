@@ -13,38 +13,11 @@ import { iniziale, normalizzaProfilo, type ProfiloDati } from '../../../lib/prof
 import { valutaBadge, type BadgeValutato } from '../../../lib/profilo/badge';
 import { useExtra, useExtraDati } from '../contesto';
 
-/** Pagina a scorrimento con intestazione: freccia indietro (se c'è `indietro`), titolo grande, elemento a destra. */
-export function Pagina({ titolo, indietro, destra, children }: { titolo: string; indietro?: () => void; destra?: ReactNode; children: ReactNode }) {
-  return (
-    <div className="h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
-      <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
-        <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(12px,env(safe-area-inset-top))] pb-8">
-          {indietro && (
-            <div className="flex items-center h-11">
-              <button type="button" onClick={() => { playTapSound(); indietro(); }} aria-label="Indietro"
-                className="brand-premibile -ml-2.5 pl-1 pr-2 h-11 flex items-center gap-0.5 text-azione text-[16px]">
-                <ChevronLeft size={28} strokeWidth={2.2} aria-hidden="true" /> Indietro
-              </button>
-            </div>
-          )}
-          <header className={cn('flex items-center justify-between gap-3', indietro ? 'mt-0.5' : 'mt-2')}>
-            <h1 className="text-[28px] leading-[36px] font-extrabold tracking-[-0.02em] text-testo">{titolo}</h1>
-            {destra}
-          </header>
-          {children}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function Sezione({ titolo, id, children, className }: { titolo: string; id: string; children: ReactNode; className?: string }) {
-  return (
-    <section aria-labelledby={id} className={cn('mt-[24px] flex flex-col gap-[10px]', className)}>
-      <h2 id={id} className="text-[15.5px] leading-[20px] font-bold text-testo">{titolo}</h2>
-      {children}
-    </section>
-  );
+import { Pagina as PaginaBase, Sezione } from '../ui';
+export { Sezione };
+/** Pagina del profilo: la pagina comune, con `indietro` come nome della prop (compatibilità con le schermate esistenti). */
+export function Pagina({ titolo, sottotitolo, indietro, destra, children }: { titolo: string; sottotitolo?: ReactNode; indietro?: () => void; destra?: ReactNode; children: ReactNode }) {
+  return <PaginaBase titolo={titolo} sottotitolo={sottotitolo} onBack={indietro} destra={destra}>{children}</PaginaBase>;
 }
 
 /** Avatar tondo: la lettera del nome oppure un'illustrazione del kit. Mai una foto. */
