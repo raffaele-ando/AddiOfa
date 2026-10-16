@@ -199,11 +199,11 @@ async def percorso(page, nome_schema, larghezza, risposte, foto, risultati, qual
     await page.wait_for_timeout(1200)
     await c('landing')
     # diagnostico
-    await clic('Fai il diagnostico gratuito'); await c('diagnostico-intro')
-    await clic('Inizia il diagnostico')
-    await clic('No, non ho una certificazione'); await clic('^Avanti'); await clic("Sì, ho l'OFA"); await clic('^Avanti')
+    await clic('^Fai il diagnostico'); await c('diagnostico-intro')
+    await clic('^Inizia')
+    await clic('^No$'); await clic('^Avanti'); await clic('^Sì$'); await clic('^Avanti')
     await c('diagnostico-pronto')
-    await clic('Inizia il quiz'); await c('diagnostico-quiz')
+    await c('diagnostico-quiz')
     await rispondi('h2 + div button', 10, 7, 'avanti')
     await page.wait_for_timeout(800)
     visto = False
@@ -211,7 +211,7 @@ async def percorso(page, nome_schema, larghezza, risposte, foto, risultati, qual
         if await page.locator('nav[aria-label="Sezioni"]').count(): break
         if not visto and await page.get_by_text('Probabilità stimata').count():
             visto = True; await c('diagnostico-risultato')
-        for passo in ('Vedi il tuo risultato', 'Vedi il risultato', 'Salta', 'Scopri come prepararti', 'Continua gratis'):
+        for passo in ('Risultato', 'Avanti', 'Continua', 'Salta'):
             if await esiste('^' + passo):
                 if passo == 'Vedi il risultato': await c('diagnostico-calcolo')
                 await clic('^' + passo); await page.wait_for_timeout(700); break
