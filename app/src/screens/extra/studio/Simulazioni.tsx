@@ -1,13 +1,13 @@
 // «Le mie simulazioni»: la card della nuova simulazione (test di recupero LinguaViva) e l'elenco di quelle svolte (appState.history).
 // Concept: 36 e 49 («Le mie simulazioni»), 18 («Simulatore d'esame»). Barra in basso: Simulazioni.
 import { useMemo } from 'react';
-import { CheckCircle2, ChevronRight, Clock, Lock, XCircle } from 'lucide-react';
+import { CheckCircle2, ChevronRight, Clock, ListChecks, Lock, Target, XCircle } from 'lucide-react';
 import { useExtra } from '../contesto';
 import { FORMATS } from '../../../config/offer';
 import { elencoSimulazioni, limiteGratuito, FORMATO_SIMULAZIONE } from '../../../lib/studio/simulazioni';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { Pagina, Carta, Bottone, StatoVuoto, TitoloSezione, dataBreve, minSec } from './comune';
+import { Pagina, Carta, Bottone, StatoVuoto, TitoloSezione, dataBreve, minSec, TONI } from './comune';
 
 export default function Simulazioni() {
   const { appState, pass, vai, indietro, avviaSimulazione } = useExtra();
@@ -17,14 +17,14 @@ export default function Simulazioni() {
   const migliore = elenco.length > 0 ? Math.max(...elenco.map(s => s.esatte)) : null;
 
   return (
-    <Pagina titolo="Simulazioni" sotto="Allenati nel formato del test di recupero.">
-      <Carta className="mt-4 p-4">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-testo-tenue">Nuova simulazione</p>
+    <Pagina titolo="Simulazioni">
+      <Carta className="mt-3 p-4" tinta="bg-azione-tinta">
+        <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-azione-scuro">Nuova simulazione</p>
         <h2 className="mt-1 text-[18px] leading-[24px] font-extrabold text-testo">Test di recupero</h2>
-        <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[14px] leading-[20px] text-testo">
-          <li><span className="font-bold tabular-nums">{f.questions}</span> domande</li>
-          <li><span className="font-bold tabular-nums">{f.minutes}</span> minuti</li>
-          <li>soglia <span className="font-bold tabular-nums">{f.passMark}/{f.questions}</span></li>
+        <ul className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1.5 text-[14px] leading-[20px] text-testo">
+          <li className="inline-flex items-center gap-1.5"><ListChecks size={17} aria-hidden="true" className={TONI.azione.icona} /><span className="font-bold tabular-nums">{f.questions}</span> domande</li>
+          <li className="inline-flex items-center gap-1.5"><Clock size={17} aria-hidden="true" className={TONI.medio.icona} /><span className="font-bold tabular-nums">{f.minutes}</span> minuti</li>
+          <li className="inline-flex items-center gap-1.5"><Target size={17} aria-hidden="true" className={TONI.alto.icona} />soglia <span className="font-bold tabular-nums">{f.passMark}/{f.questions}</span></li>
         </ul>
         <p className="mt-2 text-[13px] leading-[18px] text-testo-tenue">
           {pass
@@ -37,7 +37,7 @@ export default function Simulazioni() {
           <Bottone onClick={avviaSimulazione} icona={!pass && !limite.puoiIniziare ? <Lock size={17} aria-hidden="true" /> : undefined}>
             {!pass && !limite.puoiIniziare ? 'Altre simulazioni con il Pass' : 'Inizia la simulazione'}
           </Bottone>
-          <Bottone variante="secondario" onClick={() => vai('simulazione-dettaglio')}>Cosa contiene e come si calcola</Bottone>
+          <Bottone variante="secondario" className="bg-superficie" onClick={() => vai('simulazione-dettaglio')}>Cosa contiene e come si calcola</Bottone>
         </div>
       </Carta>
 
@@ -63,7 +63,7 @@ export default function Simulazioni() {
                     <span className="block text-[15px] leading-[20px] font-bold text-testo">Simulazione {s.numero}</span>
                     <span className="mt-0.5 flex flex-wrap items-center gap-x-2 text-[12.5px] leading-[17px] text-testo-tenue">
                       <span>{dataBreve(s.data)}</span>
-                      {s.tempoSecondi > 0 && <><span aria-hidden="true">·</span><span className="inline-flex items-center gap-1"><Clock size={12} aria-hidden="true" />{minSec(s.tempoSecondi)}</span></>}
+                      {s.tempoSecondi > 0 && <><span aria-hidden="true">·</span><span className="inline-flex items-center gap-1 text-medio-testo"><Clock size={12} aria-hidden="true" />{minSec(s.tempoSecondi)}</span></>}
                     </span>
                     <span className={cn('mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[12px] font-bold', s.superata ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
                       {s.superata ? <CheckCircle2 size={13} aria-hidden="true" /> : <XCircle size={13} aria-hidden="true" />}

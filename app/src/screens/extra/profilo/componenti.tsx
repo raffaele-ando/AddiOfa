@@ -13,7 +13,7 @@ import { iniziale, normalizzaProfilo, type ProfiloDati } from '../../../lib/prof
 import { valutaBadge, type BadgeValutato } from '../../../lib/profilo/badge';
 import { useExtra, useExtraDati } from '../contesto';
 
-import { Pagina as PaginaBase, Sezione } from '../ui';
+import { IconaTono, Pagina as PaginaBase, Sezione, type Tono } from '../ui';
 export { Sezione };
 /** Pagina del profilo: la pagina comune, con `indietro` come nome della prop (compatibilità con le schermate esistenti). */
 export function Pagina({ titolo, sottotitolo, indietro, destra, children }: { titolo: string; sottotitolo?: ReactNode; indietro?: () => void; destra?: ReactNode; children: ReactNode }) {
@@ -32,12 +32,12 @@ export function Avatar({ profilo, lato = 72 }: { profilo: ProfiloDati; lato?: nu
   );
 }
 
-/** Riga di lista cliccabile (icona, titolo, testo, freccia). */
-export function RigaLista({ icona, titolo, testo, destra, onClick }: { icona: ReactNode; titolo: string; testo?: string; destra?: ReactNode; onClick: () => void }) {
+/** Riga di lista cliccabile (icona nel tono del suo significato, titolo, testo, freccia). */
+export function RigaLista({ icona, tono = 'azione', titolo, testo, destra, onClick }: { icona: ReactNode; tono?: Tono; titolo: string; testo?: string; destra?: ReactNode; onClick: () => void }) {
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }}
       className="brand-premibile w-full flex items-center gap-3 px-3.5 py-[11px] min-h-[56px] text-left">
-      <span className="w-[34px] h-[34px] rounded-[9px] bg-azione-tinta text-azione flex items-center justify-center shrink-0" aria-hidden="true">{icona}</span>
+      <IconaTono tono={tono} lato={34} className="rounded-[9px]">{icona}</IconaTono>
       <span className="flex-1 min-w-0">
         <span className="block text-[15px] leading-[20px] font-semibold text-testo">{titolo}</span>
         {testo && <span className="block text-[12.5px] leading-[17px] text-testo-tenue">{testo}</span>}

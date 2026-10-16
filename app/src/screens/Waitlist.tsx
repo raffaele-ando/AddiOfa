@@ -3,7 +3,7 @@ import type { LegalSection } from '../types';
 import { DISCLAIMER, PASS, PublicAudience } from '../config/offer';
 import { useAccess } from '../access/context';
 import { playTapSound } from '../lib/audio';
-import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard } from '../components/ui';
+import { Screen, TopBar, PrimaryButton, ChoiceCard } from '../components/ui';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 
 interface WaitlistProps {
@@ -63,7 +63,7 @@ export default function Waitlist({ onBack, onDone, onOpenLegal }: WaitlistProps)
       <div>
         <h1 className="text-3xl font-bold leading-tight text-testo">Avvisami quando apre</h1>
         <p className="mt-2 font-semibold text-testo-tenue">
-          I pagamenti del {PASS.name} non sono ancora attivi. Lascia la tua email: ti scriviamo una sola volta, quando aprono.
+          I pagamenti del {PASS.name} non sono ancora attivi.
         </p>
       </div>
 
@@ -112,7 +112,6 @@ export default function Waitlist({ onBack, onDone, onOpenLegal }: WaitlistProps)
 
       <div className="mt-auto flex flex-col gap-3">
         <PrimaryButton onClick={() => { void invia(); }} disabled={!pronto}>{invio ? 'Invio in corso' : 'Avvisami quando apre'}</PrimaryButton>
-        <SecondaryButton onClick={onBack}>Indietro</SecondaryButton>
         <p className="text-center text-[10px] font-semibold text-testo-tenue">{DISCLAIMER}</p>
       </div>
     </Screen>

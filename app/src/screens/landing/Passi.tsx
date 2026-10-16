@@ -56,21 +56,22 @@ function SchermoSimulazione() {
   );
 }
 
-const PASSI: { titolo: string; testo: string; nota: string; Schermo: () => ReactNode }[] = [
+// Le note dicono cosa è gratis (verde: ciò che ottieni) e cosa no; l'ultima è neutra perché sta fuori da AddiOFA.
+const PASSI: { titolo: string; testo: string; nota: string; gratis?: boolean; Schermo: () => ReactNode }[] = [
   {
     titolo: 'Test iniziale',
     testo: `${FREE_LIMITS.diagnostic} domande, circa 3 minuti, senza account. Vedi la probabilità stimata e gli argomenti da ripassare.`,
-    nota: 'Gratis', Schermo: SchermoDiagnostico,
+    nota: 'Gratis', gratis: true, Schermo: SchermoDiagnostico,
   },
   {
     titolo: 'Ripasso su misura',
     testo: `Le domande sbagliate tornano, con la spiegazione in italiano. Parti da un nucleo di circa ${FREE_LIMITS.coreQuestions} domande.`,
-    nota: 'Nucleo gratis, tutto il banco con il Pass', Schermo: SchermoRipasso,
+    nota: 'Nucleo gratis, tutto il banco con il Pass', gratis: true, Schermo: SchermoRipasso,
   },
   {
     titolo: 'Simulazioni',
     testo: `Provi il test per intero: ${FORMATS.ente.questions} domande in ${FORMATS.ente.minutes} minuti, con la correzione.`,
-    nota: 'Una gratis, illimitate con il Pass', Schermo: SchermoSimulazione,
+    nota: 'Una gratis, illimitate con il Pass', gratis: true, Schermo: SchermoSimulazione,
   },
   {
     titolo: 'Il test vero',
@@ -114,7 +115,7 @@ export default function Passi({ onStart }: { onStart(): void }) {
                   </div>
                   {p.Schermo()}
                   <p className="mt-1 text-sm font-medium leading-snug text-testo-tenue lg:mt-4 lg:text-center">{p.testo}</p>
-                  <p className="mt-2 inline-block rounded-full bg-azione-tinta px-2.5 py-0.5 text-[11px] font-bold text-azione-scuro lg:mt-3 lg:block lg:w-fit lg:self-center lg:mx-auto">{p.nota}</p>
+                  <p className={`mt-2 inline-block rounded-full px-2.5 py-0.5 text-[11px] font-bold lg:mt-3 lg:block lg:w-fit lg:self-center lg:mx-auto ${p.gratis ? 'bg-alto-tinta text-alto-testo' : 'bg-superficie-2 text-testo-tenue'}`}>{p.nota}</p>
                 </li>
               ))}
             </ol>

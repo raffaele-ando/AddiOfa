@@ -2,7 +2,8 @@
 // Parametri: `tipo` ('giorno' | 'duello'), `seme`; per il duello anche `ruolo` ('sfidante' | 'sfidato'), `nome` e, per chi accetta, `codice`.
 // Le domande e le correzioni passano dal DataProvider (in produzione le risposte esatte non sono nel bundle).
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Clock, X } from 'lucide-react';
+import { BookOpenCheck, CalendarCheck2, ChevronLeft, ChevronRight, CircleAlert, Clock, ListChecks, Swords, X } from 'lucide-react';
+import { IconaTono } from '../ui';
 import { useExtra } from '../contesto';
 import { useAccess } from '../../../access/context';
 import type { PublicQuestion } from '../../../access/provider';
@@ -169,7 +170,8 @@ export default function SfidaGioco() {
           <p role="status" className="font-bold text-testo">Un momento…</p>
         ) : (
           <>
-            <p role="alert" className="max-w-sm font-bold text-basso-testo">{errore}</p>
+            <IconaTono tono="basso" lato={52} className="rounded-full"><CircleAlert size={26} /></IconaTono>
+            <p role="alert" className="max-w-sm text-[15px] leading-[22px] font-bold text-testo">{errore}</p>
             <div className="flex w-full max-w-xs flex-col gap-2">
               {fase === 'errore-consegna' && <Bottone onClick={() => void consegna()}>Riprova a consegnare</Bottone>}
               {fase === 'errore-carico' && !erroreIniziale && <Bottone onClick={() => void prepara()}>Riprova</Bottone>}
@@ -194,22 +196,29 @@ export default function SfidaGioco() {
               <IllustrazioneAnimata nome="quiz-test" lato={120} />
               <h1 className="mt-2 text-[28px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo">{titoloSfida}</h1>
               <p className="mt-1 text-[14px] leading-[20px] text-testo-tenue">
-                {tipo === 'giorno' ? 'Le stesse 10 domande per tutti, oggi.'
-                  : ruolo === 'sfidato' ? `Giochi le stesse 10 domande di ${avversario?.nome}. Il suo risultato lo vedi alla fine.`
-                  : 'Giochi 10 domande, poi mandi il link a un amico: gioca le stesse e vi confrontate.'}
+                {tipo === 'giorno' ? 'Le stesse domande per tutti, oggi.'
+                  : ruolo === 'sfidato' ? `Giochi le stesse domande di ${avversario?.nome}. Il suo risultato lo vedi alla fine.`
+                  : 'Giochi, poi mandi il link a un amico: gioca le stesse e vi confrontate.'}
               </p>
             </div>
             <Carta className="mt-5">
               <dl className="grid grid-cols-3 gap-2 text-center">
-                <div><dt className="text-[12px] font-bold text-testo-tenue">Domande</dt><dd className="text-[20px] font-extrabold text-testo">{domande.length}</dd></div>
-                <div><dt className="text-[12px] font-bold text-testo-tenue">Tempo</dt><dd className="text-[20px] font-extrabold text-testo">{SECONDI_SFIDA / 60} min</dd></div>
-                <div><dt className="text-[12px] font-bold text-testo-tenue">Feedback</dt><dd className="text-[20px] font-extrabold text-testo">alla fine</dd></div>
+                {([
+                  ['azione', ListChecks, 'Domande', String(domande.length)],
+                  ['medio', Clock, 'Tempo', `${SECONDI_SFIDA / 60} min`],
+                  ['viola', BookOpenCheck, 'Correzioni', 'alla fine'],
+                ] as const).map(([tono, Icona, nomeDato, valore]) => (
+                  <div key={nomeDato} className="flex flex-col items-center gap-1.5">
+                    <IconaTono tono={tono} lato={36} className="bg-superficie"><Icona size={18} /></IconaTono>
+                    <dt className="text-[12px] font-bold text-testo-tenue">{nomeDato}</dt>
+                    <dd className="text-[19px] leading-[22px] font-extrabold text-testo">{valore}</dd>
+                  </div>
+                ))}
               </dl>
             </Carta>
             <ul className="mt-4 flex list-disc flex-col gap-1.5 pl-5 text-[14px] leading-[20px] text-testo">
               <li>Puoi tornare sulle domande e cambiare risposta finché non consegni.</li>
               <li>Conta quante risposte giuste dai e in quanto tempo: a parità di risposte vince chi è più veloce.</li>
-              <li>Nessun punto: il risultato è solo il tuo.</li>
             </ul>
             <div className="mt-6"><Bottone onClick={avvia}>Inizia</Bottone></div>
           </div>
@@ -244,26 +253,30 @@ export default function SfidaGioco() {
             aria-label="Esci dalla sfida" className="p-1 sm:p-2 text-testo-tenue hover:text-testo hover:bg-linea rounded-full transition-colors duration-100">
             <X size={20} strokeWidth={3} />
           </button>
-          <div role="timer" aria-label="Tempo rimasto" className={cn('font-bold tabular-nums text-base sm:text-xl flex items-center gap-1.5', restano < 60 ? 'text-basso-testo' : 'text-testo')}>
+          <div role="timer" aria-label="Tempo rimasto" className={cn('rounded-full px-3 py-1 font-bold tabular-nums text-base sm:text-xl flex items-center gap-1.5', restano < 60 ? 'bg-basso-tinta text-basso-testo' : 'bg-medio-tinta text-medio-testo')}>
             <Clock size={18} strokeWidth={3} aria-hidden /> {tempo}
           </div>
-          <button type="button" onClick={() => (rimaste > 0 ? setConferma('consegna') : void consegna())}
-            className="text-[12px] font-bold text-azione hover:bg-azione-tinta border border-azione/60 px-4 py-2 rounded-xl transition-colors duration-100">
-            Consegna
-          </button>
+          {indice < domande.length - 1 ? (
+            <button type="button" onClick={() => (rimaste > 0 ? setConferma('consegna') : void consegna())}
+              className="text-[12px] font-bold text-azione-scuro hover:bg-azione-tinta border border-azione/60 px-4 py-2 rounded-xl transition-colors duration-100">
+              Consegna
+            </button>
+          ) : <span className="w-[84px]" aria-hidden />}
         </div>
         <div className="flex items-center gap-2 mt-1">
-          <span className="text-[11px] font-bold text-testo-tenue w-9 text-right tabular-nums">{domande.length - rimaste}/{domande.length}</span>
+          <span className="text-[12px] font-bold text-testo-tenue w-10 text-right tabular-nums">{indice + 1}/{domande.length}</span>
           <div className="flex-1 bg-tacca h-3 rounded-full overflow-hidden">
-            <div className="bg-azione h-full rounded-full transition-colors duration-100" style={{ width: `${((domande.length - rimaste) / domande.length) * 100}%` }} />
+            <div className="bg-azione h-full rounded-full" style={{ width: `${((indice + 1) / domande.length) * 100}%` }} />
           </div>
         </div>
       </header>
 
       <main className="flex-1 min-h-0 p-4 sm:p-8 flex flex-col w-full overflow-y-auto scrollbar-hide">
         <div className="mb-4 flex items-center justify-between gap-2">
-          <span className="text-xs sm:text-sm font-semibold text-testo-tenue">Domanda {indice + 1} di {domande.length}</span>
-          <span className="text-xs font-bold text-testo-tenue">{titoloSfida}</span>
+          <span className="text-xs sm:text-sm font-semibold text-testo-tenue">{rimaste === 0 ? 'Hai risposto a tutte' : `${rimaste} ${rimaste === 1 ? 'domanda' : 'domande'} senza risposta`}</span>
+          <span className={cn('inline-flex max-w-[60%] items-center gap-1 truncate rounded-full px-2.5 py-0.5 text-[12px] font-bold', tipo === 'giorno' ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
+            {tipo === 'giorno' ? <CalendarCheck2 size={13} aria-hidden /> : <Swords size={13} aria-hidden />}<span className="truncate">{titoloSfida}</span>
+          </span>
         </div>
         <h2 className="text-xl sm:text-2xl font-bold text-testo mb-5 leading-snug">{q.prompt}</h2>
         <div className="grid grid-cols-1 gap-2.5 content-start">

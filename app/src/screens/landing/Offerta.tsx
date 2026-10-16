@@ -12,7 +12,7 @@ import { cn } from '../../lib/utils';
 function Voce({ children, bianca }: { children: string; bianca?: boolean }) {
   return (
     <li className={cn('flex items-start gap-2.5 text-sm font-semibold', bianca ? 'text-white' : 'text-testo')}>
-      <span aria-hidden className={cn('mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full', bianca ? 'bg-white/20 text-white' : 'bg-azione-tinta text-azione-scuro')}>
+      <span aria-hidden className={cn('mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full', bianca ? 'bg-white/20 text-white' : 'bg-alto-tinta text-alto-testo')}>
         <Check size={13} strokeWidth={3.6} />
       </span>
       <span>{children}</span>

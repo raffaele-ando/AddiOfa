@@ -3,23 +3,32 @@
 //  - «d»: una sfida nuova → si sceglie un nome e si gioca (sfida-gioco, ruolo «sfidato»);
 //  - «r»: un amico rimanda il suo risultato di un duello lanciato da te → si aggancia al tuo duello e si vede il confronto.
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Swords } from 'lucide-react';
+import { Info, ListChecks, Link2Off, Swords, Clock, TriangleAlert, Check } from 'lucide-react';
 import { useExtra } from '../contesto';
 import { decodificaSfida, pulisciNome, NOME_MAX } from '../../../lib/sfide/codice';
 import { SECONDI_SFIDA } from '../../../lib/sfide/seme';
 import { agganciaRisposta, confronta, fraseEsito, idVoce, tempoBreve } from '../../../lib/sfide/risultati';
 import { useBancoSfide, useProfiloSfide, useStorico } from './dati';
-import { Bottone, Campo, Carta, Pagina } from './comuni';
-import { cn } from '../../../lib/utils';
+import { IconaTono } from '../ui';
+import { Bottone, Campo, Carta, PannelloEsito, Pagina } from './comuni';
 
-function Messaggio({ titolo, testo, azione }: { titolo: string; testo: string; azione?: ReactNode }) {
+type TonoMessaggio = 'basso' | 'medio' | 'azione';
+const ICONE_MESSAGGIO = { basso: Link2Off, medio: TriangleAlert, azione: Info } as const;
+
+/** Un messaggio che ferma la strada: icona nel tono (corallo link rotto, ambra versione diversa, blu semplice informazione),
+ *  testo navy. Il pulsante pieno è uno solo: «Vai alle sfide» se non c'è un'azione migliore. */
+function Messaggio({ titolo, testo, azione, tono = 'basso' }: { titolo: string; testo: string; azione?: ReactNode; tono?: TonoMessaggio }) {
   const { vai, vaiHome } = useExtra();
+  const Icona = ICONE_MESSAGGIO[tono];
   return (
     <Pagina titolo={titolo} onBack={vaiHome}>
-      <Carta className="mt-5" tono="medio"><p role="alert" className="text-[14.5px] leading-[21px] text-testo">{testo}</p></Carta>
+      <Carta className="mt-5 flex items-start gap-3" tono={tono === 'azione' ? 'neutro' : tono}>
+        <IconaTono tono={tono} className="bg-superficie"><Icona size={20} /></IconaTono>
+        <p role={tono === 'azione' ? 'status' : 'alert'} className="text-[14.5px] leading-[21px] text-testo">{testo}</p>
+      </Carta>
       <div className="mt-4 flex flex-col gap-2">
         {azione}
-        <Bottone variante="secondario" onClick={() => vai('sfide')}>Vai alle sfide</Bottone>
+        <Bottone variante={azione ? 'secondario' : 'primario'} onClick={() => vai('sfide')}>Vai alle sfide</Bottone>
       </div>
     </Pagina>
   );
@@ -49,7 +58,7 @@ export default function SfidaAccetta() {
     return <Messaggio titolo="Link non valido" testo="Questo link di sfida non è valido: è incompleto o è stato modificato. Chiedi al tuo amico di rimandarlo, oppure copialo di nuovo per intero." />;
   }
   if (dati.banco !== impronta) {
-    return <Messaggio titolo="Domande diverse" testo={`${dati.nome} ha creato questa sfida con una versione dell'app che ha domande diverse dalle tue: giocandola il confronto non sarebbe valido. Aggiorna l'app (o riapri il link da quella più recente) e riprova.`} />;
+    return <Messaggio tono="medio" titolo="Domande diverse" testo={`${dati.nome} ha creato questa sfida con una versione dell'app che ha domande diverse dalle tue: giocandola il confronto non sarebbe valido. Aggiorna l'app (o riapri il link da quella più recente) e riprova.`} />;
   }
 
   // ---- Il risultato di un amico a una tua sfida
@@ -59,18 +68,7 @@ export default function SfidaAccetta() {
     const esito = confronta(io, altro);
     return (
       <Pagina titolo={`${dati.nome} ha giocato`} sottotitolo="Ha rimandato il suo risultato alla tua sfida." onBack={() => vai('sfide')}>
-        <Carta className="mt-5" tono={esito === 'vinto' ? 'alto' : 'neutro'}>
-          <p role="status" className="text-center text-[20px] font-extrabold text-testo">{fraseEsito(esito, dati.nome)}</p>
-          <div className="mt-3 flex gap-2.5 text-center">
-            {[[io.nome ?? 'Tu', io.corrette, io.totale, io.secondi], [dati.nome, dati.corrette, dati.totale, dati.secondi]].map(([n, c, t, s], i) => (
-              <div key={i} className={cn('min-w-0 flex-1 rounded-[14px] p-3', i === 0 ? 'bg-azione-tinta' : 'bg-superficie')}>
-                <p className="truncate text-[13px] font-bold text-testo-tenue">{n}</p>
-                <p className="mt-1 text-[30px] leading-[34px] font-extrabold tabular-nums text-testo">{c}<span className="text-[16px] font-bold text-testo-tenue">/{t}</span></p>
-                <p className="mt-1 text-[13px] font-semibold tabular-nums text-testo-tenue">{tempoBreve(s as number)}</p>
-              </div>
-            ))}
-          </div>
-        </Carta>
+        <PannelloEsito className="mt-5" esito={esito} nomeMio={io.nome ?? 'Tu'} io={io} nomeAltro={dati.nome} altro={altro} />
         <div className="mt-4 flex flex-col gap-2">
           <Bottone onClick={() => vai('sfida-risultato', { voce: mioDuello.id })}>Vedi il tuo risultato e le risposte</Bottone>
           <Bottone variante="secondario" onClick={() => vai('amici')}>Vai agli amici</Bottone>
@@ -85,12 +83,15 @@ export default function SfidaAccetta() {
   const proprio = voci.find(v => v.id === idVoce('duello', dati.seme, 'sfidante'));
 
   if (mioSuo || (proprio && dati.tipo === 'd')) {
-    return <Messaggio titolo="È la tua sfida" testo="Questo link l'hai creato tu: va mandato a un amico, non aperto da te. Quando lui ti rimanda il suo risultato, aprilo qui." azione={proprio && <Bottone onClick={() => vai('sfida-risultato', { voce: proprio.id })}>Vedi la tua partita</Bottone>} />;
+    return <Messaggio tono="azione" titolo="È la tua sfida" testo="Questo link l'hai creato tu: va mandato a un amico, non aperto da te. Quando lui ti rimanda il suo risultato, aprilo qui." azione={proprio && <Bottone onClick={() => vai('sfida-risultato', { voce: proprio.id })}>Vedi la tua partita</Bottone>} />;
   }
   if (giaGiocata) {
     return (
       <Pagina titolo="Hai già giocato" sottotitolo={`La sfida di ${dati.nome}.`} onBack={() => vai('sfide')}>
-        <Carta className="mt-5"><p className="text-[14.5px] leading-[21px] text-testo">Hai già giocato queste domande: {giaGiocata.corrette}/{giaGiocata.totale} in {tempoBreve(giaGiocata.secondi)}. Ogni sfida si gioca una volta sola.</p></Carta>
+        <Carta className="mt-5 flex items-center gap-3">
+          <IconaTono tono="alto" lato={44} className="rounded-[12px] bg-superficie"><Check size={22} /></IconaTono>
+          <p className="text-[14.5px] leading-[21px] text-testo">Hai già giocato queste domande: <strong className="tabular-nums">{giaGiocata.corrette}/{giaGiocata.totale}</strong> in <span className="tabular-nums">{tempoBreve(giaGiocata.secondi)}</span>. Ogni sfida si gioca una volta sola.</p>
+        </Carta>
         <div className="mt-4 flex flex-col gap-2">
           <Bottone onClick={() => vai('sfida-risultato', { voce: giaGiocata.id })}>Vedi il confronto</Bottone>
           <Bottone variante="secondario" onClick={() => vai('sfide')}>Vai alle sfide</Bottone>
@@ -105,13 +106,21 @@ export default function SfidaAccetta() {
     vai('sfida-gioco', { tipo: 'duello', ruolo: 'sfidato', seme: dati.seme, nome: n, codice: params.sfida ?? '' });
   };
 
+  const regole: { tono: 'azione' | 'medio' | 'basso'; Icona: typeof ListChecks; testo: string }[] = [
+    { tono: 'azione', Icona: ListChecks, testo: 'Le stesse 10 domande per tutti e due.' },
+    { tono: 'medio', Icona: Clock, testo: `${SECONDI_SFIDA / 60} minuti, senza feedback finché non consegni.` },
+    { tono: 'basso', Icona: Swords, testo: 'Vince chi dà più risposte giuste; a parità, il più veloce.' },
+  ];
   return (
-    <Pagina titolo={`${dati.nome} ti sfida`} sottotitolo="10 domande d'inglese, le stesse per tutti e due." onBack={() => vai('sfide')}>
-      <Carta className="mt-5" tono="azione">
-        <ul className="flex flex-col gap-1.5 text-[14.5px] leading-[20px] text-testo">
-          <li><strong>10 domande</strong> in {SECONDI_SFIDA / 60} minuti, senza feedback finché non consegni.</li>
-          <li>{dati.nome} ha già giocato: il suo risultato lo vedi alla fine, a confronto con il tuo.</li>
-          <li>Vince chi dà più risposte giuste; a parità, chi è più veloce.</li>
+    <Pagina titolo={`${dati.nome} ti sfida`} sottotitolo="Ha già giocato: il suo risultato lo vedi alla fine, a confronto con il tuo." onBack={() => vai('sfide')}>
+      <Carta className="mt-5">
+        <ul className="flex flex-col gap-3">
+          {regole.map(({ tono, Icona, testo }) => (
+            <li key={testo} className="flex items-center gap-3">
+              <IconaTono tono={tono} lato={36}><Icona size={18} /></IconaTono>
+              <span className="text-[14.5px] leading-[20px] text-testo">{testo}</span>
+            </li>
+          ))}
         </ul>
       </Carta>
       <div className="mt-5 flex flex-col gap-3">

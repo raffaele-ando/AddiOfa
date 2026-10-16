@@ -8,6 +8,7 @@ import { nuovoSeme, semeDelGiorno, DOMANDE_SFIDA, SECONDI_SFIDA } from '../../..
 import { estraiCodice, pulisciNome, NOME_MAX } from '../../../lib/sfide/codice';
 import { confronta, idVoce, tempoBreve, type VoceSfida } from '../../../lib/sfide/risultati';
 import { useProfiloSfide, useStorico } from './dati';
+import { IconaTono } from '../ui';
 import { Bottone, Campo, Carta, EtichettaEsito, Pagina, SchedeSfide, Sezione, dataBreve, dataLunga } from './comuni';
 
 function titoloVoce(v: VoceSfida): string {
@@ -16,18 +17,18 @@ function titoloVoce(v: VoceSfida): string {
   return 'Duello · in attesa dell\'amico';
 }
 
+/** Una riga dello storico: la tessera dice il tipo (verde il giorno, corallo il duello), l'etichetta a destra l'esito. */
 function RigaStorico({ voce, onApri }: { voce: VoceSfida; onApri: () => void }) {
   const avv = voce.avversario;
+  const giorno = voce.tipo === 'giorno';
   return (
     <li>
       <button type="button" onClick={() => { playTapSound(); onApri(); }} className="brand-premibile w-full flex items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left">
-        <span className="w-10 h-10 shrink-0 rounded-[10px] bg-superficie text-azione flex items-center justify-center border border-linea" aria-hidden>
-          {voce.tipo === 'giorno' ? <CalendarCheck2 size={20} /> : <Swords size={20} />}
-        </span>
+        <IconaTono tono={giorno ? 'alto' : 'basso'}>{giorno ? <CalendarCheck2 size={20} /> : <Swords size={20} />}</IconaTono>
         <span className="min-w-0 flex-1">
           <span className="block truncate text-[14.5px] leading-[19px] font-bold text-testo">{titoloVoce(voce)}</span>
           <span className="block text-[12.5px] leading-[17px] tabular-nums text-testo-tenue">
-            {voce.corrette}/{voce.totale} · {tempoBreve(voce.secondi)}{avv ? ` · lui ${avv.corrette}/${avv.totale}` : ''}{voce.tipo === 'duello' ? ` · ${dataBreve(voce.quando)}` : ''}
+            {avv ? `${voce.corrette} a ${avv.corrette}` : `${voce.corrette}/${voce.totale}`} · {tempoBreve(voce.secondi)}{!giorno ? ` · ${dataBreve(voce.quando)}` : ''}
           </span>
         </span>
         {avv ? <EtichettaEsito esito={confronta(voce, avv)} /> : null}
@@ -60,18 +61,23 @@ export default function Sfide() {
   };
 
   return (
-    <Pagina titolo="Sfide" sottotitolo="Domande vere, contro il tempo e contro gli amici. Contano le risposte giuste e il tempo: nessun punto da collezionare."
-      onBack={indietro}>
+    <Pagina titolo="Sfide" sottotitolo="Una sfida al giorno e i duelli con gli amici: contano risposte giuste e tempo." onBack={indietro}>
       <SchedeSfide attiva="sfide" />
 
+      {/* Il solo blocco in evidenza: la sfida del giorno, verde. Il bottone è blu pieno finché non l'hai giocata. */}
       <Sezione id="titolo-giorno" titolo="Sfida del giorno" destra={<span className="text-[12.5px] font-semibold text-testo-tenue">{dataLunga()}</span>}>
         <Carta tono="alto">
-          <p className="text-[15px] leading-[21px] font-bold text-testo">{DOMANDE_SFIDA} domande, le stesse per tutti oggi</p>
-          <p className="mt-0.5 flex items-center gap-1.5 text-[13.5px] leading-[19px] text-testo-tenue"><Clock size={14} aria-hidden /> {SECONDI_SFIDA / 60} minuti · domande del nucleo gratuito</p>
+          <div className="flex items-start gap-3">
+            <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-[12px] bg-superficie text-alto-numero"><CalendarCheck2 size={22} /></span>
+            <div className="min-w-0">
+              <p className="text-[15px] leading-[21px] font-bold text-testo">{DOMANDE_SFIDA} domande, le stesse per tutti oggi</p>
+              <p className="mt-0.5 flex items-center gap-1.5 text-[13.5px] leading-[19px] text-testo-tenue"><Clock size={14} className="text-medio-numero" aria-hidden /> {SECONDI_SFIDA / 60} minuti · domande gratuite</p>
+            </div>
+          </div>
           {oggi ? (
             <>
               <p className="mt-3 text-[15px] font-bold text-testo" role="status">
-                Oggi hai fatto <span className="tabular-nums">{oggi.corrette}/{oggi.totale}</span> in <span className="tabular-nums">{tempoBreve(oggi.secondi)}</span>.
+                Oggi hai fatto <span className="tabular-nums text-alto-testo">{oggi.corrette}/{oggi.totale}</span> in <span className="tabular-nums">{tempoBreve(oggi.secondi)}</span>.
               </p>
               <p className="mt-0.5 text-[13px] text-testo-tenue">Domani ce ne sarà un'altra.</p>
               <div className="mt-3"><Bottone variante="secondario" onClick={() => vai('sfida-risultato', { voce: oggi.id })}>Vedi il risultato</Bottone></div>
@@ -82,24 +88,32 @@ export default function Sfide() {
         </Carta>
       </Sezione>
 
+      {/* Il duello è corallo (confronto con un altro). Se la sfida del giorno è ancora da fare, il bottone è secondario: un solo pulsante pieno per schermata. */}
       <Sezione id="titolo-amico" titolo="Sfida un amico">
         <Carta>
-          <p className="text-[14px] leading-[20px] text-testo">Giochi {DOMANDE_SFIDA} domande e mandi il link: il tuo amico gioca le stesse e vedete chi ha vinto.</p>
+          <div className="flex items-start gap-3">
+            <IconaTono tono="basso" lato={44} className="rounded-[12px]"><Swords size={22} /></IconaTono>
+            <p className="text-[14px] leading-[20px] text-testo">Giochi {DOMANDE_SFIDA} domande e mandi il link: il tuo amico gioca le stesse e vedete chi ha vinto.</p>
+          </div>
           <div className="mt-3 flex flex-col gap-3">
             <Campo id="nome-sfida" etichetta="Il nome con cui ti vedrà il tuo amico" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
               segnaposto="Il tuo nome" maxLength={NOME_MAX} errore={erroreNome} onInvio={iniziaDuello} />
-            <Bottone onClick={iniziaDuello}><Swords size={18} aria-hidden /> Inizia il duello</Bottone>
+            <Bottone variante={oggi ? 'primario' : 'secondario'} onClick={iniziaDuello}><Swords size={18} aria-hidden /> Inizia il duello</Bottone>
           </div>
-          <p className="mt-3 text-[12.5px] leading-[18px] text-testo-tenue">Senza account e senza server: il link contiene il tuo nome e il tuo risultato, e basta. Chi lo apre vede solo quello.</p>
+          <p className="mt-3 text-[12.5px] leading-[18px] text-testo-tenue">Senza account e senza server: il link contiene solo il tuo nome e il tuo risultato.</p>
         </Carta>
       </Sezione>
 
       <Sezione id="titolo-link" titolo="Hai ricevuto una sfida?">
-        <div className="flex flex-col gap-2">
-          <Campo id="link-sfida" etichetta="Incolla qui il link" valore={link} onCambia={v => { setLink(v); setErroreLink(null); }} segnaposto="Incolla il link" errore={erroreLink} onInvio={apriLink} />
-          <Bottone variante="secondario" onClick={apriLink} disabled={!link.trim()}>Apri la sfida</Bottone>
-          <p className="text-[12.5px] leading-[18px] text-testo-tenue">Di solito basta toccare il link: l'app si apre da sola sulla sfida.</p>
+        <div className="flex gap-2">
+          <input id="link-sfida" value={link} onChange={e => { setLink(e.target.value); setErroreLink(null); }} placeholder="Incolla qui il link" aria-label="Il link della sfida"
+            autoComplete="off" spellCheck={false} onKeyDown={e => { if (e.key === 'Enter') apriLink(); }} aria-invalid={erroreLink ? true : undefined} aria-describedby={erroreLink ? 'link-sfida-err' : undefined}
+            className="min-w-0 flex-1 rounded-2xl border border-linea bg-superficie-2 px-4 py-3 text-[15px] font-semibold text-testo placeholder:text-testo-tenue placeholder:font-medium focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
+          <button type="button" onClick={() => { playTapSound(); apriLink(); }} disabled={!link.trim()}
+            className="brand-premibile shrink-0 rounded-2xl border border-azione bg-superficie px-5 text-[15px] font-bold text-azione-scuro transition-colors duration-100 disabled:opacity-40 disabled:pointer-events-none">Apri</button>
         </div>
+        {erroreLink && <p id="link-sfida-err" role="alert" className="text-[13px] font-bold text-basso-testo">{erroreLink}</p>}
+        <p className="text-[12.5px] leading-[18px] text-testo-tenue">Di solito basta toccare il link: l'app si apre da sola sulla sfida.</p>
       </Sezione>
 
       <Sezione id="titolo-storico" titolo="Le tue sfide">

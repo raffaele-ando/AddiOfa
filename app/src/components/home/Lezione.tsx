@@ -5,7 +5,7 @@ import { playTapSound } from '../../lib/audio';
 
 /**
  * Carta chiara del concept: tessera bianca con il libro, area in maiuscolo grigio, titolo della scheda,
- * barra blu di avanzamento e "n/m domande imparate". Senza Pass, se la scheda non è gratuita: lucchetto al posto della freccia.
+ * barra verde (domande imparate) e "n/m domande imparate". Senza Pass, se la scheda non è gratuita: lucchetto al posto della freccia.
  */
 export function SchedaLezione({ lezione, progresso, onApri }: { lezione: Lezione; progresso: ProgressoArgomento; onApri: () => void }) {
   const { imparate, totale } = progresso;
@@ -14,7 +14,7 @@ export function SchedaLezione({ lezione, progresso, onApri }: { lezione: Lezione
     <button type="button" onClick={() => { playTapSound(); onApri(); }}
       aria-label={`${lezione.topic.titolo}: ${imparate} su ${totale} domande imparate${lezione.bloccata ? ' (richiede il Pass)' : ''}`}
       className="brand-premibile relative w-full flex items-center gap-[14px] rounded-[12px] bg-superficie-2 p-[10px] pr-[12px] text-left">
-      <span className="w-[53px] h-[53px] rounded-[13px] bg-superficie flex items-center justify-center shrink-0 text-azione shadow-[0_1px_4px_rgba(37,99,235,0.12)] dark:shadow-none dark:border dark:border-linea" aria-hidden="true">
+      <span className="w-[53px] h-[53px] rounded-[13px] bg-azione-tinta flex items-center justify-center shrink-0 text-azione-scuro" aria-hidden="true">
         <BookOpen size={30} strokeWidth={2.2} />
       </span>
       <span className="flex-1 min-w-0 py-[1px]">
@@ -24,12 +24,12 @@ export function SchedaLezione({ lezione, progresso, onApri }: { lezione: Lezione
             <span className="block text-[15px] leading-[20px] font-bold text-testo line-clamp-2">{lezione.topic.titolo}</span>
           </span>
           {lezione.bloccata
-            ? <Lock size={18} className="shrink-0 mt-0.5 text-testo-tenue" aria-hidden="true" />
+            ? <Lock size={18} className="shrink-0 mt-0.5 text-medio-numero" aria-hidden="true" />
             : <ChevronRight size={22} strokeWidth={2} className="shrink-0 -mr-1 text-testo-tenue" aria-hidden="true" />}
         </span>
         <span className="mt-[6px] flex items-center gap-3">
           <span className="flex-1 min-w-[40px] h-[7px] rounded-full bg-linea overflow-hidden">
-            <span className="block h-full rounded-full" style={{ width: `${valore}%`, background: 'linear-gradient(90deg, var(--color-azione-chiaro), var(--color-azione))' }} />
+            <span className="block h-full rounded-full" style={{ width: `${valore}%`, background: 'linear-gradient(90deg, var(--color-alto-chiaro), var(--color-alto))' }} />
           </span>
           <span className="shrink-0 text-[12px] leading-[14px] text-testo-tenue tabular-nums">{imparate}/{totale} domande imparate</span>
         </span>

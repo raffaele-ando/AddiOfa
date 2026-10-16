@@ -3,9 +3,14 @@ import { useId, useMemo, useState } from 'react';
 import { ChevronDown, CircleHelp, Search, X } from 'lucide-react';
 import { useExtra } from '../contesto';
 import { BottoneSecondario, Disegno, Pagina } from './componenti';
+import { TONI, type Tono } from '../ui';
 import { CATEGORIE_FAQ, cercaFaq, vociFaq, type CategoriaFaq, type VoceFaq } from '../../../lib/servizi/faq';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
+
+// Un colore per categoria (non a rotazione): il test = blu (studio), Pass e pagamenti = ambra (premio), dati = verde (al sicuro), app = viola.
+const TONO_CATEGORIA: Record<CategoriaFaq, Tono> = { test: 'azione', pass: 'medio', dati: 'alto', app: 'viola' };
+const PUNTO: Record<Tono, string> = { azione: 'bg-azione', alto: 'bg-alto', medio: 'bg-medio', basso: 'bg-basso', viola: 'bg-viola' };
 
 function Voce({ voce, aperta, onToggle }: { voce: VoceFaq; aperta: boolean; onToggle: () => void }) {
   const { vai, apriLegale } = useExtra();
@@ -15,8 +20,8 @@ function Voce({ voce, aperta, onToggle }: { voce: VoceFaq; aperta: boolean; onTo
       <h3>
         <button type="button" id={`${id}-b`} aria-expanded={aperta} aria-controls={`${id}-p`} onClick={() => { playTapSound(); onToggle(); }}
           className="brand-premibile flex w-full items-center justify-between gap-3 rounded-[12px] px-3.5 py-3.5 text-left text-[14.5px] leading-[20px] font-bold text-testo">
-          <span>{voce.domanda}</span>
-          <ChevronDown size={20} aria-hidden="true" className={cn('shrink-0 text-azione', aperta && 'rotate-180')} />
+          <span className="flex items-start gap-2.5"><span aria-hidden="true" className={cn('mt-[7px] h-2 w-2 shrink-0 rounded-full', PUNTO[TONO_CATEGORIA[voce.categoria]])} /><span>{voce.domanda}</span></span>
+          <ChevronDown size={20} aria-hidden="true" className={cn('shrink-0 text-testo-tenue', aperta && 'rotate-180')} />
         </button>
       </h3>
       {aperta && (
@@ -62,9 +67,11 @@ export default function Faq() {
       <div role="group" aria-label="Categoria" className="mt-3 flex flex-wrap gap-2">
         {filtri.map(f => {
           const on = categoria === f.id;
+          // pillola leggera nel tono della categoria; quella scelta si riempie. «Tutte» è blu (l'azione di filtrare).
+          const t: Tono = f.id === 'tutte' ? 'azione' : TONO_CATEGORIA[f.id];
           return (
             <button key={f.id} type="button" aria-pressed={on} onClick={() => { playTapSound(); setCategoria(f.id); setAperta(null); }}
-              className={cn('brand-premibile min-h-[40px] rounded-full px-3.5 text-[13.5px] font-bold', on ? 'bg-azione text-azione-su' : 'bg-superficie-2 text-testo')}>
+              className={cn('brand-premibile min-h-[40px] rounded-full px-3.5 text-[13.5px] font-bold', on ? TONI[t].pieno : `${TONI[t].tinta} ${TONI[t].testo}`)}>
               {f.nome}
             </button>
           );

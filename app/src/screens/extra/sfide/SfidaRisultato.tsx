@@ -1,28 +1,19 @@
 // `sfida-risultato`: l'esito di una partita (risposte giuste, tempo, correzioni) e, per il duello, il confronto con l'amico
 // e il foglio per condividere il link. Parametro: `voce` (l'identificativo della partita nello storico locale).
 import { useState } from 'react';
-import { Clock, Share2, Check, Loader2 } from 'lucide-react';
+import { CalendarCheck2, Check, Hourglass, Loader2, Share2, Swords } from 'lucide-react';
 import { useExtra } from '../contesto';
 import { useAccess } from '../../../access/context';
 import CorrezioniComplete from '../../../components/esito/CorrezioniComplete';
 import { cn } from '../../../lib/utils';
-import { IllustrazioneAnimata } from '../../../brand/IllustrazioneAnimata';
+import { SECONDI_SFIDA } from '../../../lib/sfide/seme';
+import { IconaTono } from '../ui';
 import { codificaSfida, estraiCodice, linkSfida } from '../../../lib/sfide/codice';
-import { confronta, fraseEsito, tempoBreve, type VoceSfida } from '../../../lib/sfide/risultati';
+import { confronta, tempoBreve, type VoceSfida } from '../../../lib/sfide/risultati';
 import { indirizzoApp, useBancoSfide, useProfiloSfide, useStorico } from './dati';
 import { caricaCorrezioni, type Correzioni } from './correzioni';
 import FoglioCondividi from './FoglioCondividi';
-import { Bottone, Campo, Carta, Pagina, Sezione, dataLunga } from './comuni';
-
-function Colonna({ nome, corrette, totale, secondi, evidenza }: { nome: string; corrette: number; totale: number; secondi: number; evidenza?: boolean }) {
-  return (
-    <div className={cn('min-w-0 flex-1 rounded-[14px] p-3 text-center', evidenza ? 'bg-azione-tinta' : 'bg-superficie')}>
-      <p className="truncate text-[13px] font-bold text-testo-tenue">{nome}</p>
-      <p className="mt-1 text-[30px] leading-[34px] font-extrabold tabular-nums text-testo">{corrette}<span className="text-[16px] font-bold text-testo-tenue">/{totale}</span></p>
-      <p className="mt-1 inline-flex items-center gap-1 text-[13px] font-semibold tabular-nums text-testo-tenue"><Clock size={13} aria-hidden /> {tempoBreve(secondi)}</p>
-    </div>
-  );
-}
+import { Bottone, Campo, Carta, Pagina, PannelloEsito, Sezione, Tempo, dataBreve, dataLunga } from './comuni';
 
 function RivediRisposte({ voce }: { voce: VoceSfida }) {
   const { apriTeoria } = useExtra();
@@ -91,41 +82,40 @@ export default function SfidaRisultato() {
     vai('sfida-accetta', { sfida: cod });
   };
 
+  const nomeAvv = avv?.nome ?? 'chi ti ha sfidato';
+  // Con il duello deciso, il blocco tinto è l'esito; altrimenti è il tuo risultato (verde per la sfida del giorno, neutro per il duello in attesa).
+  const haEsito = duello && avv && esito;
+  const condivisione = duello && (sfidato || !avv);
+
   return (
-    <Pagina titolo={voce.tipo === 'giorno' ? 'Sfida del giorno' : 'Duello'} sottotitolo={voce.tipo === 'giorno' ? dataLunga(new Date(voce.quando)) : undefined} onBack={indietro}>
-      <Carta tono="azione" className="mt-5 flex items-center gap-4">
-        <IllustrazioneAnimata nome="quiz-test" lato={84} />
-        <div className="min-w-0">
-          <p className="text-[13px] font-bold text-testo-tenue">Il tuo risultato</p>
-          <p className="text-[34px] leading-[38px] font-extrabold tabular-nums text-testo">{voce.corrette}<span className="text-[18px] font-bold text-testo-tenue"> su {voce.totale}</span></p>
-          <p className="mt-0.5 inline-flex items-center gap-1.5 text-[14px] font-semibold tabular-nums text-testo-tenue"><Clock size={14} aria-hidden /> {tempoBreve(voce.secondi)} su {tempoBreve(300)}</p>
-        </div>
-      </Carta>
-
-      {duello && avv && esito && (
-        <Sezione id="titolo-confronto" titolo="Il confronto">
-          <Carta>
-            <p className={cn('mb-3 text-center text-[18px] font-extrabold', esito === 'vinto' ? 'text-alto-testo' : esito === 'perso' ? 'text-basso-testo' : 'text-testo')} role="status">
-              {fraseEsito(esito, avv.nome)}
-            </p>
-            <div className="flex gap-2.5">
-              <Colonna nome={nomeMio} {...mio} evidenza />
-              <Colonna nome={avv.nome} corrette={avv.corrette} totale={avv.totale} secondi={avv.secondi} />
-            </div>
-            <p className="mt-3 text-[12.5px] leading-[18px] text-testo-tenue">Vince chi dà più risposte giuste; a parità, chi è stato più veloce. Il risultato dell'amico arriva dal suo link: non è verificato da nessun server.</p>
-          </Carta>
-        </Sezione>
+    <Pagina titolo={voce.tipo === 'giorno' ? 'Sfida del giorno' : 'Duello'}
+      sottotitolo={voce.tipo === 'giorno' ? dataLunga(new Date(voce.quando)) : avv ? `Contro ${avv.nome} · ${dataBreve(voce.quando)}` : dataBreve(voce.quando)} onBack={indietro}>
+      {haEsito ? (
+        <PannelloEsito className="mt-5" esito={esito} nomeMio={nomeMio} io={mio} nomeAltro={avv.nome} altro={avv} />
+      ) : (
+        <Carta tono={duello ? 'neutro' : 'alto'} className="mt-5 flex items-center gap-3">
+          <span aria-hidden className={cn('grid h-12 w-12 shrink-0 place-items-center rounded-[13px] bg-superficie', duello ? 'text-basso-numero' : 'text-alto-numero')}>
+            {duello ? <Swords size={24} /> : <CalendarCheck2 size={24} />}
+          </span>
+          <div className="min-w-0">
+            <p className="text-[13px] font-bold text-testo-tenue">Il tuo risultato</p>
+            <p className="text-[34px] leading-[38px] font-extrabold tabular-nums text-testo">{voce.corrette}<span className="text-[18px] font-bold text-testo-tenue"> su {voce.totale}</span></p>
+            <p className="mt-0.5 text-[14px] font-semibold text-testo-tenue"><Tempo secondi={voce.secondi} /> su {tempoBreve(SECONDI_SFIDA)}</p>
+          </div>
+        </Carta>
       )}
+      {haEsito && <p className="mt-3 text-[12.5px] leading-[18px] text-testo-tenue">Vince chi dà più risposte giuste; a parità, chi è più veloce. Il risultato dell'amico arriva dal suo link: non è verificato da nessun server.</p>}
 
-      {duello && (sfidato || !avv) && (
-        <Sezione id="titolo-condividi" titolo={sfidato ? `Rimanda il risultato a ${avv?.nome ?? 'chi ti ha sfidato'}` : 'Manda la sfida a un amico'}>
+      {condivisione && (
+        <Sezione id="titolo-condividi" titolo={sfidato ? `Rimanda il risultato a ${nomeAvv}` : 'Manda la sfida a un amico'}>
           {!sfidato && !avv && (
-            <Carta tono="medio">
-              <p className="text-[14px] leading-[20px] text-testo"><strong>In attesa dell'amico.</strong> Manda il link: gioca le tue stesse 10 domande e ti rimanda il suo risultato con un altro link. Aprilo qui sotto e vedrai il confronto.</p>
+            <Carta tono="medio" className="flex items-start gap-3">
+              <IconaTono tono="medio" className="bg-superficie"><Hourglass size={20} /></IconaTono>
+              <p className="text-[14px] leading-[20px] text-testo"><strong>In attesa dell'amico.</strong> Manda il link: gioca le tue stesse {voce.totale} domande e ti rimanda il suo risultato con un altro link. Aprilo qui sotto e vedrai il confronto.</p>
             </Carta>
           )}
           {sfidato && (
-            <p className="text-[14px] leading-[20px] text-testo-tenue">Il link contiene il tuo nome e il tuo risultato: {avv?.nome ?? 'chi ti ha sfidato'} lo apre e vede il confronto. Nessun server, nessun account.</p>
+            <p className="text-[14px] leading-[20px] text-testo-tenue">Il link contiene il tuo nome e il tuo risultato: {nomeAvv} lo apre e vede il confronto. Nessun server, nessun account.</p>
           )}
           {url ? (
             <>
@@ -149,7 +139,8 @@ export default function SfidaRisultato() {
         <RivediRisposte voce={voce} />
       </Sezione>
 
-      <div className="mt-6"><Bottone onClick={indietro}>Fatto</Bottone></div>
+      {/* Un solo pulsante pieno: se c'è il link da mandare è quello; altrimenti «Fatto». */}
+      <div className="mt-6"><Bottone variante={condivisione ? 'testo' : 'primario'} onClick={indietro}>{condivisione ? 'Torna indietro' : 'Fatto'}</Bottone></div>
     </Pagina>
   );
 }

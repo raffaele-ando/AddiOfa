@@ -12,6 +12,8 @@ import { ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGri
 import { serieStime } from './home/stima';
 import GraficoStime from './home/GraficoStime';
 import { Tessere, AndamentoSimulazioni, PerArgomento, Obiettivi } from '../screens/extra/studio/StatistichePezzi';
+import { BarraTono } from '../screens/extra/ui';
+import { ChipLivello } from '../screens/extra/studio/comune';
 import { playTapSound } from '../lib/audio';
 
 // Grafici (Recharts): colori dai token, così il tema scuro li cambia da solo.
@@ -19,6 +21,7 @@ const GRIGLIA = 'var(--color-linea)';
 const ASSE = 'var(--color-testo-tenue)';
 const AZIONE = 'var(--color-azione)';
 const ALTO = 'var(--color-alto)';
+const MEDIO = 'var(--color-medio)';
 const TRACCIA = 'var(--color-tacca)';
 const CURSORE = 'color-mix(in srgb, var(--color-testo) 6%, transparent)';
 const TOOLTIP = { borderRadius: '12px', border: '1px solid var(--color-linea)', fontWeight: 'bold', color: 'var(--color-testo)', backgroundColor: 'var(--color-superficie)', boxShadow: 'none' } as const;
@@ -235,34 +238,39 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
 
             <Tessere stato={appState} />
 
-            <div className="grid grid-cols-2 gap-3">
-              {([
-                [`${masteryPercentage}%`, `Domande imparate (su ${totalQuestions})`],
-                [`${globalAccuracy}%`, 'Accuratezza'],
-              ] as const).map(([valore, nome]) => (
-                <div key={nome} className="bg-superficie-2 rounded-[12px] p-4 flex flex-col gap-1.5">
-                  <span className="text-[26px] font-extrabold text-testo leading-none">{valore}</span>
-                  <span className="text-xs text-testo-tenue">{nome}</span>
+            <div className="rounded-[12px] bg-superficie-2 divide-y divide-linea">
+              <div className="p-4">
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="text-[15px] font-bold text-testo">Domande imparate</span>
+                  <span className="text-[26px] leading-[28px] font-extrabold tabular-nums text-alto-numero">{masteryPercentage}%</span>
                 </div>
-              ))}
-              <p className="col-span-2 -mt-1 text-xs leading-snug text-testo-tenue">{REGOLA_IMPARATA}</p>
-              <div className="col-span-2 bg-superficie-2 rounded-[12px] p-4 flex flex-col gap-1.5">
+                <BarraTono valore={masteryPercentage} tono="alto" className="mt-2 h-2" />
+                <p className="mt-2 text-[12.5px] leading-[18px] text-testo-tenue">{masteredQuestions} su {totalQuestions}. {REGOLA_IMPARATA}</p>
+              </div>
+              <div className="p-4 flex items-baseline justify-between gap-3">
+                <span>
+                  <span className="block text-[15px] font-bold text-testo">Accuratezza</span>
+                  <span className="block text-[12.5px] leading-[18px] text-testo-tenue">Risposte giuste su tutte quelle date</span>
+                </span>
+                <span className="text-[26px] leading-[28px] font-extrabold tabular-nums text-alto-numero">{globalAccuracy}%</span>
+              </div>
+              <div className="p-4">
                 {lastExam && lastExamFormat ? (
                   <>
-                    <span className="text-[26px] font-extrabold text-testo leading-none">
-                      {lastExam.score}/{lastExamFormat.questions}
-                      <span className={cn("ml-3 text-base font-bold", lastExam.passed ? "text-alto-testo" : "text-basso-testo")}>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-[15px] font-bold text-testo">Ultima simulazione <span className="tabular-nums">{lastExam.score}/{lastExamFormat.questions}</span></span>
+                      <span className={cn('shrink-0 rounded-full px-2.5 py-0.5 text-[12px] font-bold', lastExam.passed ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
                         {lastExam.passed ? 'Superata' : 'Non superata'}
                       </span>
-                    </span>
-                    <span className="text-xs text-testo-tenue">
-                      Ultimo esame, {new Date(lastExam.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'long' })}. Soglia {lastExamFormat.passMark} su {lastExamFormat.questions}.
-                    </span>
+                    </div>
+                    <p className="mt-0.5 text-[12.5px] leading-[18px] text-testo-tenue">
+                      {new Date(lastExam.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'long' })}. Soglia {lastExamFormat.passMark} su {lastExamFormat.questions}.
+                    </p>
                   </>
                 ) : (
                   <>
-                    <span className="text-[26px] font-extrabold text-testo leading-none">-</span>
-                    <span className="text-xs text-testo-tenue">Ultimo esame: non ne hai ancora fatto uno.</span>
+                    <span className="text-[15px] font-bold text-testo">Ultima simulazione</span>
+                    <p className="mt-0.5 text-[12.5px] leading-[18px] text-testo-tenue">Non ne hai ancora fatta una.</p>
                   </>
                 )}
               </div>
@@ -270,7 +278,7 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
 
             <Obiettivi stato={appState} />
 
-            <div className="bg-superficie-2 rounded-[12px] p-4 sm:p-5 flex flex-col gap-3">
+            <div className="rounded-[12px] border border-linea p-4 sm:p-5 flex flex-col gap-3">
               <div className="flex items-start gap-3">
                 <Lock size={18} className="mt-0.5 shrink-0 text-testo-tenue" />
                 <div>
@@ -282,7 +290,7 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
               </div>
               <button
                 onClick={() => onNeedPass('statistiche')}
-                className="self-start text-sm font-bold text-azione border border-azione/60 hover:bg-azione-tinta px-4 py-2 rounded-xl transition-colors duration-100"
+                className="w-full min-h-[48px] text-[15px] font-bold text-azione-su bg-azione hover:bg-azione-scuro px-4 py-3 rounded-[12px] transition-colors duration-100"
               >
                 Scopri il Pass
               </button>
@@ -364,7 +372,7 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
                       {q.level && (
                         <>
                           <span className="w-1 h-1 rounded-full bg-tacca"></span>
-                          <span className="bg-azione/10 text-azione px-1.5 py-0.5 rounded">{q.level}</span>
+                          <ChipLivello livello={q.level} />
                         </>
                       )}
                       {q.grammarTopic && (
@@ -414,7 +422,7 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
                       )}
 
                       {stat?.lastResponseTimeMs !== undefined && (
-                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-lg bg-azione-tinta text-azione border border-azione/30">
+                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-lg bg-medio-tinta text-medio-testo border border-medio/30">
                           <Clock size={11} /> {(stat.lastResponseTimeMs / 1000).toFixed(1)}s
                         </span>
                       )}
@@ -438,10 +446,10 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
                             {trend === 'down' && <ArrowDown size={12} className="text-basso-testo" />}
                             {trend === 'same' && <Minus size={12} className="text-testo-tenue" />}
                           </span>
-                          <span className="text-[10px] sm:text-xs font-bold text-azione">{confidenceScore}%</span>
+                          <span className="text-[10px] sm:text-xs font-bold text-viola-testo">{confidenceScore}%</span>
                         </div>
                         <div className="w-full bg-tacca h-2 rounded-full overflow-hidden">
-                          <div className="bg-azione h-full transition-colors duration-100" style={{ width: `${confidenceScore}%` }} />
+                          <div className="bg-viola h-full transition-colors duration-100" style={{ width: `${confidenceScore}%` }} />
                         </div>
                       </div>
                     </>
@@ -478,7 +486,7 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
 
           <button
             onClick={() => { playTapSound(); setShowDetailedStats(true); }}
-            className="w-full min-h-[48px] bg-azione hover:bg-azione-scuro text-azione-su font-bold text-[15px] py-3 px-4 rounded-[12px] transition-colors duration-100 flex items-center justify-center gap-2"
+            className="w-full min-h-[48px] border border-azione/60 bg-superficie hover:bg-azione-tinta text-azione font-bold text-[15px] py-3 px-4 rounded-[12px] transition-colors duration-100 flex items-center justify-center gap-2"
           >
             <List className="w-5 h-5" />
             Vedi il dettaglio delle domande
@@ -486,8 +494,8 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
 
           {/* Costanza */}
           <section aria-labelledby="titolo-costanza" className="flex flex-col gap-2.5">
-            <h2 id="titolo-costanza" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><Activity className="text-medio-testo w-5 h-5" />Costanza (ultimi 7 giorni)</h2>
-            <div className="bg-superficie-2 rounded-[12px] p-4 flex flex-col">
+            <h2 id="titolo-costanza" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><Activity className="text-medio-numero w-5 h-5" />Costanza (ultimi 7 giorni)</h2>
+            <div className="rounded-[12px] border border-linea p-4 flex flex-col">
               <div className="w-full">
                 <ResponsiveContainer width="100%" height={170}>
                   <BarChart data={activityData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
@@ -496,18 +504,18 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
                     <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
                     <Tooltip isAnimationActive={false} cursor={{ fill: CURSORE }} contentStyle={TOOLTIP} />
                     <Bar isAnimationActive={false} dataKey="domande" name="Domande" fill={AZIONE} radius={[4, 4, 0, 0]} maxBarSize={30} />
-                    <Bar isAnimationActive={false} dataKey="minuti" name="Minuti" fill={ALTO} radius={[4, 4, 0, 0]} maxBarSize={30} />
+                    <Bar isAnimationActive={false} dataKey="minuti" name="Minuti" fill={MEDIO} radius={[4, 4, 0, 0]} maxBarSize={30} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-              <p className="mt-1 text-xs text-testo-tenue"><span className="inline-block w-2.5 h-2.5 rounded-sm align-middle mr-1" style={{ background: AZIONE }} />Domande risposte <span className="inline-block w-2.5 h-2.5 rounded-sm align-middle ml-3 mr-1" style={{ background: ALTO }} />Minuti di studio</p>
+              <p className="mt-1 text-xs text-testo-tenue"><span className="inline-block w-2.5 h-2.5 rounded-sm align-middle mr-1" style={{ background: AZIONE }} />Domande risposte <span className="inline-block w-2.5 h-2.5 rounded-sm align-middle ml-3 mr-1" style={{ background: MEDIO }} />Minuti di studio</p>
             </div>
           </section>
 
           {/* Progresso per livello */}
           <section aria-labelledby="titolo-livello" className="flex flex-col gap-2.5">
-            <h2 id="titolo-livello" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><TrendingUp className="text-medio-testo w-5 h-5" />Progresso per livello</h2>
-            <div className="bg-superficie-2 rounded-[12px] p-4 flex flex-col">
+            <h2 id="titolo-livello" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><TrendingUp className="text-alto-numero w-5 h-5" />Progresso per livello</h2>
+            <div className="rounded-[12px] border border-linea p-4 flex flex-col">
               <div className="w-full">
                 <ResponsiveContainer width="100%" height={150}>
                   <BarChart data={levelStatsData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }} layout="vertical">
@@ -526,9 +534,9 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
 
           {/* Errori frequenti */}
           <section aria-labelledby="titolo-errori" className="flex flex-col gap-2.5">
-            <h2 id="titolo-errori" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><AlertCircle className="text-basso-testo w-5 h-5" />Errori frequenti</h2>
+            <h2 id="titolo-errori" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><AlertCircle className="text-basso-numero w-5 h-5" />Errori frequenti</h2>
             {topErrors.length === 0 ? (
-              <div className="bg-superficie-2 rounded-[12px] py-6 flex items-center justify-center text-center">
+              <div className="rounded-[12px] border border-linea py-6 flex items-center justify-center text-center">
                 <span className="font-bold text-sm text-testo-tenue">Non ci sono ancora dati sufficienti.</span>
               </div>
             ) : (
@@ -537,7 +545,7 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
                   const text = prompts[err.qId];
                   const rightAnswer = answersText[err.qId];
                   return (
-                    <div key={err.qId} className="bg-basso-tinta border border-basso/30 rounded-xl p-3 sm:p-4 shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col gap-2.5">
+                    <div key={err.qId} className="bg-superficie-2 rounded-[12px] border-l-[3px] border-basso p-3 sm:p-4 flex flex-col gap-2.5">
                       <p className="font-bold text-sm sm:text-base text-testo line-clamp-2 leading-tight">{text ?? '…'}</p>
                       <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                         <span className={cn(
@@ -559,7 +567,7 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
                           {err.omitted} {err.omitted === 1 ? 'omessa' : 'omesse'}
                         </span>
                       </div>
-                      <div className="flex items-center justify-between pt-1 border-t border-basso/20">
+                      <div className="flex items-center justify-between pt-1 border-t border-linea">
                         <span className="text-xs sm:text-sm font-bold text-basso-testo">{Math.round(err.errorRate * 100)}% errore</span>
                         <span className="text-xs sm:text-sm font-bold text-alto-testo truncate max-w-[50%]">{rightAnswer ?? ''}</span>
                       </div>

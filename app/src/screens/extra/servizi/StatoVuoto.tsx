@@ -14,7 +14,7 @@ export default function StatoVuoto() {
   const azioni = [
     ...(azione === 'home' ? [{ testo: etichetta || 'Vai alla Home', onClick: vaiHome }]
       : azione ? [{ testo: etichetta || 'Apri', onClick: () => vai(azione) }] : []),
-    { testo: 'Indietro', onClick: indietro, tipo: 'secondaria' as const, icona: <ArrowLeft size={18} aria-hidden="true" /> },
+    { testo: 'Indietro', onClick: indietro, tipo: (azione ? 'secondaria' : 'primaria') as 'secondaria' | 'primaria', icona: <ArrowLeft size={18} aria-hidden="true" /> },
   ];
   return <StatoPagina illustrazione={illustrazione} titolo={titolo} testo={testo} azioni={azioni} />;
 }

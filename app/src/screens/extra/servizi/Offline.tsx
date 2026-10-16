@@ -27,7 +27,7 @@ export default function Offline() {
         online ? { testo: 'Riprendi', onClick: indietro } : { testo: 'Riprova', onClick: () => window.location.reload(), icona: <RefreshCw size={18} aria-hidden="true" /> },
         { testo: 'Vai alla Home', onClick: vaiHome },
       ]}>
-      <Nota>
+      <Nota tono="riuscito">
         Quello che hai già fatto è salvato qui e non si perde. Le funzioni che hanno bisogno della rete (domande servite dal server, inviti, lista d'attesa) ripartono quando torna la connessione.
       </Nota>
     </StatoPagina>

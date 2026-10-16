@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
-import { Check, X } from 'lucide-react';
+import { CalendarDays, Check, Clock, ListChecks, X, type LucideIcon } from 'lucide-react';
 import { Carta } from '../../../components/home/comune';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { simulazioniRecenti } from '../../../lib/profilo/attivita';
 import { formatoDurata, giornoStudiato, leggiData, NOMI_MESI, registroGiorni, totaliPeriodo, ultimiGiorniAttivita, type GiornoRecente } from '../../../lib/profilo/giorni';
+import { TONI, type Tono } from '../ui';
 import { useExtra } from '../contesto';
 import { Pagina, Sezione, useOggi } from './componenti';
 
@@ -13,7 +14,7 @@ const breve = (data: string) => { const d = leggiData(data)!; return `${d.getDat
 const lungo = (data: string) => { const d = leggiData(data)!; return `${GIORNI_BREVI[d.getDay()]} ${breve(data)}`; };
 
 /** Barre statiche in CSS, una per giorno: altezza proporzionale al valore più alto del periodo. */
-function Barre({ giorni, valore, titolo, unita }: { giorni: GiornoRecente[]; valore: (g: GiornoRecente) => number; titolo: string; unita: string }) {
+function Barre({ giorni, valore, titolo, unita, tono }: { giorni: GiornoRecente[]; valore: (g: GiornoRecente) => number; titolo: string; unita: string; tono: Tono }) {
   const max = Math.max(1, ...giorni.map(valore));
   const sottile = giorni.length > 10;
   const descrizione = `${titolo}: ${giorni.map(g => `${lungo(g.data)} ${valore(g)}`).join(', ')}`;
@@ -26,7 +27,7 @@ function Barre({ giorni, valore, titolo, unita }: { giorni: GiornoRecente[]; val
       <div className="mt-3 flex items-end h-[120px] border-b border-tacca" style={{ gap: sottile ? 2 : 6 }} role="img" aria-label={descrizione}>
         {giorni.map(g => {
           const v = valore(g);
-          return <span key={g.data} className={cn('flex-1 rounded-t-[3px]', v > 0 ? 'bg-azione' : 'bg-linea')} style={{ height: v > 0 ? `${Math.max(4, Math.round((v / max) * 116))}px` : '2px' }} />;
+          return <span key={g.data} className={cn('flex-1 rounded-t-[3px]', v > 0 ? TONI[tono].barra : 'bg-linea')} style={{ height: v > 0 ? `${Math.max(4, Math.round((v / max) * 116))}px` : '2px' }} />;
         })}
       </div>
       {sottile ? (
@@ -61,13 +62,14 @@ export default function Attivita() {
       </div>
 
       <div className="mt-3 grid grid-cols-3 gap-2.5">
-        {[
-          [String(totali.domande), totali.domande === 1 ? 'domanda' : 'domande'],
-          [formatoDurata(totali.secondi), 'di studio'],
-          [`${totali.giorniDiStudio}/${totali.giorni}`, 'giorni di studio'],
-        ].map(([v, e]) => (
-          <Carta key={e} className="py-3 px-2 text-center">
-            <p className="text-[18px] leading-[24px] font-extrabold text-testo tabular-nums">{v}</p>
+        {([
+          [String(totali.domande), totali.domande === 1 ? 'domanda' : 'domande', ListChecks, 'azione'],
+          [formatoDurata(totali.secondi), 'di studio', Clock, 'medio'],
+          [`${totali.giorniDiStudio}/${totali.giorni}`, 'giorni di studio', CalendarDays, 'medio'],
+        ] as [string, string, LucideIcon, Tono][]).map(([v, e, Icona, tono]) => (
+          <Carta key={e} className="py-3 px-2 flex flex-col items-center text-center">
+            <Icona size={18} className={TONI[tono].icona} aria-hidden="true" />
+            <p className="mt-1.5 text-[18px] leading-[24px] font-extrabold text-testo tabular-nums whitespace-nowrap">{v}</p>
             <p className="text-[12px] leading-[16px] text-testo-tenue">{e}</p>
           </Carta>
         ))}
@@ -80,8 +82,8 @@ export default function Attivita() {
         </Carta>
       ) : (
         <div className="mt-3 flex flex-col gap-3">
-          <Barre giorni={giorni} valore={g => g.domande} titolo="Domande per giorno" unita={totali.domande === 1 ? 'domanda' : 'domande'} />
-          <Barre giorni={giorni} valore={g => g.minuti} titolo="Minuti di studio per giorno" unita="min" />
+          <Barre giorni={giorni} valore={g => g.domande} titolo="Domande per giorno" unita={totali.domande === 1 ? 'domanda' : 'domande'} tono="azione" />
+          <Barre giorni={giorni} valore={g => g.minuti} titolo="Minuti di studio per giorno" unita="min" tono="medio" />
         </div>
       )}
 
@@ -107,12 +109,12 @@ export default function Attivita() {
           <ul className="rounded-[12px] bg-superficie-2 overflow-hidden divide-y divide-linea">
             {sim.map(s => (
               <li key={s.id} className="flex items-center gap-3 px-3.5 py-3">
-                <span className={cn('w-8 h-8 rounded-full grid place-items-center shrink-0', s.superata ? 'bg-alto-tinta text-alto-testo' : 'bg-medio-tinta text-medio-testo')} aria-hidden="true">
+                <span className={cn('w-8 h-8 rounded-full grid place-items-center shrink-0', s.superata ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')} aria-hidden="true">
                   {s.superata ? <Check size={18} strokeWidth={3} /> : <X size={18} strokeWidth={3} />}
                 </span>
                 <span className="flex-1 min-w-0">
                   <span className="block text-[14.5px] font-semibold text-testo tabular-nums">{s.esatte} su {s.totale}</span>
-                  <span className="block text-[12.5px] text-testo-tenue">{s.superata ? 'Soglia superata' : `Soglia ${s.soglia}, non raggiunta`}</span>
+                  <span className={cn('block text-[12.5px]', s.superata ? 'text-alto-testo font-semibold' : 'text-testo-tenue')}>{s.superata ? 'Soglia superata' : `Soglia ${s.soglia}, non raggiunta`}</span>
                 </span>
                 <span className="text-[12.5px] text-testo-tenue text-right">{new Date(s.data).toLocaleDateString('it-IT', { day: 'numeric', month: 'short' })}</span>
               </li>

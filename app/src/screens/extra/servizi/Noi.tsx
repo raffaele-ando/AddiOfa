@@ -1,9 +1,8 @@
 // «Classifica NOI» (concept 30/34): stato onesto. La classifica richiede il Project ID e la partecipazione di chi sceglie di entrare;
 // qui non c'è nessuna posizione né nessun altro utente a meno che il servizio risponda davvero.
 import { useEffect, useState } from 'react';
-import { Trophy, Users } from 'lucide-react';
 import { useExtra } from '../contesto';
-import { BottoneAzione, BottoneSecondario, Disegno, Nota, Pagina, Sezione } from './componenti';
+import { BottoneAzione, BottoneSecondario, Nota, Pagina, Sezione } from './componenti';
 import { ATLAS_API_URL, ECOSYSTEM } from '../../../config/ecosystem';
 import { FEATURE_FLAGS } from '../../../config/offer';
 import { atlas } from '../../../lib/atlas';
@@ -48,14 +47,14 @@ export default function Noi() {
   return (
     <Pagina titolo={`Classifica ${ECOSYSTEM.rankingName}`} sottotitolo="Chi sa più regole: domande imparate, poi miglior simulazione. Solo per chi sceglie di partecipare.">
 
-      <Nota tono={stato === 'aderito' ? 'azione' : 'attenzione'} className="mt-5">
+      <Nota tono={stato === 'aderito' ? 'riuscito' : 'attenzione'} className="mt-5">
         <p className="font-bold">{t.titolo}</p>
         <p className="mt-0.5">{t.testo}</p>
       </Nota>
 
       {stato === 'aderito' && (
-        <div className="mt-3 rounded-[12px] bg-azione-tinta p-4 text-azione-scuro" role="status">
-          {pos.stato === 'ok' && <p className="flex items-baseline justify-between"><span className="font-bold">La tua posizione</span><span className="text-[24px] font-extrabold">#{pos.rank} <span className="text-[14px] font-bold">su {pos.totale}</span></span></p>}
+        <div className="mt-3 rounded-[12px] bg-superficie-2 p-4 text-testo" role="status">
+          {pos.stato === 'ok' && <p className="flex items-baseline justify-between"><span className="font-bold">La tua posizione</span><span className="text-[26px] font-extrabold tabular-nums">#{pos.rank} <span className="text-[14px] font-bold text-testo-tenue">su {pos.totale}</span></span></p>}
           {pos.stato === 'carico' && <p className="font-bold">Cerco la tua posizione…</p>}
           {pos.stato === 'fuori' && <p className="font-bold">Non risulti ancora in classifica: il punteggio si aggiorna quando torni alla Home.</p>}
           {pos.stato === 'errore' && <p className="font-bold">Non riesco a leggere la classifica adesso. Riprova più tardi.</p>}
@@ -75,34 +74,32 @@ export default function Noi() {
             </li>
           ))}
         </ol>
-        <p className="text-[13px] leading-[19px] text-testo-tenue">Chi non aderisce non compare e non vede la sua posizione. Puoi uscire in qualsiasi momento.</p>
       </Sezione>
 
       <Sezione id="noi-numeri" titolo="I tuoi numeri, sul tuo dispositivo">
         <div className="grid grid-cols-2 gap-2.5">
           <div className="rounded-[12px] bg-superficie-2 p-3.5">
-            <p className="text-[26px] leading-[30px] font-extrabold tabular-nums text-testo">{mio.imparate}</p>
+            <p className="text-[26px] leading-[30px] font-extrabold tabular-nums text-alto-numero">{mio.imparate}</p>
             <p className="mt-0.5 text-[12.5px] leading-[17px] text-testo-tenue">domande imparate</p>
           </div>
           <div className="rounded-[12px] bg-superficie-2 p-3.5">
-            <p className="text-[26px] leading-[30px] font-extrabold tabular-nums text-testo">{haSimulazioni ? `${mio.migliorSimulazione}/30` : '–'}</p>
+            <p className={`text-[26px] leading-[30px] font-extrabold tabular-nums ${haSimulazioni ? 'text-azione-scuro' : 'text-testo-tenue'}`}>{haSimulazioni ? `${mio.migliorSimulazione}/30` : '–'}</p>
             <p className="mt-0.5 text-[12.5px] leading-[17px] text-testo-tenue">{haSimulazioni ? 'miglior simulazione' : 'nessuna simulazione ancora'}</p>
           </div>
         </div>
         <p className="text-[13px] leading-[19px] text-testo-tenue">
-          Sono i due numeri che la classifica userebbe. Restano qui finché non aderisci, e non sono una posizione: una posizione esiste solo con altri partecipanti veri.
+          Sono i due numeri che la classifica userebbe: restano qui finché non aderisci e non sono una posizione.
         </p>
       </Sezione>
 
       <div className="mt-6 flex flex-col gap-2.5">
-        {daCollegare && <BottoneAzione onClick={apriImpostazioni} icona={<Users size={20} aria-hidden="true" />}>Apri le Impostazioni</BottoneAzione>}
+        {daCollegare && <BottoneAzione onClick={apriImpostazioni}>Apri le Impostazioni</BottoneAzione>}
         {haClassificaAmici && (daCollegare
-          ? <BottoneSecondario onClick={() => vai('classifica')} icona={<Users size={20} aria-hidden="true" />}>Vai alla classifica tra amici</BottoneSecondario>
-          : <BottoneAzione onClick={() => vai('classifica')} icona={<Users size={20} aria-hidden="true" />}>Vai alla classifica tra amici</BottoneAzione>)}
+          ? <BottoneSecondario onClick={() => vai('classifica')}>Vai alla classifica tra amici</BottoneSecondario>
+          : <BottoneAzione onClick={() => vai('classifica')}>Vai alla classifica tra amici</BottoneAzione>)}
         <BottoneSecondario onClick={() => vai('projectid')}>{`Cos'è il ${ECOSYSTEM.accountName}`}</BottoneSecondario>
         {!haClassificaAmici && <BottoneSecondario onClick={vaiHome}>Torna alla Home</BottoneSecondario>}
       </div>
-      <div className="mt-8 flex justify-center opacity-90"><Disegno nome="mondo-internazionale" lato={140} /></div>
     </Pagina>
   );
 }

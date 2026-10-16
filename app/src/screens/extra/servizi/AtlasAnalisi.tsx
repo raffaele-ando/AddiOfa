@@ -6,7 +6,10 @@ import { useExtra } from '../contesto';
 import { BottoneAzione, BottoneSecondario, Disegno, Nota, Pagina, Sezione } from './componenti';
 import Radar from './Radar';
 import { StimaSezione } from '../../../components/home/Stima';
-import { Barra, Carta, RigaIntervallo, coloreValore, REGOLA_IMPARATA } from '../../../components/home/comune';
+import { Carta, RigaIntervallo, REGOLA_IMPARATA } from '../../../components/home/comune';
+import { livelloDi } from '../../../components/home/stima';
+import { BarraTono } from '../ui';
+import { SOGLIA_DA_RIPASSARE, TESTO_TONO, tonoAccuratezza } from './tono';
 import { formatIntervallo, formatProbabilita } from '../../../lib/diagnostic';
 import { REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS } from '../../../config/offer';
 import { ECOSYSTEM } from '../../../config/ecosystem';
@@ -15,13 +18,14 @@ import { analizzaLivello, argomentiRadar, descriviFonte, MIN_RISPOSTE_ARGOMENTO,
 
 function RigaArgomento({ a, onTeoria }: { a: ArgomentoAnalisi; onTeoria?: () => void }) {
   const dato = a.percento !== null;
+  const tono = tonoAccuratezza(a.percento);
   const corpo = (
     <>
       <span className="flex items-center justify-between gap-2">
         <span className="min-w-0 text-[14px] leading-[19px] font-semibold text-testo">{a.titolo}</span>
-        <span className={`shrink-0 text-[13px] tabular-nums ${dato ? 'font-bold text-testo' : 'text-testo-tenue'}`}>{dato ? `${a.percento}%` : '–'}</span>
+        <span className={`shrink-0 text-[13px] tabular-nums ${dato ? 'font-bold' : ''} ${TESTO_TONO[tono ?? 'nessuno']}`}>{dato ? `${a.percento}%` : '–'}</span>
       </span>
-      <span className="mt-2 block"><Barra valore={dato ? a.percento! : 0} colore={dato ? coloreValore(a.percento!) : 'transparent'} alta={6} /></span>
+      <span className="mt-2 block"><BarraTono valore={dato ? a.percento! : 0} tono={tono ?? 'azione'} className="h-1.5" /></span>
       <span className="mt-1.5 block text-[11.5px] leading-[15px] text-testo-tenue">
         {a.livello} · {a.risposte === 0 ? 'nessuna risposta' : dato ? `${a.risposte} risposte` : `${a.risposte} ${a.risposte === 1 ? 'risposta' : 'risposte'}, ancora poche`} · {a.imparate} su {a.totaleDomande} imparate
       </span>
@@ -33,7 +37,7 @@ function RigaArgomento({ a, onTeoria }: { a: ArgomentoAnalisi; onTeoria?: () => 
 }
 
 export default function AtlasAnalisi() {
-  const { appState, vai, vaiHome, apriTeoria, avviaEsercizi } = useExtra();
+  const { appState, vaiHome, apriTeoria, avviaEsercizi } = useExtra();
   const an = useMemo(() => analizzaLivello(appState), [appState]);
   const [tutti, setTutti] = useState(false);
   const [come, setCome] = useState(false);
@@ -83,9 +87,14 @@ export default function AtlasAnalisi() {
           <Carta className="p-3.5">
             <Radar assi={radar.map(a => ({ nome: a.nome, valore: a.percento ?? 0 }))}
               descrizione={`Radar dell'accuratezza su ${radar.length} argomenti: ${radar.map(a => `${a.nome} ${a.percento} per cento`).join(', ')}.`} />
-            <p className="mt-1 text-[12px] leading-[17px] text-testo-tenue">
+            <ul className="mt-1 flex flex-wrap justify-center gap-x-3.5 gap-y-1 text-[12px] leading-[17px] text-testo-tenue" aria-label="Legenda dei colori">
+              {([['alto', `Solido, da ${SOGLIA_DA_MIGLIORARE} %`], ['medio', 'Da migliorare'], ['basso', `Da ripassare, sotto ${SOGLIA_DA_RIPASSARE} %`]] as const).map(([t, nome]) => (
+                <li key={t} className="flex items-center gap-1.5"><span aria-hidden="true" className={`h-2.5 w-2.5 rounded-full ${t === 'alto' ? 'bg-alto' : t === 'medio' ? 'bg-medio' : 'bg-basso'}`} />{nome}</li>
+              ))}
+            </ul>
+            <p className="mt-2 text-[12px] leading-[17px] text-testo-tenue">
               {radar.length < an.conDati ? `Gli ${radar.length} argomenti su cui hai risposto di più, tra i ${an.conDati} con dati sufficienti. ` : ''}
-              La linea tratteggiata è l'{SOGLIA_DA_MIGLIORARE} %: sotto, l'argomento è da migliorare. Tutti i valori sono scritti anche nelle liste qui sotto.
+              La linea tratteggiata è l'{SOGLIA_DA_MIGLIORARE} %. Tutti i valori sono scritti anche nelle liste qui sotto.
             </p>
           </Carta>
         ) : (
@@ -106,7 +115,7 @@ export default function AtlasAnalisi() {
             {an.daMigliorare.length > 6 && <p className="text-[12.5px] text-testo-tenue">Altri {an.daMigliorare.length - 6} argomenti sono nell'elenco completo.</p>}
           </>
         ) : an.conDati > 0 ? (
-          <Nota tono="azione"><p>Nessun argomento con dati sufficienti è sotto l'{SOGLIA_DA_MIGLIORARE} %. Continua così e prova una simulazione per confermarlo.</p></Nota>
+          <Nota tono="riuscito"><p>Nessun argomento con dati sufficienti è sotto l'{SOGLIA_DA_MIGLIORARE} %. Continua così e prova una simulazione per confermarlo.</p></Nota>
         ) : (
           <Nota><p>Servono almeno {MIN_RISPOSTE_ARGOMENTO} risposte su un argomento per dire se è da migliorare. Per ora non ne ha nessuno.</p></Nota>
         )}
@@ -155,9 +164,9 @@ export default function AtlasAnalisi() {
               <li key={f.id} className="rounded-[10px] bg-superficie px-3 py-2.5">
                 <span className="flex items-center justify-between text-[14px] font-semibold text-testo">
                   <span>{f.nome}</span>
-                  <span className={`tabular-nums text-[13px] ${f.percento !== null ? 'font-bold' : 'text-testo-tenue font-normal'}`}>{f.percento !== null ? `${f.percento}%` : '–'}</span>
+                  <span className={`tabular-nums text-[13px] ${f.percento !== null ? `font-bold ${TESTO_TONO[tonoAccuratezza(f.percento) ?? 'nessuno']}` : 'text-testo-tenue font-normal'}`}>{f.percento !== null ? `${f.percento}%` : '–'}</span>
                 </span>
-                <span className="mt-2 block"><Barra valore={f.percento ?? 0} colore={f.percento !== null ? coloreValore(f.percento) : 'transparent'} alta={6} /></span>
+                <span className="mt-2 block"><BarraTono valore={f.percento ?? 0} tono={tonoAccuratezza(f.percento) ?? 'azione'} className="h-1.5" /></span>
                 <span className="mt-1.5 block text-[11.5px] text-testo-tenue">{f.percento !== null ? `${f.risposte} risposte` : f.risposte > 0 ? `${f.risposte} ${f.risposte === 1 ? 'risposta' : 'risposte'}, ancora poche` : 'nessuna risposta'}</span>
               </li>
             ))}
@@ -175,7 +184,7 @@ export default function AtlasAnalisi() {
               {an.serie.map((p, i) => (
                 <li key={`${p.nome}-${i}`} className="flex items-center justify-between text-[14px] text-testo">
                   <span>{p.nome}</span>
-                  <span className="font-bold tabular-nums">{formatProbabilita(p.p)}</span>
+                  <span className={`font-bold tabular-nums ${TESTO_TONO[{ basso: 'basso', medio: 'medio', alto: 'alto' }[livelloDi(p.p)] as 'basso' | 'medio' | 'alto']}`}>{formatProbabilita(p.p)}</span>
                 </li>
               ))}
             </ol>
@@ -209,7 +218,6 @@ export default function AtlasAnalisi() {
       <div className="mt-6 flex flex-col gap-2.5">
         <BottoneAzione onClick={() => avviaEsercizi('weakness')} icona={<IconaRadar size={20} aria-hidden="true" />}>Allenati sui punti deboli</BottoneAzione>
         <BottoneSecondario onClick={() => apriTeoria()} icona={<GraduationCap size={20} aria-hidden="true" />}>Apri la teoria</BottoneSecondario>
-        <BottoneSecondario onClick={() => vai('esplora')}>Torna a Esplora</BottoneSecondario>
       </div>
     </Pagina>
   );

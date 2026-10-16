@@ -43,7 +43,7 @@ const dataEstesa = (iso: string | number) =>
   new Date(typeof iso === 'number' ? iso : `${iso}T12:00:00`).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
 
 function Cella({ v }: { v: string | boolean }) {
-  if (v === true) return <Check size={18} strokeWidth={3.5} className="text-azione mx-auto" aria-label="incluso" />;
+  if (v === true) return <Check size={18} strokeWidth={3.5} className="text-alto-numero mx-auto" aria-label="incluso" />;
   if (v === false) return <Minus size={18} strokeWidth={3} className="text-testo-tenue mx-auto" aria-label="non incluso" />;
   return <span>{v}</span>;
 }
@@ -147,18 +147,6 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
         </p>
       </div>
 
-      <div>
-        <h2 className="font-bold text-lg text-testo mb-2">Cosa include</h2>
-        <ul className="flex flex-col gap-2">
-          {PASS.features.map(f => (
-            <li key={f} className="flex items-start gap-2.5 text-sm font-semibold text-testo">
-              <Check size={16} strokeWidth={3.5} className="text-azione shrink-0 mt-0.5" aria-hidden />
-              <span>{f}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
       <div className="rounded-2xl border border-linea overflow-hidden">
         <table className="w-full text-xs sm:text-sm table-fixed">
           <caption className="sr-only">Confronto tra la parte gratuita e il Pass</caption>
@@ -166,7 +154,7 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
             <tr className="text-left text-testo-tenue">
               <th scope="col" className="p-2.5 font-bold w-[40%]">Funzione</th>
               <th scope="col" className="p-2.5 font-bold text-center w-[30%]">Gratis</th>
-              <th scope="col" className="p-2.5 font-bold text-center w-[30%] text-azione">Pass</th>
+              <th scope="col" className="p-2.5 font-bold text-center w-[30%] bg-azione-tinta text-azione-scuro">Pass</th>
             </tr>
           </thead>
           <tbody>
@@ -174,7 +162,7 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
               <tr key={r.voce} className="border-t border-linea font-semibold text-testo">
                 <th scope="row" className="p-2.5 text-left font-bold">{r.voce}</th>
                 <td className="p-2.5 text-center text-testo-tenue"><Cella v={r.gratis} /></td>
-                <td className="p-2.5 text-center"><Cella v={r.pass} /></td>
+                <td className="p-2.5 text-center bg-azione-tinta/40"><Cella v={r.pass} /></td>
               </tr>
             ))}
           </tbody>
@@ -216,7 +204,7 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
           </p>
           <button
             onClick={() => { playTapSound(); void prova(); }}
-            className="w-full rounded-2xl bg-testo text-superficie font-bold py-3.5 px-6"
+            className="w-full rounded-2xl border border-medio/30 bg-superficie text-testo font-bold py-3.5 px-6"
           >
             Sblocca il Pass in prova
           </button>

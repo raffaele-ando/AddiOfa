@@ -1,7 +1,7 @@
 // Dettaglio di una simulazione. Senza params.id: cosa contiene, regole e limite gratuito prima di iniziare (concept 36 scheda 9, 18 scheda 7).
 // Con params.id (una simulazione già svolta): risultato, riepilogo per argomento e correzioni (concept 36 schede 10-11).
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { CheckCircle2, Clock, FileText, Info, ListChecks, Lock, Timer, XCircle } from 'lucide-react';
+import { CheckCircle2, Info, ListChecks, Lock, Target, Timer, XCircle } from 'lucide-react';
 import { useExtra } from '../contesto';
 import { useAccess } from '../../../access/context';
 import type { ExamQuestionResult, PublicQuestion, DataProvider } from '../../../access/provider';
@@ -10,9 +10,10 @@ import { entrataStorico, FORMATO_SIMULAZIONE, limiteGratuito, perArgomentoSimula
 import MisuratoreEsito from '../../../components/esito/MisuratoreEsito';
 import CorrezioniComplete from '../../../components/esito/CorrezioniComplete';
 import InfoPunteggio from '../../../components/esito/InfoPunteggio';
+import { TessereEsito, RigaTempo } from '../../../components/esito/TessereEsito';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { Pagina, Carta, Barra, Bottone, StatoVuoto, TitoloSezione, coloreValore, dataBreve, minSec } from './comune';
+import { Pagina, Carta, Barra, Bottone, StatoVuoto, TitoloSezione, coloreValore, dataBreve, IconaTono, type Tono } from './comune';
 import type { ExamHistory } from '../../../types';
 
 // ---- Prima di iniziare
@@ -28,12 +29,12 @@ function PrimaDiIniziare() {
         <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-testo-tenue">Cosa contiene</p>
         <ul className="mt-2.5 grid grid-cols-1 gap-2.5">
           {([
-            [ListChecks, `${f.questions} domande`, `Grammatica e traduzione, ${f.options} opzioni per domanda, una sola esatta.`],
-            [Timer, `${f.minutes} minuti`, 'Il tempo è unico per tutta la prova: se finisce, la simulazione si consegna da sola.'],
-            [FileText, `Soglia ${f.passMark} su ${f.questions}`, `Con ${f.passMark} risposte esatte o più la simulazione è superata.`],
-          ] as const).map(([Icona, titolo, testo]) => (
+            [ListChecks, 'azione', `${f.questions} domande`, `Grammatica e traduzione, ${f.options} opzioni per domanda, una sola esatta.`],
+            [Timer, 'medio', `${f.minutes} minuti`, 'Il tempo è unico per tutta la prova: se finisce, la simulazione si consegna da sola.'],
+            [Target, 'alto', `Soglia ${f.passMark} su ${f.questions}`, `Con ${f.passMark} risposte esatte o più la simulazione è superata.`],
+          ] as const).map(([Icona, tono, titolo, testo]) => (
             <li key={titolo} className="flex items-start gap-3">
-              <span aria-hidden="true" className="shrink-0 grid place-items-center w-[38px] h-[38px] rounded-[11px] bg-superficie text-azione dark:border dark:border-linea"><Icona size={20} /></span>
+              <IconaTono tono={tono as Tono} lato={38}><Icona size={20} /></IconaTono>
               <span className="min-w-0"><span className="block text-[15px] leading-[20px] font-bold text-testo">{titolo}</span><span className="block text-[13.5px] leading-[19px] text-testo-tenue">{testo}</span></span>
             </li>
           ))}
@@ -168,26 +169,13 @@ function Svolta({ chiave }: { chiave: string }) {
             {s.superata ? 'Superata' : 'Non superata'}
           </span>
         </div>
+        <RigaTempo secondi={s.tempoSecondi} minuti={f.minutes} />
         <p className="mt-2.5 text-[14px] font-semibold text-testo">
           {s.superata ? `Soglia ${s.soglia} su ${s.totale}: raggiunta.` : `Soglia ${s.soglia} su ${s.totale}: ${mancano === 1 ? 'ti è mancata 1 risposta' : `ti sono mancate ${mancano} risposte`}.`}
         </p>
       </Carta>
 
-      <div className="mt-3 grid grid-cols-2 min-[460px]:grid-cols-4 gap-2" role="list" aria-label="Riepilogo">
-        {([
-          ['Giuste', String(s.esatte)],
-          ['Sbagliate', s.sbagliate === null ? '–' : String(s.sbagliate)],
-          ['Senza risposta', s.omesse === null ? '–' : String(s.omesse)],
-          [`Tempo su ${f.minutes} min`, s.tempoSecondi > 0 ? minSec(s.tempoSecondi) : '–'],
-        ] as const).map(([nome, valore]) => (
-          <div key={nome} role="listitem" className="rounded-[12px] bg-superficie-2 px-2 py-3 text-center">
-            <p className="text-[22px] leading-[26px] font-extrabold tabular-nums text-testo">{valore}</p>
-            <p className="mt-0.5 text-[11.5px] leading-[15px] font-semibold text-testo-tenue flex items-center justify-center gap-1">
-              {nome.startsWith('Tempo') && <Clock size={12} aria-hidden="true" />}{nome}
-            </p>
-          </div>
-        ))}
-      </div>
+      <div className="mt-3"><TessereEsito giuste={s.esatte} sbagliate={s.sbagliate} vuote={s.omesse} /></div>
 
       {righe.length > 0 && (
         <section aria-labelledby="titolo-argomenti" className="mt-7 flex flex-col gap-2.5">

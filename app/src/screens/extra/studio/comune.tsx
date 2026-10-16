@@ -7,7 +7,9 @@ import { FONT } from '../../../brand/tokens';
 export { TitoloSezione } from '../../../components/home/Stima';
 export { Carta, Barra, coloreValore } from '../../../components/home/comune';
 
-import { Pagina as PaginaBase } from '../ui';
+import { Pagina as PaginaBase, TONI, IconaTono, BarraTono, type Tono } from '../ui';
+export { TONI, IconaTono, BarraTono };
+export type { Tono };
 /** Pagina di studio: la pagina comune, con i nomi delle prop usati da queste schermate. */
 export function Pagina({ titolo, sotto, onIndietro, destra, children }: {
   titolo: string; sotto?: ReactNode; onIndietro?: () => void; destra?: ReactNode; children: ReactNode; larghezza?: number;
@@ -51,4 +53,13 @@ export function dataBreve(t: number): string {
 export function minSec(secondi: number): string {
   const s = Math.max(0, Math.round(secondi));
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}
+
+/** Un tono per livello (A1 blu, A2 viola, B1 ambra): vale in tutta l'app, in teoria, percorso, lezione. Il verde e il corallo restano degli stati (imparata, errore). */
+export const TONO_LIVELLO: Record<string, Tono> = { A1: 'azione', A2: 'viola', B1: 'medio' };
+
+/** Piccola etichetta del livello («A1») nel tono del livello. */
+export function ChipLivello({ livello, className }: { livello: string; className?: string }) {
+  const t = TONI[TONO_LIVELLO[livello] ?? 'azione'];
+  return <span className={cn('inline-flex items-center rounded-[7px] px-1.5 py-0.5 text-[11.5px] leading-[14px] font-extrabold tabular-nums', t.tinta, t.testo, className)}>{livello}</span>;
 }

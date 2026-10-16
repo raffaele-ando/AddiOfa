@@ -1,18 +1,9 @@
-import { ArrowRight, BarChart3, FileCheck2, Lightbulb, Target } from 'lucide-react';
-import { FORMATS, FREE_LIMITS } from '../../config/offer';
+import { ArrowRight } from 'lucide-react';
 import Lastra from '../../brand/hero/Lastra';
 import Misuratore from '../../components/home/Misuratore';
 import { Colonna, Evidenza, Occhiello } from './comune';
-import { cn } from '../../lib/utils';
 
-const CARTE = [
-  { Icona: BarChart3, tinta: 'bg-azione-tinta text-azione-scuro', titolo: 'Test iniziale', testo: `Scopri il tuo livello e la probabilità stimata, in ${FREE_LIMITS.diagnostic} domande.` },
-  { Icona: Target, tinta: 'bg-basso-tinta text-basso-pieno', titolo: 'Ripasso su misura', testo: 'Le domande sbagliate tornano, con la spiegazione, finché non le sai.' },
-  { Icona: FileCheck2, tinta: 'bg-alto-tinta text-alto-pieno', titolo: 'Simulazioni realistiche', testo: `${FORMATS.ente.questions} domande in ${FORMATS.ente.minutes} minuti, nel formato del test.` },
-  { Icona: Lightbulb, tinta: 'bg-medio-tinta text-medio-pieno', titolo: 'Spiegazioni chiare', testo: 'Teoria in italiano, esempi e consigli pratici.' },
-];
-
-// «Più di un semplice quiz»: quattro carte, un esempio del misuratore e il blocco scuro con la porta di luce.
+// «Più di un semplice quiz»: un esempio del misuratore e il blocco scuro con la porta di luce. Le quattro cose che offre sono già nella fascia sotto l'hero e nei passi: qui non si ripetono.
 export default function Perche({ onStart }: { onStart(): void }) {
   return (
     <section id="perche" aria-labelledby="t-perche" className="scroll-mt-20 py-14 sm:py-20">
@@ -25,23 +16,12 @@ export default function Perche({ onStart }: { onStart(): void }) {
             </h2>
             <p className="mt-4 max-w-xl text-base font-medium text-testo-tenue sm:text-lg">Tutto ciò che serve per arrivare al test sapendo cosa aspettarti.</p>
 
-            <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-3.5" aria-label="Cosa c'è in AddiOFA">
-              {CARTE.map(({ Icona, tinta, titolo, testo }) => (
-                <li key={titolo} className="vetro rounded-[24px] p-4">
-                  <span aria-hidden className={cn('flex h-12 w-12 items-center justify-center rounded-2xl', tinta)}><Icona size={24} /></span>
-                  <h3 className="mt-3 text-[15px] font-bold leading-snug text-testo">{titolo}</h3>
-                  <p className="mt-1 text-xs font-medium leading-snug text-testo-tenue sm:text-[13px]">{testo}</p>
-                </li>
-              ))}
-            </ul>
-
-            <div className="vetro mt-4 grid items-center gap-4 rounded-[28px] p-5 sm:grid-cols-[13rem_1fr] sm:gap-6 sm:p-6">
+            <div className="vetro mt-8 grid items-center gap-4 rounded-[28px] p-5 sm:grid-cols-[13rem_1fr] sm:gap-6 sm:p-6">
               <div className="mx-auto w-full max-w-[14rem]">
                 <Misuratore percento={72} livello="alto" etichetta="Esempio" sotto="valore di prova" />
               </div>
               <div>
-                <span className="inline-block rounded-full bg-azione-tinta px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-azione-scuro">Esempio</span>
-                <h3 className="mt-2 text-xl font-extrabold leading-tight text-testo sm:text-2xl">La probabilità stimata di superare il test</h3>
+                <h3 className="text-xl font-extrabold leading-tight text-testo sm:text-2xl">La probabilità stimata di superare il test</h3>
                 <p className="mt-2 text-sm font-medium leading-relaxed text-testo-tenue">
                   Si calcola sulle tue risposte. Con poche domande è approssimativa e non garantisce l'esito: si affina con le simulazioni.
                 </p>

@@ -1,39 +1,31 @@
-// `classifica`: la classifica tra te e i tuoi rivali, calcolata dai duelli veri (podio solo se siete almeno in due),
+// `classifica`: la classifica tra te e i tuoi rivali, calcolata dai duelli veri (podio dal terzo in poi: i primi tre non si ripetono nell'elenco; il primo in ambra con la corona),
 // e la sezione «Classifica NOI» con il suo stato onesto: richiede il Project ID, non attivo in questa versione. Nessuna posizione inventata.
-import { ChevronRight, Crown, Lock, Swords } from 'lucide-react';
+import { ChevronRight, Crown, Lock, Swords, Users } from 'lucide-react';
 import { playTapSound } from '../../../lib/audio';
 import { useExtra } from '../contesto';
 import { ECOSYSTEM } from '../../../config/ecosystem';
 import { cn, formatNumber } from '../../../lib/utils';
 import { costruisciClassifica, tempoBreve, type RigaClassifica } from '../../../lib/sfide/risultati';
 import { useProfiloSfide, useStorico } from './dati';
-import { Bottone, Carta, Pagina, SchedeSfide, Sezione } from './comuni';
+import { IconaTono } from '../ui';
+import { Avatar, Bottone, Carta, Pagina, SchedeSfide, Sezione } from './comuni';
 
-function Cerchio({ nome, grande, io }: { nome: string; grande?: boolean; io?: boolean }) {
-  return (
-    <span aria-hidden className={cn('rounded-full flex items-center justify-center font-extrabold shrink-0',
-      grande ? 'w-14 h-14 text-[22px]' : 'w-10 h-10 text-[16px]', io ? 'bg-azione text-azione-su' : 'bg-azione-tinta text-azione-scuro')}>
-      {(nome.trim()[0] ?? '?').toUpperCase()}
-    </span>
-  );
-}
-
+/** Podio (solo con almeno tre persone): il primo in ambra con la corona, gli altri neutri; chi sei tu ha l'avatar blu. */
 function Podio({ righe }: { righe: RigaClassifica[] }) {
-  // ordine visivo come nel concept: secondo, primo, terzo (con due sole persone: primo e secondo)
-  const top = righe.slice(0, 3);
-  const visivo = top.length === 3 ? [top[1], top[0], top[2]] : top;
+  // ordine visivo come nel concept: secondo, primo, terzo
+  const visivo = [righe[1], righe[0], righe[2]];
   const alt: Record<number, string> = { 0: 'h-[88px]', 1: 'h-[64px]', 2: 'h-[48px]' };
   return (
-    <ol className={cn('grid items-end gap-2', top.length === 3 ? 'grid-cols-3' : 'grid-cols-2')} aria-label="Podio">
+    <ol className="grid grid-cols-3 items-end gap-2" aria-label="Podio">
       {visivo.map(r => {
         const pos = righe.indexOf(r);
         return (
           <li key={r.id} className="flex flex-col items-center min-w-0">
-            {pos === 0 && <Crown size={20} className="text-medio-numero mb-0.5" aria-hidden />}
-            <Cerchio nome={r.nome} grande={pos === 0} io={r.io} />
+            {pos === 0 && <Crown size={22} className="text-medio-numero mb-0.5" fill="currentColor" aria-hidden />}
+            <Avatar nome={r.nome} grande={pos === 0} io={r.io} />
             <p className="mt-1.5 max-w-full truncate text-[13.5px] font-bold text-testo">{r.io ? `${r.nome} (tu)` : r.nome}</p>
             <p className="text-[12.5px] font-semibold tabular-nums text-testo-tenue">{formatNumber(Math.round(r.percentuale))} %</p>
-            <div className={cn('mt-1.5 w-full rounded-t-[10px] flex items-start justify-center pt-1.5 text-[18px] font-extrabold', alt[pos], pos === 0 ? 'bg-medio-tinta text-medio-testo' : 'bg-superficie-2 text-testo-tenue')}>
+            <div className={cn('mt-1.5 w-full rounded-t-[10px] flex items-start justify-center pt-1.5 text-[18px] font-extrabold', alt[pos], pos === 0 ? 'bg-medio-tinta text-medio-testo' : 'bg-superficie text-testo-tenue')}>
               {pos + 1}
               <span className="sr-only">° posto</span>
             </div>
@@ -49,51 +41,60 @@ export default function Classifica() {
   const { voci } = useStorico();
   const { profilo } = useProfiloSfide();
   const righe = costruisciClassifica(voci, profilo.nome ?? 'Tu');
-  const conPodio = righe.length >= 2;
+  // Il podio c'è dal terzo in poi e mostra i primi tre: l'elenco sotto riprende dal quarto (nessuno compare due volte).
+  const conPodio = righe.length >= 3;
+  const elenco = conPodio ? righe.slice(3) : righe;
+  const primo = conPodio ? 3 : 0;
 
   return (
-    <Pagina titolo="Sfide" sottotitolo="La classifica tra te e i tuoi rivali, dai duelli che avete giocato." onBack={indietro}>
+    <Pagina titolo="Sfide" sottotitolo="Media di risposte giuste nei duelli, tra te e chi hai sfidato." onBack={indietro}>
       <SchedeSfide attiva="classifica" />
 
-      <Sezione id="titolo-rivali" titolo="Tra te e i tuoi rivali">
+      <Sezione id="titolo-rivali" titolo="Tra te e i rivali">
         {righe.length === 0 ? (
-          <Carta className="text-center py-6">
-            <p className="text-[16px] leading-[22px] font-bold text-testo">Nessuna classifica, per ora</p>
-            <p className="mt-1 text-[13.5px] leading-[19px] text-testo-tenue">Si forma con i duelli: appena un amico ti rimanda il suo risultato, compare qui con te. Non ci sono posizioni se nessuno ha giocato contro di te.</p>
-            <div className="mt-4"><Bottone onClick={() => vai('sfide')}><Swords size={18} aria-hidden /> Sfida un amico</Bottone></div>
+          <Carta className="flex flex-col items-center text-center py-6">
+            <IconaTono tono="medio" lato={52} className="rounded-full"><Crown size={26} /></IconaTono>
+            <p className="mt-3 text-[16px] leading-[22px] font-bold text-testo">Nessuna classifica, per ora</p>
+            <p className="mt-1 text-[13.5px] leading-[19px] text-testo-tenue">Si forma con i duelli: appena un amico ti rimanda il suo risultato, compare qui con te.</p>
+            <div className="mt-4 w-full"><Bottone onClick={() => vai('sfide')}><Swords size={18} aria-hidden /> Sfida un amico</Bottone></div>
           </Carta>
         ) : (
           <>
             {conPodio && <Carta><Podio righe={righe} /></Carta>}
-            <ol className="flex flex-col gap-2">
-              {righe.map((r, i) => (
-                <li key={r.id} className={cn('flex items-center gap-3 rounded-[14px] border p-3', r.io ? 'border-azione/40 bg-azione-tinta' : 'border-linea bg-superficie-2')}>
-                  <span className="w-6 text-center text-[16px] font-extrabold tabular-nums text-testo-tenue" aria-label={`Posizione ${i + 1}`}>{i + 1}</span>
-                  <Cerchio nome={r.nome} io={r.io} />
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-[15px] font-bold text-testo">{r.io ? `${r.nome} (tu)` : r.nome}</span>
-                    <span className="block text-[12.5px] text-testo-tenue tabular-nums">{r.duelli} {r.duelli === 1 ? 'duello' : 'duelli'} con te · tempo medio {tempoBreve(r.secondiMedi)}</span>
-                  </span>
-                  <span className="text-right">
-                    <span className="block text-[18px] font-extrabold tabular-nums text-testo">{formatNumber(Math.round(r.percentuale))} %</span>
-                    <span className="block text-[11px] font-bold text-testo-tenue">risposte giuste</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
+            {elenco.length > 0 && (
+              <ol className="flex flex-col gap-2" start={primo + 1}>
+                {elenco.map((r, k) => {
+                  const i = primo + k;
+                  return (
+                    <li key={r.id} className={cn('flex items-center gap-3 rounded-[14px] border p-3', r.io ? 'border-azione/40 bg-azione-tinta' : 'border-linea bg-superficie-2')}>
+                      {i === 0
+                        ? <span className="grid w-6 place-items-center text-medio-numero" aria-label="Primo posto"><Crown size={20} fill="currentColor" aria-hidden /></span>
+                        : <span className="w-6 text-center text-[16px] font-extrabold tabular-nums text-testo-tenue" aria-label={`Posizione ${i + 1}`}>{i + 1}</span>}
+                      <Avatar nome={r.nome} io={r.io} />
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-[15px] font-bold text-testo">{r.io ? `${r.nome} (tu)` : r.nome}</span>
+                        <span className="block text-[12.5px] text-testo-tenue tabular-nums">{r.duelli} {r.duelli === 1 ? 'duello' : 'duelli'} con te · tempo medio {tempoBreve(r.secondiMedi)}</span>
+                      </span>
+                      <span className="block text-[20px] font-extrabold tabular-nums text-testo">{formatNumber(Math.round(r.percentuale))} %</span>
+                    </li>
+                  );
+                })}
+              </ol>
+            )}
             <p className="text-[12.5px] leading-[18px] text-testo-tenue">
-              Conta la media di risposte giuste nei duelli giocati contro di te (a parità, il tempo medio). Chi non ha duellato con te non compare: nessuna posizione è inventata.
-              {!conPodio && ' Il podio compare quando siete almeno in due.'}
+              A parità di media decide il tempo. Chi non ha duellato con te non compare: nessuna posizione è inventata.
+              {righe.length < 3 && ' Il podio compare quando siete almeno in tre.'}
             </p>
           </>
         )}
       </Sezione>
 
-      <Sezione id="titolo-noi" titolo={`Classifica ${ECOSYSTEM.rankingName}`}>
+      <Sezione id="titolo-noi" titolo={`Classifica ${ECOSYSTEM.rankingName}`}
+        destra={<span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-linea bg-superficie-2 px-2.5 py-0.5 text-[12px] font-bold text-testo-tenue"><Lock size={12} aria-hidden /> Non attiva</span>}>
         <button type="button" onClick={() => { playTapSound(); vai('noi'); }}
           className="brand-premibile flex w-full items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left">
-          <span className="min-w-0 flex-1 text-[14px] leading-[20px] text-testo">Tra tutti gli studenti che la scelgono: serve il Project ID e non è ancora attiva.</span>
-          <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-linea bg-superficie px-2.5 py-0.5 text-[12px] font-bold text-testo-tenue"><Lock size={12} aria-hidden /> Non attiva</span>
+          <IconaTono tono="viola"><Users size={20} /></IconaTono>
+          <span className="min-w-0 flex-1 text-[14px] leading-[20px] text-testo">Tra tutti gli studenti che la scelgono: serve il Project ID.</span>
           <ChevronRight size={20} className="shrink-0 text-testo-tenue" aria-hidden />
         </button>
       </Sezione>

@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { Lock } from 'lucide-react';
-import { Barra, Carta } from '../../../components/home/comune';
+import { Check, Lock } from 'lucide-react';
+import { Carta } from '../../../components/home/comune';
 import { urlDisegno } from '../../../brand/risorse';
 import { useTheme } from '../../../hooks/useTheme';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { GRUPPI_BADGE, type BadgeValutato } from '../../../lib/profilo/badge';
+import { GRUPPI_BADGE, type BadgeValutato, type GruppoBadge } from '../../../lib/profilo/badge';
 import { useAccess } from '../../../access/context';
+import { BarraTono, TONI, type Tono } from '../ui';
 import { useExtra } from '../contesto';
 import { Pagina, useBadge } from './componenti';
 
@@ -17,11 +18,14 @@ const FILTRI: { id: Filtro; nome: string }[] = [
   { id: 'bloccati', nome: 'Da sbloccare' },
 ];
 
-function Figura({ nome, bloccato }: { nome: string; bloccato: boolean }) {
+/** Ogni gruppo ha il suo colore, lo stesso in tutta l'app: domande e argomenti imparati = verde, simulazioni = blu, giorni di studio = ambra, livelli = viola. */
+const TONO_GRUPPO: Record<GruppoBadge, Tono> = { studio: 'alto', simulazioni: 'azione', costanza: 'medio', livello: 'viola' };
+
+function Figura({ nome, bloccato, tono }: { nome: string; bloccato: boolean; tono: Tono }) {
   const { isDark } = useTheme();
   const src = urlDisegno('kit-blu', 'illustrazioni', nome, isDark);
   return (
-    <span className="relative shrink-0 w-[64px] h-[64px] rounded-[16px] bg-azione-tinta grid place-items-center" aria-hidden="true">
+    <span className={cn('relative shrink-0 w-[64px] h-[64px] rounded-[16px] grid place-items-center', bloccato ? 'bg-superficie' : TONI[tono].tinta)} aria-hidden="true">
       {src && <img src={src} alt="" draggable={false} className={cn('w-[88%] h-[88%] object-contain', bloccato && 'grayscale opacity-45')} />}
       {bloccato && <span className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-superficie border border-linea text-testo-tenue grid place-items-center"><Lock size={13} /></span>}
     </span>
@@ -32,16 +36,16 @@ function SchedaBadge({ b, pass }: { b: BadgeValutato; pass: boolean }) {
   return (
     <li>
       <Carta className="p-3.5 flex gap-3.5 items-start">
-        <Figura nome={b.illustrazione} bloccato={!b.sbloccato} />
+        <Figura nome={b.illustrazione} bloccato={!b.sbloccato} tono={TONO_GRUPPO[b.gruppo]} />
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <h3 className="text-[15px] leading-[20px] font-bold text-testo">{b.titolo}</h3>
-            {b.sbloccato && <span className="shrink-0 rounded-full bg-alto-tinta text-alto-testo px-2 py-0.5 text-[11.5px] font-bold">Sbloccato</span>}
+            {b.sbloccato && <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-alto-tinta text-alto-testo px-2 py-0.5 text-[11.5px] font-bold"><Check size={12} strokeWidth={3} aria-hidden="true" />Sbloccato</span>}
           </div>
           <p className="mt-0.5 text-[12.5px] leading-[17px] text-testo-tenue">{b.condizione}</p>
           {!b.sbloccato && (
             <div className="mt-2">
-              <Barra valore={b.quota * 100} colore="var(--color-azione)" alta={6} sfondo="bg-tacca" />
+              <BarraTono valore={b.quota * 100} tono={TONO_GRUPPO[b.gruppo]} className="h-1.5" />
               <p className="mt-1 text-[12px] leading-[16px] text-testo tabular-nums">{b.avanzamento}</p>
               {!b.raggiungibile && !pass && <p className="mt-0.5 text-[12px] leading-[16px] text-testo-tenue">Con le domande gratuite non si arriva fin qui: serve il Pass.</p>}
             </div>
@@ -62,10 +66,7 @@ export default function Badge() {
   const visibili = badge.filter(b => filtro === 'tutti' || (filtro === 'sbloccati') === b.sbloccato);
 
   return (
-    <Pagina titolo="I miei badge" indietro={indietro}>
-      <p className="mt-1 text-[13.5px] leading-[19px] text-testo-tenue">
-        <span className="font-bold text-testo tabular-nums">{sbloccati} su {badge.length}</span> traguardi raggiunti. Si sbloccano solo studiando davvero: non danno punti.
-      </p>
+    <Pagina titolo="I miei badge" indietro={indietro} sottotitolo={<><span className="font-bold text-viola-testo tabular-nums">{sbloccati} su {badge.length}</span> traguardi raggiunti. Si sbloccano solo studiando davvero: non danno punti.</>}>
       <div role="radiogroup" aria-label="Filtro" className="mt-4 grid grid-cols-3 gap-1 p-1 rounded-[12px] bg-superficie-2">
         {FILTRI.map(f => (
           <button key={f.id} type="button" role="radio" aria-checked={filtro === f.id} onClick={() => { playTapSound(); setFiltro(f.id); }}
@@ -84,7 +85,10 @@ export default function Badge() {
         if (dentro.length === 0) return null;
         return (
           <section key={g.id} aria-labelledby={`badge-${g.id}`} className="mt-[22px] flex flex-col gap-[10px]">
-            <h2 id={`badge-${g.id}`} className="text-[15.5px] leading-[20px] font-bold text-testo">{g.titolo}</h2>
+            <div className="flex items-baseline justify-between gap-3">
+              <h2 id={`badge-${g.id}`} className="text-[15.5px] leading-[20px] font-bold text-testo">{g.titolo}</h2>
+              <span className={cn('text-[12.5px] font-semibold tabular-nums', TONI[TONO_GRUPPO[g.id]].testo)}>{badge.filter(b => b.gruppo === g.id && b.sbloccato).length}/{badge.filter(b => b.gruppo === g.id).length}</span>
+            </div>
             <ul className="flex flex-col gap-2.5">{dentro.map(b => <SchedaBadge key={b.id} b={b} pass={pass} />)}</ul>
           </section>
         );

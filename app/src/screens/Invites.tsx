@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Check, Copy, Hourglass, Share2 } from 'lucide-react';
+import { Check, Copy, Gift, MailCheck, Share2 } from 'lucide-react';
 import { INVITE, PASS } from '../config/offer';
 import type { InviteProgress } from '../access/provider';
 import { useAccess } from '../access/context';
 import { playTapSound } from '../lib/audio';
 import { cn } from '../lib/utils';
-import { Screen, TopBar, PrimaryButton } from '../components/ui';
+import { Screen, TopBar } from '../components/ui';
+import { IconaTono, type Tono } from './extra/ui';
 import FoglioCondividi from './extra/sfide/FoglioCondividi';
 import { BloccoSbloccato, sbloccatoConInviti } from './extra/sfide/AccessoSbloccato';
 import { indirizzoApp } from './extra/sfide/dati';
@@ -74,18 +75,19 @@ export default function Invites({ onBack }: InvitesProps) {
     ? `Studio per il test d'inglese dell'OFA con AddiOFA. Usa il mio codice invito ${codice}: nell'app apri «Inviti» e scrivilo in «Hai un codice?».`
     : '';
 
-  const passi = [
-    { t: 'Condividi il tuo codice', d: 'Mandalo a chi deve preparare il test d\'inglese.' },
-    { t: 'I compagni lo usano e confermano l\'email', d: `Serve un'email @${INVITE.emailDomain} verificata con un codice che ricevono per posta.` },
-    { t: `Quando ${richiesti} hanno finito il diagnostico`, d: `Il ${PASS.name} è tuo per ${PASS.validMonths} mesi, senza pagare. Il diagnostico deve durare almeno ${minuti} minuti.` },
+  // Ogni passo ha il suo colore per significato: condividere è azione (blu), confermare l'email è «verificato» (verde), il Pass è il premio (ambra).
+  const passi: { t: string; d: string; tono: Tono; Icona: typeof Share2 }[] = [
+    { t: 'Condividi il tuo codice', d: 'Mandalo a chi deve preparare il test d\'inglese.', tono: 'azione', Icona: Share2 },
+    { t: 'I compagni lo usano e confermano l\'email', d: `Serve un'email @${INVITE.emailDomain} verificata con un codice che ricevono per posta.`, tono: 'alto', Icona: MailCheck },
+    { t: `Quando ${richiesti} hanno finito il diagnostico`, d: `Il ${PASS.name} è tuo per ${PASS.validMonths} mesi, senza pagare. Il diagnostico deve durare almeno ${minuti} minuti.`, tono: 'medio', Icona: Gift },
   ];
 
   return (
     <Screen>
       <TopBar onBack={onBack} />
       <div>
-        <h1 className="text-3xl font-bold leading-tight text-testo">Invita {richiesti} compagni, il Pass è gratis</h1>
-        <p className="mt-2 font-semibold text-testo-tenue">
+        <h1 className="text-[26px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo">Invita {richiesti} compagni, il Pass è gratis</h1>
+        <p className="mt-1 text-[14px] leading-[20px] text-testo-tenue">
           Condividi il tuo codice con chi deve preparare il test d'inglese.
         </p>
       </div>
@@ -94,18 +96,18 @@ export default function Invites({ onBack }: InvitesProps) {
 
       <ol className="flex flex-col gap-2.5" aria-label="Come funziona">
         {passi.map((p, i) => (
-          <li key={i} className="flex gap-3 rounded-2xl bg-superficie-2 border border-linea p-3.5">
-            <span className="w-7 h-7 shrink-0 rounded-full bg-azione-tinta text-azione-scuro text-sm font-extrabold flex items-center justify-center" aria-hidden>{i + 1}</span>
+          <li key={i} className="flex items-center gap-3 rounded-2xl bg-superficie-2 border border-linea p-3.5">
+            <IconaTono tono={p.tono} lato={36}><p.Icona size={18} /></IconaTono>
             <span className="min-w-0">
               <span className="block text-[15px] font-bold leading-snug text-testo">{p.t}</span>
-              <span className="block text-[13px] font-semibold leading-snug text-testo-tenue">{p.d}</span>
+              <span className="block text-[13px] leading-snug text-testo-tenue">{p.d}</span>
             </span>
           </li>
         ))}
       </ol>
 
       <div className="rounded-2xl border border-azione/30 bg-azione-tinta/50 p-4 flex flex-col gap-3">
-        <span className="text-xs font-bold text-testo-tenue">Il tuo codice</span>
+        <span className="text-[13px] font-bold text-azione-scuro">Il tuo codice</span>
         {codice ? (
           <>
             <span className="select-all break-all text-3xl font-bold tracking-widest text-testo" aria-label={`Il tuo codice è ${codice}`}>{codice}</span>
@@ -134,31 +136,33 @@ export default function Invites({ onBack }: InvitesProps) {
 
       <div>
         <div className="flex justify-between items-baseline">
-          <h2 className="font-bold text-lg text-testo">I tuoi inviti</h2>
-          <span className="font-bold text-lg text-testo" aria-label={`${verificati} su ${richiesti}`}>{verificati}/{richiesti}</span>
+          <h2 className="text-[15.5px] leading-[20px] font-bold text-testo">I tuoi inviti</h2>
+          <span className={cn('text-[15.5px] font-extrabold tabular-nums', verificati > 0 ? 'text-alto-testo' : 'text-testo-tenue')} aria-label={`${verificati} su ${richiesti}`}>{verificati}/{richiesti}</span>
         </div>
-        <ul className="mt-2 flex flex-col gap-2">
+        {/* Tre tappe collegate (come nel concept): verde e spuntata quando il compagno è verificato, vuota quando è in attesa. Il server non dice chi sono. */}
+        <ol className="mt-3 flex items-center" aria-label="Compagni verificati">
           {Array.from({ length: richiesti }, (_, i) => {
             const fatto = i < verificati;
             return (
-              <li key={i} className={cn('flex items-center gap-3 rounded-2xl border p-3', fatto ? 'bg-alto-tinta border-alto/30' : 'bg-superficie-2 border-linea')}>
-                <span className={cn('w-8 h-8 shrink-0 rounded-full flex items-center justify-center', fatto ? 'bg-alto-pieno text-azione-su' : 'bg-superficie text-testo-tenue border border-linea')} aria-hidden>
-                  {fatto ? <Check size={17} strokeWidth={3} /> : <Hourglass size={15} />}
+              <li key={i} className={cn('flex items-center', i < richiesti - 1 && 'flex-1')}>
+                <span className={cn('grid h-9 w-9 shrink-0 place-items-center rounded-full border-2', fatto ? 'border-alto-pieno bg-alto-pieno text-azione-su' : 'border-linea bg-superficie text-testo-tenue')}
+                  aria-label={`Compagno ${i + 1}: ${fatto ? 'verificato' : 'in attesa'}`}>
+                  {fatto ? <Check size={18} strokeWidth={3} aria-hidden /> : <span className="text-[13px] font-extrabold" aria-hidden>{i + 1}</span>}
                 </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block text-[15px] font-bold text-testo">Compagno {i + 1}</span>
-                  <span className={cn('block text-[13px] font-semibold', fatto ? 'text-alto-testo' : 'text-testo-tenue')}>{fatto ? 'Verificato: ha finito il diagnostico' : 'In attesa…'}</span>
-                </span>
+                {i < richiesti - 1 && <span className={cn('mx-1 h-1 flex-1 rounded-full', i < verificati - 1 ? 'bg-alto' : 'bg-tacca/60')} aria-hidden />}
               </li>
             );
           })}
-        </ul>
-        <p className="mt-2 text-xs font-semibold text-testo-tenue">Il server comunica solo quanti compagni sono già verificati, non chi sono: per questo qui non ci sono nomi.</p>
+        </ol>
+        <p className="mt-3 text-[13px] leading-[18px] text-testo-tenue">
+          {verificati === 0 ? 'Nessun compagno verificato, per ora. ' : `${verificati} ${verificati === 1 ? 'compagno ha' : 'compagni hanno'} finito il diagnostico. `}
+          Il server comunica solo quanti sono, non chi: per questo qui non ci sono nomi.
+        </p>
       </div>
 
       <div>
-        <h2 className="font-bold text-lg text-testo mb-2">Le regole</h2>
-        <ul className="flex flex-col gap-2 text-sm font-semibold text-testo list-disc pl-5">
+        <h2 className="mb-2 text-[15.5px] leading-[20px] font-bold text-testo">Le regole</h2>
+        <ul className="flex flex-col gap-2 text-[14px] leading-[20px] text-testo list-disc pl-5">
           <li>Il {PASS.name} diventa gratis quando {INVITE.required} compagni con email @{INVITE.emailDomain} verificata finiscono il diagnostico, impiegando almeno {minuti} minuti.</li>
           <li>Chi usa il tuo codice avrà il {INVITE.inviteeDiscountPct} % di sconto sul Pass: è previsto per quando i pagamenti saranno attivi, oggi non c'è ancora nessuno sconto da applicare.</li>
           <li>Conta finire il diagnostico, non il punteggio: non c'è nessun premio per chi sbaglia apposta.</li>
@@ -171,7 +175,7 @@ export default function Invites({ onBack }: InvitesProps) {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="invito-codice" className="font-bold text-lg text-testo">Hai un codice?</label>
+        <label htmlFor="invito-codice" className="text-[15.5px] leading-[20px] font-bold text-testo">Hai un codice?</label>
         <div className="flex gap-2">
           <input
             id="invito-codice"
@@ -186,7 +190,7 @@ export default function Invites({ onBack }: InvitesProps) {
           <button
             onClick={() => { playTapSound(); void usa(); }}
             disabled={!inserito.trim() || invio}
-            className="shrink-0 rounded-2xl bg-azione text-azione-su font-bold px-5 disabled:opacity-40 disabled:pointer-events-none"
+            className="shrink-0 rounded-2xl border border-azione bg-superficie text-azione-scuro font-bold px-5 disabled:opacity-40 disabled:pointer-events-none"
           >
             Usa il codice
           </button>
@@ -197,7 +201,7 @@ export default function Invites({ onBack }: InvitesProps) {
       </div>
 
       <div className="mt-auto pt-2">
-        <PrimaryButton onClick={onBack}>Torna all'app</PrimaryButton>
+        <button type="button" onClick={() => { playTapSound(); onBack(); }} className="brand-premibile w-full rounded-2xl py-3.5 text-[15px] font-bold text-azione-scuro">Torna all'app</button>
       </div>
     </Screen>
   );

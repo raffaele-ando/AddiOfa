@@ -9,22 +9,22 @@ import {
 } from '../../../lib/studio/statistiche';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { Barra, Carta, TitoloSezione, coloreValore } from './comune';
+import { Barra, TitoloSezione, coloreValore, BarraTono, TONI, type Tono } from './comune';
 
-/** Tre tessere: risposte date, tempo di studio, media delle simulazioni. */
+/** Tre tessere nel tono del loro significato (concept 18): risposte date blu, tempo di studio ambra, media delle simulazioni verde. È il solo blocco tinto della pagina. */
 export function Tessere({ stato }: { stato: AppState }) {
   const t = tessereStatistiche(stato);
-  const voci = [
-    { Icona: ListChecks, valore: String(t.risposte), nome: 'Risposte date', tono: 'bg-azione-tinta text-azione' },
-    { Icona: Clock, valore: formatTempoStudio(t.secondiStudio), nome: 'Tempo di studio', tono: 'bg-medio-tinta text-medio-testo' },
-    { Icona: Target, valore: t.mediaSimulazioni ? `${t.mediaSimulazioni.esatte.toLocaleString('it-IT')}/${t.mediaSimulazioni.totale}` : '–', nome: t.mediaSimulazioni ? `Media di ${t.mediaSimulazioni.quante} ${t.mediaSimulazioni.quante === 1 ? 'simulazione' : 'simulazioni'}` : 'Media simulazioni', tono: 'bg-alto-tinta text-alto-testo' },
+  const voci: { Icona: typeof ListChecks; valore: string; nome: string; tono: Tono }[] = [
+    { Icona: ListChecks, valore: String(t.risposte), nome: 'Risposte date', tono: 'azione' },
+    { Icona: Clock, valore: formatTempoStudio(t.secondiStudio), nome: 'Tempo di studio', tono: 'medio' },
+    { Icona: Target, valore: t.mediaSimulazioni ? `${t.mediaSimulazioni.esatte.toLocaleString('it-IT')}/${t.mediaSimulazioni.totale}` : '–', nome: t.mediaSimulazioni ? `Media di ${t.mediaSimulazioni.quante} ${t.mediaSimulazioni.quante === 1 ? 'simulazione' : 'simulazioni'}` : 'Media simulazioni', tono: 'alto' },
   ];
   return (
     <div className="grid grid-cols-3 gap-2" role="list" aria-label="Riepilogo">
       {voci.map(v => (
-        <div key={v.nome} role="listitem" className="rounded-[12px] bg-superficie-2 px-2 py-3 flex flex-col items-center text-center min-w-0">
-          <span aria-hidden="true" className={cn('grid place-items-center w-9 h-9 rounded-[10px]', v.tono)}><v.Icona size={19} strokeWidth={2.2} /></span>
-          <span className="mt-2 text-[18px] leading-[22px] font-extrabold tabular-nums text-testo break-words">{v.valore}</span>
+        <div key={v.nome} role="listitem" className={cn('rounded-[12px] px-2 py-3.5 flex flex-col items-center text-center min-w-0', TONI[v.tono].tinta)}>
+          <v.Icona size={24} strokeWidth={2.2} aria-hidden="true" className={TONI[v.tono].icona} />
+          <span className="mt-2 text-[18px] leading-[24px] font-extrabold tabular-nums text-testo whitespace-nowrap">{v.valore}</span>
           <span className="mt-0.5 text-[11.5px] leading-[15px] text-testo-tenue">{v.nome}</span>
         </div>
       ))}
@@ -44,9 +44,9 @@ export function AndamentoSimulazioni({ stato }: { stato: AppState }) {
         Andamento risultati
       </TitoloSezione>
       {punti.length === 0 ? (
-        <Carta className="p-4"><p className="text-[14px] leading-[20px] text-testo-tenue">Dopo la prima simulazione vedi qui come cambiano i tuoi risultati.</p></Carta>
+        <p className="text-[14px] leading-[20px] text-testo-tenue">Dopo la prima simulazione vedi qui come cambiano i tuoi risultati.</p>
       ) : (
-        <Carta className="p-4">
+        <div className="rounded-[12px] border border-linea p-4">
           <div role="img" aria-label={`Risultati delle ultime ${punti.length} simulazioni: ${punti.map(p => `${p.esatte} su ${p.totale}`).join(', ')}. Soglia ${REAL_TEST_PASS_MARK}.`}
             className="relative mt-5 h-[110px]">
             <div aria-hidden="true" className="absolute inset-x-0 border-t border-dashed border-testo-tenue" style={{ bottom: `${(REAL_TEST_PASS_MARK / totali) * 100}%` }} />
@@ -56,7 +56,7 @@ export function AndamentoSimulazioni({ stato }: { stato: AppState }) {
                 const ok = p.esatte >= REAL_TEST_PASS_MARK;
                 return (
                   <div key={p.numero} className="relative flex-1 min-w-0 h-full">
-                    <span className="absolute left-1/2 -translate-x-1/2 px-0.5 rounded-sm bg-superficie-2 text-center text-[11.5px] leading-[14px] font-bold tabular-nums text-testo" style={{ bottom: `calc(${altezza}% + 2px)` }}>{p.esatte}</span>
+                    <span className="absolute left-1/2 -translate-x-1/2 px-0.5 rounded-sm bg-superficie text-center text-[11.5px] leading-[14px] font-bold tabular-nums text-testo" style={{ bottom: `calc(${altezza}% + 2px)` }}>{p.esatte}</span>
                     <div className="absolute bottom-0 left-1/2 w-full max-w-[26px] -translate-x-1/2 rounded-t-[5px]" style={{ height: `${altezza}%`, background: ok ? 'var(--color-alto)' : 'var(--color-azione-chiaro)' }} />
                   </div>
                 );
@@ -69,7 +69,7 @@ export function AndamentoSimulazioni({ stato }: { stato: AppState }) {
           <p className="mt-2.5 text-[12.5px] leading-[18px] text-testo-tenue">
             Numero della simulazione sotto ogni colonna, risposte esatte sopra. Linea tratteggiata: soglia di {REAL_TEST_PASS_MARK}. In verde le simulazioni che la raggiungono ({superate} su {punti.length}).
           </p>
-        </Carta>
+        </div>
       )}
     </section>
   );
@@ -91,7 +91,7 @@ export function PerArgomento({ stato, pass, onVaiPercorso, onApriLezione }: {
           {tutti ? 'Mostra meno' : 'Vedi dettagli'}<ChevronRight size={18} strokeWidth={2} aria-hidden="true" className={tutti ? 'rotate-90' : undefined} />
         </button>
       ) : undefined}>Per argomento</TitoloSezione>
-      <Carta className="p-4">
+      <div>
         {mostrate.length === 0 ? (
           <p className="text-[14px] leading-[20px] text-testo-tenue">Rispondi alle domande di qualche argomento e qui vedrai quanto lo padroneggi. Per ora nessun argomento è iniziato.</p>
         ) : (
@@ -126,7 +126,7 @@ export function PerArgomento({ stato, pass, onVaiPercorso, onApriLezione }: {
             Apri il percorso di studio
           </button>
         )}
-      </Carta>
+      </div>
     </section>
   );
 }
@@ -138,12 +138,15 @@ export function Obiettivi({ stato }: { stato: AppState }) {
   return (
     <section aria-labelledby="titolo-obiettivi" className="flex flex-col gap-2.5">
       <TitoloSezione id="titolo-obiettivi">Obiettivi</TitoloSezione>
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-3.5">
         {voci.map(o => (
-          <li key={o.id} className="rounded-[12px] bg-superficie-2 p-3.5">
-            <p className="text-[14.5px] leading-[20px] font-bold text-testo break-words">{o.titolo}</p>
+          <li key={o.id}>
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="text-[14.5px] leading-[20px] font-bold text-testo break-words min-w-0">{o.titolo}</p>
+              {o.percento !== undefined && <span className="shrink-0 text-[14px] font-bold tabular-nums text-alto-testo">{o.percento}%</span>}
+            </div>
             {o.dettaglio && <p className="mt-0.5 text-[13px] leading-[18px] text-testo-tenue">{o.dettaglio}</p>}
-            {o.percento !== undefined && <div className="mt-2"><Barra valore={o.percento} colore={o.percento >= 100 ? 'var(--color-alto)' : 'var(--color-azione)'} alta={7} /></div>}
+            {o.percento !== undefined && <div className="mt-2"><BarraTono valore={o.percento} tono="alto" className="h-[7px]" /></div>}
           </li>
         ))}
       </ul>

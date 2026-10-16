@@ -28,17 +28,18 @@ export default function PaymentThanks({ onContinue }: { onContinue: () => void }
   return (
     <Screen>
       <div className="mx-auto my-4 flex items-center justify-center" style={{ minHeight: 140 }}>
-        <IllustrazioneAnimata nome="celebrazione" lato={170} />
+        {/* la festa solo quando il Pass è davvero attivo: finché non è confermato, l'illustrazione resta quella neutra del «fatto» */}
+        <IllustrazioneAnimata nome={pass ? 'celebrazione' : 'successo'} lato={170} />
       </div>
       <h1 className="text-3xl sm:text-4xl font-bold text-center text-testo">Grazie</h1>
       <p className="text-center font-semibold text-testo-tenue">
         Se il pagamento è andato a buon fine, riceverai la ricevuta via email.
       </p>
-      <div className="rounded-2xl border border-linea bg-superficie-2 p-4 text-center" role="status">
+      <div className={`rounded-2xl p-4 text-center ${pass ? 'bg-alto-tinta' : provato && !controllo ? 'bg-medio-tinta' : 'bg-superficie-2 border border-linea'}`} role="status">
         {pass ? (
           <p className="font-bold text-alto-testo">Il Pass è attivo{scadenza ? ` fino al ${scadenza}` : ''}.</p>
         ) : (
-          <p className="text-sm font-semibold text-testo-tenue">
+          <p className="text-sm font-semibold text-testo">
             {controllo
               ? 'Controllo il tuo Pass…'
               : provato
@@ -50,7 +51,7 @@ export default function PaymentThanks({ onContinue }: { onContinue: () => void }
           <button
             onClick={() => { playTapSound(); void ricontrolla(); }}
             disabled={controllo}
-            className="mt-3 rounded-xl border border-azione text-azione-scuro font-bold text-sm px-4 py-2.5 disabled:opacity-40"
+            className="mt-3 rounded-xl border border-azione bg-superficie text-azione-scuro font-bold text-sm px-4 py-2.5 disabled:opacity-40"
           >
             Ricontrolla il Pass
           </button>

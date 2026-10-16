@@ -29,7 +29,14 @@ const ICONE: Record<string, ReactNode> = {
 };
 
 const piastrella = 'brand-premibile flex flex-col items-center gap-1.5 rounded-[14px] bg-superficie-2 border border-linea px-1 py-3 text-center text-[12.5px] font-semibold text-testo';
-const cerchio = 'w-11 h-11 rounded-full bg-azione-tinta text-azione-scuro flex items-center justify-center';
+const cerchio = 'w-11 h-11 rounded-full flex items-center justify-center';
+// Un colore per canale (come nel concept): WhatsApp verde, Telegram blu, Messaggi viola; «Altre app» e «Copia link» restano neutri.
+const COLORE_CANALE: Record<string, string> = {
+  whatsapp: 'bg-alto-tinta text-alto-numero',
+  telegram: 'bg-azione-tinta text-azione-scuro',
+  messaggi: 'bg-viola-tinta text-viola',
+};
+const NEUTRO = 'bg-superficie text-testo-tenue border border-linea';
 
 export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { testo: string; url: string; mostraAnteprima?: boolean }) {
   const [stato, setStato] = useState<string | null>(null);
@@ -64,20 +71,20 @@ export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { te
         {linkCondivisione(testo, url).map(l => (
           <li key={l.id}>
             <button type="button" onClick={() => { playTapSound(); apriLink(l); }} className={cn(piastrella, 'w-full')}>
-              <span className={cerchio} aria-hidden>{ICONE[l.id]}</span>{l.nome}
+              <span className={cn(cerchio, COLORE_CANALE[l.id] ?? NEUTRO)} aria-hidden>{ICONE[l.id]}</span>{l.nome}
             </button>
           </li>
         ))}
         {puoCondividere && (
           <li>
             <button type="button" onClick={() => { playTapSound(); void condividiAltro(); }} className={cn(piastrella, 'w-full')}>
-              <span className={cerchio} aria-hidden><Share2 size={24} /></span>Altre app
+              <span className={cn(cerchio, NEUTRO)} aria-hidden><Share2 size={24} /></span>Altre app
             </button>
           </li>
         )}
         <li>
           <button type="button" onClick={() => { playTapSound(); void copia(); }} className={cn(piastrella, 'w-full')}>
-            <span className={cerchio} aria-hidden><Link2 size={24} /></span>Copia link
+            <span className={cn(cerchio, NEUTRO)} aria-hidden><Link2 size={24} /></span>Copia link
           </button>
         </li>
       </ul>

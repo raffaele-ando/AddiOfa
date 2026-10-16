@@ -26,7 +26,7 @@ export function Disegno({ nome, lato = 140, className }: { nome: string; lato?: 
   return <img src={src} alt="" draggable={false} width={lato} className={cn('h-auto max-w-full', className)} style={{ width: lato }} />;
 }
 
-import { Pagina as PaginaBase } from '../ui';
+import { Pagina as PaginaBase, TONI, type Tono } from '../ui';
 /** Pagina dei servizi: la pagina comune; la freccia torna alla schermata precedente (o a `indietroA`). `figura` non si disegna più (niente icone decorative). */
 export function Pagina({ titolo, sottotitolo, children, indietroA }: {
   titolo: string; sottotitolo?: string; figura?: ReactNode; children: ReactNode; indietroA?: () => void;
@@ -45,16 +45,22 @@ export function Sezione({ id, titolo, children, className }: { id: string; titol
   );
 }
 
-/** Nota informativa: icona e testo, tinta neutra o d'azione. Mai solo colore: il testo dice tutto. */
-export function Nota({ children, tono = 'neutro', className }: { children: ReactNode; tono?: 'neutro' | 'azione' | 'attenzione'; className?: string }) {
-  const tinta = tono === 'azione' ? 'bg-azione-tinta text-testo' : tono === 'attenzione' ? 'bg-medio-tinta text-testo' : 'bg-superficie-2 text-testo';
-  const icona = tono === 'azione' ? 'text-azione' : tono === 'attenzione' ? 'text-medio-testo' : 'text-testo-tenue';
+/** Nota informativa: icona e testo, tinta del tono (neutro, azione, attenzione = ambra, riuscito = verde, rischio = corallo). Mai solo colore: il testo dice tutto. */
+export function Nota({ children, tono = 'neutro', className }: { children: ReactNode; tono?: 'neutro' | 'azione' | 'attenzione' | 'riuscito' | 'rischio'; className?: string }) {
+  const tinta = tono === 'azione' ? 'bg-azione-tinta text-testo' : tono === 'attenzione' ? 'bg-medio-tinta text-testo' : tono === 'riuscito' ? 'bg-alto-tinta text-testo' : tono === 'rischio' ? 'bg-basso-tinta text-testo' : 'bg-superficie-2 text-testo';
+  const icona = tono === 'azione' ? 'text-azione' : tono === 'attenzione' ? 'text-medio-numero' : tono === 'riuscito' ? 'text-alto-numero' : tono === 'rischio' ? 'text-basso-numero' : 'text-testo-tenue';
   return (
     <div role="note" className={cn('flex gap-2.5 rounded-[12px] p-3.5 text-[13.5px] leading-[20px]', tinta, className)}>
       <Info size={18} className={cn('mt-[1px] shrink-0', icona)} aria-hidden="true" />
       <div className="min-w-0">{children}</div>
     </div>
   );
+}
+
+/** Etichetta piccola (pillola) nel tono scelto; `neutro` per le informazioni senza significato di stato. */
+export function Etichetta({ tono = 'neutro', children, className }: { tono?: Tono | 'neutro'; children: ReactNode; className?: string }) {
+  const stile = tono === 'neutro' ? 'bg-superficie text-testo-tenue' : `${TONI[tono].tinta} ${TONI[tono].testo}`;
+  return <span className={cn('inline-flex items-center gap-1 rounded-full px-2 py-[2px] text-[11.5px] leading-[16px] font-bold', stile, className)}>{children}</span>;
 }
 
 /** Pulsante principale: blu pieno, a tutta larghezza. */

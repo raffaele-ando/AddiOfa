@@ -1,17 +1,17 @@
 import type { ComponentType } from 'react';
-import { ArrowRight, BarChart3, CalendarDays, Lock, Wallet, X } from 'lucide-react';
+import { ArrowRight, BarChart3, Lock, Wallet, X } from 'lucide-react';
 import { FORMATS, OFA_DEADLINES, OFA_RULES_NOTE, RETAKE_COST_EUR } from '../../config/offer';
-import { BottoneAzione, Colonna, Evidenza } from './comune';
+import { Colonna, Evidenza } from './comune';
 import { cn } from '../../lib/utils';
 
 type Icona = ComponentType<{ size?: number; strokeWidth?: number; className?: string; 'aria-hidden'?: boolean }>;
 
 // Conseguenze dell'OFA: solo fatti presi da config/offer.ts. Nessun numero di studenti, nessuna percentuale.
+// Le scadenze non sono una quarta carta: stanno nel riquadro sotto, con le date vere.
 const CATENA: { Icona: Icona; titolo: string; testo: string; inclina: string }[] = [
   { Icona: X, titolo: 'Non superi il test', testo: `Meno di ${FORMATS.ente.passMark} risposte esatte su ${FORMATS.ente.questions}`, inclina: 'lg:rotate-[-1.5deg] lg:translate-y-6' },
   { Icona: Wallet, titolo: `Un tentativo costa circa ${RETAKE_COST_EUR} €`, testo: 'Presso gli enti convenzionati', inclina: 'lg:rotate-[-1deg] lg:translate-y-3' },
   { Icona: Lock, titolo: 'Piano di studi bloccato', testo: 'Finché c\'è l\'OFA, solo esami del 1° anno', inclina: 'lg:rotate-[0.5deg]' },
-  { Icona: CalendarDays, titolo: 'Scadenze del 2° anno', testo: 'Per il piano completo: tra fine agosto e fine settembre', inclina: 'lg:rotate-[1deg] lg:-translate-y-3' },
 ];
 
 export default function SeNonSuperi({ onStart }: { onStart(): void }) {
@@ -50,7 +50,7 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
 
             <ol className="relative grid grid-cols-2 gap-3 sm:gap-4 lg:flex lg:items-stretch lg:gap-0">
               {CATENA.map(({ Icona, titolo, testo, inclina }, i) => (
-                <li key={titolo} className={cn('lg:-mr-3 lg:w-[19%] lg:min-w-0 lg:shrink-0', inclina)}>
+                <li key={titolo} className={cn('lg:-mr-3 lg:w-[24%] lg:min-w-0 lg:shrink-0', i === CATENA.length - 1 && 'col-span-2 lg:col-span-1', inclina)}>
                   <div className="vetro flex h-full min-h-[11rem] flex-col rounded-[26px] p-4 sm:p-5 lg:min-h-[15rem]">
                     <span className="text-xs font-bold text-testo-tenue" aria-hidden>0{i + 1}</span>
                     <h3 className="mt-1 text-base font-bold leading-snug text-testo">{titolo}</h3>
@@ -90,15 +90,12 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
             </div>
             <dl className="grid grid-cols-3 gap-3 sm:gap-6">
               {OFA_DEADLINES.map(d => (
-                <div key={d.scuola} className="rounded-2xl bg-azione-tinta px-3 py-2.5 text-center sm:px-5">
-                  <dt className="text-xs font-semibold text-azione-scuro sm:text-sm">{d.scuola}</dt>
+                <div key={d.scuola} className="rounded-2xl bg-medio-tinta px-3 py-2.5 text-center sm:px-5">
+                  <dt className="text-xs font-semibold text-medio-testo sm:text-sm">{d.scuola}</dt>
                   <dd className="text-sm font-extrabold text-testo sm:text-base">{d.data}</dd>
                 </div>
               ))}
             </dl>
-          </div>
-          <div className="mt-5 flex justify-start lg:hidden">
-            <BottoneAzione onClick={onStart} className="w-full sm:w-auto">Fai il diagnostico gratuito</BottoneAzione>
           </div>
         </div>
       </Colonna>

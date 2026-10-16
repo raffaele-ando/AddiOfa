@@ -8,6 +8,7 @@ import { useAccess } from '../../../access/context';
 import type { InviteProgress } from '../../../access/provider';
 import { IllustrazioneAnimata } from '../../../brand/IllustrazioneAnimata';
 import { PASS } from '../../../config/offer';
+import { BarraTono, IconaTono } from '../ui';
 import { Bottone, Carta, Pagina } from './comuni';
 
 /** Vero se il Pass è attivo grazie agli inviti. */
@@ -53,18 +54,21 @@ export default function AccessoSbloccato() {
           <BloccoSbloccato onInizia={vaiHome} />
         ) : (
           <Carta className="flex flex-col items-center text-center">
-            <span className="w-14 h-14 rounded-full bg-azione-tinta text-azione-scuro flex items-center justify-center" aria-hidden><Gift size={26} /></span>
+            <IconaTono tono="medio" lato={56} className="rounded-full"><Gift size={26} /></IconaTono>
             <h2 className="mt-3 text-[20px] leading-[26px] font-extrabold text-testo">Nessun accesso sbloccato con gli inviti, per ora</h2>
-            <p className="mt-1 text-[14px] leading-[20px] text-testo-tenue">
-              {avanzamento
-                ? `Compagni verificati: ${Math.min(avanzamento.verified, avanzamento.required)} su ${avanzamento.required}. `
-                : ''}
+            {avanzamento && (
+              <div className="mt-3 w-full">
+                <BarraTono valore={(Math.min(avanzamento.verified, avanzamento.required) / Math.max(1, avanzamento.required)) * 100} tono="alto" />
+                <p className="mt-1.5 text-[13px] font-bold tabular-nums text-alto-testo">Compagni verificati: {Math.min(avanzamento.verified, avanzamento.required)} su {avanzamento.required}</p>
+              </div>
+            )}
+            <p className="mt-2 text-[14px] leading-[20px] text-testo-tenue">
               Il {PASS.name} si sblocca solo quando i compagni invitati hanno confermato l'email e finito il diagnostico: lo decide il server, questa schermata non può farlo da sola.
               {entitlement.source === 'demo' && pass ? ' In questa versione dimostrativa il Pass è già in prova e la verifica delle email non è attiva.' : ''}
             </p>
             <div className="mt-4 w-full flex flex-col gap-2">
               <Bottone onClick={apriInviti}>Vai agli inviti</Bottone>
-              <Bottone variante="secondario" onClick={vaiHome}>Torna alla home</Bottone>
+              <Bottone variante="testo" onClick={vaiHome}>Torna alla home</Bottone>
             </div>
           </Carta>
         )}

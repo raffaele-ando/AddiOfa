@@ -106,13 +106,13 @@ export default function Menu({ appState, corpus, onStartSmart, onStartExam, onNe
 
           {/* prossimo obiettivo: argomento più debole, o la prima scheda gratuita */}
           {lezione && progresso && (
-            <div className="mt-[26px] corto:mt-[18px]">
+            <div className="mt-[24px] corto:mt-[18px]">
               <ProssimoObiettivo lezione={lezione} progresso={progresso} onApri={apriLezione} onPercorso={onOpenTheory} />
             </div>
           )}
 
           {/* solo punti misurati: diagnostico e simulazioni */}
-          <div className="mt-[20px] corto:mt-[14px]">
+          <div className="mt-[24px] corto:mt-[14px]">
             {punti.length > 0
               ? <GraficoStime punti={punti} onSimulazione={faiSimulazione} onInfo={() => setFoglio(true)} />
               : (

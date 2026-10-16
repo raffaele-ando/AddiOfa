@@ -8,7 +8,7 @@ import { useAccess } from '../access/context';
 import { LEGAL_DOCS, LEGAL_DRAFT, LEGAL_TABS } from '../legal';
 
 const MISURA = 'mx-auto w-full max-w-[65ch]';
-const TESTO = 'text-[15px] leading-relaxed text-testo';
+const TESTO = 'text-[15px] leading-[1.7] text-testo';
 const CAMPO =
   'w-full rounded-xl border border-linea bg-superficie-2 px-3 py-3 text-base text-testo placeholder:text-testo-tenue focus:outline-none focus:ring-2 focus:ring-azione';
 
@@ -164,7 +164,7 @@ export default function Legal({ section, onBack, onSection }: {
           {LEGAL_DRAFT && <Bozza aggiornato={doc.aggiornato} />}
           {!LEGAL_DRAFT && <p className="text-sm text-testo-tenue">Aggiornato il {doc.aggiornato}</p>}
 
-          <nav aria-label="In questa pagina" className="rounded-xl border border-linea">
+          <nav aria-label="In questa pagina" className="rounded-xl bg-superficie-2">
             <details className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-3 text-sm font-bold text-testo [&::-webkit-details-marker]:hidden">
                 <h2 className="text-sm font-bold">In questa pagina <span className="font-normal text-testo-tenue">({doc.sezioni.length} sezioni)</span></h2>
@@ -187,9 +187,9 @@ export default function Legal({ section, onBack, onSection }: {
           </nav>
 
           {doc.sezioni.map((s, i) => (
-            <section key={sid(i)} id={sid(i)} className="scroll-mt-4 pt-2">
-              <h2 className="text-lg font-extrabold leading-snug text-testo">
-                {i + 1}. {s.titolo}
+            <section key={sid(i)} id={sid(i)} className="scroll-mt-4 border-t border-linea pt-5 mt-2">
+              <h2 className="text-[17px] font-extrabold leading-snug text-testo">
+                <span className="mr-1.5 text-azione-scuro tabular-nums">{i + 1}.</span>{s.titolo}
               </h2>
               {s.paragrafi.map((p, j) => (
                 <p key={j} className={cn(TESTO, 'mt-2')}>{p}</p>

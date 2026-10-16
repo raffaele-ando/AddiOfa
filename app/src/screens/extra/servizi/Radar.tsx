@@ -1,6 +1,7 @@
 // Radar a N assi (3-8), fermo. Disegnato in SVG senza testi; le etichette sono HTML attorno al disegno.
 // Il valore di ogni asse è scritto anche nella lista sotto: il radar da solo non è l'unica fonte.
 import { SOGLIA_DA_MIGLIORARE } from '../../../lib/servizi/analisi';
+import { TESTO_TONO, VAR_TONO, tonoAccuratezza } from './tono';
 
 export interface AsseRadar { nome: string; valore: number }
 
@@ -33,7 +34,9 @@ export default function Radar({ assi, descrizione }: { assi: AsseRadar[]; descri
           fill="var(--color-azione)" fillOpacity={0.22} stroke="var(--color-azione)" strokeWidth={0.9} strokeLinejoin="round" />
         {assi.map((a, i) => {
           const [x, y] = punto(i, n, (R * Math.max(0, Math.min(100, a.valore))) / 100);
-          return <circle key={i} cx={x} cy={y} r={1.5} fill="var(--color-azione)" stroke="var(--color-superficie-2)" strokeWidth={0.6} />;
+          // il punto ha il tono dell'argomento (verde solido, ambra da migliorare, corallo da ripassare): la forma resta blu, i punti dicono dove guardare
+          const t = tonoAccuratezza(a.valore);
+          return <circle key={i} cx={x} cy={y} r={2} fill={t ? VAR_TONO[t] : 'var(--color-azione)'} stroke="var(--color-superficie-2)" strokeWidth={0.7} />;
         })}
       </svg>
       {assi.map((a, i) => {
@@ -42,7 +45,7 @@ export default function Radar({ assi, descrizione }: { assi: AsseRadar[]; descri
           <span key={a.nome} aria-hidden="true" className="absolute w-[84px] -translate-x-1/2 -translate-y-1/2 text-center text-[11px] leading-[13px] font-semibold text-testo"
             style={{ left: `${x}%`, top: `${y}%` }}>
             {a.nome}
-            <span className="block text-[11px] font-bold tabular-nums text-testo-tenue">{Math.round(a.valore)}%</span>
+            <span className={`block text-[11px] font-bold tabular-nums ${TESTO_TONO[tonoAccuratezza(a.valore) ?? 'nessuno']}`}>{Math.round(a.valore)}%</span>
           </span>
         );
       })}

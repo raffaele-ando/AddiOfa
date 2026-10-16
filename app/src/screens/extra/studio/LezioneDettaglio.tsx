@@ -1,19 +1,18 @@
 // Panoramica di una lezione (params.id = id dell'argomento di teoria): obiettivo, tempo stimato, passi, avanzamento vero e i due bottoni.
 // Concept: 31 («dettaglio lezione», 12) e 49. Niente promesse sul punteggio: solo contenuto e avanzamento misurato.
 import { useMemo } from 'react';
-import { BookOpen, Check, ChevronRight, Dumbbell, Lock, ShieldCheck } from 'lucide-react';
+import { BookOpen, Check, ChevronRight, Clock, Dumbbell, Lock, ShieldCheck } from 'lucide-react';
 import { useExtra } from '../contesto';
 import { lezioniPercorso, obiettivoLezione, filtroArgomento, QUOTA_LEZIONE_IMPARATA, DOMANDE_PER_SESSIONE, SECONDI_PER_DOMANDA } from '../../../lib/studio/percorso';
 import { playTapSound } from '../../../lib/audio';
-import { cn } from '../../../lib/utils';
-import { Pagina, Carta, Barra, Bottone, StatoVuoto, TitoloSezione } from './comune';
+import { Pagina, Carta, Bottone, StatoVuoto, TitoloSezione, BarraTono, IconaTono, ChipLivello, type Tono } from './comune';
 
-function Passo({ n, icona, titolo, testo, fatto }: { n: number; icona: React.ReactNode; titolo: string; testo: string; fatto?: boolean }) {
+function Passo({ n, icona, tono, titolo, testo, fatto }: { n: number; icona: React.ReactNode; tono: Tono; titolo: string; testo: string; fatto?: boolean }) {
   return (
     <li className="flex items-start gap-3 rounded-[12px] bg-superficie-2 p-3">
-      <span aria-hidden="true" className={cn('shrink-0 grid place-items-center w-[38px] h-[38px] rounded-[11px]', fatto ? 'bg-alto-pieno text-azione-su' : 'bg-superficie text-azione dark:border dark:border-linea')}>
-        {fatto ? <Check size={20} strokeWidth={3} /> : icona}
-      </span>
+      {fatto
+        ? <span aria-hidden="true" className="shrink-0 grid place-items-center w-[38px] h-[38px] rounded-[11px] bg-alto-pieno text-azione-su"><Check size={20} strokeWidth={3} /></span>
+        : <IconaTono tono={tono} lato={38}>{icona}</IconaTono>}
       <span className="min-w-0 flex-1">
         <span className="block text-[15px] leading-[20px] font-bold text-testo"><span className="text-testo-tenue font-semibold">{n}. </span>{titolo}{fatto && <span className="sr-only"> (fatto)</span>}</span>
         <span className="block mt-0.5 text-[13.5px] leading-[19px] text-testo-tenue">{testo}</span>
@@ -52,16 +51,20 @@ export default function LezioneDettaglio() {
 
   return (
     <Pagina titolo={topic.titolo} onIndietro={indietro}
-      sotto={<>Lezione {l.numero} di {lezioni.length} · Livello {topic.livello}</>}>
+      sotto={<span className="inline-flex items-center gap-2">Lezione {l.numero} di {lezioni.length}<ChipLivello livello={topic.livello} /><span className="sr-only">Livello {topic.livello}</span></span>}>
       <Carta className="mt-4 p-4">
-        <p className="text-[15px] font-bold text-testo">
-          {l.stato === 'imparata' ? 'Lezione imparata' : l.stato === 'in-corso' ? 'Lezione in corso' : 'Lezione da iniziare'}
-        </p>
-        <div className="mt-2.5"><Barra valore={percento} colore={l.stato === 'imparata' ? 'var(--color-alto)' : 'var(--color-azione)'} alta={8} /></div>
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-[15px] font-bold text-testo">
+            {l.stato === 'imparata' ? 'Lezione imparata' : l.stato === 'in-corso' ? 'Lezione in corso' : 'Lezione da iniziare'}
+          </p>
+          <p className={`text-[26px] leading-[28px] font-extrabold tabular-nums ${l.stato === 'imparata' ? 'text-alto-numero' : 'text-azione-scuro'}`}>
+            {l.imparate}<span className="text-[15px] font-bold text-testo-tenue">/{totaleDomande}</span>
+          </p>
+        </div>
+        <div className="mt-2.5"><BarraTono valore={percento} tono={l.stato === 'imparata' ? 'alto' : 'azione'} className="h-2" /></div>
         <p className="mt-2 text-[13px] leading-[18px] text-testo-tenue">
-          <span className="tabular-nums font-semibold text-testo">{l.imparate}/{totaleDomande}</span> domande imparate
-          {l.stato !== 'imparata' && <> · la lezione è imparata a {Math.round(QUOTA_LEZIONE_IMPARATA * 100)}&nbsp;%</>}.
-          {!pass && l.intere > l.disponibili && <> Gratis hai {l.disponibili} domande di questo argomento, con il Pass {l.intere}.</>}
+          domande imparate
+          {!pass && l.intere > l.disponibili && <> · gratis hai {l.disponibili} domande di questo argomento, con il Pass {l.intere}.</>}
         </p>
       </Carta>
 
@@ -73,10 +76,13 @@ export default function LezioneDettaglio() {
 
       <section aria-labelledby="titolo-tempo" className="mt-6 flex flex-col gap-2">
         <TitoloSezione id="titolo-tempo">Tempo stimato</TitoloSezione>
-        <p className="text-[15px] leading-[22px] text-testo">
-          <span className="font-bold tabular-nums">{l.minuti.totale} min</span>
-          <span className="text-testo-tenue"> · teoria {l.minuti.teoria} min{l.minuti.esercizi > 0 && <>, esercizi {l.minuti.esercizi} min</>}</span>
-        </p>
+        <div className="flex items-center gap-3">
+          <IconaTono tono="medio" lato={38}><Clock size={20} /></IconaTono>
+          <p className="text-[15px] leading-[22px] text-testo">
+            <span className="font-bold tabular-nums">{l.minuti.totale} min</span>
+            <span className="text-testo-tenue"> · teoria {l.minuti.teoria} min{l.minuti.esercizi > 0 && <>, esercizi {l.minuti.esercizi} min</>}</span>
+          </p>
+        </div>
         <p className="text-[12.5px] leading-[18px] text-testo-tenue">
           La teoria è calcolata sulla lunghezza della scheda (180 parole al minuto). Gli esercizi sono {nEsercizi} domande a {SECONDI_PER_DOMANDA} secondi l’una, come al test.
         </p>
@@ -85,12 +91,12 @@ export default function LezioneDettaglio() {
       <section aria-labelledby="titolo-passi" className="mt-6 flex flex-col gap-2.5">
         <TitoloSezione id="titolo-passi">I tre passi</TitoloSezione>
         <ol className="flex flex-col gap-2">
-          <Passo n={1} icona={<BookOpen size={20} />} titolo="Teoria" testo="La regola, gli esempi e gli errori tipici di chi parla italiano." />
-          <Passo n={2} icona={<Dumbbell size={20} />} titolo="Esercizi"
+          <Passo n={1} tono="azione" icona={<BookOpen size={20} />} titolo="Teoria" testo="La regola, gli esempi e gli errori tipici di chi parla italiano." />
+          <Passo n={2} tono="medio" icona={<Dumbbell size={20} />} titolo="Esercizi"
             testo={l.disponibili > 0 ? `${l.viste} ${l.viste === 1 ? 'domanda' : 'domande'} su ${l.disponibili} già ${l.viste === 1 ? 'vista' : 'viste'} almeno una volta.` : 'Le domande di questo argomento sono nel Pass.'}
             fatto={l.disponibili > 0 && l.viste >= l.disponibili} />
-          <Passo n={3} icona={<ShieldCheck size={20} />} titolo="Verifica"
-            testo={`Rispondi giusto due volte, a mezza giornata di distanza, ad almeno l’${Math.round(QUOTA_LEZIONE_IMPARATA * 100)}\u00a0% delle domande: ora ${l.imparate} su ${totaleDomande}.`}
+          <Passo n={3} tono="alto" icona={<ShieldCheck size={20} />} titolo="Verifica"
+            testo={`Rispondi giusto due volte, a mezza giornata di distanza, ad almeno l’${Math.round(QUOTA_LEZIONE_IMPARATA * 100)}\u00a0% delle domande: così la lezione conta come imparata.`}
             fatto={l.stato === 'imparata'} />
         </ol>
       </section>

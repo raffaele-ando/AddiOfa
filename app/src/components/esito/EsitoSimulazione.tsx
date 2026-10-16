@@ -1,13 +1,15 @@
 // Esito della simulazione: misuratore, tessere, aree, correzioni complete. Solo disegno: la consegna e i dati restano in ExamMode.
 import { useRef, useState } from 'react';
-import { Check, Clock, Info, Lock, Minus, RotateCcw, X, XCircle, CheckCircle2, ChevronLeft } from 'lucide-react';
+import { Info, Lock, RotateCcw, XCircle, CheckCircle2, ChevronLeft } from 'lucide-react';
 import type { ExamResult, PublicQuestion } from '../../access/provider';
 import type { ExamFormat } from '../../config/offer';
-import { cn, formatDuration, formatNumber } from '../../lib/utils';
+import { cn, formatNumber } from '../../lib/utils';
 import { playTapSound } from '../../lib/audio';
 import MisuratoreEsito from './MisuratoreEsito';
 import CorrezioniComplete from './CorrezioniComplete';
 import InfoPunteggio from './InfoPunteggio';
+import { TessereEsito, RigaTempo } from './TessereEsito';
+import { coloreValore } from '../home/comune';
 import { IllustrazioneAnimata } from '../../brand/IllustrazioneAnimata';
 
 interface Props {
@@ -23,22 +25,6 @@ interface Props {
   onOpenTheory?: (id: string) => void;
   /** Risposte su cui è calcolata la stima (diagnostico + simulazioni): se manca, il foglio non rimanda a FoglioStima. */
   risposteStima?: number;
-}
-
-function Tessera({ Icona, valore, etichetta, tono, aria }: { Icona: typeof Check; valore: string; etichetta: string; tono: 'verde' | 'rosso' | 'grigio' | 'blu'; aria: string }) {
-  const toni = {
-    verde: 'bg-alto-tinta text-alto-testo',
-    rosso: 'bg-basso-tinta text-basso-testo',
-    grigio: 'bg-superficie-2 text-testo-tenue',
-    blu: 'bg-azione-tinta text-azione-scuro ',
-  } as const;
-  return (
-    <div role="group" aria-label={aria} className="rounded-2xl border border-linea bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1 min-w-0">
-      <span className={cn('w-8 h-8 rounded-full flex items-center justify-center', toni[tono])}><Icona size={17} strokeWidth={3} aria-hidden /></span>
-      <span className="text-2xl font-extrabold tabular-nums leading-none text-testo" aria-hidden>{valore}</span>
-      <span className="text-[11px] font-bold text-testo-tenue text-center leading-tight" aria-hidden>{etichetta}</span>
-    </div>
-  );
 }
 
 export default function EsitoSimulazione({ format, result, questions, answers, elapsedSeconds, onExit, onRetry, retryLocked, onOpenTheory, risposteStima }: Props) {
@@ -82,7 +68,7 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
             </button>
           </header>
 
-          <section aria-label="Risultato" className="rounded-3xl border border-linea bg-superficie-2/70 px-4 pt-3 pb-4 text-center">
+          <section aria-label="Risultato" className="rounded-[12px] bg-superficie-2 px-4 pt-3 pb-4 text-center">
             {/* L'animazione parte una volta all'apertura; toccandola si rivede (Invio e Spazio compresi). */}
             <button type="button" onClick={() => setRivedi(n => n + 1)} aria-label="Rivedi l'animazione"
               className="mx-auto mb-1 block rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione ">
@@ -98,6 +84,7 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
                 {superata ? 'Superata' : 'Non superata'}
               </span>
             </div>
+            <RigaTempo secondi={elapsedSeconds} minuti={format.minutes} />
             <p className="mt-2.5 text-sm font-bold text-testo">
               {superata
                 ? `Soglia ${format.passMark} su ${totale}: raggiunta.`
@@ -114,26 +101,21 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
             </p>
           </section>
 
-          <div className="grid grid-cols-2 min-[460px]:grid-cols-4 gap-2.5">
-            <Tessera Icona={Check} valore={String(result.rawCorrect)} etichetta="Giuste" tono="verde" aria={`${result.rawCorrect} risposte giuste`} />
-            <Tessera Icona={X} valore={String(result.wrong)} etichetta="Sbagliate" tono="rosso" aria={`${result.wrong} risposte sbagliate`} />
-            <Tessera Icona={Minus} valore={String(result.omitted)} etichetta="Senza risposta" tono="grigio" aria={`${result.omitted} domande senza risposta`} />
-            <Tessera Icona={Clock} valore={`${Math.floor(elapsedSeconds / 60)}:${String(elapsedSeconds % 60).padStart(2, '0')}`} etichetta={`Tempo su ${format.minutes} min`} tono="blu" aria={`Tempo usato: ${formatDuration(elapsedSeconds)} su ${format.minutes} minuti`} />
-          </div>
+          <TessereEsito giuste={result.rawCorrect} sbagliate={result.wrong} vuote={result.omitted} />
 
           <div className="flex flex-col gap-2.5">
             <button type="button" onClick={vaiAlleCorrezioni}
-              className="w-full bg-azione hover:bg-azione-scuro text-azione-su font-bold text-base py-3.5 rounded-2xl transition-colors duration-100">
+              className="w-full bg-azione hover:bg-azione-scuro text-azione-su font-bold text-base py-3.5 rounded-[12px] transition-colors duration-100">
               Vedi le correzioni
             </button>
             <button type="button" onClick={() => { playTapSound(); onExit(); }}
-              className="w-full bg-superficie border border-azione/60 text-azione font-bold text-base py-3.5 rounded-2xl transition-colors duration-100 hover:bg-azione-tinta/40 ">
+              className="w-full bg-superficie border border-azione/60 text-azione font-bold text-base py-3.5 rounded-[12px] transition-colors duration-100 hover:bg-azione-tinta">
               Torna al menu
             </button>
           </div>
 
           {Object.keys(aree).length > 0 && (
-            <section aria-label="Per area" className="rounded-2xl border border-linea bg-superficie-2 p-4 text-left">
+            <section aria-label="Per area" className="rounded-[12px] bg-superficie-2 p-4 text-left">
               <h3 className="text-base font-bold text-testo mb-3">Per area</h3>
               <ul className="space-y-3">
                 {Object.entries(aree).map(([nome, a]) => {
@@ -144,8 +126,8 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
                         <span className="font-bold text-testo">{nome}</span>
                         <span className="font-bold tabular-nums text-testo-tenue">{a.correct}/{a.total} <span className="text-xs font-semibold text-testo-tenue">({pct}%)</span></span>
                       </div>
-                      <div className="mt-1.5 h-2.5 rounded-full bg-superficie-2 overflow-hidden" role="progressbar" aria-valuemin={0} aria-valuemax={a.total} aria-valuenow={a.correct} aria-label={`${nome}: ${a.correct} su ${a.total}`}>
-                        <div className="h-full rounded-full bg-azione" style={{ width: `${pct}%` }} />
+                      <div className="mt-1.5 h-2.5 rounded-full bg-tacca/60 overflow-hidden" role="progressbar" aria-valuemin={0} aria-valuemax={a.total} aria-valuenow={a.correct} aria-label={`${nome}: ${a.correct} su ${a.total}`}>
+                        <div className="h-full rounded-full" style={{ width: `${pct}%`, background: coloreValore(pct) }} />
                       </div>
                     </li>
                   );
@@ -158,17 +140,10 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
             <CorrezioniComplete questions={questions} perQuestion={perQ} answers={answers} onOpenTheory={onOpenTheory} />
           </div>
 
-          <div className="flex flex-col gap-2.5 pt-1 pb-4">
+          <div className="pt-1 pb-4">
             <button type="button" onClick={() => { playTapSound(); onRetry(); }}
-              className={cn('w-full font-bold text-base py-3.5 rounded-2xl transition-colors duration-100 flex items-center justify-center gap-2',
-                retryLocked
-                  ? 'bg-superficie border border-azione text-azione '
-                  : 'bg-azione hover:bg-azione-scuro text-azione-su')}>
+              className="w-full bg-superficie border border-azione/60 text-azione hover:bg-azione-tinta font-bold text-base py-3.5 rounded-[12px] transition-colors duration-100 flex items-center justify-center gap-2">
               {retryLocked ? <><Lock size={16} strokeWidth={3} aria-hidden /> Altre simulazioni con il Pass</> : <><RotateCcw size={17} strokeWidth={3} aria-hidden /> Rifai la simulazione</>}
-            </button>
-            <button type="button" onClick={() => { playTapSound(); onExit(); }}
-              className="w-full py-3 px-6 font-bold text-sm text-testo-tenue bg-superficie-2 border border-linea rounded-2xl hover:bg-linea transition-colors duration-100">
-              Torna al menu
             </button>
           </div>
         </div>

@@ -46,25 +46,25 @@ export default function FineSessione({ corrette, totale, secondi, prima, dopo, g
           </div>
 
           <div className="grid grid-cols-3 gap-2.5">
-            <div role="group" aria-label={`${corrette} giuste al primo tentativo`} className="rounded-2xl border border-linea bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1">
+            <div role="group" aria-label={`${corrette} giuste al primo tentativo`} className="rounded-[12px] bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1">
               <span className="w-8 h-8 rounded-full flex items-center justify-center bg-alto-tinta text-alto-testo"><Check size={17} strokeWidth={3} aria-hidden /></span>
               <span aria-hidden className="text-2xl font-extrabold tabular-nums leading-none text-testo">{corrette}</span>
               <span aria-hidden className="text-[11px] font-bold text-testo-tenue text-center leading-tight">Giuste al primo colpo</span>
             </div>
-            <div role="group" aria-label={`${daRiprendere.length} da riprendere`} className="rounded-2xl border border-linea bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1">
-              <span className="w-8 h-8 rounded-full flex items-center justify-center bg-medio-tinta text-medio-testo"><RotateCcw size={16} strokeWidth={3} aria-hidden /></span>
+            <div role="group" aria-label={`${daRiprendere.length} da riprendere`} className="rounded-[12px] bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1">
+              <span className="w-8 h-8 rounded-full flex items-center justify-center bg-basso-tinta text-basso-testo"><RotateCcw size={16} strokeWidth={3} aria-hidden /></span>
               <span aria-hidden className="text-2xl font-extrabold tabular-nums leading-none text-testo">{daRiprendere.length}</span>
               <span aria-hidden className="text-[11px] font-bold text-testo-tenue text-center leading-tight">Da riprendere</span>
             </div>
-            <div role="group" aria-label={`Tempo: ${formatDuration(secondi)}`} className="rounded-2xl border border-linea bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1">
-              <span className="w-8 h-8 rounded-full flex items-center justify-center bg-azione-tinta text-azione-scuro "><Clock size={16} strokeWidth={3} aria-hidden /></span>
+            <div role="group" aria-label={`Tempo: ${formatDuration(secondi)}`} className="rounded-[12px] bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1">
+              <span className="w-8 h-8 rounded-full flex items-center justify-center bg-medio-tinta text-medio-testo"><Clock size={16} strokeWidth={3} aria-hidden /></span>
               <span aria-hidden className="text-2xl font-extrabold tabular-nums leading-none text-testo">{mm}:{ss}</span>
               <span aria-hidden className="text-[11px] font-bold text-testo-tenue text-center leading-tight">Tempo</span>
             </div>
           </div>
 
           {mostraPrimaDopo && (
-            <section aria-label="Domande imparate prima e dopo" className="rounded-2xl border border-linea bg-superficie-2/70 p-4">
+            <section aria-label="Domande imparate prima e dopo" className="rounded-[12px] bg-superficie-2 p-4">
               <div className="flex items-start justify-between gap-3">
                 <h3 className="text-base font-bold text-testo">Domande imparate</h3>
                 {differenza > 0 && (
@@ -80,13 +80,13 @@ export default function FineSessione({ corrette, totale, secondi, prima, dopo, g
                 </div>
                 <ArrowRight size={22} strokeWidth={2.5} className="text-testo-tenue shrink-0" aria-hidden />
                 <div>
-                  <div className="text-3xl font-extrabold tabular-nums leading-none text-azione ">{dopo}</div>
+                  <div className="text-3xl font-extrabold tabular-nums leading-none text-alto-numero">{dopo}</div>
                   <div className="text-[11px] font-bold text-testo-tenue mt-1">Dopo</div>
                 </div>
                 <div className="text-xs font-semibold text-testo-tenue text-left pl-1">su {gruppo}<br />domande</div>
               </div>
               <div className="mt-3 relative h-3 rounded-full bg-tacca overflow-hidden" role="img" aria-label={`Prima ${prima}, dopo ${dopo}, su ${gruppo} domande`}>
-                <div className="absolute inset-y-0 left-0 rounded-full bg-azione" style={{ width: `${pc(dopo)}%` }} />
+                <div className="absolute inset-y-0 left-0 rounded-full bg-alto" style={{ width: `${pc(dopo)}%` }} />
                 <div className="absolute inset-y-0 w-0.5 bg-testo" style={{ left: `${pc(prima)}%` }} aria-hidden />
               </div>
               <p className="mt-2.5 text-xs font-semibold text-testo-tenue leading-relaxed">
@@ -100,7 +100,7 @@ export default function FineSessione({ corrette, totale, secondi, prima, dopo, g
           )}
 
           {daRiprendere.length > 0 && (
-            <section aria-label="Domande da riprendere" className="rounded-2xl border border-linea bg-superficie-2 p-4 text-left">
+            <section aria-label="Domande da riprendere" className="rounded-[12px] bg-superficie-2 p-4 text-left">
               <h3 className="text-base font-bold text-testo">Da riprendere</h3>
               <p className="text-xs font-semibold text-testo-tenue mb-2.5">Non erano giuste al primo tentativo: torneranno nelle prossime sessioni.</p>
               <ul className="divide-y divide-linea">
@@ -126,7 +126,7 @@ export default function FineSessione({ corrette, totale, secondi, prima, dopo, g
       <div className="shrink-0 border-t border-linea bg-superficie p-3 sm:p-4">
         <div className="max-w-xl mx-auto w-full flex flex-col gap-2">
           <button type="button" onClick={() => { playTapSound(); onContinua(); }}
-            className={cn('w-full text-left bg-azione hover:bg-azione-scuro text-azione-su rounded-2xl px-4 py-3 transition-colors duration-100 flex items-center gap-3')}>
+            className={cn('w-full text-left bg-azione hover:bg-azione-scuro text-azione-su rounded-[12px] px-4 py-3 transition-colors duration-100 flex items-center gap-3')}>
             <span className="flex-1 min-w-0">
               <span className="block font-bold text-base leading-tight">Continua da qui</span>
               <span className="block text-xs font-semibold text-azione-su/85 leading-snug mt-0.5">{prossima}{nuove > 0 ? ` Ancora mai viste: ${nuove}.` : ''}</span>
@@ -134,7 +134,7 @@ export default function FineSessione({ corrette, totale, secondi, prima, dopo, g
             <ArrowRight size={22} strokeWidth={3} className="shrink-0" aria-hidden />
           </button>
           <button type="button" onClick={() => { playTapSound(); onExit(); }}
-            className="w-full bg-superficie border border-azione/60 text-azione font-bold text-base py-3 rounded-2xl transition-colors duration-100 hover:bg-azione-tinta/40 ">
+            className="w-full bg-superficie border border-azione/60 text-azione font-bold text-base py-3 rounded-[12px] transition-colors duration-100 hover:bg-azione-tinta">
             Torna al menu
           </button>
         </div>

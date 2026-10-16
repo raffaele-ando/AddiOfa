@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Check, Info } from 'lucide-react';
+import { Check, ClipboardCheck, Flag, Info } from 'lucide-react';
 import type { User } from 'firebase/auth';
 import { AppState, OnboardingResult, Question } from '../types';
 import {
@@ -18,7 +18,7 @@ import { ECOSYSTEM } from '../config/ecosystem';
 import Marchio from '../brand/Marchio';
 import FoglioStima from './FoglioStima';
 import CalcoloRisultato from './CalcoloRisultato';
-import { Barra, RigaIntervallo } from './home/comune';
+import { Barra, RigaIntervallo, coloreValore } from './home/comune';
 import { livelloDi, type Livello } from './home/stima';
 
 type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'save' | 'risk' | 'calcolo' | 'result' | 'ready';
@@ -47,15 +47,28 @@ const MESSAGGI: Record<Livello, { titolo: string; testo: string }> = {
   basso: { titolo: 'Hai margine per migliorare', testo: `Per superare il test servono ${REAL_TEST_PASS_MARK} risposte esatte su ${REAL_TEST_QUESTIONS}, quindi la stima parte bassa anche con un buon risultato. Non è un giudizio su di te: ripassa gli argomenti sbagliati qui sotto, poi misurati con una simulazione.` },
 };
 
-// Tessera "n su m" per area o livello: mai percentuali precise su così poche domande
+// Tessera "n su m" per area o livello: mai percentuali precise su così poche domande.
+// Barra e numero hanno il tono della fascia (stesse soglie della Home): verde solido, ambra a metà, corallo da ripassare.
+const TESTO_FASCIA: Record<Livello, string> = { alto: 'text-alto-numero', medio: 'text-medio-numero', basso: 'text-basso-numero' };
 function Tessera({ nome, n, m }: { nome: string; n: number; m: number }) {
+  const frazione = m ? n / m : 0;
   return (
     <div className="rounded-2xl border border-linea bg-superficie-2 p-3">
       <div className="text-xs font-bold text-testo-tenue">{nome}</div>
-      <div className="mt-0.5 text-lg font-extrabold leading-tight text-testo">{n} <span className="text-sm font-bold text-testo-tenue">su {m}</span></div>
-      <div className="mt-2"><Barra valore={m ? (n / m) * 100 : 0} colore="var(--color-azione)" alta={6} /></div>
+      <div className="mt-0.5 text-lg font-extrabold leading-tight text-testo"><span className={TESTO_FASCIA[livelloDi(frazione)]}>{n}</span> <span className="text-sm font-bold text-testo-tenue">su {m}</span></div>
+      <div className="mt-2"><Barra valore={frazione * 100} colore={coloreValore(frazione * 100)} alta={6} /></div>
     </div>
   );
+}
+
+// Il messaggio del risultato è l'unico blocco tinto della schermata: ha la tinta e l'icona della fascia, come il banner della Home.
+const STILE_MESSAGGIO: Record<Livello, { tinta: string; tessera: string }> = {
+  alto: { tinta: 'bg-alto-tinta', tessera: 'bg-alto-pieno text-azione-su' },
+  medio: { tinta: 'bg-medio-tinta', tessera: 'bg-medio-pieno text-azione-su' },
+  basso: { tinta: 'bg-basso-tinta', tessera: 'bg-basso-pieno text-azione-su' },
+};
+function IconaMessaggio({ livello }: { livello: Livello }) {
+  return livello === 'alto' ? <Check size={20} strokeWidth={3} aria-hidden /> : livello === 'basso' ? <Flag size={18} strokeWidth={2.4} fill="currentColor" aria-hidden /> : <ClipboardCheck size={20} strokeWidth={2.2} aria-hidden />;
 }
 
 // Illustrazioni del Brand Kit (kit blu). Il tema scuro usa la variante con aloni semitrasparenti.
@@ -340,9 +353,12 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             </button>
             <RigaIntervallo intervallo={intervallo} className="mt-1 px-2" />
           </div>
-          <div className="rounded-2xl border border-linea bg-superficie-2 p-4">
-            <h3 className="font-bold text-testo">{msg.titolo}</h3>
-            <p className="mt-1 text-sm font-semibold text-testo-tenue">{msg.testo}</p>
+          <div className={`flex gap-3 rounded-2xl p-4 ${STILE_MESSAGGIO[livelloDi(passProb)].tinta}`}>
+            <span className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${STILE_MESSAGGIO[livelloDi(passProb)].tessera}`}><IconaMessaggio livello={livelloDi(passProb)} /></span>
+            <div className="min-w-0">
+              <h3 className="font-bold text-testo">{msg.titolo}</h3>
+              <p className="mt-1 text-sm font-semibold text-testo-tenue">{msg.testo}</p>
+            </div>
           </div>
           {tessere.length > 0 && (
             <div className="flex flex-col gap-2">
@@ -383,7 +399,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             <ul className="flex flex-col gap-2">
               {FREE_FEATURES.map(f => (
                 <li key={f} className="flex items-start gap-2.5 text-sm font-semibold text-testo">
-                  <Check size={16} strokeWidth={3.5} className="text-azione shrink-0 mt-0.5" aria-hidden />
+                  <Check size={16} strokeWidth={3.5} className="text-alto-numero shrink-0 mt-0.5" aria-hidden />
                   <span>{f}</span>
                 </li>
               ))}

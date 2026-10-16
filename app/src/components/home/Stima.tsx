@@ -17,7 +17,7 @@ export function StimaSezione({ stima, livello, onInfo }: { stima: Stima | null; 
 export type ChiaveBanner = 'nuovo' | 'partenza' | 'margine' | 'soglia' | 'strada';
 
 const BANNER: Record<ChiaveBanner, { titolo: string; testo: string; fascia: Livello | null }> = {
-  nuovo: { titolo: 'Fai il diagnostico gratuito', testo: '10 domande, 3 minuti: scopri da dove partire.', fascia: null },
+  nuovo: { titolo: 'Scopri da dove partire', testo: 'Il diagnostico: 10 domande, 3 minuti, gratis.', fascia: null },
   partenza: { titolo: 'Parti da qui', testo: 'Poche domande al giorno: la stima sale con la pratica.', fascia: 'basso' },
   margine: { titolo: 'Hai ancora margine', testo: 'Ripassa gli argomenti più deboli e fai una simulazione.', fascia: 'basso' },
   soglia: { titolo: 'Sei vicino alla soglia', testo: 'Continua a studiare, poi una simulazione ti dice se ci sei.', fascia: 'medio' },

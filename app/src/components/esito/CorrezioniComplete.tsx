@@ -9,29 +9,18 @@ import { playTapSound } from '../../lib/audio';
 type Stato = 'giusta' | 'sbagliata' | 'vuota';
 type Filtro = 'tutte' | Stato;
 
-const FILTRI: { id: Filtro; etichetta: string }[] = [
-  { id: 'tutte', etichetta: 'Tutte' },
-  { id: 'sbagliata', etichetta: 'Sbagliate' },
-  { id: 'vuota', etichetta: 'Senza risposta' },
-  { id: 'giusta', etichetta: 'Giuste' },
+const FILTRI: { id: Filtro; etichetta: string; attivo: string }[] = [
+  { id: 'tutte', etichetta: 'Tutte', attivo: 'bg-azione-tinta text-azione-scuro border-azione' },
+  { id: 'sbagliata', etichetta: 'Sbagliate', attivo: 'bg-basso-tinta text-basso-testo border-basso' },
+  { id: 'vuota', etichetta: 'Senza risposta', attivo: 'bg-medio-tinta text-medio-testo border-medio' },
+  { id: 'giusta', etichetta: 'Giuste', attivo: 'bg-alto-tinta text-alto-testo border-alto' },
 ];
 
+// Ogni riga ha la sua carta neutra: il colore sta nel badge e nelle caselle della risposta (giusta verde, sbagliata corallo, vuota ambra).
 const STATO = {
-  giusta: {
-    parola: 'Giusta', Icona: Check,
-    riga: 'border-alto/30 bg-alto-tinta',
-    badge: 'bg-alto-pieno text-azione-su', testo: 'text-alto-testo',
-  },
-  sbagliata: {
-    parola: 'Sbagliata', Icona: X,
-    riga: 'border-basso/30 bg-basso-tinta',
-    badge: 'bg-basso-pieno text-azione-su', testo: 'text-basso-testo',
-  },
-  vuota: {
-    parola: 'Senza risposta', Icona: Minus,
-    riga: 'border-linea bg-superficie-2',
-    badge: 'bg-testo-tenue text-superficie', testo: 'text-testo-tenue',
-  },
+  giusta: { parola: 'Giusta', Icona: Check, badge: 'bg-alto-pieno text-azione-su' },
+  sbagliata: { parola: 'Sbagliata', Icona: X, badge: 'bg-basso-pieno text-azione-su' },
+  vuota: { parola: 'Senza risposta', Icona: Minus, badge: 'bg-medio-pieno text-azione-su' },
 } as const;
 
 interface Props {
@@ -86,12 +75,10 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               onClick={() => { playTapSound(); setFiltro(f.id); }}
               className={cn(
                 'shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-bold border transition-colors duration-100 min-h-[40px]',
-                attivo
-                  ? 'bg-azione text-azione-su border-azione'
-                  : 'bg-superficie-2 text-testo-tenue border-linea hover:bg-linea'
+                attivo ? f.attivo : 'bg-superficie text-testo-tenue border-linea hover:bg-superficie-2'
               )}>
               {f.etichetta}
-              <span className={cn('tabular-nums text-xs rounded-full px-1.5 py-0.5', attivo ? 'bg-azione-su text-azione' : 'bg-superficie-2')}>{conteggi[f.id]}</span>
+              <span className="tabular-nums text-xs">{conteggi[f.id]}</span>
             </button>
           );
         })}
@@ -99,7 +86,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
 
       <div role="tabpanel" id={`${idBase}-pannello`} aria-labelledby={`${idBase}-${filtro}`} className="mt-2 space-y-3">
         {visibili.length === 0 && (
-          <p className="text-sm font-semibold text-testo-tenue text-center py-6 rounded-2xl border border-dashed border-linea">
+          <p className="text-sm font-semibold text-testo-tenue text-center py-6 rounded-[12px] border border-dashed border-linea">
             {filtro === 'sbagliata' ? 'Nessuna risposta sbagliata.' : filtro === 'vuota' ? 'Hai risposto a tutte le domande.' : 'Nessuna domanda in questo elenco.'}
           </p>
         )}
@@ -113,9 +100,9 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
           return (
             <article key={`${filtro}-${q.id}`}
               aria-label={`Domanda ${n}: ${s.parola.toLowerCase()}`}
-              className={cn('rounded-2xl border p-3.5 sm:p-4', s.riga)}>
+              className="rounded-[12px] bg-superficie-2 p-3.5 sm:p-4">
               <div className="flex items-center gap-2.5 mb-2">
-                <span className="w-7 h-7 rounded-full bg-superficie border border-linea text-xs font-bold tabular-nums text-testo-tenue flex items-center justify-center shrink-0">{n}</span>
+                <span className="w-7 h-7 rounded-full bg-superficie text-xs font-bold tabular-nums text-testo-tenue flex items-center justify-center shrink-0">{n}</span>
                 <span className={cn('inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full pl-1.5 pr-2.5 py-0.5 text-xs font-bold', s.badge)}>
                   <s.Icona size={13} strokeWidth={3.5} aria-hidden /> {s.parola}
                 </span>
@@ -124,20 +111,20 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               <p className="font-bold text-[15px] sm:text-base text-testo leading-snug mb-2.5">{q.prompt}</p>
 
               {stato === 'giusta' ? (
-                <dl className="space-y-1.5 text-sm">
-                  <div className="flex gap-2 items-baseline">
-                    <dt className="shrink-0 text-xs font-bold text-testo-tenue w-[88px]">La tua risposta</dt>
-                    <dd className="font-semibold text-testo">{dato !== undefined && dato >= 0 ? <>{lettera(dato)}{q.options[dato]}</> : 'Giusta'}</dd>
+                <dl className="text-sm">
+                  <div className="rounded-[10px] border border-alto/30 bg-alto-tinta p-2.5">
+                    <dt className="flex items-center gap-1 text-xs font-bold text-alto-testo"><Check size={13} strokeWidth={3.5} aria-hidden /> La tua risposta</dt>
+                    <dd className="mt-1 font-semibold text-testo break-words">{dato !== undefined && dato >= 0 ? <>{lettera(dato)}{q.options[dato]}</> : 'Giusta'}</dd>
                   </div>
                 </dl>
               ) : (
                 // Confronto affiancato: a sinistra cosa hai risposto, a destra la risposta corretta
                 <dl className="grid grid-cols-2 gap-2 text-sm">
-                  <div className={cn('rounded-xl border bg-superficie/70 p-2.5', dato === undefined ? 'border-linea' : 'border-basso/30')}>
-                    <dt className={cn('flex items-center gap-1 text-xs font-bold', dato === undefined ? 'text-testo-tenue' : 'text-basso-testo')}>
+                  <div className={cn('rounded-[10px] border p-2.5', dato === undefined ? 'border-medio/30 bg-medio-tinta' : 'border-basso/30 bg-basso-tinta')}>
+                    <dt className={cn('flex items-center gap-1 text-xs font-bold', dato === undefined ? 'text-medio-testo' : 'text-basso-testo')}>
                       {dato === undefined ? <Minus size={13} strokeWidth={3.5} aria-hidden /> : <X size={13} strokeWidth={3.5} aria-hidden />} La tua risposta
                     </dt>
-                    <dd className={cn('mt-1 font-semibold break-words', dato === undefined ? 'italic text-testo-tenue' : 'text-testo')}>
+                    <dd className={cn('mt-1 font-semibold break-words', dato === undefined ? 'italic text-testo' : 'text-testo')}>
                       {dato === undefined
                         ? 'Nessuna risposta'
                         : dato < 0 || q.options[dato] === undefined
@@ -145,7 +132,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
                           : <>{lettera(dato)}<span className="line-through decoration-basso/60">{q.options[dato]}</span></>}
                     </dd>
                   </div>
-                  <div className="rounded-xl border border-alto/30 bg-superficie/70 p-2.5">
+                  <div className="rounded-[10px] border border-alto/30 bg-alto-tinta p-2.5">
                     <dt className="flex items-center gap-1 text-xs font-bold text-alto-testo"><Check size={13} strokeWidth={3.5} aria-hidden /> Risposta corretta</dt>
                     <dd className="mt-1 font-bold text-alto-testo break-words">{r ? <>{lettera(r.correctIndex)}{q.options[r.correctIndex]}</> : '…'}</dd>
                   </div>
@@ -165,7 +152,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               {apertaSpieg && (r?.explanation || (r?.theoryId && onOpenTheory)) && (
                 <div id={idSpieg} className="mt-2.5">
                   {r?.explanation && (
-                    <div className="text-[13.5px] font-medium leading-relaxed text-testo bg-superficie/70 border border-linea rounded-xl p-3">
+                    <div className="text-[13.5px] font-medium leading-relaxed text-testo bg-superficie rounded-[10px] p-3">
                       <p className="text-xs font-bold text-testo-tenue mb-1">Spiegazione</p>
                       <p>{r.explanation}</p>
                     </div>

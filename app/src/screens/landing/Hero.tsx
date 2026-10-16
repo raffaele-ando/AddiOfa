@@ -4,10 +4,11 @@ import Scena from '../../brand/hero/Scena';
 import { BottoneAzione, BottoneContorno, Colonna } from './comune';
 import { vaiA } from './Barra';
 
+// Gratis = verde (ciò che ottieni), senza account = blu, tempo = ambra.
 const FATTI = [
-  { Icona: Gift, testo: 'Gratis' },
-  { Icona: UserX, testo: 'Senza account' },
-  { Icona: Clock, testo: 'Circa 3 minuti' },
+  { Icona: Gift, testo: 'Gratis', colore: 'text-alto-numero' },
+  { Icona: UserX, testo: 'Senza account', colore: 'text-azione-scuro' },
+  { Icona: Clock, testo: 'Circa 3 minuti', colore: 'text-medio-numero' },
 ];
 
 // Hero: titolo grande a sinistra, scena a destra che esce dal bordo. Sul telefono la scena sta sopra il testo.
@@ -35,9 +36,9 @@ export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSk
             <BottoneContorno onClick={() => vaiA('come-funziona')} freccia className="hidden whitespace-nowrap sm:inline-flex">Come funziona</BottoneContorno>
           </div>
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-testo" aria-label="In breve">
-            {FATTI.map(({ Icona, testo }) => (
+            {FATTI.map(({ Icona, testo, colore }) => (
               <li key={testo} className="flex items-center gap-1.5">
-                <Icona size={16} className="text-azione " aria-hidden />{testo}
+                <Icona size={16} className={colore} aria-hidden />{testo}
               </li>
             ))}
             <li className="flex items-center gap-1.5">

@@ -53,26 +53,26 @@ export default function Calendario() {
               onClick={() => { playTapSound(); setScelto(c.data); }}
               className="relative h-11 grid place-items-center">
               <span className={cn('w-10 h-10 rounded-full grid place-items-center text-[14.5px] tabular-nums',
-                c.studiato ? 'bg-azione text-azione-su font-bold' : c.futuro ? 'text-testo-tenue' : 'text-testo',
+                c.studiato ? 'bg-medio-chiaro text-testo dark:bg-medio dark:text-azione-su font-bold' : c.futuro ? 'text-testo-tenue' : 'text-testo',
                 c.oggi && !c.studiato && 'border-2 border-azione font-bold',
                 c.oggi && c.studiato && 'ring-2 ring-offset-2 ring-azione ring-offset-superficie-2',
                 scelto === c.data && !c.studiato && !c.oggi && 'bg-azione-tinta font-bold',
                 scelto === c.data && c.studiato && 'ring-2 ring-offset-2 ring-testo ring-offset-superficie-2',
               )}>{c.giorno}</span>
-              {c.test && <Flag size={12} fill="currentColor" className="absolute top-0.5 right-0.5 text-basso-testo" aria-hidden="true" />}
+              {c.test && <Flag size={12} fill="currentColor" className="absolute top-0.5 right-0.5 text-medio-numero" aria-hidden="true" />}
             </button>
           ) : <span key={c.data} aria-hidden="true" />)}
         </div>
         <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 text-[12px] text-testo-tenue">
-          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-azione" aria-hidden="true" />Hai studiato</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-medio" aria-hidden="true" />Hai studiato</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full border-2 border-azione" aria-hidden="true" />Oggi</span>
-          <span className="flex items-center gap-1.5"><Flag size={12} fill="currentColor" className="text-basso-testo" aria-hidden="true" />Data del test</span>
+          <span className="flex items-center gap-1.5"><Flag size={12} fill="currentColor" className="text-medio-testo" aria-hidden="true" />Data del test</span>
         </div>
       </Carta>
 
       <Carta className="mt-3 p-4" >
         <h2 className="text-[15.5px] font-bold text-testo" aria-live="polite">{nomeGiorno(scelto)}{scelto === chiaveOggi ? ' (oggi)' : ''}</h2>
-        {eTest && <p className="mt-1 flex items-center gap-1.5 text-[13.5px] font-semibold text-basso-testo"><Flag size={14} fill="currentColor" aria-hidden="true" />Data del test</p>}
+        {eTest && <p className="mt-1 flex items-center gap-1.5 text-[13.5px] font-semibold text-medio-testo"><Flag size={14} fill="currentColor" aria-hidden="true" />Data del test</p>}
         {giornoStudiato(giorno) || giorno.secondi > 0 ? (
           <dl className="mt-2 grid grid-cols-3 gap-2 text-center">
             {[
