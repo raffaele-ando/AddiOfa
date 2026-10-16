@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { AppState, CorpusType, PaywallReason } from '../types';
-import { User } from 'lucide-react';
+import { Icona } from '../brand/icone/Icona';
 import { getQuestionsByCorpus } from '../data/questions';
 import { useAccess } from '../access/context';
 import { remainingFreeSims } from '../access/entitlement';
@@ -89,7 +89,7 @@ export default function Menu({ appState, corpus, onStartSmart, onStartExam, onNe
             {onOpenImpostazioni && (
               <button type="button" onClick={() => { playTapSound(); onOpenImpostazioni(); }} aria-label="Impostazioni e profilo"
                 className="brand-premibile w-9 h-9 rounded-full bg-superficie-2 text-testo grid place-items-center">
-                <User size={20} strokeWidth={1.8} aria-hidden="true" />
+                <Icona nome="profilo" size={22} />
               </button>
             )}
           </header>

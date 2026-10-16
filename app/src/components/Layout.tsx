@@ -6,7 +6,7 @@ export function DemoBanner() {
   const [chiuso, setChiuso] = useState(false);
   if (chiuso) return null;
   return (
-    <div role="note" className="shrink-0 flex items-start gap-2 bg-[#0E1B3F] dark:bg-superficie-2 text-white dark:text-testo text-[11px] leading-snug px-4 py-1.5">
+    <div role="note" data-testo-ok className="shrink-0 flex items-start gap-2 bg-[#0E1B3F] dark:bg-superficie-2 text-white dark:text-testo text-[11px] leading-snug px-4 py-1.5">
       <p className="flex-1 min-w-0">Versione dimostrativa: nessun pagamento, i dati restano su questo dispositivo.</p>
       <button type="button" onClick={() => setChiuso(true)} aria-label="Chiudi l'avviso" className="shrink-0 p-0.5 -mr-1 text-white/80 dark:text-testo-tenue hover:text-white dark:hover:text-testo">
         <X size={14} />

@@ -1,0 +1,16 @@
+{
+  "_nota": "Navigazione e comandi comuni. Un nome semantico per funzione, un'icona lucide per nome, mai due funzioni con la stessa icona.",
+  "home": "house",
+  "simulazioni": "clipboard-check",
+  "lezioni": "book-open",
+  "profilo": "user-round",
+  "impostazioni": "settings",
+  "indietro": "chevron-left",
+  "avanti": "chevron-right",
+  "chiudi": "x",
+  "info": "info",
+  "cerca": "search",
+  "studia": "play",
+  "pass": "crown",
+  "blocco": "lock"
+}

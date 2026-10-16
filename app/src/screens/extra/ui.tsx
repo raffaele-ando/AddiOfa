@@ -2,8 +2,8 @@
 // studio e servizi hanno la stessa gerarchia (titolo 26/34, sottotitolo 14, sezioni 15,5, colonna di 440 px) e lo stesso posto per i comandi.
 // Regole: la freccia indietro sta sulla stessa riga del titolo; a destra del titolo solo un comando piccolo (ingranaggio, info),
 // mai un'illustrazione o un'icona decorativa; il sottotitolo è una frase sola; la barra in basso la mette l'App.
-import type { ReactNode } from 'react';
-import { ChevronLeft } from 'lucide-react';
+import { useEffect, type ReactNode } from 'react';
+import { Icona } from '../../brand/icone/Icona';
 import { FONT } from '../../brand/tokens';
 import { playTapSound } from '../../lib/audio';
 import { cn } from '../../lib/utils';
@@ -28,7 +28,7 @@ export function Pagina({ titolo, sottotitolo, onBack, destra, children }: PropsP
             {onBack && (
               <button type="button" onClick={() => { playTapSound(); onBack(); }} aria-label="Indietro"
                 className="brand-premibile -ml-3 grid h-10 w-10 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo">
-                <ChevronLeft size={28} strokeWidth={2.2} aria-hidden="true" />
+                <Icona nome="indietro" size={28} />
               </button>
             )}
             <div className="min-w-0 flex-1">
@@ -87,6 +87,56 @@ export function BarraTono({ valore, tono = 'azione', className }: { valore: numb
   return (
     <div className={cn('h-2 w-full overflow-hidden rounded-full bg-tacca/60', className)} role="presentation">
       <div className={cn('h-full rounded-full', TONI[tono].barra)} style={{ width: `${Math.max(0, Math.min(100, valore))}%` }} />
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------------------------------------------
+// Testata delle tre schede (Simulazioni, Lezioni; la Home ha il marchio al posto del titolo): titolo a sinistra, il profilo
+// sempre a destra, nello stesso punto in tutta l'app. Nessuna frase sotto il titolo.
+export function TestataScheda({ titolo, onProfilo, destra }: { titolo: string; onProfilo: () => void; destra?: ReactNode }) {
+  return (
+    <header className="flex items-center justify-between gap-3">
+      <h1 className="text-[26px] leading-[40px] font-extrabold tracking-[-0.02em] text-testo">{titolo}</h1>
+      <div className="flex items-center gap-2">
+        {destra}
+        <button type="button" onClick={() => { playTapSound(); onProfilo(); }} aria-label="Profilo"
+          className="brand-premibile grid h-9 w-9 place-items-center rounded-full bg-superficie-2 text-testo">
+          <Icona nome="profilo" size={22} />
+        </button>
+      </div>
+    </header>
+  );
+}
+
+/** Pulsante tondo «i»: le spiegazioni non stanno scritte in pagina, si aprono qui (foglio). */
+export function PulsanteInfo({ onClick, etichetta = 'Informazioni', className }: { onClick: () => void; etichetta?: string; className?: string }) {
+  return (
+    <button type="button" onClick={() => { playTapSound(); onClick(); }} aria-label={etichetta}
+      className={cn('brand-premibile grid h-8 w-8 place-items-center rounded-full text-testo-tenue hover:text-testo', className)}>
+      <Icona nome="info" size={20} />
+    </button>
+  );
+}
+
+/** Foglio in basso con una spiegazione a richiesta. Si chiude con la X, toccando fuori o con Esc. Niente `alert/confirm`. */
+export function FoglioInfo({ aperto, onChiudi, titolo, children }: { aperto: boolean; onChiudi: () => void; titolo: string; children: ReactNode }) {
+  useEffect(() => {
+    if (!aperto) return;
+    const k = (e: KeyboardEvent) => { if (e.key === 'Escape') onChiudi(); };
+    window.addEventListener('keydown', k);
+    return () => window.removeEventListener('keydown', k);
+  }, [aperto, onChiudi]);
+  if (!aperto) return null;
+  return (
+    <div className="absolute inset-0 z-50 flex items-end bg-testo/40" onClick={e => { if (e.target === e.currentTarget) onChiudi(); }}>
+      <div role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full overflow-y-auto rounded-t-[24px] bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <h2 className="text-[18px] leading-[24px] font-extrabold">{titolo}</h2>
+          <button type="button" onClick={onChiudi} aria-label="Chiudi" className="brand-premibile grid h-9 w-9 place-items-center rounded-full bg-superficie-2 text-testo"><Icona nome="chiudi" size={20} /></button>
+        </div>
+        <div className="text-[14.5px] leading-[21px] text-testo">{children}</div>
+      </div>
     </div>
   );
 }
