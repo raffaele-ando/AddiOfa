@@ -3,6 +3,7 @@
 // spiegazioni sono contenuto (`data-testo-ok`): sono l'unico testo lungo ammesso.
 import { useId, useState } from 'react';
 import { Icona, type NomeIcona } from '../../brand/icone/Icona';
+import { Illustrazione } from '../../brand/Illustrazione';
 import type { ExamQuestionResult, PublicQuestion } from '../../access/provider';
 import { cn } from '../../lib/utils';
 import { playTapSound } from '../../lib/audio';
@@ -85,9 +86,11 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
 
       <div role="tabpanel" id={`${idBase}-pannello`} aria-labelledby={`${idBase}-${filtro}`} className="mt-3 space-y-3">
         {visibili.length === 0 && (
-          <p className="flex items-center justify-center gap-2 rounded-[12px] border border-dashed border-linea py-6 text-sm font-semibold text-testo-tenue">
-            <Icona nome="stato-risposta-giusta" size={18} className="text-alto-numero" />0
-          </p>
+          // Nessuna sbagliata o vuota: tutto in ordine (`documento-completato`); nessuna giusta: `vuoto`.
+          <div role="status" aria-label={filtro === 'giusta' ? 'Nessuna giusta' : 'Nessuna'} className="flex flex-col items-center rounded-[12px] border border-dashed border-linea py-5">
+            <Illustrazione nome={filtro === 'giusta' ? 'vuoto' : 'documento-completato'} lato={88} />
+            <span className="mt-1 inline-flex items-center gap-1.5 text-[15px] font-extrabold tabular-nums text-testo-tenue"><Icona nome={FILTRI.find(f => f.id === filtro)!.nome} size={18} />0</span>
+          </div>
         )}
         {visibili.map(({ q, n, r, stato }) => {
           const s = STATO[stato];

@@ -124,7 +124,7 @@ export function CasellaConsenso({ spuntata, onChange, titolo, testo }: { spuntat
       onClick={() => { playTapSound(); onChange(!spuntata); }}
       className={cn('brand-premibile flex w-full items-start gap-3 rounded-[14px] border p-3.5 text-left transition-colors duration-100',
         spuntata ? 'border-azione bg-azione-tinta' : 'border-linea bg-superficie-2')}>
-      <span aria-hidden="true" className={cn('mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-[7px] border-2 transition-colors duration-100',
+      <span aria-hidden="true" className={cn('mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 transition-colors duration-100',
         spuntata ? 'border-azione bg-azione text-azione-su' : 'border-tacca bg-superficie text-transparent')}>
         <Icona nome="stato-ok" size={16} />
       </span>

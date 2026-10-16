@@ -2,6 +2,7 @@
 // Usate da components/StatsMode.tsx. Tutto ricavato da appState (lib/studio/statistiche.ts): nessun punto o dato inventato.
 // Le altre parti stanno altrove: per argomento in Progressi > argomenti, obiettivi in Profilo > Obiettivi, costanza in Progressi > calendario.
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
+import { Illustrazione } from '../../../brand/Illustrazione';
 import type { AppState } from '../../../types';
 import { REAL_TEST_PASS_MARK } from '../../../config/offer';
 import { andamentoSimulazioni, formatTempoStudio, tessereStatistiche } from '../../../lib/studio/statistiche';
@@ -41,8 +42,8 @@ export function AndamentoSimulazioni({ stato }: { stato: AppState }) {
         Risultati
       </TitoloSezione>
       {punti.length === 0 ? (
-        <div role="status" className="flex items-center gap-2 rounded-[12px] bg-superficie-2 px-4 py-4 text-testo-tenue">
-          <Icona nome="simulazioni" size={20} /><span className="text-[14px] font-bold">–</span>
+        <div role="status" aria-label="Nessuna simulazione" className="flex flex-col items-center rounded-[12px] bg-superficie-2 px-4 py-4">
+          <Illustrazione nome="vuoto" lato={96} />
         </div>
       ) : (
         <div className="rounded-[12px] border border-linea p-4">
