@@ -8,6 +8,7 @@ import { useExtra } from '../contesto';
 import { provider } from '../../../access';
 import type { ExamQuestionResult, PublicQuestion, DataProvider } from '../../../access/provider';
 import { EXAM } from '../../../config/offer';
+import { calcolaStima } from '../../../components/home/stima';
 import { elencoSimulazioni, entrataStorico, perArgomentoSimulazione, trovaSimulazione } from '../../../lib/studio/simulazioni';
 import MisuratoreEsito from '../../../components/esito/MisuratoreEsito';
 import CorrezioniComplete from '../../../components/esito/CorrezioniComplete';
@@ -146,7 +147,7 @@ function Svolta({ chiave }: { chiave: string }) {
           {corr.fase === 'ok' && <CorrezioniComplete questions={corr.domande} perQuestion={corr.perQ} answers={corr.risposte} onOpenTheory={apriTeoria} senzaLettere />}
         </div>
       </Pagina>
-      <InfoPunteggio format={f} aperto={info} onChiudi={() => setInfo(false)} />
+      <InfoPunteggio format={f} aperto={info} onChiudi={() => setInfo(false)} risposteStima={calcolaStima(appState)?.risposte} />
     </div>
   );
 }
