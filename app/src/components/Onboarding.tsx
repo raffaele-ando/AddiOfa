@@ -49,7 +49,7 @@ const MESSAGGI: Record<Livello, { titolo: string; testo: string }> = {
 
 // Tessera "n su m" per area o livello: mai percentuali precise su così poche domande.
 // Barra e numero hanno il tono della fascia (stesse soglie della Home): verde solido, ambra a metà, corallo da ripassare.
-const TESTO_FASCIA: Record<Livello, string> = { alto: 'text-alto-numero', medio: 'text-medio-numero', basso: 'text-basso-numero' };
+const TESTO_FASCIA: Record<Livello, string> = { alto: 'text-alto-testo', medio: 'text-medio-testo', basso: 'text-basso-testo' };
 function Tessera({ nome, n, m }: { nome: string; n: number; m: number }) {
   const frazione = m ? n / m : 0;
   return (
