@@ -13,19 +13,15 @@ export interface ExtraCtx {
   appState: AppState;
   /** Aggiorna e salva lo stato: `aggiorna(s => ({ ...s, extra: {...} }))`. */
   aggiorna: (fn: (s: AppState) => AppState) => void;
-  pass: boolean;
-  demo: boolean;
   /** Id della schermata extra corrente e suoi parametri. */
   id: string;
   params: Record<string, string>;
   vai: (id: string, params?: Record<string, string>) => void;
   indietro: () => void;
   // aperture di altre parti dell'app
-  apriPaywall: () => void;
   apriTeoria: (topicId?: string) => void;
   apriImpostazioni: () => void;
   apriLegale: (s: LegalSection) => void;
-  apriInviti: () => void;
   apriLanding: () => void;
   /** Avvia una sessione di studio (stesse modalità della schermata Esercizi). */
   avviaEsercizi: (modo: 'smart' | 'weakness' | 'blitz' | 'category' | 'recall' | 'standard', categoria?: string) => void;

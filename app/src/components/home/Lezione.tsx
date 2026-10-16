@@ -5,14 +5,14 @@ import { playTapSound } from '../../lib/audio';
 
 /**
  * Carta chiara del concept: tessera con il libro, area in maiuscolo grigio, titolo della scheda,
- * barra verde (domande imparate) e «n/m» con la spunta. Senza Pass, se la scheda non è gratuita: lucchetto al posto della freccia.
+ * barra verde (domande imparate) e «n/m» con la spunta.
  */
 export function SchedaLezione({ lezione, progresso, onApri }: { lezione: Lezione; progresso: ProgressoArgomento; onApri: () => void }) {
   const { imparate, totale } = progresso;
   const valore = totale > 0 ? Math.max(0, Math.min(100, (imparate / totale) * 100)) : 0;
   return (
     <button type="button" onClick={() => { playTapSound(); onApri(); }}
-      aria-label={`${lezione.topic.titolo}: ${imparate} su ${totale} domande imparate${lezione.bloccata ? ' (richiede il Pass)' : ''}`}
+      aria-label={`${lezione.topic.titolo}: ${imparate} su ${totale} domande imparate`}
       className="brand-premibile relative w-full flex items-center gap-[14px] rounded-[12px] bg-superficie-2 p-[10px] pr-[12px] text-left">
       <span className="w-[53px] h-[53px] rounded-[13px] bg-azione-tinta flex items-center justify-center shrink-0 text-azione-scuro" aria-hidden="true">
         <Icona nome="lezioni" size={30} />
@@ -23,9 +23,7 @@ export function SchedaLezione({ lezione, progresso, onApri }: { lezione: Lezione
             {progresso.area && <span className="block text-[11px] leading-[13px] font-semibold uppercase tracking-[0.06em] text-testo-tenue">{progresso.area}</span>}
             <span data-testo-ok className="block text-[15px] leading-[20px] font-bold text-testo line-clamp-2">{lezione.topic.titolo}</span>
           </span>
-          {lezione.bloccata
-            ? <Icona nome="blocco" size={18} className="shrink-0 mt-0.5 text-medio-numero" />
-            : <Icona nome="avanti" size={22} className="shrink-0 -mr-1 text-testo-tenue" />}
+          <Icona nome="avanti" size={22} className="shrink-0 -mr-1 text-testo-tenue" />
         </span>
         <span className="mt-[6px] flex items-center gap-3">
           <span className="flex-1 min-w-[40px] h-[7px] rounded-full bg-linea overflow-hidden">

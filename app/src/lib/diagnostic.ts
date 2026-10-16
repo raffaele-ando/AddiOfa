@@ -1,9 +1,9 @@
 import { Question } from '../types';
-import { getQuestionsByCorpus } from '../data/questions';
+import { questions } from '../data/questions';
 import { calculateSimilarity, shuffleArray, shuffleQuestion } from './utils';
-import { REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS } from '../config/offer';
+import { DIAGNOSTIC_QUESTIONS, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS } from '../config/offer';
 
-export const DIAGNOSTIC_LENGTH = 10;
+export const DIAGNOSTIC_LENGTH = DIAGNOSTIC_QUESTIONS;
 
 // Stessa proporzione di livelli del banco (circa 30% A1, 20% A2, 50% B1), argomenti tutti diversi
 const LEVEL_MIX: Record<string, number> = { A1: 3, A2: 2, B1: 5 };
@@ -11,9 +11,9 @@ const LEVEL_MIX: Record<string, number> = { A1: 3, A2: 2, B1: 5 };
 /** Domande troppo simili tra loro (calculateSimilarity oltre questa soglia) non stanno nello stesso diagnostico. */
 export const SOGLIA_SOMIGLIANZA = 0.45;
 
-/** Il diagnostico usa solo il nucleo gratuito, che sta già nell'app: funziona anche senza rete e senza Pass. */
+/** Il diagnostico pesca da tutto il banco, che sta già nel sito: funziona anche senza rete. */
 export function diagnosticPool(): Question[] {
-  return getQuestionsByCorpus('initial');
+  return questions;
 }
 
 // ---- Memoria dell'ultimo diagnostico: chi lo rifà non rivede le stesse domande di fila
@@ -34,7 +34,7 @@ function salvaUltimiIds(ids: string[]): void {
 }
 
 /**
- * Sceglie le domande del diagnostico dal pool (di norma il nucleo). Livelli 3 A1 + 2 A2 + 5 B1, argomenti diversi
+ * Sceglie le domande del diagnostico dal pool (di norma tutto il banco). Livelli 3 A1 + 2 A2 + 5 B1, argomenti diversi
  * quando il pool lo permette, mai due domande quasi uguali, mai la stessa domanda due volte.
  * `evita`: id da lasciare per ultimi (di default quelli dell'ultimo diagnostico fatto su questo dispositivo).
  * Con un pool piccolo o senza qualche livello completa con le altre domande: restituisce meno di 10 solo se il pool ne ha meno.
@@ -67,7 +67,7 @@ export function pickDiagnosticQuestions(pool: Question[] = diagnosticPool(), evi
     }
   }
 
-  // Se mancano ancora domande (nucleo piccolo, livello povero, domande senza livello) completa con le altre:
+  // Se mancano ancora domande (pool piccolo, livello povero, domande senza livello) completa con le altre:
   // prima quelle diverse dalle già scelte, poi, solo se non c'è altro, anche quelle simili (ma mai lo stesso id)
   for (const conSomiglianza of [false, true]) {
     for (const q of ordinato(pool)) {

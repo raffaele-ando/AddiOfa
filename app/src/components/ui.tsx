@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import { Icona } from '../brand/icone/Icona';
 import { cn } from '../lib/utils';
 import { playTapSound } from '../lib/audio';
-import { ECOSYSTEM } from '../config/ecosystem';
 
 // Mattoncini condivisi dalle schermate del funnel (onboarding, piani, prontuario), nello stile del Brand Kit.
 
@@ -109,16 +108,6 @@ export function ChoiceCard({ selected, onClick, title, subtitle }: {
         {subtitle && <span className="text-xs sm:text-sm font-semibold text-testo-tenue">{subtitle}</span>}
       </span>
     </button>
-  );
-}
-
-// Firma dell'infrastruttura: algoritmo e servizi sono di ATLAS
-export function PoweredByAtlas({ className }: { className?: string }) {
-  return (
-    <p className={cn("flex items-center justify-center gap-1.5 text-[10px] font-bold tracking-[0.18em] text-testo-tenue", className)}>
-      <span className="inline-block w-3 h-3 rotate-45 rounded-[3px] bg-gradient-to-br from-azione-da to-azione-a" aria-hidden />
-      Algoritmo e infrastruttura {ECOSYSTEM.engineName}
-    </p>
   );
 }
 

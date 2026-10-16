@@ -1,6 +1,3 @@
-import type { ScopeId } from './config/ecosystem';
-import type { FormatId } from './config/offer';
-
 export interface Question {
   id: string;
   prompt: string;
@@ -12,8 +9,6 @@ export interface Question {
   grammarTopic?: string;
   /** Scheda di teoria collegata (id di TheoryTopic in data/theory.ts). Lo imposta il generatore dei contenuti. */
   theoryId?: string;
-  /** Quinta opzione (distrattore) per il pool del formato TENG, che ha 5 opzioni. Non fa parte di options. */
-  extraOption?: string;
 }
 
 export interface QuestionClickEvent {
@@ -78,10 +73,7 @@ export interface ExamHistory {
   questionLogs?: ExamQuestionLog[];
   answers?: Record<string, number>;
   questionIds?: string[];
-  format?: FormatId; // formato della simulazione (assente = 'ente', storico precedente)
 }
-
-export type CorpusType = 'all' | 'initial';
 
 export interface OnboardingResult {
   completedAt: number;
@@ -108,23 +100,10 @@ export interface AppState {
   examCategoryStats?: Record<string, { correct: number; total: number; }>;
   dailyActivity?: Record<string, number>;
   dailyTimeSpent?: Record<string, number>;
-  selectedCorpus?: CorpusType;
   onboarding?: OnboardingResult;
-  projectLink?: ProjectLink;
   /** Dati delle schermate extra (profilo, sfide, frasi...): una chiave per schermata, vedi screens/extra/contesto.tsx. */
   extra?: Record<string, unknown>;
 }
 
-// Consenso dato da questo utente al collegamento di AddiOFA con il suo Project ID
-export interface ProjectLink {
-  scopes: ScopeId[];
-  consentVersion: string;
-  grantedAt: number;
-  updatedAt: number;
-}
-
 // Sezioni delle pagine legali (screens/Legal.tsx)
-export type LegalSection = 'termini' | 'privacy' | 'cookie' | 'recesso';
-
-// Perché si apre il paywall (testo dell'intestazione in screens/Paywall.tsx)
-export type PaywallReason = 'simulazione' | 'domande' | 'teng' | 'teoria' | 'errori' | 'statistiche' | 'generico';
+export type LegalSection = 'termini' | 'privacy' | 'cookie';

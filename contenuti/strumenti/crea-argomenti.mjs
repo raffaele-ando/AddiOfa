@@ -61,7 +61,6 @@ const out = ARGOMENTI.map(([grammarTopic, id, titolo, voce]) => {
     inCheatSheet: voce !== null,
     voceCheatSheet: voce,
     domande: qs.map((q) => q.id).sort(perNum),
-    nucleo: qs.filter((q) => q.core).map((q) => q.id).sort(perNum),
   };
 });
 scriviJson(path.join(DIR_TEORIA, 'argomenti.json'), out);

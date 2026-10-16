@@ -1,0 +1,371 @@
+{
+ "q1": {
+  "prompt": "Complete the sentence: '_____ your sister ever lived abroad?'",
+  "options": [
+   "Is",
+   "Has",
+   "Does",
+   "Have"
+  ]
+ },
+ "q3": {
+  "prompt": "Complete the sentence: 'Did your brother _____ the match last night?'",
+  "options": [
+   "won",
+   "wins",
+   "winning",
+   "win"
+  ]
+ },
+ "q4": {
+  "prompt": "Complete the sentence: 'August is the _____ month of the year.'",
+  "options": [
+   "hottest",
+   "most hot",
+   "hotter",
+   "more hot"
+  ]
+ },
+ "q5": {
+  "prompt": "Complete the sentence: 'We _____ this house in 2018.'",
+  "options": [
+   "have bought",
+   "buyed",
+   "bought",
+   "are buying"
+  ]
+ },
+ "q6": {
+  "prompt": "Complete the sentence: 'The red bag is _____ than the blue one.'",
+  "options": [
+   "expensiver",
+   "more expensive",
+   "most expensive",
+   "more expensively"
+  ]
+ },
+ "q8": {
+  "prompt": "Complete the sentence: '_____ books are there on the shelf?'",
+  "options": [
+   "How many",
+   "How much",
+   "How a lot of",
+   "How some"
+  ]
+ },
+ "q9": {
+  "prompt": "Complete the sentence: 'The film will start _____ an hour.'",
+  "options": [
+   "between",
+   "at",
+   "for",
+   "in"
+  ]
+ },
+ "q10": {
+  "prompt": "Complete the sentence: 'Can I _____ your phone, please?'",
+  "options": [
+   "to use",
+   "using",
+   "use",
+   "used"
+  ]
+ },
+ "q11": {
+  "prompt": "Complete the sentence: 'Laura _____ in Naples with her parents.'",
+  "options": [
+   "live",
+   "lives",
+   "living",
+   "lifes"
+  ]
+ },
+ "q12": {
+  "prompt": "Complete the sentence: 'Be quiet! The baby is _____.'",
+  "options": [
+   "sleep",
+   "sleeped",
+   "sleeps",
+   "sleeping"
+  ]
+ },
+ "q13": {
+  "prompt": "Complete the sentence: 'Is there _____ rice in the cupboard?'",
+  "options": [
+   "any",
+   "many",
+   "a few",
+   "several"
+  ]
+ },
+ "q14": {
+  "prompt": "Complete the sentence: 'How long _____ you lived in Rome?'",
+  "options": [
+   "do",
+   "did",
+   "have",
+   "are"
+  ]
+ },
+ "q15": {
+  "prompt": "Complete the sentence: 'My grandmother can _____ the piano.'",
+  "options": [
+   "plays",
+   "to play",
+   "playing",
+   "play"
+  ]
+ },
+ "q16": {
+  "prompt": "Complete the sentence: 'What did Marco _____ last night?'",
+  "options": [
+   "ate",
+   "eat",
+   "eats",
+   "eaten"
+  ]
+ },
+ "q17": {
+  "prompt": "Complete the sentence: 'We _____ pizza last Friday night.'",
+  "options": [
+   "ate",
+   "have eaten",
+   "eaten",
+   "eat"
+  ]
+ },
+ "q25": {
+  "prompt": "Complete the sentence: 'I called Laura yesterday evening while she _____ dinner.'",
+  "options": [
+   "cooks",
+   "were cooking",
+   "was cooking",
+   "has cooked"
+  ]
+ },
+ "q31": {
+  "prompt": "Complete the sentence: 'There isn't _____ sugar in my coffee.'",
+  "options": [
+   "no",
+   "any",
+   "a",
+   "many"
+  ]
+ },
+ "q35": {
+  "prompt": "Complete the sentence: 'This is the _____ city I have ever visited.'",
+  "options": [
+   "more beautiful",
+   "beautifullest",
+   "most beautifully",
+   "most beautiful"
+  ]
+ },
+ "q36": {
+  "prompt": "Complete the sentence: 'My brother _____ football every Saturday.'",
+  "options": [
+   "plays",
+   "play",
+   "playing",
+   "is play"
+  ]
+ },
+ "q40": {
+  "prompt": "Complete the sentence: 'I _____ study for the exam yesterday.'",
+  "options": [
+   "wasn't",
+   "don't",
+   "didn't",
+   "haven't"
+  ]
+ },
+ "q44": {
+  "prompt": "Complete the sentence: '_____ you already met the new professor?'",
+  "options": [
+   "Did",
+   "Have",
+   "Are",
+   "Do"
+  ]
+ },
+ "q45": {
+  "prompt": "Complete the sentence: 'I have worked here _____ three years.'",
+  "options": [
+   "since",
+   "during",
+   "from",
+   "for"
+  ]
+ },
+ "q46": {
+  "prompt": "Complete the sentence: 'I like _____ car.'",
+  "options": [
+   "Paolo",
+   "Paolos'",
+   "Paolo's",
+   "the Paolo"
+  ]
+ },
+ "q49": {
+  "prompt": "Complete the sentence: 'If the weather is nice tomorrow, we _____ a picnic in the park.'",
+  "options": [
+   "will have",
+   "would have",
+   "had",
+   "have had"
+  ]
+ },
+ "q52": {
+  "prompt": "Complete the sentence: 'This phone is _____ cheaper than that one.'",
+  "options": [
+   "very",
+   "much",
+   "too",
+   "most"
+  ]
+ },
+ "q57": {
+  "prompt": "Complete the sentence: 'Have you ever _____ the guitar?'",
+  "options": [
+   "play",
+   "plays",
+   "played",
+   "playing"
+  ]
+ },
+ "q59": {
+  "prompt": "Complete the sentence: 'Marta hasn't _____ my email yet.'",
+  "options": [
+   "answered",
+   "answer",
+   "answers",
+   "answering"
+  ]
+ },
+ "q61": {
+  "prompt": "Complete the sentence: 'He _____ in this town since 2015.'",
+  "options": [
+   "lives",
+   "lived",
+   "is living",
+   "has lived"
+  ]
+ },
+ "q62": {
+  "prompt": "Complete the sentence: 'There _____ three cars on the street today.'",
+  "options": [
+   "is",
+   "are",
+   "have",
+   "has"
+  ]
+ },
+ "q64": {
+  "prompt": "Complete the sentence: 'There is _____ problem with my computer.'",
+  "options": [
+   "any",
+   "not",
+   "none",
+   "no"
+  ]
+ },
+ "q66": {
+  "prompt": "Complete the sentence: '_____ there a dog in the garden?'",
+  "options": [
+   "Are",
+   "Does",
+   "Is",
+   "Has"
+  ]
+ },
+ "q68": {
+  "prompt": "Complete the sentence: 'They _____ visit the museum last Sunday.'",
+  "options": [
+   "didn't",
+   "don't",
+   "wasn't",
+   "haven't"
+  ]
+ },
+ "q70": {
+  "prompt": "Complete the sentence: 'She _____ to the cinema last week.'",
+  "options": [
+   "goes",
+   "went",
+   "goed",
+   "has gone"
+  ]
+ },
+ "q72": {
+  "prompt": "Complete the sentence: 'When _____ you arrive at the hotel yesterday?'",
+  "options": [
+   "do",
+   "have",
+   "were",
+   "did"
+  ]
+ },
+ "q74": {
+  "prompt": "Complete the sentence: 'What _____ they doing?'",
+  "options": [
+   "are",
+   "do",
+   "does",
+   "is"
+  ]
+ },
+ "q76": {
+  "prompt": "Complete the sentence: 'I'm not reading a book, I'm _____ TV.'",
+  "options": [
+   "watch",
+   "to watch",
+   "watching",
+   "watched"
+  ]
+ },
+ "q79": {
+  "prompt": "Complete the sentence: 'If it _____, we won't go to the beach.'",
+  "options": [
+   "raining",
+   "rains",
+   "will rain",
+   "rained"
+  ]
+ },
+ "q81": {
+  "prompt": "Complete the sentence: 'What will you do if you _____ the train?'",
+  "options": [
+   "will miss",
+   "missing",
+   "would miss",
+   "miss"
+  ]
+ },
+ "q83": {
+  "prompt": "Complete the sentence: 'If you _____ hurry, we will be late.'",
+  "options": [
+   "don't",
+   "won't",
+   "aren't",
+   "didn't"
+  ]
+ },
+ "q85": {
+  "prompt": "Complete the sentence: 'English is _____ than Chinese.'",
+  "options": [
+   "easy",
+   "easiest",
+   "easier",
+   "the easier"
+  ]
+ },
+ "q87": {
+  "prompt": "Complete the sentence: 'It's the _____ movie I've ever seen.'",
+  "options": [
+   "worse",
+   "worst",
+   "badest",
+   "most worst"
+  ]
+ }
+}

@@ -1,0 +1,721 @@
+[
+ {
+  "id": "q89",
+  "prompt": "Translate 'Questa è la città più costosa d'Europa.'",
+  "options": [
+   "This is the most expensive city in Europe.",
+   "This is the more expensive city in Europe.",
+   "This is the expensivest city in Europe.",
+   "This is most expensive city in Europe."
+  ],
+  "correctIndex": 0,
+  "explanation": "Superlative of long adjectives uses 'the most'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q91",
+  "prompt": "Translate 'Lavora in quella banca dal 2015.'",
+  "options": [
+   "He has worked in that bank since 2015.",
+   "He works in that bank from 2015.",
+   "He worked in that bank since 2015.",
+   "He has worked in that bank for 2015."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Since' refers to the starting point of an action.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Prepositions of Time",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q93",
+  "prompt": "Translate 'Stiamo aspettando da due ore.'",
+  "options": [
+   "We have been waiting for two hours.",
+   "We are waiting since two hours.",
+   "We have been waiting since two hours.",
+   "We wait for two hours."
+  ],
+  "correctIndex": 0,
+  "explanation": "Duration (two hours) requires 'for'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Prepositions of Time",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q96",
+  "prompt": "Translate 'I miei genitori non vivono a Londra.'",
+  "options": [
+   "My parents don't live in London.",
+   "My parents doesn't live in London.",
+   "My parents aren't live in London.",
+   "My parents not live in London."
+  ],
+  "correctIndex": 0,
+  "explanation": "Plural subject negative uses 'don't'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q98",
+  "prompt": "Translate 'Il treno parte alle 8 in punto.'",
+  "options": [
+   "The train leaves at 8 o'clock.",
+   "The train leaving at 8 o'clock.",
+   "The train leave at 8 o'clock.",
+   "The train left at 8 o'clock."
+  ],
+  "correctIndex": 0,
+  "explanation": "Scheduled events (timetables) use the Present Simple: 'The train leaves at 8 o'clock.' A sentence cannot use the -ing form without 'is'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q101",
+  "prompt": "Translate 'Dov'è il computer di Marco?'",
+  "options": [
+   "Where is Marco's computer?",
+   "Where is the Marco's computer?",
+   "Where is Marcos' computer?",
+   "Where is Marco computer?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Possessive 's is preferred for people.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessive S",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q103",
+  "prompt": "Translate 'La borsa di Sarah è rossa.'",
+  "options": [
+   "Sarah's bag is red.",
+   "The Sarah's bag is red.",
+   "Sarahs bag is red.",
+   "Sarah' bag is red."
+  ],
+  "correctIndex": 0,
+  "explanation": "Possessive 's shows ownership.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessive S",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q106",
+  "prompt": "Translate 'Non ho molti amici.'",
+  "options": [
+   "I don't have many friends.",
+   "I don't have much friends.",
+   "I don't have a lot friends.",
+   "I don't have many friend."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Friends' is a plural countable noun, so we use 'many' in negative sentences, and the noun must stay plural after 'many'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Quantifiers",
+  "core": false,
+  "extraOption": "I don't have a many friends.",
+  "stato": "originale"
+ },
+ {
+  "id": "q108",
+  "prompt": "Translate 'Quanto zucchero vuoi nel caffè?'",
+  "options": [
+   "How much sugar do you want in your coffee?",
+   "How many sugar do you want in your coffee?",
+   "How much of sugar do you want in your coffee?",
+   "What much sugar do you want in your coffee?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Sugar is uncountable, so 'How much'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Quantifiers",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q110",
+  "prompt": "Translate 'Ci sono troppe macchine in questa città.'",
+  "options": [
+   "There are too many cars in this city.",
+   "There is too much cars in this city.",
+   "There are too much cars in this city.",
+   "There are too many of cars in this city."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Cars' is countable, so 'too many'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Quantifiers",
+  "core": false,
+  "extraOption": "There are too many car in this city.",
+  "stato": "rivista"
+ },
+ {
+  "id": "q112",
+  "prompt": "Translate 'Da dove viene tuo fratello?'",
+  "options": [
+   "Where does your brother come from?",
+   "Where do your brother come from?",
+   "Where is your brother come from?",
+   "Where does your brother comes from?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Third person singular uses 'does' auxiliary.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Questions and Origins",
+  "core": false,
+  "extraOption": "Where comes your brother from?",
+  "stato": "originale"
+ },
+ {
+  "id": "q114",
+  "prompt": "Translate 'Loro sono spagnoli?'",
+  "options": [
+   "Are they Spanish?",
+   "Are they Spain?",
+   "Do they Spanish?",
+   "Is they Spanish?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Simple 'to be' question.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Questions and Origins",
+  "core": true,
+  "extraOption": "Are they from Spanish?",
+  "stato": "originale"
+ },
+ {
+  "id": "q116",
+  "prompt": "Translate 'Di dov'è Maria?'",
+  "options": [
+   "Where is Maria from?",
+   "Where does Maria from?",
+   "Where is from Maria?",
+   "Where Maria is from?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Standard phrasing for asking origins.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Questions and Origins",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q117",
+  "prompt": "Translate 'Questo è il libro più lungo che abbia mai letto.'",
+  "options": [
+   "This is the longest book I have ever read.",
+   "This is the most long book I have ever read.",
+   "This is the longer book I have ever read.",
+   "This is longest book I have ever read."
+  ],
+  "correctIndex": 0,
+  "explanation": "Superlative of short adjectives takes -est.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "extraOption": "This is the most longest book I have ever read.",
+  "stato": "originale"
+ },
+ {
+  "id": "q119",
+  "prompt": "Translate 'Oggi è molto più caldo di ieri.'",
+  "options": [
+   "Today is much hotter than yesterday.",
+   "Today is much more hot than yesterday.",
+   "Today is very hotter than yesterday.",
+   "Today is hotter that yesterday."
+  ],
+  "correctIndex": 0,
+  "explanation": "'much' emphasizes the comparative 'hotter'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "extraOption": "Today is much more hotter than yesterday.",
+  "stato": "originale"
+ },
+ {
+  "id": "q121",
+  "prompt": "Translate 'Sua sorella è meno socievole di lui.'",
+  "options": [
+   "His sister is less outgoing than him.",
+   "His sister is least outgoing than him.",
+   "His sister is not outgoing than him.",
+   "His sister is minor outgoing than him."
+  ],
+  "correctIndex": 0,
+  "explanation": "Less + adjective + than is used for inferior comparatives.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": true,
+  "extraOption": "His sister is lesser outgoing than him.",
+  "stato": "originale"
+ },
+ {
+  "id": "q123",
+  "prompt": "Translate 'Questo è il posto meno costoso in città.'",
+  "options": [
+   "This is the least expensive place in town.",
+   "This is the less expensive place in town.",
+   "This is the not expensive place in town.",
+   "This is the most cheap place in town."
+  ],
+  "correctIndex": 0,
+  "explanation": "Superlative of inferiority is 'the least'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "extraOption": "This is the most less expensive place in town.",
+  "stato": "originale"
+ },
+ {
+  "id": "q126",
+  "prompt": "Translate 'Se lei studierà, passerà il test.'",
+  "options": [
+   "If she studies, she will pass the test.",
+   "If she will study, she will pass the test.",
+   "If she study, she will pass the test.",
+   "If she studied, she will pass the test."
+  ],
+  "correctIndex": 0,
+  "explanation": "Present simple in the if clause, will in the main clause.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "First Conditional",
+  "core": false,
+  "extraOption": "If she studies, she will to pass the test.",
+  "stato": "originale"
+ },
+ {
+  "id": "q128",
+  "prompt": "Translate 'Cosa dirai se lui ti chiamerà?'",
+  "options": [
+   "What will you say if he calls you?",
+   "What do you say if he will call you?",
+   "What will you say if he will call you?",
+   "What would you say if he calls you?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Question form: Wh- word + will + subject + verb + if + present simple.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "First Conditional",
+  "core": false,
+  "extraOption": "What you will say if he calls you?",
+  "stato": "originale"
+ },
+ {
+  "id": "q130",
+  "prompt": "Translate 'Se non mi aiuti, non finirò il progetto.'",
+  "options": [
+   "If you don't help me, I won't finish the project.",
+   "If you won't help me, I don't finish the project.",
+   "If you not help me, I won't finish the project.",
+   "If you didn't help me, I won't finish the project."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative present simple in if clause, won't in main clause.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "First Conditional",
+  "core": false,
+  "extraOption": "If you don't help me, I didn't finish the project.",
+  "stato": "originale"
+ },
+ {
+  "id": "q132",
+  "prompt": "Translate 'Gli parlerò se lo vedo.'",
+  "options": [
+   "I will talk to him if I see him.",
+   "I talk to him if I will see him.",
+   "I will talk to him if I will see him.",
+   "I would talk to him if I see him."
+  ],
+  "correctIndex": 0,
+  "explanation": "Will in main clause, present in if clause.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "First Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q134",
+  "prompt": "Translate 'A meno che non piova, andremo a fare una passeggiata.'",
+  "options": [
+   "Unless it rains, we will go for a walk.",
+   "Unless it doesn't rain, we will go for a walk.",
+   "If it unless rains, we will go for a walk.",
+   "Unless it will rain, we will go for a walk."
+  ],
+  "correctIndex": 0,
+  "explanation": "Unless is followed by affirmative present simple.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "First Conditional",
+  "core": true,
+  "extraOption": "Unless it is not raining, we will go for a walk.",
+  "stato": "originale"
+ },
+ {
+  "id": "q137",
+  "prompt": "Translate 'Non mi piace il caffè.'",
+  "options": [
+   "I don't like coffee.",
+   "I'm not like coffee.",
+   "I doesn't like coffee.",
+   "I not like coffee."
+  ],
+  "correctIndex": 0,
+  "explanation": "Present simple negative for I/you/we/they uses 'don't'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": true,
+  "extraOption": "I no like coffee.",
+  "stato": "originale"
+ },
+ {
+  "id": "q139",
+  "prompt": "Translate 'Posso aiutarti?'",
+  "options": [
+   "Can I help you?",
+   "Do I can help you?",
+   "Am I help you?",
+   "May I helping you?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Modal verbs like 'can' form questions by inversion ('Can I help you?') without 'do', and they are followed by the base form of the verb.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Modals of Ability and Permission",
+  "core": true,
+  "extraOption": "Can I to help you?",
+  "stato": "originale"
+ },
+ {
+  "id": "q141",
+  "prompt": "Translate 'Dobbiamo andare ora.'",
+  "options": [
+   "We must go now.",
+   "We have go now.",
+   "We are must go now.",
+   "We need going now."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Must' is followed by the base form of the verb.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Modals of Obligation and Advice",
+  "core": false,
+  "extraOption": "We must to go now.",
+  "stato": "originale"
+ },
+ {
+  "id": "q143",
+  "prompt": "Translate 'Ero molto stanco ieri sera.'",
+  "options": [
+   "I was very tired last night.",
+   "I am very tired last night.",
+   "I had very tired last night.",
+   "I were very tired last night."
+  ],
+  "correctIndex": 0,
+  "explanation": "Past simple of 'to be' for 'I' is 'was'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Past Simple",
+  "core": true,
+  "extraOption": "I have been very tired last night.",
+  "stato": "originale"
+ },
+ {
+  "id": "q145",
+  "prompt": "Translate 'Lei sa nuotare molto bene.'",
+  "options": [
+   "She can swim very well.",
+   "She can swims very well.",
+   "She knows swim very well.",
+   "She knows to swim very well."
+  ],
+  "correctIndex": 0,
+  "explanation": "Ability is expressed with 'can' + base verb ('can swim'); 'can' never takes -s, and 'sapere fare qualcosa' is not 'know (to) do' in English.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Modals of Ability and Permission",
+  "core": true,
+  "extraOption": "She can to swim very well.",
+  "stato": "originale"
+ },
+ {
+  "id": "q147",
+  "prompt": "Translate 'Non ho abbastanza soldi.'",
+  "options": [
+   "I don't have enough money.",
+   "I not have enough money.",
+   "I don't have enough to money.",
+   "I don't have enough of money."
+  ],
+  "correctIndex": 0,
+  "explanation": "In the negative we use 'don't have', and 'enough' goes directly before a noun ('enough money'), without 'of'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Quantifiers",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q149",
+  "prompt": "Translate 'La casa dei miei nonni è grande.'",
+  "options": [
+   "My grandparents' house is big.",
+   "My grandparent's house is big.",
+   "The house my grandparents is big.",
+   "My grandparents house is big."
+  ],
+  "correctIndex": 0,
+  "explanation": "Plural nouns ending in -s just take an apostrophe.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessive S",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q151",
+  "prompt": "Translate 'I giocattoli dei bambini sono sparsi ovunque.'",
+  "options": [
+   "The children's toys are scattered everywhere.",
+   "The childrens' toys are scattered everywhere.",
+   "The children toys are scattered everywhere.",
+   "The childrens toys are scattered everywhere."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Children' is an irregular plural not ending in -s, so its possessive is 's ('children's'); 'sparsi' is 'scattered'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessive S",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q153",
+  "prompt": "Translate 'La macchina di James è blu.'",
+  "options": [
+   "James's car is blue.",
+   "James car is blue.",
+   "The James's car is blue.",
+   "Jame's car is blue."
+  ],
+  "correctIndex": 0,
+  "explanation": "Names ending in -s can take 's or just an apostrophe. 'James's' is common.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessive S",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q155",
+  "prompt": "Translate 'È il compleanno di mia madre.'",
+  "options": [
+   "It's my mother's birthday.",
+   "It's the birthday my mother.",
+   "It's my mothers birthday.",
+   "It's my mother birthday."
+  ],
+  "correctIndex": 0,
+  "explanation": "Possessive 's for people.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessive S",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q157",
+  "prompt": "Translate 'Le scarpe da donna sono al secondo piano.'",
+  "options": [
+   "Women's shoes are on the second floor.",
+   "Womens' shoes are on the second floor.",
+   "Woman's shoes are on the second floor.",
+   "Women shoes are on the second floor."
+  ],
+  "correctIndex": 0,
+  "explanation": "Irregular plural 'women' takes 's.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessive S",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q159",
+  "prompt": "Translate 'Hai visto le chiavi di Anna?'",
+  "options": [
+   "Have you seen Anna's keys?",
+   "Have you seen the Anna's keys?",
+   "Have you seen Annas keys?",
+   "Have you seen Anna keys?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Singular name takes 's.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessive S",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q161",
+  "prompt": "Translate 'Lavorano qui da molti anni.'",
+  "options": [
+   "They have worked here for many years.",
+   "They work here since many years.",
+   "They have worked here since many years.",
+   "They work here for many years."
+  ],
+  "correctIndex": 0,
+  "explanation": "'For' is used for a duration.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Prepositions of Time",
+  "core": false,
+  "extraOption": "They have worked here from many years.",
+  "stato": "originale"
+ },
+ {
+  "id": "q163",
+  "prompt": "Translate 'Perché stai piangendo?'",
+  "options": [
+   "Why are you crying?",
+   "Why do you cry?",
+   "Why you are crying?",
+   "Why you cry?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Question word + are + subject + verb-ing.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Present Continuous",
+  "core": false,
+  "extraOption": "Why are you cry?",
+  "stato": "originale"
+ },
+ {
+  "id": "q165",
+  "prompt": "Translate 'Il sole sta splendendo.'",
+  "options": [
+   "The sun is shining.",
+   "The sun shines.",
+   "The sun shining.",
+   "The sun are shining."
+  ],
+  "correctIndex": 0,
+  "explanation": "Action happening now.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Present Continuous",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q167",
+  "prompt": "Translate 'Non stiamo usando il computer adesso.'",
+  "options": [
+   "We aren't using the computer right now.",
+   "We don't use the computer right now.",
+   "We not using the computer right now.",
+   "We isn't using the computer right now."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative present continuous.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Present Continuous",
+  "core": false,
+  "extraOption": "We don't using the computer right now.",
+  "stato": "originale"
+ },
+ {
+  "id": "q169",
+  "prompt": "Translate 'Sto cercando le mie chiavi.'",
+  "options": [
+   "I am looking for my keys.",
+   "I am look for my keys.",
+   "I am looking my keys.",
+   "I looking for my keys."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Look for' means 'cercare', present continuous for current action.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Present Continuous",
+  "core": false,
+  "extraOption": "I am looking for to my keys.",
+  "stato": "rivista"
+ },
+ {
+  "id": "q172",
+  "prompt": "Translate 'È la prima volta che guido una macchina.'",
+  "options": [
+   "It's the first time I have driven a car.",
+   "It's the first time I driving a car.",
+   "It's the first time I have drove a car.",
+   "It's the first time I has driven a car."
+  ],
+  "correctIndex": 0,
+  "explanation": "'First time' expressions use the present perfect.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Present Perfect",
+  "core": true,
+  "extraOption": "It's the first time I am drive a car.",
+  "stato": "rivista"
+ },
+ {
+  "id": "q174",
+  "prompt": "Translate 'Io lavoro in un ospedale.'",
+  "options": [
+   "I work in a hospital.",
+   "I working in a hospital.",
+   "I works in a hospital.",
+   "I work to a hospital."
+  ],
+  "correctIndex": 0,
+  "explanation": "Permanent situations use present simple.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": false,
+  "stato": "rivista"
+ }
+]

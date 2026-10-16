@@ -1,51 +1,37 @@
-import { ReactNode, useMemo, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { Icona, type NomeIcona } from '../brand/icone/Icona';
-import type { CorpusType, LegalSection } from '../types';
-import { useAccess } from '../access/context';
+import type { LegalSection } from '../types';
 import { useTheme, type ModoTema } from '../hooks/useTheme';
 import { useToast } from '../components/Toast';
 import { isAudioMuted, playTapSound, setAudioMuted } from '../lib/audio';
 import { cn } from '../lib/utils';
-import { DISCLAIMER, FEATURE_FLAGS } from '../config/offer';
-import { LEGAL_DRAFT, LEGAL_TABS } from '../legal';
-import { PoweredByAtlas } from '../components/ui';
+import { AVVERTENZA_INDIPENDENZA, LEGAL_TABS } from '../legal';
 import ConfirmDialog from '../components/ConfirmDialog';
-import { INITIAL_CORPUS_COUNT, questions } from '../data/questions';
 import { loadState } from '../lib/storage';
-import { nomeVisibile, normalizzaProfilo } from '../lib/profilo/dati';
 import { SCHERMATE } from './extra/registro';
+import { ICONE_LEGALI } from './Footer';
 import { FoglioInfo, IconaTono, Pagina, PulsanteInfo, type Tono } from './extra/ui';
 
 // Stessa versione di package.json (l'app non legge il file a runtime)
 const VERSIONE_APP = '1.0.0';
 
 interface Props {
-  /** Utente collegato (solo con il login acceso). */
-  utente?: { displayName?: string | null; email?: string | null } | null;
   onBack: () => void;
-  onOpenPaywall: () => void;
   /** Apre la pagina di presentazione (landing) senza cancellare i progressi. */
   onOpenLanding?: () => void;
   onOpenLegal: (s: LegalSection) => void;
-  /** Assente = la riga non si vede (in demo l'esportazione è un download). */
+  /** Assente = la riga non si vede. */
   onImport?: () => void;
+  /** Assente = al posto del file si copia il testo dei progressi. */
   onExport?: () => void;
-  /** Assente = nessun login (spento nel lancio e in demo). */
-  onLogin?: () => void;
-  onLogout?: () => void;
-  onOpenProfile?: () => void;
   onOpenDebug?: () => void;
   /** Apre una schermata extra (faq, segnala): `vaiExtra` di App. Assente = si apre con un ricaricamento della pagina (?vista=). */
   onVai?: (id: string, params?: Record<string, string>) => void;
-  /** Materiale di studio in uso e come cambiarlo (la scelta si vede solo con il Pass). */
-  corpus?: CorpusType;
-  onCambiaCorpus?: (c: CorpusType) => void;
   /** Cancella i dati locali. Assente = si cancellano le chiavi dei progressi e si ricarica la pagina. */
   onReset?: () => void;
 }
 
 // Chiavi del localStorage che contengono i dati dell'utente (progressi con profilo, obiettivi e badge dentro `extra`; ultimo diagnostico).
-// Non si tocca il Pass né l'identificativo del dispositivo: restano validi.
 const CHIAVI_DATI = ['ofa_polimi_app_state', 'addiofa_diagnostico_ultimo'];
 
 /** Apre una schermata extra senza App: ricarica la pagina con ?vista=id (i progressi sono già salvati). */
@@ -91,14 +77,13 @@ function Interruttore({ acceso, onCambia, etichetta }: { acceso: boolean; onCamb
 }
 
 /** Selettore a sole icone: ogni voce ha `aria-label`; la scelta è quella con lo sfondo chiaro. */
-function Segmento<T extends string>({ nome, voci, valore, onScegli }: { nome: string; voci: { id: T; icona: NomeIcona; nome: string; blocco?: boolean }[]; valore: T; onScegli: (v: T) => void }) {
+function Segmento<T extends string>({ nome, voci, valore, onScegli }: { nome: string; voci: { id: T; icona: NomeIcona; nome: string }[]; valore: T; onScegli: (v: T) => void }) {
   return (
     <div role="radiogroup" aria-label={nome} className="shrink-0 grid gap-0.5 p-0.5 rounded-[10px] bg-superficie" style={{ gridTemplateColumns: `repeat(${voci.length}, minmax(0, 1fr))` }}>
       {voci.map(v => (
         <button key={v.id} type="button" role="radio" aria-checked={valore === v.id} aria-label={v.nome} title={v.nome} onClick={() => { playTapSound(); onScegli(v.id); }}
-          className={cn('relative grid h-9 w-11 place-items-center rounded-[8px]', valore === v.id ? 'bg-superficie-2 text-azione-scuro shadow-[0_1px_3px_rgba(15,23,42,0.1)] dark:shadow-none dark:border dark:border-tacca' : 'text-testo-tenue')}>
+          className={cn('grid h-9 w-11 place-items-center rounded-[8px]', valore === v.id ? 'bg-superficie-2 text-azione-scuro shadow-[0_1px_3px_rgba(15,23,42,0.1)] dark:shadow-none dark:border dark:border-tacca' : 'text-testo-tenue')}>
           <Icona nome={v.icona} size={20} />
-          {v.blocco && <Icona nome="blocco" size={11} className="absolute right-1 top-1 text-medio-numero" />}
         </button>
       ))}
     </div>
@@ -115,26 +100,19 @@ function IconaComando({ icona, nome, tono, onClick }: { icona: NomeIcona; nome: 
   );
 }
 
-// Ogni pagina legale ha la sua icona (termini = documento, privacy = occhio barrato, cookie = biscotto, recesso = annulla)
-const ICONA_LEGALE: Partial<Record<LegalSection, NomeIcona>> = { termini: 'documento', privacy: 'privacy', cookie: 'cookie', recesso: 'recesso' };
-
 const TEMI: { id: ModoTema; nome: string; icona: NomeIcona }[] = [
   { id: 'sistema', nome: 'Sistema', icona: 'tema-sistema' },
   { id: 'chiaro', nome: 'Chiaro', icona: 'tema-chiaro' },
   { id: 'scuro', nome: 'Scuro', icona: 'tema-scuro' },
 ];
 
-export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLanding, onOpenLegal, onImport, onExport, onLogin, onLogout, onOpenProfile, onOpenDebug, onVai, corpus, onCambiaCorpus, onReset }: Props) {
-  const { pass, provider } = useAccess();
+export default function Impostazioni({ onBack, onOpenLanding, onOpenLegal, onImport, onExport, onOpenDebug, onVai, onReset }: Props) {
   const { modo, setModo } = useTheme();
   const toast = useToast();
   const [suoniSpenti, setSuoniSpenti] = useState(isAudioMuted());
   const [chiediCancella, setChiediCancella] = useState(false);
   const [testoCopia, setTestoCopia] = useState<string | null>(null);
   const [info, setInfo] = useState(false);
-  const demo = provider.mode === 'demo';
-  // il nome del profilo si legge dai progressi salvati (lo scrive la schermata profilo-modifica)
-  const nome = useMemo(() => nomeVisibile(normalizzaProfilo(loadState().extra?.profilo)), []);
   const vai = (id: string) => (onVai ? onVai(id) : vaiConUrl(id));
   const c = SCHERMATE;
 
@@ -144,7 +122,7 @@ export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLand
     if (acceso) playTapSound();
   };
 
-  // Nella demo scaricare un file non si può: si copia il testo dei progressi, con il testo selezionabile se gli appunti non rispondono.
+  // Dove scaricare un file non si può: si copia il testo dei progressi, con il testo selezionabile se gli appunti non rispondono.
   const copiaProgressi = async () => {
     const testo = JSON.stringify(loadState(), null, 2);
     try {
@@ -162,36 +140,12 @@ export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLand
     window.location.reload();
   };
 
-  const materiale: CorpusType = corpus ?? 'all';
-  const sceltaMateriale: 'initial' | 'all' = materiale === 'initial' || !pass ? 'initial' : 'all';
-
   return (
     <Pagina titolo="Impostazioni" onBack={onBack}>
       <>
-        {(utente || onLogin) && (
-          <Gruppo etichetta="Account">
-            {utente ? (
-              <>
-                <Riga tono="azione" icona="profilo" titolo={utente.displayName || nome} onClick={onOpenProfile} />
-                {onLogout && <Riga icona="esci" titolo="Esci" onClick={onLogout} />}
-              </>
-            ) : (
-              onLogin && <Riga tono="azione" icona="accedi" titolo="Accedi" onClick={onLogin} />
-            )}
-          </Gruppo>
-        )}
-
         <Gruppo etichetta="Preferenze">
           <Riga icona="tema" titolo="Tema" destra={<Segmento<ModoTema> nome="Tema" voci={TEMI} valore={modo} onScegli={setModo} />} />
           <Riga icona="suoni" titolo="Suoni" destra={<Interruttore acceso={!suoniSpenti} onCambia={cambiaSuoni} etichetta="Suoni" />} />
-          <Riga tono="azione" icona="materiale" titolo="Materiale" destra={
-            <Segmento<'initial' | 'all'> nome="Materiale" valore={sceltaMateriale}
-              voci={[
-                { id: 'initial', icona: 'materiale-nucleo', nome: `Nucleo, ${INITIAL_CORPUS_COUNT} domande` },
-                { id: 'all', icona: 'materiale-tutto', nome: `Tutto il banco, ${questions.length} domande`, blocco: !pass },
-              ]}
-              onScegli={c => { if (!pass && c === 'all') onOpenPaywall(); else onCambiaCorpus?.(c); }} />
-          } />
         </Gruppo>
 
         <Gruppo etichetta="Dati">
@@ -223,27 +177,23 @@ export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLand
         <Gruppo etichetta="Informazioni">
           <Riga icona="info" titolo="Versione" destra={
             <span className="flex shrink-0 items-center gap-1">
-              <span className="text-[14px] text-testo-tenue tabular-nums">{VERSIONE_APP}{demo ? ' · demo' : ''}</span>
+              <span className="text-[14px] text-testo-tenue tabular-nums">{VERSIONE_APP}</span>
               <PulsanteInfo onClick={() => setInfo(true)} etichetta="Informazioni sull'app" className="-mr-1.5" />
             </span>
           } />
           {LEGAL_TABS.map(t => (
-            <Riga key={t.id} icona={ICONA_LEGALE[t.id] ?? 'documento'} titolo={t.label} onClick={() => onOpenLegal(t.id)} />
+            <Riga key={t.id} icona={ICONE_LEGALI[t.id]} titolo={t.label} onClick={() => onOpenLegal(t.id)} />
           ))}
           {onOpenLanding && <Riga icona="presentazione" titolo="Presentazione" onClick={onOpenLanding} />}
           {onOpenDebug && <Riga icona="debug" titolo="Debug" onClick={onOpenDebug} />}
         </Gruppo>
-
-        {FEATURE_FLAGS.projectId && !demo && <PoweredByAtlas className="mt-6" />}
       </>
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Informazioni">
-        <p>{DISCLAIMER}</p>
-        {LEGAL_DRAFT && <p className="mt-2">I testi legali sono bozze in attesa di revisione di un professionista.</p>}
-        <p className="mt-2">Progressi, profilo e obiettivi restano su questo dispositivo: esportali per tenerne una copia o spostarli. AddiOFA non può mandarti notifiche, perché non c'è un servizio che le invii.</p>
-        {demo && <p className="mt-2">Versione dimostrativa: nessun pagamento, e il Pass in prova serve solo a vedere come funziona.</p>}
+        <p>{AVVERTENZA_INDIPENDENZA}</p>
+        <p className="mt-2">Progressi, profilo e obiettivi restano su questo dispositivo: esportali per tenerne una copia o spostarli.</p>
       </FoglioInfo>
       <ConfirmDialog open={chiediCancella} danger title="Cancellare i dati?"
-        message="Vengono cancellati progressi, simulazioni, profilo, obiettivi e badge salvati qui. Non si può tornare indietro: se vuoi una copia, esportali prima. Il Pass non viene toccato."
+        message="Vengono cancellati progressi, simulazioni, profilo, obiettivi e badge salvati qui. Non si può tornare indietro: se vuoi una copia, esportali prima."
         confirmLabel="Cancella" onConfirm={cancellaDati} onCancel={() => setChiediCancella(false)} />
     </Pagina>
   );

@@ -76,7 +76,7 @@ if (applica) {
   for (const { f, blocco } of domande) {
     let toccato = false;
     for (const q of blocco) {
-      if (q.id in daSegnare) { q.stato = `duplicata-di:${daSegnare[q.id]}`; q.core = false; toccato = true; }
+      if (q.id in daSegnare) { q.stato = `duplicata-di:${daSegnare[q.id]}`; toccato = true; }
     }
     if (toccato) scriviJson(f, blocco);
   }

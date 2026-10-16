@@ -1,19 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { User } from 'firebase/auth';
 import { AppState, OnboardingResult, Question } from '../types';
-import {
-  FEATURE_FLAGS, OFA_RULES_NOTE, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, RETAKE_COST_EUR,
-} from '../config/offer';
+import { OFA_RULES_NOTE, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, RETAKE_COST_EUR } from '../config/offer';
 import { pickDiagnosticQuestions, estimatePassProbability, intervalloStima, formatProbabilita, weakTopics, DIAGNOSTIC_LENGTH } from '../lib/diagnostic';
 import { updateStats } from '../lib/spacedRepetition';
 import { playTapSound } from '../lib/audio';
-import { useAccess } from '../access/context';
 import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard } from './ui';
 import { Illustrazione } from '../brand/Illustrazione';
 import { IllustrazioneAnimata, eAnimata } from '../brand/IllustrazioneAnimata';
 import { Misuratore } from '../brand/componenti';
 import { Icona, type NomeIcona } from '../brand/icone/Icona';
-import { ECOSYSTEM } from '../config/ecosystem';
 import Marchio from '../brand/Marchio';
 import FoglioStima from './FoglioStima';
 import CalcoloRisultato from './CalcoloRisultato';
@@ -21,23 +16,16 @@ import { Barra, coloreValore } from './home/comune';
 import { livelloDi, type Livello } from './home/stima';
 import { PulsanteInfo, IconaTono } from '../screens/extra/ui';
 import { Dato, Fatti, InfoFoglio } from '../screens/landing/comune';
-import { BloccoPrezzo, CONSEGUENZE, TabellaConfronto } from '../screens/landing/dati';
+import { CONSEGUENZE } from '../screens/landing/dati';
 import { InfoIndipendenza } from '../screens/Footer';
 
-type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'save' | 'risk' | 'calcolo' | 'result' | 'ready';
+type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'risk' | 'calcolo' | 'result';
 
 interface OnboardingProps {
   appState: AppState;
-  user: User | null;
-  onLogin: () => Promise<unknown> | void;
   onUpdateAppState: (state: AppState) => void;
   onFinish: (result: OnboardingResult) => void;
-  /** Apre il paywall (il pulsante "Vedi il Pass"). Il risultato dell'onboarding viene salvato prima. */
-  onOpenPaywall?: () => void;
 }
-
-// Il passo di accesso con Project ID esiste solo se la funzione è accesa e non siamo nella demo online
-const SHOW_LOGIN = FEATURE_FLAGS.projectId && import.meta.env.VITE_MODE !== 'demo';
 
 // Messaggio per fascia di probabilità: in pagina c'è solo il titolo (con l'icona della fascia); la spiegazione onesta sta dietro la «i».
 // La soglia (25 su 30) è alta: la fascia 'basso' comprende anche chi ha risposto bene a 8 domande su 10, e il testo lo dice.
@@ -91,8 +79,7 @@ function TestataDomanda({ icona, titolo, info, titoloInfo }: { icona: NomeIcona;
   );
 }
 
-export default function Onboarding({ appState, user, onLogin, onUpdateAppState, onFinish, onOpenPaywall }: OnboardingProps) {
-  const { track } = useAccess();
+export default function Onboarding({ appState, onUpdateAppState, onFinish }: OnboardingProps) {
   const [step, setStep] = useState<Step>('intro');
   const [hasCertification, setHasCertification] = useState<boolean | null>(null);
   const [hasOfa, setHasOfa] = useState<OnboardingResult['hasOfa'] | null>(null);
@@ -103,8 +90,6 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
   const questionStart = useRef(Date.now());
   const stateRef = useRef(appState);
   stateRef.current = appState;
-  const diagTracked = useRef(false);
-  const quizStartedAt = useRef<number | null>(null);
   const [foglio, setFoglio] = useState(false);
 
   useEffect(() => {
@@ -113,17 +98,9 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
     return () => { vivo = false; };
   }, []);
 
-  // Una sola volta, quando l'utente vede il risultato
-  useEffect(() => {
-    if (step !== 'result' || diagTracked.current) return;
-    diagTracked.current = true;
-    const seconds = quizStartedAt.current ? Math.round((Date.now() - quizStartedAt.current) / 1000) : undefined;
-    track({ name: 'diag_done', audience: hasOfa === 'yes' ? 'recupero' : 'prevenzione', seconds });
-  }, [step, hasOfa, track]);
-
-  // Barra di avanzamento: il passo di accesso conta solo se c'è
+  // Barra di avanzamento
   const progressSteps = useMemo<Step[]>(
-    () => ['certification', 'ofa', 'quizIntro', 'quiz', ...(SHOW_LOGIN ? ['save' as const] : []), 'risk', 'result', 'ready'],
+    () => ['certification', 'ofa', 'quizIntro', 'quiz', 'risk', 'result'],
     []
   );
   const progressIndex = progressSteps.indexOf(step === 'calcolo' ? 'result' : step);
@@ -156,7 +133,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
     if (quizIndex + 1 < quiz.length) {
       setQuizIndex(quizIndex + 1);
     } else {
-      setStep(SHOW_LOGIN && !user ? 'save' : 'risk');
+      setStep('risk');
     }
   };
 
@@ -209,7 +186,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           <div className="flex items-center justify-center gap-2">
             <h2 className={`${titolo} text-center`}>Forse sei esente</h2>
             <InfoFoglio titolo="Certificazione" etichetta="Dettagli sulla certificazione">
-              <p>Se la tua certificazione è tra quelle accettate dal Politecnico, potresti non dover fare il test. Controlla l'elenco e i livelli minimi sul sito del tuo corso prima di pagare qualsiasi cosa.</p>
+              <p>Se la tua certificazione è tra quelle accettate dal Politecnico, potresti non dover fare il test. Controlla l'elenco e i livelli minimi sul sito del tuo corso prima di iscriverti al test.</p>
             </InfoFoglio>
           </div>
           <div className="mt-auto flex flex-col gap-3">
@@ -246,7 +223,7 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
           </div>
           <Scena nome="quiz-test" />
           <div className="mt-auto">
-            <PrimaryButton disabled={quiz.length === 0} onClick={() => { questionStart.current = Date.now(); quizStartedAt.current = Date.now(); setStep('quiz'); }}>Inizia</PrimaryButton>
+            <PrimaryButton disabled={quiz.length === 0} onClick={() => { questionStart.current = Date.now(); setStep('quiz'); }}>Inizia</PrimaryButton>
           </div>
         </Screen>
       );
@@ -282,19 +259,6 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
         </Screen>
       );
     }
-
-    case 'save':
-      return (
-        <Screen>
-          <TopBar {...bar} />
-          <Scena nome="verifica-utente" />
-          <h2 className={`${titolo} text-center`}>Salva i progressi</h2>
-          <div className="mt-auto flex flex-col gap-3">
-            <PrimaryButton onClick={async () => { try { await onLogin(); } finally { setStep('risk'); } }}>Accedi con {ECOSYSTEM.accountName}</PrimaryButton>
-            <SecondaryButton onClick={() => setStep('risk')}>Non ora</SecondaryButton>
-          </div>
-        </Screen>
-      );
 
     case 'risk':
       return (
@@ -386,31 +350,11 @@ export default function Onboarding({ appState, user, onLogin, onUpdateAppState, 
             )}
           </div>
           <div className="mt-auto pt-1">
-            <PrimaryButton onClick={() => { setStep('ready'); }}>Avanti</PrimaryButton>
+            <PrimaryButton onClick={() => onFinish(result())}>Avanti</PrimaryButton>
           </div>
           <FoglioStima aperto={foglio} onChiudi={() => setFoglio(false)} tipo="diagnostico" risposte={quiz.length} />
         </Screen>
       );
     }
-
-    case 'ready':
-      return (
-        <Screen>
-          <TopBar {...bar} onBack={() => setStep('result')} />
-          <div className="flex items-center gap-3">
-            <IconaTono tono="viola" lato={52} className="!rounded-full"><Icona nome="pass" size={28} /></IconaTono>
-            <h2 className={`${titolo} flex-1`}>Gratis o Pass</h2>
-            <InfoIndipendenza />
-          </div>
-          <BloccoPrezzo />
-          <TabellaConfronto />
-          <div className="mt-auto flex flex-col gap-3">
-            <PrimaryButton onClick={() => onFinish(result())}>Continua gratis</PrimaryButton>
-            {onOpenPaywall && (
-              <SecondaryButton onClick={() => { onFinish(result()); onOpenPaywall(); }}>Vedi il Pass</SecondaryButton>
-            )}
-          </div>
-        </Screen>
-      );
   }
 }

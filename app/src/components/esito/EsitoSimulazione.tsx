@@ -21,15 +21,14 @@ interface Props {
   answers: Record<string, number>;
   elapsedSeconds: number;
   onExit: () => void;
-  /** Rifà la stessa simulazione (o porta al Pass se non è più gratis). */
+  /** Rifà la stessa simulazione. */
   onRetry: () => void;
-  retryLocked: boolean;
   onOpenTheory?: (id: string) => void;
   /** Risposte su cui è calcolata la stima (diagnostico + simulazioni): se manca, il foglio non rimanda a FoglioStima. */
   risposteStima?: number;
 }
 
-export default function EsitoSimulazione({ format, result, questions, answers, elapsedSeconds, onExit, onRetry, retryLocked, onOpenTheory, risposteStima }: Props) {
+export default function EsitoSimulazione({ format, result, questions, answers, elapsedSeconds, onExit, onRetry, onOpenTheory, risposteStima }: Props) {
   const [info, setInfo] = useState(false);
   const [rivedi, setRivedi] = useState(0);
   const correzioniRef = useRef<HTMLDivElement>(null);
@@ -87,11 +86,11 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
 
           <TessereEsito giuste={result.rawCorrect} sbagliate={result.wrong} vuote={result.omitted} />
 
-          {/* Un solo pulsante pieno: ↺ (o il lucchetto, se le simulazioni gratuite sono finite); le correzioni sono sotto, a un tocco. */}
+          {/* Un solo pulsante pieno: ↺; le correzioni sono sotto, a un tocco. */}
           <div className="flex gap-2.5">
-            <button type="button" onClick={() => { playTapSound(); onRetry(); }} aria-label={retryLocked ? 'Altre simulazioni con il Pass' : 'Rifai la simulazione'}
+            <button type="button" onClick={() => { playTapSound(); onRetry(); }} aria-label="Rifai la simulazione"
               className="flex h-[54px] flex-1 items-center justify-center rounded-[12px] bg-azione text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
-              <Icona nome={retryLocked ? 'blocco' : 'riprova'} size={26} />
+              <Icona nome="riprova" size={26} />
             </button>
             <button type="button" onClick={vaiAlleCorrezioni} aria-label="Vai alle correzioni"
               className="grid h-[54px] w-16 shrink-0 place-items-center rounded-[12px] border border-azione/60 bg-superficie text-azione-scuro transition-colors duration-100 hover:bg-azione-tinta">

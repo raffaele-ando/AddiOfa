@@ -1,0 +1,453 @@
+{
+ "q352": {
+  "prompt": "Complete the sentence: 'You _____ eat more vegetables; your diet is poor.'",
+  "options": [
+   "shouldn't",
+   "should to",
+   "should",
+   "must to"
+  ],
+  "correctIndex": 2,
+  "explanation": "'Should' + verbo base dà un consiglio: 'You should eat'. I modali non vogliono 'to' dopo di sé, quindi 'should to' e 'must to' sono errori tipici; 'shouldn't' direbbe il contrario del consiglio."
+ },
+ "q353": {
+  "prompt": "Complete the sentence: 'Anna _____ come to the meeting if she's tired; it isn't necessary.'",
+  "options": [
+   "doesn't have to",
+   "mustn't",
+   "don't have to",
+   "doesn't has to"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Doesn't have to' dice che non c'è obbligo; con 'Anna' (terza persona) serve 'does' e 'have' resta alla forma base. 'Mustn't' indicherebbe un divieto, 'don't have to' non concorda con 'Anna' e 'doesn't has to' ha una 's' di troppo."
+ },
+ "q354": {
+  "prompt": "Complete the sentence: 'Stop! You _____ touch that wire, or you will get an electric shock!'",
+  "options": [
+   "not must",
+   "haven't to",
+   "must not to",
+   "mustn't"
+  ],
+  "correctIndex": 3,
+  "explanation": "'Mustn't' esprime un divieto forte: toccare il filo è pericoloso e proibito. La negazione si mette dopo il modale ('must not'), non prima ('not must'); 'haven't to' non si usa, e 'must not to' è sbagliato perché 'must' non vuole 'to'."
+ },
+ "q355": {
+  "prompt": "Complete the sentence: 'He _____ work late today because his boss asked him.'",
+  "options": [
+   "have to",
+   "has to",
+   "musts",
+   "must to"
+  ],
+  "correctIndex": 1,
+  "explanation": "Per un obbligo che viene da fuori (qui il capo) si usa 'have to', che con 'he' diventa 'has to'. 'Have to' non concorda con 'he'; 'musts' e 'must to' sono errori perché 'must' non cambia forma e non vuole 'to'."
+ },
+ "q356": {
+  "prompt": "Complete the sentence: 'You _____ drink so much coffee; it's bad for your health.'",
+  "options": [
+   "shouldn't to",
+   "shouldn't",
+   "don't should",
+   "not should"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Shouldn't' + verbo base dà un consiglio negativo: 'You shouldn't drink'. Dopo un modale non si mette 'to', quindi 'shouldn't to' è sbagliato; 'don't should' e 'not should' sbagliano il posto della negazione, che si attacca al modale."
+ },
+ "q357": {
+  "prompt": "Complete the sentence: '_____ take off my shoes when I come in?'",
+  "options": [
+   "Must I to",
+   "Do I must",
+   "Do I have",
+   "Do I have to"
+  ],
+  "correctIndex": 3,
+  "explanation": "Per chiedere se c'è un obbligo si usa 'Do I have to' + verbo base. 'Must' non si usa con 'do' ('Do I must') e non è seguito da 'to' ('Must I to'); 'Do I have' senza 'to' lascia il verbo base senza il suo legame."
+ },
+ "q358": {
+  "prompt": "Complete the sentence: 'Entry is free, so you _____ buy a ticket.'",
+  "options": [
+   "don't have to",
+   "mustn't",
+   "don't must",
+   "haven't to"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Don't have to' significa che non c'è obbligo: l'ingresso è gratis, quindi il biglietto non serve. 'Mustn't' indicherebbe un divieto; 'don't must' e 'haven't to' sono forme che in inglese non esistono."
+ },
+ "q359": {
+  "prompt": "Complete the sentence: 'I have a problem with my phone. What _____ do?'",
+  "options": [
+   "I should",
+   "do I should",
+   "should I",
+   "should I to"
+  ],
+  "correctIndex": 2,
+  "explanation": "Nelle domande con un modale l'ordine è parola interrogativa + modale + soggetto: 'What should I do?'. 'I should' lascia il soggetto davanti al modale, 'do I should' aggiunge un ausiliare che i modali non vogliono e 'should I to' mette un 'to' di troppo."
+ },
+ "q360": {
+  "prompt": "Complete the sentence: 'It's a secret, so you _____ tell anyone.'",
+  "options": [
+   "mustn't",
+   "mustn't to",
+   "don't must",
+   "shouldn't to"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Mustn't' + verbo base esprime un divieto: dire il segreto non è permesso. Dopo un modale non si usa 'to' ('mustn't to', 'shouldn't to' sono errori) e 'don't' non si combina con 'must' ('don't must')."
+ },
+ "q370": {
+  "prompt": "Complete the sentence: 'He answered the question _____.'",
+  "options": [
+   "quickily",
+   "fastly",
+   "quickly",
+   "quickness"
+  ],
+  "correctIndex": 2,
+  "explanation": "'Answered' è un verbo, quindi serve un avverbio: 'quickly' (aggettivo quick + -ly). 'Quickily' ha l'ortografia sbagliata, 'fastly' non esiste (l'avverbio di 'fast' è 'fast') e 'quickness' è un nome."
+ },
+ "q371": {
+  "prompt": "Complete the sentence: 'She sings really _____.'",
+  "options": [
+   "goodly",
+   "well",
+   "gooder",
+   "goodness"
+  ],
+  "correctIndex": 1,
+  "explanation": "Dopo il verbo 'sings' serve un avverbio, e quello di 'good' è 'well'. 'Goodly' e 'gooder' non sono forme corrette in questo contesto e 'goodness' è un nome."
+ },
+ "q372": {
+  "prompt": "Complete the sentence: 'They worked _____ all day.'",
+  "options": [
+   "hardly",
+   "difficultly",
+   "heavy",
+   "hard"
+  ],
+  "correctIndex": 3,
+  "explanation": "'Hard' è sia aggettivo sia avverbio e vuol dire 'con molto impegno'. 'Hardly' esiste ma significa 'quasi per niente', 'difficultly' non è un avverbio usato e 'heavy' è un aggettivo."
+ },
+ "q373": {
+  "prompt": "Complete the sentence: 'Please speak _____ because I don't understand.'",
+  "options": [
+   "slowness",
+   "slowlier",
+   "slowingly",
+   "slowly"
+  ],
+  "correctIndex": 3,
+  "explanation": "Dopo 'speak' serve un avverbio: 'slowly' (aggettivo slow + -ly). 'Slowness' è un nome, mentre 'slowlier' e 'slowingly' non esistono."
+ },
+ "q374": {
+  "prompt": "Complete the sentence: 'He closed the door _____ because the baby was sleeping.'",
+  "options": [
+   "quietness",
+   "quietly",
+   "quietlyly",
+   "quietily"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Closed' è un verbo, quindi serve un avverbio: 'quietly'. 'Quietness' è un nome, 'quietlyly' ha il suffisso -ly doppio e 'quietily' ha l'ortografia sbagliata."
+ },
+ "q375": {
+  "prompt": "Complete the sentence: 'They solved the problem _____.'",
+  "options": [
+   "easy",
+   "easyly",
+   "easily",
+   "ease"
+  ],
+  "correctIndex": 2,
+  "explanation": "Per descrivere come hanno risolto (verbo) serve un avverbio: 'easy' diventa 'easily', con la 'y' che cambia in 'i'. 'Easy' è un aggettivo, 'easyly' ha l'ortografia sbagliata e 'ease' è un nome."
+ },
+ "q376": {
+  "prompt": "Complete the sentence: 'He always drives _____.'",
+  "options": [
+   "carefully",
+   "careful",
+   "carefuly",
+   "care"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Drives' è un verbo, quindi serve un avverbio: 'careful' + -ly dà 'carefully' (con due 'l'). 'Careful' è un aggettivo, 'carefuly' perde una 'l' e 'care' è un nome."
+ },
+ "q377": {
+  "prompt": "Complete the sentence: 'The teacher explained the rule _____.'",
+  "options": [
+   "clear",
+   "cleary",
+   "clearly",
+   "clearing"
+  ],
+  "correctIndex": 2,
+  "explanation": "Per dire come ha spiegato serve un avverbio: 'clearly' (aggettivo clear + -ly). 'Clear' è un aggettivo, 'cleary' ha l'ortografia sbagliata e 'clearing' è una forma in -ing che qui non ha senso."
+ },
+ "q378": {
+  "prompt": "Complete the sentence: 'Thank you, I understood _____.'",
+  "options": [
+   "perfect",
+   "perfection",
+   "perfectlyly",
+   "perfectly"
+  ],
+  "correctIndex": 3,
+  "explanation": "'Understood' è un verbo, quindi serve un avverbio: 'perfectly' (aggettivo perfect + -ly). 'Perfect' è un aggettivo, 'perfection' è un nome e 'perfectlyly' ha il suffisso -ly doppio."
+ },
+ "q380": {
+  "prompt": "Complete the sentence: 'If I _____ you, I would study more.'",
+  "options": [
+   "were",
+   "am",
+   "would be",
+   "will be"
+  ],
+  "correctIndex": 0,
+  "explanation": "Nel Second Conditional la frase con 'if' usa il passato e, per un consiglio con 'I', si dice 'If I were you'. 'Am' e 'will be' sono presente e futuro, tipici di altri periodi ipotetici, e 'would be' non va nella frase con 'if'."
+ },
+ "q382": {
+  "prompt": "Complete the sentence: 'If we _____ earlier, we wouldn't have missed the train.'",
+  "options": [
+   "had leave",
+   "had left",
+   "would leave",
+   "have left"
+  ],
+  "correctIndex": 1,
+  "explanation": "Il Third Conditional parla di un passato che non è andato così: 'if' + Past Perfect ('had left'), poi 'would have' + participio. 'Had leave' usa la forma base invece del participio, 'would leave' non va dopo 'if' e 'have left' è Present Perfect."
+ },
+ "q384": {
+  "prompt": "Complete the sentence: 'Look! The new house _____ built right now.'",
+  "options": [
+   "is",
+   "is being",
+   "is been",
+   "are being"
+  ],
+  "correctIndex": 1,
+  "explanation": "Per un'azione in corso al momento si usa il Present Continuous passivo: 'is/are being' + participio, e qui 'house' è singolare. 'Is' da solo è un presente semplice, 'is been' mescola le forme e 'are being' non concorda con 'house'."
+ },
+ "q385": {
+  "prompt": "Complete the sentence: 'Yesterday Tom said that he _____ very tired.'",
+  "options": [
+   "was",
+   "were",
+   "am",
+   "being"
+  ],
+  "correctIndex": 0,
+  "explanation": "Dopo 'said' al passato, il discorso indiretto usa il passato: 'he was tired' (il presente 'am' del discorso diretto fa un passo indietro e 'I' diventa 'he'). 'Were' non concorda con 'he', 'am' va solo con 'I' e 'being' da solo non è una forma verbale completa."
+ },
+ "q386": {
+  "prompt": "Complete the sentence: 'Last night Anna told me that she _____ me the next day.'",
+  "options": [
+   "would called",
+   "would calling",
+   "would to call",
+   "would call"
+  ],
+  "correctIndex": 3,
+  "explanation": "Nel discorso indiretto il futuro 'will' diventa 'would' seguito dalla forma base: 'would call'. 'Would called' e 'would calling' hanno il verbo nella forma sbagliata, e 'would to call' aggiunge un 'to' che dopo 'would' non va messo."
+ },
+ "q388": {
+  "prompt": "Complete the sentence: 'I _____ when you called me.'",
+  "options": [
+   "had already eat",
+   "have already eaten",
+   "had already eaten",
+   "was already eaten"
+  ],
+  "correctIndex": 2,
+  "explanation": "L'azione avvenuta prima di un'altra nel passato va al Past Perfect: 'had already eaten' (had + participio). 'Had already eat' usa il participio sbagliato, 'have already eaten' è Present Perfect e non si accorda con 'called', e 'was already eaten' è un passivo senza senso."
+ },
+ "q390": {
+  "prompt": "Complete the sentence: 'She _____ like vegetables when she was a child.'",
+  "options": [
+   "doesn't use to",
+   "isn't used to",
+   "hasn't used to",
+   "didn't use to"
+  ],
+  "correctIndex": 3,
+  "explanation": "Per un'abitudine o uno stato del passato che non c'è più si usa 'didn't use to' + verbo base (senza la 'd' in 'use'). 'Doesn't use to' è al presente, 'isn't used to' vuole il verbo in -ing e ha un altro significato, e 'hasn't used to' non si usa."
+ },
+ "q404": {
+  "prompt": "Complete the sentence: 'The movie _____ we watched yesterday was boring.'",
+  "options": [
+   "who",
+   "where",
+   "which",
+   "whose"
+  ],
+  "correctIndex": 2,
+  "explanation": "Per una cosa (il film) il pronome relativo è 'which' (o 'that'). 'Who' si usa per le persone, 'where' per i luoghi e 'whose' indica possesso."
+ },
+ "q405": {
+  "prompt": "Complete the sentence: 'The woman _____ car was stolen is my neighbor.'",
+  "options": [
+   "who",
+   "whose",
+   "which",
+   "that"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Whose' indica possesso e si mette direttamente prima del nome: 'whose car'. 'Who', 'which' e 'that' non esprimono possesso, quindi 'who car' o 'which car' sono sbagliati."
+ },
+ "q409": {
+  "prompt": "Complete the sentence: 'This is the book _____ I was telling you about.'",
+  "options": [
+   "which",
+   "who",
+   "whose",
+   "what"
+  ],
+  "correctIndex": 0,
+  "explanation": "Il libro è una cosa, quindi il relativo è 'which' ('that' sarebbe possibile, ma qui non è tra le opzioni). 'Who' è per le persone, 'whose' indica possesso e 'what' non introduce una frase relativa dopo un nome."
+ },
+ "q410": {
+  "prompt": "Complete the sentence: 'Paris, _____ is the capital of France, is beautiful.'",
+  "options": [
+   "which",
+   "who",
+   "where",
+   "that"
+  ],
+  "correctIndex": 0,
+  "explanation": "In una relativa non restrittiva (tra virgole) riferita a una cosa si usa 'which'. 'That' non si usa dopo una virgola, 'who' è per le persone e 'where' è per i luoghi, ma qui manca un luogo da introdurre."
+ },
+ "q420": {
+  "prompt": "Complete the sentence: 'I finished _____ the book last night.'",
+  "options": [
+   "to read",
+   "reading",
+   "read",
+   "to reading"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Finish' è seguito dal gerundio: 'finished reading'. 'To read' e 'to reading' usano un 'to' che qui non va, mentre 'read' è la forma base e non può seguire 'finished'."
+ },
+ "q421": {
+  "prompt": "Complete the sentence: 'He decided _____ abroad.'",
+  "options": [
+   "studying",
+   "study",
+   "to study",
+   "to studying"
+  ],
+  "correctIndex": 2,
+  "explanation": "'Decide' è seguito dall'infinito con 'to': 'decided to study'. Il gerundio ('studying'), la forma base ('study') e 'to studying' non sono costruzioni corrette dopo 'decide'."
+ },
+ "q424": {
+  "prompt": "Complete the sentence: 'I don't mind _____ up early.'",
+  "options": [
+   "to get",
+   "get",
+   "to getting",
+   "getting"
+  ],
+  "correctIndex": 3,
+  "explanation": "'Mind' è seguito dal gerundio: 'don't mind getting'. 'To get' e 'get' usano l'infinito, che dopo 'mind' non va bene, e 'to getting' mescola le due forme."
+ },
+ "q425": {
+  "prompt": "Complete the sentence: 'They want _____ a new house.'",
+  "options": [
+   "buying",
+   "buy",
+   "to buy",
+   "to buying"
+  ],
+  "correctIndex": 2,
+  "explanation": "'Want' è seguito dall'infinito con 'to': 'want to buy'. 'Buying' è un gerundio, 'buy' non ha il 'to' richiesto e 'to buying' mescola infinito e gerundio."
+ },
+ "q434": {
+  "prompt": "Complete the sentence: 'If I _____ rich, I _____ travel the world.'",
+  "options": [
+   "were / would",
+   "am / will",
+   "would be / traveled",
+   "was / travel"
+  ],
+  "correctIndex": 0,
+  "explanation": "Second Conditional: 'if' + passato ('were' per tutte le persone) nella prima parte e 'would' + verbo base nella seconda. 'Am / will' è il primo condizionale, mentre le altre coppie mettono 'would be', 'traveled' o 'travel' al posto sbagliato."
+ },
+ "q435": {
+  "prompt": "Complete the sentence: 'If she _____ the truth, she would be angry.'",
+  "options": [
+   "knows",
+   "knew",
+   "would know",
+   "will know"
+  ],
+  "correctIndex": 1,
+  "explanation": "Nel Second Conditional la frase con 'if' usa il Past Simple ('knew') e quella principale 'would' + verbo base. 'Knows' e 'will know' sono presente e futuro, 'would know' non va nella frase con 'if'."
+ },
+ "q439": {
+  "prompt": "Complete the sentence: 'I _____ go there if I were you.'",
+  "options": [
+   "won't",
+   "didn't",
+   "don't",
+   "wouldn't"
+  ],
+  "correctIndex": 3,
+  "explanation": "Con 'if I were you' (Second Conditional) la frase principale usa 'would': 'I wouldn't go'. 'Won't', 'didn't' e 'don't' sono forme di futuro e di presente o passato che non si combinano con 'were'."
+ },
+ "q440": {
+  "prompt": "Complete the sentence: 'If we had a car, we _____ go to the mountains.'",
+  "options": [
+   "can",
+   "will",
+   "went",
+   "could"
+  ],
+  "correctIndex": 3,
+  "explanation": "Nel Second Conditional la frase con 'if' è al passato ('had') e la principale ha un condizionale: 'could' (la forma ipotetica di 'can') + verbo base. 'Can' e 'will' sono presente e futuro, 'went' non è un condizionale."
+ },
+ "q446": {
+  "prompt": "Complete the sentence: 'If I spoke French, I _____ to Paris.'",
+  "options": [
+   "would move",
+   "will move",
+   "would moving",
+   "moved"
+  ],
+  "correctIndex": 0,
+  "explanation": "Second Conditional: 'if' + Past Simple, poi 'would' + verbo base: 'would move'. 'Will move' è futuro, 'would moving' ha il verbo in -ing e 'moved' non dà il senso di ipotesi."
+ },
+ "q450": {
+  "prompt": "Complete the sentence: 'If I _____ to bed early, I wouldn't have been tired.'",
+  "options": [
+   "would have gone",
+   "have gone",
+   "had gone",
+   "would go"
+  ],
+  "correctIndex": 2,
+  "explanation": "Il Third Conditional parla di un passato non realizzato: 'if' + Past Perfect ('had gone') e 'would have' + participio nella principale. 'Would have gone' e 'would go' non vanno dopo 'if', e 'have gone' è un Present Perfect."
+ },
+ "q451": {
+  "prompt": "Complete the sentence: 'If it had rained, we _____ at home.'",
+  "options": [
+   "would have stay",
+   "would have stayed",
+   "will have stayed",
+   "would had stayed"
+  ],
+  "correctIndex": 1,
+  "explanation": "Nel Third Conditional, dopo 'if' + Past Perfect, la principale è 'would have' + participio: 'would have stayed'. 'Would have stay' usa la forma base, 'will have stayed' è un futuro e 'would had stayed' ha 'had' al posto di 'have'."
+ },
+ "q455": {
+  "prompt": "Complete the sentence: 'What _____ if you had known?'",
+  "options": [
+   "did you do",
+   "would you have done",
+   "have you done",
+   "would you had done"
+  ],
+  "correctIndex": 1,
+  "explanation": "Nella domanda del Third Conditional si usa 'would' + soggetto + 'have' + participio: 'What would you have done?'. 'Did you do' e 'have you done' sono passato e Present Perfect, e 'would you had done' usa 'had' al posto di 'have'."
+ }
+}

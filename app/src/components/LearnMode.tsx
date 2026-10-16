@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { AppState, QuestionClickEvent, QuestionTelemetry, PaywallReason, UserStats } from '../types';
-import { selectPracticeIds, updateStats, poolMeta, countLearned } from '../lib/spacedRepetition';
+import { AppState, QuestionClickEvent, QuestionTelemetry, UserStats } from '../types';
+import { selectPracticeIds, updateStats, bankMeta, countLearned } from '../lib/spacedRepetition';
 import { Icona } from '../brand/icone/Icona';
 import { cn, shuffleArray } from '../lib/utils';
 import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound } from '../lib/audio';
-import { useAccess } from '../access/context';
+import { provider } from '../access';
 import type { GradeResult, PublicQuestion } from '../access/provider';
 import { Screen } from './ui';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
@@ -15,7 +15,6 @@ interface LearnModeProps {
   category?: string;
   onUpdateAppState: (newState: AppState) => void;
   onExit: () => void;
-  onNeedPass: (reason: PaywallReason) => void;
   /** Se c'è, dopo la risposta compare "Studia la regola" (quando la domanda ha una scheda di teoria). */
   onOpenTheory?: (id: string) => void;
 }
@@ -26,8 +25,7 @@ interface Item { q: PublicQuestion; order: number[]; }
 
 const words = (t: string) => t.split(' ').filter(w => w.trim() !== '');
 
-export default function LearnMode({ appState, mode, category, onUpdateAppState, onExit, onNeedPass, onOpenTheory }: LearnModeProps) {
-  const { provider, pass } = useAccess();
+export default function LearnMode({ appState, mode, category, onUpdateAppState, onExit, onOpenTheory }: LearnModeProps) {
   const [items, setItems] = useState<Item[]>([]);
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [loadKey, setLoadKey] = useState(0);
@@ -54,8 +52,8 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   const [selectedRecallWords, setSelectedRecallWords] = useState<number[]>([]);
   const [showHint, setShowHint] = useState(false);
 
-  // Domande imparate (isLearned: due risposte esatte a distanza di tempo) nel gruppo che l'utente può studiare: prima della sessione si fotografa una volta
-  const gruppoIds = useMemo(() => poolMeta(pass, appState.selectedCorpus ?? 'all').map(m => m.id), [pass, appState.selectedCorpus]);
+  // Domande imparate (isLearned: due risposte esatte a distanza di tempo) su tutto il banco: prima della sessione si fotografa una volta
+  const gruppoIds = useMemo(() => bankMeta().map(m => m.id), []);
   const contaImparate = (st: UserStats) => countLearned(st, gruppoIds);
   const imparatePrima = useRef<number | null>(null);
   if (imparatePrima.current === null) imparatePrima.current = contaImparate(appState.stats);
@@ -69,25 +67,14 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
   const timeLimit = mode === 'blitz' ? 10 : 30;
   const [timeLeft, setTimeLeft] = useState(timeLimit);
 
-  // Senza Pass non si entra nel ripasso sugli errori: lo decide già il menu, qui è una rete di sicurezza
-  const blocked = !pass && mode === 'weakness';
-  const avvisato = useRef(false);
-  useEffect(() => {
-    if (blocked && !avvisato.current) { avvisato.current = true; onNeedPass('errori'); }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blocked]);
-
   // Scelta degli id sul solo indice leggero, poi le domande (senza risposte) dal provider
   useEffect(() => {
-    if (blocked) return;
     let alive = true;
     setLoadState('loading');
     const ids = selectPracticeIds(appStateRef.current.stats, {
       numQuestions: 10,
       mode,
       category,
-      corpus: appStateRef.current.selectedCorpus,
-      pass,
     });
     provider.getQuestions(ids)
       .then(list => {
@@ -106,7 +93,7 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
       .catch(() => { if (alive) setLoadState('error'); });
     return () => { alive = false; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadKey, blocked]);
+  }, [loadKey]);
 
   const questions = useMemo(() => items.map(i => i.q), [items]);
 
@@ -164,8 +151,6 @@ export default function LearnMode({ appState, mode, category, onUpdateAppState, 
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, hasChecked, checking, attempts, loadState]);
-
-  if (blocked) return null;
 
   if (loadState === 'loading') {
     return (

@@ -1,0 +1,728 @@
+[
+ {
+  "id": "q266",
+  "prompt": "Translate 'Quell'uomo è mio padre.'",
+  "options": [
+   "That man is my father.",
+   "This man is my father.",
+   "Those man is my father.",
+   "The man is my father."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Quell'' (far singular) is 'That'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Demonstratives",
+  "core": false,
+  "extraOption": "That men is my father.",
+  "stato": "originale"
+ },
+ {
+  "id": "q267",
+  "prompt": "Translate 'Cosa sono quelle cose?'",
+  "options": [
+   "What are those things?",
+   "What are these things?",
+   "What is that things?",
+   "What are that things?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Quelle' (far plural) is 'those'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Demonstratives",
+  "core": false,
+  "extraOption": "What is those things?",
+  "stato": "originale"
+ },
+ {
+  "id": "q268",
+  "prompt": "Translate 'Preferisco questo vestito.'",
+  "options": [
+   "I prefer this dress.",
+   "I prefer that dress.",
+   "I prefer these dress.",
+   "I prefer those dress."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Questo' (singular, near the speaker) is 'this': 'this dress'; 'these' and 'those' are plural, and 'that' refers to something far away.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Demonstratives",
+  "core": false,
+  "extraOption": "I prefer them dress.",
+  "stato": "originale"
+ },
+ {
+  "id": "q269",
+  "prompt": "Translate 'Conosci quelle persone?'",
+  "options": [
+   "Do you know those people?",
+   "Do you know these people?",
+   "Do you know that people?",
+   "Do you know this people?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Quelle' (far plural) is 'those'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Demonstratives",
+  "core": false,
+  "extraOption": "Do you know them people?",
+  "stato": "originale"
+ },
+ {
+  "id": "q270",
+  "prompt": "Translate 'Questi sono i miei appunti.'",
+  "options": [
+   "These are my notes.",
+   "This are my notes.",
+   "Those are my notes.",
+   "That are my notes."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Questi' (near plural) is 'These'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Demonstratives",
+  "core": true,
+  "extraOption": "Them are my notes.",
+  "stato": "originale"
+ },
+ {
+  "id": "q280",
+  "prompt": "Translate 'Il cane è sotto il tavolo.'",
+  "options": [
+   "The dog is under the table.",
+   "The dog is on the table.",
+   "The dog is at the table.",
+   "The dog is in the table."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Sotto' translates to 'under'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Prepositions of Place",
+  "core": true,
+  "extraOption": "The dog is over the table.",
+  "stato": "originale"
+ },
+ {
+  "id": "q281",
+  "prompt": "Translate 'Sono al cinema.'",
+  "options": [
+   "I am at the cinema.",
+   "I am into the cinema.",
+   "I am on the cinema.",
+   "I am to the cinema."
+  ],
+  "correctIndex": 0,
+  "explanation": "'At' is used for a place where an activity happens (at the cinema, at school); 'into' shows movement, 'on' is for surfaces and 'to' for direction.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Prepositions of Place",
+  "core": false,
+  "extraOption": "I am over the cinema.",
+  "stato": "originale"
+ },
+ {
+  "id": "q282",
+  "prompt": "Translate 'C'è un ragno sul soffitto.'",
+  "options": [
+   "There is a spider on the ceiling.",
+   "There is a spider at the ceiling.",
+   "There is a spider in the ceiling.",
+   "There is a spider under the ceiling."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Sul' for a surface like a ceiling is 'on'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Prepositions of Place",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q283",
+  "prompt": "Translate 'L'ufficio è vicino alla banca.'",
+  "options": [
+   "The office is near the bank.",
+   "The office is in the bank.",
+   "The office is between the bank.",
+   "The office is at the bank."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Vicino a' is 'near' ('next to' means 'accanto a'); 'between' needs two places, and 'in'/'at' mean the office is inside or at the bank.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Prepositions of Place",
+  "core": false,
+  "extraOption": "The office is over the bank.",
+  "stato": "originale"
+ },
+ {
+  "id": "q284",
+  "prompt": "Translate 'Il bambino è tra i suoi genitori.'",
+  "options": [
+   "The child is between his parents.",
+   "The child is among his parents.",
+   "The child is next to his parents.",
+   "The child is in his parents."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Tra' two people is 'between'; 'among' is used for more than two people or things.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Prepositions of Place",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q285",
+  "prompt": "Translate 'Nasconditi dietro la porta.'",
+  "options": [
+   "Hide behind the door.",
+   "Hide under the door.",
+   "Hide next to the door.",
+   "Hide in the door."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Dietro' is 'behind'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Prepositions of Place",
+  "core": false,
+  "extraOption": "Hide in front of the door.",
+  "stato": "originale"
+ },
+ {
+  "id": "q286",
+  "prompt": "Translate 'Metti i vestiti nell'armadio.'",
+  "options": [
+   "Put the clothes in the wardrobe.",
+   "Put the clothes on the wardrobe.",
+   "Put the clothes at the wardrobe.",
+   "Put the clothes to the wardrobe."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Nel' meaning inside an enclosed space is 'in'; 'on' is for surfaces, 'at' for a point and 'to' for direction, not position.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Prepositions of Place",
+  "core": false,
+  "extraOption": "Put the clothes by the wardrobe.",
+  "stato": "originale"
+ },
+ {
+  "id": "q287",
+  "prompt": "Translate 'Ho incontrato Marco alla stazione.'",
+  "options": [
+   "I met Marco at the station.",
+   "I met Marco into the station.",
+   "I met Marco on the station.",
+   "I met Marco to the station."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Alla' for a specific point or place is 'at' ('at the station'); 'into' shows movement inside, and 'on'/'to' are not used here.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Prepositions of Place",
+  "core": false,
+  "extraOption": "I met Marco over the station.",
+  "stato": "originale"
+ },
+ {
+  "id": "q288",
+  "prompt": "Translate 'C'è un giardino dietro la casa.'",
+  "options": [
+   "There is a garden behind the house.",
+   "There is a garden under the house.",
+   "There is a garden in the house.",
+   "There is a garden next to the house."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Dietro' is 'behind'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Prepositions of Place",
+  "core": false,
+  "extraOption": "There is a garden in front of the house.",
+  "stato": "originale"
+ },
+ {
+  "id": "q298",
+  "prompt": "Translate 'Non toccare il mio telefono.'",
+  "options": [
+   "Don't touch my phone.",
+   "Not touch my phone.",
+   "No touch my phone.",
+   "Doesn't touch my phone."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative imperative is formed with 'Don't'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Imperative",
+  "core": false,
+  "extraOption": "Don't to touch my phone.",
+  "stato": "originale"
+ },
+ {
+  "id": "q299",
+  "prompt": "Translate 'Fai attenzione!'",
+  "options": [
+   "Pay attention!",
+   "Do attention!",
+   "Make attention!",
+   "Attention you!"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Fare attenzione' is 'pay attention'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Imperative",
+  "core": false,
+  "extraOption": "Take attention!",
+  "stato": "originale"
+ },
+ {
+  "id": "q300",
+  "prompt": "Translate 'Ascoltami quando parlo.'",
+  "options": [
+   "Listen to me when I speak.",
+   "Listen me when I speak.",
+   "Hear me when I speak.",
+   "Hear to me when I speak."
+  ],
+  "correctIndex": 0,
+  "explanation": "The English verb 'listen' needs 'to' before its object ('listen to me'); 'hear' means 'sentire' and never takes 'to'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Imperative",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q301",
+  "prompt": "Translate 'Non dimenticare le chiavi.'",
+  "options": [
+   "Don't forget your keys.",
+   "Not forget your keys.",
+   "No forget your keys.",
+   "Don't missing your keys."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative command with 'Don't'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Imperative",
+  "core": true,
+  "stato": "originale",
+  "extraOption": "Don't to forget your keys."
+ },
+ {
+  "id": "q302",
+  "prompt": "Translate 'Chiudi la porta, per favore.'",
+  "options": [
+   "Close the door, please.",
+   "Closing the door, please.",
+   "To close the door, please.",
+   "Closes the door, please."
+  ],
+  "correctIndex": 0,
+  "explanation": "L'ordine si fa con la forma base del verbo: 'Close the door, please.'. 'Closing' e 'To close' non sono imperativi e 'Closes' è la terza persona singolare del presente.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Imperative",
+  "core": false,
+  "stato": "rivista",
+  "extraOption": "Closed the door, please."
+ },
+ {
+  "id": "q303",
+  "prompt": "Translate 'Non parlare durante l'esame.'",
+  "options": [
+   "Don't speak during the exam.",
+   "Not speak during the exam.",
+   "Doesn't speak during the exam.",
+   "Don't speaking during the exam."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative imperatives use 'Don't' + base verb ('Don't speak'), not 'Not', 'Doesn't' or 'Don't' + -ing.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Imperative",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "Don't to speak during the exam."
+ },
+ {
+  "id": "q304",
+  "prompt": "Translate 'Aspetta qui un momento.'",
+  "options": [
+   "Wait here a moment.",
+   "Waiting here a moment.",
+   "Wait here a time.",
+   "Waits here a moment."
+  ],
+  "correctIndex": 0,
+  "explanation": "L'imperativo è la forma base: 'Wait here'. 'Waiting' e 'Waits' non sono imperativi, e 'un momento' è 'a moment', non 'a time' (che vuol dire \"una volta\").",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Imperative",
+  "core": false,
+  "stato": "rivista",
+  "extraOption": "Waited here a moment."
+ },
+ {
+  "id": "q305",
+  "prompt": "Translate 'Scrivete i vostri nomi sul foglio.'",
+  "options": [
+   "Write your names on the paper.",
+   "Writing your names on the paper.",
+   "You write your names on the paper.",
+   "To write your names on the paper."
+  ],
+  "correctIndex": 0,
+  "explanation": "Imperative is the same for singular and plural 'you'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Imperative",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "Wrote your names on the paper."
+ },
+ {
+  "id": "q306",
+  "prompt": "Translate 'Non fumare in questa stanza.'",
+  "options": [
+   "Don't smoke in this room.",
+   "Smoke not in this room.",
+   "Not smoke in this room.",
+   "Doesn't smoke in this room."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Don't' + base verb forms the negative imperative ('Don't smoke'); 'Not smoke', 'Smoke not' and 'Doesn't smoke' are not correct imperative forms.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Imperative",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "Don't smoked in this room."
+ },
+ {
+  "id": "q316",
+  "prompt": "Translate 'Cosa hai intenzione di fare?'",
+  "options": [
+   "What are you going to do?",
+   "What will you do?",
+   "What do you do?",
+   "What you are going to do?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Avere intenzione di' (a plan or intention) is expressed with 'be going to' + base verb: 'What are you going to do?'. In questions the verb 'be' comes before the subject ('are you', not 'you are').",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Future: going to",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "What are you going to doing?"
+ },
+ {
+  "id": "q317",
+  "prompt": "Translate 'Non ho intenzione di aspettare tutto il giorno.'",
+  "options": [
+   "I am not going to wait all day.",
+   "I don't go to wait all day.",
+   "I won't to wait all day.",
+   "I am not going to waiting all day."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative 'going to'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Future: going to",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "I am not going wait all day."
+ },
+ {
+  "id": "q318",
+  "prompt": "Translate 'Lui studierà medicina all'università.' (intenzione)",
+  "options": [
+   "He is going to study medicine at university.",
+   "He going to study medicine at university.",
+   "He is going to studying medicine at university.",
+   "He is going study medicine at university."
+  ],
+  "correctIndex": 0,
+  "explanation": "Un'intenzione già decisa si esprime con 'be going to' + forma base: 'is going to study'. Le altre opzioni sbagliano la forma: manca 'is', oppure il verbo dopo 'to' è in -ing, oppure manca 'to'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Future: going to",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q319",
+  "prompt": "Translate 'Abbiamo intenzione di comprare una nuova casa.'",
+  "options": [
+   "We are going to buy a new house.",
+   "We will buy a new house.",
+   "We are going buy a new house.",
+   "We buy a new house."
+  ],
+  "correctIndex": 0,
+  "explanation": "An intention or a decision already made uses 'be going to' + base verb ('We are going to buy'); 'to' cannot be left out.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Future: going to",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "We are going to buying a new house."
+ },
+ {
+  "id": "q320",
+  "prompt": "Translate 'Pioverà a breve.' (guardando il cielo scuro)",
+  "options": [
+   "It is going to rain soon.",
+   "It going to rain soon.",
+   "It is raining soon.",
+   "It rains soon."
+  ],
+  "correctIndex": 0,
+  "explanation": "Una previsione basata su ciò che si vede ora (cielo scuro) usa 'be going to': 'It is going to rain soon'. 'It going to' non ha il verbo 'be', mentre 'It is raining' e 'It rains' non sono previsioni sul futuro.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Future: going to",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q321",
+  "prompt": "Translate 'Non parteciperanno all'incontro.' (intenzione)",
+  "options": [
+   "They aren't going to attend the meeting.",
+   "They not going to attend the meeting.",
+   "They don't attend the meeting.",
+   "They aren't going to attending the meeting."
+  ],
+  "correctIndex": 0,
+  "explanation": "Una negazione che esprime l'intenzione si fa con 'be not going to' + forma base: 'They aren't going to attend'. 'They not going to' non ha il verbo 'be', 'don't attend' è un presente abituale e dopo 'to' non va il verbo in -ing.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Future: going to",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q322",
+  "prompt": "Translate 'Cosa mangerai a cena?' (che programmi hai)",
+  "options": [
+   "What are you going to eat for dinner?",
+   "What are you going eat for dinner?",
+   "What do you eat for dinner?",
+   "What is you going to eat for dinner?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Il suggerimento indica che si parla di programmi già fatti, quindi 'be going to': 'What are you going to eat?'. Manca 'to' in 'going eat', 'is you' non si accorda (con 'you' serve 'are') e 'What do you eat?' parla di abitudine.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Future: going to",
+  "core": true,
+  "stato": "rivista"
+ },
+ {
+  "id": "q323",
+  "prompt": "Translate 'Venderà la sua macchina?' (ha intenzione di)",
+  "options": [
+   "Is she going to sell her car?",
+   "Does she going to sell her car?",
+   "Does she sell her car?",
+   "Is she sell her car?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Una domanda sull'intenzione si fa con 'be' + soggetto + 'going to': 'Is she going to sell her car?'. 'Does' non si combina con 'going to', 'Does she sell' parla di abitudine e dopo 'is' non si può usare la forma base.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Future: going to",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q324",
+  "prompt": "Translate 'Cadrà!' (lo vedi correre sul ghiaccio)",
+  "options": [
+   "He's going to fall!",
+   "He is going fall!",
+   "He falls!",
+   "He falling!"
+  ],
+  "correctIndex": 0,
+  "explanation": "When we predict something from evidence we can see now (he's running on the ice), we use 'be going to' + base verb: 'He's going to fall!'",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Future: going to",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "He's go to fall!"
+ },
+ {
+  "id": "q334",
+  "prompt": "Translate 'Cosa stavi facendo quando ti ho chiamato?'",
+  "options": [
+   "What were you doing when I called you?",
+   "What did you do when I called you?",
+   "What was you doing when I called you?",
+   "What are you doing when I called you?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Question in past continuous, interrupting action in past simple.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Continuous",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "What were you do when I called you?"
+ },
+ {
+  "id": "q335",
+  "prompt": "Translate 'Stavo dormendo quando l'allarme ha suonato.'",
+  "options": [
+   "I was sleeping when the alarm rang.",
+   "I am sleeping when the alarm rang.",
+   "I was sleep when the alarm rang.",
+   "I was sleeping when the alarm ringed."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Stavo dormendo' è l'azione lunga (Past Continuous: was sleeping), 'ha suonato' è l'evento breve che la interrompe (Past Simple: rang). 'Am sleeping' è presente, 'was sleep' manca di -ing e 'ringed' non è il passato di 'ring'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Continuous",
+  "core": true,
+  "stato": "rivista"
+ },
+ {
+  "id": "q336",
+  "prompt": "Translate 'Mentre camminavamo, abbiamo trovato dei soldi.'",
+  "options": [
+   "While we were walking, we found some money.",
+   "While we walked, we were finding some money.",
+   "When we were walking, we were finding some money.",
+   "While we walking, we found some money."
+  ],
+  "correctIndex": 0,
+  "explanation": "'While' + past continuous, then past simple.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Continuous",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q337",
+  "prompt": "Translate 'Lei non stava guardando la TV, stava leggendo.'",
+  "options": [
+   "She wasn't watching TV, she was reading.",
+   "She didn't watching TV, she was reading.",
+   "She wasn't watching TV, she reading.",
+   "She wasn't watch TV, she was reading."
+  ],
+  "correctIndex": 0,
+  "explanation": "Entrambe le azioni sono in corso nel passato, quindi due Past Continuous: 'wasn't watching' e 'was reading'. Le altre opzioni hanno errori di forma: 'didn't watching' mescola ausiliare e -ing, 'she reading' non ha 'was', 'wasn't watch' manca di -ing.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Continuous",
+  "core": false,
+  "stato": "rivista",
+  "extraOption": "She wasn't watched TV, she was reading."
+ },
+ {
+  "id": "q338",
+  "prompt": "Translate 'Mentre cucinavo, lui ascoltava la musica.'",
+  "options": [
+   "While I was cooking, he was listening to music.",
+   "While I was cook, he was listening to music.",
+   "While I cooking, he was listening to music.",
+   "While I was cooking, he were listening to music."
+  ],
+  "correctIndex": 0,
+  "explanation": "Two long actions in progress at the same time in the past both take the Past Continuous (was/were + -ing); with 'he' we use 'was', not 'were'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Continuous",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q339",
+  "prompt": "Translate 'Pioveva forte ieri mattina?'",
+  "options": [
+   "Was it raining hard yesterday morning?",
+   "Did it raining hard yesterday morning?",
+   "Were it raining hard yesterday morning?",
+   "Is it raining hard yesterday morning?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Pioveva' describes an action in progress at a past time, so we use the Past Continuous question 'Was it raining...?'; 'it' takes 'was', and 'did' is never followed by -ing.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Continuous",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "Was it rain hard yesterday morning?"
+ },
+ {
+  "id": "q340",
+  "prompt": "Translate 'Non stavamo andando troppo veloci.'",
+  "options": [
+   "We weren't going too fast.",
+   "We didn't go too fast.",
+   "We wasn't going too fast.",
+   "We aren't going too fast."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative past continuous with 'were'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Continuous",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "We weren't go too fast."
+ },
+ {
+  "id": "q341",
+  "prompt": "Translate 'Cosa pensavi in quel momento?'",
+  "options": [
+   "What were you thinking at that moment?",
+   "What was you thinking at that moment?",
+   "What are you thinking at that moment?",
+   "What did you thinking at that moment?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Cosa pensavi in quel momento' descrive qualcosa che era in corso: 'What were you thinking'. 'Was you' è sbagliato (con you sempre 'were'), 'are you thinking' è presente e 'did you thinking' mescola 'did' con la forma in -ing.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Continuous",
+  "core": false,
+  "stato": "rivista",
+  "extraOption": "What were you think at that moment?"
+ },
+ {
+  "id": "q342",
+  "prompt": "Translate 'Loro ridevano quando sono entrato.'",
+  "options": [
+   "They were laughing when I entered.",
+   "They laughing when I entered.",
+   "They was laughing when I entered.",
+   "They were laugh when I entered."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Ridevano' è lo sfondo (Past Continuous: were laughing), 'sono entrato' è l'evento breve (Past Simple: entered). Le altre opzioni sbagliano la forma: manca 'were', 'was' non si accorda con 'they', 'laugh' manca di -ing.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Continuous",
+  "core": false,
+  "stato": "rivista"
+ }
+]

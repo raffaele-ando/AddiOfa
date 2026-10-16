@@ -3,8 +3,8 @@ import { Icona } from '../../brand/icone/Icona';
 import { playTapSound } from '../../lib/audio';
 
 /** Pulsante d'azione a tutta larghezza: gradiente blu, cerchio bianco con ▶, parola, freccia (concept 14). */
-export default function Cta({ onClick, children, bloccato }: {
-  onClick: () => void; children: ReactNode; bloccato?: boolean;
+export default function Cta({ onClick, children }: {
+  onClick: () => void; children: ReactNode;
 }) {
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }}
@@ -14,7 +14,7 @@ export default function Cta({ onClick, children, bloccato }: {
         <Icona nome="studia" size={22} />
       </span>
       <span className="flex-1 min-w-0 text-[17px] font-semibold leading-tight">{children}</span>
-      {bloccato ? <Icona nome="blocco" size={20} className="shrink-0" titolo="Richiede il Pass" /> : <Icona nome="avanti" size={26} className="shrink-0" />}
+      <Icona nome="avanti" size={26} className="shrink-0" />
     </button>
   );
 }

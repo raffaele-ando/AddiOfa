@@ -1,0 +1,500 @@
+{
+ "q176": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q178": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q180": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q182": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q184": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q187": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q189": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q191": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q193": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q195": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3,
+  "nota": "'none' non standard dopo 'did not buy'"
+ },
+ "q198": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q200": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q202": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0,
+  "nota": "'What time' sarebbe necessario con 'What'; solo 'How' funziona (How do you go = mezzo)"
+ },
+ "q204": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q206": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q209": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q211": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q213": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3,
+  "nota": "'wasn't' darebbe doppia negazione con 'nobody' (non standard)"
+ },
+ "q215": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q226": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q227": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q228": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q229": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q230": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q231": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q232": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q233": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q234": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q244": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q245": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q246": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q247": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q248": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0,
+  "nota": "'myself' grammaticale ma senza senso"
+ },
+ "q249": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q250": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q251": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q252": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q262": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q263": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q264": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q265": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q266": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q267": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q268": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q269": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q270": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q280": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q281": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q282": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q283": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1,
+  "nota": "'between' richiede due punti di riferimento"
+ },
+ "q284": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q285": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q286": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q287": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q288": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q298": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q299": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q300": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q301": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q302": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q303": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q304": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q305": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q306": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q316": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q317": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1,
+  "nota": "'don't go' grammaticalmente possibile ma non ha senso con 'to wait'"
+ },
+ "q318": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q319": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q320": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q321": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q322": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q323": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q324": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q334": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q335": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q336": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q337": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q338": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q339": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q340": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q341": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q342": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ }
+}

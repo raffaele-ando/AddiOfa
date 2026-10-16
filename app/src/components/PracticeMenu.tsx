@@ -2,48 +2,33 @@ import { useState } from 'react';
 import { Pagina, IconaTono, type Tono } from '../screens/extra/ui';
 import { Icona, type NomeIcona } from '../brand/icone/Icona';
 import { playTapSound } from '../lib/audio';
-import { CorpusType, PaywallReason } from '../types';
 import { cn } from '../lib/utils';
-import { useAccess } from '../access/context';
-import { poolMeta } from '../lib/spacedRepetition';
+import { bankMeta } from '../lib/spacedRepetition';
 
 type Modo = 'smart' | 'standard' | 'weakness' | 'blitz' | 'category' | 'recall';
 
 interface PracticeMenuProps {
   onSelectMode: (mode: Modo, category?: string) => void;
   onBack: () => void;
-  /** Il materiale (nucleo o tutto il banco) si sceglie in Impostazioni: qui serve solo a leggere il gruppo attivo. */
-  selectedCorpus?: CorpusType;
-  /** Non più usata (la scelta del materiale è in Impostazioni): resta opzionale perché App.tsx la passa ancora. */
-  onSelectCorpus?: (corpus: CorpusType) => void;
-  onNeedPass: (reason: PaywallReason) => void;
 }
 
 /** Esercizi: un ▶ per la modalità consigliata (intelligente) e le altre come tessere con icona e una parola. «Punti deboli» comprende il ripasso degli errori. */
-export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'all', onNeedPass }: PracticeMenuProps) {
-  const { pass } = useAccess();
+export default function PracticeMenu({ onSelectMode, onBack }: PracticeMenuProps) {
   const [scelta, setScelta] = useState(false);
   const [filtro, setFiltro] = useState<string>('');
 
-  // Senza Pass si studia solo il nucleo gratuito, qualunque sia la scelta salvata
-  const corpus: CorpusType = pass ? selectedCorpus : 'initial';
-  const poolQuestions = poolMeta(pass, corpus);
+  const poolQuestions = bankMeta();
   const categories = Array.from(new Set(poolQuestions.map(q => q.category))).filter(Boolean);
   const levels = Array.from(new Set(poolQuestions.map(q => q.level))).filter(Boolean);
   const topics = Array.from(new Set(poolQuestions.map(q => q.grammarTopic))).filter(Boolean);
 
-  const modi: { id: 'weakness' | 'blitz' | 'recall'; tono: Tono; icona: NomeIcona; nome: string; bloccato?: boolean }[] = [
-    { id: 'weakness', tono: 'basso', icona: 'modo-punti-deboli', nome: 'Punti deboli', bloccato: !pass },
+  const modi: { id: 'weakness' | 'blitz' | 'recall'; tono: Tono; icona: NomeIcona; nome: string }[] = [
+    { id: 'weakness', tono: 'basso', icona: 'modo-punti-deboli', nome: 'Punti deboli' },
     { id: 'blitz', tono: 'medio', icona: 'modo-blitz', nome: 'Blitz' },
     { id: 'recall', tono: 'viola', icona: 'modo-richiamo', nome: 'Richiamo' },
   ];
 
-  const avvia = (id: 'weakness' | 'blitz' | 'recall') => {
-    if (id === 'weakness' && !pass) onNeedPass('errori');
-    else onSelectMode(id);
-  };
-
-  const tessera = 'brand-premibile relative flex min-h-[124px] flex-col items-center justify-center gap-2.5 rounded-[16px] bg-superficie-2 p-3';
+  const tessera = 'brand-premibile flex min-h-[124px] flex-col items-center justify-center gap-2.5 rounded-[16px] bg-superficie-2 p-3';
 
   return (
     <Pagina titolo="Esercizi" onBack={() => { playTapSound(); onBack(); }}>
@@ -54,10 +39,9 @@ export default function PracticeMenu({ onSelectMode, onBack, selectedCorpus = 'a
 
       <div className="mt-4 grid grid-cols-2 gap-[12px]">
         {modi.map(m => (
-          <button key={m.id} type="button" onClick={() => { playTapSound(); avvia(m.id); }} className={tessera}>
+          <button key={m.id} type="button" onClick={() => { playTapSound(); onSelectMode(m.id); }} className={tessera}>
             <IconaTono tono={m.tono} lato={56} className="rounded-[16px]"><Icona nome={m.icona} size={30} /></IconaTono>
             <span className="text-[15px] leading-[20px] font-bold text-testo">{m.nome}</span>
-            {m.bloccato && <span className="absolute right-2.5 top-2.5 text-testo-tenue"><Icona nome="blocco" size={16} titolo="Pass" /></span>}
           </button>
         ))}
         <button type="button" aria-pressed={scelta} onClick={() => { playTapSound(); setScelta(v => !v); }}

@@ -3,10 +3,9 @@ import { cheatSheet } from '../data/cheatSheet';
 import { RichText } from './ui';
 import { Pagina } from '../screens/extra/ui';
 import { Icona } from '../brand/icone/Icona';
-import type { PaywallReason } from '../types';
 
 /** Prontuario: le regole che tornano più spesso. L'argomento è blu (studio), la trappola ha il filo corallo a sinistra: una sola riga di colore per carta. Il testo delle regole è contenuto. */
-export default function CheatSheet({ onBack }: { onBack: () => void; onNeedPass?: (reason: PaywallReason) => void }) {
+export default function CheatSheet({ onBack }: { onBack: () => void }) {
   const [query, setQuery] = useState('');
   const q = query.trim().toLowerCase();
   const rules = q

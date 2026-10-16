@@ -1,0 +1,682 @@
+[
+ {
+  "id": "q456",
+  "prompt": "Translate: 'Se avessi visto il messaggio, ti avrei risposto.'",
+  "options": [
+   "If I had seen the message, I would have replied.",
+   "If I saw the message, I would reply.",
+   "If I would have seen the message, I replied.",
+   "If I had seen the message, I had replied."
+  ],
+  "correctIndex": 0,
+  "explanation": "Standard third conditional structure.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Third Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q462",
+  "prompt": "Translate: 'Sarebbe venuta se avesse avuto tempo.'",
+  "options": [
+   "She would have come if she had had time.",
+   "She would come if she had time.",
+   "She came if she had had time.",
+   "She would have came if she had time."
+  ],
+  "correctIndex": 0,
+  "explanation": "'had had' is the Past Perfect of 'have'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Third Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q466",
+  "prompt": "Translate: 'Il libro è stato scritto nel 1990.'",
+  "options": [
+   "The book was written in 1990.",
+   "The book is written in 1990.",
+   "The book wrote in 1990.",
+   "The book has been written in 1990."
+  ],
+  "correctIndex": 0,
+  "explanation": "Past Simple passive for a completed action in the past.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Passive Voice",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q467",
+  "prompt": "Translate: 'La stanza viene pulita ogni giorno.'",
+  "options": [
+   "The room is cleaned every day.",
+   "The room was cleaned every day.",
+   "The room is being cleaned every day.",
+   "The room cleans every day."
+  ],
+  "correctIndex": 0,
+  "explanation": "Present Simple passive for routines.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Passive Voice",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q471",
+  "prompt": "Translate: 'I biglietti sono già stati venduti.'",
+  "options": [
+   "The tickets have already been sold.",
+   "The tickets has already been sold.",
+   "The tickets have already being sold.",
+   "The tickets have already be sold."
+  ],
+  "correctIndex": 0,
+  "explanation": "Present Perfect passive: have been + past participle.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Passive Voice",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q472",
+  "prompt": "Translate: 'Il problema deve essere risolto subito.'",
+  "options": [
+   "The problem must be solved immediately.",
+   "The problem must solve immediately.",
+   "The problem has to solve immediately.",
+   "The problem must been solved immediately."
+  ],
+  "correctIndex": 0,
+  "explanation": "Modal passive: modal + be + past participle.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Passive Voice",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q478",
+  "prompt": "Translate: 'La mia bicicletta è stata rubata ieri.'",
+  "options": [
+   "My bicycle was stolen yesterday.",
+   "My bicycle is stolen yesterday.",
+   "My bicycle has been stolen yesterday.",
+   "My bicycle stole yesterday."
+  ],
+  "correctIndex": 0,
+  "explanation": "Past Simple passive.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Passive Voice",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q482",
+  "prompt": "Translate: 'Mi ha detto che era stanco.'",
+  "options": [
+   "He told me that he was tired.",
+   "He said me that he was tired.",
+   "He told to me that he was tired.",
+   "He said that he is tired."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Tell' must be followed by an object pronoun (me).",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Reported Speech",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q483",
+  "prompt": "Translate: 'Lei disse che non sapeva la risposta.'",
+  "options": [
+   "She said that she didn't know the answer.",
+   "She told that she didn't know the answer.",
+   "She said that she didn't knew the answer.",
+   "She told me that she hasn't known the answer."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Said' doesn't need an object pronoun.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Reported Speech",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q487",
+  "prompt": "Translate: 'Mi ha chiesto se volessi venire.'",
+  "options": [
+   "He asked me if I wanted to come.",
+   "He asked me do I want to come.",
+   "He said me if I wanted to come.",
+   "He told me if I wanted to come."
+  ],
+  "correctIndex": 0,
+  "explanation": "Reported questions use 'ask' + if + subject + verb.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Reported Speech",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q488",
+  "prompt": "Translate: 'Ha detto che avrebbe chiamato più tardi.'",
+  "options": [
+   "He said that he would call later.",
+   "He said that he would to call later.",
+   "He told that he would call later.",
+   "He said that he would called later."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Would' is the reported version of 'will'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Reported Speech",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q494",
+  "prompt": "Translate: 'Mi ha consigliato di studiare.'",
+  "options": [
+   "He advised me to study.",
+   "He advised to study.",
+   "He said me to study.",
+   "He told to me to study."
+  ],
+  "correctIndex": 0,
+  "explanation": "Advise takes object + to-infinitive.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Reported Speech",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q498",
+  "prompt": "Translate: 'Avevo appena finito di mangiare quando ha bussato.'",
+  "options": [
+   "I had just finished eating when he knocked.",
+   "I had just finish eating when he knocked.",
+   "I have just finished eating when he knocked.",
+   "I had just finished to eat when he knocked."
+  ],
+  "correctIndex": 0,
+  "explanation": "Past perfect + just for an action completed moments before another past action.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Past Perfect",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q499",
+  "prompt": "Translate: 'Non avevo mai visto quel film prima di ieri.'",
+  "options": [
+   "I had never seen that movie before yesterday.",
+   "I had never saw that movie before yesterday.",
+   "I have never seen that movie before yesterday.",
+   "I hadn't never seen that movie before yesterday."
+  ],
+  "correctIndex": 0,
+  "explanation": "Past perfect + never for experiences before a specific past point.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Past Perfect",
+  "core": true,
+  "stato": "rivista"
+ },
+ {
+  "id": "q503",
+  "prompt": "Translate: 'Ero arrabbiato perché avevo perso il portafoglio.'",
+  "options": [
+   "I was angry because I had lost my wallet.",
+   "I was angry because I was lost my wallet.",
+   "I was angry because I have lost my wallet.",
+   "I was angry because I had lose my wallet."
+  ],
+  "correctIndex": 0,
+  "explanation": "Cause and effect in the past.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Past Perfect",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q504",
+  "prompt": "Translate: 'Avevano vissuto lì per dieci anni prima di trasferirsi.'",
+  "options": [
+   "They had lived there for ten years before moving.",
+   "They had live there for ten years before moving.",
+   "They have lived there for ten years before moving.",
+   "They had lived there since ten years before moving."
+  ],
+  "correctIndex": 0,
+  "explanation": "Duration before a past action.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Past Perfect",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q510",
+  "prompt": "Translate: 'La festa era già finita quando siamo arrivati.'",
+  "options": [
+   "The party had already ended when we arrived.",
+   "The party had already end when we arrived.",
+   "The party has already ended when we arrived.",
+   "The party had already ending when we arrived."
+  ],
+  "correctIndex": 0,
+  "explanation": "Past Perfect with 'already'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Past Perfect",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q514",
+  "prompt": "Translate: 'Abitavamo a Londra quando ero piccolo.'",
+  "options": [
+   "We used to live in London when I was a kid.",
+   "We used to lived in London when I was a kid.",
+   "We are used to live in London when I was a kid.",
+   "We use to live in London when I was a kid."
+  ],
+  "correctIndex": 0,
+  "explanation": "Used to + infinitive.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Used to",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q515",
+  "prompt": "Translate: 'Non fumava, ma ora fuma un pacchetto al giorno.'",
+  "options": [
+   "He didn't use to smoke, but now he smokes a pack a day.",
+   "He didn't used to smoke, but now he smokes a pack a day.",
+   "He wasn't used to smoke, but now he smokes a pack a day.",
+   "He hasn't used to smoke, but now he smokes a pack a day."
+  ],
+  "correctIndex": 0,
+  "explanation": "The negative of 'used to' is 'didn't use to' (no -d after 'didn't', because 'did' already shows the past); 'un pacchetto al giorno' is 'a pack a day'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Used to",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q519",
+  "prompt": "Translate: 'Andavamo al mare ogni estate.'",
+  "options": [
+   "We used to go to the sea every summer.",
+   "We use to go to the sea every summer.",
+   "We were used to go to the sea every summer.",
+   "We had gone to the sea every summer."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Used to' + base verb describes a repeated action in the past that doesn't happen now ('andavamo' = we used to go).",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Used to",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q520",
+  "prompt": "Translate: 'Aveva i capelli lunghi, vero?'",
+  "options": [
+   "She used to have long hair, didn't she?",
+   "She used to have long hair, doesn't she?",
+   "She used to had long hair, didn't she?",
+   "She use to have long hair, didn't she?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Question tag for used to is 'didn't'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Used to",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q526",
+  "prompt": "Translate: 'Prima non mi piaceva la verdura.'",
+  "options": [
+   "I didn't use to like vegetables.",
+   "I didn't used to like vegetables.",
+   "I wasn't used to like vegetables.",
+   "I hadn't used to like vegetables."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative past state.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Used to",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q530",
+  "prompt": "Translate: 'Siete italiani, vero?'",
+  "options": [
+   "You are Italian, aren't you?",
+   "You are Italian, isn't it?",
+   "You are Italian, don't you?",
+   "You are Italian, are you?"
+  ],
+  "correctIndex": 0,
+  "explanation": "The tag must match the subject (you) and auxiliary (are).",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Question Tags",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q531",
+  "prompt": "Translate: 'Non hai visto il film, vero?'",
+  "options": [
+   "You haven't seen the movie, have you?",
+   "You haven't seen the movie, haven't you?",
+   "You didn't see the movie, have you?",
+   "You haven't seen the movie, did you?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Present perfect negative -> affirmative 'have' tag.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Question Tags",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q535",
+  "prompt": "Translate: 'Fa freddo oggi, no?'",
+  "options": [
+   "It's cold today, isn't it?",
+   "It's cold today, is it?",
+   "It's cold today, doesn't it?",
+   "It's cold today, wasn't it?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Verb to be -> isn't.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Question Tags",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q536",
+  "prompt": "Translate: 'Lui non sa nuotare, vero?'",
+  "options": [
+   "He can't swim, can he?",
+   "He can't swim, can't he?",
+   "He doesn't know to swim, doesn't he?",
+   "He can't swim, does he?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative can't -> affirmative can.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Question Tags",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q542",
+  "prompt": "Translate: 'Tua sorella vive qui, vero?'",
+  "options": [
+   "Your sister lives here, doesn't she?",
+   "Your sister lives here, isn't she?",
+   "Your sister lives here, doesn't it?",
+   "Your sister lives here, don't she?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Present simple action verb -> doesn't.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Question Tags",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q546",
+  "prompt": "Translate: 'Deve essere tardi, è già buio.'",
+  "options": [
+   "It must be late, it's already dark.",
+   "It can be late, it's already dark.",
+   "It may to be late, it's already dark.",
+   "It should be late, it's already dark."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Must' + base verb is used for a logical deduction based on evidence (it's already dark); modals are never followed by 'to'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Modals of Deduction",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q547",
+  "prompt": "Translate: 'Non può essere vero!'",
+  "options": [
+   "It can't be true!",
+   "It mustn't be true!",
+   "It shouldn't be true!",
+   "It might not be true!"
+  ],
+  "correctIndex": 0,
+  "explanation": "Can't is the opposite of must for deductions.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Modals of Deduction",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q551",
+  "prompt": "Translate: 'Potrebbe piovere più tardi.'",
+  "options": [
+   "It might rain later.",
+   "It must rain later.",
+   "It can rain later.",
+   "It will rain later."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Might' or 'could' indicates possibility.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Modals of Deduction",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q552",
+  "prompt": "Translate: 'Quello dev'essere il tuo nuovo capo.'",
+  "options": [
+   "That must be your new boss.",
+   "That can't be your new boss.",
+   "That must to be your new boss.",
+   "That musts be your new boss."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Must' + base verb ('must be') expresses a logical deduction we are almost sure about ('dev'essere'); modals are never followed by 'to'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Modals of Deduction",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q558",
+  "prompt": "Translate: 'Questa non può essere la casa giusta.'",
+  "options": [
+   "This can't be the right house.",
+   "This mustn't be the right house.",
+   "This shouldn't be the right house.",
+   "This wouldn't be the right house."
+  ],
+  "correctIndex": 0,
+  "explanation": "Can't for negative deduction.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Modals of Deduction",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q567",
+  "prompt": "Translate: 'Non riesco a fare a meno di ridere quando sento quella barzelletta.'",
+  "options": [
+   "I can't help laughing when I hear that joke.",
+   "I can't help to laugh when I hear that joke.",
+   "I can't stop to laugh when I hear that joke.",
+   "I can't avoid to laugh when I hear that joke."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Can't help + -ing' is a fixed idiom meaning unable to prevent yourself from doing something.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Gerunds vs Infinitives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q568",
+  "prompt": "Translate: 'È inutile piangere sul latte versato.'",
+  "options": [
+   "It's no use crying over spilled milk.",
+   "It's no use cry over spilled milk.",
+   "It's not useful crying on spilled milk.",
+   "It has no use to cry on spilled milk."
+  ],
+  "correctIndex": 0,
+  "explanation": "'It's no use + -ing' is an idiomatic structure followed by the gerund.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Gerunds vs Infinitives",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q575",
+  "prompt": "Translate: 'Non ho molti compiti per domani.'",
+  "options": [
+   "I don't have much homework for tomorrow.",
+   "I don't have many homeworks for tomorrow.",
+   "I don't have many homework for tomorrow.",
+   "I haven't much homeworks for tomorrow."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Homework' is uncountable in English, so we use 'much homework' and never 'homeworks'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Quantifiers",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q587",
+  "prompt": "Translate: 'Te lo dirò non appena lo saprò.'",
+  "options": [
+   "I will tell you as soon as I know.",
+   "I will tell you as soon as I will know.",
+   "I tell you as soon as I will know.",
+   "I will tell to you as soon as I know."
+  ],
+  "correctIndex": 0,
+  "explanation": "Time clause rule: 'as soon as I know' (Present Simple, never 'will know').",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Present Simple",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q597",
+  "prompt": "Translate: 'Mio fratello maggiore vive a Londra.'",
+  "options": [
+   "My elder brother lives in London.",
+   "My elder brother living in London.",
+   "My more old brother lives in London.",
+   "My eldest brother live in London."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Elder' (like the more common 'older') describes the older of two family members and is used only before a noun ('my elder brother'). With 'brother' the verb needs the third person -s ('lives').",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q601",
+  "prompt": "Translate: 'Ti sei abituato al clima freddo?'",
+  "options": [
+   "Have you got used to the cold weather?",
+   "Did you use to the cold weather?",
+   "Have you used to the cold weather?",
+   "Did you get use to cold weather?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Get used to + noun' expresses becoming accustomed to a condition ('Have you got used to...?'); 'use to' without 'get' or 'be' cannot be followed by a noun.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Used to",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q606",
+  "prompt": "Translate: 'Londra, che è la capitale del Regno Unito, ha molti musei gratuiti.'",
+  "options": [
+   "London, which is the capital of the UK, has many free museums.",
+   "London, that is the capital of the UK, has many free museums.",
+   "London, where is the capital of the UK, has many free museums.",
+   "London, what is the capital of the UK, has many free museums."
+  ],
+  "correctIndex": 0,
+  "explanation": "In non-defining relative clauses (between commas), we must use 'which' for things, never 'that'; 'where' and 'what' are not relative pronouns for a subject here.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Relative Clauses",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q620",
+  "prompt": "Choose the correct sentence.",
+  "options": [
+   "Look! The children playing in the garden.",
+   "Look! The children is playing in the garden.",
+   "Look! The children are playing in the garden.",
+   "Look! The children plays in the garden."
+  ],
+  "correctIndex": 2,
+  "explanation": "For an action happening now, use 'be' + -ing. With the plural 'children', use 'are'.",
+  "category": "Grammatica",
+  "level": "A1",
+  "grammarTopic": "Present Continuous",
+  "core": false,
+  "stato": "riscritta"
+ }
+]

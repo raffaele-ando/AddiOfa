@@ -1,7 +1,6 @@
-// Genera, da contenuti/, i tre file che usa il resto del progetto:
-//   app/src/data/questions.ts   (banco domande, senza le duplicate)
+// Genera, da contenuti/, i due file che usa l'app (sito statico, nessun server):
+//   app/src/data/questions.ts   (banco domande, senza le duplicate: tutte aperte, nessun «nucleo»)
 //   app/src/data/theory.ts      (schede di teoria dei 31 argomenti)
-//   pass/seed.sql               (INSERT OR REPLACE per la tabella D1 `questions`)
 // Uso: node contenuti/strumenti/genera.mjs [--escludi-da-riscrivere]
 //   --escludi-da-riscrivere: lascia fuori le domande con stato 'da-riscrivere' (per la pubblicazione, quando la provenienza non è chiarita)
 import fs from 'node:fs';
@@ -38,28 +37,11 @@ const finali = incluse.map((q) => {
   };
   const t = teoriaDi.get(q.grammarTopic);
   if (t) out.theoryId = t;
-  if (q.extraOption) out.extraOption = q.extraOption;
   return out;
 });
-const nucleo = incluse.filter((q) => q.core).map((q) => q.id);
 
 // ---------- questions.ts ----------
-const ts = `${INTESTAZIONE}import type { Question, CorpusType } from '../types';
-
-/** Numero di domande del nucleo gratuito (core: true in contenuti/domande/). */
-export const INITIAL_CORPUS_COUNT = ${nucleo.length};
-
-/** Id delle domande del nucleo gratuito. */
-const CORE_IDS: ReadonlySet<string> = new Set(${JSON.stringify(nucleo)});
-
-export const isCoreId = (id: string): boolean => CORE_IDS.has(id);
-
-export const getQuestionsByCorpus = (corpus: CorpusType = 'all'): Question[] => {
-  if (corpus === 'initial') {
-    return questions.filter((q) => CORE_IDS.has(q.id));
-  }
-  return questions;
-};
+const ts = `${INTESTAZIONE}import type { Question } from '../types';
 
 export const questions: Question[] = ${JSON.stringify(finali, null, 2)};
 `;
@@ -119,23 +101,6 @@ export const getTheoryTopic = (id: string): TheoryTopic | undefined => theoryTop
 `;
 fs.writeFileSync(path.join(RADICE, 'app/src/data/theory.ts'), tipi);
 
-// ---------- seed.sql ----------
-const sql = (v) => (v === undefined || v === null ? 'NULL' : typeof v === 'number' ? String(v) : `'${String(v).replace(/'/g, "''")}'`);
-const righe = [
-  '-- GENERATO da contenuti/ con npm run contenuti: non modificare a mano.',
-  `-- ${finali.length} domande, ${nucleo.length} nel nucleo gratuito.`,
-];
-for (const q of finali) {
-  const valori = [
-    sql(q.id), sql(q.prompt), sql(JSON.stringify(q.options)), sql(q.extraOption), String(q.correctIndex),
-    sql(q.explanation), sql(q.theoryId), sql(q.category), sql(q.level), sql(q.grammarTopic), nucleo.includes(q.id) ? '1' : '0',
-  ];
-  righe.push(`INSERT OR REPLACE INTO questions (id, prompt, options, extra_option, correct_index, explanation_it, theory_id, category, level, grammar_topic, core) VALUES (${valori.join(', ')});`);
-}
-fs.mkdirSync(path.join(RADICE, 'pass'), { recursive: true });
-fs.writeFileSync(path.join(RADICE, 'pass/seed.sql'), righe.join('\n') + '\n');
-
 const esclusi = tutte.length - incluse.length;
-console.log(`questions.ts: ${finali.length} domande (${esclusi} escluse: duplicate${escludiSospette ? ' e da riscrivere' : ''}), nucleo ${nucleo.length}`);
+console.log(`questions.ts: ${finali.length} domande (${esclusi} escluse: duplicate${escludiSospette ? ' e da riscrivere' : ''})`);
 console.log(`theory.ts: ${topics.length} argomenti, ${topics.filter((t) => t.pronta).length} schede pronte`);
-console.log(`seed.sql: ${finali.length} righe`);

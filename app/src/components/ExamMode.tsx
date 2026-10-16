@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ExamHistory, ExamQuestionLog, QuestionClickEvent, CorpusType, PaywallReason } from '../types';
+import { ExamHistory, ExamQuestionLog, QuestionClickEvent } from '../types';
 import { cn, errorCode } from '../lib/utils';
 import { playTapSound, playVictorySound } from '../lib/audio';
 import { Icona } from '../brand/icone/Icona';
@@ -7,10 +7,9 @@ import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 import { Screen, TopBar } from './ui';
 import ConfirmDialog from './ConfirmDialog';
 import EsitoSimulazione from './esito/EsitoSimulazione';
-import { useAccess } from '../access/context';
-import { canStartSim } from '../access/entitlement';
+import { provider } from '../access';
 import type { ExamResult, ExamSession, PublicQuestion } from '../access/provider';
-import { FORMATS, type ExamFormat, type FormatId } from '../config/offer';
+import { EXAM } from '../config/offer';
 
 interface ExamModeProps {
   onComplete: (
@@ -19,30 +18,23 @@ interface ExamModeProps {
     questionResults?: Record<string, 'correct' | 'incorrect' | 'omitted'>
   ) => void;
   onExit: () => void;
-  onNeedPass: (reason: PaywallReason) => void;
   /** Se c'è, sotto una domanda sbagliata compare "Studia la regola". */
   onOpenTheory?: (id: string) => void;
   /** Quante risposte entrano nella stima (diagnostico + simulazioni): serve al foglio "Come viene calcolata la stima" dell'esito. Facoltativa. */
   risposteStima?: number;
-  /** Non più usato: la simulazione prende le domande dal formato scelto. Resta perché App lo passa ancora. */
-  corpus?: CorpusType;
 }
 
 type Phase = 'select' | 'starting' | 'running' | 'submitting' | 'submitError' | 'done';
 
-// Solo il test di recupero LinguaViva: il TENG resta dormiente nel codice e nel Worker, non si offre. Con un solo formato non c'è nulla da scegliere:
-// la prova parte da sola (la fase «select» resta solo come stato di attesa dell'avvio, con il lucchetto o l'errore se non parte).
-const FORMATO_UNICO: FormatId = 'ente';
-
+// Un solo formato (EXAM: 30 domande, 15 minuti, soglia 25): non c'è nulla da scegliere e la prova parte da sola
+// (la fase «select» resta solo come stato di attesa dell'avvio, con l'errore se non parte).
 function messaggioErrore(e: unknown): string {
   const code = errorCode(e);
   if (/network|fetch|failed to|offline/i.test(code)) return 'Nessuna connessione. Riprova.';
   return 'Qualcosa è andato storto. Riprova.';
 }
 
-export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory, risposteStima }: ExamModeProps) {
-  const { provider, entitlement, simsDone, track } = useAccess();
-  const bloccata = !canStartSim(entitlement, FORMATO_UNICO, simsDone);
+export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteStima }: ExamModeProps) {
 
   const [phase, setPhase] = useState<Phase>('select');
   const [error, setError] = useState<string | null>(null);
@@ -72,33 +64,29 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
     return () => { aliveRef.current = false; };
   }, []);
 
-  // La prova parte da sola; se non si può (limite gratuito finito) si apre il Pass e resta il lucchetto.
+  // La prova parte da sola.
   const partito = useRef(false);
   useEffect(() => {
     if (partito.current) return;
     partito.current = true;
-    if (!bloccata) void startFormat(FORMATO_UNICO);
+    void avvia();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const format: ExamFormat | null = session ? FORMATS[session.format] : null;
+  const format = session ? EXAM : null;
   const questions: PublicQuestion[] = session?.questions ?? [];
 
   // ---- Avvio
-  const startFormat = async (id: FormatId, rifai = false) => {
+  const avvia = async (rifai = false) => {
     if (phase !== 'select' && !(rifai && phase === 'done')) return;
-    if (!canStartSim(entitlement, id, simsDone)) {
-      onNeedPass(id === 'teng' ? 'teng' : 'simulazione');
-      return;
-    }
     setError(null);
     setResult(null);
     setPhase('starting');
     try {
-      const s = await provider.startExam(id);
+      const s = await provider.startExam();
       if (!aliveRef.current) return;
       if (!s.questions || s.questions.length === 0) throw new Error('sessione_vuota');
-      const f = FORMATS[s.format ?? id];
+      const f = EXAM;
       const now = Date.now();
       startedAtRef.current = now;
       deadlineRef.current = now + f.minutes * 60 * 1000;
@@ -115,10 +103,9 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
       setTimeLeft(f.minutes * 60);
       setSession(s);
       setPhase('running');
-      track({ name: 'sim_started', format: s.format ?? id });
     } catch (e) {
       if (!aliveRef.current) return;
-      setError(errorCode(e).includes('formato_non_disponibile') ? 'Formato non disponibile.' : messaggioErrore(e));
+      setError(messaggioErrore(e));
       setPhase('select');
     }
   };
@@ -213,7 +200,6 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
     }
 
     if (res.passed) playVictorySound();
-    track({ name: 'sim_done', format: session.format, passed: res.passed });
     setResult(res);
     setPhase('done');
 
@@ -227,7 +213,6 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
       questionLogs,
       answers: answered,
       questionIds: session.questions.map(q => q.id),
-      format: session.format,
     }, categoryUpdates, questionResults);
   };
 
@@ -281,9 +266,9 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
   );
 
   // ================== Avvio (nessuna scelta: un solo formato) ==================
-  // Preparo le domande: solo il caricamento. Se non parte, l'icona dice perché (lucchetto = serve il Pass, avviso = errore) e un pulsante.
+  // Preparo le domande: solo il caricamento. Se non parte, l'icona di avviso e un pulsante per riprovare.
   if (phase === 'select' || phase === 'starting') {
-    const mostraStato = phase === 'select' && (bloccata || !!error);
+    const mostraStato = phase === 'select' && !!error;
     return (
       <Screen>
         <TopBar onBack={onExit} />
@@ -292,14 +277,14 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
             <div role="status" aria-label="Preparo le domande"><IllustrazioneAnimata nome="attesa-caricamento" lato={110} /></div>
           ) : (
             <div className="flex w-full max-w-xs flex-col items-center gap-4">
-              <span aria-hidden className={cn('grid h-16 w-16 place-items-center rounded-full', error ? 'bg-basso-tinta text-basso-numero' : 'bg-azione-tinta text-azione-scuro')}>
-                <Icona nome={error ? 'stato-attenzione' : 'blocco'} size={30} />
+              <span aria-hidden className="grid h-16 w-16 place-items-center rounded-full bg-basso-tinta text-basso-numero">
+                <Icona nome="stato-attenzione" size={30} />
               </span>
               {error && <p role="alert" className="text-[15px] leading-[22px] font-bold text-testo">{error}</p>}
-              <button type="button" onClick={() => { playTapSound(); if (bloccata) onNeedPass('simulazione'); else void startFormat(FORMATO_UNICO); }}
-                aria-label={bloccata ? 'Altre simulazioni con il Pass' : 'Riprova'}
+              <button type="button" onClick={() => { playTapSound(); void avvia(); }}
+                aria-label="Riprova"
                 className="flex h-[54px] w-full items-center justify-center rounded-2xl bg-azione text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
-                <Icona nome={bloccata ? 'pass' : 'riprova'} size={26} />
+                <Icona nome="riprova" size={26} />
               </button>
             </div>
           )}
@@ -352,8 +337,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
           onExit={onExit}
           onOpenTheory={onOpenTheory}
           risposteStima={risposteStima}
-          retryLocked={!canStartSim(entitlement, format.id, simsDone)}
-          onRetry={() => void startFormat(format.id, true)}
+          onRetry={() => void avvia(true)}
         />
         {dialog}
       </>

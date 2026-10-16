@@ -1,0 +1,710 @@
+[
+ {
+  "id": "q352",
+  "prompt": "Translate 'Dovresti mangiare più verdure.'",
+  "options": [
+   "You should eat more vegetables.",
+   "You must eat more vegetables.",
+   "You have to eat more vegetables.",
+   "You shouldn't eat more vegetables."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Should' + base verb gives advice ('Dovresti' = 'You should'); 'must' and 'have to' express obligation, not advice.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Modals of Obligation and Advice",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "You should to eat more vegetables."
+ },
+ {
+  "id": "q353",
+  "prompt": "Translate 'Non devi per forza venire se sei stanco.'",
+  "options": [
+   "You don't have to come if you're tired.",
+   "You mustn't come if you're tired.",
+   "You shouldn't come if you're tired.",
+   "You haven't to come if you're tired."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Don't have to' means it isn't necessary (lack of obligation); 'mustn't' would mean it is forbidden.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Modals of Obligation and Advice",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "You don't must come if you're tired."
+ },
+ {
+  "id": "q354",
+  "prompt": "Translate 'Non devi assolutamente toccare quel filo!'",
+  "options": [
+   "You mustn't touch that wire!",
+   "You don't have to touch that wire!",
+   "You shouldn't touch that wire!",
+   "You haven't to touch that wire!"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Mustn't' expresses a strong prohibition ('Non devi assolutamente'); 'don't have to' only means it isn't necessary.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Modals of Obligation and Advice",
+  "core": true,
+  "stato": "originale",
+  "extraOption": "You not must touch that wire!"
+ },
+ {
+  "id": "q355",
+  "prompt": "Translate 'Lui deve lavorare fino a tardi oggi.' (obbligo esterno)",
+  "options": [
+   "He has to work late today.",
+   "He should work late today.",
+   "He have to work late today.",
+   "He musts work late today."
+  ],
+  "correctIndex": 0,
+  "explanation": "External obligation with 'has to'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Modals of Obligation and Advice",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q356",
+  "prompt": "Translate 'Non dovresti bere così tanto caffè.'",
+  "options": [
+   "You shouldn't drink so much coffee.",
+   "You mustn't drink so much coffee.",
+   "You don't have to drink so much coffee.",
+   "You haven't to drink so much coffee."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Shouldn't' + base verb gives negative advice ('Non dovresti'); 'mustn't' would be a prohibition, not advice.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Modals of Obligation and Advice",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "You shouldn't to drink so much coffee."
+ },
+ {
+  "id": "q357",
+  "prompt": "Translate 'Devo togliermi le scarpe?'",
+  "options": [
+   "Do I have to take off my shoes?",
+   "Must I to take off my shoes?",
+   "Do I must take off my shoes?",
+   "Have I to take off my shoes?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Questions about rules or obligation use 'Do I have to' + base verb; 'must' is never followed by 'to' or used with 'do', and 'Have I to' is not correct.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Modals of Obligation and Advice",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "Do I have take off my shoes?"
+ },
+ {
+  "id": "q358",
+  "prompt": "Translate 'Non hai bisogno di pagare, è gratis.'",
+  "options": [
+   "You don't have to pay, it's free.",
+   "You mustn't pay, it's free.",
+   "You shouldn't pay, it's free.",
+   "You haven't to pay, it's free."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Don't have to' means there is no obligation (it's free, so paying isn't necessary); 'mustn't' would mean that paying is forbidden.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Modals of Obligation and Advice",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "You not have to pay, it's free."
+ },
+ {
+  "id": "q359",
+  "prompt": "Translate 'Cosa dovrei fare?'",
+  "options": [
+   "What should I do?",
+   "What must I do?",
+   "What have I to do?",
+   "What do I do?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Should' is used to ask for advice: 'What should I do?' ('Cosa dovrei fare?').",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Modals of Obligation and Advice",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q360",
+  "prompt": "Translate 'Non devi dire niente a nessuno, è un segreto!'",
+  "options": [
+   "You mustn't tell anyone, it's a secret!",
+   "You don't have to tell anyone, it's a secret!",
+   "You shouldn't tell anyone, it's a secret!",
+   "You haven't to tell anyone, it's a secret!"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Mustn't' expresses prohibition: telling anyone is not allowed because it's a secret. 'Don't have to' would only mean it isn't necessary.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Modals of Obligation and Advice",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q370",
+  "prompt": "Translate 'Ha risposto alla domanda velocemente.'",
+  "options": [
+   "He answered the question quickly.",
+   "He answered the question quickily.",
+   "He answered the question fastly.",
+   "He answered the question quickness."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Velocemente' modifica il verbo, quindi serve l'avverbio 'quickly' (aggettivo quick + -ly). 'Quickily' ha l'ortografia sbagliata, 'fastly' non esiste ('fast' ha già la forma di avverbio) e 'quickness' è un nome.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Adverbs of Manner",
+  "core": true,
+  "stato": "rivista",
+  "extraOption": "He answered the question with quick."
+ },
+ {
+  "id": "q371",
+  "prompt": "Translate 'Canta davvero bene.'",
+  "options": [
+   "She sings really well.",
+   "She sings really goodly.",
+   "She sing really well.",
+   "She is sings really well."
+  ],
+  "correctIndex": 0,
+  "explanation": "Con il verbo 'sings' si usa l'avverbio 'well' (bene). 'Goodly' non esiste, 'She sing' non concorda (serve 'sings' con 'she') e 'is sings' mescola due forme verbali.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Adverbs of Manner",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q372",
+  "prompt": "Translate 'Hanno lavorato duramente tutto il giorno.'",
+  "options": [
+   "They worked hard all day.",
+   "They worked hardly all day.",
+   "They worked difficultly all day.",
+   "They worked heavy all day."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Duramente' (con fatica) is 'hard'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Adverbs of Manner",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q373",
+  "prompt": "Translate 'Per favore, parla lentamente.'",
+  "options": [
+   "Please speak slowly.",
+   "Please speak slowness.",
+   "Please speak slowlier.",
+   "Please speak slowingly."
+  ],
+  "correctIndex": 0,
+  "explanation": "Dopo 'speak' serve un avverbio: 'slowly' (aggettivo slow + -ly). 'Slowness' è un nome, 'slowlier' e 'slowingly' non esistono.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Adverbs of Manner",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q374",
+  "prompt": "Translate 'Ha chiuso la porta silenziosamente.'",
+  "options": [
+   "He closed the door quietly.",
+   "He closed the door quietness.",
+   "He closed the door quietlyly.",
+   "He closed the door quietily."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Closed' è un verbo, quindi serve un avverbio: 'quietly'. 'Quietness' è un nome, 'quietlyly' ha il suffisso -ly doppio e 'quietily' ha l'ortografia sbagliata.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Adverbs of Manner",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q375",
+  "prompt": "Translate 'Hanno risolto il problema facilmente.'",
+  "options": [
+   "They solved the problem easily.",
+   "They solved the problem easy.",
+   "They solved the problem with easy.",
+   "They solved the problem easier."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Facilmente' is 'easily'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Adverbs of Manner",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q376",
+  "prompt": "Translate 'Guida sempre con molta attenzione (attentamente).'",
+  "options": [
+   "He always drives carefully.",
+   "He always drives careful.",
+   "He always drives care.",
+   "He always drives with careful."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Attentamente' is 'carefully'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Adverbs of Manner",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q377",
+  "prompt": "Translate 'L'insegnante ha spiegato la regola chiaramente.'",
+  "options": [
+   "The teacher explained the rule clearly.",
+   "The teacher explained the rule clear.",
+   "The teacher explained the rule cleary.",
+   "The teacher explained the rule clearing."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Chiaramente' is 'clearly'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Adverbs of Manner",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q378",
+  "prompt": "Translate 'Ho capito perfettamente.'",
+  "options": [
+   "I understood perfectly.",
+   "I understood perfect.",
+   "I understood perfection.",
+   "I understood perfectlyly."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Perfettamente' is 'perfectly'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Adverbs of Manner",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "I understood perfectest."
+ },
+ {
+  "id": "q380",
+  "prompt": "Translate 'Se fossi in te, studierei di più.'",
+  "options": [
+   "If I am you, I will study more.",
+   "If I were you, I would study more.",
+   "If I was you, I study more.",
+   "If I would be you, I studied more."
+  ],
+  "correctIndex": 1,
+  "explanation": "In the Second Conditional, 'were' is typically used for all subjects in the 'if' clause (If I were you).",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Second Conditional",
+  "core": true,
+  "stato": "originale",
+  "extraOption": "If I were you, I would studying more."
+ },
+ {
+  "id": "q382",
+  "prompt": "Translate 'Se fossimo partiti prima, non avremmo perso il treno.'",
+  "options": [
+   "If we left earlier, we wouldn't miss the train.",
+   "If we had left earlier, we wouldn't have missed the train.",
+   "If we would leave earlier, we hadn't missed the train.",
+   "If we have left earlier, we didn't miss the train."
+  ],
+  "correctIndex": 1,
+  "explanation": "Third conditional structure for regrets about the past.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Third Conditional",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "If we had left earlier, we wouldn't missed the train."
+ },
+ {
+  "id": "q384",
+  "prompt": "Translate 'La casa viene costruita proprio ora.'",
+  "options": [
+   "The house is built right now.",
+   "The house builds right now.",
+   "The house is being built right now.",
+   "The house has been built right now."
+  ],
+  "correctIndex": 2,
+  "explanation": "Present Continuous Passive requires 'is/are being + past participle'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Passive Voice",
+  "core": false,
+  "stato": "originale",
+  "extraOption": "is been built"
+ },
+ {
+  "id": "q385",
+  "prompt": "Change to reported speech: He said, 'I am tired.'",
+  "options": [
+   "He said that he were tired.",
+   "He said that I was tired.",
+   "He said that he was tired.",
+   "He said that he is being tired."
+  ],
+  "correctIndex": 2,
+  "explanation": "Nel discorso indiretto, dopo 'said' il verbo fa un passo indietro: 'am' diventa 'was', e il pronome segue chi parla: 'he was tired'. 'I was tired' ha il pronome sbagliato, 'he were' non concorda e 'is being tired' non è un tempo adatto.",
+  "category": "Grammatica",
+  "level": "B1",
+  "grammarTopic": "Reported Speech",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q386",
+  "prompt": "Change to reported speech: 'I will call you,' she told me.",
+  "options": [
+   "She told me she would calling me.",
+   "She told me she would call me.",
+   "She told me I would call her.",
+   "She told me she called me."
+  ],
+  "correctIndex": 1,
+  "explanation": "Nel discorso indiretto 'will' diventa 'would' (seguito dalla forma base) e il pronome 'I' diventa 'she', mentre 'you' diventa 'me': 'she would call me'. 'Would calling' è sbagliato, 'I would call her' scambia le persone e 'called' trasforma il futuro in passato.",
+  "category": "Grammatica",
+  "level": "B1",
+  "grammarTopic": "Reported Speech",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q388",
+  "prompt": "Translate 'Avevo già mangiato quando mi hai chiamato.'",
+  "options": [
+   "I had already eat when you called me.",
+   "I had already eaten when you called me.",
+   "I have already eaten when you called me.",
+   "I was eating when you called me."
+  ],
+  "correctIndex": 1,
+  "explanation": "L'azione avvenuta prima ('avevo già mangiato') va al Past Perfect: 'had already eaten'. 'Had eat' usa il participio sbagliato, 'have eaten' è Present Perfect e 'was eating' vorrebbe dire 'stavo mangiando'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Past Perfect",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q390",
+  "prompt": "Choose the correct negative form:",
+  "options": [
+   "She didn't used to like vegetables.",
+   "She hasn't used to like vegetables.",
+   "She didn't use to like vegetables.",
+   "She don't use to like vegetables."
+  ],
+  "correctIndex": 2,
+  "explanation": "The negative form is 'didn't use to' (without the 'd' in use).",
+  "category": "Grammatica",
+  "level": "B1",
+  "grammarTopic": "Used to",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q404",
+  "prompt": "Translate: 'Il film che abbiamo visto ieri era noioso.'",
+  "options": [
+   "The movie which we watched yesterday was boring.",
+   "The movie who we watched yesterday was boring.",
+   "The movie where we watched yesterday was boring.",
+   "The movie whose we watched yesterday was boring."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Which' or 'that' is used for things.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Relative Clauses",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q405",
+  "prompt": "Translate: 'La donna la cui auto è stata rubata è la mia vicina.'",
+  "options": [
+   "The woman whose car was stolen is my neighbor.",
+   "The woman who car was stolen is my neighbor.",
+   "The woman which car was stolen is my neighbor.",
+   "The woman that car was stolen is my neighbor."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Whose' translates 'la cui / il cui'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Relative Clauses",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q409",
+  "prompt": "Translate: 'Questo è il libro di cui ti parlavo.'",
+  "options": [
+   "This is the book which I was telling you about.",
+   "This is the book who I was telling you about.",
+   "This is the book where I was telling you about.",
+   "This is the book whose I was telling you about."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Which' is used for things.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Relative Clauses",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q410",
+  "prompt": "Translate: 'Parigi, che è la capitale della Francia, è bellissima.'",
+  "options": [
+   "Paris, which is the capital of France, is beautiful.",
+   "Paris, who is the capital of France, is beautiful.",
+   "Paris, where is the capital of France, is beautiful.",
+   "Paris, that is the capital of France, is beautiful."
+  ],
+  "correctIndex": 0,
+  "explanation": "Non-defining relative clauses for things use 'which'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Relative Clauses",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q420",
+  "prompt": "Translate: 'Ho finito di leggere il libro.'",
+  "options": [
+   "I finished reading the book.",
+   "I finished to read the book.",
+   "I finished read the book.",
+   "I finish reading the book."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Finish' is followed by a gerund.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Gerunds vs Infinitives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q421",
+  "prompt": "Translate: 'Lui ha deciso di studiare all'estero.'",
+  "options": [
+   "He decided to study abroad.",
+   "He decided studying abroad.",
+   "He decided study abroad.",
+   "He decides to study abroad."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Decide' is followed by the infinitive.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Gerunds vs Infinitives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q424",
+  "prompt": "Translate: 'Non mi dispiace alzarmi presto.'",
+  "options": [
+   "I don't mind getting up early.",
+   "I don't mind to get up early.",
+   "I don't mind get up early.",
+   "I not mind getting up early."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Don't mind' takes the gerund.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Gerunds vs Infinitives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q425",
+  "prompt": "Translate: 'Loro vogliono comprare una casa nuova.'",
+  "options": [
+   "They want to buy a new house.",
+   "They want buying a new house.",
+   "They want buy a new house.",
+   "They want to buying a new house."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Want' is followed by the infinitive.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Gerunds vs Infinitives",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q434",
+  "prompt": "Translate: 'Se fossi ricco, viaggerei per il mondo.'",
+  "options": [
+   "If I were rich, I would travel the world.",
+   "If I am rich, I will travel the world.",
+   "If I was rich, I travel the world.",
+   "If I would be rich, I traveled the world."
+  ],
+  "correctIndex": 0,
+  "explanation": "Second Conditional uses 'were' for all persons and 'would + verb'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Second Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q435",
+  "prompt": "Translate: 'Se lei sapesse la verità, si arrabbierebbe.'",
+  "options": [
+   "If she knew the truth, she would be angry.",
+   "If she knows the truth, she will be angry.",
+   "If she would know the truth, she was angry.",
+   "If she knew the truth, she will be angry."
+  ],
+  "correctIndex": 0,
+  "explanation": "Past simple in the if-clause, would in the main clause.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Second Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q439",
+  "prompt": "Translate: 'Non andrei lì se fossi in te.'",
+  "options": [
+   "I wouldn't go there if I were you.",
+   "I won't go there if I am you.",
+   "I didn't go there if I were you.",
+   "I don't go there if I was you."
+  ],
+  "correctIndex": 0,
+  "explanation": "'If I were you' is standard for giving advice.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Second Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q440",
+  "prompt": "Translate: 'Se avessimo una macchina, potremmo andare in montagna.'",
+  "options": [
+   "If we had a car, we could go to the mountains.",
+   "If we have a car, we can go to the mountains.",
+   "If we had a car, we will go to the mountains.",
+   "If we would have a car, we went to the mountains."
+  ],
+  "correctIndex": 0,
+  "explanation": "'could' is the conditional form of 'can'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Second Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q446",
+  "prompt": "Translate: 'Se parlassi francese, mi trasferirei a Parigi.'",
+  "options": [
+   "If I spoke French, I would move to Paris.",
+   "If I speak French, I will move to Paris.",
+   "If I would speak French, I moved to Paris.",
+   "If I spoke French, I will move to Paris."
+  ],
+  "correctIndex": 0,
+  "explanation": "If + past simple, would + infinitive.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Second Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q450",
+  "prompt": "Translate: 'Se fossi andato a letto presto, non sarei stato stanco.'",
+  "options": [
+   "If I had gone to bed early, I wouldn't have been tired.",
+   "If I went to bed early, I wouldn't be tired.",
+   "If I had gone to bed early, I wasn't tired.",
+   "If I would go to bed early, I wouldn't have been tired."
+  ],
+  "correctIndex": 0,
+  "explanation": "Third conditional talks about impossible past situations.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Third Conditional",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q451",
+  "prompt": "Translate: 'Se avesse piovuto, saremmo rimasti a casa.'",
+  "options": [
+   "If it had rained, we would have stayed at home.",
+   "If it rained, we would stay at home.",
+   "If it had rained, we stayed at home.",
+   "If it rains, we will stay at home."
+  ],
+  "correctIndex": 0,
+  "explanation": "If + Past Perfect, would have + past participle.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Third Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q455",
+  "prompt": "Translate: 'Cosa avresti fatto se lo avessi saputo?'",
+  "options": [
+   "What would you have done if you had known?",
+   "What would you do if you knew?",
+   "What did you do if you had known?",
+   "What have you done if you knew?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Interrogative third conditional structure.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Third Conditional",
+  "core": false,
+  "stato": "originale"
+ }
+]

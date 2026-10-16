@@ -1,0 +1,699 @@
+[
+ {
+  "id": "q1",
+  "prompt": "Which sentence is correct?",
+  "options": [
+   "Is your sister ever lived abroad?",
+   "Has your sister ever lived abroad?",
+   "Does your sister ever lived abroad?",
+   "Have your sister ever lived abroad?"
+  ],
+  "correctIndex": 1,
+  "explanation": "We use the Present Perfect for life experiences. With 'sister' (she) the auxiliary is 'has': 'Has your sister ever lived...?'",
+  "category": "Grammatica",
+  "level": "B1",
+  "grammarTopic": "Present Perfect",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q3",
+  "prompt": "Which sentence is correct?",
+  "options": [
+   "Did your brother won the match last night?",
+   "Was your brother win the match last night?",
+   "Does your brother won the match last night?",
+   "Did your brother win the match last night?"
+  ],
+  "correctIndex": 3,
+  "explanation": "After 'did' the verb is in the base form ('win'), not in the past.",
+  "category": "Grammatica",
+  "level": "A2",
+  "grammarTopic": "Past Simple",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q4",
+  "prompt": "Choose the correct translation for 'Agosto è il mese più caldo dell'anno.'",
+  "options": [
+   "August is the most hot month of the year.",
+   "August is the hotter month of the year.",
+   "August is the hottest month of the year.",
+   "August is more hot month of the year."
+  ],
+  "correctIndex": 2,
+  "explanation": "'Hot' is a short adjective: the superlative is 'the hottest' (the double t is needed).",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q5",
+  "prompt": "Choose the correct translation for 'Abbiamo comprato questa casa nel 2018.'",
+  "options": [
+   "We have bought this house in 2018.",
+   "We bought this house in 2018.",
+   "We buyed this house in 2018.",
+   "We are buying this house in 2018."
+  ],
+  "correctIndex": 1,
+  "explanation": "With a finished time in the past ('in 2018') we use the Past Simple. 'Buy' is irregular: 'bought'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Simple",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q6",
+  "prompt": "Which sentence compares the two bags correctly?",
+  "options": [
+   "The red bag is more expensive than the blue one.",
+   "The red bag is more expensive that the blue one.",
+   "The red bag is expensiver than the blue one.",
+   "The red bag is the most expensive than the blue one."
+  ],
+  "correctIndex": 0,
+  "explanation": "Long adjectives form the comparative with 'more' and are followed by 'than'.",
+  "category": "Grammatica",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q8",
+  "prompt": "Choose the correct translation for 'Quanti libri ci sono sullo scaffale?'",
+  "options": [
+   "How much books are there on the shelf?",
+   "How many books is there on the shelf?",
+   "How many book are there on the shelf?",
+   "How many books are there on the shelf?"
+  ],
+  "correctIndex": 3,
+  "explanation": "'Books' is plural and countable: 'How many' + plural noun + 'are there'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Quantifiers",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q9",
+  "prompt": "Choose the correct translation for 'Il film comincerà tra un'ora.'",
+  "options": [
+   "The film will start between an hour.",
+   "The film will start in an hour.",
+   "The film will start at an hour.",
+   "The film will start for an hour."
+  ],
+  "correctIndex": 1,
+  "explanation": "'In' + a period of time means 'after that time from now' ('in an hour').",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Prepositions of Time",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q10",
+  "prompt": "Choose the correct translation for 'Posso usare il tuo telefono, per favore?'",
+  "options": [
+   "Can I use your phone, please?",
+   "Can I to use your phone, please?",
+   "Do I can use your phone, please?",
+   "Can I using your phone, please?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Can' is followed by the base form of the verb, without 'to' and without 'do'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Modals of Ability and Permission",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q11",
+  "prompt": "Choose the correct translation for 'Laura vive a Napoli con i suoi genitori.'",
+  "options": [
+   "Laura live in Naples with her parents.",
+   "Laura living in Naples with her parents.",
+   "Laura lives in Naples with her parents.",
+   "Laura lives in Naples with she parents."
+  ],
+  "correctIndex": 2,
+  "explanation": "Third person singular in the Present Simple takes -s ('lives'). The possessive for 'she' is 'her'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q12",
+  "prompt": "Choose the correct sentence to describe what is happening now.",
+  "options": [
+   "Be quiet! The baby is sleep.",
+   "Be quiet! The baby sleep.",
+   "Be quiet! The baby sleeped.",
+   "Be quiet! The baby is sleeping."
+  ],
+  "correctIndex": 3,
+  "explanation": "We use the Present Continuous ('is sleeping') for an action happening right now.",
+  "category": "Grammatica",
+  "level": "A2",
+  "grammarTopic": "Present Continuous",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q13",
+  "prompt": "Choose the correct question:",
+  "options": [
+   "Is there any rice in the cupboard?",
+   "Are there any rice in the cupboard?",
+   "Is there a rice in the cupboard?",
+   "Is there any rices in the cupboard?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Rice' is uncountable: it takes 'Is there', no 'a' and no plural -s. 'Any' is used in questions.",
+  "category": "Grammatica",
+  "level": "A1",
+  "grammarTopic": "There is / There are",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q14",
+  "prompt": "Choose the correct translation for 'Da quanto tempo abiti a Milano?'",
+  "options": [
+   "How long do you live in Milan?",
+   "How long have you lived in Milan?",
+   "How long you have lived in Milan?",
+   "How long did you lived in Milan?"
+  ],
+  "correctIndex": 1,
+  "explanation": "For something that started in the past and continues now, we use 'How long' + Present Perfect.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Present Perfect",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q15",
+  "prompt": "Choose the correct translation for 'Mia nonna sa suonare il pianoforte.'",
+  "options": [
+   "My grandmother can plays the piano.",
+   "My grandmother can to play the piano.",
+   "My grandmother knows play the piano.",
+   "My grandmother can play the piano."
+  ],
+  "correctIndex": 3,
+  "explanation": "'Can' is followed by the base form without 'to' and without -s, even with 'she'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Modals of Ability and Permission",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q16",
+  "prompt": "Choose the correct translation for 'Cosa ha mangiato Marco ieri sera?'",
+  "options": [
+   "What did Marco ate last night?",
+   "What Marco ate last night?",
+   "What did Marco eat last night?",
+   "What does Marco ate last night?"
+  ],
+  "correctIndex": 2,
+  "explanation": "In Past Simple questions we use 'did' + subject + base form ('eat').",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Simple",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q17",
+  "prompt": "Choose the grammatically correct sentence:",
+  "options": [
+   "We have eaten pizza last Friday night.",
+   "We ate pizza last Friday night.",
+   "We eaten pizza last Friday night.",
+   "We eat pizza last Friday night."
+  ],
+  "correctIndex": 1,
+  "explanation": "'Last Friday night' is a finished time in the past: we use the Past Simple ('ate').",
+  "category": "Grammatica",
+  "level": "A2",
+  "grammarTopic": "Past Simple",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q25",
+  "prompt": "Combine the sentences correctly: 'I called Laura yesterday evening. She was cooking dinner.'",
+  "options": [
+   "I called Laura yesterday evening while she cooks dinner.",
+   "I called Laura yesterday evening during she was cooking dinner.",
+   "I called Laura yesterday evening while was cooking dinner.",
+   "I called Laura yesterday evening while she was cooking dinner."
+  ],
+  "correctIndex": 3,
+  "explanation": "'While' introduces an action in progress in the past: 'while she was cooking'. 'During' is followed by a noun, not a clause.",
+  "category": "Grammatica",
+  "level": "A2",
+  "grammarTopic": "Past Continuous",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q31",
+  "prompt": "Choose the correct negative sentence:",
+  "options": [
+   "There isn't no sugar in my coffee.",
+   "There isn't any sugar in my coffee.",
+   "There aren't any sugar in my coffee.",
+   "There is any sugar in my coffee."
+  ],
+  "correctIndex": 1,
+  "explanation": "'Sugar' is uncountable, so we use 'isn't'. In negative sentences we use 'any', not 'no'.",
+  "category": "Grammatica",
+  "level": "A1",
+  "grammarTopic": "There is / There are",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q35",
+  "prompt": "Choose the correct translation for 'Questa è la città più bella che io abbia mai visitato.'",
+  "options": [
+   "This is the more beautiful city I have ever visited.",
+   "This is the most beautiful city I have ever visited.",
+   "This is the beautifullest city I have ever visited.",
+   "This is the most beautifully city I have ever visited."
+  ],
+  "correctIndex": 1,
+  "explanation": "'Beautiful' is a long adjective: the superlative is 'the most beautiful'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q36",
+  "prompt": "Choose the correct translation for 'Mio fratello gioca a calcio ogni sabato.'",
+  "options": [
+   "My brother plays football every Saturday.",
+   "My brother play football every Saturday.",
+   "My brother is play football every Saturday.",
+   "My brother plays to football every Saturday."
+  ],
+  "correctIndex": 0,
+  "explanation": "Habits use the Present Simple; with 'he' the verb takes -s ('plays'). We say 'play football' without 'to'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q40",
+  "prompt": "Choose the correct translation for 'Ieri non ho studiato per l'esame.'",
+  "options": [
+   "I didn't study for the exam yesterday.",
+   "I didn't studied for the exam yesterday.",
+   "I wasn't study for the exam yesterday.",
+   "I don't studied for the exam yesterday."
+  ],
+  "correctIndex": 0,
+  "explanation": "The negative Past Simple is 'didn't' + base verb ('study').",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Simple",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q44",
+  "prompt": "Choose the correct translation for 'Hai già conosciuto il nuovo professore?'",
+  "options": [
+   "Did you already met the new professor?",
+   "Have you already met the new professor?",
+   "Have you already meet the new professor?",
+   "Are you already meeting the new professor?"
+  ],
+  "correctIndex": 1,
+  "explanation": "We use the Present Perfect ('Have you already met') for a recent experience with no definite time.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Present Perfect",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q45",
+  "prompt": "Choose the correct translation for 'Lavoro qui da tre anni.'",
+  "options": [
+   "I have worked here for three years.",
+   "I work here since three years.",
+   "I have worked here since three years.",
+   "I am working here for three years."
+  ],
+  "correctIndex": 0,
+  "explanation": "For a situation that started in the past and continues now we use the Present Perfect with 'for' + a period of time.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Present Perfect",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q46",
+  "prompt": "Choose the correct translation for 'Mi piace la macchina di Paolo.'",
+  "options": [
+   "I like Paolo car.",
+   "I like the car's Paolo.",
+   "I like Paolo's car.",
+   "I'm like Paolo's car."
+  ],
+  "correctIndex": 2,
+  "explanation": "We show possession with a person's name + 's: 'Paolo's car'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessive S",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q49",
+  "prompt": "Choose the correct sentence:",
+  "options": [
+   "If the weather will be nice tomorrow, we go to the beach.",
+   "If the weather is nice tomorrow, we would go to the beach.",
+   "If the weather is nice tomorrow, we will go to the beach.",
+   "If the weather be nice tomorrow, we will go to the beach."
+  ],
+  "correctIndex": 2,
+  "explanation": "First Conditional: if + Present Simple, will + base verb. No 'will' in the if-clause.",
+  "category": "Grammatica",
+  "level": "B1",
+  "grammarTopic": "First Conditional",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q52",
+  "prompt": "Choose the correct sentence for comparing two phones:",
+  "options": [
+   "This phone is more much cheaper than that one.",
+   "This phone is very cheaper than that one.",
+   "This phone is much cheaper as that one.",
+   "This phone is much cheaper than that one."
+  ],
+  "correctIndex": 3,
+  "explanation": "To strengthen a comparative we put 'much' before it ('much cheaper'); the second term follows 'than'.",
+  "category": "Grammatica",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q57",
+  "prompt": "Choose the correct translation for 'Hai mai suonato la chitarra?'",
+  "options": [
+   "Did you ever played the guitar?",
+   "Are you ever played the guitar?",
+   "Have you ever played the guitar?",
+   "Have you never played the guitar?"
+  ],
+  "correctIndex": 2,
+  "explanation": "We use the Present Perfect ('Have you ever played') to ask about life experiences.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Present Perfect",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q59",
+  "prompt": "Choose the correct translation for 'Marta non ha ancora risposto alla mia email.'",
+  "options": [
+   "Marta hasn't answered my email yet.",
+   "Marta haven't answered my email yet.",
+   "Marta doesn't answer my email yet.",
+   "Marta hasn't answer my email yet."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative Present Perfect + 'yet' for something expected but not done: 'hasn't answered'.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Present Perfect",
+  "core": false,
+  "stato": "riscritta"
+ },
+ {
+  "id": "q61",
+  "prompt": "Translate 'Lui vive qui da dieci anni.'",
+  "options": [
+   "He has lived here for ten years.",
+   "He is living here since ten years.",
+   "He lived here since ten years.",
+   "He have lived here for ten years."
+  ],
+  "correctIndex": 0,
+  "explanation": "Italian 'vive qui da' + a period of time becomes the Present Perfect + 'for' in English ('has lived here for ten years'), because the state started in the past and continues now. 'Since' needs a starting point, not a period.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "Present Perfect",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q62",
+  "prompt": "Translate 'Ci sono molte macchine per strada oggi.'",
+  "options": [
+   "There are many cars on the street today.",
+   "They are many cars on the street today.",
+   "There is many cars on the street today.",
+   "There have many cars on the street today."
+  ],
+  "correctIndex": 0,
+  "explanation": "We use 'There are' for plural existence.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "There is / There are",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q64",
+  "prompt": "Translate 'Non c'è nessun problema.'",
+  "options": [
+   "There is no problem.",
+   "There isn't no problem.",
+   "There are no problem.",
+   "There have no problem."
+  ],
+  "correctIndex": 0,
+  "explanation": "Singular negative existence.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "There is / There are",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q66",
+  "prompt": "Translate 'C'è un cane nel giardino?'",
+  "options": [
+   "Is there a dog in the garden?",
+   "Are there a dog in the garden?",
+   "There is a dog in the garden?",
+   "Does there a dog in the garden?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Question form for singular existence.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "There is / There are",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q68",
+  "prompt": "Translate 'Non hanno studiato per l'esame.'",
+  "options": [
+   "They didn't study for the exam.",
+   "They don't studied for the exam.",
+   "They wasn't study for the exam.",
+   "They haven't study for the exam."
+  ],
+  "correctIndex": 0,
+  "explanation": "Past simple negative uses 'didn't' + base verb.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Simple",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q70",
+  "prompt": "Translate 'Lei ha comprato un nuovo telefono la settimana scorsa.'",
+  "options": [
+   "She bought a new phone last week.",
+   "She buys a new phone last week.",
+   "She buyed a new phone last week.",
+   "She have bought a new phone last week."
+  ],
+  "correctIndex": 0,
+  "explanation": "The Past Simple of the irregular verb 'buy' is 'bought'; 'buyed' does not exist, and 'last week' excludes the Present Perfect.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Simple",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q72",
+  "prompt": "Translate 'Quando sei arrivato?'",
+  "options": [
+   "When did you arrive?",
+   "When you arrived?",
+   "When do you arrive?",
+   "When have you arrived?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Question word + did + subject + base verb.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Past Simple",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q74",
+  "prompt": "Translate 'Cosa stanno facendo?'",
+  "options": [
+   "What are they doing?",
+   "What do they do?",
+   "What they are doing?",
+   "What are they do?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Present continuous question format.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Present Continuous",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q76",
+  "prompt": "Translate 'Non sto leggendo un libro, sto guardando la TV.'",
+  "options": [
+   "I'm not reading a book, I'm watching TV.",
+   "I don't read a book, I watch TV.",
+   "I'm not read a book, I'm watch TV.",
+   "I not reading a book, I watching TV."
+  ],
+  "correctIndex": 0,
+  "explanation": "Present continuous for current contrasting actions.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Present Continuous",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q79",
+  "prompt": "Translate 'Se piove, non andremo in spiaggia.'",
+  "options": [
+   "If it rains, we won't go to the beach.",
+   "If it will rain, we don't go to the beach.",
+   "If it rain, we won't go to the beach.",
+   "If it rains, we didn't go to the beach."
+  ],
+  "correctIndex": 0,
+  "explanation": "First conditional structure.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "First Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q81",
+  "prompt": "Translate 'Cosa farai se perdi il treno?'",
+  "options": [
+   "What will you do if you miss the train?",
+   "What do you do if you will miss the train?",
+   "What would you do if you miss the train?",
+   "What will you do if you missed the train?"
+  ],
+  "correctIndex": 0,
+  "explanation": "First conditional question.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "First Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q83",
+  "prompt": "Translate 'Se non ti sbrighi, faremo tardi.'",
+  "options": [
+   "If you don't hurry, we will be late.",
+   "If you won't hurry, we are late.",
+   "If you aren't hurry, we will be late.",
+   "If you don't hurry, we would be late."
+  ],
+  "correctIndex": 0,
+  "explanation": "First conditional with negative condition.",
+  "category": "Traduzione",
+  "level": "B1",
+  "grammarTopic": "First Conditional",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q85",
+  "prompt": "Translate 'L'inglese è più facile del cinese.'",
+  "options": [
+   "English is easier than Chinese.",
+   "English is more easy than Chinese.",
+   "English is easiest than Chinese.",
+   "English is much easy than Chinese."
+  ],
+  "correctIndex": 0,
+  "explanation": "Comparative for 'easy' is 'easier', followed by 'than'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q87",
+  "prompt": "Translate 'È il film peggiore che abbia mai visto.'",
+  "options": [
+   "It's the worst movie I've ever seen.",
+   "It's the worse movie I've ever seen.",
+   "It's the baddest movie I've ever seen.",
+   "It's the most bad movie I've ever seen."
+  ],
+  "correctIndex": 0,
+  "explanation": "Superlative of 'bad' is 'worst'.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "Comparatives and Superlatives",
+  "core": false,
+  "stato": "originale"
+ }
+]

@@ -2,7 +2,6 @@
 // Le regole non stanno in pagina (esito, simulazioni): si aprono qui. Il foglio copre la sola pagina (il genitore è `relative`).
 import { useEffect, useState, type ReactNode } from 'react';
 import type { ExamFormat } from '../../config/offer';
-import { formatNumber } from '../../lib/utils';
 import { FoglioInfo } from '../../screens/extra/ui';
 import FoglioStima from '../FoglioStima';
 
@@ -11,11 +10,7 @@ export function RegoleFormato({ format, nota }: { format: ExamFormat; nota?: Rea
   return (
     <ul className="flex list-disc flex-col gap-2.5 pl-5 marker:text-testo-tenue">
       <li>{format.questions} domande in {format.minutes} minuti: la soglia è {format.passMark}. Con {format.passMark} risposte esatte o più la simulazione è superata.</li>
-      {format.penalty > 0 ? (
-        <li>Ogni risposta sbagliata toglie {formatNumber(format.penalty)} punti; una domanda lasciata vuota non toglie nulla. Il punteggio con penalità è quello del test d&apos;ingresso, mentre per l&apos;OFA conta il numero di risposte esatte.</li>
-      ) : (
-        <li>Nessuna penalità: una risposta sbagliata o lasciata vuota vale zero.</li>
-      )}
+      <li>Nessuna penalità: una risposta sbagliata o lasciata vuota vale zero.</li>
       <li>Il tempo non cambia il punteggio, ma allo scadere la prova si consegna da sola.</li>
       <li>Durante la prova non vedi se hai risposto bene: le correzioni e le spiegazioni arrivano alla consegna.</li>
       <li>È una simulazione: ti dice come stai andando, non prevede il risultato del test vero.</li>
@@ -26,7 +21,7 @@ export function RegoleFormato({ format, nota }: { format: ExamFormat; nota?: Rea
 
 export default function InfoPunteggio({ format, aperto, onChiudi, risposteStima, nota }: {
   format: ExamFormat; aperto: boolean; onChiudi: () => void; risposteStima?: number;
-  /** Una riga in più in fondo alle regole (per esempio il limite di simulazioni gratuite). */
+  /** Una riga in più in fondo alle regole. */
   nota?: ReactNode;
 }) {
   const [stima, setStima] = useState(false);

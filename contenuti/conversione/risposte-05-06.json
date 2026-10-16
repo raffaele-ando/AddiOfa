@@ -1,0 +1,494 @@
+{
+ "q352": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2,
+  "nota": "Manca 'must' tra le opzioni; 'should' e' la sola corretta."
+ },
+ "q353": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q354": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q355": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q356": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q357": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q358": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q359": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q360": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q370": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q371": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q372": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q373": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q374": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q375": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q376": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q377": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2,
+  "nota": "'clear' in 'explain clear' e' colloquiale non standard; scelgo 'clearly'."
+ },
+ "q378": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q380": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q382": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q384": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q385": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q386": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q388": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2,
+  "nota": "Prompt senza contesto: 'had already eaten' e' la sola grammaticale, ma 'have already eaten' e' errata con 'when you called'."
+ },
+ "q390": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q404": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q405": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q409": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q410": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q420": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q421": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q424": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q425": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q434": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q435": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q439": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q440": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q446": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q450": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q451": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q455": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q456": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q462": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q466": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q467": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q471": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q472": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q478": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q482": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q483": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q487": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q488": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q494": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q498": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q499": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0,
+  "nota": "Frase un po' artificiosa ('before yesterday') ma corretta con had never seen."
+ },
+ "q503": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q504": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q510": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q514": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q515": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q519": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q520": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q526": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q530": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q531": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q535": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q536": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q542": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q546": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3,
+  "nota": "Il senso richiede 'must' (e' buio quindi deve essere tardi)."
+ },
+ "q547": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q551": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q552": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q558": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q567": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q568": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q575": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q587": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q597": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q601": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2,
+  "nota": "'got used' (UK); 'gotten used' sarebbe USA, non presente."
+ },
+ "q606": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q620": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ }
+}

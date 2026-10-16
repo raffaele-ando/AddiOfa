@@ -2,11 +2,11 @@
 // Ogni badge ha una condizione scritta in chiaro e, finché è bloccato, un avanzamento vero («37 su 50»).
 // Un badge sbloccato resta sbloccato (lo ricorda la schermata, che salva gli id): un errore che riporta una domanda a «in corso» non lo toglie.
 import type { AppState } from '../../types';
-import { FORMATS } from '../../config/offer';
+import { EXAM } from '../../config/offer';
 import { esitoSimulazione } from '../../components/home/stima';
 import { getQuestionStats, isLearned } from '../spacedRepetition';
 import { riassuntoStudio } from './giorni';
-import { livelloConNucleo, LIVELLI, type Livello } from './livello';
+import { livelloAttuale, LIVELLI, type Livello } from './livello';
 import type { DomandaBanco } from './tipi';
 
 export type GruppoBadge = 'studio' | 'simulazioni' | 'costanza' | 'livello';
@@ -27,12 +27,8 @@ export const SOGLIA_ACCURATEZZA = 0.8;
 
 export interface ContestoBadge {
   stato: AppState;
-  /** Le domande che l'utente può studiare adesso (nucleo gratuito, o tutto il banco con il Pass). */
-  pool: readonly DomandaBanco[];
-  /** Tutto il banco: serve a sapere quanti argomenti esistono. */
-  tutte: readonly DomandaBanco[];
-  /** Il nucleo gratuito: il livello raggiunto su di esso resta valido anche con il Pass (vedi livelloConNucleo). Assente = solo il `pool`. */
-  nucleo?: readonly DomandaBanco[];
+  /** Tutto il banco domande. */
+  banco: readonly DomandaBanco[];
 }
 
 export interface ValutazioneBadge {
@@ -41,7 +37,7 @@ export interface ValutazioneBadge {
   quota: number;
   /** «37 su 50 domande imparate». */
   avanzamento: string;
-  /** Falso se con le domande di adesso non si può arrivare alla fine (serve il Pass). */
+  /** Falso se con le domande del banco non si può arrivare alla fine. */
   raggiungibile: boolean;
   /** Gli stessi numeri di `avanzamento`, senza parole («37» e «50»): la schermata li mostra accanto alla barra. */
   numeri?: { corrente: number; obiettivo: number };
@@ -71,7 +67,7 @@ export interface Misure {
   simulazioniSuperate: number;
   giorniDiStudio: number;
   secondiTotali: number;
-  livelli: ReturnType<typeof livelloConNucleo>;
+  livelli: ReturnType<typeof livelloAttuale>;
 }
 
 function perArgomento(banco: readonly DomandaBanco[]): Map<string, string[]> {
@@ -98,30 +94,30 @@ export function argomentiPadroneggiati(stats: AppState['stats'], banco: readonly
 }
 
 export function misura(c: ContestoBadge): Misure {
-  const { stato, pool, tutte } = c;
+  const { stato, banco } = c;
   const stats = stato.stats ?? {};
-  const arg = argomentiPadroneggiati(stats, pool);
+  const arg = argomentiPadroneggiati(stats, banco);
   let risposte = 0, esatte = 0;
   for (const st of Object.values(stats)) {
     const ok = Math.max(0, Number.isFinite(st?.correct) ? st.correct : 0);
     const no = Math.max(0, Number.isFinite(st?.incorrect) ? st.incorrect : 0);
     esatte += ok; risposte += ok + no;
   }
-  const storico = (Array.isArray(stato.history) ? stato.history : []).filter(h => h && Number.isFinite(h.date) && (h.format ?? 'ente') === 'ente');
+  const storico = (Array.isArray(stato.history) ? stato.history : []).filter(h => h && Number.isFinite(h.date));
   const studio = riassuntoStudio(stato);
   return {
-    imparate: pool.filter(q => isLearned(stats[q.id])).length,
+    imparate: banco.filter(q => isLearned(stats[q.id])).length,
     argomentiPadroneggiati: arg.padroneggiati,
     argomentiPossibili: arg.possibili,
-    argomentiTotali: perArgomento(tutte).size,
-    ricordateA7Giorni: pool.filter(q => isLearned(stats[q.id]) && getQuestionStats(stats, q.id).interval >= GIORNI_MEMORIA).length,
+    argomentiTotali: perArgomento(banco).size,
+    ricordateA7Giorni: banco.filter(q => isLearned(stats[q.id]) && getQuestionStats(stats, q.id).interval >= GIORNI_MEMORIA).length,
     risposte,
     accuratezza: risposte > 0 ? esatte / risposte : 0,
     simulazioni: storico.length,
-    simulazioniSuperate: storico.filter(h => esitoSimulazione(h).esatte >= FORMATS.ente.passMark).length,
+    simulazioniSuperate: storico.filter(h => esitoSimulazione(h).esatte >= EXAM.passMark).length,
     giorniDiStudio: studio.giorniDiStudio,
     secondiTotali: studio.secondiTotali,
-    livelli: livelloConNucleo(stats, pool, c.nucleo ?? pool),
+    livelli: livelloAttuale(stats, banco),
   };
 }
 
@@ -136,7 +132,7 @@ const conteggio = (corrente: number, obiettivo: number, unita: string, possibile
 const domande = (id: string, obiettivo: number, titolo: string, illustrazione: string): DefinizioneBadge => ({
   id, gruppo: 'studio', titolo, illustrazione,
   condizione: obiettivo === 1 ? 'Impara la prima domanda: due risposte esatte di fila, a distanza di mezza giornata.' : `Impara ${obiettivo} domande.`,
-  valuta: (c, m) => conteggio(m.imparate, obiettivo, obiettivo === 1 ? 'domanda imparata' : 'domande imparate', c.pool.length),
+  valuta: (c, m) => conteggio(m.imparate, obiettivo, obiettivo === 1 ? 'domanda imparata' : 'domande imparate', c.banco.length),
 });
 
 const argomenti = (id: string, obiettivo: number | 'tutti', titolo: string, illustrazione: string): DefinizioneBadge => ({
@@ -184,7 +180,7 @@ export const BADGE: DefinizioneBadge[] = [
   {
     id: 'memoria-10', gruppo: 'studio', titolo: 'Memoria a lungo termine', illustrazione: 'attesa-caricamento',
     condizione: `Ricorda 10 domande imparate anche a distanza: il ripasso le ha portate a un intervallo di almeno ${GIORNI_MEMORIA} giorni.`,
-    valuta: (c, m) => conteggio(m.ricordateA7Giorni, 10, 'domande ricordate a lungo', c.pool.length),
+    valuta: (c, m) => conteggio(m.ricordateA7Giorni, 10, 'domande ricordate a lungo', c.banco.length),
   },
   {
     id: 'accuratezza-80', gruppo: 'studio', titolo: 'Accuratezza 80 %', illustrazione: 'verifica-utente',
@@ -213,12 +209,12 @@ export const BADGE: DefinizioneBadge[] = [
   },
   {
     id: 'simulazione-superata', gruppo: 'simulazioni', titolo: 'Simulazione superata', illustrazione: 'superamento',
-    condizione: `Supera una simulazione: almeno ${FORMATS.ente.passMark} risposte esatte su ${FORMATS.ente.questions}.`,
+    condizione: `Supera una simulazione: almeno ${EXAM.passMark} risposte esatte su ${EXAM.questions}.`,
     valuta: (_c, m) => conteggio(m.simulazioniSuperate, 1, 'simulazione superata'),
   },
   {
     id: 'simulazioni-superate-3', gruppo: 'simulazioni', titolo: 'Tre simulazioni superate', illustrazione: 'celebrazione',
-    condizione: `Supera tre simulazioni (${FORMATS.ente.passMark}/${FORMATS.ente.questions} o più), anche non di fila.`,
+    condizione: `Supera tre simulazioni (${EXAM.passMark}/${EXAM.questions} o più), anche non di fila.`,
     valuta: (_c, m) => conteggio(m.simulazioniSuperate, 3, 'simulazioni superate'),
   },
   giorni('giorni-7', 7, '7 giorni di studio', 'progressi-statistiche'),

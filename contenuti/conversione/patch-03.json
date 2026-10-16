@@ -1,0 +1,453 @@
+{
+ "q176": {
+  "prompt": "Complete the sentence: 'He _____ understand the question.'",
+  "options": [
+   "don't",
+   "isn't",
+   "doesn't",
+   "not"
+  ],
+  "correctIndex": 2,
+  "explanation": "Alla terza persona singolare il Present Simple negativo si forma con 'doesn't' + verbo base: 'He doesn't understand'. 'Don't' va con I, you, we, they; 'isn't' e 'not' da soli non fanno da ausiliare davanti a un verbo normale come 'understand'."
+ },
+ "q178": {
+  "prompt": "Complete the sentence: 'What _____ this word mean?'",
+  "options": [
+   "does",
+   "do",
+   "is",
+   "has"
+  ],
+  "correctIndex": 0,
+  "explanation": "Nelle domande al Present Simple con 'this word' (terza persona singolare) l'ausiliare è 'does': 'What does this word mean?'. 'Do' va con I, you, we, they; 'is' e 'has' non si usano come ausiliari davanti al verbo base 'mean'."
+ },
+ "q180": {
+  "prompt": "Complete the sentence: 'How often _____ you go to the gym?'",
+  "options": [
+   "does",
+   "are",
+   "have",
+   "do"
+  ],
+  "correctIndex": 3,
+  "explanation": "Nelle domande al Present Simple con 'you' serve l'ausiliare 'do': 'How often do you go...?'. 'Does' è solo per he, she, it; 'are' e 'have' non possono stare davanti al verbo base 'go'."
+ },
+ "q182": {
+  "prompt": "Complete the sentence: 'She _____ two cats and a dog.'",
+  "options": [
+   "have",
+   "has",
+   "is having",
+   "having"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Have' alla terza persona singolare diventa 'has': 'She has two cats'. 'Have' va con I, you, we, they; 'is having' e 'having' non vanno bene perché 'have' nel senso di possedere non si usa alla forma progressiva."
+ },
+ "q184": {
+  "prompt": "Complete the sentence: 'The movie _____ at 8:30 PM.'",
+  "options": [
+   "start",
+   "starting",
+   "is start",
+   "starts"
+  ],
+  "correctIndex": 3,
+  "explanation": "Gli orari di film, treni e lezioni si esprimono con il Present Simple, e alla terza persona singolare il verbo prende la -s: 'starts'. 'Start' non ha la -s, mentre 'starting' e 'is start' non sono forme corrette in questa frase."
+ },
+ "q187": {
+  "prompt": "Complete the sentence: 'There are not _____ apples.'",
+  "options": [
+   "any",
+   "no",
+   "much",
+   "a"
+  ],
+  "correctIndex": 0,
+  "explanation": "Nelle frasi negative con un nome plurale numerabile si usa 'any': 'There are not any apples'. 'No' ripeterebbe la negazione, 'much' si usa con i nomi non numerabili e 'a' non va con un plurale."
+ },
+ "q189": {
+  "prompt": "Complete the sentence: 'Would you like _____ tea?'",
+  "options": [
+   "many",
+   "a few",
+   "some",
+   "several"
+  ],
+  "correctIndex": 2,
+  "explanation": "Nelle offerte con un nome non numerabile come 'tea' si usa 'some': 'Would you like some tea?'. 'Many', 'a few' e 'several' vogliono nomi numerabili plurali, quindi con 'tea' non funzionano."
+ },
+ "q191": {
+  "prompt": "Complete the sentence: 'I have very _____ time.'",
+  "options": [
+   "few",
+   "little",
+   "small",
+   "low"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Time' è non numerabile, quindi per dire «poco» si usa 'little': 'very little time'. 'Few' si usa solo con i nomi numerabili plurali, mentre 'small' e 'low' non si combinano con 'time' in questo modo."
+ },
+ "q193": {
+  "prompt": "Complete the sentence: 'We ate too _____ pizza.'",
+  "options": [
+   "much",
+   "many",
+   "more",
+   "a lot"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Pizza' intesa come cibo in generale è non numerabile e dopo 'too' si usa 'much': 'too much pizza'. 'Many' va con i plurali numerabili; 'too more' e 'too a lot' non esistono in inglese."
+ },
+ "q195": {
+  "prompt": "Complete the sentence: 'We did not buy _____.'",
+  "options": [
+   "nothing",
+   "none",
+   "no",
+   "anything"
+  ],
+  "correctIndex": 3,
+  "explanation": "Quando il verbo è già negativo ('did not') si usa 'anything': 'We did not buy anything'. 'Nothing', 'none' e 'no' contengono già una negazione e darebbero una doppia negazione."
+ },
+ "q198": {
+  "prompt": "Complete the sentence: 'Why _____ you late today?'",
+  "options": [
+   "do",
+   "are",
+   "does",
+   "have"
+  ],
+  "correctIndex": 1,
+  "explanation": "Con il verbo 'to be' la domanda si forma invertendo soggetto e verbo: 'Why are you late?'. 'Do' e 'does' sono ausiliari che non si usano davanti a un aggettivo come 'late', e 'have' non regge 'late'."
+ },
+ "q200": {
+  "prompt": "Complete the sentence: '_____ is your birthday?'",
+  "options": [
+   "Where",
+   "Who",
+   "When",
+   "Why"
+  ],
+  "correctIndex": 2,
+  "explanation": "'When' chiede il momento o la data: 'When is your birthday?'. 'Where' chiede il luogo, 'who' una persona e 'why' il motivo, quindi con 'birthday' non hanno senso."
+ },
+ "q202": {
+  "prompt": "Complete the sentence: '_____ do you go to work?'",
+  "options": [
+   "How",
+   "Who",
+   "What",
+   "Which"
+  ],
+  "correctIndex": 0,
+  "explanation": "'How' chiede il modo o il mezzo: 'How do you go to work?'. 'Who' chiede una persona, 'what' una cosa e 'which' una scelta tra più elementi, e nessuno di questi forma una frase corretta con 'go to work'."
+ },
+ "q204": {
+  "prompt": "Complete the sentence: '_____ bag is this?'",
+  "options": [
+   "Who",
+   "Whom",
+   "Who's",
+   "Whose"
+  ],
+  "correctIndex": 3,
+  "explanation": "'Whose' chiede di chi è una cosa: 'Whose bag is this?'. 'Who' e 'whom' chiedono una persona, non il possesso, e 'who's' è la contrazione di 'who is', non un possessivo."
+ },
+ "q206": {
+  "prompt": "Complete the sentence: '_____ does this book cost?'",
+  "options": [
+   "How many",
+   "How much",
+   "How price",
+   "How long"
+  ],
+  "correctIndex": 1,
+  "explanation": "'How much' chiede il prezzo: 'How much does this book cost?'. 'How many' chiede una quantità di cose numerabili, 'how long' una durata e 'how price' non esiste in inglese."
+ },
+ "q209": {
+  "prompt": "Complete the sentence: 'There _____ three chairs in the room.'",
+  "options": [
+   "have",
+   "has",
+   "are",
+   "do"
+  ],
+  "correctIndex": 2,
+  "explanation": "Con un soggetto plurale ('three chairs') per dire che qualcosa esiste si usa 'There are'. 'Have' e 'has' non esprimono esistenza in questo modo e 'do' non può stare da solo prima di 'three chairs'."
+ },
+ "q211": {
+  "prompt": "Complete the sentence: '_____ there a good restaurant near here?'",
+  "options": [
+   "Is",
+   "Are",
+   "Does",
+   "Has"
+  ],
+  "correctIndex": 0,
+  "explanation": "Nelle domande sull'esistenza con un nome singolare si inverte 'there is' in 'Is there a...?'. 'Are there' vuole il plurale, mentre 'does there' e 'has there' non si usano in questa struttura."
+ },
+ "q213": {
+  "prompt": "Complete the sentence: 'When I arrived yesterday, there _____ nobody at home.'",
+  "options": [
+   "were",
+   "is",
+   "wasn't",
+   "was"
+  ],
+  "correctIndex": 3,
+  "explanation": "'Yesterday' indica il passato e 'nobody' è singolare, quindi 'there was'. 'Were' è plurale, 'is' è presente e 'wasn't' darebbe una doppia negazione insieme a 'nobody'."
+ },
+ "q215": {
+  "prompt": "Complete the sentence: '_____ any biscuits in the box?'",
+  "options": [
+   "Does there",
+   "Are there",
+   "Do there",
+   "Have there"
+  ],
+  "correctIndex": 1,
+  "explanation": "Con un plurale ('biscuits') la domanda sull'esistenza è 'Are there any...?'. 'Does there', 'do there' e 'have there' non servono a chiedere se qualcosa esiste: serve il verbo 'to be' invertito."
+ },
+ "q226": {
+  "prompt": "Complete the sentence: 'This book is _____.'",
+  "options": [
+   "my",
+   "me",
+   "mine",
+   "I"
+  ],
+  "correctIndex": 2,
+  "explanation": "Alla fine della frase, senza nome dopo, serve il pronome possessivo 'mine'. 'My' è un aggettivo e vuole un nome, mentre 'me' e 'I' sono pronomi personali e non indicano possesso."
+ },
+ "q227": {
+  "prompt": "Complete the sentence: '_____ house is very big.'",
+  "options": [
+   "Their",
+   "Theirs",
+   "They",
+   "There"
+  ],
+  "correctIndex": 0,
+  "explanation": "Prima di un nome si usa l'aggettivo possessivo 'their'. 'Theirs' è il pronome e non vuole un nome dopo; 'they' è un pronome soggetto e 'there' significa «là» (si pronuncia allo stesso modo ma ha un altro significato)."
+ },
+ "q228": {
+  "prompt": "Complete the sentence: 'That blue jacket belongs to Anna, so it is _____.'",
+  "options": [
+   "her",
+   "her's",
+   "herself",
+   "hers"
+  ],
+  "correctIndex": 3,
+  "explanation": "Quando il nome ('jacket') è già stato detto, serve il pronome possessivo 'hers'. 'Her' è un aggettivo e vuole un nome, 'her's' è scritto in modo scorretto e 'herself' è riflessivo."
+ },
+ "q229": {
+  "prompt": "Complete the sentence: '_____ friends are coming.'",
+  "options": [
+   "Ours",
+   "Our",
+   "We",
+   "Us"
+  ],
+  "correctIndex": 1,
+  "explanation": "Davanti a un nome si usa l'aggettivo possessivo 'our'. 'Ours' è il pronome e non regge un nome, mentre 'we' e 'us' sono pronomi personali e non indicano possesso."
+ },
+ "q230": {
+  "prompt": "Complete the sentence: 'Is this money _____?'",
+  "options": [
+   "your",
+   "you",
+   "yours",
+   "you're"
+  ],
+  "correctIndex": 2,
+  "explanation": "Alla fine della domanda, senza nome dopo, serve il pronome possessivo 'yours'. 'Your' è un aggettivo e vuole un nome, 'you' non indica possesso e 'you're' significa 'you are'."
+ },
+ "q231": {
+  "prompt": "Complete the sentence: 'Tom is happy because _____ phone is new.'",
+  "options": [
+   "his",
+   "him",
+   "he",
+   "he's"
+  ],
+  "correctIndex": 0,
+  "explanation": "Davanti a un nome, per un uomo, si usa l'aggettivo possessivo 'his'. 'Him' e 'he' sono pronomi personali, mentre 'he's' è la contrazione di 'he is' e non indica possesso."
+ },
+ "q232": {
+  "prompt": "Complete the sentence: 'My brother and I have cars: mine is red and _____ is blue.'",
+  "options": [
+   "hers",
+   "his",
+   "him",
+   "himself"
+  ],
+  "correctIndex": 1,
+  "explanation": "Quando il nome ('car') è già chiaro, il possessivo maschile da solo è 'his'. 'Hers' si riferisce a una donna, 'him' è un pronome complemento e 'himself' è riflessivo."
+ },
+ "q233": {
+  "prompt": "Complete the sentence: 'I forgot _____ umbrella at home.'",
+  "options": [
+   "mine",
+   "me",
+   "I",
+   "my"
+  ],
+  "correctIndex": 3,
+  "explanation": "Prima di un nome si usa l'aggettivo possessivo 'my'. 'Mine' è il pronome e non regge un nome, mentre 'me' e 'I' sono pronomi personali e non indicano possesso."
+ },
+ "q234": {
+  "prompt": "Complete the sentence: 'Those pens belong to my neighbours, so they are _____.'",
+  "options": [
+   "their",
+   "them",
+   "theirs",
+   "they"
+  ],
+  "correctIndex": 2,
+  "explanation": "Senza nome dopo il verbo, serve il pronome possessivo 'theirs'. 'Their' è un aggettivo e vuole un nome; 'them' e 'they' sono pronomi personali e non indicano possesso."
+ },
+ "q244": {
+  "prompt": "Complete the sentence: 'Tom speaks too fast and I do not understand _____.'",
+  "options": [
+   "him",
+   "he",
+   "his",
+   "himself"
+  ],
+  "correctIndex": 0,
+  "explanation": "Dopo il verbo serve il pronome complemento: per un uomo è 'him'. 'He' è un pronome soggetto, 'his' è un possessivo e 'himself' è riflessivo, quindi vorrebbe che il soggetto fosse lui."
+ },
+ "q245": {
+  "prompt": "Complete the sentence: 'We are waving at you: can you see _____?'",
+  "options": [
+   "we",
+   "us",
+   "our",
+   "ourselves"
+  ],
+  "correctIndex": 1,
+  "explanation": "Dopo il verbo si usa il pronome complemento 'us'. 'We' è un pronome soggetto, 'our' è un aggettivo possessivo e 'ourselves' è riflessivo, quindi richiederebbe che chi vede e chi è visto siano gli stessi."
+ },
+ "q246": {
+  "prompt": "Complete the sentence: 'My sister has a birthday today, so I bought _____ a present.'",
+  "options": [
+   "she",
+   "hers",
+   "herself",
+   "her"
+  ],
+  "correctIndex": 3,
+  "explanation": "Dopo il verbo 'bought' serve il pronome complemento 'her'. 'She' è un pronome soggetto, 'hers' è un pronome possessivo e 'herself' si userebbe solo se fosse lei stessa a comprarsi il regalo."
+ },
+ "q247": {
+  "prompt": "Complete the sentence: 'My parents are late, so I will wait for _____ here.'",
+  "options": [
+   "they",
+   "their",
+   "them",
+   "themselves"
+  ],
+  "correctIndex": 2,
+  "explanation": "Dopo la preposizione 'for' serve il pronome complemento 'them'. 'They' è un pronome soggetto, 'their' è un aggettivo che vuole un nome e 'themselves' è riflessivo."
+ },
+ "q248": {
+  "prompt": "Complete the sentence: 'Please give _____ that book.'",
+  "options": [
+   "me",
+   "I",
+   "my",
+   "myself"
+  ],
+  "correctIndex": 0,
+  "explanation": "Dopo 'give' si usa il pronome complemento 'me'. 'I' è un pronome soggetto, 'my' vuole un nome dopo e 'myself' è riflessivo e non si usa quando a dare il libro è un'altra persona."
+ },
+ "q249": {
+  "prompt": "Complete the sentence: 'You always tell lies, so I do not believe _____.'",
+  "options": [
+   "your",
+   "you",
+   "yours",
+   "to you"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Believe' è seguito direttamente dal pronome complemento 'you', senza 'to'. 'Your' e 'yours' sono possessivi e non possono fare da complemento oggetto in questa frase."
+ },
+ "q250": {
+  "prompt": "Complete the sentence: 'This pen is very nice and I want _____ now.'",
+  "options": [
+   "its",
+   "they",
+   "he",
+   "it"
+  ],
+  "correctIndex": 3,
+  "explanation": "Per una cosa singolare come 'pen' il pronome complemento è 'it'. 'Its' è un aggettivo possessivo e vuole un nome, mentre 'they' e 'he' sono pronomi soggetto e non si usano dopo il verbo."
+ },
+ "q251": {
+  "prompt": "Complete the sentence: 'Are you coming with _____ to the cinema?'",
+  "options": [
+   "we",
+   "our",
+   "us",
+   "ours"
+  ],
+  "correctIndex": 2,
+  "explanation": "Dopo la preposizione 'with' si usa il pronome complemento 'us'. 'We' è un pronome soggetto, 'our' vuole un nome dopo e 'ours' è il possessivo senza nome, quindi nessuno dei due ha senso qui."
+ },
+ "q252": {
+  "prompt": "Complete the sentence: 'These boys are new in the class and I do not know _____.'",
+  "options": [
+   "them",
+   "they",
+   "their",
+   "they're"
+  ],
+  "correctIndex": 0,
+  "explanation": "Dopo il verbo 'know' serve il pronome complemento 'them'. 'They' è un pronome soggetto, 'their' è un aggettivo che vuole un nome e 'they're' è la contrazione di 'they are'."
+ },
+ "q262": {
+  "prompt": "Complete the sentence: '_____ cat in my arms is called Leo.'",
+  "options": [
+   "These",
+   "Those",
+   "Them",
+   "This"
+  ],
+  "correctIndex": 3,
+  "explanation": "'Cat' è singolare e vicino a chi parla, quindi si usa 'this'. 'These' e 'those' sono plurali, mentre 'them' è un pronome complemento e non si mette davanti a un nome."
+ },
+ "q263": {
+  "prompt": "Complete the sentence: '_____ books on the shelf over there are mine.'",
+  "options": [
+   "That",
+   "Those",
+   "This",
+   "It"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Books' è plurale e 'over there' indica che sono lontani, quindi 'those'. 'That' e 'this' sono singolari e 'it' non si usa davanti a un nome."
+ },
+ "q264": {
+  "prompt": "Complete the sentence: 'Try a slice of the pizza in my hand: _____ pizza is very good.'",
+  "options": [
+   "These",
+   "Those",
+   "This",
+   "It"
+  ],
+  "correctIndex": 2,
+  "explanation": "'Pizza' è singolare e vicina a chi parla, quindi si usa 'this'. 'These' e 'those' sono plurali e 'it' non si mette davanti a un nome."
+ },
+ "q265": {
+  "prompt": "Complete the sentence: 'Look at the girls next to me: _____ girls are Italian.'",
+  "options": [
+   "These",
+   "This",
+   "That",
+   "Them"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Girls' è plurale e vicino a chi parla, quindi si usa 'these'. 'This' e 'that' sono singolari, mentre 'them' è un pronome complemento e non si mette davanti a un nome."
+ }
+}

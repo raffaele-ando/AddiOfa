@@ -16,8 +16,7 @@ export function shuffleArray<T>(items: readonly T[]): T[] {
   return result;
 }
 
-// Con la quinta opzione (extraOption) non si fa nulla qui: resta fuori da options, che ha le 4 opzioni del banco.
-// Per le simulazioni (4 o 5 opzioni a seconda del formato) si usa prepareQuestion di lib/exam.ts.
+// Per le simulazioni si usa prepareQuestion di lib/exam.ts.
 // Nota: non aggiungere parametri facoltativi, la funzione viene passata direttamente a .map().
 export function shuffleQuestion(q: Question): Question {
   const optionsWithIndex = q.options.map((opt, i) => ({ text: opt, isCorrect: i === q.correctIndex }));

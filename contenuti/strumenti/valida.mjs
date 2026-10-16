@@ -75,10 +75,6 @@ for (const q of domande) {
       if (viste.has(k)) problema(`opzione ripetuta ("${o}")`);
       viste.add(k);
     });
-    if (q.extraOption !== undefined) {
-      if (!nonVuota(q.extraOption)) err(`${id}: extraOption vuota`);
-      else if (viste.has(norm(q.extraOption))) err(`${id}: extraOption uguale a un'altra opzione ("${q.extraOption}")`);
-    }
     if (!Number.isInteger(q.correctIndex) || q.correctIndex < 0 || q.correctIndex > 3) err(`${id}: correctIndex non valido (${q.correctIndex})`);
     else {
       const esatta = norm(q.options[q.correctIndex]);
@@ -89,7 +85,6 @@ for (const q of domande) {
   if (!CATEGORIE.has(q.category)) err(`${id}: category "${q.category}" non ammessa (Grammatica o Traduzione)`);
   if (!LIVELLI.has(q.level)) err(`${id}: level "${q.level}" non ammesso (A1, A2, B1)`);
   if (!nomiArgomenti.has(q.grammarTopic)) err(`${id}: grammarTopic "${q.grammarTopic}" non è in teoria/argomenti.json`);
-  if (typeof q.core !== 'boolean') err(`${id}: core deve essere true o false`);
   if (!nonVuota(spiegazioneFinale(q))) err(`${id}: spiegazione vuota`);
 
   // stato
@@ -98,12 +93,10 @@ for (const q of domande) {
     if (!perId.has(dup)) err(`${id}: stato "${stato}" punta a una domanda che non esiste`);
     else if (dup === id) err(`${id}: è duplicata di se stessa`);
     else if (duplicataDi(perId.get(dup).stato) !== null) err(`${id}: duplicata di ${dup}, che a sua volta è duplicata (punta alla domanda tenuta)`);
-    if (q.core === true) err(`${id}: core true ma segnata come duplicata`);
   } else if (!STATI.has(stato)) err(`${id}: stato "${stato}" non valido`);
-  if (q.core === true && stato === 'da-riscrivere') err(`${id}: nel nucleo gratuito non possono stare domande da riscrivere`);
 
   // refusi
-  const testo = [q.prompt, ...(q.options ?? []), q.extraOption ?? '', spiegazioneFinale(q)].join(' \n ');
+  const testo = [q.prompt, ...(q.options ?? []), spiegazioneFinale(q)].join(' \n ');
   for (const r of REFUSI) if (testo.toLowerCase().includes(r.toLowerCase())) { problema(`refuso noto "${r}"`); conRefusi++; }
   if (finale && sospetta) err(`${id}: ancora da riscrivere`);
 }
@@ -129,13 +122,7 @@ for (const a of argomenti) {
   const attese = nonDup.filter((q) => q.grammarTopic === a.grammarTopic).map((q) => q.id).sort((x, y) => numeroId(x) - numeroId(y));
   const scritte = [...(a.domande ?? [])].sort((x, y) => numeroId(x) - numeroId(y));
   if (JSON.stringify(attese) !== JSON.stringify(scritte)) avv(`argomenti.json: l'elenco domande di "${a.id}" non coincide con le domande (rilancia node contenuti/strumenti/crea-argomenti.mjs)`);
-  const nuc = nonDup.filter((q) => q.grammarTopic === a.grammarTopic && q.core).length;
-  if (nuc < 3) avv(`nucleo: "${a.grammarTopic}" ha solo ${nuc} domande`);
 }
-
-// ---------- nucleo ----------
-const nucleo = nonDup.filter((q) => q.core);
-if (nucleo.length !== 100) avv(`nucleo: ${nucleo.length} domande (obiettivo 100)`);
 
 // ---------- duplicati ----------
 let distinte = new Set();
@@ -189,7 +176,7 @@ console.log(`  domande nei file:        ${domande.length} (id fino a q${massimo}
 console.log(`  duplicate segnate:       ${domande.length - nonDup.length}`);
 console.log(`  domande nel banco:       ${nonDup.length}`);
 console.log(`  stati:                   ${JSON.stringify(per((q) => q.stato))}`);
-console.log(`  nucleo gratuito:         ${nucleo.length} (livelli ${JSON.stringify(nucleo.reduce((m, q) => ((m[q.level] = (m[q.level] ?? 0) + 1), m), {}))})`);
+console.log(`  livelli:                 ${JSON.stringify(per((q) => q.level))}`);
 console.log(`  da riscrivere:           ${daRiscrivere}`);
 console.log(`  spiegazioni in italiano: ${conSpiegazioneIt}/${nonDup.length}`);
 console.log(`  argomenti:               ${argomenti.length} (${coperti.size} coperti da domande)`);

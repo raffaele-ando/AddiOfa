@@ -1,0 +1,721 @@
+[
+ {
+  "id": "q176",
+  "prompt": "Translate 'Lui non capisce la domanda.'",
+  "options": [
+   "He doesn't understand the question.",
+   "He don't understand the question.",
+   "He isn't understand the question.",
+   "He not understands the question."
+  ],
+  "correctIndex": 0,
+  "explanation": "Third person singular negative uses 'doesn't'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": false,
+  "extraOption": "He doesn't understands the question.",
+  "stato": "originale"
+ },
+ {
+  "id": "q178",
+  "prompt": "Translate 'Cosa significa questa parola?'",
+  "options": [
+   "What does this word mean?",
+   "What means this word?",
+   "What do this word mean?",
+   "What is meaning this word?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Question uses 'does' for third person singular ('this word').",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": false,
+  "extraOption": "What does mean this word?",
+  "stato": "originale"
+ },
+ {
+  "id": "q180",
+  "prompt": "Translate 'Quante volte vai in palestra?'",
+  "options": [
+   "How often do you go to the gym?",
+   "How often you go to the gym?",
+   "How much time do you go to the gym?",
+   "How many times you go to the gym?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'How often' asks about frequency.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": false,
+  "extraOption": "How often do you to go to the gym?",
+  "stato": "originale"
+ },
+ {
+  "id": "q182",
+  "prompt": "Translate 'Lei ha due gatti e un cane.'",
+  "options": [
+   "She has two cats and a dog.",
+   "She have two cats and a dog.",
+   "She is having two cats and a dog.",
+   "She got two cats and a dog."
+  ],
+  "correctIndex": 0,
+  "explanation": "Third person singular of 'have' is 'has'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q184",
+  "prompt": "Translate 'Il film inizia alle 20:30.'",
+  "options": [
+   "The movie starts at 8:30 PM.",
+   "The movie starting at 8:30 PM.",
+   "The movie start at 8:30 PM.",
+   "The movie will starting at 8:30 PM."
+  ],
+  "correctIndex": 0,
+  "explanation": "Timetables use present simple.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Present Simple",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q187",
+  "prompt": "Translate 'Non ci sono mele.'",
+  "options": [
+   "There aren't any apples.",
+   "There aren't some apples.",
+   "There aren't no apples.",
+   "There are any apples."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative countable uses 'any'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Quantifiers",
+  "core": false,
+  "extraOption": "There don't have any apples.",
+  "stato": "originale"
+ },
+ {
+  "id": "q189",
+  "prompt": "Translate 'Vorresti del tè?'",
+  "options": [
+   "Would you like some tea?",
+   "Would you like to some tea?",
+   "Do you would like some tea?",
+   "Would you like many tea?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Offers use 'some', not 'any'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Quantifiers",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q191",
+  "prompt": "Translate 'Ho pochissimo tempo.'",
+  "options": [
+   "I have very little time.",
+   "I have very few time.",
+   "I have much little time.",
+   "I have very small time."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Time' is uncountable, so 'little'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Quantifiers",
+  "core": true,
+  "stato": "originale"
+ },
+ {
+  "id": "q193",
+  "prompt": "Translate 'Abbiamo mangiato troppa pizza.'",
+  "options": [
+   "We ate too much pizza.",
+   "We ate too many pizza.",
+   "We ate very much pizza.",
+   "We ate a lot pizza."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Pizza' in general is uncountable, so 'too much'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Quantifiers",
+  "core": false,
+  "extraOption": "We ate too much of pizza.",
+  "stato": "originale"
+ },
+ {
+  "id": "q195",
+  "prompt": "Translate 'Non abbiamo comprato niente.'",
+  "options": [
+   "We didn't buy anything.",
+   "We bought anything.",
+   "We didn't buy nothing.",
+   "We didn't buy some."
+  ],
+  "correctIndex": 0,
+  "explanation": "Negative sentence requires 'anything'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Quantifiers",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q198",
+  "prompt": "Translate 'Perché sei in ritardo?'",
+  "options": [
+   "Why are you late?",
+   "Because are you late?",
+   "Why you are late?",
+   "Why do you late?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Asking for a reason requires 'Why'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Questions and Origins",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q200",
+  "prompt": "Translate 'Quando è il tuo compleanno?'",
+  "options": [
+   "When is your birthday?",
+   "Where is your birthday?",
+   "What is your birthday?",
+   "How is your birthday?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Asking for time/date requires 'When'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Questions and Origins",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q202",
+  "prompt": "Translate 'Come vai al lavoro?'",
+  "options": [
+   "How do you go to work?",
+   "What do you go to work?",
+   "Where do you go to work?",
+   "Why do you go to work?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Asking for method/manner requires 'How'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Questions and Origins",
+  "core": false,
+  "extraOption": "Who do you go to work?",
+  "stato": "originale"
+ },
+ {
+  "id": "q204",
+  "prompt": "Translate 'Di chi è questa borsa?'",
+  "options": [
+   "Whose bag is this?",
+   "Who bag is this?",
+   "Which bag is this?",
+   "What bag is this?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Asking for possession requires 'Whose'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Questions and Origins",
+  "core": false,
+  "extraOption": "Whom bag is this?",
+  "stato": "originale"
+ },
+ {
+  "id": "q206",
+  "prompt": "Translate 'Quanto costa questo libro?'",
+  "options": [
+   "How much does this book cost?",
+   "How many does this book cost?",
+   "How price is this book?",
+   "What cost this book?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Asking for price uses 'How much'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Questions and Origins",
+  "core": false,
+  "extraOption": "How much costs this book?",
+  "stato": "originale"
+ },
+ {
+  "id": "q209",
+  "prompt": "Translate 'Ci sono tre sedie nella stanza.'",
+  "options": [
+   "There are three chairs in the room.",
+   "They are three chairs in the room.",
+   "There is three chairs in the room.",
+   "Have three chairs in the room."
+  ],
+  "correctIndex": 0,
+  "explanation": "Plural noun 'chairs' requires 'There are'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "There is / There are",
+  "core": false,
+  "extraOption": "There have three chairs in the room.",
+  "stato": "originale"
+ },
+ {
+  "id": "q211",
+  "prompt": "Translate 'C'è un buon ristorante qui vicino?'",
+  "options": [
+   "Is there a good restaurant near here?",
+   "Are there a good restaurant near here?",
+   "There is a good restaurant near here?",
+   "Does there a good restaurant near here?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Question form for singular noun.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "There is / There are",
+  "core": false,
+  "extraOption": "Has there a good restaurant near here?",
+  "stato": "originale"
+ },
+ {
+  "id": "q213",
+  "prompt": "Translate 'Non c'era nessuno in casa.'",
+  "options": [
+   "There was nobody at home.",
+   "There wasn't nobody at home.",
+   "There were nobody at home.",
+   "It was nobody at home."
+  ],
+  "correctIndex": 0,
+  "explanation": "Past singular existence with negative pronoun.",
+  "category": "Traduzione",
+  "level": "A2",
+  "grammarTopic": "There is / There are",
+  "core": true,
+  "extraOption": "There is nobody at home.",
+  "stato": "originale"
+ },
+ {
+  "id": "q215",
+  "prompt": "Translate 'Ci sono dei biscotti nella scatola?'",
+  "options": [
+   "Are there any biscuits in the box?",
+   "Is there a biscuits in the box?",
+   "Are there much biscuits in the box?",
+   "Do there any biscuits in the box?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Nelle domande sull'esistenza con un plurale si usa 'Are there' + 'any': 'Are there any biscuits in the box?'. 'Is there a' non va con un plurale, 'much' si usa solo con i nomi non numerabili e 'Do there' non esiste.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "There is / There are",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q226",
+  "prompt": "Translate 'Questo libro è mio.'",
+  "options": [
+   "This book is mine.",
+   "This book is my.",
+   "This book is me.",
+   "This book is I."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Mio' at the end of the sentence is the pronoun 'mine'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessives",
+  "core": false,
+  "extraOption": "This book is mines.",
+  "stato": "originale"
+ },
+ {
+  "id": "q227",
+  "prompt": "Translate 'La loro casa è molto grande.'",
+  "options": [
+   "Their house is very big.",
+   "Theirs house is very big.",
+   "They house is very big.",
+   "Them house is very big."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Loro' as an adjective before a noun is 'their'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessives",
+  "core": true,
+  "extraOption": "There house is very big.",
+  "stato": "originale"
+ },
+ {
+  "id": "q228",
+  "prompt": "Translate 'Quella è la tua giacca, non la sua (di lei).'",
+  "options": [
+   "That is your jacket, not hers.",
+   "That is your jacket, not her.",
+   "That is yours jacket, not hers.",
+   "That is your jacket, not she."
+  ],
+  "correctIndex": 0,
+  "explanation": "'La sua' without the noun is the pronoun 'hers'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessives",
+  "core": false,
+  "extraOption": "That is your jacket, not her's.",
+  "stato": "originale"
+ },
+ {
+  "id": "q229",
+  "prompt": "Translate 'I nostri amici stanno arrivando.'",
+  "options": [
+   "Our friends are coming.",
+   "Ours friends are coming.",
+   "We friends are coming.",
+   "Us friends are coming."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Nostri' before the noun is 'our'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q230",
+  "prompt": "Translate 'Questi soldi sono vostri?'",
+  "options": [
+   "Is this money yours?",
+   "Is this money your?",
+   "Are these money yours?",
+   "Is this money you?"
+  ],
+  "correctIndex": 0,
+  "explanation": "Money is uncountable singular, 'vostri' as a pronoun is 'yours'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q231",
+  "prompt": "Translate 'Il suo (di lui) telefono è nuovo.'",
+  "options": [
+   "His phone is new.",
+   "Him phone is new.",
+   "He phone is new.",
+   "His' phone is new."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Suo' for a male is 'his'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessives",
+  "core": false,
+  "extraOption": "He's phone is new.",
+  "stato": "originale"
+ },
+ {
+  "id": "q232",
+  "prompt": "Translate 'La mia macchina è rossa, la sua (di lui) è blu.'",
+  "options": [
+   "My car is red, his is blue.",
+   "My car is red, him is blue.",
+   "Mine car is red, his is blue.",
+   "My car is red, he is blue."
+  ],
+  "correctIndex": 0,
+  "explanation": "'La sua' as a pronoun for a male is 'his'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q233",
+  "prompt": "Translate 'Ho dimenticato il mio ombrello.'",
+  "options": [
+   "I forgot my umbrella.",
+   "I forgot mine umbrella.",
+   "I forgot me umbrella.",
+   "I forgot I umbrella."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Il mio' before the noun is 'my'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q234",
+  "prompt": "Translate 'Quelle penne sono loro (di loro).'",
+  "options": [
+   "Those pens are theirs.",
+   "Those pens are their.",
+   "Those pens are them.",
+   "Those pens are they."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Loro' as a pronoun is 'theirs'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Possessives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q244",
+  "prompt": "Translate 'Non lo capisco.' (di lui)",
+  "options": [
+   "I don't understand him.",
+   "I don't understand he.",
+   "I don't understand his.",
+   "I don't understand it."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Lo' referring to a man translates to 'him'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Object Pronouns",
+  "core": false,
+  "extraOption": "I don't understand himself.",
+  "stato": "originale"
+ },
+ {
+  "id": "q245",
+  "prompt": "Translate 'Puoi vederci?'",
+  "options": [
+   "Can you see us?",
+   "Can you see we?",
+   "Can you see our?",
+   "Can you see me?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Ci' translates to the object pronoun 'us'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Object Pronouns",
+  "core": false,
+  "extraOption": "Can you see ourselves?",
+  "stato": "originale"
+ },
+ {
+  "id": "q246",
+  "prompt": "Translate 'Le ho comprato un regalo.' (a lei)",
+  "options": [
+   "I bought her a present.",
+   "I bought she a present.",
+   "I bought hers a present.",
+   "I bought for her a present."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Le' (to her) is translated with the object pronoun 'her'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Object Pronouns",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q247",
+  "prompt": "Translate 'Li aspetto qui.'",
+  "options": [
+   "I'll wait for them here.",
+   "I'll wait for they here.",
+   "I'll wait them here.",
+   "I'm waiting they here."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Li' is the object pronoun 'them', and 'wait' needs 'for' before its object: 'I'll wait for them here'. 'They' is a subject pronoun.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Object Pronouns",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q248",
+  "prompt": "Translate 'Dammi quel libro.'",
+  "options": [
+   "Give me that book.",
+   "Give I that book.",
+   "Give my that book.",
+   "Give to me that book."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Dammi' uses the object pronoun 'me'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Object Pronouns",
+  "core": false,
+  "extraOption": "Give myself that book.",
+  "stato": "originale"
+ },
+ {
+  "id": "q249",
+  "prompt": "Translate 'Non ti credo.'",
+  "options": [
+   "I don't believe you.",
+   "I don't believe your.",
+   "I don't believe to you.",
+   "I not believe you."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Ti' is the object pronoun 'you'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Object Pronouns",
+  "core": false,
+  "extraOption": "I don't believe yourself.",
+  "stato": "originale"
+ },
+ {
+  "id": "q250",
+  "prompt": "Translate 'Lo voglio adesso.' (un oggetto)",
+  "options": [
+   "I want it now.",
+   "I want him now.",
+   "I want them now.",
+   "I want he now."
+  ],
+  "correctIndex": 0,
+  "explanation": "Il suggerimento dice che 'lo' indica un oggetto singolare, e il pronome complemento per le cose è 'it'. 'Him' si usa solo per un uomo, 'them' è plurale e 'he' è un pronome soggetto, che dopo il verbo non si può usare.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Object Pronouns",
+  "core": false,
+  "stato": "rivista"
+ },
+ {
+  "id": "q251",
+  "prompt": "Translate 'Vieni con noi al cinema?'",
+  "options": [
+   "Are you coming with us to the cinema?",
+   "Are you coming with we to the cinema?",
+   "Are you coming with our to the cinema?",
+   "Are you coming to us to the cinema?"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Con noi' richiede il pronome complemento 'us' dopo la preposizione 'with'. 'With we' è sbagliato perché 'we' è soggetto, 'with our' è un aggettivo possessivo che vuole un nome, e 'coming to us' cambia il senso (\"vieni da noi\").",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Object Pronouns",
+  "core": true,
+  "stato": "rivista"
+ },
+ {
+  "id": "q252",
+  "prompt": "Translate 'Non li conosco.'",
+  "options": [
+   "I don't know them.",
+   "I don't know they.",
+   "I don't know their.",
+   "I not know them."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Li' is the object pronoun 'them'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Object Pronouns",
+  "core": false,
+  "extraOption": "I don't know they're.",
+  "stato": "originale"
+ },
+ {
+  "id": "q262",
+  "prompt": "Translate 'Questo è il mio gatto.'",
+  "options": [
+   "This is my cat.",
+   "That is my cat.",
+   "These is my cat.",
+   "Those is my cat."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Questo' for one thing near the speaker is 'This'; 'that' is for something far away, and 'these/those' are plural.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Demonstratives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q263",
+  "prompt": "Translate 'Quelli sono i miei libri.'",
+  "options": [
+   "Those are my books.",
+   "That are my books.",
+   "These are my books.",
+   "This are my books."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Quelli' (far plural) is 'Those'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Demonstratives",
+  "core": false,
+  "extraOption": "Them are my books.",
+  "stato": "originale"
+ },
+ {
+  "id": "q264",
+  "prompt": "Translate 'Questa pizza è buonissima.'",
+  "options": [
+   "This pizza is very good.",
+   "That pizza is very good.",
+   "These pizza is very good.",
+   "It pizza is very good."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Questa' (singular, near the speaker) is 'This': 'This pizza'; 'that' is for something far away and 'these' is plural.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Demonstratives",
+  "core": false,
+  "stato": "originale"
+ },
+ {
+  "id": "q265",
+  "prompt": "Translate 'Queste ragazze sono italiane.'",
+  "options": [
+   "These girls are Italian.",
+   "This girls are Italian.",
+   "Those girls are Italian.",
+   "That girls are Italian."
+  ],
+  "correctIndex": 0,
+  "explanation": "'Queste' (near plural) is 'These'.",
+  "category": "Traduzione",
+  "level": "A1",
+  "grammarTopic": "Demonstratives",
+  "core": false,
+  "extraOption": "These girl are Italian.",
+  "stato": "originale"
+ }
+]

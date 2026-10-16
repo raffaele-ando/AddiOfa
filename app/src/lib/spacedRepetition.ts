@@ -1,5 +1,5 @@
-import { Question, UserStats, AppState, QuestionTelemetry, CorpusType } from '../types';
-import { questions, getQuestionsByCorpus } from '../data/questions';
+import { Question, UserStats, AppState, QuestionTelemetry } from '../types';
+import { questions } from '../data/questions';
 import { toMeta, type QuestionMeta } from '../data/bank';
 import { chiaveGiorno, shuffleArray } from './utils';
 
@@ -13,16 +13,15 @@ export interface QuizLike {
 
 let metaCache: QuestionMeta[] | null = null;
 
-/** Indice leggero del banco (id, categoria, livello, argomento, se è del nucleo gratuito). Non contiene risposte. */
+/** Indice leggero del banco (id, categoria, livello, argomento). Non contiene risposte. */
 export function bankMeta(): QuestionMeta[] {
   if (!metaCache) metaCache = questions.map(q => toMeta(q));
   return metaCache;
 }
 
-/** Domande disponibili: con il Pass tutto il banco (o il solo nucleo se l'utente lo sceglie), senza Pass solo il nucleo gratuito. */
-export function poolMeta(pass: boolean, corpus: CorpusType = 'all'): QuestionMeta[] {
-  const all = bankMeta();
-  return pass && corpus !== 'initial' ? all : all.filter(m => m.core);
+/** Domande disponibili: tutto il banco. */
+export function poolMeta(): QuestionMeta[] {
+  return bankMeta();
 }
 
 // ---- Costanti dell'algoritmo (SM-2 con qualità continua 0-5)
@@ -110,9 +109,6 @@ export interface PracticeOptions {
   numQuestions?: number;
   mode?: 'standard' | 'weakness' | 'blitz' | 'category' | 'recall' | 'smart';
   category?: string;
-  corpus?: CorpusType;
-  /** Senza Pass (default) il pool è sempre il nucleo gratuito. */
-  pass?: boolean;
   /** Ora di riferimento (millisecondi): per i test; di norma Date.now(). */
   now?: number;
 }
@@ -127,18 +123,14 @@ export const QUOTA_NUOVE = 0.3;
  * Modo 'weakness': per tasso d'errore e facilità, come prima. Modo 'smart': stesse quote, con il rimescolamento finale.
  */
 export function selectPracticeIds(stats: UserStats, options: PracticeOptions = {}): string[] {
-  const { mode = 'standard', category, corpus = 'all', pass = false } = options;
+  const { mode = 'standard', category } = options;
   const now = num(options.now, Date.now());
   const n = Number.isFinite(options.numQuestions) ? Math.max(0, Math.floor(options.numQuestions as number)) : 10;
 
-  const base = poolMeta(pass, corpus);
+  const base = poolMeta();
   let pool = base;
   if (category && mode === 'category') {
-    if (category === 'corpus:initial') {
-      pool = poolMeta(pass, 'initial');
-    } else if (category === 'corpus:all') {
-      pool = base;
-    } else if (category.startsWith('level:')) {
+    if (category.startsWith('level:')) {
       pool = pool.filter(q => q.level === category.substring(6));
     } else if (category.startsWith('topic:')) {
       pool = pool.filter(q => q.grammarTopic === category.substring(6));

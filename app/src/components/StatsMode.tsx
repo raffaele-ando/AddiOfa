@@ -1,16 +1,12 @@
 import { useState, useMemo, useEffect } from 'react';
-import { AppState, PaywallReason } from '../types';
+import { AppState } from '../types';
 import { Icona } from '../brand/icone/Icona';
 import { cn } from '../lib/utils';
-import { confidenceFromEasiness, bankMeta, poolMeta, countLearned, isLearned } from '../lib/spacedRepetition';
-import GuaranteeTracker from './GuaranteeTracker';
-import { PoweredByAtlas } from './ui';
-import { useAccess } from '../access/context';
-import { FEATURE_FLAGS, FORMATS } from '../config/offer';
+import { confidenceFromEasiness, bankMeta, isLearned } from '../lib/spacedRepetition';
+import { provider } from '../access';
 import { ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { FoglioInfo, TONI } from '../screens/extra/ui';
 import { Tessere, AndamentoSimulazioni } from '../screens/extra/studio/StatistichePezzi';
-import { BarraTono } from '../screens/extra/ui';
 import { ChipLivello } from '../screens/extra/studio/comune';
 import { playTapSound } from '../lib/audio';
 
@@ -25,7 +21,6 @@ const TOOLTIP = { borderRadius: '12px', border: '1px solid var(--color-linea)', 
 interface StatsModeProps {
   appState: AppState;
   onExit: () => void;
-  onNeedPass: (reason: PaywallReason) => void;
   /** Non più usati (il percorso e le lezioni si aprono da Lezioni, l'analisi per argomento sta in Progressi): restano per compatibilità con App. */
   onVaiPercorso?: () => void;
   onApriLezione?: (topicId: string) => void;
@@ -37,7 +32,6 @@ interface StatsModeProps {
 
 // Scarica il testo delle domande dal provider a gruppi, senza ripetere quelle già in mano
 async function fetchPrompts(
-  provider: ReturnType<typeof useAccess>['provider'],
   ids: string[],
   have: Record<string, string>
 ): Promise<Record<string, string>> {
@@ -76,8 +70,7 @@ function Conto({ tipo, n, piccolo }: { tipo: 'giuste' | 'sbagliate' | 'omesse'; 
   );
 }
 
-export default function StatsMode({ appState, onExit, onNeedPass, incorporata, onDiagnostico }: StatsModeProps) {
-  const { provider, pass } = useAccess();
+export default function StatsMode({ appState, onExit, incorporata, onDiagnostico }: StatsModeProps) {
   const [showDetailedStats, setShowDetailedStats] = useState(false);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [filterCategory, setFilterCategory] = useState<string>('all');
@@ -85,32 +78,8 @@ export default function StatsMode({ appState, onExit, onNeedPass, incorporata, o
   const [answersText, setAnswersText] = useState<Record<string, string>>({});
   const [promptsState, setPromptsState] = useState<'idle' | 'loading' | 'error'>('idle');
 
-  // Indice leggero del banco: senza Pass solo il nucleo gratuito
-  const allMeta = useMemo(() => poolMeta(pass, 'all'), [pass]);
-  const activeMeta = useMemo(() => poolMeta(pass, appState.selectedCorpus || 'all'), [pass, appState.selectedCorpus]);
-
-  // Compute stats
-  // Stesso materiale del menu: con il nucleo di base la percentuale è calcolata su quelle domande
-  const totalQuestions = activeMeta.length;
-  const masteredQuestions = countLearned(appState.stats, activeMeta.map(q => q.id));
-  const masteryPercentage = Math.round((masteredQuestions / totalQuestions) * 100) || 0;
-  
-  const examsTaken = appState.history.length;
-  const passedExams = appState.history.filter(h => h.passed).length;
-  const passRate = examsTaken > 0 ? Math.round((passedExams / examsTaken) * 100) : 0;
-  
-  const bestScore = Math.max(0, ...appState.history.map(h => h.score));
-  const lastExam = appState.history.reduce<AppState['history'][number] | null>((last, h) => (!last || h.date > last.date ? h : last), null);
-
-  let totalCorrect = 0;
-  let totalIncorrect = 0;
-  Object.values(appState.stats).forEach(stat => {
-    totalCorrect += stat.correct;
-    totalIncorrect += stat.incorrect;
-  });
-  const globalAccuracy = (totalCorrect + totalIncorrect) > 0 
-    ? Math.round((totalCorrect / (totalCorrect + totalIncorrect)) * 100) 
-    : 0;
+  // Indice leggero del banco (tutte le domande)
+  const allMeta = useMemo(() => bankMeta(), []);
 
   // Find most frequent errors
   const errorRates = Object.keys(appState.stats)
@@ -129,9 +98,9 @@ export default function StatsMode({ appState, onExit, onNeedPass, incorporata, o
   const topErrors = errorRates.slice(0, 5); // top 5 hardest questions
   const topErrorIds = topErrors.map(e => e.qId).join(',');
 
-  // Testo e risposta esatta delle domande più sbagliate: arrivano dal provider (solo con il Pass)
+  // Testo e risposta esatta delle domande più sbagliate: arrivano dal provider
   useEffect(() => {
-    if (!pass || !topErrorIds) return;
+    if (!topErrorIds) return;
     let alive = true;
     const ids = topErrorIds.split(',');
     (async () => {
@@ -153,7 +122,7 @@ export default function StatsMode({ appState, onExit, onNeedPass, incorporata, o
     })();
     return () => { alive = false; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pass, topErrorIds, provider]);
+  }, [topErrorIds]);
 
   const levelStatsData = useMemo(() => {
     const stats: Record<string, { imparate: number; total: number }> = {};
@@ -177,13 +146,10 @@ export default function StatsMode({ appState, onExit, onNeedPass, incorporata, o
   }, [appState.stats, allMeta]);
 
   const categories = useMemo(() => Array.from(new Set(allMeta.map(q => q.category))), [allMeta]);
-  const coreCount = useMemo(() => poolMeta(false).length, []);
 
   const filteredAndSortedQuestions = useMemo(() => {
     let filtered = allMeta;
-    if (filterCategory === 'corpus:initial') {
-      filtered = poolMeta(false);
-    } else if (filterCategory !== 'all') {
+    if (filterCategory !== 'all') {
       filtered = filtered.filter(q => q.category === filterCategory);
     }
     
@@ -204,19 +170,17 @@ export default function StatsMode({ appState, onExit, onNeedPass, incorporata, o
 
   // Il dettaglio mostra il testo di ogni domanda: si scarica quando si apre la vista
   useEffect(() => {
-    if (!showDetailedStats || !pass) return;
+    if (!showDetailedStats) return;
     let alive = true;
     setPromptsState('loading');
-    fetchPrompts(provider, allMeta.map(q => q.id), prompts)
+    fetchPrompts(allMeta.map(q => q.id), prompts)
       .then(got => { if (alive) { setPrompts(p => ({ ...p, ...got })); setPromptsState('idle'); } })
       .catch(() => { if (alive) setPromptsState('error'); });
     return () => { alive = false; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showDetailedStats, pass, provider]);
+  }, [showDetailedStats]);
 
-  const lastExamFormat = lastExam ? FORMATS[lastExam.format ?? 'ente'] : null;
-
-  /** Pulsanti in fondo: il diagnostico è il solo pieno; il dettaglio delle domande (solo con il Pass) è secondario. */
+  /** Pulsanti in fondo: il diagnostico è il solo pieno; il dettaglio delle domande è secondario. */
   const pulsanti = (
     <div className="flex flex-col gap-2.5">
       {onDiagnostico && (
@@ -225,56 +189,14 @@ export default function StatsMode({ appState, onExit, onNeedPass, incorporata, o
           <Icona nome="diagnostico" size={20} />Diagnostico
         </button>
       )}
-      {pass && (
-        <button type="button" onClick={() => { playTapSound(); setShowDetailedStats(true); }}
-          className="brand-premibile w-full min-h-[48px] rounded-[13px] bg-superficie-2 px-4 py-3 text-[15px] font-bold text-testo flex items-center justify-center gap-2">
-          <Icona nome="dettaglio" size={20} />Dettaglio
-        </button>
-      )}
+      <button type="button" onClick={() => { playTapSound(); setShowDetailedStats(true); }}
+        className="brand-premibile w-full min-h-[48px] rounded-[13px] bg-superficie-2 px-4 py-3 text-[15px] font-bold text-testo flex items-center justify-center gap-2">
+        <Icona nome="dettaglio" size={20} />Dettaglio
+      </button>
     </div>
   );
 
-  const corpo = !pass ? (
-    // Senza Pass: i numeri di base e il Pass in una riga
-    <>
-      <Tessere stato={appState} />
-      <div className="rounded-[12px] bg-superficie-2 divide-y divide-linea">
-        <div className="p-4">
-          <div className="flex items-center justify-between gap-3">
-            <span className="inline-flex items-center gap-2 text-[15px] font-bold text-testo"><Icona nome="imparate" size={20} className="text-alto-numero" /><span className="tabular-nums">{masteredQuestions}/{totalQuestions}</span></span>
-            <span className="text-[26px] leading-[28px] font-extrabold tabular-nums text-alto-numero">{masteryPercentage}%</span>
-          </div>
-          <BarraTono valore={masteryPercentage} tono="alto" className="mt-2 h-2" />
-        </div>
-        <div className="p-4 flex items-center justify-between gap-3">
-          <span className="inline-flex items-center gap-2 text-[15px] font-bold text-testo"><Icona nome="accuratezza" size={20} className="text-alto-numero" />Accuratezza</span>
-          <span className="text-[26px] leading-[28px] font-extrabold tabular-nums text-alto-numero">{globalAccuracy}%</span>
-        </div>
-        <div className="p-4 flex items-center justify-between gap-3">
-          <span className="inline-flex items-center gap-2 text-[15px] font-bold text-testo"><Icona nome="simulazioni" size={20} className="text-azione-scuro" />
-            {lastExam && lastExamFormat ? <span className="tabular-nums">{lastExam.score}/{lastExamFormat.questions}</span> : '–'}
-          </span>
-          {lastExam && (
-            <span role="img" aria-label={lastExam.passed ? 'Superata' : 'Non superata'} className={cn('inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[12px] font-bold', lastExam.passed ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
-              <Icona nome={lastExam.passed ? 'stato-ok' : 'stato-errore'} size={15} />{new Date(lastExam.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'short' })}
-            </span>
-          )}
-        </div>
-      </div>
-      <div className="rounded-[12px] border border-linea p-4 flex items-center gap-3">
-        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[11px] bg-medio-tinta text-medio-numero" aria-hidden="true"><Icona nome="blocco" size={22} /></span>
-        <span className="flex-1 min-w-0 text-[15px] font-bold text-testo">Statistiche complete</span>
-        <button type="button" onClick={() => { playTapSound(); onNeedPass('statistiche'); }}
-          className="brand-premibile inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-azione px-4 text-[14px] font-bold text-azione-su">
-          <Icona nome="pass" size={16} />Pass
-        </button>
-      </div>
-      <p className="inline-flex items-center gap-1.5 text-[12.5px] font-bold text-testo-tenue tabular-nums" role="img" aria-label={`Contano le ${coreCount} domande del nucleo gratuito`}>
-        <Icona nome="materiale-nucleo" size={15} />{coreCount}
-      </p>
-      {pulsanti}
-    </>
-  ) : (
+  const corpo = (
     <>
       <Tessere stato={appState} />
       <AndamentoSimulazioni stato={appState} />
@@ -328,13 +250,12 @@ export default function StatsMode({ appState, onExit, onNeedPass, incorporata, o
         )}
       </section>
 
-      {FEATURE_FLAGS.guarantee && <GuaranteeTracker appState={appState} />}
       {pulsanti}
     </>
   );
 
-  // ================== Dettaglio delle domande (solo con il Pass) ==================
-  if (pass && showDetailedStats) {
+  // ================== Dettaglio delle domande ==================
+  if (showDetailedStats) {
     return (
       <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col">
         <header className="flex items-center justify-between gap-3 p-4 border-b border-linea shrink-0 transition-colors duration-100">
@@ -352,7 +273,6 @@ export default function StatsMode({ appState, onExit, onNeedPass, incorporata, o
               className="min-w-0 bg-transparent border-none text-sm font-bold text-testo focus:ring-0 cursor-pointer"
             >
               <option value="all">Tutte</option>
-              <option value="corpus:initial">Nucleo ({coreCount})</option>
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
@@ -461,7 +381,6 @@ export default function StatsMode({ appState, onExit, onNeedPass, incorporata, o
         <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8 flex flex-col gap-6">
           <Intestazione onExit={onExit} />
           {corpo}
-          <PoweredByAtlas />
         </div>
       </div>
     </div>

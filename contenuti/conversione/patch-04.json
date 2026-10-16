@@ -1,0 +1,453 @@
+{
+  "q266": {
+    "prompt": "Complete the sentence: 'Look at _____ man over there: he is my father.'",
+    "options": [
+      "those",
+      "that",
+      "these",
+      "them"
+    ],
+    "correctIndex": 1,
+    "explanation": "Per una persona singolare lontana si usa 'that' (plurale 'those'). 'Those' e 'these' sono plurali e non vanno con 'man'; 'them' è un pronome complemento e non si mette davanti a un nome."
+  },
+  "q267": {
+    "prompt": "Complete the sentence: 'What are _____ things in the box over there?'",
+    "options": [
+      "that",
+      "this",
+      "it",
+      "those"
+    ],
+    "correctIndex": 3,
+    "explanation": "Per cose lontane al plurale si usa 'those'. 'That' e 'this' sono singolari e non si accordano con 'things'; 'it' non è un dimostrativo e non si mette davanti a un nome."
+  },
+  "q268": {
+    "prompt": "Complete the sentence: 'I prefer _____ dress that I am holding now.'",
+    "options": [
+      "this",
+      "these",
+      "those",
+      "them"
+    ],
+    "correctIndex": 0,
+    "explanation": "'This' si usa per una cosa singolare vicina a chi parla. 'These' e 'those' sono plurali e non vanno con 'dress'; 'them' è un pronome complemento, non un dimostrativo."
+  },
+  "q269": {
+    "prompt": "Complete the sentence: 'Do you know _____ people over there?'",
+    "options": [
+      "that",
+      "this",
+      "those",
+      "them"
+    ],
+    "correctIndex": 2,
+    "explanation": "'People' è plurale e le persone sono lontane, quindi 'those'. 'That' e 'this' sono singolari; 'them' è un pronome e non può stare davanti a un nome."
+  },
+  "q270": {
+    "prompt": "Complete the sentence: 'Look at the papers in my hands: _____ are my notes.'",
+    "options": [
+      "this",
+      "these",
+      "that",
+      "it"
+    ],
+    "correctIndex": 1,
+    "explanation": "Per cose plurali vicine si usa 'these', che vuole 'are'. 'This' e 'that' sono singolari e con 'are' non si accordano; 'it are' è sbagliato perché 'it' vuole 'is'."
+  },
+  "q280": {
+    "prompt": "Complete the sentence: 'The dog is lying on the floor, _____ the table.'",
+    "options": [
+      "on",
+      "in",
+      "above",
+      "under"
+    ],
+    "correctIndex": 3,
+    "explanation": "'Under' indica che una cosa sta sotto un'altra. 'On' vuol dire sopra una superficie, 'above' indica una posizione più in alto e 'in' una posizione dentro: nessuna descrive un cane a terra sotto il tavolo."
+  },
+  "q281": {
+    "prompt": "Complete the sentence: 'I am _____ the cinema now; the film starts in ten minutes.'",
+    "options": [
+      "at",
+      "into",
+      "on",
+      "to"
+    ],
+    "correctIndex": 0,
+    "explanation": "'At' si usa per un luogo dove si svolge un'attività ('at the cinema', 'at school'). 'Into' indica movimento verso l'interno, 'on' una superficie e 'to' una direzione, non una posizione."
+  },
+  "q282": {
+    "prompt": "Complete the sentence: 'There is a big spider _____ the ceiling of my room.'",
+    "options": [
+      "to",
+      "into",
+      "on",
+      "of"
+    ],
+    "correctIndex": 2,
+    "explanation": "Per una cosa appoggiata a una superficie, come il soffitto, si usa 'on'. 'To' e 'into' indicano movimento, non posizione; 'of' esprime appartenenza e qui non ha senso."
+  },
+  "q283": {
+    "prompt": "Complete the sentence: 'The office is _____ the bank, so it takes one minute to walk there.'",
+    "options": [
+      "between",
+      "near",
+      "into",
+      "among"
+    ],
+    "correctIndex": 1,
+    "explanation": "'Near' vuol dire vicino. 'Between' richiede due punti di riferimento, 'among' un gruppo di cose, e 'into' indica un movimento verso l'interno: nessuna va bene con un solo edificio e un luogo fermo."
+  },
+  "q284": {
+    "prompt": "Complete the sentence: 'The child is standing _____ his mother and his father.'",
+    "options": [
+      "between",
+      "on",
+      "at",
+      "into"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Between' si usa quando una persona sta in mezzo a due altre. 'On' e 'at' non indicano la posizione in mezzo, e 'into' indica un movimento verso l'interno."
+  },
+  "q285": {
+    "prompt": "Complete the sentence: 'Hide _____ the door, so nobody can see you.'",
+    "options": [
+      "under",
+      "in",
+      "at",
+      "behind"
+    ],
+    "correctIndex": 3,
+    "explanation": "'Behind' vuol dire dietro, nascosto alla vista. 'Under' e 'in' non sono posizioni possibili per una persona rispetto a una porta, e 'at the door' vuol dire proprio davanti alla porta, dove ti vedono."
+  },
+  "q286": {
+    "prompt": "Complete the sentence: 'Please put your clothes _____ the wardrobe and close the doors.'",
+    "options": [
+      "on",
+      "at",
+      "in",
+      "to"
+    ],
+    "correctIndex": 2,
+    "explanation": "Per qualcosa dentro uno spazio chiuso, come un armadio, si usa 'in'. 'On' vuol dire sopra, 'at' indica un punto e 'to' una direzione, non una posizione."
+  },
+  "q287": {
+    "prompt": "Complete the sentence: 'I met Marco _____ the station at six o'clock.'",
+    "options": [
+      "into",
+      "at",
+      "on",
+      "to"
+    ],
+    "correctIndex": 1,
+    "explanation": "Per un punto preciso, come una stazione, si usa 'at'. 'Into' indica movimento verso l'interno, 'on' una superficie e 'to' una direzione, non il luogo di un incontro."
+  },
+  "q288": {
+    "prompt": "Complete the sentence: 'There is a garden _____ the house, so you can't see it from the street.'",
+    "options": [
+      "behind",
+      "under",
+      "in",
+      "over"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Behind' vuol dire dietro e spiega perché il giardino non si vede dalla strada. 'Under' e 'over' indicano sotto e sopra, e 'in the house' vorrebbe dire dentro la casa."
+  },
+  "q298": {
+    "prompt": "Complete the sentence: '_____ touch my phone!'",
+    "options": [
+      "Not",
+      "No",
+      "Don't",
+      "Doesn't"
+    ],
+    "correctIndex": 2,
+    "explanation": "L'imperativo negativo si forma con 'Don't' + verbo base ('Don't touch'). 'Not' e 'No' non sono ausiliari, e 'Doesn't' si usa solo con 'he', 'she', 'it' nel presente."
+  },
+  "q299": {
+    "prompt": "Complete the sentence: 'Please _____ attention to the road!'",
+    "options": [
+      "pay",
+      "do",
+      "make",
+      "take"
+    ],
+    "correctIndex": 0,
+    "explanation": "L'espressione corretta è 'pay attention'. 'Do', 'make' e 'take' sono verbi comuni, ma non formano questa espressione in inglese."
+  },
+  "q300": {
+    "prompt": "Complete the sentence: 'Listen _____ when I speak.'",
+    "options": [
+      "me",
+      "at me",
+      "for me",
+      "to me"
+    ],
+    "correctIndex": 3,
+    "explanation": "Il verbo 'listen' vuole la preposizione 'to' davanti al complemento: 'listen to me'. 'Listen me' manca di 'to', mentre 'at' e 'for' non si usano con questo verbo."
+  },
+  "q301": {
+    "prompt": "Complete the sentence: 'Don't _____ your keys at home, please.'",
+    "options": [
+      "forgetting",
+      "forget",
+      "to forget",
+      "forgot"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dopo 'Don't' il verbo resta alla forma base: 'Don't forget'. 'Forgetting' e 'to forget' non sono forme base, e 'forgot' è un passato che non si usa dopo 'Don't'."
+  },
+  "q302": {
+    "prompt": "Complete the sentence: 'Please _____ the door; it is cold in here.'",
+    "options": [
+      "closing",
+      "closes",
+      "close",
+      "closed"
+    ],
+    "correctIndex": 2,
+    "explanation": "L'imperativo è la forma base del verbo: 'Close the door'. 'Closing' e 'closed' non sono imperativi, e 'closes' è la terza persona singolare del presente."
+  },
+  "q303": {
+    "prompt": "Complete the sentence: 'Silence, please: _____ during the exam.'",
+    "options": [
+      "don't speak",
+      "not speak",
+      "doesn't speak",
+      "don't speaking"
+    ],
+    "correctIndex": 0,
+    "explanation": "L'imperativo negativo è 'Don't' + verbo base ('don't speak'). 'Not speak' manca dell'ausiliare, 'doesn't speak' è della terza persona singolare e 'don't speaking' usa il verbo in -ing."
+  },
+  "q304": {
+    "prompt": "Complete the sentence: '_____ here until I come back, please.'",
+    "options": [
+      "Waiting",
+      "Waits",
+      "Waited",
+      "Wait"
+    ],
+    "correctIndex": 3,
+    "explanation": "L'imperativo è la forma base del verbo: 'Wait here'. 'Waiting' e 'waited' non sono imperativi, e 'waits' è la terza persona singolare del presente."
+  },
+  "q305": {
+    "prompt": "Complete the sentence: 'Students, _____ your names on the paper, please.'",
+    "options": [
+      "writing",
+      "write",
+      "wrote",
+      "to write"
+    ],
+    "correctIndex": 1,
+    "explanation": "L'imperativo è la forma base del verbo ed è uguale per uno o più destinatari: 'write'. 'Writing' e 'to write' non sono imperativi, e 'wrote' è un passato."
+  },
+  "q306": {
+    "prompt": "Complete the sentence: 'This is a hospital, so _____ in this room, please.'",
+    "options": [
+      "smoke not",
+      "not smoke",
+      "don't smoke",
+      "doesn't smoke"
+    ],
+    "correctIndex": 2,
+    "explanation": "L'imperativo negativo si forma con 'don't' + verbo base. 'Smoke not' e 'not smoke' non sono forme corrette, e 'doesn't smoke' si usa solo con 'he', 'she', 'it' nel presente."
+  },
+  "q316": {
+    "prompt": "Complete the sentence: 'What _____ you going to do on Saturday?'",
+    "options": [
+      "do",
+      "will",
+      "is",
+      "are"
+    ],
+    "correctIndex": 3,
+    "explanation": "Il futuro con intenzione si forma con 'be going to' + verbo base e con 'you' si usa 'are'. 'Do' e 'will' non si combinano con 'going to', e 'is' non si accorda con 'you'."
+  },
+  "q317": {
+    "prompt": "Complete the sentence: 'I _____ to wait all day for the bus.'",
+    "options": [
+      "don't go",
+      "am not going",
+      "won't",
+      "not going"
+    ],
+    "correctIndex": 1,
+    "explanation": "La forma negativa dell'intenzione è 'be not going to' + verbo base: 'I am not going to wait'. 'Don't go' cambia significato, 'won't' non vuole 'to' dopo di sé e 'not going' non ha il verbo 'be'."
+  },
+  "q318": {
+    "prompt": "Complete the sentence: 'He _____ study medicine at university; he has already decided.'",
+    "options": [
+      "is going to",
+      "going to",
+      "is go to",
+      "does going to"
+    ],
+    "correctIndex": 0,
+    "explanation": "Una decisione già presa si esprime con 'be going to' + verbo base: 'He is going to study'. 'Going to' non ha il verbo 'be', 'is go to' ha la forma sbagliata e 'does going to' mescola ausiliare e -ing."
+  },
+  "q319": {
+    "prompt": "Complete the sentence: 'We _____ buy a new house next year; we have already chosen it.'",
+    "options": [
+      "is going to",
+      "are going",
+      "are going to",
+      "do going to"
+    ],
+    "correctIndex": 2,
+    "explanation": "Per un piano già deciso si usa 'be going to' + verbo base, e con 'we' si usa 'are'. 'Is' non si accorda con 'we', 'are going' senza 'to' non regge il verbo seguente e 'do going to' è una forma inesistente."
+  },
+  "q320": {
+    "prompt": "Complete the sentence: 'Look at those black clouds: it _____ rain soon.'",
+    "options": [
+      "going to",
+      "is raining",
+      "rains",
+      "is going to"
+    ],
+    "correctIndex": 3,
+    "explanation": "Una previsione basata su ciò che si vede ora usa 'be going to' + verbo base. 'Going to' non ha 'is', mentre 'is raining' e 'rains' descrivono la pioggia in corso o abituale, non una previsione."
+  },
+  "q321": {
+    "prompt": "Complete the sentence: 'They _____ attend the meeting because they are on holiday.'",
+    "options": [
+      "aren't going to",
+      "not going to",
+      "don't going to",
+      "aren't go to"
+    ],
+    "correctIndex": 0,
+    "explanation": "La negazione di 'be going to' si fa con 'be' + 'not': 'They aren't going to attend'. 'Not going to' non ha il verbo 'be', 'don't going to' mescola ausiliare e -ing, e 'aren't go to' ha la forma sbagliata."
+  },
+  "q322": {
+    "prompt": "Complete the sentence: 'What are you _____ eat for dinner tonight?'",
+    "options": [
+      "go to",
+      "going to",
+      "going",
+      "will to"
+    ],
+    "correctIndex": 1,
+    "explanation": "Nella domanda con 'be going to', dopo 'are you' si scrive 'going to' + verbo base. 'Go to' e 'going' senza 'to' sono forme sbagliate, e 'will to' non esiste."
+  },
+  "q323": {
+    "prompt": "Complete the sentence: '_____ she going to sell her car soon?'",
+    "options": [
+      "Does",
+      "Do",
+      "Is",
+      "Are"
+    ],
+    "correctIndex": 2,
+    "explanation": "La domanda con 'be going to' si fa con 'be' prima del soggetto, e con 'she' si usa 'Is'. 'Does' e 'do' non si combinano con 'going to', e 'are' non si accorda con 'she'."
+  },
+  "q324": {
+    "prompt": "Complete the sentence: 'He is running on the ice and he _____ fall!'",
+    "options": [
+      "is going to",
+      "is going",
+      "goes to",
+      "going to"
+    ],
+    "correctIndex": 0,
+    "explanation": "Una previsione basata su ciò che vediamo adesso usa 'be going to' + verbo base: 'he is going to fall'. 'Is going' senza 'to' non regge il verbo, 'goes to' è una forma sbagliata e 'going to' manca di 'is'."
+  },
+  "q334": {
+    "prompt": "Complete the sentence: 'What _____ you doing when I called you?'",
+    "options": [
+      "was",
+      "did",
+      "are",
+      "were"
+    ],
+    "correctIndex": 3,
+    "explanation": "L'azione in corso nel passato si esprime con il Past Continuous: 'were' + -ing. Con 'you' si usa 'were', non 'was'; 'did' non si combina con 'doing' e 'are' è presente."
+  },
+  "q335": {
+    "prompt": "Complete the sentence: 'I _____ when the alarm rang.'",
+    "options": [
+      "am sleeping",
+      "was sleeping",
+      "was sleep",
+      "were sleeping"
+    ],
+    "correctIndex": 1,
+    "explanation": "L'azione lunga interrotta da un evento breve si esprime con il Past Continuous: 'was sleeping'. 'Am sleeping' è presente, 'was sleep' manca di -ing e 'were' non si accorda con 'I'."
+  },
+  "q336": {
+    "prompt": "Complete the sentence: 'While we _____ in the park, we found some money.'",
+    "options": [
+      "was walking",
+      "walking",
+      "were walking",
+      "are walking"
+    ],
+    "correctIndex": 2,
+    "explanation": "Con 'while' si usa il Past Continuous per l'azione in corso: 'were walking', perché il soggetto è 'we'. 'Was' non si accorda con 'we', 'walking' da solo non ha il verbo 'be' e 'are walking' è presente."
+  },
+  "q337": {
+    "prompt": "Complete the sentence: 'She wasn't watching TV; she _____ a book.'",
+    "options": [
+      "reading",
+      "were reading",
+      "is reading",
+      "was reading"
+    ],
+    "correctIndex": 3,
+    "explanation": "Le due azioni erano in corso nel passato, quindi 'was reading', in parallelo a 'wasn't watching'. 'Reading' non ha il verbo 'be', 'were' non si accorda con 'she' e 'is reading' è presente."
+  },
+  "q338": {
+    "prompt": "Complete the sentence: 'While I was cooking, he _____ to music.'",
+    "options": [
+      "were listening",
+      "was listening",
+      "is listening",
+      "did listening"
+    ],
+    "correctIndex": 1,
+    "explanation": "Due azioni in corso nello stesso momento nel passato usano entrambe il Past Continuous, e con 'he' si usa 'was'. 'Were' non si accorda con 'he', 'is listening' è presente e 'did listening' mescola 'did' e -ing."
+  },
+  "q339": {
+    "prompt": "Complete the sentence: '_____ it raining hard yesterday morning?'",
+    "options": [
+      "Were",
+      "Did",
+      "Was",
+      "Is"
+    ],
+    "correctIndex": 2,
+    "explanation": "La domanda al Past Continuous si apre con 'was' o 'were' + soggetto + -ing, e con 'it' si usa 'Was'. 'Were' non si accorda con 'it', 'did' non si combina con -ing e 'is' è presente."
+  },
+  "q340": {
+    "prompt": "Complete the sentence: 'We _____ going too fast when the police stopped us.'",
+    "options": [
+      "wasn't",
+      "didn't",
+      "aren't",
+      "weren't"
+    ],
+    "correctIndex": 3,
+    "explanation": "La forma negativa del Past Continuous è 'weren't' + -ing, e con 'we' si usa 'were'. 'Wasn't' non si accorda con 'we', 'didn't' non si combina con -ing e 'aren't' è presente."
+  },
+  "q341": {
+    "prompt": "Complete the sentence: 'What were you _____ at that moment?'",
+    "options": [
+      "thinking",
+      "think",
+      "thought",
+      "to think"
+    ],
+    "correctIndex": 0,
+    "explanation": "Nel Past Continuous dopo 'were you' il verbo prende -ing: 'What were you thinking'. 'Think' e 'to think' non hanno -ing, e 'thought' è il passato semplice e non si usa dopo 'were'."
+  },
+  "q342": {
+    "prompt": "Complete the sentence: 'They _____ when I entered the room.'",
+    "options": [
+      "was laughing",
+      "were laugh",
+      "laughing",
+      "were laughing"
+    ],
+    "correctIndex": 3,
+    "explanation": "L'azione di sfondo, interrotta da un evento breve, usa il Past Continuous: 'were laughing'. 'Was' non si accorda con 'they', 'were laugh' manca di -ing e 'laughing' da solo non ha il verbo 'be'."
+  }
+}

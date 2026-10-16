@@ -1,0 +1,502 @@
+{
+ "q1": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q3": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q4": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q5": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q6": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q8": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q9": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q10": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q11": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q12": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q13": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q14": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q15": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q16": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q17": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q25": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q31": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1,
+  "nota": "'no' darebbe doppia negazione"
+ },
+ "q35": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q36": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q40": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q44": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1,
+  "nota": "'Did' sarebbe accettabile solo con 'meet' (americano), qui c'e' 'met'"
+ },
+ "q45": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q46": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q49": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0,
+  "nota": "'would have' sarebbe periodo ipotetico di 2 tipo, non compatibile con 'is nice'"
+ },
+ "q52": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1,
+  "nota": "'very' non si usa con il comparativo"
+ },
+ "q57": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q59": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q61": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q62": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q64": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3,
+  "nota": "'any' non va in frase affermativa ('There is any problem' errato)"
+ },
+ "q66": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q68": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q70": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q72": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q74": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q76": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q79": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q81": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q83": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q85": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q87": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q89": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q91": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q93": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q96": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q98": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q101": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q103": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q106": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3,
+  "nota": "'a lot' richiede 'of'; 'much' non va con friends contabile"
+ },
+ "q108": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q110": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q112": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q114": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q116": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q117": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q119": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q121": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q123": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q126": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q128": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q130": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q132": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q134": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1,
+  "nota": "'doesn't rain' darebbe doppia negazione con unless"
+ },
+ "q137": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q139": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q141": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1,
+  "nota": "'need' richiederebbe 'to'; 'have' richiederebbe 'to'"
+ },
+ "q143": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q145": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q147": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q149": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q151": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q153": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q155": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q157": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q159": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q161": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q163": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q165": {
+  "accettabili": [
+   2
+  ],
+  "scelta": 2
+ },
+ "q167": {
+  "accettabili": [
+   0
+  ],
+  "scelta": 0
+ },
+ "q169": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ },
+ "q172": {
+  "accettabili": [
+   3
+  ],
+  "scelta": 3
+ },
+ "q174": {
+  "accettabili": [
+   1
+  ],
+  "scelta": 1
+ }
+}

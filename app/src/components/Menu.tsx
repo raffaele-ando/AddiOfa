@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react';
-import { AppState, CorpusType, PaywallReason } from '../types';
+import { AppState } from '../types';
 import { Icona } from '../brand/icone/Icona';
-import { getQuestionsByCorpus } from '../data/questions';
-import { useAccess } from '../access/context';
+import { questions } from '../data/questions';
 import { playTapSound } from '../lib/audio';
 import { FONT } from '../brand/tokens';
 import Marchio from '../brand/Marchio';
@@ -16,12 +15,7 @@ import { calcolaFattori, calcolaStima, lezioneConsigliata, livelloDi, progressoA
 
 interface MenuProps {
   appState: AppState;
-  /** Corpus in uso (nella parte gratuita è sempre il nucleo). */
-  corpus?: CorpusType;
   onStartSmart: () => void;
-  /** Non più usato dalla Home (le simulazioni stanno nella scheda Simulazioni): resta per compatibilità con App. */
-  onStartExam?: () => void;
-  onNeedPass: (reason: PaywallReason) => void;
   onOpenTheory: () => void;
   /** Apre la scheda di teoria di un argomento (id di TheoryTopic). Usato solo se manca onApriLezione. */
   onOpenTheoryTopic?: (id: string) => void;
@@ -38,32 +32,27 @@ interface MenuProps {
  * un solo pulsante ▶, la prossima lezione, l'andamento della probabilità, barra a tre voci.
  * Strumenti, statistiche e simulazioni stanno nelle altre destinazioni (docs/design/ARCHITETTURA.md).
  */
-export default function Menu({ appState, corpus, onStartSmart, onNeedPass, onOpenTheory, onOpenTheoryTopic, onApriLezione, onOpenDiagnostic, onOpenImpostazioni, onNaviga }: MenuProps) {
-  const { pass } = useAccess();
+export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheoryTopic, onApriLezione, onOpenDiagnostic, onOpenImpostazioni, onNaviga }: MenuProps) {
   const [foglio, setFoglio] = useState(false);
-
-  const selectedCorpus: CorpusType = corpus ?? appState.selectedCorpus ?? 'all';
-  const activeQuestions = getQuestionsByCorpus(selectedCorpus);
 
   // Tutti i numeri vengono da qui: stima, serie misurata, argomento da studiare
   const dati = useMemo(() => ({
     stima: calcolaStima(appState),
     risposte: calcolaFattori(appState).risposteTotali,
-    lezione: lezioneConsigliata(appState, pass),
+    lezione: lezioneConsigliata(appState),
     punti: serieStime(appState),
-  }), [appState, pass]);
+  }), [appState]);
   const { stima, lezione, punti } = dati;
   const livello = stima ? livelloDi(stima.p) : 'basso';
   const progresso = useMemo(
-    () => (lezione ? progressoArgomento(appState, lezione.topic.id, new Set(activeQuestions.map(q => q.id))) : null),
+    () => (lezione ? progressoArgomento(appState, lezione.topic.id, new Set(questions.map(q => q.id))) : null),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [appState, lezione, selectedCorpus],
+    [appState, lezione],
   );
 
   const apriLezione = () => {
     if (!lezione) return;
-    if (lezione.bloccata) onNeedPass('teoria');
-    else if (onApriLezione) onApriLezione(lezione.topic.id);
+    if (onApriLezione) onApriLezione(lezione.topic.id);
     else if (onOpenTheoryTopic) onOpenTheoryTopic(lezione.topic.id);
     else onOpenTheory();
   };
@@ -99,7 +88,7 @@ export default function Menu({ appState, corpus, onStartSmart, onNeedPass, onOpe
           <div className="mt-[14px] corto:mt-[8px]"><BannerStato chiave={chiave} /></div>
           <div className="mt-[9px]"><Cta onClick={cta.azione}>{cta.etichetta}</Cta></div>
 
-          {/* prossima lezione: argomento più debole, o la prima scheda gratuita */}
+          {/* prossima lezione: argomento più debole, o la prima scheda */}
           {lezione && progresso && (
             <div className="mt-[24px] corto:mt-[18px]">
               <ProssimoObiettivo lezione={lezione} progresso={progresso} onApri={apriLezione} />

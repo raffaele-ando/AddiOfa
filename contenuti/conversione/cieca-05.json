@@ -1,0 +1,371 @@
+{
+ "q352": {
+  "prompt": "Complete the sentence: 'You _____ eat more vegetables; your diet is poor.'",
+  "options": [
+   "shouldn't",
+   "should to",
+   "should",
+   "must to"
+  ]
+ },
+ "q353": {
+  "prompt": "Complete the sentence: 'Anna _____ come to the meeting if she's tired; it isn't necessary.'",
+  "options": [
+   "doesn't have to",
+   "mustn't",
+   "don't have to",
+   "doesn't has to"
+  ]
+ },
+ "q354": {
+  "prompt": "Complete the sentence: 'Stop! You _____ touch that wire, or you will get an electric shock!'",
+  "options": [
+   "not must",
+   "haven't to",
+   "must not to",
+   "mustn't"
+  ]
+ },
+ "q355": {
+  "prompt": "Complete the sentence: 'He _____ work late today because his boss asked him.'",
+  "options": [
+   "have to",
+   "has to",
+   "musts",
+   "must to"
+  ]
+ },
+ "q356": {
+  "prompt": "Complete the sentence: 'You _____ drink so much coffee; it's bad for your health.'",
+  "options": [
+   "shouldn't to",
+   "shouldn't",
+   "don't should",
+   "not should"
+  ]
+ },
+ "q357": {
+  "prompt": "Complete the sentence: '_____ take off my shoes when I come in?'",
+  "options": [
+   "Must I to",
+   "Do I must",
+   "Do I have",
+   "Do I have to"
+  ]
+ },
+ "q358": {
+  "prompt": "Complete the sentence: 'Entry is free, so you _____ buy a ticket.'",
+  "options": [
+   "don't have to",
+   "mustn't",
+   "don't must",
+   "haven't to"
+  ]
+ },
+ "q359": {
+  "prompt": "Complete the sentence: 'I have a problem with my phone. What _____ do?'",
+  "options": [
+   "I should",
+   "do I should",
+   "should I",
+   "should I to"
+  ]
+ },
+ "q360": {
+  "prompt": "Complete the sentence: 'It's a secret, so you _____ tell anyone.'",
+  "options": [
+   "mustn't",
+   "mustn't to",
+   "don't must",
+   "shouldn't to"
+  ]
+ },
+ "q370": {
+  "prompt": "Complete the sentence: 'He answered the question _____.'",
+  "options": [
+   "quickily",
+   "fastly",
+   "quickly",
+   "quickness"
+  ]
+ },
+ "q371": {
+  "prompt": "Complete the sentence: 'She sings really _____.'",
+  "options": [
+   "goodly",
+   "well",
+   "gooder",
+   "goodness"
+  ]
+ },
+ "q372": {
+  "prompt": "Complete the sentence: 'They worked _____ all day.'",
+  "options": [
+   "hardly",
+   "difficultly",
+   "heavy",
+   "hard"
+  ]
+ },
+ "q373": {
+  "prompt": "Complete the sentence: 'Please speak _____ because I don't understand.'",
+  "options": [
+   "slowness",
+   "slowlier",
+   "slowingly",
+   "slowly"
+  ]
+ },
+ "q374": {
+  "prompt": "Complete the sentence: 'He closed the door _____ because the baby was sleeping.'",
+  "options": [
+   "quietness",
+   "quietly",
+   "quietlyly",
+   "quietily"
+  ]
+ },
+ "q375": {
+  "prompt": "Complete the sentence: 'They solved the problem _____.'",
+  "options": [
+   "easy",
+   "easyly",
+   "easily",
+   "ease"
+  ]
+ },
+ "q376": {
+  "prompt": "Complete the sentence: 'He always drives _____.'",
+  "options": [
+   "carefully",
+   "careful",
+   "carefuly",
+   "care"
+  ]
+ },
+ "q377": {
+  "prompt": "Complete the sentence: 'The teacher explained the rule _____.'",
+  "options": [
+   "clear",
+   "cleary",
+   "clearly",
+   "clearing"
+  ]
+ },
+ "q378": {
+  "prompt": "Complete the sentence: 'Thank you, I understood _____.'",
+  "options": [
+   "perfect",
+   "perfection",
+   "perfectlyly",
+   "perfectly"
+  ]
+ },
+ "q380": {
+  "prompt": "Complete the sentence: 'If I _____ you, I would study more.'",
+  "options": [
+   "were",
+   "am",
+   "would be",
+   "will be"
+  ]
+ },
+ "q382": {
+  "prompt": "Complete the sentence: 'If we _____ earlier, we wouldn't have missed the train.'",
+  "options": [
+   "had leave",
+   "had left",
+   "would leave",
+   "have left"
+  ]
+ },
+ "q384": {
+  "prompt": "Complete the sentence: 'Look! The new house _____ built right now.'",
+  "options": [
+   "is",
+   "is being",
+   "is been",
+   "are being"
+  ]
+ },
+ "q385": {
+  "prompt": "Complete the sentence: 'Yesterday Tom said that he _____ very tired.'",
+  "options": [
+   "was",
+   "were",
+   "am",
+   "being"
+  ]
+ },
+ "q386": {
+  "prompt": "Complete the sentence: 'Last night Anna told me that she _____ me the next day.'",
+  "options": [
+   "would called",
+   "would calling",
+   "would to call",
+   "would call"
+  ]
+ },
+ "q388": {
+  "prompt": "Complete the sentence: 'I _____ when you called me.'",
+  "options": [
+   "had already eat",
+   "have already eaten",
+   "had already eaten",
+   "was already eaten"
+  ]
+ },
+ "q390": {
+  "prompt": "Complete the sentence: 'She _____ like vegetables when she was a child.'",
+  "options": [
+   "doesn't use to",
+   "isn't used to",
+   "hasn't used to",
+   "didn't use to"
+  ]
+ },
+ "q404": {
+  "prompt": "Complete the sentence: 'The movie _____ we watched yesterday was boring.'",
+  "options": [
+   "who",
+   "where",
+   "which",
+   "whose"
+  ]
+ },
+ "q405": {
+  "prompt": "Complete the sentence: 'The woman _____ car was stolen is my neighbor.'",
+  "options": [
+   "who",
+   "whose",
+   "which",
+   "that"
+  ]
+ },
+ "q409": {
+  "prompt": "Complete the sentence: 'This is the book _____ I was telling you about.'",
+  "options": [
+   "which",
+   "who",
+   "whose",
+   "what"
+  ]
+ },
+ "q410": {
+  "prompt": "Complete the sentence: 'Paris, _____ is the capital of France, is beautiful.'",
+  "options": [
+   "which",
+   "who",
+   "where",
+   "that"
+  ]
+ },
+ "q420": {
+  "prompt": "Complete the sentence: 'I finished _____ the book last night.'",
+  "options": [
+   "to read",
+   "reading",
+   "read",
+   "to reading"
+  ]
+ },
+ "q421": {
+  "prompt": "Complete the sentence: 'He decided _____ abroad.'",
+  "options": [
+   "studying",
+   "study",
+   "to study",
+   "to studying"
+  ]
+ },
+ "q424": {
+  "prompt": "Complete the sentence: 'I don't mind _____ up early.'",
+  "options": [
+   "to get",
+   "get",
+   "to getting",
+   "getting"
+  ]
+ },
+ "q425": {
+  "prompt": "Complete the sentence: 'They want _____ a new house.'",
+  "options": [
+   "buying",
+   "buy",
+   "to buy",
+   "to buying"
+  ]
+ },
+ "q434": {
+  "prompt": "Complete the sentence: 'If I _____ rich, I _____ travel the world.'",
+  "options": [
+   "were / would",
+   "am / will",
+   "would be / traveled",
+   "was / travel"
+  ]
+ },
+ "q435": {
+  "prompt": "Complete the sentence: 'If she _____ the truth, she would be angry.'",
+  "options": [
+   "knows",
+   "knew",
+   "would know",
+   "will know"
+  ]
+ },
+ "q439": {
+  "prompt": "Complete the sentence: 'I _____ go there if I were you.'",
+  "options": [
+   "won't",
+   "didn't",
+   "don't",
+   "wouldn't"
+  ]
+ },
+ "q440": {
+  "prompt": "Complete the sentence: 'If we had a car, we _____ go to the mountains.'",
+  "options": [
+   "can",
+   "will",
+   "went",
+   "could"
+  ]
+ },
+ "q446": {
+  "prompt": "Complete the sentence: 'If I spoke French, I _____ to Paris.'",
+  "options": [
+   "would move",
+   "will move",
+   "would moving",
+   "moved"
+  ]
+ },
+ "q450": {
+  "prompt": "Complete the sentence: 'If I _____ to bed early, I wouldn't have been tired.'",
+  "options": [
+   "would have gone",
+   "have gone",
+   "had gone",
+   "would go"
+  ]
+ },
+ "q451": {
+  "prompt": "Complete the sentence: 'If it had rained, we _____ at home.'",
+  "options": [
+   "would have stay",
+   "would have stayed",
+   "will have stayed",
+   "would had stayed"
+  ]
+ },
+ "q455": {
+  "prompt": "Complete the sentence: 'What _____ if you had known?'",
+  "options": [
+   "did you do",
+   "would you have done",
+   "have you done",
+   "would you had done"
+  ]
+ }
+}

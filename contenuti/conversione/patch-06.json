@@ -1,0 +1,442 @@
+{
+ "q456": {
+  "prompt": "Complete the sentence: 'If I _____ the message, I would have replied to you.'",
+  "options": [
+   "would have seen",
+   "have seen",
+   "had seen",
+   "would see"
+  ],
+  "correctIndex": 2,
+  "explanation": "Il terzo condizionale parla di una situazione passata che non si è realizzata: nella frase con 'if' serve il past perfect ('had seen'), nell'altra 'would have' + participio. 'would have seen' e 'would see' non si mettono mai subito dopo 'if', e 'have seen' è un present perfect che non si accorda con 'would have replied'."
+ },
+ "q462": {
+  "prompt": "Complete the sentence: 'She would have come if she _____ time.'",
+  "options": [
+   "had had",
+   "would have had",
+   "has had",
+   "was having"
+  ],
+  "correctIndex": 0,
+  "explanation": "Nel terzo condizionale la frase con 'if' usa il past perfect: 'had' + participio di 'have', cioè 'had had'. 'would have had' va solo nella frase principale, mentre 'has had' e 'was having' non sono forme del past perfect."
+ },
+ "q466": {
+  "prompt": "Complete the sentence: 'This book _____ in 1990.'",
+  "options": [
+   "is written",
+   "wrote",
+   "has been written",
+   "was written"
+  ],
+  "correctIndex": 3,
+  "explanation": "Con una data precisa del passato serve il passivo del past simple: 'was' + participio ('was written'). 'has been written' non si usa con un anno preciso, 'is written' è un presente e 'wrote' è la forma attiva (un libro non scrive)."
+ },
+ "q467": {
+  "prompt": "Complete the sentence: 'Nowadays the room _____ every day.'",
+  "options": [
+   "was cleaned",
+   "is cleaned",
+   "cleans",
+   "is cleaning"
+  ],
+  "correctIndex": 1,
+  "explanation": "Un'abitudine ripetuta al presente si esprime con il passivo del present simple: 'is' + participio ('is cleaned'). 'was cleaned' è passato, 'cleans' è attivo (la stanza non pulisce da sola) e 'is cleaning' è un continuous attivo."
+ },
+ "q471": {
+  "prompt": "Complete the sentence: 'The tickets _____ sold already.'",
+  "options": [
+   "have been",
+   "has been",
+   "have being",
+   "have be"
+  ],
+  "correctIndex": 0,
+  "explanation": "Il passivo del present perfect si forma con 'have/has been' + participio; con 'tickets' (plurale) serve 'have been'. 'has been' non concorda con il plurale, mentre 'have being' e 'have be' non sono forme corrette dell'ausiliare."
+ },
+ "q472": {
+  "prompt": "Complete the sentence: 'The problem must _____ immediately.'",
+  "options": [
+   "solve",
+   "been solved",
+   "be solved",
+   "being solved"
+  ],
+  "correctIndex": 2,
+  "explanation": "Con un verbo modale il passivo è modale + 'be' + participio passato: 'must be solved'. 'solve' è attivo, 'been solved' appartiene al present perfect e non si usa dopo 'must', e 'being solved' non può seguire un modale."
+ },
+ "q478": {
+  "prompt": "Complete the sentence: 'My bicycle _____ yesterday.'",
+  "options": [
+   "is stolen",
+   "was stolen",
+   "has been stolen",
+   "stole"
+  ],
+  "correctIndex": 1,
+  "explanation": "Con 'yesterday' si usa il past simple, quindi il passivo è 'was' + participio ('was stolen'). 'has been stolen' non si usa con un tempo passato preciso, 'is stolen' è un presente e 'stole' è la forma attiva (una bicicletta non ruba)."
+ },
+ "q482": {
+  "prompt": "Complete the sentence: 'He told _____ that he was tired.'",
+  "options": [
+   "to me",
+   "for me",
+   "at me",
+   "me"
+  ],
+  "correctIndex": 3,
+  "explanation": "Dopo 'tell' ci vuole direttamente la persona, senza preposizione: 'told me that'. 'to me', 'for me' e 'at me' aggiungono una preposizione che con 'tell' in questa struttura non si usa."
+ },
+ "q483": {
+  "prompt": "Complete the sentence: 'She _____ that she didn't know the answer.'",
+  "options": [
+   "said",
+   "told",
+   "spoke",
+   "asked"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Said' regge direttamente 'that' senza nominare la persona a cui si parla. 'Told' vuole prima una persona ('told me that'), mentre 'spoke' e 'asked' non servono a riferire un'affermazione con 'that'."
+ },
+ "q487": {
+  "prompt": "Complete the sentence: 'He asked me _____ I wanted to come.'",
+  "options": [
+   "do",
+   "that",
+   "if",
+   "which"
+  ],
+  "correctIndex": 2,
+  "explanation": "Le domande sì/no riportate si introducono con 'if' (o 'whether') seguito da soggetto e verbo, senza l'ausiliare 'do'. 'do' mantiene la forma della domanda diretta, mentre 'that' e 'which' non introducono una domanda sì/no."
+ },
+ "q488": {
+  "prompt": "Complete the sentence: 'He said that he _____ later.'",
+  "options": [
+   "would to call",
+   "would call",
+   "would called",
+   "will to call"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Would' è la forma di 'will' nel discorso riportato al passato, ed è seguito dal verbo base senza 'to' e senza -ed: 'would call'. 'would to call' e 'would called' aggiungono 'to' o il passato dopo un modale, e 'will to call' non è una forma corretta."
+ },
+ "q494": {
+  "prompt": "Complete the sentence: 'He advised me _____ harder for the test.'",
+  "options": [
+   "study",
+   "studying",
+   "of studying",
+   "to study"
+  ],
+  "correctIndex": 3,
+  "explanation": "'Advise' si costruisce con persona + 'to' + infinito: 'advised me to study'. Senza 'to' ('study') o con la forma in -ing ('studying') la struttura non è corretta, e 'of studying' non si usa con 'advise'."
+ },
+ "q498": {
+  "prompt": "Complete the sentence: 'I had just _____ eating when he knocked.'",
+  "options": [
+   "finish",
+   "to finish",
+   "finished",
+   "finishing"
+  ],
+  "correctIndex": 2,
+  "explanation": "Il past perfect si forma con 'had' + participio passato: 'had just finished'. 'finish' e 'finishing' non sono participi passati, e 'to finish' lascerebbe due verbi di fila senza senso ('had just to finish eating')."
+ },
+ "q499": {
+  "prompt": "Complete the sentence: 'I _____ that movie before yesterday.'",
+  "options": [
+   "had never seen",
+   "had never saw",
+   "have never seen",
+   "hadn't never seen"
+  ],
+  "correctIndex": 0,
+  "explanation": "Il past perfect si forma con 'had' + participio passato: 'had never seen' ('seen', non 'saw'). 'have never seen' è un present perfect e non va con un riferimento passato come 'before yesterday', e 'hadn't never seen' ha una doppia negazione."
+ },
+ "q503": {
+  "prompt": "Complete the sentence: 'I was angry because I _____ my wallet.'",
+  "options": [
+   "was lost",
+   "have lost",
+   "had lose",
+   "had lost"
+  ],
+  "correctIndex": 3,
+  "explanation": "Per un fatto accaduto prima di un altro fatto passato si usa il past perfect: 'had' + participio ('had lost'). 'was lost' è un altro costrutto, 'have lost' è un present perfect e 'had lose' usa la forma base invece del participio."
+ },
+ "q504": {
+  "prompt": "Complete the sentence: 'They _____ there for ten years before moving.'",
+  "options": [
+   "had live",
+   "had lived",
+   "have lived",
+   "had living"
+  ],
+  "correctIndex": 1,
+  "explanation": "Una durata che precede un altro fatto passato richiede il past perfect: 'had lived'. 'had live' e 'had living' non hanno il participio passato, e 'have lived' è un present perfect che non si accorda con 'before moving' al passato."
+ },
+ "q510": {
+  "prompt": "Complete the sentence: 'The party had already _____ when we arrived.'",
+  "options": [
+   "ended",
+   "end",
+   "ending",
+   "ends"
+  ],
+  "correctIndex": 0,
+  "explanation": "Nel past perfect dopo 'had' (anche con 'already') ci vuole il participio passato: 'had already ended'. 'end' è la forma base, 'ending' il gerundio e 'ends' il presente: nessuno è un participio passato."
+ },
+ "q514": {
+  "prompt": "Complete the sentence: 'We _____ live in London when I was a kid.'",
+  "options": [
+   "use to",
+   "are used to",
+   "used to",
+   "were used to"
+  ],
+  "correctIndex": 2,
+  "explanation": "Per una situazione passata che non c'è più si usa 'used to' + verbo base. 'use to' senza -d si usa solo nelle frasi negative e nelle domande con 'did', mentre 'are used to' e 'were used to' significano 'essere abituati a' e vogliono il gerundio ('living')."
+ },
+ "q515": {
+  "prompt": "Complete the sentence: 'He _____ smoke, but now he smokes a pack a day.'",
+  "options": [
+   "wasn't used to",
+   "didn't use to",
+   "hasn't used to",
+   "doesn't use to"
+  ],
+  "correctIndex": 1,
+  "explanation": "La forma negativa di 'used to' è 'didn't use to': il passato è già nell'ausiliare 'did', quindi 'use' perde la -d. 'wasn't used to' significa 'non essere abituato a' e vuole il gerundio, mentre 'hasn't used to' e 'doesn't use to' non sono forme corrette."
+ },
+ "q519": {
+  "prompt": "Complete the sentence: 'We _____ to the sea every summer.'",
+  "options": [
+   "use to go",
+   "were used to go",
+   "are used to go",
+   "used to go"
+  ],
+  "correctIndex": 3,
+  "explanation": "'Used to' + verbo base indica un'abitudine passata che oggi non c'è più. 'use to go' senza -d non va nelle frasi affermative, mentre 'were used to go' e 'are used to go' vogliono il gerundio e significano 'essere abituati a'."
+ },
+ "q520": {
+  "prompt": "Complete the sentence: 'She used to have long hair, _____ she?'",
+  "options": [
+   "didn't",
+   "doesn't",
+   "isn't",
+   "hasn't"
+  ],
+  "correctIndex": 0,
+  "explanation": "Il question tag di 'used to' è 'didn't', perché 'used to' si comporta come un verbo al past simple. 'doesn't' è presente, mentre 'isn't' e 'hasn't' non corrispondono al verbo della frase."
+ },
+ "q526": {
+  "prompt": "Complete the sentence: '_____ you use to like vegetables when you were a child?'",
+  "options": [
+   "Were",
+   "Do",
+   "Did",
+   "Have"
+  ],
+  "correctIndex": 2,
+  "explanation": "Nella domanda su 'use to' l'ausiliare è 'did': porta lui il passato e 'use' perde la -d ('Did you use to...?'). 'Do' è presente e contrasta con 'when you were a child', mentre 'Were' e 'Have' non sono gli ausiliari di questa struttura."
+ },
+ "q530": {
+  "prompt": "Complete the sentence: 'You are Italian, _____ you?'",
+  "options": [
+   "isn't",
+   "don't",
+   "weren't",
+   "aren't"
+  ],
+  "correctIndex": 3,
+  "explanation": "Il tag riprende il soggetto e l'ausiliare della frase con polarità opposta: dopo 'You are' si usa 'aren't you'. 'isn't' non concorda con 'you', 'don't' è ausiliare di altri verbi e 'weren't' è un passato."
+ },
+ "q531": {
+  "prompt": "Complete the sentence: 'You haven't seen the movie, _____ you?'",
+  "options": [
+   "haven't",
+   "have",
+   "did",
+   "didn't"
+  ],
+  "correctIndex": 1,
+  "explanation": "Se la frase è negativa, il tag è positivo e riprende lo stesso ausiliare: 'haven't seen' porta 'have you'. 'haven't you' ripete la negazione, mentre 'did' e 'didn't' non sono l'ausiliare del present perfect."
+ },
+ "q535": {
+  "prompt": "Complete the sentence: 'It's cold today, _____ it?'",
+  "options": [
+   "isn't",
+   "doesn't",
+   "wasn't",
+   "hasn't"
+  ],
+  "correctIndex": 0,
+  "explanation": "Con il verbo 'be' il tag usa lo stesso verbo con polarità opposta: 'It's' ('it is') porta 'isn't it'. 'doesn't' si usa con i verbi ordinari, 'wasn't' è un passato e 'hasn't' è l'ausiliare del present perfect."
+ },
+ "q536": {
+  "prompt": "Complete the sentence: 'He can't swim, _____ he?'",
+  "options": [
+   "can't",
+   "does",
+   "can",
+   "is"
+  ],
+  "correctIndex": 2,
+  "explanation": "La frase negativa con 'can't' vuole un tag positivo con lo stesso modale: 'can he'. 'can't he' ripete la negazione, mentre 'does' e 'is' non sono l'ausiliare di 'can'."
+ },
+ "q542": {
+  "prompt": "Complete the sentence: 'Your sister lives here, _____ she?'",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "hasn't"
+  ],
+  "correctIndex": 1,
+  "explanation": "Con un verbo ordinario al present simple in terza persona singolare il tag è 'doesn't'. 'isn't' e 'hasn't' non sono gli ausiliari di 'lives', e 'don't' non concorda con 'she'."
+ },
+ "q546": {
+  "prompt": "Complete the sentence: 'It's already dark, so it _____ be late.'",
+  "options": [
+   "can't",
+   "may to",
+   "shall",
+   "must"
+  ],
+  "correctIndex": 3,
+  "explanation": "Per una deduzione quasi certa basata su un indizio ('è già buio') si usa 'must' + verbo base. 'can't' esprimerebbe l'impossibilità, 'may to' aggiunge un 'to' che i modali non vogliono e 'shall' non serve a fare deduzioni."
+ },
+ "q547": {
+  "prompt": "Complete the sentence: 'That's impossible! It _____ be true!'",
+  "options": [
+   "can't",
+   "might",
+   "must",
+   "should"
+  ],
+  "correctIndex": 0,
+  "explanation": "Per dire che una cosa è impossibile secondo la logica si usa 'can't' + verbo base. 'must' esprime certezza positiva, 'might' una semplice possibilità e 'should' un'aspettativa: nessuno dei tre dice che è impossibile."
+ },
+ "q551": {
+  "prompt": "Complete the sentence: 'Take an umbrella because it _____ rain later.'",
+  "options": [
+   "can't",
+   "mustn't",
+   "might",
+   "shouldn't"
+  ],
+  "correctIndex": 2,
+  "explanation": "'Might' + verbo base esprime una possibilità: forse pioverà, quindi conviene l'ombrello. 'can't' escluderebbe la pioggia, mentre 'mustn't' (divieto) e 'shouldn't' (consiglio negativo) non hanno senso con 'because' in questa frase."
+ },
+ "q552": {
+  "prompt": "Complete the sentence: 'That man is wearing a suit and sitting in the manager's office. He _____ be your new boss.'",
+  "options": [
+   "can't",
+   "must",
+   "mustn't",
+   "must to"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Must' + verbo base indica una deduzione molto probabile fondata su indizi (il completo, l'ufficio del direttore). 'can't' direbbe il contrario, 'mustn't' esprime un divieto e dopo un modale non si usa 'to' ('must to')."
+ },
+ "q558": {
+  "prompt": "Complete the sentence: 'The address says number 12, but this house is number 20. This _____ be the right house.'",
+  "options": [
+   "must",
+   "needn't",
+   "ought",
+   "can't"
+  ],
+  "correctIndex": 3,
+  "explanation": "Quando un indizio contraddice un'ipotesi, la deduzione negativa si fa con 'can't' + verbo base: il numero è sbagliato, quindi non può essere questa. 'must' direbbe l'opposto, 'needn't' indica mancanza di necessità e 'ought' richiede 'to'."
+ },
+ "q567": {
+  "prompt": "Complete the sentence: 'I can't help _____ when I hear that joke.'",
+  "options": [
+   "laughing",
+   "to laugh",
+   "laugh",
+   "to laughing"
+  ],
+  "correctIndex": 0,
+  "explanation": "'Can't help' è un'espressione fissa seguita dal gerundio: 'can't help laughing' significa 'non riesco a trattenermi dal ridere'. 'laugh' e 'to laugh' non seguono la regola, e 'to laughing' mette 'to' davanti al gerundio."
+ },
+ "q568": {
+  "prompt": "Complete the sentence: 'It's no use _____ over spilled milk.'",
+  "options": [
+   "cry",
+   "cried",
+   "crying",
+   "cries"
+  ],
+  "correctIndex": 2,
+  "explanation": "'It's no use' vuole il gerundio: 'it's no use crying'. 'cry' e 'cries' sono forme del presente e 'cried' è il passato: nessuna si usa dopo questa espressione."
+ },
+ "q575": {
+  "prompt": "Complete the sentence: 'I don't have _____ homework for tomorrow.'",
+  "options": [
+   "many",
+   "much",
+   "a few",
+   "few"
+  ],
+  "correctIndex": 1,
+  "explanation": "'Homework' è non numerabile, quindi nelle frasi negative vuole 'much' e non 'many'. 'a few' e 'few' si usano con i nomi numerabili plurali, e 'homework' non ha il plurale."
+ },
+ "q587": {
+  "prompt": "Complete the sentence: 'I will tell you as soon as I _____ the answer.'",
+  "options": [
+   "will know",
+   "would know",
+   "am knowing",
+   "know"
+  ],
+  "correctIndex": 3,
+  "explanation": "Dopo 'as soon as', anche quando si parla del futuro, si usa il present simple: 'as soon as I know'. 'will know' e 'would know' mettono il futuro nella proposizione temporale, e 'am knowing' non si usa perché 'know' è un verbo di stato."
+ },
+ "q597": {
+  "prompt": "Complete the sentence: 'My brother, who lives in London, is _____ than me.'",
+  "options": [
+   "older",
+   "more old",
+   "oldest",
+   "the oldest"
+  ],
+  "correctIndex": 0,
+  "explanation": "Il comparativo di 'old' è 'older' (aggettivo breve, con -er), seguito da 'than'. 'more old' non esiste, mentre 'oldest' e 'the oldest' sono superlativi e non si usano per confrontare due persone con 'than'."
+ },
+ "q601": {
+  "prompt": "Complete the sentence: 'Have you _____ to the cold weather yet?'",
+  "options": [
+   "used",
+   "got use",
+   "got used",
+   "get used"
+  ],
+  "correctIndex": 2,
+  "explanation": "'Get used to' significa abituarsi a qualcosa, e al present perfect diventa 'have got used to'. 'used' da solo e 'got use' (senza -d) non esprimono questo significato, e 'get used' dopo 'have' richiede il participio 'got'."
+ },
+ "q606": {
+  "prompt": "Complete the sentence: 'London, _____ is the capital of the UK, has many free museums.'",
+  "options": [
+   "that",
+   "which",
+   "where",
+   "what"
+  ],
+  "correctIndex": 1,
+  "explanation": "Nelle relative non definenti (tra virgole) per le cose si usa 'which', mai 'that'. 'where' si usa per i luoghi come complemento ('dove') e 'what' non è un pronome relativo."
+ },
+ "q620": {
+  "prompt": "Complete the sentence: 'Look! The children _____ in the garden.'",
+  "options": [
+   "is playing",
+   "playing",
+   "plays",
+   "are playing"
+  ],
+  "correctIndex": 3,
+  "explanation": "Per un'azione che sta accadendo ora ('Look!') si usa 'be' + -ing, e con 'children' (plurale) l'ausiliare è 'are'. 'is playing' non concorda, 'playing' senza ausiliare è incompleto e 'plays' è singolare."
+ }
+}

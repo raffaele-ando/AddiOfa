@@ -5,7 +5,7 @@ import { theoryTopics, type TheoryTopic } from '../../data/theory';
 import { estimatePassProbability, intervalloStima, normalizzaConteggio, type IntervalloStima } from '../../lib/diagnostic';
 import { chiaveGiorno } from '../../lib/utils';
 import { countLearned } from '../../lib/spacedRepetition';
-import { FORMATS, FREE_LIMITS, type FormatId } from '../../config/offer';
+import { EXAM, DIAGNOSTIC_QUESTIONS } from '../../config/offer';
 
 export const MIN_RISPOSTE = 5; // sotto questa soglia una percentuale per area non è affidabile
 
@@ -47,10 +47,10 @@ export interface EsitoSim { esatte: number; totale: number; /** risposte date (l
  * - le risposte omesse sono nel totale e non tra le esatte: al test vero valgono zero, quindi per la stima sono come errori
  *   (per la conoscenza, invece, non sono errori: calcolaFattori e SM-2 le trattano a parte);
  * - la stessa domanda ripetuta nei log o negli id vale una volta;
- * - senza log il punteggio del TENG ha la penalità sugli errori: si ricava il numero di esatte dall'esito (superato o no).
+ * - senza log si ricava il numero di esatte dal punteggio e dall'esito (superato o no).
  */
 export function esitoSimulazione(h: AppState['history'][number]): EsitoSim {
-  const formato = FORMATS[h.format ?? 'ente'] ?? FORMATS.ente;
+  const formato = EXAM;
   if (Array.isArray(h.questionLogs) && h.questionLogs.length > 0) {
     const perId = new Map<string, { esatta: boolean; data: boolean }>();
     for (const l of h.questionLogs) {
@@ -93,7 +93,7 @@ function datiStima(stato: AppState): DatiStima {
     } else if (typeof o.passProbability === 'number' && Number.isFinite(o.passProbability)) {
       // salvataggio vecchio: solo la percentuale. Si risale al numero di esatte (su 10) che la produce.
       const p0 = Math.min(1, Math.max(0, o.passProbability));
-      const dt = FREE_LIMITS.diagnostic;
+      const dt = DIAGNOSTIC_QUESTIONS;
       let migliore = 0, scarto = Infinity;
       for (let c = 0; c <= dt; c++) {
         const d = Math.abs(estimatePassProbability(c, dt) - p0);
@@ -217,8 +217,6 @@ const ORDINE_LIVELLI = ['A1', 'A2', 'B1'];
 const ordinati: TheoryTopic[] = [...theoryTopics]
   .sort((a, b) => ORDINE_LIVELLI.indexOf(a.livello) - ORDINE_LIVELLI.indexOf(b.livello))
   .filter(t => t.pronta);
-/** Stesso criterio di screens/Theory.tsx: gratis i primi N argomenti pronti nell'ordine di studio. */
-const gratisIds = new Set(ordinati.slice(0, FREE_LIMITS.freeTheoryTopics).map(t => t.id));
 
 export function minutiLettura(t: TheoryTopic): number {
   const testo = [...t.regola, ...t.esempi.flatMap(e => [e.en, e.it]), ...t.errori.flatMap(e => [e.sbagliato, e.giusto, e.perche]), t.consiglio].join(' ');
@@ -229,13 +227,12 @@ export function minutiLettura(t: TheoryTopic): number {
 export interface Lezione {
   topic: TheoryTopic;
   minuti: number;
-  bloccata: boolean;
   motivo: 'debole' | 'inizio';
   percento?: number;
   risposte?: number;
 }
 
-export function lezioneConsigliata(stato: AppState, pass: boolean): Lezione | null {
+export function lezioneConsigliata(stato: AppState): Lezione | null {
   if (ordinati.length === 0) return null;
   const tot: Record<string, { c: number; t: number }> = {};
   for (const q of questions) {
@@ -250,10 +247,10 @@ export function lezioneConsigliata(stato: AppState, pass: boolean): Lezione | nu
     .sort((a, b) => a.perc - b.perc || b.n - a.n);
   const peggiore = candidati[0];
   if (peggiore && peggiore.perc < 85) {
-    return { topic: peggiore.topic, minuti: minutiLettura(peggiore.topic), bloccata: !pass && !gratisIds.has(peggiore.topic.id), motivo: 'debole', percento: peggiore.perc, risposte: peggiore.n };
+    return { topic: peggiore.topic, minuti: minutiLettura(peggiore.topic), motivo: 'debole', percento: peggiore.perc, risposte: peggiore.n };
   }
   const nuovo = ordinati.find(t => !tot[t.id]) ?? ordinati[0];
-  return { topic: nuovo, minuti: minutiLettura(nuovo), bloccata: !pass && !gratisIds.has(nuovo.id), motivo: 'inizio' };
+  return { topic: nuovo, minuti: minutiLettura(nuovo), motivo: 'inizio' };
 }
 
 /** Avanzamento su un argomento: domande imparate (isLearned) su quelle dell'argomento, e l'area (categoria più frequente). */
@@ -274,15 +271,14 @@ export function progressoArgomento(stato: AppState, topicId: string, pool?: Read
 }
 
 // ---- Ultima simulazione contro la soglia
-export interface Obiettivo { formato: FormatId; esatte: number; totale: number; soglia: number; superata: boolean }
+export interface Obiettivo { esatte: number; totale: number; soglia: number; superata: boolean }
 export function ultimaSimulazione(stato: AppState): Obiettivo | null {
   const storico = (Array.isArray(stato.history) ? stato.history : []).filter(h => h && Number.isFinite(h.date));
   if (storico.length === 0) return null;
   const h = [...storico].sort((a, b) => b.date - a.date)[0];
-  const formato: FormatId = FORMATS[h.format ?? 'ente'] ? (h.format ?? 'ente') : 'ente';
   const { esatte, totale } = esitoSimulazione(h);
-  const soglia = FORMATS[formato].passMark;
-  return { formato, esatte, totale, soglia, superata: esatte >= soglia };
+  const soglia = EXAM.passMark;
+  return { esatte, totale, soglia, superata: esatte >= soglia };
 }
 
 // ---- Attività degli ultimi 7 giorni (stessa chiave data di App.tsx: ISO, UTC)

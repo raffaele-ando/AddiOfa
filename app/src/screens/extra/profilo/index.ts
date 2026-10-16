@@ -7,5 +7,4 @@ export const SCHERMATE_PROFILO: Record<string, DefSchermata> = {
   progressi: { titolo: 'Progressi', carica: () => import('./Progressi') },
   obiettivi: { titolo: 'Obiettivi', carica: () => import('./Obiettivi') },
   badge: { titolo: 'Badge', carica: () => import('./Badge') },
-  pass: { titolo: 'Pass', carica: () => import('./Pass') },
 };

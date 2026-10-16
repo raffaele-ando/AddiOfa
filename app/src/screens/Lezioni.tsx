@@ -1,4 +1,4 @@
-import type { AppState, CorpusType, PaywallReason } from '../types';
+import type { AppState } from '../types';
 import { playTapSound } from '../lib/audio';
 import { FONT } from '../brand/tokens';
 import { Icona, type NomeIcona } from '../brand/icone/Icona';
@@ -7,7 +7,6 @@ import { IconaTono, TestataScheda, type Tono } from './extra/ui';
 
 interface Props {
   appState: AppState;
-  corpus?: CorpusType;
   /** Apre la scheda Esercizi (vista `practiceMenu`). */
   onStartLearn: () => void;
   onOpenCheatSheet?: () => void;
@@ -23,10 +22,6 @@ interface Props {
   onOpenTheoryTopic?: (id: string) => void;
   onStartFocus?: (filtro: string) => void;
   onOpenDiagnostic?: () => void;
-  onOpenLeaderboard?: () => void;
-  onSelectCorpus?: (corpus: CorpusType) => void;
-  onOpenPaywall?: () => void;
-  onNeedPass?: (reason: PaywallReason) => void;
 }
 
 /** Tessera grande: icona e una parola. */

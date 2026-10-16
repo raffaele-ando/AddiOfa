@@ -1,11 +1,7 @@
 // Le simulazioni svolte (appState.history) viste per l'elenco e per il dettaglio: tutto ricavato dai dati salvati, niente di inventato.
-import type { AppState, ExamHistory } from '../../types';
-import { FORMATS, FREE_LIMITS, type FormatId } from '../../config/offer';
-import { countFreeSims } from '../../access/entitlement';
+import type { ExamHistory } from '../../types';
+import { EXAM } from '../../config/offer';
 import { esitoSimulazione } from '../../components/home/stima';
-
-/** Il formato proposto: il test di recupero di LinguaViva (30 domande, 15 minuti, soglia 25/30). */
-export const FORMATO_SIMULAZIONE: FormatId = 'ente';
 
 export interface RiepilogoSimulazione {
   id: string;
@@ -17,7 +13,6 @@ export interface RiepilogoSimulazione {
   soglia: number;
   superata: boolean;
   tempoSecondi: number;
-  formato: FormatId;
   /** Risposte lasciate vuote (se i log ci sono). */
   omesse: number | null;
   sbagliate: number | null;
@@ -26,9 +21,8 @@ export interface RiepilogoSimulazione {
 const finito = (n: unknown, ripiego = 0) => (typeof n === 'number' && Number.isFinite(n) ? n : ripiego);
 
 export function riepilogo(h: ExamHistory, numero: number): RiepilogoSimulazione {
-  const formato: FormatId = FORMATS[h.format ?? 'ente'] ? (h.format ?? 'ente') : 'ente';
   const { esatte, totale } = esitoSimulazione(h);
-  const soglia = FORMATS[formato].passMark;
+  const soglia = EXAM.passMark;
   const logs = Array.isArray(h.questionLogs) && h.questionLogs.length > 0 ? h.questionLogs : null;
   let omesse: number | null = null, sbagliate: number | null = null;
   if (logs) {
@@ -37,7 +31,7 @@ export function riepilogo(h: ExamHistory, numero: number): RiepilogoSimulazione 
   }
   return {
     id: h.id, numero, data: finito(h.date), esatte, totale, soglia,
-    superata: esatte >= soglia, tempoSecondi: Math.max(0, finito(h.timeSpentSeconds)), formato, omesse, sbagliate,
+    superata: esatte >= soglia, tempoSecondi: Math.max(0, finito(h.timeSpentSeconds)), omesse, sbagliate,
   };
 }
 
@@ -88,21 +82,4 @@ export function perArgomentoSimulazione(h: ExamHistory): { righe: RigaArgomento[
     .map(([nome, v]) => ({ nome, esatte: v.c, totale: v.t, percento: Math.round((v.c / v.t) * 100) }))
     .sort((a, b) => a.percento - b.percento || b.totale - a.totale || a.nome.localeCompare(b.nome));
   return { righe, per };
-}
-
-export interface LimiteGratuito {
-  /** Simulazioni gratuite ancora disponibili (Infinity con il Pass). */
-  restanti: number;
-  /** Se oggi se ne può avviare una. */
-  puoiIniziare: boolean;
-  fatte: number;
-  gratuite: number;
-}
-
-export function limiteGratuito(stato: Pick<AppState, 'history'>, pass: boolean): LimiteGratuito {
-  const fatte = countFreeSims(Array.isArray(stato.history) ? stato.history : []);
-  const gratuite = FREE_LIMITS.freeSimulations;
-  if (pass) return { restanti: Infinity, puoiIniziare: true, fatte, gratuite };
-  const restanti = Math.max(0, gratuite - fatte);
-  return { restanti, puoiIniziare: restanti > 0, fatte, gratuite };
 }

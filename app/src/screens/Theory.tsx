@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { ReactNode, RefObject } from 'react';
 import { theoryTopics, type TheoryTopic } from '../data/theory';
-import { FREE_LIMITS } from '../config/offer';
-import { useAccess } from '../access/context';
 import { playTapSound } from '../lib/audio';
 import { cn } from '../lib/utils';
 import { RichText } from '../components/ui';
@@ -13,20 +11,17 @@ import { titoloBreve } from '../lib/studio/percorso';
 
 interface TheoryProps {
   onBack(): void;
-  onOpenPaywall(): void;
   initialTopicId?: string;
 }
 
 type Livello = TheoryTopic['livello'];
 const LIVELLI: { id: Livello }[] = [{ id: 'A1' }, { id: 'A2' }, { id: 'B1' }];
 
-// Ordine di studio: per livello, poi nell'ordine del file (sort stabile)
-const ordinati: TheoryTopic[] = [...theoryTopics].sort(
+// Ordine di studio: per livello, poi nell'ordine del file (sort stabile). Si mostrano solo gli argomenti pronti.
+const ordinati: TheoryTopic[] = theoryTopics.filter(t => t.pronta).sort(
   (a, b) => LIVELLI.findIndex(l => l.id === a.livello) - LIVELLI.findIndex(l => l.id === b.livello),
 );
-const pronti = ordinati.filter(t => t.pronta);
-// Gratis: i primi N argomenti pronti nell'ordine di studio (quindi il primo di A1)
-const gratisIds = new Set(pronti.slice(0, FREE_LIMITS.freeTheoryTopics).map(t => t.id));
+const pronti = ordinati;
 
 /** Pagina di teoria: stessa cornice delle schermate extra (freccia a sinistra del titolo, colonna di 440 px), ma con il riferimento al titolo per il focus. */
 function Cornice({ titolo, titoloRef, onBack, children, intestazione }: {
@@ -53,20 +48,9 @@ function Cornice({ titolo, titoloRef, onBack, children, intestazione }: {
   );
 }
 
-export default function Theory({ onBack, onOpenPaywall, initialTopicId }: TheoryProps) {
-  const { pass } = useAccess();
-  const aperto = (t: TheoryTopic) => t.pronta && (pass || gratisIds.has(t.id));
-
-  const [topicId, setTopicId] = useState<string | null>(() => {
-    const t = theoryTopics.find(x => x.id === initialTopicId);
-    return t && t.pronta && (pass || gratisIds.has(t.id)) ? t.id : null;
-  });
-  const topic = topicId ? theoryTopics.find(t => t.id === topicId) ?? null : null;
-
-  // Se il Pass sparisce mentre si legge una scheda a pagamento, si torna all'elenco
-  useEffect(() => {
-    if (topic && !aperto(topic)) setTopicId(null);
-  }, [pass]); // eslint-disable-line react-hooks/exhaustive-deps
+export default function Theory({ onBack, initialTopicId }: TheoryProps) {
+  const [topicId, setTopicId] = useState<string | null>(() => pronti.find(x => x.id === initialTopicId)?.id ?? null);
+  const topic = topicId ? pronti.find(t => t.id === topicId) ?? null : null;
 
   // Al cambio di vista il focus va al titolo: la lettura riparte dall'alto
   const titoloRef = useRef<HTMLHeadingElement>(null);
@@ -81,11 +65,7 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
   // Aperta da una lezione (initialTopicId): la freccia riporta alla lezione; dall'elenco, all'elenco.
   const daLezione = useRef(initialTopicId !== undefined).current;
 
-  const apri = (t: TheoryTopic) => {
-    if (!t.pronta) return;
-    if (aperto(t)) setTopicId(t.id);
-    else onOpenPaywall();
-  };
+  const apri = (t: TheoryTopic) => setTopicId(t.id);
 
   if (topic) {
     const i = pronti.findIndex(t => t.id === topic.id);
@@ -94,7 +74,6 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
         topic={topic}
         prec={i > 0 ? pronti[i - 1] : null}
         succ={i >= 0 && i < pronti.length - 1 ? pronti[i + 1] : null}
-        aperto={aperto}
         titoloRef={titoloRef}
         onList={daLezione ? onBack : () => setTopicId(null)}
         onGo={apri}
@@ -121,7 +100,7 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
               <ChipLivello livello={l.id} className="text-[14px] leading-[18px] px-2 py-1" /><span className="sr-only">Livello {l.id}</span>
             </h2>
             <ul className="flex flex-col gap-2">
-              {lista.map(t => <Riga key={t.id} t={t} pass={pass} gratis={gratisIds.has(t.id)} onOpen={apri} />)}
+              {lista.map(t => <Riga key={t.id} t={t} onOpen={apri} />)}
             </ul>
           </section>
         );
@@ -130,49 +109,31 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
   );
 }
 
-function Riga({ t, pass, gratis, onOpen }: { t: TheoryTopic; pass: boolean; gratis: boolean; onOpen: (t: TheoryTopic) => void }) {
-  const base = 'w-full text-left rounded-[12px] px-3.5 py-3 min-h-[52px] flex items-center gap-3';
-  const stato = !t.pronta ? 'arrivo' : pass || gratis ? 'aperto' : 'pass';
-
-  const contenuto = (
-    <>
-      <span className="min-w-0 flex-1">
-        <span className={cn('block font-bold leading-snug break-words', stato === 'arrivo' ? 'text-testo-tenue' : 'text-testo')}>{titoloBreve(t)}</span>
-      </span>
-      {stato === 'pass' && <span className="shrink-0 text-testo-tenue"><Icona nome="blocco" size={17} titolo="Nel Pass" /></span>}
-      {stato === 'aperto' && <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="avanti" size={20} /></span>}
-    </>
-  );
-
-  if (stato === 'arrivo') {
-    return (
-      <li>
-        <div className={cn(base, 'border border-dashed border-linea bg-transparent')}>{contenuto}</div>
-      </li>
-    );
-  }
+function Riga({ t, onOpen }: { t: TheoryTopic; onOpen: (t: TheoryTopic) => void }) {
   return (
     <li>
       <button
         type="button"
         onClick={() => { playTapSound(); onOpen(t); }}
         className={cn(
-          base,
+          'w-full text-left rounded-[12px] px-3.5 py-3 min-h-[52px] flex items-center gap-3',
           'bg-superficie-2 hover:bg-linea transition-colors duration-100',
           'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione',
         )}
       >
-        {contenuto}
+        <span className="min-w-0 flex-1">
+          <span className="block font-bold leading-snug break-words text-testo">{titoloBreve(t)}</span>
+        </span>
+        <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="avanti" size={20} /></span>
       </button>
     </li>
   );
 }
 
-function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
+function Dettaglio({ topic, prec, succ, titoloRef, onList, onGo }: {
   topic: TheoryTopic;
   prec: TheoryTopic | null;
   succ: TheoryTopic | null;
-  aperto: (t: TheoryTopic) => boolean;
   titoloRef: React.RefObject<HTMLHeadingElement | null>;
   onList: () => void;
   onGo: (t: TheoryTopic) => void;
@@ -240,14 +201,14 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
       </article>
 
       <nav aria-label="Altre lezioni" className="mt-6 flex flex-col gap-2">
-        {succ && <Vicino t={succ} verso="succ" bloccato={!aperto(succ)} onGo={onGo} />}
-        {prec && <Vicino t={prec} verso="prec" bloccato={!aperto(prec)} onGo={onGo} />}
+        {succ && <Vicino t={succ} verso="succ" onGo={onGo} />}
+        {prec && <Vicino t={prec} verso="prec" onGo={onGo} />}
       </nav>
     </Cornice>
   );
 }
 
-function Vicino({ t, verso, bloccato, onGo }: { t: TheoryTopic; verso: 'prec' | 'succ'; bloccato: boolean; onGo: (t: TheoryTopic) => void }) {
+function Vicino({ t, verso, onGo }: { t: TheoryTopic; verso: 'prec' | 'succ'; onGo: (t: TheoryTopic) => void }) {
   const succ = verso === 'succ';
   return (
     <button
@@ -258,8 +219,7 @@ function Vicino({ t, verso, bloccato, onGo }: { t: TheoryTopic; verso: 'prec' | 
     >
       {!succ && <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="indietro" size={20} /></span>}
       <span className="block min-w-0 flex-1 font-bold leading-snug text-testo break-words">{titoloBreve(t)}</span>
-      {bloccato && <span className="shrink-0 text-testo-tenue"><Icona nome="blocco" size={17} titolo="Nel Pass" /></span>}
-      {succ && !bloccato && <span aria-hidden="true" className="shrink-0 text-azione-scuro"><Icona nome="avanti" size={20} /></span>}
+      {succ && <span aria-hidden="true" className="shrink-0 text-azione-scuro"><Icona nome="avanti" size={20} /></span>}
     </button>
   );
 }

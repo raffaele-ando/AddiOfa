@@ -1,20 +1,5 @@
 // GENERATO da contenuti/ con npm run contenuti: non modificare a mano.
-import type { Question, CorpusType } from '../types';
-
-/** Numero di domande del nucleo gratuito (core: true in contenuti/domande/). */
-export const INITIAL_CORPUS_COUNT = 100;
-
-/** Id delle domande del nucleo gratuito. */
-const CORE_IDS: ReadonlySet<string> = new Set(["q61","q67","q69","q71","q75","q84","q91","q95","q98","q107","q111","q114","q121","q122","q133","q134","q135","q136","q137","q139","q143","q145","q146","q148","q150","q157","q160","q162","q165","q171","q172","q190","q191","q199","q210","q213","q214","q217","q222","q227","q237","q242","q251","q256","q258","q270","q271","q272","q280","q291","q296","q301","q311","q312","q322","q325","q326","q328","q335","q346","q347","q354","q363","q367","q370","q380","q381","q389","q396","q398","q404","q406","q425","q432","q436","q450","q459","q465","q468","q472","q489","q490","q494","q495","q499","q507","q521","q526","q529","q535","q546","q553","q566","q570","q581","q584","q590","q594","q605","q632"]);
-
-export const isCoreId = (id: string): boolean => CORE_IDS.has(id);
-
-export const getQuestionsByCorpus = (corpus: CorpusType = 'all'): Question[] => {
-  if (corpus === 'initial') {
-    return questions.filter((q) => CORE_IDS.has(q.id));
-  }
-  return questions;
-};
+import type { Question } from '../types';
 
 export const questions: Question[] = [
   {
@@ -1647,8 +1632,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessive S",
-    "theoryId": "possessive-s",
-    "extraOption": "of dogs"
+    "theoryId": "possessive-s"
   },
   {
     "id": "q103",
@@ -1680,8 +1664,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessive S",
-    "theoryId": "possessive-s",
-    "extraOption": "parents's"
+    "theoryId": "possessive-s"
   },
   {
     "id": "q105",
@@ -1697,8 +1680,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Quantifiers",
-    "theoryId": "quantifiers",
-    "extraOption": "lot"
+    "theoryId": "quantifiers"
   },
   {
     "id": "q106",
@@ -1714,8 +1696,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Quantifiers",
-    "theoryId": "quantifiers",
-    "extraOption": "I don't have a many friends."
+    "theoryId": "quantifiers"
   },
   {
     "id": "q107",
@@ -1779,8 +1760,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Quantifiers",
-    "theoryId": "quantifiers",
-    "extraOption": "There are too many car in this city."
+    "theoryId": "quantifiers"
   },
   {
     "id": "q111",
@@ -1796,8 +1776,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
-    "theoryId": "questions-origins",
-    "extraOption": "have"
+    "theoryId": "questions-origins"
   },
   {
     "id": "q112",
@@ -1813,8 +1792,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
-    "theoryId": "questions-origins",
-    "extraOption": "Where comes your brother from?"
+    "theoryId": "questions-origins"
   },
   {
     "id": "q113",
@@ -1846,8 +1824,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
-    "theoryId": "questions-origins",
-    "extraOption": "Are they from Spanish?"
+    "theoryId": "questions-origins"
   },
   {
     "id": "q115",
@@ -1895,8 +1872,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
-    "theoryId": "comparatives-superlatives",
-    "extraOption": "This is the most longest book I have ever read."
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q118",
@@ -1912,8 +1888,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
-    "theoryId": "comparatives-superlatives",
-    "extraOption": "fast"
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q119",
@@ -1929,8 +1904,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
-    "theoryId": "comparatives-superlatives",
-    "extraOption": "Today is much more hotter than yesterday."
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q120",
@@ -1946,8 +1920,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
-    "theoryId": "comparatives-superlatives",
-    "extraOption": "most best"
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q121",
@@ -1963,8 +1936,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
-    "theoryId": "comparatives-superlatives",
-    "extraOption": "His sister is lesser outgoing than him."
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q122",
@@ -1996,8 +1968,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
-    "theoryId": "comparatives-superlatives",
-    "extraOption": "This is the most less expensive place in town."
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q124",
@@ -2013,8 +1984,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
-    "theoryId": "comparatives-superlatives",
-    "extraOption": "a lot of"
+    "theoryId": "comparatives-superlatives"
   },
   {
     "id": "q125",
@@ -2030,8 +2000,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional",
-    "theoryId": "first-conditional",
-    "extraOption": "will to help"
+    "theoryId": "first-conditional"
   },
   {
     "id": "q126",
@@ -2047,8 +2016,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "First Conditional",
-    "theoryId": "first-conditional",
-    "extraOption": "If she studies, she will to pass the test."
+    "theoryId": "first-conditional"
   },
   {
     "id": "q127",
@@ -2064,8 +2032,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional",
-    "theoryId": "first-conditional",
-    "extraOption": "to rain"
+    "theoryId": "first-conditional"
   },
   {
     "id": "q128",
@@ -2081,8 +2048,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "First Conditional",
-    "theoryId": "first-conditional",
-    "extraOption": "What you will say if he calls you?"
+    "theoryId": "first-conditional"
   },
   {
     "id": "q129",
@@ -2098,8 +2064,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional",
-    "theoryId": "first-conditional",
-    "extraOption": "would have missed"
+    "theoryId": "first-conditional"
   },
   {
     "id": "q130",
@@ -2115,8 +2080,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "First Conditional",
-    "theoryId": "first-conditional",
-    "extraOption": "If you don't help me, I didn't finish the project."
+    "theoryId": "first-conditional"
   },
   {
     "id": "q131",
@@ -2132,8 +2096,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional",
-    "theoryId": "first-conditional",
-    "extraOption": "getting"
+    "theoryId": "first-conditional"
   },
   {
     "id": "q132",
@@ -2165,8 +2128,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional",
-    "theoryId": "first-conditional",
-    "extraOption": "trying"
+    "theoryId": "first-conditional"
   },
   {
     "id": "q134",
@@ -2182,8 +2144,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "First Conditional",
-    "theoryId": "first-conditional",
-    "extraOption": "Unless it is not raining, we will go for a walk."
+    "theoryId": "first-conditional"
   },
   {
     "id": "q135",
@@ -2199,8 +2160,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional",
-    "theoryId": "first-conditional",
-    "extraOption": "not be"
+    "theoryId": "first-conditional"
   },
   {
     "id": "q136",
@@ -2216,8 +2176,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Time",
-    "theoryId": "prepositions-time",
-    "extraOption": "during"
+    "theoryId": "prepositions-time"
   },
   {
     "id": "q137",
@@ -2233,8 +2192,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Present Simple",
-    "theoryId": "present-simple",
-    "extraOption": "I no like coffee."
+    "theoryId": "present-simple"
   },
   {
     "id": "q138",
@@ -2250,8 +2208,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Present Continuous",
-    "theoryId": "present-continuous",
-    "extraOption": "will going"
+    "theoryId": "present-continuous"
   },
   {
     "id": "q139",
@@ -2267,8 +2224,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Modals of Ability and Permission",
-    "theoryId": "modals-ability-permission",
-    "extraOption": "Can I to help you?"
+    "theoryId": "modals-ability-permission"
   },
   {
     "id": "q140",
@@ -2284,8 +2240,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
-    "theoryId": "gerunds-infinitives",
-    "extraOption": "to learning"
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q141",
@@ -2301,8 +2256,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "We must to go now."
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q142",
@@ -2318,8 +2272,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
-    "theoryId": "gerunds-infinitives",
-    "extraOption": "for hearing"
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q143",
@@ -2335,8 +2288,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Past Simple",
-    "theoryId": "past-simple",
-    "extraOption": "I have been very tired last night."
+    "theoryId": "past-simple"
   },
   {
     "id": "q144",
@@ -2352,8 +2304,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Relative Clauses",
-    "theoryId": "relative-clauses",
-    "extraOption": "whose"
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q145",
@@ -2369,8 +2320,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Modals of Ability and Permission",
-    "theoryId": "modals-ability-permission",
-    "extraOption": "She can to swim very well."
+    "theoryId": "modals-ability-permission"
   },
   {
     "id": "q146",
@@ -2386,8 +2336,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "don't must"
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q147",
@@ -2419,8 +2368,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessive S",
-    "theoryId": "possessive-s",
-    "extraOption": "of Tom"
+    "theoryId": "possessive-s"
   },
   {
     "id": "q149",
@@ -2548,8 +2496,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessive S",
-    "theoryId": "possessive-s",
-    "extraOption": "of Paul"
+    "theoryId": "possessive-s"
   },
   {
     "id": "q157",
@@ -2613,8 +2560,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Prepositions of Time",
-    "theoryId": "prepositions-time",
-    "extraOption": "during"
+    "theoryId": "prepositions-time"
   },
   {
     "id": "q161",
@@ -2630,8 +2576,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Prepositions of Time",
-    "theoryId": "prepositions-time",
-    "extraOption": "They have worked here from many years."
+    "theoryId": "prepositions-time"
   },
   {
     "id": "q162",
@@ -2647,8 +2592,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Present Continuous",
-    "theoryId": "present-continuous",
-    "extraOption": "are play"
+    "theoryId": "present-continuous"
   },
   {
     "id": "q163",
@@ -2664,8 +2608,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Present Continuous",
-    "theoryId": "present-continuous",
-    "extraOption": "Why are you cry?"
+    "theoryId": "present-continuous"
   },
   {
     "id": "q164",
@@ -2713,8 +2656,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Present Continuous",
-    "theoryId": "present-continuous",
-    "extraOption": "are coming"
+    "theoryId": "present-continuous"
   },
   {
     "id": "q167",
@@ -2730,8 +2672,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Present Continuous",
-    "theoryId": "present-continuous",
-    "extraOption": "We don't using the computer right now."
+    "theoryId": "present-continuous"
   },
   {
     "id": "q168",
@@ -2747,8 +2688,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Present Continuous",
-    "theoryId": "present-continuous",
-    "extraOption": "Has"
+    "theoryId": "present-continuous"
   },
   {
     "id": "q169",
@@ -2764,8 +2704,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Present Continuous",
-    "theoryId": "present-continuous",
-    "extraOption": "I am looking for to my keys."
+    "theoryId": "present-continuous"
   },
   {
     "id": "q170",
@@ -2797,8 +2736,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
-    "theoryId": "present-perfect",
-    "extraOption": "ago"
+    "theoryId": "present-perfect"
   },
   {
     "id": "q172",
@@ -2814,8 +2752,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Present Perfect",
-    "theoryId": "present-perfect",
-    "extraOption": "It's the first time I am drive a car."
+    "theoryId": "present-perfect"
   },
   {
     "id": "q173",
@@ -2831,8 +2768,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Simple",
-    "theoryId": "present-simple",
-    "extraOption": "drinking"
+    "theoryId": "present-simple"
   },
   {
     "id": "q174",
@@ -2880,8 +2816,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Present Simple",
-    "theoryId": "present-simple",
-    "extraOption": "He doesn't understands the question."
+    "theoryId": "present-simple"
   },
   {
     "id": "q177",
@@ -2913,8 +2848,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Present Simple",
-    "theoryId": "present-simple",
-    "extraOption": "What does mean this word?"
+    "theoryId": "present-simple"
   },
   {
     "id": "q179",
@@ -2946,8 +2880,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Present Simple",
-    "theoryId": "present-simple",
-    "extraOption": "How often do you to go to the gym?"
+    "theoryId": "present-simple"
   },
   {
     "id": "q181",
@@ -2963,8 +2896,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Simple",
-    "theoryId": "present-simple",
-    "extraOption": "cleaning"
+    "theoryId": "present-simple"
   },
   {
     "id": "q182",
@@ -3060,8 +2992,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Quantifiers",
-    "theoryId": "quantifiers",
-    "extraOption": "There don't have any apples."
+    "theoryId": "quantifiers"
   },
   {
     "id": "q188",
@@ -3157,8 +3088,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Quantifiers",
-    "theoryId": "quantifiers",
-    "extraOption": "We ate too much of pizza."
+    "theoryId": "quantifiers"
   },
   {
     "id": "q194",
@@ -3286,8 +3216,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
-    "theoryId": "questions-origins",
-    "extraOption": "Who"
+    "theoryId": "questions-origins"
   },
   {
     "id": "q202",
@@ -3303,8 +3232,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
-    "theoryId": "questions-origins",
-    "extraOption": "Who do you go to work?"
+    "theoryId": "questions-origins"
   },
   {
     "id": "q203",
@@ -3320,8 +3248,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
-    "theoryId": "questions-origins",
-    "extraOption": "When"
+    "theoryId": "questions-origins"
   },
   {
     "id": "q204",
@@ -3337,8 +3264,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
-    "theoryId": "questions-origins",
-    "extraOption": "Whom bag is this?"
+    "theoryId": "questions-origins"
   },
   {
     "id": "q205",
@@ -3370,8 +3296,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
-    "theoryId": "questions-origins",
-    "extraOption": "How much costs this book?"
+    "theoryId": "questions-origins"
   },
   {
     "id": "q207",
@@ -3387,8 +3312,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
-    "theoryId": "questions-origins",
-    "extraOption": "How far"
+    "theoryId": "questions-origins"
   },
   {
     "id": "q208",
@@ -3404,8 +3328,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
-    "theoryId": "there-is-are",
-    "extraOption": "There has"
+    "theoryId": "there-is-are"
   },
   {
     "id": "q209",
@@ -3421,8 +3344,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "There is / There are",
-    "theoryId": "there-is-are",
-    "extraOption": "There have three chairs in the room."
+    "theoryId": "there-is-are"
   },
   {
     "id": "q210",
@@ -3438,8 +3360,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
-    "theoryId": "there-is-are",
-    "extraOption": "Has there"
+    "theoryId": "there-is-are"
   },
   {
     "id": "q211",
@@ -3455,8 +3376,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "There is / There are",
-    "theoryId": "there-is-are",
-    "extraOption": "Has there a good restaurant near here?"
+    "theoryId": "there-is-are"
   },
   {
     "id": "q212",
@@ -3488,8 +3408,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "There is / There are",
-    "theoryId": "there-is-are",
-    "extraOption": "There is nobody at home."
+    "theoryId": "there-is-are"
   },
   {
     "id": "q214",
@@ -3553,8 +3472,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
-    "theoryId": "possessives",
-    "extraOption": "yourself"
+    "theoryId": "possessives"
   },
   {
     "id": "q218",
@@ -3586,8 +3504,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
-    "theoryId": "possessives",
-    "extraOption": "ourselves"
+    "theoryId": "possessives"
   },
   {
     "id": "q220",
@@ -3635,8 +3552,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
-    "theoryId": "possessives",
-    "extraOption": "itself"
+    "theoryId": "possessives"
   },
   {
     "id": "q223",
@@ -3668,8 +3584,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
-    "theoryId": "possessives",
-    "extraOption": "myself"
+    "theoryId": "possessives"
   },
   {
     "id": "q225",
@@ -3685,8 +3600,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
-    "theoryId": "possessives",
-    "extraOption": "mines"
+    "theoryId": "possessives"
   },
   {
     "id": "q226",
@@ -3702,8 +3616,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Possessives",
-    "theoryId": "possessives",
-    "extraOption": "This book is mines."
+    "theoryId": "possessives"
   },
   {
     "id": "q227",
@@ -3719,8 +3632,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Possessives",
-    "theoryId": "possessives",
-    "extraOption": "There house is very big."
+    "theoryId": "possessives"
   },
   {
     "id": "q228",
@@ -3736,8 +3648,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Possessives",
-    "theoryId": "possessives",
-    "extraOption": "That is your jacket, not her's."
+    "theoryId": "possessives"
   },
   {
     "id": "q229",
@@ -3785,8 +3696,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Possessives",
-    "theoryId": "possessives",
-    "extraOption": "He's phone is new."
+    "theoryId": "possessives"
   },
   {
     "id": "q232",
@@ -3866,8 +3776,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
-    "theoryId": "object-pronouns",
-    "extraOption": "myself"
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q237",
@@ -3883,8 +3792,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
-    "theoryId": "object-pronouns",
-    "extraOption": "ourselves"
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q238",
@@ -3964,8 +3872,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
-    "theoryId": "object-pronouns",
-    "extraOption": "myself"
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q243",
@@ -3997,8 +3904,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
-    "theoryId": "object-pronouns",
-    "extraOption": "I don't understand himself."
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q245",
@@ -4014,8 +3920,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
-    "theoryId": "object-pronouns",
-    "extraOption": "Can you see ourselves?"
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q246",
@@ -4063,8 +3968,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
-    "theoryId": "object-pronouns",
-    "extraOption": "Give myself that book."
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q249",
@@ -4080,8 +3984,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
-    "theoryId": "object-pronouns",
-    "extraOption": "I don't believe yourself."
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q250",
@@ -4129,8 +4032,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
-    "theoryId": "object-pronouns",
-    "extraOption": "I don't know they're."
+    "theoryId": "object-pronouns"
   },
   {
     "id": "q253",
@@ -4146,8 +4048,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
-    "theoryId": "demonstratives",
-    "extraOption": "Them"
+    "theoryId": "demonstratives"
   },
   {
     "id": "q254",
@@ -4195,8 +4096,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
-    "theoryId": "demonstratives",
-    "extraOption": "There"
+    "theoryId": "demonstratives"
   },
   {
     "id": "q257",
@@ -4276,8 +4176,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
-    "theoryId": "demonstratives",
-    "extraOption": "them"
+    "theoryId": "demonstratives"
   },
   {
     "id": "q262",
@@ -4309,8 +4208,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Demonstratives",
-    "theoryId": "demonstratives",
-    "extraOption": "Them are my books."
+    "theoryId": "demonstratives"
   },
   {
     "id": "q264",
@@ -4342,8 +4240,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Demonstratives",
-    "theoryId": "demonstratives",
-    "extraOption": "These girl are Italian."
+    "theoryId": "demonstratives"
   },
   {
     "id": "q266",
@@ -4359,8 +4256,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Demonstratives",
-    "theoryId": "demonstratives",
-    "extraOption": "That men is my father."
+    "theoryId": "demonstratives"
   },
   {
     "id": "q267",
@@ -4376,8 +4272,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Demonstratives",
-    "theoryId": "demonstratives",
-    "extraOption": "What is those things?"
+    "theoryId": "demonstratives"
   },
   {
     "id": "q268",
@@ -4393,8 +4288,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Demonstratives",
-    "theoryId": "demonstratives",
-    "extraOption": "I prefer them dress."
+    "theoryId": "demonstratives"
   },
   {
     "id": "q269",
@@ -4410,8 +4304,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Demonstratives",
-    "theoryId": "demonstratives",
-    "extraOption": "Do you know them people?"
+    "theoryId": "demonstratives"
   },
   {
     "id": "q270",
@@ -4427,8 +4320,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Demonstratives",
-    "theoryId": "demonstratives",
-    "extraOption": "Them are my notes."
+    "theoryId": "demonstratives"
   },
   {
     "id": "q271",
@@ -4476,8 +4368,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
-    "theoryId": "prepositions-place",
-    "extraOption": "into"
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q274",
@@ -4589,8 +4480,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
-    "theoryId": "prepositions-place",
-    "extraOption": "The dog is over the table."
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q281",
@@ -4606,8 +4496,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
-    "theoryId": "prepositions-place",
-    "extraOption": "I am over the cinema."
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q282",
@@ -4639,8 +4528,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
-    "theoryId": "prepositions-place",
-    "extraOption": "The office is over the bank."
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q284",
@@ -4672,8 +4560,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
-    "theoryId": "prepositions-place",
-    "extraOption": "Hide in front of the door."
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q286",
@@ -4689,8 +4576,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
-    "theoryId": "prepositions-place",
-    "extraOption": "Put the clothes by the wardrobe."
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q287",
@@ -4706,8 +4592,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
-    "theoryId": "prepositions-place",
-    "extraOption": "I met Marco over the station."
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q288",
@@ -4723,8 +4608,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
-    "theoryId": "prepositions-place",
-    "extraOption": "There is a garden in front of the house."
+    "theoryId": "prepositions-place"
   },
   {
     "id": "q289",
@@ -4756,8 +4640,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Aren't"
+    "theoryId": "imperative"
   },
   {
     "id": "q291",
@@ -4773,8 +4656,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Ate"
+    "theoryId": "imperative"
   },
   {
     "id": "q292",
@@ -4790,8 +4672,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Isn't"
+    "theoryId": "imperative"
   },
   {
     "id": "q293",
@@ -4807,8 +4688,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Been"
+    "theoryId": "imperative"
   },
   {
     "id": "q294",
@@ -4840,8 +4720,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Make"
+    "theoryId": "imperative"
   },
   {
     "id": "q296",
@@ -4857,8 +4736,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Passed"
+    "theoryId": "imperative"
   },
   {
     "id": "q297",
@@ -4874,8 +4752,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Aren't"
+    "theoryId": "imperative"
   },
   {
     "id": "q298",
@@ -4891,8 +4768,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Don't to touch my phone."
+    "theoryId": "imperative"
   },
   {
     "id": "q299",
@@ -4908,8 +4784,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Take attention!"
+    "theoryId": "imperative"
   },
   {
     "id": "q300",
@@ -4941,8 +4816,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Don't to forget your keys."
+    "theoryId": "imperative"
   },
   {
     "id": "q302",
@@ -4958,8 +4832,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Closed the door, please."
+    "theoryId": "imperative"
   },
   {
     "id": "q303",
@@ -4975,8 +4848,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Don't to speak during the exam."
+    "theoryId": "imperative"
   },
   {
     "id": "q304",
@@ -4992,8 +4864,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Waited here a moment."
+    "theoryId": "imperative"
   },
   {
     "id": "q305",
@@ -5009,8 +4880,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Wrote your names on the paper."
+    "theoryId": "imperative"
   },
   {
     "id": "q306",
@@ -5026,8 +4896,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A1",
     "grammarTopic": "Imperative",
-    "theoryId": "imperative",
-    "extraOption": "Don't smoked in this room."
+    "theoryId": "imperative"
   },
   {
     "id": "q307",
@@ -5043,8 +4912,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Future: going to",
-    "theoryId": "going-to",
-    "extraOption": "am go"
+    "theoryId": "going-to"
   },
   {
     "id": "q308",
@@ -5076,8 +4944,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Future: going to",
-    "theoryId": "going-to",
-    "extraOption": "have"
+    "theoryId": "going-to"
   },
   {
     "id": "q310",
@@ -5093,8 +4960,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Future: going to",
-    "theoryId": "going-to",
-    "extraOption": "do"
+    "theoryId": "going-to"
   },
   {
     "id": "q311",
@@ -5142,8 +5008,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Future: going to",
-    "theoryId": "going-to",
-    "extraOption": "is"
+    "theoryId": "going-to"
   },
   {
     "id": "q314",
@@ -5159,8 +5024,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Future: going to",
-    "theoryId": "going-to",
-    "extraOption": "to study"
+    "theoryId": "going-to"
   },
   {
     "id": "q315",
@@ -5192,8 +5056,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to",
-    "theoryId": "going-to",
-    "extraOption": "What are you going to doing?"
+    "theoryId": "going-to"
   },
   {
     "id": "q317",
@@ -5209,8 +5072,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to",
-    "theoryId": "going-to",
-    "extraOption": "I am not going wait all day."
+    "theoryId": "going-to"
   },
   {
     "id": "q318",
@@ -5242,8 +5104,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to",
-    "theoryId": "going-to",
-    "extraOption": "We are going to buying a new house."
+    "theoryId": "going-to"
   },
   {
     "id": "q320",
@@ -5323,8 +5184,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Future: going to",
-    "theoryId": "going-to",
-    "extraOption": "He's go to fall!"
+    "theoryId": "going-to"
   },
   {
     "id": "q325",
@@ -5372,8 +5232,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Continuous",
-    "theoryId": "past-continuous",
-    "extraOption": "have"
+    "theoryId": "past-continuous"
   },
   {
     "id": "q328",
@@ -5405,8 +5264,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Continuous",
-    "theoryId": "past-continuous",
-    "extraOption": "hasn't"
+    "theoryId": "past-continuous"
   },
   {
     "id": "q330",
@@ -5454,8 +5312,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Continuous",
-    "theoryId": "past-continuous",
-    "extraOption": "Has"
+    "theoryId": "past-continuous"
   },
   {
     "id": "q333",
@@ -5487,8 +5344,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous",
-    "theoryId": "past-continuous",
-    "extraOption": "What were you do when I called you?"
+    "theoryId": "past-continuous"
   },
   {
     "id": "q335",
@@ -5536,8 +5392,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous",
-    "theoryId": "past-continuous",
-    "extraOption": "She wasn't watched TV, she was reading."
+    "theoryId": "past-continuous"
   },
   {
     "id": "q338",
@@ -5569,8 +5424,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous",
-    "theoryId": "past-continuous",
-    "extraOption": "Was it rain hard yesterday morning?"
+    "theoryId": "past-continuous"
   },
   {
     "id": "q340",
@@ -5586,8 +5440,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous",
-    "theoryId": "past-continuous",
-    "extraOption": "We weren't go too fast."
+    "theoryId": "past-continuous"
   },
   {
     "id": "q341",
@@ -5603,8 +5456,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Past Continuous",
-    "theoryId": "past-continuous",
-    "extraOption": "What were you think at that moment?"
+    "theoryId": "past-continuous"
   },
   {
     "id": "q342",
@@ -5668,8 +5520,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "doesn't have to"
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q346",
@@ -5733,8 +5584,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "has to"
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q350",
@@ -5766,8 +5616,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "to have"
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q352",
@@ -5783,8 +5632,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "You should to eat more vegetables."
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q353",
@@ -5800,8 +5648,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "You don't must come if you're tired."
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q354",
@@ -5817,8 +5664,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "You not must touch that wire!"
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q355",
@@ -5850,8 +5696,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "You shouldn't to drink so much coffee."
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q357",
@@ -5867,8 +5712,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "Do I have take off my shoes?"
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q358",
@@ -5884,8 +5728,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Modals of Obligation and Advice",
-    "theoryId": "modals-obligation-advice",
-    "extraOption": "You not have to pay, it's free."
+    "theoryId": "modals-obligation-advice"
   },
   {
     "id": "q359",
@@ -5933,8 +5776,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
-    "theoryId": "adverbs-manner",
-    "extraOption": "bad"
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q362",
@@ -5966,8 +5808,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
-    "theoryId": "adverbs-manner",
-    "extraOption": "care"
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q364",
@@ -5983,8 +5824,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
-    "theoryId": "adverbs-manner",
-    "extraOption": "easiest"
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q365",
@@ -6000,8 +5840,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
-    "theoryId": "adverbs-manner",
-    "extraOption": "slowy"
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q366",
@@ -6017,8 +5856,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
-    "theoryId": "adverbs-manner",
-    "extraOption": "with angry"
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q367",
@@ -6050,8 +5888,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
-    "theoryId": "adverbs-manner",
-    "extraOption": "happiest"
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q369",
@@ -6083,8 +5920,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
-    "theoryId": "adverbs-manner",
-    "extraOption": "He answered the question with quick."
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q371",
@@ -6212,8 +6048,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "A2",
     "grammarTopic": "Adverbs of Manner",
-    "theoryId": "adverbs-manner",
-    "extraOption": "I understood perfectest."
+    "theoryId": "adverbs-manner"
   },
   {
     "id": "q379",
@@ -6229,8 +6064,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Second Conditional",
-    "theoryId": "second-conditional",
-    "extraOption": "would win"
+    "theoryId": "second-conditional"
   },
   {
     "id": "q380",
@@ -6246,8 +6080,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Second Conditional",
-    "theoryId": "second-conditional",
-    "extraOption": "If I were you, I would studying more."
+    "theoryId": "second-conditional"
   },
   {
     "id": "q381",
@@ -6263,8 +6096,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Third Conditional",
-    "theoryId": "third-conditional",
-    "extraOption": "would had passed"
+    "theoryId": "third-conditional"
   },
   {
     "id": "q382",
@@ -6280,8 +6112,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Third Conditional",
-    "theoryId": "third-conditional",
-    "extraOption": "If we had left earlier, we wouldn't missed the train."
+    "theoryId": "third-conditional"
   },
   {
     "id": "q383",
@@ -6297,8 +6128,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Passive Voice",
-    "theoryId": "passive-voice",
-    "extraOption": "has written"
+    "theoryId": "passive-voice"
   },
   {
     "id": "q384",
@@ -6314,8 +6144,7 @@ export const questions: Question[] = [
     "category": "Traduzione",
     "level": "B1",
     "grammarTopic": "Passive Voice",
-    "theoryId": "passive-voice",
-    "extraOption": "is been built"
+    "theoryId": "passive-voice"
   },
   {
     "id": "q385",
@@ -6427,8 +6256,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Relative Clauses",
-    "theoryId": "relative-clauses",
-    "extraOption": "whom"
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q392",
@@ -6444,8 +6272,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Relative Clauses",
-    "theoryId": "relative-clauses",
-    "extraOption": "what"
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q393",
@@ -6461,8 +6288,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Relative Clauses",
-    "theoryId": "relative-clauses",
-    "extraOption": "who's"
+    "theoryId": "relative-clauses"
   },
   {
     "id": "q394",
@@ -6478,8 +6304,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Question Tags",
-    "theoryId": "question-tags",
-    "extraOption": "won't you"
+    "theoryId": "question-tags"
   },
   {
     "id": "q395",
@@ -6495,8 +6320,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Question Tags",
-    "theoryId": "question-tags",
-    "extraOption": "has she"
+    "theoryId": "question-tags"
   },
   {
     "id": "q396",
@@ -6544,8 +6368,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
-    "theoryId": "gerunds-infinitives",
-    "extraOption": "for reading"
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q399",
@@ -6561,8 +6384,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
-    "theoryId": "gerunds-infinitives",
-    "extraOption": "for buying"
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q400",
@@ -6578,8 +6400,7 @@ export const questions: Question[] = [
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
-    "theoryId": "gerunds-infinitives",
-    "extraOption": "for opening"
+    "theoryId": "gerunds-infinitives"
   },
   {
     "id": "q401",

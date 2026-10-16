@@ -1,0 +1,371 @@
+{
+ "q266": {
+  "prompt": "Complete the sentence: 'Look at _____ man over there: he is my father.'",
+  "options": [
+   "those",
+   "that",
+   "these",
+   "them"
+  ]
+ },
+ "q267": {
+  "prompt": "Complete the sentence: 'What are _____ things in the box over there?'",
+  "options": [
+   "that",
+   "this",
+   "it",
+   "those"
+  ]
+ },
+ "q268": {
+  "prompt": "Complete the sentence: 'I prefer _____ dress that I am holding now.'",
+  "options": [
+   "this",
+   "these",
+   "those",
+   "them"
+  ]
+ },
+ "q269": {
+  "prompt": "Complete the sentence: 'Do you know _____ people over there?'",
+  "options": [
+   "that",
+   "this",
+   "those",
+   "them"
+  ]
+ },
+ "q270": {
+  "prompt": "Complete the sentence: 'Look at the papers in my hands: _____ are my notes.'",
+  "options": [
+   "this",
+   "these",
+   "that",
+   "it"
+  ]
+ },
+ "q280": {
+  "prompt": "Complete the sentence: 'The dog is lying on the floor, _____ the table.'",
+  "options": [
+   "on",
+   "in",
+   "above",
+   "under"
+  ]
+ },
+ "q281": {
+  "prompt": "Complete the sentence: 'I am _____ the cinema now; the film starts in ten minutes.'",
+  "options": [
+   "at",
+   "into",
+   "on",
+   "to"
+  ]
+ },
+ "q282": {
+  "prompt": "Complete the sentence: 'There is a big spider _____ the ceiling of my room.'",
+  "options": [
+   "to",
+   "into",
+   "on",
+   "of"
+  ]
+ },
+ "q283": {
+  "prompt": "Complete the sentence: 'The office is _____ the bank, so it takes one minute to walk there.'",
+  "options": [
+   "between",
+   "near",
+   "into",
+   "among"
+  ]
+ },
+ "q284": {
+  "prompt": "Complete the sentence: 'The child is standing _____ his mother and his father.'",
+  "options": [
+   "between",
+   "on",
+   "at",
+   "into"
+  ]
+ },
+ "q285": {
+  "prompt": "Complete the sentence: 'Hide _____ the door, so nobody can see you.'",
+  "options": [
+   "under",
+   "in",
+   "at",
+   "behind"
+  ]
+ },
+ "q286": {
+  "prompt": "Complete the sentence: 'Please put your clothes _____ the wardrobe and close the doors.'",
+  "options": [
+   "on",
+   "at",
+   "in",
+   "to"
+  ]
+ },
+ "q287": {
+  "prompt": "Complete the sentence: 'I met Marco _____ the station at six o'clock.'",
+  "options": [
+   "into",
+   "at",
+   "on",
+   "to"
+  ]
+ },
+ "q288": {
+  "prompt": "Complete the sentence: 'There is a garden _____ the house, so you can't see it from the street.'",
+  "options": [
+   "behind",
+   "under",
+   "in",
+   "over"
+  ]
+ },
+ "q298": {
+  "prompt": "Complete the sentence: '_____ touch my phone!'",
+  "options": [
+   "Not",
+   "No",
+   "Don't",
+   "Doesn't"
+  ]
+ },
+ "q299": {
+  "prompt": "Complete the sentence: 'Please _____ attention to the road!'",
+  "options": [
+   "pay",
+   "do",
+   "make",
+   "take"
+  ]
+ },
+ "q300": {
+  "prompt": "Complete the sentence: 'Listen _____ when I speak.'",
+  "options": [
+   "me",
+   "at me",
+   "for me",
+   "to me"
+  ]
+ },
+ "q301": {
+  "prompt": "Complete the sentence: 'Don't _____ your keys at home, please.'",
+  "options": [
+   "forgetting",
+   "forget",
+   "to forget",
+   "forgot"
+  ]
+ },
+ "q302": {
+  "prompt": "Complete the sentence: 'Please _____ the door; it is cold in here.'",
+  "options": [
+   "closing",
+   "closes",
+   "close",
+   "closed"
+  ]
+ },
+ "q303": {
+  "prompt": "Complete the sentence: 'Silence, please: _____ during the exam.'",
+  "options": [
+   "don't speak",
+   "not speak",
+   "doesn't speak",
+   "don't speaking"
+  ]
+ },
+ "q304": {
+  "prompt": "Complete the sentence: '_____ here until I come back, please.'",
+  "options": [
+   "Waiting",
+   "Waits",
+   "Waited",
+   "Wait"
+  ]
+ },
+ "q305": {
+  "prompt": "Complete the sentence: 'Students, _____ your names on the paper, please.'",
+  "options": [
+   "writing",
+   "write",
+   "wrote",
+   "to write"
+  ]
+ },
+ "q306": {
+  "prompt": "Complete the sentence: 'This is a hospital, so _____ in this room, please.'",
+  "options": [
+   "smoke not",
+   "not smoke",
+   "don't smoke",
+   "doesn't smoke"
+  ]
+ },
+ "q316": {
+  "prompt": "Complete the sentence: 'What _____ you going to do on Saturday?'",
+  "options": [
+   "do",
+   "will",
+   "is",
+   "are"
+  ]
+ },
+ "q317": {
+  "prompt": "Complete the sentence: 'I _____ to wait all day for the bus.'",
+  "options": [
+   "don't go",
+   "am not going",
+   "won't",
+   "not going"
+  ]
+ },
+ "q318": {
+  "prompt": "Complete the sentence: 'He _____ study medicine at university; he has already decided.'",
+  "options": [
+   "is going to",
+   "going to",
+   "is go to",
+   "does going to"
+  ]
+ },
+ "q319": {
+  "prompt": "Complete the sentence: 'We _____ buy a new house next year; we have already chosen it.'",
+  "options": [
+   "is going to",
+   "are going",
+   "are going to",
+   "do going to"
+  ]
+ },
+ "q320": {
+  "prompt": "Complete the sentence: 'Look at those black clouds: it _____ rain soon.'",
+  "options": [
+   "going to",
+   "is raining",
+   "rains",
+   "is going to"
+  ]
+ },
+ "q321": {
+  "prompt": "Complete the sentence: 'They _____ attend the meeting because they are on holiday.'",
+  "options": [
+   "aren't going to",
+   "not going to",
+   "don't going to",
+   "aren't go to"
+  ]
+ },
+ "q322": {
+  "prompt": "Complete the sentence: 'What are you _____ eat for dinner tonight?'",
+  "options": [
+   "go to",
+   "going to",
+   "going",
+   "will to"
+  ]
+ },
+ "q323": {
+  "prompt": "Complete the sentence: '_____ she going to sell her car soon?'",
+  "options": [
+   "Does",
+   "Do",
+   "Is",
+   "Are"
+  ]
+ },
+ "q324": {
+  "prompt": "Complete the sentence: 'He is running on the ice and he _____ fall!'",
+  "options": [
+   "is going to",
+   "is going",
+   "goes to",
+   "going to"
+  ]
+ },
+ "q334": {
+  "prompt": "Complete the sentence: 'What _____ you doing when I called you?'",
+  "options": [
+   "was",
+   "did",
+   "are",
+   "were"
+  ]
+ },
+ "q335": {
+  "prompt": "Complete the sentence: 'I _____ when the alarm rang.'",
+  "options": [
+   "am sleeping",
+   "was sleeping",
+   "was sleep",
+   "were sleeping"
+  ]
+ },
+ "q336": {
+  "prompt": "Complete the sentence: 'While we _____ in the park, we found some money.'",
+  "options": [
+   "was walking",
+   "walking",
+   "were walking",
+   "are walking"
+  ]
+ },
+ "q337": {
+  "prompt": "Complete the sentence: 'She wasn't watching TV; she _____ a book.'",
+  "options": [
+   "reading",
+   "were reading",
+   "is reading",
+   "was reading"
+  ]
+ },
+ "q338": {
+  "prompt": "Complete the sentence: 'While I was cooking, he _____ to music.'",
+  "options": [
+   "were listening",
+   "was listening",
+   "is listening",
+   "did listening"
+  ]
+ },
+ "q339": {
+  "prompt": "Complete the sentence: '_____ it raining hard yesterday morning?'",
+  "options": [
+   "Were",
+   "Did",
+   "Was",
+   "Is"
+  ]
+ },
+ "q340": {
+  "prompt": "Complete the sentence: 'We _____ going too fast when the police stopped us.'",
+  "options": [
+   "wasn't",
+   "didn't",
+   "aren't",
+   "weren't"
+  ]
+ },
+ "q341": {
+  "prompt": "Complete the sentence: 'What were you _____ at that moment?'",
+  "options": [
+   "thinking",
+   "think",
+   "thought",
+   "to think"
+  ]
+ },
+ "q342": {
+  "prompt": "Complete the sentence: 'They _____ when I entered the room.'",
+  "options": [
+   "was laughing",
+   "were laugh",
+   "laughing",
+   "were laughing"
+  ]
+ }
+}
