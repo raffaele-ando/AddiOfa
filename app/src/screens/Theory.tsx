@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Check, ChevronLeft, ChevronRight, Clock, Lightbulb, Lock, X } from 'lucide-react';
+import type { ReactNode, RefObject } from 'react';
 import { theoryTopics, type TheoryTopic } from '../data/theory';
 import { FREE_LIMITS } from '../config/offer';
 import { useAccess } from '../access/context';
 import { playTapSound } from '../lib/audio';
 import { cn } from '../lib/utils';
-import { Screen, TopBar, RichText } from '../components/ui';
+import { RichText } from '../components/ui';
+import { FONT } from '../brand/tokens';
+import { ChipLivello } from './extra/studio/comune';
 
 interface TheoryProps {
   onBack(): void;
@@ -29,6 +32,32 @@ const pronti = ordinati.filter(t => t.pronta);
 const gratisIds = new Set(pronti.slice(0, FREE_LIMITS.freeTheoryTopics).map(t => t.id));
 
 const BADGE = 'inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-bold tracking-wide';
+
+/** Pagina di teoria: stessa cornice delle schermate extra (freccia a sinistra del titolo, colonna di 440 px), ma con il riferimento al titolo per il focus. */
+function Cornice({ titolo, sotto, titoloRef, onBack, children, intestazione }: {
+  titolo?: string; sotto?: ReactNode; titoloRef: RefObject<HTMLHeadingElement | null>; onBack: () => void; children: ReactNode; intestazione?: ReactNode;
+}) {
+  return (
+    <div className="h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
+      <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
+        <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8">
+          <header className="flex items-start gap-1">
+            <button type="button" onClick={() => { playTapSound(); onBack(); }} aria-label="Indietro"
+              className="brand-premibile -ml-3 grid h-10 w-10 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo">
+              <ChevronLeft size={28} strokeWidth={2.2} aria-hidden="true" />
+            </button>
+            <div className="min-w-0 flex-1">
+              {intestazione}
+              <h1 ref={titoloRef} tabIndex={-1} className="text-[26px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo outline-none break-words pt-[3px]">{titolo}</h1>
+              {sotto && <p className="mt-0.5 text-[14px] leading-[20px] text-testo-tenue">{sotto}</p>}
+            </div>
+          </header>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Theory({ onBack, onOpenPaywall, initialTopicId }: TheoryProps) {
   const { pass } = useAccess();
@@ -78,78 +107,60 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
 
   const nPronti = pronti.length;
   return (
-    <Screen>
-      <TopBar onBack={onBack} />
-      <header className="shrink-0">
-        <h1 ref={titoloRef} tabIndex={-1} className="text-2xl sm:text-3xl font-bold text-testo outline-none">Teoria</h1>
-        <p className="mt-1 max-w-[65ch] text-sm font-medium text-testo-tenue leading-relaxed">
-          {theoryTopics.length} argomenti in tre livelli. Ogni scheda ha la regola, qualche esempio e gli errori tipici di chi parla italiano.
-        </p>
-        <p className="mt-2 max-w-[65ch] text-sm font-medium text-testo-tenue leading-relaxed">
-          {pass
-            ? 'Hai il Pass: tutte le schede pronte sono aperte.'
-            : `Una scheda è gratis, le altre sono nel Pass.`}
-        </p>
-      </header>
-
+    <Cornice titolo="Teoria" titoloRef={titoloRef} onBack={onBack}
+      sotto={`${theoryTopics.length} argomenti in tre livelli, con la regola, gli esempi e gli errori tipici di chi parla italiano.${pass ? '' : ' Una scheda è gratis, le altre sono nel Pass.'}`}>
       {nPronti === 0 && (
-        <p role="status" className="shrink-0 max-w-[65ch] rounded-2xl border border-linea bg-superficie-2 px-4 py-3 text-sm font-medium text-testo leading-relaxed">
+        <p role="status" className="mt-4 rounded-[12px] bg-superficie-2 px-4 py-3 text-[14px] text-testo leading-relaxed">
           Le schede sono ancora in preparazione e per ora nessuna è pronta. Quando lo saranno le trovi qui, nello stesso ordine.
         </p>
       )}
 
-      <div className="flex flex-col gap-6 pb-4">
-        {LIVELLI.map(l => {
-          const lista = ordinati.filter(t => t.livello === l.id);
-          if (lista.length === 0) return null;
-          const idTitolo = `liv-${l.id}`;
-          return (
-            <section key={l.id} aria-labelledby={idTitolo}>
-              <h2 id={idTitolo} className="flex items-baseline gap-2 text-lg font-bold text-testo">
-                {l.nome}
-                <span className="text-xs font-semibold text-testo-tenue">{l.sotto}</span>
-              </h2>
-              <ul className="mt-2 flex flex-col gap-2">
-                {lista.map(t => <Riga key={t.id} t={t} pass={pass} gratis={gratisIds.has(t.id)} onOpen={apri} />)}
-              </ul>
-            </section>
-          );
-        })}
-      </div>
-    </Screen>
+      {LIVELLI.map(l => {
+        const lista = ordinati.filter(t => t.livello === l.id);
+        if (lista.length === 0) return null;
+        const idTitolo = `liv-${l.id}`;
+        return (
+          <section key={l.id} aria-labelledby={idTitolo} className="mt-6 flex flex-col gap-2.5">
+            <h2 id={idTitolo} className="inline-flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo">
+              <ChipLivello livello={l.id} /><span className="sr-only">{l.nome}: </span>{l.sotto}
+            </h2>
+            <ul className="flex flex-col gap-2">
+              {lista.map(t => <Riga key={t.id} t={t} pass={pass} gratis={gratisIds.has(t.id)} onOpen={apri} />)}
+            </ul>
+          </section>
+        );
+      })}
+    </Cornice>
   );
 }
 
 function Riga({ t, pass, gratis, onOpen }: { t: TheoryTopic; pass: boolean; gratis: boolean; onOpen: (t: TheoryTopic) => void }) {
-  const base = 'w-full text-left rounded-2xl border px-4 py-3 min-h-[56px] flex items-center gap-3';
+  const base = 'w-full text-left rounded-[12px] px-3.5 py-3 min-h-[52px] flex items-center gap-3';
   const stato = !t.pronta ? 'arrivo' : pass || gratis ? 'aperto' : 'pass';
 
+  // L'etichetta compare solo dove dice qualcosa: «Gratis» sull'unica scheda aperta senza Pass, «In arrivo» sulle schede non pronte. Con il Pass tutte sono aperte: niente etichette uguali su ogni riga.
   const etichetta =
     stato === 'arrivo' ? (
       <span className={cn(BADGE, 'gap-1 bg-superficie-2 text-testo-tenue')}><Clock size={12} aria-hidden /> In arrivo</span>
-    ) : stato === 'pass' ? (
-      <span className={cn(BADGE, 'gap-1 bg-azione-tinta text-azione-scuro')}><Lock size={12} aria-hidden /> Nel Pass</span>
-    ) : (
-      <span className={cn(BADGE, 'bg-alto-tinta text-alto-testo')}>{gratis && !pass ? 'Gratis' : 'Aperta'}</span>
-    );
+    ) : stato === 'aperto' && gratis && !pass ? (
+      <span className={cn(BADGE, 'bg-alto-tinta text-alto-testo')}>Gratis</span>
+    ) : null;
 
   const contenuto = (
     <>
       <span className="min-w-0 flex-1">
         <span className={cn('block font-bold leading-snug break-words', stato === 'arrivo' ? 'text-testo-tenue' : 'text-testo')}>{t.titolo}</span>
-        <span className="mt-1 flex flex-wrap items-center gap-2">
-          <span className="text-xs font-bold text-testo-tenue">{t.livello}</span>
-          {etichetta}
-        </span>
+        {etichetta && <span className="mt-1 flex flex-wrap items-center gap-2">{etichetta}</span>}
       </span>
-      {stato !== 'arrivo' && <ChevronRight size={20} className="shrink-0 text-testo-tenue" aria-hidden />}
+      {stato === 'pass' && <Lock size={17} className="shrink-0 text-testo-tenue" aria-label="Nel Pass" />}
+      {stato === 'aperto' && <ChevronRight size={20} className="shrink-0 text-testo-tenue" aria-hidden />}
     </>
   );
 
   if (stato === 'arrivo') {
     return (
       <li>
-        <div className={cn(base, 'border-dashed border-linea bg-transparent')}>{contenuto}</div>
+        <div className={cn(base, 'border border-dashed border-linea bg-transparent')}>{contenuto}</div>
       </li>
     );
   }
@@ -160,7 +171,7 @@ function Riga({ t, pass, gratis, onOpen }: { t: TheoryTopic; pass: boolean; grat
         onClick={() => { playTapSound(); onOpen(t); }}
         className={cn(
           base,
-          'border-linea bg-superficie-2 hover:bg-linea transition-colors duration-100 ',
+          'bg-superficie-2 hover:bg-linea transition-colors duration-100',
           'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione',
         )}
       >
@@ -179,23 +190,13 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
   onList: () => void;
   onGo: (t: TheoryTopic) => void;
 }) {
-  const h2 = 'text-lg font-bold text-testo';
-  const corpo = 'max-w-[65ch] text-base font-medium text-testo leading-relaxed';
+  const h2 = 'text-[15.5px] leading-[20px] font-bold text-testo';
+  const corpo = 'text-[15px] font-medium text-testo leading-[24px]';
   return (
-    <Screen>
-      <TopBar onBack={onList} />
-      <article className="flex flex-col gap-6 pb-2">
-        <header>
-          <p className="flex items-center gap-2 text-xs font-bold text-testo-tenue">
-            <span className={cn(BADGE, 'bg-azione-tinta text-azione-scuro')}>{topic.livello}</span>
-            Teoria
-          </p>
-          <h1 ref={titoloRef} tabIndex={-1} className="mt-2 text-2xl sm:text-3xl font-bold leading-tight text-testo outline-none break-words">
-            {topic.titolo}
-          </h1>
-        </header>
-
-        <section aria-labelledby="t-regola" className="flex flex-col gap-3">
+    <Cornice titoloRef={titoloRef} titolo={topic.titolo} onBack={onList}
+      intestazione={<p className="flex items-center gap-2 text-[12.5px] font-semibold text-testo-tenue pt-1"><ChipLivello livello={topic.livello} />Teoria</p>}>
+      <article className="mt-5 flex flex-col gap-6">
+        <section aria-labelledby="t-regola" className="flex flex-col gap-2.5">
           <h2 id="t-regola" className={h2}>La regola</h2>
           {topic.regola.map((r, i) => <p key={i} className={corpo}><RichText text={r} /></p>)}
         </section>
@@ -203,11 +204,11 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
         {topic.esempi.length > 0 && (
           <section aria-labelledby="t-esempi">
             <h2 id="t-esempi" className={h2}>Esempi</h2>
-            <ul className="mt-3 flex flex-col gap-3">
+            <ul className="mt-2.5 flex flex-col gap-3">
               {topic.esempi.map((e, i) => (
-                <li key={i} className="max-w-[65ch] border-l-2 border-azione pl-3">
+                <li key={i} className="border-l-[3px] border-azione pl-3">
                   <p lang="en" className="font-bold text-testo leading-snug"><RichText text={e.en} /></p>
-                  <p className="mt-0.5 text-sm font-medium text-testo-tenue leading-snug"><RichText text={e.it} /></p>
+                  <p className="mt-0.5 text-[14px] font-medium text-testo-tenue leading-snug"><RichText text={e.it} /></p>
                 </li>
               ))}
             </ul>
@@ -217,9 +218,9 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
         {topic.errori.length > 0 && (
           <section aria-labelledby="t-errori">
             <h2 id="t-errori" className={h2}>Errori tipici</h2>
-            <ul className="mt-3 flex flex-col gap-3">
+            <ul className="mt-2.5 flex flex-col gap-2.5">
               {topic.errori.map((e, i) => (
-                <li key={i} className="max-w-[65ch] rounded-2xl border border-linea bg-superficie-2 p-4 flex flex-col gap-3">
+                <li key={i} className="rounded-[12px] bg-superficie-2 p-4 flex flex-col gap-2.5">
                   <h3 className="sr-only">Errore {i + 1}</h3>
                   <p className="flex gap-2.5 items-start">
                     <span className="mt-0.5 inline-flex items-center gap-1 shrink-0 rounded-full bg-basso-tinta text-basso-testo px-2 py-0.5 text-[11px] font-bold">
@@ -233,7 +234,7 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
                     </span>
                     <span lang="en" className="font-bold text-testo leading-snug break-words min-w-0">{e.giusto}</span>
                   </p>
-                  <p className="text-sm font-medium text-testo-tenue leading-relaxed">
+                  <p className="text-[14px] font-medium text-testo-tenue leading-relaxed">
                     <span className="font-bold text-testo">Perché: </span><RichText text={e.perche} />
                   </p>
                 </li>
@@ -242,28 +243,29 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
           </section>
         )}
 
+        {/* L'avviso del test: l'unico blocco tinto della scheda, ambra (attenzione) */}
         {topic.consiglio && (
-          <section aria-labelledby="t-consiglio" className="max-w-[65ch] rounded-2xl bg-azione-tinta border border-azione/30 p-4">
-            <h2 id="t-consiglio" className="flex items-center gap-2 text-base font-bold text-azione-scuro">
+          <section aria-labelledby="t-consiglio" className="rounded-[12px] bg-medio-tinta p-4">
+            <h2 id="t-consiglio" className="flex items-center gap-2 text-[15px] font-bold text-medio-testo">
               <Lightbulb size={18} aria-hidden /> Per il test
             </h2>
-            <p className="mt-1.5 font-medium text-testo leading-relaxed"><RichText text={topic.consiglio} /></p>
+            <p className="mt-1.5 text-[14.5px] font-medium text-testo leading-relaxed"><RichText text={topic.consiglio} /></p>
           </section>
         )}
 
-        <nav aria-label="Altri argomenti" className="flex flex-col gap-2 pt-2">
+        <nav aria-label="Altri argomenti" className="flex flex-col gap-2 pt-1">
           {succ && <Vicino t={succ} verso="succ" bloccato={!aperto(succ)} onGo={onGo} />}
           {prec && <Vicino t={prec} verso="prec" bloccato={!aperto(prec)} onGo={onGo} />}
           <button
             type="button"
             onClick={() => { playTapSound(); onList(); }}
-            className="w-full py-3 px-6 font-bold text-sm text-testo-tenue hover:text-testo underline-offset-4 hover:underline"
+            className="w-full min-h-[44px] px-6 font-semibold text-[14px] text-azione underline underline-offset-4"
           >
             Tutti gli argomenti
           </button>
         </nav>
       </article>
-    </Screen>
+    </Cornice>
   );
 }
 
@@ -273,23 +275,15 @@ function Vicino({ t, verso, bloccato, onGo }: { t: TheoryTopic; verso: 'prec' | 
     <button
       type="button"
       onClick={() => { playTapSound(); onGo(t); }}
-      className={cn(
-        'w-full flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-colors duration-100 ',
-        succ
-          ? 'border-azione/40 bg-azione-tinta/50 hover:bg-azione-tinta'
-          : 'border-linea bg-superficie-2 hover:bg-linea',
-        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione',
-      )}
+      className="w-full flex items-center gap-3 rounded-[12px] bg-superficie-2 px-3.5 py-3 text-left transition-colors duration-100 hover:bg-linea focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione"
     >
       {!succ && <ChevronLeft size={20} className="shrink-0 text-testo-tenue" aria-hidden />}
       <span className="min-w-0 flex-1">
-        <span className="block text-xs font-bold text-testo-tenue">{succ ? 'Argomento successivo' : 'Argomento precedente'}</span>
+        <span className={cn('block text-xs font-bold', succ ? 'text-azione-scuro' : 'text-testo-tenue')}>{succ ? 'Argomento successivo' : 'Argomento precedente'}</span>
         <span className="block font-bold leading-snug text-testo break-words">{t.titolo}</span>
-        {bloccato && (
-          <span className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-azione-scuro"><Lock size={12} aria-hidden /> Nel Pass</span>
-        )}
       </span>
-      {succ && <ChevronRight size={20} className="shrink-0 text-testo-tenue" aria-hidden />}
+      {bloccato && <Lock size={17} className="shrink-0 text-testo-tenue" aria-label="Nel Pass" />}
+      {succ && !bloccato && <ChevronRight size={20} className="shrink-0 text-azione-scuro" aria-hidden />}
     </button>
   );
 }
