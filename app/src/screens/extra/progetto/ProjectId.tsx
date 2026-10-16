@@ -37,7 +37,10 @@ export default function ProjectId() {
   const [adesso] = useState(() => Date.now());
 
   const iscrizioneRemota = acc.me?.signup ?? null; // iscrizione collegata a questo Project ID: dal modulo pubblico non si modifica più
-  const statoInvio = descriviInvio(invio, adesso);
+  // Se ATLAS ha già l'iscrizione collegata a questo account lo si sa dal servizio, non dalla coda locale
+  const statoInvio = iscrizioneRemota
+    ? { chiave: 'inviata' as const, titolo: 'Inviata', dettaglio: `Registrata su ${ECOSYSTEM.engineName} e collegata al tuo ${ECOSYSTEM.accountName}.` }
+    : descriviInvio(invio, adesso);
 
   // L'account sul servizio è la fonte: se ha il collegamento di AddiOFA, lo si rispecchia qui; se non l'ha più (account eliminato altrove), si toglie qui.
   const sincronizzato = useRef('');
@@ -68,7 +71,7 @@ export default function ProjectId() {
   const torna = (messaggio?: string) => { setVista('principale'); setEsito(messaggio ?? null); };
 
   if (vista === 'consenso' && acc.utente) {
-    return <Consenso profilo={profilo} acc={acc} onAnnulla={() => torna()} onFatto={(scopes, r) => { salvaCollegamento(scopes, r); torna('Collegato.'); }} />;
+    return <Consenso profilo={profilo} acc={acc} onAnnulla={() => torna()} onFatto={(scopes, r) => { salvaCollegamento(scopes, r); void acc.ricarica(); torna('Collegato.'); }} />;
   }
   if (vista === 'modifica' && profilo) {
     return <Modifica profilo={profilo} remota={iscrizioneRemota} acc={acc} onAnnulla={() => torna()} onSalva={p => { aggiorna(s => impostaProfilo(s, p)); torna('Salvato.'); }} apriLegale={apriLegale} />;
@@ -213,10 +216,10 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
           {SCOPES.map(s => (
             <li key={s.id} className="flex items-start gap-3 p-3.5">
               <span className="min-w-0 flex-1">
-                <span data-testo-ok className="flex items-center gap-2 text-[15px] leading-[20px] font-bold text-testo">{s.title}{s.required && <span className="inline-flex items-center gap-1 text-[11px] font-bold text-testo-tenue"><Icona nome="blocco" size={11} />Necessario</span>}</span>
+                <span data-testo-ok className="flex items-center gap-2 text-[15px] leading-[20px] font-bold text-testo">{s.title}</span>
                 <span data-testo-ok className="mt-0.5 block text-[13px] leading-[18px] text-testo-tenue">{s.description}</span>
               </span>
-              <Interruttore acceso={s.required || collegamento.scopes.includes(s.id)} disabled={s.required || acc.occupato} etichetta={s.title} onChange={v => onPermesso(s.id, v)} />
+              {s.required ? <Obbligatorio /> : <Interruttore acceso={collegamento.scopes.includes(s.id)} disabled={acc.occupato} etichetta={s.title} onChange={v => onPermesso(s.id, v)} />}
             </li>
           ))}
         </ul>
@@ -229,6 +232,9 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
     </>
   );
 }
+
+/** Il permesso senza il quale l'account non esiste: non è una scelta, quindi nessun interruttore. */
+const Obbligatorio = () => <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-superficie px-2.5 py-1 text-[11.5px] font-bold text-testo-tenue"><Icona nome="blocco" size={12} />Necessario</span>;
 
 const ErroreRiga = ({ testo }: { testo: string }) => <p role="alert" data-testo-ok className="rounded-[12px] bg-basso-tinta p-3 text-center text-[13px] font-bold text-basso-testo">{testo}</p>;
 
@@ -255,11 +261,13 @@ function Consenso({ profilo, acc, onAnnulla, onFatto }: {
           {SCOPES.map(s => (
             <li key={s.id} className="flex items-start gap-3 p-3.5">
               <span className="min-w-0 flex-1">
-                <span data-testo-ok className="flex items-center gap-2 text-[15px] leading-[20px] font-bold text-testo">{s.title}{s.required && <span className="inline-flex items-center gap-1 text-[11px] font-bold text-testo-tenue"><Icona nome="blocco" size={11} />Necessario</span>}</span>
+                <span data-testo-ok className="flex items-center gap-2 text-[15px] leading-[20px] font-bold text-testo">{s.title}</span>
                 <span data-testo-ok className="mt-0.5 block text-[13px] leading-[18px] text-testo-tenue">{s.description}</span>
               </span>
-              <Interruttore acceso={s.required || scelti.has(s.id)} disabled={s.required || acc.occupato} etichetta={s.title}
-                onChange={v => setScelti(prec => { const n = new Set(prec); if (v) n.add(s.id); else n.delete(s.id); return n; })} />
+              {s.required ? <Obbligatorio /> : (
+                <Interruttore acceso={scelti.has(s.id)} disabled={acc.occupato} etichetta={s.title}
+                  onChange={v => setScelti(prec => { const n = new Set(prec); if (v) n.add(s.id); else n.delete(s.id); return n; })} />
+              )}
             </li>
           ))}
           {profilo && (

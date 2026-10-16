@@ -65,8 +65,8 @@ function sorgente(nome: string, scuro: boolean): string | undefined {
 }
 
 /** Fuori dalla demo gli SVG sono file separati: si scaricano una volta e si tengono in memoria. */
-function useCaricaSvg(nome: string, scuro: boolean): void {
-  const [, ricarica] = useState(0);
+function useCaricaSvg(nome: string, scuro: boolean): number {
+  const [versione, ricarica] = useState(0);
   useEffect(() => {
     if (sorgente(nome, scuro) !== undefined) return;
     const k = chiave(nome, scuro); const uri = URL_SVG[k]; if (!uri) return;
@@ -74,6 +74,7 @@ function useCaricaSvg(nome: string, scuro: boolean): void {
     fetch(uri).then(r => r.text()).then(t => { TESTI.set(k, t); if (attivo) ricarica(n => n + 1); }).catch(() => undefined);
     return () => { attivo = false; };
   }, [nome, scuro]);
+  return versione;
 }
 
 /** Prefissa ogni id e ogni riferimento (url(#x), href="#x") per evitare scontri tra illustrazioni nella stessa pagina. */
@@ -104,7 +105,7 @@ export function IllustrazioneAnimata({ nome, lato, alt = '', riavvia = 0, avvia 
   quandoVisibile?: boolean; className?: string;
 }) {
   const scuro = usaTemaScuro();
-  useCaricaSvg(nome, scuro);
+  const versione = useCaricaSvg(nome, scuro);
   const ref = useRef<HTMLSpanElement>(null);
   const html = useMemo(() => {
     const svg = sorgente(nome, scuro);
@@ -112,7 +113,7 @@ export function IllustrazioneAnimata({ nome, lato, alt = '', riavvia = 0, avvia 
     const dim = lato ? ` width="${lato}"` : '';
     return prefissaId(svg, `${nome}--`).replace(/<svg\b([^>]*?)>/, (_, a) =>
       `<svg${a.replace(/\s(width|height)="[^"]*"/g, '')}${dim} aria-hidden="true" focusable="false">`);
-  }, [nome, scuro, lato, alt]);
+  }, [nome, scuro, lato, alt, versione]);
 
   // Stesso oggetto a ogni render: React 19 riscrive l'innerHTML se l'oggetto cambia, e l'animazione ripartirebbe a ogni render del genitore.
   const innerHtml = useMemo(() => ({ __html: html }), [html]);
