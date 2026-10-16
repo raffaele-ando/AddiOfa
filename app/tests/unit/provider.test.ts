@@ -1,9 +1,9 @@
-// Caso 6: grade(id, -1) = "nessuna risposta", uguale nel LocalProvider e nel Worker (pass/src/questions.ts).
+// Il provider unico: correzione (grade) e simulazione (startExam/submitExam) nel browser, senza server.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import { LocalProvider } from '../../src/access/localProvider';
 import { questions } from '../../src/data/questions';
+import { EXAM } from '../../src/config/offer';
 
 const q = questions[0];
 
@@ -22,17 +22,35 @@ test('grade con l\'indice esatto = correct true, con un altro indice valido = fa
   assert.equal((await p.grade(q.id, altro)).correct, false);
 });
 
-test('grade con indici impossibili o id inesistente: errore (come il 400 e il 404 del server)', async () => {
+test('grade con indici impossibili o id inesistente: errore', async () => {
   const p = new LocalProvider();
   for (const i of [-2, q.options.length, 99, 1.5, NaN]) await assert.rejects(p.grade(q.id, i), /Opzione inesistente/, String(i));
   await assert.rejects(p.grade('non-esiste', 0), /Domanda non trovata/);
 });
 
-test('il Worker accetta idx -1 e rifiuta idx < -1 (stessa regola, letta dal sorgente)', () => {
-  const src = readFileSync(new URL('../../../pass/src/questions.ts', import.meta.url), 'utf8');
-  assert.match(src, /IDX_NESSUNA_RISPOSTA = -1/);
-  assert.match(src, /body\.idx < IDX_NESSUNA_RISPOSTA/);
-  assert.match(src, /correct: body\.idx !== IDX_NESSUNA_RISPOSTA && body\.idx === row\.correct_index/);
-  // il controllo del Pass viene prima: con idx -1 una domanda a pagamento non regala la soluzione
-  assert.ok(src.indexOf("row.core !== 1") < src.indexOf('result: { correct'));
+test('getQuestions serve tutto il banco, senza risposta né spiegazione', async () => {
+  const p = new LocalProvider();
+  const tutte = await p.getQuestions(questions.map(x => x.id));
+  assert.equal(tutte.length, questions.length);
+  assert.ok(tutte.every(x => !('correctIndex' in x) && !('explanation' in x)));
+  assert.deepEqual(await p.getQuestions(['non-esiste']), []);
+});
+
+test('startExam: 30 domande diverse con 4 opzioni, senza la risposta esatta; submitExam corregge', async () => {
+  const p = new LocalProvider();
+  const s = await p.startExam();
+  assert.equal(s.questions.length, EXAM.questions);
+  assert.equal(new Set(s.questions.map(x => x.id)).size, EXAM.questions);
+  assert.ok(s.questions.every(x => x.options.length === 4 && !('correctIndex' in x)));
+  // rispondo giusto alle prime 25 usando grade (come fa lo studente nella correzione), le altre sbagliate o lasciate vuote
+  const risposte: Record<string, number | null> = {};
+  for (const [i, d] of s.questions.entries()) {
+    const esatta = (await p.grade(d.id, 0)).correctIndex;
+    risposte[d.id] = i < 25 ? esatta : i < 28 ? (esatta + 1) % 4 : null;
+  }
+  const r = await p.submitExam(s.id, risposte, 600);
+  assert.deepEqual([r.rawCorrect, r.wrong, r.omitted, r.score, r.passed], [25, 3, 2, 25, true]);
+  assert.equal(r.perQuestion.length, EXAM.questions);
+  assert.equal(r.perQuestion.filter(x => x.correct === null).length, 2);
+  await assert.rejects(p.submitExam(s.id, risposte, 600), /non trovata/, 'una simulazione si consegna una volta sola');
 });

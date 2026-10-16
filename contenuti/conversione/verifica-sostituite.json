@@ -1,0 +1,131 @@
+{
+ "q68": {
+  "esito": "ok",
+  "motivo": "OK. Unica nota: le opzioni sono quasi quelle di q340 (wasn't/didn't/aren't/weren't) ma la frase e il tempo (Past Simple di be, non continuous) sono diversi."
+ },
+ "q89": {
+  "esito": "ok",
+  "motivo": "Scelta coincide con correctIndex, spiegazione corretta e senza refusi, nessun duplicato nei patch."
+ },
+ "q91": {
+  "esito": "ok",
+  "motivo": "Scelta coincide con correctIndex, spiegazione corretta e senza refusi, nessun duplicato nei patch."
+ },
+ "q101": {
+  "esito": "problema",
+  "motivo": "Quasi identica a q204 ('_____ bag is this?' con Who/Whom/Who's/Whose, stessa risposta Whose). Sostituita con who's soggetto.",
+  "correzione": {
+   "prompt": "Complete the sentence: '_____ going to help me with the dishes tonight?'",
+   "options": [
+    "Who's",
+    "Whose",
+    "Whom",
+    "Who has"
+   ],
+   "correctIndex": 0,
+   "explanation": "'Who's' è la contrazione di 'who is': 'Who's going to help me...?'. 'Whose' indica possesso e vuole un nome dopo, 'whom' è la forma complemento e non fa da soggetto, 'who has' non si combina con 'going to'."
+  }
+ },
+ "q128": {
+  "esito": "problema",
+  "motivo": "Quasi identica a q587 ('I will tell you as soon as I _____ the answer', stessa struttura will + as soon as). Sostituita con 'before' e altra frase.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'Please turn off the lights before you _____ the room.'",
+   "options": [
+    "leave",
+    "will leave",
+    "would leave",
+    "leaving"
+   ],
+   "correctIndex": 0,
+   "explanation": "Dopo 'before' si usa il Present Simple anche se il significato è futuro: 'before you leave'. 'Will leave' e 'would leave' non si usano nella frase temporale e 'leaving' non è un verbo finito dopo 'you'."
+  }
+ },
+ "q130": {
+  "esito": "ok",
+  "motivo": "Scelta coincide con correctIndex, spiegazione corretta e senza refusi, nessun duplicato nei patch."
+ },
+ "q139": {
+  "esito": "problema",
+  "motivo": "Il distrattore 'don't' e' accettabile per un madrelingua ('You don't park here. It's forbidden.' come divieto colloquiale), e la spiegazione ('descriverebbe solo un'abitudine') e' discutibile. Sostituito con 'don't have to'.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'You _____ park here. It's forbidden.'",
+   "options": [
+    "mustn't",
+    "don't have to",
+    "aren't",
+    "haven't"
+   ],
+   "correctIndex": 0,
+   "explanation": "'Mustn't' esprime un divieto ed è seguito dal verbo base: 'You mustn't park here'. 'Don't have to' dice solo che non è necessario, quindi non è un divieto. 'Aren't' e 'haven't' non possono reggere 'park' in questa frase."
+  }
+ },
+ "q159": {
+  "esito": "problema",
+  "motivo": "Quasi identica a q230 ('Is this money _____?' con your/you/yours/you're, stessa risposta yours). Sostituita con la terza persona.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'Is this Sara's jacket? Yes, it's _____.'",
+   "options": [
+    "her",
+    "hers",
+    "she",
+    "she's"
+   ],
+   "correctIndex": 1,
+   "explanation": "Quando il possessivo sta da solo, senza un nome dopo, si usa la forma pronominale: 'it's hers'. 'Her' vuole un nome subito dopo ('her jacket'), 'she' è un pronome soggetto e 'she's' è la contrazione di 'she is'."
+  }
+ },
+ "q161": {
+  "esito": "ok",
+  "motivo": "OK. Concetto for/since gia' toccato da q45/q93, ma qui since + frase: accettabile."
+ },
+ "q488": {
+  "esito": "problema",
+  "motivo": "Stesso schema di q386 (discorso indiretto con would + distrattore 'would to') e q385. Sostituita con tell + to-infinito.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'The doctor told me _____ more water.'",
+   "options": [
+    "drink",
+    "to drink",
+    "drinking",
+    "drinks"
+   ],
+   "correctIndex": 1,
+   "explanation": "Nel discorso riportato un ordine o un consiglio si rende con 'told' + persona + 'to' + verbo base: 'told me to drink'. 'Drink' senza 'to' e 'drinks' non vanno dopo 'told me', e 'drinking' non esprime ciò che il medico chiede."
+  }
+ },
+ "q519": {
+  "esito": "problema",
+  "motivo": "Troppo vicina a q514 e q519 del patch (stesse opzioni use to/used to/was used to, abitudine passata). Sostituita con 'be used to + -ing'.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'My sister is used to _____ in a big city.'",
+   "options": [
+    "live",
+    "living",
+    "lived",
+    "lives"
+   ],
+   "correctIndex": 1,
+   "explanation": "'Be used to' (essere abituato a) è seguito da un nome o dal gerundio: 'is used to living'. Il verbo base 'live', il passato 'lived' e la forma 'lives' non vanno dopo 'to' in questa struttura."
+  }
+ },
+ "q526": {
+  "esito": "ok",
+  "motivo": "Scelta coincide con correctIndex, spiegazione corretta e senza refusi, nessun duplicato nei patch."
+ },
+ "q606": {
+  "esito": "problema",
+  "motivo": "Risposta giusta (where) e spiegazione corretta, ma la spiegazione riporta una traduzione italiana ('dove sono nato'): il brief la vieta.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'Milan, _____ I was born, is a big city.'",
+   "options": [
+    "which",
+    "who",
+    "where",
+    "whose"
+   ],
+   "correctIndex": 2,
+   "explanation": "'Where' introduce una relativa che indica il luogo in cui è avvenuto qualcosa: 'Milan, where I was born'. 'Which' da solo non basta, perché servirebbe la preposizione ('in which I was born'). 'Who' è per le persone e 'whose' indica possesso."
+  }
+ }
+}

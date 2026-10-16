@@ -1,29 +1,31 @@
-// Caso 3: scelta delle domande del diagnostico (nucleo, mix di livelli, niente doppioni, ripetibilità) e simulazioni.
+// Caso 3: scelta delle domande del diagnostico (tutto il banco, mix di livelli, niente doppioni, ripetibilità) e simulazioni.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { pickDiagnosticQuestions, diagnosticPool, DIAGNOSTIC_LENGTH } from '../../src/lib/diagnostic';
 import { calculateSimilarity } from '../../src/lib/utils';
-import { selectExamQuestions, scoreExam, poolForFormat } from '../../src/lib/exam';
-import { FORMATS } from '../../src/config/offer';
+import { selectExamQuestions, scoreExam } from '../../src/lib/exam';
+import { EXAM } from '../../src/config/offer';
+import { questions } from '../../src/data/questions';
 import type { Question } from '../../src/types';
 
-const nucleo = diagnosticPool();
-const idNucleo = new Set(nucleo.map(q => q.id));
+const banco = diagnosticPool();
+const idBanco = new Set(banco.map(q => q.id));
 const argomento = (q: Question) => q.grammarTopic || q.category;
 
 const domanda = (id: string, prompt: string, level?: string, extra: Partial<Question> = {}): Question => ({
   id, prompt, options: ['a', 'b', 'c', 'd'], correctIndex: 1, explanation: '', category: 'Grammatica', level, ...extra,
 });
 
-test('il pool del diagnostico è il nucleo: 100 domande', () => {
-  assert.equal(nucleo.length, 100);
+test('il pool del diagnostico è tutto il banco', () => {
+  assert.equal(banco.length, questions.length);
+  assert.ok(banco.length >= 600);
 });
 
-test('200 diagnostici: 10 domande del solo nucleo, 3 A1 + 2 A2 + 5 B1, argomenti tutti diversi, risposta esatta valida', () => {
+test('200 diagnostici: 10 domande del banco, 3 A1 + 2 A2 + 5 B1, argomenti tutti diversi, risposta esatta valida', () => {
   for (let i = 0; i < 200; i++) {
     const d = pickDiagnosticQuestions();
     assert.equal(d.length, DIAGNOSTIC_LENGTH);
-    assert.ok(d.every(q => idNucleo.has(q.id)), 'solo domande del nucleo');
+    assert.ok(d.every(q => idBanco.has(q.id)), 'solo domande del banco');
     const per = (l: string) => d.filter(q => q.level === l).length;
     assert.deepEqual([per('A1'), per('A2'), per('B1')], [3, 2, 5]);
     assert.equal(new Set(d.map(q => argomento(q))).size, d.length, 'un argomento per domanda');
@@ -51,9 +53,9 @@ test('rifatto subito dopo non ripete le domande del diagnostico precedente', () 
 });
 
 test('"evita" esplicito: le domande indicate restano fuori finché il pool basta', () => {
-  const evita = nucleo.slice(0, 25).map(q => q.id);
+  const evita = banco.slice(0, 25).map(q => q.id);
   for (let i = 0; i < 50; i++) {
-    const d = pickDiagnosticQuestions(nucleo, evita);
+    const d = pickDiagnosticQuestions(banco, evita);
     assert.ok(d.every(q => !evita.includes(q.id)));
   }
 });
@@ -107,23 +109,23 @@ test('calculateSimilarity: due frasi di sole parole comuni identiche sono la ste
 
 test('simulazione: selectExamQuestions non mette due volte lo stesso id, anche con testo fatto di sole parole comuni', () => {
   const pool = [domanda('a', 'Choose the correct sentence'), domanda('a', 'Choose the correct sentence'), ...Array.from({ length: 5 }, (_, i) => domanda(`z${i}`, `termine${i}p termine${i}q`))];
-  const scelte = selectExamQuestions(pool, { ...FORMATS.ente, questions: 4 });
+  const scelte = selectExamQuestions(pool, { ...EXAM, questions: 4 });
   assert.equal(scelte.length, 4);
   assert.equal(new Set(scelte.map(q => q.id)).size, 4);
 });
 
-test('scoreExam: omesse non sono errate, il TENG toglie 0,25 per errore e la soglia guarda le esatte', () => {
+test('scoreExam: le omesse non sono errate, il punteggio è il numero di esatte e la soglia è 25', () => {
   const qs = Array.from({ length: 30 }, (_, i) => domanda(`s${i}`, `p${i}`));
   const risp: Record<string, number | null> = {};
   qs.forEach((q, i) => { risp[q.id] = i < 24 ? 1 : i < 28 ? 0 : null; });
-  const teng = scoreExam(FORMATS.teng, qs, risp);
-  assert.deepEqual([teng.rawCorrect, teng.wrong, teng.omitted, teng.score, teng.passed], [24, 4, 2, 23, true]);
-  const ente = scoreExam(FORMATS.ente, qs, risp);
-  assert.deepEqual([ente.rawCorrect, ente.score, ente.passed], [24, 24, false]); // 24 su 30 non basta: la soglia è 25
+  const r = scoreExam(qs, risp);
+  assert.deepEqual([r.rawCorrect, r.wrong, r.omitted, r.score, r.passed], [24, 4, 2, 24, false]); // 24 su 30 non basta: la soglia è 25
+  const passa: Record<string, number | null> = {};
+  qs.forEach((q, i) => { passa[q.id] = i < 25 ? 1 : 0; });
+  assert.deepEqual([scoreExam(qs, passa).rawCorrect, scoreExam(qs, passa).passed], [25, true]);
 });
 
-test('poolForFormat: il TENG usa solo domande con la quinta opzione', () => {
-  const qs = [domanda('a', 'x'), domanda('b', 'y', undefined, { extraOption: 'e' })];
-  assert.deepEqual(poolForFormat(qs, FORMATS.teng).map(q => q.id), ['b']);
-  assert.equal(poolForFormat(qs, FORMATS.ente).length, 2);
+test('il formato è uno solo: 30 domande, 15 minuti, soglia 25, 4 opzioni', () => {
+  assert.deepEqual(EXAM, { questions: 30, minutes: 15, passMark: 25, options: 4 });
+  assert.ok(questions.every(q => q.options.length === 4), 'tutte le domande del banco hanno 4 opzioni');
 });

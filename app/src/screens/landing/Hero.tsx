@@ -28,7 +28,7 @@ export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSk
             <BottoneContorno onClick={() => vaiA('come-funziona')} freccia className="hidden whitespace-nowrap sm:inline-flex">Come funziona</BottoneContorno>
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Fatti />
+            <Fatti gratis />
             <InfoFoglio titolo="Il test e la stima">
               <div className="flex flex-col gap-2">
                 <p>Il test di riferimento è quello di recupero nel formato LinguaViva: {EXAM.questions} domande in {EXAM.minutes} minuti, soglia {EXAM.passMark}/{EXAM.questions}.</p>

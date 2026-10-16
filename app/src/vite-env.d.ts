@@ -1,12 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  /** 'demo' = versione dimostrativa a file unico; 'prod' = versione vera con server (vedi .env.example). */
-  readonly VITE_MODE?: 'demo' | 'prod';
-  readonly VITE_API_URL?: string;
-  readonly VITE_STRIPE_LINK?: string;
-  readonly VITE_PAYMENTS_ENABLED?: string;
-  readonly VITE_ATLAS_API_URL?: string;
+  /** Impostata a 'demo' solo da vite.demo.config.ts (build a file unico, `npm run build:demo`): le immagini restano incorporate nel file. Nel sito normale è assente. */
+  readonly VITE_MODE?: 'demo';
 }
 
 interface ImportMeta {

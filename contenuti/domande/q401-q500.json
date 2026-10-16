@@ -52,37 +52,37 @@
   },
   {
     "id": "q404",
-    "prompt": "Translate: 'Il film che abbiamo visto ieri era noioso.'",
+    "prompt": "Complete the sentence: 'The movie _____ we watched yesterday was boring.'",
     "options": [
-      "The movie which we watched yesterday was boring.",
-      "The movie who we watched yesterday was boring.",
-      "The movie where we watched yesterday was boring.",
-      "The movie whose we watched yesterday was boring."
+      "who",
+      "where",
+      "which",
+      "whose"
     ],
-    "correctIndex": 0,
-    "explanation": "'Which' or 'that' is used for things.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Per una cosa (il film) il pronome relativo è 'which' (o 'that'). 'Who' si usa per le persone, 'where' per i luoghi e 'whose' indica possesso.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Relative Clauses",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q405",
-    "prompt": "Translate: 'La donna la cui auto è stata rubata è la mia vicina.'",
+    "prompt": "Complete the sentence: 'The woman _____ car was stolen is my neighbor.'",
     "options": [
-      "The woman whose car was stolen is my neighbor.",
-      "The woman who car was stolen is my neighbor.",
-      "The woman which car was stolen is my neighbor.",
-      "The woman that car was stolen is my neighbor."
+      "who",
+      "whose",
+      "which",
+      "that"
     ],
-    "correctIndex": 0,
-    "explanation": "'Whose' translates 'la cui / il cui'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Whose' indica possesso e si mette direttamente prima del nome: 'whose car'. 'Who', 'which' e 'that' non esprimono possesso, quindi 'who car' o 'which car' sono sbagliati.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Relative Clauses",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q406",
@@ -137,37 +137,37 @@
   },
   {
     "id": "q409",
-    "prompt": "Translate: 'Questo è il libro di cui ti parlavo.'",
+    "prompt": "Complete the sentence: 'This is the book _____ I was telling you about.'",
     "options": [
-      "This is the book which I was telling you about.",
-      "This is the book who I was telling you about.",
-      "This is the book where I was telling you about.",
-      "This is the book whose I was telling you about."
+      "which",
+      "who",
+      "whose",
+      "what"
     ],
     "correctIndex": 0,
-    "explanation": "'Which' is used for things.",
-    "category": "Traduzione",
+    "explanation": "Il libro è una cosa, quindi il relativo è 'which' ('that' sarebbe possibile, ma qui non è tra le opzioni). 'Who' è per le persone, 'whose' indica possesso e 'what' non introduce una frase relativa dopo un nome.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Relative Clauses",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q410",
-    "prompt": "Translate: 'Parigi, che è la capitale della Francia, è bellissima.'",
+    "prompt": "Complete the sentence: 'Paris, _____ is the capital of France, is beautiful.'",
     "options": [
-      "Paris, which is the capital of France, is beautiful.",
-      "Paris, who is the capital of France, is beautiful.",
-      "Paris, where is the capital of France, is beautiful.",
-      "Paris, that is the capital of France, is beautiful."
+      "which",
+      "who",
+      "where",
+      "that"
     ],
     "correctIndex": 0,
-    "explanation": "Non-defining relative clauses for things use 'which'.",
-    "category": "Traduzione",
+    "explanation": "In una relativa non restrittiva (tra virgole) riferita a una cosa si usa 'which'. 'That' non si usa dopo una virgola e 'who' è per le persone. 'Where' introdurrebbe un luogo in cui accade qualcosa, ma qui il relativo è il soggetto di 'is the capital'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Relative Clauses",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q411",
@@ -324,37 +324,37 @@
   },
   {
     "id": "q420",
-    "prompt": "Translate: 'Ho finito di leggere il libro.'",
+    "prompt": "Complete the sentence: 'I finished _____ the book last night.'",
     "options": [
-      "I finished reading the book.",
-      "I finished to read the book.",
-      "I finished read the book.",
-      "I finish reading the book."
+      "to read",
+      "reading",
+      "read",
+      "to reading"
     ],
-    "correctIndex": 0,
-    "explanation": "'Finish' is followed by a gerund.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Finish' è seguito dal gerundio: 'finished reading'. 'To read' e 'to reading' usano un 'to' che qui non va, mentre 'read' è la forma base e non può seguire 'finished'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q421",
-    "prompt": "Translate: 'Lui ha deciso di studiare all'estero.'",
+    "prompt": "Complete the sentence: 'He decided _____ abroad.'",
     "options": [
-      "He decided to study abroad.",
-      "He decided studying abroad.",
-      "He decided study abroad.",
-      "He decides to study abroad."
+      "studying",
+      "study",
+      "to study",
+      "to studying"
     ],
-    "correctIndex": 0,
-    "explanation": "'Decide' is followed by the infinitive.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "'Decide' è seguito dall'infinito con 'to': 'decided to study'. Il gerundio ('studying'), la forma base ('study') e 'to studying' non sono costruzioni corrette dopo 'decide'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q422",
@@ -392,37 +392,37 @@
   },
   {
     "id": "q424",
-    "prompt": "Translate: 'Non mi dispiace alzarmi presto.'",
+    "prompt": "Complete the sentence: 'I don't mind _____ up early.'",
     "options": [
-      "I don't mind getting up early.",
-      "I don't mind to get up early.",
-      "I don't mind get up early.",
-      "I not mind getting up early."
+      "to get",
+      "get",
+      "to getting",
+      "getting"
     ],
-    "correctIndex": 0,
-    "explanation": "'Don't mind' takes the gerund.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'Mind' è seguito dal gerundio: 'don't mind getting'. 'To get' e 'get' usano l'infinito, che dopo 'mind' non va bene, e 'to getting' mescola le due forme.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q425",
-    "prompt": "Translate: 'Loro vogliono comprare una casa nuova.'",
+    "prompt": "Complete the sentence: 'They want _____ a new house.'",
     "options": [
-      "They want to buy a new house.",
-      "They want buying a new house.",
-      "They want buy a new house.",
-      "They want to buying a new house."
+      "buying",
+      "buy",
+      "to buy",
+      "to buying"
     ],
-    "correctIndex": 0,
-    "explanation": "'Want' is followed by the infinitive.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "'Want' è seguito dall'infinito con 'to': 'want to buy'. 'Buying' è un gerundio, 'buy' non ha il 'to' richiesto e 'to buying' mescola infinito e gerundio.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q426",
@@ -562,37 +562,37 @@
   },
   {
     "id": "q434",
-    "prompt": "Translate: 'Se fossi ricco, viaggerei per il mondo.'",
+    "prompt": "Complete the sentence: 'If I _____ rich, I _____ travel the world.'",
     "options": [
-      "If I were rich, I would travel the world.",
-      "If I am rich, I will travel the world.",
-      "If I was rich, I travel the world.",
-      "If I would be rich, I traveled the world."
+      "were / would",
+      "am / will",
+      "would be / traveled",
+      "was / travel"
     ],
     "correctIndex": 0,
-    "explanation": "Second Conditional uses 'were' for all persons and 'would + verb'.",
-    "category": "Traduzione",
+    "explanation": "Second Conditional: 'if' + passato ('were' per tutte le persone) nella prima parte e 'would' + verbo base nella seconda. 'Am / will' è il primo condizionale, mentre le altre coppie mettono 'would be', 'traveled' o 'travel' al posto sbagliato.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Second Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q435",
-    "prompt": "Translate: 'Se lei sapesse la verità, si arrabbierebbe.'",
+    "prompt": "Complete the sentence: 'If she _____ the truth, she would be angry.'",
     "options": [
-      "If she knew the truth, she would be angry.",
-      "If she knows the truth, she will be angry.",
-      "If she would know the truth, she was angry.",
-      "If she knew the truth, she will be angry."
+      "knows",
+      "knew",
+      "would know",
+      "will know"
     ],
-    "correctIndex": 0,
-    "explanation": "Past simple in the if-clause, would in the main clause.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Nel Second Conditional la frase con 'if' usa il Past Simple ('knew') e quella principale 'would' + verbo base. 'Knows' e 'will know' sono presente e futuro, 'would know' non va nella frase con 'if'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Second Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q436",
@@ -647,37 +647,37 @@
   },
   {
     "id": "q439",
-    "prompt": "Translate: 'Non andrei lì se fossi in te.'",
+    "prompt": "Complete the sentence: 'I _____ go there if I were you.'",
     "options": [
-      "I wouldn't go there if I were you.",
-      "I won't go there if I am you.",
-      "I didn't go there if I were you.",
-      "I don't go there if I was you."
+      "won't",
+      "didn't",
+      "don't",
+      "wouldn't"
     ],
-    "correctIndex": 0,
-    "explanation": "'If I were you' is standard for giving advice.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Con 'if I were you' (Second Conditional) la frase principale usa 'would': 'I wouldn't go'. 'Won't', 'didn't' e 'don't' sono forme di futuro e di presente o passato che non si combinano con 'were'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Second Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q440",
-    "prompt": "Translate: 'Se avessimo una macchina, potremmo andare in montagna.'",
+    "prompt": "Complete the sentence: 'If we had a car, we _____ go to the mountains.'",
     "options": [
-      "If we had a car, we could go to the mountains.",
-      "If we have a car, we can go to the mountains.",
-      "If we had a car, we will go to the mountains.",
-      "If we would have a car, we went to the mountains."
+      "can",
+      "will",
+      "went",
+      "could"
     ],
-    "correctIndex": 0,
-    "explanation": "'could' is the conditional form of 'can'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Nel Second Conditional la frase con 'if' è al passato ('had') e la principale ha un condizionale: 'could' (la forma ipotetica di 'can') + verbo base. 'Can' e 'will' sono presente e futuro, 'went' non è un condizionale.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Second Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q441",
@@ -766,20 +766,20 @@
   },
   {
     "id": "q446",
-    "prompt": "Translate: 'Se parlassi francese, mi trasferirei a Parigi.'",
+    "prompt": "Complete the sentence: 'If I spoke French, I _____ to Paris.'",
     "options": [
-      "If I spoke French, I would move to Paris.",
-      "If I speak French, I will move to Paris.",
-      "If I would speak French, I moved to Paris.",
-      "If I spoke French, I will move to Paris."
+      "would move",
+      "will move",
+      "would moving",
+      "moved"
     ],
     "correctIndex": 0,
-    "explanation": "If + past simple, would + infinitive.",
-    "category": "Traduzione",
+    "explanation": "Second Conditional: 'if' + Past Simple, poi 'would' + verbo base: 'would move'. 'Will move' è futuro, 'would moving' ha il verbo in -ing e 'moved' non dà il senso di ipotesi.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Second Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q447",
@@ -834,37 +834,37 @@
   },
   {
     "id": "q450",
-    "prompt": "Translate: 'Se fossi andato a letto presto, non sarei stato stanco.'",
+    "prompt": "Complete the sentence: 'If I _____ to bed early, I wouldn't have been tired.'",
     "options": [
-      "If I had gone to bed early, I wouldn't have been tired.",
-      "If I went to bed early, I wouldn't be tired.",
-      "If I had gone to bed early, I wasn't tired.",
-      "If I would go to bed early, I wouldn't have been tired."
+      "would have gone",
+      "have gone",
+      "had gone",
+      "would go"
     ],
-    "correctIndex": 0,
-    "explanation": "Third conditional talks about impossible past situations.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Il Third Conditional parla di un passato non realizzato: 'if' + Past Perfect ('had gone') e 'would have' + participio nella principale. 'Would have gone' e 'would go' non vanno dopo 'if', e 'have gone' è un Present Perfect.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Third Conditional",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q451",
-    "prompt": "Translate: 'Se avesse piovuto, saremmo rimasti a casa.'",
+    "prompt": "Complete the sentence: 'If it had rained, we _____ at home.'",
     "options": [
-      "If it had rained, we would have stayed at home.",
-      "If it rained, we would stay at home.",
-      "If it had rained, we stayed at home.",
-      "If it rains, we will stay at home."
+      "would have stay",
+      "would have stayed",
+      "will have stayed",
+      "would had stayed"
     ],
-    "correctIndex": 0,
-    "explanation": "If + Past Perfect, would have + past participle.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Nel Third Conditional, dopo 'if' + Past Perfect, la principale è 'would have' + participio: 'would have stayed'. 'Would have stay' usa la forma base, 'will have stayed' è un futuro e 'would had stayed' ha 'had' al posto di 'have'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Third Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q452",
@@ -919,37 +919,37 @@
   },
   {
     "id": "q455",
-    "prompt": "Translate: 'Cosa avresti fatto se lo avessi saputo?'",
+    "prompt": "Complete the sentence: 'What _____ if you had known?'",
     "options": [
-      "What would you have done if you had known?",
-      "What would you do if you knew?",
-      "What did you do if you had known?",
-      "What have you done if you knew?"
+      "did you do",
+      "would you have done",
+      "have you done",
+      "would you had done"
     ],
-    "correctIndex": 0,
-    "explanation": "Interrogative third conditional structure.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Nella domanda del Third Conditional si usa 'would' + soggetto + 'have' + participio: 'What would you have done?'. 'Did you do' e 'have you done' sono passato e Present Perfect, e 'would you had done' usa 'had' al posto di 'have'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Third Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q456",
-    "prompt": "Translate: 'Se avessi visto il messaggio, ti avrei risposto.'",
+    "prompt": "Complete the sentence: 'If I _____ the message, I would have replied to you.'",
     "options": [
-      "If I had seen the message, I would have replied.",
-      "If I saw the message, I would reply.",
-      "If I would have seen the message, I replied.",
-      "If I had seen the message, I had replied."
+      "would have seen",
+      "have seen",
+      "had seen",
+      "would see"
     ],
-    "correctIndex": 0,
-    "explanation": "Standard third conditional structure.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Il terzo condizionale parla di una situazione passata che non si è realizzata: nella frase con 'if' serve il past perfect ('had seen'), nell'altra 'would have' + participio. 'would have seen' e 'would see' non si mettono mai subito dopo 'if', e 'have seen' è un present perfect che non si accorda con 'would have replied'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Third Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q457",
@@ -1038,20 +1038,20 @@
   },
   {
     "id": "q462",
-    "prompt": "Translate: 'Sarebbe venuta se avesse avuto tempo.'",
+    "prompt": "Complete the sentence: 'She would have come if she _____ time.'",
     "options": [
-      "She would have come if she had had time.",
-      "She would come if she had time.",
-      "She came if she had had time.",
-      "She would have came if she had time."
+      "had had",
+      "would have had",
+      "has had",
+      "was having"
     ],
     "correctIndex": 0,
-    "explanation": "'had had' is the Past Perfect of 'have'.",
-    "category": "Traduzione",
+    "explanation": "Nel terzo condizionale la frase con 'if' usa il past perfect: 'had' + participio di 'have', cioè 'had had'. 'would have had' va solo nella frase principale, mentre 'has had' e 'was having' non sono forme del past perfect.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Third Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q463",
@@ -1106,37 +1106,37 @@
   },
   {
     "id": "q466",
-    "prompt": "Translate: 'Il libro è stato scritto nel 1990.'",
+    "prompt": "Complete the sentence: 'This book _____ in 1990.'",
     "options": [
-      "The book was written in 1990.",
-      "The book is written in 1990.",
-      "The book wrote in 1990.",
-      "The book has been written in 1990."
+      "is written",
+      "wrote",
+      "has been written",
+      "was written"
     ],
-    "correctIndex": 0,
-    "explanation": "Past Simple passive for a completed action in the past.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Con una data precisa del passato serve il passivo del past simple: 'was' + participio ('was written'). 'has been written' non si usa con un anno preciso, 'is written' è un presente e 'wrote' è la forma attiva (un libro non scrive).",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Passive Voice",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q467",
-    "prompt": "Translate: 'La stanza viene pulita ogni giorno.'",
+    "prompt": "Complete the sentence: 'Nowadays the room _____ every day.'",
     "options": [
-      "The room is cleaned every day.",
-      "The room was cleaned every day.",
-      "The room is being cleaned every day.",
-      "The room cleans every day."
+      "was cleaned",
+      "is cleaned",
+      "cleans",
+      "is cleaning"
     ],
-    "correctIndex": 0,
-    "explanation": "Present Simple passive for routines.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Un'abitudine ripetuta al presente si esprime con il passivo del present simple: 'is' + participio ('is cleaned'). 'was cleaned' è passato, 'cleans' è attivo (la stanza non pulisce da sola) e 'is cleaning' è un continuous attivo.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Passive Voice",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q468",
@@ -1191,37 +1191,37 @@
   },
   {
     "id": "q471",
-    "prompt": "Translate: 'I biglietti sono già stati venduti.'",
+    "prompt": "Complete the sentence: 'The tickets _____ sold already.'",
     "options": [
-      "The tickets have already been sold.",
-      "The tickets has already been sold.",
-      "The tickets have already being sold.",
-      "The tickets have already be sold."
+      "have been",
+      "has been",
+      "have being",
+      "have be"
     ],
     "correctIndex": 0,
-    "explanation": "Present Perfect passive: have been + past participle.",
-    "category": "Traduzione",
+    "explanation": "Il passivo del present perfect si forma con 'have/has been' + participio; con 'tickets' (plurale) serve 'have been'. 'has been' non concorda con il plurale, mentre 'have being' e 'have be' non sono forme corrette dell'ausiliare.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Passive Voice",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q472",
-    "prompt": "Translate: 'Il problema deve essere risolto subito.'",
+    "prompt": "Complete the sentence: 'The problem must _____ immediately.'",
     "options": [
-      "The problem must be solved immediately.",
-      "The problem must solve immediately.",
-      "The problem has to solve immediately.",
-      "The problem must been solved immediately."
+      "solve",
+      "been solved",
+      "be solved",
+      "being solved"
     ],
-    "correctIndex": 0,
-    "explanation": "Modal passive: modal + be + past participle.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Con un verbo modale il passivo è modale + 'be' + participio passato: 'must be solved'. 'solve' è attivo, 'been solved' appartiene al present perfect e non si usa dopo 'must', e 'being solved' non può seguire un modale.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Passive Voice",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q473",
@@ -1310,20 +1310,20 @@
   },
   {
     "id": "q478",
-    "prompt": "Translate: 'La mia bicicletta è stata rubata ieri.'",
+    "prompt": "Complete the sentence: 'My bicycle _____ yesterday.'",
     "options": [
-      "My bicycle was stolen yesterday.",
-      "My bicycle is stolen yesterday.",
-      "My bicycle has been stolen yesterday.",
-      "My bicycle stole yesterday."
+      "is stolen",
+      "was stolen",
+      "has been stolen",
+      "stole"
     ],
-    "correctIndex": 0,
-    "explanation": "Past Simple passive.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Con 'yesterday' si usa il past simple, quindi il passivo è 'was' + participio ('was stolen'). 'has been stolen' non si usa con un tempo passato preciso, 'is stolen' è un presente e 'stole' è la forma attiva (una bicicletta non ruba).",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Passive Voice",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q479",
@@ -1378,37 +1378,37 @@
   },
   {
     "id": "q482",
-    "prompt": "Translate: 'Mi ha detto che era stanco.'",
+    "prompt": "Complete the sentence: 'He told _____ that he was tired.'",
     "options": [
-      "He told me that he was tired.",
-      "He said me that he was tired.",
-      "He told to me that he was tired.",
-      "He said that he is tired."
+      "to me",
+      "for me",
+      "at me",
+      "me"
     ],
-    "correctIndex": 0,
-    "explanation": "'Tell' must be followed by an object pronoun (me).",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Dopo 'tell' ci vuole direttamente la persona, senza preposizione: 'told me that'. 'to me', 'for me' e 'at me' aggiungono una preposizione che con 'tell' in questa struttura non si usa.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q483",
-    "prompt": "Translate: 'Lei disse che non sapeva la risposta.'",
+    "prompt": "Complete the sentence: 'She _____ that she didn't know the answer.'",
     "options": [
-      "She said that she didn't know the answer.",
-      "She told that she didn't know the answer.",
-      "She said that she didn't knew the answer.",
-      "She told me that she hasn't known the answer."
+      "said",
+      "told",
+      "spoke",
+      "asked"
     ],
     "correctIndex": 0,
-    "explanation": "'Said' doesn't need an object pronoun.",
-    "category": "Traduzione",
+    "explanation": "'Said' regge direttamente 'that' senza nominare la persona a cui si parla. 'Told' vuole prima una persona ('told me that'), mentre 'spoke' e 'asked' non servono a riferire un'affermazione con 'that'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q484",
@@ -1463,37 +1463,37 @@
   },
   {
     "id": "q487",
-    "prompt": "Translate: 'Mi ha chiesto se volessi venire.'",
+    "prompt": "Complete the sentence: 'He asked me _____ I wanted to come.'",
     "options": [
-      "He asked me if I wanted to come.",
-      "He asked me do I want to come.",
-      "He said me if I wanted to come.",
-      "He told me if I wanted to come."
+      "do",
+      "that",
+      "if",
+      "which"
     ],
-    "correctIndex": 0,
-    "explanation": "Reported questions use 'ask' + if + subject + verb.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Le domande sì/no riportate si introducono con 'if' (o 'whether') seguito da soggetto e verbo, senza l'ausiliare 'do'. 'do' mantiene la forma della domanda diretta, mentre 'that' e 'which' non introducono una domanda sì/no.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q488",
-    "prompt": "Translate: 'Ha detto che avrebbe chiamato più tardi.'",
+    "prompt": "Complete the sentence: 'The doctor told me _____ more water.'",
     "options": [
-      "He said that he would call later.",
-      "He said that he would to call later.",
-      "He told that he would call later.",
-      "He said that he would called later."
+      "drink",
+      "to drink",
+      "drinking",
+      "drinks"
     ],
-    "correctIndex": 0,
-    "explanation": "'Would' is the reported version of 'will'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Nel discorso riportato un ordine o un consiglio si rende con 'told' + persona + 'to' + verbo base: 'told me to drink'. 'Drink' senza 'to' e 'drinks' non vanno dopo 'told me', e 'drinking' non esprime ciò che il medico chiede.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q489",
@@ -1582,20 +1582,20 @@
   },
   {
     "id": "q494",
-    "prompt": "Translate: 'Mi ha consigliato di studiare.'",
+    "prompt": "Complete the sentence: 'He advised me _____ harder for the test.'",
     "options": [
-      "He advised me to study.",
-      "He advised to study.",
-      "He said me to study.",
-      "He told to me to study."
+      "study",
+      "studying",
+      "of studying",
+      "to study"
     ],
-    "correctIndex": 0,
-    "explanation": "Advise takes object + to-infinitive.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'Advise' si costruisce con persona + 'to' + infinito: 'advised me to study'. Senza 'to' ('study') o con la forma in -ing ('studying') la struttura non è corretta, e 'of studying' non si usa con 'advise'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Reported Speech",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q495",
@@ -1650,37 +1650,37 @@
   },
   {
     "id": "q498",
-    "prompt": "Translate: 'Avevo appena finito di mangiare quando ha bussato.'",
+    "prompt": "Complete the sentence: 'I had just _____ eating when he knocked.'",
     "options": [
-      "I had just finished eating when he knocked.",
-      "I had just finish eating when he knocked.",
-      "I have just finished eating when he knocked.",
-      "I had just finished to eat when he knocked."
+      "finish",
+      "to finish",
+      "finished",
+      "finishing"
     ],
-    "correctIndex": 0,
-    "explanation": "Past perfect + just for an action completed moments before another past action.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Il past perfect si forma con 'had' + participio passato: 'had just finished'. 'finish' e 'finishing' non sono participi passati, e 'to finish' lascerebbe due verbi di fila senza senso ('had just to finish eating').",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q499",
-    "prompt": "Translate: 'Non avevo mai visto quel film prima di ieri.'",
+    "prompt": "Complete the sentence: 'I _____ that movie before yesterday.'",
     "options": [
-      "I had never seen that movie before yesterday.",
-      "I had never saw that movie before yesterday.",
-      "I have never seen that movie before yesterday.",
-      "I hadn't never seen that movie before yesterday."
+      "had never seen",
+      "had never saw",
+      "have never seen",
+      "hadn't never seen"
     ],
     "correctIndex": 0,
-    "explanation": "Past perfect + never for experiences before a specific past point.",
-    "category": "Traduzione",
+    "explanation": "Il past perfect si forma con 'had' + participio passato: 'had never seen' ('seen', non 'saw'). 'have never seen' è un present perfect e non va con un riferimento passato come 'before yesterday', e 'hadn't never seen' ha una doppia negazione.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": true,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q500",

@@ -35,37 +35,37 @@
   },
   {
     "id": "q503",
-    "prompt": "Translate: 'Ero arrabbiato perché avevo perso il portafoglio.'",
+    "prompt": "Complete the sentence: 'I was angry because I _____ my wallet.'",
     "options": [
-      "I was angry because I had lost my wallet.",
-      "I was angry because I was lost my wallet.",
-      "I was angry because I have lost my wallet.",
-      "I was angry because I had lose my wallet."
+      "was lost",
+      "have lost",
+      "had lose",
+      "had lost"
     ],
-    "correctIndex": 0,
-    "explanation": "Cause and effect in the past.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Per un fatto accaduto prima di un altro fatto passato si usa il past perfect: 'had' + participio ('had lost'). 'was lost' è un altro costrutto, 'have lost' è un present perfect e 'had lose' usa la forma base invece del participio.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q504",
-    "prompt": "Translate: 'Avevano vissuto lì per dieci anni prima di trasferirsi.'",
+    "prompt": "Complete the sentence: 'They _____ there for ten years before moving.'",
     "options": [
-      "They had lived there for ten years before moving.",
-      "They had live there for ten years before moving.",
-      "They have lived there for ten years before moving.",
-      "They had lived there since ten years before moving."
+      "had live",
+      "had lived",
+      "have lived",
+      "had living"
     ],
-    "correctIndex": 0,
-    "explanation": "Duration before a past action.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Una durata che precede un altro fatto passato richiede il past perfect: 'had lived'. 'had live' e 'had living' non hanno il participio passato, e 'have lived' è un present perfect che non si accorda con 'before moving' al passato.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q505",
@@ -154,20 +154,20 @@
   },
   {
     "id": "q510",
-    "prompt": "Translate: 'La festa era già finita quando siamo arrivati.'",
+    "prompt": "Complete the sentence: 'The party had already _____ when we arrived.'",
     "options": [
-      "The party had already ended when we arrived.",
-      "The party had already end when we arrived.",
-      "The party has already ended when we arrived.",
-      "The party had already ending when we arrived."
+      "ended",
+      "end",
+      "ending",
+      "ends"
     ],
     "correctIndex": 0,
-    "explanation": "Past Perfect with 'already'.",
-    "category": "Traduzione",
+    "explanation": "Nel past perfect dopo 'had' (anche con 'already') ci vuole il participio passato: 'had already ended'. 'end' è la forma base, 'ending' il gerundio e 'ends' il presente: nessuno è un participio passato.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Past Perfect",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q511",
@@ -222,37 +222,37 @@
   },
   {
     "id": "q514",
-    "prompt": "Translate: 'Abitavamo a Londra quando ero piccolo.'",
+    "prompt": "Complete the sentence: 'We _____ live in London when I was a kid.'",
     "options": [
-      "We used to live in London when I was a kid.",
-      "We used to lived in London when I was a kid.",
-      "We are used to live in London when I was a kid.",
-      "We use to live in London when I was a kid."
+      "use to",
+      "are used to",
+      "used to",
+      "were used to"
     ],
-    "correctIndex": 0,
-    "explanation": "Used to + infinitive.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Per una situazione passata che non c'è più si usa 'used to' + verbo base. 'use to' senza -d si usa solo nelle frasi negative e nelle domande con 'did', mentre 'are used to' e 'were used to' significano 'essere abituati a' e vogliono il gerundio ('living').",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Used to",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q515",
-    "prompt": "Translate: 'Non fumava, ma ora fuma un pacchetto al giorno.'",
+    "prompt": "Complete the sentence: 'He _____ smoke, but now he smokes a pack a day.'",
     "options": [
-      "He didn't use to smoke, but now he smokes a pack a day.",
-      "He didn't used to smoke, but now he smokes a pack a day.",
-      "He wasn't used to smoke, but now he smokes a pack a day.",
-      "He hasn't used to smoke, but now he smokes a pack a day."
+      "wasn't used to",
+      "didn't use to",
+      "hasn't used to",
+      "doesn't use to"
     ],
-    "correctIndex": 0,
-    "explanation": "The negative of 'used to' is 'didn't use to' (no -d after 'didn't', because 'did' already shows the past); 'un pacchetto al giorno' is 'a pack a day'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "La forma negativa di 'used to' è 'didn't use to': il passato è già nell'ausiliare 'did', quindi 'use' perde la -d. 'wasn't used to' significa 'non essere abituato a' e vuole il gerundio, mentre 'hasn't used to' e 'doesn't use to' non sono forme corrette.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Used to",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q516",
@@ -307,37 +307,37 @@
   },
   {
     "id": "q519",
-    "prompt": "Translate: 'Andavamo al mare ogni estate.'",
+    "prompt": "Complete the sentence: 'My sister is used to _____ in a big city.'",
     "options": [
-      "We used to go to the sea every summer.",
-      "We use to go to the sea every summer.",
-      "We were used to go to the sea every summer.",
-      "We had gone to the sea every summer."
+      "live",
+      "living",
+      "lived",
+      "lives"
     ],
-    "correctIndex": 0,
-    "explanation": "'Used to' + base verb describes a repeated action in the past that doesn't happen now ('andavamo' = we used to go).",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Be used to' (essere abituato a) è seguito da un nome o dal gerundio: 'is used to living'. Il verbo base 'live', il passato 'lived' e la forma 'lives' non vanno dopo 'to' in questa struttura.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Used to",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q520",
-    "prompt": "Translate: 'Aveva i capelli lunghi, vero?'",
+    "prompt": "Complete the sentence: 'She used to have long hair, _____ she?'",
     "options": [
-      "She used to have long hair, didn't she?",
-      "She used to have long hair, doesn't she?",
-      "She used to had long hair, didn't she?",
-      "She use to have long hair, didn't she?"
+      "didn't",
+      "doesn't",
+      "isn't",
+      "hasn't"
     ],
     "correctIndex": 0,
-    "explanation": "Question tag for used to is 'didn't'.",
-    "category": "Traduzione",
+    "explanation": "Il question tag di 'used to' è 'didn't', perché 'used to' si comporta come un verbo al past simple. 'doesn't' è presente, mentre 'isn't' e 'hasn't' non corrispondono al verbo della frase.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Used to",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q521",
@@ -426,20 +426,20 @@
   },
   {
     "id": "q526",
-    "prompt": "Translate: 'Prima non mi piaceva la verdura.'",
+    "prompt": "Complete the sentence: '_____ your parents use to live in the countryside when they were young?'",
     "options": [
-      "I didn't use to like vegetables.",
-      "I didn't used to like vegetables.",
-      "I wasn't used to like vegetables.",
-      "I hadn't used to like vegetables."
+      "Were",
+      "Do",
+      "Did",
+      "Have"
     ],
-    "correctIndex": 0,
-    "explanation": "Negative past state.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Nella domanda con 'use to' l'ausiliare è 'did': porta lui il passato e 'use' perde la -d ('Did your parents use to...?'). 'Do' è presente e contrasta con 'when they were young', mentre 'Were' e 'Have' non sono gli ausiliari di questa struttura.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Used to",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q527",
@@ -494,37 +494,37 @@
   },
   {
     "id": "q530",
-    "prompt": "Translate: 'Siete italiani, vero?'",
+    "prompt": "Complete the sentence: 'You are Italian, _____ you?'",
     "options": [
-      "You are Italian, aren't you?",
-      "You are Italian, isn't it?",
-      "You are Italian, don't you?",
-      "You are Italian, are you?"
+      "isn't",
+      "don't",
+      "weren't",
+      "aren't"
     ],
-    "correctIndex": 0,
-    "explanation": "The tag must match the subject (you) and auxiliary (are).",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Il tag riprende il soggetto e l'ausiliare della frase con polarità opposta: dopo 'You are' si usa 'aren't you'. 'isn't' non concorda con 'you', 'don't' è ausiliare di altri verbi e 'weren't' è un passato.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Question Tags",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q531",
-    "prompt": "Translate: 'Non hai visto il film, vero?'",
+    "prompt": "Complete the sentence: 'You haven't seen the movie, _____ you?'",
     "options": [
-      "You haven't seen the movie, have you?",
-      "You haven't seen the movie, haven't you?",
-      "You didn't see the movie, have you?",
-      "You haven't seen the movie, did you?"
+      "haven't",
+      "have",
+      "did",
+      "didn't"
     ],
-    "correctIndex": 0,
-    "explanation": "Present perfect negative -> affirmative 'have' tag.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Se la frase è negativa, il tag è positivo e riprende lo stesso ausiliare: 'haven't seen' porta 'have you'. 'haven't you' ripete la negazione, mentre 'did' e 'didn't' non sono l'ausiliare del present perfect.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Question Tags",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q532",
@@ -579,37 +579,37 @@
   },
   {
     "id": "q535",
-    "prompt": "Translate: 'Fa freddo oggi, no?'",
+    "prompt": "Complete the sentence: 'It's cold today, _____ it?'",
     "options": [
-      "It's cold today, isn't it?",
-      "It's cold today, is it?",
-      "It's cold today, doesn't it?",
-      "It's cold today, wasn't it?"
+      "isn't",
+      "doesn't",
+      "wasn't",
+      "hasn't"
     ],
     "correctIndex": 0,
-    "explanation": "Verb to be -> isn't.",
-    "category": "Traduzione",
+    "explanation": "Con il verbo 'be' il tag usa lo stesso verbo con polarità opposta: 'It's' ('it is') porta 'isn't it'. 'doesn't' si usa con i verbi ordinari, 'wasn't' è un passato e 'hasn't' è l'ausiliare del present perfect.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Question Tags",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q536",
-    "prompt": "Translate: 'Lui non sa nuotare, vero?'",
+    "prompt": "Complete the sentence: 'He can't swim, _____ he?'",
     "options": [
-      "He can't swim, can he?",
-      "He can't swim, can't he?",
-      "He doesn't know to swim, doesn't he?",
-      "He can't swim, does he?"
+      "can't",
+      "does",
+      "can",
+      "is"
     ],
-    "correctIndex": 0,
-    "explanation": "Negative can't -> affirmative can.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "La frase negativa con 'can't' vuole un tag positivo con lo stesso modale: 'can he'. 'can't he' ripete la negazione, mentre 'does' e 'is' non sono l'ausiliare di 'can'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Question Tags",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q537",
@@ -698,20 +698,20 @@
   },
   {
     "id": "q542",
-    "prompt": "Translate: 'Tua sorella vive qui, vero?'",
+    "prompt": "Complete the sentence: 'Your sister lives here, _____ she?'",
     "options": [
-      "Your sister lives here, doesn't she?",
-      "Your sister lives here, isn't she?",
-      "Your sister lives here, doesn't it?",
-      "Your sister lives here, don't she?"
+      "don't",
+      "doesn't",
+      "isn't",
+      "hasn't"
     ],
-    "correctIndex": 0,
-    "explanation": "Present simple action verb -> doesn't.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Con un verbo ordinario al present simple in terza persona singolare il tag è 'doesn't'. 'isn't' e 'hasn't' non sono gli ausiliari di 'lives', e 'don't' non concorda con 'she'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Question Tags",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q543",
@@ -766,37 +766,37 @@
   },
   {
     "id": "q546",
-    "prompt": "Translate: 'Deve essere tardi, è già buio.'",
+    "prompt": "Complete the sentence: 'It's already dark, so it _____ be late.'",
     "options": [
-      "It must be late, it's already dark.",
-      "It can be late, it's already dark.",
-      "It may to be late, it's already dark.",
-      "It should be late, it's already dark."
+      "can't",
+      "may to",
+      "shall",
+      "must"
     ],
-    "correctIndex": 0,
-    "explanation": "'Must' + base verb is used for a logical deduction based on evidence (it's already dark); modals are never followed by 'to'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Per una deduzione quasi certa basata su un indizio ('è già buio') si usa 'must' + verbo base. 'can't' esprimerebbe l'impossibilità, 'may to' aggiunge un 'to' che i modali non vogliono e 'shall' non serve a fare deduzioni.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q547",
-    "prompt": "Translate: 'Non può essere vero!'",
+    "prompt": "Complete the sentence: 'That's impossible! It _____ be true!'",
     "options": [
-      "It can't be true!",
-      "It mustn't be true!",
-      "It shouldn't be true!",
-      "It might not be true!"
+      "can't",
+      "might",
+      "must",
+      "should"
     ],
     "correctIndex": 0,
-    "explanation": "Can't is the opposite of must for deductions.",
-    "category": "Traduzione",
+    "explanation": "Per dire che una cosa è impossibile secondo la logica si usa 'can't' + verbo base. 'must' esprime certezza positiva, 'might' una semplice possibilità e 'should' un'aspettativa: nessuno dei tre dice che è impossibile.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q548",
@@ -851,37 +851,37 @@
   },
   {
     "id": "q551",
-    "prompt": "Translate: 'Potrebbe piovere più tardi.'",
+    "prompt": "Complete the sentence: 'Take an umbrella because it _____ rain later.'",
     "options": [
-      "It might rain later.",
-      "It must rain later.",
-      "It can rain later.",
-      "It will rain later."
+      "can't",
+      "mustn't",
+      "might",
+      "shouldn't"
     ],
-    "correctIndex": 0,
-    "explanation": "'Might' or 'could' indicates possibility.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "'Might' + verbo base esprime una possibilità: forse pioverà, quindi conviene l'ombrello. 'can't' escluderebbe la pioggia, mentre 'mustn't' (divieto) e 'shouldn't' (consiglio negativo) non hanno senso con 'because' in questa frase.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "duplicata-di:q550"
   },
   {
     "id": "q552",
-    "prompt": "Translate: 'Quello dev'essere il tuo nuovo capo.'",
+    "prompt": "Complete the sentence: 'That man is wearing a suit and sitting in the manager's office. He _____ be your new boss.'",
     "options": [
-      "That must be your new boss.",
-      "That can't be your new boss.",
-      "That must to be your new boss.",
-      "That musts be your new boss."
+      "can't",
+      "must",
+      "mustn't",
+      "must to"
     ],
-    "correctIndex": 0,
-    "explanation": "'Must' + base verb ('must be') expresses a logical deduction we are almost sure about ('dev'essere'); modals are never followed by 'to'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Must' + verbo base indica una deduzione molto probabile fondata su indizi (il completo, l'ufficio del direttore). 'can't' direbbe il contrario, 'mustn't' esprime un divieto e dopo un modale non si usa 'to' ('must to').",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q553",
@@ -970,20 +970,20 @@
   },
   {
     "id": "q558",
-    "prompt": "Translate: 'Questa non può essere la casa giusta.'",
+    "prompt": "Complete the sentence: 'The address says number 12, but this house is number 20. This _____ be the right house.'",
     "options": [
-      "This can't be the right house.",
-      "This mustn't be the right house.",
-      "This shouldn't be the right house.",
-      "This wouldn't be the right house."
+      "must",
+      "needn't",
+      "ought",
+      "can't"
     ],
-    "correctIndex": 0,
-    "explanation": "Can't for negative deduction.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Quando un indizio contraddice un'ipotesi, la deduzione negativa si fa con 'can't' + verbo base: il numero è sbagliato, quindi non può essere questa. 'must' direbbe l'opposto, 'needn't' indica mancanza di necessità e 'ought' richiede 'to'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Deduction",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q559",
@@ -1123,37 +1123,37 @@
   },
   {
     "id": "q567",
-    "prompt": "Translate: 'Non riesco a fare a meno di ridere quando sento quella barzelletta.'",
+    "prompt": "Complete the sentence: 'I can't help _____ when I hear that joke.'",
     "options": [
-      "I can't help laughing when I hear that joke.",
-      "I can't help to laugh when I hear that joke.",
-      "I can't stop to laugh when I hear that joke.",
-      "I can't avoid to laugh when I hear that joke."
+      "laughing",
+      "to laugh",
+      "laugh",
+      "to laughing"
     ],
     "correctIndex": 0,
-    "explanation": "'Can't help + -ing' is a fixed idiom meaning unable to prevent yourself from doing something.",
-    "category": "Traduzione",
+    "explanation": "'Can't help' è un'espressione fissa seguita dal gerundio: 'can't help laughing' significa 'non riesco a trattenermi dal ridere'. 'laugh' e 'to laugh' non seguono la regola, e 'to laughing' mette 'to' davanti al gerundio.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q568",
-    "prompt": "Translate: 'È inutile piangere sul latte versato.'",
+    "prompt": "Complete the sentence: 'It's no use _____ over spilled milk.'",
     "options": [
-      "It's no use crying over spilled milk.",
-      "It's no use cry over spilled milk.",
-      "It's not useful crying on spilled milk.",
-      "It has no use to cry on spilled milk."
+      "cry",
+      "cried",
+      "crying",
+      "cries"
     ],
-    "correctIndex": 0,
-    "explanation": "'It's no use + -ing' is an idiomatic structure followed by the gerund.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "'It's no use' vuole il gerundio: 'it's no use crying'. 'cry' e 'cries' sono forme del presente e 'cried' è il passato: nessuna si usa dopo questa espressione.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Gerunds vs Infinitives",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q569",
@@ -1259,20 +1259,20 @@
   },
   {
     "id": "q575",
-    "prompt": "Translate: 'Non ho molti compiti per domani.'",
+    "prompt": "Complete the sentence: 'I don't have _____ homework for tomorrow.'",
     "options": [
-      "I don't have much homework for tomorrow.",
-      "I don't have many homeworks for tomorrow.",
-      "I don't have many homework for tomorrow.",
-      "I haven't much homeworks for tomorrow."
+      "many",
+      "much",
+      "a few",
+      "few"
     ],
-    "correctIndex": 0,
-    "explanation": "'Homework' is uncountable in English, so we use 'much homework' and never 'homeworks'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Homework' è non numerabile, quindi nelle frasi negative vuole 'much' e non 'many'. 'a few' e 'few' si usano con i nomi numerabili plurali, e 'homework' non ha il plurale.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Quantifiers",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q576",
@@ -1463,20 +1463,20 @@
   },
   {
     "id": "q587",
-    "prompt": "Translate: 'Te lo dirò non appena lo saprò.'",
+    "prompt": "Complete the sentence: 'I will tell you as soon as I _____ the answer.'",
     "options": [
-      "I will tell you as soon as I know.",
-      "I will tell you as soon as I will know.",
-      "I tell you as soon as I will know.",
-      "I will tell to you as soon as I know."
+      "will know",
+      "would know",
+      "am knowing",
+      "know"
     ],
-    "correctIndex": 0,
-    "explanation": "Time clause rule: 'as soon as I know' (Present Simple, never 'will know').",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Dopo 'as soon as', anche quando si parla del futuro, si usa il present simple: 'as soon as I know'. 'will know' e 'would know' mettono il futuro nella proposizione temporale, e 'am knowing' non si usa perché 'know' è un verbo di stato.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Simple",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q588",
@@ -1633,20 +1633,20 @@
   },
   {
     "id": "q597",
-    "prompt": "Translate: 'Mio fratello maggiore vive a Londra.'",
+    "prompt": "Complete the sentence: 'My brother, who lives in London, is _____ than me.'",
     "options": [
-      "My elder brother lives in London.",
-      "My elder brother living in London.",
-      "My more old brother lives in London.",
-      "My eldest brother live in London."
+      "older",
+      "more old",
+      "oldest",
+      "the oldest"
     ],
     "correctIndex": 0,
-    "explanation": "'Elder' (like the more common 'older') describes the older of two family members and is used only before a noun ('my elder brother'). With 'brother' the verb needs the third person -s ('lives').",
-    "category": "Traduzione",
+    "explanation": "Il comparativo di 'old' è 'older' (aggettivo breve, con -er), seguito da 'than'. 'more old' non esiste, mentre 'oldest' e 'the oldest' sono superlativi e non si usano per confrontare due persone con 'than'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q598",

@@ -14,26 +14,24 @@
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": false,
-    "extraOption": "Who",
     "stato": "originale"
   },
   {
     "id": "q202",
-    "prompt": "Translate 'Come vai al lavoro?'",
+    "prompt": "Complete the sentence: '_____ do you go to work?'",
     "options": [
-      "How do you go to work?",
-      "What do you go to work?",
-      "Where do you go to work?",
-      "Why do you go to work?"
+      "How",
+      "Who",
+      "What",
+      "Which"
     ],
     "correctIndex": 0,
-    "explanation": "Asking for method/manner requires 'How'.",
-    "category": "Traduzione",
+    "explanation": "'How' chiede il modo o il mezzo: 'How do you go to work?'. 'Who' chiede una persona, 'what' una cosa e 'which' una scelta tra più elementi, e nessuno di questi forma una frase corretta con 'go to work'.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": false,
-    "extraOption": "Who do you go to work?",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q203",
@@ -50,26 +48,24 @@
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": false,
-    "extraOption": "When",
     "stato": "originale"
   },
   {
     "id": "q204",
-    "prompt": "Translate 'Di chi è questa borsa?'",
+    "prompt": "Complete the sentence: '_____ bag is this?'",
     "options": [
-      "Whose bag is this?",
-      "Who bag is this?",
-      "Which bag is this?",
-      "What bag is this?"
+      "Who",
+      "Whom",
+      "Who's",
+      "Whose"
     ],
-    "correctIndex": 0,
-    "explanation": "Asking for possession requires 'Whose'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'Whose' chiede di chi è una cosa: 'Whose bag is this?'. 'Who' e 'whom' chiedono una persona, non il possesso, e 'who's' è la contrazione di 'who is', non un possessivo.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": false,
-    "extraOption": "Whom bag is this?",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q205",
@@ -90,21 +86,20 @@
   },
   {
     "id": "q206",
-    "prompt": "Translate 'Quanto costa questo libro?'",
+    "prompt": "Complete the sentence: '_____ does this book cost?'",
     "options": [
-      "How much does this book cost?",
-      "How many does this book cost?",
-      "How price is this book?",
-      "What cost this book?"
+      "How many",
+      "How much",
+      "How price",
+      "How long"
     ],
-    "correctIndex": 0,
-    "explanation": "Asking for price uses 'How much'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'How much' chiede il prezzo: 'How much does this book cost?'. 'How many' chiede una quantità di cose numerabili, 'how long' una durata e 'how price' non esiste in inglese.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": false,
-    "extraOption": "How much costs this book?",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q207",
@@ -121,7 +116,6 @@
     "level": "A1",
     "grammarTopic": "Questions and Origins",
     "core": false,
-    "extraOption": "How far",
     "stato": "originale"
   },
   {
@@ -139,26 +133,24 @@
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "extraOption": "There has",
     "stato": "originale"
   },
   {
     "id": "q209",
-    "prompt": "Translate 'Ci sono tre sedie nella stanza.'",
+    "prompt": "Complete the sentence: 'There _____ three chairs in the room.'",
     "options": [
-      "There are three chairs in the room.",
-      "They are three chairs in the room.",
-      "There is three chairs in the room.",
-      "Have three chairs in the room."
+      "have",
+      "has",
+      "are",
+      "do"
     ],
-    "correctIndex": 0,
-    "explanation": "Plural noun 'chairs' requires 'There are'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Con un soggetto plurale ('three chairs') per dire che qualcosa esiste si usa 'There are'. 'Have' e 'has' non esprimono esistenza in questo modo e 'do' non può stare da solo prima di 'three chairs'.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "extraOption": "There have three chairs in the room.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q210",
@@ -175,26 +167,24 @@
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": true,
-    "extraOption": "Has there",
     "stato": "originale"
   },
   {
     "id": "q211",
-    "prompt": "Translate 'C'è un buon ristorante qui vicino?'",
+    "prompt": "Complete the sentence: '_____ there a good restaurant near here?'",
     "options": [
-      "Is there a good restaurant near here?",
-      "Are there a good restaurant near here?",
-      "There is a good restaurant near here?",
-      "Does there a good restaurant near here?"
+      "Is",
+      "Are",
+      "Does",
+      "Has"
     ],
     "correctIndex": 0,
-    "explanation": "Question form for singular noun.",
-    "category": "Traduzione",
+    "explanation": "Nelle domande sull'esistenza con un nome singolare si inverte 'there is' in 'Is there a...?'. 'Are there' vuole il plurale, mentre 'does there' e 'has there' non si usano in questa struttura.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "extraOption": "Has there a good restaurant near here?",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q212",
@@ -215,21 +205,20 @@
   },
   {
     "id": "q213",
-    "prompt": "Translate 'Non c'era nessuno in casa.'",
+    "prompt": "Complete the sentence: 'When I arrived yesterday, there _____ nobody at home.'",
     "options": [
-      "There was nobody at home.",
-      "There wasn't nobody at home.",
-      "There were nobody at home.",
-      "It was nobody at home."
+      "were",
+      "is",
+      "wasn't",
+      "was"
     ],
-    "correctIndex": 0,
-    "explanation": "Past singular existence with negative pronoun.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'Yesterday' indica il passato e 'nobody' è singolare, quindi 'there was'. 'Were' è plurale, 'is' è presente e 'wasn't' darebbe una doppia negazione insieme a 'nobody'.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "There is / There are",
     "core": true,
-    "extraOption": "There is nobody at home.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q214",
@@ -250,20 +239,20 @@
   },
   {
     "id": "q215",
-    "prompt": "Translate 'Ci sono dei biscotti nella scatola?'",
+    "prompt": "Complete the sentence: '_____ any biscuits in the box?'",
     "options": [
-      "Are there any biscuits in the box?",
-      "Is there a biscuits in the box?",
-      "Are there much biscuits in the box?",
-      "Do there any biscuits in the box?"
+      "Does there",
+      "Are there",
+      "Do there",
+      "Have there"
     ],
-    "correctIndex": 0,
-    "explanation": "Nelle domande sull'esistenza con un plurale si usa 'Are there' + 'any': 'Are there any biscuits in the box?'. 'Is there a' non va con un plurale, 'much' si usa solo con i nomi non numerabili e 'Do there' non esiste.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Con un plurale ('biscuits') la domanda sull'esistenza è 'Are there any...?'. 'Does there', 'do there' e 'have there' non servono a chiedere se qualcosa esiste: serve il verbo 'to be' invertito.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q216",
@@ -297,7 +286,6 @@
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": true,
-    "extraOption": "yourself",
     "stato": "originale"
   },
   {
@@ -332,7 +320,6 @@
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "extraOption": "ourselves",
     "stato": "originale"
   },
   {
@@ -384,7 +371,6 @@
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": true,
-    "extraOption": "itself",
     "stato": "originale"
   },
   {
@@ -419,7 +405,6 @@
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "extraOption": "myself",
     "stato": "originale"
   },
   {
@@ -437,165 +422,160 @@
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "extraOption": "mines",
     "stato": "originale"
   },
   {
     "id": "q226",
-    "prompt": "Translate 'Questo libro è mio.'",
+    "prompt": "Complete the sentence: 'This book is _____.'",
     "options": [
-      "This book is mine.",
-      "This book is my.",
-      "This book is me.",
-      "This book is I."
+      "my",
+      "me",
+      "mine",
+      "I"
     ],
-    "correctIndex": 0,
-    "explanation": "'Mio' at the end of the sentence is the pronoun 'mine'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Alla fine della frase, senza nome dopo, serve il pronome possessivo 'mine'. 'My' è un aggettivo e vuole un nome, mentre 'me' e 'I' sono pronomi personali e non indicano possesso.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "extraOption": "This book is mines.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q227",
-    "prompt": "Translate 'La loro casa è molto grande.'",
+    "prompt": "Complete the sentence: '_____ house is very big.'",
     "options": [
-      "Their house is very big.",
-      "Theirs house is very big.",
-      "They house is very big.",
-      "Them house is very big."
+      "Their",
+      "Theirs",
+      "They",
+      "There"
     ],
     "correctIndex": 0,
-    "explanation": "'Loro' as an adjective before a noun is 'their'.",
-    "category": "Traduzione",
+    "explanation": "Prima di un nome si usa l'aggettivo possessivo 'their'. 'Theirs' è il pronome e non vuole un nome dopo; 'they' è un pronome soggetto e 'there' significa «là» (si pronuncia allo stesso modo ma ha un altro significato).",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": true,
-    "extraOption": "There house is very big.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q228",
-    "prompt": "Translate 'Quella è la tua giacca, non la sua (di lei).'",
+    "prompt": "Complete the sentence: 'That blue jacket belongs to Anna, so it is _____.'",
     "options": [
-      "That is your jacket, not hers.",
-      "That is your jacket, not her.",
-      "That is yours jacket, not hers.",
-      "That is your jacket, not she."
+      "her",
+      "her's",
+      "herself",
+      "hers"
     ],
-    "correctIndex": 0,
-    "explanation": "'La sua' without the noun is the pronoun 'hers'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Quando il nome ('jacket') è già stato detto, serve il pronome possessivo 'hers'. 'Her' è un aggettivo e vuole un nome, 'her's' è scritto in modo scorretto e 'herself' è riflessivo.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "extraOption": "That is your jacket, not her's.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q229",
-    "prompt": "Translate 'I nostri amici stanno arrivando.'",
+    "prompt": "Complete the sentence: '_____ friends are coming.'",
     "options": [
-      "Our friends are coming.",
-      "Ours friends are coming.",
-      "We friends are coming.",
-      "Us friends are coming."
+      "Ours",
+      "Our",
+      "We",
+      "Us"
     ],
-    "correctIndex": 0,
-    "explanation": "'Nostri' before the noun is 'our'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Davanti a un nome si usa l'aggettivo possessivo 'our'. 'Ours' è il pronome e non regge un nome, mentre 'we' e 'us' sono pronomi personali e non indicano possesso.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q230",
-    "prompt": "Translate 'Questi soldi sono vostri?'",
+    "prompt": "Complete the sentence: 'Is this money _____?'",
     "options": [
-      "Is this money yours?",
-      "Is this money your?",
-      "Are these money yours?",
-      "Is this money you?"
+      "your",
+      "you",
+      "yours",
+      "you're"
     ],
-    "correctIndex": 0,
-    "explanation": "Money is uncountable singular, 'vostri' as a pronoun is 'yours'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Alla fine della domanda, senza nome dopo, serve il pronome possessivo 'yours'. 'Your' è un aggettivo e vuole un nome, 'you' non indica possesso e 'you're' significa 'you are'.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q231",
-    "prompt": "Translate 'Il suo (di lui) telefono è nuovo.'",
+    "prompt": "Complete the sentence: 'Tom is happy because _____ phone is new.'",
     "options": [
-      "His phone is new.",
-      "Him phone is new.",
-      "He phone is new.",
-      "His' phone is new."
+      "his",
+      "him",
+      "he",
+      "he's"
     ],
     "correctIndex": 0,
-    "explanation": "'Suo' for a male is 'his'.",
-    "category": "Traduzione",
+    "explanation": "Davanti a un nome, per un uomo, si usa l'aggettivo possessivo 'his'. 'Him' e 'he' sono pronomi personali, mentre 'he's' è la contrazione di 'he is' e non indica possesso.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "extraOption": "He's phone is new.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q232",
-    "prompt": "Translate 'La mia macchina è rossa, la sua (di lui) è blu.'",
+    "prompt": "Complete the sentence: 'My brother and I have cars: mine is red and _____ is blue.'",
     "options": [
-      "My car is red, his is blue.",
-      "My car is red, him is blue.",
-      "Mine car is red, his is blue.",
-      "My car is red, he is blue."
+      "hers",
+      "his",
+      "him",
+      "himself"
     ],
-    "correctIndex": 0,
-    "explanation": "'La sua' as a pronoun for a male is 'his'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Quando il nome ('car') è già chiaro, il possessivo maschile da solo è 'his'. 'Hers' si riferisce a una donna, 'him' è un pronome complemento e 'himself' è riflessivo.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q233",
-    "prompt": "Translate 'Ho dimenticato il mio ombrello.'",
+    "prompt": "Complete the sentence: 'I forgot _____ umbrella at home.'",
     "options": [
-      "I forgot my umbrella.",
-      "I forgot mine umbrella.",
-      "I forgot me umbrella.",
-      "I forgot I umbrella."
+      "mine",
+      "me",
+      "I",
+      "my"
     ],
-    "correctIndex": 0,
-    "explanation": "'Il mio' before the noun is 'my'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Prima di un nome si usa l'aggettivo possessivo 'my'. 'Mine' è il pronome e non regge un nome, mentre 'me' e 'I' sono pronomi personali e non indicano possesso.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q234",
-    "prompt": "Translate 'Quelle penne sono loro (di loro).'",
+    "prompt": "Complete the sentence: 'Those pens belong to my neighbours, so they are _____.'",
     "options": [
-      "Those pens are theirs.",
-      "Those pens are their.",
-      "Those pens are them.",
-      "Those pens are they."
+      "their",
+      "them",
+      "theirs",
+      "they"
     ],
-    "correctIndex": 0,
-    "explanation": "'Loro' as a pronoun is 'theirs'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Senza nome dopo il verbo, serve il pronome possessivo 'theirs'. 'Their' è un aggettivo e vuole un nome; 'them' e 'they' sono pronomi personali e non indicano possesso.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q235",
@@ -629,7 +609,6 @@
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "extraOption": "myself",
     "stato": "originale"
   },
   {
@@ -647,7 +626,6 @@
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": true,
-    "extraOption": "ourselves",
     "stato": "originale"
   },
   {
@@ -733,7 +711,6 @@
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": true,
-    "extraOption": "myself",
     "stato": "originale"
   },
   {
@@ -755,161 +732,156 @@
   },
   {
     "id": "q244",
-    "prompt": "Translate 'Non lo capisco.' (di lui)",
+    "prompt": "Complete the sentence: 'Tom speaks too fast and I do not understand _____.'",
     "options": [
-      "I don't understand him.",
-      "I don't understand he.",
-      "I don't understand his.",
-      "I don't understand it."
+      "him",
+      "he",
+      "his",
+      "himself"
     ],
     "correctIndex": 0,
-    "explanation": "'Lo' referring to a man translates to 'him'.",
-    "category": "Traduzione",
+    "explanation": "Dopo il verbo serve il pronome complemento: per un uomo è 'him'. 'He' è un pronome soggetto, 'his' è un possessivo e 'himself' è riflessivo, quindi vorrebbe che il soggetto fosse lui.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "extraOption": "I don't understand himself.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q245",
-    "prompt": "Translate 'Puoi vederci?'",
+    "prompt": "Complete the sentence: 'We are waving at you: can you see _____?'",
     "options": [
-      "Can you see us?",
-      "Can you see we?",
-      "Can you see our?",
-      "Can you see me?"
+      "we",
+      "us",
+      "our",
+      "ourselves"
     ],
-    "correctIndex": 0,
-    "explanation": "'Ci' translates to the object pronoun 'us'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Dopo il verbo si usa il pronome complemento 'us'. 'We' è un pronome soggetto, 'our' è un aggettivo possessivo e 'ourselves' è riflessivo, quindi richiederebbe che chi vede e chi è visto siano gli stessi.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "extraOption": "Can you see ourselves?",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q246",
-    "prompt": "Translate 'Le ho comprato un regalo.' (a lei)",
+    "prompt": "Complete the sentence: 'My sister has a birthday today, so I bought _____ a present.'",
     "options": [
-      "I bought her a present.",
-      "I bought she a present.",
-      "I bought hers a present.",
-      "I bought for her a present."
+      "she",
+      "hers",
+      "herself",
+      "her"
     ],
-    "correctIndex": 0,
-    "explanation": "'Le' (to her) is translated with the object pronoun 'her'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Dopo il verbo 'bought' serve il pronome complemento 'her'. 'She' è un pronome soggetto, 'hers' è un pronome possessivo e 'herself' si userebbe solo se fosse lei stessa a comprarsi il regalo.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q247",
-    "prompt": "Translate 'Li aspetto qui.'",
+    "prompt": "Complete the sentence: 'My parents are late, so I will wait for _____ here.'",
     "options": [
-      "I'll wait for them here.",
-      "I'll wait for they here.",
-      "I'll wait them here.",
-      "I'm waiting they here."
+      "they",
+      "their",
+      "them",
+      "themselves"
     ],
-    "correctIndex": 0,
-    "explanation": "'Li' is the object pronoun 'them', and 'wait' needs 'for' before its object: 'I'll wait for them here'. 'They' is a subject pronoun.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Dopo la preposizione 'for' serve il pronome complemento 'them'. 'They' è un pronome soggetto, 'their' è un aggettivo che vuole un nome e 'themselves' è riflessivo.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q248",
-    "prompt": "Translate 'Dammi quel libro.'",
+    "prompt": "Complete the sentence: 'Please give _____ that book.'",
     "options": [
-      "Give me that book.",
-      "Give I that book.",
-      "Give my that book.",
-      "Give to me that book."
+      "me",
+      "I",
+      "my",
+      "myself"
     ],
     "correctIndex": 0,
-    "explanation": "'Dammi' uses the object pronoun 'me'.",
-    "category": "Traduzione",
+    "explanation": "Dopo 'give' si usa il pronome complemento 'me'. 'I' è un pronome soggetto, 'my' vuole un nome dopo e 'myself' è riflessivo e non si usa quando a dare il libro è un'altra persona.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "extraOption": "Give myself that book.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q249",
-    "prompt": "Translate 'Non ti credo.'",
+    "prompt": "Complete the sentence: 'You always tell lies, so I do not believe _____.'",
     "options": [
-      "I don't believe you.",
-      "I don't believe your.",
-      "I don't believe to you.",
-      "I not believe you."
+      "your",
+      "you",
+      "yours",
+      "to you"
     ],
-    "correctIndex": 0,
-    "explanation": "'Ti' is the object pronoun 'you'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Believe' è seguito direttamente dal pronome complemento 'you', senza 'to'. 'Your' e 'yours' sono possessivi e non possono fare da complemento oggetto in questa frase.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "extraOption": "I don't believe yourself.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q250",
-    "prompt": "Translate 'Lo voglio adesso.' (un oggetto)",
+    "prompt": "Complete the sentence: 'This pen is very nice and I want _____ now.'",
     "options": [
-      "I want it now.",
-      "I want him now.",
-      "I want them now.",
-      "I want he now."
+      "its",
+      "they",
+      "he",
+      "it"
     ],
-    "correctIndex": 0,
-    "explanation": "Il suggerimento dice che 'lo' indica un oggetto singolare, e il pronome complemento per le cose è 'it'. 'Him' si usa solo per un uomo, 'them' è plurale e 'he' è un pronome soggetto, che dopo il verbo non si può usare.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Per una cosa singolare come 'pen' il pronome complemento è 'it'. 'Its' è un aggettivo possessivo e vuole un nome, mentre 'they' e 'he' sono pronomi soggetto e non si usano dopo il verbo.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q251",
-    "prompt": "Translate 'Vieni con noi al cinema?'",
+    "prompt": "Complete the sentence: 'Are you coming with _____ to the cinema?'",
     "options": [
-      "Are you coming with us to the cinema?",
-      "Are you coming with we to the cinema?",
-      "Are you coming with our to the cinema?",
-      "Are you coming to us to the cinema?"
+      "we",
+      "our",
+      "us",
+      "ours"
     ],
-    "correctIndex": 0,
-    "explanation": "'Con noi' richiede il pronome complemento 'us' dopo la preposizione 'with'. 'With we' è sbagliato perché 'we' è soggetto, 'with our' è un aggettivo possessivo che vuole un nome, e 'coming to us' cambia il senso (\"vieni da noi\").",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Dopo la preposizione 'with' si usa il pronome complemento 'us'. 'We' è un pronome soggetto, 'our' vuole un nome dopo e 'ours' è il possessivo senza nome, quindi nessuno dei due ha senso qui.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": true,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q252",
-    "prompt": "Translate 'Non li conosco.'",
+    "prompt": "Complete the sentence: 'These boys are new in the class and I do not know _____.'",
     "options": [
-      "I don't know them.",
-      "I don't know they.",
-      "I don't know their.",
-      "I not know them."
+      "them",
+      "they",
+      "their",
+      "they're"
     ],
     "correctIndex": 0,
-    "explanation": "'Li' is the object pronoun 'them'.",
-    "category": "Traduzione",
+    "explanation": "Dopo il verbo 'know' serve il pronome complemento 'them'. 'They' è un pronome soggetto, 'their' è un aggettivo che vuole un nome e 'they're' è la contrazione di 'they are'.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Object Pronouns",
     "core": false,
-    "extraOption": "I don't know they're.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q253",
@@ -926,7 +898,6 @@
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "extraOption": "Them",
     "stato": "originale"
   },
   {
@@ -978,7 +949,6 @@
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": true,
-    "extraOption": "There",
     "stato": "originale"
   },
   {
@@ -1064,168 +1034,160 @@
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "extraOption": "them",
     "stato": "originale"
   },
   {
     "id": "q262",
-    "prompt": "Translate 'Questo è il mio gatto.'",
+    "prompt": "Complete the sentence: '_____ cat in my arms is called Leo.'",
     "options": [
-      "This is my cat.",
-      "That is my cat.",
-      "These is my cat.",
-      "Those is my cat."
+      "These",
+      "Those",
+      "Them",
+      "This"
     ],
-    "correctIndex": 0,
-    "explanation": "'Questo' for one thing near the speaker is 'This'; 'that' is for something far away, and 'these/those' are plural.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'Cat' è singolare e vicino a chi parla, quindi si usa 'this'. 'These' e 'those' sono plurali, mentre 'them' è un pronome complemento e non si mette davanti a un nome.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q263",
-    "prompt": "Translate 'Quelli sono i miei libri.'",
+    "prompt": "Complete the sentence: '_____ books on the shelf over there are mine.'",
     "options": [
-      "Those are my books.",
-      "That are my books.",
-      "These are my books.",
-      "This are my books."
+      "That",
+      "Those",
+      "This",
+      "It"
     ],
-    "correctIndex": 0,
-    "explanation": "'Quelli' (far plural) is 'Those'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Books' è plurale e 'over there' indica che sono lontani, quindi 'those'. 'That' e 'this' sono singolari e 'it' non si usa davanti a un nome.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "extraOption": "Them are my books.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q264",
-    "prompt": "Translate 'Questa pizza è buonissima.'",
+    "prompt": "Complete the sentence: 'Try a slice of the pizza in my hand: _____ pizza is very good.'",
     "options": [
-      "This pizza is very good.",
-      "That pizza is very good.",
-      "These pizza is very good.",
-      "It pizza is very good."
+      "These",
+      "Those",
+      "This",
+      "It"
     ],
-    "correctIndex": 0,
-    "explanation": "'Questa' (singular, near the speaker) is 'This': 'This pizza'; 'that' is for something far away and 'these' is plural.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "'Pizza' è singolare e vicina a chi parla, quindi si usa 'this'. 'These' e 'those' sono plurali e 'it' non si mette davanti a un nome.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q265",
-    "prompt": "Translate 'Queste ragazze sono italiane.'",
+    "prompt": "Complete the sentence: 'Look at the girls next to me: _____ girls are Italian.'",
     "options": [
-      "These girls are Italian.",
-      "This girls are Italian.",
-      "Those girls are Italian.",
-      "That girls are Italian."
+      "These",
+      "This",
+      "That",
+      "Them"
     ],
     "correctIndex": 0,
-    "explanation": "'Queste' (near plural) is 'These'.",
-    "category": "Traduzione",
+    "explanation": "'Girls' è plurale e vicino a chi parla, quindi si usa 'these'. 'This' e 'that' sono singolari, mentre 'them' è un pronome complemento e non si mette davanti a un nome.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "extraOption": "These girl are Italian.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q266",
-    "prompt": "Translate 'Quell'uomo è mio padre.'",
+    "prompt": "Complete the sentence: 'Look at _____ man over there: he is my father.'",
     "options": [
-      "That man is my father.",
-      "This man is my father.",
-      "Those man is my father.",
-      "The man is my father."
+      "those",
+      "that",
+      "these",
+      "them"
     ],
-    "correctIndex": 0,
-    "explanation": "'Quell'' (far singular) is 'That'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Per una persona singolare lontana si usa 'that' (plurale 'those'). 'Those' e 'these' sono plurali e non vanno con 'man'; 'them' è un pronome complemento e non si mette davanti a un nome.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "extraOption": "That men is my father.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q267",
-    "prompt": "Translate 'Cosa sono quelle cose?'",
+    "prompt": "Complete the sentence: 'What are _____ things in the box over there?'",
     "options": [
-      "What are those things?",
-      "What are these things?",
-      "What is that things?",
-      "What are that things?"
+      "that",
+      "this",
+      "it",
+      "those"
     ],
-    "correctIndex": 0,
-    "explanation": "'Quelle' (far plural) is 'those'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Per cose lontane al plurale si usa 'those'. 'That' e 'this' sono singolari e non si accordano con 'things'; 'it' non è un dimostrativo e non si mette davanti a un nome.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "extraOption": "What is those things?",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q268",
-    "prompt": "Translate 'Preferisco questo vestito.'",
+    "prompt": "Complete the sentence: 'I prefer _____ dress that I am holding now.'",
     "options": [
-      "I prefer this dress.",
-      "I prefer that dress.",
-      "I prefer these dress.",
-      "I prefer those dress."
+      "this",
+      "these",
+      "those",
+      "them"
     ],
     "correctIndex": 0,
-    "explanation": "'Questo' (singular, near the speaker) is 'this': 'this dress'; 'these' and 'those' are plural, and 'that' refers to something far away.",
-    "category": "Traduzione",
+    "explanation": "'This' si usa per una cosa singolare vicina a chi parla. 'These' e 'those' sono plurali e non vanno con 'dress'; 'them' è un pronome complemento, non un dimostrativo.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "extraOption": "I prefer them dress.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q269",
-    "prompt": "Translate 'Conosci quelle persone?'",
+    "prompt": "Complete the sentence: 'Do you know _____ people over there?'",
     "options": [
-      "Do you know those people?",
-      "Do you know these people?",
-      "Do you know that people?",
-      "Do you know this people?"
+      "that",
+      "this",
+      "those",
+      "them"
     ],
-    "correctIndex": 0,
-    "explanation": "'Quelle' (far plural) is 'those'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "'People' è plurale e le persone sono lontane, quindi 'those'. 'That' e 'this' sono singolari; 'them' è un pronome e non può stare davanti a un nome.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": false,
-    "extraOption": "Do you know them people?",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q270",
-    "prompt": "Translate 'Questi sono i miei appunti.'",
+    "prompt": "Complete the sentence: 'Look at the papers in my hands: _____ are my notes.'",
     "options": [
-      "These are my notes.",
-      "This are my notes.",
-      "Those are my notes.",
-      "That are my notes."
+      "this",
+      "these",
+      "that",
+      "it"
     ],
-    "correctIndex": 0,
-    "explanation": "'Questi' (near plural) is 'These'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Per cose plurali vicine si usa 'these', che vuole 'are'. 'This' e 'that' sono singolari e con 'are' non si accordano; 'it are' è sbagliato perché 'it' vuole 'is'.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Demonstratives",
     "core": true,
-    "extraOption": "Them are my notes.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q271",
@@ -1276,7 +1238,6 @@
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "extraOption": "into",
     "stato": "originale"
   },
   {
@@ -1383,163 +1344,156 @@
   },
   {
     "id": "q280",
-    "prompt": "Translate 'Il cane è sotto il tavolo.'",
+    "prompt": "Complete the sentence: 'The dog is lying on the floor, _____ the table.'",
     "options": [
-      "The dog is under the table.",
-      "The dog is on the table.",
-      "The dog is at the table.",
-      "The dog is in the table."
+      "on",
+      "in",
+      "above",
+      "under"
     ],
-    "correctIndex": 0,
-    "explanation": "'Sotto' translates to 'under'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'Under' indica che una cosa sta sotto un'altra. 'On' vuol dire sopra una superficie, 'above' indica una posizione più in alto e 'in' una posizione dentro: nessuna descrive un cane a terra sotto il tavolo.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": true,
-    "extraOption": "The dog is over the table.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q281",
-    "prompt": "Translate 'Sono al cinema.'",
+    "prompt": "Complete the sentence: 'I am _____ the cinema now; the film starts in ten minutes.'",
     "options": [
-      "I am at the cinema.",
-      "I am into the cinema.",
-      "I am on the cinema.",
-      "I am to the cinema."
+      "at",
+      "into",
+      "on",
+      "to"
     ],
     "correctIndex": 0,
-    "explanation": "'At' is used for a place where an activity happens (at the cinema, at school); 'into' shows movement, 'on' is for surfaces and 'to' for direction.",
-    "category": "Traduzione",
+    "explanation": "'At' si usa per un luogo dove si svolge un'attività ('at the cinema', 'at school'). 'Into' indica movimento verso l'interno, 'on' una superficie e 'to' una direzione, non una posizione.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "extraOption": "I am over the cinema.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q282",
-    "prompt": "Translate 'C'è un ragno sul soffitto.'",
+    "prompt": "Complete the sentence: 'There is a big spider _____ the ceiling of my room.'",
     "options": [
-      "There is a spider on the ceiling.",
-      "There is a spider at the ceiling.",
-      "There is a spider in the ceiling.",
-      "There is a spider under the ceiling."
+      "to",
+      "into",
+      "on",
+      "of"
     ],
-    "correctIndex": 0,
-    "explanation": "'Sul' for a surface like a ceiling is 'on'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Per una cosa appoggiata a una superficie, come il soffitto, si usa 'on'. 'To' e 'into' indicano movimento, non posizione; 'of' esprime appartenenza e qui non ha senso.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q283",
-    "prompt": "Translate 'L'ufficio è vicino alla banca.'",
+    "prompt": "Complete the sentence: 'The office is _____ the bank, so it takes one minute to walk there.'",
     "options": [
-      "The office is near the bank.",
-      "The office is in the bank.",
-      "The office is between the bank.",
-      "The office is at the bank."
+      "between",
+      "near",
+      "into",
+      "among"
     ],
-    "correctIndex": 0,
-    "explanation": "'Vicino a' is 'near' ('next to' means 'accanto a'); 'between' needs two places, and 'in'/'at' mean the office is inside or at the bank.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Near' vuol dire vicino. 'Between' richiede due punti di riferimento, 'among' un gruppo di cose, e 'into' indica un movimento verso l'interno: nessuna va bene con un solo edificio e un luogo fermo.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "extraOption": "The office is over the bank.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q284",
-    "prompt": "Translate 'Il bambino è tra i suoi genitori.'",
+    "prompt": "Complete the sentence: 'The child is standing _____ his mother and his father.'",
     "options": [
-      "The child is between his parents.",
-      "The child is among his parents.",
-      "The child is next to his parents.",
-      "The child is in his parents."
+      "between",
+      "on",
+      "at",
+      "into"
     ],
     "correctIndex": 0,
-    "explanation": "'Tra' two people is 'between'; 'among' is used for more than two people or things.",
-    "category": "Traduzione",
+    "explanation": "'Between' si usa quando una persona sta in mezzo a due altre. 'On' e 'at' non indicano la posizione in mezzo, e 'into' indica un movimento verso l'interno.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q285",
-    "prompt": "Translate 'Nasconditi dietro la porta.'",
+    "prompt": "Complete the sentence: 'Hide _____ the door, so nobody can see you.'",
     "options": [
-      "Hide behind the door.",
-      "Hide under the door.",
-      "Hide next to the door.",
-      "Hide in the door."
+      "under",
+      "in",
+      "at",
+      "behind"
     ],
-    "correctIndex": 0,
-    "explanation": "'Dietro' is 'behind'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'Behind' vuol dire dietro, nascosto alla vista. 'Under' e 'in' non sono posizioni possibili per una persona rispetto a una porta, e 'at the door' vuol dire proprio davanti alla porta, dove ti vedono.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "extraOption": "Hide in front of the door.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q286",
-    "prompt": "Translate 'Metti i vestiti nell'armadio.'",
+    "prompt": "Complete the sentence: 'Please put your clothes _____ the wardrobe and close the doors.'",
     "options": [
-      "Put the clothes in the wardrobe.",
-      "Put the clothes on the wardrobe.",
-      "Put the clothes at the wardrobe.",
-      "Put the clothes to the wardrobe."
+      "on",
+      "at",
+      "in",
+      "to"
     ],
-    "correctIndex": 0,
-    "explanation": "'Nel' meaning inside an enclosed space is 'in'; 'on' is for surfaces, 'at' for a point and 'to' for direction, not position.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Per qualcosa dentro uno spazio chiuso, come un armadio, si usa 'in'. 'On' vuol dire sopra, 'at' indica un punto e 'to' una direzione, non una posizione.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "extraOption": "Put the clothes by the wardrobe.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q287",
-    "prompt": "Translate 'Ho incontrato Marco alla stazione.'",
+    "prompt": "Complete the sentence: 'I met Marco _____ the station at six o'clock.'",
     "options": [
-      "I met Marco at the station.",
-      "I met Marco into the station.",
-      "I met Marco on the station.",
-      "I met Marco to the station."
+      "into",
+      "at",
+      "on",
+      "to"
     ],
-    "correctIndex": 0,
-    "explanation": "'Alla' for a specific point or place is 'at' ('at the station'); 'into' shows movement inside, and 'on'/'to' are not used here.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Per un punto preciso, come una stazione, si usa 'at'. 'Into' indica movimento verso l'interno, 'on' una superficie e 'to' una direzione, non il luogo di un incontro.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "extraOption": "I met Marco over the station.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q288",
-    "prompt": "Translate 'C'è un giardino dietro la casa.'",
+    "prompt": "Complete the sentence: 'There is a garden _____ the house, so you can't see it from the street.'",
     "options": [
-      "There is a garden behind the house.",
-      "There is a garden under the house.",
-      "There is a garden in the house.",
-      "There is a garden next to the house."
+      "behind",
+      "under",
+      "in",
+      "over"
     ],
     "correctIndex": 0,
-    "explanation": "'Dietro' is 'behind'.",
-    "category": "Traduzione",
+    "explanation": "'Behind' vuol dire dietro e spiega perché il giardino non si vede dalla strada. 'Under' e 'over' indicano sotto e sopra, e 'in the house' vorrebbe dire dentro la casa.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Prepositions of Place",
     "core": false,
-    "extraOption": "There is a garden in front of the house.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q289",
@@ -1573,7 +1527,6 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "extraOption": "Aren't",
     "stato": "originale"
   },
   {
@@ -1591,7 +1544,6 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": true,
-    "extraOption": "Ate",
     "stato": "originale"
   },
   {
@@ -1609,7 +1561,6 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "extraOption": "Isn't",
     "stato": "originale"
   },
   {
@@ -1627,7 +1578,6 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "extraOption": "Been",
     "stato": "originale"
   },
   {
@@ -1662,7 +1612,6 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "extraOption": "Make",
     "stato": "originale"
   },
   {
@@ -1680,7 +1629,6 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": true,
-    "extraOption": "Passed",
     "stato": "originale"
   },
   {
@@ -1698,60 +1646,57 @@
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "extraOption": "Aren't",
     "stato": "originale"
   },
   {
     "id": "q298",
-    "prompt": "Translate 'Non toccare il mio telefono.'",
+    "prompt": "Complete the sentence: '_____ touch my phone!'",
     "options": [
-      "Don't touch my phone.",
-      "Not touch my phone.",
-      "No touch my phone.",
-      "Doesn't touch my phone."
+      "Not",
+      "No",
+      "Don't",
+      "Doesn't"
     ],
-    "correctIndex": 0,
-    "explanation": "Negative imperative is formed with 'Don't'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "L'imperativo negativo si forma con 'Don't' + verbo base ('Don't touch'). 'Not' e 'No' non sono ausiliari, e 'Doesn't' si usa solo con 'he', 'she', 'it' nel presente.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "extraOption": "Don't to touch my phone.",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q299",
-    "prompt": "Translate 'Fai attenzione!'",
+    "prompt": "Complete the sentence: 'Please _____ attention to the road!'",
     "options": [
-      "Pay attention!",
-      "Do attention!",
-      "Make attention!",
-      "Attention you!"
+      "pay",
+      "do",
+      "make",
+      "take"
     ],
     "correctIndex": 0,
-    "explanation": "'Fare attenzione' is 'pay attention'.",
-    "category": "Traduzione",
+    "explanation": "L'espressione corretta è 'pay attention'. 'Do', 'make' e 'take' sono verbi comuni, ma non formano questa espressione in inglese.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "extraOption": "Take attention!",
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q300",
-    "prompt": "Translate 'Ascoltami quando parlo.'",
+    "prompt": "Complete the sentence: 'Listen _____ when I speak.'",
     "options": [
-      "Listen to me when I speak.",
-      "Listen me when I speak.",
-      "Hear me when I speak.",
-      "Hear to me when I speak."
+      "me",
+      "at me",
+      "for me",
+      "to me"
     ],
-    "correctIndex": 0,
-    "explanation": "The English verb 'listen' needs 'to' before its object ('listen to me'); 'hear' means 'sentire' and never takes 'to'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Il verbo 'listen' vuole la preposizione 'to' davanti al complemento: 'listen to me'. 'Listen me' manca di 'to', mentre 'at' e 'for' non si usano con questo verbo.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Imperative",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   }
 ]

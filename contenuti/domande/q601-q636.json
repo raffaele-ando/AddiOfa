@@ -1,20 +1,20 @@
 [
   {
     "id": "q601",
-    "prompt": "Translate: 'Ti sei abituato al clima freddo?'",
+    "prompt": "Complete the sentence: 'Have you _____ to the cold weather yet?'",
     "options": [
-      "Have you got used to the cold weather?",
-      "Did you use to the cold weather?",
-      "Have you used to the cold weather?",
-      "Did you get use to cold weather?"
+      "used",
+      "got use",
+      "got used",
+      "get used"
     ],
-    "correctIndex": 0,
-    "explanation": "'Get used to + noun' expresses becoming accustomed to a condition ('Have you got used to...?'); 'use to' without 'get' or 'be' cannot be followed by a noun.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "'Get used to' significa abituarsi a qualcosa, e al present perfect diventa 'have got used to'. 'used' da solo e 'got use' (senza -d) non esprimono questo significato, e 'get used' dopo 'have' richiede il participio 'got'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Used to",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q602",
@@ -86,20 +86,20 @@
   },
   {
     "id": "q606",
-    "prompt": "Translate: 'Londra, che è la capitale del Regno Unito, ha molti musei gratuiti.'",
+    "prompt": "Complete the sentence: 'Milan, _____ I was born, is a big city.'",
     "options": [
-      "London, which is the capital of the UK, has many free museums.",
-      "London, that is the capital of the UK, has many free museums.",
-      "London, where is the capital of the UK, has many free museums.",
-      "London, what is the capital of the UK, has many free museums."
+      "which",
+      "who",
+      "where",
+      "whose"
     ],
-    "correctIndex": 0,
-    "explanation": "In non-defining relative clauses (between commas), we must use 'which' for things, never 'that'; 'where' and 'what' are not relative pronouns for a subject here.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "'Where' introduce una relativa che indica il luogo in cui è avvenuto qualcosa: 'Milan, where I was born'. 'Which' da solo non basta, perché servirebbe la preposizione ('in which I was born'). 'Who' è per le persone e 'whose' indica possesso.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Relative Clauses",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q607",
@@ -324,15 +324,15 @@
   },
   {
     "id": "q620",
-    "prompt": "Choose the correct sentence.",
+    "prompt": "Complete the sentence: 'Look! The children _____ in the garden.'",
     "options": [
-      "Look! The children playing in the garden.",
-      "Look! The children is playing in the garden.",
-      "Look! The children are playing in the garden.",
-      "Look! The children plays in the garden."
+      "is playing",
+      "playing",
+      "plays",
+      "are playing"
     ],
-    "correctIndex": 2,
-    "explanation": "For an action happening now, use 'be' + -ing. With the plural 'children', use 'are'.",
+    "correctIndex": 3,
+    "explanation": "Per un'azione che sta accadendo ora ('Look!') si usa 'be' + -ing, e con 'children' (plurale) l'ausiliare è 'are'. 'is playing' non concorda, 'playing' senza ausiliare è incompleto e 'plays' è singolare.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Continuous",

@@ -1,15 +1,15 @@
 [
   {
     "id": "q1",
-    "prompt": "Which sentence is correct?",
+    "prompt": "Complete the sentence: '_____ your sister ever lived abroad?'",
     "options": [
-      "Is your sister ever lived abroad?",
-      "Has your sister ever lived abroad?",
-      "Does your sister ever lived abroad?",
-      "Have your sister ever lived abroad?"
+      "Is",
+      "Has",
+      "Does",
+      "Have"
     ],
     "correctIndex": 1,
-    "explanation": "We use the Present Perfect for life experiences. With 'sister' (she) the auxiliary is 'has': 'Has your sister ever lived...?'",
+    "explanation": "Per chiedere un'esperienza di vita si usa il Present Perfect: 'have/has' + participio passato. Con 'your sister' (she) l'ausiliare è 'has'; 'Have' va con I, you, we, they, mentre 'Is' e 'Does' non si combinano con 'lived'.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
@@ -35,15 +35,15 @@
   },
   {
     "id": "q3",
-    "prompt": "Which sentence is correct?",
+    "prompt": "Complete the sentence: 'Did your brother _____ the match last night?'",
     "options": [
-      "Did your brother won the match last night?",
-      "Was your brother win the match last night?",
-      "Does your brother won the match last night?",
-      "Did your brother win the match last night?"
+      "won",
+      "wins",
+      "winning",
+      "win"
     ],
     "correctIndex": 3,
-    "explanation": "After 'did' the verb is in the base form ('win'), not in the past.",
+    "explanation": "Dopo 'did' il verbo torna alla forma base: 'Did your brother win...?'. Mettere anche 'won' o 'wins' dopo 'did' è un errore comune, perché il passato è già espresso da 'did'.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
@@ -52,16 +52,16 @@
   },
   {
     "id": "q4",
-    "prompt": "Choose the correct translation for 'Agosto è il mese più caldo dell'anno.'",
+    "prompt": "Complete the sentence: 'August is the _____ month of the year.'",
     "options": [
-      "August is the most hot month of the year.",
-      "August is the hotter month of the year.",
-      "August is the hottest month of the year.",
-      "August is more hot month of the year."
+      "hottest",
+      "most hot",
+      "hotter",
+      "more hot"
     ],
-    "correctIndex": 2,
-    "explanation": "'Hot' is a short adjective: the superlative is 'the hottest' (the double t is needed).",
-    "category": "Traduzione",
+    "correctIndex": 0,
+    "explanation": "'Hot' è un aggettivo corto: il superlativo si fa con 'the' + aggettivo + '-est', e si raddoppia la 't' ('hottest'). 'Most hot' e 'more hot' non si usano con gli aggettivi corti, e 'hotter' è un comparativo, non un superlativo.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
@@ -69,16 +69,16 @@
   },
   {
     "id": "q5",
-    "prompt": "Choose the correct translation for 'Abbiamo comprato questa casa nel 2018.'",
+    "prompt": "Complete the sentence: 'We _____ this house in 2018.'",
     "options": [
-      "We have bought this house in 2018.",
-      "We bought this house in 2018.",
-      "We buyed this house in 2018.",
-      "We are buying this house in 2018."
+      "have bought",
+      "buyed",
+      "bought",
+      "are buying"
     ],
-    "correctIndex": 1,
-    "explanation": "With a finished time in the past ('in 2018') we use the Past Simple. 'Buy' is irregular: 'bought'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Con un momento finito del passato ('in 2018') si usa il Past Simple. 'Buy' è irregolare: il passato è 'bought', mentre 'buyed' non esiste e 'have bought' non si usa con una data precisa.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
@@ -86,15 +86,15 @@
   },
   {
     "id": "q6",
-    "prompt": "Which sentence compares the two bags correctly?",
+    "prompt": "Complete the sentence: 'The red bag is _____ than the blue one.'",
     "options": [
-      "The red bag is more expensive than the blue one.",
-      "The red bag is more expensive that the blue one.",
-      "The red bag is expensiver than the blue one.",
-      "The red bag is the most expensive than the blue one."
+      "expensiver",
+      "more expensive",
+      "most expensive",
+      "more expensively"
     ],
-    "correctIndex": 0,
-    "explanation": "Long adjectives form the comparative with 'more' and are followed by 'than'.",
+    "correctIndex": 1,
+    "explanation": "Gli aggettivi lunghi formano il comparativo con 'more' + aggettivo, seguito da 'than'. 'Expensiver' è la forma degli aggettivi corti, 'most expensive' è un superlativo e 'expensively' è un avverbio, non un aggettivo.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
@@ -120,16 +120,16 @@
   },
   {
     "id": "q8",
-    "prompt": "Choose the correct translation for 'Quanti libri ci sono sullo scaffale?'",
+    "prompt": "Complete the sentence: '_____ books are there on the shelf?'",
     "options": [
-      "How much books are there on the shelf?",
-      "How many books is there on the shelf?",
-      "How many book are there on the shelf?",
-      "How many books are there on the shelf?"
+      "How many",
+      "How much",
+      "How a lot of",
+      "How some"
     ],
-    "correctIndex": 3,
-    "explanation": "'Books' is plural and countable: 'How many' + plural noun + 'are there'.",
-    "category": "Traduzione",
+    "correctIndex": 0,
+    "explanation": "'Books' è numerabile al plurale, quindi si chiede 'How many'. 'How much' si usa con i nomi non numerabili (water, money); 'How a lot of' e 'How some' non esistono in inglese.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Quantifiers",
     "core": false,
@@ -137,16 +137,16 @@
   },
   {
     "id": "q9",
-    "prompt": "Choose the correct translation for 'Il film comincerà tra un'ora.'",
+    "prompt": "Complete the sentence: 'The film will start _____ an hour.'",
     "options": [
-      "The film will start between an hour.",
-      "The film will start in an hour.",
-      "The film will start at an hour.",
-      "The film will start for an hour."
+      "between",
+      "at",
+      "for",
+      "in"
     ],
-    "correctIndex": 1,
-    "explanation": "'In' + a period of time means 'after that time from now' ('in an hour').",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'In' + un periodo di tempo indica quando succederà qualcosa a partire da adesso: 'in an hour' = tra un'ora. 'For an hour' indica una durata, 'at' va con orari precisi ('at six') e 'between' richiede due estremi.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Prepositions of Time",
     "core": false,
@@ -154,16 +154,16 @@
   },
   {
     "id": "q10",
-    "prompt": "Choose the correct translation for 'Posso usare il tuo telefono, per favore?'",
+    "prompt": "Complete the sentence: 'Can I _____ your phone, please?'",
     "options": [
-      "Can I use your phone, please?",
-      "Can I to use your phone, please?",
-      "Do I can use your phone, please?",
-      "Can I using your phone, please?"
+      "to use",
+      "using",
+      "use",
+      "used"
     ],
-    "correctIndex": 0,
-    "explanation": "'Can' is followed by the base form of the verb, without 'to' and without 'do'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Dopo 'can' il verbo è alla forma base, senza 'to' e senza '-ing' o '-ed'. Perciò 'Can I use...?' è giusto: 'Can I to use' è l'errore tipico di chi aggiunge 'to' come dopo altri verbi, mentre 'using' e 'used' non sono forme base.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Ability and Permission",
     "core": false,
@@ -171,16 +171,16 @@
   },
   {
     "id": "q11",
-    "prompt": "Choose the correct translation for 'Laura vive a Napoli con i suoi genitori.'",
+    "prompt": "Complete the sentence: 'Laura _____ in Naples with her parents.'",
     "options": [
-      "Laura live in Naples with her parents.",
-      "Laura living in Naples with her parents.",
-      "Laura lives in Naples with her parents.",
-      "Laura lives in Naples with she parents."
+      "live",
+      "lives",
+      "living",
+      "lifes"
     ],
-    "correctIndex": 2,
-    "explanation": "Third person singular in the Present Simple takes -s ('lives'). The possessive for 'she' is 'her'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Con 'she' al Present Simple il verbo prende la '-s': 'lives'. 'Live' è la forma di I/you/we/they, 'living' da solo non è un verbo finito e 'lifes' è un errore di ortografia ('life' è il sostantivo).",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
@@ -188,15 +188,15 @@
   },
   {
     "id": "q12",
-    "prompt": "Choose the correct sentence to describe what is happening now.",
+    "prompt": "Complete the sentence: 'Be quiet! The baby is _____.'",
     "options": [
-      "Be quiet! The baby is sleep.",
-      "Be quiet! The baby sleep.",
-      "Be quiet! The baby sleeped.",
-      "Be quiet! The baby is sleeping."
+      "sleep",
+      "sleeped",
+      "sleeps",
+      "sleeping"
     ],
     "correctIndex": 3,
-    "explanation": "We use the Present Continuous ('is sleeping') for an action happening right now.",
+    "explanation": "Per un'azione che succede adesso si usa il Present Continuous: 'is' + verbo con '-ing'. Dopo 'is' non vanno la forma base 'sleep' né 'sleeps', e 'sleeped' non esiste ('sleep' è irregolare: 'slept').",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Present Continuous",
@@ -205,15 +205,15 @@
   },
   {
     "id": "q13",
-    "prompt": "Choose the correct question:",
+    "prompt": "Complete the sentence: 'Is there _____ rice in the cupboard?'",
     "options": [
-      "Is there any rice in the cupboard?",
-      "Are there any rice in the cupboard?",
-      "Is there a rice in the cupboard?",
-      "Is there any rices in the cupboard?"
+      "any",
+      "many",
+      "a few",
+      "several"
     ],
     "correctIndex": 0,
-    "explanation": "'Rice' is uncountable: it takes 'Is there', no 'a' and no plural -s. 'Any' is used in questions.",
+    "explanation": "'Rice' è non numerabile, e nelle domande si usa 'any' con questi nomi. 'Many', 'a few' e 'several' si usano solo con nomi numerabili al plurale.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
@@ -222,16 +222,16 @@
   },
   {
     "id": "q14",
-    "prompt": "Choose the correct translation for 'Da quanto tempo abiti a Milano?'",
+    "prompt": "Complete the sentence: 'How long _____ you lived in Rome?'",
     "options": [
-      "How long do you live in Milan?",
-      "How long have you lived in Milan?",
-      "How long you have lived in Milan?",
-      "How long did you lived in Milan?"
+      "do",
+      "did",
+      "have",
+      "are"
     ],
-    "correctIndex": 1,
-    "explanation": "For something that started in the past and continues now, we use 'How long' + Present Perfect.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Per una situazione iniziata nel passato che continua adesso si usa 'How long' + Present Perfect ('have you lived'). 'Do', 'did' e 'are' non possono precedere il participio passato 'lived'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
@@ -239,16 +239,16 @@
   },
   {
     "id": "q15",
-    "prompt": "Choose the correct translation for 'Mia nonna sa suonare il pianoforte.'",
+    "prompt": "Complete the sentence: 'My grandmother can _____ the piano.'",
     "options": [
-      "My grandmother can plays the piano.",
-      "My grandmother can to play the piano.",
-      "My grandmother knows play the piano.",
-      "My grandmother can play the piano."
+      "plays",
+      "to play",
+      "playing",
+      "play"
     ],
     "correctIndex": 3,
-    "explanation": "'Can' is followed by the base form without 'to' and without -s, even with 'she'.",
-    "category": "Traduzione",
+    "explanation": "Dopo 'can' il verbo resta alla forma base, anche con 'she': niente '-s', niente 'to', niente '-ing'. Quindi 'can play' è giusto e 'can plays' o 'can to play' sono errori comuni.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Modals of Ability and Permission",
     "core": false,
@@ -256,16 +256,16 @@
   },
   {
     "id": "q16",
-    "prompt": "Choose the correct translation for 'Cosa ha mangiato Marco ieri sera?'",
+    "prompt": "Complete the sentence: 'What did Marco _____ last night?'",
     "options": [
-      "What did Marco ate last night?",
-      "What Marco ate last night?",
-      "What did Marco eat last night?",
-      "What does Marco ate last night?"
+      "ate",
+      "eat",
+      "eats",
+      "eaten"
     ],
-    "correctIndex": 2,
-    "explanation": "In Past Simple questions we use 'did' + subject + base form ('eat').",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Nelle domande al Past Simple si usa 'did' + soggetto + verbo alla forma base. Il passato è già espresso da 'did', quindi 'eat' è giusto e 'ate' o 'eaten' no.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
@@ -273,15 +273,15 @@
   },
   {
     "id": "q17",
-    "prompt": "Choose the grammatically correct sentence:",
+    "prompt": "Complete the sentence: 'We _____ pizza last Friday night.'",
     "options": [
-      "We have eaten pizza last Friday night.",
-      "We ate pizza last Friday night.",
-      "We eaten pizza last Friday night.",
-      "We eat pizza last Friday night."
+      "ate",
+      "have eaten",
+      "eaten",
+      "eat"
     ],
-    "correctIndex": 1,
-    "explanation": "'Last Friday night' is a finished time in the past: we use the Past Simple ('ate').",
+    "correctIndex": 0,
+    "explanation": "'Last Friday night' è un momento finito del passato: si usa il Past Simple ('ate'). 'Have eaten' non si usa con un'indicazione di tempo passato precisa, 'eaten' da solo è solo il participio e 'eat' è al presente.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
@@ -409,15 +409,15 @@
   },
   {
     "id": "q25",
-    "prompt": "Combine the sentences correctly: 'I called Laura yesterday evening. She was cooking dinner.'",
+    "prompt": "Complete the sentence: 'I called Laura yesterday evening while she _____ dinner.'",
     "options": [
-      "I called Laura yesterday evening while she cooks dinner.",
-      "I called Laura yesterday evening during she was cooking dinner.",
-      "I called Laura yesterday evening while was cooking dinner.",
-      "I called Laura yesterday evening while she was cooking dinner."
+      "cooks",
+      "were cooking",
+      "was cooking",
+      "has cooked"
     ],
-    "correctIndex": 3,
-    "explanation": "'While' introduces an action in progress in the past: 'while she was cooking'. 'During' is followed by a noun, not a clause.",
+    "correctIndex": 2,
+    "explanation": "'While' introduce un'azione in corso nel passato: 'was' + verbo con '-ing'. 'Cooks' è al presente, 'has cooked' è un Present Perfect, e 'were' non si usa con 'she' ('she was').",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Continuous",
@@ -511,15 +511,15 @@
   },
   {
     "id": "q31",
-    "prompt": "Choose the correct negative sentence:",
+    "prompt": "Complete the sentence: 'There isn't _____ sugar in my coffee.'",
     "options": [
-      "There isn't no sugar in my coffee.",
-      "There isn't any sugar in my coffee.",
-      "There aren't any sugar in my coffee.",
-      "There is any sugar in my coffee."
+      "no",
+      "any",
+      "a",
+      "many"
     ],
     "correctIndex": 1,
-    "explanation": "'Sugar' is uncountable, so we use 'isn't'. In negative sentences we use 'any', not 'no'.",
+    "explanation": "Nelle frasi negative con un nome non numerabile come 'sugar' si usa 'any'. 'No' crea una doppia negazione con 'isn't', 'a' va con i nomi numerabili singolari e 'many' con quelli plurali.",
     "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
@@ -579,16 +579,16 @@
   },
   {
     "id": "q35",
-    "prompt": "Choose the correct translation for 'Questa è la città più bella che io abbia mai visitato.'",
+    "prompt": "Complete the sentence: 'This is the _____ city I have ever visited.'",
     "options": [
-      "This is the more beautiful city I have ever visited.",
-      "This is the most beautiful city I have ever visited.",
-      "This is the beautifullest city I have ever visited.",
-      "This is the most beautifully city I have ever visited."
+      "more beautiful",
+      "beautifullest",
+      "most beautifully",
+      "most beautiful"
     ],
-    "correctIndex": 1,
-    "explanation": "'Beautiful' is a long adjective: the superlative is 'the most beautiful'.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'Beautiful' è un aggettivo lungo: il superlativo si fa con 'the most' + aggettivo. 'More beautiful' è un comparativo, 'beautifullest' non esiste e 'beautifully' è un avverbio, non un aggettivo.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
@@ -596,16 +596,16 @@
   },
   {
     "id": "q36",
-    "prompt": "Choose the correct translation for 'Mio fratello gioca a calcio ogni sabato.'",
+    "prompt": "Complete the sentence: 'My brother _____ football every Saturday.'",
     "options": [
-      "My brother plays football every Saturday.",
-      "My brother play football every Saturday.",
-      "My brother is play football every Saturday.",
-      "My brother plays to football every Saturday."
+      "plays",
+      "play",
+      "playing",
+      "is play"
     ],
     "correctIndex": 0,
-    "explanation": "Habits use the Present Simple; with 'he' the verb takes -s ('plays'). We say 'play football' without 'to'.",
-    "category": "Traduzione",
+    "explanation": "Per un'abitudine si usa il Present Simple, e con 'he' il verbo prende la '-s': 'plays'. 'Play' è la forma di I/you/we/they, mentre 'playing' e 'is play' non sono forme corrette.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
@@ -664,16 +664,16 @@
   },
   {
     "id": "q40",
-    "prompt": "Choose the correct translation for 'Ieri non ho studiato per l'esame.'",
+    "prompt": "Complete the sentence: 'I _____ study for the exam yesterday.'",
     "options": [
-      "I didn't study for the exam yesterday.",
-      "I didn't studied for the exam yesterday.",
-      "I wasn't study for the exam yesterday.",
-      "I don't studied for the exam yesterday."
+      "wasn't",
+      "don't",
+      "didn't",
+      "haven't"
     ],
-    "correctIndex": 0,
-    "explanation": "The negative Past Simple is 'didn't' + base verb ('study').",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "La forma negativa del Past Simple è 'didn't' + verbo alla forma base ('study'). 'Wasn't' va con aggettivi o '-ing', 'don't' è al presente e 'haven't' richiede il participio passato ('studied').",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
@@ -732,16 +732,16 @@
   },
   {
     "id": "q44",
-    "prompt": "Choose the correct translation for 'Hai già conosciuto il nuovo professore?'",
+    "prompt": "Complete the sentence: '_____ you already met the new professor?'",
     "options": [
-      "Did you already met the new professor?",
-      "Have you already met the new professor?",
-      "Have you already meet the new professor?",
-      "Are you already meeting the new professor?"
+      "Did",
+      "Have",
+      "Are",
+      "Do"
     ],
     "correctIndex": 1,
-    "explanation": "We use the Present Perfect ('Have you already met') for a recent experience with no definite time.",
-    "category": "Traduzione",
+    "explanation": "Per un'esperienza recente senza un momento preciso si usa il Present Perfect: 'Have you already met...?'. Con 'did' il verbo sarebbe alla forma base ('Did you meet'), mentre 'Are' e 'Do' non si combinano con il participio passato 'met'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
@@ -749,16 +749,16 @@
   },
   {
     "id": "q45",
-    "prompt": "Choose the correct translation for 'Lavoro qui da tre anni.'",
+    "prompt": "Complete the sentence: 'I have worked here _____ three years.'",
     "options": [
-      "I have worked here for three years.",
-      "I work here since three years.",
-      "I have worked here since three years.",
-      "I am working here for three years."
+      "since",
+      "during",
+      "from",
+      "for"
     ],
-    "correctIndex": 0,
-    "explanation": "For a situation that started in the past and continues now we use the Present Perfect with 'for' + a period of time.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Con il Present Perfect, una durata ('three years') vuole 'for', mentre un punto di partenza ('since 2021') vuole 'since'. 'During' e 'from' non si usano per indicare da quanto tempo dura una situazione.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
@@ -766,16 +766,16 @@
   },
   {
     "id": "q46",
-    "prompt": "Choose the correct translation for 'Mi piace la macchina di Paolo.'",
+    "prompt": "Complete the sentence: 'I like _____ car.'",
     "options": [
-      "I like Paolo car.",
-      "I like the car's Paolo.",
-      "I like Paolo's car.",
-      "I'm like Paolo's car."
+      "Paolo",
+      "Paolos'",
+      "Paolo's",
+      "the Paolo"
     ],
     "correctIndex": 2,
-    "explanation": "We show possession with a person's name + 's: 'Paolo's car'.",
-    "category": "Traduzione",
+    "explanation": "Il possesso di una persona si esprime con nome + 's e poi la cosa posseduta, senza articolo: 'Paolo's car'. 'Paolo car' manca del 's e 'Paolos'' ha l'apostrofo nel posto sbagliato.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Possessive S",
     "core": false,
@@ -817,15 +817,15 @@
   },
   {
     "id": "q49",
-    "prompt": "Choose the correct sentence:",
+    "prompt": "Complete the sentence: 'If the weather is nice tomorrow, we _____ a picnic in the park.'",
     "options": [
-      "If the weather will be nice tomorrow, we go to the beach.",
-      "If the weather is nice tomorrow, we would go to the beach.",
-      "If the weather is nice tomorrow, we will go to the beach.",
-      "If the weather be nice tomorrow, we will go to the beach."
+      "will have",
+      "would have",
+      "had",
+      "have had"
     ],
-    "correctIndex": 2,
-    "explanation": "First Conditional: if + Present Simple, will + base verb. No 'will' in the if-clause.",
+    "correctIndex": 0,
+    "explanation": "Il First Conditional ha 'if' + Present Simple nella condizione e 'will' + forma base nel risultato. 'Would have' è del secondo e terzo condizionale, 'had' e 'have had' sono tempi passati e non indicano il futuro.",
     "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional",
@@ -868,15 +868,15 @@
   },
   {
     "id": "q52",
-    "prompt": "Choose the correct sentence for comparing two phones:",
+    "prompt": "Complete the sentence: 'This phone is _____ cheaper than that one.'",
     "options": [
-      "This phone is more much cheaper than that one.",
-      "This phone is very cheaper than that one.",
-      "This phone is much cheaper as that one.",
-      "This phone is much cheaper than that one."
+      "very",
+      "much",
+      "too",
+      "most"
     ],
-    "correctIndex": 3,
-    "explanation": "To strengthen a comparative we put 'much' before it ('much cheaper'); the second term follows 'than'.",
+    "correctIndex": 1,
+    "explanation": "Per rafforzare un comparativo si mette 'much' (o 'a lot') davanti: 'much cheaper than'. 'Very' non si usa con i comparativi, 'too' significa «troppo» e 'most' appartiene ai superlativi.",
     "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
@@ -953,16 +953,16 @@
   },
   {
     "id": "q57",
-    "prompt": "Choose the correct translation for 'Hai mai suonato la chitarra?'",
+    "prompt": "Complete the sentence: 'Have you ever _____ the guitar?'",
     "options": [
-      "Did you ever played the guitar?",
-      "Are you ever played the guitar?",
-      "Have you ever played the guitar?",
-      "Have you never played the guitar?"
+      "play",
+      "plays",
+      "played",
+      "playing"
     ],
     "correctIndex": 2,
-    "explanation": "We use the Present Perfect ('Have you ever played') to ask about life experiences.",
-    "category": "Traduzione",
+    "explanation": "Per chiedere di un'esperienza di vita si usa il Present Perfect: 'Have you ever' + participio passato ('played'). Dopo 'have' non vanno la forma base 'play', la forma 'plays' né 'playing'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
@@ -987,16 +987,16 @@
   },
   {
     "id": "q59",
-    "prompt": "Choose the correct translation for 'Marta non ha ancora risposto alla mia email.'",
+    "prompt": "Complete the sentence: 'Marta hasn't _____ my email yet.'",
     "options": [
-      "Marta hasn't answered my email yet.",
-      "Marta haven't answered my email yet.",
-      "Marta doesn't answer my email yet.",
-      "Marta hasn't answer my email yet."
+      "answered",
+      "answer",
+      "answers",
+      "answering"
     ],
     "correctIndex": 0,
-    "explanation": "Negative Present Perfect + 'yet' for something expected but not done: 'hasn't answered'.",
-    "category": "Traduzione",
+    "explanation": "Il Present Perfect negativo è 'hasn't' + participio passato, e con 'yet' indica qualcosa di atteso che non è ancora successo. Dopo 'hasn't' non si usano la forma base, la '-s' né '-ing'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": false,
@@ -1021,37 +1021,37 @@
   },
   {
     "id": "q61",
-    "prompt": "Translate 'Lui vive qui da dieci anni.'",
+    "prompt": "Complete the sentence: 'He _____ in this town since 2015.'",
     "options": [
-      "He has lived here for ten years.",
-      "He is living here since ten years.",
-      "He lived here since ten years.",
-      "He have lived here for ten years."
+      "lives",
+      "lived",
+      "is living",
+      "has lived"
     ],
-    "correctIndex": 0,
-    "explanation": "Italian 'vive qui da' + a period of time becomes the Present Perfect + 'for' in English ('has lived here for ten years'), because the state started in the past and continues now. 'Since' needs a starting point, not a period.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'Since' + un punto di partenza richiede il Present Perfect: 'has lived', perché la situazione inizia nel passato e continua adesso. 'Lives' e 'is living' sono presenti e 'lived' indica una situazione conclusa: nessuno di loro funziona con 'since 2015'.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Present Perfect",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q62",
-    "prompt": "Translate 'Ci sono molte macchine per strada oggi.'",
+    "prompt": "Complete the sentence: 'There _____ three cars on the street today.'",
     "options": [
-      "There are many cars on the street today.",
-      "They are many cars on the street today.",
-      "There is many cars on the street today.",
-      "There have many cars on the street today."
+      "is",
+      "are",
+      "have",
+      "has"
     ],
-    "correctIndex": 0,
-    "explanation": "We use 'There are' for plural existence.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Per l'esistenza di cose al plurale si usa 'there are'. 'There is' si usa con il singolare e con i non numerabili, mentre 'there have/has' non si usa per dire che qualcosa esiste.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q63",
@@ -1072,20 +1072,20 @@
   },
   {
     "id": "q64",
-    "prompt": "Translate 'Non c'è nessun problema.'",
+    "prompt": "Complete the sentence: 'There is _____ problem with my computer.'",
     "options": [
-      "There is no problem.",
-      "There isn't no problem.",
-      "There are no problem.",
-      "There have no problem."
+      "any",
+      "not",
+      "none",
+      "no"
     ],
-    "correctIndex": 0,
-    "explanation": "Singular negative existence.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "'No' + nome singolare serve per dire che qualcosa non esiste: 'There is no problem'. 'Any' si usa in frasi negative o interrogative, mentre 'not' e 'none' non possono stare direttamente davanti a un nome.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "rivista"
+    "stato": "riscritta"
   },
   {
     "id": "q65",
@@ -1106,20 +1106,20 @@
   },
   {
     "id": "q66",
-    "prompt": "Translate 'C'è un cane nel giardino?'",
+    "prompt": "Complete the sentence: '_____ there a dog in the garden?'",
     "options": [
-      "Is there a dog in the garden?",
-      "Are there a dog in the garden?",
-      "There is a dog in the garden?",
-      "Does there a dog in the garden?"
+      "Are",
+      "Does",
+      "Is",
+      "Has"
     ],
-    "correctIndex": 0,
-    "explanation": "Question form for singular existence.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Nelle domande sull'esistenza si inverte 'there is' in 'Is there...?'. 'Are' va con il plurale, mentre 'Does' e 'Has' non si usano in questa struttura.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "There is / There are",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q67",
@@ -1140,20 +1140,20 @@
   },
   {
     "id": "q68",
-    "prompt": "Translate 'Non hanno studiato per l'esame.'",
+    "prompt": "Complete the sentence: 'We _____ at home last night. We were at the cinema.'",
     "options": [
-      "They didn't study for the exam.",
-      "They don't studied for the exam.",
-      "They wasn't study for the exam.",
-      "They haven't study for the exam."
+      "wasn't",
+      "weren't",
+      "didn't",
+      "aren't"
     ],
-    "correctIndex": 0,
-    "explanation": "Past simple negative uses 'didn't' + base verb.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Last night' indica il passato e con 'we' il verbo 'be' al passato è 'were': la forma negativa è 'weren't'. 'Wasn't' va con I/he/she/it, 'didn't' vuole un verbo base e 'aren't' è al presente.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q69",
@@ -1174,20 +1174,20 @@
   },
   {
     "id": "q70",
-    "prompt": "Translate 'Lei ha comprato un nuovo telefono la settimana scorsa.'",
+    "prompt": "Complete the sentence: 'She _____ to the cinema last week.'",
     "options": [
-      "She bought a new phone last week.",
-      "She buys a new phone last week.",
-      "She buyed a new phone last week.",
-      "She have bought a new phone last week."
+      "goes",
+      "went",
+      "goed",
+      "has gone"
     ],
-    "correctIndex": 0,
-    "explanation": "The Past Simple of the irregular verb 'buy' is 'bought'; 'buyed' does not exist, and 'last week' excludes the Present Perfect.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Last week' indica un momento finito del passato: si usa il Past Simple. 'Go' è irregolare e il suo passato è 'went' ('goed' non esiste); 'goes' è presente e 'has gone' non si usa con 'last week'.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q71",
@@ -1208,20 +1208,20 @@
   },
   {
     "id": "q72",
-    "prompt": "Translate 'Quando sei arrivato?'",
+    "prompt": "Complete the sentence: 'When _____ you arrive at the hotel yesterday?'",
     "options": [
-      "When did you arrive?",
-      "When you arrived?",
-      "When do you arrive?",
-      "When have you arrived?"
+      "do",
+      "have",
+      "were",
+      "did"
     ],
-    "correctIndex": 0,
-    "explanation": "Question word + did + subject + base verb.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Nelle domande al Past Simple si usa 'When' + 'did' + soggetto + forma base ('arrive'). 'Do' è al presente, 'have' richiede il participio e 'were' non si combina con la forma base del verbo.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Past Simple",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q73",
@@ -1242,20 +1242,20 @@
   },
   {
     "id": "q74",
-    "prompt": "Translate 'Cosa stanno facendo?'",
+    "prompt": "Complete the sentence: 'What _____ they doing?'",
     "options": [
-      "What are they doing?",
-      "What do they do?",
-      "What they are doing?",
-      "What are they do?"
+      "are",
+      "do",
+      "does",
+      "is"
     ],
     "correctIndex": 0,
-    "explanation": "Present continuous question format.",
-    "category": "Traduzione",
+    "explanation": "Nelle domande al Present Continuous si usa la parola interrogativa + 'are/is' + soggetto + verbo con '-ing'. Con 'they' l'ausiliare è 'are'; 'do' e 'does' non vanno con '-ing' e 'is' non si accorda con 'they'.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q75",
@@ -1276,20 +1276,20 @@
   },
   {
     "id": "q76",
-    "prompt": "Translate 'Non sto leggendo un libro, sto guardando la TV.'",
+    "prompt": "Complete the sentence: 'I'm not reading a book, I'm _____ TV.'",
     "options": [
-      "I'm not reading a book, I'm watching TV.",
-      "I don't read a book, I watch TV.",
-      "I'm not read a book, I'm watch TV.",
-      "I not reading a book, I watching TV."
+      "watch",
+      "to watch",
+      "watching",
+      "watched"
     ],
-    "correctIndex": 0,
-    "explanation": "Present continuous for current contrasting actions.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Per azioni che succedono adesso si usa il Present Continuous: 'I'm' + verbo con '-ing'. Dopo 'I'm' non si usano la forma base 'watch', 'to watch' né il passato 'watched'.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Present Continuous",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q77",
@@ -1327,20 +1327,20 @@
   },
   {
     "id": "q79",
-    "prompt": "Translate 'Se piove, non andremo in spiaggia.'",
+    "prompt": "Complete the sentence: 'If it _____, we won't go to the beach.'",
     "options": [
-      "If it rains, we won't go to the beach.",
-      "If it will rain, we don't go to the beach.",
-      "If it rain, we won't go to the beach.",
-      "If it rains, we didn't go to the beach."
+      "raining",
+      "rains",
+      "will rain",
+      "rained"
     ],
-    "correctIndex": 0,
-    "explanation": "First conditional structure.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "Nel First Conditional la condizione usa il Present Simple: 'If it rains', e il risultato ha 'will/won't' + forma base. 'Will rain' non si mette dopo 'if', 'rained' è un tempo passato e 'raining' da solo non è un verbo finito.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q80",
@@ -1361,20 +1361,20 @@
   },
   {
     "id": "q81",
-    "prompt": "Translate 'Cosa farai se perdi il treno?'",
+    "prompt": "Complete the sentence: 'What will you do if you _____ the train?'",
     "options": [
-      "What will you do if you miss the train?",
-      "What do you do if you will miss the train?",
-      "What would you do if you miss the train?",
-      "What will you do if you missed the train?"
+      "will miss",
+      "missing",
+      "would miss",
+      "miss"
     ],
-    "correctIndex": 0,
-    "explanation": "First conditional question.",
-    "category": "Traduzione",
+    "correctIndex": 3,
+    "explanation": "Nel First Conditional dopo 'if' si usa il Present Simple ('if you miss'), mentre il 'will' va nella frase principale. 'Will miss' e 'would miss' non si usano dopo 'if' in questa struttura e 'missing' non è un verbo finito.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q82",
@@ -1395,20 +1395,20 @@
   },
   {
     "id": "q83",
-    "prompt": "Translate 'Se non ti sbrighi, faremo tardi.'",
+    "prompt": "Complete the sentence: 'If you _____ hurry, we will be late.'",
     "options": [
-      "If you don't hurry, we will be late.",
-      "If you won't hurry, we are late.",
-      "If you aren't hurry, we will be late.",
-      "If you don't hurry, we would be late."
+      "don't",
+      "won't",
+      "aren't",
+      "didn't"
     ],
     "correctIndex": 0,
-    "explanation": "First conditional with negative condition.",
-    "category": "Traduzione",
+    "explanation": "Nel First Conditional la condizione negativa usa il Present Simple: 'If you don't hurry'. 'Won't' non va dopo 'if', 'aren't' non si combina con la forma base e 'didn't' porterebbe al passato.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "First Conditional",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q84",
@@ -1429,20 +1429,20 @@
   },
   {
     "id": "q85",
-    "prompt": "Translate 'L'inglese è più facile del cinese.'",
+    "prompt": "Complete the sentence: 'English is _____ than Chinese.'",
     "options": [
-      "English is easier than Chinese.",
-      "English is more easy than Chinese.",
-      "English is easiest than Chinese.",
-      "English is much easy than Chinese."
+      "easy",
+      "easiest",
+      "easier",
+      "the easier"
     ],
-    "correctIndex": 0,
-    "explanation": "Comparative for 'easy' is 'easier', followed by 'than'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "'Easy' è un aggettivo corto che finisce in '-y': nel comparativo la 'y' diventa 'i' e si aggiunge '-er' ('easier'), seguito da 'than'. 'Easy' è la forma base, 'easiest' è il superlativo e 'the easier' non si usa prima di 'than'.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q86",
@@ -1463,20 +1463,20 @@
   },
   {
     "id": "q87",
-    "prompt": "Translate 'È il film peggiore che abbia mai visto.'",
+    "prompt": "Complete the sentence: 'It's the _____ movie I've ever seen.'",
     "options": [
-      "It's the worst movie I've ever seen.",
-      "It's the worse movie I've ever seen.",
-      "It's the baddest movie I've ever seen.",
-      "It's the most bad movie I've ever seen."
+      "worse",
+      "worst",
+      "badest",
+      "most worst"
     ],
-    "correctIndex": 0,
-    "explanation": "Superlative of 'bad' is 'worst'.",
-    "category": "Traduzione",
+    "correctIndex": 1,
+    "explanation": "'Bad' ha un superlativo irregolare: 'the worst'. 'Worse' è il comparativo, 'badest' non esiste e 'most worst' raddoppia il superlativo, quindi è sbagliato.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q88",
@@ -1497,20 +1497,20 @@
   },
   {
     "id": "q89",
-    "prompt": "Translate 'Questa è la città più costosa d'Europa.'",
+    "prompt": "Complete the sentence: 'Giulia is the youngest _____ my three cousins.'",
     "options": [
-      "This is the most expensive city in Europe.",
-      "This is the more expensive city in Europe.",
-      "This is the expensivest city in Europe.",
-      "This is most expensive city in Europe."
+      "in",
+      "than",
+      "of",
+      "from"
     ],
-    "correctIndex": 0,
-    "explanation": "Superlative of long adjectives uses 'the most'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Dopo un superlativo, per indicare l'insieme di cui si parla, si usa 'of' davanti a un numero o a un gruppo di persone: 'the youngest of my three cousins'. 'In' si usa con luoghi o gruppi come 'in the class', 'than' appartiene al comparativo e 'from' indica provenienza.",
+    "category": "Grammatica",
     "level": "A2",
     "grammarTopic": "Comparatives and Superlatives",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q90",
@@ -1531,20 +1531,20 @@
   },
   {
     "id": "q91",
-    "prompt": "Translate 'Lavora in quella banca dal 2015.'",
+    "prompt": "Complete the sentence: 'I _____ my best friend since primary school.'",
     "options": [
-      "He has worked in that bank since 2015.",
-      "He works in that bank from 2015.",
-      "He worked in that bank since 2015.",
-      "He has worked in that bank for 2015."
+      "know",
+      "am knowing",
+      "have known",
+      "knew"
     ],
-    "correctIndex": 0,
-    "explanation": "'Since' refers to the starting point of an action.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Con 'since' (da quando) si usa il Present Perfect: 'have known'. 'Know' è un verbo di stato e non si usa in forma continua, quindi 'am knowing' è sbagliato; 'know' e 'knew' non collegano il passato al presente.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Prepositions of Time",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q92",
@@ -1565,20 +1565,20 @@
   },
   {
     "id": "q93",
-    "prompt": "Translate 'Stiamo aspettando da due ore.'",
+    "prompt": "Complete the sentence: 'We have been waiting _____ two hours.'",
     "options": [
-      "We have been waiting for two hours.",
-      "We are waiting since two hours.",
-      "We have been waiting since two hours.",
-      "We wait for two hours."
+      "for",
+      "since",
+      "from",
+      "during"
     ],
     "correctIndex": 0,
-    "explanation": "Duration (two hours) requires 'for'.",
-    "category": "Traduzione",
+    "explanation": "Per indicare quanto dura un'azione (due ore) si usa 'for'. 'Since' vuole un punto di inizio ('since 8 o'clock'), mentre 'from' e 'during' non si usano così con un periodo di tempo.",
+    "category": "Grammatica",
     "level": "B1",
     "grammarTopic": "Prepositions of Time",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q94",
@@ -1616,20 +1616,20 @@
   },
   {
     "id": "q96",
-    "prompt": "Translate 'I miei genitori non vivono a Londra.'",
+    "prompt": "Complete the sentence: 'My parents _____ live in London.'",
     "options": [
-      "My parents don't live in London.",
-      "My parents doesn't live in London.",
-      "My parents aren't live in London.",
-      "My parents not live in London."
+      "doesn't",
+      "aren't",
+      "don't",
+      "not"
     ],
-    "correctIndex": 0,
-    "explanation": "Plural subject negative uses 'don't'.",
-    "category": "Traduzione",
+    "correctIndex": 2,
+    "explanation": "Il soggetto 'my parents' è plurale, quindi la negazione del present simple è 'don't' + verbo base. 'Doesn't' è solo per la terza persona singolare, 'aren't' si usa con 'be' e 'not' da solo non basta senza l'ausiliare.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": false,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q97",
@@ -1650,20 +1650,20 @@
   },
   {
     "id": "q98",
-    "prompt": "Translate 'Il treno parte alle 8 in punto.'",
+    "prompt": "Complete the sentence: 'The train _____ at 8 o'clock.'",
     "options": [
-      "The train leaves at 8 o'clock.",
-      "The train leaving at 8 o'clock.",
-      "The train leave at 8 o'clock.",
-      "The train left at 8 o'clock."
+      "leaves",
+      "leaving",
+      "leave",
+      "leaved"
     ],
     "correctIndex": 0,
-    "explanation": "Scheduled events (timetables) use the Present Simple: 'The train leaves at 8 o'clock.' A sentence cannot use the -ing form without 'is'.",
-    "category": "Traduzione",
+    "explanation": "Gli orari dei trasporti si esprimono con il present simple, e con 'the train' (terza persona singolare) il verbo prende la -s: 'leaves'. 'Leaving' da solo non è una frase completa, 'leave' manca della -s e 'leaved' non esiste.",
+    "category": "Grammatica",
     "level": "A1",
     "grammarTopic": "Present Simple",
     "core": true,
-    "stato": "originale"
+    "stato": "riscritta"
   },
   {
     "id": "q99",

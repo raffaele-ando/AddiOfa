@@ -1,5 +1,5 @@
 {
-  "_nota": "Area Home e Profilo (home, profilo, progressi, obiettivi, badge, pass, project id, impostazioni, aiuto, stati). Un nome per funzione, un'icona lucide per nome. Dove la funzione esiste gia in base.json o studio.json si usa quel nome (tempo, teoria, riprova, stato-risposta-giusta...).",
+  "_nota": "Area Home e Profilo (home, profilo, progressi, obiettivi, badge, impostazioni, aiuto, stati). Un nome per funzione, un'icona lucide per nome. Dove la funzione esiste gia in base.json o studio.json si usa quel nome (tempo, teoria, riprova, stato-risposta-giusta...).",
 
   "progressi": "chart-column-increasing",
   "obiettivi": "goal",
@@ -30,18 +30,12 @@
   "garanzia": "handshake",
   "scollega": "unlink",
 
-  "inviti": "gift",
   "condividi": "share-2",
   "copia": "copy",
   "codice": "ticket",
-  "compagno": "user-check",
-  "email-verificata": "mail-check",
   "scadenza": "hourglass",
-  "sblocca": "lock-open",
-  "usa-codice": "key-round",
 
   "classifica-noi": "list-ordered",
-  "agora": "messages-square",
   "partecipanti": "contact-round",
 
   "tema": "sun-moon",
@@ -50,9 +44,6 @@
   "tema-sistema": "monitor",
   "suoni": "audio-lines",
   "suoni-spenti": "volume-x",
-  "materiale": "library",
-  "materiale-nucleo": "box",
-  "materiale-tutto": "boxes",
   "dati": "database",
   "esporta": "download",
   "importa": "upload",
@@ -63,7 +54,6 @@
   "privacy": "eye-off",
   "legale": "scale",
   "presentazione": "globe",
-  "accedi": "log-in",
   "esci": "log-out",
   "debug": "terminal",
   "app": "smartphone",
@@ -78,7 +68,6 @@
   "stato-attenzione": "triangle-alert",
   "stato-errore": "octagon-x",
   "stato-non-attivo": "power-off",
-  "stato-prova": "flask-conical",
   "stato-nuovo": "sprout",
   "stato-basso": "trending-up",
   "stato-medio": "gauge",
