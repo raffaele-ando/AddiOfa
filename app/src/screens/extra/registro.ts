@@ -9,7 +9,7 @@ export interface DefSchermata {
   titolo: string;
   carica: () => Promise<{ default: ComponentType }>;
   /** Scheda della barra in basso evidenziata; `null` = schermata senza barra (a tutto schermo). Default: 'home'. */
-  barra?: 'home' | 'simulazioni' | 'lezioni' | null;
+  barra?: 'home' | 'esercizi' | 'sfide' | null;
 }
 
 export const SCHERMATE: Record<string, DefSchermata> = {

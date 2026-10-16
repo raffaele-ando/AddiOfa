@@ -37,12 +37,12 @@ function Tessera({ icona, tono, etichetta, onClick }: { icona: NomeIcona; tono: 
 }
 
 /** Scheda Lezioni: quattro tessere (Percorso, Esercizi, Frasi, Prontuario). Il resto sta nelle altre destinazioni. */
-export default function Lezioni({ onStartLearn, onOpenCheatSheet, onOpenProfilo, onNaviga, onOpenExtra }: Props) {
+export default function Esercizi({ onStartLearn, onOpenCheatSheet, onOpenProfilo, onNaviga, onOpenExtra }: Props) {
   return (
     <div className="h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(16px,env(safe-area-inset-top))] pb-6">
-          <TestataScheda titolo="Lezioni" onProfilo={() => (onOpenProfilo ? onOpenProfilo() : onOpenExtra?.('profilo'))} />
+          <TestataScheda titolo="Esercizi" onProfilo={() => (onOpenProfilo ? onOpenProfilo() : onOpenExtra?.('profilo'))} />
 
           <div className="mt-[16px] grid grid-cols-2 gap-[12px]">
             <Tessera icona="percorso" tono="azione" etichetta="Percorso" onClick={onOpenExtra ? () => onOpenExtra('percorso') : undefined} />
@@ -52,7 +52,7 @@ export default function Lezioni({ onStartLearn, onOpenCheatSheet, onOpenProfilo,
           </div>
         </div>
       </div>
-      {onNaviga && <Navigazione attiva="lezioni" onVai={onNaviga} />}
+      {onNaviga && <Navigazione attiva="esercizi" onVai={onNaviga} />}
     </div>
   );
 }

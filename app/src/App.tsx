@@ -10,7 +10,7 @@ import { getQuestionStats, applySm2, qualityForResult } from './lib/spacedRepeti
 import { chiaveGiorno } from './lib/utils';
 import { questions } from './data/questions';
 import Menu from './components/Menu';
-import Lezioni from './screens/Lezioni';
+import Esercizi from './screens/Esercizi';
 import Impostazioni from './screens/Impostazioni';
 import PracticeMenu from './components/PracticeMenu';
 import LearnMode from './components/LearnMode';
@@ -31,7 +31,7 @@ const Theory = lazy(() => import('./screens/Theory'));
 const BrandKit = import.meta.env.DEV ? lazy(() => import('./brand/BrandKit')) : null;
 
 type View = 'landing' | 'onboarding' | 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'cheatsheet'
-  | 'theory' | 'legal' | 'brand' | 'lezioni' | 'impostazioni' | 'extra';
+  | 'theory' | 'legal' | 'brand' | 'esercizi' | 'impostazioni' | 'extra';
 
 // Schermate extra (screens/extra): componenti caricati solo quando servono
 const COMPONENTI_EXTRA = new Map<string, React.LazyExoticComponent<React.ComponentType>>();
@@ -254,11 +254,11 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     setView('menu');
   };
 
-  // Barra in basso, tre voci: Home, Simulazioni (scelta e avvio della simulazione), Lezioni (hub di teoria, esercizi, ripasso, progressi).
-  // Le pagine che si aprono dalle Lezioni (teoria, esercizi, progressi) mostrano la barra con "Lezioni" attiva.
+  // Barra in basso, tre voci: Home (stato, lezioni, simulazione), Esercizi (modi di esercizio, frasi, prontuario), Sfide (sfida del giorno, amici, classifica).
+  // Le pagine che si aprono da una voce mostrano la barra con quella voce attiva.
   const vaiScheda = (s: Scheda) => {
-    if (s === 'simulazioni' && SCHERMATE.simulazioni) { extraPila.current = []; setExtra({ id: 'simulazioni', params: {} }); setView('extra'); return; }
-    setView(({ home: 'menu', simulazioni: 'exam', lezioni: 'lezioni' } as const)[s]);
+    if (s === 'sfide' && SCHERMATE.sfide) { extraPila.current = []; setExtra({ id: 'sfide', params: {} }); setView('extra'); return; }
+    setView(({ home: 'menu', esercizi: 'esercizi', sfide: 'menu' } as const)[s]);
   };
   const conBarra = (scheda: Scheda | null, pagina: React.ReactNode) => (
     <div className="h-full w-full flex flex-col overflow-hidden sm:rounded-[28px] sm:border sm:border-linea bg-superficie">
@@ -325,8 +325,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onNaviga={vaiScheda}
         />
       )}
-      {view === 'lezioni' && (
-        <Lezioni
+      {view === 'esercizi' && (
+        <Esercizi
           appState={appState}
           onStartLearn={() => apri('practiceMenu')}
           onOpenStats={() => vaiExtra('progressi')}
@@ -376,7 +376,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         />
       )}
       {view === 'theory' && (
-        conBarra('lezioni', (
+        conBarra('home', (
           <Suspense fallback={<Caricamento />}>
             <Theory key={teoriaId ?? 'elenco'} initialTopicId={teoriaId} onBack={indietro} />
           </Suspense>
@@ -389,7 +389,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         <CheatSheet onBack={indietro} />
       )}
       {view === 'practiceMenu' && (
-        conBarra('lezioni', <>
+        conBarra('esercizi', <>
         <PracticeMenu
           onSelectMode={(mode, category) => {
             setLearnMode(mode);

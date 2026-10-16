@@ -9,7 +9,7 @@ import { Layout } from '../../src/components/Layout';
 import type { AppState, ExamHistory } from '../../src/types';
 import { questions } from '../../src/data/questions';
 import Menu from '../../src/components/Menu';
-import Lezioni from '../../src/screens/Lezioni';
+import Esercizi from '../../src/screens/Esercizi';
 import Impostazioni from '../../src/screens/Impostazioni';
 import Misuratore from '../../src/components/home/Misuratore';
 import { BannerStato } from '../../src/components/home/Stima';
@@ -63,7 +63,7 @@ function App() {
             <div className="px-6 mt-[14px]"><BannerStato chiave="margine" onClick={() => undefined} /></div>
           </div>
         ) : vista === 'lezioni' ? (
-          <Lezioni appState={appState}
+          <Esercizi appState={appState}
             onStartLearn={reg('onStartLearn')} onOpenCheatSheet={reg('onOpenCheatSheet')} onNaviga={reg('onNaviga')} onOpenExtra={reg('onOpenExtra')} />
         ) : vista === 'impostazioni' ? (
           <Impostazioni onBack={reg('onBack')} onOpenLegal={reg('onOpenLegal')}

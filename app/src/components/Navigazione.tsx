@@ -2,13 +2,13 @@ import { playTapSound } from '../lib/audio';
 import { Icona, type NomeIcona } from '../brand/icone/Icona';
 import { cn } from '../lib/utils';
 
-export type Scheda = 'home' | 'simulazioni' | 'lezioni';
+export type Scheda = 'home' | 'esercizi' | 'sfide';
 
-// Tre destinazioni, ognuna con le sue funzioni e basta (vedi docs/design/ARCHITETTURA.md). Il profilo sta in alto a destra.
+// Tre destinazioni (struttura «Home completa»: la Home ospita lezioni e simulazione; Esercizi e Sfide sono le altre due pagine). Il profilo sta in alto a destra.
 const VOCI: { id: Scheda; nome: string; icona: NomeIcona }[] = [
   { id: 'home', nome: 'Home', icona: 'home' },
-  { id: 'simulazioni', nome: 'Simulazioni', icona: 'simulazioni' },
-  { id: 'lezioni', nome: 'Lezioni', icona: 'lezioni' },
+  { id: 'esercizi', nome: 'Esercizi', icona: 'esercizi' },
+  { id: 'sfide', nome: 'Sfide', icona: 'sfide' },
 ];
 
 /** Barra in basso: tre voci. La voce attiva ha la pillola blu chiara dietro l'icona e il testo blu. */
