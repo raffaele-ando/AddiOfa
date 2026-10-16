@@ -1,5 +1,5 @@
-// `amici`: i «rivali», cioè le persone con cui hai fatto almeno un duello (il nome lo scelgono loro nel link), con il saldo di vittorie
-// a icone e numeri. Salvati solo su questo dispositivo, ricavati dai duelli veri. Nessun amico inventato.
+// `amici` (voce «Amici»): i «rivali», cioè le persone con cui hai fatto almeno un duello (il nome lo scelgono loro nel link), con il saldo di vittorie
+// a icone e numeri (concept 06.5 e 22). Salvati solo su questo dispositivo, ricavati dai duelli veri: nessun amico inventato. Vuoto: l'illustrazione dei messaggi.
 import { useState } from 'react';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
@@ -10,7 +10,7 @@ import { Illustrazione } from '../../../brand/Illustrazione';
 import { confronta, duelliInAttesa, ricavaRivali, tempoBreve, type Rivale } from '../../../lib/sfide/risultati';
 import { useStorico } from './dati';
 import { IconaTono } from '../ui';
-import { Avatar, Bottone, Carta, IconaEsito, dataBreve, useScuro } from './comuni';
+import { Avatar, Bottone, Carta, IconaEsito, dataBreve } from './comuni';
 import { Regole, SchedaProveSfide } from './scheda';
 
 /** Il saldo di una persona: vinti, pari, persi, ognuno con la sua icona e il suo colore; solo quelli che ci sono. */
@@ -67,7 +67,6 @@ function RigaRivale({ r, aperto, onToggle, onRimuovi, onApri }: { r: Rivale; ape
 export default function Amici() {
   const { vai } = useExtra();
   const { voci, modifica } = useStorico();
-  const scuro = useScuro();
   const rivali = ricavaRivali(voci);
   const attesa = duelliInAttesa(voci);
   const [aperto, setAperto] = useState<string | null>(null);
@@ -85,14 +84,15 @@ export default function Amici() {
     <SchedaProveSfide sezione="amici" info={info} titoloInfo="Amici">
       {rivali.length === 0 && attesa.length === 0 ? (
         <Carta className="mt-4 flex flex-col items-center py-6 text-center">
-          <Illustrazione nome="messaggi-supporto" lato={120} fondoScuro={scuro} />
-          <p className="mt-3 text-[16px] leading-[22px] font-bold text-testo">Nessun amico</p>
-          <div className="mt-4 w-full"><Bottone icona="sfide" aria="Sfida un amico" onClick={() => vai('sfide')} /></div>
+          <Illustrazione nome="messaggi-supporto" lato={128} />
+          <p className="mt-3 text-[18px] leading-[24px] font-extrabold text-testo">Nessun amico</p>
+          <p className="mt-1 max-w-[26ch] text-[14px] leading-[20px] text-testo-tenue">Compaiono dopo il primo duello.</p>
+          <div className="mt-5 w-full"><Bottone icona="sfide" onClick={() => vai('sfide')}>Sfida un amico</Bottone></div>
         </Carta>
       ) : (
         <>
           {rivali.length > 0 && (
-            <ul className="mt-4 flex flex-col gap-2">
+            <ul aria-label="Amici" className="mt-4 flex flex-col gap-2">
               {rivali.map(r => (
                 <RigaRivale key={r.id} r={r} aperto={aperto === r.id} onToggle={() => setAperto(a => (a === r.id ? null : r.id))}
                   onRimuovi={() => setDaRimuovere(r)} onApri={id => vai('sfida-risultato', { voce: id })} />
@@ -100,7 +100,13 @@ export default function Amici() {
             </ul>
           )}
           {attesa.length > 0 && (
-            <ul aria-label="In attesa" className="mt-4 flex flex-col gap-2">
+            <div className="mt-5 flex items-center gap-2">
+              <Illustrazione nome="attesa" lato={20} />
+              <h2 className="text-[15.5px] leading-[20px] font-bold text-testo">In attesa</h2>
+            </div>
+          )}
+          {attesa.length > 0 && (
+            <ul aria-label="In attesa" className="mt-2.5 flex flex-col gap-2">
               {attesa.map(v => (
                 <li key={v.id}>
                   <button type="button" aria-label={`Duello del ${dataBreve(v.quando)} in attesa`} onClick={() => { playTapSound(); vai('sfida-risultato', { voce: v.id }); }} className="brand-premibile flex w-full items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left">
@@ -115,6 +121,11 @@ export default function Amici() {
               ))}
             </ul>
           )}
+          <Carta tono="alto" className="mt-4 flex items-center gap-3">
+            <IconaTono tono="alto" lato={44} className="rounded-[13px] bg-superficie"><Icona nome="sfide" size={24} /></IconaTono>
+            <h2 className="flex-1 text-[16px] leading-[22px] font-extrabold text-testo">Sfida un amico</h2>
+            <Bottone icona="studia" aria="Sfida un amico" className="w-14 shrink-0 px-0" onClick={() => vai('sfide')} />
+          </Carta>
         </>
       )}
 

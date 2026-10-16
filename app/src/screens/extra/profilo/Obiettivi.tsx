@@ -12,6 +12,7 @@ import {
 } from '../../../lib/profilo/obiettivi';
 import { BarraTono, FoglioInfo, IconaTono, PulsanteInfo, type Tono } from '../ui';
 import { useExtra, useExtraDati } from '../contesto';
+import { Disegno } from '../servizi/componenti';
 import { Pagina, useOggi } from './componenti';
 
 function Scelte({ nome, valori, scelto, onScegli, formato }: { nome: string; valori: number[]; scelto: number; onScegli: (v: number) => void; formato: (v: number) => string }) {
@@ -59,7 +60,8 @@ export default function Obiettivi() {
   const dataCol = mancano?.quando === 'passato' ? 'text-testo-tenue' : 'text-medio-numero';
   return (
     <Pagina titolo="Obiettivi" indietro={indietro}>
-      <div className="mt-4 flex flex-col gap-3">
+      <div className="mt-2 flex justify-center"><Disegno nome="obiettivo" lato={120} /></div>
+      <div className="mt-3 flex flex-col gap-3">
         <Carta className="p-4 flex flex-col gap-3">
           <Titolo tono="medio" icona="data-test" destra={<PulsanteInfo onClick={() => setFoglio(true)} etichetta="Scadenze del test" />}>Data del test</Titolo>
           {mancano && (
@@ -112,10 +114,25 @@ export default function Obiettivi() {
             </div>
           )}
         </Carta>
+
+        <Carta className="flex items-center gap-2 p-4 pr-3">
+          <div className="min-w-0 flex-1 flex flex-col gap-3">
+            <Titolo tono="medio" icona="scadenza">Scadenze</Titolo>
+            <dl className="flex flex-col gap-2.5">
+              {OFA_DEADLINES.map(d => (
+                <div key={d.scuola} className="flex flex-col">
+                  <dt className="text-[13.5px] leading-[18px] text-testo-tenue">{d.scuola}</dt>
+                  <dd className="text-[16px] leading-[22px] font-bold text-testo">{d.data}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <Disegno nome="accesso-bloccato" kit="kit-luminoso" lato={136} className="shrink-0" />
+        </Carta>
       </div>
       <FoglioInfo aperto={foglio} onChiudi={() => setFoglio(false)} titolo="Data del test">
         <p>La data è facoltativa e serve solo a te, per contare i giorni che mancano. Il tempo conta mentre fai esercizi, simulazioni e il diagnostico. La probabilità cambia solo con il diagnostico e le simulazioni, non con gli esercizi.</p>
-        <p className="mt-2">Scadenze per avere il piano completo del 2° anno (calendario 2026/27): {OFA_DEADLINES.map(d => `${d.scuola} ${d.data}`).join(', ')}. {OFA_RULES_NOTE}</p>
+        <p className="mt-2">Le scadenze sono quelle per avere il piano completo del 2° anno (calendario 2026/27). {OFA_RULES_NOTE}</p>
       </FoglioInfo>
     </Pagina>
   );

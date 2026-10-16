@@ -1,5 +1,6 @@
 import { useId } from 'react';
 import { Icona } from '../../brand/icone/Icona';
+import { Illustrazione } from '../../brand/Illustrazione';
 import type { PuntoStima } from './stima';
 import { livelloDi } from './stima';
 import { TitoloSezione } from './Stima';
@@ -20,7 +21,18 @@ const xDi = (i: number, n: number) => (n === 1 ? 0.5 : 0.08 + (0.832 * i) / (n -
 export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; onInfo?: () => void }) {
   const id = useId().replace(/:/g, '');
   const n = punti.length;
-  if (n === 0) return null;
+  if (n === 0) {
+    // Andamento vuoto: nessuna stima è ancora stata misurata (né diagnostico né simulazioni). Non si disegna nessun punto.
+    return (
+      <section aria-labelledby="titolo-grafico" className="flex flex-col gap-[8px]">
+        <TitoloSezione id="titolo-grafico">Andamento</TitoloSezione>
+        <div role="status" className="flex items-center gap-[14px] rounded-[12px] bg-superficie-2 p-[10px] pr-[14px]">
+          <span aria-hidden="true" className="w-[72px] h-[60px] shrink-0 grid place-items-center"><Illustrazione nome="progressi-statistiche-scheda" lato={68} /></span>
+          <span className="text-[15px] leading-[20px] font-bold text-testo">Ancora nessun dato</span>
+        </div>
+      </section>
+    );
+  }
   const val = punti.map(p => p.p * 100);
   const xs = punti.map((_, i) => xDi(i, n));
   const ys = val.map(yDi);
@@ -32,7 +44,7 @@ export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; o
     <section aria-labelledby="titolo-grafico" className="flex flex-col gap-[8px]">
       <TitoloSezione id="titolo-grafico" destra={undefined}>
         <span className="inline-flex items-center gap-2">
-          <Icona nome="andamento" size={20} className="text-azione-scuro" />Andamento
+          Andamento
           {onInfo && (
             <button type="button" onClick={() => { playTapSound(); onInfo(); }} aria-label="Come è calcolata la stima"
               className="grid place-items-center w-7 h-7 -m-1.5 rounded-full text-testo-tenue hover:text-testo"><Icona nome="info" size={18} /></button>

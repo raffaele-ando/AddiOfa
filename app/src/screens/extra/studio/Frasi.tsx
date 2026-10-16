@@ -8,7 +8,7 @@ import { estraiFrasi, filtraFrasi, contaFrasi, statoFrase, type Frase, type Filt
 import { useSintesi } from '../../../lib/studio/sintesi';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { Pagina, StatoVuoto } from './comune';
+import { Pagina, StatoVuoto, Arte } from './comune';
 
 // Si calcolano una volta sola: il banco non cambia mentre l'app è aperta.
 let cache: Frase[] | null = null;
@@ -23,10 +23,11 @@ const FILTRI: { id: FiltroFrasi; nome: string; icona: NomeIcona; attivo: string 
 ];
 const PAGINA = 40;
 
-const VUOTI: Record<Exclude<FiltroFrasi, 'tutte'>, { titolo: string; icona: NomeIcona }> = {
-  preferite: { titolo: 'Nessuna preferita', icona: 'preferita' },
-  'da-ripassare': { titolo: 'Niente da ripassare', icona: 'stato-da-ripassare' },
-  'gia-note': { titolo: 'Nessuna già nota', icona: 'stato-imparata' },
+// Stati vuoti: la nuvola per «ancora niente», il foglio con la spunta quando non c'è nulla da ripassare (è una buona notizia)
+const VUOTI: Record<Exclude<FiltroFrasi, 'tutte'>, { titolo: string; nome: string }> = {
+  preferite: { titolo: 'Nessuna preferita', nome: 'vuoto' },
+  'da-ripassare': { titolo: 'Niente da ripassare', nome: 'documento-completato' },
+  'gia-note': { titolo: 'Nessuna già nota', nome: 'vuoto' },
 };
 
 export default function Frasi() {
@@ -54,7 +55,7 @@ export default function Frasi() {
   };
 
   return (
-    <Pagina titolo="Frasi" onIndietro={indietro}>
+    <Pagina titolo="Frasi" onIndietro={indietro} destra={<Arte nome="ricerca" kit="kit-luminoso" lato={132} className="-mt-3 -mb-3" />}>
       <div className="mt-4 relative">
         <span aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none"><Icona nome="cerca" size={18} /></span>
         <input type="search" value={testo} onChange={e => { setTesto(e.target.value); setQuante(PAGINA); }}
@@ -84,8 +85,8 @@ export default function Frasi() {
       <div className="mt-4">
         {elenco.length === 0 ? (
           testo.trim() || filtro === 'tutte'
-            ? <StatoVuoto icona="cerca" titolo="Nessuna frase" />
-            : <StatoVuoto icona={VUOTI[filtro].icona} titolo={VUOTI[filtro].titolo} />
+            ? <StatoVuoto illustrazione={{ nome: 'ricerca-scintille' }} titolo="Nessuna frase" />
+            : <StatoVuoto illustrazione={{ nome: VUOTI[filtro].nome }} titolo={VUOTI[filtro].titolo} />
         ) : (
           <ul className="flex flex-col gap-2" aria-label="Frasi">
             {visibili.map(f => {

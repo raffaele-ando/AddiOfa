@@ -61,7 +61,8 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="h-[100dvh] w-full bg-fondo">
           <StatoPagina
-            illustrazione="suggerimenti-consigli"
+            illustrazione="documento-errore"
+            figuraLato={120}
             ruolo="alert"
             titolo="Qualcosa non ha funzionato"
             info={<p>Si è verificato un problema imprevisto. I tuoi progressi sono salvati su questo dispositivo: puoi riprovare in sicurezza.</p>}

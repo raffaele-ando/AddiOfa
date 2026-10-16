@@ -55,7 +55,7 @@ export default function ProgressiArgomenti() {
   if (!an.haDati) {
     return (
       <div role="status" className="mt-4 flex flex-col items-center text-center">
-        <Disegno nome="ricerca" lato={150} />
+        <Disegno nome="ricerca-scintille" lato={96} />
         <h3 className="mt-3 text-[18px] leading-[24px] font-extrabold text-testo">Nessun dato</h3>
         <button type="button" onClick={() => { playTapSound(); avviaEsercizi('smart'); }}
           className="brand-premibile mt-4 inline-flex min-h-[48px] items-center gap-2 rounded-[13px] bg-azione px-6 text-[16px] font-bold text-azione-su"><Icona nome="studia" size={20} />Studia</button>

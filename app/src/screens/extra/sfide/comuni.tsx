@@ -1,22 +1,13 @@
 // Pezzi comuni alle schermate delle sfide: carta, bottoni (verbo o solo icona), campi, numeri con icona, avatar, pannello dell'esito.
 // Niente frasi: l'icona dice che cosa è, il numero quanto; le regole stanno dietro la «i» (PulsanteInfo + FoglioInfo).
-import { useEffect, useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
+import { Illustrazione } from '../../../brand/Illustrazione';
 import type { Tono } from '../ui';
 import { IconaTono, TONI } from '../ui';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { tempoBreve, type Esito, type Risultato } from '../../../lib/sfide/risultati';
-
-export function useScuro(): boolean {
-  const [scuro, setScuro] = useState(() => document.documentElement.classList.contains('dark'));
-  useEffect(() => {
-    const o = new MutationObserver(() => setScuro(document.documentElement.classList.contains('dark')));
-    o.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    return () => o.disconnect();
-  }, []);
-  return scuro;
-}
+import { fraseEsito, tempoBreve, type Esito, type Risultato } from '../../../lib/sfide/risultati';
 
 export { Pagina, Sezione } from '../ui';
 
@@ -147,19 +138,25 @@ function Colonna({ nome, r, io, vince }: { nome: string; r: Risultato; io?: bool
   );
 }
 
-/** L'esito di un duello: UN blocco tinto nel tono dell'esito (verde vinto, ambra pari, corallo smorzato perso) con icona e parola,
- *  e i due risultati affiancati (il tuo con il bordo blu, chi vince in verde). Lo usano il risultato e la risposta di un amico. */
+/** L'illustrazione di ogni esito (piano d'uso, docs/design/ILLUSTRAZIONI.md §3.2): vinto = coriandoli luminosi, pari = piccolo traguardo (il fiocco),
+ *  perso = il foglio con la croce (piatto, più piccolo). Una per esito, mai le stesse per altro. */
+export function IlluEsito({ esito }: { esito: Esito }) {
+  if (esito === 'vinto') return <Illustrazione kit="kit-luminoso" nome="celebrazione" lato={104} />;
+  if (esito === 'pari') return <Illustrazione nome="celebrazione-fiocco" lato={92} />;
+  return <Illustrazione nome="mancato-superamento" lato={112} />;
+}
+
+/** L'esito di un duello: UN blocco tinto nel tono dell'esito (verde vinto, ambra pari, corallo smorzato perso) con l'illustrazione, la frase
+ *  («Hai vinto», «Pari», «Ha vinto Marta») e i due risultati affiancati (il tuo con il bordo blu, chi vince in verde). */
 export function PannelloEsito({ esito, nomeMio, io, nomeAltro, altro, className }: {
   esito: Esito; nomeMio: string; io: Risultato; nomeAltro: string; altro: Risultato; className?: string;
 }) {
   const e = ESITO_VISTA[esito];
   return (
-    <Carta tono={e.tono} className={className}>
-      <div className="flex items-center gap-3" role="status">
-        <span aria-hidden className={cn('grid h-12 w-12 shrink-0 place-items-center rounded-[13px] bg-superficie', TONI[e.tono].icona)}><Icona nome={e.nome} size={26} /></span>
-        <p className="text-[24px] leading-[30px] font-extrabold tracking-[-0.01em] text-testo">{e.parola}</p>
-      </div>
-      <div className="mt-3.5 flex gap-2.5">
+    <Carta tono={e.tono} className={cn('flex flex-col items-center', className)}>
+      <IlluEsito esito={esito} />
+      <p role="status" className="mt-2 text-center text-[24px] leading-[30px] font-extrabold tracking-[-0.01em] text-testo">{fraseEsito(esito, nomeAltro)}</p>
+      <div className="mt-3.5 flex w-full gap-2.5">
         <Colonna nome={nomeMio} r={io} io vince={esito === 'vinto'} />
         <Colonna nome={nomeAltro} r={altro} vince={esito === 'perso'} />
       </div>
@@ -174,11 +171,16 @@ export function dataBreve(ms: number): string {
   return `${d.getDate()} ${MESI[d.getMonth()]}`;
 }
 
-/** Stato che ferma la strada: icona grande nel tono, al massimo una riga corta (≤ 8 parole), poi le azioni (uno solo pieno). */
-export function Fermo({ icona, tono, testo, children }: { icona: NomeIcona; tono: Tono; testo?: string; children?: ReactNode }) {
+/** Stato che ferma la strada: un'illustrazione degli stati (o, se non ce n'è una adatta, l'icona grande nel tono), al massimo una riga corta
+ *  (≤ 8 parole), poi le azioni (uno solo pieno). */
+export function Fermo({ icona, tono, testo, illustrazione, children }: {
+  icona?: NomeIcona; tono: Tono; testo?: string; illustrazione?: { nome: string; kit?: 'kit-blu' | 'kit-luminoso'; lato?: number }; children?: ReactNode;
+}) {
   return (
     <div className="mt-8 flex flex-col items-center text-center">
-      <IconaTono tono={tono} lato={72} className="rounded-full"><Icona nome={icona} size={34} /></IconaTono>
+      {illustrazione
+        ? <Illustrazione nome={illustrazione.nome} kit={illustrazione.kit} lato={illustrazione.lato ?? 120} />
+        : icona && <IconaTono tono={tono} lato={72} className="rounded-full"><Icona nome={icona} size={34} /></IconaTono>}
       {testo && <p role="status" className="mt-3 max-w-[30ch] text-[15px] leading-[21px] font-bold text-testo">{testo}</p>}
       {children && <div className="mt-6 flex w-full flex-col gap-2">{children}</div>}
     </div>

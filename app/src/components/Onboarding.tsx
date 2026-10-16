@@ -18,13 +18,22 @@ import { PulsanteInfo, IconaTono } from '../screens/extra/ui';
 import { Dato, Fatti, InfoFoglio } from '../screens/landing/comune';
 import { CONSEGUENZE } from '../screens/landing/dati';
 import { InfoIndipendenza } from '../screens/Footer';
+import { CampiChiSei, CampiConsensi, CampiCorso, formDa, type FormRegistrazione } from '../screens/extra/progetto/registrazione';
+import { coda } from '../lib/progetto/coda';
+import { corpoIscrizione, creaProfilo, impostaProfilo, leggiProgetto } from '../lib/progetto/profilo';
+import { controllaDatiMinimi } from '../lib/progetto/validazione';
+import type { LegalSection } from '../types';
 
-type Step = 'intro' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'risk' | 'calcolo' | 'result';
+type Step = 'intro' | 'chiSei' | 'corso' | 'consensi' | 'certification' | 'certInfo' | 'ofa' | 'quizIntro' | 'quiz' | 'risk' | 'calcolo' | 'result';
 
 interface OnboardingProps {
   appState: AppState;
   onUpdateAppState: (state: AppState) => void;
   onFinish: (result: OnboardingResult) => void;
+  /** Solo la registrazione («Completa il profilo»): chi ha già usato l'app senza registrarsi non rifà il diagnostico. */
+  soloRegistrazione?: boolean;
+  /** Apre una pagina legale (per il link all'informativa nel passo dei consensi). Senza, il link non compare. */
+  onOpenLegal?: (s: LegalSection) => void;
 }
 
 // Messaggio per fascia di probabilità: in pagina c'è solo il titolo (con l'icona della fascia); la spiegazione onesta sta dietro la «i».
@@ -79,8 +88,12 @@ function TestataDomanda({ icona, titolo, info, titoloInfo }: { icona: NomeIcona;
   );
 }
 
-export default function Onboarding({ appState, onUpdateAppState, onFinish }: OnboardingProps) {
-  const [step, setStep] = useState<Step>('intro');
+export default function Onboarding({ appState, onUpdateAppState, onFinish, soloRegistrazione = false, onOpenLegal }: OnboardingProps) {
+  const [step, setStep] = useState<Step>(soloRegistrazione ? 'chiSei' : 'intro');
+  // Registrazione: chi ha già un profilo non la rifà (apre il diagnostico dalla Home); gli altri la fanno subito, prima delle domande.
+  const giaRegistrato = useRef(!!leggiProgetto(appState).profilo && !soloRegistrazione);
+  const [reg, setReg] = useState<FormRegistrazione>(() => formDa(leggiProgetto(appState).profilo));
+  const [provato, setProvato] = useState(false);
   const [hasCertification, setHasCertification] = useState<boolean | null>(null);
   const [hasOfa, setHasOfa] = useState<OnboardingResult['hasOfa'] | null>(null);
   // Se la scelta delle domande diventa asincrona (lib/diagnostic.ts) questo codice regge lo stesso
@@ -92,6 +105,9 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish }: Onb
   stateRef.current = appState;
   const [foglio, setFoglio] = useState(false);
 
+  // L'iscrizione parte da sola appena possibile e si riprova se il server non risponde (lib/progetto/coda.ts): mai un blocco per l'utente.
+  useEffect(() => { coda.avvia(); }, []);
+
   useEffect(() => {
     let vivo = true;
     Promise.resolve(pickDiagnosticQuestions()).then(q => { if (vivo) setQuiz(q); });
@@ -100,8 +116,10 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish }: Onb
 
   // Barra di avanzamento
   const progressSteps = useMemo<Step[]>(
-    () => ['certification', 'ofa', 'quizIntro', 'quiz', 'risk', 'result'],
-    []
+    () => (soloRegistrazione ? ['chiSei', 'corso', 'consensi']
+      : giaRegistrato.current ? ['certification', 'ofa', 'quizIntro', 'quiz', 'risk', 'result']
+      : ['chiSei', 'corso', 'consensi', 'certification', 'ofa', 'quizIntro', 'quiz', 'risk', 'result']),
+    [soloRegistrazione]
   );
   const progressIndex = progressSteps.indexOf(step === 'calcolo' ? 'result' : step);
   const bar = progressIndex >= 0 ? { step: progressIndex + 1, totalSteps: progressSteps.length } : {};
@@ -123,6 +141,24 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish }: Onb
     diagnosticTotal: answered ? quiz.length : undefined,
     passProbability: answered ? passProb : undefined,
   });
+
+  const erroriRegistrazione = controllaDatiMinimi({ nome: reg.nome, email: reg.email });
+  const datiMinimiOk = !erroriRegistrazione.nome && !erroriRegistrazione.email;
+
+  // Salva il profilo nel dispositivo e mette in coda l'invio ad ATLAS. Il salvataggio è subito; l'invio non blocca niente.
+  const salvaRegistrazione = (): boolean => {
+    const precedente = leggiProgetto(stateRef.current).profilo;
+    const profilo = creaProfilo(reg, Date.now(), precedente);
+    if (!profilo) return false;
+    onUpdateAppState(impostaProfilo(stateRef.current, profilo));
+    void coda.accoda(corpoIscrizione(profilo));
+    return true;
+  };
+  const chiudiRegistrazione = () => {
+    if (!salvaRegistrazione()) return;
+    if (soloRegistrazione) onFinish(stateRef.current.onboarding ?? result());
+    else setStep('certification');
+  };
 
   const handleQuizNext = () => {
     const q = quiz[quizIndex];
@@ -155,10 +191,49 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish }: Onb
           </div>
           <Scena nome="studio-inglese" />
           <div className="mt-auto flex flex-col gap-3">
-            <PrimaryButton onClick={() => setStep('certification')}>Inizia</PrimaryButton>
-            <button onClick={() => { playTapSound(); onFinish(result()); }} aria-label="Salta e vai all'app" className="inline-flex items-center justify-center gap-1.5 text-sm font-bold text-testo-tenue hover:text-testo py-1">
-              <Icona nome="salta" size={16} />Salta
-            </button>
+            <PrimaryButton onClick={() => setStep(giaRegistrato.current ? 'certification' : 'chiSei')}>Inizia</PrimaryButton>
+          </div>
+        </Screen>
+      );
+
+    case 'chiSei':
+      return (
+        <Screen>
+          <TopBar {...bar} onBack={soloRegistrazione ? undefined : () => setStep('intro')} />
+          <TestataDomanda icona="profilo" titolo="Chi sei" />
+          <div className="flex justify-center"><Illustrazione kit="kit-luminoso" nome="verifica-utente" lato={140} /></div>
+          <CampiChiSei form={reg} onChange={setReg} provato={provato} />
+          <div className="mt-auto">
+            <PrimaryButton onClick={() => { if (!datiMinimiOk) { setProvato(true); return; } setStep('corso'); }}>Avanti</PrimaryButton>
+          </div>
+        </Screen>
+      );
+
+    case 'corso':
+      return (
+        <Screen>
+          <TopBar {...bar} onBack={() => setStep('chiSei')} />
+          <TestataDomanda icona="lezioni" titolo="Il tuo corso" />
+          <CampiCorso form={reg} onChange={setReg} />
+          <div className="mt-auto flex flex-col gap-3">
+            <PrimaryButton onClick={() => setStep('consensi')}>Avanti</PrimaryButton>
+            {!reg.corso && !reg.sede && !reg.provenienza && (
+              <button onClick={() => { playTapSound(); setStep('consensi'); }} aria-label="Salta questo passo" className="inline-flex items-center justify-center gap-1.5 text-sm font-bold text-testo-tenue hover:text-testo py-1">
+                <Icona nome="salta" size={16} />Salta
+              </button>
+            )}
+          </div>
+        </Screen>
+      );
+
+    case 'consensi':
+      return (
+        <Screen>
+          <TopBar {...bar} onBack={() => setStep('corso')} />
+          <TestataDomanda icona="privacy" titolo="Consensi" />
+          <CampiConsensi consensi={reg.consensi} onChange={c => setReg({ ...reg, consensi: c })} onOpenLegal={onOpenLegal} />
+          <div className="mt-auto">
+            <PrimaryButton onClick={chiudiRegistrazione}>{soloRegistrazione ? 'Salva' : 'Avanti'}</PrimaryButton>
           </div>
         </Screen>
       );
@@ -166,7 +241,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish }: Onb
     case 'certification':
       return (
         <Screen>
-          <TopBar {...bar} onBack={() => setStep('intro')} />
+          <TopBar {...bar} onBack={() => setStep(giaRegistrato.current ? 'intro' : 'consensi')} />
           <TestataDomanda icona="certificazione" titolo="Certificazione?" info="Una certificazione di inglese riconosciuta dal tuo ateneo (Cambridge, IELTS, TOEFL…)." titoloInfo="Certificazione" />
           <div className="flex flex-col gap-3 mt-2">
             <ChoiceCard selected={hasCertification === true} onClick={() => setHasCertification(true)} title="Sì" />

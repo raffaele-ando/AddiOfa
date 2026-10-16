@@ -1,28 +1,46 @@
 import { useMemo } from 'react';
-import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
+import { Icona } from '../../../brand/icone/Icona';
+import { calcolaStima } from '../../../components/home/stima';
 import { playTapSound } from '../../../lib/audio';
 import { nomeVisibile } from '../../../lib/profilo/dati';
+import { giorniMancanti, normalizzaObiettivi, OBIETTIVI_INIZIALI, type ObiettiviDati } from '../../../lib/profilo/obiettivi';
 import { livelloAttuale, SOGLIA_LIVELLO } from '../../../lib/profilo/livello';
+import { AVVERTENZA_INDIPENDENZA, LEGAL_TABS } from '../../../legal';
+import { ICONE_LEGALI } from '../../Footer';
 import { SCHERMATE } from '../registro';
-import { BarraTono, type Tono } from '../ui';
-import { useExtra } from '../contesto';
-import { Avatar, Pagina, TesseraIcona, useBanco, useProfilo } from './componenti';
+import { BarraTono } from '../ui';
+import { useExtra, useExtraDati } from '../contesto';
+import { Disegno } from '../servizi/componenti';
+import { Avatar, GruppoRighe, Pagina, RigaElenco, TesseraIllustrata, useBadge, useBanco, useOggi, useProfilo } from './componenti';
 
-/** Profilo: chi sei (avatar, nome, livello) e tre tessere con una parola. L'ingranaggio porta alle Impostazioni. */
+/**
+ * Profilo, hub a tessere: in alto chi sei (avatar, nome, livello); poi Progressi, Obiettivi, Badge e Progetto, ognuna con la sua
+ * illustrazione (piano d'uso: docs/design/ILLUSTRAZIONI.md §3.4); poi Aiuto (FAQ, Segnala) e Informazioni (presentazione, legali).
+ * L'ingranaggio porta alle Impostazioni.
+ */
 export default function Profilo() {
-  const { appState, vai, indietro, apriImpostazioni } = useExtra();
+  const { appState, vai, indietro, apriImpostazioni, apriLanding, apriLegale } = useExtra();
   const { profilo } = useProfilo();
   const banco = useBanco();
+  const badge = useBadge();
+  const oggi = useOggi();
+  const [grezzi] = useExtraDati<ObiettiviDati>('obiettivi', OBIETTIVI_INIZIALI);
 
   const livello = useMemo(() => livelloAttuale(appState.stats, banco), [appState.stats, banco]);
   const prossimo = livello.prossimo;
   const necessarie = prossimo ? Math.ceil(SOGLIA_LIVELLO * prossimo.totale - 1e-9) : 0;
-  const esiste = (id: string) => !!SCHERMATE[id];
+  const stima = useMemo(() => calcolaStima(appState), [appState]);
+  const mancano = giorniMancanti(normalizzaObiettivi(grezzi).dataTest, oggi);
+  const ottenuti = badge.filter(b => b.sbloccato).length;
+  // senza nome e senza avatar scelto la testata mostra la tessera d'identità del kit, non una lettera
+  const anonimo = !profilo.nome && profilo.avatar === 'iniziale';
 
-  const tessere: { id: string; icona: NomeIcona; tono: Tono; parola: string }[] = [
-    { id: 'progressi', icona: 'progressi', tono: 'azione', parola: 'Progressi' },
-    { id: 'obiettivi', icona: 'obiettivi', tono: 'alto', parola: 'Obiettivi' },
-    { id: 'badge', icona: 'badge', tono: 'viola', parola: 'Badge' },
+  // i dati piccoli sotto le parole sono veri e compaiono solo se esistono
+  const tessere: { id: string; illustrazione: string; parola: string; dato?: string }[] = [
+    { id: 'progressi', illustrazione: 'sfera-risultati', parola: 'Progressi', dato: stima ? `${Math.round(stima.p * 100)}%` : undefined },
+    { id: 'obiettivi', illustrazione: 'sfera-successi', parola: 'Obiettivi', dato: mancano?.quando === 'futuro' ? `${mancano.giorni} gg` : mancano?.quando === 'oggi' ? 'Oggi' : undefined },
+    { id: 'badge', illustrazione: 'celebrazione-fiocco', parola: 'Badge', dato: `${ottenuti}/${badge.length}` },
+    { id: 'esplora', illustrazione: 'sfera-opportunita', parola: 'Progetto' },
   ];
 
   return (
@@ -35,7 +53,7 @@ export default function Profilo() {
       <section aria-label="Il tuo profilo" className="mt-4 rounded-[14px] bg-superficie-2 p-4">
         <div className="flex items-center gap-4">
           <button type="button" onClick={() => { playTapSound(); vai('profilo-modifica'); }} aria-label="Modifica il profilo" className="brand-premibile relative shrink-0 rounded-full">
-            <Avatar profilo={profilo} lato={72} />
+            {anonimo ? <Disegno nome="verifica-utente" lato={96} /> : <Avatar profilo={profilo} lato={72} />}
             <span className="absolute -right-1 -bottom-1 grid h-7 w-7 place-items-center rounded-full border-2 border-superficie-2 bg-azione text-azione-su" aria-hidden="true"><Icona nome="modifica" size={14} /></span>
           </button>
           <div className="min-w-0 flex-1">
@@ -53,11 +71,20 @@ export default function Profilo() {
         {prossimo && <div className="mt-3"><BarraTono tono="viola" valore={Math.min(1, prossimo.imparate / necessarie) * 100} /></div>}
       </section>
 
-      <nav aria-label="Aree del profilo" className="mt-4 grid grid-cols-3 gap-2.5">
-        {tessere.filter(t => esiste(t.id)).map(t => (
-          <TesseraIcona key={t.id} icona={<Icona nome={t.icona} size={24} />} tono={t.tono} parola={t.parola} onClick={() => vai(t.id)} />
-        ))}
+      <nav aria-label="Aree del profilo" className="mt-4 grid grid-cols-2 gap-2.5">
+        {tessere.map(t => <TesseraIllustrata key={t.id} illustrazione={t.illustrazione} parola={t.parola} dato={t.dato} onClick={() => vai(t.id)} />)}
       </nav>
+
+      <GruppoRighe etichetta="Aiuto">
+        {SCHERMATE.faq && <RigaElenco illustrazione="sfera-faq" parola="FAQ" onClick={() => vai('faq')} />}
+        {SCHERMATE.segnala && <RigaElenco icona={<Icona nome="segnala" size={22} />} tono="basso" parola="Segnala" onClick={() => vai('segnala')} />}
+      </GruppoRighe>
+
+      <GruppoRighe etichetta="Informazioni">
+        <RigaElenco illustrazione="sfera-addiofa" parola="Presentazione" onClick={apriLanding} />
+        {LEGAL_TABS.map(t => <RigaElenco key={t.id} icona={<Icona nome={ICONE_LEGALI[t.id]} size={22} />} parola={t.label} onClick={() => apriLegale(t.id)} />)}
+      </GruppoRighe>
+      <p data-testo-ok className="mx-auto mt-4 max-w-[52ch] text-center text-[11px] leading-snug text-testo-tenue">{AVVERTENZA_INDIPENDENZA}</p>
     </Pagina>
   );
 }

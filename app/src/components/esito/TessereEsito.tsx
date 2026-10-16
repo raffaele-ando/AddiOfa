@@ -24,12 +24,15 @@ export function TessereEsito({ giuste, sbagliate, vuote }: { giuste: number; sba
   );
 }
 
-/** «10:40 / 15 min»: il tempo è ambra in tutta l'app. */
-export function RigaTempo({ secondi, minuti }: { secondi: number; minuti: number }) {
+/** «10:40 / 15 min»: il tempo è ambra in tutta l'app. Se la prova è finita perché il tempo è scaduto, accanto c'è il segno «Scaduto» (corallo). */
+export function RigaTempo({ secondi, minuti, scaduto }: { secondi: number; minuti: number; scaduto?: boolean }) {
   if (!(secondi > 0)) return null;
   return (
-    <span className="inline-flex items-center gap-1.5 text-[14px] font-bold text-medio-testo" role="img" aria-label={`Tempo usato: ${minSec(secondi)} su ${minuti} minuti`}>
-      <Icona nome="tempo" size={17} /><span className="tabular-nums">{minSec(secondi)}</span><span className="text-[12.5px] font-semibold text-testo-tenue">/ {minuti} min</span>
+    <span className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+      <span className="inline-flex items-center gap-1.5 text-[14px] font-bold text-medio-testo" role="img" aria-label={`Tempo usato: ${minSec(secondi)} su ${minuti} minuti${scaduto ? '. Tempo scaduto' : ''}`}>
+        <Icona nome="tempo" size={17} /><span className="tabular-nums">{minSec(secondi)}</span><span className="text-[12.5px] font-semibold text-testo-tenue">/ {minuti} min</span>
+      </span>
+      {scaduto && <span aria-hidden="true" className="inline-flex items-center rounded-full bg-basso-tinta px-2.5 py-0.5 text-[12.5px] font-extrabold text-basso-testo">Scaduto</span>}
     </span>
   );
 }

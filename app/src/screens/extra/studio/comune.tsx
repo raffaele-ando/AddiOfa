@@ -4,6 +4,8 @@ import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { cn } from '../../../lib/utils';
 import { playTapSound } from '../../../lib/audio';
 import { FONT } from '../../../brand/tokens';
+import { Illustrazione } from '../../../brand/Illustrazione';
+import type { KitId } from '../../../brand/risorse';
 export { TitoloSezione } from '../../../components/home/Stima';
 export { Carta, Barra, coloreValore } from '../../../components/home/comune';
 
@@ -33,11 +35,29 @@ export function Bottone({ children, onClick, variante = 'primario', disabled, cl
   );
 }
 
-/** Stato vuoto: icona, titolo di 2-4 parole, un'azione facoltativa. Il testo è facoltativo e si usa solo dove serve davvero. */
-export function StatoVuoto({ titolo, testo, icona, children }: { titolo: string; testo?: string; icona?: NomeIcona; children?: ReactNode }) {
+/** Un'illustrazione del Brand Kit scelta per nome (kit blu piatto di default; `luminoso` per le testate da 160 px in su). */
+export function Arte({ nome, lato, kit, gruppo, className }: { nome: string; lato: number; kit?: KitId; gruppo?: string; className?: string }) {
+  return <span aria-hidden="true" className={cn('inline-block shrink-0', className)}><Illustrazione nome={nome} lato={lato} kit={kit} gruppo={gruppo} /></span>;
+}
+
+/** Tessera quadrata con una piccola illustrazione dentro (righe di elenco e carte di argomento). */
+export function TesseraArte({ nome, kit, gruppo, lato = 56, className }: { nome: string; kit?: KitId; gruppo?: string; lato?: number; className?: string }) {
   return (
-    <div role="status" className="rounded-[12px] bg-superficie-2 px-5 py-7 text-center">
-      {icona && <span aria-hidden="true" className="mx-auto mb-2 grid h-12 w-12 place-items-center rounded-[14px] bg-superficie text-testo-tenue"><Icona nome={icona} size={26} /></span>}
+    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center rounded-[14px] bg-superficie', className)} style={{ width: lato, height: lato }}>
+      <Illustrazione nome={nome} lato={Math.round(lato * 0.78)} kit={kit} gruppo={gruppo} />
+    </span>
+  );
+}
+
+/** Stato vuoto: un'illustrazione degli stati (o un'icona), un titolo di 2-4 parole, un'azione facoltativa. Il testo si usa solo dove serve davvero. */
+export function StatoVuoto({ titolo, testo, icona, illustrazione, children }: {
+  titolo: string; testo?: string; icona?: NomeIcona; illustrazione?: { nome: string; gruppo?: string; kit?: KitId; lato?: number }; children?: ReactNode;
+}) {
+  return (
+    <div role="status" className="rounded-[12px] bg-superficie-2 px-5 py-6 text-center">
+      {illustrazione
+        ? <div className="mx-auto mb-2 flex justify-center"><Arte nome={illustrazione.nome} gruppo={illustrazione.gruppo ?? 'stati'} kit={illustrazione.kit} lato={illustrazione.lato ?? 96} /></div>
+        : icona && <span aria-hidden="true" className="mx-auto mb-2 grid h-12 w-12 place-items-center rounded-[14px] bg-superficie text-testo-tenue"><Icona nome={icona} size={26} /></span>}
       <p className="text-[16px] leading-[22px] font-bold text-testo">{titolo}</p>
       {testo && <p className="mt-1.5 mx-auto max-w-[34ch] text-[14px] leading-[20px] text-testo-tenue">{testo}</p>}
       {children && <div className="mt-4 mx-auto max-w-[280px]">{children}</div>}

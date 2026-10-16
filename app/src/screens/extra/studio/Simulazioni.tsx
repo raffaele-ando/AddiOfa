@@ -1,7 +1,9 @@
 // Scheda «Simulazioni», metà Prove: la carta della nuova simulazione (tre dati a icone, un solo ▶)
-// e l'elenco di quelle svolte (data, punteggio /30, icona esito). Le regole stanno dietro la «i». Concept: 36 e 49, 18.
+// e l'elenco di quelle svolte (data, punteggio /30, icona esito). Le regole stanno dietro la «i». Concept: 30.10, 49.6, 18.7.
+// Arte: `simulazione-esame` accanto ai tre dati (come il cronometro del concept 18.7); `vuoto` quando non ce n'è nessuna.
 import { useMemo } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
+import { Illustrazione } from '../../../brand/Illustrazione';
 import { useExtra } from '../contesto';
 import { EXAM } from '../../../config/offer';
 import { elencoSimulazioni } from '../../../lib/studio/simulazioni';
@@ -9,7 +11,6 @@ import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { RegoleFormato } from '../../../components/esito/InfoPunteggio';
 import { Bottone, Carta, Dato } from '../sfide/comuni';
-import { IconaTono } from '../ui';
 import { SchedaProveSfide } from '../sfide/scheda';
 import { dataBreve, minSec } from './comune';
 
@@ -21,10 +22,13 @@ export default function Simulazioni() {
   return (
     <SchedaProveSfide sezione="prove" titoloInfo="Regole" info={<RegoleFormato format={f} />}>
       <Carta tono="azione" className="mt-4">
-        <div className="flex items-center justify-between gap-2">
-          <Dato icona="risposte" tono="azione" valore={f.questions} aria={`${f.questions} domande`} />
-          <Dato icona="tempo" tono="medio" valore={f.minutes} unita="min" aria={`${f.minutes} minuti`} />
-          <Dato icona="soglia" tono="alto" valore={`${f.passMark}/${f.questions}`} aria={`Soglia ${f.passMark} su ${f.questions}`} />
+        <div className="flex items-center gap-4">
+          <Illustrazione nome="simulazione-esame" lato={104} />
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
+            <Dato icona="risposte" tono="azione" valore={f.questions} aria={`${f.questions} domande`} />
+            <Dato icona="tempo" tono="medio" valore={f.minutes} unita="min" aria={`${f.minutes} minuti`} />
+            <Dato icona="soglia" tono="alto" valore={`${f.passMark}/${f.questions}`} aria={`Soglia ${f.passMark} su ${f.questions}`} />
+          </div>
         </div>
         <Bottone className="mt-4" icona="studia" aria="Inizia la simulazione" onClick={avviaSimulazione} />
       </Carta>
@@ -39,9 +43,9 @@ export default function Simulazioni() {
           )}
         </div>
         {elenco.length === 0 ? (
-          <Carta className="flex flex-col items-center py-6 text-center">
-            <IconaTono tono="azione" lato={52} className="rounded-full"><Icona nome="simulazioni" size={26} /></IconaTono>
-            <p className="mt-3 text-[16px] leading-[22px] font-bold text-testo">Nessuna simulazione</p>
+          <Carta className="flex flex-col items-center py-4 text-center">
+            <Illustrazione nome="vuoto" lato={120} />
+            <p className="mt-2 text-[16px] leading-[22px] font-bold text-testo">Nessuna simulazione</p>
           </Carta>
         ) : (
           <ul className="flex flex-col gap-2">

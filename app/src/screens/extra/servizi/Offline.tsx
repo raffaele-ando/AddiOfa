@@ -19,7 +19,7 @@ export default function Offline() {
   const online = useOnline();
   return (
     <StatoPagina
-      illustrazione="mondo-internazionale"
+      illustrazione="mondo-globo"
       titolo={online ? 'Connesso' : 'Sei offline'}
       info={<p>Quello che hai già fatto è salvato su questo dispositivo e non si perde. Le domande sono già nel sito: se la pagina è aperta puoi continuare a studiare.</p>}
       azioni={[

@@ -321,6 +321,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onOpenTheoryTopic={apriTeoriaDa}
           onOpenDiagnostic={() => setView('onboarding')}
           onApriLezione={id => vaiExtra('lezione-dettaglio', { id })}
+          onStartExam={avviaSimulazione}
+          onApriExtra={vaiExtra}
           onOpenImpostazioni={() => (SCHERMATE.profilo ? vaiExtra('profilo') : apri('impostazioni'))}
           onNaviga={vaiScheda}
         />

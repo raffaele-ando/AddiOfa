@@ -4,12 +4,16 @@ import { cn } from '../lib/utils';
 import { playTapSound, playVictorySound } from '../lib/audio';
 import { Icona } from '../brand/icone/Icona';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
+import { Illustrazione } from '../brand/Illustrazione';
 import { Screen, TopBar } from './ui';
 import ConfirmDialog from './ConfirmDialog';
 import EsitoSimulazione from './esito/EsitoSimulazione';
 import { provider } from '../access';
 import type { ExamResult, ExamSession, PublicQuestion } from '../access/provider';
 import { EXAM } from '../config/offer';
+import { loadState } from '../lib/storage';
+import { elencoSimulazioni } from '../lib/studio/simulazioni';
+import type { PuntiConfronto } from './esito/ConfrontoPrecedente';
 
 interface ExamModeProps {
   onComplete: (
@@ -22,6 +26,8 @@ interface ExamModeProps {
   onOpenTheory?: (id: string) => void;
   /** Quante risposte entrano nella stima (diagnostico + simulazioni): serve al foglio "Come viene calcolata la stima" dell'esito. Facoltativa. */
   risposteStima?: number;
+  /** Le simulazioni già svolte, per il confronto prima/dopo dell'esito. Facoltativa: se manca si leggono dal salvataggio del dispositivo. */
+  storico?: ExamHistory[];
 }
 
 type Phase = 'select' | 'starting' | 'running' | 'submitting' | 'submitError' | 'done';
@@ -30,7 +36,7 @@ type Phase = 'select' | 'starting' | 'running' | 'submitting' | 'submitError' | 
 // (la fase «select» resta solo come stato di attesa dell'avvio, con l'errore se non parte).
 const MESSAGGIO_ERRORE = 'Qualcosa è andato storto. Riprova.';
 
-export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteStima }: ExamModeProps) {
+export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteStima, storico }: ExamModeProps) {
   const [phase, setPhase] = useState<Phase>('select');
   const [error, setError] = useState<string | null>(null);
   const [session, setSession] = useState<ExamSession | null>(null);
@@ -40,6 +46,9 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
   const [timeLeft, setTimeLeft] = useState(0);
   const [elapsedFinal, setElapsedFinal] = useState(0);
   const [confirm, setConfirm] = useState<null | 'exit' | 'submit'>(null);
+  // La simulazione svolta prima di questa (per il confronto prima/dopo) e se la prova si è chiusa perché il tempo è finito.
+  const [precedente, setPrecedente] = useState<PuntiConfronto | null>(null);
+  const [scaduto, setScaduto] = useState(false);
 
   // Stato che non serve a disegnare lo schermo: tempi per domanda, clic, scadenza. Nei ref per non avere valori vecchi nel timer.
   const aliveRef = useRef(true);
@@ -75,6 +84,13 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
   const avvia = async (rifai = false) => {
     if (phase !== 'select' && !(rifai && phase === 'done')) return;
     setError(null);
+    // Il confronto è con l'ultima simulazione: se si rifà subito, quella appena finita (non serve aspettare il salvataggio).
+    if (rifai && result) setPrecedente({ esatte: result.rawCorrect, totale: EXAM.questions });
+    else {
+      const ultima = elencoSimulazioni(storico ?? loadState().history)[0];
+      setPrecedente(ultima ? { esatte: ultima.esatte, totale: ultima.totale } : null);
+    }
+    setScaduto(false);
     setResult(null);
     setPhase('starting');
     try {
@@ -111,7 +127,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
     const tick = () => {
       const left = Math.max(0, Math.ceil((deadlineRef.current - Date.now()) / 1000));
       setTimeLeft(prev => (prev === left ? prev : left));
-      if (left === 0) void finish();
+      if (left === 0) void finish(true);
     };
     const timer = setInterval(tick, 250);
     return () => clearInterval(timer);
@@ -127,10 +143,11 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
   };
 
   // ---- Consegna
-  const finish = async () => {
+  const finish = async (tempoFinito = false) => {
     if (!session || !format) return;
     if (submittingRef.current) return;
     submittingRef.current = true;
+    if (tempoFinito) setScaduto(true);
     if (!pendingRef.current) {
       flushQuestionTime();
       const payload: Record<string, number | null> = {};
@@ -250,6 +267,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
       confirmLabel={confirm === 'exit' ? 'Esci' : 'Consegna'}
       cancelLabel={confirm === 'exit' ? 'Resta' : 'Continua'}
       danger={confirm === 'exit'}
+      illustrazione={confirm === 'exit' ? <Illustrazione nome="attenzione-rischio" lato={72} /> : <Illustrazione nome="simulazione-esame" lato={80} />}
       onCancel={() => setConfirm(null)}
       onConfirm={() => {
         const c = confirm;
@@ -272,9 +290,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
             <div role="status" aria-label="Preparo le domande"><IllustrazioneAnimata nome="attesa-caricamento" lato={110} /></div>
           ) : (
             <div className="flex w-full max-w-xs flex-col items-center gap-4">
-              <span aria-hidden className="grid h-16 w-16 place-items-center rounded-full bg-basso-tinta text-basso-numero">
-                <Icona nome="stato-attenzione" size={30} />
-              </span>
+              <Illustrazione nome="documento-errore" lato={96} />
               {error && <p role="alert" className="text-[15px] leading-[22px] font-bold text-testo">{error}</p>}
               <button type="button" onClick={() => { playTapSound(); void avvia(); }}
                 aria-label="Riprova"
@@ -296,12 +312,18 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
     return (
       <Screen className="items-center justify-center text-center">
         {phase === 'submitting' ? (
-          <div role="status" aria-label="Consegno e correggo" className="flex flex-col items-center gap-3">
-            <IllustrazioneAnimata nome="attesa-caricamento" lato={110} />
+          <div role="status" aria-label={scaduto ? 'Tempo scaduto: consegno e correggo' : 'Consegno e correggo'} className="flex flex-col items-center gap-3">
+            {scaduto && (
+              <span aria-hidden="true" className="inline-flex items-center gap-1.5 rounded-full bg-basso-tinta px-3.5 py-1.5 text-[15px] font-extrabold text-basso-testo">
+                <Icona nome="tempo" size={18} />Tempo scaduto
+              </span>
+            )}
+            <Illustrazione nome="documento-in-corso" lato={96} />
+            <Icona nome="stato-caricamento" size={26} className="animate-spin text-azione-scuro" />
           </div>
         ) : (
           <div className="flex w-full max-w-xs flex-col items-center gap-4">
-            <span aria-hidden className="grid h-16 w-16 place-items-center rounded-full bg-basso-tinta text-basso-numero"><Icona nome="stato-attenzione" size={30} /></span>
+            <Illustrazione nome="documento-errore" lato={96} />
             <p role="alert" className="text-[15px] leading-[22px] font-bold text-testo">{error}</p>
             <div className="flex w-full gap-2">
               <button type="button" onClick={() => { playTapSound(); void finish(); }} aria-label="Riprova a consegnare"
@@ -333,6 +355,8 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
           onOpenTheory={onOpenTheory}
           risposteStima={risposteStima}
           onRetry={() => void avvia(true)}
+          precedente={precedente}
+          scaduto={scaduto}
         />
         {dialog}
       </>
@@ -373,8 +397,9 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
       </header>
 
       <main className="flex-1 p-4 sm:p-8 flex flex-col w-full overflow-y-auto scrollbar-hide">
-        <div className="mb-4 shrink-0 flex items-center">
+        <div className="mb-4 shrink-0 flex items-center gap-2">
           <span aria-label={`Domanda ${currentIndex + 1} di ${questions.length}`} className="grid h-9 min-w-9 place-items-center rounded-full bg-superficie-2 px-2 text-[15px] font-extrabold tabular-nums text-testo">{currentIndex + 1}</span>
+          <span data-testo-ok className="inline-flex items-center gap-1.5 rounded-full bg-viola-tinta px-3 py-1.5 text-[13px] font-bold text-viola-testo"><Icona nome="argomenti" size={15} />{question.category}</span>
         </div>
         <h2 data-testo-ok className="text-xl sm:text-2xl font-bold text-testo mb-5 sm:mb-6 leading-snug shrink-0">
           {question.prompt}

@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 import { AppState } from '../types';
 import { Icona } from '../brand/icone/Icona';
-import { questions } from '../data/questions';
 import { playTapSound } from '../lib/audio';
 import { FONT } from '../brand/tokens';
 import Marchio from '../brand/Marchio';
@@ -10,8 +9,11 @@ import Cta from './home/Cta';
 import FoglioStima from './FoglioStima';
 import { StimaSezione, BannerStato, chiaveBanner } from './home/Stima';
 import GraficoStime from './home/GraficoStime';
-import ProssimoObiettivo from './home/Lezione';
-import { calcolaFattori, calcolaStima, lezioneConsigliata, livelloDi, progressoArgomento, serieStime } from './home/stima';
+import Lezioni from './home/Lezione';
+import Simulazione from './home/Simulazione';
+import { calcolaStima, livelloDi, serieStime } from './home/stima';
+import { lezioniPercorso } from '../lib/studio/percorso';
+import { elencoSimulazioni } from '../lib/studio/simulazioni';
 
 interface MenuProps {
   appState: AppState;
@@ -25,35 +27,37 @@ interface MenuProps {
   /** Icona profilo in alto a destra. */
   onOpenImpostazioni?: () => void;
   onNaviga?: (s: Scheda) => void;
+  /** ▶ della carta «Simulazione» (avvia la simulazione di 30 domande). Senza, la carta non ha il ▶. */
+  onStartExam?: () => void;
+  /**
+   * Apre una schermata extra: «Tutte» delle Lezioni → `onApriExtra('percorso')`, «Tutte» della Simulazione → `onApriExtra('simulazioni')`,
+   * e il tocco sull'ultimo risultato → `onApriExtra('simulazione-dettaglio', { id })`. Senza, i «Tutte» non compaiono.
+   * Stessa firma di `vaiExtra` in App.tsx.
+   */
+  onApriExtra?: (id: string, params?: Record<string, string>) => void;
 }
 
 /**
- * Home: stato e prossima azione, e niente altro. Intestazione (marchio e profilo), misuratore con la «i», fascia di stato,
- * un solo pulsante ▶, la prossima lezione, l'andamento della probabilità, barra a tre voci.
- * Strumenti, statistiche e simulazioni stanno nelle altre destinazioni (docs/design/ARCHITETTURA.md).
+ * Home «completa»: stato e prossime azioni. Intestazione (marchio e profilo), misuratore con la «i», fascia di stato,
+ * un solo pulsante ▶, le prossime tre lezioni, l'ultima simulazione, l'andamento della probabilità, barra a tre voci.
+ * Strumenti, frasi e prontuario stanno in Esercizi (docs/design/ARCHITETTURA.md). Concept 14, 01, 03, 11, 21, 33, 39.
  */
-export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheoryTopic, onApriLezione, onOpenDiagnostic, onOpenImpostazioni, onNaviga }: MenuProps) {
+export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheoryTopic, onApriLezione, onOpenDiagnostic, onOpenImpostazioni, onNaviga, onStartExam, onApriExtra }: MenuProps) {
   const [foglio, setFoglio] = useState(false);
 
-  // Tutti i numeri vengono da qui: stima, serie misurata, argomento da studiare
+  // Tutti i numeri vengono da qui: stima, serie misurata, lezioni del percorso, ultima simulazione
   const dati = useMemo(() => ({
     stima: calcolaStima(appState),
-    risposte: calcolaFattori(appState).risposteTotali,
-    lezione: lezioneConsigliata(appState),
     punti: serieStime(appState),
+    prossime: lezioniPercorso(appState).filter(l => l.stato !== 'imparata').slice(0, 3),
+    ultima: elencoSimulazioni(appState.history)[0] ?? null,
   }), [appState]);
-  const { stima, lezione, punti } = dati;
+  const { stima, punti, prossime, ultima } = dati;
   const livello = stima ? livelloDi(stima.p) : 'basso';
-  const progresso = useMemo(
-    () => (lezione ? progressoArgomento(appState, lezione.topic.id, new Set(questions.map(q => q.id))) : null),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [appState, lezione],
-  );
 
-  const apriLezione = () => {
-    if (!lezione) return;
-    if (onApriLezione) onApriLezione(lezione.topic.id);
-    else if (onOpenTheoryTopic) onOpenTheoryTopic(lezione.topic.id);
+  const apriLezione = (id: string) => {
+    if (onApriLezione) onApriLezione(id);
+    else if (onOpenTheoryTopic) onOpenTheoryTopic(id);
     else onOpenTheory();
   };
 
@@ -88,19 +92,22 @@ export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheor
           <div className="mt-[14px] corto:mt-[8px]"><BannerStato chiave={chiave} /></div>
           <div className="mt-[9px]"><Cta onClick={cta.azione}>{cta.etichetta}</Cta></div>
 
-          {/* prossima lezione: argomento più debole, o la prima scheda */}
-          {lezione && progresso && (
-            <div className="mt-[24px] corto:mt-[18px]">
-              <ProssimoObiettivo lezione={lezione} progresso={progresso} onApri={apriLezione} />
-            </div>
-          )}
+          {/* Lezioni: le prossime tre del percorso */}
+          <div className="mt-[24px] corto:mt-[18px]">
+            <Lezioni lezioni={prossime} onApri={apriLezione} onTutte={onApriExtra ? () => onApriExtra('percorso') : undefined} />
+          </div>
 
-          {/* andamento: solo punti misurati (diagnostico e simulazioni) */}
-          {punti.length > 0 && (
-            <div className="mt-[24px] corto:mt-[14px]">
-              <GraficoStime punti={punti} />
-            </div>
-          )}
+          {/* Simulazione: ultimo risultato e ▶ */}
+          <div className="mt-[24px] corto:mt-[18px]">
+            <Simulazione ultima={ultima} onInizia={onStartExam}
+              onApriUltima={onApriExtra && ultima ? () => onApriExtra('simulazione-dettaglio', { id: ultima.id }) : undefined}
+              onTutte={onApriExtra ? () => onApriExtra('simulazioni') : undefined} />
+          </div>
+
+          {/* Andamento: solo punti misurati (diagnostico e simulazioni) */}
+          <div className="mt-[24px] corto:mt-[18px]">
+            <GraficoStime punti={punti} onInfo={stima ? () => setFoglio(true) : undefined} />
+          </div>
         </div>
       </div>
       {stima && <FoglioStima aperto={foglio} onChiudi={() => setFoglio(false)} tipo={stima.fonte === 'diagnostico' ? 'diagnostico' : 'simulazione'} risposte={stima.risposte} />}

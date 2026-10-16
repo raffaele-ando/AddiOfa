@@ -3,7 +3,8 @@ import { ReactNode, useEffect, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { FONT } from '../../../brand/tokens';
-import { urlDisegno } from '../../../brand/risorse';
+import { Illustrazione } from '../../../brand/Illustrazione';
+import type { KitId } from '../../../brand/risorse';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 
@@ -18,12 +19,14 @@ export function useScuro(): boolean {
   return scuro;
 }
 
-/** Illustrazione del kit blu, nella variante del tema (la nuvola di sfondo cambia). Decorativa: alt vuoto. */
-export function Disegno({ nome, lato = 140, className }: { nome: string; lato?: number; className?: string }) {
-  const scuro = useScuro();
-  const src = urlDisegno('kit-blu', 'illustrazioni', nome, scuro) ?? urlDisegno('kit-blu', 'illustrazioni', nome);
-  if (!src) return null;
-  return <img src={src} alt="" draggable={false} width={lato} className={cn('h-auto max-w-full', className)} style={{ width: lato }} />;
+/** Illustrazione del Brand Kit (blu di default: `illustrazioni`, `stati` o `sfere`; `kit="kit-luminoso"` per le testate da 160 px in su).
+ *  La variante chiara o scura la sceglie il CSS: non si passa il tema. Decorativa: alt vuoto. */
+export function Disegno({ nome, lato = 140, kit = 'kit-blu', className }: { nome: string; lato?: number; kit?: KitId; className?: string }) {
+  return (
+    <span className={cn('inline-block max-w-full', className)} style={{ width: lato, lineHeight: 0 }} aria-hidden="true">
+      <Illustrazione kit={kit} nome={nome} lato={lato} />
+    </span>
+  );
 }
 
 import { Pagina as PaginaBase, TONI, type Tono } from '../ui';

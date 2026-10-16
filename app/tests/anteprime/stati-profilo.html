@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Anteprima stati e impostazioni</title>
+<script>
+  // ?tema=dark|light e ?s=errore|toast|impostazioni|legal
+  const q = new URLSearchParams(location.search);
+  if (q.get('tema') === 'dark') document.documentElement.classList.add('dark');
+</script>
+</head>
+<body class="m-0">
+<div id="root" style="height:100vh"></div>
+<script type="module" src="./stati-profilo.tsx"></script>
+</body>
+</html>

@@ -3,7 +3,8 @@
 // Le domande e le correzioni passano dal provider locale (le domande stanno nel sito, tutto gira nel browser).
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
-import { FoglioInfo, IconaTono, PulsanteInfo } from '../ui';
+import { Illustrazione } from '../../../brand/Illustrazione';
+import { FoglioInfo, PulsanteInfo } from '../ui';
 import { useExtra } from '../contesto';
 import { provider } from '../../../access';
 import type { PublicQuestion } from '../../../access/provider';
@@ -171,7 +172,7 @@ export default function SfidaGioco() {
           <Icona nome="stato-caricamento" size={28} className="animate-spin text-testo-tenue" />
         ) : (
           <>
-            <IconaTono tono="basso" lato={64} className="rounded-full"><Icona nome="stato-attenzione" size={30} /></IconaTono>
+            <Illustrazione nome="documento-errore" lato={104} />
             <p role="alert" className="max-w-sm text-[15px] leading-[22px] font-bold text-testo">{errore}</p>
             <div className="flex w-full max-w-xs gap-2">
               {fase === 'errore-consegna' && <Bottone icona="riprova" aria="Riprova a consegnare" onClick={() => void consegna()} />}
@@ -211,7 +212,7 @@ export default function SfidaGioco() {
               <h1 className="mt-2 text-[28px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo">{titoloSfida}</h1>
             </div>
             <DatiSfida domande={domande.length} minuti={SECONDI_SFIDA / 60} className="mt-5 justify-center" />
-            <div className="mt-6"><Bottone icona="studia" aria="Inizia" onClick={avvia} /></div>
+            <div className="mt-6"><Bottone icona="studia" onClick={avvia}>Inizia</Bottone></div>
           </div>
         </div>
         <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Regole">{regole}</FoglioInfo>

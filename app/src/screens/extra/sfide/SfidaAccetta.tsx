@@ -2,9 +2,10 @@
 // Il codice porta il seme delle domande, il nome e il risultato di chi sfida. Due casi:
 //  - «d»: una sfida nuova → si sceglie un nome e si gioca (sfida-gioco, ruolo «sfidato»);
 //  - «r»: un amico rimanda il suo risultato di un duello lanciato da te → si aggancia al tuo duello e si vede il confronto.
-// Solo icone, numeri e un pulsante; le regole dietro la «i».
+// Illustrazioni dal piano d'uso (docs/design/ILLUSTRAZIONI.md §3.2): la sfida da accettare ha la coppa luminosa, gli stati la loro illustrazione.
+// Le regole stanno dietro la «i».
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
+import { Illustrazione } from '../../../brand/Illustrazione';
 import { useExtra } from '../contesto';
 import { decodificaSfida, pulisciNome, NOME_MAX } from '../../../lib/sfide/codice';
 import { DOMANDE_SFIDA, SECONDI_SFIDA } from '../../../lib/sfide/seme';
@@ -14,15 +15,15 @@ import { FoglioInfo, PulsanteInfo, type Tono } from '../ui';
 import { Bottone, Campo, Carta, DatiSfida, Fermo, PannelloEsito, Pagina, Tempo } from './comuni';
 import { Regole } from './scheda';
 
-/** Uno stato che ferma la strada: icona nel tono (corallo link rotto, ambra versione diversa, blu semplice informazione), al massimo una riga corta
- *  e UN pulsante pieno (di norma «vai alle sfide», icona sola) più, se serve, un'azione migliore prima. */
-function Messaggio({ titolo, testo, icona, azione, tono = 'basso' }: { titolo: string; testo?: string; icona: NomeIcona; azione?: ReactNode; tono?: Tono }) {
+/** Uno stato che ferma la strada: l'illustrazione dello stato (documento con la croce per link rotto e versioni diverse, clessidra per «tua sfida»),
+ *  al massimo una riga corta e UN pulsante pieno (di norma «Sfide») più, se serve, un'azione migliore prima. */
+function Messaggio({ titolo, testo, illustrazione, azione, tono = 'basso' }: { titolo: string; testo?: string; illustrazione: string; azione?: ReactNode; tono?: Tono }) {
   const { vai, vaiHome } = useExtra();
   return (
     <Pagina titolo={titolo} onBack={vaiHome}>
-      <Fermo icona={icona} tono={tono} testo={testo}>
+      <Fermo tono={tono} illustrazione={{ nome: illustrazione }} testo={testo}>
         {azione}
-        <Bottone variante={azione ? 'secondario' : 'primario'} icona="sfide" aria="Vai alle sfide" onClick={() => vai('sfide')} />
+        <Bottone variante={azione ? 'secondario' : 'primario'} icona="sfide" onClick={() => vai('sfide')}>Sfide</Bottone>
       </Fermo>
     </Pagina>
   );
@@ -50,10 +51,10 @@ export default function SfidaAccetta() {
   }, [dati, risposta]);
 
   if (!dati) {
-    return <Messaggio icona="stato-link-rotto" titolo="Link non valido" testo="Chiedi di rimandarlo." />;
+    return <Messaggio illustrazione="documento-errore" titolo="Link non valido" testo="Chiedi di rimandarlo." />;
   }
   if (dati.banco !== impronta) {
-    return <Messaggio tono="medio" icona="stato-attenzione" titolo="Versioni diverse" testo="Aggiorna l'app e riprova." />;
+    return <Messaggio tono="medio" illustrazione="documento-errore" titolo="Versioni diverse" testo="Aggiorna l'app e riprova." />;
   }
 
   // ---- Il risultato di un amico a una tua sfida
@@ -65,7 +66,7 @@ export default function SfidaAccetta() {
       <Pagina titolo={`${dati.nome} ha giocato`} onBack={() => vai('sfide')}>
         <PannelloEsito className="mt-5" esito={esito} nomeMio={io.nome ?? 'Tu'} io={io} nomeAltro={dati.nome} altro={altro} />
         <div className="mt-4 flex gap-2">
-          <Bottone icona="correzioni" aria="Vedi il tuo risultato" onClick={() => vai('sfida-risultato', { voce: mioDuello.id })} />
+          <Bottone icona="correzioni" onClick={() => vai('sfida-risultato', { voce: mioDuello.id })}>Correzioni</Bottone>
           <Bottone variante="secondario" icona="amici" aria="Amici" className="w-16 shrink-0 px-0" onClick={() => vai('amici')} />
         </div>
       </Pagina>
@@ -78,21 +79,21 @@ export default function SfidaAccetta() {
   const proprio = voci.find(v => v.id === idVoce('duello', dati.seme, 'sfidante'));
 
   if (mioSuo || (proprio && dati.tipo === 'd')) {
-    return <Messaggio tono="azione" icona="condividi" titolo="Tua sfida"
-      azione={proprio && <Bottone icona="correzioni" aria="Vedi la tua partita" onClick={() => vai('sfida-risultato', { voce: proprio.id })} />} />;
+    return <Messaggio tono="azione" illustrazione="attesa" titolo="Tua sfida"
+      azione={proprio && <Bottone icona="correzioni" onClick={() => vai('sfida-risultato', { voce: proprio.id })}>Correzioni</Bottone>} />;
   }
   if (giaGiocata) {
     return (
       <Pagina titolo="Già giocata" onBack={() => vai('sfide')}>
-        <Carta tono="alto" className="mt-5 flex items-center gap-4" >
-          <span aria-hidden className="grid h-12 w-12 shrink-0 place-items-center rounded-[13px] bg-superficie text-alto-numero"><Icona nome="stato-risposta-giusta" size={26} /></span>
-          <div role="status" aria-label={`${giaGiocata.corrette} su ${giaGiocata.totale}, tempo ${tempoBreve(giaGiocata.secondi)}`}>
-            <p aria-hidden className="text-[30px] leading-[34px] font-extrabold tabular-nums text-testo">{giaGiocata.corrette}<span className="text-[16px] font-bold text-testo-tenue">/{giaGiocata.totale}</span></p>
-            <p aria-hidden className="text-[14px] font-semibold text-testo-tenue"><Tempo secondi={giaGiocata.secondi} /></p>
+        <Carta tono="alto" className="mt-5 flex items-center gap-4">
+          <div className="min-w-0 flex-1" role="status" aria-label={`${giaGiocata.corrette} su ${giaGiocata.totale}, tempo ${tempoBreve(giaGiocata.secondi)}`}>
+            <p aria-hidden className="text-[34px] leading-[38px] font-extrabold tabular-nums text-testo">{giaGiocata.corrette}<span className="text-[18px] font-bold text-testo-tenue">/{giaGiocata.totale}</span></p>
+            <p aria-hidden className="mt-0.5 text-[14px] font-semibold text-testo-tenue"><Tempo secondi={giaGiocata.secondi} /></p>
           </div>
+          <Illustrazione nome="documento-completato" lato={84} />
         </Carta>
         <div className="mt-4">
-          <Bottone icona="correzioni" aria="Vedi il confronto" onClick={() => vai('sfida-risultato', { voce: giaGiocata.id })} />
+          <Bottone icona="correzioni" onClick={() => vai('sfida-risultato', { voce: giaGiocata.id })}>Risultato</Bottone>
         </div>
       </Pagina>
     );
@@ -117,14 +118,17 @@ export default function SfidaAccetta() {
   return (
     <div className="relative h-full">
       <Pagina titolo={`${dati.nome} ti sfida`} onBack={() => vai('sfide')} destra={<PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />}>
-        <Carta className="mt-5 flex justify-center py-5">
-          <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} />
-        </Carta>
-        <div className="mt-4 flex items-start gap-3">
-          <Campo id="nome-accetta" aria="Il tuo nome" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
-            segnaposto="Il tuo nome" maxLength={NOME_MAX} errore={erroreNome} onInvio={gioca} className="flex-1" />
-          <Bottone icona="studia" aria="Accetta e gioca" className="w-16 shrink-0 px-0" onClick={gioca} />
+        <div className="mt-3 flex justify-center">
+          <Illustrazione kit="kit-luminoso" nome="successo" lato={150} />
         </div>
+        <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} className="mt-3 justify-center" />
+        <Carta className="mt-5">
+          <div className="flex items-start gap-2">
+            <Campo id="nome-accetta" aria="Il tuo nome" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
+              segnaposto="Il tuo nome" maxLength={NOME_MAX} errore={erroreNome} onInvio={gioca} className="flex-1" />
+            <Bottone icona="studia" className="w-auto shrink-0 px-4" onClick={gioca}>Accetta</Bottone>
+          </div>
+        </Carta>
       </Pagina>
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Regole">{regole}</FoglioInfo>
     </div>

@@ -1,16 +1,19 @@
-// Dettaglio di una simulazione svolta: misuratore, tessere icona/numero, riepilogo per argomento e correzioni (concept 36 schede 10-11).
+// Dettaglio di una simulazione svolta (concept 18.9, 30.11, 43): illustrazione dell'esito (kit luminoso, in testata), misuratore, tessere icona/numero,
+// confronto con la precedente, riepilogo per argomento e correzioni complete con confronto.
 // Le regole del punteggio stanno dietro la «i». Senza `id` (o con un id che non c'è) mostra solo «non trovata»: la nuova simulazione si avvia dalla scheda.
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
+import { Illustrazione } from '../../../brand/Illustrazione';
 import { useExtra } from '../contesto';
 import { provider } from '../../../access';
 import type { ExamQuestionResult, PublicQuestion, DataProvider } from '../../../access/provider';
 import { EXAM } from '../../../config/offer';
-import { entrataStorico, perArgomentoSimulazione, trovaSimulazione } from '../../../lib/studio/simulazioni';
+import { elencoSimulazioni, entrataStorico, perArgomentoSimulazione, trovaSimulazione } from '../../../lib/studio/simulazioni';
 import MisuratoreEsito from '../../../components/esito/MisuratoreEsito';
 import CorrezioniComplete from '../../../components/esito/CorrezioniComplete';
 import InfoPunteggio from '../../../components/esito/InfoPunteggio';
 import { TessereEsito, RigaTempo } from '../../../components/esito/TessereEsito';
+import ConfrontoPrecedente from '../../../components/esito/ConfrontoPrecedente';
 import { cn } from '../../../lib/utils';
 import { Pagina, Carta, Barra, coloreValore, dataBreve } from './comune';
 import { PulsanteInfo } from '../ui';
@@ -76,12 +79,17 @@ function Svolta({ chiave }: { chiave: string }) {
   if (!s || !entrata) return <NonTrovata onIndietro={indietro} onSimulazioni={() => vai('simulazioni')} />;
 
   const f = EXAM;
+  const prima = elencoSimulazioni(appState.history).find(x => x.numero === s.numero - 1);
+  const scaduta = s.tempoSecondi >= f.minutes * 60;
   const { righe } = perArgomentoSimulazione(entrata);
 
   return (
     <div className="relative h-full">
       <Pagina titolo={`Simulazione ${s.numero}`} onIndietro={indietro} destra={<PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole della simulazione" />}>
         <Carta className="mt-4 px-4 pt-3 pb-4 text-center">
+          <div className="flex justify-center">
+            <Illustrazione kit="kit-luminoso" nome={s.superata ? 'superamento' : 'mancato-superamento'} lato={s.superata ? 150 : 130} />
+          </div>
           <MisuratoreEsito giuste={s.esatte} totale={s.totale} soglia={s.soglia} superata={s.superata} />
           <div className="-mt-1 flex justify-center">
             <span className={cn('inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[16px] font-extrabold', s.superata ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
@@ -94,11 +102,12 @@ function Svolta({ chiave }: { chiave: string }) {
             <span role="img" aria-label={`Soglia ${s.soglia} su ${s.totale}`} className="inline-flex items-center gap-1.5 text-[14px] font-bold tabular-nums text-testo">
               <Icona nome="soglia" size={17} className="text-alto-numero" />{s.soglia}/{s.totale}
             </span>
-            <RigaTempo secondi={s.tempoSecondi} minuti={f.minutes} />
+            <RigaTempo secondi={s.tempoSecondi} minuti={f.minutes} scaduto={scaduta} />
           </div>
         </Carta>
 
         <div className="mt-3"><TessereEsito giuste={s.esatte} sbagliate={s.sbagliate} vuote={s.omesse} /></div>
+        {prima && <div className="mt-3"><ConfrontoPrecedente prima={{ esatte: prima.esatte, totale: prima.totale }} dopo={{ esatte: s.esatte, totale: s.totale }} /></div>}
 
         {righe.length > 0 && (
           <section aria-labelledby="titolo-argomenti" className="mt-7 flex flex-col gap-2.5">

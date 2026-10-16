@@ -10,6 +10,7 @@ import {
 import { normalizzaObiettivi, type ObiettiviDati, OBIETTIVI_INIZIALI } from '../../../lib/profilo/obiettivi';
 import { TONI, type Tono } from '../ui';
 import { useExtra, useExtraDati } from '../contesto';
+import { Disegno } from '../servizi/componenti';
 import { useOggi } from './componenti';
 
 const GIORNI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
@@ -145,7 +146,7 @@ export default function ProgressiCalendario() {
           <Barre giorni={giorni} valore={g => g.minuti} titolo="Minuti per giorno" icona="tempo" tono="medio" />
         </>
       ) : (
-        <div role="status" className="flex items-center justify-center gap-2 rounded-[12px] bg-superficie-2 py-6 text-testo-tenue"><Icona nome="giorni-studio" size={22} />–</div>
+        <div role="status" aria-label="Nessuna attività" className="flex items-center justify-center rounded-[12px] bg-superficie-2 py-5"><Disegno nome="piano-superamento" lato={96} /></div>
       )}
     </div>
   );

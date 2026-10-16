@@ -1,7 +1,8 @@
-// `sfide`: la sfida del giorno (▶), il duello con un amico (nome + ▶), il link ricevuto (incolla) e lo storico a icone.
-// Senza server né account: nessun altro utente è inventato. Le regole stanno dietro la «i».
+// `sfide` (voce «Oggi»): la sfida del giorno (concept 06 e 22: carta verde con la coppa), il duello con un amico (nome + «Sfida»), il link ricevuto
+// (incolla) e le ultime sfide. Senza server né account: nessun altro utente è inventato; lo storico vuoto ha la sua illustrazione. Regole dietro la «i».
 import { useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
+import { Illustrazione } from '../../../brand/Illustrazione';
 import { useExtra } from '../contesto';
 import { playTapSound } from '../../../lib/audio';
 import { nuovoSeme, semeDelGiorno, DOMANDE_SFIDA, SECONDI_SFIDA } from '../../../lib/sfide/seme';
@@ -73,11 +74,14 @@ export default function Sfide() {
 
   return (
     <SchedaProveSfide sezione="sfide" info={info} titoloInfo="Regole delle sfide">
-      {/* Il solo blocco in evidenza: la sfida del giorno, verde. Il ▶ è blu pieno finché non l'hai giocata. */}
+      {/* Il blocco in evidenza (concept 06.1): la sfida del giorno, in verde, con la coppa. Il pieno blu è il «Gioca» finché non l'hai giocata. */}
       <Carta tono="alto" className="mt-4">
         <div className="flex items-center gap-3">
-          <span aria-hidden className="grid h-12 w-12 shrink-0 place-items-center rounded-[13px] bg-superficie text-alto-numero"><Icona nome="sfida-giorno" size={26} /></span>
-          <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} className="flex-1 justify-end" />
+          <div className="min-w-0 flex-1">
+            <h2 className="text-[20px] leading-[26px] font-extrabold tracking-[-0.01em] text-testo">Sfida del giorno</h2>
+            <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} className="mt-3 gap-3" />
+          </div>
+          <Illustrazione nome="successo" lato={92} />
         </div>
         {oggi ? (
           <button type="button" aria-label={`Sfida del giorno: ${oggi.corrette} su ${oggi.totale}, tempo ${tempoBreve(oggi.secondi)}`} onClick={() => { playTapSound(); vai('sfida-risultato', { voce: oggi.id }); }}
@@ -85,27 +89,34 @@ export default function Sfide() {
             <Icona nome="stato-risposta-giusta" size={22} className="text-alto-numero" />
             <span className="text-[26px] leading-[30px] font-extrabold tabular-nums text-testo">{oggi.corrette}<span className="text-[16px] font-bold text-testo-tenue">/{oggi.totale}</span></span>
             <span className="flex-1 text-[14px] font-semibold tabular-nums text-medio-testo"><span className="inline-flex items-center gap-1"><Icona nome="tempo" size={15} />{tempoBreve(oggi.secondi)}</span></span>
+            <span className="text-[13px] font-semibold text-testo-tenue">Torna domani</span>
             <Icona nome="avanti" size={22} className="text-testo-tenue" />
           </button>
         ) : (
-          <Bottone className="mt-3" icona="studia" aria="Inizia la sfida del giorno" onClick={() => vai('sfida-gioco', { tipo: 'giorno', seme: semeDelGiorno() })} />
+          <Bottone className="mt-4" icona="studia" onClick={() => vai('sfida-gioco', { tipo: 'giorno', seme: semeDelGiorno() })}>Gioca</Bottone>
         )}
       </Carta>
 
-      {/* Duello (corallo: il confronto con un altro). Se la sfida del giorno è ancora da fare il ▶ è secondario: un solo pieno per schermata. */}
+      {/* Duello (corallo: il confronto con un altro). Se la sfida del giorno è ancora da fare il pulsante è secondario: un solo pieno per schermata. */}
       <Carta className="mt-3">
-        <div className="flex items-start gap-3">
-          <IconaTono tono="basso" lato={48} className="rounded-[13px]"><Icona nome="sfide" size={26} /></IconaTono>
+        <div className="flex items-center gap-3">
+          <IconaTono tono="basso" lato={44} className="rounded-[13px]"><Icona nome="sfide" size={24} /></IconaTono>
+          <h2 className="text-[17px] leading-[22px] font-extrabold text-testo">Duello</h2>
+        </div>
+        <div className="mt-3 flex items-start gap-2">
           <Campo id="nome-sfida" aria="Il tuo nome" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
             segnaposto="Il tuo nome" maxLength={NOME_MAX} errore={erroreNome} onInvio={iniziaDuello} className="flex-1" />
-          <Bottone icona="studia" aria="Inizia il duello" variante={oggi ? 'primario' : 'secondario'} className="w-14 shrink-0 px-0" onClick={iniziaDuello} />
+          <Bottone icona="studia" variante={oggi ? 'primario' : 'secondario'} className="w-auto shrink-0 px-4" onClick={iniziaDuello}>Sfida</Bottone>
         </div>
       </Carta>
 
       {/* Il link ricevuto da un amico */}
       <Carta className="mt-3">
-        <div className="flex items-start gap-3">
-          <IconaTono tono="azione" lato={48} className="rounded-[13px]"><Icona nome="incolla" size={26} /></IconaTono>
+        <div className="flex items-center gap-3">
+          <IconaTono tono="azione" lato={44} className="rounded-[13px]"><Icona nome="incolla" size={24} /></IconaTono>
+          <h2 className="text-[17px] leading-[22px] font-extrabold text-testo">Hai un link?</h2>
+        </div>
+        <div className="mt-3 flex items-start gap-2">
           <Campo id="link-sfida" aria="Il link della sfida" valore={link} onCambia={v => { setLink(v); setErroreLink(null); }}
             segnaposto="Incolla il link" errore={erroreLink} onInvio={apriLink} className="flex-1" />
           <Bottone icona="avanti" aria="Apri la sfida" variante="secondario" disabled={!link.trim()} className="w-14 shrink-0 px-0" onClick={apriLink} />
@@ -113,11 +124,12 @@ export default function Sfide() {
       </Carta>
 
       <section aria-labelledby="titolo-storico" className="mt-6 flex flex-col gap-2.5">
-        <h2 id="titolo-storico" className="flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="storico" size={20} className="text-testo-tenue" />Storico</h2>
+        <h2 id="titolo-storico" className="flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="storico" size={20} className="text-testo-tenue" />Ultime sfide</h2>
         {voci.length === 0 ? (
-          <Carta className="flex flex-col items-center py-6 text-center">
-            <IconaTono tono="basso" lato={52} className="rounded-full"><Icona nome="sfide" size={26} /></IconaTono>
+          <Carta className="flex flex-col items-center py-5 text-center">
+            <Illustrazione nome="vuoto" lato={104} />
             <p className="mt-3 text-[16px] leading-[22px] font-bold text-testo">Nessuna sfida</p>
+            <p className="mt-0.5 text-[13.5px] leading-[19px] text-testo-tenue">Gioca la prima: compare qui.</p>
           </Carta>
         ) : (
           <ul className="flex flex-col gap-2">

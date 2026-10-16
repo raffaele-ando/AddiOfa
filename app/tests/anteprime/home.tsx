@@ -1,5 +1,5 @@
 // Anteprima della home con dati di prova.
-// Uso: /tests/anteprime/home.html?vista=home|lezioni|impostazioni|misuratore  &stato=nuovo|basso|medio|alto  &tema=dark  &sim=0|1  &punti=1..5 (punti del grafico: diagnostico + simulazioni)  &focus=0 (barre non cliccabili)
+// Uso: /tests/anteprime/home.html?vista=home|lezioni|impostazioni|misuratore  &stato=nuovo|basso|medio|alto (nuovo = senza diagnostico; basso 5/10, medio 9/10, alto 10/10)  &tema=dark  &sim=0|1  &punti=1..5 (punti del grafico: diagnostico + simulazioni)  &focus=0 (barre non cliccabili)
 // Registro per Playwright: window.__log (callback chiamate).
 import { StrictMode, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -35,7 +35,7 @@ function costruisci(): AppState {
     const ok = (i * 37 % 100) / 100 < acc;
     nStats[qq.id] = { correct: ok ? 3 : 1, incorrect: ok ? 1 : 3, lastSeen: Date.now(), box: ok && i % 3 ? 2 : 0, easiness: 2.3 };
   });
-  const diagOk = stato === 'basso' ? 5 : stato === 'medio' ? 8 : 10;
+  const diagOk = stato === 'basso' ? 5 : stato === 'medio' ? 9 : 10; // 5/10 = basso, 9/10 = 62 % (medio), 10/10 = 87 % (alto)
   // punti=N: N punti misurati nel grafico = diagnostico + (N-1) simulazioni; senza, vale sim=1 (o lo stato alto)
   const punti = Number(q.get('punti'));
   const nSim = punti >= 1 ? Math.min(4, Math.floor(punti) - 1) : (q.get('sim') === '1' || stato === 'alto' ? 1 : 0);
@@ -72,6 +72,7 @@ function App() {
           <Menu appState={appState}
             onStartSmart={reg('onStartSmart')}
             onOpenTheory={reg('onOpenTheory')} onOpenTheoryTopic={reg('onOpenTheoryTopic')}
+            onApriLezione={reg('onApriLezione')} onStartExam={reg('onStartExam')} onApriExtra={reg('onApriExtra')}
             onOpenDiagnostic={reg('onOpenDiagnostic')} onOpenImpostazioni={reg('onOpenImpostazioni')} onNaviga={reg('onNaviga')} />
         )}
       </Layout>

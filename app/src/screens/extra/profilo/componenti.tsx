@@ -1,6 +1,8 @@
 // Mattoncini condivisi dalle schermate del profilo: pagina con intestazione, avatar, righe di lista, e gli hook che
 // leggono il banco domande attivo e i badge. Stile: lo stesso di Lezioni e Impostazioni (carte superficie-2, token, niente animazioni).
 import { useEffect, useMemo, type ReactNode } from 'react';
+import { Icona } from '../../../brand/icone/Icona';
+import { Disegno } from '../servizi/componenti';
 import { questions } from '../../../data/questions';
 import { urlDisegno } from '../../../brand/risorse';
 import { useTheme } from '../../../hooks/useTheme';
@@ -29,13 +31,35 @@ export function Avatar({ profilo, lato = 72 }: { profilo: ProfiloDati; lato?: nu
   );
 }
 
-/** Tessera di un solo gesto: icona nel tono del suo significato e UNA parola. */
-export function TesseraIcona({ icona, tono = 'azione', parola, onClick }: { icona: ReactNode; tono?: Tono; parola: string; onClick: () => void }) {
+/** Tessera del profilo: illustrazione (sfera o stato del kit blu), UNA parola e, se c'è un dato vero, un numero piccolo. */
+export function TesseraIllustrata({ illustrazione, parola, dato, onClick }: { illustrazione: string; parola: string; dato?: string; onClick: () => void }) {
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }}
-      className="brand-premibile flex flex-col items-center justify-center gap-2.5 rounded-[14px] bg-superficie-2 px-2 py-4 min-h-[96px]">
-      <IconaTono tono={tono} lato={44} className="rounded-[13px] bg-superficie">{icona}</IconaTono>
-      <span className="text-[14.5px] leading-[18px] font-bold text-testo">{parola}</span>
+      className="brand-premibile flex flex-col items-center justify-center gap-1 rounded-[14px] bg-superficie-2 px-2 pb-3.5 pt-4 min-h-[148px]">
+      <Disegno nome={illustrazione} lato={72} />
+      <span className="mt-1.5 text-[15px] leading-[20px] font-bold text-testo">{parola}</span>
+      <span className="min-h-[16px] text-[12.5px] leading-[16px] font-semibold tabular-nums text-testo-tenue">{dato}</span>
+    </button>
+  );
+}
+
+/** Gruppo di righe: tessera chiara con filetti. */
+export function GruppoRighe({ etichetta, children }: { etichetta: string; children: ReactNode }) {
+  return <section aria-label={etichetta} className="mt-4 overflow-hidden rounded-[14px] bg-superficie-2 divide-y divide-linea">{children}</section>;
+}
+
+/** Riga di un gruppo: a sinistra un'illustrazione (40 px) o un'icona nel suo tono, UNA parola, a destra la freccia. */
+export function RigaElenco({ illustrazione, icona, tono = 'azione', parola, onClick }: {
+  illustrazione?: string; icona?: ReactNode; tono?: Tono; parola: string; onClick: () => void;
+}) {
+  return (
+    <button type="button" onClick={() => { playTapSound(); onClick(); }}
+      className="brand-premibile flex w-full min-h-[60px] items-center gap-3 px-3.5 py-2 text-left">
+      {illustrazione
+        ? <span className="grid h-10 w-10 shrink-0 place-items-center"><Disegno nome={illustrazione} lato={40} /></span>
+        : <IconaTono tono={tono} lato={40} className="rounded-[12px] bg-superficie">{icona}</IconaTono>}
+      <span className="min-w-0 flex-1 text-[16px] leading-[22px] text-testo">{parola}</span>
+      <Icona nome="avanti" size={20} className="shrink-0 text-testo-tenue" />
     </button>
   );
 }

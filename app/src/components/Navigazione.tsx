@@ -11,18 +11,20 @@ const VOCI: { id: Scheda; nome: string; icona: NomeIcona }[] = [
   { id: 'sfide', nome: 'Sfide', icona: 'sfide' },
 ];
 
-/** Barra in basso: tre voci. La voce attiva ha la pillola blu chiara dietro l'icona e il testo blu. */
+/**
+ * Barra in basso come nei concept 14 e 45: tre voci con icona e nome, senza pillole né riquadri.
+ * La voce attiva è blu e in grassetto (`aria-current`); le altre grigio-blu. Area di tocco: tutta la colonna, alta almeno 56 px.
+ */
 export default function Navigazione({ attiva, onVai }: { attiva: Scheda | null; onVai: (s: Scheda) => void }) {
   return (
-    <nav aria-label="Sezioni" className="shrink-0 flex border-t border-linea bg-superficie pt-2 pb-[max(12px,env(safe-area-inset-bottom))]">
+    <nav aria-label="Sezioni" className="shrink-0 flex border-t border-linea bg-superficie pt-[6px] pb-[max(10px,env(safe-area-inset-bottom))]">
       {VOCI.map(({ id, nome, icona }) => {
         const on = id === attiva;
         return (
           <button key={id} type="button" onClick={() => { playTapSound(); onVai(id); }} aria-current={on ? 'page' : undefined}
-            className={cn('flex-1 min-w-0 flex flex-col items-center gap-1 py-1 text-[12px] leading-[16px]', on ? 'text-azione-scuro font-bold' : 'text-testo-tenue font-medium')}>
-            <span className={cn('grid h-8 w-16 place-items-center rounded-full transition-colors duration-100', on && 'bg-azione-tinta')}>
-              <Icona nome={icona} size={26} />
-            </span>
+            className={cn('brand-premibile flex-1 min-w-0 min-h-[56px] flex flex-col items-center justify-center gap-[3px] rounded-[12px] text-[12.5px] leading-[16px] transition-colors duration-100',
+              on ? 'text-azione font-bold' : 'text-testo-tenue font-medium hover:text-testo')}>
+            <Icona nome={icona} size={27} />
             {nome}
           </button>
         );

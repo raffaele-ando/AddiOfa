@@ -1,5 +1,6 @@
-// Esito della simulazione: misuratore, tessere icona/numero, ↺ per rifare, aree, correzioni complete. Solo disegno: la consegna e i dati restano in ExamMode.
-// Niente frasi: l'icona dice se è superata, il numero quanto; le regole stanno dietro la «i» (InfoPunteggio).
+// Esito della simulazione (concept 18.9, 30.11, 10, 43): illustrazione dell'esito (superata `celebrazione`, non superata `mancato-superamento`),
+// misuratore, tessere icona/numero, confronto con la precedente, «Correzioni» e «Rifai», aree, correzioni complete.
+// Solo disegno: la consegna e i dati restano in ExamMode. Niente frasi: le regole stanno dietro la «i» (InfoPunteggio).
 import { useRef, useState } from 'react';
 import type { ExamResult, PublicQuestion } from '../../access/provider';
 import type { ExamFormat } from '../../config/offer';
@@ -10,6 +11,7 @@ import MisuratoreEsito from './MisuratoreEsito';
 import CorrezioniComplete from './CorrezioniComplete';
 import InfoPunteggio from './InfoPunteggio';
 import { TessereEsito, RigaTempo } from './TessereEsito';
+import ConfrontoPrecedente, { type PuntiConfronto } from './ConfrontoPrecedente';
 import { coloreValore } from '../home/comune';
 import { IllustrazioneAnimata } from '../../brand/IllustrazioneAnimata';
 import { PulsanteInfo } from '../../screens/extra/ui';
@@ -26,9 +28,13 @@ interface Props {
   onOpenTheory?: (id: string) => void;
   /** Risposte su cui è calcolata la stima (diagnostico + simulazioni): se manca, il foglio non rimanda a FoglioStima. */
   risposteStima?: number;
+  /** La simulazione svolta prima di questa (dallo storico), per il confronto prima/dopo. Senza, il confronto non compare. */
+  precedente?: PuntiConfronto | null;
+  /** La prova si è chiusa perché il tempo è scaduto. */
+  scaduto?: boolean;
 }
 
-export default function EsitoSimulazione({ format, result, questions, answers, elapsedSeconds, onExit, onRetry, onOpenTheory, risposteStima }: Props) {
+export default function EsitoSimulazione({ format, result, questions, answers, elapsedSeconds, onExit, onRetry, onOpenTheory, risposteStima, precedente, scaduto }: Props) {
   const [info, setInfo] = useState(false);
   const [rivedi, setRivedi] = useState(0);
   const correzioniRef = useRef<HTMLDivElement>(null);
@@ -64,7 +70,7 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
             {/* L'animazione parte una volta all'apertura; toccandola si rivede (Invio e Spazio compresi). */}
             <button type="button" onClick={() => setRivedi(n => n + 1)} aria-label="Rivedi l'animazione"
               className="mx-auto mb-1 block rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione ">
-              <IllustrazioneAnimata nome={superata ? 'successo' : 'mancato-superamento'} lato={120} riavvia={rivedi} />
+              <IllustrazioneAnimata nome={superata ? 'celebrazione' : 'mancato-superamento'} lato={120} riavvia={rivedi} />
             </button>
             <MisuratoreEsito giuste={result.rawCorrect} totale={totale} soglia={format.passMark} superata={superata} />
             <div className="-mt-1 flex justify-center">
@@ -76,25 +82,27 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
                 {superata ? 'Superata' : 'Non superata'}
               </span>
             </div>
-            <div className="mt-3 flex items-center justify-center gap-5">
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5">
               <span role="img" aria-label={`Soglia ${format.passMark} su ${totale}`} className="inline-flex items-center gap-1.5 text-[14px] font-bold text-testo">
                 <Icona nome="soglia" size={17} className="text-alto-numero" /><span className="tabular-nums">{format.passMark}/{totale}</span>
               </span>
-              <RigaTempo secondi={elapsedSeconds} minuti={format.minutes} />
+              <RigaTempo secondi={elapsedSeconds} minuti={format.minutes} scaduto={scaduto} />
             </div>
           </section>
 
           <TessereEsito giuste={result.rawCorrect} sbagliate={result.wrong} vuote={result.omitted} />
 
-          {/* Un solo pulsante pieno: ↺; le correzioni sono sotto, a un tocco. */}
+          {precedente && <ConfrontoPrecedente prima={precedente} dopo={{ esatte: result.rawCorrect, totale }} />}
+
+          {/* Un solo pulsante pieno: «Correzioni» (sono sotto, a un tocco); «Rifai» ricomincia con altre 30 domande. */}
           <div className="flex gap-2.5">
-            <button type="button" onClick={() => { playTapSound(); onRetry(); }} aria-label="Rifai la simulazione"
-              className="flex h-[54px] flex-1 items-center justify-center rounded-[12px] bg-azione text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
-              <Icona nome="riprova" size={26} />
+            <button type="button" onClick={vaiAlleCorrezioni}
+              className="flex h-[54px] flex-[3] items-center justify-center gap-2 rounded-[12px] bg-azione text-[15px] font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
+              <Icona nome="correzioni" size={22} />Correzioni
             </button>
-            <button type="button" onClick={vaiAlleCorrezioni} aria-label="Vai alle correzioni"
-              className="grid h-[54px] w-16 shrink-0 place-items-center rounded-[12px] border border-azione/60 bg-superficie text-azione-scuro transition-colors duration-100 hover:bg-azione-tinta">
-              <Icona nome="correzioni" size={24} />
+            <button type="button" onClick={() => { playTapSound(); onRetry(); }}
+              className="flex h-[54px] flex-[2] items-center justify-center gap-2 rounded-[12px] border border-azione/60 bg-superficie text-[15px] font-bold text-azione-scuro transition-colors duration-100 hover:bg-azione-tinta">
+              <Icona nome="riprova" size={22} />Rifai
             </button>
           </div>
 

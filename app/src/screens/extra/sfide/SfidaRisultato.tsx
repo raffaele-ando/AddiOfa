@@ -1,7 +1,9 @@
 // `sfida-risultato`: l'esito di una partita (risposte giuste, tempo) e, per il duello, il confronto con l'amico, il pulsante per condividere
-// il link e le correzioni. Solo numeri, icone e un pulsante; le regole dietro la «i». Parametro: `voce` (la partita nello storico locale).
+// il link e le correzioni. Illustrazioni (docs/design/ILLUSTRAZIONI.md §3.2): vinto = coriandoli, pari = fiocco, perso = foglio con la croce,
+// duello senza risposta = clessidra, sfida del giorno = coppa. Le regole dietro la «i». Parametro: `voce` (la partita nello storico locale).
 import { useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
+import { Illustrazione } from '../../../brand/Illustrazione';
 import { useExtra } from '../contesto';
 import { provider } from '../../../access';
 import CorrezioniComplete from '../../../components/esito/CorrezioniComplete';
@@ -56,7 +58,7 @@ export default function SfidaRisultato() {
   if (!voce) {
     return (
       <Pagina titolo="Sfida" onBack={indietro}>
-        <Fermo icona="stato-attenzione" tono="basso" testo="Sfida non trovata.">
+        <Fermo tono="basso" illustrazione={{ nome: 'ricerca-scintille' }} testo="Sfida non trovata.">
           <Bottone icona="sfide" aria="Vai alle sfide" onClick={() => vai('sfide')} />
         </Fermo>
       </Pagina>
@@ -103,15 +105,13 @@ export default function SfidaRisultato() {
         {haEsito ? (
           <PannelloEsito className="mt-5" esito={esito} nomeMio={nomeMio} io={mio} nomeAltro={avv.nome} altro={avv} />
         ) : (
-          <Carta tono={duello ? 'neutro' : 'alto'} className="mt-5 flex items-center gap-4">
-            <span aria-hidden className={`grid h-12 w-12 shrink-0 place-items-center rounded-[13px] bg-superficie ${duello ? 'text-basso-numero' : 'text-alto-numero'}`}>
-              <Icona nome={duello ? 'sfide' : 'sfida-giorno'} size={26} />
-            </span>
-            <div className="min-w-0" role="status" aria-label={`${voce.corrette} su ${voce.totale}, tempo ${tempoBreve(voce.secondi)} su ${tempoBreve(SECONDI_SFIDA)}`}>
+          <Carta tono={duello ? 'medio' : 'alto'} className="mt-5 flex items-center gap-4">
+            <div className="min-w-0 flex-1" role="status" aria-label={`${voce.corrette} su ${voce.totale}, tempo ${tempoBreve(voce.secondi)} su ${tempoBreve(SECONDI_SFIDA)}`}>
+              <p aria-hidden className="text-[13px] font-semibold text-testo-tenue">{duello ? 'Il tuo risultato' : 'Sfida del giorno'}</p>
               <p aria-hidden className="text-[34px] leading-[38px] font-extrabold tabular-nums text-testo">{voce.corrette}<span className="text-[18px] font-bold text-testo-tenue">/{voce.totale}</span></p>
               <p aria-hidden className="mt-0.5 text-[14px] font-semibold text-testo-tenue"><Tempo secondi={voce.secondi} /> / {tempoBreve(SECONDI_SFIDA)}</p>
             </div>
-            {duello && !avv && <IconaTono tono="medio" className="ml-auto bg-superficie"><Icona nome="stato-attesa" size={22} /></IconaTono>}
+            {duello ? <Illustrazione nome="attesa" lato={68} /> : <Illustrazione nome="successo" lato={96} />}
           </Carta>
         )}
 
@@ -119,14 +119,14 @@ export default function SfidaRisultato() {
           <div className="mt-4 flex flex-col gap-3">
             {url ? (
               <>
-                <Bottone icona="condividi" aria={sfidato ? 'Rimanda il risultato' : 'Manda la sfida'} onClick={() => setFoglio(true)}>Condividi</Bottone>
+                <Bottone icona="condividi" onClick={() => setFoglio(true)}>Condividi</Bottone>
                 <FoglioCondividi aperto={foglio} onChiudi={() => setFoglio(false)} testo={testo} url={url} titolo="Condividi" />
               </>
             ) : (
               <p role="alert" className="flex items-center gap-2 text-[14px] font-bold text-basso-testo"><Icona nome="stato-attenzione" size={18} />Link non disponibile.</p>
             )}
             {!sfidato && !avv && (
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-2">
                 <IconaTono tono="azione" lato={48} className="rounded-[13px]"><Icona nome="incolla" size={26} /></IconaTono>
                 <Campo id="incolla-risposta" aria="Il link con il risultato dell'amico" valore={incolla} onCambia={v => { setIncolla(v); setErroreIncolla(null); }}
                   segnaposto="Incolla il link" errore={erroreIncolla} onInvio={apriRisposta} className="flex-1" />

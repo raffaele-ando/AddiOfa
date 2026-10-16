@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
-import { Carta } from '../../../components/home/comune';
-import { urlDisegno } from '../../../brand/risorse';
-import { useTheme } from '../../../hooks/useTheme';
+import { Disegno } from '../servizi/componenti';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { GRUPPI_BADGE, type BadgeValutato, type GruppoBadge } from '../../../lib/profilo/badge';
@@ -20,36 +18,32 @@ const FILTRI = [
 /** Ogni gruppo ha il suo colore, lo stesso in tutta l'app: domande e argomenti imparati = verde, simulazioni = blu, giorni di studio = ambra, livelli = viola. */
 const TONO_GRUPPO: Record<GruppoBadge, Tono> = { studio: 'alto', simulazioni: 'azione', costanza: 'medio', livello: 'viola' };
 
-function Figura({ nome, bloccato, tono }: { nome: string; bloccato: boolean; tono: Tono }) {
-  const { isDark } = useTheme();
-  const src = urlDisegno('kit-blu', 'illustrazioni', nome, isDark);
-  return (
-    <span className={cn('relative shrink-0 w-[64px] h-[64px] rounded-[16px] grid place-items-center', bloccato ? 'bg-superficie' : TONI[tono].tinta)} aria-hidden="true">
-      {src && <img src={src} alt="" draggable={false} className={cn('w-[88%] h-[88%] object-contain', bloccato && 'grayscale opacity-45')} />}
-    </span>
-  );
+/** L'arte di ogni badge. Due scelte del piano d'uso (docs/design/ILLUSTRAZIONI.md §3.4): i badge di costanza hanno il calendario;
+ *  `risultato-probabilita` ha scritto nel disegno «82 %», un numero che sembrerebbe dell'utente, e qui non si usa. */
+function arte(b: BadgeValutato): string {
+  if (b.gruppo === 'costanza') return 'piano-superamento';
+  if (b.illustrazione === 'risultato-probabilita') return 'progressi-statistiche-scheda';
+  return b.illustrazione;
 }
 
+/** Tessera di un badge (concept 06.4: griglia a tre colonne): arte, titolo e, se ancora da ottenere, avanzamento. */
 function SchedaBadge({ b, onApri }: { b: BadgeValutato; onApri: () => void }) {
+  const tono = TONO_GRUPPO[b.gruppo];
   return (
     <li>
       <button type="button" onClick={() => { playTapSound(); onApri(); }} aria-label={`${b.titolo}: ${b.sbloccato ? 'ottenuto' : b.avanzamento}`}
-        className="brand-premibile w-full text-left">
-        <Carta className="p-3.5 flex gap-3.5 items-center">
-          <Figura nome={b.illustrazione} bloccato={!b.sbloccato} tono={TONO_GRUPPO[b.gruppo]} />
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="text-[15px] leading-[20px] font-bold text-testo">{b.titolo}</h3>
-              {b.sbloccato && <span role="img" aria-label="Ottenuto" className="shrink-0 text-alto-numero"><Icona nome="stato-ok" size={22} /></span>}
-            </div>
-            {!b.sbloccato && (
-              <div className="mt-2 flex items-center gap-3">
-                <BarraTono valore={b.quota * 100} tono={TONO_GRUPPO[b.gruppo]} className="h-1.5 flex-1" />
-                {b.numeri && <span className="shrink-0 text-[12.5px] leading-[16px] font-bold text-testo tabular-nums">{b.numeri.corrente}/{b.numeri.obiettivo}</span>}
-              </div>
-            )}
-          </div>
-        </Carta>
+        className="brand-premibile flex h-full w-full flex-col items-center gap-2 rounded-[14px] bg-superficie-2 px-2 pb-3 pt-3.5 text-center">
+        <span className={cn('relative grid h-[72px] w-[72px] place-items-center rounded-[18px]', b.sbloccato ? TONI[tono].tinta : 'bg-superficie')} aria-hidden="true">
+          <Disegno nome={arte(b)} lato={60} className={cn(!b.sbloccato && 'grayscale opacity-45')} />
+          {b.sbloccato && <span className="absolute -right-1.5 -top-1.5 grid h-6 w-6 place-items-center rounded-full border-2 border-superficie-2 bg-alto-pieno text-azione-su"><Icona nome="stato-ok" size={13} /></span>}
+        </span>
+        <h3 className="text-[13px] leading-[17px] font-bold text-testo">{b.titolo}</h3>
+        {!b.sbloccato && (
+          <span className="mt-auto flex w-full flex-col items-center gap-1">
+            <BarraTono valore={b.quota * 100} tono={tono} className="h-1.5" />
+            {b.numeri && <span className="text-[11.5px] leading-[14px] font-bold tabular-nums text-testo-tenue">{b.numeri.corrente}/{b.numeri.obiettivo}</span>}
+          </span>
+        )}
       </button>
     </li>
   );
@@ -72,9 +66,9 @@ export default function Badge() {
     }>
       <div className="mt-4"><SelettoreIcone<Filtro> nome="Filtro" voci={FILTRI} valore={filtro} onScegli={setFiltro} /></div>
       {visibili.length === 0 && (
-        <div className="mt-8 flex flex-col items-center gap-2 text-testo-tenue" role="status">
-          <Icona nome={filtro === 'ottenuti' ? 'badge' : 'stato-ok'} size={32} />
-          <p className="text-[15px] font-bold">{filtro === 'ottenuti' ? 'Nessun badge ancora' : 'Tutti ottenuti'}</p>
+        <div className="mt-8 flex flex-col items-center gap-2 text-center" role="status">
+          <Disegno nome={filtro === 'ottenuti' ? 'vuoto' : 'celebrazione-fiocco'} lato={filtro === 'ottenuti' ? 120 : 96} />
+          <p className="text-[15px] font-bold text-testo-tenue">{filtro === 'ottenuti' ? 'Nessun badge ancora' : 'Tutti ottenuti'}</p>
         </div>
       )}
       {GRUPPI_BADGE.map(g => {
@@ -86,13 +80,17 @@ export default function Badge() {
               <h2 id={`badge-${g.id}`} className="text-[15.5px] leading-[20px] font-bold text-testo">{g.titolo}</h2>
               <span className={cn('text-[12.5px] font-semibold tabular-nums', TONI[TONO_GRUPPO[g.id]].testo)}>{badge.filter(b => b.gruppo === g.id && b.sbloccato).length}/{badge.filter(b => b.gruppo === g.id).length}</span>
             </div>
-            <ul className="flex flex-col gap-2.5">{dentro.map(b => <SchedaBadge key={b.id} b={b} onApri={() => setAperto(b)} />)}</ul>
+            <ul className="grid grid-cols-3 gap-2.5">{dentro.map(b => <SchedaBadge key={b.id} b={b} onApri={() => setAperto(b)} />)}</ul>
           </section>
         );
       })}
       <FoglioInfo aperto={!!aperto} onChiudi={() => setAperto(null)} titolo={aperto?.titolo ?? ''}>
         {aperto && (
           <>
+            <div className="mb-3 flex items-center justify-center gap-3">
+              <Disegno nome={arte(aperto)} lato={72} className={cn(!aperto.sbloccato && 'grayscale opacity-45')} />
+              {aperto.sbloccato && <Disegno nome="celebrazione-fiocco" lato={96} />}
+            </div>
             <p>{aperto.condizione}</p>
             {!aperto.sbloccato && <p className="mt-2 font-bold tabular-nums">{aperto.avanzamento}</p>}
             <p className="mt-2 text-testo-tenue">I badge si ottengono solo studiando davvero: non danno punti.</p>

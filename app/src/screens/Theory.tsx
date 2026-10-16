@@ -6,7 +6,8 @@ import { cn } from '../lib/utils';
 import { RichText } from '../components/ui';
 import { FONT } from '../brand/tokens';
 import { Icona } from '../brand/icone/Icona';
-import { ChipLivello } from './extra/studio/comune';
+import { ChipLivello, Arte, TesseraArte, StatoVuoto } from './extra/studio/comune';
+import { famigliaDi } from '../lib/studio/famiglie';
 import { titoloBreve } from '../lib/studio/percorso';
 
 interface TheoryProps {
@@ -24,8 +25,8 @@ const ordinati: TheoryTopic[] = theoryTopics.filter(t => t.pronta).sort(
 const pronti = ordinati;
 
 /** Pagina di teoria: stessa cornice delle schermate extra (freccia a sinistra del titolo, colonna di 440 px), ma con il riferimento al titolo per il focus. */
-function Cornice({ titolo, titoloRef, onBack, children, intestazione }: {
-  titolo?: string; titoloRef: RefObject<HTMLHeadingElement | null>; onBack: () => void; children: ReactNode; intestazione?: ReactNode;
+function Cornice({ titolo, titoloRef, onBack, children, intestazione, arte }: {
+  titolo?: string; titoloRef: RefObject<HTMLHeadingElement | null>; onBack: () => void; children: ReactNode; intestazione?: ReactNode; arte?: ReactNode;
 }) {
   return (
     <div className="h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
@@ -40,6 +41,7 @@ function Cornice({ titolo, titoloRef, onBack, children, intestazione }: {
               {intestazione}
               <h1 ref={titoloRef} tabIndex={-1} className="text-[26px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo outline-none break-words pt-[3px]">{titolo}</h1>
             </div>
+            {arte && <div className="shrink-0 pt-1">{arte}</div>}
           </header>
           {children}
         </div>
@@ -83,11 +85,10 @@ export default function Theory({ onBack, initialTopicId }: TheoryProps) {
 
   const nPronti = pronti.length;
   return (
-    <Cornice titolo="Teoria" titoloRef={titoloRef} onBack={onBack}>
+    <Cornice titolo="Teoria" titoloRef={titoloRef} onBack={onBack}
+      arte={<Arte nome="suggerimenti-consigli" kit="kit-luminoso" lato={132} className="-mt-3 -mb-3" />}>
       {nPronti === 0 && (
-        <div role="status" className="mt-4 flex flex-col items-center gap-2 rounded-[12px] bg-superficie-2 px-4 py-6 text-testo-tenue">
-          <Icona nome="teoria" size={28} />
-        </div>
+        <div className="mt-4"><StatoVuoto illustrazione={{ nome: 'vuoto' }} titolo="Nessuna lezione" /></div>
       )}
 
       {LIVELLI.map(l => {
@@ -116,11 +117,12 @@ function Riga({ t, onOpen }: { t: TheoryTopic; onOpen: (t: TheoryTopic) => void 
         type="button"
         onClick={() => { playTapSound(); onOpen(t); }}
         className={cn(
-          'w-full text-left rounded-[12px] px-3.5 py-3 min-h-[52px] flex items-center gap-3',
+          'w-full text-left rounded-[12px] px-3 py-2.5 min-h-[56px] flex items-center gap-3',
           'bg-superficie-2 hover:bg-linea transition-colors duration-100',
           'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione',
         )}
       >
+        <TesseraArte nome={famigliaDi(t.id).illustrazione} lato={44} />
         <span className="min-w-0 flex-1">
           <span className="block font-bold leading-snug break-words text-testo">{titoloBreve(t)}</span>
         </span>
@@ -142,6 +144,7 @@ function Dettaglio({ topic, prec, succ, titoloRef, onList, onGo }: {
   const corpo = 'text-[15px] font-medium text-testo leading-[24px]';
   return (
     <Cornice titoloRef={titoloRef} titolo={titoloBreve(topic)} onBack={onList}
+      arte={<Arte nome={famigliaDi(topic.id).illustrazione} lato={76} />}
       intestazione={<p className="flex items-center gap-2 pt-1"><ChipLivello livello={topic.livello} /><span className="sr-only">Livello {topic.livello}</span></p>}>
       {/* Il testo della scheda è contenuto (esente dal controllo di testo): attorno non c'è nessuna introduzione. */}
       <article data-testo-ok className="mt-5 flex flex-col gap-6">

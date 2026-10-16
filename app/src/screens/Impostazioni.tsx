@@ -5,11 +5,10 @@ import { useTheme, type ModoTema } from '../hooks/useTheme';
 import { useToast } from '../components/Toast';
 import { isAudioMuted, playTapSound, setAudioMuted } from '../lib/audio';
 import { cn } from '../lib/utils';
-import { AVVERTENZA_INDIPENDENZA, LEGAL_TABS } from '../legal';
+import { AVVERTENZA_INDIPENDENZA } from '../legal';
 import ConfirmDialog from '../components/ConfirmDialog';
 import { loadState } from '../lib/storage';
-import { SCHERMATE } from './extra/registro';
-import { ICONE_LEGALI } from './Footer';
+import { Disegno } from './extra/servizi/componenti';
 import { FoglioInfo, IconaTono, Pagina, PulsanteInfo, type Tono } from './extra/ui';
 
 // Stessa versione di package.json (l'app non legge il file a runtime)
@@ -17,15 +16,15 @@ const VERSIONE_APP = '1.0.0';
 
 interface Props {
   onBack: () => void;
-  /** Apre la pagina di presentazione (landing) senza cancellare i progressi. */
+  /** Non più usati: presentazione, legali, FAQ e Segnala stanno nel Profilo. Restano nel tipo perché App li passa ancora. */
   onOpenLanding?: () => void;
-  onOpenLegal: (s: LegalSection) => void;
+  onOpenLegal?: (s: LegalSection) => void;
   /** Assente = la riga non si vede. */
   onImport?: () => void;
   /** Assente = al posto del file si copia il testo dei progressi. */
   onExport?: () => void;
   
-  /** Apre una schermata extra (faq, segnala): `vaiExtra` di App. Assente = si apre con un ricaricamento della pagina (?vista=). */
+  /** Non più usato (vedi sopra). */
   onVai?: (id: string, params?: Record<string, string>) => void;
   /** Cancella i dati locali. Assente = si cancellano le chiavi dei progressi e si ricarica la pagina. */
   onReset?: () => void;
@@ -33,11 +32,6 @@ interface Props {
 
 // Chiavi del localStorage che contengono i dati dell'utente (progressi con profilo, obiettivi e badge dentro `extra`; ultimo diagnostico).
 const CHIAVI_DATI = ['ofa_polimi_app_state', 'addiofa_diagnostico_ultimo'];
-
-/** Apre una schermata extra senza App: ricarica la pagina con ?vista=id (i progressi sono già salvati). */
-function vaiConUrl(id: string) {
-  window.location.assign(`${window.location.pathname}?vista=${encodeURIComponent(id)}`);
-}
 
 /** Gruppo di righe: tessera chiara con filetti, nessun titolo (ogni riga ha già la sua icona e la sua parola). */
 function Gruppo({ children, etichetta }: { children: ReactNode; etichetta: string }) {
@@ -51,11 +45,13 @@ function IconaRiga({ nome, tono }: { nome: NomeIcona; tono?: Tono }) {
     : <span className="w-[32px] h-[32px] rounded-[9px] bg-superficie text-testo-tenue flex items-center justify-center shrink-0" aria-hidden="true"><Icona nome={nome} size={18} /></span>;
 }
 
-/** Una riga: icona, UNA parola, e a destra il comando (interruttore, selettore a icone, valore o freccia). */
-function Riga({ icona, tono, titolo, destra, onClick }: { icona: NomeIcona; tono?: Tono; titolo: string; destra?: ReactNode; onClick?: () => void }) {
+/** Una riga: icona (o illustrazione del kit), UNA parola, e a destra il comando (interruttore, selettore a icone, valore o freccia). */
+function Riga({ icona, illustrazione, tono, titolo, destra, onClick }: { icona?: NomeIcona; illustrazione?: string; tono?: Tono; titolo: string; destra?: ReactNode; onClick?: () => void }) {
   const corpo = (
     <>
-      <IconaRiga nome={icona} tono={tono} />
+      {illustrazione
+        ? <span className="grid h-[32px] w-[32px] shrink-0 place-items-center"><Disegno nome={illustrazione} lato={36} /></span>
+        : icona && <IconaRiga nome={icona} tono={tono} />}
       <span className="flex-1 min-w-0 text-[16px] leading-[22px] text-testo">{titolo}</span>
       {destra}
       {onClick && !destra && <Icona nome="avanti" size={20} className="shrink-0 -mr-1 text-testo-tenue" />}
@@ -106,15 +102,13 @@ const TEMI: { id: ModoTema; nome: string; icona: NomeIcona }[] = [
   { id: 'scuro', nome: 'Scuro', icona: 'tema-scuro' },
 ];
 
-export default function Impostazioni({ onBack, onOpenLanding, onOpenLegal, onImport, onExport, onVai, onReset }: Props) {
+export default function Impostazioni({ onBack, onImport, onExport, onReset }: Props) {
   const { modo, setModo } = useTheme();
   const toast = useToast();
   const [suoniSpenti, setSuoniSpenti] = useState(isAudioMuted());
   const [chiediCancella, setChiediCancella] = useState(false);
   const [testoCopia, setTestoCopia] = useState<string | null>(null);
   const [info, setInfo] = useState(false);
-  const vai = (id: string) => (onVai ? onVai(id) : vaiConUrl(id));
-  const c = SCHERMATE;
 
   const cambiaSuoni = (acceso: boolean) => {
     setSuoniSpenti(!acceso);
@@ -167,24 +161,13 @@ export default function Impostazioni({ onBack, onOpenLanding, onOpenLegal, onImp
           </div>
         )}
 
-        {(c.faq || c.segnala) && (
-          <Gruppo etichetta="Aiuto">
-            {c.faq && <Riga tono="azione" icona="faq" titolo="FAQ" onClick={() => vai('faq')} />}
-            {c.segnala && <Riga tono="azione" icona="segnala" titolo="Segnala" onClick={() => vai('segnala')} />}
-          </Gruppo>
-        )}
-
         <Gruppo etichetta="Informazioni">
-          <Riga icona="info" titolo="Versione" destra={
+          <Riga illustrazione="sfera-addiofa" titolo="Versione" destra={
             <span className="flex shrink-0 items-center gap-1">
               <span className="text-[14px] text-testo-tenue tabular-nums">{VERSIONE_APP}</span>
               <PulsanteInfo onClick={() => setInfo(true)} etichetta="Informazioni sull'app" className="-mr-1.5" />
             </span>
           } />
-          {LEGAL_TABS.map(t => (
-            <Riga key={t.id} icona={ICONE_LEGALI[t.id]} titolo={t.label} onClick={() => onOpenLegal(t.id)} />
-          ))}
-          {onOpenLanding && <Riga icona="presentazione" titolo="Presentazione" onClick={onOpenLanding} />}
         </Gruppo>
       </>
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Informazioni">

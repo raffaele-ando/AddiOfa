@@ -3,7 +3,7 @@
 import { useId, useMemo, useState } from 'react';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { useExtra, useExtraDati } from '../contesto';
-import { Pagina, copiaTesto } from './componenti';
+import { Disegno, Pagina, copiaTesto } from './componenti';
 import { FoglioInfo, IconaTono, PulsanteInfo, TONI, type Tono } from '../ui';
 import { questions } from '../../../data/questions';
 import { playTapSound } from '../../../lib/audio';
@@ -66,7 +66,9 @@ export default function Segnala() {
 
       {fatta ? (
         <div className="mt-5 flex flex-col gap-3" role="status">
-          <p className="inline-flex items-center gap-2 self-start rounded-full bg-medio-tinta px-3 py-1.5 text-[14.5px] font-bold text-medio-testo">
+          {/* «in corso», non «completato»: la segnalazione è pronta ma non è partita, la spedisce chi la copia */}
+          <div className="flex justify-center"><Disegno nome="documento-in-corso" lato={96} /></div>
+          <p className="inline-flex items-center gap-2 self-center rounded-full bg-medio-tinta px-3 py-1.5 text-[14.5px] font-bold text-medio-testo">
             <Icona nome="stato-attenzione" size={18} />Non inviata
           </p>
           <div className="rounded-[12px] bg-superficie-2 p-3.5">
@@ -81,7 +83,8 @@ export default function Segnala() {
         </div>
       ) : (
         <>
-          <div role="radiogroup" aria-label="Tipo" className="mt-5 grid grid-cols-4 gap-2">
+          <div className="mt-1 flex justify-center"><Disegno nome="messaggi" lato={120} /></div>
+          <div role="radiogroup" aria-label="Tipo" className="mt-3 grid grid-cols-4 gap-2">
             {TIPI_SEGNALAZIONE.map(t => {
               const on = tipo === t.id;
               const st = STILE_TIPO[t.id];

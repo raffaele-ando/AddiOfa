@@ -1,6 +1,6 @@
-// La scheda «Simulazioni» con le sue due metà: Prove e Sfide. Stessa testata (titolo + profilo a destra), stessa barra in basso evidenziata;
-// un selettore a due icone passa da una metà all'altra, e dentro Sfide un secondo a tre icone (sfide, amici, classifica).
-// La «i» sta sempre accanto al profilo: le regole non si scrivono in pagina, si aprono lì.
+// La pagina «Sfide» della barra (Home | Esercizi | Sfide): titolo, profilo e «i» in testata, sotto il selettore a tre voci Oggi | Amici | Classifica
+// (icona e nome su ogni voce, come nel concept 06: la voce aperta in tinta blu). La «i» sta accanto al profilo: le regole si aprono lì.
+// `SchedaProveSfide` resta per la scheda Simulazioni (area studio), che la usa con `sezione="prove"`: lì la testata è quella di prima.
 import { useState, type ReactNode } from 'react';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { FONT } from '../../../brand/tokens';
@@ -16,13 +16,34 @@ const META: ReadonlyArray<{ id: 'prove' | 'sfide'; vista: string; icona: NomeIco
   { id: 'sfide', vista: 'sfide', icona: 'sfide', nome: 'Sfide' },
 ];
 
-const SOTTO: ReadonlyArray<{ id: 'sfide' | 'amici' | 'classifica'; icona: NomeIcona; nome: string }> = [
+/** Le tre voci della pagina Sfide: la sfida del giorno (e il duello), gli amici, la classifica. */
+const VOCI: ReadonlyArray<{ id: 'sfide' | 'amici' | 'classifica'; icona: NomeIcona; nome: string }> = [
   { id: 'sfide', icona: 'sfida-giorno', nome: 'Oggi' },
   { id: 'amici', icona: 'amici', nome: 'Amici' },
   { id: 'classifica', icona: 'classifica', nome: 'Classifica' },
 ];
 
-/** Il selettore Prove | Sfide: due segmenti con icona e una parola, quello aperto in tinta blu (non è un pulsante pieno). */
+/** Selettore a tre voci: una pillola con tre segmenti uguali, icona e nome su tutti; quello aperto in tinta blu (non un pulsante pieno). */
+function SelettoreSfide({ sezione }: { sezione: SezioneScheda }) {
+  const { vai } = useExtra();
+  return (
+    <nav aria-label="Sezioni delle sfide" className="mt-3 flex gap-1 rounded-full bg-superficie-2 p-1">
+      {VOCI.map(v => {
+        const on = v.id === sezione;
+        return (
+          <button key={v.id} type="button" aria-current={on ? 'page' : undefined}
+            onClick={() => { if (!on) { playTapSound(); vai(v.id); } }}
+            className={cn('flex h-11 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full border text-[14px] font-bold transition-colors duration-100',
+              on ? 'border-azione/40 bg-azione-tinta text-azione-scuro' : 'border-transparent text-testo-tenue hover:text-testo')}>
+            <Icona nome={v.icona} size={20} /><span className="truncate">{v.nome}</span>
+          </button>
+        );
+      })}
+    </nav>
+  );
+}
+
+/** Il selettore Prove | Sfide della scheda Simulazioni: due segmenti con icona e una parola. */
 function SelettoreMeta({ sezione }: { sezione: SezioneScheda }) {
   const { vai } = useExtra();
   const attiva = sezione === 'prove' ? 'prove' : 'sfide';
@@ -43,40 +64,21 @@ function SelettoreMeta({ sezione }: { sezione: SezioneScheda }) {
   );
 }
 
-/** I tre segmenti dentro Sfide: solo icone; quello aperto mostra anche il nome ed è sottolineato. */
-function SelettoreSfide({ sezione }: { sezione: SezioneScheda }) {
-  const { vai } = useExtra();
-  return (
-    <nav aria-label="Sezioni delle sfide" className="mt-3 flex border-b border-linea">
-      {SOTTO.map(s => {
-        const on = s.id === sezione;
-        return (
-          <button key={s.id} type="button" aria-current={on ? 'page' : undefined} aria-label={s.nome}
-            onClick={() => { if (!on) { playTapSound(); vai(s.id); } }}
-            className={cn('-mb-px flex h-11 flex-1 items-center justify-center gap-1.5 border-b-2 text-[13.5px] font-bold transition-colors duration-100',
-              on ? 'border-azione text-azione-scuro' : 'border-transparent text-testo-tenue hover:text-testo')}>
-            <Icona nome={s.icona} size={22} />{on && s.nome}
-          </button>
-        );
-      })}
-    </nav>
-  );
-}
-
-/** Cornice della scheda: testata, selettori, contenuto e (se c'è) il foglio della «i». */
+/** Cornice della pagina: testata, selettore, contenuto e (se c'è) il foglio della «i».
+ *  Per `sfide`, `amici` e `classifica` la testata dice «Sfide»; per `prove` resta «Simulazioni» con il selettore Prove | Sfide. */
 export function SchedaProveSfide({ sezione, info, titoloInfo = 'Regole', children }: {
   sezione: SezioneScheda; info?: ReactNode; titoloInfo?: string; children: ReactNode;
 }) {
   const { vai } = useExtra();
   const [aperto, setAperto] = useState(false);
+  const prove = sezione === 'prove';
   return (
     <div className="relative h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8">
-          <TestataScheda titolo="Simulazioni" onProfilo={() => vai('profilo')}
+          <TestataScheda titolo={prove ? 'Simulazioni' : 'Sfide'} onProfilo={() => vai('profilo')}
             destra={info ? <PulsanteInfo onClick={() => setAperto(true)} etichetta={titoloInfo} /> : undefined} />
-          <SelettoreMeta sezione={sezione} />
-          {sezione !== 'prove' && <SelettoreSfide sezione={sezione} />}
+          {prove ? <SelettoreMeta sezione={sezione} /> : <SelettoreSfide sezione={sezione} />}
           {children}
         </div>
       </div>

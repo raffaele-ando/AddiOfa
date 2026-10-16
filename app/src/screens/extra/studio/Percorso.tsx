@@ -7,7 +7,8 @@ import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { lezioniPercorso, prossimaLezione, titoloBreve, type LezionePercorso } from '../../../lib/studio/percorso';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { Pagina, Bottone, StatoVuoto, BarraTono, ChipLivello } from './comune';
+import { famigliaDi } from '../../../lib/studio/famiglie';
+import { Pagina, Bottone, StatoVuoto, BarraTono, ChipLivello, Arte, TesseraArte } from './comune';
 
 const LIVELLI = ['A1', 'A2', 'B1'] as const;
 
@@ -22,12 +23,13 @@ function Riga({ l, prossima, onApri }: { l: LezionePercorso; prossima: boolean; 
   const totale = l.intere;
   const percento = totale > 0 ? Math.round((l.imparate / totale) * 100) : 0;
   const titolo = titoloBreve(l.topic);
+  const famiglia = famigliaDi(l.topic.id);
   return (
     <li className={prossima ? 'my-1' : 'border-b border-linea last:border-b-0'}>
       <button type="button" onClick={() => { playTapSound(); onApri(); }}
         aria-label={`${titolo}, ${st.nome}`}
-        className={cn('brand-premibile -mx-3 w-[calc(100%+24px)] flex items-center gap-3 rounded-[12px] px-3 py-3 text-left', prossima && 'bg-azione-tinta')}>
-        <span aria-hidden="true" className={cn('shrink-0', st.colore)}><Icona nome={st.icona} size={26} /></span>
+        className={cn('brand-premibile -mx-3 w-[calc(100%+24px)] flex items-center gap-3 rounded-[12px] px-3 py-2.5 text-left', prossima && 'bg-azione-tinta')}>
+        <TesseraArte nome={famiglia.illustrazione} lato={48} className={prossima ? 'bg-superficie' : 'bg-superficie-2'} />
         <span className="flex-1 min-w-0">
           <span className="block text-[15px] leading-[20px] font-bold text-testo break-words">{titolo}</span>
           {l.stato === 'in-corso' && (
@@ -40,9 +42,7 @@ function Riga({ l, prossima, onApri }: { l: LezionePercorso; prossima: boolean; 
         <span className="shrink-0 inline-flex items-center gap-1 text-[12.5px] leading-[17px] tabular-nums text-testo-tenue">
           <Icona nome="tempo" size={14} />{l.minuti.totale}
         </span>
-        <span aria-hidden="true" className="shrink-0 text-testo-tenue">
-          <Icona nome="avanti" size={22} />
-        </span>
+        <span aria-hidden="true" className={cn('shrink-0', st.colore)}><Icona nome={st.icona} size={26} /></span>
       </button>
     </li>
   );
@@ -56,17 +56,19 @@ export default function Percorso() {
   const vaiLezione = (l: LezionePercorso) => vai('lezione-dettaglio', { id: l.topic.id });
 
   return (
-    <Pagina titolo="Percorso" onIndietro={indietro}>
+    <Pagina titolo="Percorso" onIndietro={indietro} destra={<Arte nome="studio-inglese" kit="kit-luminoso" lato={132} className="-mt-3 -mb-3" />}>
       {lezioni.length === 0 ? (
-        <div className="mt-6"><StatoVuoto icona="percorso" titolo="In preparazione" /></div>
+        <div className="mt-6"><StatoVuoto illustrazione={{ nome: 'vuoto' }} titolo="Nessuna lezione" /></div>
       ) : (
-        <div className="mt-4 rounded-[12px] bg-superficie-2 p-4">
-          <div className="flex items-center gap-3">
-            <span aria-hidden="true" className="text-alto-numero"><Icona nome="stato-imparata" size={28} /></span>
-            <p role="img" aria-label={`${fatte} lezioni su ${lezioni.length}`} className="text-[32px] leading-[34px] font-extrabold tabular-nums text-alto-numero">
-              {fatte}<span className="text-[16px] font-bold text-testo-tenue">/{lezioni.length}</span>
-            </p>
-            <div className="flex-1 min-w-0"><BarraTono valore={(fatte / lezioni.length) * 100} tono="alto" className="h-2" /></div>
+        <div className="mt-4 rounded-[16px] bg-superficie-2 p-4">
+          <div className="flex items-center gap-4">
+            <Arte nome="piano-superamento" lato={84} />
+            <div className="flex-1 min-w-0">
+              <p role="img" aria-label={`${fatte} lezioni su ${lezioni.length}`} className="text-[32px] leading-[34px] font-extrabold tabular-nums text-alto-numero">
+                {fatte}<span className="text-[16px] font-bold text-testo-tenue">/{lezioni.length}</span>
+              </p>
+              <BarraTono valore={(fatte / lezioni.length) * 100} tono="alto" className="mt-2.5 h-2" />
+            </div>
           </div>
           {prossima && (
             <div className="mt-4">

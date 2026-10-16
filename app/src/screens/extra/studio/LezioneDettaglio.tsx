@@ -6,7 +6,8 @@ import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { lezioniPercorso, filtroArgomento, titoloBreve } from '../../../lib/studio/percorso';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { Pagina, Bottone, StatoVuoto, BarraTono, IconaTono, ChipLivello, type Tono } from './comune';
+import { famigliaDi } from '../../../lib/studio/famiglie';
+import { Pagina, Bottone, StatoVuoto, BarraTono, IconaTono, ChipLivello, Arte, type Tono } from './comune';
 
 const CLASSE_RIGA = 'w-full flex items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left';
 
@@ -40,7 +41,7 @@ export default function LezioneDettaglio() {
     return (
       <Pagina titolo="Lezione" onIndietro={indietro}>
         <div className="mt-6">
-          <StatoVuoto icona="percorso" titolo="Lezione non trovata">
+          <StatoVuoto illustrazione={{ nome: 'ricerca-scintille' }} titolo="Lezione non trovata">
             <Bottone onClick={() => vai('percorso')} icona={<Icona nome="percorso" size={18} />}>Percorso</Bottone>
           </StatoVuoto>
         </div>
@@ -59,6 +60,7 @@ export default function LezioneDettaglio() {
 
   return (
     <Pagina titolo={titoloBreve(topic)} onIndietro={indietro}
+      destra={<Arte nome={famigliaDi(topic.id).illustrazione} lato={76} className="-mt-0.5" />}
       sotto={
         <span className="inline-flex items-center gap-3">
           <ChipLivello livello={topic.livello} /><span className="sr-only">Livello {topic.livello}</span>
@@ -88,7 +90,16 @@ export default function LezioneDettaglio() {
         </li>
       </ol>
 
-      {successiva && (
+      {imparata && (
+        <div className="mt-5 flex flex-col items-center gap-3 rounded-[16px] bg-superficie-2 px-4 py-4">
+          <Arte nome="documento-completato" gruppo="stati" lato={96} />
+          {successiva && (
+            <Bottone onClick={() => vai('lezione-dettaglio', { id: successiva.topic.id })} icona={<Icona nome="studia" size={18} />}>Continua</Bottone>
+          )}
+        </div>
+      )}
+
+      {successiva && !imparata && (
         <button type="button" aria-label={`Lezione successiva: ${titoloBreve(successiva.topic)}`}
           onClick={() => { playTapSound(); vai('lezione-dettaglio', { id: successiva.topic.id }); }}
           className={cn(CLASSE_RIGA, 'brand-premibile mt-5 border border-linea bg-superficie')}>
