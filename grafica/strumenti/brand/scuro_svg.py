@@ -112,7 +112,6 @@ REGOLE: dict[str, dict[str, dict | list]] = {
     },
     "composizione-tre": {
         "sagome-pallide": {"fill": CARTA_DIETRO, "opacity": "0.5"},
-        "composizione-tre-i1-nuvola": {"opacity": "0.1"}, "composizione-tre-i2-nuvola": {"opacity": "0.1"}, "composizione-tre-i3-nuvola": {"opacity": "0.1"},
         "composizione-tre-i1-binario-luce": ["#2B3858", "#232F4D"], "composizione-tre-i1-cursore-anello": {"fill": "#0F1729"},
         "composizione-tre-i3-foglio": {"fill": CARTA, "stroke": BORDO}, "composizione-tre-i3-caselle": {"fill": CASELLA},
     },
@@ -143,6 +142,9 @@ REGOLE: dict[str, dict[str, dict | list]] = {
         "foglio-dietro-faccia": {"stroke": RIGA_DIETRO}, "foglio-faccia": {"stroke": BORDO},
         **{f"riga-{n}-{t}": {"stroke": RIGA} for n in (1, 2, 3) for t in ("lunga", "corta")},
     },
+    "kit-luminoso/ricerca": {
+        "lente-manico": {"stroke": "#6F9BE8"}, "lente-vetro-luce": ["#F3F7FF", "#D3E1FA"],
+    },
     "kit-luminoso/risultato-probabilita": {
         "arco-binario-luce": ["#2B3858", "#232F4D"], "pallina-anello": {"fill": "#0F1729"}, "numero": {"fill": "#F2F6FF"},
     },
@@ -170,7 +172,7 @@ REGOLE: dict[str, dict[str, dict | list]] = {
         "foglio-luce": [CARTA_ALTA, CARTA_BASSA], "righe-testo": {"stroke": RIGA},
     },
     "rischio-economico-ali": {
-        "faccia-luce": [CARTA_ALTA, CARTA_BASSA], "euro-luce": ["#8CB1F2", "#6A98EA"],
+        "faccia-luce": [CARTA_ALTA, CARTA_BASSA], "euro-luce": ["#B3CDF8", "#8FB4F2"],
         "ala-destra-forma": {"fill": "#DCE7FB"}, "ala-sinistra-forma": {"fill": "#DCE7FB"},
     },
     "progressi-statistiche-scheda": {
@@ -183,15 +185,15 @@ REGOLE: dict[str, dict[str, dict | list]] = {
     "attesa": {
         "clessidra-vetro-luce": ["#2B3F73", "#3B5694", "#2B3F73"], "clessidra-vetro": {"stroke": "#7C9BDC"},
     },
-    "completato": {
+    "documento-completato": {
         "foglio-luce": [CARTA_ALTA, CARTA_BASSA], "foglio-piega-luce": ["#3C5590", "#2B4175"], "foglio-carta": {"stroke": BORDO},
         "foglio-righe": {"fill": RIGA}, "badge-bordo": {"fill": ANELLO},
     },
-    "errore": {
+    "documento-errore": {
         "foglio-luce": [CARTA_ALTA, CARTA_BASSA], "foglio-piega-luce": ["#3C5590", "#2B4175"], "foglio-carta": {"stroke": BORDO},
         "foglio-righe": {"fill": RIGA}, "badge-bordo": {"fill": ANELLO},
     },
-    "in-corso": {
+    "documento-in-corso": {
         "foglio-luce": [CARTA_ALTA, CARTA_BASSA], "foglio-piega-luce": ["#3C5590", "#2B4175"], "foglio-carta": {"stroke": BORDO},
         "foglio-righe": {"fill": RIGA}, "badge-bordo": {"fill": ANELLO},
     },
@@ -276,14 +278,18 @@ def _chiaro(c: str) -> bool:
     return sum(int(c[i:i + 2], 16) for i in (1, 3, 5)) >= 590
 
 
-def _gradiente_sfera(m: re.Match) -> str:
+# sfere dove l'oggetto bianco regge i segni blu scuri (euro, puntini, colonne): sul vetro scuro resta chiaro, come una carta bianca
+SFERE_OGGETTO_CHIARO = {"sfera-costi", "sfera-faq", "sfera-polimi"}
+
+
+def _gradiente_sfera(m: re.Match, oggetti_chiari: bool = False) -> str:
     testa, ident, corpo, coda = m.group(1), m.group(2), m.group(3), m.group(4)
     colori = re.findall(r'stop-color="(#[0-9A-Fa-f]{6})"', corpo)
     if not colori or "stop-opacity" in corpo or ident.endswith("-rd1") or len(set(colori)) == 1:
         return m.group(0)
     if ident.endswith("-rd2"):
         nuovi = (VETRO + [VETRO[-1]] * len(colori))[:len(colori)]
-    elif all(_chiaro(c) for c in colori):
+    elif all(_chiaro(c) for c in colori) and not oggetti_chiari:
         nuovi = [OGGETTO_ALTO] + [OGGETTO_BASSO] * (len(colori) - 1)
     else:
         return m.group(0)
@@ -291,14 +297,15 @@ def _gradiente_sfera(m: re.Match) -> str:
     return testa + re.sub(r'stop-color="[^"]*"', lambda _: f'stop-color="{next(it)}"', corpo) + coda
 
 
-def scuro_sfera(svg: str) -> str:
+def scuro_sfera(svg: str, nome: str = "") -> str:
     """Disco di vetro scuro; gradienti di oggetti chiari -> carta blu; bordi e anelli chiari -> filo blu."""
+    chiari = nome in SFERE_OGGETTO_CHIARO
     svg = re.sub(r'(<(?:linearGradient|radialGradient)\s[^>]*\bid="([^"]+)"[^>]*>)(.*?)(</(?:linearGradient|radialGradient)>)',
-                 _gradiente_sfera, svg, flags=re.S)
+                 lambda m: _gradiente_sfera(m, chiari), svg, flags=re.S)
     for ident, cosa in RIVESTIMENTI_SFERA.items():
         if re.search(rf'\bid="{ident}"', svg):
             svg = _regola(svg, ident, cosa)
-    for ident, colore in CARTA_SFERA.items():
+    for ident, colore in ({} if chiari else CARTA_SFERA).items():
         if re.search(rf'\bid="{ident}"', svg):
             svg = _regola(svg, ident, {"fill": colore})
     return svg
@@ -320,7 +327,7 @@ def main():
         else:
             regole = ""
         scritto = scuro(s, regole)
-        dest.write_text(scuro_sfera(scritto) if f.stem.startswith("sfera-") else scritto)
+        dest.write_text(scuro_sfera(scritto, f.stem) if f.stem.startswith("sfera-") else scritto)
         n += 1
         if 'id="nuvola' not in s and 'id="alone' not in s and 'id="sfondo' not in s:
             print("senza nuvola:", f.relative_to(BRAND))

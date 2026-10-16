@@ -1,5 +1,6 @@
-// Grafica spedita con l'app: solo ciò che le schermate usano davvero, copiato da grafica/brand/ con
-// tools/sincronizza-essenziali.sh (illustrazioni pulite chiare e scure, glifi delle icone, logo).
+// Grafica spedita con l'app, copiata da grafica/brand/ con tools/sincronizza-essenziali.sh (illustrazioni pulite chiare e scure,
+// glifi delle icone, logo). Kit blu (illustrazioni, stati, sfere) = quello dell'app; kit luminoso = gli stessi soggetti per i formati grandi;
+// kit rosso = solo catalogo ?brand. Elenco, descrizioni e dove va ognuna: catalogo.ts e docs/design/ILLUSTRAZIONI.md.
 // I PNG originali e gli SVG ricalcati (25 MB) restano in grafica/brand/ e non entrano nel bundle.
 
 // L'app usa il kit blu (colore d'azione blu). In demo (VITE_MODE='demo') il kit rosso e il logo grande non entrano
@@ -7,16 +8,23 @@
 const DEMO = import.meta.env.VITE_MODE === 'demo';
 
 type Mappa = Record<string, string>;
-const disegniRosso: Mappa = DEMO ? {} : import.meta.glob('./essenziali/disegni/kit-rosso/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
+const disegniRosso: Mappa = DEMO ? {} : import.meta.glob('./essenziali/disegni/kit-rosso/**/*.svg', { query: '?url&no-inline', import: 'default', eager: true }) as Mappa;
 const glifiRosso: Mappa = DEMO ? {} : import.meta.glob('./essenziali/glifi/kit-rosso/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
-const disegniBlu = import.meta.glob('./essenziali/disegni/kit-blu/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
+// Le illustrazioni sono tante e piccole: nell'app normale restano file a parte (le scarica il browser quando le mostra: il JavaScript
+// pesa 380 KB in meno); nella demo (un solo file HTML) vanno incorporate.
+const disegniBlu: Mappa = DEMO
+  ? import.meta.glob('./essenziali/disegni/kit-blu/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa
+  : import.meta.glob('./essenziali/disegni/kit-blu/**/*.svg', { query: '?url&no-inline', import: 'default', eager: true }) as Mappa;
 const glifiBlu = import.meta.glob('./essenziali/glifi/kit-blu/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa;
-const disegni: Mappa = { ...disegniRosso, ...disegniBlu };
+const disegniLuminoso: Mappa = DEMO
+  ? import.meta.glob('./essenziali/disegni/kit-luminoso/**/*.svg', { query: '?url', import: 'default', eager: true }) as Mappa
+  : import.meta.glob('./essenziali/disegni/kit-luminoso/**/*.svg', { query: '?url&no-inline', import: 'default', eager: true }) as Mappa;
+const disegni: Mappa = { ...disegniRosso, ...disegniBlu, ...disegniLuminoso };
 const glifi: Mappa = { ...glifiRosso, ...glifiBlu };
 import logoGrande from './essenziali/logo/addiofa-logo.svg?url';
 import iconaUrl from './essenziali/icone/favicon-64.png';
 
-export type KitId = 'kit-blu' | 'kit-rosso' | 'logo';
+export type KitId = 'kit-blu' | 'kit-rosso' | 'kit-luminoso' | 'logo';
 
 /** PNG originale del kit: non spedito con l'app (sta in grafica/brand/elementi). */
 export function urlPng(_kit: KitId, _gruppo: string, _nome: string, _scuro = false): string | undefined {

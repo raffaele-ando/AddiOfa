@@ -10,8 +10,7 @@ si tengono rosse: elenco `TIENI_ROSSO` per id di elemento o di gradiente.
     python3 strumenti/brand/blu_da_rosso.py          # scrive brand/disegni/kit-blu/<gruppo>/<nome>.svg
     python3 strumenti/brand/scuro_svg.py             # poi le varianti scure (.scuro.svg)
 
-Non tocca il kit rosso né i disegni blu già esistenti (non sovrascrive mai un file che non ha generato lui: salta
-i nomi già presenti nell'elenco `ESISTENTI`).
+Non tocca il kit rosso né i disegni blu già esistenti: scrive solo i nomi dell'elenco `VOCI`, che non esistono nel kit blu.
 """
 from __future__ import annotations
 
@@ -41,9 +40,9 @@ VOCI: dict[str, tuple[str, str, tuple[str, ...]]] = {
     # stati
     "stati/attesa": ("stati", "attesa", ()),
     "stati/celebrazione": ("stati", "celebrazione-fiocco", ()),
-    "stati/completato": ("stati", "completato", ()),
-    "stati/errore": ("stati", "errore", ("badge", "badge-ombra", "badge-luce")),
-    "stati/in-corso": ("stati", "in-corso", ()),
+    "stati/completato": ("stati", "documento-completato", ()),
+    "stati/errore": ("stati", "documento-errore", ("badge", "badge-ombra", "badge-luce")),
+    "stati/in-corso": ("stati", "documento-in-corso", ()),
     "stati/messaggi": ("stati", "messaggi", ()),
     "stati/mondo-internazionale": ("stati", "mondo-globo", ()),
     "stati/notifica": ("stati", "notifica", ("badge", "badge-ombra", "badge-luce")),
@@ -106,7 +105,23 @@ def converti(svg: str, tieni: tuple[str, ...]) -> str:
     return "".join(out)
 
 
+# ritocchi dopo la conversione: (cosa, con cosa). Nel «vuoto» la nuvola È il soggetto: si chiama `nuvola-triste` perché
+# tools/togli-nuvole.mjs toglie ogni elemento con id «nuvola» (la nuvoletta di sfondo) e la farebbe sparire; e il suo azzurro
+# è più deciso, per reggere sul fondo chiaro dell'app.
+RITOCCHI: dict[str, list[tuple[str, str]]] = {
+    "vuoto": [('id="nuvola"', 'id="nuvola-triste"'),
+              ('stop-color="#EBF0FC"', 'stop-color="#DCE6FA"'), ('stop-color="#E0E7F8"', 'stop-color="#CBD9F4"'), ('stop-color="#D5DEF4"', 'stop-color="#BACBEE"')],
+}
+
+
 def main():
+    from porta_in_disegni import adatta_tela
+    from render import Renderer
+    with Renderer() as r:
+        _main(r, adatta_tela)
+
+
+def _main(r, adatta_tela):
     n = 0
     for chiave, (gruppo, nome, tieni) in VOCI.items():
         src = DISEGNI / "kit-rosso" / f"{chiave}.svg"
@@ -114,7 +129,10 @@ def main():
         testo = src.read_text()
         testo = re.sub(r"<title>[^<]*</title>", lambda m: m.group(0), testo)
         dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(converti(testo, tieni))
+        out = converti(testo, tieni)
+        for a, b in RITOCCHI.get(nome, []):
+            out = out.replace(a, b)
+        dest.write_text(adatta_tela(r, out))   # allarga il viewBox se qualcosa esce dalla tela
         n += 1
         print("→", dest.relative_to(DISEGNI))
     print(n, "varianti blu")

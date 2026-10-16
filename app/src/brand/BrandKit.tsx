@@ -57,6 +57,7 @@ function Scheda({ v }: { v: Voce }) {
   // gli elementi larghi (indicatore di avanzamento, banner) occupano tutta la riga, uno sopra l'altro
   const largo = v.componente === 'Avanzamento' || v.nome === 'stile-illustrativo';
   const originale = urlPng(v.kit, v.gruppo, v.nome);
+  const scura = v.tipo === 'grafica' ? urlDisegno(v.kit, v.gruppo, v.nome, true) : undefined;
   const colore = { codice: '#1D4ED8', misto: '#7C3AED', grafica: '#15803D' }[v.tipo];
   return (
     <div style={{ border: '1.5px solid #E5E7EB', borderRadius: 16, padding: 14, background: '#fff', display: 'flex', flexDirection: 'column', gap: 10,
@@ -74,10 +75,11 @@ function Scheda({ v }: { v: Voce }) {
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: largo ? 'repeat(auto-fit, minmax(540px, 1fr))' : '1fr 1fr', gap: 10, alignItems: 'center', overflowX: 'auto' }}>
         <figure style={{ margin: 0, textAlign: 'center' }}>
-          <div style={{ minHeight: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FEFEFE', borderRadius: 10 }}>
+          <div style={{ minHeight: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', background: scura ? '#0A101F' : '#FEFEFE', borderRadius: 10 }}>
             {originale && <img src={originale} alt="" style={{ maxWidth: '100%' }} />}
+            {!originale && scura && <img src={scura} alt="" style={{ maxWidth: '100%' }} />}
           </div>
-          <figcaption style={{ font: `500 10px ${FONT}`, color: '#9CA3AF', marginTop: 4 }}>originale</figcaption>
+          <figcaption style={{ font: `500 10px ${FONT}`, color: '#9CA3AF', marginTop: 4 }}>{scura && !originale ? 'tema scuro' : 'originale'}</figcaption>
         </figure>
         <figure style={{ margin: 0, textAlign: 'center' }}>
           <div style={{ minHeight: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
@@ -89,6 +91,7 @@ function Scheda({ v }: { v: Voce }) {
       {v.animazione && (
         <p style={{ margin: 0, font: `500 12px ${FONT}`, color: '#6B7280' }}>animazione suggerita «{v.animazione}»: non attiva, l'app è statica</p>
       )}
+      {v.descrizione && <p style={{ margin: 0, font: `500 12px/1.4 ${FONT}`, color: '#374151' }}>{v.descrizione}</p>}
       {v.nota && <p style={{ margin: 0, font: `500 11px/1.4 ${FONT}`, color: '#6B7280' }}>{v.nota}</p>}
     </div>
   );
@@ -124,7 +127,7 @@ export default function BrandKit({ onEsci }: { onEsci: () => void }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 14 }}>
         <div>
           <h1 style={{ margin: 0, font: `800 26px ${FONT}`, color: '#0F172A' }}>Brand Kit AddiOFA</h1>
-          <p style={{ margin: '4px 0 0', color: '#6B7280' }}>{CATALOGO.length} elementi: originale estratto accanto alla versione ricreata.</p>
+          <p style={{ margin: '4px 0 0', color: '#6B7280' }}>{CATALOGO.length} elementi: tema chiaro e tema scuro, con che cosa raffigurano. Dove va ognuno: docs/design/ILLUSTRAZIONI.md.</p>
         </div>
         <button onClick={onEsci} style={{ font: `600 13px ${FONT}`, padding: '8px 14px', borderRadius: 10, border: '1.5px solid #E5E7EB', background: '#fff', cursor: 'pointer' }}>Torna all'app</button>
       </div>

@@ -190,3 +190,7 @@ python3 strumenti/brand/ricolora.py kit-blu/illustrazioni/studio-inglese --da "#
 python3 strumenti/brand/modifica.py kit-blu/illustrazioni/studio-inglese --zona 98,0,180,72 --sposta 0,-8 --scala 1.08
 python3 strumenti/brand/modifica.py kit-blu/illustrazioni/studio-inglese --zona 30,30,195,125 --escludi 98,0,180,72 --ricolora "#3B82F6:#22C55E"
 ```
+
+## Tutta la grafica ridisegnata nell'app (16/10)
+
+Le illustrazioni che l'app spedisce sono ora 67 (chiare e scure): kit blu (24 illustrazioni, 12 stati, 14 sfere) e kit luminoso (17). Le varianti blu del kit rosso le fa `blu_da_rosso.py`, quelle dai concept `porta_in_disegni.py`, le scure `scuro_svg.py`, il controllo in Chromium su fondo chiaro e scuro `controlla_temi.py`. Inventario, piano d'uso per schermata e motivi di quelle non usate: `docs/design/ILLUSTRAZIONI.md`; elenco usate/non usate: `python3 tools/controlla-illustrazioni.py`.

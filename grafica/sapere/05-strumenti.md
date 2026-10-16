@@ -35,7 +35,10 @@ Tutti in Python 3; rendono in Chromium con Playwright (`render.py`). Si lanciano
 | `controlla_disegno.py` | tavola originale / disegno (3x, scuro, 1x) + avvisi (ingombro, palette, `<text>`); `tutto` fa anche la tavola d'insieme |
 | `testo_svg.py` | lettere e numeri in tracciati con Inter |
 | `modifica_disegno.py` | colore / sposta / scala / ruota / nascondi un pezzo per id, su qualsiasi SVG con id |
-| `scuro_svg.py` | varianti per il tema scuro: nuvola quasi trasparente + tabella `REGOLE` di ricolori per id (carte blu notte, blu schiariti, anelli bianchi) |
+| `scuro_svg.py` | varianti per il tema scuro: nuvola quasi trasparente + tabella `REGOLE` di ricolori per id (carte blu notte, blu schiariti, anelli bianchi); chiavi `kit-luminoso/<nome>` per il kit luminoso; `scuro_sfera` per le sfere (vetro blu notte) |
+| `blu_da_rosso.py` | varianti **blu** dei disegni del kit rosso (illustrazioni di composizione diversa e stati): ruota in OKLCH le tinte rosse, tiene rossi i distintivi con significato (errore, notifica), allarga il viewBox se qualcosa esce dalla tela; scrive in `brand/disegni/kit-blu/` |
+| `porta_in_disegni.py` | porta in `brand/disegni/` le grafiche già ridisegnate in `concept-svg/`: cappello con cronometro, 14 sfere (`kit-blu/sfere/sfera-*`), kit luminoso «vivo» (`kit-luminoso/`) |
+| `controlla_temi.py` | rende ogni SVG (chiaro e `.scuro.svg`) in Chromium su `#F7F9FD` e `#0A101F`: bianchi abbaglianti, blu scuro su scuro, ritagli, aloni, `<text>`; fa il foglio di controllo. L'elenco delle illustrazioni usate/non usate dall'app è `tools/controlla-illustrazioni.py` |
 | `glifi_puliti.py` | i 14 glifi del kit blu ridisegnati puliti (sostituiscono quelli ricalcati da `glifi.py`) |
 | `estrai_hero.py` | scena dell'hero: `scena-chiara` (ritaglio ripulito) e `scena-scura` (notte, alfa ai bordi) |
 | `adatta_svg.py`, `riempi_maglie.py`, `DISEGNI.md` | metodo 6 (fedeltà ai pixel): **non usarli** per le illustrazioni AI, copiano e deformano i difetti. Utili solo su originali puliti |

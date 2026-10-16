@@ -17,7 +17,7 @@ export function Illustrazione({ nome, kit = 'kit-blu', gruppo, lato, formato = '
   nome: string; kit?: KitId; gruppo?: string; lato?: number; formato?: 'disegno' | 'png' | 'svg'; fondoScuro?: boolean;
   animazione?: Animazione | 'nessuna'; tinta?: number; alt?: string; style?: CSSProperties;
 }) {
-  const voce = CATALOGO.find(v => v.kit === kit && v.nome === nome && (!gruppo || v.gruppo === gruppo));
+  const voce = CATALOGO.find(v => v.kit === kit && v.nome === nome && v.tipo === 'grafica' && (!gruppo || v.gruppo === gruppo));
   const gr = gruppo ?? voce?.gruppo ?? 'illustrazioni';
   const scegli = (scuro: boolean) => formato === 'svg' ? urlSvg(kit, gr, nome)
     : formato === 'disegno' ? (urlDisegno(kit, gr, nome, scuro) ?? urlPng(kit, gr, nome, scuro))
