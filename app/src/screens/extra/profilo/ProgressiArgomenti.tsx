@@ -4,7 +4,6 @@ import { Carta } from '../../../components/home/comune';
 import { REGOLA_IMPARATA } from '../../../components/home/comune';
 import { MIN_RISPOSTE } from '../../../components/home/stima';
 import { REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS } from '../../../config/offer';
-import { ECOSYSTEM } from '../../../config/ecosystem';
 import { playTapSound } from '../../../lib/audio';
 import { analizzaLivello, argomentiRadar, MIN_RISPOSTE_ARGOMENTO, SOGLIA_DA_MIGLIORARE, type ArgomentoAnalisi } from '../../../lib/servizi/analisi';
 import { BarraTono, FoglioInfo, TONI, type Tono } from '../ui';
@@ -100,7 +99,7 @@ export default function ProgressiArgomenti() {
           <li>La percentuale compare da {MIN_RISPOSTE_ARGOMENTO} risposte su un argomento; il radar da 3 argomenti con dati. Per il livello per tipo di domanda servono almeno {MIN_RISPOSTE} risposte.</li>
           <li>{REGOLA_IMPARATA}</li>
           <li>Le domande lasciate senza risposta in simulazione contano come errori nella stima, perché al test valgono zero; negli argomenti non sono errori di conoscenza.</li>
-          <li>La stima di superare il test è la probabilità di fare almeno {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}. Non è una promessa: non dice come andrà il test vero. {ECOSYSTEM.engineName} è il nome dell'algoritmo di ripasso.</li>
+          <li>La stima di superare il test è la probabilità di fare almeno {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}. Non è una promessa: non dice come andrà il test vero.</li>
         </ul>
       </FoglioInfo>
     </div>
