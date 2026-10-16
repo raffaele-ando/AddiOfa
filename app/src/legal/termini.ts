@@ -1,4 +1,9 @@
-import { AVVERTENZA_INDIPENDENZA, LEGAL_AGGIORNATO, type LegalDoc } from './base';
+import { ECOSYSTEM } from '../config/ecosystem';
+import { AVVERTENZA_INDIPENDENZA, LEGAL_AGGIORNATO, descrizioneTitolare, rigaContatto, type LegalDoc } from './base';
+
+const P = ECOSYSTEM.name;
+const A = ECOSYSTEM.engineName;
+const ID = ECOSYSTEM.accountName;
 
 export const termini: LegalDoc = {
   titolo: 'Termini di uso',
@@ -7,8 +12,15 @@ export const termini: LegalDoc = {
     {
       titolo: 'Che cos\'è AddiOFA',
       paragrafi: [
-        'AddiOFA è un sito gratuito per esercitarsi al test d\'inglese dell\'OFA: domande a scelta multipla con spiegazione in italiano, simulazioni, schede di teoria, frasi utili e un prontuario. Non serve nessun account e non si paga nulla.',
+        'AddiOFA è un sito gratuito per esercitarsi al test d\'inglese dell\'OFA: domande a scelta multipla con spiegazione in italiano, simulazioni, schede di teoria, frasi utili e un prontuario. Non si paga nulla e non ci sono funzioni a pagamento.',
         'Il quiz diagnostico calcola, dalle tue risposte, una stima indicativa della probabilità di superare il test. È una stima: non è una previsione e non è una promessa.',
+      ],
+    },
+    {
+      titolo: 'Chi lo pubblica',
+      paragrafi: [
+        `AddiOFA fa parte di ${P}, insieme a NOI, ${A} e Agorà: ${P} è il progetto studentesco che lo pubblica (${descrizioneTitolare()}). ${A} è il servizio che custodisce le iscrizioni e la classifica, NOI è la classifica, Agorà è la pagina di ${P} per gli studenti del Politecnico, il ${ID} è l'account facoltativo.`,
+        ...rigaContatto(),
       ],
     },
     {
@@ -22,14 +34,30 @@ export const termini: LegalDoc = {
     {
       titolo: 'Come si usa',
       paragrafi: [
-        'Puoi usare il sito quanto vuoi, per studiare. Tutte le domande, le schede di teoria e le simulazioni sono aperte.',
-        'I tuoi progressi, il profilo, gli obiettivi e le sfide restano nel browser di questo dispositivo: non c\'è un server che li conservi. Se cancelli i dati del sito o cambi dispositivo li perdi, a meno che tu non li abbia esportati dalle Impostazioni.',
+        'Puoi usare il sito quanto vuoi, per studiare: tutte le domande, le schede di teoria e le simulazioni sono aperte. All\'inizio ti chiediamo nome ed email del Politecnico; il resto della registrazione e i consensi sono facoltativi.',
+        'I tuoi progressi, il profilo, gli obiettivi e le sfide restano nel browser di questo dispositivo. Se cancelli i dati del sito o cambi dispositivo li perdi, a meno che tu non li abbia esportati dalle Impostazioni.',
+        `Se ${A} non è raggiungibile o sei senza connessione, l'app funziona lo stesso: l'iscrizione resta sul dispositivo e viene inviata appena possibile.`,
+      ],
+    },
+    {
+      titolo: 'Dati veri e email',
+      paragrafi: [
+        'Scrivi i tuoi dati veri, e solo il tuo indirizzo email: non usare quello di un\'altra persona. L\'email non viene verificata, e per questo non dà diritto a nulla di più di quanto dice la schermata «Project ID».',
+        'Come trattiamo i dati lo dice l\'informativa sulla privacy; chi vuole può cambiarli o cancellarli da «Project ID».',
+      ],
+    },
+    {
+      titolo: `${ID}, NOI e Agorà`,
+      paragrafi: [
+        `Il ${ID} è facoltativo: serve a ritrovare l'iscrizione e a scegliere cosa condividere, permesso per permesso. Entrare nella classifica NOI è un permesso a parte, spento di partenza: chi entra è visibile con il @nome utente, le domande imparate e il miglior punteggio.`,
+        'Scegli un @nome utente che non offenda nessuno: ci riserviamo di togliere dalla classifica chi non lo fa. I punteggi li invia l\'app e non sono controllati: la classifica è un gioco, non una prova di merito.',
+        'Agorà è su Instagram: aprendo il suo profilo lasci AddiOFA e valgono le regole di Instagram.',
       ],
     },
     {
       titolo: 'Sfide e link',
       paragrafi: [
-        'Il duello con un amico passa da un link che contiene la sfida e il nome che hai scelto. Chi riceve il link vede quel nome e il tuo risultato: condividilo solo con chi vuoi. Classifica e amici sono locali: contano solo le persone che hanno giocato con te su questo dispositivo.',
+        'Il duello con un amico passa da un link che contiene la sfida e il nome che hai scelto. Chi riceve il link vede quel nome e il tuo risultato: condividilo solo con chi vuoi. La classifica tra amici conta solo le persone che hanno giocato con te su questo dispositivo.',
       ],
     },
     {

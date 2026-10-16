@@ -49,6 +49,7 @@ Famiglie (`app/src/lib/studio/famiglie.ts`, con test): Tempi (8 argomenti) → `
 
 ## Non provato
 
+- La fine sessione è fotografata solo a 400 px (chiaro e scuro, stato ricco): la scena a 1280 px è andata in timeout nello script e non è stata ripetuta. Feedback giusto/sbagliato e sessione: solo stato ricco.
 - `tools/controlla-contrasto.py`: richiede `npm run build:demo` (vietato dal brief): contrasto non misurato, solo a occhio; i colori sono token già usati altrove (`basso-testo` su `basso-tinta` per il numero dei punti deboli).
 - `npm run check` e `build`: non lanciati.
 - Prova delle modalità Intelligente/Blitz/Richiamo dall'app vera (5262): impossibile finché `App.tsx` non passa `onAvvia`; provate sulla copia con la riga aggiunta.

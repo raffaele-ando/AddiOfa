@@ -5,8 +5,8 @@ import { useId, useState, type ReactNode } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { InfoFoglio } from '../../landing/comune';
 import { ECOSYSTEM } from '../../../config/ecosystem';
-import { CONTACT_EMAIL, TITOLARE } from '../../../config/offer';
 import { CORSI, CORSO_ALTRO, PROVENIENZE, SEDI } from '../../../lib/progetto/corsi';
+import { INFORMATIVA_BREVE } from '../../../lib/progetto/informativa';
 import { CONSENSI_VUOTI, type Consensi, type Profilo } from '../../../lib/progetto/profilo';
 import { controllaEmailPolimi, NOME_MAX, TESTO_MOTIVO_EMAIL } from '../../../lib/progetto/validazione';
 import { playTapSound } from '../../../lib/audio';
@@ -160,7 +160,3 @@ export function CampiConsensi({ consensi, onChange, onOpenLegal }: { consensi: C
     </div>
   );
 }
-
-/** Informativa breve: che cosa si raccoglie, dove va, con che base. Il testo intero è in legal/privacy.ts. */
-export const INFORMATIVA_BREVE =
-  `Titolare: ${TITOLARE.nome}${TITOLARE.responsabile ? ` (${TITOLARE.responsabile})` : ''}. Nome, email, corso, sede e provenienza servono a creare la tua iscrizione e vengono inviati ad ${ECOSYSTEM.engineName}, il servizio di ${ECOSYSTEM.name}, appena possibile; fino ad allora restano su questo dispositivo. I consensi li usiamo solo per le tre cose indicate e li puoi cambiare o ritirare quando vuoi.${CONTACT_EMAIL ? ` Contatto: ${CONTACT_EMAIL}.` : ''}`;

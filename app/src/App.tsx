@@ -12,7 +12,6 @@ import { questions } from './data/questions';
 import Menu from './components/Menu';
 import Esercizi from './screens/Esercizi';
 import Impostazioni from './screens/Impostazioni';
-import PracticeMenu from './components/PracticeMenu';
 import LearnMode from './components/LearnMode';
 import ExamMode from './components/ExamMode';
 import { Layout } from './components/Layout';
@@ -30,7 +29,7 @@ const Theory = lazy(() => import('./screens/Theory'));
 // Strumenti da sviluppo: fuori dalla build di produzione
 const BrandKit = import.meta.env.DEV ? lazy(() => import('./brand/BrandKit')) : null;
 
-type View = 'landing' | 'onboarding' | 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'cheatsheet'
+type View = 'landing' | 'onboarding' | 'menu' | 'learn' | 'exam' | 'cheatsheet'
   | 'theory' | 'legal' | 'brand' | 'esercizi' | 'impostazioni' | 'extra';
 
 // Schermate extra (screens/extra): componenti caricati solo quando servono
@@ -330,15 +329,9 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
       {view === 'esercizi' && (
         <Esercizi
           appState={appState}
-          onStartLearn={() => apri('practiceMenu')}
-          onOpenStats={() => vaiExtra('progressi')}
+          onAvvia={(m, c) => { setLearnMode(m); setLearnCategory(c); setView('learn'); }}
           onOpenProfilo={() => vaiExtra('profilo')}
-          onStartErrors={() => { setLearnMode('weakness'); setLearnCategory(undefined); setView('learn'); }}
-          onOpenTheory={() => { setTeoriaId(undefined); apri('theory'); }}
-          onOpenTheoryTopic={apriTeoriaDa}
-          onStartFocus={f => { setLearnMode('category'); setLearnCategory(f); setView('learn'); }}
           onOpenCheatSheet={() => apri('cheatsheet')}
-          onOpenDiagnostic={() => setView('onboarding')}
           onNaviga={vaiScheda}
           onOpenExtra={vaiExtra}
         />
@@ -389,18 +382,6 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
       )}
       {view === 'cheatsheet' && (
         <CheatSheet onBack={indietro} />
-      )}
-      {view === 'practiceMenu' && (
-        conBarra('esercizi', <>
-        <PracticeMenu
-          onSelectMode={(mode, category) => {
-            setLearnMode(mode);
-            setLearnCategory(category);
-            setView('learn');
-          }}
-          onBack={indietro}
-        />
-        </>)
       )}
       {view === 'learn' && (
         <LearnMode

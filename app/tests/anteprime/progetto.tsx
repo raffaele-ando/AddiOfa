@@ -9,6 +9,7 @@ import { SCHERMATE_PROGETTO } from '../../src/screens/extra/progetto';
 import Onboarding from '../../src/components/Onboarding';
 import { CHIAVE_PROGETTO, creaProfilo, impostaProfilo } from '../../src/lib/progetto/profilo';
 import { coda } from '../../src/lib/progetto/coda';
+import { questions } from '../../src/data/questions';
 
 const q = new URLSearchParams(location.search);
 const STORAGE = 'anteprima_progetto_stato';
@@ -19,6 +20,12 @@ function statoIniziale(): AppState {
   if (stato === 'nuovo') return base;
   const diag: AppState = { ...base, onboarding: { completedAt: Date.now(), hasCertification: false, hasOfa: 'yes', diagnosticCorrect: 7, diagnosticTotal: 10, passProbability: 0.45 } };
   if (stato === 'diag') return diag;
+  if (stato === 'ricco') {
+    const stats: AppState['stats'] = {};
+    questions.slice(0, 120).forEach((qq, i) => { stats[qq.id] = { correct: i % 4 === 0 ? 1 : 3, incorrect: i % 3 === 0 ? 2 : 0, lastSeen: Date.now() - 86400000 * 3, box: i % 5 === 0 ? 3 : 1 }; });
+    const logs = questions.slice(0, 30).map((qq, i) => ({ questionId: qq.id, userAnswerIndex: i < 21 ? qq.correctIndex : (qq.correctIndex + 1) % 4, correctIndex: qq.correctIndex, isCorrect: i < 21, category: qq.category }));
+    return { ...diag, stats, history: [{ id: 's1', date: Date.now() - 86400000, score: 21, passed: false, timeSpentSeconds: 700, questionLogs: logs, questionIds: logs.map(l => l.questionId) }] };
+  }
   const p = creaProfilo({ nome: 'Maria Rossi', email: 'maria.rossi@mail.polimi.it', corso: 'Ingegneria Gestionale', sede: 'Bovisa', provenienza: 'Gruppo o chat', consensi: { noi: true } }, Date.now())!;
   const conProfilo = impostaProfilo(diag, p);
   if (stato === 'profilo') return conProfilo;
