@@ -2,7 +2,8 @@
 // Le regole non stanno in pagina (esito, simulazioni): si aprono qui. Il foglio copre la sola pagina (il genitore è `relative`).
 import { useEffect, useState, type ReactNode } from 'react';
 import type { ExamFormat } from '../../config/offer';
-import { FoglioInfo } from '../../screens/extra/ui';
+import { FoglioInfo, IconaTono } from '../../screens/extra/ui';
+import { Icona } from '../../brand/icone/Icona';
 import FoglioStima from '../FoglioStima';
 
 /** Le regole del formato, una riga ciascuna (le usano il foglio della «i» dell'esito e la scheda Simulazioni). */
@@ -35,8 +36,11 @@ export default function InfoPunteggio({ format, aperto, onChiudi, risposteStima,
     <FoglioInfo aperto={aperto} onChiudi={onChiudi} titolo="Regole">
       <RegoleFormato format={format} nota={nota} />
       {risposteStima !== undefined && (
-        <button type="button" onClick={() => setStima(true)} className="mt-4 text-sm font-bold text-azione-scuro underline underline-offset-2">
-          Come viene calcolata la stima
+        <button type="button" onClick={() => setStima(true)}
+          className="brand-premibile mt-4 flex w-full items-center gap-3 rounded-2xl bg-superficie-2 px-3.5 py-3 text-left text-[15px] font-bold text-testo">
+          <IconaTono tono="azione" lato={36} className="rounded-full"><Icona nome="stima-modello" size={20} /></IconaTono>
+          <span className="min-w-0 flex-1">Come viene calcolata la stima</span>
+          <Icona nome="avanti" size={20} className="shrink-0 text-testo-tenue" />
         </button>
       )}
     </FoglioInfo>
