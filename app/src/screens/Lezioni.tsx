@@ -65,8 +65,8 @@ function Tessera({ icona, tono, etichetta, onClick }: { icona: NomeIcona; tono: 
   if (!onClick) return null;
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }}
-      className="brand-premibile flex min-h-[136px] flex-col items-center justify-center gap-3 rounded-[16px] bg-superficie-2 p-3">
-      <IconaTono tono={tono} lato={64} className="rounded-[16px]"><Icona nome={icona} size={34} /></IconaTono>
+      className="brand-premibile flex min-h-[168px] flex-col items-center justify-center gap-3.5 rounded-[16px] bg-superficie-2 p-3">
+      <IconaTono tono={tono} lato={72} className="rounded-[18px]"><Icona nome={icona} size={38} /></IconaTono>
       <span className="text-[15px] leading-[20px] font-bold text-testo">{etichetta}</span>
     </button>
   );
