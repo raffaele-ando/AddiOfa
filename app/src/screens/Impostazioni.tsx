@@ -24,7 +24,7 @@ interface Props {
   onImport?: () => void;
   /** Assente = al posto del file si copia il testo dei progressi. */
   onExport?: () => void;
-  onOpenDebug?: () => void;
+  
   /** Apre una schermata extra (faq, segnala): `vaiExtra` di App. Assente = si apre con un ricaricamento della pagina (?vista=). */
   onVai?: (id: string, params?: Record<string, string>) => void;
   /** Cancella i dati locali. Assente = si cancellano le chiavi dei progressi e si ricarica la pagina. */
@@ -106,7 +106,7 @@ const TEMI: { id: ModoTema; nome: string; icona: NomeIcona }[] = [
   { id: 'scuro', nome: 'Scuro', icona: 'tema-scuro' },
 ];
 
-export default function Impostazioni({ onBack, onOpenLanding, onOpenLegal, onImport, onExport, onOpenDebug, onVai, onReset }: Props) {
+export default function Impostazioni({ onBack, onOpenLanding, onOpenLegal, onImport, onExport, onVai, onReset }: Props) {
   const { modo, setModo } = useTheme();
   const toast = useToast();
   const [suoniSpenti, setSuoniSpenti] = useState(isAudioMuted());
@@ -185,7 +185,6 @@ export default function Impostazioni({ onBack, onOpenLanding, onOpenLegal, onImp
             <Riga key={t.id} icona={ICONE_LEGALI[t.id]} titolo={t.label} onClick={() => onOpenLegal(t.id)} />
           ))}
           {onOpenLanding && <Riga icona="presentazione" titolo="Presentazione" onClick={onOpenLanding} />}
-          {onOpenDebug && <Riga icona="debug" titolo="Debug" onClick={onOpenDebug} />}
         </Gruppo>
       </>
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Informazioni">

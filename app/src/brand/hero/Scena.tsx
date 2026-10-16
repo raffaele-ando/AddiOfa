@@ -49,7 +49,7 @@ export default function Scena({ scuro: _scuro, conCarte = true, className = '' }
 
       {conCarte && (
         <div className="absolute left-0 top-0 hidden origin-top-left sm:block" style={{ width: L, height: A, transform: `scale(${scala})` }}>
-          <div className="vetro absolute rounded-[28px] p-[16px] pb-[12px]" style={{ left: 104, top: 44, width: 206, transform: 'rotate(-4deg)' }}>
+          <div className="vetro absolute rounded-[28px] p-[12px] pb-[10px]" style={{ left: 76, top: 40, width: 240, transform: 'rotate(-4deg)' }}>
             <p className="text-[15px] font-bold leading-tight text-testo">Probabilità stimata<br />di superare il test</p>
             <div className="mt-1"><Misuratore percento={72} livello="alto" etichetta="Esempio" sotto="" /></div>
           </div>

@@ -10,7 +10,7 @@ export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSk
   return (
     <section id="home" aria-labelledby="t-hero" className="relative overflow-hidden scroll-mt-0 lg:min-h-[41rem]">
       {/* telefono: scena a tutta larghezza, ritagliata attorno alla porta */}
-      <div aria-hidden className="pointer-events-none relative mt-[3.5rem] h-[15.5rem] overflow-hidden sm:hidden">
+      <div aria-hidden className="pointer-events-none relative mt-[3.5rem] h-[18.5rem] overflow-hidden sm:hidden">
         <div className="absolute left-[-24%] top-0 w-[148%]"><Scena scuro={scuro} conCarte={false} /></div>
       </div>
       <Colonna className="relative z-10 pb-24 pt-2 sm:pt-28 lg:pb-32 lg:pt-36">
@@ -18,7 +18,7 @@ export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSk
           <p data-testo-ok className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-testo-tenue sm:text-xs">
             <Icona nome="avanti" size={14} className="text-azione" />Per gli studenti del Politecnico di Milano
           </p>
-          <h1 id="t-hero" data-testo-ok className="mt-4 text-[2.7rem] font-extrabold leading-[1.0] tracking-[-0.035em] text-testo sm:text-6xl lg:text-[3.6rem] xl:text-[4.25rem]">
+          <h1 id="t-hero" data-testo-ok className="mt-4 text-[2.7rem] font-extrabold leading-[1.0] tracking-[-0.035em] text-testo sm:text-6xl lg:text-[3.4rem] xl:text-[4rem]">
             Oltre l'OFA,
             <span className="block text-azione">un passo<br className="sm:hidden" /> in più.</span>
           </h1>
@@ -46,7 +46,7 @@ export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSk
         </div>
       </Colonna>
 
-      <div aria-hidden className="pointer-events-none absolute hidden sm:relative sm:left-auto sm:top-auto sm:-mt-24 sm:block sm:w-full lg:absolute lg:right-0 lg:top-14 lg:mt-0 lg:w-[72%] xl:w-[70%] min-[1500px]:w-[64%]">
+      <div aria-hidden className="pointer-events-none absolute hidden sm:relative sm:left-auto sm:top-auto sm:-mt-24 sm:block sm:w-full lg:absolute lg:right-0 lg:top-14 lg:mt-0 lg:-right-[2%] lg:w-[64%] xl:w-[62%] min-[1500px]:right-0 min-[1500px]:w-[58%]">
         <Scena scuro={scuro} />
       </div>
     </section>

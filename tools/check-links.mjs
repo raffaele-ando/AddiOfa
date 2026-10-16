@@ -1,3 +1,4 @@
+// (docs/lavoro, archivio e ricerche sono note storiche: non si controllano)
 // Controlla che ogni percorso tra `backtick` citato nei .md di docs/, CLAUDE.md e README.md esista.
 // Uso: node tools/check-links.mjs   (esce con codice 1 se trova percorsi rotti)
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
@@ -5,7 +6,7 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const radice = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const saltare = new Set(['node_modules', '.git', 'archivio', 'ricerche']);
+const saltare = new Set(['node_modules', '.git', 'archivio', 'ricerche', 'lavoro']);
 const file = [];
 (function cerca(d) {
   for (const n of readdirSync(d)) {

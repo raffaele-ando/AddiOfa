@@ -29,10 +29,9 @@ import { SCHERMATE } from './screens/extra/registro';
 const Theory = lazy(() => import('./screens/Theory'));
 // Strumenti da sviluppo: fuori dalla build di produzione
 const BrandKit = import.meta.env.DEV ? lazy(() => import('./brand/BrandKit')) : null;
-const DebugMode = import.meta.env.DEV ? lazy(() => import('./components/DebugMode')) : null;
 
 type View = 'landing' | 'onboarding' | 'menu' | 'practiceMenu' | 'learn' | 'exam' | 'cheatsheet'
-  | 'theory' | 'legal' | 'brand' | 'debug' | 'lezioni' | 'impostazioni' | 'extra';
+  | 'theory' | 'legal' | 'brand' | 'lezioni' | 'impostazioni' | 'extra';
 
 // Schermate extra (screens/extra): componenti caricati solo quando servono
 const COMPONENTI_EXTRA = new Map<string, React.LazyExoticComponent<React.ComponentType>>();
@@ -45,7 +44,7 @@ function componenteExtra(id: string) {
 // Il tempo di studio conta solo mentre si studia davvero
 const STUDY_VIEWS: View[] = ['learn', 'exam', 'onboarding'];
 // Da qui, dopo le pagine legali o la teoria, si torna al menu e non si riavvia la sessione
-const NO_RETURN: View[] = ['learn', 'brand', 'debug'];
+const NO_RETURN: View[] = ['learn', 'brand'];
 
 function initialView(state: AppState): View {
   const params = new URLSearchParams(window.location.search);
@@ -367,7 +366,6 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onOpenLegal={apriLegale}
           onImport={() => fileInputRef.current?.click()}
           onExport={() => exportData(appState)}
-          onOpenDebug={import.meta.env.DEV ? () => apri('debug') : undefined}
         />
       )}
       {view === 'onboarding' && (
@@ -426,11 +424,6 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         ref={fileInputRef}
         onChange={handleImport}
       />
-      {DebugMode && view === 'debug' && (
-        <Suspense fallback={<Caricamento />}>
-          <DebugMode onBack={indietro} />
-        </Suspense>
-      )}
     </Layout>
   );
 }

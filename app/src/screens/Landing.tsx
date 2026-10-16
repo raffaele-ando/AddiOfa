@@ -10,6 +10,7 @@ import SeNonSuperi from './landing/SeNonSuperi';
 import Faq from './landing/Faq';
 import CtaFinale from './landing/CtaFinale';
 import { Colonna } from './landing/comune';
+import './landing/landing.css';
 
 interface LandingProps {
   onStartDiagnostic(): void;

@@ -78,7 +78,7 @@ export default function Perche({ onStart }: { onStart(): void }) {
           {/* banner con l'edificio: foto a destra, sfumata nel fondo notte; il testo sta sul fondo scuro */}
           <div className="relative flex min-h-[19rem] overflow-hidden rounded-[28px] text-white [background:linear-gradient(110deg,var(--landing-blocco-scuro-da),var(--landing-blocco-scuro-a))] sm:min-h-[17rem]">
             <img src={bannerEdificio} alt="" draggable={false} aria-hidden
-              className="pointer-events-none absolute inset-y-0 right-0 h-full w-[88%] select-none object-cover object-right opacity-90 [mask-image:linear-gradient(to_right,transparent,#000_52%)] sm:w-[70%] sm:[mask-image:linear-gradient(to_right,transparent,#000_38%)]" />
+              className="pointer-events-none absolute inset-y-0 right-0 h-full w-[88%] select-none object-cover object-right opacity-90 [mask-image:linear-gradient(to_right,transparent,#000_60%)] sm:w-[62%] sm:[mask-image:linear-gradient(to_right,transparent,#000_52%)]" />
             <div data-testo-ok className="relative z-10 flex max-w-[22rem] flex-col justify-between p-6 sm:p-9">
               <div>
                 <h3 className="text-[1.75rem] font-extrabold leading-[1.1] tracking-tight sm:text-[2rem]">Il tuo futuro non si ferma a un esame.</h3>

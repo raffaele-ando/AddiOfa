@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Icona, type NomeIcona } from '../../brand/icone/Icona';
-import { IllustrazioneAnimata } from '../../brand/IllustrazioneAnimata';
+import { Illustrazione } from '../../brand/Illustrazione';
 import { BottoneAzione, Colonna } from './comune';
 import Telefono from './Telefono';
 
@@ -64,7 +64,7 @@ const PASSI: { n: string; titolo: string; testo: string; Schermo: () => ReactNod
     n: '04', titolo: 'Supera l\'OFA', testo: 'Togli l\'OFA e vai avanti con il piano degli studi.',
     Schermo: () => (
       <Schermo inclina="lg:rotate-[1deg]">
-        <div className="flex h-full items-center justify-center"><IllustrazioneAnimata nome="superamento" lato={150} quandoVisibile /></div>
+        <div className="flex h-full items-center justify-center"><Illustrazione nome="superamento" lato={150} /></div>
       </Schermo>
     ),
   },

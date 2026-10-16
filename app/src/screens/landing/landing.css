@@ -1,0 +1,8 @@
+/* Landing: ritocchi allo sfondo a aloni (definito in index.css). Gli aloni stanno tutti dentro la tessera di 1500 px che si ripete
+   (il terzo arrivava a 1520 px e lasciava una riga netta ogni 1500 px). */
+.landing-pagina.landing-pagina {
+  background-image:
+    radial-gradient(46% 340px at 88% 340px, var(--landing-alone-1), transparent),
+    radial-gradient(42% 380px at 6% 840px, var(--landing-alone-2), transparent),
+    radial-gradient(40% 300px at 70% 1160px, var(--landing-alone-1), transparent);
+}

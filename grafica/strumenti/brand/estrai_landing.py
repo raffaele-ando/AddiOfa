@@ -58,7 +58,7 @@ def main():
     m |= tratti(a, (790, 940, 1130, 1000), 40, False, mediana=25, dilata=9)
     m |= tratti(a, (1400, 890, 1530, 975), 25, False, mediana=21, dilata=7)
     b = cv2.inpaint(a, m, 5, cv2.INPAINT_TELEA)
-    cta = Image.fromarray(b).crop((1066, 832, 1516, 1010))   # solo il logo e il cielo: a sinistra c'erano testo e bottoni degli store
+    cta = Image.fromarray(b).crop((1066, 832, 1516, 1003))   # solo il logo e il cielo: a sinistra c'erano testo e bottoni degli store
     cta.save(OUT / 'cta-fondo-1x.png')
     piu(cta).save(OUT / 'cta-fondo.webp', quality=80, method=6)
 

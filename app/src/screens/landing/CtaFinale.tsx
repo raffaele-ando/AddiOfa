@@ -10,9 +10,11 @@ export default function CtaFinale({ onStart, onSkip }: { scuro?: boolean; onStar
     <section aria-labelledby="t-fine" className="py-10 sm:py-16">
       <Colonna>
         <div className="relative isolate overflow-hidden rounded-[2rem] text-white shadow-[0_24px_48px_-18px_rgba(18,62,168,0.6)] [background:linear-gradient(115deg,var(--landing-blocco-blu-a),var(--landing-blocco-blu-da)_70%)] dark:shadow-none">
-          <img src={ctaFondo} alt="" aria-hidden draggable={false}
-            className="pointer-events-none absolute bottom-0 right-0 -z-10 h-[62%] w-auto max-w-none select-none [mask-image:linear-gradient(to_right,transparent,#000_30%)] sm:h-full sm:[mask-image:linear-gradient(to_right,transparent,#000_26%)] dark:brightness-[.72] dark:saturate-[1.1]" />
-          <div data-testo-ok className="relative flex min-h-[27rem] max-w-[34rem] flex-col justify-start p-7 sm:min-h-[19rem] sm:p-12">
+          <div aria-hidden className="pointer-events-none absolute bottom-0 right-0 -z-10 h-[40%] w-full sm:inset-y-0 sm:h-auto sm:w-[72%]">
+            <img src={ctaFondo} alt="" draggable={false}
+              className="h-full w-full select-none object-cover object-[66%_50%] [mask-image:linear-gradient(to_right,transparent,#000_34%)] max-sm:[mask-image:linear-gradient(to_bottom,transparent,#000_42%)] dark:brightness-[.72] dark:saturate-[1.1]" />
+          </div>
+          <div data-testo-ok className="relative flex min-h-[34rem] max-w-[34rem] flex-col justify-start p-7 sm:min-h-[19rem] sm:p-12">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/80">Inizia oggi</p>
             <h2 id="t-fine" className="mt-2 text-[2.2rem] font-extrabold leading-[1.05] tracking-tight sm:text-5xl">Sblocca il tuo domani.</h2>
             <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-white/90">Un piccolo passo ora, per un percorso universitario senza ostacoli.</p>
