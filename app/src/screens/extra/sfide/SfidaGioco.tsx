@@ -1,11 +1,11 @@
 // `sfida-gioco`: 10 domande a tempo (5 minuti), senza feedback fino alla consegna, come la simulazione ma più breve.
 // Parametri: `tipo` ('giorno' | 'duello'), `seme`; per il duello anche `ruolo` ('sfidante' | 'sfidato'), `nome` e, per chi accetta, `codice`.
-// Le domande e le correzioni passano dal DataProvider (in produzione le risposte esatte non sono nel bundle).
+// Le domande e le correzioni passano dal provider locale (le domande stanno nel sito, tutto gira nel browser).
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { FoglioInfo, IconaTono, PulsanteInfo } from '../ui';
 import { useExtra } from '../contesto';
-import { useAccess } from '../../../access/context';
+import { provider } from '../../../access';
 import type { PublicQuestion } from '../../../access/provider';
 import ConfirmDialog from '../../../components/ConfirmDialog';
 import { playTapSound } from '../../../lib/audio';
@@ -24,7 +24,6 @@ type Fase = 'carico' | 'pronto' | 'in-corso' | 'consegna' | 'errore-carico' | 'e
 
 export default function SfidaGioco() {
   const { params, indietro, vai } = useExtra();
-  const { provider } = useAccess();
   const { voci, aggiungi } = useStorico();
   const { profilo, imposta } = useProfiloSfide();
   const { banco, impronta } = useBancoSfide();

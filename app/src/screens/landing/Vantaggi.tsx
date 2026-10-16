@@ -1,4 +1,4 @@
-import { FORMATS, FREE_LIMITS } from '../../config/offer';
+import { DIAGNOSTIC_QUESTIONS, EXAM } from '../../config/offer';
 import { Icona, type NomeIcona } from '../../brand/icone/Icona';
 import { IconaTono, type Tono } from '../extra/ui';
 import { Colonna } from './comune';
@@ -6,8 +6,8 @@ import { Colonna } from './comune';
 // I quattro vantaggi: icona + 2-3 parole + un numero. Un colore per significato, lo stesso dell'app:
 // la probabilità = blu, le simulazioni (il tempo) = ambra, gli errori = corallo, la spiegazione = viola.
 const VANTAGGI: { icona: NomeIcona; tono: Tono; titolo: string; numero: string }[] = [
-  { icona: 'probabilita', tono: 'azione', titolo: 'Probabilità', numero: `${FREE_LIMITS.diagnostic} domande` },
-  { icona: 'simulazioni', tono: 'medio', titolo: 'Simulazioni', numero: `${FORMATS.ente.questions} · ${FORMATS.ente.minutes} min` },
+  { icona: 'probabilita', tono: 'azione', titolo: 'Probabilità', numero: `${DIAGNOSTIC_QUESTIONS} domande` },
+  { icona: 'simulazioni', tono: 'medio', titolo: 'Simulazioni', numero: `${EXAM.questions} · ${EXAM.minutes} min` },
   { icona: 'errori', tono: 'basso', titolo: 'Ripasso errori', numero: '' },
   { icona: 'spiegazioni', tono: 'viola', titolo: 'Spiegazioni', numero: 'In italiano' },
 ];

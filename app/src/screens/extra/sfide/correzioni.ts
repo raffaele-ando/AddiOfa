@@ -1,5 +1,4 @@
-// Servire e correggere le domande delle sfide passando dal DataProvider (come LearnMode ed ExamMode): in produzione le risposte
-// esatte NON sono nel bundle, arrivano da `grade`. Le opzioni si mostrano in un ordine fissato dal seme, uguale per chi sfida e per l'amico.
+// Servire e correggere le domande delle sfide passando dal provider locale (come LearnMode ed ExamMode). Le opzioni si mostrano in un ordine fissato dal seme, uguale per chi sfida e per l'amico.
 import type { DataProvider, ExamQuestionResult, PublicQuestion } from '../../../access/provider';
 import { ordineOpzioni } from '../../../lib/sfide/seme';
 import type { VoceSfida } from '../../../lib/sfide/risultati';
@@ -51,7 +50,7 @@ export async function correggi(provider: DataProvider, base: DomandeSfida, rispo
   return { perQuestion: new Map(esiti.map(r => [r.id, r])), corrette: esiti.filter(r => r.correct === true).length };
 }
 
-// Subito dopo la partita le correzioni sono già in mano: si tengono qui per non richiederle al server aprendo il risultato.
+// Subito dopo la partita le correzioni sono già in mano: si tengono qui per non ricalcolarle aprendo il risultato.
 const recenti = new Map<string, Correzioni>();
 export function ricordaCorrezioni(id: string, c: Correzioni): void {
   recenti.set(id, c);

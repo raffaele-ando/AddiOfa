@@ -1,17 +1,17 @@
 // «Guida e FAQ»: testi veri, presi da config/offer.ts. Nessuna promessa che non si possa mantenere:
-// pagamenti spenti e Pass in prova sono dichiarati. Cercare e filtrare sono funzioni pure.
+// l'app è gratuita, statica, senza account, e i dati restano nel dispositivo. Cercare e filtrare sono funzioni pure.
 import type { LegalSection } from '../../types';
 import {
-  DISCLAIMER, FEATURE_FLAGS, FORMATS, FREE_LIMITS, INVITE, OFA_RULES_NOTE, PASS, PAYMENTS_ENABLED, REAL_TEST_PASS_MARK,
-  REAL_TEST_QUESTIONS, RETAKE_COST_EUR, OFA_CONSEQUENCES, formatEur, currentPriceEur, isLaunchPrice,
+  DISCLAIMER, EXAM, OFA_CONSEQUENCES, OFA_RULES_NOTE, DIAGNOSTIC_QUESTIONS, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, RETAKE_COST_EUR,
 } from '../../config/offer';
-import { ECOSYSTEM } from '../../config/ecosystem';
+import { questions } from '../../data/questions';
+import { theoryTopics } from '../../data/theory';
 
-export type CategoriaFaq = 'test' | 'pass' | 'dati' | 'app';
+export type CategoriaFaq = 'test' | 'studio' | 'dati' | 'app';
 
 export const CATEGORIE_FAQ: readonly { id: CategoriaFaq; nome: string }[] = [
   { id: 'test', nome: 'Il test' },
-  { id: 'pass', nome: 'Il Pass e i pagamenti' },
+  { id: 'studio', nome: 'Lo studio' },
   { id: 'dati', nome: 'I tuoi dati' },
   { id: 'app', nome: 'L\'app' },
 ];
@@ -29,15 +29,9 @@ export interface VoceFaq {
   vai?: { id: string; testo: string; params?: Record<string, string> };
 }
 
-const prezzo = (): string => {
-  const ora = currentPriceEur();
-  return isLaunchPrice()
-    ? `${formatEur(ora)} fino al ${new Date(`${PASS.launchUntil}T12:00:00`).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })}, poi ${formatEur(PASS.priceEur)}`
-    : formatEur(ora);
-};
-
-/** Le voci della guida. Dipendono dagli interruttori di config/offer.ts: se cambiano, cambiano anche le risposte. */
+/** Le voci della guida. I numeri vengono dal banco vero e da config/offer.ts: se cambiano, cambiano anche le risposte. */
 export function vociFaq(): VoceFaq[] {
+  const schede = theoryTopics.filter(t => t.pronta).length;
   return [
     // ---- Il test
     {
@@ -52,8 +46,8 @@ export function vociFaq(): VoceFaq[] {
     {
       id: 'test-formato', categoria: 'test', domanda: 'Com\'è fatto il test di recupero?',
       risposta: [
-        `${FORMATS.ente.summary} È il formato che l'app usa nelle simulazioni.`,
-        FORMATS.ente.notes,
+        `${EXAM.questions} domande, ${EXAM.options} opzioni, ${EXAM.minutes} minuti. Si supera con ${EXAM.passMark} su ${EXAM.questions}. È il formato che l'app usa nelle simulazioni.`,
+        'Formato del test di LinguaViva. Language Academy e British Institutes non pubblicano la soglia: controlla con l\'ente che hai scelto.',
         `Presso gli enti convenzionati un tentativo costa circa ${RETAKE_COST_EUR} €.`,
       ],
       chiavi: 'soglia 25 30 domande quindici minuti enti convenzionati linguaviva costo',
@@ -66,7 +60,7 @@ export function vociFaq(): VoceFaq[] {
     {
       id: 'test-certificazione', categoria: 'test', domanda: 'Ho già una certificazione o ho già fatto il test: cosa cambia?',
       risposta: [
-        'Il riconoscimento di una certificazione e l\'esito di un test già sostenuto si gestiscono con il Politecnico, non con l\'app: AddiOFA non li verifica e per studiare non ti chiede nessuna email istituzionale.',
+        'Il riconoscimento di una certificazione e l\'esito di un test già sostenuto si gestiscono con il Politecnico, non con l\'app: AddiOFA non li verifica e non ti chiede nessuna email istituzionale.',
         OFA_RULES_NOTE,
       ],
       chiavi: 'gia sostenuto certificazione ielts cambridge esonero email polimi',
@@ -80,129 +74,83 @@ export function vociFaq(): VoceFaq[] {
       chiavi: 'percentuale stima probabilita superare intervallo',
       vai: { id: 'progressi', testo: 'Apri Progressi', params: { sezione: 'argomenti' } },
     },
+
+    // ---- Lo studio
     {
-      id: 'test-da-dove', categoria: 'test', domanda: 'Da dove comincio?',
+      id: 'studio-cosa-ce', categoria: 'studio', domanda: 'Cosa trovo nell\'app?',
       risposta: [
-        `Dal quiz diagnostico: ${FREE_LIMITS.diagnostic} domande, circa 3 minuti. Ti dà una prima stima e ti dice quali argomenti guardare. Poi ripasso sugli errori e, quando ti senti pronto, una simulazione.`,
+        `Tutte le ${questions.length} domande del banco, le ${schede} schede di teoria, simulazioni senza limite, ripasso degli errori, statistiche complete, frasi e prontuario delle regole. Nessuna parte è bloccata.`,
+      ],
+      chiavi: 'contenuti domande teoria simulazioni frasi prontuario gratis gratuito limiti',
+    },
+    {
+      id: 'studio-da-dove', categoria: 'studio', domanda: 'Da dove comincio?',
+      risposta: [
+        `Dal quiz diagnostico: ${DIAGNOSTIC_QUESTIONS} domande, circa 3 minuti. Ti dà una prima stima e ti dice quali argomenti guardare. Poi ripasso sugli errori e, quando ti senti pronto, una simulazione.`,
       ],
       chiavi: 'diagnostico iniziare partire primo passo',
     },
-
-    // ---- Il Pass e i pagamenti
     {
-      id: 'pass-cose', categoria: 'pass', domanda: 'Che cos\'è il Pass AddiOFA?',
+      id: 'studio-ripasso', categoria: 'studio', domanda: 'Come sceglie le domande il ripasso?',
       risposta: [
-        `${PASS.summary} Vale ${PASS.validMonths} mesi dall'attivazione.`,
-        `Comprende: ${PASS.features.map(f => f.charAt(0).toLowerCase() + f.slice(1)).join('; ')}.`,
+        'Ripropone una domanda a distanza di giorni che crescono se rispondi bene, e prima se sbagli. Dà la precedenza alle domande che dovresti rivedere e ne mescola di nuove, così non rifai solo quelle che già sai.',
       ],
-      chiavi: 'abbonamento una tantum cosa comprende',
-    },
-    {
-      id: 'pass-gratis', categoria: 'pass', domanda: 'Cosa posso fare senza pagare?',
-      risposta: [
-        `Il diagnostico da ${FREE_LIMITS.diagnostic} domande con la probabilità stimata, il ripasso su un nucleo di circa ${FREE_LIMITS.coreQuestions} domande, ${FREE_LIMITS.freeSimulations === 1 ? 'una simulazione completa' : `${FREE_LIMITS.freeSimulations} simulazioni complete`} e ${FREE_LIMITS.freeTheoryTopics === 1 ? 'una scheda di teoria' : `${FREE_LIMITS.freeTheoryTopics} schede di teoria`}. Non serve un account.`,
-      ],
-      chiavi: 'gratuito free senza account',
-    },
-    {
-      id: 'pass-pagamenti', categoria: 'pass', domanda: 'Posso comprare il Pass adesso?',
-      risposta: PAYMENTS_ENABLED
-        ? [`Sì: il Pass costa ${prezzo()}, con un solo pagamento.`]
-        : [
-            'Non ancora: al momento i pagamenti non sono attivi e il pulsante del Pass porta alla lista d\'attesa.',
-            `Il prezzo previsto è ${prezzo()}. Nelle versioni dimostrative puoi sbloccare un «Pass in prova»: non costa nulla e non è un acquisto.`,
-          ],
-      chiavi: 'prezzo costo quanto costa acquisto pagare stripe carta lista attesa prova',
-    },
-    {
-      id: 'pass-abbonamento', categoria: 'pass', domanda: 'È un abbonamento? Si rinnova da solo?',
-      risposta: ['No: è un pagamento unico, senza rinnovo automatico. Alla scadenza dei mesi di validità decidi tu se rinnovare.'],
-      chiavi: 'rinnovo scadenza disdetta',
-    },
-    {
-      id: 'pass-recesso', categoria: 'pass', domanda: 'Posso recedere dall\'acquisto?',
-      risposta: [
-        'Il diritto di recesso previsto dalla legge per chi compra da consumatore è di 14 giorni, con le eccezioni per i contenuti digitali spiegate nella pagina dedicata.',
-        PAYMENTS_ENABLED ? 'Le condizioni complete sono nei testi legali.' : 'Al momento i pagamenti non sono attivi, quindi non c\'è ancora nulla da comprare.',
-        'Le pagine legali sono bozze in attesa di revisione di un professionista.',
-      ],
-      chiavi: 'rimborso restituzione soldi indietro',
-      legale: { sezione: 'recesso', testo: 'Leggi la pagina sul recesso' },
-    },
-    {
-      id: 'pass-garanzia', categoria: 'pass', domanda: 'C\'è una garanzia «soddisfatti o rimborsati»?',
-      risposta: [FEATURE_FLAGS.guarantee
-        ? 'Sì, con condizioni precise: sono scritte per intero accanto al prezzo e l\'app le misura in Progressi.'
-        : 'Oggi no: non c\'è nessuna garanzia di rimborso legata all\'esito del test. Se in futuro ci sarà, le condizioni saranno scritte per intero accanto al prezzo.'],
-      chiavi: 'garanzia rimborso esito',
-    },
-    {
-      id: 'pass-inviti', categoria: 'pass', domanda: 'Posso avere il Pass gratis invitando dei compagni?',
-      risposta: [
-        `È la regola della pagina Pass: il Pass diventa gratuito quando ${INVITE.required} compagni, con la verifica prevista, finiscono il diagnostico. Conta finirlo, non il punteggio. Chi usa il tuo codice ha il ${INVITE.inviteeDiscountPct} % di sconto.`,
-        'Nelle versioni dimostrative la verifica non è attiva e non si sblocca nessun Pass.',
-      ],
-      chiavi: 'inviti codice amici compagni sconto',
-      vai: { id: 'pass', testo: 'Apri il Pass' },
+      chiavi: 'ripasso dilazionato intervalli algoritmo spaced repetition errori',
     },
 
     // ---- I tuoi dati
     {
       id: 'dati-raccolti', categoria: 'dati', domanda: 'Che dati raccogliete?',
       risposta: [
-        'Il meno possibile: niente matricola, niente codice fiscale, niente email del Politecnico. I progressi di studio restano sul tuo dispositivo; l\'email serve solo se entri in lista d\'attesa o compri il Pass. Non vendiamo i dati.',
+        'Nessuno: il sito non ha un server che li riceva e non c\'è nessun account. I progressi di studio restano nel tuo browser e non lasciano il tuo dispositivo.',
       ],
-      chiavi: 'privacy gdpr tracciamento cookie',
+      chiavi: 'privacy gdpr tracciamento account email',
       legale: { sezione: 'privacy', testo: 'Leggi l\'informativa privacy' },
     },
     {
       id: 'dati-dove', categoria: 'dati', domanda: 'Dove sono i miei progressi? Se cambio telefono?',
       risposta: [
-        'Sono salvati su questo dispositivo, nel browser. Se cancelli i dati del sito o cambi dispositivo non li ritrovi da soli: puoi esportarli e importarli dalle Impostazioni (nelle versioni dimostrative l\'esportazione non è disponibile).',
+        'Sono salvati su questo dispositivo, nel browser. Se cancelli i dati del sito o cambi dispositivo non li ritrovi da soli: puoi esportarli in un file e importarli altrove dalle Impostazioni.',
       ],
       chiavi: 'salvataggio backup esporta importa cancellare browser localstorage',
     },
     {
-      id: 'dati-projectid', categoria: 'dati', domanda: `Cos'è il ${ECOSYSTEM.accountName} e devo averlo?`,
-      risposta: [
-        `No, non serve per studiare. È un account facoltativo, per chi vorrà partecipare a ${ECOSYSTEM.rankingName} o collegare più app. ${FEATURE_FLAGS.projectId ? 'Si attiva solo se lo scegli, e solo fuori dalle versioni dimostrative.' : 'Oggi non è attivo in AddiOFA.'} Nella schermata dedicata c'è scritto cosa condividerebbe e cosa no.`,
-      ],
-      chiavi: 'login accesso account google collegamento',
-      vai: { id: 'projectid', testo: `Cos'è il ${ECOSYSTEM.accountName}` },
-    },
-    {
       id: 'dati-cookie', categoria: 'dati', domanda: 'Usate cookie o statistiche di tracciamento?',
-      risposta: ['Le statistiche sono senza identificativi né cookie: contano eventi come «diagnostico finito», non persone. Il dettaglio è nella pagina sui cookie, che è una bozza da rivedere.'],
+      risposta: ['No: nessun cookie di tracciamento e nessuna statistica sul tuo uso. Il browser conserva solo i tuoi progressi e le tue preferenze (come il tema).'],
       chiavi: 'analytics tracciamento',
       legale: { sezione: 'cookie', testo: 'Leggi la pagina sui cookie' },
     },
 
     // ---- L'app
     {
+      id: 'app-gratis', categoria: 'app', domanda: 'È davvero gratis?',
+      risposta: ['Sì. Nessun pagamento, nessun abbonamento, nessun account da creare e nessuna funzione a pagamento.'],
+      chiavi: 'costo prezzo pagare gratuito abbonamento',
+      legale: { sezione: 'termini', testo: 'Leggi i termini d\'uso' },
+    },
+    {
       id: 'app-offline', categoria: 'app', domanda: 'Funziona senza internet?',
-      risposta: ['I progressi già salvati restano sul dispositivo anche se cade la connessione. Alcune funzioni hanno bisogno della rete (per esempio le domande servite dal server, la verifica degli inviti, la lista d\'attesa e i pagamenti): se sei offline l\'app te lo dice e riprendi quando torna la connessione.'],
-      chiavi: 'connessione rete offline pwa installare',
+      risposta: ['Per aprire il sito serve la connessione. Una volta caricata la pagina, domande e correzioni sono già nel browser e non chiedono altro alla rete: i progressi si salvano sul dispositivo.'],
+      chiavi: 'connessione rete offline installare',
+    },
+    {
+      id: 'app-sfide', categoria: 'app', domanda: 'Come funzionano le sfide?',
+      risposta: ['La sfida del giorno è la stessa per tutti. Il duello è un link che contiene la sfida: lo mandi a un amico e confrontate i risultati. Amici e classifica sono locali: contano solo chi ha giocato con te su questo dispositivo.'],
+      chiavi: 'sfida duello amici classifica link condividi',
+      vai: { id: 'sfide', testo: 'Apri Sfide' },
     },
     {
       id: 'app-errore', categoria: 'app', domanda: 'Ho trovato una domanda o una spiegazione sbagliata',
-      risposta: ['Segnalala: dalla pagina Segnala scegli il tipo, scrivi cosa non va e ti viene preparato un testo da copiare. La segnalazione resta salvata sul dispositivo; l\'app non ha ancora un canale che la invii da solo.'],
+      risposta: ['Segnalala: dalla pagina Segnala scegli il tipo, scrivi cosa non va e ti viene preparato un testo da copiare. La segnalazione resta salvata sul dispositivo.'],
       chiavi: 'errore bug segnalare problema sbaglio',
       vai: { id: 'segnala', testo: 'Apri Segnala' },
-    },
-    {
-      id: 'app-noi-agora', categoria: 'app', domanda: `Cosa sono ${ECOSYSTEM.engineName}, ${ECOSYSTEM.rankingName} e Agorà?`,
-      risposta: [
-        `${ECOSYSTEM.engineName} è il nome dell'algoritmo di studio che calcola le stime e il ripasso. ${ECOSYSTEM.rankingName} sarà la classifica per chi sceglie di partecipare; Agorà un forum degli studenti. ${FEATURE_FLAGS.leaderboard ? 'Agorà non è ancora attivo dentro AddiOFA.' : `Oggi ${ECOSYSTEM.rankingName} e Agorà non sono attivi dentro AddiOFA.`}`,
-      ],
-      chiavi: 'classifica forum community ecosistema project',
-      vai: { id: 'projectid', testo: `Apri ${ECOSYSTEM.accountName}` },
     },
   ];
 }
 
 /** Minuscole e senza accenti: «perché» e «perche» devono trovarsi. */
 export function normalizza(testo: string): string {
-  return testo.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  return testo.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 /** Le voci che contengono TUTTE le parole cercate (nella domanda, nella risposta o nelle parole chiave), nella categoria scelta. */

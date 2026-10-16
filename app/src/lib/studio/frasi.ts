@@ -21,8 +21,6 @@ export interface Frase {
   theoryId?: string;
   argomento?: string;
   livello?: string;
-  /** Fa parte del nucleo gratuito. */
-  core: boolean;
 }
 
 export type FiltroFrasi = 'tutte' | 'preferite' | 'da-ripassare' | 'gia-note';
@@ -111,7 +109,7 @@ function rispostaUsabile(r: string): boolean {
  * Estrae la frase di una domanda, o null se la domanda non dà una frase completa e sicura.
  * Funzione pura: non guarda lo stato dell'utente.
  */
-export function fraseDaDomanda(q: Question): Omit<Frase, 'domande' | 'core'> | null {
+export function fraseDaDomanda(q: Question): Omit<Frase, 'domande'> | null {
   const esatta = q.options?.[q.correctIndex];
   if (typeof esatta !== 'string' || !esatta.trim()) return null;
   const spiegazione = (q.explanation ?? '').replace(SPAZI, ' ').trim();
@@ -158,16 +156,16 @@ export function fraseDaDomanda(q: Question): Omit<Frase, 'domande' | 'core'> | n
 }
 
 /**
- * Frasi dal banco: una riga per frase, senza doppioni. Se due domande danno la stessa frase vince quella del nucleo gratuito,
- * poi quella con la traduzione italiana vera; le altre restano nell'elenco `domande` (servono a «Da ripassare» e «Già note»).
+ * Frasi dal banco: una riga per frase, senza doppioni. Se due domande danno la stessa frase vince quella con la traduzione
+ * italiana vera; le altre restano nell'elenco `domande` (servono a «Da ripassare» e «Già note»).
  */
-export function estraiFrasi(banco: readonly Question[], isCore: (id: string) => boolean): Frase[] {
+export function estraiFrasi(banco: readonly Question[]): Frase[] {
   const perChiave = new Map<string, Frase>();
-  const punteggio = (f: Frase) => (f.core ? 2 : 0) + (f.itTipo === 'traduzione' ? 1 : 0);
+  const punteggio = (f: Frase) => (f.itTipo === 'traduzione' ? 1 : 0);
   for (const q of banco) {
     const f = fraseDaDomanda(q);
     if (!f) continue;
-    const nuova: Frase = { ...f, domande: [q.id], core: isCore(q.id) };
+    const nuova: Frase = { ...f, domande: [q.id] };
     const chiave = chiaveFrase(nuova.en);
     if (!chiave) continue;
     const presente = perChiave.get(chiave);
@@ -199,8 +197,6 @@ export interface RicercaFrasi {
   filtro: FiltroFrasi;
   preferite: ReadonlySet<string>;
   stats: UserStats | undefined | null;
-  /** Senza Pass si vedono solo le frasi del nucleo gratuito. */
-  pass: boolean;
 }
 
 /** Toglie accenti e maiuscole: «perche» trova «perché». */
@@ -211,7 +207,6 @@ function semplifica(s: string): string {
 export function filtraFrasi(tutte: readonly Frase[], r: RicercaFrasi): Frase[] {
   const q = semplifica(r.testo.trim());
   return tutte.filter(f => {
-    if (!r.pass && !f.core) return false;
     if (q && !semplifica(`${f.en} ${f.it} ${f.argomento ?? ''}`).includes(q)) return false;
     switch (r.filtro) {
       case 'preferite': return r.preferite.has(f.id);
@@ -224,7 +219,7 @@ export function filtraFrasi(tutte: readonly Frase[], r: RicercaFrasi): Frase[] {
 
 /** Conteggi per le etichette dei filtri. */
 export function contaFrasi(tutte: readonly Frase[], r: Omit<RicercaFrasi, 'testo' | 'filtro'>): Record<FiltroFrasi, number> {
-  const visibili = tutte.filter(f => r.pass || f.core);
+  const visibili = tutte;
   let ripassare = 0, note = 0, pref = 0;
   for (const f of visibili) {
     const s = statoFrase(f, r.stats);

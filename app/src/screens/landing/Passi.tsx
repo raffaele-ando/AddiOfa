@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
 import { Icona, type NomeIcona } from '../../brand/icone/Icona';
 import { IconaTono, type Tono } from '../extra/ui';
-import { FORMATS, FREE_LIMITS } from '../../config/offer';
+import { DIAGNOSTIC_QUESTIONS, EXAM } from '../../config/offer';
+import { questions } from '../../data/questions';
 import { IllustrazioneAnimata } from '../../brand/IllustrazioneAnimata';
 import { BottoneAzione, Colonna, Dato, Occhiello } from './comune';
 import Telefono from './Telefono';
@@ -49,30 +50,30 @@ function SchermoSimulazione() {
   return (
     <Schermo inclina="lg:rotate-[-1deg]">
       <p className="text-[10px] font-semibold text-testo-tenue">Simulazione</p>
-      <div className="mt-2 flex items-center gap-2 text-[12px] font-bold text-testo"><Icona nome="tempo" size={15} className="text-azione" />{FORMATS.ente.minutes} minuti</div>
-      <div className="mt-1.5 flex items-center gap-2 text-[12px] font-bold text-testo"><Icona nome="risposte" size={15} className="text-azione" />{FORMATS.ente.questions} domande</div>
-      <p className="mt-1.5 text-[11px] font-medium text-testo-tenue">Soglia {FORMATS.ente.passMark} su {FORMATS.ente.questions}</p>
+      <div className="mt-2 flex items-center gap-2 text-[12px] font-bold text-testo"><Icona nome="tempo" size={15} className="text-azione" />{EXAM.minutes} minuti</div>
+      <div className="mt-1.5 flex items-center gap-2 text-[12px] font-bold text-testo"><Icona nome="risposte" size={15} className="text-azione" />{EXAM.questions} domande</div>
+      <p className="mt-1.5 text-[11px] font-medium text-testo-tenue">Soglia {EXAM.passMark} su {EXAM.questions}</p>
       <div className="mt-4 rounded-xl bg-azione py-2.5 text-center text-xs font-bold text-azione-su">Inizia la simulazione</div>
     </Schermo>
   );
 }
 
-// I quattro passi: icona + 1-3 parole + un numero; sotto, chi è gratis (mano) e chi serve il Pass (corona).
-const PASSI: { icona: NomeIcona; tono: Tono; titolo: string; numeri: { icona: NomeIcona; testo: string }[]; gratis: boolean; pass?: boolean; Schermo: () => ReactNode }[] = [
+// I quattro passi: icona + 1-3 parole + un numero.
+const PASSI: { icona: NomeIcona; tono: Tono; titolo: string; numeri: { icona: NomeIcona; testo: string }[]; Schermo: () => ReactNode }[] = [
   {
-    icona: 'diagnostico', tono: 'azione', titolo: 'Diagnostico', gratis: true, Schermo: SchermoDiagnostico,
-    numeri: [{ icona: 'risposte', testo: String(FREE_LIMITS.diagnostic) }, { icona: 'tempo', testo: '3 min' }],
+    icona: 'diagnostico', tono: 'azione', titolo: 'Diagnostico', Schermo: SchermoDiagnostico,
+    numeri: [{ icona: 'risposte', testo: String(DIAGNOSTIC_QUESTIONS) }, { icona: 'tempo', testo: '3 min' }],
   },
   {
-    icona: 'errori', tono: 'basso', titolo: 'Ripasso errori', gratis: true, pass: true, Schermo: SchermoRipasso,
-    numeri: [{ icona: 'risposte', testo: `${FREE_LIMITS.coreQuestions}+` }],
+    icona: 'errori', tono: 'basso', titolo: 'Ripasso errori', Schermo: SchermoRipasso,
+    numeri: [{ icona: 'risposte', testo: String(questions.length) }],
   },
   {
-    icona: 'simulazioni', tono: 'medio', titolo: 'Simulazioni', gratis: true, pass: true, Schermo: SchermoSimulazione,
-    numeri: [{ icona: 'risposte', testo: String(FORMATS.ente.questions) }, { icona: 'tempo', testo: `${FORMATS.ente.minutes} min` }],
+    icona: 'simulazioni', tono: 'medio', titolo: 'Simulazioni', Schermo: SchermoSimulazione,
+    numeri: [{ icona: 'risposte', testo: String(EXAM.questions) }, { icona: 'tempo', testo: `${EXAM.minutes} min` }],
   },
   {
-    icona: 'esame', tono: 'alto', titolo: 'Test vero', gratis: false, numeri: [{ icona: 'soglia', testo: `${FORMATS.ente.passMark}/${FORMATS.ente.questions}` }],
+    icona: 'esame', tono: 'alto', titolo: 'Test vero', numeri: [{ icona: 'soglia', testo: `${EXAM.passMark}/${EXAM.questions}` }],
     Schermo: () => (
       <Schermo inclina="lg:rotate-[1deg]">
         <div className="flex h-full items-center justify-center"><IllustrazioneAnimata nome="superamento" lato={150} quandoVisibile /></div>
@@ -111,10 +112,6 @@ export default function Passi({ onStart }: { onStart(): void }) {
                   {p.Schermo()}
                   <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm lg:mt-4 lg:justify-center">
                     {p.numeri.map(n => <Dato key={n.icona + n.testo} icona={n.icona} tono="azione" lato={28}>{n.testo}</Dato>)}
-                  </div>
-                  <div role="img" className="mt-2 flex items-center gap-2 lg:justify-center" aria-label={p.gratis ? (p.pass ? 'Gratis e nel Pass' : 'Gratis') : 'Fuori da AddiOFA'}>
-                    {p.gratis && <IconaTono tono="alto" lato={26} className="!rounded-full"><Icona nome="gratis" size={15} /></IconaTono>}
-                    {p.pass && <IconaTono tono="viola" lato={26} className="!rounded-full"><Icona nome="pass" size={15} /></IconaTono>}
                   </div>
                 </li>
               ))}

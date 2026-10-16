@@ -1,37 +1,20 @@
 import { useMemo } from 'react';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
-import { useAccess } from '../../../access/context';
 import { playTapSound } from '../../../lib/audio';
 import { nomeVisibile } from '../../../lib/profilo/dati';
-import { livelloConNucleo, SOGLIA_LIVELLO } from '../../../lib/profilo/livello';
+import { livelloAttuale, SOGLIA_LIVELLO } from '../../../lib/profilo/livello';
 import { SCHERMATE } from '../registro';
-import { BarraTono, TONI, type Tono } from '../ui';
+import { BarraTono, type Tono } from '../ui';
 import { useExtra } from '../contesto';
 import { Avatar, Pagina, TesseraIcona, useBanco, useProfilo } from './componenti';
 
-/** Pass in forma di icona + stato: attivo (spunta), in prova (provetta), gratuito (lucchetto). Non si tocca: il Pass si apre dalla tessera. */
-function CartaPass({ pass, prova }: { pass: boolean; prova: boolean }) {
-  const stato: { icona: NomeIcona; tono: Tono; parola: string } = !pass
-    ? { icona: 'blocco', tono: 'medio', parola: 'Gratis' }
-    : prova ? { icona: 'stato-prova', tono: 'medio', parola: 'Prova' } : { icona: 'stato-ok', tono: 'alto', parola: 'Attivo' };
-  return (
-    <div role="status" aria-label={`Pass: ${stato.parola}`} className="flex items-center gap-2 rounded-full bg-superficie py-1 pl-2.5 pr-3 text-[13.5px] font-bold text-testo">
-      <Icona nome="pass" size={18} className={TONI.medio.icona} />
-      <span aria-hidden="true" className="h-4 w-px bg-linea" />
-      <Icona nome={stato.icona} size={17} className={TONI[stato.tono].icona} />
-      {stato.parola}
-    </div>
-  );
-}
-
-/** Profilo: chi sei (avatar, nome, livello, Pass) e cinque tessere con una parola. L'ingranaggio porta alle Impostazioni. */
+/** Profilo: chi sei (avatar, nome, livello) e tre tessere con una parola. L'ingranaggio porta alle Impostazioni. */
 export default function Profilo() {
-  const { appState, pass, vai, indietro, apriImpostazioni } = useExtra();
-  const { entitlement } = useAccess();
+  const { appState, vai, indietro, apriImpostazioni } = useExtra();
   const { profilo } = useProfilo();
-  const { pool, nucleo } = useBanco();
+  const banco = useBanco();
 
-  const livello = useMemo(() => livelloConNucleo(appState.stats, pool, nucleo), [appState.stats, pool, nucleo]);
+  const livello = useMemo(() => livelloAttuale(appState.stats, banco), [appState.stats, banco]);
   const prossimo = livello.prossimo;
   const necessarie = prossimo ? Math.ceil(SOGLIA_LIVELLO * prossimo.totale - 1e-9) : 0;
   const esiste = (id: string) => !!SCHERMATE[id];
@@ -40,8 +23,6 @@ export default function Profilo() {
     { id: 'progressi', icona: 'progressi', tono: 'azione', parola: 'Progressi' },
     { id: 'obiettivi', icona: 'obiettivi', tono: 'alto', parola: 'Obiettivi' },
     { id: 'badge', icona: 'badge', tono: 'viola', parola: 'Badge' },
-    { id: 'pass', icona: 'pass', tono: 'medio', parola: 'Pass' },
-    { id: 'projectid', icona: 'projectid', tono: 'azione', parola: 'Project ID' },
   ];
 
   return (
@@ -68,7 +49,6 @@ export default function Profilo() {
             <span className={livello.livello ? 'text-viola-testo text-[16px]' : 'text-testo-tenue'}>{livello.livello ?? '–'}</span>
             {prossimo && <span className="text-[12.5px] font-semibold tabular-nums text-testo-tenue">{prossimo.imparate}/{necessarie}</span>}
           </div>
-          <CartaPass pass={pass} prova={entitlement.source === 'demo'} />
         </div>
         {prossimo && <div className="mt-3"><BarraTono tono="viola" valore={Math.min(1, prossimo.imparate / necessarie) * 100} /></div>}
       </section>

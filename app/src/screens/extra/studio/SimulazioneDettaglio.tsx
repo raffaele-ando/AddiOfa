@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
-import { useAccess } from '../../../access/context';
+import { provider } from '../../../access';
 import type { ExamQuestionResult, PublicQuestion, DataProvider } from '../../../access/provider';
-import { FORMATS } from '../../../config/offer';
+import { EXAM } from '../../../config/offer';
 import { entrataStorico, perArgomentoSimulazione, trovaSimulazione } from '../../../lib/studio/simulazioni';
 import MisuratoreEsito from '../../../components/esito/MisuratoreEsito';
 import CorrezioniComplete from '../../../components/esito/CorrezioniComplete';
@@ -58,7 +58,6 @@ async function caricaCorrezioni(provider: DataProvider, h: ExamHistory): Promise
 
 function Svolta({ chiave }: { chiave: string }) {
   const { appState, vai, indietro, apriTeoria } = useExtra();
-  const { provider } = useAccess();
   const s = useMemo(() => trovaSimulazione(appState.history, chiave), [appState.history, chiave]);
   const entrata = useMemo(() => (s ? entrataStorico(appState.history, s.id) : undefined), [appState.history, s]);
   const [corr, setCorr] = useState<Correzioni>({ fase: 'carico' });
@@ -76,7 +75,7 @@ function Svolta({ chiave }: { chiave: string }) {
 
   if (!s || !entrata) return <NonTrovata onIndietro={indietro} onSimulazioni={() => vai('simulazioni')} />;
 
-  const f = FORMATS[s.formato];
+  const f = EXAM;
   const { righe } = perArgomentoSimulazione(entrata);
 
   return (

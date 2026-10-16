@@ -1,11 +1,7 @@
 // `classifica`: la classifica tra te e i tuoi rivali, calcolata dai duelli veri (il podio dal terzo in poi: i primi tre non si ripetono nell'elenco;
-// il primo in ambra con la medaglia), e UNA riga per la classifica NOI (stato a icona, porta al Project ID). Nessuna posizione inventata.
-import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
-import { playTapSound } from '../../../lib/audio';
+// il primo in ambra con la medaglia). Nessuna posizione inventata: solo chi ha giocato con te su questo dispositivo.
+import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
-import { ATLAS_API_URL, ECOSYSTEM } from '../../../config/ecosystem';
-import { FEATURE_FLAGS } from '../../../config/offer';
-import { statoNoi, type StatoNoi } from '../../../lib/servizi/collegamento';
 import { cn, formatNumber } from '../../../lib/utils';
 import { costruisciClassifica, tempoBreve, type RigaClassifica } from '../../../lib/sfide/risultati';
 import { useProfiloSfide, useStorico } from './dati';
@@ -39,32 +35,6 @@ function Podio({ righe }: { righe: RigaClassifica[] }) {
   );
 }
 
-/** Lo stato della classifica NOI, a icona: spuntata se sei dentro, avviso se manca un passo tuo, lucchetto se non è attiva. */
-const ICONA_NOI: Record<StatoNoi, { nome: NomeIcona; colore: string }> = {
-  aderito: { nome: 'stato-ok', colore: 'text-alto-numero' },
-  'da-aderire': { nome: 'stato-attenzione', colore: 'text-medio-numero' },
-  'da-collegare': { nome: 'stato-attenzione', colore: 'text-medio-numero' },
-  demo: { nome: 'blocco', colore: 'text-testo-tenue' },
-  'project-id-spento': { nome: 'blocco', colore: 'text-testo-tenue' },
-  'classifica-spenta': { nome: 'blocco', colore: 'text-testo-tenue' },
-  atlas: { nome: 'blocco', colore: 'text-testo-tenue' },
-};
-
-function RigaNoi() {
-  const { appState, demo, vai } = useExtra();
-  const stato = statoNoi({ demo, flagProjectId: FEATURE_FLAGS.projectId, flagClassifica: FEATURE_FLAGS.leaderboard, atlasOnline: !!ATLAS_API_URL, permessi: appState.projectLink?.scopes });
-  const s = ICONA_NOI[stato];
-  return (
-    <button type="button" aria-label={`Classifica ${ECOSYSTEM.rankingName}`} onClick={() => { playTapSound(); vai('projectid'); }}
-      className="brand-premibile mt-6 flex w-full items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left">
-      <IconaTono tono="viola"><Icona nome="classifica-noi" size={22} /></IconaTono>
-      <span className="min-w-0 flex-1 text-[16px] font-extrabold tracking-[0.02em] text-testo">{ECOSYSTEM.rankingName}</span>
-      <Icona nome={s.nome} size={22} className={s.colore} />
-      <Icona nome="avanti" size={20} className="shrink-0 -mr-1 text-testo-tenue" />
-    </button>
-  );
-}
-
 export default function Classifica() {
   const { vai } = useExtra();
   const { voci } = useStorico();
@@ -81,7 +51,6 @@ export default function Classifica() {
       'A parità di media decide il tempo.',
       'Chi non ha duellato con te non compare: nessuna posizione è inventata.',
       'Il podio compare quando siete almeno in tre.',
-      `La classifica ${ECOSYSTEM.rankingName}, tra tutti gli studenti che la scelgono, richiede il ${ECOSYSTEM.accountName}.`,
     ]} />
   );
 
@@ -122,7 +91,6 @@ export default function Classifica() {
         </div>
       )}
 
-      <RigaNoi />
     </SchedaProveSfide>
   );
 }

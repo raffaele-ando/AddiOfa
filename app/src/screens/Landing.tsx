@@ -7,7 +7,6 @@ import Vantaggi from './landing/Vantaggi';
 import Perche from './landing/Perche';
 import Passi from './landing/Passi';
 import SeNonSuperi from './landing/SeNonSuperi';
-import Offerta from './landing/Offerta';
 import Faq from './landing/Faq';
 import CtaFinale from './landing/CtaFinale';
 import { Colonna } from './landing/comune';
@@ -16,13 +15,11 @@ interface LandingProps {
   onStartDiagnostic(): void;
   onSkip(): void;
   onOpenLegal(s: LegalSection): void;
-  /** Facoltativa: porta al Pass (lista d'attesa finché i pagamenti sono spenti). Senza, il pulsante non compare. */
-  onOpenPass?(): void;
 }
 
 // La landing occupa tutta la finestra: la cornice stretta dell'app (max-w-3xl, 800 px) non basta per due colonne.
 // Per questo è un livello fisso con il suo scorrimento; se un domani App la mette fuori dal Layout, resta uguale.
-export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal, onOpenPass }: LandingProps) {
+export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal }: LandingProps) {
   const [scuro, setScuro] = useState(() => typeof document !== 'undefined' && document.documentElement.classList.contains('dark'));
   useEffect(() => {
     const el = document.documentElement;
@@ -35,11 +32,6 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal, onOpen
 
   return (
     <div className="fixed inset-0 z-40 overflow-y-auto overflow-x-hidden bg-fondo text-testo">
-      {import.meta.env.VITE_MODE === 'demo' && (
-        <p role="note" data-testo-ok className="bg-[#0E1B3F] dark:bg-superficie-2 px-4 py-1.5 text-center text-[11px] leading-snug text-white dark:text-testo">
-          Versione dimostrativa: nessun pagamento, i dati restano su questo dispositivo.
-        </p>
-      )}
       <Barra onStart={onStartDiagnostic} />
       <main className="landing-pagina">
         <Hero onStart={onStartDiagnostic} onSkip={onSkip} scuro={scuro} />
@@ -47,7 +39,6 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal, onOpen
         <SeNonSuperi onStart={onStartDiagnostic} />
         <Perche onStart={onStartDiagnostic} />
         <Passi onStart={onStartDiagnostic} />
-        <Offerta scuro={scuro} onStart={onStartDiagnostic} onOpenPass={onOpenPass} onOpenLegal={onOpenLegal} />
         <Faq onOpenLegal={onOpenLegal} />
         <CtaFinale onStart={onStartDiagnostic} onSkip={onSkip} />
       </main>

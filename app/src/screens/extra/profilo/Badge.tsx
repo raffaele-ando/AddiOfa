@@ -6,16 +6,15 @@ import { useTheme } from '../../../hooks/useTheme';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { GRUPPI_BADGE, type BadgeValutato, type GruppoBadge } from '../../../lib/profilo/badge';
-import { useAccess } from '../../../access/context';
 import { BarraTono, FoglioInfo, TONI, type Tono } from '../ui';
 import { useExtra } from '../contesto';
 import { Pagina, SelettoreIcone, useBadge } from './componenti';
 
-type Filtro = 'tutti' | 'sbloccati' | 'bloccati';
+type Filtro = 'tutti' | 'ottenuti' | 'da-ottenere';
 const FILTRI = [
   { id: 'tutti' as const, icona: <Icona nome="filtro-tutte" size={22} />, nome: 'Tutti' },
-  { id: 'sbloccati' as const, icona: <Icona nome="stato-ok" size={22} />, nome: 'Sbloccati' },
-  { id: 'bloccati' as const, icona: <Icona nome="blocco" size={22} />, nome: 'Da sbloccare' },
+  { id: 'ottenuti' as const, icona: <Icona nome="stato-ok" size={22} />, nome: 'Ottenuti' },
+  { id: 'da-ottenere' as const, icona: <Icona nome="stato-da-iniziare" size={22} />, nome: 'Da ottenere' },
 ];
 
 /** Ogni gruppo ha il suo colore, lo stesso in tutta l'app: domande e argomenti imparati = verde, simulazioni = blu, giorni di studio = ambra, livelli = viola. */
@@ -27,25 +26,21 @@ function Figura({ nome, bloccato, tono }: { nome: string; bloccato: boolean; ton
   return (
     <span className={cn('relative shrink-0 w-[64px] h-[64px] rounded-[16px] grid place-items-center', bloccato ? 'bg-superficie' : TONI[tono].tinta)} aria-hidden="true">
       {src && <img src={src} alt="" draggable={false} className={cn('w-[88%] h-[88%] object-contain', bloccato && 'grayscale opacity-45')} />}
-      {bloccato && <span className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-superficie border border-linea text-testo-tenue grid place-items-center"><Icona nome="blocco" size={13} /></span>}
     </span>
   );
 }
 
-function SchedaBadge({ b, pass, onApri }: { b: BadgeValutato; pass: boolean; onApri: () => void }) {
-  const serve = !b.sbloccato && !b.raggiungibile && !pass;
+function SchedaBadge({ b, onApri }: { b: BadgeValutato; onApri: () => void }) {
   return (
     <li>
-      <button type="button" onClick={() => { playTapSound(); onApri(); }} aria-label={`${b.titolo}: ${b.sbloccato ? 'sbloccato' : b.avanzamento}`}
+      <button type="button" onClick={() => { playTapSound(); onApri(); }} aria-label={`${b.titolo}: ${b.sbloccato ? 'ottenuto' : b.avanzamento}`}
         className="brand-premibile w-full text-left">
         <Carta className="p-3.5 flex gap-3.5 items-center">
           <Figura nome={b.illustrazione} bloccato={!b.sbloccato} tono={TONO_GRUPPO[b.gruppo]} />
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
               <h3 className="text-[15px] leading-[20px] font-bold text-testo">{b.titolo}</h3>
-              {b.sbloccato
-                ? <span role="img" aria-label="Sbloccato" className="shrink-0 text-alto-numero"><Icona nome="stato-ok" size={22} /></span>
-                : serve ? <Icona nome="pass" size={18} className="shrink-0 text-medio-numero" titolo="Serve il Pass" /> : null}
+              {b.sbloccato && <span role="img" aria-label="Ottenuto" className="shrink-0 text-alto-numero"><Icona nome="stato-ok" size={22} /></span>}
             </div>
             {!b.sbloccato && (
               <div className="mt-2 flex items-center gap-3">
@@ -63,24 +58,23 @@ function SchedaBadge({ b, pass, onApri }: { b: BadgeValutato; pass: boolean; onA
 /** Traguardi veri di studio: niente punti né XP. Icone, barre e numeri; la condizione di ogni badge si apre toccandolo. */
 export default function Badge() {
   const { indietro } = useExtra();
-  const { pass } = useAccess();
   const badge = useBadge();
   const [filtro, setFiltro] = useState<Filtro>('tutti');
   const [aperto, setAperto] = useState<BadgeValutato | null>(null);
   const sbloccati = badge.filter(b => b.sbloccato).length;
-  const visibili = badge.filter(b => filtro === 'tutti' || (filtro === 'sbloccati') === b.sbloccato);
+  const visibili = badge.filter(b => filtro === 'tutti' || (filtro === 'ottenuti') === b.sbloccato);
 
   return (
     <Pagina titolo="Badge" indietro={indietro} destra={
-      <span className="inline-flex h-10 items-center gap-1.5 rounded-full bg-viola-tinta px-3.5 text-[15px] font-extrabold tabular-nums text-viola-testo" role="img" aria-label={`${sbloccati} su ${badge.length} sbloccati`}>
+      <span className="inline-flex h-10 items-center gap-1.5 rounded-full bg-viola-tinta px-3.5 text-[15px] font-extrabold tabular-nums text-viola-testo" role="img" aria-label={`${sbloccati} su ${badge.length} ottenuti`}>
         <Icona nome="badge" size={18} />{sbloccati}/{badge.length}
       </span>
     }>
       <div className="mt-4"><SelettoreIcone<Filtro> nome="Filtro" voci={FILTRI} valore={filtro} onScegli={setFiltro} /></div>
       {visibili.length === 0 && (
         <div className="mt-8 flex flex-col items-center gap-2 text-testo-tenue" role="status">
-          <Icona nome={filtro === 'sbloccati' ? 'blocco' : 'stato-ok'} size={32} />
-          <p className="text-[15px] font-bold">{filtro === 'sbloccati' ? 'Nessun badge ancora' : 'Tutti sbloccati'}</p>
+          <Icona nome={filtro === 'ottenuti' ? 'badge' : 'stato-ok'} size={32} />
+          <p className="text-[15px] font-bold">{filtro === 'ottenuti' ? 'Nessun badge ancora' : 'Tutti ottenuti'}</p>
         </div>
       )}
       {GRUPPI_BADGE.map(g => {
@@ -92,7 +86,7 @@ export default function Badge() {
               <h2 id={`badge-${g.id}`} className="text-[15.5px] leading-[20px] font-bold text-testo">{g.titolo}</h2>
               <span className={cn('text-[12.5px] font-semibold tabular-nums', TONI[TONO_GRUPPO[g.id]].testo)}>{badge.filter(b => b.gruppo === g.id && b.sbloccato).length}/{badge.filter(b => b.gruppo === g.id).length}</span>
             </div>
-            <ul className="flex flex-col gap-2.5">{dentro.map(b => <SchedaBadge key={b.id} b={b} pass={pass} onApri={() => setAperto(b)} />)}</ul>
+            <ul className="flex flex-col gap-2.5">{dentro.map(b => <SchedaBadge key={b.id} b={b} onApri={() => setAperto(b)} />)}</ul>
           </section>
         );
       })}
@@ -101,8 +95,7 @@ export default function Badge() {
           <>
             <p>{aperto.condizione}</p>
             {!aperto.sbloccato && <p className="mt-2 font-bold tabular-nums">{aperto.avanzamento}</p>}
-            {!aperto.sbloccato && !aperto.raggiungibile && !pass && <p className="mt-2 text-testo-tenue">Con le domande gratuite non si arriva fin qui: serve il Pass.</p>}
-            <p className="mt-2 text-testo-tenue">I badge si sbloccano solo studiando davvero: non danno punti.</p>
+            <p className="mt-2 text-testo-tenue">I badge si ottengono solo studiando davvero: non danno punti.</p>
           </>
         )}
       </FoglioInfo>

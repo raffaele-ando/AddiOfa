@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { ExamHistory, ExamQuestionLog, QuestionClickEvent } from '../types';
-import { cn, errorCode } from '../lib/utils';
+import { cn } from '../lib/utils';
 import { playTapSound, playVictorySound } from '../lib/audio';
 import { Icona } from '../brand/icone/Icona';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
@@ -28,14 +28,9 @@ type Phase = 'select' | 'starting' | 'running' | 'submitting' | 'submitError' | 
 
 // Un solo formato (EXAM: 30 domande, 15 minuti, soglia 25): non c'è nulla da scegliere e la prova parte da sola
 // (la fase «select» resta solo come stato di attesa dell'avvio, con l'errore se non parte).
-function messaggioErrore(e: unknown): string {
-  const code = errorCode(e);
-  if (/network|fetch|failed to|offline/i.test(code)) return 'Nessuna connessione. Riprova.';
-  return 'Qualcosa è andato storto. Riprova.';
-}
+const MESSAGGIO_ERRORE = 'Qualcosa è andato storto. Riprova.';
 
 export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteStima }: ExamModeProps) {
-
   const [phase, setPhase] = useState<Phase>('select');
   const [error, setError] = useState<string | null>(null);
   const [session, setSession] = useState<ExamSession | null>(null);
@@ -103,9 +98,9 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
       setTimeLeft(f.minutes * 60);
       setSession(s);
       setPhase('running');
-    } catch (e) {
+    } catch {
       if (!aliveRef.current) return;
-      setError(messaggioErrore(e));
+      setError(MESSAGGIO_ERRORE);
       setPhase('select');
     }
   };
@@ -151,10 +146,10 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
       const res = await provider.submitExam(session.id, payload, elapsed);
       if (!aliveRef.current) return;
       complete(res, payload, elapsed);
-    } catch (e) {
+    } catch {
       submittingRef.current = false;
       if (!aliveRef.current) return;
-      setError(messaggioErrore(e));
+      setError(MESSAGGIO_ERRORE);
       setPhase('submitError');
     }
   };

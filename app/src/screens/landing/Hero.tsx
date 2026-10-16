@@ -1,4 +1,4 @@
-import { DISCLAIMER, FORMATS } from '../../config/offer';
+import { DISCLAIMER, EXAM } from '../../config/offer';
 import Scena from '../../brand/hero/Scena';
 import { Icona } from '../../brand/icone/Icona';
 import { BottoneAzione, BottoneContorno, Colonna, Fatti, InfoFoglio, Occhiello } from './comune';
@@ -31,7 +31,7 @@ export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSk
             <Fatti />
             <InfoFoglio titolo="Il test e la stima">
               <div className="flex flex-col gap-2">
-                <p>Il test di riferimento è quello di recupero nel formato LinguaViva: {FORMATS.ente.questions} domande in {FORMATS.ente.minutes} minuti, soglia {FORMATS.ente.passMark}/{FORMATS.ente.questions}.</p>
+                <p>Il test di riferimento è quello di recupero nel formato LinguaViva: {EXAM.questions} domande in {EXAM.minutes} minuti, soglia {EXAM.passMark}/{EXAM.questions}.</p>
                 <p>La probabilità è una stima calcolata sulle tue risposte e non garantisce l'esito. {DISCLAIMER}</p>
               </div>
             </InfoFoglio>

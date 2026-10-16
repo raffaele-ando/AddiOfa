@@ -1,6 +1,6 @@
 // Il foglio di condivisione: link per WhatsApp, Telegram e Messaggi, «Altre» (se il dispositivo lo permette); il link si copia con il pulsante accanto.
 // Instagram non ha un indirizzo di condivisione per il web: non lo si finge, si copia il link. Niente spiegazioni in pagina.
-// Si usa come schermata (`condividi`, parametri `testo` e `url`) e come foglio dentro un'altra schermata (Inviti, risultato di una sfida).
+// Si usa come schermata (`condividi`, parametri `testo` e `url`) e come foglio dentro un'altra schermata (risultato di una sfida).
 import { useEffect, useRef, useState } from 'react';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { playTapSound } from '../../../lib/audio';

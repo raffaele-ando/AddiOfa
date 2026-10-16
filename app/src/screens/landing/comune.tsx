@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { cn } from '../../lib/utils';
 import { playTapSound } from '../../lib/audio';
 import { Icona, type NomeIcona } from '../../brand/icone/Icona';
-import { FREE_LIMITS } from '../../config/offer';
+import { DIAGNOSTIC_QUESTIONS } from '../../config/offer';
 import { PulsanteInfo, IconaTono, type Tono } from '../extra/ui';
 
 // Pezzi condivisi dalle sezioni della landing: contenitore, titoli, pulsanti, carte di vetro, data, fatti a icone, foglio «i».
@@ -112,7 +112,7 @@ export function Dato({ icona, tono = 'azione', children, etichetta, className, l
 export function Fatti({ className }: { className?: string }) {
   return (
     <ul className={cn('flex flex-wrap gap-x-5 gap-y-2.5 text-sm font-semibold text-testo', className)} aria-label="In breve">
-      <li><Dato icona="risposte" tono="azione" etichetta="Domande">{FREE_LIMITS.diagnostic}</Dato></li>
+      <li><Dato icona="risposte" tono="azione" etichetta="Domande">{DIAGNOSTIC_QUESTIONS}</Dato></li>
       <li><Dato icona="tempo" tono="medio" etichetta="Durata">3 min</Dato></li>
       <li><Dato icona="gratis" tono="alto">Gratis</Dato></li>
       <li><Dato icona="senza-account" tono="viola">Senza account</Dato></li>

@@ -8,7 +8,7 @@ type Mostra = (testo: string, tipo?: Tipo) => void;
 
 const ToastContext = createContext<Mostra | null>(null);
 
-/** Mostra un messaggio. Fuori dal ToastProvider non fa nulla (le schermate restano usabili in prova). */
+/** Mostra un messaggio. Fuori dal ToastProvider non fa nulla (le schermate restano usabili senza). */
 export function useToast(): Mostra {
   return useContext(ToastContext) ?? (() => undefined);
 }

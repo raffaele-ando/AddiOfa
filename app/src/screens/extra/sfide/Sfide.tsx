@@ -63,7 +63,7 @@ export default function Sfide() {
   const info = (
     <Regole righe={[
       `${DOMANDE_SFIDA} domande, ${SECONDI_SFIDA / 60} minuti, senza correzioni finché non consegni.`,
-      'Sfida del giorno: le stesse domande per tutti, una al giorno, gratis.',
+      'Sfida del giorno: le stesse domande per tutti, una al giorno.',
       'Duello: giochi tu, mandi il link a un amico, gioca le stesse domande e vedete chi ha vinto.',
       'Vince chi dà più risposte giuste; a parità, il più veloce.',
       'Nessun account e nessun server: il link contiene solo il tuo nome, le domande e il tuo risultato. Il risultato dell\'amico arriva dal suo link e non è verificato.',

@@ -47,3 +47,6 @@ export const DIAGNOSTIC_QUESTIONS = 10;
 export function formatEur(value: number): string {
   return value.toLocaleString('it-IT', { style: 'currency', currency: 'EUR' });
 }
+
+/** Indirizzo a cui arrivano le segnalazioni. Finché non c'è un indirizzo vero resta `undefined`: la schermata Segnala offre solo «Copia». */
+export const CONTACT_EMAIL: string | undefined = undefined;

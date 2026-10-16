@@ -1,5 +1,5 @@
 // `amici`: i «rivali», cioè le persone con cui hai fatto almeno un duello (il nome lo scelgono loro nel link), con il saldo di vittorie
-// a icone e numeri. Salvati solo su questo dispositivo, ricavati dai duelli veri. Nessun amico inventato. Gli inviti stanno in Pass.
+// a icone e numeri. Salvati solo su questo dispositivo, ricavati dai duelli veri. Nessun amico inventato.
 import { useState } from 'react';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';

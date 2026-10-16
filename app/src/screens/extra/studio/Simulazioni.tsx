@@ -1,10 +1,10 @@
-// Scheda «Simulazioni», metà Prove: la carta della nuova simulazione (tre dati a icone, un solo ▶ che diventa il lucchetto quando il limite gratuito è finito)
+// Scheda «Simulazioni», metà Prove: la carta della nuova simulazione (tre dati a icone, un solo ▶)
 // e l'elenco di quelle svolte (data, punteggio /30, icona esito). Le regole stanno dietro la «i». Concept: 36 e 49, 18.
 import { useMemo } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
-import { FORMATS } from '../../../config/offer';
-import { elencoSimulazioni, limiteGratuito, FORMATO_SIMULAZIONE } from '../../../lib/studio/simulazioni';
+import { EXAM } from '../../../config/offer';
+import { elencoSimulazioni } from '../../../lib/studio/simulazioni';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { RegoleFormato } from '../../../components/esito/InfoPunteggio';
@@ -14,28 +14,19 @@ import { SchedaProveSfide } from '../sfide/scheda';
 import { dataBreve, minSec } from './comune';
 
 export default function Simulazioni() {
-  const { appState, pass, vai, avviaSimulazione } = useExtra();
-  const f = FORMATS[FORMATO_SIMULAZIONE];
+  const { appState, vai, avviaSimulazione } = useExtra();
+  const f = EXAM;
   const elenco = useMemo(() => elencoSimulazioni(appState.history), [appState.history]);
-  const limite = useMemo(() => limiteGratuito(appState, pass), [appState, pass]);
   const migliore = elenco.length > 0 ? Math.max(...elenco.map(s => s.esatte)) : null;
-  const bloccata = !pass && !limite.puoiIniziare;
-
-  const nota = pass
-    ? 'Con il Pass le simulazioni sono illimitate.'
-    : limite.puoiIniziare
-      ? `Gratis hai ${limite.restanti === 1 ? '1 simulazione' : `${limite.restanti} simulazioni`}; le altre sono nel Pass.`
-      : 'La simulazione gratuita l’hai già fatta: le altre sono nel Pass.';
-
   return (
-    <SchedaProveSfide sezione="prove" titoloInfo="Regole" info={<RegoleFormato format={f} nota={nota} />}>
+    <SchedaProveSfide sezione="prove" titoloInfo="Regole" info={<RegoleFormato format={f} />}>
       <Carta tono="azione" className="mt-4">
         <div className="flex items-center justify-between gap-2">
           <Dato icona="risposte" tono="azione" valore={f.questions} aria={`${f.questions} domande`} />
           <Dato icona="tempo" tono="medio" valore={f.minutes} unita="min" aria={`${f.minutes} minuti`} />
           <Dato icona="soglia" tono="alto" valore={`${f.passMark}/${f.questions}`} aria={`Soglia ${f.passMark} su ${f.questions}`} />
         </div>
-        <Bottone className="mt-4" icona={bloccata ? 'blocco' : 'studia'} aria={bloccata ? 'Altre simulazioni con il Pass' : 'Inizia la simulazione'} onClick={avviaSimulazione} />
+        <Bottone className="mt-4" icona="studia" aria="Inizia la simulazione" onClick={avviaSimulazione} />
       </Carta>
 
       <section aria-labelledby="titolo-svolte" className="mt-6 flex flex-col gap-2.5">

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
-import { useAccess } from '../../../access/context';
+import { provider } from '../../../access';
 import CorrezioniComplete from '../../../components/esito/CorrezioniComplete';
 import { SECONDI_SFIDA } from '../../../lib/sfide/seme';
 import { FoglioInfo, IconaTono, PulsanteInfo } from '../ui';
@@ -17,7 +17,6 @@ import { Regole } from './scheda';
 
 function RivediRisposte({ voce, primario }: { voce: VoceSfida; primario: boolean }) {
   const { apriTeoria } = useExtra();
-  const { provider } = useAccess();
   const [stato, setStato] = useState<'chiuso' | 'carico' | 'pronto' | 'errore'>('chiuso');
   const [c, setC] = useState<Correzioni | null>(null);
   const apri = async () => {

@@ -1,0 +1,378 @@
+{
+ "q1": {
+  "esito": "ok"
+ },
+ "q3": {
+  "esito": "ok"
+ },
+ "q4": {
+  "esito": "ok"
+ },
+ "q5": {
+  "esito": "ok"
+ },
+ "q6": {
+  "esito": "ok"
+ },
+ "q8": {
+  "esito": "ok"
+ },
+ "q9": {
+  "esito": "ok"
+ },
+ "q10": {
+  "esito": "problema",
+  "tipo": "spiegazione",
+  "motivo": "Spiegazione imprecisa: dice che 'Can I using' e' un errore di chi aggiunge 'to', ma 'using' non c'entra con 'to'; il riferimento all'italiano e' discutibile.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'Can I _____ your phone, please?'",
+   "options": [
+    "to use",
+    "using",
+    "use",
+    "used"
+   ],
+   "correctIndex": 2,
+   "explanation": "Dopo 'can' il verbo è alla forma base, senza 'to' e senza '-ing' o '-ed'. Perciò 'Can I use...?' è giusto: 'Can I to use' è l'errore tipico di chi aggiunge 'to' come dopo altri verbi, mentre 'using' e 'used' non sono forme base."
+  }
+ },
+ "q11": {
+  "esito": "ok"
+ },
+ "q12": {
+  "esito": "ok"
+ },
+ "q13": {
+  "esito": "ok"
+ },
+ "q14": {
+  "esito": "ok"
+ },
+ "q15": {
+  "esito": "ok"
+ },
+ "q16": {
+  "esito": "ok"
+ },
+ "q17": {
+  "esito": "ok"
+ },
+ "q25": {
+  "esito": "ok"
+ },
+ "q31": {
+  "esito": "ok"
+ },
+ "q35": {
+  "esito": "ok"
+ },
+ "q36": {
+  "esito": "ok"
+ },
+ "q40": {
+  "esito": "ok"
+ },
+ "q44": {
+  "esito": "ok"
+ },
+ "q45": {
+  "esito": "ok"
+ },
+ "q46": {
+  "esito": "ok"
+ },
+ "q49": {
+  "esito": "ok"
+ },
+ "q52": {
+  "esito": "ok"
+ },
+ "q57": {
+  "esito": "ok"
+ },
+ "q59": {
+  "esito": "ok"
+ },
+ "q61": {
+  "esito": "ok"
+ },
+ "q62": {
+  "esito": "ok"
+ },
+ "q64": {
+  "esito": "ok"
+ },
+ "q66": {
+  "esito": "ok"
+ },
+ "q68": {
+  "esito": "problema",
+  "tipo": "duplicato",
+  "motivo": "Quasi identica a q40 ('I didn't study ... yesterday' / 'They didn't visit ... last Sunday'), con quasi le stesse opzioni. Sostituita con negativo di 'be' al passato.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'We _____ at home last night. We were at the cinema.'",
+   "options": [
+    "wasn't",
+    "weren't",
+    "didn't",
+    "aren't"
+   ],
+   "correctIndex": 1,
+   "explanation": "'Last night' indica il passato e con 'we' il verbo 'be' al passato è 'were': la forma negativa è 'weren't'. 'Wasn't' va con I/he/she/it, 'didn't' vuole un verbo base e 'aren't' è al presente."
+  }
+ },
+ "q70": {
+  "esito": "ok"
+ },
+ "q72": {
+  "esito": "ok"
+ },
+ "q74": {
+  "esito": "ok"
+ },
+ "q76": {
+  "esito": "ok"
+ },
+ "q79": {
+  "esito": "ok"
+ },
+ "q81": {
+  "esito": "ok"
+ },
+ "q83": {
+  "esito": "ok"
+ },
+ "q85": {
+  "esito": "ok"
+ },
+ "q87": {
+  "esito": "ok"
+ },
+ "q89": {
+  "esito": "problema",
+  "tipo": "duplicato",
+  "motivo": "Quasi uguale a q35 ('This is the _____ city ...', aggettivo lungo, stesse opzioni more/-est/most/the most). Sostituita con un superlativo che testa 'of' dopo il superlativo.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'Giulia is the youngest _____ my three cousins.'",
+   "options": [
+    "in",
+    "than",
+    "of",
+    "from"
+   ],
+   "correctIndex": 2,
+   "explanation": "Dopo un superlativo, per indicare l'insieme di cui si parla, si usa 'of' davanti a un numero o a un gruppo di persone: 'the youngest of my three cousins'. 'In' si usa con luoghi o gruppi come 'in the class', 'than' appartiene al comparativo e 'from' indica provenienza."
+  }
+ },
+ "q91": {
+  "esito": "problema",
+  "tipo": "duplicato",
+  "motivo": "Quasi uguale a q61 ('He _____ in this town since 2015' / 'He _____ in that bank since 2015'). Sostituita con since + verbo di stato.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'I _____ my best friend since primary school.'",
+   "options": [
+    "know",
+    "am knowing",
+    "have known",
+    "knew"
+   ],
+   "correctIndex": 2,
+   "explanation": "Con 'since' (da quando) si usa il Present Perfect: 'have known'. 'Know' è un verbo di stato e non si usa in forma continua, quindi 'am knowing' è sbagliato; 'know' e 'knew' non collegano il passato al presente."
+  }
+ },
+ "q93": {
+  "esito": "ok"
+ },
+ "q96": {
+  "esito": "ok"
+ },
+ "q98": {
+  "esito": "ok"
+ },
+ "q101": {
+  "esito": "problema",
+  "tipo": "duplicato",
+  "motivo": "Stesso test di q46 ('I like Paolo's car'): nome proprio + 's. Sostituita con 'whose'.",
+  "correzione": {
+   "prompt": "Complete the sentence: '_____ umbrella is this? It's mine.'",
+   "options": [
+    "Who's",
+    "Whose",
+    "Who",
+    "Whom"
+   ],
+   "correctIndex": 1,
+   "explanation": "'Whose' + nome serve per chiedere di chi è qualcosa: 'Whose umbrella is this?'. 'Who's' è la contrazione di 'who is' o 'who has', mentre 'who' e 'whom' chiedono di una persona, non a chi appartiene un oggetto."
+  }
+ },
+ "q103": {
+  "esito": "ok"
+ },
+ "q106": {
+  "esito": "ok"
+ },
+ "q108": {
+  "esito": "ok"
+ },
+ "q110": {
+  "esito": "ok"
+ },
+ "q112": {
+  "esito": "ok"
+ },
+ "q114": {
+  "esito": "ok"
+ },
+ "q116": {
+  "esito": "ok"
+ },
+ "q117": {
+  "esito": "ok"
+ },
+ "q119": {
+  "esito": "ok"
+ },
+ "q121": {
+  "esito": "ok"
+ },
+ "q123": {
+  "esito": "ok"
+ },
+ "q126": {
+  "esito": "ok"
+ },
+ "q128": {
+  "esito": "problema",
+  "tipo": "duplicato",
+  "motivo": "Stessa struttura di q81 ('What will you do/say if you miss/he calls ...'). Sostituita con una frase temporale con 'as soon as'.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'I will phone you as soon as I _____ home.'",
+   "options": [
+    "get",
+    "will get",
+    "got",
+    "getting"
+   ],
+   "correctIndex": 0,
+   "explanation": "Dopo 'as soon as' (appena) si usa il Present Simple anche se il significato è futuro: 'as soon as I get home'. 'Will get' non si usa nella frase temporale, 'got' è passato e 'getting' non è un verbo finito."
+  }
+ },
+ "q130": {
+  "esito": "problema",
+  "tipo": "duplicato",
+  "motivo": "Stessa struttura e stesse opzioni (aren't/didn't/not/don't) di q83 ('If you don't hurry, ...'). Sostituita con primo condizionale + imperativo.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'If you feel ill, _____ at home.'",
+   "options": [
+    "stay",
+    "will stay",
+    "staying",
+    "to stay"
+   ],
+   "correctIndex": 0,
+   "explanation": "Nel primo condizionale la frase principale può essere un imperativo: 'If you feel ill, stay at home'. Dopo la virgola non c'è un soggetto, quindi 'will stay' non va bene, e 'staying' e 'to stay' non formano un imperativo."
+  }
+ },
+ "q132": {
+  "esito": "ok"
+ },
+ "q134": {
+  "esito": "ok"
+ },
+ "q137": {
+  "esito": "ok"
+ },
+ "q139": {
+  "esito": "problema",
+  "tipo": "duplicato",
+  "motivo": "Stessa cornice di q10 ('Can I _____ ...?', forma base dopo 'can'). Sostituita con 'mustn't' per il divieto.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'You _____ park here. It's forbidden.'",
+   "options": [
+    "mustn't",
+    "don't",
+    "aren't",
+    "haven't"
+   ],
+   "correctIndex": 0,
+   "explanation": "'Mustn't' esprime un divieto e si usa con il verbo base: 'You mustn't park here'. 'Don't park' descriverebbe solo un'abitudine, 'aren't' non regge il verbo base e 'haven't' vuole il participio passato."
+  }
+ },
+ "q141": {
+  "esito": "ok"
+ },
+ "q143": {
+  "esito": "ok"
+ },
+ "q145": {
+  "esito": "ok"
+ },
+ "q147": {
+  "esito": "ok"
+ },
+ "q149": {
+  "esito": "ok"
+ },
+ "q151": {
+  "esito": "ok"
+ },
+ "q153": {
+  "esito": "ok"
+ },
+ "q155": {
+  "esito": "ok"
+ },
+ "q157": {
+  "esito": "ok"
+ },
+ "q159": {
+  "esito": "problema",
+  "tipo": "duplicato",
+  "motivo": "Stessa struttura di q101 e q46 (nome proprio + 's, con distrattore 'the X's'). Sostituita con il possessivo pronominale.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'This isn't my phone. It's _____.'",
+   "options": [
+    "your",
+    "yours",
+    "you",
+    "you're"
+   ],
+   "correctIndex": 1,
+   "explanation": "Quando il possessivo sta da solo, senza un nome dopo, si usa la forma pronominale: 'It's yours'. 'Your' vuole un nome subito dopo ('your phone'), 'you' è un pronome personale e 'you're' è la contrazione di 'you are'."
+  }
+ },
+ "q161": {
+  "esito": "problema",
+  "tipo": "duplicato",
+  "motivo": "Quasi identica a q45 ('I have worked here _____ three years' / 'They have worked here _____ many years'). Sostituita con 'since' + frase.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'We have been friends _____ we were children.'",
+   "options": [
+    "for",
+    "during",
+    "since",
+    "while"
+   ],
+   "correctIndex": 2,
+   "explanation": "'Since' introduce il punto di partenza di una situazione che continua adesso, anche seguito da una frase: 'since we were children'. 'For' vuole una durata ('for ten years'), mentre 'during' e 'while' non si usano con il present perfect in questo modo."
+  }
+ },
+ "q163": {
+  "esito": "ok"
+ },
+ "q165": {
+  "esito": "ok"
+ },
+ "q167": {
+  "esito": "ok"
+ },
+ "q169": {
+  "esito": "ok"
+ },
+ "q172": {
+  "esito": "ok"
+ },
+ "q174": {
+  "esito": "ok"
+ }
+}

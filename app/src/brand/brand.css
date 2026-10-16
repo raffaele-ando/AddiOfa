@@ -16,3 +16,8 @@
 .brand-premibile:hover { filter: brightness(1.04); }
 .brand-premibile:focus-visible { outline: 3px solid rgba(59, 130, 246, .45); outline-offset: 2px; }
 .brand-premibile:disabled { cursor: not-allowed; filter: grayscale(.4) opacity(.55); }
+
+/* Illustrazioni a due varianti: si renderizzano entrambe e il tema (classe .dark su un antenato) ne mostra una sola. */
+.brand-ill-scura { display: none; }
+:is(.dark *) .brand-ill-chiara { display: none; }
+:is(.dark *) .brand-ill-scura { display: inline; }

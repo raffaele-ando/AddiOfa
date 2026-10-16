@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useExtra, useExtraDati } from '../contesto';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
-import { questions, isCoreId } from '../../../data/questions';
+import { questions } from '../../../data/questions';
 import { estraiFrasi, filtraFrasi, contaFrasi, statoFrase, type Frase, type FiltroFrasi } from '../../../lib/studio/frasi';
 import { useSintesi } from '../../../lib/studio/sintesi';
 import { playTapSound } from '../../../lib/audio';
@@ -12,7 +12,7 @@ import { Pagina, StatoVuoto } from './comune';
 
 // Si calcolano una volta sola: il banco non cambia mentre l'app è aperta.
 let cache: Frase[] | null = null;
-const tutteLeFrasi = () => (cache ??= estraiFrasi(questions, isCoreId));
+const tutteLeFrasi = () => (cache ??= estraiFrasi(questions));
 
 // Il filtro scelto prende il colore dell'icona che compare sulle righe: preferite ambra, da ripassare corallo, già note verde. Solo icone e numeri.
 const FILTRI: { id: FiltroFrasi; nome: string; icona: NomeIcona; attivo: string }[] = [
@@ -30,7 +30,7 @@ const VUOTI: Record<Exclude<FiltroFrasi, 'tutte'>, { titolo: string; icona: Nome
 };
 
 export default function Frasi() {
-  const { appState, pass, indietro, apriTeoria, apriPaywall } = useExtra();
+  const { appState, indietro, apriTeoria } = useExtra();
   const [preferiteElenco, setPreferite] = useExtraDati<string[]>('frasi-preferite', []);
   const preferite = useMemo(() => new Set(Array.isArray(preferiteElenco) ? preferiteElenco : []), [preferiteElenco]);
   const [testo, setTesto] = useState('');
@@ -41,8 +41,8 @@ export default function Frasi() {
 
   const tutte = tutteLeFrasi();
   const stats = appState.stats;
-  const conteggi = useMemo(() => contaFrasi(tutte, { preferite, stats, pass }), [tutte, preferite, stats, pass]);
-  const elenco = useMemo(() => filtraFrasi(tutte, { testo, filtro, preferite, stats, pass }), [tutte, testo, filtro, preferite, stats, pass]);
+  const conteggi = useMemo(() => contaFrasi(tutte, { preferite, stats }), [tutte, preferite, stats]);
+  const elenco = useMemo(() => filtraFrasi(tutte, { testo, filtro, preferite, stats }), [tutte, testo, filtro, preferite, stats]);
   const visibili = elenco.slice(0, quante);
 
   const alternaPreferita = (id: string) => {
@@ -53,7 +53,6 @@ export default function Frasi() {
     });
   };
 
-  const totaleBanco = tutte.length;
   return (
     <Pagina titolo="Frasi" onIndietro={indietro}>
       <div className="mt-4 relative">
@@ -81,13 +80,6 @@ export default function Frasi() {
           );
         })}
       </div>
-
-      {!pass && (
-        <button type="button" onClick={() => { playTapSound(); apriPaywall(); }} aria-label="Pass: tutte le frasi"
-          className="brand-premibile mt-3 inline-flex items-center gap-1.5 rounded-full bg-superficie-2 px-3 min-h-[36px] text-[13px] font-semibold tabular-nums text-testo-tenue">
-          <Icona nome="blocco" size={15} />{conteggi.tutte}/{totaleBanco}
-        </button>
-      )}
 
       <div className="mt-4">
         {elenco.length === 0 ? (

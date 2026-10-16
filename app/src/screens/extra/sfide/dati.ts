@@ -32,10 +32,10 @@ export function useProfiloSfide(): { profilo: ProfiloSfide; imposta: (nome: stri
   return { profilo: profilo ?? {}, imposta };
 }
 
-/** Il banco delle sfide: solo le domande del nucleo gratuito, uguali per tutti (con o senza Pass). */
+/** Il banco delle sfide: tutte le domande, uguali per tutti (l'impronta nel link evita confronti tra versioni diverse). */
 export function useBancoSfide() {
   return useMemo(() => {
-    const banco = ordinaBanco(poolMeta(false));
+    const banco = ordinaBanco(poolMeta());
     return { banco, impronta: improntaBanco(banco) };
   }, []);
 }

@@ -1,0 +1,317 @@
+{
+ "q352": {
+  "esito": "ok"
+ },
+ "q353": {
+  "esito": "ok"
+ },
+ "q354": {
+  "esito": "ok"
+ },
+ "q355": {
+  "esito": "ok"
+ },
+ "q356": {
+  "esito": "ok"
+ },
+ "q357": {
+  "esito": "problema",
+  "motivo": "(c) Spiegazione poco chiara su 'Do I have' ('lascia il verbo base senza il suo legame').",
+  "correzione": {
+   "prompt": "Complete the sentence: '_____ take off my shoes when I come in?'",
+   "options": [
+    "Must I to",
+    "Do I must",
+    "Do I have",
+    "Do I have to"
+   ],
+   "correctIndex": 3,
+   "explanation": "Per chiedere se c'è un obbligo si usa 'Do I have to' + verbo base. 'Must' non si usa con 'do' ('Do I must') e non è seguito da 'to' ('Must I to'). 'Do I have' senza 'to' non esprime l'obbligo e non può reggere 'take off': serve 'have to'."
+  }
+ },
+ "q358": {
+  "esito": "ok"
+ },
+ "q359": {
+  "esito": "ok"
+ },
+ "q360": {
+  "esito": "ok"
+ },
+ "q370": {
+  "esito": "ok"
+ },
+ "q371": {
+  "esito": "ok"
+ },
+ "q372": {
+  "esito": "ok"
+ },
+ "q373": {
+  "esito": "ok"
+ },
+ "q374": {
+  "esito": "ok"
+ },
+ "q375": {
+  "esito": "ok"
+ },
+ "q376": {
+  "esito": "ok"
+ },
+ "q377": {
+  "esito": "ok"
+ },
+ "q378": {
+  "esito": "ok"
+ },
+ "q380": {
+  "esito": "ok"
+ },
+ "q382": {
+  "esito": "ok"
+ },
+ "q384": {
+  "esito": "ok"
+ },
+ "q385": {
+  "esito": "ok"
+ },
+ "q386": {
+  "esito": "ok"
+ },
+ "q388": {
+  "esito": "ok"
+ },
+ "q390": {
+  "esito": "ok"
+ },
+ "q404": {
+  "esito": "ok"
+ },
+ "q405": {
+  "esito": "ok"
+ },
+ "q409": {
+  "esito": "ok"
+ },
+ "q410": {
+  "esito": "problema",
+  "motivo": "(c) La spiegazione dice che per 'where' 'manca un luogo da introdurre', ma Paris è un luogo: il motivo corretto è che il relativo è soggetto.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'Paris, _____ is the capital of France, is beautiful.'",
+   "options": [
+    "which",
+    "who",
+    "where",
+    "that"
+   ],
+   "correctIndex": 0,
+   "explanation": "In una relativa non restrittiva (tra virgole) riferita a una cosa si usa 'which'. 'That' non si usa dopo una virgola e 'who' è per le persone. 'Where' introdurrebbe un luogo in cui accade qualcosa, ma qui il relativo è il soggetto di 'is the capital'."
+  }
+ },
+ "q420": {
+  "esito": "ok"
+ },
+ "q421": {
+  "esito": "ok"
+ },
+ "q424": {
+  "esito": "ok"
+ },
+ "q425": {
+  "esito": "ok"
+ },
+ "q434": {
+  "esito": "ok"
+ },
+ "q435": {
+  "esito": "ok"
+ },
+ "q439": {
+  "esito": "ok"
+ },
+ "q440": {
+  "esito": "ok"
+ },
+ "q446": {
+  "esito": "ok"
+ },
+ "q450": {
+  "esito": "ok"
+ },
+ "q451": {
+  "esito": "ok"
+ },
+ "q455": {
+  "esito": "ok"
+ },
+ "q456": {
+  "esito": "ok"
+ },
+ "q462": {
+  "esito": "ok"
+ },
+ "q466": {
+  "esito": "ok"
+ },
+ "q467": {
+  "esito": "ok"
+ },
+ "q471": {
+  "esito": "ok"
+ },
+ "q472": {
+  "esito": "ok"
+ },
+ "q478": {
+  "esito": "ok"
+ },
+ "q482": {
+  "esito": "ok"
+ },
+ "q483": {
+  "esito": "ok"
+ },
+ "q487": {
+  "esito": "ok"
+ },
+ "q488": {
+  "esito": "problema",
+  "motivo": "(d) Stesso schema e stesse parole di q386 (discorso indiretto con 'would call' e distrattori would to/called). Sostituita con 'would be'.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'The teacher said that the exam _____ on Friday.'",
+   "options": [
+    "would to be",
+    "would be",
+    "would is",
+    "would been"
+   ],
+   "correctIndex": 1,
+   "explanation": "Nel discorso riportato al passato 'will' diventa 'would', seguito dal verbo base: 'the exam would be on Friday'. 'Would to be' ha un 'to' di troppo, mentre 'would is' e 'would been' hanno il verbo nella forma sbagliata: dopo un modale serve 'be'."
+  }
+ },
+ "q494": {
+  "esito": "ok"
+ },
+ "q498": {
+  "esito": "ok"
+ },
+ "q499": {
+  "esito": "ok"
+ },
+ "q503": {
+  "esito": "ok"
+ },
+ "q504": {
+  "esito": "ok"
+ },
+ "q510": {
+  "esito": "ok"
+ },
+ "q514": {
+  "esito": "ok"
+ },
+ "q515": {
+  "esito": "ok"
+ },
+ "q519": {
+  "esito": "problema",
+  "motivo": "(d) Quasi uguale a q514 ('We used to ...' con use to / are used to / used to / were used to). Sostituita con altra frase e opzioni.",
+  "correzione": {
+   "prompt": "Complete the sentence: 'My grandfather _____ walk to work every day, but now he takes the bus.'",
+   "options": [
+    "used to",
+    "was used to",
+    "uses to",
+    "use to"
+   ],
+   "correctIndex": 0,
+   "explanation": "'Used to' + verbo base indica un'abitudine passata che oggi non c'è più, come mostra 'now he takes the bus'. 'Was used to' significa 'essere abituato a' e vuole il gerundio. 'Uses to' e 'use to' non sono forme corrette in una frase affermativa."
+  }
+ },
+ "q520": {
+  "esito": "ok"
+ },
+ "q526": {
+  "esito": "problema",
+  "motivo": "(d) Stessa frase di q390 ('use to like vegetables when ... a child'). Sostituita con altra frase.",
+  "correzione": {
+   "prompt": "Complete the sentence: '_____ your parents use to live in the countryside when they were young?'",
+   "options": [
+    "Were",
+    "Do",
+    "Did",
+    "Have"
+   ],
+   "correctIndex": 2,
+   "explanation": "Nella domanda con 'use to' l'ausiliare è 'did': porta lui il passato e 'use' perde la -d ('Did your parents use to...?'). 'Do' è presente e contrasta con 'when they were young', mentre 'Were' e 'Have' non sono gli ausiliari di questa struttura."
+  }
+ },
+ "q530": {
+  "esito": "ok"
+ },
+ "q531": {
+  "esito": "ok"
+ },
+ "q535": {
+  "esito": "ok"
+ },
+ "q536": {
+  "esito": "ok"
+ },
+ "q542": {
+  "esito": "ok"
+ },
+ "q546": {
+  "esito": "ok"
+ },
+ "q547": {
+  "esito": "ok"
+ },
+ "q551": {
+  "esito": "ok"
+ },
+ "q552": {
+  "esito": "ok"
+ },
+ "q558": {
+  "esito": "ok"
+ },
+ "q567": {
+  "esito": "ok"
+ },
+ "q568": {
+  "esito": "ok"
+ },
+ "q575": {
+  "esito": "ok"
+ },
+ "q587": {
+  "esito": "ok"
+ },
+ "q597": {
+  "esito": "ok"
+ },
+ "q601": {
+  "esito": "ok"
+ },
+ "q606": {
+  "esito": "problema",
+  "motivo": "(d) Quasi uguale a q410 (relativa non restrittiva con 'which' dopo nome di capitale: 'London, which is the capital of the UK'). Sostituita con relativa di luogo ('where').",
+  "correzione": {
+   "prompt": "Complete the sentence: 'Milan, _____ I was born, is a big city.'",
+   "options": [
+    "which",
+    "who",
+    "where",
+    "whose"
+   ],
+   "correctIndex": 2,
+   "explanation": "'Where' introduce una relativa che indica il luogo in cui è successo qualcosa: 'dove sono nato'. 'Which' da solo non basta, perché servirebbe la preposizione ('in which I was born'). 'Who' è per le persone e 'whose' indica possesso."
+  }
+ },
+ "q620": {
+  "esito": "ok"
+ }
+}

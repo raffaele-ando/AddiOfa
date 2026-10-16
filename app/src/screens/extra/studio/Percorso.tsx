@@ -1,4 +1,4 @@
-// «Percorso»: le lezioni in ordine didattico (una per argomento di teoria), con stato a icona, minuti e blocco del Pass.
+// «Percorso»: le lezioni in ordine didattico (una per argomento di teoria), con stato a icona e minuti.
 // Aprire una lezione = `lezione-dettaglio` (teoria, esercizi, verifica). Concept: 49 (scheda 4, elenco lezioni), 31 (11-13), 25.
 // Nessuna frase: stati a icona, numeri accanto a icone. Gli stati vengono dai progressi veri (lib/studio/percorso.ts).
 import { useMemo } from 'react';
@@ -19,13 +19,13 @@ const STATO: Record<LezionePercorso['stato'], { icona: NomeIcona; colore: string
 
 function Riga({ l, prossima, onApri }: { l: LezionePercorso; prossima: boolean; onApri: () => void }) {
   const st = STATO[l.stato];
-  const totale = l.disponibili || l.intere;
+  const totale = l.intere;
   const percento = totale > 0 ? Math.round((l.imparate / totale) * 100) : 0;
   const titolo = titoloBreve(l.topic);
   return (
     <li className={prossima ? 'my-1' : 'border-b border-linea last:border-b-0'}>
       <button type="button" onClick={() => { playTapSound(); onApri(); }}
-        aria-label={`${titolo}, ${st.nome}${l.teoriaBloccata ? ', nel Pass' : ''}`}
+        aria-label={`${titolo}, ${st.nome}`}
         className={cn('brand-premibile -mx-3 w-[calc(100%+24px)] flex items-center gap-3 rounded-[12px] px-3 py-3 text-left', prossima && 'bg-azione-tinta')}>
         <span aria-hidden="true" className={cn('shrink-0', st.colore)}><Icona nome={st.icona} size={26} /></span>
         <span className="flex-1 min-w-0">
@@ -41,7 +41,7 @@ function Riga({ l, prossima, onApri }: { l: LezionePercorso; prossima: boolean; 
           <Icona nome="tempo" size={14} />{l.minuti.totale}
         </span>
         <span aria-hidden="true" className="shrink-0 text-testo-tenue">
-          {l.teoriaBloccata ? <Icona nome="blocco" size={17} /> : <Icona nome="avanti" size={22} />}
+          <Icona nome="avanti" size={22} />
         </span>
       </button>
     </li>
@@ -49,8 +49,8 @@ function Riga({ l, prossima, onApri }: { l: LezionePercorso; prossima: boolean; 
 }
 
 export default function Percorso() {
-  const { appState, pass, vai, indietro } = useExtra();
-  const lezioni = useMemo(() => lezioniPercorso(appState, pass), [appState, pass]);
+  const { appState, vai, indietro } = useExtra();
+  const lezioni = useMemo(() => lezioniPercorso(appState), [appState]);
   const fatte = lezioni.filter(l => l.stato === 'imparata').length;
   const prossima = prossimaLezione(lezioni);
   const vaiLezione = (l: LezionePercorso) => vai('lezione-dettaglio', { id: l.topic.id });

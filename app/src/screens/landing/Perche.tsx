@@ -1,7 +1,7 @@
 import Lastra from '../../brand/hero/Lastra';
 import { Icona } from '../../brand/icone/Icona';
 import Misuratore from '../../components/home/Misuratore';
-import { FORMATS } from '../../config/offer';
+import { EXAM } from '../../config/offer';
 import { Colonna, Dato, Evidenza, InfoFoglio, Occhiello } from './comune';
 
 // «Più di un quiz»: un esempio del misuratore e il blocco scuro con la porta di luce. Le spiegazioni stanno dietro la «i».
@@ -18,7 +18,7 @@ export default function Perche({ onStart }: { onStart(): void }) {
 
             <div className="vetro mt-8 grid items-center gap-4 rounded-[28px] p-5 sm:grid-cols-[13rem_1fr] sm:gap-6 sm:p-6">
               <div className="mx-auto w-full max-w-[14rem]">
-                <Misuratore percento={72} livello="alto" etichetta="Esempio" sotto="valore di prova" />
+                <Misuratore percento={72} livello="alto" etichetta="Esempio" sotto="" />
               </div>
               <div className="flex flex-col gap-4">
                 <div className="flex items-center gap-2">
@@ -28,8 +28,8 @@ export default function Perche({ onStart }: { onStart(): void }) {
                   </InfoFoglio>
                 </div>
                 <div className="flex flex-wrap gap-x-5 gap-y-2.5 text-sm">
-                  <Dato icona="soglia" tono="azione" etichetta="Soglia">{FORMATS.ente.passMark}/{FORMATS.ente.questions}</Dato>
-                  <Dato icona="tempo" tono="medio" etichetta="Durata">{FORMATS.ente.minutes} min</Dato>
+                  <Dato icona="soglia" tono="azione" etichetta="Soglia">{EXAM.passMark}/{EXAM.questions}</Dato>
+                  <Dato icona="tempo" tono="medio" etichetta="Durata">{EXAM.minutes} min</Dato>
                 </div>
               </div>
             </div>

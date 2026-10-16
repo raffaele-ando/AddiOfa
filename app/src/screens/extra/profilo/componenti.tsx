@@ -1,8 +1,7 @@
 // Mattoncini condivisi dalle schermate del profilo: pagina con intestazione, avatar, righe di lista, e gli hook che
 // leggono il banco domande attivo e i badge. Stile: lo stesso di Lezioni e Impostazioni (carte superficie-2, token, niente animazioni).
 import { useEffect, useMemo, type ReactNode } from 'react';
-import type { CorpusType } from '../../../types';
-import { getQuestionsByCorpus, questions } from '../../../data/questions';
+import { questions } from '../../../data/questions';
 import { urlDisegno } from '../../../brand/risorse';
 import { useTheme } from '../../../hooks/useTheme';
 import { playTapSound } from '../../../lib/audio';
@@ -77,11 +76,9 @@ export function useProfilo() {
   return { profilo, salva: (p: ProfiloDati) => salva(normalizzaProfilo(p)) };
 }
 
-/** Domande che l'utente può studiare adesso (nucleo gratuito, o tutto il banco con il Pass) e tutto il banco. */
+/** Il banco domande: uno solo, tutte le domande. */
 export function useBanco() {
-  const { appState, pass } = useExtra();
-  const corpus: CorpusType = pass ? (appState.selectedCorpus || 'all') : 'initial';
-  return useMemo(() => ({ pool: getQuestionsByCorpus(corpus), nucleo: getQuestionsByCorpus('initial'), tutte: questions, corpus }), [corpus]);
+  return questions;
 }
 
 /** Oggi, fissato al montaggio della schermata. */
@@ -95,12 +92,12 @@ export function useOggi(): Date {
  */
 export function useBadge(): BadgeValutato[] {
   const { appState } = useExtra();
-  const { pool, nucleo, tutte } = useBanco();
+  const banco = useBanco();
   const [salvati, salva] = useExtraDati<Record<string, number>>('badge-sbloccati', {});
   const chiave = Object.keys(salvati).sort().join(',');
   const valutati = useMemo(
-    () => valutaBadge({ stato: appState, pool, nucleo, tutte }, chiave ? chiave.split(',') : []),
-    [appState, pool, nucleo, tutte, chiave],
+    () => valutaBadge({ stato: appState, banco }, chiave ? chiave.split(',') : []),
+    [appState, banco, chiave],
   );
   useEffect(() => {
     const nuovi = valutati.filter(b => b.sbloccato && !(b.id in salvati));

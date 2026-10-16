@@ -1,4 +1,4 @@
-// «FAQ» (concept 44 icona FAQ, 49): ricerca e categorie a icone. Testi veri da config/offer.ts, via lib/servizi/faq.ts.
+// «FAQ» (concept 44 icona FAQ, 49): ricerca e categorie a icone. Testi veri da config/offer.ts e dal banco, via lib/servizi/faq.ts.
 // Le domande e le risposte sono contenuto (data-testo-ok); il resto della pagina sono icone.
 import { useId, useMemo, useState } from 'react';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
@@ -9,9 +9,9 @@ import { CATEGORIE_FAQ, cercaFaq, vociFaq, type CategoriaFaq, type VoceFaq } fro
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 
-// Un colore e un'icona per categoria (non a rotazione): il test = blu (studio), Pass = ambra (premio), dati = verde (al sicuro), app = viola.
-const TONO_CATEGORIA: Record<CategoriaFaq, Tono> = { test: 'azione', pass: 'medio', dati: 'alto', app: 'viola' };
-const ICONA_CATEGORIA: Record<CategoriaFaq, NomeIcona> = { test: 'esame', pass: 'pass', dati: 'dati', app: 'app' };
+// Un colore e un'icona per categoria (non a rotazione): il test = blu, lo studio = ambra, i dati = verde (al sicuro), l'app = viola.
+const TONO_CATEGORIA: Record<CategoriaFaq, Tono> = { test: 'azione', studio: 'medio', dati: 'alto', app: 'viola' };
+const ICONA_CATEGORIA: Record<CategoriaFaq, NomeIcona> = { test: 'esame', studio: 'esercizi', dati: 'dati', app: 'app' };
 const PUNTO: Record<Tono, string> = { azione: 'bg-azione', alto: 'bg-alto', medio: 'bg-medio', basso: 'bg-basso', viola: 'bg-viola' };
 
 function Voce({ voce, aperta, onToggle }: { voce: VoceFaq; aperta: boolean; onToggle: () => void }) {
@@ -97,7 +97,7 @@ export default function Faq() {
       )}
 
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Avvertenze">
-        <p>Le regole del test possono cambiare: controlla sempre il regolamento aggiornato del tuo corso. Le pagine legali sono bozze in attesa di revisione.</p>
+        <p>Le regole del test possono cambiare: controlla sempre il regolamento aggiornato del tuo corso.</p>
       </FoglioInfo>
     </Pagina>
   );

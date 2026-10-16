@@ -1,5 +1,4 @@
 import { AppState, UserStats, ExamHistory } from '../types';
-import { getDb, isDemoMode } from './firebase';
 
 const STORAGE_KEY = 'ofa_polimi_app_state'; // chiave storica: non cambiarla o si perdono i progressi salvati
 
@@ -25,7 +24,7 @@ function statoVuoto(): AppState {
 }
 
 /**
- * Porta qualunque cosa sia stata salvata (versioni vecchie, JSON rovinato, import o cloud) a un AppState usabile:
+ * Porta qualunque cosa sia stata salvata (versioni vecchie, JSON rovinato, file importato) a un AppState usabile:
  * `stats` oggetto, `history` elenco di simulazioni, `streak` numero. Non butta via i dati buoni.
  */
 export function normalizeState(raw: unknown): AppState {
@@ -35,11 +34,16 @@ export function normalizeState(raw: unknown): AppState {
   if (isObj(raw.stats)) {
     for (const [id, st] of Object.entries(raw.stats)) if (isObj(st)) stats[id] = st as UserStats[string];
   }
+  // Salvataggi di versioni precedenti: le simulazioni nel vecchio formato a 5 opzioni (TENG) non esistono più e non si contano;
+  // il campo `format` delle altre si toglie. `selectedCorpus` e `projectLink` (nucleo gratuito, Project ID) non servono più.
   const history = Array.isArray(raw.history)
-    ? raw.history.filter((h): h is ExamHistory => isObj(h) && typeof h.date === 'number' && Number.isFinite(h.date))
+    ? raw.history
+        .filter((h): h is ExamHistory & { format?: string } => isObj(h) && typeof h.date === 'number' && Number.isFinite(h.date) && h.format !== 'teng')
+        .map(({ format: _formato, ...resto }) => resto as ExamHistory)
     : [];
+  const { selectedCorpus: _corpus, projectLink: _link, ...conservati } = raw as Record<string, unknown>;
   return {
-    ...raw,
+    ...conservati,
     stats,
     history,
     streak: Math.max(0, Math.floor(finito(raw.streak, 0))),
@@ -72,146 +76,6 @@ export function saveState(state: AppState) {
   } catch (err) {
     console.error('Error saving state', err);
   }
-}
-
-// Un documento Firestore ha un limite di 1 MiB. I clic dettagliati di ogni simulazione (~14 KB l'una)
-// restano solo in locale; sul cloud va lo storico alleggerito, con i log per domanda solo per le ultime 50.
-const CLOUD_HISTORY_WITH_LOGS = 50;
-
-export function toCloudState(state: AppState): AppState {
-  const history = state.history || [];
-  const firstWithLogs = Math.max(0, history.length - CLOUD_HISTORY_WITH_LOGS);
-  // Firestore rifiuta i campi `undefined` (ce ne sono nelle statistiche e nell'onboarding): il passaggio da JSON li toglie
-  return JSON.parse(JSON.stringify({
-    ...state,
-    history: history.map((h, i) => {
-      if (i < firstWithLogs) {
-        const { questionLogs, answers, questionIds, ...rest } = h;
-        return rest;
-      }
-      return {
-        ...h,
-        questionLogs: h.questionLogs?.map(({ clickEvents, trajectory, ...log }) => log),
-      };
-    }),
-  }));
-}
-
-// Il cloud si usa solo con un utente collegato e mai in demo (Firebase si carica qui, al primo uso)
-export async function syncToCloud(userId: string, state: AppState) {
-  if (!userId || isDemoMode()) return;
-  try {
-    const [db, { doc, setDoc }] = await Promise.all([getDb(), import('firebase/firestore')]);
-    await setDoc(doc(db, "users", userId), toCloudState(state), { merge: true });
-  } catch (err) {
-    console.error('Error syncing to cloud', err);
-  }
-}
-
-export async function syncFromCloud(userId: string, localState: AppState): Promise<AppState> {
-  if (!userId || isDemoMode()) return localState;
-  try {
-    const [db, { doc, getDoc }] = await Promise.all([getDb(), import('firebase/firestore')]);
-    const docRef = doc(db, "users", userId);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      const cloudState = normalizeState(docSnap.data());
-      // copie dei contenitori che si modificano sotto: lo stato locale (anche quello di React) non si muta
-      const mergedState: AppState = {
-        ...localState,
-        stats: { ...(localState.stats ?? {}) },
-        dailyActivity: { ...(localState.dailyActivity ?? {}) },
-        dailyTimeSpent: { ...(localState.dailyTimeSpent ?? {}) },
-        examCategoryStats: { ...(localState.examCategoryStats ?? {}) },
-      };
-      
-      // 1. Merge history uniquely by date
-      const historyMap = new Map<number | string, any>();
-      // Prima il cloud, poi il locale: a parità di esame vince la copia locale, che ha i log completi
-      cloudState.history?.forEach(h => historyMap.set(h.id ?? h.date, h));
-      localState.history?.forEach(h => historyMap.set(h.id ?? h.date, h));
-      mergedState.history = Array.from(historyMap.values()).sort((a, b) => a.date - b.date);
-
-      // 2. Reconstruct examCategoryStats perfectly from merged history
-      const newExamCategoryStats: Record<string, { correct: number, total: number }> = {};
-      mergedState.history.forEach(h => {
-        if (h.categoryStats) {
-          for (const [cat, stats] of Object.entries(h.categoryStats)) {
-            if (!newExamCategoryStats[cat]) newExamCategoryStats[cat] = { correct: 0, total: 0 };
-            newExamCategoryStats[cat].correct += stats.correct;
-            newExamCategoryStats[cat].total += stats.total;
-          }
-        }
-      });
-      
-      if (Object.keys(newExamCategoryStats).length > 0) {
-        mergedState.examCategoryStats = newExamCategoryStats;
-      } else if (cloudState.examCategoryStats) {
-        // Fallback for legacy data without categoryStats in history
-        for (const cat in cloudState.examCategoryStats) {
-          const cloudCat = cloudState.examCategoryStats[cat];
-          const localCat = mergedState.examCategoryStats[cat];
-          if (!localCat || cloudCat.total > localCat.total) {
-            mergedState.examCategoryStats[cat] = cloudCat;
-          }
-        }
-      }
-      
-      // 3. Merge Question stats based on lastSeen timestamp (most recent state wins)
-      if (cloudState.stats) {
-        for (const qId in cloudState.stats) {
-          const cloudStat = cloudState.stats[qId];
-          const localStat = mergedState.stats[qId];
-          if (!localStat || (cloudStat.lastSeen ?? 0) > (localStat.lastSeen ?? 0)) {
-            mergedState.stats[qId] = cloudStat;
-          }
-        }
-      }
-
-      // 4. Merge speedStats (keep the one with most answers)
-      if (cloudState.speedStats) {
-        if (!mergedState.speedStats || (cloudState.speedStats.totalAnswers ?? 0) > (mergedState.speedStats.totalAnswers ?? 0)) {
-          mergedState.speedStats = cloudState.speedStats;
-        }
-      }
-      
-      // 5. Merge streak and lastActiveDate
-      const cloudLastActive = cloudState.lastActiveDate || 0;
-      const localLastActive = mergedState.lastActiveDate || 0;
-      if (cloudLastActive > localLastActive) {
-         mergedState.lastActiveDate = cloudLastActive;
-         mergedState.streak = cloudState.streak;
-      } else if (cloudLastActive === localLastActive) {
-         mergedState.streak = Math.max(cloudState.streak, finito(mergedState.streak, 0));
-      }
-
-      // 6. Merge dailyActivity
-      if (cloudState.dailyActivity) {
-        for (const [dateStr, count] of Object.entries(cloudState.dailyActivity)) {
-          mergedState.dailyActivity[dateStr] = Math.max(mergedState.dailyActivity[dateStr] || 0, count);
-        }
-      }
-      
-      // 7. Merge dailyTimeSpent
-      if (cloudState.dailyTimeSpent) {
-        for (const [dateStr, time] of Object.entries(cloudState.dailyTimeSpent)) {
-          mergedState.dailyTimeSpent[dateStr] = Math.max(mergedState.dailyTimeSpent[dateStr] || 0, time);
-        }
-      }
-
-      // 8. Consenso Project ID: vince la scelta più recente
-      if (cloudState.projectLink && (!mergedState.projectLink || cloudState.projectLink.updatedAt > mergedState.projectLink.updatedAt)) {
-        mergedState.projectLink = cloudState.projectLink;
-      }
-      if (!mergedState.onboarding && cloudState.onboarding) mergedState.onboarding = cloudState.onboarding;
-
-      saveState(mergedState);
-      return mergedState;
-    }
-  } catch (err) {
-    console.error('Error syncing from cloud', err);
-  }
-  return localState;
 }
 
 export function updateStreak(state: AppState): AppState {

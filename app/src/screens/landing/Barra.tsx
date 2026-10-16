@@ -9,7 +9,6 @@ export const ANCORE = [
   { id: 'home', label: 'Home' },
   { id: 'come-funziona', label: 'Come funziona' },
   { id: 'perche', label: 'Perché AddiOFA' },
-  { id: 'prezzo', label: 'Prezzi' },
   { id: 'domande', label: 'FAQ' },
 ];
 

@@ -3,8 +3,6 @@
 import type { AppState } from '../../types';
 import { questions } from '../../data/questions';
 import { theoryTopics, type TheoryTopic } from '../../data/theory';
-import { FREE_LIMITS } from '../../config/offer';
-import { isCoreId } from '../../data/questions';
 import { isLearned } from '../spacedRepetition';
 import { minutiLettura } from '../../components/home/stima';
 
@@ -39,17 +37,6 @@ export function ordinaPercorso(topics: readonly TheoryTopic[] = theoryTopics): T
     .map(x => x.t);
 }
 
-/**
- * Stesso criterio di screens/Theory.tsx: gratis i primi FREE_LIMITS.freeTheoryTopics argomenti pronti
- * nell'ordine di studio per livello (nell'ordine del file dentro il livello).
- */
-export function idTeoriaGratis(topics: readonly TheoryTopic[] = theoryTopics): Set<string> {
-  const perLivello = [...topics]
-    .sort((a, b) => posLivello(a.livello) - posLivello(b.livello))
-    .filter(t => t.pronta);
-  return new Set(perLivello.slice(0, FREE_LIMITS.freeTheoryTopics).map(t => t.id));
-}
-
 /** Una lezione conta come imparata quando almeno questa quota delle sue domande è imparata (isLearned). */
 export const QUOTA_LEZIONE_IMPARATA = 0.8;
 /** Tempo medio per una domanda: quello del test (30 domande in 15 minuti). */
@@ -62,16 +49,12 @@ export type StatoLezione = 'imparata' | 'in-corso' | 'da-iniziare';
 export interface LezionePercorso {
   numero: number;
   topic: TheoryTopic;
-  /** Domande dell'argomento che l'utente può studiare adesso (senza Pass: solo il nucleo gratuito). */
-  disponibili: number;
-  /** Domande dell'argomento in tutto il banco. */
+  /** Domande dell'argomento nel banco. */
   intere: number;
   imparate: number;
   /** Domande già viste almeno una volta. */
   viste: number;
   stato: StatoLezione;
-  /** La scheda di teoria è del Pass e l'utente non ce l'ha. */
-  teoriaBloccata: boolean;
   /** Minuti: lettura della scheda + una sessione di esercizi. */
   minuti: TempoLezione;
 }
@@ -93,14 +76,11 @@ export function statoDaConteggi(imparate: number, disponibili: number, viste: nu
 }
 
 /** Tutte le lezioni del percorso con lo stato vero di ciascuna. */
-export function lezioniPercorso(stato: AppState, pass: boolean): LezionePercorso[] {
-  const gratis = idTeoriaGratis();
+export function lezioniPercorso(stato: AppState): LezionePercorso[] {
   return ordinaPercorso().map((topic, i) => {
     const interne = questions.filter(q => q.theoryId === topic.id);
-    const usabili = pass ? interne : interne.filter(q => isCoreId(q.id));
-    const base = usabili.length > 0 ? usabili : interne; // mai "0 su 0": come progressoArgomento della home
     let imparate = 0, viste = 0;
-    for (const q of base) {
+    for (const q of interne) {
       const s = stato.stats?.[q.id];
       if (!s) continue;
       if ((s.correct ?? 0) + (s.incorrect ?? 0) + (s.omitted ?? 0) > 0) viste++;
@@ -109,13 +89,11 @@ export function lezioniPercorso(stato: AppState, pass: boolean): LezionePercorso
     return {
       numero: i + 1,
       topic,
-      disponibili: usabili.length,
       intere: interne.length,
       imparate,
       viste,
-      stato: statoDaConteggi(imparate, base.length, viste),
-      teoriaBloccata: !pass && !gratis.has(topic.id),
-      minuti: tempoLezione(topic, usabili.length),
+      stato: statoDaConteggi(imparate, interne.length, viste),
+      minuti: tempoLezione(topic, interne.length),
     };
   });
 }

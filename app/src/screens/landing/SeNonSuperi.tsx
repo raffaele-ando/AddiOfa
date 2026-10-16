@@ -1,4 +1,4 @@
-import { OFA_DEADLINES, OFA_RULES_NOTE, FREE_LIMITS } from '../../config/offer';
+import { OFA_DEADLINES, OFA_RULES_NOTE, DIAGNOSTIC_QUESTIONS } from '../../config/offer';
 import { Icona } from '../../brand/icone/Icona';
 import { IconaTono } from '../extra/ui';
 import { Colonna, Evidenza, InfoFoglio } from './comune';
@@ -51,7 +51,7 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
               <li className="col-span-2 lg:col-span-1 lg:ml-2 lg:w-[25%] lg:shrink-0 lg:-translate-y-4 lg:rotate-[-1.5deg]">
                 <div className="vetro relative flex h-full min-h-[10rem] flex-col items-center justify-center gap-3 rounded-[26px] !border-azione/50 !bg-azione-tinta p-5 text-center lg:min-h-[17rem]">
                   <Icona nome="diagnostico" size={44} className="text-azione" />
-                  <span className="text-2xl font-extrabold leading-none text-testo">{FREE_LIMITS.diagnostic} <span className="text-base font-bold text-azione-scuro">domande</span></span>
+                  <span className="text-2xl font-extrabold leading-none text-testo">{DIAGNOSTIC_QUESTIONS} <span className="text-base font-bold text-azione-scuro">domande</span></span>
                   <button
                     type="button"
                     onClick={onStart}

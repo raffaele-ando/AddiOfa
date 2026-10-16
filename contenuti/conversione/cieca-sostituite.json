@@ -1,0 +1,119 @@
+{
+ "q68": {
+  "prompt": "Complete the sentence: 'We _____ at home last night. We were at the cinema.'",
+  "options": [
+   "wasn't",
+   "weren't",
+   "didn't",
+   "aren't"
+  ]
+ },
+ "q89": {
+  "prompt": "Complete the sentence: 'Giulia is the youngest _____ my three cousins.'",
+  "options": [
+   "in",
+   "than",
+   "of",
+   "from"
+  ]
+ },
+ "q91": {
+  "prompt": "Complete the sentence: 'I _____ my best friend since primary school.'",
+  "options": [
+   "know",
+   "am knowing",
+   "have known",
+   "knew"
+  ]
+ },
+ "q101": {
+  "prompt": "Complete the sentence: '_____ umbrella is this? It's mine.'",
+  "options": [
+   "Who's",
+   "Whose",
+   "Who",
+   "Whom"
+  ]
+ },
+ "q128": {
+  "prompt": "Complete the sentence: 'I will phone you as soon as I _____ home.'",
+  "options": [
+   "get",
+   "will get",
+   "got",
+   "getting"
+  ]
+ },
+ "q130": {
+  "prompt": "Complete the sentence: 'If you feel ill, _____ at home.'",
+  "options": [
+   "stay",
+   "will stay",
+   "staying",
+   "to stay"
+  ]
+ },
+ "q139": {
+  "prompt": "Complete the sentence: 'You _____ park here. It's forbidden.'",
+  "options": [
+   "mustn't",
+   "don't",
+   "aren't",
+   "haven't"
+  ]
+ },
+ "q159": {
+  "prompt": "Complete the sentence: 'This isn't my phone. It's _____.'",
+  "options": [
+   "your",
+   "yours",
+   "you",
+   "you're"
+  ]
+ },
+ "q161": {
+  "prompt": "Complete the sentence: 'We have been friends _____ we were children.'",
+  "options": [
+   "for",
+   "during",
+   "since",
+   "while"
+  ]
+ },
+ "q488": {
+  "prompt": "Complete the sentence: 'The teacher said that the exam _____ on Friday.'",
+  "options": [
+   "would to be",
+   "would be",
+   "would is",
+   "would been"
+  ]
+ },
+ "q519": {
+  "prompt": "Complete the sentence: 'My grandfather _____ walk to work every day, but now he takes the bus.'",
+  "options": [
+   "used to",
+   "was used to",
+   "uses to",
+   "use to"
+  ]
+ },
+ "q526": {
+  "prompt": "Complete the sentence: '_____ your parents use to live in the countryside when they were young?'",
+  "options": [
+   "Were",
+   "Do",
+   "Did",
+   "Have"
+  ]
+ },
+ "q606": {
+  "prompt": "Complete the sentence: 'Milan, _____ I was born, is a big city.'",
+  "options": [
+   "which",
+   "who",
+   "where",
+   "whose"
+  ]
+ }
+}

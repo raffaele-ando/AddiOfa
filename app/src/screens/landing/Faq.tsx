@@ -1,7 +1,9 @@
 import { useId, useState } from 'react';
 import { Icona } from '../../brand/icone/Icona';
 import type { LegalSection } from '../../types';
-import { DISCLAIMER, FREE_LIMITS, PASS } from '../../config/offer';
+import { DIAGNOSTIC_QUESTIONS, DISCLAIMER, EXAM } from '../../config/offer';
+import { questions } from '../../data/questions';
+import { ICONE_LEGALI } from '../Footer';
 import { FOCUS, Sezione, TitoloSezione, SCHEDA } from './comune';
 import { cn } from '../../lib/utils';
 
@@ -9,25 +11,20 @@ interface Voce { d: string; r: string; legale?: { sezione: LegalSection; testo: 
 
 const VOCI: Voce[] = [
   {
-    d: 'Cos\'è il Pass?',
-    r: `È l'accesso completo all'app per ${PASS.validMonths} mesi, con un solo pagamento: tutte le domande del banco con la spiegazione in italiano, simulazioni illimitate nel formato del test di recupero, la teoria dei 31 argomenti, il ripasso sugli errori e le statistiche complete. Non è un abbonamento e non si rinnova da solo.`,
+    d: 'Quanto costa?',
+    r: `Niente: AddiOFA è gratis e non serve un account. Hai tutte le ${questions.length} domande con la spiegazione in italiano, le schede di teoria, simulazioni illimitate nel formato del test di recupero (${EXAM.questions} domande in ${EXAM.minutes} minuti), il ripasso sugli errori e le statistiche.`,
   },
   {
-    d: 'Cosa è gratis?',
-    r: `Il diagnostico da ${FREE_LIMITS.diagnostic} domande con la probabilità stimata, il ripasso su un nucleo di circa ${FREE_LIMITS.coreQuestions} domande, una simulazione completa e una scheda di teoria. Non serve un account.`,
+    d: 'Cos\'è il diagnostico?',
+    r: `Un quiz da ${DIAGNOSTIC_QUESTIONS} domande che stima la probabilità di superare il test. Dopo, il ripasso si adatta ai tuoi errori.`,
   },
   {
     d: 'La stima è una promessa?',
     r: 'No. È una stima calcolata sulle tue risposte: con poche domande è approssimativa e non dice come andrà il test vero. Si affina con le simulazioni.',
   },
   {
-    d: 'Posso recedere?',
-    r: 'Il diritto di recesso previsto dalla legge per chi compra da consumatore è di 14 giorni, con le eccezioni per i contenuti digitali spiegate nella pagina dedicata. Al momento i pagamenti non sono attivi, quindi non c\'è ancora nulla da comprare.',
-    legale: { sezione: 'recesso', testo: 'Recesso' },
-  },
-  {
-    d: 'Quali dati?',
-    r: 'Il meno possibile: niente matricola, niente codice fiscale, niente email del Politecnico. I progressi di studio restano sul tuo dispositivo; l\'email serve solo se entri in lista d\'attesa o compri il Pass. Non vendiamo i dati.',
+    d: 'Dove restano i progressi?',
+    r: 'Sul tuo dispositivo, nel browser: non c\'è un server né un account. Dalle Impostazioni puoi esportarli e importarli su un altro dispositivo. Niente matricola, niente codice fiscale, niente email del Politecnico. Non vendiamo dati.',
     legale: { sezione: 'privacy', testo: 'Privacy' },
   },
   {
@@ -66,7 +63,7 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
             <p data-testo-ok className="text-sm font-medium leading-relaxed text-testo">{voce.r}</p>
             {voce.legale && (
               <button type="button" onClick={() => onOpenLegal(voce.legale!.sezione)} className={cn('mt-2 inline-flex items-center gap-1.5 rounded text-sm font-bold text-azione-scuro underline underline-offset-2', FOCUS)}>
-                <Icona nome={voce.legale!.sezione === 'privacy' ? 'privacy' : 'recesso'} size={16} />{voce.legale.testo}
+                <Icona nome={ICONE_LEGALI[voce.legale!.sezione]} size={16} />{voce.legale.testo}
               </button>
             )}
           </div>

@@ -1,6 +1,5 @@
 // «Segnala» (concept 13/16/17, pulsante vicino alle domande): una segnalazione si compone qui e resta SUL DISPOSITIVO.
-// L'app non ha un canale che la invii (access/provider.ts ha solo eventi fissi, non testi liberi): la schermata lo dice (dietro la «i»)
-// e dà un testo da copiare. Mai «inviato» se non è inviato. Parametri: `domanda` (id), `tipo`, `errore` (testo breve di un errore).
+// L'app è un sito statico e non ha un canale che la invii: la schermata lo dice (dietro la «i») e dà un testo da copiare. Mai «inviato» se non è inviato. Parametri: `domanda` (id), `tipo`, `errore` (testo breve di un errore).
 import { useId, useMemo, useState } from 'react';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { useExtra, useExtraDati } from '../contesto';
@@ -153,7 +152,7 @@ export default function Segnala() {
 
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Segnala">
         <p>Una domanda sbagliata, una spiegazione confusa o un problema dell'app. La segnalazione viene <strong>salvata solo su questo dispositivo</strong> e ti prepariamo un testo da copiare.</p>
-        <p className="mt-2">L'app non la invia da sola: non ha ancora un indirizzo a cui spedirla. Copia il testo e mandalo tu al contatto da cui hai conosciuto AddiOFA. Nel testo ci sono solo quello che hai scritto e, se c'è, la domanda: niente progressi né dati personali.</p>
+        <p className="mt-2">L'app non la invia da sola: non ha un indirizzo a cui spedirla. Copia il testo e mandalo tu al contatto da cui hai conosciuto AddiOFA. Nel testo ci sono solo quello che hai scritto e, se c'è, la domanda: niente progressi né dati personali.</p>
       </FoglioInfo>
     </Pagina>
   );

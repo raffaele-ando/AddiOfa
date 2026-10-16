@@ -1,0 +1,15 @@
+{
+ "q68": {"accettabili": [1], "scelta": 1},
+ "q89": {"accettabili": [2], "scelta": 2},
+ "q91": {"accettabili": [2], "scelta": 2},
+ "q101": {"accettabili": [1], "scelta": 1},
+ "q128": {"accettabili": [0], "scelta": 0},
+ "q130": {"accettabili": [0], "scelta": 0},
+ "q139": {"accettabili": [0, 1], "scelta": 0, "nota": "'You don't park here. It's forbidden.' e' colloquialmente accettabile come divieto generico (stile cartello/istruzione); la risposta migliore resta mustn't."},
+ "q159": {"accettabili": [1], "scelta": 1},
+ "q161": {"accettabili": [2], "scelta": 2},
+ "q488": {"accettabili": [1], "scelta": 1},
+ "q519": {"accettabili": [0], "scelta": 0},
+ "q526": {"accettabili": [2], "scelta": 2},
+ "q606": {"accettabili": [2], "scelta": 2}
+}

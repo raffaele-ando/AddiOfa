@@ -21,7 +21,7 @@ export default function Offline() {
     <StatoPagina
       illustrazione="mondo-internazionale"
       titolo={online ? 'Connesso' : 'Sei offline'}
-      info={<p>Quello che hai già fatto è salvato su questo dispositivo e non si perde. Le funzioni che hanno bisogno della rete (domande servite dal server, inviti, lista d'attesa) ripartono quando torna la connessione.</p>}
+      info={<p>Quello che hai già fatto è salvato su questo dispositivo e non si perde. Le domande sono già nel sito: se la pagina è aperta puoi continuare a studiare.</p>}
       azioni={[
         online ? { testo: 'Riprendi', onClick: indietro, icona: <Icona nome="studia" size={18} /> } : { testo: 'Riprova', onClick: () => window.location.reload(), icona: <Icona nome="riprova" size={18} /> },
         { testo: 'Home', onClick: vaiHome, icona: <Icona nome="home" size={18} /> },

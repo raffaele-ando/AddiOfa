@@ -19,7 +19,7 @@ type ConDiagnostico = { avviaDiagnostico?: () => void };
 /** Progressi: tre sezioni scelte da un selettore a sole icone (panoramica, argomenti, calendario). Parametro `sezione` per aprirne una. */
 export default function Progressi() {
   const ctx = useExtra();
-  const { appState, params, indietro, apriPaywall, vaiHome } = ctx;
+  const { appState, params, indietro, vaiHome } = ctx;
   const iniziale = (VOCI.find(v => v.id === params.sezione)?.id ?? 'panoramica') as Sezione;
   const [sezione, setSezione] = useState<Sezione>(iniziale);
   const avviaDiagnostico = (ctx as typeof ctx & ConDiagnostico).avviaDiagnostico;
@@ -29,7 +29,7 @@ export default function Progressi() {
       <div className="mt-4"><SelettoreIcone<Sezione> nome="Sezione" voci={VOCI} valore={sezione} onScegli={setSezione} /></div>
       <h2 className="mt-5 mb-3 text-[15.5px] leading-[20px] font-bold text-testo">{VOCI.find(v => v.id === sezione)!.nome}</h2>
       {sezione === 'panoramica' && (
-        <StatsMode incorporata appState={appState} onExit={indietro} onNeedPass={() => apriPaywall()} onDiagnostico={avviaDiagnostico ?? vaiHome} />
+        <StatsMode incorporata appState={appState} onExit={indietro} onDiagnostico={avviaDiagnostico ?? vaiHome} />
       )}
       {sezione === 'argomenti' && <ProgressiArgomenti />}
       {sezione === 'calendario' && <ProgressiCalendario />}

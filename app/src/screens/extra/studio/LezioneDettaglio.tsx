@@ -14,7 +14,7 @@ function Minuti({ n }: { n: number }) {
   return <span className="shrink-0 inline-flex items-center gap-1 text-[12.5px] leading-[17px] tabular-nums text-testo-tenue"><Icona nome="tempo" size={14} />{n}</span>;
 }
 
-/** Un passo che si apre (teoria, esercizi): icona nel suo tono, nome, minuti, e a destra la freccia, il lucchetto o il ▶. */
+/** Un passo che si apre (teoria, esercizi): icona nel suo tono, nome, minuti, e a destra la freccia o il ▶. */
 function PassoAzione({ icona, tono, nome, minuti, fatto, fine, onClick }: {
   icona: NomeIcona; tono: Tono; nome: string; minuti?: number; fatto?: boolean; fine: ReactNode; onClick: () => void;
 }) {
@@ -31,8 +31,8 @@ function PassoAzione({ icona, tono, nome, minuti, fatto, fine, onClick }: {
 }
 
 export default function LezioneDettaglio() {
-  const { appState, pass, params, vai, indietro, apriTeoria, apriPaywall, avviaEsercizi } = useExtra();
-  const lezioni = useMemo(() => lezioniPercorso(appState, pass), [appState, pass]);
+  const { appState, params, vai, indietro, apriTeoria, avviaEsercizi } = useExtra();
+  const lezioni = useMemo(() => lezioniPercorso(appState), [appState]);
   const i = lezioni.findIndex(l => l.topic.id === params.id);
   const l = i >= 0 ? lezioni[i] : null;
 
@@ -49,13 +49,13 @@ export default function LezioneDettaglio() {
   }
 
   const { topic } = l;
-  const totaleDomande = l.disponibili || l.intere;
+  const totaleDomande = l.intere;
   const percento = totaleDomande > 0 ? Math.round((l.imparate / totaleDomande) * 100) : 0;
   const imparata = l.stato === 'imparata';
   const successiva = lezioni[i + 1];
 
-  const apriLaTeoria = () => (l.teoriaBloccata ? apriPaywall() : apriTeoria(topic.id));
-  const esercitati = () => (l.disponibili > 0 ? avviaEsercizi('category', filtroArgomento(topic)) : apriPaywall());
+  const apriLaTeoria = () => apriTeoria(topic.id);
+  const esercitati = () => avviaEsercizi('category', filtroArgomento(topic));
 
   return (
     <Pagina titolo={titoloBreve(topic)} onIndietro={indietro}
@@ -69,14 +69,12 @@ export default function LezioneDettaglio() {
       <ol className="mt-5 flex flex-col gap-2.5" aria-label="Passi della lezione">
         <PassoAzione icona="teoria" tono="azione" nome="Teoria" minuti={l.minuti.teoria}
           onClick={apriLaTeoria}
-          fine={l.teoriaBloccata ? <span className="shrink-0 text-testo-tenue"><Icona nome="blocco" size={17} /></span> : <span className="shrink-0 text-testo-tenue"><Icona nome="avanti" size={22} /></span>} />
+          fine={<span className="shrink-0 text-testo-tenue"><Icona nome="avanti" size={22} /></span>} />
 
         <PassoAzione icona="esercizi" tono="medio" nome="Esercizi" minuti={l.minuti.esercizi}
-          fatto={l.disponibili > 0 && l.viste >= l.disponibili}
+          fatto={l.intere > 0 && l.viste >= l.intere}
           onClick={esercitati}
-          fine={l.disponibili > 0
-            ? <span aria-hidden="true" className="shrink-0 grid h-9 w-9 place-items-center rounded-full bg-azione text-azione-su"><Icona nome="studia" size={18} /></span>
-            : <span className="shrink-0 text-testo-tenue"><Icona nome="blocco" size={17} /></span>} />
+          fine={<span aria-hidden="true" className="shrink-0 grid h-9 w-9 place-items-center rounded-full bg-azione text-azione-su"><Icona nome="studia" size={18} /></span>} />
 
         <li className={CLASSE_RIGA} aria-label={`Verifica: ${l.imparate} domande imparate su ${totaleDomande}${imparata ? ', lezione imparata' : ''}`}>
           <IconaTono tono="alto" lato={44}><Icona nome={imparata ? 'stato-imparata' : 'verifica'} size={24} /></IconaTono>

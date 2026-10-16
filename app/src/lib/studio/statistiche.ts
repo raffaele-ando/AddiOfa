@@ -1,6 +1,6 @@
 // Numeri della schermata Statistiche: tutti ricavati da appState, nessun dato inventato.
 import type { AppState } from '../../types';
-import { questions, isCoreId } from '../../data/questions';
+import { questions } from '../../data/questions';
 import { theoryTopics } from '../../data/theory';
 import { isLearned } from '../spacedRepetition';
 import { chiaveGiorno } from '../utils';
@@ -67,12 +67,10 @@ export interface PadronanzaArgomento {
   risposte: number;
 }
 
-/** Padronanza per argomento (domande imparate su domande dell'argomento); senza Pass si contano le domande del nucleo gratuito. */
-export function padronanzaArgomenti(stato: AppState, pass: boolean): PadronanzaArgomento[] {
+/** Padronanza per argomento (domande imparate su domande dell'argomento). */
+export function padronanzaArgomenti(stato: AppState): PadronanzaArgomento[] {
   return ordinaPercorso(theoryTopics).map(t => {
-    const intere = questions.filter(q => q.theoryId === t.id);
-    const usabili = pass ? intere : intere.filter(q => isCoreId(q.id));
-    const base = usabili.length > 0 ? usabili : intere;
+    const base = questions.filter(q => q.theoryId === t.id);
     let imparate = 0, risposte = 0;
     for (const q of base) {
       const s = stato.stats?.[q.id];
