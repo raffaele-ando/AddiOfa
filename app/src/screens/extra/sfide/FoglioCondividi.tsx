@@ -1,8 +1,8 @@
-// Il foglio di condivisione: link per WhatsApp, Telegram e Messaggi, «Altre app» (se il dispositivo lo permette) e «Copia link».
-// Instagram non ha un indirizzo di condivisione per il web: non lo si finge, si dice come fare (copiare il link e incollarlo).
+// Il foglio di condivisione: link per WhatsApp, Telegram e Messaggi, «Altre» (se il dispositivo lo permette); il link si copia con il pulsante accanto.
+// Instagram non ha un indirizzo di condivisione per il web: non lo si finge, si copia il link. Niente spiegazioni in pagina.
 // Si usa come schermata (`condividi`, parametri `testo` e `url`) e come foglio dentro un'altra schermata (Inviti, risultato di una sfida).
-import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Link2, MessageCircle, MessageSquare, Send, Share2, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 
@@ -24,13 +24,11 @@ export function linkCondivisione(testo: string, url: string): LinkCondivisione[]
   ];
 }
 
-const ICONE: Record<string, ReactNode> = {
-  whatsapp: <MessageCircle size={24} />, telegram: <Send size={24} />, messaggi: <MessageSquare size={24} />,
-};
+const ICONE: Record<string, NomeIcona> = { whatsapp: 'whatsapp', telegram: 'telegram', messaggi: 'messaggi' };
 
-const piastrella = 'brand-premibile flex flex-col items-center gap-1.5 rounded-[14px] bg-superficie-2 border border-linea px-1 py-3 text-center text-[12.5px] font-semibold text-testo';
+const piastrella = 'brand-premibile flex w-full flex-col items-center gap-1.5 rounded-[14px] bg-superficie-2 border border-linea px-1 py-3 text-center text-[12.5px] font-semibold text-testo';
 const cerchio = 'w-11 h-11 rounded-full flex items-center justify-center';
-// Un colore per canale (come nel concept): WhatsApp verde, Telegram blu, Messaggi viola; «Altre app» e «Copia link» restano neutri.
+// Un colore per canale (come nel concept): WhatsApp verde, Telegram blu, Messaggi viola; «Altre» e «Copia» restano neutri.
 const COLORE_CANALE: Record<string, string> = {
   whatsapp: 'bg-alto-tinta text-alto-numero',
   telegram: 'bg-azione-tinta text-azione-scuro',
@@ -50,7 +48,7 @@ export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { te
     } catch {
       campo.current?.focus();
       campo.current?.select();
-      setStato('Copia non riuscita: il link è selezionato qui sopra, copialo a mano.');
+      setStato('Copia a mano il link.');
     }
   };
 
@@ -58,45 +56,43 @@ export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { te
     try {
       await navigator.share({ text: testo, url });
     } catch (e) {
-      if ((e as { name?: string }).name !== 'AbortError') setStato('Questo dispositivo non ha permesso di condividere: usa «Copia link».');
+      if ((e as { name?: string }).name !== 'AbortError') setStato('Copia il link.');
     }
   };
 
   return (
     <div className="flex flex-col gap-4">
       {mostraAnteprima && (
-        <p className="rounded-[14px] bg-superficie-2 border border-linea p-3 text-[14px] leading-[20px] text-testo whitespace-pre-line break-words">{testo}</p>
+        // il messaggio che parte è contenuto, non una spiegazione dell'app
+        <p data-testo-ok className="rounded-[14px] bg-superficie-2 border border-linea p-3 text-[14px] leading-[20px] text-testo whitespace-pre-line break-words">{testo}</p>
       )}
-      <ul className="grid grid-cols-3 gap-2.5">
+      <ul className="grid grid-cols-[repeat(auto-fit,minmax(78px,1fr))] gap-2.5">
         {linkCondivisione(testo, url).map(l => (
           <li key={l.id}>
-            <button type="button" onClick={() => { playTapSound(); apriLink(l); }} className={cn(piastrella, 'w-full')}>
-              <span className={cn(cerchio, COLORE_CANALE[l.id] ?? NEUTRO)} aria-hidden>{ICONE[l.id]}</span>{l.nome}
+            <button type="button" onClick={() => { playTapSound(); apriLink(l); }} className={piastrella}>
+              <span className={cn(cerchio, COLORE_CANALE[l.id] ?? NEUTRO)} aria-hidden><Icona nome={ICONE[l.id]} size={24} /></span>{l.nome}
             </button>
           </li>
         ))}
         {puoCondividere && (
           <li>
-            <button type="button" onClick={() => { playTapSound(); void condividiAltro(); }} className={cn(piastrella, 'w-full')}>
-              <span className={cn(cerchio, NEUTRO)} aria-hidden><Share2 size={24} /></span>Altre app
+            <button type="button" onClick={() => { playTapSound(); void condividiAltro(); }} className={piastrella}>
+              <span className={cn(cerchio, NEUTRO)} aria-hidden><Icona nome="condividi" size={24} /></span>Altre
             </button>
           </li>
         )}
-        <li>
-          <button type="button" onClick={() => { playTapSound(); void copia(); }} className={cn(piastrella, 'w-full')}>
-            <span className={cn(cerchio, NEUTRO)} aria-hidden><Link2 size={24} /></span>Copia link
-          </button>
-        </li>
       </ul>
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="condividi-link" className="text-[12.5px] font-bold text-testo-tenue">Il link</label>
-        <input id="condividi-link" ref={campo} readOnly value={url} onFocus={e => e.currentTarget.select()}
-          className="min-w-0 rounded-2xl border border-linea bg-superficie px-4 py-3 text-[13px] font-semibold text-testo focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
+        <div className="flex items-center gap-2">
+          <input id="condividi-link" ref={campo} readOnly value={url} aria-label="Il link" onFocus={e => e.currentTarget.select()}
+            className="min-w-0 flex-1 rounded-2xl border border-linea bg-superficie px-4 py-3 text-[13px] font-semibold text-testo focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
+          <button type="button" onClick={() => { playTapSound(); void copia(); }} aria-label="Copia il link"
+            className="brand-premibile grid h-12 w-14 shrink-0 place-items-center rounded-2xl border border-azione bg-superficie text-azione-scuro">
+            <Icona nome="copia" size={22} />
+          </button>
+        </div>
         <p role="status" className="min-h-[18px] text-[13px] font-bold text-alto-testo">{stato}</p>
       </div>
-      <p className="text-[12.5px] leading-[18px] text-testo-tenue">
-        Per Instagram non esiste un pulsante di condivisione dal web: copia il link e incollalo in un messaggio o nelle storie.
-      </p>
     </div>
   );
 }
@@ -116,7 +112,7 @@ export default function FoglioCondividi({ aperto, onChiudi, testo, url, titolo =
         <div className="flex items-center justify-between gap-3 mb-4">
           <h2 id="foglio-condividi-titolo" className="text-[20px] font-extrabold text-testo">{titolo}</h2>
           <button ref={chiudi} type="button" onClick={() => { playTapSound(); onChiudi(); }} aria-label="Chiudi"
-            className="brand-premibile p-1.5 rounded-full text-testo-tenue hover:text-testo"><X size={22} strokeWidth={2.5} /></button>
+            className="brand-premibile p-1.5 rounded-full text-testo-tenue hover:text-testo"><Icona nome="chiudi" size={22} /></button>
         </div>
         <OpzioniCondivisione testo={testo} url={url} />
       </div>

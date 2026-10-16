@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { ExamHistory, ExamQuestionLog, QuestionClickEvent, CorpusType, PaywallReason } from '../types';
-import { X, Clock, ChevronLeft, ChevronRight, Lock, Loader2 } from 'lucide-react';
-import { cn, formatNumber, errorCode } from '../lib/utils';
+import { cn, errorCode } from '../lib/utils';
 import { playTapSound, playVictorySound } from '../lib/audio';
+import { Icona } from '../brand/icone/Icona';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 import { Screen, TopBar } from './ui';
 import ConfirmDialog from './ConfirmDialog';
 import EsitoSimulazione from './esito/EsitoSimulazione';
 import { useAccess } from '../access/context';
-import { canStartSim, remainingFreeSims, isPass } from '../access/entitlement';
+import { canStartSim } from '../access/entitlement';
 import type { ExamResult, ExamSession, PublicQuestion } from '../access/provider';
 import { FORMATS, type ExamFormat, type FormatId } from '../config/offer';
 
@@ -30,21 +30,22 @@ interface ExamModeProps {
 
 type Phase = 'select' | 'starting' | 'running' | 'submitting' | 'submitError' | 'done';
 
-// Solo il test di recupero LinguaViva: il TENG resta dormiente nel codice e nel Worker, non si offre.
-const FORMAT_LIST: ExamFormat[] = [FORMATS.ente];
+// Solo il test di recupero LinguaViva: il TENG resta dormiente nel codice e nel Worker, non si offre. Con un solo formato non c'è nulla da scegliere:
+// la prova parte da sola (la fase «select» resta solo come stato di attesa dell'avvio, con il lucchetto o l'errore se non parte).
+const FORMATO_UNICO: FormatId = 'ente';
 
 function messaggioErrore(e: unknown): string {
   const code = errorCode(e);
-  if (/network|fetch|failed to|offline/i.test(code)) return 'Non riesco a collegarmi. Controlla la connessione e riprova.';
-  return 'Qualcosa è andato storto. Riprova tra un momento.';
+  if (/network|fetch|failed to|offline/i.test(code)) return 'Nessuna connessione. Riprova.';
+  return 'Qualcosa è andato storto. Riprova.';
 }
 
 export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory, risposteStima }: ExamModeProps) {
   const { provider, entitlement, simsDone, track } = useAccess();
+  const bloccata = !canStartSim(entitlement, FORMATO_UNICO, simsDone);
 
   const [phase, setPhase] = useState<Phase>('select');
   const [error, setError] = useState<string | null>(null);
-  const [comingSoon, setComingSoon] = useState<Set<FormatId>>(new Set());
   const [session, setSession] = useState<ExamSession | null>(null);
   const [result, setResult] = useState<ExamResult | null>(null);
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -69,6 +70,15 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
   useEffect(() => {
     aliveRef.current = true;
     return () => { aliveRef.current = false; };
+  }, []);
+
+  // La prova parte da sola; se non si può (limite gratuito finito) si apre il Pass e resta il lucchetto.
+  const partito = useRef(false);
+  useEffect(() => {
+    if (partito.current) return;
+    partito.current = true;
+    if (!bloccata) void startFormat(FORMATO_UNICO);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const format: ExamFormat | null = session ? FORMATS[session.format] : null;
@@ -108,11 +118,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
       track({ name: 'sim_started', format: s.format ?? id });
     } catch (e) {
       if (!aliveRef.current) return;
-      if (errorCode(e).includes('formato_non_disponibile')) {
-        setComingSoon(prev => new Set(prev).add(id));
-      } else {
-        setError(messaggioErrore(e));
-      }
+      setError(errorCode(e).includes('formato_non_disponibile') ? 'Formato non disponibile.' : messaggioErrore(e));
       setPhase('select');
     }
   };
@@ -274,78 +280,29 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
     />
   );
 
-  // ================== Schermata di scelta del formato ==================
+  // ================== Avvio (nessuna scelta: un solo formato) ==================
+  // Preparo le domande: solo il caricamento. Se non parte, l'icona dice perché (lucchetto = serve il Pass, avviso = errore) e un pulsante.
   if (phase === 'select' || phase === 'starting') {
-    const starting = phase === 'starting';
-    const freeLeft = remainingFreeSims(entitlement, simsDone);
+    const mostraStato = phase === 'select' && (bloccata || !!error);
     return (
       <Screen>
         <TopBar onBack={onExit} />
-        <div className="flex flex-col items-center text-center shrink-0">
-          <IllustrazioneAnimata nome="quiz-test" lato={110} />
-          <h2 className="text-2xl sm:text-3xl font-bold text-testo mt-2">Simulazione</h2>
-          <p className="text-sm font-semibold text-testo-tenue mt-1">
-            Scegli il formato. Nessun feedback durante la prova: le risposte e le spiegazioni arrivano alla consegna.
-          </p>
-        </div>
-
-        {error && (
-          <p role="alert" className="text-sm font-bold text-basso-testo bg-basso-tinta border border-basso/30 rounded-2xl px-4 py-3">
-            {error}
-          </p>
-        )}
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-4">
-          {FORMAT_LIST.map(f => {
-            const soon = comingSoon.has(f.id);
-            const allowed = canStartSim(entitlement, f.id, simsDone);
-            const locked = !allowed;
-            return (
-              <div key={f.id} className="bg-superficie-2 border border-linea rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-lg font-bold text-testo leading-snug">{f.name}</h3>
-                  {soon && <span className="shrink-0 text-xs font-bold px-2.5 py-1 rounded-full bg-medio-tinta text-medio-testo">In arrivo</span>}
-                  {!soon && locked && (
-                    <span className="shrink-0 inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-superficie-2 text-testo-tenue">
-                      <Lock size={12} strokeWidth={3} /> Con il Pass
-                    </span>
-                  )}
-                </div>
-                <dl className="grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
-                  <div><dt className="text-xs font-bold text-testo-tenue">Domande</dt><dd className="font-bold text-testo">{f.questions}</dd></div>
-                  <div><dt className="text-xs font-bold text-testo-tenue">Tempo</dt><dd className="font-bold text-testo">{f.minutes} minuti</dd></div>
-                  <div><dt className="text-xs font-bold text-testo-tenue">Soglia</dt><dd className="font-bold text-testo">{f.passMark} su {f.questions}</dd></div>
-                  <div><dt className="text-xs font-bold text-testo-tenue">Opzioni</dt><dd className="font-bold text-testo">{f.options} per domanda</dd></div>
-                  <div className="col-span-2"><dt className="text-xs font-bold text-testo-tenue">Penalità</dt>
-                    <dd className="font-bold text-testo">{f.penalty > 0 ? `${formatNumber(f.penalty)} punti per ogni risposta sbagliata` : 'Nessuna'}</dd></div>
-                </dl>
-                <p className="text-xs sm:text-sm font-semibold text-testo-tenue leading-relaxed">{f.notes}</p>
-                {f.id === 'ente' && !isPass(entitlement) && (
-                  <p className="text-xs font-bold text-testo-tenue">
-                    {freeLeft > 0 ? 'La prima simulazione è gratuita.' : 'La simulazione gratuita è già stata usata: con il Pass sono illimitate.'}
-                  </p>
-                )}
-                <div className="mt-auto pt-1">
-                  <button
-                    type="button"
-                    disabled={starting || soon}
-                    onClick={() => { playTapSound(); void startFormat(f.id); }}
-                    className={cn(
-                      "w-full py-3.5 px-5 rounded-2xl font-bold text-base flex items-center justify-center gap-2 transition-colors duration-100 disabled:opacity-50 disabled:pointer-events-none",
-                      locked
-                        ? "bg-superficie border border-azione text-azione"
-                        : "bg-azione hover:bg-azione-scuro text-azione-su"
-                    )}
-                  >
-                    {starting ? <><Loader2 size={18} className="animate-spin" /> Preparo le domande</>
-                      : soon ? 'In arrivo'
-                      : locked ? <><Lock size={16} strokeWidth={3} /> Sblocca con il Pass</>
-                      : 'Inizia'}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+        <div className="flex flex-1 flex-col items-center justify-center text-center">
+          {!mostraStato ? (
+            <div role="status" aria-label="Preparo le domande"><IllustrazioneAnimata nome="attesa-caricamento" lato={110} /></div>
+          ) : (
+            <div className="flex w-full max-w-xs flex-col items-center gap-4">
+              <span aria-hidden className={cn('grid h-16 w-16 place-items-center rounded-full', error ? 'bg-basso-tinta text-basso-numero' : 'bg-azione-tinta text-azione-scuro')}>
+                <Icona nome={error ? 'stato-attenzione' : 'blocco'} size={30} />
+              </span>
+              {error && <p role="alert" className="text-[15px] leading-[22px] font-bold text-testo">{error}</p>}
+              <button type="button" onClick={() => { playTapSound(); if (bloccata) onNeedPass('simulazione'); else void startFormat(FORMATO_UNICO); }}
+                aria-label={bloccata ? 'Altre simulazioni con il Pass' : 'Riprova'}
+                className="flex h-[54px] w-full items-center justify-center rounded-2xl bg-azione text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
+                <Icona nome={bloccata ? 'pass' : 'riprova'} size={26} />
+              </button>
+            </div>
+          )}
         </div>
         {dialog}
       </Screen>
@@ -359,19 +316,24 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
     return (
       <Screen className="items-center justify-center text-center">
         {phase === 'submitting' ? (
-          <>
+          <div role="status" aria-label="Consegno e correggo" className="flex flex-col items-center gap-3">
             <IllustrazioneAnimata nome="attesa-caricamento" lato={110} />
-            <p className="font-bold text-testo">Consegno e correggo…</p>
-          </>
+          </div>
         ) : (
-          <>
-            <p role="alert" className="font-bold text-basso-testo max-w-sm">{error}</p>
-            <p className="text-sm font-semibold text-testo-tenue max-w-sm">Le tue risposte sono ancora qui. Il tempo è fermo: riprova a consegnare.</p>
-            <button onClick={() => { playTapSound(); void finish(); }} className="w-full max-w-xs bg-azione hover:bg-azione-scuro text-azione-su font-bold py-3.5 rounded-2xl transition-colors duration-100">
-              Riprova a consegnare
-            </button>
-            <button onClick={onExit} className="text-sm font-bold text-testo-tenue underline">Esci senza salvare</button>
-          </>
+          <div className="flex w-full max-w-xs flex-col items-center gap-4">
+            <span aria-hidden className="grid h-16 w-16 place-items-center rounded-full bg-basso-tinta text-basso-numero"><Icona nome="stato-attenzione" size={30} /></span>
+            <p role="alert" className="text-[15px] leading-[22px] font-bold text-testo">{error}</p>
+            <div className="flex w-full gap-2">
+              <button type="button" onClick={() => { playTapSound(); void finish(); }} aria-label="Riprova a consegnare"
+                className="flex h-[54px] flex-1 items-center justify-center rounded-2xl bg-azione text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
+                <Icona nome="riprova" size={26} />
+              </button>
+              <button type="button" onClick={onExit} aria-label="Esci senza salvare"
+                className="grid h-[54px] w-16 shrink-0 place-items-center rounded-2xl border border-linea bg-superficie text-testo-tenue transition-colors duration-100 hover:text-testo">
+                <Icona nome="chiudi" size={24} />
+              </button>
+            </div>
+          </div>
         )}
       </Screen>
     );
@@ -411,10 +373,10 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
       <header className="flex flex-col gap-2 p-3 sm:p-4 border-b border-linea shrink-0 transition-colors duration-100">
         <div className="flex items-center justify-between">
           <button onClick={requestExit} aria-label="Esci dalla simulazione" className="p-1 sm:p-2 text-testo-tenue hover:text-testo hover:bg-linea rounded-full transition-colors duration-100">
-            <X size={20} className="sm:w-6 sm:h-6" strokeWidth={3} />
+            <Icona nome="chiudi" size={22} />
           </button>
           <div role="timer" aria-label="Tempo rimasto" className={cn("font-bold tabular-nums text-base sm:text-xl flex items-center gap-1.5 rounded-full px-3 py-1", timeLeft < 120 ? "bg-basso-tinta text-basso-testo" : "bg-medio-tinta text-medio-testo")}>
-            <Clock size={18} className="sm:w-5 sm:h-5" strokeWidth={3} aria-hidden="true" /> {timeStr}
+            <Icona nome="tempo" size={19} /> {timeStr}
           </div>
           <button
             onClick={requestSubmit}
@@ -424,7 +386,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
           </button>
         </div>
         <div className="flex items-center gap-2 mt-1 sm:mt-2">
-          <span className="text-[10px] sm:text-xs font-bold text-testo-tenue w-8 sm:w-10 text-right">{answeredCount}/{questions.length}</span>
+          <span className="text-[11px] sm:text-xs font-bold tabular-nums text-testo-tenue w-10 text-right">{answeredCount}/{questions.length}</span>
           <div className="flex-1 bg-tacca h-3 sm:h-4 rounded-full overflow-hidden transition-colors duration-100">
             <div className="bg-azione h-full rounded-full transition-colors duration-100" style={{ width: `${progress}%` }} />
           </div>
@@ -432,17 +394,14 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
       </header>
 
       <main className="flex-1 p-4 sm:p-8 flex flex-col w-full overflow-y-auto scrollbar-hide">
-        <div className="mb-4 shrink-0 flex items-center justify-between gap-2">
-          <span className="text-xs sm:text-sm font-semibold text-testo-tenue">
-            Domanda {currentIndex + 1} di {questions.length}
-          </span>
-          <span className="text-xs font-bold text-testo-tenue">{format.name}</span>
+        <div className="mb-4 shrink-0 flex items-center">
+          <span aria-label={`Domanda ${currentIndex + 1} di ${questions.length}`} className="grid h-9 min-w-9 place-items-center rounded-full bg-superficie-2 px-2 text-[15px] font-extrabold tabular-nums text-testo">{currentIndex + 1}</span>
         </div>
-        <h2 className="text-xl sm:text-2xl font-bold text-testo mb-5 sm:mb-6 leading-snug shrink-0">
+        <h2 data-testo-ok className="text-xl sm:text-2xl font-bold text-testo mb-5 sm:mb-6 leading-snug shrink-0">
           {question.prompt}
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 content-start">
+        <div data-testo-ok className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 content-start">
           {question.options.map((opt, idx) => {
             const isSelected = answers[question.id] === idx;
             return (
@@ -479,7 +438,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
             aria-label="Domanda precedente"
             className="p-2 sm:p-3 text-testo-tenue disabled:opacity-30 rounded-xl hover:bg-linea transition-colors duration-100 border border-transparent active:bg-linea"
           >
-            <ChevronLeft size={24} className="sm:w-8 sm:h-8" strokeWidth={3} />
+            <Icona nome="indietro" size={28} />
           </button>
 
           <div className="flex gap-1 overflow-x-auto max-w-[150px] sm:max-w-xs px-1 scrollbar-hide items-center">
@@ -502,7 +461,7 @@ export default function ExamMode({ onComplete, onExit, onNeedPass, onOpenTheory,
             aria-label="Domanda successiva"
             className="p-2 sm:p-3 text-testo-tenue disabled:opacity-30 rounded-xl hover:bg-linea transition-colors duration-100 border border-transparent active:bg-linea"
           >
-            <ChevronRight size={24} className="sm:w-8 sm:h-8" strokeWidth={3} />
+            <Icona nome="avanti" size={28} />
           </button>
         </div>
       </div>

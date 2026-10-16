@@ -1,87 +1,21 @@
-// Dettaglio di una simulazione. Senza params.id: cosa contiene, regole e limite gratuito prima di iniziare (concept 36 scheda 9, 18 scheda 7).
-// Con params.id (una simulazione già svolta): risultato, riepilogo per argomento e correzioni (concept 36 schede 10-11).
+// Dettaglio di una simulazione svolta: misuratore, tessere icona/numero, riepilogo per argomento e correzioni (concept 36 schede 10-11).
+// Le regole del punteggio stanno dietro la «i». Senza `id` (o con un id che non c'è) mostra solo «non trovata»: la nuova simulazione si avvia dalla scheda.
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { CheckCircle2, Info, ListChecks, Lock, Target, Timer, XCircle } from 'lucide-react';
+import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { useAccess } from '../../../access/context';
 import type { ExamQuestionResult, PublicQuestion, DataProvider } from '../../../access/provider';
 import { FORMATS } from '../../../config/offer';
-import { entrataStorico, FORMATO_SIMULAZIONE, limiteGratuito, perArgomentoSimulazione, trovaSimulazione } from '../../../lib/studio/simulazioni';
+import { entrataStorico, perArgomentoSimulazione, trovaSimulazione } from '../../../lib/studio/simulazioni';
 import MisuratoreEsito from '../../../components/esito/MisuratoreEsito';
 import CorrezioniComplete from '../../../components/esito/CorrezioniComplete';
 import InfoPunteggio from '../../../components/esito/InfoPunteggio';
 import { TessereEsito, RigaTempo } from '../../../components/esito/TessereEsito';
-import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { Pagina, Carta, Barra, Bottone, StatoVuoto, TitoloSezione, coloreValore, dataBreve, IconaTono, type Tono } from './comune';
+import { Pagina, Carta, Barra, coloreValore, dataBreve } from './comune';
+import { PulsanteInfo } from '../ui';
+import { Bottone, Fermo } from '../sfide/comuni';
 import type { ExamHistory } from '../../../types';
-
-// ---- Prima di iniziare
-function PrimaDiIniziare() {
-  const { appState, pass, vai, indietro, avviaSimulazione } = useExtra();
-  const f = FORMATS[FORMATO_SIMULAZIONE];
-  const limite = useMemo(() => limiteGratuito(appState, pass), [appState, pass]);
-  const [info, setInfo] = useState(false);
-  const bloccata = !pass && !limite.puoiIniziare;
-  return (
-    <Pagina titolo="Simulazione d’esame" onIndietro={indietro} sotto="Il test di recupero, con le stesse regole.">
-      <Carta className="mt-4 p-4">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.06em] text-testo-tenue">Cosa contiene</p>
-        <ul className="mt-2.5 grid grid-cols-1 gap-2.5">
-          {([
-            [ListChecks, 'azione', `${f.questions} domande`, `Grammatica e traduzione, ${f.options} opzioni per domanda, una sola esatta.`],
-            [Timer, 'medio', `${f.minutes} minuti`, 'Il tempo è unico per tutta la prova: se finisce, la simulazione si consegna da sola.'],
-            [Target, 'alto', `Soglia ${f.passMark} su ${f.questions}`, `Con ${f.passMark} risposte esatte o più la simulazione è superata.`],
-          ] as const).map(([Icona, tono, titolo, testo]) => (
-            <li key={titolo} className="flex items-start gap-3">
-              <IconaTono tono={tono as Tono} lato={38}><Icona size={20} /></IconaTono>
-              <span className="min-w-0"><span className="block text-[15px] leading-[20px] font-bold text-testo">{titolo}</span><span className="block text-[13.5px] leading-[19px] text-testo-tenue">{testo}</span></span>
-            </li>
-          ))}
-        </ul>
-      </Carta>
-
-      <section aria-labelledby="titolo-regole" className="mt-6 flex flex-col gap-2">
-        <TitoloSezione id="titolo-regole">Le regole</TitoloSezione>
-        <ul className="list-disc pl-5 text-[14.5px] leading-[22px] text-testo marker:text-testo-tenue space-y-1">
-          <li>Nessuna penalità: una risposta sbagliata o lasciata vuota vale zero.</li>
-          <li>Il risultato è il numero di risposte esatte su {f.questions}, non c’è un punteggio più complicato.</li>
-          <li>Durante la prova non vedi se hai risposto bene: le correzioni e le spiegazioni arrivano alla consegna.</li>
-          <li>È una simulazione: ti dice come stai andando, non prevede il risultato del test vero.</li>
-        </ul>
-        <button type="button" onClick={() => { playTapSound(); setInfo(true); }}
-          className="self-start inline-flex items-center gap-1.5 min-h-[40px] text-[14px] font-semibold text-azione underline underline-offset-2">
-          <Info size={16} aria-hidden="true" /> Come viene calcolato il punteggio
-        </button>
-      </section>
-
-      <section aria-labelledby="titolo-limite" className="mt-6 flex flex-col gap-2">
-        <TitoloSezione id="titolo-limite">Quante ne puoi fare</TitoloSezione>
-        <Carta className="p-4">
-          {pass ? (
-            <p className="text-[14.5px] leading-[21px] text-testo">Con il Pass le simulazioni sono <span className="font-bold">illimitate</span>.</p>
-          ) : limite.puoiIniziare ? (
-            <p className="text-[14.5px] leading-[21px] text-testo">
-              Gratis hai <span className="font-bold">{limite.restanti === 1 ? '1 simulazione completa' : `${limite.restanti} simulazioni complete`}</span> ({limite.fatte} su {limite.gratuite} già fatta). Le altre sono nel Pass.
-            </p>
-          ) : (
-            <p className="text-[14.5px] leading-[21px] text-testo">
-              La simulazione gratuita l’hai già fatta. Per farne altre serve il Pass: pagamento una tantum, nessun abbonamento.
-            </p>
-          )}
-        </Carta>
-      </section>
-
-      <div className="mt-6 flex flex-col gap-2.5">
-        <Bottone onClick={avviaSimulazione} icona={bloccata ? <Lock size={17} aria-hidden="true" /> : undefined}>
-          {bloccata ? 'Altre simulazioni con il Pass' : 'Inizia'}
-        </Bottone>
-        <Bottone variante="secondario" onClick={() => vai('simulazioni')}>Le mie simulazioni</Bottone>
-      </div>
-      <InfoPunteggio format={f} aperto={info} onChiudi={() => setInfo(false)} />
-    </Pagina>
-  );
-}
 
 // ---- Correzioni di una simulazione svolta
 type Correzioni =
@@ -123,7 +57,7 @@ async function caricaCorrezioni(provider: DataProvider, h: ExamHistory): Promise
 }
 
 function Svolta({ chiave }: { chiave: string }) {
-  const { appState, pass, vai, indietro, apriTeoria, avviaSimulazione } = useExtra();
+  const { appState, vai, indietro, apriTeoria } = useExtra();
   const { provider } = useAccess();
   const s = useMemo(() => trovaSimulazione(appState.history, chiave), [appState.history, chiave]);
   const entrata = useMemo(() => (s ? entrataStorico(appState.history, s.id) : undefined), [appState.history, s]);
@@ -140,87 +74,86 @@ function Svolta({ chiave }: { chiave: string }) {
     return () => { vivo = false; };
   }, [provider, entrata, tentativo]);
 
-  if (!s || !entrata) {
-    return (
-      <Pagina titolo="Simulazione" onIndietro={indietro}>
-        <div className="mt-6">
-          <StatoVuoto titolo="Simulazione non trovata" testo="Non trovo questa simulazione tra quelle svolte su questo dispositivo.">
-            <Bottone onClick={() => vai('simulazioni')}>Le mie simulazioni</Bottone>
-          </StatoVuoto>
-        </div>
-      </Pagina>
-    );
-  }
+  if (!s || !entrata) return <NonTrovata onIndietro={indietro} onSimulazioni={() => vai('simulazioni')} />;
 
   const f = FORMATS[s.formato];
-  const { righe, per } = perArgomentoSimulazione(entrata);
-  const mancano = s.soglia - s.esatte;
-  const limite = limiteGratuito(appState, pass);
+  const { righe } = perArgomentoSimulazione(entrata);
 
   return (
-    <Pagina titolo={`Simulazione ${s.numero}`} onIndietro={indietro} sotto={dataBreve(s.data)}
-      destra={<button type="button" onClick={() => { playTapSound(); setInfo(true); }} aria-label="Come viene calcolato il punteggio" aria-haspopup="dialog"
-        className="shrink-0 grid place-items-center w-10 h-10 -mr-2 mt-[2px] rounded-full text-azione hover:bg-azione-tinta/60"><Info size={22} aria-hidden="true" /></button>}>
-      <Carta className="mt-4 px-4 pt-3 pb-4 text-center">
-        <MisuratoreEsito giuste={s.esatte} totale={s.totale} soglia={s.soglia} superata={s.superata} />
-        <div className="-mt-1 flex justify-center">
-          <span className={cn('inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[16px] font-extrabold', s.superata ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
-            {s.superata ? <CheckCircle2 size={18} strokeWidth={2.8} aria-hidden="true" /> : <XCircle size={18} strokeWidth={2.8} aria-hidden="true" />}
-            {s.superata ? 'Superata' : 'Non superata'}
-          </span>
+    <div className="relative h-full">
+      <Pagina titolo={`Simulazione ${s.numero}`} onIndietro={indietro} destra={<PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole della simulazione" />}>
+        <Carta className="mt-4 px-4 pt-3 pb-4 text-center">
+          <MisuratoreEsito giuste={s.esatte} totale={s.totale} soglia={s.soglia} superata={s.superata} />
+          <div className="-mt-1 flex justify-center">
+            <span className={cn('inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[16px] font-extrabold', s.superata ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
+              <Icona nome={s.superata ? 'stato-ok' : 'stato-errore'} size={19} />
+              {s.superata ? 'Superata' : 'Non superata'}
+            </span>
+          </div>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5">
+            <span className="text-[13.5px] font-bold tabular-nums text-testo-tenue">{dataBreve(s.data)}</span>
+            <span role="img" aria-label={`Soglia ${s.soglia} su ${s.totale}`} className="inline-flex items-center gap-1.5 text-[14px] font-bold tabular-nums text-testo">
+              <Icona nome="soglia" size={17} className="text-alto-numero" />{s.soglia}/{s.totale}
+            </span>
+            <RigaTempo secondi={s.tempoSecondi} minuti={f.minutes} />
+          </div>
+        </Carta>
+
+        <div className="mt-3"><TessereEsito giuste={s.esatte} sbagliate={s.sbagliate} vuote={s.omesse} /></div>
+
+        {righe.length > 0 && (
+          <section aria-labelledby="titolo-argomenti" className="mt-7 flex flex-col gap-2.5">
+            <h2 id="titolo-argomenti" className="flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />Argomenti</h2>
+            <Carta className="p-4">
+              <ul className="flex flex-col gap-3.5">
+                {righe.map(r => (
+                  <li key={r.nome}>
+                    <div className="flex items-baseline justify-between gap-3 text-[14px]">
+                      <span className="font-semibold text-testo break-words min-w-0">{r.nome}</span>
+                      <span className="shrink-0 font-bold tabular-nums text-testo">{r.esatte}/{r.totale}</span>
+                    </div>
+                    <div className="mt-1.5"><Barra valore={r.percento} colore={coloreValore(r.percento)} alta={7} /></div>
+                  </li>
+                ))}
+              </ul>
+            </Carta>
+          </section>
+        )}
+
+        <div ref={correzioniRef} className="mt-7 scroll-mt-3">
+          {corr.fase === 'carico' && <p role="status" aria-label="Carico le correzioni" className="flex justify-center text-testo-tenue"><Icona nome="stato-caricamento" size={22} className="animate-spin" /></p>}
+          {corr.fase === 'errore' && (
+            <Carta className="flex items-center gap-3">
+              <Icona nome="stato-attenzione" size={22} className="shrink-0 text-medio-numero" />
+              <p role="alert" className="flex-1 text-[14px] font-bold text-testo">Correzioni non disponibili.</p>
+              <Bottone variante="secondario" icona="riprova" aria="Riprova" className="w-14 px-0" onClick={() => setTentativo(n => n + 1)} />
+            </Carta>
+          )}
+          {corr.fase === 'assenti' && (
+            <Carta className="flex items-center gap-3">
+              <Icona nome="correzioni" size={22} className="shrink-0 text-testo-tenue" />
+              <p role="status" className="text-[14px] font-bold text-testo-tenue">Correzioni non salvate.</p>
+            </Carta>
+          )}
+          {corr.fase === 'ok' && <CorrezioniComplete questions={corr.domande} perQuestion={corr.perQ} answers={corr.risposte} onOpenTheory={apriTeoria} senzaLettere />}
         </div>
-        <RigaTempo secondi={s.tempoSecondi} minuti={f.minutes} />
-        <p className="mt-2.5 text-[14px] font-semibold text-testo">
-          {s.superata ? `Soglia ${s.soglia} su ${s.totale}: raggiunta.` : `Soglia ${s.soglia} su ${s.totale}: ${mancano === 1 ? 'ti è mancata 1 risposta' : `ti sono mancate ${mancano} risposte`}.`}
-        </p>
-      </Carta>
-
-      <div className="mt-3"><TessereEsito giuste={s.esatte} sbagliate={s.sbagliate} vuote={s.omesse} /></div>
-
-      {righe.length > 0 && (
-        <section aria-labelledby="titolo-argomenti" className="mt-7 flex flex-col gap-2.5">
-          <TitoloSezione id="titolo-argomenti">{per === 'argomento' ? 'Per argomento' : 'Per area'}</TitoloSezione>
-          <Carta className="p-4">
-            <ul className="flex flex-col gap-3.5">
-              {righe.map(r => (
-                <li key={r.nome}>
-                  <div className="flex items-baseline justify-between gap-3 text-[14px]">
-                    <span className="font-semibold text-testo break-words min-w-0">{r.nome}</span>
-                    <span className="shrink-0 font-bold tabular-nums text-testo">{r.esatte}/{r.totale} <span className="text-[12px] font-medium text-testo-tenue">({r.percento}%)</span></span>
-                  </div>
-                  <div className="mt-1.5"><Barra valore={r.percento} colore={coloreValore(r.percento)} alta={7} /></div>
-                </li>
-              ))}
-            </ul>
-          </Carta>
-        </section>
-      )}
-
-      <div ref={correzioniRef} className="mt-7 scroll-mt-3">
-        {corr.fase === 'carico' && <p role="status" className="text-[14px] text-testo-tenue">Carico le correzioni…</p>}
-        {corr.fase === 'errore' && (
-          <StatoVuoto titolo="Non riesco a caricare le correzioni" testo="Controlla la connessione e riprova.">
-            <Bottone variante="secondario" onClick={() => setTentativo(n => n + 1)}>Riprova</Bottone>
-          </StatoVuoto>
-        )}
-        {corr.fase === 'assenti' && (
-          <StatoVuoto titolo="Correzioni non disponibili" testo="Di questa simulazione sono salvati il punteggio e il tempo, ma non le risposte domanda per domanda." />
-        )}
-        {corr.fase === 'ok' && <CorrezioniComplete questions={corr.domande} perQuestion={corr.perQ} answers={corr.risposte} onOpenTheory={apriTeoria} senzaLettere />}
-      </div>
-
-      <div className="mt-7 flex flex-col gap-2.5">
-        <Bottone onClick={avviaSimulazione} icona={!pass && !limite.puoiIniziare ? <Lock size={17} aria-hidden="true" /> : undefined}>
-          {!pass && !limite.puoiIniziare ? 'Altre simulazioni con il Pass' : 'Nuova simulazione'}
-        </Bottone>
-        <Bottone variante="secondario" onClick={() => vai('simulazioni')}>Le mie simulazioni</Bottone>
-      </div>
+      </Pagina>
       <InfoPunteggio format={f} aperto={info} onChiudi={() => setInfo(false)} />
+    </div>
+  );
+}
+
+function NonTrovata({ onIndietro, onSimulazioni }: { onIndietro: () => void; onSimulazioni: () => void }) {
+  return (
+    <Pagina titolo="Simulazione" onIndietro={onIndietro}>
+      <Fermo icona="stato-attenzione" tono="basso" testo="Simulazione non trovata.">
+        <Bottone icona="simulazioni" aria="Le mie simulazioni" onClick={onSimulazioni} />
+      </Fermo>
     </Pagina>
   );
 }
 
 export default function SimulazioneDettaglio() {
-  const { params } = useExtra();
-  return params.id ? <Svolta chiave={params.id} /> : <PrimaDiIniziare />;
+  const { params, vai, indietro } = useExtra();
+  return params.id ? <Svolta chiave={params.id} /> : <NonTrovata onIndietro={indietro} onSimulazioni={() => vai('simulazioni')} />;
 }

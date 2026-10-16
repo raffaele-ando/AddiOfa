@@ -13,7 +13,7 @@ export default function Splash({ stato = 'Caricamento', pienoSchermo = false }: 
       className={`flex w-full flex-col items-center justify-center px-8 text-center text-testo ${pienoSchermo ? 'min-h-[100dvh] bg-fondo' : 'h-full bg-superficie'}`}
       style={{ fontFamily: FONT }}>
       <Marchio disposizione="orizzontale" altezza={64} className="max-w-full" />
-      <p className="mt-5 text-[17px] leading-[24px] font-semibold text-testo-tenue">Studia oggi, sblocca il tuo domani.</p>
+      <p data-testo-ok className="mt-5 text-[17px] leading-[24px] font-semibold text-testo-tenue">Studia oggi, sblocca il tuo domani.</p>
     </div>
   );
 }

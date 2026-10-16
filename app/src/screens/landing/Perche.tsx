@@ -1,30 +1,36 @@
-import { ArrowRight } from 'lucide-react';
 import Lastra from '../../brand/hero/Lastra';
+import { Icona } from '../../brand/icone/Icona';
 import Misuratore from '../../components/home/Misuratore';
-import { Colonna, Evidenza, Occhiello } from './comune';
+import { FORMATS } from '../../config/offer';
+import { Colonna, Dato, Evidenza, InfoFoglio, Occhiello } from './comune';
 
-// «Più di un semplice quiz»: un esempio del misuratore e il blocco scuro con la porta di luce. Le quattro cose che offre sono già nella fascia sotto l'hero e nei passi: qui non si ripetono.
+// «Più di un quiz»: un esempio del misuratore e il blocco scuro con la porta di luce. Le spiegazioni stanno dietro la «i».
 export default function Perche({ onStart }: { onStart(): void }) {
   return (
     <section id="perche" aria-labelledby="t-perche" className="scroll-mt-20 py-14 sm:py-20">
       <Colonna>
         <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
           <div>
-            <Occhiello>Perché AddiOFA</Occhiello>
+            <Occhiello icona="probabilita">Perché AddiOFA</Occhiello>
             <h2 id="t-perche" className="mt-4 text-[2.4rem] font-extrabold leading-[1.05] tracking-tight text-testo sm:text-5xl">
-              Più di un <Evidenza>semplice quiz.</Evidenza>
+              Più di un <Evidenza>quiz.</Evidenza>
             </h2>
-            <p className="mt-4 max-w-xl text-base font-medium text-testo-tenue sm:text-lg">Tutto ciò che serve per arrivare al test sapendo cosa aspettarti.</p>
 
             <div className="vetro mt-8 grid items-center gap-4 rounded-[28px] p-5 sm:grid-cols-[13rem_1fr] sm:gap-6 sm:p-6">
               <div className="mx-auto w-full max-w-[14rem]">
                 <Misuratore percento={72} livello="alto" etichetta="Esempio" sotto="valore di prova" />
               </div>
-              <div>
-                <h3 className="text-xl font-extrabold leading-tight text-testo sm:text-2xl">La probabilità stimata di superare il test</h3>
-                <p className="mt-2 text-sm font-medium leading-relaxed text-testo-tenue">
-                  Si calcola sulle tue risposte. Con poche domande è approssimativa e non garantisce l'esito: si affina con le simulazioni.
-                </p>
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-xl font-extrabold leading-tight text-testo sm:text-2xl">Probabilità di superare</h3>
+                  <InfoFoglio titolo="La stima" etichetta="Come si calcola la stima">
+                    <p>Si calcola sulle tue risposte. Con poche domande è approssimativa e non garantisce l'esito: si affina con le simulazioni.</p>
+                  </InfoFoglio>
+                </div>
+                <div className="flex flex-wrap gap-x-5 gap-y-2.5 text-sm">
+                  <Dato icona="soglia" tono="azione" etichetta="Soglia">{FORMATS.ente.passMark}/{FORMATS.ente.questions}</Dato>
+                  <Dato icona="tempo" tono="medio" etichetta="Durata">{FORMATS.ente.minutes} min</Dato>
+                </div>
               </div>
             </div>
           </div>
@@ -35,18 +41,15 @@ export default function Perche({ onStart }: { onStart(): void }) {
               <Lastra className="block w-full" />
             </div>
             <div className="relative max-w-[17rem]">
-              <h3 className="text-[1.9rem] font-extrabold leading-[1.1] tracking-tight sm:text-4xl">Il tuo futuro non si ferma a un test.</h3>
-              <p className="mt-4 text-sm font-medium leading-relaxed text-white sm:text-base">
-                Togliere l'OFA ti permette di completare il piano degli studi e arrivare al secondo anno senza esami fermi.
-              </p>
+              <h3 data-testo-ok className="text-[1.9rem] font-extrabold leading-[1.1] tracking-tight sm:text-4xl">Il tuo futuro non si ferma a un test.</h3>
             </div>
             <button
               type="button"
               onClick={onStart}
-              aria-label="Fai il diagnostico gratuito"
+              aria-label="Fai il diagnostico"
               className="relative mt-auto flex h-12 w-12 items-center justify-center self-start rounded-full bg-white/15 text-white ring-1 ring-white/40 hover:bg-white/25 transition-colors duration-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              <ArrowRight size={22} aria-hidden />
+              <Icona nome="avanti" size={24} />
             </button>
           </div>
         </div>

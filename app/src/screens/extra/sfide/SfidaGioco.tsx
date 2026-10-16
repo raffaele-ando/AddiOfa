@@ -2,8 +2,8 @@
 // Parametri: `tipo` ('giorno' | 'duello'), `seme`; per il duello anche `ruolo` ('sfidante' | 'sfidato'), `nome` e, per chi accetta, `codice`.
 // Le domande e le correzioni passano dal DataProvider (in produzione le risposte esatte non sono nel bundle).
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { BookOpenCheck, CalendarCheck2, ChevronLeft, ChevronRight, CircleAlert, Clock, ListChecks, Swords, X } from 'lucide-react';
-import { IconaTono } from '../ui';
+import { Icona } from '../../../brand/icone/Icona';
+import { FoglioInfo, IconaTono, PulsanteInfo } from '../ui';
 import { useExtra } from '../contesto';
 import { useAccess } from '../../../access/context';
 import type { PublicQuestion } from '../../../access/provider';
@@ -17,7 +17,8 @@ import { decodificaSfida, pulisciNome } from '../../../lib/sfide/codice';
 import { idVoce, type RuoloSfida, type TipoSfida, type VoceSfida } from '../../../lib/sfide/risultati';
 import { useBancoSfide, useProfiloSfide, useStorico } from './dati';
 import { correggi, preparaDomande, ricordaCorrezioni, type DomandeSfida } from './correzioni';
-import { Bottone, Carta } from './comuni';
+import { Bottone, DatiSfida } from './comuni';
+import { Regole } from './scheda';
 
 type Fase = 'carico' | 'pronto' | 'in-corso' | 'consegna' | 'errore-carico' | 'errore-consegna';
 
@@ -44,9 +45,9 @@ export default function SfidaGioco() {
   }, []);
 
   const erroreIniziale: string | null =
-    tipo === 'duello' && !/^[a-z0-9-]{3,24}$/.test(seme) ? 'Il link di questa sfida non è valido.'
-    : ruolo === 'sfidato' && (!avversario || avversario.seme !== seme) ? 'Il link di questa sfida non è valido o è stato modificato.'
-    : ruolo === 'sfidato' && avversario && avversario.banco !== impronta ? 'Questa sfida è stata creata con una versione dell\'app con domande diverse: il confronto non sarebbe valido.'
+    tipo === 'duello' && !/^[a-z0-9-]{3,24}$/.test(seme) ? 'Link non valido.'
+    : ruolo === 'sfidato' && (!avversario || avversario.seme !== seme) ? 'Link non valido o modificato.'
+    : ruolo === 'sfidato' && avversario && avversario.banco !== impronta ? 'Versione diversa: confronto non valido.'
     : null;
 
   const [fase, setFase] = useState<Fase>(giaGiocata.current || erroreIniziale ? 'errore-carico' : 'carico');
@@ -56,6 +57,7 @@ export default function SfidaGioco() {
   const [indice, setIndice] = useState(0);
   const [restano, setRestano] = useState(SECONDI_SFIDA);
   const [conferma, setConferma] = useState<null | 'esci' | 'consegna'>(null);
+  const [info, setInfo] = useState(false);
 
   const vivo = useRef(true);
   const risposteRef = useRef<Record<string, number>>({});
@@ -78,7 +80,7 @@ export default function SfidaGioco() {
       setFase('pronto');
     } catch {
       if (!vivo.current) return;
-      setErrore('Non riesco a preparare le domande. Controlla la connessione e riprova.');
+      setErrore('Domande non pronte. Riprova.');
       setFase('errore-carico');
     }
   };
@@ -138,7 +140,7 @@ export default function SfidaGioco() {
     } catch {
       inviata.current = false;
       if (!vivo.current) return;
-      setErrore('Non riesco a correggere. Le tue risposte sono ancora qui e il tempo è fermo: riprova.');
+      setErrore('Consegna non riuscita. Riprova.');
       setFase('errore-consegna');
     }
   };
@@ -152,7 +154,7 @@ export default function SfidaGioco() {
 
   const rimaste = domande.length - Object.keys(risposte).length;
   const titoloSfida = tipo === 'giorno' ? 'Sfida del giorno' : ruolo === 'sfidato' ? `Duello con ${avversario?.nome ?? ''}` : 'Duello';
-  const cornice = 'h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col';
+  const cornice = 'relative h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col';
 
   // ================== Schermate di attesa e di errore ==================
   if (fase === 'carico' || fase === 'consegna') {
@@ -167,15 +169,15 @@ export default function SfidaGioco() {
     return (
       <div className={cn(cornice, 'items-center justify-center gap-4 p-8 text-center')} style={{ fontFamily: FONT }}>
         {giaGiocata.current ? (
-          <p role="status" className="font-bold text-testo">Un momento…</p>
+          <Icona nome="stato-caricamento" size={28} className="animate-spin text-testo-tenue" />
         ) : (
           <>
-            <IconaTono tono="basso" lato={52} className="rounded-full"><CircleAlert size={26} /></IconaTono>
+            <IconaTono tono="basso" lato={64} className="rounded-full"><Icona nome="stato-attenzione" size={30} /></IconaTono>
             <p role="alert" className="max-w-sm text-[15px] leading-[22px] font-bold text-testo">{errore}</p>
-            <div className="flex w-full max-w-xs flex-col gap-2">
-              {fase === 'errore-consegna' && <Bottone onClick={() => void consegna()}>Riprova a consegnare</Bottone>}
-              {fase === 'errore-carico' && !erroreIniziale && <Bottone onClick={() => void prepara()}>Riprova</Bottone>}
-              <Bottone variante="secondario" onClick={indietro}>Indietro</Bottone>
+            <div className="flex w-full max-w-xs gap-2">
+              {fase === 'errore-consegna' && <Bottone icona="riprova" aria="Riprova a consegnare" onClick={() => void consegna()} />}
+              {fase === 'errore-carico' && !erroreIniziale && <Bottone icona="riprova" aria="Riprova" onClick={() => void prepara()} />}
+              <Bottone variante="secondario" icona="indietro" aria="Indietro" className={erroreIniziale ? '' : 'w-16 shrink-0 px-0'} onClick={indietro} />
             </div>
           </>
         )}
@@ -185,44 +187,35 @@ export default function SfidaGioco() {
 
   // ================== Pronto? ==================
   if (fase === 'pronto') {
+    const regole = (
+      <Regole righe={[
+        tipo === 'giorno' ? 'Le stesse domande per tutti, oggi.'
+          : ruolo === 'sfidato' ? `Giochi le stesse domande di ${avversario?.nome}: il suo risultato lo vedi alla fine.`
+          : 'Giochi, poi mandi il link a un amico: gioca le stesse domande e vi confrontate.',
+        'Puoi tornare sulle domande e cambiare risposta finché non consegni.',
+        'Le correzioni arrivano alla consegna.',
+        'Conta quante risposte giuste dai e in quanto tempo: a parità di risposte vince chi è più veloce.',
+      ]} />
+    );
     return (
       <div className={cornice} style={{ fontFamily: FONT }}>
         <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
           <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(16px,env(safe-area-inset-top))] pb-8">
-            <button type="button" onClick={() => { playTapSound(); indietro(); }} aria-label="Indietro" className="brand-premibile -ml-2 p-1 rounded-full text-testo-tenue hover:text-testo">
-              <ChevronLeft size={26} strokeWidth={2.5} />
-            </button>
+            <div className="flex items-center justify-between">
+              <button type="button" onClick={() => { playTapSound(); indietro(); }} aria-label="Indietro" className="brand-premibile -ml-2 grid h-10 w-10 place-items-center rounded-full text-testo-tenue hover:text-testo">
+                <Icona nome="indietro" size={28} />
+              </button>
+              <PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />
+            </div>
             <div className="mt-1 flex flex-col items-center text-center">
               <IllustrazioneAnimata nome="quiz-test" lato={120} />
               <h1 className="mt-2 text-[28px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo">{titoloSfida}</h1>
-              <p className="mt-1 text-[14px] leading-[20px] text-testo-tenue">
-                {tipo === 'giorno' ? 'Le stesse domande per tutti, oggi.'
-                  : ruolo === 'sfidato' ? `Giochi le stesse domande di ${avversario?.nome}. Il suo risultato lo vedi alla fine.`
-                  : 'Giochi, poi mandi il link a un amico: gioca le stesse e vi confrontate.'}
-              </p>
             </div>
-            <Carta className="mt-5">
-              <dl className="grid grid-cols-3 gap-2 text-center">
-                {([
-                  ['azione', ListChecks, 'Domande', String(domande.length)],
-                  ['medio', Clock, 'Tempo', `${SECONDI_SFIDA / 60} min`],
-                  ['viola', BookOpenCheck, 'Correzioni', 'alla fine'],
-                ] as const).map(([tono, Icona, nomeDato, valore]) => (
-                  <div key={nomeDato} className="flex flex-col items-center gap-1.5">
-                    <IconaTono tono={tono} lato={36} className="bg-superficie"><Icona size={18} /></IconaTono>
-                    <dt className="text-[12px] font-bold text-testo-tenue">{nomeDato}</dt>
-                    <dd className="text-[19px] leading-[22px] font-extrabold text-testo">{valore}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Carta>
-            <ul className="mt-4 flex list-disc flex-col gap-1.5 pl-5 text-[14px] leading-[20px] text-testo">
-              <li>Puoi tornare sulle domande e cambiare risposta finché non consegni.</li>
-              <li>Conta quante risposte giuste dai e in quanto tempo: a parità di risposte vince chi è più veloce.</li>
-            </ul>
-            <div className="mt-6"><Bottone onClick={avvia}>Inizia</Bottone></div>
+            <DatiSfida domande={domande.length} minuti={SECONDI_SFIDA / 60} className="mt-5 justify-center" />
+            <div className="mt-6"><Bottone icona="studia" aria="Inizia" onClick={avvia} /></div>
           </div>
         </div>
+        <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Regole">{regole}</FoglioInfo>
       </div>
     );
   }
@@ -251,10 +244,10 @@ export default function SfidaGioco() {
         <div className="flex items-center justify-between">
           <button type="button" onClick={() => { if (Object.keys(risposte).length > 0) setConferma('esci'); else indietro(); }}
             aria-label="Esci dalla sfida" className="p-1 sm:p-2 text-testo-tenue hover:text-testo hover:bg-linea rounded-full transition-colors duration-100">
-            <X size={20} strokeWidth={3} />
+            <Icona nome="chiudi" size={22} />
           </button>
           <div role="timer" aria-label="Tempo rimasto" className={cn('rounded-full px-3 py-1 font-bold tabular-nums text-base sm:text-xl flex items-center gap-1.5', restano < 60 ? 'bg-basso-tinta text-basso-testo' : 'bg-medio-tinta text-medio-testo')}>
-            <Clock size={18} strokeWidth={3} aria-hidden /> {tempo}
+            <Icona nome="tempo" size={18} /> {tempo}
           </div>
           {indice < domande.length - 1 ? (
             <button type="button" onClick={() => (rimaste > 0 ? setConferma('consegna') : void consegna())}
@@ -273,13 +266,17 @@ export default function SfidaGioco() {
 
       <main className="flex-1 min-h-0 p-4 sm:p-8 flex flex-col w-full overflow-y-auto scrollbar-hide">
         <div className="mb-4 flex items-center justify-between gap-2">
-          <span className="text-xs sm:text-sm font-semibold text-testo-tenue">{rimaste === 0 ? 'Hai risposto a tutte' : `${rimaste} ${rimaste === 1 ? 'domanda' : 'domande'} senza risposta`}</span>
-          <span className={cn('inline-flex max-w-[60%] items-center gap-1 truncate rounded-full px-2.5 py-0.5 text-[12px] font-bold', tipo === 'giorno' ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
-            {tipo === 'giorno' ? <CalendarCheck2 size={13} aria-hidden /> : <Swords size={13} aria-hidden />}<span className="truncate">{titoloSfida}</span>
+          <span role="img" aria-label={tipo === 'giorno' ? 'Sfida del giorno' : titoloSfida}
+            className={cn('grid h-8 w-8 place-items-center rounded-full', tipo === 'giorno' ? 'bg-alto-tinta text-alto-numero' : 'bg-basso-tinta text-basso-numero')}>
+            <Icona nome={tipo === 'giorno' ? 'sfida-giorno' : 'sfide'} size={17} />
+          </span>
+          <span role="img" aria-label={rimaste === 0 ? 'Hai risposto a tutte' : `${rimaste} senza risposta`}
+            className={cn('inline-flex items-center gap-1 text-[15px] font-extrabold tabular-nums', rimaste === 0 ? 'text-alto-testo' : 'text-medio-testo')}>
+            <Icona nome={rimaste === 0 ? 'stato-risposta-giusta' : 'stato-risposta-omessa'} size={16} />{rimaste}
           </span>
         </div>
-        <h2 className="text-xl sm:text-2xl font-bold text-testo mb-5 leading-snug">{q.prompt}</h2>
-        <div className="grid grid-cols-1 gap-2.5 content-start">
+        <h2 data-testo-ok className="text-xl sm:text-2xl font-bold text-testo mb-5 leading-snug">{q.prompt}</h2>
+        <div data-testo-ok className="grid grid-cols-1 gap-2.5 content-start">
           {q.options.map((opt, i) => {
             const on = risposte[q.id] === i;
             return (
@@ -302,7 +299,7 @@ export default function SfidaGioco() {
       <div className="p-3 sm:p-4 border-t border-linea bg-superficie shrink-0 flex items-center min-h-[70px]">
         <div className="w-full flex justify-between items-center gap-2 px-1">
           <button type="button" onClick={() => setIndice(i => Math.max(0, i - 1))} disabled={indice === 0} aria-label="Domanda precedente"
-            className="p-2 text-testo-tenue disabled:opacity-30 rounded-xl hover:bg-linea transition-colors duration-100"><ChevronLeft size={26} strokeWidth={3} /></button>
+            className="p-2 text-testo-tenue disabled:opacity-30 rounded-xl hover:bg-linea transition-colors duration-100"><Icona nome="indietro" size={28} /></button>
           <div className="flex flex-1 max-w-[220px] gap-1 items-center justify-center">
             {domande.map((d, i) => (
               <button key={d.id} type="button" onClick={() => setIndice(i)} aria-label={`Vai alla domanda ${i + 1}`} aria-current={i === indice ? 'step' : undefined}
@@ -312,7 +309,7 @@ export default function SfidaGioco() {
           </div>
           {indice < domande.length - 1 ? (
             <button type="button" onClick={() => setIndice(i => Math.min(domande.length - 1, i + 1))} aria-label="Domanda successiva"
-              className="p-2 text-testo-tenue rounded-xl hover:bg-linea transition-colors duration-100"><ChevronRight size={26} strokeWidth={3} /></button>
+              className="p-2 text-testo-tenue rounded-xl hover:bg-linea transition-colors duration-100"><Icona nome="avanti" size={28} /></button>
           ) : (
             <button type="button" onClick={() => (rimaste > 0 ? setConferma('consegna') : void consegna())} aria-label="Consegna"
               className="rounded-xl bg-azione px-4 py-2 text-[13px] font-bold text-azione-su hover:bg-azione-scuro transition-colors duration-100">Consegna</button>

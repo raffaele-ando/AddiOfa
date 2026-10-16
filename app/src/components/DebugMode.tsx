@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, ShieldAlert } from 'lucide-react';
+import { Icona } from '../brand/icone/Icona';
 import { firebaseConfig } from '../lib/firebase';
 
 interface DebugModeProps {
@@ -14,7 +14,7 @@ export default function DebugMode({ onBack }: DebugModeProps) {
           onClick={onBack}
           className="p-2 hover:bg-linea rounded-full transition-colors duration-100"
         >
-          <ArrowLeft size={24} />
+          <Icona nome="indietro" size={26} />
         </button>
         <h1 className="text-xl font-black uppercase tracking-widest text-testo">
           Firebase Debug Info
@@ -23,7 +23,7 @@ export default function DebugMode({ onBack }: DebugModeProps) {
 
       <main className="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full">
         <div className="bg-basso-tinta border border-basso/30 rounded-2xl p-4 md:p-6 mb-8 flex flex-col md:flex-row gap-4 items-start">
-          <ShieldAlert className="text-basso-testo shrink-0" size={32} />
+          <Icona nome="stato-attenzione" size={34} className="text-basso-testo shrink-0" />
           <div>
             <h2 className="text-lg font-black text-basso-testo uppercase tracking-widest mb-2">
               Configurazione Attuale

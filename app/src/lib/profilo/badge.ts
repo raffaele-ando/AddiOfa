@@ -43,6 +43,8 @@ export interface ValutazioneBadge {
   avanzamento: string;
   /** Falso se con le domande di adesso non si può arrivare alla fine (serve il Pass). */
   raggiungibile: boolean;
+  /** Gli stessi numeri di `avanzamento`, senza parole («37» e «50»): la schermata li mostra accanto alla barra. */
+  numeri?: { corrente: number; obiettivo: number };
 }
 
 export interface DefinizioneBadge {
@@ -128,6 +130,7 @@ const conteggio = (corrente: number, obiettivo: number, unita: string, possibile
   quota: Math.min(1, corrente / obiettivo),
   avanzamento: `${Math.min(corrente, obiettivo)} su ${obiettivo} ${unita}`,
   raggiungibile: possibile >= obiettivo,
+  numeri: { corrente: Math.min(corrente, obiettivo), obiettivo },
 });
 
 const domande = (id: string, obiettivo: number, titolo: string, illustrazione: string): DefinizioneBadge => ({
@@ -165,6 +168,7 @@ const livello = (l: Livello, titolo: string, illustrazione: string): Definizione
       quota: q.raggiunto ? 1 : Math.min(1, q.imparate / necessarie),
       avanzamento: `${Math.min(q.imparate, necessarie)} su ${necessarie} domande ${l} da imparare`,
       raggiungibile: true,
+      numeri: { corrente: Math.min(q.imparate, necessarie), obiettivo: necessarie },
     };
   },
 });
@@ -187,11 +191,11 @@ export const BADGE: DefinizioneBadge[] = [
     condizione: `Rispondi bene all'${Math.round(SOGLIA_ACCURATEZZA * 100)} % o più, su almeno ${MIN_RISPOSTE_ACCURATEZZA} risposte date.`,
     valuta: (_c, m) => {
       if (m.risposte < MIN_RISPOSTE_ACCURATEZZA) {
-        return { sbloccato: false, quota: m.risposte / MIN_RISPOSTE_ACCURATEZZA, avanzamento: `${m.risposte} su ${MIN_RISPOSTE_ACCURATEZZA} risposte date`, raggiungibile: true };
+        return { sbloccato: false, quota: m.risposte / MIN_RISPOSTE_ACCURATEZZA, avanzamento: `${m.risposte} su ${MIN_RISPOSTE_ACCURATEZZA} risposte date`, raggiungibile: true, numeri: { corrente: m.risposte, obiettivo: MIN_RISPOSTE_ACCURATEZZA } };
       }
       const perc = Math.round(m.accuratezza * 100);
       const ok = m.accuratezza >= SOGLIA_ACCURATEZZA;
-      return { sbloccato: ok, quota: Math.min(1, m.accuratezza / SOGLIA_ACCURATEZZA), avanzamento: `Ora sei al ${perc} %, serve l'${Math.round(SOGLIA_ACCURATEZZA * 100)} %`, raggiungibile: true };
+      return { sbloccato: ok, quota: Math.min(1, m.accuratezza / SOGLIA_ACCURATEZZA), avanzamento: `Ora sei al ${perc} %, serve l'${Math.round(SOGLIA_ACCURATEZZA * 100)} %`, raggiungibile: true, numeri: { corrente: perc, obiettivo: Math.round(SOGLIA_ACCURATEZZA * 100) } };
     },
   },
   {
@@ -199,7 +203,7 @@ export const BADGE: DefinizioneBadge[] = [
     condizione: 'Studia per 5 ore in tutto (tempo attivo nelle schermate di studio).',
     valuta: (_c, m) => {
       const minuti = Math.floor(m.secondiTotali / 60);
-      return { sbloccato: minuti >= 300, quota: Math.min(1, minuti / 300), avanzamento: `${Math.min(minuti, 300)} su 300 minuti`, raggiungibile: true };
+      return { sbloccato: minuti >= 300, quota: Math.min(1, minuti / 300), avanzamento: `${Math.min(minuti, 300)} su 300 minuti`, raggiungibile: true, numeri: { corrente: Math.min(minuti, 300), obiettivo: 300 } };
     },
   },
   {

@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { Info } from 'lucide-react';
+import { Icona } from '../../brand/icone/Icona';
 import type { PuntoStima } from './stima';
 import { livelloDi } from './stima';
 import { TitoloSezione } from './Stima';
@@ -13,11 +13,11 @@ const yDi = (p: number) => GIU - (Math.max(0, Math.min(100, p)) / 100) * (GIU - 
 const xDi = (i: number, n: number) => (n === 1 ? 0.5 : 0.08 + (0.832 * i) / (n - 1)) * W;
 
 /**
- * "Come cambia la tua probabilità": solo punti MISURATI (la stima dopo il diagnostico e dopo ogni simulazione, ultimi 5), linea a gradiente
+ * "Andamento": solo punti MISURATI (la stima dopo il diagnostico e dopo ogni simulazione, ultimi 5), linea a gradiente
  * dal colore di un punto a quello del successivo, valore e nome sotto ogni punto. Nessuna proiezione.
- * Con un solo punto si vede il punto e l'invito a fare una simulazione.
+ * Con un solo punto si vede il punto.
  */
-export default function GraficoStime({ punti, onSimulazione, onInfo }: { punti: PuntoStima[]; onSimulazione?: () => void; onInfo?: () => void }) {
+export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; onInfo?: () => void }) {
   const id = useId().replace(/:/g, '');
   const n = punti.length;
   if (n === 0) return null;
@@ -32,15 +32,15 @@ export default function GraficoStime({ punti, onSimulazione, onInfo }: { punti: 
     <section aria-labelledby="titolo-grafico" className="flex flex-col gap-[8px]">
       <TitoloSezione id="titolo-grafico" destra={undefined}>
         <span className="inline-flex items-center gap-2">
-          Come cambia la tua probabilità
+          <Icona nome="andamento" size={20} className="text-azione-scuro" />Andamento
           {onInfo && (
             <button type="button" onClick={() => { playTapSound(); onInfo(); }} aria-label="Come è calcolata la stima"
-              className="grid place-items-center w-7 h-7 -m-1.5 rounded-full text-testo-tenue hover:text-testo"><Info size={16} strokeWidth={1.8} aria-hidden="true" /></button>
+              className="grid place-items-center w-7 h-7 -m-1.5 rounded-full text-testo-tenue hover:text-testo"><Icona nome="info" size={18} /></button>
           )}
         </span>
       </TitoloSezione>
 
-      <div role="img" aria-label={`Come cambia la stima. ${descrizione}`} className="relative w-full" style={{ aspectRatio: `${W} / ${alto}` }}>
+      <div role="img" aria-label={`Andamento della stima. ${descrizione}`} className="relative w-full" style={{ aspectRatio: `${W} / ${alto}` }}>
         <svg viewBox={`0 0 ${W} ${alto}`} className="absolute inset-0 w-full h-full" aria-hidden="true">
           <defs>
             {n > 1 && (
@@ -67,11 +67,6 @@ export default function GraficoStime({ punti, onSimulazione, onInfo }: { punti: 
         })}
       </div>
 
-      {n === 1 && (
-        onSimulazione
-          ? <button type="button" onClick={() => { playTapSound(); onSimulazione(); }} className="self-center text-[13.5px] font-semibold text-azione underline underline-offset-4 decoration-1">Fai una simulazione per vedere come cambia</button>
-          : <p className="text-center text-[13.5px] text-testo-tenue">Fai una simulazione per vedere come cambia</p>
-      )}
     </section>
   );
 }

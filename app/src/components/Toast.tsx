@@ -1,6 +1,6 @@
 // Messaggi brevi dentro la pagina (al posto di alert, che nell'Artifact non esiste).
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { CheckCircle2, AlertCircle, Info, X } from 'lucide-react';
+import { Icona, type NomeIcona } from '../brand/icone/Icona';
 
 type Tipo = 'ok' | 'errore' | 'info';
 interface Messaggio { id: number; testo: string; tipo: Tipo }
@@ -13,7 +13,7 @@ export function useToast(): Mostra {
   return useContext(ToastContext) ?? (() => undefined);
 }
 
-const ICONE = { ok: CheckCircle2, errore: AlertCircle, info: Info } as const;
+const ICONE: Record<Tipo, NomeIcona> = { ok: 'stato-ok', errore: 'stato-errore', info: 'info' };
 const COLORI: Record<Tipo, string> = {
   ok: 'text-alto-testo',
   errore: 'text-basso-testo',
@@ -46,13 +46,12 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       {children}
       <div className="fixed inset-x-0 bottom-0 z-[60] flex flex-col items-center gap-2 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pointer-events-none" aria-live="polite" role="status">
         {lista.map(m => {
-          const Icona = ICONE[m.tipo];
           return (
             <div key={m.id} className="pointer-events-auto w-full max-w-sm flex items-start gap-2.5 rounded-2xl bg-superficie-2 border border-linea px-3.5 py-3 shadow-lg dark:shadow-none">
-              <Icona size={18} className={`mt-0.5 shrink-0 ${COLORI[m.tipo]}`} aria-hidden="true" />
+              <Icona nome={ICONE[m.tipo]} size={20} className={`mt-0.5 shrink-0 ${COLORI[m.tipo]}`} />
               <p className="flex-1 min-w-0 text-sm text-testo break-words">{m.testo}</p>
               <button type="button" onClick={() => chiudi(m.id)} aria-label="Chiudi il messaggio" className="shrink-0 text-testo-tenue hover:text-testo p-0.5">
-                <X size={16} />
+                <Icona nome="chiudi" size={18} />
               </button>
             </div>
           );

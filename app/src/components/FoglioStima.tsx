@@ -1,7 +1,7 @@
 // Foglio dal basso che spiega la stima di superare il test. I numeri vengono dal codice che calcola
 // (lib/diagnostic.ts, config/offer.ts): se cambiano le soglie, cambia anche il testo.
 import { ReactNode, useEffect, useRef } from 'react';
-import { X, ListChecks, Target, Dices, Ban, Layers, Scale, TrendingUp, Ruler } from 'lucide-react';
+import { Icona, type NomeIcona } from '../brand/icone/Icona';
 import { estimatePassProbability, intervalloStima, formatProbabilita, formatPunteggio, DIAGNOSTIC_LENGTH } from '../lib/diagnostic';
 import { FORMATS, FREE_LIMITS, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS } from '../config/offer';
 import { TONI, type Tono } from '../screens/extra/ui';
@@ -78,7 +78,7 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
           </h2>
           <button type="button" onClick={onChiudi} aria-label="Chiudi"
             className="-mr-1 shrink-0 rounded-full p-1.5 text-testo-tenue hover:bg-linea hover:text-testo">
-            <X size={22} strokeWidth={2.5} />
+            <Icona nome="chiudi" size={22} />
           </button>
         </div>
 
@@ -88,36 +88,36 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
           </p>
 
           <ul className="mt-4 flex flex-col gap-4">
-            <Voce icona={<ListChecks size={18} strokeWidth={2.5} />} titolo={`Le tue ${risposte} risposte`}>
+            <Voce icona={<Icona nome="risposte" size={20} />} titolo={`Le tue ${risposte} risposte`}>
               {soloDiagnostico
                 ? `Il calcolo parte da quante risposte esatte hai dato sulle ${risposte} del diagnostico. Le domande sono quelle del nucleo gratuito, prese con la stessa proporzione di livelli (A1, A2, B1) del resto del banco, così non sono tutte facili né tutte difficili.`
                 : `Il calcolo parte da quante risposte esatte hai dato in tutto: ${risposte} tra il diagnostico e le simulazioni che hai fatto. Contano le ultime 3 simulazioni, così chi migliora non resta legato ai risultati vecchi, e dopo due simulazioni le 10 domande del diagnostico escono dal calcolo. Le domande lasciate senza risposta valgono come errori, perché al test vero valgono zero. Gli esercizi di ripasso non contano, perché scelgono le domande più difficili e darebbero una stima troppo severa.`}
             </Voce>
-            <Voce icona={<Target size={18} strokeWidth={2.5} />} titolo={`La soglia: ${REAL_TEST_PASS_MARK} su ${REAL_TEST_QUESTIONS}`}>
+            <Voce icona={<Icona nome="soglia" size={20} />} titolo={`La soglia: ${REAL_TEST_PASS_MARK} su ${REAL_TEST_QUESTIONS}`}>
               Il calcolo usa la soglia del test di recupero di LinguaViva: {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}. Controlla sempre la soglia del test che farai davvero.
             </Voce>
-            <Voce icona={<Dices size={18} strokeWidth={2.5} />} titolo="Dal tuo livello a 30 domande">
+            <Voce icona={<Icona nome="stima-modello" size={20} />} titolo="Dal tuo livello a 30 domande">
               Non sappiamo quanto sei bravo davvero: lo deduciamo dalle risposte. Il calcolo considera tutti i livelli di preparazione compatibili con quello che hai risposto e, per ciascuno, quanto è probabile fare almeno {REAL_TEST_PASS_MARK} su {REAL_TEST_QUESTIONS}. La percentuale è la media di tutte queste possibilità.
             </Voce>
-            <Voce icona={<Ruler size={18} strokeWidth={2.5} />} titolo="Il punteggio probabile">
+            <Voce icona={<Icona nome="stima-intervallo" size={20} />} titolo="Il punteggio probabile">
               Sotto la percentuale, finché le risposte sono poche, c'è una riga come «punteggio probabile: {formatPunteggio(largo)}». È l'intervallo in cui cade il tuo livello vero con probabilità 80 %, riportato a {REAL_TEST_QUESTIONS} domande. Con {esempio[1].k} esatte su {DIAGNOSTIC_LENGTH} è largo: va da sotto a sopra la soglia di {REAL_TEST_PASS_MARK}, e dice onestamente che con così poche risposte la percentuale da sola non basta. Più risposte dai, più si stringe. Se la stima è molto bassa o molto alta, la percentuale si scrive «&lt;1 %» o «&gt;99 %»: non è mai una certezza.
             </Voce>
-            <Voce icona={<Ban size={18} strokeWidth={2.5} />} titolo="Cosa non entra" tono="basso">
+            <Voce icona={<Icona nome="stima-escluso" size={20} />} titolo="Cosa non entra" tono="basso">
               Non conta il tempo che hai impiegato e ogni risposta esatta vale uguale, facile o difficile. Non c'è nessun confronto con altri studenti.
             </Voce>
           </ul>
 
           <h3 className="mt-6 text-lg font-bold text-testo">Perché è solo una stima?</h3>
           <ul className="mt-3 flex flex-col gap-4">
-            <Voce icona={<Layers size={18} strokeWidth={2.5} />} titolo={soloDiagnostico ? `${DIAGNOSTIC_LENGTH} domande sono poche` : 'Più risposte, stima più stabile'} tono="medio">
+            <Voce icona={<Icona nome="stima-campione" size={20} />} titolo={soloDiagnostico ? `${DIAGNOSTIC_LENGTH} domande sono poche` : 'Più risposte, stima più stabile'} tono="medio">
               {soloDiagnostico
                 ? <>Una risposta in più o in meno cambia molto il risultato: con {esempio[0].k} esatte su {DIAGNOSTIC_LENGTH} la stima è {esempio[0].p}, con {esempio[1].k} è {esempio[1].p}, con {esempio[2].k} è {esempio[2].p}. Un test vero ha {REAL_TEST_QUESTIONS} domande: un'altra mattina potresti rispondere diversamente.</>
                 : <>Ogni risposta in più rende la stima meno sensibile alla fortuna di un singolo quiz, ma una simulazione di {FORMATS.ente.questions} domande resta un campione: un'altra giornata potrebbe andare diversamente.</>}
             </Voce>
-            <Voce icona={<Scale size={18} strokeWidth={2.5} />} titolo="Non è una previsione né una garanzia" tono="medio">
+            <Voce icona={<Icona nome="stima-garanzia" size={20} />} titolo="Non è una previsione né una garanzia" tono="medio">
               AddiOFA è un progetto studentesco indipendente: non ha accesso alle domande né ai risultati del test vero e la stima non è collegata a quel test. Il giorno della prova contano anche la concentrazione e il tempo ({FORMATS.ente.minutes} minuti per {FORMATS.ente.questions} domande), che qui non misuriamo.
             </Voce>
-            <Voce icona={<TrendingUp size={18} strokeWidth={2.5} />} titolo="Migliora con le simulazioni" tono="alto">
+            <Voce icona={<Icona nome="stima-miglioramento" size={20} />} titolo="Migliora con le simulazioni" tono="alto">
               {soloDiagnostico
                 ? <>Ogni simulazione aggiunge {FORMATS.ente.questions} risposte alla stima, che si ricalcola da sola. Nella parte gratuita ne puoi fare {FREE_LIMITS.freeSimulations === 1 ? 'una' : FREE_LIMITS.freeSimulations}; con il Pass sono illimitate.</>
                 : <>Ogni nuova simulazione aggiunge {FORMATS.ente.questions} risposte e la stima si ricalcola da sola.</>}

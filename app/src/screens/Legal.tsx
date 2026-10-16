@@ -1,11 +1,12 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import { AlertTriangle, CheckCircle2, ChevronDown } from 'lucide-react';
+import { Icona } from '../brand/icone/Icona';
 import type { LegalSection } from '../types';
 import { Screen, TopBar } from '../components/ui';
 import { cn } from '../lib/utils';
 import { PAYMENTS_ENABLED } from '../config/offer';
 import { useAccess } from '../access/context';
 import { LEGAL_DOCS, LEGAL_DRAFT, LEGAL_TABS } from '../legal';
+import { ICONE_LEGALI } from './Footer';
 
 const MISURA = 'mx-auto w-full max-w-[65ch]';
 const TESTO = 'text-[15px] leading-[1.7] text-testo';
@@ -18,7 +19,7 @@ function Bozza({ aggiornato }: { aggiornato: string }) {
       role="note"
       className="flex gap-2.5 rounded-xl border border-medio/30 bg-medio-tinta p-3 text-sm text-medio-testo"
     >
-      <AlertTriangle size={18} className="mt-0.5 shrink-0" aria-hidden />
+      <Icona nome="stato-attenzione" size={20} className="mt-0.5 shrink-0" titolo="Bozza" />
       <p>
         <strong className="font-bold">Testo in bozza: prima di vendere va rivisto da un professionista.</strong>{' '}
         Aggiornato il {aggiornato}.
@@ -74,7 +75,7 @@ function ModuloRecesso() {
       {ricevuta ? (
         <div role="status" className="mt-3 rounded-xl border border-alto/30 bg-alto-tinta p-3 text-sm text-alto-testo">
           <p className="flex items-center gap-2 font-bold">
-            <CheckCircle2 size={18} aria-hidden /> Richiesta di recesso ricevuta
+            <Icona nome="stato-ok" size={20} /> Richiesta di recesso ricevuta
           </p>
           <dl className="mt-2 space-y-1">
             <div><dt className="inline font-semibold">Ricevuta: </dt><dd className="inline break-all">{ricevuta.receiptId}</dd></div>
@@ -148,27 +149,28 @@ export default function Legal({ section, onBack, onSection }: {
               aria-controls="legal-pannello"
               onClick={() => onSection(t.id)}
               className={cn(
-                'rounded-lg px-1 py-2 text-[13px] font-bold transition-colors duration-100',
+                'flex flex-col items-center rounded-lg px-1 py-2 text-[12px] font-bold transition-colors duration-100',
                 t.id === section
                   ? 'bg-superficie text-testo shadow-sm dark:shadow-none'
                   : 'text-testo-tenue hover:text-testo'
               )}
             >
+              <Icona nome={ICONE_LEGALI[t.id]} size={20} className="mb-0.5" />
               {t.label}
             </button>
           ))}
         </div>
 
-        <article id="legal-pannello" role="tabpanel" aria-labelledby={`tab-${section}`} className="flex flex-col gap-3">
+        <article id="legal-pannello" data-testo-ok role="tabpanel" aria-labelledby={`tab-${section}`} className="flex flex-col gap-3">
           <h1 className="text-2xl font-extrabold leading-tight text-testo">{doc.titolo}</h1>
           {LEGAL_DRAFT && <Bozza aggiornato={doc.aggiornato} />}
           {!LEGAL_DRAFT && <p className="text-sm text-testo-tenue">Aggiornato il {doc.aggiornato}</p>}
 
-          <nav aria-label="In questa pagina" className="rounded-xl bg-superficie-2">
+          <nav aria-label="Indice della pagina" className="rounded-xl bg-superficie-2">
             <details className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-3 text-sm font-bold text-testo [&::-webkit-details-marker]:hidden">
-                <h2 className="text-sm font-bold">In questa pagina <span className="font-normal text-testo-tenue">({doc.sezioni.length} sezioni)</span></h2>
-                <ChevronDown size={18} aria-hidden className="shrink-0 text-testo-tenue group-open:rotate-180" />
+                <h2 className="flex items-center gap-2 text-sm font-bold"><Icona nome="dettaglio" size={18} />Indice <span className="font-normal text-testo-tenue">{doc.sezioni.length}</span></h2>
+                <Icona nome="espandi" size={20} className="shrink-0 text-testo-tenue group-open:rotate-180" />
               </summary>
               <ol className="space-y-0.5 px-3 pb-3 text-sm">
                 {doc.sezioni.map((s, i) => (

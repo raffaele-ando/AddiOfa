@@ -26,7 +26,7 @@ export interface VoceFaq {
   chiavi?: string;
   legale?: { sezione: LegalSection; testo: string };
   /** Schermata dell'app collegata alla risposta. */
-  vai?: { id: string; testo: string };
+  vai?: { id: string; testo: string; params?: Record<string, string> };
 }
 
 const prezzo = (): string => {
@@ -75,10 +75,10 @@ export function vociFaq(): VoceFaq[] {
       id: 'stima-cosa', categoria: 'test', domanda: 'La probabilità che vedo è una promessa?',
       risposta: [
         `No. È una stima, calcolata sulle tue risposte: la probabilità di fare almeno ${REAL_TEST_PASS_MARK} risposte esatte su ${REAL_TEST_QUESTIONS}. Con poche risposte è approssimativa e non dice come andrà il test vero; si affina con le simulazioni.`,
-        'Nell\'Analisi del livello vedi come è calcolata e tra quali valori può stare.',
+        'Nella Home, con il pulsante «i» sotto la probabilità, vedi come è calcolata e tra quali valori può stare.',
       ],
       chiavi: 'percentuale stima probabilita superare intervallo',
-      vai: { id: 'atlas-analisi', testo: 'Apri l\'Analisi del livello' },
+      vai: { id: 'progressi', testo: 'Apri Progressi', params: { sezione: 'argomenti' } },
     },
     {
       id: 'test-da-dove', categoria: 'test', domanda: 'Da dove comincio?',
@@ -132,17 +132,18 @@ export function vociFaq(): VoceFaq[] {
     {
       id: 'pass-garanzia', categoria: 'pass', domanda: 'C\'è una garanzia «soddisfatti o rimborsati»?',
       risposta: [FEATURE_FLAGS.guarantee
-        ? 'Sì, con condizioni precise: sono scritte per intero accanto al prezzo e l\'app le misura in Statistiche.'
+        ? 'Sì, con condizioni precise: sono scritte per intero accanto al prezzo e l\'app le misura in Progressi.'
         : 'Oggi no: non c\'è nessuna garanzia di rimborso legata all\'esito del test. Se in futuro ci sarà, le condizioni saranno scritte per intero accanto al prezzo.'],
       chiavi: 'garanzia rimborso esito',
     },
     {
       id: 'pass-inviti', categoria: 'pass', domanda: 'Posso avere il Pass gratis invitando dei compagni?',
       risposta: [
-        `È la regola della pagina Inviti: il Pass diventa gratuito quando ${INVITE.required} compagni, con la verifica prevista, finiscono il diagnostico. Conta finirlo, non il punteggio. Chi usa il tuo codice ha il ${INVITE.inviteeDiscountPct} % di sconto.`,
+        `È la regola della pagina Pass: il Pass diventa gratuito quando ${INVITE.required} compagni, con la verifica prevista, finiscono il diagnostico. Conta finirlo, non il punteggio. Chi usa il tuo codice ha il ${INVITE.inviteeDiscountPct} % di sconto.`,
         'Nelle versioni dimostrative la verifica non è attiva e non si sblocca nessun Pass.',
       ],
       chiavi: 'inviti codice amici compagni sconto',
+      vai: { id: 'pass', testo: 'Apri il Pass' },
     },
 
     // ---- I tuoi dati
@@ -194,7 +195,7 @@ export function vociFaq(): VoceFaq[] {
         `${ECOSYSTEM.engineName} è il nome dell'algoritmo di studio che calcola le stime e il ripasso. ${ECOSYSTEM.rankingName} sarà la classifica per chi sceglie di partecipare; Agorà un forum degli studenti. ${FEATURE_FLAGS.leaderboard ? 'Agorà non è ancora attivo dentro AddiOFA.' : `Oggi ${ECOSYSTEM.rankingName} e Agorà non sono attivi dentro AddiOFA.`}`,
       ],
       chiavi: 'classifica forum community ecosistema project',
-      vai: { id: 'esplora', testo: 'Apri Esplora' },
+      vai: { id: 'projectid', testo: `Apri ${ECOSYSTEM.accountName}` },
     },
   ];
 }

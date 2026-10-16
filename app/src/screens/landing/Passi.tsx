@@ -1,13 +1,14 @@
 import type { ReactNode } from 'react';
-import { Check, Clock, ListChecks } from 'lucide-react';
+import { Icona, type NomeIcona } from '../../brand/icone/Icona';
+import { IconaTono, type Tono } from '../extra/ui';
 import { FORMATS, FREE_LIMITS } from '../../config/offer';
 import { IllustrazioneAnimata } from '../../brand/IllustrazioneAnimata';
-import { BottoneAzione, Colonna, Occhiello } from './comune';
+import { BottoneAzione, Colonna, Dato, Occhiello } from './comune';
 import Telefono from './Telefono';
 
 // Mini-schermate dei passi: disegnate con gli stessi token dell'app, ferme.
 function Schermo({ children, inclina }: { children: ReactNode; inclina: string }) {
-  return <div aria-hidden className={`vetro vetro-forte mx-auto hidden h-[14.5rem] w-full max-w-[15rem] rounded-[24px] p-4 lg:block ${inclina}`}>{children}</div>;
+  return <div aria-hidden data-testo-ok className={`vetro vetro-forte mx-auto hidden h-[14.5rem] w-full max-w-[15rem] rounded-[24px] p-4 lg:block ${inclina}`}>{children}</div>;
 }
 
 const OPZIONI = ['go', 'goes', 'going', 'to go'];
@@ -36,7 +37,7 @@ function SchermoRipasso() {
       <ul className="mt-2.5 space-y-2.5">
         {righe.map(r => (
           <li key={r} className="flex items-center gap-2.5 rounded-xl border border-linea bg-superficie px-3 py-2.5 text-[12px] font-bold text-testo">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-alto-tinta text-alto-pieno"><Check size={14} strokeWidth={3.4} /></span>{r}
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-alto-tinta text-alto-pieno"><Icona nome="stato-incluso" size={14} /></span>{r}
           </li>
         ))}
       </ul>
@@ -48,35 +49,30 @@ function SchermoSimulazione() {
   return (
     <Schermo inclina="lg:rotate-[-1deg]">
       <p className="text-[10px] font-semibold text-testo-tenue">Simulazione</p>
-      <div className="mt-2 flex items-center gap-2 text-[12px] font-bold text-testo"><Clock size={15} className="text-azione" />{FORMATS.ente.minutes} minuti</div>
-      <div className="mt-1.5 flex items-center gap-2 text-[12px] font-bold text-testo"><ListChecks size={15} className="text-azione" />{FORMATS.ente.questions} domande</div>
+      <div className="mt-2 flex items-center gap-2 text-[12px] font-bold text-testo"><Icona nome="tempo" size={15} className="text-azione" />{FORMATS.ente.minutes} minuti</div>
+      <div className="mt-1.5 flex items-center gap-2 text-[12px] font-bold text-testo"><Icona nome="risposte" size={15} className="text-azione" />{FORMATS.ente.questions} domande</div>
       <p className="mt-1.5 text-[11px] font-medium text-testo-tenue">Soglia {FORMATS.ente.passMark} su {FORMATS.ente.questions}</p>
       <div className="mt-4 rounded-xl bg-azione py-2.5 text-center text-xs font-bold text-azione-su">Inizia la simulazione</div>
     </Schermo>
   );
 }
 
-// Le note dicono cosa è gratis (verde: ciò che ottieni) e cosa no; l'ultima è neutra perché sta fuori da AddiOFA.
-const PASSI: { titolo: string; testo: string; nota: string; gratis?: boolean; Schermo: () => ReactNode }[] = [
+// I quattro passi: icona + 1-3 parole + un numero; sotto, chi è gratis (mano) e chi serve il Pass (corona).
+const PASSI: { icona: NomeIcona; tono: Tono; titolo: string; numeri: { icona: NomeIcona; testo: string }[]; gratis: boolean; pass?: boolean; Schermo: () => ReactNode }[] = [
   {
-    titolo: 'Test iniziale',
-    testo: `${FREE_LIMITS.diagnostic} domande, circa 3 minuti, senza account. Vedi la probabilità stimata e gli argomenti da ripassare.`,
-    nota: 'Gratis', gratis: true, Schermo: SchermoDiagnostico,
+    icona: 'diagnostico', tono: 'azione', titolo: 'Diagnostico', gratis: true, Schermo: SchermoDiagnostico,
+    numeri: [{ icona: 'risposte', testo: String(FREE_LIMITS.diagnostic) }, { icona: 'tempo', testo: '3 min' }],
   },
   {
-    titolo: 'Ripasso su misura',
-    testo: `Le domande sbagliate tornano, con la spiegazione in italiano. Parti da un nucleo di circa ${FREE_LIMITS.coreQuestions} domande.`,
-    nota: 'Nucleo gratis, tutto il banco con il Pass', gratis: true, Schermo: SchermoRipasso,
+    icona: 'errori', tono: 'basso', titolo: 'Ripasso errori', gratis: true, pass: true, Schermo: SchermoRipasso,
+    numeri: [{ icona: 'risposte', testo: `${FREE_LIMITS.coreQuestions}+` }],
   },
   {
-    titolo: 'Simulazioni',
-    testo: `Provi il test per intero: ${FORMATS.ente.questions} domande in ${FORMATS.ente.minutes} minuti, con la correzione.`,
-    nota: 'Una gratis, illimitate con il Pass', gratis: true, Schermo: SchermoSimulazione,
+    icona: 'simulazioni', tono: 'medio', titolo: 'Simulazioni', gratis: true, pass: true, Schermo: SchermoSimulazione,
+    numeri: [{ icona: 'risposte', testo: String(FORMATS.ente.questions) }, { icona: 'tempo', testo: `${FORMATS.ente.minutes} min` }],
   },
   {
-    titolo: 'Il test vero',
-    testo: 'Ci arrivi sapendo cosa aspettarti. Il test lo fai con il Politecnico o con l\'ente che scegli, non con noi.',
-    nota: 'Si fa fuori da AddiOFA',
+    icona: 'esame', tono: 'alto', titolo: 'Test vero', gratis: false, numeri: [{ icona: 'soglia', testo: `${FORMATS.ente.passMark}/${FORMATS.ente.questions}` }],
     Schermo: () => (
       <Schermo inclina="lg:rotate-[1deg]">
         <div className="flex h-full items-center justify-center"><IllustrazioneAnimata nome="superamento" lato={150} quandoVisibile /></div>
@@ -85,37 +81,41 @@ const PASSI: { titolo: string; testo: string; nota: string; gratis?: boolean; Sc
   },
 ];
 
-// «Un percorso su misura, in 4 passi»: da 1024 px titolo a sinistra e quattro mini-schermate; sotto, passi in colonna e telefono a destra.
+// «Come funziona»: da 1024 px titolo a sinistra e quattro mini-schermate; sotto, passi in colonna e telefono a destra.
 export default function Passi({ onStart }: { onStart(): void }) {
   return (
     <section id="come-funziona" aria-labelledby="t-passi" className="scroll-mt-20 py-14 sm:py-20">
       <Colonna>
         <div className="grid gap-8 lg:grid-cols-[0.95fr_2.05fr] lg:gap-10">
           <div className="lg:pt-6">
-            <Occhiello>Come funziona</Occhiello>
+            <Occhiello icona="studia">4 passi</Occhiello>
             <h2 id="t-passi" className="mt-4 text-[2.4rem] font-extrabold leading-[1.05] tracking-tight text-testo sm:text-5xl">
-              Un percorso su misura, in <span className="text-azione">4 passi.</span>
+              Come <span className="text-azione">funziona</span>
             </h2>
-            <p className="mt-4 max-w-sm text-base font-medium text-testo-tenue sm:text-lg">Dal test iniziale al test vero, un passo alla volta.</p>
             <div className="mt-6 hidden lg:block">
-              <BottoneAzione onClick={onStart}>Inizia dal diagnostico</BottoneAzione>
+              <BottoneAzione onClick={onStart}>Diagnostico</BottoneAzione>
             </div>
           </div>
 
           <div className="grid grid-cols-[1fr_10.5rem] gap-3 sm:grid-cols-[1fr_16rem] lg:block">
             <ol className="relative flex flex-col gap-6 lg:grid lg:grid-cols-4 lg:gap-5">
               {PASSI.map((p, i) => (
-                <li key={p.titolo} className="relative pl-12 lg:pl-0">
-                  {i < PASSI.length - 1 && <span aria-hidden className="absolute left-[19px] top-10 -bottom-6 w-0.5 bg-azione/25 lg:hidden" />}
+                <li key={p.titolo} className="relative pl-14 lg:pl-0">
+                  {i < PASSI.length - 1 && <span aria-hidden className="absolute left-[23px] top-12 -bottom-6 w-0.5 bg-azione/25 lg:hidden" />}
                   <div className="flex items-center gap-3 lg:mb-4">
-                    <span aria-hidden className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full bg-azione-tinta text-sm font-extrabold text-azione-scuro ring-4 ring-fondo lg:static lg:h-8 lg:w-8 lg:text-xs lg:ring-0">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
+                    <IconaTono tono={p.tono} lato={48} className="absolute left-0 top-0 !rounded-full ring-4 ring-fondo lg:static lg:!h-10 lg:!w-10 lg:ring-0">
+                      <Icona nome={p.icona} size={24} />
+                    </IconaTono>
                     <h3 className="text-base font-bold leading-snug text-testo lg:text-[15px]">{p.titolo}</h3>
                   </div>
                   {p.Schermo()}
-                  <p className="mt-1 text-sm font-medium leading-snug text-testo-tenue lg:mt-4 lg:text-center">{p.testo}</p>
-                  <p className={`mt-2 inline-block rounded-full px-2.5 py-0.5 text-[11px] font-bold lg:mt-3 lg:block lg:w-fit lg:self-center lg:mx-auto ${p.gratis ? 'bg-alto-tinta text-alto-testo' : 'bg-superficie-2 text-testo-tenue'}`}>{p.nota}</p>
+                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm lg:mt-4 lg:justify-center">
+                    {p.numeri.map(n => <Dato key={n.icona + n.testo} icona={n.icona} tono="azione" lato={28}>{n.testo}</Dato>)}
+                  </div>
+                  <div role="img" className="mt-2 flex items-center gap-2 lg:justify-center" aria-label={p.gratis ? (p.pass ? 'Gratis e nel Pass' : 'Gratis') : 'Fuori da AddiOFA'}>
+                    {p.gratis && <IconaTono tono="alto" lato={26} className="!rounded-full"><Icona nome="gratis" size={15} /></IconaTono>}
+                    {p.pass && <IconaTono tono="viola" lato={26} className="!rounded-full"><Icona nome="pass" size={15} /></IconaTono>}
+                  </div>
                 </li>
               ))}
             </ol>

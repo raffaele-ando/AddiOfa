@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { Icona } from '../../brand/icone/Icona';
 import { playTapSound } from '../../lib/audio';
 import Marchio from '../../brand/Marchio';
 import { FOCUS } from './comune';
@@ -81,7 +81,7 @@ export default function Barra({ onStart }: { onStart(): void }) {
           >
             <span className="sm:hidden">Inizia</span>
             <span className="hidden sm:inline">Fai il diagnostico</span>
-            <span aria-hidden className="flex h-8 w-8 items-center justify-center rounded-full bg-azione-su text-azione"><ArrowRight size={16} strokeWidth={2.8} /></span>
+            <span aria-hidden className="flex h-8 w-8 items-center justify-center rounded-full bg-azione-su text-azione"><Icona nome="avanti" size={18} /></span>
           </button>
           <button
             type="button"
@@ -91,7 +91,7 @@ export default function Barra({ onStart }: { onStart(): void }) {
             onClick={() => { playTapSound(); setAperto(v => !v); }}
             className={cn('flex h-10 w-10 items-center justify-center rounded-full text-testo hover:bg-linea lg:hidden', FOCUS)}
           >
-            {aperto ? <X size={24} aria-hidden /> : <Menu size={24} aria-hidden />}
+            <Icona nome={aperto ? 'chiudi' : 'menu'} size={24} />
           </button>
         </div>
       </div>

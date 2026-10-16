@@ -1,0 +1,20 @@
+{
+  "_nota": "Area Simulazioni (prove e sfide). Una funzione = un'icona. Riusati da altri registri: simulazioni, studia, indietro, avanti, chiudi, info, blocco, pass, home (base); tempo, riprova, teoria (studio); risposte, argomenti, condividi, copia, cancella, classifica-noi, trend-uguale, stato-ok, stato-errore, stato-attenzione, stato-caricamento, stato-risposta-omessa (profilo).",
+  "sfide": "swords",
+  "amici": "users",
+  "classifica": "trophy",
+  "sfida-giorno": "calendar-check-2",
+  "incolla": "clipboard-paste",
+  "soglia": "ruler",
+  "correzioni": "book-open-check",
+  "storico": "history",
+  "whatsapp": "message-circle",
+  "telegram": "send",
+  "messaggi": "message-square",
+  "stato-vinto": "thumbs-up",
+  "stato-perso": "thumbs-down",
+  "stato-attesa": "ellipsis",
+  "stato-link-rotto": "link-2-off",
+  "stato-primo": "medal",
+  "espandi": "chevron-down"
+}

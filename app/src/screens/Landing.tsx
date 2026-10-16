@@ -36,7 +36,7 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal, onOpen
   return (
     <div className="fixed inset-0 z-40 overflow-y-auto overflow-x-hidden bg-fondo text-testo">
       {import.meta.env.VITE_MODE === 'demo' && (
-        <p role="note" className="bg-[#0E1B3F] dark:bg-superficie-2 px-4 py-1.5 text-center text-[11px] leading-snug text-white dark:text-testo">
+        <p role="note" data-testo-ok className="bg-[#0E1B3F] dark:bg-superficie-2 px-4 py-1.5 text-center text-[11px] leading-snug text-white dark:text-testo">
           Versione dimostrativa: nessun pagamento, i dati restano su questo dispositivo.
         </p>
       )}

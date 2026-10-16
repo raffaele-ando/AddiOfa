@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { User } from 'firebase/auth';
-import { Lock, Fingerprint } from 'lucide-react';
+import { Icona } from '../brand/icone/Icona';
 import { ECOSYSTEM, SCOPES, ScopeId } from '../config/ecosystem';
 import { APP_NAME } from '../config/offer';
 import { cn } from '../lib/utils';
@@ -52,7 +52,7 @@ export default function ProjectConsent({ user, initialScopes, busy, error, onAcc
       <div className="w-full sm:max-w-md max-h-[100dvh] overflow-y-auto bg-superficie sm:rounded-[28px] rounded-t-[28px] shadow-xl dark:shadow-none p-5 sm:p-7 flex flex-col gap-4">
         <div className="flex items-center gap-2 justify-center">
           <span className="w-8 h-8 rounded-xl bg-testo text-superficie flex items-center justify-center">
-            <Fingerprint size={18} />
+            <Icona nome="projectid" size={20} />
           </span>
           <span className="font-bold text-testo">Accedi con {ECOSYSTEM.accountName}</span>
         </div>
@@ -85,7 +85,7 @@ export default function ProjectConsent({ user, initialScopes, busy, error, onAcc
                   {s.title}
                   {s.required && (
                     <span className="inline-flex items-center gap-1 text-[10px] font-bold text-testo-tenue">
-                      <Lock size={10} /> Necessario
+                      <Icona nome="blocco" size={11} /> Necessario
                     </span>
                   )}
                 </div>

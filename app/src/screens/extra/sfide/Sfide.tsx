@@ -1,7 +1,7 @@
-// `sfide`: l'hub delle sfide. Sfida del giorno (10 domande uguali per tutti, scelte dalla data), duello con un amico tramite link,
-// le tue sfide (storico locale) e le schede Classifica e Amici. Senza server né account: nessun altro utente è inventato.
+// `sfide`: la sfida del giorno (▶), il duello con un amico (nome + ▶), il link ricevuto (incolla) e lo storico a icone.
+// Senza server né account: nessun altro utente è inventato. Le regole stanno dietro la «i».
 import { useState } from 'react';
-import { ChevronRight, Swords, CalendarCheck2, Clock } from 'lucide-react';
+import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { playTapSound } from '../../../lib/audio';
 import { nuovoSeme, semeDelGiorno, DOMANDE_SFIDA, SECONDI_SFIDA } from '../../../lib/sfide/seme';
@@ -9,37 +9,37 @@ import { estraiCodice, pulisciNome, NOME_MAX } from '../../../lib/sfide/codice';
 import { confronta, idVoce, tempoBreve, type VoceSfida } from '../../../lib/sfide/risultati';
 import { useProfiloSfide, useStorico } from './dati';
 import { IconaTono } from '../ui';
-import { Bottone, Campo, Carta, EtichettaEsito, Pagina, SchedeSfide, Sezione, dataBreve, dataLunga } from './comuni';
+import { Bottone, Campo, Carta, DatiSfida, IconaEsito, dataBreve } from './comuni';
+import { Regole, SchedaProveSfide } from './scheda';
 
-function titoloVoce(v: VoceSfida): string {
-  if (v.tipo === 'giorno') return `Sfida del giorno · ${dataBreve(v.quando)}`;
-  if (v.avversario) return `Duello con ${v.avversario.nome}`;
-  return 'Duello · in attesa dell\'amico';
-}
-
-/** Una riga dello storico: la tessera dice il tipo (verde il giorno, corallo il duello), l'etichetta a destra l'esito. */
+/** Una riga dello storico: la tessera dice il tipo (verde il giorno, corallo il duello), a destra l'esito. */
 function RigaStorico({ voce, onApri }: { voce: VoceSfida; onApri: () => void }) {
   const avv = voce.avversario;
   const giorno = voce.tipo === 'giorno';
+  const aria = giorno ? `Sfida del giorno, ${dataBreve(voce.quando)}` : avv ? `Duello con ${avv.nome}, ${dataBreve(voce.quando)}` : `Duello in attesa, ${dataBreve(voce.quando)}`;
   return (
     <li>
-      <button type="button" onClick={() => { playTapSound(); onApri(); }} className="brand-premibile w-full flex items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left">
-        <IconaTono tono={giorno ? 'alto' : 'basso'}>{giorno ? <CalendarCheck2 size={20} /> : <Swords size={20} />}</IconaTono>
+      <button type="button" aria-label={aria} onClick={() => { playTapSound(); onApri(); }} className="brand-premibile flex w-full items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left">
+        <IconaTono tono={giorno ? 'alto' : 'basso'}><Icona nome={giorno ? 'sfida-giorno' : 'sfide'} size={20} /></IconaTono>
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-[14.5px] leading-[19px] font-bold text-testo">{titoloVoce(voce)}</span>
-          <span className="block text-[12.5px] leading-[17px] tabular-nums text-testo-tenue">
-            {avv ? `${voce.corrette} a ${avv.corrette}` : `${voce.corrette}/${voce.totale}`} · {tempoBreve(voce.secondi)}{!giorno ? ` · ${dataBreve(voce.quando)}` : ''}
+          <span className="block text-[20px] leading-[24px] font-extrabold tabular-nums text-testo">
+            {avv ? `${voce.corrette} – ${avv.corrette}` : <>{voce.corrette}<span className="text-[14px] font-bold text-testo-tenue">/{voce.totale}</span></>}
+          </span>
+          <span className="flex items-center gap-1.5 truncate text-[12.5px] leading-[17px] tabular-nums text-testo-tenue">
+            {avv && <span className="truncate font-semibold text-testo">{avv.nome}</span>}
+            <span>{dataBreve(voce.quando)}</span>
+            <span className="inline-flex items-center gap-1 text-medio-testo"><Icona nome="tempo" size={12} />{tempoBreve(voce.secondi)}</span>
           </span>
         </span>
-        {avv ? <EtichettaEsito esito={confronta(voce, avv)} /> : null}
-        <ChevronRight size={20} className="shrink-0 -mr-1 text-testo-tenue" aria-hidden />
+        {avv ? <IconaEsito esito={confronta(voce, avv)} /> : !giorno ? <IconaTono tono="medio" lato={34} className="rounded-full"><Icona nome="stato-attesa" size={18} /></IconaTono> : null}
+        <Icona nome="avanti" size={20} className="shrink-0 -mr-1 text-testo-tenue" />
       </button>
     </li>
   );
 }
 
 export default function Sfide() {
-  const { vai, indietro } = useExtra();
+  const { vai } = useExtra();
   const { voci } = useStorico();
   const { profilo } = useProfiloSfide();
   const [nome, setNome] = useState(profilo.nome ?? '');
@@ -51,80 +51,80 @@ export default function Sfide() {
 
   const iniziaDuello = () => {
     const n = pulisciNome(nome);
-    if (!n) { setErroreNome('Scrivi il nome con cui i tuoi amici ti riconoscono.'); return; }
+    if (!n) { setErroreNome('Scrivi il tuo nome.'); return; }
     vai('sfida-gioco', { tipo: 'duello', ruolo: 'sfidante', seme: nuovoSeme(), nome: n });
   };
   const apriLink = () => {
     const c = estraiCodice(link);
-    if (!c) { setErroreLink('Non riconosco il link. Incolla il link intero che ti ha mandato il tuo amico.'); return; }
+    if (!c) { setErroreLink('Link non riconosciuto.'); return; }
     vai('sfida-accetta', { sfida: c });
   };
 
+  const info = (
+    <Regole righe={[
+      `${DOMANDE_SFIDA} domande, ${SECONDI_SFIDA / 60} minuti, senza correzioni finché non consegni.`,
+      'Sfida del giorno: le stesse domande per tutti, una al giorno, gratis.',
+      'Duello: giochi tu, mandi il link a un amico, gioca le stesse domande e vedete chi ha vinto.',
+      'Vince chi dà più risposte giuste; a parità, il più veloce.',
+      'Nessun account e nessun server: il link contiene solo il tuo nome, le domande e il tuo risultato. Il risultato dell\'amico arriva dal suo link e non è verificato.',
+      'Di solito basta toccare il link ricevuto: l\'app si apre da sola sulla sfida.',
+    ]} />
+  );
+
   return (
-    <Pagina titolo="Sfide" sottotitolo="Una sfida al giorno e i duelli con gli amici: contano risposte giuste e tempo." onBack={indietro}>
-      <SchedeSfide attiva="sfide" />
-
-      {/* Il solo blocco in evidenza: la sfida del giorno, verde. Il bottone è blu pieno finché non l'hai giocata. */}
-      <Sezione id="titolo-giorno" titolo="Sfida del giorno" destra={<span className="text-[12.5px] font-semibold text-testo-tenue">{dataLunga()}</span>}>
-        <Carta tono="alto">
-          <div className="flex items-start gap-3">
-            <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-[12px] bg-superficie text-alto-numero"><CalendarCheck2 size={22} /></span>
-            <div className="min-w-0">
-              <p className="text-[15px] leading-[21px] font-bold text-testo">{DOMANDE_SFIDA} domande, le stesse per tutti oggi</p>
-              <p className="mt-0.5 flex items-center gap-1.5 text-[13.5px] leading-[19px] text-testo-tenue"><Clock size={14} className="text-medio-numero" aria-hidden /> {SECONDI_SFIDA / 60} minuti · domande gratuite</p>
-            </div>
-          </div>
-          {oggi ? (
-            <>
-              <p className="mt-3 text-[15px] font-bold text-testo" role="status">
-                Oggi hai fatto <span className="tabular-nums text-alto-testo">{oggi.corrette}/{oggi.totale}</span> in <span className="tabular-nums">{tempoBreve(oggi.secondi)}</span>.
-              </p>
-              <p className="mt-0.5 text-[13px] text-testo-tenue">Domani ce ne sarà un'altra.</p>
-              <div className="mt-3"><Bottone variante="secondario" onClick={() => vai('sfida-risultato', { voce: oggi.id })}>Vedi il risultato</Bottone></div>
-            </>
-          ) : (
-            <div className="mt-3"><Bottone onClick={() => vai('sfida-gioco', { tipo: 'giorno', seme: semeDelGiorno() })}>Inizia la sfida</Bottone></div>
-          )}
-        </Carta>
-      </Sezione>
-
-      {/* Il duello è corallo (confronto con un altro). Se la sfida del giorno è ancora da fare, il bottone è secondario: un solo pulsante pieno per schermata. */}
-      <Sezione id="titolo-amico" titolo="Sfida un amico">
-        <Carta>
-          <div className="flex items-start gap-3">
-            <IconaTono tono="basso" lato={44} className="rounded-[12px]"><Swords size={22} /></IconaTono>
-            <p className="text-[14px] leading-[20px] text-testo">Giochi {DOMANDE_SFIDA} domande e mandi il link: il tuo amico gioca le stesse e vedete chi ha vinto.</p>
-          </div>
-          <div className="mt-3 flex flex-col gap-3">
-            <Campo id="nome-sfida" etichetta="Il nome con cui ti vedrà il tuo amico" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
-              segnaposto="Il tuo nome" maxLength={NOME_MAX} errore={erroreNome} onInvio={iniziaDuello} />
-            <Bottone variante={oggi ? 'primario' : 'secondario'} onClick={iniziaDuello}><Swords size={18} aria-hidden /> Inizia il duello</Bottone>
-          </div>
-          <p className="mt-3 text-[12.5px] leading-[18px] text-testo-tenue">Senza account e senza server: il link contiene solo il tuo nome e il tuo risultato.</p>
-        </Carta>
-      </Sezione>
-
-      <Sezione id="titolo-link" titolo="Hai ricevuto una sfida?">
-        <div className="flex gap-2">
-          <input id="link-sfida" value={link} onChange={e => { setLink(e.target.value); setErroreLink(null); }} placeholder="Incolla qui il link" aria-label="Il link della sfida"
-            autoComplete="off" spellCheck={false} onKeyDown={e => { if (e.key === 'Enter') apriLink(); }} aria-invalid={erroreLink ? true : undefined} aria-describedby={erroreLink ? 'link-sfida-err' : undefined}
-            className="min-w-0 flex-1 rounded-2xl border border-linea bg-superficie-2 px-4 py-3 text-[15px] font-semibold text-testo placeholder:text-testo-tenue placeholder:font-medium focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
-          <button type="button" onClick={() => { playTapSound(); apriLink(); }} disabled={!link.trim()}
-            className="brand-premibile shrink-0 rounded-2xl border border-azione bg-superficie px-5 text-[15px] font-bold text-azione-scuro transition-colors duration-100 disabled:opacity-40 disabled:pointer-events-none">Apri</button>
+    <SchedaProveSfide sezione="sfide" info={info} titoloInfo="Regole delle sfide">
+      {/* Il solo blocco in evidenza: la sfida del giorno, verde. Il ▶ è blu pieno finché non l'hai giocata. */}
+      <Carta tono="alto" className="mt-4">
+        <div className="flex items-center gap-3">
+          <span aria-hidden className="grid h-12 w-12 shrink-0 place-items-center rounded-[13px] bg-superficie text-alto-numero"><Icona nome="sfida-giorno" size={26} /></span>
+          <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} className="flex-1 justify-end" />
         </div>
-        {erroreLink && <p id="link-sfida-err" role="alert" className="text-[13px] font-bold text-basso-testo">{erroreLink}</p>}
-        <p className="text-[12.5px] leading-[18px] text-testo-tenue">Di solito basta toccare il link: l'app si apre da sola sulla sfida.</p>
-      </Sezione>
+        {oggi ? (
+          <button type="button" aria-label={`Sfida del giorno: ${oggi.corrette} su ${oggi.totale}, tempo ${tempoBreve(oggi.secondi)}`} onClick={() => { playTapSound(); vai('sfida-risultato', { voce: oggi.id }); }}
+            className="brand-premibile mt-3 flex w-full items-center gap-3 rounded-[14px] bg-superficie p-3 text-left">
+            <Icona nome="stato-risposta-giusta" size={22} className="text-alto-numero" />
+            <span className="text-[26px] leading-[30px] font-extrabold tabular-nums text-testo">{oggi.corrette}<span className="text-[16px] font-bold text-testo-tenue">/{oggi.totale}</span></span>
+            <span className="flex-1 text-[14px] font-semibold tabular-nums text-medio-testo"><span className="inline-flex items-center gap-1"><Icona nome="tempo" size={15} />{tempoBreve(oggi.secondi)}</span></span>
+            <Icona nome="avanti" size={22} className="text-testo-tenue" />
+          </button>
+        ) : (
+          <Bottone className="mt-3" icona="studia" aria="Inizia la sfida del giorno" onClick={() => vai('sfida-gioco', { tipo: 'giorno', seme: semeDelGiorno() })} />
+        )}
+      </Carta>
 
-      <Sezione id="titolo-storico" titolo="Le tue sfide">
+      {/* Duello (corallo: il confronto con un altro). Se la sfida del giorno è ancora da fare il ▶ è secondario: un solo pieno per schermata. */}
+      <Carta className="mt-3">
+        <div className="flex items-start gap-3">
+          <IconaTono tono="basso" lato={48} className="rounded-[13px]"><Icona nome="sfide" size={26} /></IconaTono>
+          <Campo id="nome-sfida" aria="Il tuo nome" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
+            segnaposto="Il tuo nome" maxLength={NOME_MAX} errore={erroreNome} onInvio={iniziaDuello} className="flex-1" />
+          <Bottone icona="studia" aria="Inizia il duello" variante={oggi ? 'primario' : 'secondario'} className="w-14 shrink-0 px-0" onClick={iniziaDuello} />
+        </div>
+      </Carta>
+
+      {/* Il link ricevuto da un amico */}
+      <Carta className="mt-3">
+        <div className="flex items-start gap-3">
+          <IconaTono tono="azione" lato={48} className="rounded-[13px]"><Icona nome="incolla" size={26} /></IconaTono>
+          <Campo id="link-sfida" aria="Il link della sfida" valore={link} onCambia={v => { setLink(v); setErroreLink(null); }}
+            segnaposto="Incolla il link" errore={erroreLink} onInvio={apriLink} className="flex-1" />
+          <Bottone icona="avanti" aria="Apri la sfida" variante="secondario" disabled={!link.trim()} className="w-14 shrink-0 px-0" onClick={apriLink} />
+        </div>
+      </Carta>
+
+      <section aria-labelledby="titolo-storico" className="mt-6 flex flex-col gap-2.5">
+        <h2 id="titolo-storico" className="flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="storico" size={20} className="text-testo-tenue" />Storico</h2>
         {voci.length === 0 ? (
-          <Carta><p className="text-[14px] leading-[20px] text-testo-tenue">Qui compariranno le sfide che giochi: quella del giorno e i duelli con gli amici.</p></Carta>
+          <Carta className="flex flex-col items-center py-6 text-center">
+            <IconaTono tono="basso" lato={52} className="rounded-full"><Icona nome="sfide" size={26} /></IconaTono>
+            <p className="mt-3 text-[16px] leading-[22px] font-bold text-testo">Nessuna sfida</p>
+          </Carta>
         ) : (
           <ul className="flex flex-col gap-2">
             {voci.slice(0, 8).map(v => <RigaStorico key={v.id} voce={v} onApri={() => vai('sfida-risultato', { voce: v.id })} />)}
           </ul>
         )}
-      </Sezione>
-    </Pagina>
+      </section>
+    </SchedaProveSfide>
   );
 }

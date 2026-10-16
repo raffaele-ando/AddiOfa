@@ -1,8 +1,8 @@
 // «Frasi e vocaboli»: le frasi inglesi corrette del banco domande, con traduzione, preferite e lettura ad alta voce.
 // Concept: 18 (scheda 3) e 36/49 («Esplora → frasi»). Le frasi vengono dal banco vero (lib/studio/frasi.ts), niente di inventato.
 import { useMemo, useState } from 'react';
-import { BookOpen, Search, Star, Volume2, X } from 'lucide-react';
 import { useExtra, useExtraDati } from '../contesto';
+import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { questions, isCoreId } from '../../../data/questions';
 import { estraiFrasi, filtraFrasi, contaFrasi, statoFrase, type Frase, type FiltroFrasi } from '../../../lib/studio/frasi';
 import { useSintesi } from '../../../lib/studio/sintesi';
@@ -14,19 +14,19 @@ import { Pagina, StatoVuoto } from './comune';
 let cache: Frase[] | null = null;
 const tutteLeFrasi = () => (cache ??= estraiFrasi(questions, isCoreId));
 
-// Il filtro scelto prende il colore dell'etichetta che compare sulle righe: preferite ambra, da ripassare corallo, già note verde.
-const FILTRI: { id: FiltroFrasi; nome: string; attivo: string }[] = [
-  { id: 'tutte', nome: 'Tutte', attivo: 'bg-azione-tinta text-azione-scuro border-azione' },
-  { id: 'preferite', nome: 'Preferite', attivo: 'bg-medio-tinta text-medio-testo border-medio' },
-  { id: 'da-ripassare', nome: 'Da ripassare', attivo: 'bg-basso-tinta text-basso-testo border-basso' },
-  { id: 'gia-note', nome: 'Già note', attivo: 'bg-alto-tinta text-alto-testo border-alto' },
+// Il filtro scelto prende il colore dell'icona che compare sulle righe: preferite ambra, da ripassare corallo, già note verde. Solo icone e numeri.
+const FILTRI: { id: FiltroFrasi; nome: string; icona: NomeIcona; attivo: string }[] = [
+  { id: 'tutte', nome: 'Tutte', icona: 'filtro-tutte', attivo: 'bg-azione-tinta text-azione-scuro border-azione' },
+  { id: 'preferite', nome: 'Preferite', icona: 'preferita', attivo: 'bg-medio-tinta text-medio-testo border-medio' },
+  { id: 'da-ripassare', nome: 'Da ripassare', icona: 'stato-da-ripassare', attivo: 'bg-basso-tinta text-basso-testo border-basso' },
+  { id: 'gia-note', nome: 'Già note', icona: 'stato-imparata', attivo: 'bg-alto-tinta text-alto-testo border-alto' },
 ];
 const PAGINA = 40;
 
-const VUOTI: Record<Exclude<FiltroFrasi, 'tutte'>, { titolo: string; testo: string }> = {
-  preferite: { titolo: 'Nessuna frase preferita', testo: 'Tocca la stella accanto a una frase per salvarla qui.' },
-  'da-ripassare': { titolo: 'Niente da ripassare', testo: 'Qui compaiono le frasi delle domande che sbagli, finché non le impari.' },
-  'gia-note': { titolo: 'Ancora nessuna frase nota', testo: 'Qui compaiono le frasi delle domande che hai imparato: due risposte giuste a distanza di mezza giornata.' },
+const VUOTI: Record<Exclude<FiltroFrasi, 'tutte'>, { titolo: string; icona: NomeIcona }> = {
+  preferite: { titolo: 'Nessuna preferita', icona: 'preferita' },
+  'da-ripassare': { titolo: 'Niente da ripassare', icona: 'stato-da-ripassare' },
+  'gia-note': { titolo: 'Nessuna già nota', icona: 'stato-imparata' },
 };
 
 export default function Frasi() {
@@ -55,50 +55,47 @@ export default function Frasi() {
 
   const totaleBanco = tutte.length;
   return (
-    <Pagina titolo="Frasi e vocaboli" onIndietro={indietro}
-      sotto={`${conteggi.tutte} frasi del banco domande, con la traduzione.`}>
+    <Pagina titolo="Frasi" onIndietro={indietro}>
       <div className="mt-4 relative">
-        <Search size={18} aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none" />
+        <span aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none"><Icona nome="cerca" size={18} /></span>
         <input type="search" value={testo} onChange={e => { setTesto(e.target.value); setQuante(PAGINA); }}
-          aria-label="Cerca una frase, una parola o un tema" placeholder="Cerca una frase, parola o tema…" autoComplete="off" spellCheck={false}
+          aria-label="Cerca" placeholder="Cerca" autoComplete="off" spellCheck={false}
           className="w-full h-[46px] rounded-[12px] border border-linea bg-superficie-2 pl-10 pr-10 text-[15px] text-testo placeholder:text-testo-tenue outline-none focus:border-azione" />
         {testo && (
-          <button type="button" onClick={() => { setTesto(''); setQuante(PAGINA); }} aria-label="Cancella la ricerca"
+          <button type="button" onClick={() => { setTesto(''); setQuante(PAGINA); }} aria-label="Cancella"
             className="absolute right-1.5 top-1/2 -translate-y-1/2 grid place-items-center w-9 h-9 rounded-full text-testo-tenue hover:text-testo">
-            <X size={17} aria-hidden="true" />
+            <Icona nome="chiudi" size={17} />
           </button>
         )}
       </div>
 
-      <div role="group" aria-label="Filtra le frasi" className="mt-3 -mx-6 flex gap-2 overflow-x-auto px-6 pb-1 scrollbar-hide">
+      <div role="group" aria-label="Filtri" className="mt-3 grid grid-cols-4 gap-2">
         {FILTRI.map(f => {
           const on = filtro === f.id;
           return (
-            <button key={f.id} type="button" aria-pressed={on} onClick={() => { playTapSound(); setFiltro(f.id); setQuante(PAGINA); }}
-              className={cn('min-h-[38px] shrink-0 whitespace-nowrap rounded-full px-3.5 text-[13.5px] font-semibold border transition-colors duration-100',
+            <button key={f.id} type="button" aria-pressed={on} aria-label={f.nome} onClick={() => { playTapSound(); setFiltro(f.id); setQuante(PAGINA); }}
+              className={cn('min-h-[48px] flex items-center justify-center gap-1.5 rounded-[12px] px-1.5 text-[13px] font-semibold border transition-colors duration-100',
                 on ? f.attivo : 'bg-superficie text-testo-tenue border-linea hover:text-testo')}>
-              {f.nome}<span className="ml-1.5 tabular-nums text-[12px]">{conteggi[f.id]}</span>
+              <Icona nome={f.icona} size={20} /><span className="tabular-nums">{conteggi[f.id]}</span>
             </button>
           );
         })}
       </div>
 
       {!pass && (
-        <p className="mt-3 text-[13px] leading-[18px] text-testo-tenue">
-          Gratis trovi le {conteggi.tutte} frasi del nucleo di domande. Con il Pass sono tutte e {totaleBanco}.{' '}
-          <button type="button" onClick={() => { playTapSound(); apriPaywall(); }} className="font-semibold text-azione underline underline-offset-2">Scopri il Pass</button>
-        </p>
+        <button type="button" onClick={() => { playTapSound(); apriPaywall(); }} aria-label="Pass: tutte le frasi"
+          className="brand-premibile mt-3 inline-flex items-center gap-1.5 rounded-full bg-superficie-2 px-3 min-h-[36px] text-[13px] font-semibold tabular-nums text-testo-tenue">
+          <Icona nome="blocco" size={15} />{conteggi.tutte}/{totaleBanco}
+        </button>
       )}
 
       <div className="mt-4">
         {elenco.length === 0 ? (
-          testo.trim()
-            ? <StatoVuoto titolo="Nessuna frase trovata" testo="Prova con un’altra parola, in inglese o in italiano." />
-            : filtro === 'tutte'
-              ? <StatoVuoto titolo="Nessuna frase disponibile" testo="Le frasi arrivano dalle domande del banco: appena ce ne sono, le trovi qui." />
-              : <StatoVuoto titolo={VUOTI[filtro].titolo} testo={VUOTI[filtro].testo} />
+          testo.trim() || filtro === 'tutte'
+            ? <StatoVuoto icona="cerca" titolo="Nessuna frase" />
+            : <StatoVuoto icona={VUOTI[filtro].icona} titolo={VUOTI[filtro].titolo} />
         ) : (
-          <ul className="flex flex-col gap-2" aria-label="Elenco delle frasi">
+          <ul className="flex flex-col gap-2" aria-label="Frasi">
             {visibili.map(f => {
               const pref = preferite.has(f.id);
               const apertaOra = aperta === f.id;
@@ -108,43 +105,48 @@ export default function Frasi() {
                 <li key={f.id} className="rounded-[12px] border border-linea bg-superficie">
                   <div className="flex items-stretch">
                     {disponibile && (
-                      <button type="button" aria-label={inCorso ? `Ferma la lettura: ${f.en}` : `Ascolta: ${f.en}`} aria-pressed={inCorso}
+                      <button type="button" aria-label={inCorso ? `Ferma: ${f.en}` : `Ascolta: ${f.en}`} aria-pressed={inCorso}
                         onClick={() => { playTapSound(); if (inCorso) ferma(); else leggi(f.id, f.en); }}
                         className="shrink-0 grid place-items-center w-[52px] text-azione">
                         <span className={cn('grid place-items-center w-9 h-9 rounded-full transition-colors duration-100', inCorso ? 'bg-azione text-azione-su' : 'bg-azione-tinta text-azione')}>
-                          <Volume2 size={18} aria-hidden="true" />
+                          <Icona nome={inCorso ? 'ferma' : 'ascolta'} size={18} />
                         </span>
                       </button>
                     )}
                     <button type="button" aria-expanded={apertaOra} onClick={() => { playTapSound(); setAperta(apertaOra ? null : f.id); }}
                       className={cn('flex-1 min-w-0 py-3 text-left', disponibile ? 'pl-0' : 'pl-4')}>
-                      <span lang="en" className="block text-[15.5px] leading-[21px] font-bold text-testo break-words">{f.en}</span>
-                      <span className={cn('mt-0.5 block text-[13.5px] leading-[19px] text-testo-tenue break-words', apertaOra ? '' : 'line-clamp-2')}>
-                        {f.itTipo === 'regola' && <span className="font-semibold">Regola: </span>}{f.it}
+                      <span data-testo-ok lang="en" className="block text-[15.5px] leading-[21px] font-bold text-testo break-words">{f.en}</span>
+                      <span data-testo-ok className={cn('mt-0.5 block text-[13.5px] leading-[19px] text-testo-tenue break-words', apertaOra ? '' : 'line-clamp-2')}>
+                        {f.itTipo === 'regola' && <span aria-hidden="true" className="mr-1 inline-block align-[-3px] text-azione-scuro"><Icona nome="teoria" size={15} /></span>}{f.it}
                       </span>
                       {(stato.daRipassare || stato.nota) && (
-                        <span className={cn('mt-1.5 inline-block rounded-full px-2 py-0.5 text-[11.5px] font-semibold', stato.daRipassare ? 'bg-basso-tinta text-basso-testo' : 'bg-alto-tinta text-alto-testo')}>
-                          {stato.daRipassare ? 'Da ripassare' : 'Già nota'}
+                        <span role="img" aria-label={stato.daRipassare ? 'Da ripassare' : 'Già nota'}
+                          className={cn('mt-1.5 inline-flex items-center rounded-full px-1.5 py-0.5', stato.daRipassare ? 'bg-basso-tinta text-basso-testo' : 'bg-alto-tinta text-alto-testo')}>
+                          <Icona nome={stato.daRipassare ? 'stato-da-ripassare' : 'stato-imparata'} size={14} />
                         </span>
                       )}
                     </button>
                     <button type="button" aria-label={pref ? `Togli dalle preferite: ${f.en}` : `Salva tra le preferite: ${f.en}`} aria-pressed={pref}
-                      onClick={() => alternaPreferita(f.id)} className="shrink-0 grid place-items-center w-[48px] text-testo-tenue">
-                      <Star size={22} aria-hidden="true" strokeWidth={2} className={pref ? 'text-medio-numero' : undefined} fill={pref ? 'currentColor' : 'none'} />
+                      onClick={() => alternaPreferita(f.id)} className="shrink-0 grid place-items-center w-[48px]">
+                      <span className={cn('grid place-items-center w-9 h-9 rounded-full transition-colors duration-100', pref ? 'bg-medio-tinta text-medio-numero' : 'text-testo-tenue')}>
+                        <Icona nome="preferita" size={22} />
+                      </span>
                     </button>
                   </div>
                   {apertaOra && (
                     <div className="px-4 pb-3.5 pt-0.5">
                       {f.itTipo === 'traduzione' && f.spiegazione && (
-                        <p className="text-[13.5px] leading-[20px] text-testo"><span className="font-semibold">Perché: </span>{f.spiegazione}</p>
+                        <p data-testo-ok className="flex gap-2 text-[13.5px] leading-[20px] text-testo">
+                          <span aria-hidden="true" className="mt-0.5 shrink-0 text-medio-numero"><Icona nome="suggerimento" size={16} /></span>{f.spiegazione}
+                        </p>
                       )}
                       {f.itTipo === 'regola' && f.spiegazione && f.spiegazione !== f.it && (
-                        <p className="text-[13.5px] leading-[20px] text-testo">{f.spiegazione}</p>
+                        <p data-testo-ok className="text-[13.5px] leading-[20px] text-testo">{f.spiegazione}</p>
                       )}
                       {f.theoryId && (
                         <button type="button" onClick={() => { playTapSound(); apriTeoria(f.theoryId); }}
-                          className="mt-2 inline-flex items-center gap-1.5 min-h-[36px] text-[14px] font-semibold text-azione underline underline-offset-2">
-                          <BookOpen size={16} aria-hidden="true" /> Apri la teoria
+                          className="mt-2 inline-flex items-center gap-1.5 min-h-[36px] text-[14px] font-semibold text-azione">
+                          <Icona nome="teoria" size={18} /> Teoria
                         </button>
                       )}
                     </div>
@@ -155,13 +157,11 @@ export default function Frasi() {
           </ul>
         )}
         {elenco.length > visibili.length && (
-          <button type="button" onClick={() => { playTapSound(); setQuante(n => n + PAGINA); }}
-            className="mt-3 w-full min-h-[46px] rounded-[12px] border border-linea text-[14.5px] font-semibold text-azione hover:bg-azione-tinta">
-            Mostra altre frasi ({elenco.length - visibili.length})
+          <button type="button" onClick={() => { playTapSound(); setQuante(n => n + PAGINA); }} aria-label="Mostra altre"
+            className="mt-3 w-full min-h-[46px] rounded-[12px] border border-linea text-[14.5px] font-semibold tabular-nums text-azione hover:bg-azione-tinta">
+            +{elenco.length - visibili.length}
           </button>
         )}
-        {elenco.length > 0 && <p className="mt-3 text-[12.5px] text-testo-tenue" aria-live="polite">{elenco.length === 1 ? '1 frase' : `${elenco.length} frasi`}</p>}
-        {!disponibile && <p className="mt-1 text-[12.5px] leading-[17px] text-testo-tenue">L’ascolto compare solo se questo dispositivo ha una voce inglese.</p>}
       </div>
     </Pagina>
   );

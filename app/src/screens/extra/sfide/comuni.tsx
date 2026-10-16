@@ -1,12 +1,12 @@
-// Pezzi comuni alle schermate delle sfide: pagina con intestazione, schede Sfide/Classifica/Amici, carte, bottoni, tema.
+// Pezzi comuni alle schermate delle sfide: carta, bottoni (verbo o solo icona), campi, numeri con icona, avatar, pannello dell'esito.
+// Niente frasi: l'icona dice che cosa è, il numero quanto; le regole stanno dietro la «i» (PulsanteInfo + FoglioInfo).
 import { useEffect, useState, type ReactNode } from 'react';
-import { Clock, Equal, Swords, Trophy } from 'lucide-react';
-import { useExtra } from '../contesto';
+import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import type { Tono } from '../ui';
+import { IconaTono, TONI } from '../ui';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { FONT } from '../../../brand/tokens';
-import { confronta, tempoBreve, type Esito, type Risultato } from '../../../lib/sfide/risultati';
+import { tempoBreve, type Esito, type Risultato } from '../../../lib/sfide/risultati';
 
 export function useScuro(): boolean {
   const [scuro, setScuro] = useState(() => document.documentElement.classList.contains('dark'));
@@ -18,30 +18,7 @@ export function useScuro(): boolean {
   return scuro;
 }
 
-export { Pagina } from '../ui';
-
-const SCHEDE = [['sfide', 'Sfide'], ['classifica', 'Classifica'], ['amici', 'Amici']] as const;
-
-/** Le tre schede del concept (Sfide, Classifica, Amici): pillole, quella aperta in blu pieno. Sono tre schermate: toccarne una la apre. */
-export function SchedeSfide({ attiva }: { attiva: 'sfide' | 'classifica' | 'amici' }) {
-  const { vai } = useExtra();
-  return (
-    <nav aria-label="Sezioni delle sfide" className="mt-4 flex gap-2">
-      {SCHEDE.map(([id, nome]) => {
-        const on = id === attiva;
-        return (
-          <button key={id} type="button" aria-current={on ? 'page' : undefined} onClick={() => { if (!on) { playTapSound(); vai(id); } }}
-            className={cn('flex-1 rounded-full py-2.5 text-[13.5px] font-bold transition-colors duration-100',
-              on ? 'bg-azione text-azione-su' : 'bg-superficie-2 text-testo-tenue hover:text-testo')}>
-            {nome}
-          </button>
-        );
-      })}
-    </nav>
-  );
-}
-
-export { Sezione } from '../ui';
+export { Pagina, Sezione } from '../ui';
 
 export function Carta({ children, className, tono = 'neutro' }: { children: ReactNode; className?: string; tono?: 'neutro' | Tono }) {
   const toni = {
@@ -56,8 +33,11 @@ export function Carta({ children, className, tono = 'neutro' }: { children: Reac
 }
 
 const BASE_BOTTONE = 'brand-premibile w-full inline-flex items-center justify-center gap-2 rounded-2xl py-3.5 px-5 text-[15px] font-bold transition-colors duration-100 disabled:opacity-40 disabled:pointer-events-none';
-export function Bottone({ children, onClick, variante = 'primario', disabled, className, type = 'button' }: {
-  children: ReactNode; onClick?: () => void; variante?: 'primario' | 'secondario' | 'testo'; disabled?: boolean; className?: string; type?: 'button' | 'submit';
+
+/** Pulsante: un verbo, oppure solo l'icona (con `aria` che dice cosa fa). Uno solo pieno per schermata. */
+export function Bottone({ children, onClick, variante = 'primario', disabled, className, icona, aria, type = 'button' }: {
+  children?: ReactNode; onClick?: () => void; variante?: 'primario' | 'secondario' | 'testo'; disabled?: boolean; className?: string;
+  icona?: NomeIcona; aria?: string; type?: 'button' | 'submit';
 }) {
   const v = {
     primario: 'bg-azione text-azione-su hover:bg-azione-scuro',
@@ -65,36 +45,67 @@ export function Bottone({ children, onClick, variante = 'primario', disabled, cl
     testo: 'text-azione-scuro bg-transparent',
   } as const;
   return (
-    <button type={type} disabled={disabled} onClick={onClick ? () => { playTapSound(); onClick(); } : undefined} className={cn(BASE_BOTTONE, v[variante], className)}>
-      {children}
+    <button type={type} disabled={disabled} aria-label={aria} onClick={onClick ? () => { playTapSound(); onClick(); } : undefined} className={cn(BASE_BOTTONE, v[variante], className)}>
+      {icona && <Icona nome={icona} size={children ? 20 : 26} />}{children}
     </button>
   );
 }
 
-export function Campo({ id, etichetta, valore, onCambia, segnaposto, maxLength, errore, onInvio }: {
-  id: string; etichetta: string; valore: string; onCambia: (v: string) => void; segnaposto?: string; maxLength?: number; errore?: string | null; onInvio?: () => void;
+/** Campo di testo senza etichetta in pagina: il segnaposto e l'icona dicono cosa scrivere (`aria` per chi non vede). */
+export function Campo({ id, aria, valore, onCambia, segnaposto, maxLength, errore, onInvio, icona, className }: {
+  id: string; aria: string; valore: string; onCambia: (v: string) => void; segnaposto?: string; maxLength?: number; errore?: string | null;
+  onInvio?: () => void; icona?: NomeIcona; className?: string;
 }) {
   return (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-[13px] font-bold text-testo-tenue">{etichetta}</label>
-      <input id={id} value={valore} onChange={e => onCambia(e.target.value)} placeholder={segnaposto} maxLength={maxLength}
-        autoComplete="off" spellCheck={false}
-        onKeyDown={onInvio ? e => { if (e.key === 'Enter') onInvio(); } : undefined}
-        aria-invalid={errore ? true : undefined} aria-describedby={errore ? `${id}-err` : undefined}
-        className="min-w-0 rounded-2xl border border-linea bg-superficie px-4 py-3 text-[15px] font-semibold text-testo placeholder:text-testo-tenue placeholder:font-medium focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
-      {errore && <p id={`${id}-err`} role="alert" className="text-[13px] font-bold text-basso-testo">{errore}</p>}
+    <div className={cn('flex min-w-0 flex-col gap-1.5', className)}>
+      <div className="relative">
+        {icona && <Icona nome={icona} size={20} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue" />}
+        <input id={id} value={valore} onChange={e => onCambia(e.target.value)} placeholder={segnaposto} maxLength={maxLength} aria-label={aria}
+          autoComplete="off" spellCheck={false}
+          onKeyDown={onInvio ? e => { if (e.key === 'Enter') onInvio(); } : undefined}
+          aria-invalid={errore ? true : undefined} aria-describedby={errore ? `${id}-err` : undefined}
+          className={cn('w-full min-w-0 rounded-2xl border border-linea bg-superficie py-3 pr-4 text-[15px] font-semibold text-testo placeholder:text-testo-tenue placeholder:font-medium focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30', icona ? 'pl-11' : 'pl-4')} />
+      </div>
+      {errore && <p id={`${id}-err`} role="alert" className="flex items-center gap-1.5 text-[13px] font-bold text-basso-testo"><Icona nome="stato-attenzione" size={15} />{errore}</p>}
     </div>
   );
 }
 
-/** «Vinto», «Pari», «Perso»: parola e colore (verde, ambra, corallo smorzato), mai solo il colore. */
-export function EtichettaEsito({ esito }: { esito: Esito }) {
-  const m = {
-    vinto: ['Vinto', 'bg-alto-tinta text-alto-testo border-alto/30'],
-    pari: ['Pari', 'bg-medio-tinta text-medio-testo border-medio/30'],
-    perso: ['Perso', 'bg-basso-tinta text-basso-testo border-basso/30'],
-  } as const;
-  return <span className={cn('shrink-0 rounded-full border px-2.5 py-0.5 text-[12px] font-bold', m[esito][1])}>{m[esito][0]}</span>;
+/** Icona in tessera e numero accanto: «10» con le domande, «5 min» con il tempo. Sostituisce le frasi. */
+export function Dato({ icona, tono, valore, aria, unita, className }: { icona: NomeIcona; tono: Tono; valore: ReactNode; aria: string; unita?: string; className?: string }) {
+  return (
+    <span role="group" aria-label={aria} className={cn('inline-flex items-center gap-2', className)}>
+      <IconaTono tono={tono} lato={34} className="rounded-full bg-superficie"><Icona nome={icona} size={18} /></IconaTono>
+      <span aria-hidden className="text-[19px] leading-[22px] font-extrabold tabular-nums text-testo">{valore}{unita && <span className="ml-0.5 text-[12.5px] font-bold text-testo-tenue">{unita}</span>}</span>
+    </span>
+  );
+}
+
+/** I due dati di ogni sfida: le domande e il tempo. */
+export function DatiSfida({ domande, minuti, className }: { domande: number; minuti: number; className?: string }) {
+  return (
+    <div className={cn('flex items-center gap-5', className)}>
+      <Dato icona="risposte" tono="azione" valore={domande} aria={`${domande} domande`} />
+      <Dato icona="tempo" tono="medio" valore={minuti} unita="min" aria={`${minuti} minuti`} />
+    </div>
+  );
+}
+
+/** L'esito di un confronto, solo icona e colore (verde, ambra, corallo smorzato) più una parola: «Vinto», «Pari», «Perso». */
+const ESITO_VISTA = {
+  vinto: { nome: 'stato-vinto', tono: 'alto', parola: 'Vinto' },
+  pari: { nome: 'trend-uguale', tono: 'medio', parola: 'Pari' },
+  perso: { nome: 'stato-perso', tono: 'basso', parola: 'Perso' },
+} as const satisfies Record<Esito, { nome: NomeIcona; tono: Tono; parola: string }>;
+
+/** Icona tonda dell'esito (nelle righe di elenco): niente parola, `aria-label` con la parola. */
+export function IconaEsito({ esito, lato = 34 }: { esito: Esito; lato?: number }) {
+  const e = ESITO_VISTA[esito];
+  return (
+    <span role="img" aria-label={e.parola} className={cn('grid shrink-0 place-items-center rounded-full', TONI[e.tono].tinta, TONI[e.tono].icona)} style={{ width: lato, height: lato }}>
+      <Icona nome={e.nome} size={Math.round(lato * 0.52)} />
+    </span>
+  );
 }
 
 // Toni stabili per persona: l'avatar con l'iniziale prende un tono dal nome (sempre lo stesso per la stessa persona), mai il blu,
@@ -123,61 +134,38 @@ export function Avatar({ nome, grande, io }: { nome: string; grande?: boolean; i
 
 /** Tempo con l'orologio ambra (il tempo è sempre ambra). */
 export function Tempo({ secondi, className }: { secondi: number; className?: string }) {
-  return <span className={cn('inline-flex items-center gap-1 tabular-nums', className)}><Clock size={13} className="text-medio-numero" aria-hidden /> {tempoBreve(secondi)}</span>;
+  return <span className={cn('inline-flex items-center gap-1 tabular-nums', className)} aria-label={`Tempo ${tempoBreve(secondi)}`}><Icona nome="tempo" size={14} className="text-medio-numero" />{tempoBreve(secondi)}</span>;
 }
 
-function Colonna({ nome, r, io }: { nome: string; r: Risultato; io?: boolean }) {
+function Colonna({ nome, r, io, vince }: { nome: string; r: Risultato; io?: boolean; vince: boolean }) {
   return (
     <div className={cn('min-w-0 flex-1 rounded-[14px] bg-superficie p-3 text-center border', io ? 'border-azione/50' : 'border-linea')}>
       <p className="truncate text-[13px] font-bold text-testo-tenue">{nome}</p>
-      <p className="mt-1 text-[30px] leading-[34px] font-extrabold tabular-nums text-testo">{r.corrette}<span className="text-[16px] font-bold text-testo-tenue">/{r.totale}</span></p>
+      <p className={cn('mt-1 text-[30px] leading-[34px] font-extrabold tabular-nums', vince ? 'text-alto-numero' : 'text-testo')}>{r.corrette}<span className="text-[16px] font-bold text-testo-tenue">/{r.totale}</span></p>
       <p className="mt-1 text-[13px] font-semibold text-testo-tenue"><Tempo secondi={r.secondi} /></p>
     </div>
   );
 }
 
-/** La frase dell'esito, con il punteggio: «Hai vinto 8 a 6», «Hai perso 6 a 8», «Pari, 7 a 7». Chi perde non è un errore: nessun rosso allarmista. */
-export function fraseConPunteggio(esito: Esito, io: Risultato, altro: Risultato): { titolo: string; nota: string | null } {
-  const stesse = io.corrette === altro.corrette;
-  const nota = stesse && esito !== 'pari' ? 'Stesso numero di risposte giuste: ha deciso il tempo.' : null;
-  if (esito === 'pari') return { titolo: `Pari, ${io.corrette} a ${altro.corrette}`, nota: 'Stesse risposte giuste e stesso tempo.' };
-  if (esito === 'vinto') return { titolo: stesse ? 'Hai vinto per tempo' : `Hai vinto ${io.corrette} a ${altro.corrette}`, nota };
-  return { titolo: stesse ? 'Hai perso per tempo' : `Hai perso ${io.corrette} a ${altro.corrette}`, nota };
-}
-
-const ESITO_TONO = {
-  vinto: { tono: 'alto', Icona: Trophy },
-  pari: { tono: 'medio', Icona: Equal },
-  perso: { tono: 'basso', Icona: Swords },
-} as const;
-
-/** L'esito di un duello: UN blocco tinto nel tono dell'esito (verde vinto, ambra pari, corallo smorzato perso) con la frase,
- *  e i due risultati affiancati (il tuo con il bordo blu). Lo usano il risultato e la risposta di un amico. */
+/** L'esito di un duello: UN blocco tinto nel tono dell'esito (verde vinto, ambra pari, corallo smorzato perso) con icona e parola,
+ *  e i due risultati affiancati (il tuo con il bordo blu, chi vince in verde). Lo usano il risultato e la risposta di un amico. */
 export function PannelloEsito({ esito, nomeMio, io, nomeAltro, altro, className }: {
   esito: Esito; nomeMio: string; io: Risultato; nomeAltro: string; altro: Risultato; className?: string;
 }) {
-  const { tono, Icona } = ESITO_TONO[esito];
-  const { titolo, nota } = fraseConPunteggio(esito, io, altro);
+  const e = ESITO_VISTA[esito];
   return (
-    <Carta tono={tono} className={className}>
+    <Carta tono={e.tono} className={className}>
       <div className="flex items-center gap-3" role="status">
-        <span aria-hidden className={cn('grid h-11 w-11 shrink-0 place-items-center rounded-[12px] bg-superficie', TONI_ICONA[tono])}><Icona size={22} /></span>
-        <div className="min-w-0">
-          <p className="text-[22px] leading-[28px] font-extrabold tracking-[-0.01em] text-testo">{titolo}</p>
-          {nota && <p className="text-[13px] leading-[18px] text-testo-tenue">{nota}</p>}
-        </div>
+        <span aria-hidden className={cn('grid h-12 w-12 shrink-0 place-items-center rounded-[13px] bg-superficie', TONI[e.tono].icona)}><Icona nome={e.nome} size={26} /></span>
+        <p className="text-[24px] leading-[30px] font-extrabold tracking-[-0.01em] text-testo">{e.parola}</p>
       </div>
       <div className="mt-3.5 flex gap-2.5">
-        <Colonna nome={`${nomeMio} (tu)`} r={io} io />
-        <Colonna nome={nomeAltro} r={altro} />
+        <Colonna nome={nomeMio} r={io} io vince={esito === 'vinto'} />
+        <Colonna nome={nomeAltro} r={altro} vince={esito === 'perso'} />
       </div>
     </Carta>
   );
 }
-const TONI_ICONA = { alto: 'text-alto-numero', medio: 'text-medio-numero', basso: 'text-basso-numero' } as const;
-
-export { confronta, tempoBreve };
-export type { Risultato };
 
 const MESI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
 /** «12 ott» */
@@ -185,8 +173,17 @@ export function dataBreve(ms: number): string {
   const d = new Date(ms);
   return `${d.getDate()} ${MESI[d.getMonth()]}`;
 }
-/** «lunedì 12 ottobre» */
-export function dataLunga(d: Date = new Date()): string {
-  const t = d.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' });
-  return t.charAt(0).toUpperCase() + t.slice(1);
+
+/** Stato che ferma la strada: icona grande nel tono, al massimo una riga corta (≤ 8 parole), poi le azioni (uno solo pieno). */
+export function Fermo({ icona, tono, testo, children }: { icona: NomeIcona; tono: Tono; testo?: string; children?: ReactNode }) {
+  return (
+    <div className="mt-8 flex flex-col items-center text-center">
+      <IconaTono tono={tono} lato={72} className="rounded-full"><Icona nome={icona} size={34} /></IconaTono>
+      {testo && <p role="status" className="mt-3 max-w-[30ch] text-[15px] leading-[21px] font-bold text-testo">{testo}</p>}
+      {children && <div className="mt-6 flex w-full flex-col gap-2">{children}</div>}
+    </div>
+  );
 }
+
+export { tempoBreve };
+export type { Risultato };

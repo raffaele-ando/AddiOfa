@@ -1,6 +1,6 @@
 // Mattoncini comuni alle schermate di studio: pagina con intestazione, bottoni, barre. Tutto con i token (chiaro e scuro).
 import type { ReactNode } from 'react';
-import { ChevronLeft } from 'lucide-react';
+import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { cn } from '../../../lib/utils';
 import { playTapSound } from '../../../lib/audio';
 import { FONT } from '../../../brand/tokens';
@@ -33,12 +33,13 @@ export function Bottone({ children, onClick, variante = 'primario', disabled, cl
   );
 }
 
-/** Una nota di stato vuoto: icona leggera, riga principale, riga che spiega, bottone facoltativo. */
-export function StatoVuoto({ titolo, testo, children }: { titolo: string; testo: string; children?: ReactNode }) {
+/** Stato vuoto: icona, titolo di 2-4 parole, un'azione facoltativa. Il testo è facoltativo e si usa solo dove serve davvero. */
+export function StatoVuoto({ titolo, testo, icona, children }: { titolo: string; testo?: string; icona?: NomeIcona; children?: ReactNode }) {
   return (
     <div role="status" className="rounded-[12px] bg-superficie-2 px-5 py-7 text-center">
+      {icona && <span aria-hidden="true" className="mx-auto mb-2 grid h-12 w-12 place-items-center rounded-[14px] bg-superficie text-testo-tenue"><Icona nome={icona} size={26} /></span>}
       <p className="text-[16px] leading-[22px] font-bold text-testo">{titolo}</p>
-      <p className="mt-1.5 mx-auto max-w-[34ch] text-[14px] leading-[20px] text-testo-tenue">{testo}</p>
+      {testo && <p className="mt-1.5 mx-auto max-w-[34ch] text-[14px] leading-[20px] text-testo-tenue">{testo}</p>}
       {children && <div className="mt-4 mx-auto max-w-[280px]">{children}</div>}
     </div>
   );

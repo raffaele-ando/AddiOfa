@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { User } from 'firebase/auth';
-import { Trophy, Users } from 'lucide-react';
+import { Icona } from '../brand/icone/Icona';
 import { AppState } from '../types';
 import { ECOSYSTEM } from '../config/ecosystem';
 import { atlas, isAtlasOnline, Leaderboard as LeaderboardData } from '../lib/atlas';
@@ -32,7 +32,7 @@ export default function Leaderboard({ user, appState, onBack, onLogin, onJoin }:
     <Screen>
       <TopBar onBack={onBack} />
       <div className="flex items-center gap-3">
-        <span className="w-11 h-11 rounded-2xl bg-medio-tinta text-medio-testo flex items-center justify-center"><Trophy size={22} /></span>
+        <span className="w-11 h-11 rounded-2xl bg-medio-tinta text-medio-testo flex items-center justify-center"><Icona nome="classifica-noi" size={24} /></span>
         <div>
           <h2 className="text-2xl sm:text-3xl font-bold text-testo">Classifica {ECOSYSTEM.rankingName}</h2>
           <p className="text-xs sm:text-sm font-semibold text-testo-tenue">Chi sa più regole: domande imparate, poi miglior simulazione.</p>
@@ -41,7 +41,7 @@ export default function Leaderboard({ user, appState, onBack, onLogin, onJoin }:
 
       {!isAtlasOnline() && (
         <div className="flex-1 flex flex-col items-center justify-center text-center gap-3 py-10">
-          <Users size={40} className="text-testo-tenue" />
+          <Icona nome="partecipanti" size={44} className="text-testo-tenue" />
           <p className="font-bold text-testo">La classifica {ECOSYSTEM.rankingName} arriva presto</p>
           <p className="text-sm font-semibold text-testo-tenue max-w-xs">Sarà attiva appena il servizio {ECOSYSTEM.engineName} è online. Parteciperà solo chi lo sceglie.</p>
         </div>

@@ -1,129 +1,83 @@
-import { useMemo, type ReactNode } from 'react';
-import { Activity, Award, BarChart3, CalendarDays, CheckCheck, Clock, Compass, FileCheck2, Gift, KeyRound, Settings, Swords, Target, Trophy, Users } from 'lucide-react';
+import { useMemo } from 'react';
+import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { useAccess } from '../../../access/context';
 import { playTapSound } from '../../../lib/audio';
 import { nomeVisibile } from '../../../lib/profilo/dati';
-import { formatoDurata, riassuntoStudio } from '../../../lib/profilo/giorni';
 import { livelloConNucleo, SOGLIA_LIVELLO } from '../../../lib/profilo/livello';
-import { countLearned } from '../../../lib/spacedRepetition';
-import { Carta } from '../../../components/home/comune';
 import { SCHERMATE } from '../registro';
-import { BarraTono, IconaTono, type Tono } from '../ui';
+import { BarraTono, TONI, type Tono } from '../ui';
 import { useExtra } from '../contesto';
-import { Avatar, GruppoRighe, Pagina, RigaLista, Sezione, useBadge, useBanco, useProfilo } from './componenti';
+import { Avatar, Pagina, TesseraIcona, useBanco, useProfilo } from './componenti';
 
-/** Tessera numerica: l'icona porta il colore del significato (giorni e tempo = ambra, imparate = verde, simulazioni = blu), il numero resta navy. */
-function Tessera({ icona, tono, valore, etichetta }: { icona: ReactNode; tono: Tono; valore: string; etichetta: string }) {
+/** Pass in forma di icona + stato: attivo (spunta), in prova (provetta), gratuito (lucchetto). Non si tocca: il Pass si apre dalla tessera. */
+function CartaPass({ pass, prova }: { pass: boolean; prova: boolean }) {
+  const stato: { icona: NomeIcona; tono: Tono; parola: string } = !pass
+    ? { icona: 'blocco', tono: 'medio', parola: 'Gratis' }
+    : prova ? { icona: 'stato-prova', tono: 'medio', parola: 'Prova' } : { icona: 'stato-ok', tono: 'alto', parola: 'Attivo' };
   return (
-    <Carta className="p-3.5 flex flex-col">
-      <IconaTono tono={tono} lato={32} className="rounded-[9px] bg-superficie">{icona}</IconaTono>
-      <span className="mt-2.5 text-[26px] leading-[32px] font-extrabold text-testo tabular-nums whitespace-nowrap">{valore}</span>
-      <span className="text-[12.5px] leading-[17px] font-medium text-testo-tenue">{etichetta}</span>
-    </Carta>
+    <div role="status" aria-label={`Pass: ${stato.parola}`} className="flex items-center gap-2 rounded-full bg-superficie py-1 pl-2.5 pr-3 text-[13.5px] font-bold text-testo">
+      <Icona nome="pass" size={18} className={TONI.medio.icona} />
+      <span aria-hidden="true" className="h-4 w-px bg-linea" />
+      <Icona nome={stato.icona} size={17} className={TONI[stato.tono].icona} />
+      {stato.parola}
+    </div>
   );
 }
 
-/** Hub del profilo: chi sei, a che livello sei arrivato, i numeri veri del tuo studio, il Pass e la porta verso il resto. */
+/** Profilo: chi sei (avatar, nome, livello, Pass) e cinque tessere con una parola. L'ingranaggio porta alle Impostazioni. */
 export default function Profilo() {
-  const { appState, pass, vai, indietro, apriImpostazioni, apriPaywall, apriInviti } = useExtra();
+  const { appState, pass, vai, indietro, apriImpostazioni } = useExtra();
   const { entitlement } = useAccess();
   const { profilo } = useProfilo();
   const { pool, nucleo } = useBanco();
-  const badge = useBadge();
 
-  const studio = useMemo(() => riassuntoStudio(appState), [appState]);
   const livello = useMemo(() => livelloConNucleo(appState.stats, pool, nucleo), [appState.stats, pool, nucleo]);
-  const imparate = useMemo(() => countLearned(appState.stats, pool.map(q => q.id)), [appState.stats, pool]);
-  const sbloccati = badge.filter(b => b.sbloccato).length;
-  const haStudiato = studio.giorniDiStudio > 0 || imparate > 0 || studio.simulazioni > 0;
   const prossimo = livello.prossimo;
   const necessarie = prossimo ? Math.ceil(SOGLIA_LIVELLO * prossimo.totale - 1e-9) : 0;
-
-  const scadenza = entitlement.expiresAt
-    ? `Vale fino al ${new Date(entitlement.expiresAt).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })}.`
-    : 'Non ha una scadenza.';
-
   const esiste = (id: string) => !!SCHERMATE[id];
-  const studioRighe = [
-    esiste('obiettivi') && <RigaLista key="o" tono="alto" icona={<Target size={19} />} titolo="Obiettivi" testo="Data del test, minuti al giorno, probabilità" onClick={() => vai('obiettivi')} />,
-    esiste('calendario') && <RigaLista key="c" tono="medio" icona={<CalendarDays size={19} />} titolo="Calendario" testo="I giorni in cui hai studiato" onClick={() => vai('calendario')} />,
-    esiste('badge') && <RigaLista key="b" tono="viola" icona={<Award size={19} />} titolo="Badge" testo={`${sbloccati} su ${badge.length} traguardi raggiunti`} onClick={() => vai('badge')} />,
-    esiste('attivita') && <RigaLista key="a" tono="medio" icona={<Activity size={19} />} titolo="Attività" testo="Domande e minuti, giorno per giorno" onClick={() => vai('attivita')} />,
-    esiste('statistiche') && <RigaLista key="s" tono="azione" icona={<BarChart3 size={19} />} titolo="Statistiche" testo="Argomenti, simulazioni, costanza" onClick={() => vai('statistiche')} />,
-  ].filter(Boolean);
-  // Impostazioni non è una riga: è l'ingranaggio accanto al titolo (la stessa azione una volta sola)
-  const altriRighe = [
-    esiste('sfide') && <RigaLista key="sf" tono="basso" icona={<Swords size={19} />} titolo="Sfide" testo="Metti alla prova un amico" onClick={() => vai('sfide')} />,
-    esiste('amici') && <RigaLista key="am" tono="azione" icona={<Users size={19} />} titolo="Amici" testo="Chi ha accettato una tua sfida" onClick={() => vai('amici')} />,
-    esiste('classifica') && <RigaLista key="cl" tono="medio" icona={<Trophy size={19} />} titolo="Classifica" onClick={() => vai('classifica')} />,
-    <RigaLista key="in" tono="azione" icona={<Gift size={19} />} titolo="Inviti" testo="Invita un amico" onClick={apriInviti} />,
-    esiste('esplora') && <RigaLista key="es" tono="viola" icona={<Compass size={19} />} titolo="Esplora" testo="Strumenti e progetti collegati" onClick={() => vai('esplora')} />,
-  ].filter(Boolean);
+
+  const tessere: { id: string; icona: NomeIcona; tono: Tono; parola: string }[] = [
+    { id: 'progressi', icona: 'progressi', tono: 'azione', parola: 'Progressi' },
+    { id: 'obiettivi', icona: 'obiettivi', tono: 'alto', parola: 'Obiettivi' },
+    { id: 'badge', icona: 'badge', tono: 'viola', parola: 'Badge' },
+    { id: 'pass', icona: 'pass', tono: 'medio', parola: 'Pass' },
+    { id: 'projectid', icona: 'projectid', tono: 'azione', parola: 'Project ID' },
+  ];
 
   return (
-    <Pagina titolo="Il tuo profilo" indietro={indietro} destra={
+    <Pagina titolo="Profilo" indietro={indietro} destra={
       <button type="button" onClick={() => { playTapSound(); apriImpostazioni(); }} aria-label="Impostazioni"
         className="brand-premibile w-10 h-10 rounded-full bg-superficie-2 text-testo grid place-items-center">
-        <Settings size={20} strokeWidth={1.8} aria-hidden="true" />
+        <Icona nome="impostazioni" size={22} />
       </button>
     }>
-      <Carta className="mt-4 p-4 flex items-center gap-4">
-        <Avatar profilo={profilo} lato={72} />
-        <div className="flex-1 min-w-0">
-          <p className="text-[20px] leading-[26px] font-extrabold text-testo truncate">{nomeVisibile(profilo)}</p>
-          <p className="text-[13.5px] leading-[18px] text-testo-tenue truncate">{profilo.corso || 'Corso di studi non indicato'}</p>
-          <button type="button" onClick={() => { playTapSound(); vai('profilo-modifica'); }}
-            className="brand-premibile mt-2 h-8 px-3.5 rounded-full bg-azione-tinta text-azione-scuro text-[13px] font-semibold">Modifica</button>
+      <section aria-label="Il tuo profilo" className="mt-4 rounded-[14px] bg-superficie-2 p-4">
+        <div className="flex items-center gap-4">
+          <button type="button" onClick={() => { playTapSound(); vai('profilo-modifica'); }} aria-label="Modifica il profilo" className="brand-premibile relative shrink-0 rounded-full">
+            <Avatar profilo={profilo} lato={72} />
+            <span className="absolute -right-1 -bottom-1 grid h-7 w-7 place-items-center rounded-full border-2 border-superficie-2 bg-azione text-azione-su" aria-hidden="true"><Icona nome="modifica" size={14} /></span>
+          </button>
+          <div className="min-w-0 flex-1">
+            <h2 className="truncate text-[22px] leading-[28px] font-extrabold text-testo">{nomeVisibile(profilo)}</h2>
+            {profilo.corso && <p className="truncate text-[13.5px] leading-[18px] text-testo-tenue">{profilo.corso}</p>}
+          </div>
         </div>
-      </Carta>
-
-      <Carta className="mt-3 p-4">
-        <div className="flex items-baseline justify-between gap-3">
-          <p className="text-[12.5px] font-medium text-testo-tenue">Livello attuale</p>
-          {prossimo && <p className="text-[12.5px] font-semibold text-viola-testo tabular-nums">{prossimo.imparate}/{prossimo.totale} verso {prossimo.livello}</p>}
+        <div className="mt-4 flex flex-wrap items-center gap-2.5">
+          <div role="status" aria-label={`Livello: ${livello.livello ?? 'da definire'}`} className="flex items-center gap-2 rounded-full bg-superficie py-1 pl-2.5 pr-3.5 text-[13.5px] font-bold text-testo">
+            <Icona nome="livello" size={18} className="text-viola" />
+            <span className={livello.livello ? 'text-viola-testo text-[16px]' : 'text-testo-tenue'}>{livello.livello ?? '–'}</span>
+            {prossimo && <span className="text-[12.5px] font-semibold tabular-nums text-testo-tenue">{prossimo.imparate}/{necessarie}</span>}
+          </div>
+          <CartaPass pass={pass} prova={entitlement.source === 'demo'} />
         </div>
-        <p className={livello.livello ? 'mt-0.5 font-extrabold leading-tight text-[34px] text-viola' : 'mt-0.5 font-extrabold leading-tight text-[22px] text-testo'}>{livello.livello ?? 'Da definire'}</p>
-        {prossimo ? (
-          <>
-            <div className="mt-2.5"><BarraTono tono="viola" valore={Math.min(1, prossimo.imparate / necessarie) * 100} /></div>
-            <p className="mt-2 text-[13.5px] leading-[19px] text-testo">
-              {prossimo.imparate === 0 && !livello.livello
-                ? `Per arrivare al livello ${prossimo.livello} impara ${livello.mancanti} domande ${prossimo.livello}.`
-                : `Ancora ${livello.mancanti} ${livello.mancanti === 1 ? 'domanda' : 'domande'} ${prossimo.livello} da imparare.`}
-            </p>
-          </>
-        ) : (
-          <p className="mt-2 text-[13.5px] leading-[19px] text-testo">Hai raggiunto l'ultimo livello delle domande.</p>
-        )}
-        <p className="mt-1.5 text-[12px] leading-[17px] text-testo-tenue">
-          Non è una certificazione: dice quante domande di ogni livello hai imparato.{livello.dalNucleo ? ' Questo livello l\'hai raggiunto sul nucleo gratuito e resta tuo.' : ''}
-        </p>
-      </Carta>
+        {prossimo && <div className="mt-3"><BarraTono tono="viola" valore={Math.min(1, prossimo.imparate / necessarie) * 100} /></div>}
+      </section>
 
-      <Sezione titolo="Il tuo studio" id="titolo-numeri">
-        <div className="grid grid-cols-2 gap-3">
-          <Tessera tono="medio" icona={<CalendarDays size={18} />} valore={String(studio.giorniDiStudio)} etichetta={studio.giorniDiStudio === 1 ? 'Giorno di studio' : 'Giorni di studio'} />
-          <Tessera tono="alto" icona={<CheckCheck size={18} />} valore={String(imparate)} etichetta={imparate === 1 ? 'Domanda imparata' : 'Domande imparate'} />
-          <Tessera tono="azione" icona={<FileCheck2 size={18} />} valore={String(studio.simulazioni)} etichetta={studio.simulazioni === 1 ? 'Simulazione fatta' : 'Simulazioni fatte'} />
-          <Tessera tono="medio" icona={<Clock size={18} />} valore={formatoDurata(studio.secondiTotali)} etichetta="Tempo di studio" />
-        </div>
-        {!haStudiato && <p className="px-1 text-[13px] leading-[18px] text-testo-tenue">I numeri si riempiono appena cominci a studiare.</p>}
-      </Sezione>
-
-      <Carta className={`mt-[24px] p-4 flex items-center gap-3 ${pass ? '' : 'border border-medio/30'}`} tinta={pass ? undefined : 'bg-medio-tinta'}>
-        <IconaTono tono="medio" lato={40}><KeyRound size={22} /></IconaTono>
-        <span className="flex-1 min-w-0">
-          <span className="block text-[15px] leading-[20px] font-bold text-testo">{pass ? (entitlement.source === 'demo' ? 'Pass in prova attivo' : 'Pass AddiOFA attivo') : 'Parte gratuita'}</span>
-          <span className="block text-[12.5px] leading-[17px] text-testo-tenue">{pass ? scadenza : 'Nucleo di domande, una simulazione e una scheda di teoria.'}</span>
-        </span>
-        {!pass && <button type="button" onClick={() => { playTapSound(); apriPaywall(); }} className="brand-premibile shrink-0 h-9 px-4 rounded-full bg-azione text-azione-su text-[13.5px] font-semibold">Scopri il Pass</button>}
-      </Carta>
-
-      <div className="mt-[24px] flex flex-col gap-3">
-        {studioRighe.length > 0 && <GruppoRighe>{studioRighe}</GruppoRighe>}
-        <GruppoRighe>{altriRighe}</GruppoRighe>
-      </div>
-      <p className="mt-4 px-1 text-[12px] leading-[17px] text-testo-tenue">Nome, avatar e progressi restano su questo dispositivo.</p>
+      <nav aria-label="Aree del profilo" className="mt-4 grid grid-cols-3 gap-2.5">
+        {tessere.filter(t => esiste(t.id)).map(t => (
+          <TesseraIcona key={t.id} icona={<Icona nome={t.icona} size={24} />} tono={t.tono} parola={t.parola} onClick={() => vai(t.id)} />
+        ))}
+      </nav>
     </Pagina>
   );
 }

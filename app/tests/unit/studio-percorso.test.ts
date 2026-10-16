@@ -5,7 +5,7 @@ import { questions, isCoreId } from '../../src/data/questions';
 import { theoryTopics } from '../../src/data/theory';
 import {
   ORDINE_PERCORSO, ordinaPercorso, idTeoriaGratis, lezioniPercorso, prossimaLezione, tempoLezione, statoDaConteggi,
-  filtroArgomento, obiettivoLezione, QUOTA_LEZIONE_IMPARATA, SECONDI_PER_DOMANDA,
+  filtroArgomento, obiettivoLezione, titoloBreve, QUOTA_LEZIONE_IMPARATA, SECONDI_PER_DOMANDA,
 } from '../../src/lib/studio/percorso';
 import { statoVuoto } from './aiuti';
 
@@ -119,4 +119,11 @@ test('filtro per gli esercizi e obiettivo della lezione', () => {
   assert.ok(!/\*/.test(o.inBreve) && o.inBreve.length > 10);
   assert.ok(!/%|rischio/i.test(o.cosa + o.inBreve), 'niente promesse sul punteggio');
   for (const t of theoryTopics) assert.ok(obiettivoLezione(t).inBreve.length > 5, t.id);
+});
+
+test('il titolo breve taglia ai due punti e non lascia mai un titolo vuoto', () => {
+  assert.equal(titoloBreve({ titolo: 'Present Simple: abitudini e fatti' }), 'Present Simple');
+  assert.equal(titoloBreve({ titolo: 'Imperativo' }), 'Imperativo');
+  assert.equal(titoloBreve({ titolo: ': solo coda' }), ': solo coda');
+  for (const t of theoryTopics) assert.ok(titoloBreve(t).length > 0 && titoloBreve(t).length <= t.titolo.length);
 });

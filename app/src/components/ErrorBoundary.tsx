@@ -1,5 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
-import { Flag, RotateCcw } from 'lucide-react';
+import { Icona } from '../brand/icone/Icona';
 import StatoPagina from '../screens/extra/servizi/StatoPagina';
 
 interface Props {
@@ -64,10 +64,10 @@ export class ErrorBoundary extends Component<Props, State> {
             illustrazione="suggerimenti-consigli"
             ruolo="alert"
             titolo="Qualcosa non ha funzionato"
-            testo="Si è verificato un problema imprevisto. I tuoi progressi sono salvati su questo dispositivo: puoi riprovare in sicurezza."
+            info={<p>Si è verificato un problema imprevisto. I tuoi progressi sono salvati su questo dispositivo: puoi riprovare in sicurezza.</p>}
             azioni={[
-              { testo: 'Riprova', onClick: this.handleReset, icona: <RotateCcw size={18} strokeWidth={2.5} aria-hidden="true" /> },
-              { testo: 'Segnala il problema', onClick: this.handleSegnala, tipo: 'secondaria', icona: <Flag size={18} aria-hidden="true" /> },
+              { testo: 'Riprova', onClick: this.handleReset, icona: <Icona nome="riprova" size={18} /> },
+              { testo: 'Segnala', onClick: this.handleSegnala, tipo: 'secondaria', icona: <Icona nome="segnala" size={18} /> },
             ]}>
             {this.state.mostraDettagli && (
               <div>

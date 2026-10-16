@@ -1,4 +1,4 @@
-import { BookOpen, Dumbbell, Home, ListChecks, Timer, BarChart3 } from 'lucide-react';
+import { Icona as IconaApp, type NomeIcona } from '../../brand/icone/Icona';
 import Indicatore from '../../components/home/Indicatore';
 import { Barra } from '../../components/home/comune';
 import Marchio from '../../brand/Marchio';
@@ -7,22 +7,22 @@ import { cn } from '../../lib/utils';
 // Telefono con la home dell'app: usa il vero Indicatore con un valore di esempio, dichiarato tale.
 // Tutto il disegno è decorativo (aria-hidden): il testo della pagina dice già le stesse cose.
 
-function Pillola({ Icona, children, className }: { Icona: typeof Timer; children: string; className?: string }) {
+function Pillola({ icona, children, className }: { icona: NomeIcona; children: string; className?: string }) {
   return (
     <div className={cn('absolute z-10 hidden sm:block', className)}>
       <span className="flex items-center gap-2 whitespace-nowrap rounded-full border border-linea bg-superficie px-3.5 py-2 text-xs font-bold text-testo shadow-[0_10px_24px_rgba(15,23,42,0.12)] dark:shadow-none dark:shadow-[0_10px_24px_rgba(0,0,0,0.4)]">
-        <Icona size={15} className="text-azione " aria-hidden />
+        <IconaApp nome={icona} size={15} className="text-azione" />
         {children}
       </span>
     </div>
   );
 }
 
-const SCHEDE = [
-  { Icona: Home, nome: 'Home', attiva: true },
-  { Icona: Dumbbell, nome: 'Esercizi' },
-  { Icona: BookOpen, nome: 'Teoria' },
-  { Icona: BarChart3, nome: 'Progressi' },
+// Le tre schede dell'app (Home, Simulazioni, Lezioni), con le stesse icone della barra vera.
+const SCHEDE: { icona: NomeIcona; nome: string; attiva?: boolean }[] = [
+  { icona: 'home', nome: 'Home', attiva: true },
+  { icona: 'simulazioni', nome: 'Simulazioni' },
+  { icona: 'lezioni', nome: 'Lezioni' },
 ];
 
 export default function Telefono({ pillole = true }: { pillole?: boolean }) {
@@ -33,9 +33,9 @@ export default function Telefono({ pillole = true }: { pillole?: boolean }) {
       <div aria-hidden className="absolute -right-2 top-4 h-24 w-24 rounded-full bg-azione-tinta blur-sm" />
 
       {pillole && <>
-        <Pillola Icona={Timer} className="-left-4 top-20">Diagnostico gratis</Pillola>
-        <Pillola Icona={BookOpen} className="-right-4 top-[46%]">Teoria in italiano</Pillola>
-        <Pillola Icona={ListChecks} className="bottom-14 -left-10">Simulazioni 30/15</Pillola>
+        <Pillola icona="diagnostico" className="-left-4 top-20">Diagnostico</Pillola>
+        <Pillola icona="teoria" className="-right-4 top-[46%]">Teoria</Pillola>
+        <Pillola icona="simulazioni" className="bottom-14 -left-10">30 · 15 min</Pillola>
       </>}
 
       <div className="relative mx-auto w-[272px]">
@@ -72,18 +72,15 @@ export default function Telefono({ pillole = true }: { pillole?: boolean }) {
           </div>
 
           <div className="flex justify-around border-t border-linea bg-superficie py-2">
-            {SCHEDE.map(({ Icona, nome, attiva }) => (
-              <span key={nome} className={cn('flex flex-col items-center gap-0.5 text-[9px] font-bold', attiva ? 'text-azione ' : 'text-testo-tenue')}>
-                <Icona size={16} />{nome}
+            {SCHEDE.map(({ icona, nome, attiva }) => (
+              <span key={nome} className={cn('flex flex-col items-center gap-0.5 text-[9px] font-bold', attiva ? 'text-azione' : 'text-testo-tenue')}>
+                <IconaApp nome={icona} size={16} />{nome}
               </span>
             ))}
           </div>
         </div>
       </div>
 
-      <figcaption className="mt-5 text-center text-xs font-semibold text-testo-tenue">
-        Schermata di esempio con dati di prova.
-      </figcaption>
     </figure>
   );
 }

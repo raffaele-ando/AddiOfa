@@ -31,7 +31,6 @@ export default function MisuratoreEsito({ giuste, totale, soglia, superata }: { 
         <div className="text-[44px] font-extrabold tabular-nums text-testo">
           {giuste}<span className="text-xl font-bold text-testo-tenue">/{totale}</span>
         </div>
-        <div className="mt-1.5 text-xs font-bold text-testo-tenue">risposte esatte</div>
       </div>
     </div>
   );

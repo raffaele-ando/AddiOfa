@@ -1,17 +1,15 @@
 import { useState, useMemo, useEffect } from 'react';
 import { AppState, PaywallReason } from '../types';
-import { X, TrendingUp, AlertCircle, Clock, List, ArrowLeft, Activity, Filter, ArrowDownUp, ArrowUp, ArrowDown, Minus, Check, Lock, Loader2, ChevronLeft } from 'lucide-react';
-import { cn, chiaveGiorno } from '../lib/utils';
-import { REGOLA_IMPARATA } from './home/comune';
+import { Icona } from '../brand/icone/Icona';
+import { cn } from '../lib/utils';
 import { confidenceFromEasiness, bankMeta, poolMeta, countLearned, isLearned } from '../lib/spacedRepetition';
 import GuaranteeTracker from './GuaranteeTracker';
 import { PoweredByAtlas } from './ui';
 import { useAccess } from '../access/context';
-import { FEATURE_FLAGS, FORMATS, PASS } from '../config/offer';
+import { FEATURE_FLAGS, FORMATS } from '../config/offer';
 import { ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
-import { serieStime } from './home/stima';
-import GraficoStime from './home/GraficoStime';
-import { Tessere, AndamentoSimulazioni, PerArgomento, Obiettivi } from '../screens/extra/studio/StatistichePezzi';
+import { FoglioInfo, TONI } from '../screens/extra/ui';
+import { Tessere, AndamentoSimulazioni } from '../screens/extra/studio/StatistichePezzi';
 import { BarraTono } from '../screens/extra/ui';
 import { ChipLivello } from '../screens/extra/studio/comune';
 import { playTapSound } from '../lib/audio';
@@ -19,9 +17,7 @@ import { playTapSound } from '../lib/audio';
 // Grafici (Recharts): colori dai token, così il tema scuro li cambia da solo.
 const GRIGLIA = 'var(--color-linea)';
 const ASSE = 'var(--color-testo-tenue)';
-const AZIONE = 'var(--color-azione)';
 const ALTO = 'var(--color-alto)';
-const MEDIO = 'var(--color-medio)';
 const TRACCIA = 'var(--color-tacca)';
 const CURSORE = 'color-mix(in srgb, var(--color-testo) 6%, transparent)';
 const TOOLTIP = { borderRadius: '12px', border: '1px solid var(--color-linea)', fontWeight: 'bold', color: 'var(--color-testo)', backgroundColor: 'var(--color-superficie)', boxShadow: 'none' } as const;
@@ -30,11 +26,13 @@ interface StatsModeProps {
   appState: AppState;
   onExit: () => void;
   onNeedPass: (reason: PaywallReason) => void;
-  /** Aprono il percorso e una lezione (schermate extra): se assenti, «Per argomento» resta senza collegamenti. */
+  /** Non più usati (il percorso e le lezioni si aprono da Lezioni, l'analisi per argomento sta in Progressi): restano per compatibilità con App. */
   onVaiPercorso?: () => void;
   onApriLezione?: (topicId: string) => void;
-  /** Dentro la struttura extra la pagina ha già la sua cornice: si toglie solo l'arrotondamento esterno. */
-  incorniciata?: boolean;
+  /** Dentro Progressi la pagina ha già cornice, titolo e selettore: si disegna solo il corpo (senza intestazione né cornice). */
+  incorporata?: boolean;
+  /** Rifare il diagnostico: il solo pulsante pieno della panoramica. Assente = il pulsante non si vede. */
+  onDiagnostico?: () => void;
 }
 
 // Scarica il testo delle domande dal provider a gruppi, senza ripetere quelle già in mano
@@ -52,23 +50,33 @@ async function fetchPrompts(
   return out;
 }
 
-/** Intestazione della schermata: freccia indietro, titolo del concept e illustrazione. */
-function Intestazione({ sotto, onExit }: { sotto: string; onExit: () => void }) {
+/** Intestazione della schermata a sé (vista `stats`): freccia indietro e titolo con l'icona. Dentro Progressi non c'è. */
+function Intestazione({ onExit }: { onExit: () => void }) {
   return (
     <header className="flex items-start gap-1 shrink-0">
       <button type="button" onClick={() => { playTapSound(); onExit(); }} aria-label="Indietro"
         className="-ml-3 grid place-items-center w-10 h-10 shrink-0 rounded-full text-testo-tenue hover:text-testo">
-        <ChevronLeft size={28} strokeWidth={2.2} aria-hidden="true" />
+        <Icona nome="indietro" size={28} />
       </button>
-      <div className="min-w-0 flex-1">
-        <h1 className="text-[26px] leading-[40px] font-extrabold tracking-[-0.02em] text-testo">Le tue statistiche</h1>
-        <p className="mt-0.5 text-[14px] leading-[20px] text-testo-tenue">{sotto}</p>
-      </div>
+      <h1 className="min-w-0 flex-1 text-[26px] leading-[40px] font-extrabold tracking-[-0.02em] text-testo">Statistiche</h1>
     </header>
   );
 }
 
-export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso, onApriLezione }: StatsModeProps) {
+/** Conteggio con icona: giuste, sbagliate, omesse. Il colore dice quale è. */
+function Conto({ tipo, n, piccolo }: { tipo: 'giuste' | 'sbagliate' | 'omesse'; n: number; piccolo?: boolean }) {
+  const stile = tipo === 'giuste' ? (n > 0 ? 'bg-alto-tinta text-alto-testo border-alto/30' : 'bg-superficie text-testo-tenue border-linea')
+    : tipo === 'sbagliate' ? (n > 0 ? 'bg-basso-tinta text-basso-testo border-basso/30' : 'bg-superficie text-testo-tenue border-linea')
+    : (n > 0 ? 'bg-medio-tinta text-medio-testo border-medio/30' : 'bg-superficie text-testo-tenue border-linea');
+  const icona = tipo === 'giuste' ? 'stato-risposta-giusta' : tipo === 'sbagliate' ? 'stato-risposta-sbagliata' : 'stato-risposta-omessa';
+  return (
+    <span role="img" aria-label={`${n} ${tipo}`} className={cn('inline-flex items-center gap-1 text-[12px] font-bold tabular-nums px-2 py-0.5 rounded-lg border', stile)}>
+      <Icona nome={icona} size={piccolo ? 12 : 13} />{n}
+    </span>
+  );
+}
+
+export default function StatsMode({ appState, onExit, onNeedPass, incorporata, onDiagnostico }: StatsModeProps) {
   const { provider, pass } = useAccess();
   const [showDetailedStats, setShowDetailedStats] = useState(false);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
@@ -147,24 +155,6 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pass, topErrorIds, provider]);
 
-  // Prepare Daily Activity Data for Chart (last 7 days)
-  const activityData = useMemo(() => {
-    const data = [];
-    const today = new Date();
-    for (let i = 6; i >= 0; i--) {
-      const d = new Date(today);
-      d.setDate(d.getDate() - i);
-      const dateStr = chiaveGiorno(d);
-      const displayStr = d.toLocaleDateString('it-IT', { weekday: 'short' });
-      data.push({
-        name: displayStr,
-        domande: appState.dailyActivity?.[dateStr] || 0,
-        minuti: Math.round((appState.dailyTimeSpent?.[dateStr] || 0) / 60)
-      });
-    }
-    return data;
-  }, [appState.dailyActivity, appState.dailyTimeSpent]);
-
   const levelStatsData = useMemo(() => {
     const stats: Record<string, { imparate: number; total: number }> = {};
     allMeta.forEach(q => {
@@ -225,124 +215,162 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
   }, [showDetailedStats, pass, provider]);
 
   const lastExamFormat = lastExam ? FORMATS[lastExam.format ?? 'ente'] : null;
-  // Probabilità stimata: solo punti misurati (diagnostico e simulazioni)
-  const punti = useMemo(() => serieStime(appState), [appState]);
 
-  // ================== Senza Pass: i numeri di base e un invito ==================
-  if (!pass) {
-    return (
-      <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
-        <div className="h-full overflow-y-auto scrollbar-hide">
-          <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8 flex flex-col gap-5">
-            <Intestazione sotto="Quanto sai, in breve." onExit={onExit} />
+  /** Pulsanti in fondo: il diagnostico è il solo pieno; il dettaglio delle domande (solo con il Pass) è secondario. */
+  const pulsanti = (
+    <div className="flex flex-col gap-2.5">
+      {onDiagnostico && (
+        <button type="button" onClick={() => { playTapSound(); onDiagnostico(); }}
+          className="brand-premibile w-full min-h-[52px] rounded-[13px] bg-azione px-4 py-3 text-[16px] font-bold text-azione-su flex items-center justify-center gap-2">
+          <Icona nome="diagnostico" size={20} />Diagnostico
+        </button>
+      )}
+      {pass && (
+        <button type="button" onClick={() => { playTapSound(); setShowDetailedStats(true); }}
+          className="brand-premibile w-full min-h-[48px] rounded-[13px] bg-superficie-2 px-4 py-3 text-[15px] font-bold text-testo flex items-center justify-center gap-2">
+          <Icona nome="dettaglio" size={20} />Dettaglio
+        </button>
+      )}
+    </div>
+  );
 
-            <Tessere stato={appState} />
-
-            <div className="rounded-[12px] bg-superficie-2 divide-y divide-linea">
-              <div className="p-4">
-                <div className="flex items-baseline justify-between gap-3">
-                  <span className="text-[15px] font-bold text-testo">Domande imparate</span>
-                  <span className="text-[26px] leading-[28px] font-extrabold tabular-nums text-alto-numero">{masteryPercentage}%</span>
-                </div>
-                <BarraTono valore={masteryPercentage} tono="alto" className="mt-2 h-2" />
-                <p className="mt-2 text-[12.5px] leading-[18px] text-testo-tenue">{masteredQuestions} su {totalQuestions}. {REGOLA_IMPARATA}</p>
-              </div>
-              <div className="p-4 flex items-baseline justify-between gap-3">
-                <span>
-                  <span className="block text-[15px] font-bold text-testo">Accuratezza</span>
-                  <span className="block text-[12.5px] leading-[18px] text-testo-tenue">Risposte giuste su tutte quelle date</span>
-                </span>
-                <span className="text-[26px] leading-[28px] font-extrabold tabular-nums text-alto-numero">{globalAccuracy}%</span>
-              </div>
-              <div className="p-4">
-                {lastExam && lastExamFormat ? (
-                  <>
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="text-[15px] font-bold text-testo">Ultima simulazione <span className="tabular-nums">{lastExam.score}/{lastExamFormat.questions}</span></span>
-                      <span className={cn('shrink-0 rounded-full px-2.5 py-0.5 text-[12px] font-bold', lastExam.passed ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
-                        {lastExam.passed ? 'Superata' : 'Non superata'}
-                      </span>
-                    </div>
-                    <p className="mt-0.5 text-[12.5px] leading-[18px] text-testo-tenue">
-                      {new Date(lastExam.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'long' })}. Soglia {lastExamFormat.passMark} su {lastExamFormat.questions}.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <span className="text-[15px] font-bold text-testo">Ultima simulazione</span>
-                    <p className="mt-0.5 text-[12.5px] leading-[18px] text-testo-tenue">Non ne hai ancora fatta una.</p>
-                  </>
-                )}
-              </div>
-            </div>
-
-            <Obiettivi stato={appState} />
-
-            <div className="rounded-[12px] border border-linea p-4 sm:p-5 flex flex-col gap-3">
-              <div className="flex items-start gap-3">
-                <Lock size={18} className="mt-0.5 shrink-0 text-testo-tenue" />
-                <div>
-                  <h3 className="font-bold text-testo">Il quadro completo è nel Pass</h3>
-                  <p className="text-sm font-semibold text-testo-tenue mt-1">
-                    Andamento dei risultati, padronanza per argomento, le domande che sbagli di più e il dettaglio di ogni domanda. Il Pass si paga una volta sola e dura {PASS.validMonths} mesi.
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => onNeedPass('statistiche')}
-                className="w-full min-h-[48px] text-[15px] font-bold text-azione-su bg-azione hover:bg-azione-scuro px-4 py-3 rounded-[12px] transition-colors duration-100"
-              >
-                Scopri il Pass
-              </button>
-            </div>
-            <p className="text-xs font-semibold text-testo-tenue">I numeri contano il nucleo gratuito ({coreCount} domande).</p>
+  const corpo = !pass ? (
+    // Senza Pass: i numeri di base e il Pass in una riga
+    <>
+      <Tessere stato={appState} />
+      <div className="rounded-[12px] bg-superficie-2 divide-y divide-linea">
+        <div className="p-4">
+          <div className="flex items-center justify-between gap-3">
+            <span className="inline-flex items-center gap-2 text-[15px] font-bold text-testo"><Icona nome="imparate" size={20} className="text-alto-numero" /><span className="tabular-nums">{masteredQuestions}/{totalQuestions}</span></span>
+            <span className="text-[26px] leading-[28px] font-extrabold tabular-nums text-alto-numero">{masteryPercentage}%</span>
           </div>
+          <BarraTono valore={masteryPercentage} tono="alto" className="mt-2 h-2" />
+        </div>
+        <div className="p-4 flex items-center justify-between gap-3">
+          <span className="inline-flex items-center gap-2 text-[15px] font-bold text-testo"><Icona nome="accuratezza" size={20} className="text-alto-numero" />Accuratezza</span>
+          <span className="text-[26px] leading-[28px] font-extrabold tabular-nums text-alto-numero">{globalAccuracy}%</span>
+        </div>
+        <div className="p-4 flex items-center justify-between gap-3">
+          <span className="inline-flex items-center gap-2 text-[15px] font-bold text-testo"><Icona nome="simulazioni" size={20} className="text-azione-scuro" />
+            {lastExam && lastExamFormat ? <span className="tabular-nums">{lastExam.score}/{lastExamFormat.questions}</span> : '–'}
+          </span>
+          {lastExam && (
+            <span role="img" aria-label={lastExam.passed ? 'Superata' : 'Non superata'} className={cn('inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[12px] font-bold', lastExam.passed ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
+              <Icona nome={lastExam.passed ? 'stato-ok' : 'stato-errore'} size={15} />{new Date(lastExam.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'short' })}
+            </span>
+          )}
         </div>
       </div>
-    );
-  }
+      <div className="rounded-[12px] border border-linea p-4 flex items-center gap-3">
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[11px] bg-medio-tinta text-medio-numero" aria-hidden="true"><Icona nome="blocco" size={22} /></span>
+        <span className="flex-1 min-w-0 text-[15px] font-bold text-testo">Statistiche complete</span>
+        <button type="button" onClick={() => { playTapSound(); onNeedPass('statistiche'); }}
+          className="brand-premibile inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-azione px-4 text-[14px] font-bold text-azione-su">
+          <Icona nome="pass" size={16} />Pass
+        </button>
+      </div>
+      <p className="inline-flex items-center gap-1.5 text-[12.5px] font-bold text-testo-tenue tabular-nums" role="img" aria-label={`Contano le ${coreCount} domande del nucleo gratuito`}>
+        <Icona nome="materiale-nucleo" size={15} />{coreCount}
+      </p>
+      {pulsanti}
+    </>
+  ) : (
+    <>
+      <Tessere stato={appState} />
+      <AndamentoSimulazioni stato={appState} />
 
-  if (showDetailedStats) {
+      {/* Progresso per livello: domande imparate e da imparare */}
+      <section aria-labelledby="titolo-livello" className="flex flex-col gap-2.5">
+        <h2 id="titolo-livello" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><Icona nome="livello" size={20} className="text-viola" />Livelli</h2>
+        <div className="rounded-[12px] border border-linea p-4 flex flex-col">
+          <div className="w-full">
+            <ResponsiveContainer width="100%" height={150}>
+              <BarChart data={levelStatsData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }} layout="vertical">
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={GRIGLIA} />
+                <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
+                <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} />
+                <Tooltip isAnimationActive={false} cursor={{ fill: CURSORE }} contentStyle={TOOLTIP}
+                  formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]} />
+                <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill={ALTO} radius={[0, 0, 0, 0]} maxBarSize={30} />
+                <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill={TRACCIA} radius={[0, 4, 4, 0]} maxBarSize={30} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </section>
+
+      {/* Errori frequenti */}
+      <section aria-labelledby="titolo-errori" className="flex flex-col gap-2.5">
+        <h2 id="titolo-errori" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><Icona nome="errori" size={20} className="text-basso-numero" />Errori</h2>
+        {topErrors.length === 0 ? (
+          <div role="status" className="rounded-[12px] border border-linea py-6 flex items-center justify-center text-testo-tenue"><Icona nome="stato-ok" size={26} /></div>
+        ) : (
+          <div className="space-y-3">
+            {topErrors.map(err => {
+              const text = prompts[err.qId];
+              const rightAnswer = answersText[err.qId];
+              return (
+                <div key={err.qId} className="bg-superficie-2 rounded-[12px] border-l-[3px] border-basso p-3 sm:p-4 flex flex-col gap-2.5">
+                  <p data-testo-ok className="font-bold text-sm sm:text-base text-testo line-clamp-2 leading-tight">{text ?? '…'}</p>
+                  <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                    <Conto tipo="giuste" n={err.correct} piccolo />
+                    <Conto tipo="sbagliate" n={err.incorrect} piccolo />
+                    <Conto tipo="omesse" n={err.omitted} piccolo />
+                  </div>
+                  <div className="flex items-center justify-between pt-1 border-t border-linea">
+                    <span className="text-xs sm:text-sm font-bold text-basso-testo tabular-nums">{Math.round(err.errorRate * 100)}%</span>
+                    <span data-testo-ok className="text-xs sm:text-sm font-bold text-alto-testo truncate max-w-[70%]">{rightAnswer ?? ''}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
+
+      {FEATURE_FLAGS.guarantee && <GuaranteeTracker appState={appState} />}
+      {pulsanti}
+    </>
+  );
+
+  // ================== Dettaglio delle domande (solo con il Pass) ==================
+  if (pass && showDetailedStats) {
     return (
       <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col">
-        <header className="flex items-center justify-between p-4 border-b border-linea shrink-0 transition-colors duration-100">
-          <button onClick={() => setShowDetailedStats(false)} className="flex items-center gap-2 text-sm sm:text-base font-bold text-testo-tenue hover:text-testo transition-colors duration-100">
-            <ArrowLeft size={20} />
-            Indietro
-          </button>
-          <div className="flex flex-col items-end">
-            <h2 className="text-sm sm:text-lg font-bold text-testo leading-tight">Dettaglio domande</h2>
-            <span className="text-xs font-bold text-testo-tenue">{filteredAndSortedQuestions.length} domande totali</span>
-          </div>
+        <header className="flex items-center justify-between gap-3 p-4 border-b border-linea shrink-0 transition-colors duration-100">
+          <button type="button" onClick={() => { playTapSound(); setShowDetailedStats(false); }} aria-label="Indietro"
+            className="grid h-10 w-10 place-items-center rounded-full text-testo-tenue hover:text-testo"><Icona nome="indietro" size={26} /></button>
+          <h2 className="flex items-center gap-2 text-lg font-bold text-testo leading-tight"><Icona nome="dettaglio" size={20} /><span className="tabular-nums">{filteredAndSortedQuestions.length}</span></h2>
         </header>
-        <div className="flex items-center justify-between p-4 border-b border-linea shrink-0 transition-colors duration-100 bg-superficie-2">
-          <div className="flex items-center gap-2">
-            <Filter size={16} className="text-testo-tenue" />
+        <div className="flex items-center justify-between gap-3 p-4 border-b border-linea shrink-0 transition-colors duration-100 bg-superficie-2">
+          <div className="flex min-w-0 items-center gap-2">
+            <Icona nome="filtro" size={18} className="shrink-0 text-testo-tenue" />
             <select
+              aria-label="Categoria"
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="bg-transparent border-none text-sm font-bold text-testo focus:ring-0 cursor-pointer"
+              className="min-w-0 bg-transparent border-none text-sm font-bold text-testo focus:ring-0 cursor-pointer"
             >
-              <option value="all">Tutte le categorie</option>
-              <option value="corpus:initial">Nucleo di base ({coreCount} domande)</option>
+              <option value="all">Tutte</option>
+              <option value="corpus:initial">Nucleo ({coreCount})</option>
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
-          <button
+          <button type="button"
             onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-            className="flex items-center gap-2 text-sm font-bold text-azione hover:text-azione-scuro transition-colors duration-100"
+            className="flex shrink-0 items-center gap-2 text-sm font-bold text-azione hover:text-azione-scuro transition-colors duration-100"
           >
-            <ArrowDownUp size={16} />
-            {sortOrder === 'asc' ? 'Peggiori prima' : 'Migliori prima'}
+            <Icona nome="ordina" size={18} />
+            {sortOrder === 'asc' ? 'Peggiori' : 'Migliori'}
           </button>
         </div>
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col gap-4">
           {promptsState === 'loading' && (
-            <p className="flex items-center gap-2 text-sm font-bold text-testo-tenue"><Loader2 size={16} className="animate-spin" /> Carico le domande…</p>
+            <p role="status" className="flex items-center gap-2 text-sm font-bold text-testo-tenue"><Icona nome="stato-caricamento" size={18} className="animate-spin" /></p>
           )}
           {promptsState === 'error' && (
-            <p role="alert" className="text-sm font-bold text-basso-testo bg-basso-tinta rounded-xl px-3 py-2">
-              Non riesco a caricare il testo delle domande. Controlla la connessione e riapri il dettaglio.
+            <p role="alert" className="flex items-center gap-2 text-sm font-bold text-basso-testo bg-basso-tinta rounded-xl px-3 py-2">
+              <Icona nome="stato-errore" size={18} />Domande non caricate
             </p>
           )}
           {filteredAndSortedQuestions.map((q, index) => {
@@ -351,11 +379,10 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
             const correctCount = stat?.correct || 0;
             const incorrectCount = stat?.incorrect || 0;
             const omittedCount = stat?.omitted || 0;
-            const totalAttempts = correctCount + incorrectCount + omittedCount;
             const accuracy = (correctCount + incorrectCount) > 0 ? Math.round((correctCount / (correctCount + incorrectCount)) * 100) : 0;
             const confidenceScore = hasSeen ? confidenceFromEasiness(stat.easiness) : 0;
             const previousEasiness = stat?.previousEasiness ?? stat?.easiness;
-            let trend = 'same';
+            let trend: 'up' | 'down' | 'same' = 'same';
             if (stat && stat.easiness !== undefined && previousEasiness !== undefined) {
               if (stat.easiness > previousEasiness) trend = 'up';
               if (stat.easiness < previousEasiness) trend = 'down';
@@ -364,9 +391,9 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
             return (
               <div key={q.id} className="bg-superficie-2 border border-linea p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <div className="flex-1 flex gap-3 sm:gap-4 items-start">
-                  <span className="text-testo-tenue font-bold text-sm sm:text-base mt-0.5 shrink-0 w-6 sm:w-8 text-right">{index + 1}.</span>
+                  <span className="text-testo-tenue font-bold text-sm sm:text-base mt-0.5 shrink-0 w-6 sm:w-8 text-right tabular-nums">{index + 1}</span>
                   <div className="flex-1">
-                    <p className="font-bold text-testo text-sm sm:text-base mb-1">{prompts[q.id] ?? '…'}</p>
+                    <p data-testo-ok className="font-bold text-testo text-sm sm:text-base mb-1">{prompts[q.id] ?? '…'}</p>
                     <p className="text-xs text-testo-tenue font-bold flex items-center gap-2 flex-wrap">
                       <span>{q.category}</span>
                       {q.level && (
@@ -383,47 +410,13 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
                       )}
                     </p>
 
-                    {/* Breakdown: Giuste, Sbagliate, Omesse + Telemetria Cognitiva */}
                     <div className="flex items-center gap-1.5 sm:gap-2 mt-2.5 flex-wrap">
-                      <span className={cn(
-                        "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
-                        correctCount > 0 
-                          ? "bg-alto-tinta text-alto-testo border-alto/30" 
-                          : "bg-superficie text-testo-tenue border-linea"
-                      )}>
-                        <Check size={12} strokeWidth={3} />
-                        {correctCount} {correctCount === 1 ? 'giusta' : 'giuste'}
-                      </span>
-
-                      <span className={cn(
-                        "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
-                        incorrectCount > 0 
-                          ? "bg-basso-tinta text-basso-testo border-basso/30" 
-                          : "bg-superficie text-testo-tenue border-linea"
-                      )}>
-                        <X size={12} strokeWidth={3} />
-                        {incorrectCount} {incorrectCount === 1 ? 'sbagliata' : 'sbagliate'}
-                      </span>
-
-                      <span className={cn(
-                        "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
-                        omittedCount > 0 
-                          ? "bg-medio-tinta text-medio-testo border-medio/30" 
-                          : "bg-superficie text-testo-tenue border-linea"
-                      )}>
-                        <Minus size={12} strokeWidth={3} />
-                        {omittedCount} {omittedCount === 1 ? 'omessa' : 'omesse'}
-                      </span>
-
-                      {stat?.lastSwitchCount !== undefined && stat.lastSwitchCount > 0 && (
-                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-lg bg-medio-tinta text-medio-testo border border-medio/30">
-                          {stat.lastSwitchCount} {stat.lastSwitchCount === 1 ? 'cambio' : 'cambi'}
-                        </span>
-                      )}
-
+                      <Conto tipo="giuste" n={correctCount} />
+                      <Conto tipo="sbagliate" n={incorrectCount} />
+                      <Conto tipo="omesse" n={omittedCount} />
                       {stat?.lastResponseTimeMs !== undefined && (
-                        <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-lg bg-medio-tinta text-medio-testo border border-medio/30">
-                          <Clock size={11} /> {(stat.lastResponseTimeMs / 1000).toFixed(1)}s
+                        <span role="img" aria-label={`${(stat.lastResponseTimeMs / 1000).toFixed(1)} secondi`} className="inline-flex items-center gap-1 text-[12px] font-bold px-2 py-0.5 rounded-lg bg-medio-tinta text-medio-testo border border-medio/30 tabular-nums">
+                            <Icona nome="tempo" size={12} />{(stat.lastResponseTimeMs / 1000).toFixed(1)}s
                         </span>
                       )}
                     </div>
@@ -432,21 +425,15 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
                 <div className="flex flex-row sm:flex-col gap-4 sm:gap-2 items-center sm:items-end w-full sm:w-auto shrink-0">
                   {hasSeen ? (
                     <>
-                      <div className="flex flex-col items-center sm:items-end">
-                        <span className="text-[10px] sm:text-xs font-bold text-testo-tenue">Accuratezza</span>
-                        <span className={cn("text-sm sm:text-base font-bold", accuracy > 70 ? "text-alto-testo" : accuracy > 40 ? "text-medio-testo" : "text-basso-testo")}>
-                          {accuracy}%
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center sm:items-end w-full sm:w-24">
+                      <span role="img" aria-label={`Accuratezza ${accuracy}%`} className={cn('inline-flex items-center gap-1.5 text-sm sm:text-base font-bold tabular-nums', accuracy > 70 ? 'text-alto-testo' : accuracy > 40 ? 'text-medio-testo' : 'text-basso-testo')}>
+                        <Icona nome="accuratezza" size={16} />{accuracy}%
+                      </span>
+                      <div className="flex flex-col items-center sm:items-end w-full sm:w-24" role="img" aria-label={`Fiducia ${confidenceScore}%`}>
                         <div className="flex justify-between w-full mb-1 items-center">
-                          <span className="text-[10px] sm:text-xs font-bold text-testo-tenue flex items-center gap-1">
-                            Confidenza
-                            {trend === 'up' && <ArrowUp size={12} className="text-alto-testo" />}
-                            {trend === 'down' && <ArrowDown size={12} className="text-basso-testo" />}
-                            {trend === 'same' && <Minus size={12} className="text-testo-tenue" />}
+                          <span className="inline-flex items-center gap-1 text-viola-testo">
+                            <Icona nome={trend === 'up' ? 'trend-su' : trend === 'down' ? 'trend-giu' : 'trend-uguale'} size={13} className={trend === 'up' ? 'text-alto-testo' : trend === 'down' ? 'text-basso-testo' : 'text-testo-tenue'} />
                           </span>
-                          <span className="text-[10px] sm:text-xs font-bold text-viola-testo">{confidenceScore}%</span>
+                          <span className="text-[11px] sm:text-xs font-bold text-viola-testo tabular-nums">{confidenceScore}%</span>
                         </div>
                         <div className="w-full bg-tacca h-2 rounded-full overflow-hidden">
                           <div className="bg-viola h-full transition-colors duration-100" style={{ width: `${confidenceScore}%` }} />
@@ -454,9 +441,7 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
                       </div>
                     </>
                   ) : (
-                    <span className="text-xs font-bold text-testo-tenue px-3 py-1 bg-tacca rounded-full">
-                      Mai vista
-                    </span>
+                    <span role="img" aria-label="Mai vista" className="inline-flex items-center px-3 py-1 bg-tacca rounded-full text-testo-tenue"><Icona nome="stato-da-iniziare" size={14} /></span>
                   )}
                 </div>
               </div>
@@ -467,118 +452,15 @@ export default function StatsMode({ appState, onExit, onNeedPass, onVaiPercorso,
     );
   }
 
+  // Dentro Progressi: solo il corpo, la cornice e il titolo sono della pagina
+  if (incorporata) return <div className="flex flex-col gap-6">{corpo}</div>;
+
   return (
     <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
       <div className="h-full overflow-y-auto scrollbar-hide">
-        <div className="mx-auto w-full max-w-[560px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8 flex flex-col gap-6">
-          <Intestazione sotto="Quanto sai, argomento per argomento." onExit={onExit} />
-
-          <Tessere stato={appState} />
-          <p className="-mt-3 text-xs leading-snug text-testo-tenue">{REGOLA_IMPARATA}</p>
-
-          <AndamentoSimulazioni stato={appState} />
-
-          {punti.length > 0 && <GraficoStime punti={punti} />}
-
-          <PerArgomento stato={appState} pass={pass} onVaiPercorso={onVaiPercorso} onApriLezione={onApriLezione} />
-
-          <Obiettivi stato={appState} />
-
-          <button
-            onClick={() => { playTapSound(); setShowDetailedStats(true); }}
-            className="w-full min-h-[48px] border border-azione/60 bg-superficie hover:bg-azione-tinta text-azione font-bold text-[15px] py-3 px-4 rounded-[12px] transition-colors duration-100 flex items-center justify-center gap-2"
-          >
-            <List className="w-5 h-5" />
-            Vedi il dettaglio delle domande
-          </button>
-
-          {/* Costanza */}
-          <section aria-labelledby="titolo-costanza" className="flex flex-col gap-2.5">
-            <h2 id="titolo-costanza" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><Activity className="text-medio-numero w-5 h-5" />Costanza (ultimi 7 giorni)</h2>
-            <div className="rounded-[12px] border border-linea p-4 flex flex-col">
-              <div className="w-full">
-                <ResponsiveContainer width="100%" height={170}>
-                  <BarChart data={activityData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={GRIGLIA} />
-                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} />
-                    <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
-                    <Tooltip isAnimationActive={false} cursor={{ fill: CURSORE }} contentStyle={TOOLTIP} />
-                    <Bar isAnimationActive={false} dataKey="domande" name="Domande" fill={AZIONE} radius={[4, 4, 0, 0]} maxBarSize={30} />
-                    <Bar isAnimationActive={false} dataKey="minuti" name="Minuti" fill={MEDIO} radius={[4, 4, 0, 0]} maxBarSize={30} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-              <p className="mt-1 text-xs text-testo-tenue"><span className="inline-block w-2.5 h-2.5 rounded-sm align-middle mr-1" style={{ background: AZIONE }} />Domande risposte <span className="inline-block w-2.5 h-2.5 rounded-sm align-middle ml-3 mr-1" style={{ background: MEDIO }} />Minuti di studio</p>
-            </div>
-          </section>
-
-          {/* Progresso per livello */}
-          <section aria-labelledby="titolo-livello" className="flex flex-col gap-2.5">
-            <h2 id="titolo-livello" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><TrendingUp className="text-alto-numero w-5 h-5" />Progresso per livello</h2>
-            <div className="rounded-[12px] border border-linea p-4 flex flex-col">
-              <div className="w-full">
-                <ResponsiveContainer width="100%" height={150}>
-                  <BarChart data={levelStatsData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }} layout="vertical">
-                    <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={GRIGLIA} />
-                    <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
-                    <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} />
-                    <Tooltip isAnimationActive={false} cursor={{ fill: CURSORE }} contentStyle={TOOLTIP}
-                      formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]} />
-                    <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill={ALTO} radius={[0, 0, 0, 0]} maxBarSize={30} />
-                    <Bar isAnimationActive={false} dataKey="daImparare" name="Da imparare" stackId="a" fill={TRACCIA} radius={[0, 4, 4, 0]} maxBarSize={30} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </section>
-
-          {/* Errori frequenti */}
-          <section aria-labelledby="titolo-errori" className="flex flex-col gap-2.5">
-            <h2 id="titolo-errori" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><AlertCircle className="text-basso-numero w-5 h-5" />Errori frequenti</h2>
-            {topErrors.length === 0 ? (
-              <div className="rounded-[12px] border border-linea py-6 flex items-center justify-center text-center">
-                <span className="font-bold text-sm text-testo-tenue">Non ci sono ancora dati sufficienti.</span>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                {topErrors.map(err => {
-                  const text = prompts[err.qId];
-                  const rightAnswer = answersText[err.qId];
-                  return (
-                    <div key={err.qId} className="bg-superficie-2 rounded-[12px] border-l-[3px] border-basso p-3 sm:p-4 flex flex-col gap-2.5">
-                      <p className="font-bold text-sm sm:text-base text-testo line-clamp-2 leading-tight">{text ?? '…'}</p>
-                      <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                        <span className={cn(
-                          "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
-                          err.correct > 0 ? "bg-alto-tinta text-alto-testo border-alto/30" : "bg-superficie/80 text-testo-tenue border-linea"
-                        )}>
-                          <Check size={11} strokeWidth={3} />
-                          {err.correct} {err.correct === 1 ? 'giusta' : 'giuste'}
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border bg-superficie text-basso-testo border-basso/30">
-                          <X size={11} strokeWidth={3} />
-                          {err.incorrect} {err.incorrect === 1 ? 'sbagliata' : 'sbagliate'}
-                        </span>
-                        <span className={cn(
-                          "inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border transition-colors duration-100",
-                          err.omitted > 0 ? "bg-medio-tinta text-medio-testo border-medio/30" : "bg-superficie/80 text-testo-tenue border-linea"
-                        )}>
-                          <Minus size={11} strokeWidth={3} />
-                          {err.omitted} {err.omitted === 1 ? 'omessa' : 'omesse'}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between pt-1 border-t border-linea">
-                        <span className="text-xs sm:text-sm font-bold text-basso-testo">{Math.round(err.errorRate * 100)}% errore</span>
-                        <span className="text-xs sm:text-sm font-bold text-alto-testo truncate max-w-[50%]">{rightAnswer ?? ''}</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </section>
-
-          {FEATURE_FLAGS.guarantee && <GuaranteeTracker appState={appState} />}
+        <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8 flex flex-col gap-6">
+          <Intestazione onExit={onExit} />
+          {corpo}
           <PoweredByAtlas />
         </div>
       </div>

@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Check, ChevronLeft, ChevronRight, Clock, Lightbulb, Lock, X } from 'lucide-react';
 import type { ReactNode, RefObject } from 'react';
 import { theoryTopics, type TheoryTopic } from '../data/theory';
 import { FREE_LIMITS } from '../config/offer';
@@ -8,7 +7,9 @@ import { playTapSound } from '../lib/audio';
 import { cn } from '../lib/utils';
 import { RichText } from '../components/ui';
 import { FONT } from '../brand/tokens';
+import { Icona } from '../brand/icone/Icona';
 import { ChipLivello } from './extra/studio/comune';
+import { titoloBreve } from '../lib/studio/percorso';
 
 interface TheoryProps {
   onBack(): void;
@@ -17,11 +18,7 @@ interface TheoryProps {
 }
 
 type Livello = TheoryTopic['livello'];
-const LIVELLI: { id: Livello; nome: string; sotto: string }[] = [
-  { id: 'A1', nome: 'Livello A1', sotto: 'Le basi' },
-  { id: 'A2', nome: 'Livello A2', sotto: 'Il passato e il confronto' },
-  { id: 'B1', nome: 'Livello B1', sotto: 'Le strutture più avanzate del test' },
-];
+const LIVELLI: { id: Livello }[] = [{ id: 'A1' }, { id: 'A2' }, { id: 'B1' }];
 
 // Ordine di studio: per livello, poi nell'ordine del file (sort stabile)
 const ordinati: TheoryTopic[] = [...theoryTopics].sort(
@@ -31,11 +28,9 @@ const pronti = ordinati.filter(t => t.pronta);
 // Gratis: i primi N argomenti pronti nell'ordine di studio (quindi il primo di A1)
 const gratisIds = new Set(pronti.slice(0, FREE_LIMITS.freeTheoryTopics).map(t => t.id));
 
-const BADGE = 'inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-bold tracking-wide';
-
 /** Pagina di teoria: stessa cornice delle schermate extra (freccia a sinistra del titolo, colonna di 440 px), ma con il riferimento al titolo per il focus. */
-function Cornice({ titolo, sotto, titoloRef, onBack, children, intestazione }: {
-  titolo?: string; sotto?: ReactNode; titoloRef: RefObject<HTMLHeadingElement | null>; onBack: () => void; children: ReactNode; intestazione?: ReactNode;
+function Cornice({ titolo, titoloRef, onBack, children, intestazione }: {
+  titolo?: string; titoloRef: RefObject<HTMLHeadingElement | null>; onBack: () => void; children: ReactNode; intestazione?: ReactNode;
 }) {
   return (
     <div className="h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
@@ -44,12 +39,11 @@ function Cornice({ titolo, sotto, titoloRef, onBack, children, intestazione }: {
           <header className="flex items-start gap-1">
             <button type="button" onClick={() => { playTapSound(); onBack(); }} aria-label="Indietro"
               className="brand-premibile -ml-3 grid h-10 w-10 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo">
-              <ChevronLeft size={28} strokeWidth={2.2} aria-hidden="true" />
+              <Icona nome="indietro" size={28} />
             </button>
             <div className="min-w-0 flex-1">
               {intestazione}
               <h1 ref={titoloRef} tabIndex={-1} className="text-[26px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo outline-none break-words pt-[3px]">{titolo}</h1>
-              {sotto && <p className="mt-0.5 text-[14px] leading-[20px] text-testo-tenue">{sotto}</p>}
             </div>
           </header>
           {children}
@@ -84,6 +78,9 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
     titoloRef.current?.scrollIntoView({ block: 'start' });
   }, [topicId]);
 
+  // Aperta da una lezione (initialTopicId): la freccia riporta alla lezione; dall'elenco, all'elenco.
+  const daLezione = useRef(initialTopicId !== undefined).current;
+
   const apri = (t: TheoryTopic) => {
     if (!t.pronta) return;
     if (aperto(t)) setTopicId(t.id);
@@ -99,7 +96,7 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
         succ={i >= 0 && i < pronti.length - 1 ? pronti[i + 1] : null}
         aperto={aperto}
         titoloRef={titoloRef}
-        onList={() => setTopicId(null)}
+        onList={daLezione ? onBack : () => setTopicId(null)}
         onGo={apri}
       />
     );
@@ -107,12 +104,11 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
 
   const nPronti = pronti.length;
   return (
-    <Cornice titolo="Teoria" titoloRef={titoloRef} onBack={onBack}
-      sotto={`${theoryTopics.length} argomenti in tre livelli, con la regola, gli esempi e gli errori tipici di chi parla italiano.${pass ? '' : ' Una scheda è gratis, le altre sono nel Pass.'}`}>
+    <Cornice titolo="Teoria" titoloRef={titoloRef} onBack={onBack}>
       {nPronti === 0 && (
-        <p role="status" className="mt-4 rounded-[12px] bg-superficie-2 px-4 py-3 text-[14px] text-testo leading-relaxed">
-          Le schede sono ancora in preparazione e per ora nessuna è pronta. Quando lo saranno le trovi qui, nello stesso ordine.
-        </p>
+        <div role="status" className="mt-4 flex flex-col items-center gap-2 rounded-[12px] bg-superficie-2 px-4 py-6 text-testo-tenue">
+          <Icona nome="teoria" size={28} />
+        </div>
       )}
 
       {LIVELLI.map(l => {
@@ -121,8 +117,8 @@ export default function Theory({ onBack, onOpenPaywall, initialTopicId }: Theory
         const idTitolo = `liv-${l.id}`;
         return (
           <section key={l.id} aria-labelledby={idTitolo} className="mt-6 flex flex-col gap-2.5">
-            <h2 id={idTitolo} className="inline-flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo">
-              <ChipLivello livello={l.id} /><span className="sr-only">{l.nome}: </span>{l.sotto}
+            <h2 id={idTitolo} className="inline-flex items-center gap-2">
+              <ChipLivello livello={l.id} className="text-[14px] leading-[18px] px-2 py-1" /><span className="sr-only">Livello {l.id}</span>
             </h2>
             <ul className="flex flex-col gap-2">
               {lista.map(t => <Riga key={t.id} t={t} pass={pass} gratis={gratisIds.has(t.id)} onOpen={apri} />)}
@@ -138,22 +134,13 @@ function Riga({ t, pass, gratis, onOpen }: { t: TheoryTopic; pass: boolean; grat
   const base = 'w-full text-left rounded-[12px] px-3.5 py-3 min-h-[52px] flex items-center gap-3';
   const stato = !t.pronta ? 'arrivo' : pass || gratis ? 'aperto' : 'pass';
 
-  // L'etichetta compare solo dove dice qualcosa: «Gratis» sull'unica scheda aperta senza Pass, «In arrivo» sulle schede non pronte. Con il Pass tutte sono aperte: niente etichette uguali su ogni riga.
-  const etichetta =
-    stato === 'arrivo' ? (
-      <span className={cn(BADGE, 'gap-1 bg-superficie-2 text-testo-tenue')}><Clock size={12} aria-hidden /> In arrivo</span>
-    ) : stato === 'aperto' && gratis && !pass ? (
-      <span className={cn(BADGE, 'bg-alto-tinta text-alto-testo')}>Gratis</span>
-    ) : null;
-
   const contenuto = (
     <>
       <span className="min-w-0 flex-1">
-        <span className={cn('block font-bold leading-snug break-words', stato === 'arrivo' ? 'text-testo-tenue' : 'text-testo')}>{t.titolo}</span>
-        {etichetta && <span className="mt-1 flex flex-wrap items-center gap-2">{etichetta}</span>}
+        <span className={cn('block font-bold leading-snug break-words', stato === 'arrivo' ? 'text-testo-tenue' : 'text-testo')}>{titoloBreve(t)}</span>
       </span>
-      {stato === 'pass' && <Lock size={17} className="shrink-0 text-testo-tenue" aria-label="Nel Pass" />}
-      {stato === 'aperto' && <ChevronRight size={20} className="shrink-0 text-testo-tenue" aria-hidden />}
+      {stato === 'pass' && <span className="shrink-0 text-testo-tenue"><Icona nome="blocco" size={17} titolo="Nel Pass" /></span>}
+      {stato === 'aperto' && <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="avanti" size={20} /></span>}
     </>
   );
 
@@ -190,20 +177,21 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
   onList: () => void;
   onGo: (t: TheoryTopic) => void;
 }) {
-  const h2 = 'text-[15.5px] leading-[20px] font-bold text-testo';
+  const h2 = 'flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo';
   const corpo = 'text-[15px] font-medium text-testo leading-[24px]';
   return (
-    <Cornice titoloRef={titoloRef} titolo={topic.titolo} onBack={onList}
-      intestazione={<p className="flex items-center gap-2 text-[12.5px] font-semibold text-testo-tenue pt-1"><ChipLivello livello={topic.livello} />Teoria</p>}>
-      <article className="mt-5 flex flex-col gap-6">
+    <Cornice titoloRef={titoloRef} titolo={titoloBreve(topic)} onBack={onList}
+      intestazione={<p className="flex items-center gap-2 pt-1"><ChipLivello livello={topic.livello} /><span className="sr-only">Livello {topic.livello}</span></p>}>
+      {/* Il testo della scheda è contenuto (esente dal controllo di testo): attorno non c'è nessuna introduzione. */}
+      <article data-testo-ok className="mt-5 flex flex-col gap-6">
         <section aria-labelledby="t-regola" className="flex flex-col gap-2.5">
-          <h2 id="t-regola" className={h2}>La regola</h2>
+          <h2 id="t-regola" className={h2}><span aria-hidden="true" className="text-azione-scuro"><Icona nome="teoria-regola" size={20} /></span>Regola</h2>
           {topic.regola.map((r, i) => <p key={i} className={corpo}><RichText text={r} /></p>)}
         </section>
 
         {topic.esempi.length > 0 && (
           <section aria-labelledby="t-esempi">
-            <h2 id="t-esempi" className={h2}>Esempi</h2>
+            <h2 id="t-esempi" className={h2}><span aria-hidden="true" className="text-azione-scuro"><Icona nome="teoria-esempi" size={20} /></span>Esempi</h2>
             <ul className="mt-2.5 flex flex-col gap-3">
               {topic.esempi.map((e, i) => (
                 <li key={i} className="border-l-[3px] border-azione pl-3">
@@ -217,25 +205,22 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
 
         {topic.errori.length > 0 && (
           <section aria-labelledby="t-errori">
-            <h2 id="t-errori" className={h2}>Errori tipici</h2>
+            <h2 id="t-errori" className={h2}><span aria-hidden="true" className="text-basso-numero"><Icona nome="stato-risposta-sbagliata" size={20} /></span>Errori</h2>
             <ul className="mt-2.5 flex flex-col gap-2.5">
               {topic.errori.map((e, i) => (
                 <li key={i} className="rounded-[12px] bg-superficie-2 p-4 flex flex-col gap-2.5">
                   <h3 className="sr-only">Errore {i + 1}</h3>
                   <p className="flex gap-2.5 items-start">
-                    <span className="mt-0.5 inline-flex items-center gap-1 shrink-0 rounded-full bg-basso-tinta text-basso-testo px-2 py-0.5 text-[11px] font-bold">
-                      <X size={12} strokeWidth={3.5} aria-hidden /> Sbagliato
-                    </span>
+                    <span role="img" aria-label="Sbagliato" className="mt-0.5 inline-flex items-center shrink-0 rounded-full bg-basso-tinta text-basso-testo p-1"><Icona nome="stato-risposta-sbagliata" size={16} /></span>
                     <span lang="en" className="font-semibold text-testo line-through decoration-basso/60 leading-snug break-words min-w-0">{e.sbagliato}</span>
                   </p>
                   <p className="flex gap-2.5 items-start">
-                    <span className="mt-0.5 inline-flex items-center gap-1 shrink-0 rounded-full bg-alto-tinta text-alto-testo px-2 py-0.5 text-[11px] font-bold">
-                      <Check size={12} strokeWidth={3.5} aria-hidden /> Giusto
-                    </span>
+                    <span role="img" aria-label="Giusto" className="mt-0.5 inline-flex items-center shrink-0 rounded-full bg-alto-tinta text-alto-testo p-1"><Icona nome="stato-risposta-giusta" size={16} /></span>
                     <span lang="en" className="font-bold text-testo leading-snug break-words min-w-0">{e.giusto}</span>
                   </p>
-                  <p className="text-[14px] font-medium text-testo-tenue leading-relaxed">
-                    <span className="font-bold text-testo">Perché: </span><RichText text={e.perche} />
+                  <p className="flex gap-2.5 items-start text-[14px] font-medium text-testo-tenue leading-relaxed">
+                    <span role="img" aria-label="Perché" className="mt-0.5 shrink-0 text-medio-numero"><Icona nome="suggerimento" size={18} /></span>
+                    <span className="min-w-0"><RichText text={e.perche} /></span>
                   </p>
                 </li>
               ))}
@@ -245,26 +230,19 @@ function Dettaglio({ topic, prec, succ, aperto, titoloRef, onList, onGo }: {
 
         {/* L'avviso del test: l'unico blocco tinto della scheda, ambra (attenzione) */}
         {topic.consiglio && (
-          <section aria-labelledby="t-consiglio" className="rounded-[12px] bg-medio-tinta p-4">
-            <h2 id="t-consiglio" className="flex items-center gap-2 text-[15px] font-bold text-medio-testo">
-              <Lightbulb size={18} aria-hidden /> Per il test
-            </h2>
-            <p className="mt-1.5 text-[14.5px] font-medium text-testo leading-relaxed"><RichText text={topic.consiglio} /></p>
+          <section aria-label="Per il test" className="rounded-[12px] bg-medio-tinta p-4">
+            <p className="flex gap-2.5 items-start text-[14.5px] font-medium text-testo leading-relaxed">
+              <span aria-hidden="true" className="mt-0.5 shrink-0 text-medio-testo"><Icona nome="suggerimento" size={20} /></span>
+              <span className="min-w-0"><RichText text={topic.consiglio} /></span>
+            </p>
           </section>
         )}
-
-        <nav aria-label="Altri argomenti" className="flex flex-col gap-2 pt-1">
-          {succ && <Vicino t={succ} verso="succ" bloccato={!aperto(succ)} onGo={onGo} />}
-          {prec && <Vicino t={prec} verso="prec" bloccato={!aperto(prec)} onGo={onGo} />}
-          <button
-            type="button"
-            onClick={() => { playTapSound(); onList(); }}
-            className="w-full min-h-[44px] px-6 font-semibold text-[14px] text-azione underline underline-offset-4"
-          >
-            Tutti gli argomenti
-          </button>
-        </nav>
       </article>
+
+      <nav aria-label="Altre lezioni" className="mt-6 flex flex-col gap-2">
+        {succ && <Vicino t={succ} verso="succ" bloccato={!aperto(succ)} onGo={onGo} />}
+        {prec && <Vicino t={prec} verso="prec" bloccato={!aperto(prec)} onGo={onGo} />}
+      </nav>
     </Cornice>
   );
 }
@@ -274,16 +252,14 @@ function Vicino({ t, verso, bloccato, onGo }: { t: TheoryTopic; verso: 'prec' | 
   return (
     <button
       type="button"
+      aria-label={`${succ ? 'Successiva' : 'Precedente'}: ${titoloBreve(t)}`}
       onClick={() => { playTapSound(); onGo(t); }}
       className="w-full flex items-center gap-3 rounded-[12px] bg-superficie-2 px-3.5 py-3 text-left transition-colors duration-100 hover:bg-linea focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione"
     >
-      {!succ && <ChevronLeft size={20} className="shrink-0 text-testo-tenue" aria-hidden />}
-      <span className="min-w-0 flex-1">
-        <span className={cn('block text-xs font-bold', succ ? 'text-azione-scuro' : 'text-testo-tenue')}>{succ ? 'Argomento successivo' : 'Argomento precedente'}</span>
-        <span className="block font-bold leading-snug text-testo break-words">{t.titolo}</span>
-      </span>
-      {bloccato && <Lock size={17} className="shrink-0 text-testo-tenue" aria-label="Nel Pass" />}
-      {succ && !bloccato && <ChevronRight size={20} className="shrink-0 text-azione-scuro" aria-hidden />}
+      {!succ && <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="indietro" size={20} /></span>}
+      <span className="block min-w-0 flex-1 font-bold leading-snug text-testo break-words">{titoloBreve(t)}</span>
+      {bloccato && <span className="shrink-0 text-testo-tenue"><Icona nome="blocco" size={17} titolo="Nel Pass" /></span>}
+      {succ && !bloccato && <span aria-hidden="true" className="shrink-0 text-azione-scuro"><Icona nome="avanti" size={20} /></span>}
     </button>
   );
 }

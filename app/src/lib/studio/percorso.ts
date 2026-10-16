@@ -125,6 +125,12 @@ export function prossimaLezione(lezioni: readonly LezionePercorso[]): LezionePer
   return lezioni.find(l => l.stato !== 'imparata') ?? null;
 }
 
+/** Il nome corto della lezione: il titolo della scheda fino ai due punti («Present Simple: abitudini e fatti» → «Present Simple»). */
+export function titoloBreve(topic: Pick<TheoryTopic, 'titolo'>): string {
+  const corto = topic.titolo.split(':')[0].trim();
+  return corto || topic.titolo.trim();
+}
+
 /** Il filtro per avviare gli esercizi sull'argomento (selectPracticeIds: «topic:Nome»). */
 export function filtroArgomento(topic: TheoryTopic): string {
   return `topic:${topic.grammarTopic}`;

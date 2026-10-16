@@ -2,34 +2,28 @@
 // Il codice porta il seme delle domande, il nome e il risultato di chi sfida. Due casi:
 //  - «d»: una sfida nuova → si sceglie un nome e si gioca (sfida-gioco, ruolo «sfidato»);
 //  - «r»: un amico rimanda il suo risultato di un duello lanciato da te → si aggancia al tuo duello e si vede il confronto.
+// Solo icone, numeri e un pulsante; le regole dietro la «i».
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Info, ListChecks, Link2Off, Swords, Clock, TriangleAlert, Check } from 'lucide-react';
+import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { decodificaSfida, pulisciNome, NOME_MAX } from '../../../lib/sfide/codice';
-import { SECONDI_SFIDA } from '../../../lib/sfide/seme';
-import { agganciaRisposta, confronta, fraseEsito, idVoce, tempoBreve } from '../../../lib/sfide/risultati';
+import { DOMANDE_SFIDA, SECONDI_SFIDA } from '../../../lib/sfide/seme';
+import { agganciaRisposta, confronta, idVoce, tempoBreve } from '../../../lib/sfide/risultati';
 import { useBancoSfide, useProfiloSfide, useStorico } from './dati';
-import { IconaTono } from '../ui';
-import { Bottone, Campo, Carta, PannelloEsito, Pagina } from './comuni';
+import { FoglioInfo, PulsanteInfo, type Tono } from '../ui';
+import { Bottone, Campo, Carta, DatiSfida, Fermo, PannelloEsito, Pagina, Tempo } from './comuni';
+import { Regole } from './scheda';
 
-type TonoMessaggio = 'basso' | 'medio' | 'azione';
-const ICONE_MESSAGGIO = { basso: Link2Off, medio: TriangleAlert, azione: Info } as const;
-
-/** Un messaggio che ferma la strada: icona nel tono (corallo link rotto, ambra versione diversa, blu semplice informazione),
- *  testo navy. Il pulsante pieno è uno solo: «Vai alle sfide» se non c'è un'azione migliore. */
-function Messaggio({ titolo, testo, azione, tono = 'basso' }: { titolo: string; testo: string; azione?: ReactNode; tono?: TonoMessaggio }) {
+/** Uno stato che ferma la strada: icona nel tono (corallo link rotto, ambra versione diversa, blu semplice informazione), al massimo una riga corta
+ *  e UN pulsante pieno (di norma «vai alle sfide», icona sola) più, se serve, un'azione migliore prima. */
+function Messaggio({ titolo, testo, icona, azione, tono = 'basso' }: { titolo: string; testo?: string; icona: NomeIcona; azione?: ReactNode; tono?: Tono }) {
   const { vai, vaiHome } = useExtra();
-  const Icona = ICONE_MESSAGGIO[tono];
   return (
     <Pagina titolo={titolo} onBack={vaiHome}>
-      <Carta className="mt-5 flex items-start gap-3" tono={tono === 'azione' ? 'neutro' : tono}>
-        <IconaTono tono={tono} className="bg-superficie"><Icona size={20} /></IconaTono>
-        <p role={tono === 'azione' ? 'status' : 'alert'} className="text-[14.5px] leading-[21px] text-testo">{testo}</p>
-      </Carta>
-      <div className="mt-4 flex flex-col gap-2">
+      <Fermo icona={icona} tono={tono} testo={testo}>
         {azione}
-        <Bottone variante={azione ? 'secondario' : 'primario'} onClick={() => vai('sfide')}>Vai alle sfide</Bottone>
-      </div>
+        <Bottone variante={azione ? 'secondario' : 'primario'} icona="sfide" aria="Vai alle sfide" onClick={() => vai('sfide')} />
+      </Fermo>
     </Pagina>
   );
 }
@@ -42,6 +36,7 @@ export default function SfidaAccetta() {
   const dati = useMemo(() => decodificaSfida(params.sfida ?? ''), [params.sfida]);
   const [nome, setNome] = useState(profilo.nome ?? '');
   const [erroreNome, setErroreNome] = useState<string | null>(null);
+  const [info, setInfo] = useState(false);
 
   // Il risultato rimandato da un amico: si aggancia (una volta, in modo idempotente) al duello lanciato da te.
   const mioDuello = dati ? voci.find(v => v.id === idVoce('duello', dati.seme, 'sfidante')) : undefined;
@@ -55,10 +50,10 @@ export default function SfidaAccetta() {
   }, [dati, risposta]);
 
   if (!dati) {
-    return <Messaggio titolo="Link non valido" testo="Questo link di sfida non è valido: è incompleto o è stato modificato. Chiedi al tuo amico di rimandarlo, oppure copialo di nuovo per intero." />;
+    return <Messaggio icona="stato-link-rotto" titolo="Link non valido" testo="Chiedi di rimandarlo." />;
   }
   if (dati.banco !== impronta) {
-    return <Messaggio tono="medio" titolo="Domande diverse" testo={`${dati.nome} ha creato questa sfida con una versione dell'app che ha domande diverse dalle tue: giocandola il confronto non sarebbe valido. Aggiorna l'app (o riapri il link da quella più recente) e riprova.`} />;
+    return <Messaggio tono="medio" icona="stato-attenzione" titolo="Versioni diverse" testo="Aggiorna l'app e riprova." />;
   }
 
   // ---- Il risultato di un amico a una tua sfida
@@ -67,11 +62,11 @@ export default function SfidaAccetta() {
     const altro = { corrette: dati.corrette, totale: dati.totale, secondi: dati.secondi };
     const esito = confronta(io, altro);
     return (
-      <Pagina titolo={`${dati.nome} ha giocato`} sottotitolo="Ha rimandato il suo risultato alla tua sfida." onBack={() => vai('sfide')}>
+      <Pagina titolo={`${dati.nome} ha giocato`} onBack={() => vai('sfide')}>
         <PannelloEsito className="mt-5" esito={esito} nomeMio={io.nome ?? 'Tu'} io={io} nomeAltro={dati.nome} altro={altro} />
-        <div className="mt-4 flex flex-col gap-2">
-          <Bottone onClick={() => vai('sfida-risultato', { voce: mioDuello.id })}>Vedi il tuo risultato e le risposte</Bottone>
-          <Bottone variante="secondario" onClick={() => vai('amici')}>Vai agli amici</Bottone>
+        <div className="mt-4 flex gap-2">
+          <Bottone icona="correzioni" aria="Vedi il tuo risultato" onClick={() => vai('sfida-risultato', { voce: mioDuello.id })} />
+          <Bottone variante="secondario" icona="amici" aria="Amici" className="w-16 shrink-0 px-0" onClick={() => vai('amici')} />
         </div>
       </Pagina>
     );
@@ -83,18 +78,21 @@ export default function SfidaAccetta() {
   const proprio = voci.find(v => v.id === idVoce('duello', dati.seme, 'sfidante'));
 
   if (mioSuo || (proprio && dati.tipo === 'd')) {
-    return <Messaggio tono="azione" titolo="È la tua sfida" testo="Questo link l'hai creato tu: va mandato a un amico, non aperto da te. Quando lui ti rimanda il suo risultato, aprilo qui." azione={proprio && <Bottone onClick={() => vai('sfida-risultato', { voce: proprio.id })}>Vedi la tua partita</Bottone>} />;
+    return <Messaggio tono="azione" icona="condividi" titolo="È la tua sfida" testo="Mandala a un amico."
+      azione={proprio && <Bottone icona="correzioni" aria="Vedi la tua partita" onClick={() => vai('sfida-risultato', { voce: proprio.id })} />} />;
   }
   if (giaGiocata) {
     return (
-      <Pagina titolo="Hai già giocato" sottotitolo={`La sfida di ${dati.nome}.`} onBack={() => vai('sfide')}>
-        <Carta className="mt-5 flex items-center gap-3">
-          <IconaTono tono="alto" lato={44} className="rounded-[12px] bg-superficie"><Check size={22} /></IconaTono>
-          <p className="text-[14.5px] leading-[21px] text-testo">Hai già giocato queste domande: <strong className="tabular-nums">{giaGiocata.corrette}/{giaGiocata.totale}</strong> in <span className="tabular-nums">{tempoBreve(giaGiocata.secondi)}</span>. Ogni sfida si gioca una volta sola.</p>
+      <Pagina titolo="Già giocata" onBack={() => vai('sfide')}>
+        <Carta tono="alto" className="mt-5 flex items-center gap-4" >
+          <span aria-hidden className="grid h-12 w-12 shrink-0 place-items-center rounded-[13px] bg-superficie text-alto-numero"><Icona nome="stato-risposta-giusta" size={26} /></span>
+          <div role="status" aria-label={`${giaGiocata.corrette} su ${giaGiocata.totale}, tempo ${tempoBreve(giaGiocata.secondi)}`}>
+            <p aria-hidden className="text-[30px] leading-[34px] font-extrabold tabular-nums text-testo">{giaGiocata.corrette}<span className="text-[16px] font-bold text-testo-tenue">/{giaGiocata.totale}</span></p>
+            <p aria-hidden className="text-[14px] font-semibold text-testo-tenue"><Tempo secondi={giaGiocata.secondi} /></p>
+          </div>
         </Carta>
-        <div className="mt-4 flex flex-col gap-2">
-          <Bottone onClick={() => vai('sfida-risultato', { voce: giaGiocata.id })}>Vedi il confronto</Bottone>
-          <Bottone variante="secondario" onClick={() => vai('sfide')}>Vai alle sfide</Bottone>
+        <div className="mt-4">
+          <Bottone icona="correzioni" aria="Vedi il confronto" onClick={() => vai('sfida-risultato', { voce: giaGiocata.id })} />
         </div>
       </Pagina>
     );
@@ -102,35 +100,33 @@ export default function SfidaAccetta() {
 
   const gioca = () => {
     const n = pulisciNome(nome);
-    if (!n) { setErroreNome('Scrivi il nome con cui ti vedrà ' + dati.nome + '.'); return; }
+    if (!n) { setErroreNome('Scrivi il tuo nome.'); return; }
     vai('sfida-gioco', { tipo: 'duello', ruolo: 'sfidato', seme: dati.seme, nome: n, codice: params.sfida ?? '' });
   };
 
-  const regole: { tono: 'azione' | 'medio' | 'basso'; Icona: typeof ListChecks; testo: string }[] = [
-    { tono: 'azione', Icona: ListChecks, testo: 'Le stesse 10 domande per tutti e due.' },
-    { tono: 'medio', Icona: Clock, testo: `${SECONDI_SFIDA / 60} minuti, senza feedback finché non consegni.` },
-    { tono: 'basso', Icona: Swords, testo: 'Vince chi dà più risposte giuste; a parità, il più veloce.' },
-  ];
+  const regole = (
+    <Regole righe={[
+      `Le stesse ${DOMANDE_SFIDA} domande per tutti e due.`,
+      `${SECONDI_SFIDA / 60} minuti, senza correzioni finché non consegni.`,
+      'Vince chi dà più risposte giuste; a parità, il più veloce.',
+      `${dati.nome} ha già giocato: il suo risultato lo vedi alla fine, a confronto con il tuo.`,
+      `Nessun account e nessun server: il link contiene solo il nome di ${dati.nome}, il suo risultato e le domande. Alla fine potrai rimandargli il tuo con un altro link.`,
+    ]} />
+  );
+
   return (
-    <Pagina titolo={`${dati.nome} ti sfida`} sottotitolo="Ha già giocato: il suo risultato lo vedi alla fine, a confronto con il tuo." onBack={() => vai('sfide')}>
-      <Carta className="mt-5">
-        <ul className="flex flex-col gap-3">
-          {regole.map(({ tono, Icona, testo }) => (
-            <li key={testo} className="flex items-center gap-3">
-              <IconaTono tono={tono} lato={36}><Icona size={18} /></IconaTono>
-              <span className="text-[14.5px] leading-[20px] text-testo">{testo}</span>
-            </li>
-          ))}
-        </ul>
-      </Carta>
-      <div className="mt-5 flex flex-col gap-3">
-        <Campo id="nome-accetta" etichetta={`Il nome con cui ti vedrà ${dati.nome}`} valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
-          segnaposto="Il tuo nome" maxLength={NOME_MAX} errore={erroreNome} onInvio={gioca} />
-        <Bottone onClick={gioca}><Swords size={18} aria-hidden /> Accetta e gioca</Bottone>
-      </div>
-      <p className="mt-4 text-[12.5px] leading-[18px] text-testo-tenue">
-        Nessun account e nessun server: il link contiene solo il nome di {dati.nome}, il suo risultato e le domande. Alla fine potrai rimandargli il tuo con un altro link.
-      </p>
-    </Pagina>
+    <div className="relative h-full">
+      <Pagina titolo={`${dati.nome} ti sfida`} onBack={() => vai('sfide')} destra={<PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />}>
+        <Carta className="mt-5 flex justify-center py-5">
+          <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} />
+        </Carta>
+        <div className="mt-4 flex items-start gap-3">
+          <Campo id="nome-accetta" aria="Il tuo nome" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
+            segnaposto="Il tuo nome" maxLength={NOME_MAX} errore={erroreNome} onInvio={gioca} className="flex-1" />
+          <Bottone icona="studia" aria="Accetta e gioca" className="w-16 shrink-0 px-0" onClick={gioca} />
+        </div>
+      </Pagina>
+      <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Regole">{regole}</FoglioInfo>
+    </div>
   );
 }

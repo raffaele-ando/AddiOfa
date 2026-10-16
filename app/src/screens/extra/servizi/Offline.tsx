@@ -1,9 +1,8 @@
-// Pagina «Sei offline» (concept 16/17). Dice quello che è vero: i progressi sono sul dispositivo e non si perdono.
+// Pagina «Sei offline» (concept 16/17). Il titolo dice lo stato; la spiegazione onesta (i progressi sono sul dispositivo e non si perdono) sta dietro la «i».
 import { useEffect, useState } from 'react';
-import { RefreshCw } from 'lucide-react';
+import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import StatoPagina from './StatoPagina';
-import { Nota } from './componenti';
 
 function useOnline(): boolean {
   const [online, setOnline] = useState(() => (typeof navigator === 'undefined' ? true : navigator.onLine));
@@ -21,15 +20,11 @@ export default function Offline() {
   return (
     <StatoPagina
       illustrazione="mondo-internazionale"
-      titolo={online ? 'La connessione c\'è' : 'Sei offline'}
-      testo={online ? 'Il dispositivo risulta collegato a internet. Puoi riprendere da dove eri.' : 'Sei offline: i progressi restano sul dispositivo.'}
+      titolo={online ? 'Connesso' : 'Sei offline'}
+      info={<p>Quello che hai già fatto è salvato su questo dispositivo e non si perde. Le funzioni che hanno bisogno della rete (domande servite dal server, inviti, lista d'attesa) ripartono quando torna la connessione.</p>}
       azioni={[
-        online ? { testo: 'Riprendi', onClick: indietro } : { testo: 'Riprova', onClick: () => window.location.reload(), icona: <RefreshCw size={18} aria-hidden="true" /> },
-        { testo: 'Vai alla Home', onClick: vaiHome },
-      ]}>
-      <Nota tono="riuscito">
-        Quello che hai già fatto è salvato qui e non si perde. Le funzioni che hanno bisogno della rete (domande servite dal server, inviti, lista d'attesa) ripartono quando torna la connessione.
-      </Nota>
-    </StatoPagina>
+        online ? { testo: 'Riprendi', onClick: indietro, icona: <Icona nome="studia" size={18} /> } : { testo: 'Riprova', onClick: () => window.location.reload(), icona: <Icona nome="riprova" size={18} /> },
+        { testo: 'Home', onClick: vaiHome, icona: <Icona nome="home" size={18} /> },
+      ]} />
   );
 }

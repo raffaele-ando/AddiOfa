@@ -1,56 +1,49 @@
-// Foglio "Come viene calcolato il punteggio" (regole del formato). FoglioStima spiega un'altra cosa, la stima di superare il test.
-import { useEffect, useRef, useState } from 'react';
-import { X } from 'lucide-react';
+// Foglio «i» di una simulazione: le regole del formato e, se si sa su quante risposte è calcolata la stima, il rimando a FoglioStima.
+// Le regole non stanno in pagina (esito, simulazioni): si aprono qui. Il foglio copre la sola pagina (il genitore è `relative`).
+import { useEffect, useState, type ReactNode } from 'react';
 import type { ExamFormat } from '../../config/offer';
 import { formatNumber } from '../../lib/utils';
+import { FoglioInfo } from '../../screens/extra/ui';
 import FoglioStima from '../FoglioStima';
 
-/** "Come viene calcolato il punteggio": le regole del formato. Se si sa su quante risposte è calcolata la stima, rimanda a FoglioStima. */
-export default function InfoPunteggio({ format, aperto, onChiudi, risposteStima }: { format: ExamFormat; aperto: boolean; onChiudi: () => void; risposteStima?: number }) {
-  const chiudiRef = useRef<HTMLButtonElement>(null);
-  const [stima, setStima] = useState(false);
-  useEffect(() => { if (aperto) chiudiRef.current?.focus(); else setStima(false); }, [aperto]);
-  // Tornando da FoglioStima il focus riparte da qui; Esc chiude il foglio anche se il focus è sul fondo pagina
-  useEffect(() => { if (aperto && !stima) chiudiRef.current?.focus(); }, [stima, aperto]);
-  useEffect(() => {
-    if (!aperto || stima) return;
-    const su = (e: KeyboardEvent) => { if (e.key === 'Escape') onChiudi(); };
-    window.addEventListener('keydown', su);
-    return () => window.removeEventListener('keydown', su);
-  }, [aperto, stima, onChiudi]);
-  if (!aperto) return null;
+/** Le regole del formato, una riga ciascuna (le usano il foglio della «i» dell'esito e la scheda Simulazioni). */
+export function RegoleFormato({ format, nota }: { format: ExamFormat; nota?: ReactNode }) {
+  return (
+    <ul className="flex list-disc flex-col gap-2.5 pl-5 marker:text-testo-tenue">
+      <li>{format.questions} domande in {format.minutes} minuti: la soglia è {format.passMark}. Con {format.passMark} risposte esatte o più la simulazione è superata.</li>
+      {format.penalty > 0 ? (
+        <li>Ogni risposta sbagliata toglie {formatNumber(format.penalty)} punti; una domanda lasciata vuota non toglie nulla. Il punteggio con penalità è quello del test d&apos;ingresso, mentre per l&apos;OFA conta il numero di risposte esatte.</li>
+      ) : (
+        <li>Nessuna penalità: una risposta sbagliata o lasciata vuota vale zero.</li>
+      )}
+      <li>Il tempo non cambia il punteggio, ma allo scadere la prova si consegna da sola.</li>
+      <li>Durante la prova non vedi se hai risposto bene: le correzioni e le spiegazioni arrivano alla consegna.</li>
+      <li>È una simulazione: ti dice come stai andando, non prevede il risultato del test vero.</li>
+      {nota && <li>{nota}</li>}
+    </ul>
+  );
+}
 
-  if (stima && risposteStima !== undefined) {
+export default function InfoPunteggio({ format, aperto, onChiudi, risposteStima, nota }: {
+  format: ExamFormat; aperto: boolean; onChiudi: () => void; risposteStima?: number;
+  /** Una riga in più in fondo alle regole (per esempio il limite di simulazioni gratuite). */
+  nota?: ReactNode;
+}) {
+  const [stima, setStima] = useState(false);
+  useEffect(() => { if (!aperto) setStima(false); }, [aperto]);
+
+  if (aperto && stima && risposteStima !== undefined) {
     return <FoglioStima aperto onChiudi={() => setStima(false)} tipo="simulazione" risposte={risposteStima} />;
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-4" role="dialog" aria-modal="true" aria-labelledby="info-punteggio-titolo"
-      onClick={e => { if (e.target === e.currentTarget) onChiudi(); }}>
-      <div className="w-full max-w-md rounded-2xl bg-superficie-2 border border-linea p-5 shadow-xl dark:shadow-none max-h-[85dvh] overflow-y-auto">
-        <div className="flex items-start justify-between gap-3">
-          <h2 id="info-punteggio-titolo" className="text-lg font-bold text-testo">Come viene calcolato il punteggio</h2>
-          <button ref={chiudiRef} type="button" onClick={onChiudi} aria-label="Chiudi" className="shrink-0 -mr-1 -mt-1 p-2 rounded-full text-testo-tenue hover:bg-linea">
-            <X size={20} strokeWidth={2.5} />
-          </button>
-        </div>
-        <ul className="mt-3 space-y-2.5 text-sm font-medium text-testo leading-relaxed list-disc pl-5">
-          <li>Si contano le risposte esatte su {format.questions}. In questo formato la soglia è {format.passMark}: con {format.passMark} o più la simulazione è superata.</li>
-          {format.penalty > 0 ? (
-            <li>Ogni risposta sbagliata toglie {formatNumber(format.penalty)} punti; una domanda lasciata vuota non toglie nulla. Il punteggio con penalità è quello del test d&apos;ingresso, mentre per l&apos;OFA conta il numero di risposte esatte.</li>
-          ) : (
-            <li>Non ci sono penalità: una risposta sbagliata o lasciata vuota vale zero.</li>
-          )}
-          <li>Il tempo non cambia il punteggio, ma allo scadere la prova si consegna da sola.</li>
-          <li>È una simulazione: ti dice come stai andando, non prevede il risultato del test vero.</li>
-        </ul>
-        {risposteStima !== undefined && (
-          <button type="button" onClick={() => setStima(true)} className="mt-4 text-sm font-bold text-azione underline underline-offset-2">
-            Come viene calcolata la stima di superare il test
-          </button>
-        )}
-        <button type="button" onClick={onChiudi} className="mt-5 w-full rounded-xl bg-azione hover:bg-azione-scuro py-3 font-bold text-azione-su">Ho capito</button>
-      </div>
-    </div>
+    <FoglioInfo aperto={aperto} onChiudi={onChiudi} titolo="Regole">
+      <RegoleFormato format={format} nota={nota} />
+      {risposteStima !== undefined && (
+        <button type="button" onClick={() => setStima(true)} className="mt-4 text-sm font-bold text-azione-scuro underline underline-offset-2">
+          Come viene calcolata la stima
+        </button>
+      )}
+    </FoglioInfo>
   );
 }

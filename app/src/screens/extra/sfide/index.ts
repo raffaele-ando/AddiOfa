@@ -1,13 +1,13 @@
 import type { DefSchermata } from '../registro';
 
-/** Schermate di quest'area: id → definizione. Le sfide sono senza server: il confronto passa dai link (vedi lib/sfide/codice.ts). */
+/** Schermate di quest'area: id → definizione. Le sfide sono senza server: il confronto passa dai link (vedi lib/sfide/codice.ts).
+ *  Stanno sotto la scheda Simulazioni (sfide, amici, classifica con la stessa testata); `accesso-sbloccato` vive in `pass`. */
 export const SCHERMATE_SFIDE: Record<string, DefSchermata> = {
-  sfide: { titolo: 'Sfide', carica: () => import('./Sfide'), barra: 'lezioni' },
+  sfide: { titolo: 'Sfide', carica: () => import('./Sfide'), barra: 'simulazioni' },
   'sfida-gioco': { titolo: 'Sfida', carica: () => import('./SfidaGioco'), barra: null },
-  'sfida-risultato': { titolo: 'Risultato della sfida', carica: () => import('./SfidaRisultato'), barra: 'lezioni' },
-  'sfida-accetta': { titolo: 'Accetta la sfida', carica: () => import('./SfidaAccetta'), barra: 'lezioni' },
-  amici: { titolo: 'Amici', carica: () => import('./Amici'), barra: 'lezioni' },
-  classifica: { titolo: 'Classifica', carica: () => import('./Classifica'), barra: 'lezioni' },
-  condividi: { titolo: 'Condividi', carica: () => import('./Condividi'), barra: 'lezioni' },
-  'accesso-sbloccato': { titolo: 'Accesso sbloccato', carica: () => import('./AccessoSbloccato'), barra: 'lezioni' },
+  'sfida-risultato': { titolo: 'Risultato della sfida', carica: () => import('./SfidaRisultato'), barra: 'simulazioni' },
+  'sfida-accetta': { titolo: 'Accetta la sfida', carica: () => import('./SfidaAccetta'), barra: 'simulazioni' },
+  amici: { titolo: 'Amici', carica: () => import('./Amici'), barra: 'simulazioni' },
+  classifica: { titolo: 'Classifica', carica: () => import('./Classifica'), barra: 'simulazioni' },
+  condividi: { titolo: 'Condividi', carica: () => import('./Condividi'), barra: 'simulazioni' },
 };

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { User } from 'firebase/auth';
-import { Fingerprint, Pencil, Download, Trash2, LogOut, Unlink } from 'lucide-react';
+import { Icona } from '../brand/icone/Icona';
 import { AppState, ProjectLink } from '../types';
 import { ECOSYSTEM, SCOPES, ScopeId, ATLAS_API_URL } from '../config/ecosystem';
 import { APP_NAME } from '../config/offer';
@@ -62,7 +62,7 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
     <Screen>
       <TopBar onBack={onBack} />
       <div className="flex items-center gap-2">
-        <Fingerprint className="text-testo" size={22} />
+        <Icona nome="projectid" size={24} className="text-testo" />
         <h2 className="text-2xl sm:text-3xl font-bold text-testo">{ECOSYSTEM.accountName}</h2>
       </div>
 
@@ -84,7 +84,7 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
         </div>
         {account && !editing && (
           <button onClick={() => setEditing(true)} className="p-2 rounded-xl bg-azione-su/10 hover:bg-azione-su/20" aria-label="Modifica profilo">
-            <Pencil size={18} />
+            <Icona nome="modifica" size={20} />
           </button>
         )}
       </div>
@@ -132,7 +132,7 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
         {link && (
           <button onClick={() => run(onUnlink)} disabled={busy}
             className="flex items-center justify-center gap-2 py-3 rounded-2xl font-bold text-sm text-testo-tenue border border-linea">
-            <Unlink size={16} /> Scollega {APP_NAME}
+            <Icona nome="scollega" size={18} /> Scollega {APP_NAME}
           </button>
         )}
       </div>
@@ -141,11 +141,11 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
         <h3 className="text-xs font-bold text-testo-tenue">I tuoi dati</h3>
         <button onClick={exportData} disabled={busy}
           className="flex items-center gap-3 p-3.5 rounded-2xl border border-linea font-bold text-sm text-testo">
-          <Download size={18} className="text-azione" /> Copia i tuoi dati
+          <Icona nome="copia" size={20} className="text-azione" /> Copia i tuoi dati
         </button>
         <button onClick={onLogout}
           className="flex items-center gap-3 p-3.5 rounded-2xl border border-linea font-bold text-sm text-testo">
-          <LogOut size={18} className="text-testo-tenue" /> Esci
+          <Icona nome="esci" size={20} className="text-testo-tenue" /> Esci
         </button>
         {dati && (
           <div className="flex flex-col gap-1.5">
@@ -170,7 +170,7 @@ export default function ProjectProfile({ user, account, appState, onBack, onAcco
         ) : (
           <button onClick={() => setConfermaElimina(true)} disabled={busy}
             className="flex items-center gap-3 p-3.5 rounded-2xl border border-basso/40 font-bold text-sm text-basso-testo">
-            <Trash2 size={18} /> Elimina {ECOSYSTEM.accountName}
+            <Icona nome="cancella" size={20} /> Elimina {ECOSYSTEM.accountName}
           </button>
         )}
       </div>

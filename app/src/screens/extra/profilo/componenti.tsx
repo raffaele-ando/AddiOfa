@@ -1,11 +1,9 @@
 // Mattoncini condivisi dalle schermate del profilo: pagina con intestazione, avatar, righe di lista, e gli hook che
 // leggono il banco domande attivo e i badge. Stile: lo stesso di Lezioni e Impostazioni (carte superficie-2, token, niente animazioni).
 import { useEffect, useMemo, type ReactNode } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { CorpusType } from '../../../types';
 import { getQuestionsByCorpus, questions } from '../../../data/questions';
 import { urlDisegno } from '../../../brand/risorse';
-import { FONT } from '../../../brand/tokens';
 import { useTheme } from '../../../hooks/useTheme';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
@@ -13,11 +11,11 @@ import { iniziale, normalizzaProfilo, type ProfiloDati } from '../../../lib/prof
 import { valutaBadge, type BadgeValutato } from '../../../lib/profilo/badge';
 import { useExtra, useExtraDati } from '../contesto';
 
-import { IconaTono, Pagina as PaginaBase, Sezione, type Tono } from '../ui';
+import { IconaTono, Pagina as PaginaBase, Sezione, TONI, type Tono } from '../ui';
 export { Sezione };
 /** Pagina del profilo: la pagina comune, con `indietro` come nome della prop (compatibilità con le schermate esistenti). */
-export function Pagina({ titolo, sottotitolo, indietro, destra, children }: { titolo: string; sottotitolo?: ReactNode; indietro?: () => void; destra?: ReactNode; children: ReactNode }) {
-  return <PaginaBase titolo={titolo} sottotitolo={sottotitolo} onBack={indietro} destra={destra}>{children}</PaginaBase>;
+export function Pagina({ titolo, indietro, destra, children }: { titolo: string; indietro?: () => void; destra?: ReactNode; children: ReactNode }) {
+  return <PaginaBase titolo={titolo} onBack={indietro} destra={destra}>{children}</PaginaBase>;
 }
 
 /** Avatar tondo: la lettera del nome oppure un'illustrazione del kit. Mai una foto. */
@@ -32,24 +30,44 @@ export function Avatar({ profilo, lato = 72 }: { profilo: ProfiloDati; lato?: nu
   );
 }
 
-/** Riga di lista cliccabile (icona nel tono del suo significato, titolo, testo, freccia). */
-export function RigaLista({ icona, tono = 'azione', titolo, testo, destra, onClick }: { icona: ReactNode; tono?: Tono; titolo: string; testo?: string; destra?: ReactNode; onClick: () => void }) {
+/** Tessera di un solo gesto: icona nel tono del suo significato e UNA parola. */
+export function TesseraIcona({ icona, tono = 'azione', parola, onClick }: { icona: ReactNode; tono?: Tono; parola: string; onClick: () => void }) {
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }}
-      className="brand-premibile w-full flex items-center gap-3 px-3.5 py-[11px] min-h-[56px] text-left">
-      <IconaTono tono={tono} lato={34} className="rounded-[9px]">{icona}</IconaTono>
-      <span className="flex-1 min-w-0">
-        <span className="block text-[15px] leading-[20px] font-semibold text-testo">{titolo}</span>
-        {testo && <span className="block text-[12.5px] leading-[17px] text-testo-tenue">{testo}</span>}
-      </span>
-      {destra}
-      <ChevronRight size={20} strokeWidth={2} className="shrink-0 -mr-1 text-testo-tenue" aria-hidden="true" />
+      className="brand-premibile flex flex-col items-center justify-center gap-2.5 rounded-[14px] bg-superficie-2 px-2 py-4 min-h-[96px]">
+      <IconaTono tono={tono} lato={44} className="rounded-[13px] bg-superficie">{icona}</IconaTono>
+      <span className="text-[14.5px] leading-[18px] font-bold text-testo">{parola}</span>
     </button>
   );
 }
 
-export function GruppoRighe({ children }: { children: ReactNode }) {
-  return <div className="rounded-[12px] bg-superficie-2 overflow-hidden divide-y divide-linea">{children}</div>;
+/** Selettore a sole icone (una per sezione, con `aria-label`): la scelta è quella con lo sfondo blu chiaro. */
+export function SelettoreIcone<T extends string>({ nome, voci, valore, onScegli }: {
+  nome: string; voci: { id: T; icona: ReactNode; nome: string }[]; valore: T; onScegli: (v: T) => void;
+}) {
+  return (
+    <div role="radiogroup" aria-label={nome} className="grid gap-1 p-1 rounded-[14px] bg-superficie-2" style={{ gridTemplateColumns: `repeat(${voci.length}, minmax(0, 1fr))` }}>
+      {voci.map(v => {
+        const on = v.id === valore;
+        return (
+          <button key={v.id} type="button" role="radio" aria-checked={on} aria-label={v.nome} title={v.nome}
+            onClick={() => { playTapSound(); onScegli(v.id); }}
+            className={cn('brand-premibile h-11 rounded-[10px] grid place-items-center', on ? 'bg-superficie text-azione-scuro shadow-[0_1px_3px_rgba(15,23,42,0.08)] dark:shadow-none dark:border dark:border-linea' : 'text-testo-tenue')}>
+            {v.icona}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Icona + numero (con il tono del significato): al posto di una frase. */
+export function Numero({ icona, valore, tono = 'azione', nome, className }: { icona: ReactNode; valore: ReactNode; tono?: Tono; nome: string; className?: string }) {
+  return (
+    <span className={cn('inline-flex items-center gap-1.5 font-bold tabular-nums', className)} role="img" aria-label={`${nome}: ${typeof valore === 'string' || typeof valore === 'number' ? valore : ''}`}>
+      <span aria-hidden="true" className={TONI[tono].icona}>{icona}</span><span aria-hidden="true" className="text-testo">{valore}</span>
+    </span>
+  );
 }
 
 /** Il profilo salvato, già ripulito. */

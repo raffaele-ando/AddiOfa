@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { Info } from 'lucide-react';
+import { Icona } from '../../brand/icone/Icona';
 import type { Livello } from './stima';
 import { formatProbabilita } from '../../lib/diagnostic';
 
@@ -15,10 +15,10 @@ const pct = (y: number) => `${(((y - VB_Y) / VB_H) * 100).toFixed(2)}%`;
 const ALONE: Record<Livello, number> = { basso: 0.3, medio: 0.12, alto: 0.12 };
 
 interface Props {
-  /** 0-100. null = nessuna stima: arco vuoto e invito a fare il diagnostico. */
+  /** 0-100. null = nessuna stima: arco vuoto. */
   percento: number | null;
   livello: Livello;
-  /** Riga colorata in grassetto sotto la percentuale */
+  /** Parole colorate in grassetto sotto la percentuale */
   etichetta: string;
   /** Riga grigia sotto l'etichetta */
   sotto: string;
@@ -95,14 +95,13 @@ export default function Misuratore({ percento, livello, etichetta, sotto, onInfo
         <button type="button" onClick={onInfo} aria-label="Come è calcolata la stima"
           className="absolute -translate-x-1/2 -translate-y-1/2 grid place-items-center w-9 h-9 rounded-full text-testo-tenue hover:text-testo"
           style={{ left: `${(195 / 390) * 100}%`, top: pct(194) }}>
-          <Info size={16} strokeWidth={1.8} aria-hidden="true" />
+          <Icona nome="info" size={18} />
         </button>
       )}
 
       {vuoto ? (
-        <div className="absolute inset-x-0 flex flex-col items-center text-center pointer-events-none" style={{ top: pct(222) }}>
-          <div className="font-extrabold text-testo leading-[1.1]" style={{ fontSize: cq(22), letterSpacing: '-0.01em' }}>Scopri a che<br />punto sei</div>
-          <div className="text-testo-tenue font-medium" style={{ fontSize: cq(13.5), marginTop: cq(8) }}>la tua probabilità di superare il test</div>
+        <div className="absolute inset-x-0 flex flex-col items-center text-center pointer-events-none" style={{ top: pct(232) }}>
+          <div className="font-extrabold text-testo-tenue leading-[1.1]" style={{ fontSize: cq(26), letterSpacing: '-0.01em' }}>Nessuna stima</div>
         </div>
       ) : (
         <>

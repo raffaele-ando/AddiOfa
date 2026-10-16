@@ -1,11 +1,11 @@
 import type { DefSchermata } from '../registro';
 
-/** Schermate di quest'area: id → definizione. Le aggiunge l'agente che ne è proprietario. */
+/** Schermate di quest'area: id → definizione. `progressi` unisce statistiche, analisi per argomento, calendario e attività. */
 export const SCHERMATE_PROFILO: Record<string, DefSchermata> = {
-  profilo: { titolo: 'Il tuo profilo', carica: () => import('./Profilo') },
+  profilo: { titolo: 'Profilo', carica: () => import('./Profilo') },
   'profilo-modifica': { titolo: 'Modifica profilo', carica: () => import('./ProfiloModifica') },
+  progressi: { titolo: 'Progressi', carica: () => import('./Progressi') },
   obiettivi: { titolo: 'Obiettivi', carica: () => import('./Obiettivi') },
-  calendario: { titolo: 'Calendario', carica: () => import('./Calendario') },
   badge: { titolo: 'Badge', carica: () => import('./Badge') },
-  attivita: { titolo: 'Attività', carica: () => import('./Attivita') },
+  pass: { titolo: 'Pass', carica: () => import('./Pass') },
 };

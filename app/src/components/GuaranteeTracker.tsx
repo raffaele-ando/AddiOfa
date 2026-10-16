@@ -1,4 +1,4 @@
-import { ShieldCheck, Check } from 'lucide-react';
+import { Icona } from '../brand/icone/Icona';
 import { AppState } from '../types';
 import { computeGuaranteeProgress } from '../lib/guarantee';
 import { cn } from '../lib/utils';
@@ -10,16 +10,20 @@ export default function GuaranteeTracker({ appState }: { appState: AppState }) {
   return (
     <div className="bg-alto-tinta border border-alto/30 rounded-2xl p-4 flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        <ShieldCheck size={20} className="text-alto-testo" />
+        <Icona nome="garanzia" size={22} className="text-alto-testo" />
         <span className="font-bold text-sm text-alto-testo">
-          Stato della garanzia
+          Garanzia
+        </span>
+        <span role="img" aria-label={progress.qualified ? 'Hai tutti i requisiti: se non superi il test hai diritto al rimborso' : 'Completa tutti i requisiti prima del test per avere diritto al rimborso'}
+          className={cn('ml-auto', progress.qualified ? 'text-alto-testo' : 'text-testo-tenue')}>
+          <Icona nome={progress.qualified ? 'stato-ok' : 'blocco'} size={20} />
         </span>
       </div>
       {progress.checks.map(c => (
         <div key={c.label} className="flex flex-col gap-1">
           <div className="flex justify-between text-xs sm:text-sm font-bold text-testo">
             <span className="flex items-center gap-1.5">
-              {c.done && <Check size={14} strokeWidth={3.5} className="text-alto-testo" />}
+              {c.done && <Icona nome="stato-ok" size={16} className="text-alto-testo" />}
               {c.label}
             </span>
             <span>{c.current}/{c.target}</span>
@@ -32,11 +36,6 @@ export default function GuaranteeTracker({ appState }: { appState: AppState }) {
           </div>
         </div>
       ))}
-      <p className="text-xs font-bold text-testo-tenue">
-        {progress.qualified
-          ? 'Hai tutti i requisiti: se non superi il test hai diritto al rimborso.'
-          : 'Completa tutti i requisiti prima del test per avere diritto al rimborso.'}
-      </p>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Icona } from '../brand/icone/Icona';
 import { cn } from '../lib/utils';
 import { playTapSound } from '../lib/audio';
 import { ECOSYSTEM } from '../config/ecosystem';
@@ -25,7 +25,7 @@ export function TopBar({ step, totalSteps, onBack }: { step?: number; totalSteps
           className="p-1 -ml-1 text-testo-tenue hover:text-testo transition-colors duration-100"
           aria-label="Indietro"
         >
-          <ChevronLeft size={26} strokeWidth={2.5} />
+          <Icona nome="indietro" size={28} />
         </button>
       ) : (
         <span className="w-[26px]" />
@@ -63,7 +63,7 @@ export function PrimaryButton({ children, onClick, disabled, className }: {
       )}
     >
       <span>{children}</span>
-      <ChevronRight size={22} strokeWidth={3} />
+      <Icona nome="avanti" size={24} />
     </button>
   );
 }
@@ -102,7 +102,7 @@ export function ChoiceCard({ selected, onClick, title, subtitle }: {
         "w-7 h-7 rounded-full border flex items-center justify-center shrink-0 transition-colors duration-100",
         selected ? "bg-azione border-azione text-azione-su" : "border-linea text-transparent"
       )}>
-        <Check size={16} strokeWidth={3.5} />
+        <Icona nome="stato-ok" size={16} />
       </span>
       <span className="flex flex-col">
         <span className="font-bold text-testo">{title}</span>

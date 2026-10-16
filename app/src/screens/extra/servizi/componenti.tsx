@@ -1,6 +1,6 @@
 // Mattoncini condivisi dalle schermate dei servizi: stessa impostazione di Lezioni (intestazione, carte superficie-2, token di tema).
 import { ReactNode, useEffect, useState } from 'react';
-import { ChevronLeft, Info } from 'lucide-react';
+import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { FONT } from '../../../brand/tokens';
 import { urlDisegno } from '../../../brand/risorse';
@@ -27,12 +27,12 @@ export function Disegno({ nome, lato = 140, className }: { nome: string; lato?: 
 }
 
 import { Pagina as PaginaBase, TONI, type Tono } from '../ui';
-/** Pagina dei servizi: la pagina comune; la freccia torna alla schermata precedente (o a `indietroA`). `figura` non si disegna più (niente icone decorative). */
-export function Pagina({ titolo, sottotitolo, children, indietroA }: {
-  titolo: string; sottotitolo?: string; figura?: ReactNode; children: ReactNode; indietroA?: () => void;
+/** Pagina dei servizi: la pagina comune; la freccia torna alla schermata precedente (o a `indietroA`). Niente sottotitolo; `destra` è un comando piccolo (la «i»). */
+export function Pagina({ titolo, children, indietroA, destra }: {
+  titolo: string; children: ReactNode; indietroA?: () => void; destra?: ReactNode;
 }) {
   const { indietro } = useExtra();
-  return <PaginaBase titolo={titolo} sottotitolo={sottotitolo} onBack={indietroA ?? indietro}>{children}</PaginaBase>;
+  return <PaginaBase titolo={titolo} onBack={indietroA ?? indietro} destra={destra}>{children}</PaginaBase>;
 }
 
 /** Sezione con titolo (h2), per tenere i titoli in ordine per chi usa lo screen reader. */
@@ -51,7 +51,7 @@ export function Nota({ children, tono = 'neutro', className }: { children: React
   const icona = tono === 'azione' ? 'text-azione' : tono === 'attenzione' ? 'text-medio-numero' : tono === 'riuscito' ? 'text-alto-numero' : tono === 'rischio' ? 'text-basso-numero' : 'text-testo-tenue';
   return (
     <div role="note" className={cn('flex gap-2.5 rounded-[12px] p-3.5 text-[13.5px] leading-[20px]', tinta, className)}>
-      <Info size={18} className={cn('mt-[1px] shrink-0', icona)} aria-hidden="true" />
+      <Icona nome="info" size={18} className={cn('mt-[1px] shrink-0', icona)} />
       <div className="min-w-0">{children}</div>
     </div>
   );

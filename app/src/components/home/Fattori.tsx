@@ -1,4 +1,4 @@
-import { ChevronRight } from 'lucide-react';
+import { Icona } from '../../brand/icone/Icona';
 import { Carta, Barra, coloreValore } from './comune';
 import type { Fattore } from './stima';
 import { playTapSound } from '../../lib/audio';
@@ -16,8 +16,8 @@ function Riga({ f, icona, onVai, piccolo }: { f: Fattore; icona?: React.ReactNod
       </span>
       <span className="block mt-2"><Barra valore={dato ? f.percento! : 0} colore={dato ? coloreValore(f.percento!) : 'transparent'} alta={piccolo ? 6 : 7} /></span>
       <span className="flex items-center justify-between text-[11px] leading-tight text-testo-tenue mt-1.5">
-        <span className="truncate">{dato ? `${f.risposte} risposte` : 'Poche risposte'}</span>
-        {onVai && <ChevronRight size={14} className="shrink-0 text-testo-tenue" aria-hidden="true" />}
+        <span className="inline-flex items-center gap-1 truncate"><Icona nome="risposte" size={13} />{dato ? f.risposte : '–'}</span>
+        {onVai && <Icona nome="avanti" size={16} className="shrink-0 text-testo-tenue" />}
       </span>
     </>
   );
@@ -31,8 +31,7 @@ function Riga({ f, icona, onVai, piccolo }: { f: Fattore; icona?: React.ReactNod
 export default function Fattori({ categorie, livelli, onVai }: { categorie: Fattore[]; livelli: Fattore[]; onVai?: (filtro: string) => void }) {
   return (
     <Carta className="p-3.5">
-      <h2 className="text-[15.5px] font-bold text-testo leading-tight">Dove sei più solido</h2>
-      <p className="text-[12.5px] text-testo-tenue mt-0.5 mb-3">Accuratezza sulle domande a cui hai risposto. Sotto 5 risposte non mostriamo la percentuale.</p>
+      <h2 className="text-[15.5px] font-bold text-testo leading-tight mb-3">Punti solidi</h2>
       <div className="grid grid-cols-2 gap-2">
         {categorie.map(f => <Riga key={f.id} f={f} onVai={onVai} />)}
       </div>

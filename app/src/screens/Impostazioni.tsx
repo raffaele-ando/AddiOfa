@@ -1,5 +1,5 @@
 import { ReactNode, useMemo, useState } from 'react';
-import { Bell, BookOpen, Bug, Globe, ChevronRight, ClipboardCopy, Download, FileText, HelpCircle, KeyRound, LifeBuoy, LogIn, LogOut, Moon, ShieldCheck, Sparkles, Target, Trash2, Unlock, Upload, UserRound, Volume2 } from 'lucide-react';
+import { Icona, type NomeIcona } from '../brand/icone/Icona';
 import type { CorpusType, LegalSection } from '../types';
 import { useAccess } from '../access/context';
 import { useTheme, type ModoTema } from '../hooks/useTheme';
@@ -14,7 +14,7 @@ import { INITIAL_CORPUS_COUNT, questions } from '../data/questions';
 import { loadState } from '../lib/storage';
 import { nomeVisibile, normalizzaProfilo } from '../lib/profilo/dati';
 import { SCHERMATE } from './extra/registro';
-import { IconaTono, Pagina, type Tono } from './extra/ui';
+import { FoglioInfo, IconaTono, Pagina, PulsanteInfo, type Tono } from './extra/ui';
 
 // Stessa versione di package.json (l'app non legge il file a runtime)
 const VERSIONE_APP = '1.0.0';
@@ -35,7 +35,7 @@ interface Props {
   onLogout?: () => void;
   onOpenProfile?: () => void;
   onOpenDebug?: () => void;
-  /** Apre una schermata extra (profilo-modifica, obiettivi, faq, segnala): `vaiExtra` di App. Assente = si apre con un ricaricamento della pagina (?vista=). */
+  /** Apre una schermata extra (faq, segnala): `vaiExtra` di App. Assente = si apre con un ricaricamento della pagina (?vista=). */
   onVai?: (id: string, params?: Record<string, string>) => void;
   /** Materiale di studio in uso e come cambiarlo (la scelta si vede solo con il Pass). */
   corpus?: CorpusType;
@@ -53,39 +53,29 @@ function vaiConUrl(id: string) {
   window.location.assign(`${window.location.pathname}?vista=${encodeURIComponent(id)}`);
 }
 
-/** Sezione stile liste iOS: titoletto grigio sopra, gruppo bianco con righe separate da un filetto, nota piccola sotto. */
-function Sezione({ titolo, nota, children }: { titolo: string; nota?: ReactNode; children: ReactNode }) {
-  return (
-    <section aria-label={titolo} className="mt-[24px]">
-      <h2 className="px-1 pb-[7px] text-[12px] leading-[14px] font-semibold uppercase tracking-[0.06em] text-testo-tenue">{titolo}</h2>
-      <div className="rounded-[12px] bg-superficie-2 overflow-hidden divide-y divide-linea">{children}</div>
-      {nota && <p className="px-1 pt-2 text-[12px] leading-[17px] text-testo-tenue">{nota}</p>}
-    </section>
-  );
+/** Gruppo di righe: tessera chiara con filetti, nessun titolo (ogni riga ha già la sua icona e la sua parola). */
+function Gruppo({ children, etichetta }: { children: ReactNode; etichetta: string }) {
+  return <section aria-label={etichetta} className="mt-[14px] rounded-[12px] bg-superficie-2 overflow-hidden divide-y divide-linea">{children}</section>;
 }
 
-/** Icona della riga: il colore dice il significato (Pass = ambra, obiettivi = verde, profilo e studio = blu, cancellare = corallo); le utilità senza significato restano neutre. */
-function Icona({ children, tono }: { children: ReactNode; tono?: Tono }) {
+/** Icona della riga: il colore dice il significato (dati = azione, cancellare = corallo); le utilità senza significato restano neutre. */
+function IconaRiga({ nome, tono }: { nome: NomeIcona; tono?: Tono }) {
   return tono
-    ? <IconaTono tono={tono} lato={30} className="rounded-[8px]">{children}</IconaTono>
-    : <span className="w-[30px] h-[30px] rounded-[8px] bg-superficie text-testo-tenue flex items-center justify-center shrink-0" aria-hidden="true">{children}</span>;
+    ? <IconaTono tono={tono} lato={32} className="rounded-[9px]"><Icona nome={nome} size={18} /></IconaTono>
+    : <span className="w-[32px] h-[32px] rounded-[9px] bg-superficie text-testo-tenue flex items-center justify-center shrink-0" aria-hidden="true"><Icona nome={nome} size={18} /></span>;
 }
 
-function Riga({ icona, tono, titolo, testo, destra, onClick, forte }: {
-  icona?: ReactNode; tono?: Tono; titolo: string; testo?: string; destra?: ReactNode; onClick?: () => void; forte?: boolean;
-}) {
+/** Una riga: icona, UNA parola, e a destra il comando (interruttore, selettore a icone, valore o freccia). */
+function Riga({ icona, tono, titolo, destra, onClick }: { icona: NomeIcona; tono?: Tono; titolo: string; destra?: ReactNode; onClick?: () => void }) {
   const corpo = (
     <>
-      {icona && <Icona tono={tono}>{icona}</Icona>}
-      <span className="flex-1 min-w-0">
-        <span className={cn('block text-[15px] leading-[20px]', forte ? 'font-semibold text-azione-scuro' : 'text-testo')}>{titolo}</span>
-        {testo && <span className="block text-[12.5px] leading-[17px] text-testo-tenue">{testo}</span>}
-      </span>
+      <IconaRiga nome={icona} tono={tono} />
+      <span className="flex-1 min-w-0 text-[16px] leading-[22px] text-testo">{titolo}</span>
       {destra}
-      {onClick && !destra && <ChevronRight size={20} strokeWidth={2} className="shrink-0 -mr-1 text-testo-tenue" aria-hidden="true" />}
+      {onClick && !destra && <Icona nome="avanti" size={20} className="shrink-0 -mr-1 text-testo-tenue" />}
     </>
   );
-  const classe = 'w-full flex items-center gap-3 px-3.5 py-[11px] min-h-[52px] text-left';
+  const classe = 'w-full flex items-center gap-3 px-3.5 py-[10px] min-h-[54px] text-left';
   return onClick
     ? <button type="button" onClick={() => { playTapSound(); onClick(); }} className={cn('brand-premibile', classe)}>{corpo}</button>
     : <div className={classe}>{corpo}</div>;
@@ -100,23 +90,51 @@ function Interruttore({ acceso, onCambia, etichetta }: { acceso: boolean; onCamb
   );
 }
 
-const TEMI: { id: ModoTema; nome: string }[] = [
-  { id: 'sistema', nome: 'Sistema' },
-  { id: 'chiaro', nome: 'Chiaro' },
-  { id: 'scuro', nome: 'Scuro' },
+/** Selettore a sole icone: ogni voce ha `aria-label`; la scelta è quella con lo sfondo chiaro. */
+function Segmento<T extends string>({ nome, voci, valore, onScegli }: { nome: string; voci: { id: T; icona: NomeIcona; nome: string; blocco?: boolean }[]; valore: T; onScegli: (v: T) => void }) {
+  return (
+    <div role="radiogroup" aria-label={nome} className="shrink-0 grid gap-0.5 p-0.5 rounded-[10px] bg-superficie" style={{ gridTemplateColumns: `repeat(${voci.length}, minmax(0, 1fr))` }}>
+      {voci.map(v => (
+        <button key={v.id} type="button" role="radio" aria-checked={valore === v.id} aria-label={v.nome} title={v.nome} onClick={() => { playTapSound(); onScegli(v.id); }}
+          className={cn('relative grid h-9 w-11 place-items-center rounded-[8px]', valore === v.id ? 'bg-superficie-2 text-azione-scuro shadow-[0_1px_3px_rgba(15,23,42,0.1)] dark:shadow-none dark:border dark:border-tacca' : 'text-testo-tenue')}>
+          <Icona nome={v.icona} size={20} />
+          {v.blocco && <Icona nome="blocco" size={11} className="absolute right-1 top-1 text-medio-numero" />}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/** Pulsante tondo con la sola icona (esporta, importa, copia, cancella). */
+function IconaComando({ icona, nome, tono, onClick }: { icona: NomeIcona; nome: string; tono: 'azione' | 'basso'; onClick: () => void }) {
+  return (
+    <button type="button" onClick={() => { playTapSound(); onClick(); }} aria-label={nome} title={nome}
+      className={cn('brand-premibile grid h-10 w-10 place-items-center rounded-full', tono === 'basso' ? 'bg-basso-tinta text-basso-numero' : 'bg-azione-tinta text-azione-scuro')}>
+      <Icona nome={icona} size={20} />
+    </button>
+  );
+}
+
+// Ogni pagina legale ha la sua icona (termini = documento, privacy = occhio barrato, cookie = biscotto, recesso = annulla)
+const ICONA_LEGALE: Partial<Record<LegalSection, NomeIcona>> = { termini: 'documento', privacy: 'privacy', cookie: 'cookie', recesso: 'recesso' };
+
+const TEMI: { id: ModoTema; nome: string; icona: NomeIcona }[] = [
+  { id: 'sistema', nome: 'Sistema', icona: 'tema-sistema' },
+  { id: 'chiaro', nome: 'Chiaro', icona: 'tema-chiaro' },
+  { id: 'scuro', nome: 'Scuro', icona: 'tema-scuro' },
 ];
 
 export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLanding, onOpenLegal, onImport, onExport, onLogin, onLogout, onOpenProfile, onOpenDebug, onVai, corpus, onCambiaCorpus, onReset }: Props) {
-  const { pass, entitlement, provider, unlockDemo } = useAccess();
+  const { pass, provider } = useAccess();
   const { modo, setModo } = useTheme();
   const toast = useToast();
   const [suoniSpenti, setSuoniSpenti] = useState(isAudioMuted());
   const [chiediCancella, setChiediCancella] = useState(false);
   const [testoCopia, setTestoCopia] = useState<string | null>(null);
+  const [info, setInfo] = useState(false);
   const demo = provider.mode === 'demo';
   // il nome del profilo si legge dai progressi salvati (lo scrive la schermata profilo-modifica)
   const nome = useMemo(() => nomeVisibile(normalizzaProfilo(loadState().extra?.profilo)), []);
-  const haNome = useMemo(() => !!normalizzaProfilo(loadState().extra?.profilo).nome, []);
   const vai = (id: string) => (onVai ? onVai(id) : vaiConUrl(id));
   const c = SCHERMATE;
 
@@ -125,22 +143,16 @@ export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLand
     setAudioMuted(!acceso);
     if (acceso) playTapSound();
   };
-  const sbloccaProva = async () => {
-    try { await unlockDemo(); toast('Pass in prova attivo.', 'ok'); } catch { toast('Non sono riuscito a sbloccare il Pass in prova. Riprova.', 'errore'); }
-  };
-  const scadenza = entitlement.expiresAt
-    ? `Vale fino al ${new Date(entitlement.expiresAt).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })}.`
-    : 'Non ha una scadenza.';
 
   // Nella demo scaricare un file non si può: si copia il testo dei progressi, con il testo selezionabile se gli appunti non rispondono.
   const copiaProgressi = async () => {
     const testo = JSON.stringify(loadState(), null, 2);
     try {
       await navigator.clipboard.writeText(testo);
-      toast('Progressi copiati negli appunti.', 'ok');
+      toast('Progressi copiati.', 'ok');
     } catch {
       setTestoCopia(testo);
-      toast('Non ho potuto usare gli appunti: il testo è qui sotto, selezionalo e copialo.', 'info');
+      toast('Appunti non disponibili: copia il testo qui sotto.', 'info');
     }
   };
   const cancellaDati = () => {
@@ -150,114 +162,89 @@ export default function Impostazioni({ utente, onBack, onOpenPaywall, onOpenLand
     window.location.reload();
   };
 
-  const materiale = corpus ?? 'all';
+  const materiale: CorpusType = corpus ?? 'all';
+  const sceltaMateriale: 'initial' | 'all' = materiale === 'initial' || !pass ? 'initial' : 'all';
+
   return (
     <Pagina titolo="Impostazioni" onBack={onBack}>
       <>
-          <Sezione titolo="Account" nota={!utente && !onLogin ? 'Non serve un account: i tuoi dati restano su questo dispositivo.' : undefined}>
-            {c['profilo-modifica'] && (
-              <Riga tono="azione" icona={<UserRound size={17} />} titolo={haNome ? nome : 'Il tuo profilo'} testo="Nome, avatar e corso di studi" onClick={() => vai('profilo-modifica')} />
-            )}
+        {(utente || onLogin) && (
+          <Gruppo etichetta="Account">
             {utente ? (
               <>
-                <Riga tono="azione" icona={<UserRound size={17} />} titolo={utente.displayName || 'Account collegato'} testo={utente.email ?? undefined} onClick={onOpenProfile} />
-                {onLogout && <Riga icona={<LogOut size={17} />} titolo="Esci" onClick={onLogout} />}
+                <Riga tono="azione" icona="profilo" titolo={utente.displayName || nome} onClick={onOpenProfile} />
+                {onLogout && <Riga icona="esci" titolo="Esci" onClick={onLogout} />}
               </>
             ) : (
-              onLogin && <Riga tono="azione" icona={<LogIn size={17} />} titolo="Accedi" testo="Per salvare i progressi nel tuo account" forte onClick={onLogin} />
+              onLogin && <Riga tono="azione" icona="accedi" titolo="Accedi" onClick={onLogin} />
             )}
-            {!c['profilo-modifica'] && !utente && !onLogin && <Riga titolo="Nessun account" testo="L'app funziona senza registrazione" />}
-          </Sezione>
+          </Gruppo>
+        )}
 
-          <Sezione titolo="Preferenze">
-            <div className="flex items-center gap-3 px-3.5 py-[11px] min-h-[52px]">
-              <Icona><Moon size={17} /></Icona>
-              <span className="text-[15px] text-testo shrink-0">Tema</span>
-              <div role="radiogroup" aria-label="Tema" className="ml-auto grid grid-cols-3 gap-0.5 p-0.5 rounded-[9px] bg-superficie">
-                {TEMI.map(t => (
-                  <button key={t.id} type="button" role="radio" aria-checked={modo === t.id} onClick={() => { playTapSound(); setModo(t.id); }}
-                    className={cn('rounded-[7px] px-2.5 py-1.5 text-[13px] font-semibold', modo === t.id ? 'bg-superficie-2 text-testo shadow-[0_1px_3px_rgba(15,23,42,0.1)] dark:shadow-none dark:border dark:border-tacca' : 'text-testo-tenue')}>
-                    {t.nome}
-                  </button>
-                ))}
-              </div>
+        <Gruppo etichetta="Preferenze">
+          <Riga icona="tema" titolo="Tema" destra={<Segmento<ModoTema> nome="Tema" voci={TEMI} valore={modo} onScegli={setModo} />} />
+          <Riga icona="suoni" titolo="Suoni" destra={<Interruttore acceso={!suoniSpenti} onCambia={cambiaSuoni} etichetta="Suoni" />} />
+          <Riga tono="azione" icona="materiale" titolo="Materiale" destra={
+            <Segmento<'initial' | 'all'> nome="Materiale" valore={sceltaMateriale}
+              voci={[
+                { id: 'initial', icona: 'materiale-nucleo', nome: `Nucleo, ${INITIAL_CORPUS_COUNT} domande` },
+                { id: 'all', icona: 'materiale-tutto', nome: `Tutto il banco, ${questions.length} domande`, blocco: !pass },
+              ]}
+              onScegli={c => { if (!pass && c === 'all') onOpenPaywall(); else onCambiaCorpus?.(c); }} />
+          } />
+        </Gruppo>
+
+        <Gruppo etichetta="Dati">
+          <Riga tono="azione" icona="dati" titolo="Dati" destra={
+            <div className="flex shrink-0 items-center gap-2">
+              {onImport && <IconaComando icona="importa" nome="Importa progressi" tono="azione" onClick={onImport} />}
+              {onExport
+                ? <IconaComando icona="esporta" nome="Esporta progressi" tono="azione" onClick={onExport} />
+                : <IconaComando icona="copia" nome="Copia i progressi" tono="azione" onClick={() => void copiaProgressi()} />}
+              <IconaComando icona="cancella" nome="Cancella i dati di questo dispositivo" tono="basso" onClick={() => setChiediCancella(true)} />
             </div>
-            <Riga icona={<Volume2 size={17} />} titolo="Suoni dell'app" testo="Tocchi, risposte giuste e sbagliate"
-              destra={<Interruttore acceso={!suoniSpenti} onCambia={cambiaSuoni} etichetta="Suoni dell'app" />} />
-            {pass && onCambiaCorpus ? (
-              <div className="px-3.5 py-[11px] flex items-start gap-3">
-                <span className="mt-[3px]"><Icona tono="azione"><BookOpen size={17} /></Icona></span>
-                <div className="flex-1 min-w-0">
-                  <span className="block text-[15px] leading-[20px] text-testo">Domande da studiare</span>
-                  <div role="radiogroup" aria-label="Domande da studiare" className="mt-2 grid grid-cols-2 gap-0.5 p-0.5 rounded-[9px] bg-superficie">
-                    {([['initial', `Nucleo (${INITIAL_CORPUS_COUNT})`], ['all', `Tutto il banco (${questions.length})`]] as const).map(([id, testo]) => (
-                      <button key={id} type="button" role="radio" aria-checked={materiale === id} onClick={() => { playTapSound(); onCambiaCorpus(id); }}
-                        className={cn('rounded-[7px] px-2.5 py-1.5 text-[13px] font-semibold', materiale === id ? 'bg-superficie-2 text-testo shadow-[0_1px_3px_rgba(15,23,42,0.1)] dark:shadow-none dark:border dark:border-tacca' : 'text-testo-tenue')}>
-                        {testo}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : !pass && (
-              <Riga tono="azione" icona={<BookOpen size={17} />} titolo="Domande da studiare" testo={`Nucleo gratuito (${INITIAL_CORPUS_COUNT} domande). Tutto il banco (${questions.length}) con il Pass.`} />
-            )}
-          </Sezione>
+          } />
+        </Gruppo>
+        {testoCopia !== null && (
+          <div className="mt-2">
+            <label htmlFor="testo-progressi" className="sr-only">Testo dei progressi</label>
+            <textarea id="testo-progressi" data-testo-ok readOnly value={testoCopia} rows={6} onFocus={e => e.currentTarget.select()}
+              className="w-full rounded-[12px] bg-superficie-2 border border-linea p-3 text-[12px] font-mono text-testo" />
+          </div>
+        )}
 
-          <Sezione titolo="Promemoria" nota="AddiOFA non può mandarti notifiche: non c'è un servizio che le invii, e non ti mostriamo interruttori che non farebbero nulla. Per non perdere il filo, scegli quanti minuti studiare ogni giorno e metti una sveglia sul telefono.">
-            <Riga tono="medio" icona={<Bell size={17} />} titolo="Promemoria e notifiche" destra={<span className="shrink-0 text-[14px] text-testo-tenue">Non disponibili</span>} />
-            {c.obiettivi && <Riga tono="alto" icona={<Target size={17} />} titolo="Obiettivo giornaliero" testo="Scegli i minuti di studio al giorno" onClick={() => vai('obiettivi')} />}
-          </Sezione>
+        {(c.faq || c.segnala) && (
+          <Gruppo etichetta="Aiuto">
+            {c.faq && <Riga tono="azione" icona="faq" titolo="FAQ" onClick={() => vai('faq')} />}
+            {c.segnala && <Riga tono="azione" icona="segnala" titolo="Segnala" onClick={() => vai('segnala')} />}
+          </Gruppo>
+        )}
 
-          {onOpenLanding && (
-            <Sezione titolo="Sito">
-              <Riga icona={<Globe size={17} />} titolo="Pagina di presentazione" testo="La pagina che vede chi arriva la prima volta" onClick={onOpenLanding} />
-            </Sezione>
-          )}
+        <Gruppo etichetta="Informazioni">
+          <Riga icona="info" titolo="Versione" destra={
+            <span className="flex shrink-0 items-center gap-1">
+              <span className="text-[14px] text-testo-tenue tabular-nums">{VERSIONE_APP}{demo ? ' · demo' : ''}</span>
+              <PulsanteInfo onClick={() => setInfo(true)} etichetta="Informazioni sull'app" className="-mr-1.5" />
+            </span>
+          } />
+          {LEGAL_TABS.map(t => (
+            <Riga key={t.id} icona={ICONA_LEGALE[t.id] ?? 'documento'} titolo={t.label} onClick={() => onOpenLegal(t.id)} />
+          ))}
+          {onOpenLanding && <Riga icona="presentazione" titolo="Presentazione" onClick={onOpenLanding} />}
+          {onOpenDebug && <Riga icona="debug" titolo="Debug" onClick={onOpenDebug} />}
+        </Gruppo>
 
-          <Sezione titolo="Il tuo Pass" nota={demo && !pass ? 'Versione dimostrativa: nessun pagamento. Il Pass in prova serve solo a vedere come funziona.' : undefined}>
-            <Riga tono="medio" icona={<KeyRound size={17} />} titolo="Pass AddiOFA"
-              testo={pass ? `${entitlement.source === 'demo' ? 'Pass in prova attivo. ' : ''}${scadenza}` : 'Stai usando la parte gratuita.'}
-              destra={<span className={cn('shrink-0 text-[14px] font-semibold', pass ? 'text-alto-testo' : 'text-testo-tenue')}>{pass ? 'Attivo' : 'Gratis'}</span>} />
-            {!pass && <Riga tono="medio" icona={<Sparkles size={17} />} titolo="Scopri il Pass" forte onClick={onOpenPaywall} />}
-            {!pass && demo && <Riga tono="medio" icona={<Unlock size={17} />} titolo="Sblocca il Pass in prova" forte onClick={() => void sbloccaProva()} />}
-          </Sezione>
-
-          <Sezione titolo="Privacy e dati" nota="Progressi, profilo e obiettivi restano su questo dispositivo. Esportali per tenerne una copia o spostarli.">
-            {onImport && <Riga tono="azione" icona={<Upload size={17} />} titolo="Importa progressi" onClick={onImport} />}
-            {onExport
-              ? <Riga tono="azione" icona={<Download size={17} />} titolo="Esporta progressi" onClick={onExport} />
-              : <Riga tono="azione" icona={<ClipboardCopy size={17} />} titolo="Copia i progressi" testo="Come testo, negli appunti" onClick={() => void copiaProgressi()} />}
-            <Riga tono="basso" icona={<Trash2 size={17} />} titolo="Cancella i dati di questo dispositivo" testo="Progressi, profilo, obiettivi e badge" onClick={() => setChiediCancella(true)} />
-          </Sezione>
-          {testoCopia !== null && (
-            <div className="mt-2">
-              <label htmlFor="testo-progressi" className="block px-1 pb-1.5 text-[12.5px] text-testo-tenue">Testo dei progressi: selezionalo e copialo</label>
-              <textarea id="testo-progressi" readOnly value={testoCopia} rows={6} onFocus={e => e.currentTarget.select()}
-                className="w-full rounded-[12px] bg-superficie-2 border border-linea p-3 text-[12px] font-mono text-testo" />
-            </div>
-          )}
-
-          {(c.faq || c.segnala) && (
-            <Sezione titolo="Aiuto">
-              {c.faq && <Riga tono="azione" icona={<HelpCircle size={17} />} titolo="Domande frequenti" onClick={() => vai('faq')} />}
-              {c.segnala && <Riga tono="azione" icona={<LifeBuoy size={17} />} titolo="Segnala un problema" testo="Una domanda sbagliata, un errore dell'app" onClick={() => vai('segnala')} />}
-            </Sezione>
-          )}
-
-          <Sezione titolo="Informazioni" nota={<>{LEGAL_DRAFT && <>I testi legali sono bozze in attesa di revisione. </>}{DISCLAIMER}</>}>
-            {LEGAL_TABS.map(t => (
-              <Riga key={t.id} icona={t.id === 'privacy' ? <ShieldCheck size={17} /> : <FileText size={17} />} titolo={t.label} onClick={() => onOpenLegal(t.id)} />
-            ))}
-            <Riga titolo="Versione dell'app" destra={<span className="shrink-0 text-[14px] text-testo-tenue tabular-nums">{VERSIONE_APP}{demo ? ' · demo' : ''}</span>} />
-            {onOpenDebug && <Riga icona={<Bug size={17} />} titolo="Debug (solo sviluppo)" onClick={onOpenDebug} />}
-          </Sezione>
-
-          {FEATURE_FLAGS.projectId && !demo && <PoweredByAtlas className="mt-6" />}
+        {FEATURE_FLAGS.projectId && !demo && <PoweredByAtlas className="mt-6" />}
       </>
-      <ConfirmDialog open={chiediCancella} danger title="Cancellare i dati di questo dispositivo?"
+      <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Informazioni">
+        <p>{DISCLAIMER}</p>
+        {LEGAL_DRAFT && <p className="mt-2">I testi legali sono bozze in attesa di revisione di un professionista.</p>}
+        <p className="mt-2">Progressi, profilo e obiettivi restano su questo dispositivo: esportali per tenerne una copia o spostarli. AddiOFA non può mandarti notifiche, perché non c'è un servizio che le invii.</p>
+        {demo && <p className="mt-2">Versione dimostrativa: nessun pagamento, e il Pass in prova serve solo a vedere come funziona.</p>}
+      </FoglioInfo>
+      <ConfirmDialog open={chiediCancella} danger title="Cancellare i dati?"
         message="Vengono cancellati progressi, simulazioni, profilo, obiettivi e badge salvati qui. Non si può tornare indietro: se vuoi una copia, esportali prima. Il Pass non viene toccato."
-        confirmLabel="Cancella tutto" onConfirm={cancellaDati} onCancel={() => setChiediCancella(false)} />
+        confirmLabel="Cancella" onConfirm={cancellaDati} onCancel={() => setChiediCancella(false)} />
     </Pagina>
   );
 }

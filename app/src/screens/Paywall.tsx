@@ -1,14 +1,20 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Check, Minus, FlaskConical } from 'lucide-react';
 import type { LegalSection, PaywallReason } from '../types';
 import {
-  DISCLAIMER, FREE_LIMITS, PASS, PAYMENTS_ENABLED, STRIPE_LINK, currentPriceEur, formatEur, isLaunchPrice,
+  PAYMENTS_ENABLED, STRIPE_LINK,
 } from '../config/offer';
 import { useAccess, type AccessValue } from '../access/context';
 import { playTapSound } from '../lib/audio';
 import { cn } from '../lib/utils';
 import { Screen, TopBar, PrimaryButton } from '../components/ui';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
+import { Icona } from '../brand/icone/Icona';
+import { IconaTono } from './extra/ui';
+import { BloccoPrezzo, MOTIVI_PASS, TabellaConfronto } from './landing/dati';
+import { InfoFoglio } from './landing/comune';
+import { ICONE_LEGALI, NotaRecesso } from './Footer';
+import { DISCLAIMER } from '../config/offer';
+import { LEGAL_TABS } from '../legal';
 
 interface PaywallProps {
   onBack(): void;
@@ -17,35 +23,8 @@ interface PaywallProps {
   reason?: PaywallReason;
 }
 
-const INTESTAZIONI: Record<PaywallReason, { titolo: string; testo: string }> = {
-  simulazione: { titolo: 'Hai usato la simulazione gratuita', testo: 'Con il Pass fai simulazioni illimitate, nel formato del test di recupero (30 domande in 15 minuti).' },
-  domande: { titolo: 'Il resto del banco è nel Pass', testo: `Il nucleo di circa ${FREE_LIMITS.coreQuestions} domande resta gratis. Con il Pass hai tutte le altre, con la spiegazione in italiano.` },
-  teng: { titolo: 'Il formato TENG è nel Pass', testo: '30 domande in 15 minuti, 5 opzioni e penalità per ogni errore, come nel test d\'ingresso.' },
-  teoria: { titolo: 'La teoria completa è nel Pass', testo: 'Una scheda è gratis. Con il Pass hai la teoria di tutti i 31 argomenti.' },
-  errori: { titolo: 'Il ripasso sugli errori è nel Pass', testo: 'Ripassi le domande che hai sbagliato, nell\'ordine che serve a te.' },
-  statistiche: { titolo: 'Le statistiche complete sono nel Pass', testo: 'Vedi dove sei debole argomento per argomento.' },
-  generico: { titolo: 'Il Pass AddiOFA', testo: PASS.summary },
-};
-
-// Righe della tabella Gratis / Pass: i numeri vengono da config/offer.ts
-const RIGHE: { voce: string; gratis: string | boolean; pass: string | boolean }[] = [
-  { voce: 'Quiz diagnostico con probabilità', gratis: `${FREE_LIMITS.diagnostic} domande`, pass: true },
-  { voce: 'Ripasso intelligente', gratis: `nucleo di circa ${FREE_LIMITS.coreQuestions} domande`, pass: 'tutte le domande' },
-  { voce: 'Simulazioni', gratis: `${FREE_LIMITS.freeSimulations} completa`, pass: 'illimitate' },
-  { voce: 'Spiegazioni in italiano', gratis: false, pass: true },
-  { voce: 'Teoria', gratis: `${FREE_LIMITS.freeTheoryTopics} scheda`, pass: '31 argomenti' },
-  { voce: 'Ripasso sugli errori', gratis: false, pass: true },
-  { voce: 'Statistiche complete', gratis: false, pass: true },
-];
-
-const dataEstesa = (iso: string | number) =>
-  new Date(typeof iso === 'number' ? iso : `${iso}T12:00:00`).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-
-function Cella({ v }: { v: string | boolean }) {
-  if (v === true) return <Check size={18} strokeWidth={3.5} className="text-alto-numero mx-auto" aria-label="incluso" />;
-  if (v === false) return <Minus size={18} strokeWidth={3} className="text-testo-tenue mx-auto" aria-label="non incluso" />;
-  return <span>{v}</span>;
-}
+const dataCorta = (iso: string | number) =>
+  new Date(typeof iso === 'number' ? iso : `${iso}T12:00:00`).toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
 // Id anonimo per collegare il pagamento a chi lo ha fatto quando non c'è un utente: resta sul dispositivo
 function idAnonimo(): string {
@@ -72,17 +51,19 @@ function Casella({ spuntata, onChange, children }: { spuntata: boolean; onChange
         onChange={e => { playTapSound(); onChange(e.target.checked); }}
         className="mt-0.5 w-5 h-5 shrink-0 accent-azione"
       />
-      <span>{children}</span>
+      <span data-testo-ok>{children}</span>
     </label>
   );
 }
 
+// Il Pass: intestazione con icona e due-tre parole, prezzo e date in cifre, confronto Gratis/Pass a icone (spunte, lucchetti, numeri),
+// un solo pulsante pieno. Le spiegazioni stanno dietro la «i»; il recesso e l'avvertenza nel piè di pagina legale.
 export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'generico' }: PaywallProps) {
   const access = useAccess() as Utente;
   const { provider, pass, entitlement, track, unlockDemo } = access;
   const [subito, setSubito] = useState(false);
   const [letto, setLetto] = useState(false);
-  const [stato, setStato] = useState<string | null>(null);
+  const [stato, setStato] = useState<{ ok: boolean; testo: string } | null>(null);
   const visto = useRef(false);
 
   useEffect(() => {
@@ -91,9 +72,7 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
     track({ name: 'paywall_seen' });
   }, [pass, track]);
 
-  const prezzo = currentPriceEur();
-  const lancio = isLaunchPrice();
-  const testa = INTESTAZIONI[reason] ?? INTESTAZIONI.generico;
+  const testa = MOTIVI_PASS[reason] ?? MOTIVI_PASS.generico;
 
   const paga = () => {
     if (!PAYMENTS_ENABLED || !STRIPE_LINK) return;
@@ -104,7 +83,7 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
   };
 
   const prova = async () => {
-    try { await unlockDemo(); setStato('Pass in prova attivo.'); } catch { setStato('Non sono riuscito a sbloccare il Pass in prova. Riprova.'); }
+    try { await unlockDemo(); setStato({ ok: true, testo: 'Pass in prova attivo' }); } catch { setStato({ ok: false, testo: 'Non sbloccato, riprova' }); }
   };
 
   const link = (s: LegalSection, testo: string) => (
@@ -120,53 +99,26 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
       <TopBar onBack={onBack} />
 
       {pass ? (
-        <div className="rounded-2xl border border-alto/30 bg-alto-tinta p-4" role="status">
-          <h1 className="text-2xl font-bold text-testo">Hai già il Pass</h1>
-          <p className="mt-1 text-sm font-semibold text-testo-tenue">
-            {entitlement.expiresAt ? `Vale fino al ${dataEstesa(entitlement.expiresAt)}.` : 'Non ha una scadenza.'}
-            {entitlement.source === 'demo' && ' È il Pass in prova della versione dimostrativa.'}
-          </p>
+        <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-alto/30 bg-alto-tinta p-4" role="status">
+          <Icona nome="stato-ok" size={30} className="text-alto-numero" titolo="Pass attivo" />
+          <h1 className="text-2xl font-bold text-testo">Pass attivo</h1>
+          <span className="ml-auto inline-flex items-center gap-1.5 font-bold text-alto-testo">
+            <Icona nome="scadenza" size={20} />
+            {entitlement.expiresAt ? dataCorta(entitlement.expiresAt) : <Icona nome="illimitato" size={22} titolo="Senza scadenza" />}
+          </span>
+          {entitlement.source === 'demo' && <Icona nome="stato-prova" size={22} className="text-medio-testo" titolo="Pass in prova" />}
         </div>
       ) : (
-        <div>
-          <div className="flex justify-center"><IllustrazioneAnimata nome="piano-studi-bloccato" lato={130} /></div>
-          <h1 className="mt-2 text-3xl font-bold leading-tight text-testo">{testa.titolo}</h1>
-          <p className="mt-2 font-semibold text-testo-tenue">{testa.testo}</p>
+        <div className="flex items-center gap-3">
+          <IconaTono tono="viola" lato={56} className="!rounded-full"><Icona nome={testa.icona} size={28} /></IconaTono>
+          <h1 className="min-w-0 flex-1 text-3xl font-bold leading-tight text-testo">{testa.titolo}</h1>
+          <span className="grid h-10 w-10 place-items-center rounded-full bg-superficie-2 text-testo-tenue"><Icona nome="blocco" size={20} titolo="Nel Pass" /></span>
         </div>
       )}
 
-      <div className="rounded-2xl border border-azione/30 bg-azione-tinta/50 p-4">
-        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <span className="text-4xl font-bold text-testo">{formatEur(prezzo)}</span>
-          {lancio && <span className="text-lg font-semibold text-testo-tenue"><span className="sr-only">invece di </span><s>{formatEur(PASS.priceEur)}</s></span>}
-        </div>
-        {lancio && <p className="text-sm font-bold text-azione-scuro">Prezzo di lancio fino al {dataEstesa(PASS.launchUntil)}</p>}
-        <p className="mt-1 text-sm font-bold text-testo">
-          Un solo pagamento, valido {PASS.validMonths} mesi, nessun abbonamento.
-        </p>
-      </div>
+      <BloccoPrezzo />
 
-      <div className="rounded-2xl border border-linea overflow-hidden">
-        <table className="w-full text-xs sm:text-sm table-fixed">
-          <caption className="sr-only">Confronto tra la parte gratuita e il Pass</caption>
-          <thead className="bg-superficie-2">
-            <tr className="text-left text-testo-tenue">
-              <th scope="col" className="p-2.5 font-bold w-[40%]">Funzione</th>
-              <th scope="col" className="p-2.5 font-bold text-center w-[30%]">Gratis</th>
-              <th scope="col" className="p-2.5 font-bold text-center w-[30%] bg-azione-tinta text-azione-scuro">Pass</th>
-            </tr>
-          </thead>
-          <tbody>
-            {RIGHE.map(r => (
-              <tr key={r.voce} className="border-t border-linea font-semibold text-testo">
-                <th scope="row" className="p-2.5 text-left font-bold">{r.voce}</th>
-                <td className="p-2.5 text-center text-testo-tenue"><Cella v={r.gratis} /></td>
-                <td className="p-2.5 text-center bg-azione-tinta/40"><Cella v={r.pass} /></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <TabellaConfronto evidenzia={reason} />
 
       {!pass && PAYMENTS_ENABLED && (
         <div className="flex flex-col gap-3">
@@ -177,37 +129,40 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
             Ho letto {link('termini', 'Termini')} e {link('privacy', 'Informativa privacy')}.
           </Casella>
           <PrimaryButton onClick={paga} disabled={!(subito && letto)}>Ordine con obbligo di pagare</PrimaryButton>
-          <p className="text-center text-[11px] font-semibold text-testo-tenue">
-            Il pagamento avviene sulla pagina del provider: AddiOFA non vede né salva i dati della carta.
-          </p>
+          <div className="flex justify-center">
+            <InfoFoglio titolo="Pagamento" etichetta="Come avviene il pagamento">
+              <p>Il pagamento avviene sulla pagina del provider: AddiOFA non vede né salva i dati della carta.</p>
+            </InfoFoglio>
+          </div>
         </div>
       )}
 
       {!pass && !PAYMENTS_ENABLED && (
-        <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold text-testo">
-            I pagamenti non sono ancora attivi. Intanto il diagnostico e il nucleo di domande sono gratis.
-          </p>
-          <PrimaryButton onClick={onWaitlist}>Avvisami quando apre</PrimaryButton>
+        <div className="flex flex-col gap-2">
+          <PrimaryButton onClick={onWaitlist}>Avvisami</PrimaryButton>
         </div>
       )}
 
       {!pass && provider.mode === 'demo' && (
         <div className="rounded-2xl border border-dashed border-medio/30 bg-medio-tinta p-4 flex flex-col gap-3">
           <div className="flex items-center gap-2">
-            <FlaskConical size={20} className="text-medio-testo" aria-hidden />
-            <h2 className="font-bold text-medio-testo">Modalità dimostrativa</h2>
+            <Icona nome="stato-prova" size={22} className="text-medio-testo" />
+            <h2 className="flex-1 font-bold text-medio-testo">Prova</h2>
+            <InfoFoglio titolo="Versione di prova" etichetta="Informazioni sulla prova" className="!text-medio-testo">
+              <p>Questa è una versione di prova: non si paga nulla e il blocco, qui, è solo grafico (le domande sono già dentro la pagina). Puoi provare il Pass come se l'avessi comprato.</p>
+            </InfoFoglio>
           </div>
-          <p className="text-sm font-semibold text-medio-testo">
-            Questa è una versione di prova: non si paga nulla e il blocco, qui, è solo grafico (le domande sono già dentro la pagina). Puoi provare il Pass come se l'avessi comprato.
-          </p>
           <button
             onClick={() => { playTapSound(); void prova(); }}
             className="w-full rounded-2xl border border-medio/30 bg-superficie text-testo font-bold py-3.5 px-6"
           >
             Sblocca il Pass in prova
           </button>
-          {stato && <p className="text-sm font-bold text-medio-testo" role="status">{stato}</p>}
+          {stato && (
+            <p className={`flex items-center gap-2 text-sm font-bold ${stato.ok ? 'text-alto-testo' : 'text-basso-testo'}`} role="status">
+              <Icona nome={stato.ok ? 'stato-ok' : 'stato-errore'} size={20} />{stato.testo}
+            </p>
+          )}
         </div>
       )}
 
@@ -218,12 +173,17 @@ export default function Paywall({ onBack, onWaitlist, onOpenLegal, reason = 'gen
       )}
 
       <footer className={cn('flex flex-col items-center gap-2 pb-1', !pass && 'mt-2')}>
-        <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1" aria-label="Documenti legali">
-          {([['termini', 'Termini'], ['privacy', 'Privacy'], ['recesso', 'Recesso']] as const).map(([id, label]) => (
-            <button key={id} onClick={() => onOpenLegal(id)} className="text-xs font-bold text-testo-tenue underline underline-offset-2">{label}</button>
+        <nav className="flex flex-wrap justify-center gap-x-3 gap-y-1" aria-label="Documenti legali">
+          {LEGAL_TABS.filter(t => t.id !== 'cookie').map(t => (
+            <button key={t.id} onClick={() => onOpenLegal(t.id)} className="inline-flex items-center gap-1.5 px-1.5 py-1.5 text-xs font-bold text-testo-tenue underline underline-offset-2">
+              <Icona nome={ICONE_LEGALI[t.id]} size={15} />{t.label}
+            </button>
           ))}
         </nav>
-        <p className="text-center text-[10px] font-semibold text-testo-tenue">{DISCLAIMER}</p>
+        <div data-testo-ok className="flex flex-col items-center gap-1.5">
+          <p className="text-center text-[10px] font-semibold text-testo-tenue">{DISCLAIMER}</p>
+          <NotaRecesso onOpenLegal={onOpenLegal} className="text-center text-[10px] font-semibold text-testo-tenue" />
+        </div>
       </footer>
     </Screen>
   );

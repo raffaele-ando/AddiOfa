@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, Lock } from 'lucide-react';
+import { Icona } from '../../../brand/icone/Icona';
 import { Carta } from '../../../components/home/comune';
 import { urlDisegno } from '../../../brand/risorse';
 import { useTheme } from '../../../hooks/useTheme';
@@ -7,15 +7,15 @@ import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { GRUPPI_BADGE, type BadgeValutato, type GruppoBadge } from '../../../lib/profilo/badge';
 import { useAccess } from '../../../access/context';
-import { BarraTono, TONI, type Tono } from '../ui';
+import { BarraTono, FoglioInfo, TONI, type Tono } from '../ui';
 import { useExtra } from '../contesto';
-import { Pagina, useBadge } from './componenti';
+import { Pagina, SelettoreIcone, useBadge } from './componenti';
 
 type Filtro = 'tutti' | 'sbloccati' | 'bloccati';
-const FILTRI: { id: Filtro; nome: string }[] = [
-  { id: 'tutti', nome: 'Tutti' },
-  { id: 'sbloccati', nome: 'Sbloccati' },
-  { id: 'bloccati', nome: 'Da sbloccare' },
+const FILTRI = [
+  { id: 'tutti' as const, icona: <Icona nome="filtro-tutte" size={22} />, nome: 'Tutti' },
+  { id: 'sbloccati' as const, icona: <Icona nome="stato-ok" size={22} />, nome: 'Sbloccati' },
+  { id: 'bloccati' as const, icona: <Icona nome="blocco" size={22} />, nome: 'Da sbloccare' },
 ];
 
 /** Ogni gruppo ha il suo colore, lo stesso in tutta l'app: domande e argomenti imparati = verde, simulazioni = blu, giorni di studio = ambra, livelli = viola. */
@@ -27,58 +27,61 @@ function Figura({ nome, bloccato, tono }: { nome: string; bloccato: boolean; ton
   return (
     <span className={cn('relative shrink-0 w-[64px] h-[64px] rounded-[16px] grid place-items-center', bloccato ? 'bg-superficie' : TONI[tono].tinta)} aria-hidden="true">
       {src && <img src={src} alt="" draggable={false} className={cn('w-[88%] h-[88%] object-contain', bloccato && 'grayscale opacity-45')} />}
-      {bloccato && <span className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-superficie border border-linea text-testo-tenue grid place-items-center"><Lock size={13} /></span>}
+      {bloccato && <span className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-superficie border border-linea text-testo-tenue grid place-items-center"><Icona nome="blocco" size={13} /></span>}
     </span>
   );
 }
 
-function SchedaBadge({ b, pass }: { b: BadgeValutato; pass: boolean }) {
+function SchedaBadge({ b, pass, onApri }: { b: BadgeValutato; pass: boolean; onApri: () => void }) {
+  const serve = !b.sbloccato && !b.raggiungibile && !pass;
   return (
     <li>
-      <Carta className="p-3.5 flex gap-3.5 items-start">
-        <Figura nome={b.illustrazione} bloccato={!b.sbloccato} tono={TONO_GRUPPO[b.gruppo]} />
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="text-[15px] leading-[20px] font-bold text-testo">{b.titolo}</h3>
-            {b.sbloccato && <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-alto-tinta text-alto-testo px-2 py-0.5 text-[11.5px] font-bold"><Check size={12} strokeWidth={3} aria-hidden="true" />Sbloccato</span>}
-          </div>
-          <p className="mt-0.5 text-[12.5px] leading-[17px] text-testo-tenue">{b.condizione}</p>
-          {!b.sbloccato && (
-            <div className="mt-2">
-              <BarraTono valore={b.quota * 100} tono={TONO_GRUPPO[b.gruppo]} className="h-1.5" />
-              <p className="mt-1 text-[12px] leading-[16px] text-testo tabular-nums">{b.avanzamento}</p>
-              {!b.raggiungibile && !pass && <p className="mt-0.5 text-[12px] leading-[16px] text-testo-tenue">Con le domande gratuite non si arriva fin qui: serve il Pass.</p>}
+      <button type="button" onClick={() => { playTapSound(); onApri(); }} aria-label={`${b.titolo}: ${b.sbloccato ? 'sbloccato' : b.avanzamento}`}
+        className="brand-premibile w-full text-left">
+        <Carta className="p-3.5 flex gap-3.5 items-center">
+          <Figura nome={b.illustrazione} bloccato={!b.sbloccato} tono={TONO_GRUPPO[b.gruppo]} />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="text-[15px] leading-[20px] font-bold text-testo">{b.titolo}</h3>
+              {b.sbloccato
+                ? <span role="img" aria-label="Sbloccato" className="shrink-0 text-alto-numero"><Icona nome="stato-ok" size={22} /></span>
+                : serve ? <Icona nome="pass" size={18} className="shrink-0 text-medio-numero" titolo="Serve il Pass" /> : null}
             </div>
-          )}
-        </div>
-      </Carta>
+            {!b.sbloccato && (
+              <div className="mt-2 flex items-center gap-3">
+                <BarraTono valore={b.quota * 100} tono={TONO_GRUPPO[b.gruppo]} className="h-1.5 flex-1" />
+                {b.numeri && <span className="shrink-0 text-[12.5px] leading-[16px] font-bold text-testo tabular-nums">{b.numeri.corrente}/{b.numeri.obiettivo}</span>}
+              </div>
+            )}
+          </div>
+        </Carta>
+      </button>
     </li>
   );
 }
 
-/** Traguardi veri di studio: niente punti né XP, solo cose che hai fatto. Quelli bloccati mostrano condizione e avanzamento. */
+/** Traguardi veri di studio: niente punti né XP. Icone, barre e numeri; la condizione di ogni badge si apre toccandolo. */
 export default function Badge() {
   const { indietro } = useExtra();
   const { pass } = useAccess();
   const badge = useBadge();
   const [filtro, setFiltro] = useState<Filtro>('tutti');
+  const [aperto, setAperto] = useState<BadgeValutato | null>(null);
   const sbloccati = badge.filter(b => b.sbloccato).length;
   const visibili = badge.filter(b => filtro === 'tutti' || (filtro === 'sbloccati') === b.sbloccato);
 
   return (
-    <Pagina titolo="I miei badge" indietro={indietro} sottotitolo={<><span className="font-bold text-viola-testo tabular-nums">{sbloccati} su {badge.length}</span> traguardi raggiunti. Si sbloccano solo studiando davvero: non danno punti.</>}>
-      <div role="radiogroup" aria-label="Filtro" className="mt-4 grid grid-cols-3 gap-1 p-1 rounded-[12px] bg-superficie-2">
-        {FILTRI.map(f => (
-          <button key={f.id} type="button" role="radio" aria-checked={filtro === f.id} onClick={() => { playTapSound(); setFiltro(f.id); }}
-            className={cn('rounded-[9px] py-2 text-[13px] font-semibold', filtro === f.id ? 'bg-superficie text-testo shadow-[0_1px_3px_rgba(15,23,42,0.08)] dark:shadow-none dark:border dark:border-linea' : 'text-testo-tenue')}>
-            {f.nome}
-          </button>
-        ))}
-      </div>
+    <Pagina titolo="Badge" indietro={indietro} destra={
+      <span className="inline-flex h-10 items-center gap-1.5 rounded-full bg-viola-tinta px-3.5 text-[15px] font-extrabold tabular-nums text-viola-testo" role="img" aria-label={`${sbloccati} su ${badge.length} sbloccati`}>
+        <Icona nome="badge" size={18} />{sbloccati}/{badge.length}
+      </span>
+    }>
+      <div className="mt-4"><SelettoreIcone<Filtro> nome="Filtro" voci={FILTRI} valore={filtro} onScegli={setFiltro} /></div>
       {visibili.length === 0 && (
-        <p className="mt-6 rounded-[12px] bg-superficie-2 p-4 text-[13.5px] leading-[19px] text-testo-tenue">
-          {filtro === 'sbloccati' ? 'Nessun badge ancora: il primo arriva con la prima domanda imparata.' : 'Hai sbloccato tutti i badge.'}
-        </p>
+        <div className="mt-8 flex flex-col items-center gap-2 text-testo-tenue" role="status">
+          <Icona nome={filtro === 'sbloccati' ? 'blocco' : 'stato-ok'} size={32} />
+          <p className="text-[15px] font-bold">{filtro === 'sbloccati' ? 'Nessun badge ancora' : 'Tutti sbloccati'}</p>
+        </div>
       )}
       {GRUPPI_BADGE.map(g => {
         const dentro = visibili.filter(b => b.gruppo === g.id);
@@ -89,10 +92,20 @@ export default function Badge() {
               <h2 id={`badge-${g.id}`} className="text-[15.5px] leading-[20px] font-bold text-testo">{g.titolo}</h2>
               <span className={cn('text-[12.5px] font-semibold tabular-nums', TONI[TONO_GRUPPO[g.id]].testo)}>{badge.filter(b => b.gruppo === g.id && b.sbloccato).length}/{badge.filter(b => b.gruppo === g.id).length}</span>
             </div>
-            <ul className="flex flex-col gap-2.5">{dentro.map(b => <SchedaBadge key={b.id} b={b} pass={pass} />)}</ul>
+            <ul className="flex flex-col gap-2.5">{dentro.map(b => <SchedaBadge key={b.id} b={b} pass={pass} onApri={() => setAperto(b)} />)}</ul>
           </section>
         );
       })}
+      <FoglioInfo aperto={!!aperto} onChiudi={() => setAperto(null)} titolo={aperto?.titolo ?? ''}>
+        {aperto && (
+          <>
+            <p>{aperto.condizione}</p>
+            {!aperto.sbloccato && <p className="mt-2 font-bold tabular-nums">{aperto.avanzamento}</p>}
+            {!aperto.sbloccato && !aperto.raggiungibile && !pass && <p className="mt-2 text-testo-tenue">Con le domande gratuite non si arriva fin qui: serve il Pass.</p>}
+            <p className="mt-2 text-testo-tenue">I badge si sbloccano solo studiando davvero: non danno punti.</p>
+          </>
+        )}
+      </FoglioInfo>
     </Pagina>
   );
 }
