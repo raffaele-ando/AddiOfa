@@ -80,7 +80,7 @@ export const ICONE = {
   "ordina": "arrow-up-down",
   "pagamento-unico": "credit-card",
   "panoramica": "layout-dashboard",
-  "partecipanti": "users-round",
+  "partecipanti": "contact-round",
   "pass": "crown",
   "percorso": "route",
   "preferita": "star",

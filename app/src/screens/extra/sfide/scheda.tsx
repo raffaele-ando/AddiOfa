@@ -17,7 +17,7 @@ const META: ReadonlyArray<{ id: 'prove' | 'sfide'; vista: string; icona: NomeIco
 ];
 
 const SOTTO: ReadonlyArray<{ id: 'sfide' | 'amici' | 'classifica'; icona: NomeIcona; nome: string }> = [
-  { id: 'sfide', icona: 'sfide', nome: 'Sfide' },
+  { id: 'sfide', icona: 'sfida-giorno', nome: 'Oggi' },
   { id: 'amici', icona: 'amici', nome: 'Amici' },
   { id: 'classifica', icona: 'classifica', nome: 'Classifica' },
 ];
