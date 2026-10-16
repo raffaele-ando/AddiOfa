@@ -629,6 +629,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onLogin={handleLogin}
           onUpdateAppState={handleUpdateAppState}
           onFinish={handleOnboardingFinish}
+          onOpenPaywall={() => apriPaywall('generico')}
         />
       )}
       {view === 'paywall' && (
