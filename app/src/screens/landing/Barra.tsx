@@ -7,8 +7,9 @@ import { cn } from '../../lib/utils';
 
 export const ANCORE = [
   { id: 'home', label: 'Home' },
+  { id: 'ofa', label: 'Cos\'è l\'OFA' },
   { id: 'come-funziona', label: 'Come funziona' },
-  { id: 'perche', label: 'Perché AddiOFA' },
+  { id: 'perche', label: 'Funzionalità' },
   { id: 'domande', label: 'FAQ' },
 ];
 

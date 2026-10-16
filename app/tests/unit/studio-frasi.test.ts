@@ -54,15 +54,20 @@ test('ogni frase è la risposta ESATTA della sua domanda: contiene il testo dell
   }
 });
 
-test('le traduzioni hanno la frase italiana vera della domanda; la grammatica usa la regola della spiegazione', () => {
-  const t = frasi.filter(f => f.itTipo === 'traduzione');
-  assert.ok(t.length >= 200);
-  const f = frasi.find(x => x.id === 'q4')!;
-  assert.equal(f.en, 'August is the hottest month of the year.');
-  assert.equal(f.it, "Agosto è il mese più caldo dell'anno.");
-  const g = frasi.find(x => x.id === 'q12')!;
+test('ogni frase ha l\'italiano: la traduzione dalla domanda (se è di Traduzione), altrimenti la regola della spiegazione', () => {
+  const perId = new Map(questions.map(d => [d.id, d]));
+  for (const f of frasi.filter(x => x.itTipo === 'traduzione')) assert.equal(perId.get(f.id)!.category, 'Traduzione', f.id);
+  const regole = frasi.filter(x => x.itTipo === 'regola');
+  assert.ok(regole.length > 0);
+  assert.ok(regole.every(x => x.it.length > 10), 'la regola in italiano non è vuota');
+  // una domanda di Traduzione (il banco di oggi può non averne): la frase italiana è quella della domanda
+  const t = fraseDaDomanda(q({ id: 't1', category: 'Traduzione', prompt: "Translate: 'Agosto è il mese più caldo dell'anno.'", options: ['August is the hottest month of the year.', 'x'], correctIndex: 0 }))!;
+  assert.equal(t.en, 'August is the hottest month of the year.');
+  assert.equal(t.it, "Agosto è il mese più caldo dell'anno.");
+  assert.equal(t.itTipo, 'traduzione');
+  const g = fraseDaDomanda(q({ id: 'g1', prompt: 'Which sentence is correct?', options: ['She goes to school.', 'She go to school.'], correctIndex: 0, explanation: 'Per un’azione abituale si usa il Present Simple. Altro.' }))!;
   assert.equal(g.itTipo, 'regola');
-  assert.ok(g.it.startsWith('Per un’azione') || g.it.startsWith("Per un'azione"));
+  assert.ok(g.it.startsWith('Per un’azione'));
 });
 
 test('riempie i vuoti: uno, due (more / more), maiuscole a metà frase, dialoghi e discorso indiretto', () => {

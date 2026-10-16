@@ -1,19 +1,21 @@
-import Lastra from '../../brand/hero/Lastra';
 import { Icona } from '../../brand/icone/Icona';
+import ctaFondo from '../../brand/essenziali/landing/cta-fondo.webp';
 import { Colonna } from './comune';
 import { playTapSound } from '../../lib/audio';
 
-// Chiusura: blocco blu con la porta di luce, un solo invito, senza scadenze finte. Il titolo è marketing (`data-testo-ok`).
+// Chiusura (concetti 45 e 12): blocco blu con il logo 3D su cielo e blocchi, un invito e due pulsanti (al posto dei bottoni degli store).
+// L'immagine è il ritaglio del concetto, ripulito dalle scritte (grafica/strumenti/brand/estrai_landing.py); il testo è marketing (`data-testo-ok`).
 export default function CtaFinale({ onStart, onSkip }: { scuro?: boolean; onStart(): void; onSkip(): void }) {
   return (
     <section aria-labelledby="t-fine" className="py-10 sm:py-16">
       <Colonna>
-        <div className="relative overflow-hidden rounded-[2rem] p-7 pb-44 text-white shadow-[0_24px_48px_-18px_rgba(18,62,168,0.6)] [background:linear-gradient(120deg,var(--landing-blocco-blu-da),var(--landing-blocco-blu-a))] dark:shadow-none sm:p-12 sm:pb-12">
-          <div aria-hidden className="pointer-events-none absolute bottom-0 -right-10 w-[15rem] sm:right-6 sm:w-[24rem] lg:w-[28rem]">
-            <Lastra className="block w-full" />
-          </div>
-          <div className="relative max-w-md">
-            <h2 id="t-fine" data-testo-ok className="text-[2.2rem] font-extrabold leading-[1.05] tracking-tight sm:text-5xl">Parti da dove sei oggi.</h2>
+        <div className="relative isolate overflow-hidden rounded-[2rem] text-white shadow-[0_24px_48px_-18px_rgba(18,62,168,0.6)] [background:linear-gradient(115deg,var(--landing-blocco-blu-a),var(--landing-blocco-blu-da)_70%)] dark:shadow-none">
+          <img src={ctaFondo} alt="" aria-hidden draggable={false}
+            className="pointer-events-none absolute bottom-0 right-0 -z-10 h-[62%] w-auto max-w-none select-none [mask-image:linear-gradient(to_right,transparent,#000_30%)] sm:h-full sm:[mask-image:linear-gradient(to_right,transparent,#000_26%)] dark:brightness-[.72] dark:saturate-[1.1]" />
+          <div data-testo-ok className="relative flex min-h-[27rem] max-w-[34rem] flex-col justify-start p-7 sm:min-h-[19rem] sm:p-12">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/80">Inizia oggi</p>
+            <h2 id="t-fine" className="mt-2 text-[2.2rem] font-extrabold leading-[1.05] tracking-tight sm:text-5xl">Sblocca il tuo domani.</h2>
+            <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-white/90">Un piccolo passo ora, per un percorso universitario senza ostacoli.</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
               <button
                 type="button"

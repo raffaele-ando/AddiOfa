@@ -1,56 +1,94 @@
-import Lastra from '../../brand/hero/Lastra';
-import { Icona } from '../../brand/icone/Icona';
-import Misuratore from '../../components/home/Misuratore';
 import { EXAM } from '../../config/offer';
-import { Colonna, Dato, Evidenza, InfoFoglio, Occhiello } from './comune';
+import { Icona } from '../../brand/icone/Icona';
+import { Illustrazione } from '../../brand/Illustrazione';
+import bannerEdificio from '../../brand/essenziali/landing/banner-edificio.webp';
+import { Colonna, InfoFoglio } from './comune';
 
-// «Più di un quiz»: un esempio del misuratore e il blocco scuro con la porta di luce. Le spiegazioni stanno dietro la «i».
+// «Tutto ciò che ti serve» (concetti 12 e 45): quattro schede con l'illustrazione grande del kit, poi il dato (la soglia del test, in un anello)
+// e il banner con l'edificio. Niente numeri già detti nella striscia dei vantaggi; il dato è quello del test di recupero.
+const SCHEDE = [
+  { illustrazione: 'quiz-test', titolo: 'Quiz interattivi', testo: 'Domande come nel test vero, con la spiegazione.' },
+  { illustrazione: 'attesa-caricamento', titolo: 'Simulazioni', testo: 'Timer e formato del test di recupero.' },
+  { illustrazione: 'progressi-statistiche', titolo: 'Analisi del livello', testo: 'Statistiche chiare, argomento per argomento.' },
+  { illustrazione: 'suggerimenti-consigli', titolo: 'Spiegazioni semplici', testo: 'Teoria, esempi e consigli in italiano.' },
+];
+
+/** Anello della soglia: 25 su 30 (83 %). Tutto fermo. */
+function Anello() {
+  const R = 62, C = 2 * Math.PI * R, f = EXAM.passMark / EXAM.questions;
+  return (
+    <div className="relative h-40 w-40 shrink-0" role="img" aria-label={`Soglia: ${EXAM.passMark} risposte esatte su ${EXAM.questions}`}>
+      <svg viewBox="0 0 160 160" className="h-full w-full -rotate-90" aria-hidden focusable="false">
+        <defs>
+          <linearGradient id="anello-soglia" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stopColor="var(--color-azione)" stopOpacity=".55" />
+            <stop offset="1" stopColor="var(--color-azione)" />
+          </linearGradient>
+        </defs>
+        <circle cx="80" cy="80" r={R} fill="none" stroke="var(--color-linea)" strokeWidth="14" />
+        <circle cx="80" cy="80" r={R} fill="none" stroke="url(#anello-soglia)" strokeWidth="14" strokeLinecap="round" strokeDasharray={`${C * f} ${C}`} />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <span className="text-[2rem] font-extrabold leading-none tracking-tight text-testo">{EXAM.passMark}/{EXAM.questions}</span>
+        <span className="mt-1 text-xs font-bold uppercase tracking-[0.1em] text-testo-tenue">soglia</span>
+      </div>
+    </div>
+  );
+}
+
 export default function Perche({ onStart }: { onStart(): void }) {
   return (
     <section id="perche" aria-labelledby="t-perche" className="scroll-mt-20 py-14 sm:py-20">
       <Colonna>
-        <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
-          <div>
-            <Occhiello icona="probabilita">Perché AddiOFA</Occhiello>
-            <h2 id="t-perche" className="mt-4 text-[2.4rem] font-extrabold leading-[1.05] tracking-tight text-testo sm:text-5xl">
-              Più di un <Evidenza>quiz.</Evidenza>
-            </h2>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between" data-testo-ok>
+          <h2 id="t-perche" className="max-w-xl text-[2.1rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-testo sm:text-[2.6rem]">
+            Tutto ciò che ti serve <span className="text-azione">per arrivare preparato.</span>
+          </h2>
+          <button type="button" onClick={onStart}
+            className="inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-azione-tinta px-5 py-3 text-sm font-bold text-azione-scuro hover:bg-azione hover:text-azione-su transition-colors duration-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione sm:self-auto">
+            Parti dal diagnostico<Icona nome="avanti" size={18} />
+          </button>
+        </div>
 
-            <div className="vetro mt-8 grid items-center gap-4 rounded-[28px] p-5 sm:grid-cols-[13rem_1fr] sm:gap-6 sm:p-6">
-              <div className="mx-auto w-full max-w-[14rem]">
-                <Misuratore percento={72} livello="alto" etichetta="Esempio" sotto="" />
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-xl font-extrabold leading-tight text-testo sm:text-2xl">Probabilità di superare</h3>
-                  <InfoFoglio titolo="La stima" etichetta="Come si calcola la stima">
-                    <p>Si calcola sulle tue risposte. Con poche domande è approssimativa e non garantisce l'esito: si affina con le simulazioni.</p>
-                  </InfoFoglio>
-                </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-2.5 text-sm">
-                  <Dato icona="soglia" tono="azione" etichetta="Soglia">{EXAM.passMark}/{EXAM.questions}</Dato>
-                  <Dato icona="tempo" tono="medio" etichetta="Durata">{EXAM.minutes} min</Dato>
-                </div>
-              </div>
+        <ul data-testo-ok className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+          {SCHEDE.map(s => (
+            <li key={s.titolo} className="vetro flex flex-col items-center rounded-[26px] px-4 pb-6 pt-7 text-center sm:px-5">
+              <div className="flex h-[5.5rem] items-end sm:h-28"><Illustrazione nome={s.illustrazione} lato={104} style={{ width: 'auto' }} /></div>
+              <h3 className="mt-4 text-base font-extrabold leading-snug text-testo sm:text-[17px]">{s.titolo}</h3>
+              <p className="mt-1.5 text-[13px] leading-snug text-testo-tenue sm:text-sm">{s.testo}</p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-5 grid gap-4 sm:gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+          <div className="vetro flex flex-col items-center gap-5 rounded-[28px] p-6 sm:flex-row sm:p-8 lg:flex-col lg:items-start xl:flex-row xl:items-center">
+            <Anello />
+            <div data-testo-ok>
+              <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-azione-scuro dark:text-azione">
+                Il test in cifre
+                <InfoFoglio titolo="Il test di recupero" etichetta="Informazioni sul test">
+                  <p>Il test di riferimento è quello di recupero nel formato LinguaViva: {EXAM.questions} domande, {EXAM.minutes} minuti, si supera con {EXAM.passMark} risposte esatte. Le regole possono cambiare: controlla il regolamento del tuo corso.</p>
+                </InfoFoglio>
+              </p>
+              <h3 className="mt-1 text-[1.45rem] font-extrabold leading-tight text-testo">{EXAM.passMark} risposte esatte su {EXAM.questions}.</h3>
+              <p className="mt-2 text-sm leading-relaxed text-testo-tenue">Hai {EXAM.minutes} minuti. AddiOFA ti fa provare lo stesso formato, finché non lo senti tuo.</p>
             </div>
           </div>
 
-          {/* blocco scuro: porta di luce su fondo notte */}
-          <div className="relative flex min-h-[26rem] flex-col overflow-hidden rounded-[32px] p-7 text-white [background:linear-gradient(150deg,var(--landing-blocco-scuro-da),var(--landing-blocco-scuro-a))] sm:p-9 lg:min-h-0">
-            <div aria-hidden className="pointer-events-none absolute bottom-0 right-[-3.5rem] w-[24rem] max-w-[90%] sm:right-4">
-              <Lastra className="block w-full" />
+          {/* banner con l'edificio: foto a destra, sfumata nel fondo notte; il testo sta sul fondo scuro */}
+          <div className="relative flex min-h-[19rem] overflow-hidden rounded-[28px] text-white [background:linear-gradient(110deg,var(--landing-blocco-scuro-da),var(--landing-blocco-scuro-a))] sm:min-h-[17rem]">
+            <img src={bannerEdificio} alt="" draggable={false} aria-hidden
+              className="pointer-events-none absolute inset-y-0 right-0 h-full w-[88%] select-none object-cover object-right opacity-90 [mask-image:linear-gradient(to_right,transparent,#000_52%)] sm:w-[70%] sm:[mask-image:linear-gradient(to_right,transparent,#000_38%)]" />
+            <div data-testo-ok className="relative z-10 flex max-w-[22rem] flex-col justify-between p-6 sm:p-9">
+              <div>
+                <h3 className="text-[1.75rem] font-extrabold leading-[1.1] tracking-tight sm:text-[2rem]">Il tuo futuro non si ferma a un esame.</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/85 sm:text-[15px]">Superare l'OFA ti permette di completare il piano degli studi e di inserire anche gli esami del 2° anno, senza ostacoli.</p>
+              </div>
+              <button type="button" onClick={onStart} aria-label="Fai il diagnostico"
+                className="mt-6 flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/40 hover:bg-white/25 transition-colors duration-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                <Icona nome="avanti" size={24} />
+              </button>
             </div>
-            <div className="relative max-w-[17rem]">
-              <h3 data-testo-ok className="text-[1.9rem] font-extrabold leading-[1.1] tracking-tight sm:text-4xl">Il tuo futuro non si ferma a un test.</h3>
-            </div>
-            <button
-              type="button"
-              onClick={onStart}
-              aria-label="Fai il diagnostico"
-              className="relative mt-auto flex h-12 w-12 items-center justify-center self-start rounded-full bg-white/15 text-white ring-1 ring-white/40 hover:bg-white/25 transition-colors duration-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              <Icona nome="avanti" size={24} />
-            </button>
           </div>
         </div>
       </Colonna>

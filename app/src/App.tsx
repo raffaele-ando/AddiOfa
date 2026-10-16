@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { Suspense, lazy, useState, useEffect, useRef, useMemo } from 'react';
+import React, { Suspense, lazy, useState, useEffect, useRef } from 'react';
 import { AppState, UserStats, ExamHistory, OnboardingResult, LegalSection } from './types';
 import { loadState, saveState, updateStreak, exportData, importData } from './lib/storage';
 import { getQuestionStats, applySm2, qualityForResult } from './lib/spacedRepetition';

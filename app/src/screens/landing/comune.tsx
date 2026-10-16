@@ -124,7 +124,7 @@ export function Fatti({ className, gratis = false }: { className?: string; grati
  * Pulsante «i» e foglio dal basso con la spiegazione a richiesta. Il foglio sta sul body (la landing ha vetri e scorrimento propri che
  * spostano gli elementi fissi) ed è un dialogo: il controllo del testo lo salta. Si chiude con la X, toccando fuori o con Esc.
  */
-export function InfoFoglio({ titolo, etichetta = 'Informazioni', children, className }: { titolo: string; etichetta?: string; children: ReactNode; className?: string }) {
+export function InfoFoglio({ titolo, etichetta = 'Informazioni', children, className, bottone }: { titolo: string; etichetta?: string; children: ReactNode; className?: string; bottone?: (apri: () => void) => ReactNode }) {
   const [aperto, setAperto] = useState(false);
   useEffect(() => {
     if (!aperto) return;
@@ -134,7 +134,7 @@ export function InfoFoglio({ titolo, etichetta = 'Informazioni', children, class
   }, [aperto]);
   return (
     <>
-      <PulsanteInfo onClick={() => setAperto(true)} etichetta={etichetta} className={className} />
+      {bottone ? bottone(() => setAperto(true)) : <PulsanteInfo onClick={() => setAperto(true)} etichetta={etichetta} className={className} />}
       {aperto && createPortal(
         <div className="fixed inset-0 z-[60] flex items-end justify-center bg-testo/40" onClick={e => { if (e.target === e.currentTarget) setAperto(false); }}>
           <div role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full max-w-xl overflow-y-auto rounded-t-[24px] bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">

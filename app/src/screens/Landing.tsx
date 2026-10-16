@@ -37,8 +37,8 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal }: Land
         <Hero onStart={onStartDiagnostic} onSkip={onSkip} scuro={scuro} />
         <Vantaggi />
         <SeNonSuperi onStart={onStartDiagnostic} />
-        <Perche onStart={onStartDiagnostic} />
         <Passi onStart={onStartDiagnostic} />
+        <Perche onStart={onStartDiagnostic} />
         <Faq onOpenLegal={onOpenLegal} />
         <CtaFinale onStart={onStartDiagnostic} onSkip={onSkip} />
       </main>

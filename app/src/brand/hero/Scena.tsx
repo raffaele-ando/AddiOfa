@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import Misuratore from '../../components/home/Misuratore';
+import { Icona } from '../icone/Icona';
 import scenaChiara from '../essenziali/hero/scena-chiara.webp';
 import scenaScura from '../essenziali/hero/scena-scura.webp';
 
@@ -12,6 +13,19 @@ import scenaScura from '../essenziali/hero/scena-scura.webp';
  * Palco di 976 x 490 unità (la misura dell'immagine), scalato alla larghezza disponibile.
  */
 const L = 976, A = 490;
+
+/** Bandiera del Regno Unito, semplificata (decorazione della carta del quiz). */
+function Bandiera() {
+  return (
+    <svg viewBox="0 0 60 36" width="40" height="24" aria-hidden focusable="false" className="rounded-[3px]">
+      <rect width="60" height="36" fill="#1E3A8A" />
+      <path d="M0 0L60 36M60 0L0 36" stroke="#fff" strokeWidth="7" />
+      <path d="M0 0L60 36M60 0L0 36" stroke="#E11D2E" strokeWidth="2.4" />
+      <path d="M30 0V36M0 18H60" stroke="#fff" strokeWidth="11" />
+      <path d="M30 0V36M0 18H60" stroke="#E11D2E" strokeWidth="6.5" />
+    </svg>
+  );
+}
 
 export default function Scena({ scuro: _scuro, conCarte = true, className = '' }: { scuro?: boolean; conCarte?: boolean; className?: string }) {
   const host = useRef<HTMLDivElement>(null);
@@ -38,6 +52,30 @@ export default function Scena({ scuro: _scuro, conCarte = true, className = '' }
           <div className="vetro absolute rounded-[28px] p-[16px] pb-[12px]" style={{ left: 104, top: 44, width: 206, transform: 'rotate(-4deg)' }}>
             <p className="text-[15px] font-bold leading-tight text-testo">Probabilità stimata<br />di superare il test</p>
             <div className="mt-1"><Misuratore percento={72} livello="alto" etichetta="Esempio" sotto="" /></div>
+          </div>
+          {/* le due carte che il concept aveva dentro l'immagine (quiz con bandiera; piano bloccato) sono state cancellate dall'immagine:
+              qui ci sono carte vere, un po' più grandi, che coprono anche i ritocchi dello sfondo */}
+          <div className="vetro absolute rounded-[24px] p-[14px]" style={{ left: 684, top: 30, width: 144, transform: 'rotate(-4deg)' }}>
+            <Bandiera />
+            <ul className="mt-2.5 space-y-2">
+              {[['A', 'bg-azione text-azione-su'], ['B', 'bg-basso-pieno text-azione-su'], ['C', 'bg-azione text-azione-su']].map(([l, c], i) => (
+                <li key={l} className="flex items-center gap-2">
+                  <span className={`grid h-[22px] w-[22px] place-items-center rounded-md text-[11px] font-extrabold ${c}`}>{i === 1 ? <Icona nome="stato-risposta-giusta" size={14} /> : l}</span>
+                  <span className="h-1.5 flex-1 rounded-full bg-testo/15" /><span className="h-1.5 w-3 rounded-full bg-testo/15" />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="vetro absolute rounded-[24px] p-[14px]" style={{ left: 744, top: 258, width: 182, transform: 'rotate(-3deg)' }}>
+            <p className="flex items-center gap-1.5 text-[14px] font-bold leading-tight text-testo"><Icona nome="errori" size={17} className="text-basso-numero" />Ripasso su misura</p>
+            <ul className="mt-2.5 space-y-1.5">
+              {[0, 1, 2].map(i => (
+                <li key={i} className="flex items-center gap-2 rounded-lg bg-superficie/70 px-2 py-1.5">
+                  <Icona nome="stato-incluso" size={15} className="text-alto-pieno" />
+                  <span className="h-1.5 rounded-full bg-testo/15" style={{ width: `${70 - i * 14}%` }} />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       )}

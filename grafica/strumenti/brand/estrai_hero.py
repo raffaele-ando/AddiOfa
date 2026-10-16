@@ -3,7 +3,9 @@
 Scena del concept 41 (lastra blu con la porta di luce, scalinata, cielo, carte di vetro).
 Produce due file: `scena-chiara` (il ritaglio ripulito) e `scena-scura` (la stessa scena di notte: cielo e muri blu notte, lastra blu, la porta
 di luce che resta calda e luminosa; canale alfa che sfuma a sinistra, in alto e in basso, così sul fondo scuro della pagina non si vedono bordi).
-Cancella con l'inpainting l'insegna «Politecnico di Milano» e la carta «82 %»; i testi stanno nel codice. (Il concept 51, scuro, ha la scritta
+Cancella con l'inpainting l'insegna «Politecnico di Milano», la carta «82 %» e il contenuto delle due carte di vetro che il prodotto non ha più
+(quiz con bandiera, «Piano di studi bloccato»): restano due pannelli di vetro vuoti, e le carte vere (componenti, `brand/hero/Scena.tsx`)
+vi si appoggiano sopra, un po' più grandi, per coprire le sfumature del ripristino. I testi stanno nel codice. (Il concept 51, scuro, ha la scritta
 scolpita sul monolite: l'inpainting lascia macchie visibili, per questo non si usa.)
 Uso (da grafica/): python3 strumenti/brand/estrai_hero.py   -> grafica/brand/hero/scena-chiara.{png,webp} e scena-scura.{png,webp}"""
 import pathlib
@@ -79,6 +81,12 @@ def main():
     m = np.zeros(a.shape[:2], np.uint8)
     cv2.rectangle(m, (560 + 116, 70 + 56), (560 + 298, 70 + 238), 255, -1)
     c41 = Image.fromarray(cv2.inpaint(a, m, 12, cv2.INPAINT_NS))
+    # contenuto delle due carte di vetro del concept (quiz con bandiera; «Piano di studi bloccato»): poligoni in coordinate dell'originale
+    a = np.array(c41)
+    m = np.zeros(a.shape[:2], np.uint8)
+    cv2.fillPoly(m, [np.array([(1251, 110), (1373, 110), (1373, 266), (1251, 266)]),
+                     np.array([(1316, 337), (1475, 337), (1478, 485), (1320, 491)])], 255)
+    c41 = Image.fromarray(cv2.inpaint(a, m, 9, cv2.INPAINT_NS))
     # scritte senza senso scritte sul pavimento dall'AI («SAME STUDENTS BRIGHTER…», «SMALL…»): via
     c41 = inpaint(c41, [(560 + 436, 70 + 438, 560 + 582, 70 + 490), (560 + 684, 70 + 452, 560 + 790, 70 + 490)], 7)
     ch = c41.crop((560, 70, 1536, 560))
