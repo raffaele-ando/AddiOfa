@@ -56,7 +56,7 @@ export default function Legal({ section, onBack, onSection }: {
         </div>
 
         <article id="legal-pannello" data-testo-ok role="tabpanel" aria-labelledby={`tab-${section}`} className="flex flex-col gap-3">
-          <Disegno nome="sfera-addiofa" lato={56} />
+          <Disegno nome="documento-completato" lato={56} />
           <h1 className="text-2xl font-extrabold leading-tight text-testo">{doc.titolo}</h1>
           <p className="text-sm text-testo-tenue">Aggiornato il {doc.aggiornato}</p>
 

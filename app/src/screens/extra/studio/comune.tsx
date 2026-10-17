@@ -43,8 +43,8 @@ export function Arte({ nome, lato, kit, gruppo, className }: { nome: string; lat
 /** Tessera quadrata con una piccola illustrazione dentro (righe di elenco e carte di argomento). */
 export function TesseraArte({ nome, kit, gruppo, lato = 56, className }: { nome: string; kit?: KitId; gruppo?: string; lato?: number; className?: string }) {
   return (
-    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center rounded-[14px] bg-superficie', className)} style={{ width: lato, height: lato }}>
-      <Illustrazione nome={nome} lato={Math.round(lato * 0.78)} kit={kit} gruppo={gruppo} />
+    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center', className)} style={{ width: lato, height: lato }}>
+      <Illustrazione nome={nome} lato={lato} kit={kit} gruppo={gruppo} />
     </span>
   );
 }

@@ -73,7 +73,7 @@ export default function Classifica() {
         <div className="mt-4 flex flex-col gap-3">
           {/* La tua posizione (concept 30.14): un numero vero, calcolato qui. */}
           <Carta tono="azione" className="flex items-center gap-4">
-            <Illustrazione nome="sfera-community" lato={64} />
+            <Illustrazione nome="mondo-internazionale" lato={64} />
             <div className="min-w-0 flex-1" role="status" aria-label={`La tua posizione: ${mia + 1} su ${righe.length}`}>
               <p aria-hidden className="text-[13px] font-semibold text-testo-tenue">La tua posizione</p>
               <p aria-hidden className="text-[30px] leading-[34px] font-extrabold tabular-nums text-testo">{mia + 1}<span className="text-[16px] font-bold text-testo-tenue"> su {righe.length}</span></p>

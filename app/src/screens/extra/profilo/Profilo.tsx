@@ -37,10 +37,10 @@ export default function Profilo() {
 
   // i dati piccoli sotto le parole sono veri e compaiono solo se esistono
   const tessere: { id: string; illustrazione: string; parola: string; dato?: string }[] = [
-    { id: 'progressi', illustrazione: 'sfera-risultati', parola: 'Progressi', dato: stima ? `${Math.round(stima.p * 100)}%` : undefined },
-    { id: 'obiettivi', illustrazione: 'sfera-successi', parola: 'Obiettivi', dato: mancano?.quando === 'futuro' ? `${mancano.giorni} gg` : mancano?.quando === 'oggi' ? 'Oggi' : undefined },
+    { id: 'progressi', illustrazione: 'progressi-statistiche', parola: 'Progressi', dato: stima ? `${Math.round(stima.p * 100)}%` : undefined },
+    { id: 'obiettivi', illustrazione: 'obiettivo', parola: 'Obiettivi', dato: mancano?.quando === 'futuro' ? `${mancano.giorni} gg` : mancano?.quando === 'oggi' ? 'Oggi' : undefined },
     { id: 'badge', illustrazione: 'celebrazione-fiocco', parola: 'Badge', dato: `${ottenuti}/${badge.length}` },
-    { id: 'esplora', illustrazione: 'sfera-opportunita', parola: 'Progetto' },
+    { id: 'esplora', illustrazione: 'mondo-internazionale', parola: 'Progetto' },
   ];
 
   return (
@@ -76,12 +76,12 @@ export default function Profilo() {
       </nav>
 
       <GruppoRighe etichetta="Aiuto">
-        {SCHERMATE.faq && <RigaElenco illustrazione="sfera-faq" parola="FAQ" onClick={() => vai('faq')} />}
+        {SCHERMATE.faq && <RigaElenco illustrazione="messaggi-supporto" parola="FAQ" onClick={() => vai('faq')} />}
         {SCHERMATE.segnala && <RigaElenco icona={<Icona nome="segnala" size={22} />} tono="basso" parola="Segnala" onClick={() => vai('segnala')} />}
       </GruppoRighe>
 
       <GruppoRighe etichetta="Informazioni">
-        <RigaElenco illustrazione="sfera-addiofa" parola="Presentazione" onClick={apriLanding} />
+        <RigaElenco illustrazione="studio-inglese" parola="Presentazione" onClick={apriLanding} />
         {LEGAL_TABS.map(t => <RigaElenco key={t.id} icona={<Icona nome={ICONE_LEGALI[t.id]} size={22} />} parola={t.label} onClick={() => apriLegale(t.id)} />)}
       </GruppoRighe>
       <p data-testo-ok className="mx-auto mt-4 max-w-[52ch] text-center text-[11px] leading-snug text-testo-tenue">{AVVERTENZA_INDIPENDENZA}</p>

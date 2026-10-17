@@ -44,7 +44,7 @@ export default function Progressi() {
       <div className="mt-2 flex justify-center"><Disegno nome="progressi-statistiche" kit="kit-luminoso" lato={160} /></div>
       <div className="mt-3"><SelettoreIcone<Sezione> nome="Sezione" voci={VOCI} valore={sezione} onScegli={setSezione} /></div>
       <h2 className="mt-5 mb-3 flex items-center gap-2.5 text-[15.5px] leading-[20px] font-bold text-testo">
-        {sezione === 'argomenti' && <Disegno nome="sfera-risultati" lato={48} />}
+        {sezione === 'argomenti' && <Disegno nome="progressi-statistiche" lato={48} />}
         {VOCI.find(v => v.id === sezione)!.nome}
       </h2>
       {sezione === 'panoramica' && (

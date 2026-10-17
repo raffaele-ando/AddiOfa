@@ -44,13 +44,13 @@ const MODI: { id: 'weakness' | 'blitz' | 'recall'; tono: Tono; icona: NomeIcona;
 
 const TESSERA = 'brand-premibile relative flex min-h-[116px] flex-col items-center justify-center gap-2.5 rounded-[16px] bg-superficie-2 p-3';
 
-/** Riga con una sfera illustrata (Frasi, Prontuario). */
-function RigaArte({ sfera, nome, onClick }: { sfera: string; nome: string; onClick?: () => void }) {
+/** Riga con un'illustrazione (Frasi, Prontuario). */
+function RigaArte({ arte, nome, onClick }: { arte: string; nome: string; onClick?: () => void }) {
   if (!onClick) return null;
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }}
       className="brand-premibile flex w-full items-center gap-4 rounded-[16px] bg-superficie-2 p-3 pr-4 text-left">
-      <Arte nome={sfera} gruppo="sfere" lato={56} />
+      <Arte nome={arte} lato={56} />
       <span className="flex-1 min-w-0 text-[16px] leading-[22px] font-bold text-testo">{nome}</span>
       <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="avanti" size={22} /></span>
     </button>
@@ -133,8 +133,8 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
           )}
 
           <div className="mt-4 flex flex-col gap-3">
-            <RigaArte sfera="sfera-studio" nome="Frasi" onClick={onOpenExtra ? () => onOpenExtra('frasi') : undefined} />
-            <RigaArte sfera="sfera-consigli" nome="Prontuario" onClick={onOpenCheatSheet} />
+            <RigaArte arte="studio-inglese" nome="Frasi" onClick={onOpenExtra ? () => onOpenExtra('frasi') : undefined} />
+            <RigaArte arte="suggerimenti-consigli" nome="Prontuario" onClick={onOpenCheatSheet} />
           </div>
         </div>
       </div>

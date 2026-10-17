@@ -14,7 +14,7 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
     : cheatSheet;
 
   return (
-    <Pagina titolo="Prontuario" onBack={onBack} destra={<Arte nome="sfera-consigli" gruppo="sfere" lato={72} />}>
+    <Pagina titolo="Prontuario" onBack={onBack} destra={<Arte nome="suggerimenti-consigli" lato={72} />}>
       <div className="mt-4 relative">
         <span aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none"><Icona nome="cerca" size={18} /></span>
         <input type="search" value={query} onChange={e => setQuery(e.target.value)} aria-label="Cerca"

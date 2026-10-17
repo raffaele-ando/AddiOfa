@@ -162,7 +162,7 @@ export default function Impostazioni({ onBack, onImport, onExport, onReset }: Pr
         )}
 
         <Gruppo etichetta="Informazioni">
-          <Riga illustrazione="sfera-addiofa" titolo="Versione" destra={
+          <Riga icona="app" tono="azione" titolo="Versione" destra={
             <span className="flex shrink-0 items-center gap-1">
               <span className="text-[14px] text-testo-tenue tabular-nums">{VERSIONE_APP}</span>
               <PulsanteInfo onClick={() => setInfo(true)} etichetta="Informazioni sull'app" className="-mr-1.5" />

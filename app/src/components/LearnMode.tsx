@@ -623,7 +623,7 @@ function FineSessione({ corrette, totale, secondi, prima, dopo, gruppo, daRipren
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="max-w-xl mx-auto w-full p-4 sm:p-6 flex flex-col gap-4">
           <div className="flex flex-col items-center text-center pt-1">
-            <span aria-hidden="true" className="grid h-[132px] w-[132px] place-items-center rounded-full bg-azione-tinta"><IllustrazioneAnimata nome="successo" lato={92} /></span>
+            <span aria-hidden="true" className="grid place-items-center"><IllustrazioneAnimata nome="successo" lato={132} /></span>
             <p role="img" aria-label={`${corrette} giuste su ${totale}`} className="mt-1 text-[40px] leading-[44px] font-extrabold tabular-nums text-testo">
               {corrette}<span className="text-[22px] font-bold text-testo-tenue">/{totale}</span>
             </p>

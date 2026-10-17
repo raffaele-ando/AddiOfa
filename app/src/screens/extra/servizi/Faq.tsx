@@ -12,8 +12,6 @@ import { cn } from '../../../lib/utils';
 // Un colore e un'icona per categoria (non a rotazione): il test = blu, lo studio = ambra, i dati = verde (al sicuro), l'app = viola.
 const TONO_CATEGORIA: Record<CategoriaFaq, Tono> = { test: 'azione', studio: 'medio', dati: 'alto', app: 'viola' };
 const ICONA_CATEGORIA: Record<CategoriaFaq, NomeIcona> = { test: 'esame', studio: 'esercizi', dati: 'dati', app: 'app' };
-// Nel filtro: la sfera del concept 44 dove esiste un soggetto uguale (OFA, quiz, app); per «I tuoi dati» non c'è una sfera e resta l'icona.
-const SFERA_CATEGORIA: Partial<Record<CategoriaFaq, string>> = { test: 'sfera-ofa', studio: 'sfera-quiz', app: 'sfera-app' };
 const PUNTO: Record<Tono, string> = { azione: 'bg-azione', alto: 'bg-alto', medio: 'bg-medio', basso: 'bg-basso', viola: 'bg-viola' };
 
 function Voce({ voce, aperta, onToggle }: { voce: VoceFaq; aperta: boolean; onToggle: () => void }) {
@@ -74,12 +72,11 @@ export default function Faq() {
       <div role="group" aria-label="Categoria" className="mt-3 grid grid-cols-5 gap-2">
         {filtri.map(f => {
           const on = categoria === f.id;
-          const sfera = f.id === 'tutte' ? undefined : SFERA_CATEGORIA[f.id];
           const t: Tono = f.id === 'tutte' ? 'azione' : TONO_CATEGORIA[f.id];
           return (
             <button key={f.id} type="button" aria-pressed={on} aria-label={f.nome} title={f.nome} onClick={() => { playTapSound(); setCategoria(f.id); setAperta(null); }}
-              className={cn('brand-premibile grid h-[58px] place-items-center rounded-[12px] border-2', on ? 'border-azione bg-azione-tinta' : 'border-transparent bg-superficie-2', !sfera && TONI[t].testo)}>
-              {sfera ? <Disegno nome={sfera} lato={42} /> : <Icona nome={f.icona} size={24} />}
+              className={cn('brand-premibile grid h-[58px] place-items-center rounded-[12px] border-2', on ? 'border-azione bg-azione-tinta' : 'border-transparent bg-superficie-2', TONI[t].testo)}>
+              <Icona nome={f.icona} size={24} />
             </button>
           );
         })}
