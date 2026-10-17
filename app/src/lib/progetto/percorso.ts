@@ -12,7 +12,7 @@ export const ANNI_DEL_LIVELLO: Record<LivelloId, number> = { triennale: 3, magis
 export const CORSO_ALTRO_ID = 'altro';
 export const CORSO_ALTRO_NOME = 'Altro';
 
-export interface Opzione { id: string; nome: string }
+export interface Opzione { id: string; nome: string; /** Nome breve da mostrare nelle briciole (la sigla della scuola). */ sigla?: string }
 export interface OpzioneCorso extends Opzione { anni: number }
 
 /** I dati di cui la cascata ha bisogno. `sede` e `livello` assenti = «qualunque» (serve quando un passo è senza scelte e si salta). */
@@ -110,7 +110,8 @@ export function briciole(s: ScelteCorso, automatici: readonly PassoPercorso[], f
   for (const passo of PASSI) {
     const v = valoreDi(s, passo);
     if (v === undefined) continue;
-    const nome = passo === 'anno' ? `${v}° anno` : opzioniPasso(passo, s, fonte).find(o => o.id === v)?.nome ?? v;
+    const opz = passo === 'anno' ? undefined : opzioniPasso(passo, s, fonte).find(o => o.id === v);
+    const nome = passo === 'anno' ? `${v}° anno` : opz?.sigla ?? opz?.nome ?? v;
     out.push({ passo, id: v, nome, automatica: automatici.includes(passo) });
   }
   return out;

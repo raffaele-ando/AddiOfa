@@ -54,14 +54,14 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
             <svg aria-hidden viewBox="0 0 800 300" className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-72 w-full -translate-y-1/2 lg:block" preserveAspectRatio="none" focusable="false">
               <defs>
                 <linearGradient id="filo-rosso" x1="0" x2="1" y1="0" y2="0">
-                  <stop offset="0" stopColor="var(--landing-rosso-linea)" stopOpacity="0" />
-                  <stop offset=".18" stopColor="var(--landing-rosso-linea)" stopOpacity=".55" />
-                  <stop offset="1" stopColor="var(--landing-rosso-linea)" stopOpacity=".9" />
+                  <stop offset="0" stopColor="var(--landing-corallo-linea)" stopOpacity="0" />
+                  <stop offset=".18" stopColor="var(--landing-corallo-linea)" stopOpacity=".55" />
+                  <stop offset="1" stopColor="var(--landing-corallo-linea)" stopOpacity=".9" />
                 </linearGradient>
               </defs>
-              <path d="M0 215C110 190 170 250 270 215S430 170 520 190S640 120 760 120" fill="none" stroke="var(--landing-rosso-linea)" strokeOpacity=".22" strokeWidth="30" strokeLinecap="round" />
+              <path d="M0 215C110 190 170 250 270 215S430 170 520 190S640 120 760 120" fill="none" stroke="var(--landing-corallo-linea)" strokeOpacity=".22" strokeWidth="30" strokeLinecap="round" />
               <path d="M0 215C110 190 170 250 270 215S430 170 520 190S640 120 760 120" fill="none" stroke="url(#filo-rosso)" strokeWidth="10" strokeLinecap="round" />
-              <path d="M752 104L786 120L752 138Z" fill="var(--landing-rosso-linea)" />
+              <path d="M752 104L786 120L752 138Z" fill="var(--landing-corallo-linea)" />
             </svg>
 
             <ol data-testo-ok className="relative grid grid-cols-2 gap-3 sm:gap-4 lg:flex lg:items-stretch lg:gap-3">

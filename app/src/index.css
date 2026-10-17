@@ -6,7 +6,8 @@
 
 /* Token di colore dell'app. Nel codice nuovo si usano le classi (bg-fondo, bg-superficie, bg-superficie-2, text-testo, text-testo-tenue, border-linea, bg-azione, ...)
    e non gli esadecimali. Il tema scuro cambia solo i valori qui sotto (blocco .dark): le classi restano le stesse.
-   Il rosso resta per errore, sbagliato, tempo scaduto e pericolo. Le fasce della probabilità (corallo, ambra, verde) hanno i loro token. */
+   Il rosso (cremisi, token errore*) è solo per risposta sbagliata, campo non valido, annulla, tempo scaduto. Le fasce della probabilità (corallo, ambra, verde-acqua) hanno i loro token basso*, medio*, alto*.
+   Valori e contrasti: docs/design/COLORI-PROPOSTA.md (sezioni 3 e 4). Il sistema è una ruota di sei tinte OKLCH: errore 14, corallo 38, ambra 84, verde-acqua 170, blu 263, viola 300. */
 @theme static {
   /* sfondi e testo */
   --color-fondo: #F7F9FD;
@@ -17,43 +18,56 @@
   --color-linea: #E6EBF5;
   --color-tacca: #D3DAE6;
 
-  /* azione (blu) */
+  /* azione (blu): azione-testo = testo blu su azione-tinta o su bianco; azione-tinta-scura = solo fondo di blocco con testo chiaro; bordo-campo = bordo di campi di testo, caselle, interruttori (≥3:1: linea e tacca restano per divisori e tracce) */
   --color-azione: #2563EB;
   --color-azione-scuro: #1D4ED8;
-  --color-azione-tinta: #DBEAFE;
+  --color-azione-testo: #1D4ED8;
+  --color-azione-tinta: #DFEAFE;
   --color-azione-tinta-scura: #1E3A8A;
-  --color-azione-chiaro: #60A5FA;
-  --color-azione-da: #2C6BEA;
-  --color-azione-a: #2563EB;
+  --color-azione-chiaro: #70A0F8;
+  --color-azione-da: #2D6BEC;
+  --color-azione-a: #2657D4;
   --color-azione-su: #FFFFFF;
-  --color-marchio: #1D6BFF;
+  --color-marchio: #2563EB;
+  --color-bordo-campo: #778193;
 
-  /* fasce della probabilità: tinta del banner, colore pieno, inizio del gradiente dell'arco, numero e etichetta; -pieno = fondo di pulsanti e badge con testo azione-su sopra */
-  --color-basso: #F5303B;
-  --color-basso-chiaro: #FF8E8E;
-  --color-basso-testo: #A31217;
-  --color-basso-numero: #E8101E;
-  --color-basso-tinta: #FEF0F0;
-  --color-basso-pieno: #D12A33;
-  --color-medio: #FFA92D;
-  --color-medio-chiaro: #FFD98A;
-  --color-medio-testo: #A65705;
-  --color-medio-numero: #D4780A;
-  --color-medio-tinta: #FFF8EC;
-  --color-medio-pieno: #B05A04;
-  --color-alto: #0BB474;
-  --color-alto-chiaro: #8DE3B9;
-  --color-alto-testo: #0B7A4A;
-  --color-alto-numero: #079A62;
-  --color-alto-tinta: #EEF9F3;
-  --color-alto-pieno: #0A8350;
+  /* errore (cremisi): SOLO risposta sbagliata, campo non valido, annulla. Mai per la fascia «bassa» della probabilità (quella è il corallo di basso*). -su = testo sul fondo pieno `errore` */
+  --color-errore: #D21D4E;
+  --color-errore-chiaro: #F7A3A9;
+  --color-errore-testo: #9D1137;
+  --color-errore-tinta: #FEF0F0;
+  --color-errore-su: #FFFFFF;
 
-  /* viola: apprendimento, traguardi e badge (il viola del concept: quiz e apprendimento). Tinta, icona, testo (≥4,5:1 sulla tinta), pieno (testo bianco sopra). */
-  --color-viola: #8B5CF6;
-  --color-viola-chiaro: #C4B5FD;
-  --color-viola-testo: #5B21B6;
-  --color-viola-tinta: #F3EEFE;
-  --color-viola-pieno: #6D28D9;
+  /* fasce della probabilità: corallo (basso), ambra (medio), verde-acqua (alto). Tinta del banner, colore pieno, inizio del gradiente dell'arco, numero grande e etichetta; -pieno = fondo di pulsanti e badge con il testo -su sopra (sopra medio-pieno mai il bianco). Ogni fascia mostra sempre parola + forma oltre al colore. Il riempimento `medio` da solo non arriva a 3:1: sempre con bordo 2 px medio-numero (o riempimento medio-numero). */
+  --color-basso: #CD5630;
+  --color-basso-chiaro: #F7AC92;
+  --color-basso-testo: #903820;
+  --color-basso-numero: #BC4621;
+  --color-basso-tinta: #FFF1EC;
+  --color-basso-pieno: #BC4621;
+  --color-basso-su: #FFFFFF;
+  --color-medio: #F7BD36;
+  --color-medio-chiaro: #FBDE9C;
+  --color-medio-testo: #7A4C0D;
+  --color-medio-numero: #A97015;
+  --color-medio-tinta: #FFF7DE;
+  --color-medio-pieno: #F7BD36;
+  --color-medio-su: #0E1B3F;
+  --color-alto: #0BA27F;
+  --color-alto-chiaro: #98E8C9;
+  --color-alto-testo: #03614B;
+  --color-alto-numero: #09896B;
+  --color-alto-tinta: #E6FBF3;
+  --color-alto-pieno: #007C60;
+  --color-alto-su: #FFFFFF;
+
+  /* viola: apprendimento, traguardi e badge (al massimo un elemento per schermata). Tinta, icona, testo (≥4,5:1 sulla tinta), pieno (testo viola-su sopra). */
+  --color-viola: #8C5AD3;
+  --color-viola-chiaro: #D2BFF8;
+  --color-viola-testo: #5C2F95;
+  --color-viola-tinta: #F5F1FF;
+  --color-viola-pieno: #763EBD;
+  --color-viola-su: #FFFFFF;
 }
 
 /* Tema scuro: stessi nomi, valori desaturati. Le tinte dei banner sono tinte morbide sulla superficie, niente riquadri fangosi. */
@@ -69,38 +83,50 @@
 
   --color-azione: #5A92FF;
   --color-azione-scuro: #7FA8FF;
+  --color-azione-testo: #A5C5FE;
   --color-azione-tinta: #16264A;
-  --color-azione-tinta-scura: #16264A;
-  --color-azione-chiaro: #7FA8FF;
-  --color-azione-da: #5B93FF;
-  --color-azione-a: #3B78F2;
+  --color-azione-tinta-scura: #1A3268;
+  --color-azione-chiaro: #9FC1FF;
+  --color-azione-da: #73A3FC;
+  --color-azione-a: #578EF9;
   --color-azione-su: #0A101F;
-  --color-marchio: #5C95FF;
+  --color-marchio: #5A92FF;
+  --color-bordo-campo: #6C7A99;
 
-  --color-basso: #F2766B;
-  --color-basso-chiaro: #F9A59D;
-  --color-basso-testo: #F59A91;
-  --color-basso-numero: #F2766B;
-  --color-basso-tinta: #26283D;
-  --color-basso-pieno: #F2766B;
-  --color-medio: #E8B04A;
-  --color-medio-chiaro: #F3CF8A;
-  --color-medio-testo: #EBC272;
-  --color-medio-numero: #E8B04A;
-  --color-medio-tinta: #262C3B;
-  --color-medio-pieno: #E8B04A;
-  --color-alto: #4CC38A;
-  --color-alto-chiaro: #92DDB9;
-  --color-alto-testo: #7ED6A9;
-  --color-alto-numero: #4CC38A;
-  --color-alto-tinta: #1B2D40;
-  --color-alto-pieno: #4CC38A;
+  --color-errore: #F786A0;
+  --color-errore-chiaro: #FCB8C6;
+  --color-errore-testo: #FCB8C6;
+  --color-errore-tinta: #3B1B22;
+  --color-errore-su: #0A101F;
 
-  --color-viola: #A78BFA;
-  --color-viola-chiaro: #C4B5FD;
-  --color-viola-testo: #C4B5FD;
-  --color-viola-tinta: #231C42;
-  --color-viola-pieno: #A78BFA;
+  --color-basso: #DA7C52;
+  --color-basso-chiaro: #F2B49C;
+  --color-basso-testo: #F6BBA6;
+  --color-basso-numero: #EC9067;
+  --color-basso-tinta: #3D1C10;
+  --color-basso-pieno: #DA7C52;
+  --color-basso-su: #0A101F;
+  --color-medio: #F1C364;
+  --color-medio-chiaro: #F2D89E;
+  --color-medio-testo: #F0D08B;
+  --color-medio-numero: #F1C364;
+  --color-medio-tinta: #332606;
+  --color-medio-pieno: #F1C364;
+  --color-medio-su: #0A101F;
+  --color-alto: #4FCAA8;
+  --color-alto-chiaro: #A4E5CB;
+  --color-alto-testo: #91E1C3;
+  --color-alto-numero: #4FCAA8;
+  --color-alto-tinta: #032F25;
+  --color-alto-pieno: #4FCAA8;
+  --color-alto-su: #0A101F;
+
+  --color-viola: #B28FEF;
+  --color-viola-chiaro: #D2BFF8;
+  --color-viola-testo: #D5C3F8;
+  --color-viola-tinta: #2A1E3D;
+  --color-viola-pieno: #B28FEF;
+  --color-viola-su: #0A101F;
 }
 
 @layer base {
@@ -117,54 +143,58 @@
   --landing-lastra-1: #3B7BFF;
   --landing-lastra-2: #1446B8;
   --landing-lastra-3: #0A2A82;
-  --landing-lastra-fianco: #0B2C86;
+  --landing-lastra-fianco: #0A2A82;
   --landing-gradino-sopra: #FDFEFF;
   --landing-gradino-fronte: #A6BFEC;
   --landing-gradino-ombra: #7C9DDA;
-  --landing-muro-1: #EDF4FF;
-  --landing-muro-2: #A3BBEA;
+  --landing-muro-1: #EEF5FF;
+  --landing-muro-2: #A6BFEC;
   --landing-luce: #FFF6D2;
-  --landing-luce-bordo: #FFB54A;
+  --landing-luce-bordo: #FCBA43;
   --landing-vetro: rgba(255, 255, 255, 0.58);
   --landing-vetro-forte: rgba(255, 255, 255, 0.78);
   --landing-vetro-bordo: rgba(255, 255, 255, 0.9);
   --landing-vetro-ombra: 0 22px 44px -16px rgba(30, 64, 175, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.95);
   --landing-barra: rgba(247, 249, 253, 0.72);
   --landing-fascia: rgba(255, 255, 255, 0.82);
-  --landing-pagina-da: #EAF2FF;
+  --landing-pagina-da: #EEF5FF;
   --landing-blocco-scuro-da: #0E1B3F;
   --landing-blocco-scuro-a: #1B2F73;
   --landing-blocco-blu-da: #2358D6;
   --landing-blocco-blu-a: #123EA8;
-  --landing-rosso-linea: #F5303B;
+  --landing-corallo-linea: #CD5630;
+  --landing-luce-ombra: #E49B2E;
+  --landing-lastra-ombra: #0B1F66;
 }
 .dark {
-  --landing-cielo-alto: #050A1E;
-  --landing-cielo-medio: #0F1E55;
-  --landing-cielo-basso: #26418F;
-  --landing-lastra-1: #3A6CE0;
-  --landing-lastra-2: #1B3C9C;
-  --landing-lastra-3: #0B1D63;
-  --landing-lastra-fianco: #0A1A57;
-  --landing-gradino-sopra: #5C709F;
-  --landing-gradino-fronte: #2A3961;
-  --landing-gradino-ombra: #1A2547;
-  --landing-muro-1: #3C4C7C;
-  --landing-muro-2: #1C2850;
-  --landing-luce: #FFE9A8;
-  --landing-luce-bordo: #FF9F2E;
-  --landing-vetro: rgba(24, 36, 66, 0.62);
-  --landing-vetro-forte: rgba(24, 36, 66, 0.85);
-  --landing-vetro-bordo: rgba(150, 180, 255, 0.28);
-  --landing-vetro-ombra: 0 22px 44px -16px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(180, 205, 255, 0.18);
-  --landing-barra: rgba(10, 16, 31, 0.7);
-  --landing-fascia: rgba(17, 26, 46, 0.85);
-  --landing-pagina-da: #0D1936;
-  --landing-blocco-scuro-da: #0B1330;
-  --landing-blocco-scuro-a: #17285F;
-  --landing-blocco-blu-da: #1F4DB8;
-  --landing-blocco-blu-a: #0F2A78;
-  --landing-rosso-linea: #F2766B;
+  --landing-cielo-alto: #0C1936;
+  --landing-cielo-medio: #112555;
+  --landing-cielo-basso: #1C346B;
+  --landing-lastra-1: #568EF9;
+  --landing-lastra-2: #2B5BC2;
+  --landing-lastra-3: #183680;
+  --landing-lastra-fianco: #183680;
+  --landing-gradino-sopra: #D3DFF3;
+  --landing-gradino-fronte: #4C6291;
+  --landing-gradino-ombra: #2F4168;
+  --landing-muro-1: #162137;
+  --landing-muro-2: #2D3F65;
+  --landing-luce: #F9E7B3;
+  --landing-luce-bordo: #EFB146;
+  --landing-vetro: rgba(23, 34, 58, 0.62);
+  --landing-vetro-forte: rgba(23, 34, 58, 0.80);
+  --landing-vetro-bordo: rgba(255, 255, 255, 0.14);
+  --landing-vetro-ombra: 0 22px 44px -16px rgba(2, 6, 18, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  --landing-barra: rgba(10, 16, 31, 0.72);
+  --landing-fascia: rgba(17, 26, 46, 0.82);
+  --landing-pagina-da: #0E172D;
+  --landing-blocco-scuro-da: #1A294E;
+  --landing-blocco-scuro-a: #1D3673;
+  --landing-blocco-blu-da: #204FB5;
+  --landing-blocco-blu-a: #173888;
+  --landing-corallo-linea: #DA7C52;
+  --landing-luce-ombra: #C9892B;
+  --landing-lastra-ombra: #0B1C58;
 }
 /* Carta di vetro: fondo traslucido, bordo chiaro, ombra morbida. Ferma (al più inclinata con rotate). */
 .vetro {

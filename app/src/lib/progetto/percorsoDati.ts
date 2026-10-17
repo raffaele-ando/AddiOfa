@@ -6,7 +6,7 @@ import { NOMI_LIVELLO, type FonteCorsi, type LivelloId, type Opzione, type Opzio
 const ORDINE: LivelloId[] = ['triennale', 'ciclo-unico', 'magistrale'];
 
 export const fonteCorsi: FonteCorsi = {
-  scuole: () => scuole.map(s => ({ id: s.id, nome: s.nome })),
+  scuole: () => scuole.map(s => ({ id: s.id, nome: s.nome, sigla: s.sigla })),
   sedi: scuola => sediDellaScuola(scuola).map(s => ({ id: s.id, nome: s.nome })),
   livelli(scuola, sede) {
     const sedi = sede ? [sede] : sediDellaScuola(scuola).map(s => s.id);
