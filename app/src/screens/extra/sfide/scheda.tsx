@@ -11,10 +11,6 @@ import { FoglioInfo, PulsanteInfo, TestataScheda } from '../ui';
 
 export type SezioneScheda = 'prove' | 'sfide' | 'amici' | 'classifica';
 
-const META: ReadonlyArray<{ id: 'prove' | 'sfide'; vista: string; icona: NomeIcona; nome: string }> = [
-  { id: 'prove', vista: 'simulazioni', icona: 'simulazioni', nome: 'Prove' },
-  { id: 'sfide', vista: 'sfide', icona: 'sfide', nome: 'Sfide' },
-];
 
 /** Le tre voci della pagina Sfide: la sfida del giorno (e il duello), gli amici, la classifica. */
 const VOCI: ReadonlyArray<{ id: 'sfide' | 'amici' | 'classifica'; icona: NomeIcona; nome: string }> = [
@@ -43,42 +39,36 @@ function SelettoreSfide({ sezione }: { sezione: SezioneScheda }) {
   );
 }
 
-/** Il selettore Prove | Sfide della scheda Simulazioni: due segmenti con icona e una parola. */
-function SelettoreMeta({ sezione }: { sezione: SezioneScheda }) {
-  const { vai } = useExtra();
-  const attiva = sezione === 'prove' ? 'prove' : 'sfide';
-  return (
-    <nav aria-label="Prove e sfide" className="mt-3 flex gap-1 rounded-full bg-superficie-2 p-1">
-      {META.map(m => {
-        const on = m.id === attiva;
-        return (
-          <button key={m.id} type="button" aria-current={on ? 'page' : undefined} aria-label={m.nome}
-            onClick={() => { if (!(on && sezione === m.id)) { playTapSound(); vai(m.vista); } }}
-            className={cn('flex h-11 flex-1 items-center justify-center gap-2 rounded-full border text-[14.5px] font-bold transition-colors duration-100',
-              on ? 'border-azione/40 bg-azione-tinta text-azione-scuro' : 'border-transparent text-testo-tenue hover:text-testo')}>
-            <Icona nome={m.icona} size={22} />{m.nome}
-          </button>
-        );
-      })}
-    </nav>
-  );
-}
 
 /** Cornice della pagina: testata, selettore, contenuto e (se c'è) il foglio della «i».
- *  Per `sfide`, `amici` e `classifica` la testata dice «Sfide»; per `prove` resta «Simulazioni» con il selettore Prove | Sfide. */
+ *  Per `sfide`, `amici` e `classifica` la testata dice «Sfide»; per `prove` (le simulazioni, aperte dalla Home) c'è la freccia di ritorno. */
 export function SchedaProveSfide({ sezione, info, titoloInfo = 'Regole', children }: {
   sezione: SezioneScheda; info?: ReactNode; titoloInfo?: string; children: ReactNode;
 }) {
-  const { vai } = useExtra();
+  const { vai, indietro } = useExtra();
   const [aperto, setAperto] = useState(false);
   const prove = sezione === 'prove';
   return (
     <div className="relative h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8">
-          <TestataScheda titolo={prove ? 'Simulazioni' : 'Sfide'} onProfilo={() => vai('profilo')}
-            destra={info ? <PulsanteInfo onClick={() => setAperto(true)} etichetta={titoloInfo} /> : undefined} />
-          {prove ? <SelettoreMeta sezione={sezione} /> : <SelettoreSfide sezione={sezione} />}
+          {prove ? (
+            // Le simulazioni si aprono dalla Home: freccia di ritorno e «i», niente selettore né profilo (Sfide ha la sua voce in barra).
+            <header className="flex items-center gap-1">
+              <button type="button" onClick={() => indietro()} aria-label="Indietro"
+                className="brand-premibile -ml-3 grid h-10 w-10 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo">
+                <Icona nome="indietro" size={28} />
+              </button>
+              <h1 className="min-w-0 flex-1 text-[26px] leading-[40px] font-extrabold tracking-[-0.02em] text-testo">Simulazioni</h1>
+              {info && <PulsanteInfo onClick={() => setAperto(true)} etichetta={titoloInfo} />}
+            </header>
+          ) : (
+            <>
+              <TestataScheda titolo="Sfide" onProfilo={() => vai('profilo')}
+                destra={info ? <PulsanteInfo onClick={() => setAperto(true)} etichetta={titoloInfo} /> : undefined} />
+              <SelettoreSfide sezione={sezione} />
+            </>
+          )}
           {children}
         </div>
       </div>

@@ -1,6 +1,6 @@
 # Architettura dell'app: «Home completa» (struttura n. 9 delle dieci proposte, 17/10)
 
-L'utente voleva: la Home ospita lezioni e simulazione; le altre due pagine hanno funzioni diverse tra loro; le statistiche stanno nel profilo (la Home mostra già come cambi); il profilo è un hub a tessere. Le dieci proposte sono confrontate in `app/dist-demo/dieci-strutture.html` (generata da `tools/make-opzioni-10.py`). Fra le dieci, la 9 è quella che segue meglio «in Home puoi inserire simulazioni e lezioni con le funzioni attuali»; si cambia struttura cambiando `Navigazione.tsx`, il tipo `Scheda` e `vaiScheda` in `App.tsx`.
+L'utente voleva: la Home ospita lezioni e simulazione; le altre due pagine hanno funzioni diverse tra loro; le statistiche stanno nel profilo (la Home mostra già come cambi); il profilo è un hub a tessere. Le dieci proposte sono confrontate nella pagina generata da `tools/make-opzioni-10.py` (pubblicata come Artifact). Fra le dieci, la 9 è quella che segue meglio «in Home puoi inserire simulazioni e lezioni con le funzioni attuali»; si cambia struttura cambiando `Navigazione.tsx`, il tipo `Scheda` e `vaiScheda` in `App.tsx`.
 
 ## 1. Destinazioni
 
