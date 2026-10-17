@@ -120,10 +120,8 @@ export default function Frasi() {
                       )}
                     </button>
                     <button type="button" aria-label={pref ? `Togli dalle preferite: ${f.en}` : `Salva tra le preferite: ${f.en}`} aria-pressed={pref}
-                      onClick={() => alternaPreferita(f.id)} className="shrink-0 grid place-items-center w-[48px]">
-                      <span className={cn('grid place-items-center w-9 h-9 rounded-full transition-colors duration-100', pref ? 'bg-medio-tinta text-medio-numero' : 'text-testo-tenue')}>
-                        <Icona nome="preferita" size={22} />
-                      </span>
+                      onClick={() => alternaPreferita(f.id)} className="shrink-0 grid place-items-center w-[48px] self-stretch">
+                      <Icona nome="preferita" size={24} pieno={pref} className={cn('transition-colors duration-100', pref ? 'text-medio-numero' : 'text-testo-tenue')} />
                     </button>
                   </div>
                   {apertaOra && (

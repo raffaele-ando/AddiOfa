@@ -9,10 +9,13 @@ import { cn } from '../../lib/utils';
  */
 const URL_SVG = import.meta.glob('./svg/*.svg', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
 
+// Varianti piene (stessa funzione, stato «attivo»: la stella salvata si riempie). Stanno in pieno/<icona lucide>.svg.
+const URL_PIENO = import.meta.glob('./pieno/*.svg', { query: '?url', import: 'default', eager: true }) as Record<string, string>;
+
 export type { NomeIcona };
 
-export function Icona({ nome, size = 24, className, titolo }: { nome: NomeIcona; size?: number; className?: string; titolo?: string }) {
-  const u = URL_SVG[`./svg/${ICONE[nome]}.svg`];
+export function Icona({ nome, size = 24, className, titolo, pieno = false }: { nome: NomeIcona; size?: number; className?: string; titolo?: string; pieno?: boolean }) {
+  const u = (pieno && URL_PIENO[`./pieno/${ICONE[nome]}.svg`]) || URL_SVG[`./svg/${ICONE[nome]}.svg`];
   const stile: CSSProperties = {
     width: size, height: size,
     backgroundColor: 'currentColor',
