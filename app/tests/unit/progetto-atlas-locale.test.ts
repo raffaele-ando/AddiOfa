@@ -32,6 +32,9 @@ test('Worker locale: iscrizione inviata dalla coda, poi collegata, poi in classi
   assert.equal(link.signup?.emailVerificata, false);
   assert.deepEqual(link.signup?.consensi, { noi: true, atlas: false, comunicazioni: false });
   assert.equal(link.profile?.corso, 'Ingegneria Gestionale');
+  // il percorso di studi e la provenienza sono arrivati con i nomi dei campi nuovi
+  assert.deepEqual([link.signup?.scuola, link.signup?.sede, link.signup?.livello, link.signup?.anno, link.signup?.provenienza], ['ing-ind-inf', 'bovisa', 'triennale', 2, 'gruppo-chat']);
+  assert.equal(link.signup?.nome, 'Prova Locale');
 
   // punteggio e classifica (dati veri del Worker)
   await chiama(`/v1/noi/${ECOSYSTEM.appId}/score`, { method: 'POST', body: JSON.stringify({ mastered: 12, bestSim: 20 }) }, true, opz);
@@ -52,12 +55,21 @@ test('Worker locale: iscrizione inviata dalla coda, poi collegata, poi in classi
 
 test('Worker locale: email non PoliMi rifiutata (4xx = dati sbagliati, non si ritenta) e CORS non blocca la coda', { skip: salta }, async () => {
   const c = creaCoda({ archivio: archivio(), baseUrl: URL_PROVA, online: () => true });
-  const r = await c.accoda({ appId: 'addiofa', nome: 'Falso', email: 'falso@gmail.com', consensi: { noi: false, atlas: false, comunicazioni: false }, consentVersion: 'iscrizione-2026-10-16' });
+  const r = await c.accoda({ appId: 'addiofa', nome: 'Falso', email: 'falso@gmail.com', consensi: { noi: false, atlas: false, comunicazioni: false }, consentVersion: 'iscrizione-2026-10-17' });
   assert.equal(r?.stato, 'rifiutata');
   assert.ok(/Politecnico|polimi/i.test(r?.messaggio ?? ''));
-  await assert.rejects(() => atlas.iscrivi({ appId: 'addiofa', nome: 'X', email: 'x@evilpolimi.it', consensi: { noi: false, atlas: false, comunicazioni: false }, consentVersion: 'iscrizione-2026-10-16' }, { baseUrl: URL_PROVA }), /Politecnico|polimi/i);
+  await assert.rejects(() => atlas.iscrivi({ appId: 'addiofa', nome: 'X', email: 'x@evilpolimi.it', consensi: { noi: false, atlas: false, comunicazioni: false }, consentVersion: 'iscrizione-2026-10-17' }, { baseUrl: URL_PROVA }), /Politecnico|polimi/i);
 });
 
 test('Worker locale: senza token le rotte dell\'account rispondono 401', { skip: salta }, async () => {
   await assert.rejects(() => chiama('/v1/me', {}, true, { baseUrl: URL_PROVA, token: null }), (e: { stato?: number }) => e.stato === 401);
+});
+
+test('Worker locale: il nome si ricava dall\'email e i valori fuori elenco di scuola, livello, anno sono rifiutati', { skip: salta }, async () => {
+  const base = { appId: 'addiofa', consensi: { noi: false, atlas: false, comunicazioni: false }, consentVersion: 'iscrizione-2026-10-17' };
+  const mail = `anna.maria.rossi.${sigla}@mail.polimi.it`;
+  await atlas.iscrivi({ ...base, nome: 'Anna Maria Rossi', email: mail }, { baseUrl: URL_PROVA });
+  for (const campo of [{ scuola: 'luna' }, { livello: 'dottorato' }, { anno: 9 }]) {
+    await assert.rejects(() => atlas.iscrivi({ ...base, nome: 'Anna Maria Rossi', email: `x${sigla}@polimi.it`, ...campo } as never, { baseUrl: URL_PROVA }), /non valido/);
+  }
 });

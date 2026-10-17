@@ -19,7 +19,7 @@ test('legali: nessun «bozza» e nessun «contatto: indicato nel sito»', () => 
 
 test('privacy: elenca i dati raccolti, i destinatari, la base giuridica, la conservazione e i diritti', () => {
   const t = testo('privacy');
-  for (const parola of ['nome', 'email del Politecnico', 'corso', 'sede', 'come ci hai conosciuto', 'consensi', 'Cloudflare', 'Google', 'Firebase', 'art. 6.1.a', 'art. 6.1.b', 'Garante', 'Esporta', 'Cancella dal dispositivo', 'Elimina', 'non verificata', 'cookie di tracciamento', 'profilazione commerciale']) {
+  for (const parola of ['email del Politecnico', 'nome', 'percorso di studi', 'scuola, sede, livello, corso, anno', 'come ci hai conosciuto', 'consensi', 'Cloudflare', 'Google', 'Firebase', 'art. 6.1.a', 'art. 6.1.b', 'Garante', 'Esporta', 'Cancella dal dispositivo', 'Elimina', 'non verificata', 'Verifica con un link', 'cookie di tracciamento', 'profilazione commerciale']) {
     assert.ok(t.toLowerCase().includes(parola.toLowerCase()), `manca: ${parola}`);
   }
   const titoli = LEGAL_DOCS.privacy.sezioni.map(s => s.titolo);
@@ -38,6 +38,7 @@ test('titolare: la riga del contatto compare solo se c\'è un indirizzo vero', (
 test('cookie: nessun tracciamento, e le chiavi del dispositivo comprendono la coda di invio', () => {
   const t = testo('cookie');
   assert.ok(t.includes('addiofa_progetto_coda'));
+  assert.ok(t.includes('addiofa_verifica_email'));
   assert.ok(t.includes('ofa_polimi_app_state'));
   assert.ok(/non usa cookie di tracciamento/.test(t));
 });

@@ -17,8 +17,9 @@ export const cookie: LegalDoc = {
         'Usiamo la memoria locale del browser (localStorage), che resta sul tuo dispositivo e non viene inviata a nessuno quando apri una pagina. Sono dati tecnici, necessari al servizio che hai chiesto. Le chiavi principali sono:',
       ],
       elenco: [
-        'ofa_polimi_app_state: progressi di studio, simulazioni, profilo, obiettivi, badge, sfide e i dati della tua registrazione (nome, email, corso, sede, provenienza, consensi).',
+        'ofa_polimi_app_state: progressi di studio, simulazioni, profilo, obiettivi, badge, sfide e i dati della tua registrazione (email, nome ricavato dall\'email, percorso di studi, provenienza, consensi).',
         `addiofa_progetto_coda: lo stato dell'invio dell'iscrizione a ${ECOSYSTEM.engineName} («inviata» o «in attesa di collegamento»), con i dati da inviare finché non sono partiti.`,
+        'addiofa_verifica_email: solo se chiedi il link di verifica dell\'email, l\'indirizzo a cui l\'hai chiesto, finché non apri il link; poi si cancella.',
         'theme: tema chiaro o scuro.',
         'sound_muted: suoni attivi o spenti.',
         'Poche altre chiavi tecniche dello stesso tipo, per esempio l\'ultimo diagnostico.',

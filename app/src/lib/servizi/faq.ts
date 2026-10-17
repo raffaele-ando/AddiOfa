@@ -102,7 +102,7 @@ export function vociFaq(): VoceFaq[] {
     {
       id: 'dati-raccolti', categoria: 'dati', domanda: 'Che dati raccogliete?',
       risposta: [
-        'I progressi di studio restano nel tuo browser. All\'inizio ti chiediamo nome ed email del Politecnico (obbligatori) e, se vuoi, corso, sede e come ci hai conosciuto: li riceve ATLAS, il servizio di Project che gestisce AddiOFA. La classifica NOI, la personalizzazione e le comunicazioni sono consensi facoltativi, spenti finché non li accendi tu.',
+        'I progressi di studio restano nel tuo browser. All\'inizio ti chiediamo la tua email del Politecnico (obbligatoria: il nome lo ricaviamo dall\'email) e il percorso di studi (scuola, sede, livello, corso, anno), e ti chiediamo come ci hai conosciuto: li riceve ATLAS, il servizio di Project che gestisce AddiOFA. La classifica NOI, la personalizzazione e le comunicazioni sono consensi facoltativi, spenti finché non li accendi tu.',
       ],
       chiavi: 'privacy gdpr tracciamento account email',
       legale: { sezione: 'privacy', testo: 'Leggi l\'informativa privacy' },

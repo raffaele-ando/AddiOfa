@@ -350,10 +350,11 @@ def hero_scura(np, rgb):
     L, C, H = rgb_a_lch(np, rgb)
     L0, C0, H0 = L.copy(), C.copy(), H.copy()
     blu = (H0 >= 200) & (H0 <= 300)            # la porta di luce calda (ambra) non si tocca: la regola vale per i blu della scena
-    sat = blu & (C0 >= 0.08)
-    luce = blu & (C0 < 0.08) & (L0 >= 0.60) & (L0 < 0.93)    # i grigi-azzurri chiari (es. #959AA8, L 0,687)
-    C = np.where(sat, C0 * 0.72, C)
-    H = np.where(sat, 265.0, H)
+    # croma: C >= 0,08 -> C x 0,72 e H 265. Il passaggio è una rampa 0,07-0,08 (niente scalino di croma sul bordo della soglia)
+    ws = np.where(blu, 1 - _rampa(np, C0, 0.07, 0.08), 0.0)
+    luce = blu & (C0 < 0.07) & (L0 >= 0.60) & (L0 < 0.93)    # i grigi-azzurri chiari (es. #959AA8, L 0,687)
+    C = C0 + ws * (C0 * 0.72 - C0)
+    H = H0 + ws * (((265.0 - H0 + 180) % 360) - 180)
     L = np.maximum(L0, 0.22)                    # ombre: mai sotto il livello della superficie #111A2E
     L = np.where(luce, np.minimum(L0 + (0.74 - 0.687), 0.93), L)
     C = np.where(luce, np.maximum(C0, 0.03), C)
@@ -374,18 +375,23 @@ def bordi_verso_fondo(np, rgb, px=24, fondo=(10, 16, 31)):
     return rgb * (1 - t) + f * t
 
 
+def _rampa(np, x, pieno, zero):
+    """1 quando x <= pieno, 0 quando x >= zero, lineare in mezzo (pieno < zero). Evita lo scalino netto di una soglia secca."""
+    return np.clip((zero - x) / (zero - pieno), 0, 1)
+
+
 def banner_edificio(np, rgb):
     L, C, H = rgb_a_lch(np, rgb)
     L0, C0, H0 = L.copy(), C.copy(), H.copy()
-    beige = (H0 >= 40) & (H0 <= 80) & (C0 < 0.06)
-    ombra = L0 < 0.45
-    C = np.where(beige, C0 * 0.6, C)
-    H = np.where(beige, 75.0, H)
-    # ombre blu (vincono sul beige: le ombre calde diventano blu)
-    C = np.where(ombra, np.maximum(C0, 0.02), C)
-    H = np.where(ombra, 265.0, H)
-    L = L0 + 0.02
-    return lch_a_rgb(np, L, C, H)
+    # beige: H 40-80 con C < 0,06 -> C x 0,6 e H 75. Il peso scende da 1 a 0 tra C 0,06 e 0,08 (niente scalino sui bordi della soglia)
+    wb = np.where((H0 >= 40) & (H0 <= 80), _rampa(np, C0, 0.06, 0.08), 0.0)
+    C1 = C0 + wb * (C0 * 0.6 - C0)
+    H1 = H0 + wb * (((75.0 - H0 + 180) % 360) - 180)
+    base = lch_a_rgb(np, L0 + 0.02, C1, H1)
+    # ombre blu (L < 0,45): H 265, C almeno 0,02. Il passaggio è una rampa 0,45-0,55, non una soglia secca (niente strisce blu e ocra sui dettagli)
+    ombra = lch_a_rgb(np, L0 + 0.02, np.maximum(C0, 0.02), 265.0)
+    w = _rampa(np, L0, 0.45, 0.55)[..., None]
+    return base * (1 - w) + ombra * w
 
 
 def cta_fondo(np, rgb):

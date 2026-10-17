@@ -34,7 +34,7 @@ export const termini: LegalDoc = {
     {
       titolo: 'Come si usa',
       paragrafi: [
-        'Puoi usare il sito quanto vuoi, per studiare: tutte le domande, le schede di teoria e le simulazioni sono aperte. All\'inizio ti chiediamo nome ed email del Politecnico; il resto della registrazione e i consensi sono facoltativi.',
+        'Puoi usare il sito quanto vuoi, per studiare: tutte le domande, le schede di teoria e le simulazioni sono aperte. All\'inizio ti chiediamo l\'email del Politecnico (il nome lo ricaviamo da lì, e lo puoi correggere) e che cosa studi al Politecnico; i consensi sono facoltativi.',
         'I tuoi progressi, il profilo, gli obiettivi e le sfide restano nel browser di questo dispositivo. Se cancelli i dati del sito o cambi dispositivo li perdi, a meno che tu non li abbia esportati dalle Impostazioni.',
         `Se ${A} non è raggiungibile o sei senza connessione, l'app funziona lo stesso: l'iscrizione resta sul dispositivo e viene inviata appena possibile.`,
       ],
@@ -42,7 +42,7 @@ export const termini: LegalDoc = {
     {
       titolo: 'Dati veri e email',
       paragrafi: [
-        'Scrivi i tuoi dati veri, e solo il tuo indirizzo email: non usare quello di un\'altra persona. L\'email non viene verificata, e per questo non dà diritto a nulla di più di quanto dice la schermata «Project ID».',
+        'Scrivi i tuoi dati veri, e solo il tuo indirizzo email: non usare quello di un\'altra persona. L\'email è «non verificata» finché non la verifichi con il link (quando questa versione lo offre): per questo non dà diritto a nulla di più di quanto dice la schermata «Project ID».',
         'Come trattiamo i dati lo dice l\'informativa sulla privacy; chi vuole può cambiarli o cancellarli da «Project ID».',
       ],
     },

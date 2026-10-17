@@ -25,4 +25,7 @@ mkdir -p "$DEST/hero" && cp "$RADICE/grafica/brand/hero/scena-chiara.webp" "$RAD
 # banner con l'edificio e sfondo della chiusura della landing (grafica/strumenti/brand/estrai_landing.py)
 mkdir -p "$DEST/landing" && cp "$RADICE/grafica/brand/landing/"*.webp "$DEST/landing/"
 mkdir -p "$DEST/icone" && cp "$RADICE/app/public/favicon-64.png" "$DEST/icone/"
+# colori della proposta (docs/design/COLORI-PROPOSTA.md, sezione 6): ricolora le copie di disegni, glifi, hero e landing. Va SEMPRE per ultimo:
+# dopo la copia e dopo togli-nuvole, così `npm run grafica:sync` ridà lo stesso risultato. Le sorgenti in grafica/brand/ non si toccano.
+python3 "$RADICE/tools/ricolora-illustrazioni.py"
 du -sh "$DEST"; find "$DEST" -type f | wc -l

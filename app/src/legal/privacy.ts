@@ -13,7 +13,7 @@ export const privacy: LegalDoc = {
     {
       titolo: 'In breve',
       paragrafi: [
-        `AddiOFA si usa senza account: domande, simulazioni e progressi stanno nel tuo browser. All'inizio ti chiediamo nome ed email del Politecnico (obbligatori) e, se vuoi, corso, sede e come ci hai conosciuto: questi dati vengono inviati ad ${A}, il servizio di ${P}, appena possibile. Chiediamo anche tre consensi facoltativi, sempre spenti finché non li accendi tu.`,
+        `AddiOFA si usa senza account: domande, simulazioni e progressi stanno nel tuo browser. All'inizio ti chiediamo la tua email del Politecnico (obbligatoria: il nome lo ricaviamo dall'email) e che cosa studi (scuola, sede, livello, corso, anno), e come ci hai conosciuto: questi dati vengono inviati ad ${A}, il servizio di ${P}, appena possibile. Chiediamo anche tre consensi facoltativi, sempre spenti finché non li accendi tu.`,
         `Non usiamo cookie di tracciamento né strumenti di statistica, non ci sono pubblicità, non vendiamo dati e non facciamo profilazione commerciale senza il tuo consenso. Il ${ID} (accesso con Google) è facoltativo.`,
       ],
     },
@@ -30,7 +30,7 @@ export const privacy: LegalDoc = {
       paragrafi: ['Solo questi, e solo nei casi indicati:'],
       elenco: [
         'Sempre, sul tuo dispositivo e non inviati a nessuno: progressi di studio (risposte, simulazioni, ripasso, statistiche), profilo scelto (nome, corso, avatar), obiettivi, badge, sfide e preferenze (tema, suoni).',
-        `Con la registrazione, inviati ad ${A}: nome, email del Politecnico (controllata solo nel formato e nel dominio, mai verificata), e se li indichi corso di laurea, sede (Leonardo, Bovisa, Altro) e come ci hai conosciuto; i tre consensi facoltativi con data e versione del testo che hai visto.`,
+        `Con la registrazione, inviati ad ${A}: l'email del Politecnico (controllata nel formato e nel dominio; «verificata» solo se apri il link di verifica), il nome che ricaviamo dall'email (per esempio nome.cognome@… diventa «Nome Cognome»: lo puoi correggere), il percorso di studi (scuola, sede, livello, corso, anno), come ci hai conosciuto (gruppo o chat, Instagram, amici, altro); i tre consensi facoltativi con data e versione del testo che hai visto.`,
         `Se scegli «Accedi con Google» (${ID}): nome, foto ed email del tuo account Google, un identificativo del ${ID}, il @nome utente, i permessi che concedi con il loro registro (concessione, modifica, revoca, con data).`,
         'Se aderisci alla classifica NOI: il tuo @nome utente, le domande imparate e il miglior punteggio in simulazione, visibili agli altri partecipanti.',
         'Dati tecnici di connessione (indirizzo IP e simili) nei registri di chi ospita il sito e il servizio; ATLAS ne conserva solo un\'impronta per un\'ora, per limitare le richieste ripetute.',
@@ -59,7 +59,7 @@ export const privacy: LegalDoc = {
       paragrafi: ['Non vendiamo né cediamo i dati. Possono trattarli, per conto del titolare, questi fornitori:'],
       elenco: [
         `Cloudflare: ospita il servizio ${A} e il suo database (regione Europa occidentale) e può ospitare il sito; vede i dati di connessione.`,
-        `Google (Firebase Authentication): solo se scegli «Accedi con Google», per provare che l'account è tuo. Il trattamento può comportare un trasferimento fuori dallo Spazio economico europeo, con le garanzie previste dal GDPR.`,
+        `Google (Firebase Authentication): solo se scegli «Accedi con Google» (per provare che l'account è tuo) o «Verifica con un link» (per scriverti un link all'indirizzo che hai indicato e provare che è tuo; la verifica resta sul tuo dispositivo e ${A} non la riceve). Il trattamento può comportare un trasferimento fuori dallo Spazio economico europeo, con le garanzie previste dal GDPR.`,
         'Instagram: solo se apri il profilo di Agorà dal link; da quel momento lasci AddiOFA e valgono le regole di Instagram.',
         'Gli altri partecipanti alla classifica vedono solo il tuo @nome utente, le domande imparate e il miglior punteggio, e solo se hai aderito.',
       ],
@@ -79,7 +79,7 @@ export const privacy: LegalDoc = {
       ],
       elenco: [
         '«Project ID» › «Esporta»: una copia dei dati del dispositivo e, se hai l\'accesso, di quelli su ATLAS.',
-        '«Project ID» › «Modifica»: correggi nome, email, corso, sede e consensi; salvando di nuovo l\'iscrizione si aggiorna e il cambio dei consensi viene registrato. Se l\'iscrizione è collegata al Project ID, da qui si cambiano corso, sede e come ci hai conosciuto, e i permessi si ritirano uno per uno nella stessa pagina; nome, email e i consensi dell\'iscrizione (anche quello ai messaggi) si ritirano eliminando il Project ID.',
+        '«Project ID» › «Modifica»: correggi email, nome, percorso di studi, come ci hai conosciuto e consensi; salvando di nuovo l\'iscrizione si aggiorna e il cambio dei consensi viene registrato. Se l\'iscrizione è collegata al Project ID, da qui si cambiano percorso di studi e come ci hai conosciuto, e i permessi si ritirano uno per uno nella stessa pagina; email, nome e i consensi dell\'iscrizione (anche quello ai messaggi) si ritirano eliminando il Project ID.',
         `«Project ID» › «Cancella dal dispositivo» toglie i dati dal tuo dispositivo. Per cancellare ciò che è già su ${A}: ${testoCancellazioneIscrizione()}`,
         ...(CONTACT_EMAIL ? [`Se pensi che qualcuno abbia usato il tuo indirizzo senza il tuo consenso, scrivi a ${CONTACT_EMAIL}: l'iscrizione si cancella dopo aver verificato la richiesta.`] : []),
         'Reclamo: puoi rivolgerti al Garante per la protezione dei dati personali (www.garanteprivacy.it).',
@@ -88,7 +88,7 @@ export const privacy: LegalDoc = {
     {
       titolo: 'Email non verificata',
       paragrafi: [
-        'L\'email del Politecnico è controllata solo nel formato e nel dominio: non ti mandiamo un codice, quindi non possiamo sapere se l\'indirizzo è davvero tuo. Per questo la chiamiamo «non verificata» e non facciamo dipendere da essa nessun diritto o funzione di studio. Scrivi solo il tuo indirizzo.',
+        'L\'email del Politecnico è controllata nel formato e nel dominio, e questo non prova che l\'indirizzo sia tuo: per questo la chiamiamo «non verificata». Dove la versione del sito lo offre, «Verifica con un link» ti scrive un link da aprire: solo dopo averlo aperto, per lo stesso indirizzo, l\'etichetta cambia in «verificata» (sul tuo dispositivo; ATLAS continua a registrarla come non verificata). Nessun diritto o funzione di studio dipende da questo. Scrivi solo il tuo indirizzo.',
       ],
     },
     {

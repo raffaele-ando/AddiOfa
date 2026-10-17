@@ -12,7 +12,9 @@ export default function CtaFinale({ onStart, onSkip }: { scuro?: boolean; onStar
         <div className="relative isolate overflow-hidden rounded-[2rem] text-white shadow-[0_24px_48px_-18px_rgba(18,62,168,0.6)] [background:linear-gradient(115deg,var(--landing-blocco-blu-a),var(--landing-blocco-blu-da)_70%)] dark:shadow-none">
           <div aria-hidden className="pointer-events-none absolute bottom-0 right-0 -z-10 h-[40%] w-full sm:inset-y-0 sm:h-auto sm:w-[72%]">
             <img src={ctaFondo} alt="" draggable={false}
-              className="h-full w-full select-none object-cover object-[66%_50%] [mask-image:linear-gradient(to_right,transparent,#000_34%)] max-sm:[mask-image:linear-gradient(to_bottom,transparent,#000_42%)] dark:brightness-[.72] dark:saturate-[1.1]" />
+              className="h-full w-full select-none object-cover object-[66%_50%] [mask-image:linear-gradient(to_right,transparent,#000_34%)] max-sm:[mask-image:linear-gradient(to_bottom,transparent,#000_42%)] dark:brightness-[.86] dark:saturate-[.88]" />
+            {/* tema scuro: velo di #0A101F al 20%, con la stessa sfumatura dell'immagine */}
+            <div className="absolute inset-0 hidden bg-fondo/20 [mask-image:linear-gradient(to_right,transparent,#000_34%)] max-sm:[mask-image:linear-gradient(to_bottom,transparent,#000_42%)] dark:block" />
           </div>
           <div data-testo-ok className="relative flex min-h-[34rem] max-w-[34rem] flex-col justify-start p-7 sm:min-h-[19rem] sm:p-12">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/80">Inizia oggi</p>
