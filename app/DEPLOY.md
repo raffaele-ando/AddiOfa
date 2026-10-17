@@ -40,4 +40,6 @@ Stanno solo nel browser di ciascuno (`localStorage`): non passano da nessun serv
 
 ## I Worker
 
-Le cartelle `pass/` e `atlas/` alla radice del repository sono del vecchio progetto a pagamento e non servono più: il sito non le chiama.
+## ATLAS: iscrizioni, Project ID, classifica NOI
+
+Il sito funziona da solo, ma le iscrizioni (nome, email PoliMi, corso), l'accesso con Google e la classifica NOI passano dal Worker ATLAS in `atlas/`. Finché non è pubblicato l'app lo dice («in attesa di collegamento») e tiene le iscrizioni in coda nel dispositivo, poi le invia da sola. Per collegarlo: pubblica il Worker (`atlas/DEPLOY.md`), poi imposta alla build `VITE_ATLAS_API_URL` e le `VITE_FIREBASE_*` (elenco in `app/.env.example`) e metti il dominio del sito in `ALLOWED_ORIGINS` del Worker. Prima del lancio compila `TITOLARE` e `CONTACT_EMAIL` in `app/src/config/offer.ts` e fai rivedere i testi legali.

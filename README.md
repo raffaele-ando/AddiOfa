@@ -19,7 +19,7 @@ Dalla radice: `npm run check` (link dei documenti, tipi, prove, build). Per pubb
 | `grafica/` | Logo, illustrazioni e schermate ridisegnate, con i programmi che le producono |
 | `docs/` | Note di lavoro, design, dati sulle graduatorie, storico del vecchio piano di business, archivio |
 | `tools/` | Script del repository |
-| `pass/`, `atlas/` | Worker Cloudflare del vecchio progetto a pagamento: fuori uso, l'app non li chiama più |
+| `atlas/` | Worker Cloudflare + D1 di ATLAS: iscrizioni con email PoliMi, Project ID, classifica NOI (da pubblicare con `atlas/DEPLOY.md`). Il vecchio Worker a pagamento è in `docs/archivio/pass-worker/` |
 
 ## Da togliere (decide il proprietario)
 
