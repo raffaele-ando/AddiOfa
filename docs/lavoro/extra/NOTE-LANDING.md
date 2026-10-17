@@ -26,6 +26,9 @@ Agente LANDING. Confronti concept | app in `docs/lavoro/extra/landing/` (concept
 ## Testi: tolto / sostituito
 Tolti: «12.000+ studenti», avatar, «82 %» come dato, badge degli store, «Scarica l'app», «rischio di fallimento», stemma e insegne nelle immagini (lettere sulla facciata, insegna sul palazzo), «Stessa partenza…», Pass/prezzi/lista d'attesa/«demo». Sostituiti con dati veri da `config/offer.ts`: 30 domande · 15 minuti · soglia 25/30, circa 30 € a tentativo, solo esami del 1° anno, scadenze 2026/27, 10 domande · 3 minuti, numero di domande dal file dei dati (oggi 613).
 
+## Aggiornamento del 17/10 (nuove regole di CLAUDE.md)
+Controllati i testi della landing contro le regole nuove: via l'etichetta «Gratis» (ora «Senza limiti» + «Senza account»), «Sblocca il tuo domani.» diventa «Costruisci il tuo domani.», la FAQ dice «aperto a tutti» invece di «gratis»; `Fatti` non ha più la voce «Gratis» (lo usa anche `components/Onboarding.tsx`, che non la passava). Nell'hero non c'è nessuna carta «Piano di studi bloccato» (carte: probabilità, quiz, ripasso su misura); «Piano di studi bloccato» compare solo come conseguenza dell'OFA nella sezione «Cos'è l'OFA» (concetto 41). Il pulsante principale («Fai il diagnostico», in barra, hero, passi, schede, chiusura) chiama `onStartDiagnostic` di `App`. Rifatti confronti e verifiche a 400 e 1280 px, chiaro e scuro: contrasto 0 violazioni, console 0 errori, `tsc` 0 errori.
+
 ## Verifiche fatte
 - `npx tsc --noEmit` (app): 0 errori (alla fine; durante il lavoro c'erano errori nei file degli altri agenti). `npm run build` e `npm run build:demo`: ok, «Controllo superato».
 - `python3 tools/controlla-contrasto.py --pagina "http://127.0.0.1:5255/?landing" --solo-pagina` a 400 e 1280, chiaro e scuro: 0 violazioni (all'inizio 2: «ed eviti tutto questo» 4,24 e il «72 %» 3,31, corrette). Console 0 errori/avvisi a 360, 400, 768, 1024, 1280, 1920 px, chiaro e scuro.

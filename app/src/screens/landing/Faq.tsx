@@ -12,7 +12,7 @@ interface Voce { d: string; r: string; legale?: { sezione: LegalSection; testo: 
 const VOCI: Voce[] = [
   {
     d: 'Quanto costa?',
-    r: `Niente: AddiOFA è gratis e non serve un account. Hai tutte le ${questions.length} domande con la spiegazione in italiano, le schede di teoria, simulazioni illimitate nel formato del test di recupero (${EXAM.questions} domande in ${EXAM.minutes} minuti), il ripasso sugli errori e le statistiche.`,
+    r: `Niente: AddiOFA è aperto a tutti e non serve un account. Hai tutte le ${questions.length} domande con la spiegazione in italiano, le schede di teoria, simulazioni illimitate nel formato del test di recupero (${EXAM.questions} domande in ${EXAM.minutes} minuti), il ripasso sugli errori e le statistiche.`,
   },
   {
     d: 'Cos\'è il diagnostico?',

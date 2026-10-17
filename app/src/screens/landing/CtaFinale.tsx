@@ -16,7 +16,7 @@ export default function CtaFinale({ onStart, onSkip }: { scuro?: boolean; onStar
           </div>
           <div data-testo-ok className="relative flex min-h-[34rem] max-w-[34rem] flex-col justify-start p-7 sm:min-h-[19rem] sm:p-12">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/80">Inizia oggi</p>
-            <h2 id="t-fine" className="mt-2 text-[2.2rem] font-extrabold leading-[1.05] tracking-tight sm:text-5xl">Sblocca il tuo domani.</h2>
+            <h2 id="t-fine" className="mt-2 text-[2.2rem] font-extrabold leading-[1.05] tracking-tight sm:text-5xl">Costruisci il tuo domani.</h2>
             <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-white/90">Un piccolo passo ora, per un percorso universitario senza ostacoli.</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
               <button

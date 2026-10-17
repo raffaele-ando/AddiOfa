@@ -24,13 +24,20 @@ export const loginDisponibile = (): boolean => !!PROVA || (!isDemoMode() && !!FI
 /** Errore di login con un messaggio già pronto da mostrare nella pagina. */
 export class LoginError extends Error {}
 
+// Unico punto in cui si carica l'SDK. Nella build a file unico (`demo`) il confronto letterale è sempre vero e Rollup elimina i due import:
+// la pagina singola non porta con sé Firebase né indirizzi di Google (tools/check-artifact.mjs li vieta).
+const sdkApp = async () => { if (import.meta.env.VITE_MODE === 'demo') throw new LoginError('Accesso non disponibile.'); return import('firebase/app'); };
+const sdkAuth = async () => { if (import.meta.env.VITE_MODE === 'demo') throw new LoginError('Accesso non disponibile.'); return import('firebase/auth'); };
+
 let handle: Promise<Auth> | null = null;
 
 async function carica(): Promise<Auth> {
+  // il confronto letterale con VITE_MODE permette alla build a file unico (`demo`) di eliminare tutto il codice di Firebase
+  if (import.meta.env.VITE_MODE === 'demo') throw new LoginError('L\'accesso con Google non è disponibile in questa versione.');
   if (!loginDisponibile()) throw new LoginError('L\'accesso con Google non è configurato in questa versione.');
   if (!handle) {
     handle = (async () => {
-      const [{ initializeApp }, { getAuth, browserLocalPersistence, setPersistence }] = await Promise.all([import('firebase/app'), import('firebase/auth')]);
+      const [{ initializeApp }, { getAuth, browserLocalPersistence, setPersistence }] = await Promise.all([sdkApp(), sdkAuth()]);
       const auth = getAuth(initializeApp(FIREBASE_CONFIG!));
       await setPersistence(auth, browserLocalPersistence).catch(() => undefined);
       return auth;
@@ -71,7 +78,7 @@ export async function signInWithGoogle(): Promise<User | null> {
   if (PROVA) return utenteProva();
   try {
     const auth = await carica();
-    const { GoogleAuthProvider, signInWithPopup } = await import('firebase/auth');
+    const { GoogleAuthProvider, signInWithPopup } = await sdkAuth();
     return (await signInWithPopup(auth, new GoogleAuthProvider())).user;
   } catch (error) {
     const e = error as { code?: string };
@@ -84,7 +91,7 @@ export async function signInWithGoogle(): Promise<User | null> {
 export async function logout(): Promise<void> {
   if (PROVA || !handle) return;
   try {
-    const [auth, { signOut }] = await Promise.all([handle, import('firebase/auth')]);
+    const [auth, { signOut }] = await Promise.all([handle, sdkAuth()]);
     await signOut(auth);
   } catch {
     // niente: l'utente resta com'è, e lo vedrà al prossimo controllo
@@ -103,7 +110,7 @@ export function onAuthChange(callback: (user: User | null) => void): () => void 
   (async () => {
     try {
       const auth = await carica();
-      const { onAuthStateChanged } = await import('firebase/auth');
+      const { onAuthStateChanged } = await sdkAuth();
       if (annullato) return;
       smetti = onAuthStateChanged(auth, callback);
     } catch {
