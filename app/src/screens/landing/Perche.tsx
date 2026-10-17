@@ -79,7 +79,7 @@ export default function Perche({ onStart }: { onStart(): void }) {
           <div className="relative flex min-h-[19rem] overflow-hidden rounded-[28px] text-white [background:linear-gradient(110deg,var(--landing-blocco-scuro-da),var(--landing-blocco-scuro-a))] sm:min-h-[17rem]">
             <img src={bannerEdificio} alt="" draggable={false} aria-hidden
               className="pointer-events-none absolute inset-y-0 right-0 h-full w-[88%] select-none object-cover object-right opacity-90 [mask-image:linear-gradient(to_right,transparent,#000_60%)] dark:brightness-[.82] dark:saturate-[.7] sm:w-[62%] sm:[mask-image:linear-gradient(to_right,transparent,#000_52%)]" />
-            {/* tema scuro: la foto si abbassa verso il fondo (sovrapposizione di #0A101F, più forte in basso), con la stessa sfumatura della foto */}
+            {/* tema scuro: la foto si abbassa verso il fondo (velo del colore di fondo scuro, più forte in basso), con la stessa sfumatura della foto */}
             <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-[88%] [background:linear-gradient(to_top,rgba(10,16,31,0.55),rgba(10,16,31,0.15))] [mask-image:linear-gradient(to_right,transparent,#000_60%)] dark:block sm:w-[62%] sm:[mask-image:linear-gradient(to_right,transparent,#000_52%)]" />
             <div data-testo-ok className="relative z-10 flex max-w-[22rem] flex-col justify-between p-6 sm:p-9">
               <div>
