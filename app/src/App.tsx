@@ -18,6 +18,8 @@ import { Layout } from './components/Layout';
 import Onboarding from './components/Onboarding';
 import CheatSheet from './components/CheatSheet';
 import Navigazione, { Scheda } from './components/Navigazione';
+import { coda } from './lib/progetto/coda';
+import { serveRegistrazione } from './lib/progetto/profilo';
 import { ToastProvider, useToast } from './components/Toast';
 import Landing from './screens/Landing';
 import Legal from './screens/Legal';
@@ -52,7 +54,8 @@ function initialView(state: AppState): View {
   if (params.has('sfida')) return 'extra';
   if (import.meta.env.DEV && params.has('brand')) return 'brand';
   const isNewUser = !state.onboarding && state.history.length === 0 && Object.keys(state.stats).length === 0;
-  return isNewUser ? 'landing' : 'menu';
+  if (isNewUser) return 'landing';
+  return serveRegistrazione(state) ? 'extra' : 'menu'; // chi ha già usato l'app completa il profilo alla prima apertura
 }
 
 function Caricamento() {
@@ -76,6 +79,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   const [extra, setExtra] = useState<{ id: string; params: Record<string, string> }>(() => {
     const q = new URLSearchParams(window.location.search);
     const id = q.has('sfida') && !q.has('vista') ? 'sfida-accetta' : (q.get('vista') ?? '');
+    if (!id && !q.has('landing') && serveRegistrazione(appState)) return { id: 'completa-profilo', params: {} };
     return { id: SCHERMATE[id] || id === 'sfida-accetta' ? id : 'profilo', params: Object.fromEntries(q.entries()) };
   });
   const extraPila = useRef<{ id: string; params: Record<string, string> }[]>([]);
@@ -118,6 +122,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   };
 
   const apriLegale = (s: LegalSection) => { setLegalSection(s); apri('legal'); };
+
+  useEffect(() => { coda.avvia(); }, []); // invio delle iscrizioni ad ATLAS, con nuovi tentativi
 
   useEffect(() => {
     // Update streak on load
@@ -304,7 +310,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
       {view === 'landing' && (
         <Landing
           onStartDiagnostic={() => setView('onboarding')}
-          onSkip={() => setView('menu')}
+          onSkip={() => vaiExtra('completa-profilo')}
           onOpenLegal={apriLegale}
         />
       )}
@@ -368,6 +374,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           appState={appState}
           onUpdateAppState={handleUpdateAppState}
           onFinish={handleOnboardingFinish}
+          onOpenLegal={apriLegale}
         />
       )}
       {view === 'theory' && (

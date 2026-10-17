@@ -31,7 +31,7 @@ export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSk
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold text-testo">
             <span className="inline-flex items-center gap-2"><Icona nome="stato-incluso" size={18} className="text-alto-pieno" />Senza limiti</span>
-            <span className="inline-flex items-center gap-2"><Icona nome="senza-account" size={18} className="text-viola" />Senza account</span>
+            <span className="inline-flex items-center gap-2"><Icona nome="senza-account" size={18} className="text-viola" />Senza password</span>
             <InfoFoglio titolo="Il test e la stima">
               <div className="flex flex-col gap-2">
                 <p>Il test di riferimento è quello di recupero nel formato LinguaViva: {EXAM.questions} domande in {EXAM.minutes} minuti, soglia {EXAM.passMark}/{EXAM.questions}.</p>

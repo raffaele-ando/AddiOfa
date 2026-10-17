@@ -102,7 +102,7 @@ export function vociFaq(): VoceFaq[] {
     {
       id: 'dati-raccolti', categoria: 'dati', domanda: 'Che dati raccogliete?',
       risposta: [
-        'Nessuno: il sito non ha un server che li riceva e non c\'è nessun account. I progressi di studio restano nel tuo browser e non lasciano il tuo dispositivo.',
+        'I progressi di studio restano nel tuo browser. All\'inizio ti chiediamo nome ed email del Politecnico (obbligatori) e, se vuoi, corso, sede e come ci hai conosciuto: li riceve ATLAS, il servizio di Project che gestisce AddiOFA. La classifica NOI, la personalizzazione e le comunicazioni sono consensi facoltativi, spenti finché non li accendi tu.',
       ],
       chiavi: 'privacy gdpr tracciamento account email',
       legale: { sezione: 'privacy', testo: 'Leggi l\'informativa privacy' },
@@ -124,7 +124,7 @@ export function vociFaq(): VoceFaq[] {
     // ---- L'app
     {
       id: 'app-gratis', categoria: 'app', domanda: 'È davvero gratis?',
-      risposta: ['Sì. Nessun pagamento, nessun abbonamento, nessun account da creare e nessuna funzione a pagamento.'],
+      risposta: ['Sì. Nessun pagamento, nessun abbonamento e nessuna funzione a pagamento.'],
       chiavi: 'costo prezzo pagare gratuito abbonamento',
       legale: { sezione: 'termini', testo: 'Leggi i termini d\'uso' },
     },

@@ -12,7 +12,7 @@ interface Voce { d: string; r: string; legale?: { sezione: LegalSection; testo: 
 const VOCI: Voce[] = [
   {
     d: 'Quanto costa?',
-    r: `Niente: AddiOFA è aperto a tutti e non serve un account. Hai tutte le ${questions.length} domande con la spiegazione in italiano, le schede di teoria, simulazioni illimitate nel formato del test di recupero (${EXAM.questions} domande in ${EXAM.minutes} minuti), il ripasso sugli errori e le statistiche.`,
+    r: `Niente: AddiOFA è aperto a tutti e non serve nessuna password. Hai tutte le ${questions.length} domande con la spiegazione in italiano, le schede di teoria, simulazioni illimitate nel formato del test di recupero (${EXAM.questions} domande in ${EXAM.minutes} minuti), il ripasso sugli errori e le statistiche.`,
   },
   {
     d: 'Cos\'è il diagnostico?',
@@ -24,7 +24,7 @@ const VOCI: Voce[] = [
   },
   {
     d: 'Dove restano i progressi?',
-    r: 'Sul tuo dispositivo, nel browser: non c\'è un server né un account. Dalle Impostazioni puoi esportarli e importarli su un altro dispositivo. Niente matricola, niente codice fiscale, niente email del Politecnico. Non vendiamo dati.',
+    r: 'I progressi di studio restano nel tuo browser: dalle Impostazioni li esporti e li importi su un altro dispositivo. All\'inizio ti chiediamo nome, email del Politecnico e corso: li ricevono Project e ATLAS, che gestiscono questo sito. Niente matricola, niente codice fiscale. Non vendiamo dati; le comunicazioni e la classifica sono consensi facoltativi.',
     legale: { sezione: 'privacy', testo: 'Privacy' },
   },
   {

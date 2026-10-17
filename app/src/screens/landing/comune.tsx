@@ -108,13 +108,13 @@ export function Dato({ icona, tono = 'azione', children, etichetta, className, l
   );
 }
 
-/** I fatti del diagnostico in una riga di icone: domande, minuti, senza account. */
+/** I fatti del diagnostico in una riga di icone: domande, minuti, senza password. */
 export function Fatti({ className }: { className?: string }) {
   return (
     <ul className={cn('flex flex-wrap gap-x-5 gap-y-2.5 text-sm font-semibold text-testo', className)} aria-label="In breve">
       <li><Dato icona="risposte" tono="azione" etichetta="Domande">{DIAGNOSTIC_QUESTIONS}</Dato></li>
       <li><Dato icona="tempo" tono="medio" etichetta="Durata">3 min</Dato></li>
-      <li><Dato icona="senza-account" tono="viola">Senza account</Dato></li>
+      <li><Dato icona="senza-account" tono="viola">Senza password</Dato></li>
     </ul>
   );
 }
