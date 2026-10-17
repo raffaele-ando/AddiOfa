@@ -21,7 +21,7 @@ function archivio(): ArchivioChiave {
 
 test('Worker locale: iscrizione inviata dalla coda, poi collegata, poi in classifica, poi cancellata', { skip: salta }, async () => {
   const c = creaCoda({ archivio: archivio(), baseUrl: URL_PROVA, online: () => true });
-  const profilo = creaProfilo({ nome: 'Prova Locale', email, corso: 'Ingegneria Gestionale', sede: 'Bovisa', provenienza: 'Gruppo o chat', consensi: { noi: true } }, Date.now())!;
+  const profilo = creaProfilo({ nome: 'Prova Locale', email, scuola: 'ing-ind-inf', sede: 'bovisa', livello: 'triennale', corso: 'Ingegneria Gestionale', anno: 2, provenienza: 'gruppo-chat', consensi: { noi: true } }, Date.now())!;
   const r = await c.accoda(corpoIscrizione(profilo));
   assert.equal(r?.stato, 'inviata', `stato: ${r?.stato} ${r?.messaggio ?? r?.motivo ?? ''}`);
 

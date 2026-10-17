@@ -49,21 +49,24 @@ test('nome: spazi ripuliti, caratteri di controllo tolti, lunghezze', () => {
   assert.equal(pulisciNome('Ma\u0000rio'), 'Ma rio');
 });
 
-test('dati minimi: sono obbligatori solo nome ed email', () => {
-  assert.deepEqual(controllaDatiMinimi({ nome: 'Mario', email: 'mario@mail.polimi.it' }), {});
+test('dati minimi: l\'email è obbligatoria; il nome solo se non si ricava dall\'email', () => {
+  assert.deepEqual(controllaDatiMinimi({ nome: '', email: 'mario.rossi@mail.polimi.it' }), {});
+  assert.deepEqual(controllaDatiMinimi({ nome: 'Mario', email: '10501234@polimi.it' }), {});
+  const matricola = controllaDatiMinimi({ nome: '', email: '10501234@polimi.it' });
+  assert.ok(matricola.nome && !matricola.email);
   const e = controllaDatiMinimi({ nome: '', email: 'mario@gmail.com' });
-  assert.ok(e.nome && e.email);
-  assert.ok(/polimi/.test(e.email!));
+  assert.ok(e.email && /polimi/.test(e.email));
+  assert.ok(controllaDatiMinimi({ nome: 'x'.repeat(90), email: 'mario.rossi@polimi.it' }).nome);
 });
 
 test('consensi: partono tutti spenti e solo «true» esplicito vale come sì', () => {
   assert.deepEqual({ ...CONSENSI_VUOTI }, { noi: false, atlas: false, comunicazioni: false });
   assert.ok(Object.isFrozen(CONSENSI_VUOTI));
-  const senza = creaProfilo({ nome: 'Mario', email: 'mario@mail.polimi.it' }, 1000)!;
+  const senza = creaProfilo({ email: 'mario.rossi@mail.polimi.it' }, 1000)!;
   assert.deepEqual(senza.consensi, { noi: false, atlas: false, comunicazioni: false });
-  const storti = creaProfilo({ nome: 'Mario', email: 'mario@mail.polimi.it', consensi: { noi: 'sì' as unknown as boolean, atlas: 1 as unknown as boolean, comunicazioni: undefined } }, 1000)!;
+  const storti = creaProfilo({ email: 'mario.rossi@mail.polimi.it', consensi: { noi: 'sì' as unknown as boolean, atlas: 1 as unknown as boolean, comunicazioni: undefined } }, 1000)!;
   assert.deepEqual(storti.consensi, { noi: false, atlas: false, comunicazioni: false });
-  const uno = creaProfilo({ nome: 'Mario', email: 'mario@mail.polimi.it', consensi: { atlas: true } }, 1000)!;
+  const uno = creaProfilo({ email: 'mario.rossi@mail.polimi.it', consensi: { atlas: true } }, 1000)!;
   assert.deepEqual(uno.consensi, { noi: false, atlas: true, comunicazioni: false });
 });
 
@@ -149,7 +152,7 @@ test('invio: il corpo di POST /v1/signups ha i campi del Worker e solo quelli co
 test('stato: un salvataggio vecchio senza profilo si legge; il profilo si aggiunge e si rilegge senza toccare il resto', () => {
   const vecchio = statoVuoto({ streak: 3, extra: { sfide: { amici: [] } } });
   assert.deepEqual(leggiProgetto(vecchio), {});
-  const p = creaProfilo({ nome: 'Mario', email: 'mario@mail.polimi.it' }, 7)!;
+  const p = creaProfilo({ email: 'mario.rossi@mail.polimi.it' }, 7)!;
   const nuovo = impostaProfilo(vecchio, p);
   assert.equal(nuovo.streak, 3);
   assert.deepEqual(nuovo.extra!.sfide, { amici: [] });
@@ -173,6 +176,6 @@ test('registrazione: la chiede solo a chi ha già usato l\'app e non ha un profi
   assert.equal(serveRegistrazione(statoVuoto()), false);
   assert.equal(serveRegistrazione(statoVuoto({ onboarding: { completedAt: 1, hasCertification: false, hasOfa: 'yes' } })), true);
   assert.equal(serveRegistrazione(statoVuoto({ stats: { q1: { correct: 1, incorrect: 0, lastSeen: 1, box: 1 } } })), true);
-  const p = creaProfilo({ nome: 'Mario', email: 'mario@mail.polimi.it' }, 1)!;
+  const p = creaProfilo({ email: 'mario.rossi@mail.polimi.it' }, 1)!;
   assert.equal(serveRegistrazione(impostaProfilo(statoVuoto({ onboarding: { completedAt: 1, hasCertification: false, hasOfa: 'yes' } }), p)), false);
 });

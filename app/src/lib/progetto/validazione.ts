@@ -3,6 +3,8 @@
 // IMPORTANTE: si controlla solo il formato e il dominio. Senza un invio di posta non si può sapere se l'indirizzo è davvero di chi lo scrive:
 // per questo il dato si chiama sempre «non verificata» e non esiste nessuna funzione che dica il contrario.
 
+import { nomeDaEmail } from './nomeDaEmail';
+
 const LOCAL_RE = /^[a-z0-9][a-z0-9._%+'-]{0,63}$/;
 const DOMAIN_RE = /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)+$/;
 // eslint-disable-next-line no-control-regex
@@ -51,11 +53,13 @@ export interface DatiMinimi { nome: string; email: string }
 
 export interface ErroriDati { nome?: string; email?: string }
 
-/** I due soli dati obbligatori. Restituisce gli errori da mostrare (vuoto = tutto a posto). */
+/** L'email è l'unico dato obbligatorio; il nome serve scriverlo solo quando non si ricava dall'email (matricola, una sola parola). */
 export function controllaDatiMinimi(d: DatiMinimi): ErroriDati {
   const errori: ErroriDati = {};
-  if (pulisciNome(d.nome) === null) errori.nome = d.nome.trim().length > NOME_MAX ? `Al massimo ${NOME_MAX} caratteri.` : 'Scrivi il tuo nome.';
   const e = controllaEmailPolimi(d.email);
   if ('motivo' in e) errori.email = TESTO_MOTIVO_EMAIL[e.motivo];
+  const scritto = (d.nome ?? '').trim();
+  if (scritto.length > NOME_MAX) errori.nome = `Al massimo ${NOME_MAX} caratteri.`;
+  else if (pulisciNome(d.nome) === null && !(e.ok && nomeDaEmail(e.email))) errori.nome = 'Scrivi il tuo nome.';
   return errori;
 }
