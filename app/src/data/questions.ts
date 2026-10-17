@@ -4,7 +4,7 @@ import type { Question } from '../types';
 export const questions: Question[] = [
   {
     "id": "q1",
-    "prompt": "Complete the sentence: '_____ your sister ever lived abroad?'",
+    "prompt": "_____ your sister ever lived abroad?",
     "options": [
       "Is",
       "Has",
@@ -20,7 +20,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q2",
-    "prompt": "Choose the correct question: '_____ a bank in this street?'",
+    "prompt": "_____ a bank in this street?",
     "options": [
       "Is there",
       "There is",
@@ -36,7 +36,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q3",
-    "prompt": "Complete the sentence: 'Did your brother _____ the match last night?'",
+    "prompt": "Did your brother _____ the match last night?",
     "options": [
       "won",
       "wins",
@@ -52,7 +52,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q4",
-    "prompt": "Complete the sentence: 'August is the _____ month of the year.'",
+    "prompt": "August is the _____ month of the year.",
     "options": [
       "hottest",
       "most hot",
@@ -68,7 +68,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q5",
-    "prompt": "Complete the sentence: 'We _____ this house in 2018.'",
+    "prompt": "We _____ this house in 2018.",
     "options": [
       "have bought",
       "buyed",
@@ -84,7 +84,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q6",
-    "prompt": "Complete the sentence: 'The red bag is _____ than the blue one.'",
+    "prompt": "The red bag is _____ than the blue one.",
     "options": [
       "expensiver",
       "more expensive",
@@ -100,7 +100,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q7",
-    "prompt": "Complete the sentence: '_____ did Anna buy that jacket?' - 'Last Saturday.'",
+    "prompt": "_____ did Anna buy that jacket?' - 'Last Saturday.",
     "options": [
       "Where",
       "Who",
@@ -116,7 +116,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q8",
-    "prompt": "Complete the sentence: '_____ books are there on the shelf?'",
+    "prompt": "_____ books are there on the shelf?",
     "options": [
       "How many",
       "How much",
@@ -132,7 +132,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q9",
-    "prompt": "Complete the sentence: 'The film will start _____ an hour.'",
+    "prompt": "The film will start _____ an hour.",
     "options": [
       "between",
       "at",
@@ -148,7 +148,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q10",
-    "prompt": "Complete the sentence: 'Can I _____ your phone, please?'",
+    "prompt": "Can I _____ your phone, please?",
     "options": [
       "to use",
       "using",
@@ -164,7 +164,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q11",
-    "prompt": "Complete the sentence: 'Laura _____ in Naples with her parents.'",
+    "prompt": "Laura _____ in Naples with her parents.",
     "options": [
       "live",
       "lives",
@@ -180,7 +180,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q12",
-    "prompt": "Complete the sentence: 'Be quiet! The baby is _____.'",
+    "prompt": "Be quiet! The baby is _____.",
     "options": [
       "sleep",
       "sleeped",
@@ -196,7 +196,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q13",
-    "prompt": "Complete the sentence: 'Is there _____ rice in the cupboard?'",
+    "prompt": "Is there _____ rice in the cupboard?",
     "options": [
       "any",
       "many",
@@ -212,7 +212,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q14",
-    "prompt": "Complete the sentence: 'How long _____ you lived in Rome?'",
+    "prompt": "How long _____ you lived in Rome?",
     "options": [
       "do",
       "did",
@@ -228,7 +228,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q15",
-    "prompt": "Complete the sentence: 'My grandmother can _____ the piano.'",
+    "prompt": "My grandmother can _____ the piano.",
     "options": [
       "plays",
       "to play",
@@ -244,7 +244,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q16",
-    "prompt": "Complete the sentence: 'What did Marco _____ last night?'",
+    "prompt": "What did Marco _____ last night?",
     "options": [
       "ate",
       "eat",
@@ -260,7 +260,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q17",
-    "prompt": "Complete the sentence: 'We _____ pizza last Friday night.'",
+    "prompt": "We _____ pizza last Friday night.",
     "options": [
       "ate",
       "have eaten",
@@ -276,7 +276,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q18",
-    "prompt": "Complete the sentence: 'In my building there are many students who _____ to university by bike.'",
+    "prompt": "In my building there are many students who _____ to university by bike.",
     "options": [
       "go",
       "goes",
@@ -292,7 +292,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q19",
-    "prompt": "Complete the sentence: 'My sister _____ her driving test in 2019.'",
+    "prompt": "My sister _____ her driving test in 2019.",
     "options": [
       "pass",
       "has passed",
@@ -308,7 +308,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q20",
-    "prompt": "Complete the sentence: 'My umbrella is broken, so I need a new _____.'",
+    "prompt": "My umbrella is broken, so I need a new _____.",
     "options": [
       "ones",
       "it",
@@ -324,7 +324,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q21",
-    "prompt": "Complete the sentence: 'The windows are open and I can hear music. Someone _____ at home.'",
+    "prompt": "The windows are open and I can hear music. Someone _____ at home.",
     "options": [
       "must to be",
       "must be",
@@ -340,7 +340,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q22",
-    "prompt": "Complete the sentence: 'My sister has lived in Turin _____ she started university.'",
+    "prompt": "My sister has lived in Turin _____ she started university.",
     "options": [
       "for",
       "during",
@@ -356,7 +356,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q23",
-    "prompt": "Complete the sentence: 'What time _____ the concert begin tomorrow?'",
+    "prompt": "What time _____ the concert begin tomorrow?",
     "options": [
       "is",
       "does",
@@ -372,7 +372,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q24",
-    "prompt": "Complete the sentence: 'When my uncle was young, he _____ run a marathon in under three hours, but now he can't.'",
+    "prompt": "When my uncle was young, he _____ run a marathon in under three hours, but now he can't.",
     "options": [
       "could",
       "can",
@@ -388,7 +388,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q25",
-    "prompt": "Complete the sentence: 'I called Laura yesterday evening while she _____ dinner.'",
+    "prompt": "I called Laura yesterday evening while she _____ dinner.",
     "options": [
       "cooks",
       "were cooking",
@@ -404,7 +404,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q26",
-    "prompt": "Complete the sentence: 'My sister always does her homework very _____.'",
+    "prompt": "My sister always does her homework very _____.",
     "options": [
       "careful",
       "carefully",
@@ -420,7 +420,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q27",
-    "prompt": "Complete the sentence: 'Our teacher wants _____ to finish the project by Friday.'",
+    "prompt": "Our teacher wants _____ to finish the project by Friday.",
     "options": [
       "we",
       "our",
@@ -436,7 +436,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q28",
-    "prompt": "Complete the sentence: 'I need to buy _____ apples for the cake.'",
+    "prompt": "I need to buy _____ apples for the cake.",
     "options": [
       "a",
       "much",
@@ -452,7 +452,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q29",
-    "prompt": "Complete the sentence: 'We _____ a great film at the cinema last night.'",
+    "prompt": "We _____ a great film at the cinema last night.",
     "options": [
       "saw",
       "see",
@@ -468,7 +468,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q30",
-    "prompt": "Complete the sentence: 'The exam _____ at nine o'clock tomorrow, so don't be late.'",
+    "prompt": "The exam _____ at nine o'clock tomorrow, so don't be late.",
     "options": [
       "start",
       "will starts",
@@ -484,7 +484,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q31",
-    "prompt": "Complete the sentence: 'There isn't _____ sugar in my coffee.'",
+    "prompt": "There isn't _____ sugar in my coffee.",
     "options": [
       "no",
       "any",
@@ -500,7 +500,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q32",
-    "prompt": "Complete the sentence: 'How long _____ your brother lived in London?'",
+    "prompt": "How long _____ your brother lived in London?",
     "options": [
       "has",
       "have",
@@ -516,7 +516,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q33",
-    "prompt": "Complete the sentence: 'Listen! Someone _____ at the door.'",
+    "prompt": "Listen! Someone _____ at the door.",
     "options": [
       "knocks",
       "knock",
@@ -532,7 +532,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q34",
-    "prompt": "Complete the sentence: 'Who _____ the window in the kitchen?'",
+    "prompt": "Who _____ the window in the kitchen?",
     "options": [
       "did broke",
       "breaked",
@@ -548,7 +548,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q35",
-    "prompt": "Complete the sentence: 'This is the _____ city I have ever visited.'",
+    "prompt": "This is the _____ city I have ever visited.",
     "options": [
       "more beautiful",
       "beautifullest",
@@ -564,7 +564,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q36",
-    "prompt": "Complete the sentence: 'My brother _____ football every Saturday.'",
+    "prompt": "My brother _____ football every Saturday.",
     "options": [
       "plays",
       "play",
@@ -580,7 +580,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q37",
-    "prompt": "Complete the sentence: 'What time _____ the film finish last night?'",
+    "prompt": "What time _____ the film finish last night?",
     "options": [
       "do",
       "have",
@@ -596,7 +596,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q38",
-    "prompt": "Complete the sentence: 'Excuse me, where is your friend _____? Is he Spanish?'",
+    "prompt": "Excuse me, where is your friend _____? Is he Spanish?",
     "options": [
       "of",
       "from",
@@ -612,7 +612,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q39",
-    "prompt": "Complete the sentence: 'The shop has been closed _____ last Tuesday.'",
+    "prompt": "The shop has been closed _____ last Tuesday.",
     "options": [
       "for",
       "since",
@@ -628,7 +628,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q40",
-    "prompt": "Complete the sentence: 'I _____ study for the exam yesterday.'",
+    "prompt": "I _____ study for the exam yesterday.",
     "options": [
       "wasn't",
       "don't",
@@ -644,7 +644,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q41",
-    "prompt": "Complete the sentence: 'The last ferry to the island _____ at 11 p.m., so we mustn't miss it.'",
+    "prompt": "The last ferry to the island _____ at 11 p.m., so we mustn't miss it.",
     "options": [
       "leaving",
       "leave",
@@ -660,7 +660,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q42",
-    "prompt": "Complete the sentence: 'He is the kindest teacher I have _____ met.'",
+    "prompt": "He is the kindest teacher I have _____ met.",
     "options": [
       "never",
       "always",
@@ -676,7 +676,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q43",
-    "prompt": "Complete the sentence: 'Our team _____ the national cup in 2016.'",
+    "prompt": "Our team _____ the national cup in 2016.",
     "options": [
       "won",
       "wins",
@@ -692,7 +692,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q44",
-    "prompt": "Complete the sentence: '_____ you already met the new professor?'",
+    "prompt": "_____ you already met the new professor?",
     "options": [
       "Did",
       "Have",
@@ -708,7 +708,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q45",
-    "prompt": "Complete the sentence: 'I have worked here _____ three years.'",
+    "prompt": "I have worked here _____ three years.",
     "options": [
       "since",
       "during",
@@ -724,7 +724,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q46",
-    "prompt": "Complete the sentence: 'I like _____ car.'",
+    "prompt": "I like _____ car.",
     "options": [
       "Paolo",
       "Paolos'",
@@ -740,7 +740,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q47",
-    "prompt": "Complete the sentence: 'In my town _____ are three cinemas.'",
+    "prompt": "In my town _____ are three cinemas.",
     "options": [
       "It",
       "This",
@@ -756,7 +756,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q48",
-    "prompt": "Complete the sentence: 'My parents _____ dinner in the kitchen at the moment.'",
+    "prompt": "My parents _____ dinner in the kitchen at the moment.",
     "options": [
       "are cooking",
       "cook",
@@ -772,7 +772,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q49",
-    "prompt": "Complete the sentence: 'If the weather is nice tomorrow, we _____ a picnic in the park.'",
+    "prompt": "If the weather is nice tomorrow, we _____ a picnic in the park.",
     "options": [
       "will have",
       "would have",
@@ -788,7 +788,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q50",
-    "prompt": "Complete the sentence: 'She _____ learning Chinese since she was twelve.'",
+    "prompt": "She _____ learning Chinese since she was twelve.",
     "options": [
       "is",
       "has been",
@@ -804,7 +804,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q51",
-    "prompt": "Complete the sentence: 'What _____ for dinner last night?'",
+    "prompt": "What _____ for dinner last night?",
     "options": [
       "did you cook",
       "you cooked",
@@ -820,7 +820,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q52",
-    "prompt": "Complete the sentence: 'This phone is _____ cheaper than that one.'",
+    "prompt": "This phone is _____ cheaper than that one.",
     "options": [
       "very",
       "much",
@@ -836,7 +836,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q53",
-    "prompt": "Complete the sentence: 'Anna is ill. She _____ in bed since Sunday.'",
+    "prompt": "Anna is ill. She _____ in bed since Sunday.",
     "options": [
       "was",
       "is",
@@ -852,7 +852,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q54",
-    "prompt": "Complete the sentence: 'The Moon _____ around the Earth every 27 days.'",
+    "prompt": "The Moon _____ around the Earth every 27 days.",
     "options": [
       "go",
       "goes",
@@ -868,7 +868,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q55",
-    "prompt": "Complete the sentence: 'Where is Paolo?' - 'He has _____ to the supermarket. He'll be back in ten minutes.'",
+    "prompt": "Where is Paolo?' - 'He has _____ to the supermarket. He'll be back in ten minutes.",
     "options": [
       "been",
       "go",
@@ -884,7 +884,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q56",
-    "prompt": "Complete the sentence: 'Are they _____ the match on TV?'",
+    "prompt": "Are they _____ the match on TV?",
     "options": [
       "watching",
       "watch",
@@ -900,7 +900,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q57",
-    "prompt": "Complete the sentence: 'Have you ever _____ the guitar?'",
+    "prompt": "Have you ever _____ the guitar?",
     "options": [
       "play",
       "plays",
@@ -916,7 +916,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q58",
-    "prompt": "Complete the sentence: 'The plane _____ just landed.'",
+    "prompt": "The plane _____ just landed.",
     "options": [
       "have",
       "has",
@@ -932,7 +932,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q59",
-    "prompt": "Complete the sentence: 'Marta hasn't _____ my email yet.'",
+    "prompt": "Marta hasn't _____ my email yet.",
     "options": [
       "answered",
       "answer",
@@ -948,7 +948,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q60",
-    "prompt": "Complete the sentence: '_____ your parents ever visited Scotland?'",
+    "prompt": "_____ your parents ever visited Scotland?",
     "options": [
       "Has",
       "Did",
@@ -964,7 +964,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q61",
-    "prompt": "Complete the sentence: 'He _____ in this town since 2015.'",
+    "prompt": "He _____ in this town since 2015.",
     "options": [
       "lives",
       "lived",
@@ -980,7 +980,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q62",
-    "prompt": "Complete the sentence: 'There _____ three cars on the street today.'",
+    "prompt": "There _____ three cars on the street today.",
     "options": [
       "is",
       "are",
@@ -996,7 +996,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q63",
-    "prompt": "Complete the sentence: '_____ any milk in the fridge?'",
+    "prompt": "_____ any milk in the fridge?",
     "options": [
       "Is there",
       "Are there",
@@ -1012,7 +1012,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q64",
-    "prompt": "Complete the sentence: 'There is _____ problem with my computer.'",
+    "prompt": "There is _____ problem with my computer.",
     "options": [
       "any",
       "not",
@@ -1028,7 +1028,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q65",
-    "prompt": "Complete the sentence: '_____ some apples on the table.'",
+    "prompt": "_____ some apples on the table.",
     "options": [
       "There are",
       "There is",
@@ -1044,7 +1044,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q66",
-    "prompt": "Complete the sentence: '_____ there a dog in the garden?'",
+    "prompt": "_____ there a dog in the garden?",
     "options": [
       "Are",
       "Does",
@@ -1060,7 +1060,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q67",
-    "prompt": "Complete the sentence: 'I _____ to the cinema yesterday.'",
+    "prompt": "I _____ to the cinema yesterday.",
     "options": [
       "went",
       "go",
@@ -1076,7 +1076,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q68",
-    "prompt": "Complete the sentence: 'We _____ at home last night. We were at the cinema.'",
+    "prompt": "We _____ at home last night. We were at the cinema.",
     "options": [
       "wasn't",
       "weren't",
@@ -1092,7 +1092,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q69",
-    "prompt": "Complete the sentence: '_____ you see the football match last night?'",
+    "prompt": "_____ you see the football match last night?",
     "options": [
       "Did",
       "Do",
@@ -1108,7 +1108,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q70",
-    "prompt": "Complete the sentence: 'She _____ to the cinema last week.'",
+    "prompt": "She _____ to the cinema last week.",
     "options": [
       "goes",
       "went",
@@ -1124,7 +1124,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q71",
-    "prompt": "Complete the sentence: 'We _____ very tired after the trip.'",
+    "prompt": "We _____ very tired after the trip.",
     "options": [
       "were",
       "was",
@@ -1140,7 +1140,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q72",
-    "prompt": "Complete the sentence: 'When _____ you arrive at the hotel yesterday?'",
+    "prompt": "When _____ you arrive at the hotel yesterday?",
     "options": [
       "do",
       "have",
@@ -1156,7 +1156,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q73",
-    "prompt": "Complete the sentence: 'Please be quiet, I _____.'",
+    "prompt": "Please be quiet, I _____.",
     "options": [
       "am working",
       "work",
@@ -1172,7 +1172,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q74",
-    "prompt": "Complete the sentence: 'What _____ they doing?'",
+    "prompt": "What _____ they doing?",
     "options": [
       "are",
       "do",
@@ -1188,7 +1188,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q75",
-    "prompt": "Complete the sentence: 'She _____ to music at the moment.'",
+    "prompt": "She _____ to music at the moment.",
     "options": [
       "is listening",
       "listens",
@@ -1204,7 +1204,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q76",
-    "prompt": "Complete the sentence: 'I'm not reading a book, I'm _____ TV.'",
+    "prompt": "I'm not reading a book, I'm _____ TV.",
     "options": [
       "watch",
       "to watch",
@@ -1220,7 +1220,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q77",
-    "prompt": "Complete the sentence: '_____ it raining outside?'",
+    "prompt": "_____ it raining outside?",
     "options": [
       "Is",
       "Does",
@@ -1236,7 +1236,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q78",
-    "prompt": "Complete the sentence: 'If you study hard, you _____ the exam.'",
+    "prompt": "If you study hard, you _____ the exam.",
     "options": [
       "will pass",
       "will passing",
@@ -1252,7 +1252,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q79",
-    "prompt": "Complete the sentence: 'If it _____, we won't go to the beach.'",
+    "prompt": "If it _____, we won't go to the beach.",
     "options": [
       "raining",
       "rains",
@@ -1268,7 +1268,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q80",
-    "prompt": "Complete the sentence: 'I will call you if I _____ any news.'",
+    "prompt": "I will call you if I _____ any news.",
     "options": [
       "hear",
       "will hear",
@@ -1284,7 +1284,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q81",
-    "prompt": "Complete the sentence: 'What will you do if you _____ the train?'",
+    "prompt": "What will you do if you _____ the train?",
     "options": [
       "will miss",
       "missing",
@@ -1300,7 +1300,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q82",
-    "prompt": "Complete the sentence: 'If she _____ invite me, I won't go to the party.'",
+    "prompt": "If she _____ invite me, I won't go to the party.",
     "options": [
       "doesn't",
       "don't",
@@ -1316,7 +1316,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q83",
-    "prompt": "Complete the sentence: 'If you _____ hurry, we will be late.'",
+    "prompt": "If you _____ hurry, we will be late.",
     "options": [
       "don't",
       "won't",
@@ -1332,7 +1332,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q84",
-    "prompt": "Complete the sentence: 'Russia is the _____ country in the world.'",
+    "prompt": "Russia is the _____ country in the world.",
     "options": [
       "largest",
       "larger",
@@ -1348,7 +1348,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q85",
-    "prompt": "Complete the sentence: 'English is _____ than Chinese.'",
+    "prompt": "English is _____ than Chinese.",
     "options": [
       "easy",
       "easiest",
@@ -1364,7 +1364,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q86",
-    "prompt": "Complete the sentence: 'This book is _____ interesting than the last one.'",
+    "prompt": "This book is _____ interesting than the last one.",
     "options": [
       "more",
       "most",
@@ -1380,7 +1380,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q87",
-    "prompt": "Complete the sentence: 'It's the _____ movie I've ever seen.'",
+    "prompt": "It's the _____ movie I've ever seen.",
     "options": [
       "worse",
       "worst",
@@ -1396,7 +1396,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q88",
-    "prompt": "Complete the sentence: 'My brother is much _____ than me.'",
+    "prompt": "My brother is much _____ than me.",
     "options": [
       "taller",
       "tall",
@@ -1412,7 +1412,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q89",
-    "prompt": "Complete the sentence: 'Giulia is the youngest _____ my three cousins.'",
+    "prompt": "Giulia is the youngest _____ my three cousins.",
     "options": [
       "in",
       "than",
@@ -1428,7 +1428,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q90",
-    "prompt": "Complete the sentence: 'I have been studying English _____ three years.'",
+    "prompt": "I have been studying English _____ three years.",
     "options": [
       "for",
       "since",
@@ -1444,7 +1444,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q91",
-    "prompt": "Complete the sentence: 'I _____ my best friend since primary school.'",
+    "prompt": "I _____ my best friend since primary school.",
     "options": [
       "know",
       "am knowing",
@@ -1460,7 +1460,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q92",
-    "prompt": "Complete the sentence: 'She hasn't eaten anything _____ yesterday morning.'",
+    "prompt": "She hasn't eaten anything _____ yesterday morning.",
     "options": [
       "since",
       "for",
@@ -1476,7 +1476,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q93",
-    "prompt": "Complete the sentence: 'We have been waiting _____ two hours.'",
+    "prompt": "We have been waiting _____ two hours.",
     "options": [
       "for",
       "since",
@@ -1492,7 +1492,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q94",
-    "prompt": "Complete the sentence: 'I haven't seen him _____ a long time.'",
+    "prompt": "I haven't seen him _____ a long time.",
     "options": [
       "for",
       "since",
@@ -1508,7 +1508,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q95",
-    "prompt": "Complete the sentence: 'He usually _____ up at 7 AM.'",
+    "prompt": "He usually _____ up at 7 AM.",
     "options": [
       "wakes",
       "wake",
@@ -1524,7 +1524,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q96",
-    "prompt": "Complete the sentence: 'My parents _____ live in London.'",
+    "prompt": "My parents _____ live in London.",
     "options": [
       "doesn't",
       "aren't",
@@ -1540,7 +1540,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q97",
-    "prompt": "Complete the sentence: '_____ she like chocolate?'",
+    "prompt": "_____ she like chocolate?",
     "options": [
       "Does",
       "Do",
@@ -1556,7 +1556,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q98",
-    "prompt": "Complete the sentence: 'The train _____ at 8 o'clock.'",
+    "prompt": "The train _____ at 8 o'clock.",
     "options": [
       "leaves",
       "leaving",
@@ -1572,7 +1572,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q99",
-    "prompt": "Complete the sentence: 'Water _____ at 100 degrees Celsius.'",
+    "prompt": "Water _____ at 100 degrees Celsius.",
     "options": [
       "boils",
       "boil",
@@ -1588,7 +1588,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q100",
-    "prompt": "Complete the sentence: 'This is my _____ car.' (The car belongs to my friend)",
+    "prompt": "This car belongs to my friend. It is my _____ car.",
     "options": [
       "friend's",
       "friends'",
@@ -1604,7 +1604,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q101",
-    "prompt": "Complete the sentence: '_____ going to help me with the dishes tonight?'",
+    "prompt": "_____ going to help me with the dishes tonight?",
     "options": [
       "Who's",
       "Whose",
@@ -1620,7 +1620,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q102",
-    "prompt": "Complete the sentence: 'Those are my _____ toys.' (The toys belong to my dogs)",
+    "prompt": "The toys belong to my dogs. Those are my _____ toys.",
     "options": [
       "dogs'",
       "dog's",
@@ -1636,7 +1636,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q103",
-    "prompt": "Complete the sentence: '_____ bag is red.'",
+    "prompt": "_____ bag is red.",
     "options": [
       "The Sarah's",
       "Sarahs",
@@ -1652,7 +1652,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q104",
-    "prompt": "Complete the sentence: 'We went to my _____ house yesterday.' (The house belongs to my parents)",
+    "prompt": "The house belongs to my parents. We went to my _____ house yesterday.",
     "options": [
       "parents'",
       "parent's",
@@ -1668,7 +1668,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q105",
-    "prompt": "Complete the sentence: 'How _____ milk is left?'",
+    "prompt": "How _____ milk is left?",
     "options": [
       "much",
       "many",
@@ -1684,7 +1684,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q106",
-    "prompt": "Complete the sentence: 'I don't have _____ friends.'",
+    "prompt": "I don't have _____ friends.",
     "options": [
       "much",
       "a lot",
@@ -1700,7 +1700,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q107",
-    "prompt": "Complete the sentence: 'There are _____ people at the concert.'",
+    "prompt": "There are _____ people at the concert.",
     "options": [
       "a lot of",
       "much",
@@ -1716,7 +1716,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q108",
-    "prompt": "Complete the sentence: 'How _____ sugar do you want in your coffee?'",
+    "prompt": "How _____ sugar do you want in your coffee?",
     "options": [
       "many",
       "much of",
@@ -1732,7 +1732,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q109",
-    "prompt": "Complete the sentence: 'She has very _____ free time these days.'",
+    "prompt": "She has very _____ free time these days.",
     "options": [
       "little",
       "few",
@@ -1748,7 +1748,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q110",
-    "prompt": "Complete the sentence: 'There are too _____ cars in this city.'",
+    "prompt": "There are too _____ cars in this city.",
     "options": [
       "much",
       "many",
@@ -1764,7 +1764,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q111",
-    "prompt": "Complete the sentence: 'Where _____ you born?'",
+    "prompt": "Where _____ you born?",
     "options": [
       "were",
       "was",
@@ -1780,7 +1780,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q112",
-    "prompt": "Complete the sentence: 'Where _____ your brother come from?'",
+    "prompt": "Where _____ your brother come from?",
     "options": [
       "do",
       "is",
@@ -1796,7 +1796,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q113",
-    "prompt": "Complete the sentence: '_____ country are you from?'",
+    "prompt": "_____ country are you from?",
     "options": [
       "Which",
       "Whose",
@@ -1812,7 +1812,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q114",
-    "prompt": "Complete the sentence: '_____ they Spanish?'",
+    "prompt": "_____ they Spanish?",
     "options": [
       "Are",
       "Do",
@@ -1828,7 +1828,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q115",
-    "prompt": "Complete the sentence: '_____ is the capital of Italy?'",
+    "prompt": "_____ is the capital of Italy?",
     "options": [
       "What",
       "When",
@@ -1844,7 +1844,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q116",
-    "prompt": "Complete the sentence: 'Where _____?'",
+    "prompt": "Where _____?",
     "options": [
       "does Maria from",
       "is Maria from",
@@ -1860,7 +1860,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q117",
-    "prompt": "Complete the sentence: 'This is the _____ book I have ever read.'",
+    "prompt": "This is the _____ book I have ever read.",
     "options": [
       "longest",
       "most long",
@@ -1876,7 +1876,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q118",
-    "prompt": "Complete: 'My car is _____ than yours.'",
+    "prompt": "My car is _____ than yours.",
     "options": [
       "faster",
       "more fast",
@@ -1892,7 +1892,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q119",
-    "prompt": "Complete the sentence: 'Today is much _____ than yesterday.'",
+    "prompt": "Today is much _____ than yesterday.",
     "options": [
       "more hot",
       "hottest",
@@ -1908,7 +1908,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q120",
-    "prompt": "Complete: 'She is the _____ student in the class.'",
+    "prompt": "She is the _____ student in the class.",
     "options": [
       "best",
       "better",
@@ -1924,7 +1924,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q121",
-    "prompt": "Complete the sentence: 'His sister is _____ outgoing than his brother.'",
+    "prompt": "His sister is _____ outgoing than his brother.",
     "options": [
       "least",
       "not",
@@ -1940,7 +1940,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q122",
-    "prompt": "Complete: 'This exercise is _____ difficult than the previous one.'",
+    "prompt": "This exercise is _____ difficult than the previous one.",
     "options": [
       "more",
       "much",
@@ -1956,7 +1956,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q123",
-    "prompt": "Complete the sentence: 'This is the _____ expensive of all the hotels in town.'",
+    "prompt": "This is the _____ expensive of all the hotels in town.",
     "options": [
       "less",
       "lesser",
@@ -1972,7 +1972,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q124",
-    "prompt": "Complete: 'He is _____ taller than his brother.'",
+    "prompt": "He is _____ taller than his brother.",
     "options": [
       "slightly",
       "a little of",
@@ -1988,7 +1988,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q125",
-    "prompt": "Complete: 'If I have time, I _____ you.'",
+    "prompt": "If I have time, I _____ you.",
     "options": [
       "will help",
       "helping",
@@ -2004,7 +2004,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q126",
-    "prompt": "Complete the sentence: 'If she _____, she will pass the test.'",
+    "prompt": "If she _____, she will pass the test.",
     "options": [
       "will study",
       "studies",
@@ -2020,7 +2020,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q128",
-    "prompt": "Complete the sentence: 'Please turn off the lights before you _____ the room.'",
+    "prompt": "Please turn off the lights before you _____ the room.",
     "options": [
       "leave",
       "will leave",
@@ -2036,7 +2036,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q129",
-    "prompt": "Complete: 'If they don't hurry, they _____ the bus.'",
+    "prompt": "If they don't hurry, they _____ the bus.",
     "options": [
       "will miss",
       "will missing",
@@ -2052,7 +2052,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q130",
-    "prompt": "Complete the sentence: 'If you feel ill, _____ at home.'",
+    "prompt": "If you feel ill, _____ at home.",
     "options": [
       "stay",
       "will stay",
@@ -2068,7 +2068,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q131",
-    "prompt": "Complete: 'If she _____ the job, she will move to London.'",
+    "prompt": "If she _____ the job, she will move to London.",
     "options": [
       "gets",
       "get",
@@ -2084,7 +2084,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q132",
-    "prompt": "Complete the sentence: 'I will talk to him if I _____ him.'",
+    "prompt": "I will talk to him if I _____ him.",
     "options": [
       "will see",
       "would see",
@@ -2100,7 +2100,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q133",
-    "prompt": "Complete: 'Unless you _____, you won't succeed.'",
+    "prompt": "Unless you _____, you won't succeed.",
     "options": [
       "try",
       "will try",
@@ -2116,7 +2116,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q134",
-    "prompt": "Complete the sentence: 'Unless it _____, we will go for a walk.'",
+    "prompt": "Unless it _____, we will go for a walk.",
     "options": [
       "doesn't rain",
       "rains",
@@ -2132,7 +2132,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q135",
-    "prompt": "Complete: 'I will buy that car if it _____ too expensive.'",
+    "prompt": "I will buy that car if it _____ too expensive.",
     "options": [
       "isn't",
       "not is",
@@ -2148,7 +2148,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q136",
-    "prompt": "Complete: 'I usually go to bed _____ 11 PM.'",
+    "prompt": "I usually go to bed _____ 11 PM.",
     "options": [
       "at",
       "in",
@@ -2164,7 +2164,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q137",
-    "prompt": "Complete the sentence: 'I _____ like coffee.'",
+    "prompt": "I _____ like coffee.",
     "options": [
       "doesn't",
       "am not",
@@ -2180,7 +2180,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q138",
-    "prompt": "Complete: 'They _____ to Paris next weekend.'",
+    "prompt": "They _____ to Paris next weekend.",
     "options": [
       "are going",
       "goes",
@@ -2196,7 +2196,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q139",
-    "prompt": "Complete the sentence: 'You _____ park here. It's forbidden.'",
+    "prompt": "You _____ park here. It's forbidden.",
     "options": [
       "mustn't",
       "don't have to",
@@ -2212,7 +2212,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q140",
-    "prompt": "Complete: 'She is interested in _____ Spanish.'",
+    "prompt": "She is interested in _____ Spanish.",
     "options": [
       "learning",
       "to learn",
@@ -2228,7 +2228,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q141",
-    "prompt": "Complete the sentence: 'We _____ go now.'",
+    "prompt": "We _____ go now.",
     "options": [
       "must to",
       "must",
@@ -2244,7 +2244,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q142",
-    "prompt": "Complete: 'I look forward _____ from you soon.'",
+    "prompt": "I look forward _____ from you soon.",
     "options": [
       "to hearing",
       "to hear",
@@ -2260,7 +2260,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q143",
-    "prompt": "Complete the sentence: 'I _____ very tired last night.'",
+    "prompt": "I _____ very tired last night.",
     "options": [
       "was",
       "am",
@@ -2276,7 +2276,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q144",
-    "prompt": "Complete: 'This is the book _____ I borrowed from the library.'",
+    "prompt": "This is the book _____ I borrowed from the library.",
     "options": [
       "which",
       "who",
@@ -2292,7 +2292,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q145",
-    "prompt": "Complete the sentence: 'She _____ swim very well.'",
+    "prompt": "She _____ swim very well.",
     "options": [
       "is can",
       "knows",
@@ -2308,7 +2308,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q146",
-    "prompt": "Complete: 'You _____ smoke in the hospital.'",
+    "prompt": "You _____ smoke in the hospital.",
     "options": [
       "mustn't",
       "don't have to",
@@ -2324,7 +2324,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q147",
-    "prompt": "Complete the sentence: 'I don't have _____ money.'",
+    "prompt": "I don't have _____ money.",
     "options": [
       "enough of",
       "enough to",
@@ -2340,7 +2340,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q148",
-    "prompt": "Complete: 'That is _____ jacket.' (The jacket belongs to Tom)",
+    "prompt": "The jacket belongs to Tom. That is _____ jacket.",
     "options": [
       "Tom's",
       "Toms'",
@@ -2356,7 +2356,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q149",
-    "prompt": "Complete the sentence: 'My two _____ room is very small.'",
+    "prompt": "My two _____ room is very small.",
     "options": [
       "brother's",
       "brothers's",
@@ -2372,7 +2372,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q150",
-    "prompt": "Complete: 'I love _____ new song.' (The song of the band)",
+    "prompt": "The band wrote the song. I love _____ new song.",
     "options": [
       "the band's",
       "the bands'",
@@ -2388,7 +2388,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q151",
-    "prompt": "Complete the sentence: 'The _____ toys are scattered everywhere.'",
+    "prompt": "The _____ toys are scattered everywhere.",
     "options": [
       "children's",
       "childrens'",
@@ -2404,7 +2404,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q152",
-    "prompt": "Complete: 'This is _____ desk.' (The desk belongs to the boss)",
+    "prompt": "The desk belongs to the boss. This is _____ desk.",
     "options": [
       "the boss's",
       "the bosses'",
@@ -2420,7 +2420,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q153",
-    "prompt": "Complete the sentence: '_____ car is blue.'",
+    "prompt": "_____ car is blue.",
     "options": [
       "James",
       "The James's",
@@ -2436,7 +2436,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q154",
-    "prompt": "Complete: 'I went to the _____.' (The shop of the baker)",
+    "prompt": "The baker has a shop. I went to the _____.",
     "options": [
       "baker's",
       "bakers'",
@@ -2452,7 +2452,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q155",
-    "prompt": "Complete the sentence: 'It's my _____ birthday.'",
+    "prompt": "It's my _____ birthday.",
     "options": [
       "mothers",
       "mother's",
@@ -2468,7 +2468,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q156",
-    "prompt": "Complete: 'We are meeting at _____.' (The house of Paul)",
+    "prompt": "Paul has a house. We are meeting at _____.",
     "options": [
       "Paul's",
       "Pauls'",
@@ -2484,7 +2484,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q157",
-    "prompt": "Complete the sentence: '_____ shoes are on the second floor.'",
+    "prompt": "_____ shoes are on the second floor.",
     "options": [
       "Women's",
       "Womens'",
@@ -2500,7 +2500,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q158",
-    "prompt": "Complete: 'The _____ room is down the hall.' (The room for teachers)",
+    "prompt": "The room is for teachers. The _____ room is down the hall.",
     "options": [
       "teachers'",
       "teacher's",
@@ -2516,7 +2516,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q159",
-    "prompt": "Complete the sentence: 'Is this Sara's jacket? Yes, it's _____.'",
+    "prompt": "Is this Sara's jacket? Yes, it's _____.",
     "options": [
       "her",
       "hers",
@@ -2532,7 +2532,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q160",
-    "prompt": "Complete: 'I have known him _____ 2010.'",
+    "prompt": "I have known him _____ 2010.",
     "options": [
       "since",
       "for",
@@ -2548,7 +2548,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q161",
-    "prompt": "Complete the sentence: 'We have been friends _____ we were children.'",
+    "prompt": "We have been friends _____ we were children.",
     "options": [
       "for",
       "during",
@@ -2564,7 +2564,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q162",
-    "prompt": "Complete: 'They _____ tennis right now.'",
+    "prompt": "They _____ tennis right now.",
     "options": [
       "are playing",
       "play",
@@ -2580,7 +2580,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q163",
-    "prompt": "Complete the sentence: 'Why _____ crying?'",
+    "prompt": "Why _____ crying?",
     "options": [
       "do you",
       "are you",
@@ -2596,7 +2596,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q164",
-    "prompt": "Complete: 'I _____ to the doctor tomorrow afternoon.'",
+    "prompt": "I _____ to the doctor tomorrow afternoon.",
     "options": [
       "am going",
       "goes",
@@ -2612,7 +2612,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q165",
-    "prompt": "Complete the sentence: 'Look outside! The sun _____ shining.'",
+    "prompt": "Look outside! The sun _____ shining.",
     "options": [
       "are",
       "does",
@@ -2628,7 +2628,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q166",
-    "prompt": "Complete: 'Look! The bus _____.'",
+    "prompt": "Look! The bus _____.",
     "options": [
       "is coming",
       "comes",
@@ -2644,7 +2644,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q167",
-    "prompt": "Complete the sentence: 'We _____ using the computer right now.'",
+    "prompt": "We _____ using the computer right now.",
     "options": [
       "aren't",
       "don't",
@@ -2660,7 +2660,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q168",
-    "prompt": "Complete: '_____ he watching TV?'",
+    "prompt": "_____ he watching TV?",
     "options": [
       "Is",
       "Does",
@@ -2676,7 +2676,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q169",
-    "prompt": "Complete the sentence: 'I am _____ for my keys.'",
+    "prompt": "I am _____ for my keys.",
     "options": [
       "look",
       "looking",
@@ -2692,7 +2692,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q170",
-    "prompt": "Complete: 'The kids _____ sleeping in their room.'",
+    "prompt": "The kids _____ sleeping in their room.",
     "options": [
       "are",
       "is",
@@ -2708,7 +2708,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q171",
-    "prompt": "Complete: 'I have _____ finished my dinner.'",
+    "prompt": "I have _____ finished my dinner.",
     "options": [
       "already",
       "yet",
@@ -2724,7 +2724,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q172",
-    "prompt": "Complete the sentence: 'It's the first time I _____ a car.'",
+    "prompt": "It's the first time I _____ a car.",
     "options": [
       "driving",
       "have drove",
@@ -2740,7 +2740,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q173",
-    "prompt": "Complete: 'She _____ coffee every morning.'",
+    "prompt": "She _____ coffee every morning.",
     "options": [
       "drinks",
       "drink",
@@ -2756,7 +2756,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q174",
-    "prompt": "Complete the sentence: 'I _____ in a hospital.'",
+    "prompt": "I _____ in a hospital.",
     "options": [
       "working",
       "work",
@@ -2772,7 +2772,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q175",
-    "prompt": "Complete: 'They _____ play tennis on Sundays.'",
+    "prompt": "They _____ play tennis on Sundays.",
     "options": [
       "don't",
       "doesn't",
@@ -2788,7 +2788,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q176",
-    "prompt": "Complete the sentence: 'He _____ understand the question.'",
+    "prompt": "He _____ understand the question.",
     "options": [
       "don't",
       "isn't",
@@ -2804,7 +2804,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q177",
-    "prompt": "Complete: '_____ you speak English?'",
+    "prompt": "_____ you speak English?",
     "options": [
       "Do",
       "Are",
@@ -2820,7 +2820,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q178",
-    "prompt": "Complete the sentence: 'What _____ this word mean?'",
+    "prompt": "What _____ this word mean?",
     "options": [
       "does",
       "do",
@@ -2836,7 +2836,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q179",
-    "prompt": "Complete: 'The sun _____ in the east.'",
+    "prompt": "The sun _____ in the east.",
     "options": [
       "rises",
       "rise",
@@ -2852,7 +2852,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q180",
-    "prompt": "Complete the sentence: 'How often _____ you go to the gym?'",
+    "prompt": "How often _____ you go to the gym?",
     "options": [
       "does",
       "are",
@@ -2868,7 +2868,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q181",
-    "prompt": "Complete: 'My brother never _____ his room.'",
+    "prompt": "My brother never _____ his room.",
     "options": [
       "cleans",
       "clean",
@@ -2884,7 +2884,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q182",
-    "prompt": "Complete the sentence: 'She _____ two cats and a dog.'",
+    "prompt": "She _____ two cats and a dog.",
     "options": [
       "have",
       "has",
@@ -2900,7 +2900,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q183",
-    "prompt": "Complete: 'We _____ like spicy food.'",
+    "prompt": "We _____ like spicy food.",
     "options": [
       "don't",
       "doesn't",
@@ -2916,7 +2916,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q184",
-    "prompt": "Complete the sentence: 'The movie _____ at 8:30 PM.'",
+    "prompt": "The movie _____ at 8:30 PM.",
     "options": [
       "start",
       "starting",
@@ -2932,7 +2932,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q185",
-    "prompt": "Complete: 'Does he _____ in London?'",
+    "prompt": "Does he _____ in London?",
     "options": [
       "live",
       "lives",
@@ -2948,7 +2948,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q186",
-    "prompt": "Complete: 'I have _____ money in my pocket.'",
+    "prompt": "I have _____ money in my pocket.",
     "options": [
       "some",
       "any",
@@ -2964,7 +2964,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q187",
-    "prompt": "Complete the sentence: 'There are not _____ apples.'",
+    "prompt": "There are not _____ apples.",
     "options": [
       "any",
       "no",
@@ -2980,7 +2980,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q188",
-    "prompt": "Complete: 'Do you have _____ questions?'",
+    "prompt": "Do you have _____ questions?",
     "options": [
       "any",
       "a",
@@ -2996,7 +2996,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q189",
-    "prompt": "Complete the sentence: 'Would you like _____ tea?'",
+    "prompt": "Would you like _____ tea?",
     "options": [
       "many",
       "a few",
@@ -3012,7 +3012,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q190",
-    "prompt": "Complete: 'There are only a _____ students in the class.'",
+    "prompt": "There are only a _____ students in the class.",
     "options": [
       "few",
       "little",
@@ -3028,7 +3028,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q191",
-    "prompt": "Complete the sentence: 'I have very _____ time.'",
+    "prompt": "I have very _____ time.",
     "options": [
       "few",
       "little",
@@ -3044,7 +3044,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q192",
-    "prompt": "Complete: 'She reads a _____ of books.'",
+    "prompt": "She reads a _____ of books.",
     "options": [
       "lot",
       "many",
@@ -3060,7 +3060,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q193",
-    "prompt": "Complete the sentence: 'We ate too _____ pizza.'",
+    "prompt": "We ate too _____ pizza.",
     "options": [
       "much",
       "many",
@@ -3076,7 +3076,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q194",
-    "prompt": "Complete: 'How _____ apples do you want?'",
+    "prompt": "How _____ apples do you want?",
     "options": [
       "many",
       "much",
@@ -3092,7 +3092,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q195",
-    "prompt": "Complete the sentence: 'We did not buy _____.'",
+    "prompt": "We did not buy _____.",
     "options": [
       "nothing",
       "none",
@@ -3108,7 +3108,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q196",
-    "prompt": "Complete: 'Is there _____ good on TV?'",
+    "prompt": "Is there _____ good on TV?",
     "options": [
       "anything",
       "anythings",
@@ -3124,7 +3124,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q197",
-    "prompt": "Complete: '_____ is that man?'",
+    "prompt": "_____ is that man?",
     "options": [
       "Who",
       "What",
@@ -3140,7 +3140,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q198",
-    "prompt": "Complete the sentence: 'Why _____ you late today?'",
+    "prompt": "Why _____ you late today?",
     "options": [
       "do",
       "are",
@@ -3156,7 +3156,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q199",
-    "prompt": "Complete: '_____ old are you?'",
+    "prompt": "_____ old are you?",
     "options": [
       "How",
       "What",
@@ -3172,7 +3172,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q200",
-    "prompt": "Complete the sentence: '_____ is your birthday?'",
+    "prompt": "_____ is your birthday?",
     "options": [
       "Where",
       "Who",
@@ -3188,7 +3188,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q201",
-    "prompt": "Complete: '_____ do you live?'",
+    "prompt": "_____ do you live?",
     "options": [
       "Where",
       "What",
@@ -3204,7 +3204,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q202",
-    "prompt": "Complete the sentence: '_____ do you go to work?'",
+    "prompt": "_____ do you go to work?",
     "options": [
       "How",
       "Who",
@@ -3220,7 +3220,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q203",
-    "prompt": "Complete: '_____ is your favorite color?'",
+    "prompt": "_____ is your favorite color?",
     "options": [
       "What",
       "Whose",
@@ -3236,7 +3236,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q204",
-    "prompt": "Complete the sentence: '_____ bag is this?'",
+    "prompt": "_____ bag is this?",
     "options": [
       "Who",
       "Whom",
@@ -3252,7 +3252,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q205",
-    "prompt": "Complete: '_____ time does the movie start?'",
+    "prompt": "_____ time does the movie start?",
     "options": [
       "What",
       "Where",
@@ -3268,7 +3268,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q206",
-    "prompt": "Complete the sentence: '_____ does this book cost?'",
+    "prompt": "_____ does this book cost?",
     "options": [
       "How many",
       "How much",
@@ -3284,7 +3284,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q207",
-    "prompt": "Complete: '_____ languages do you speak?'",
+    "prompt": "_____ languages do you speak?",
     "options": [
       "How many",
       "How much",
@@ -3300,7 +3300,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q208",
-    "prompt": "Complete: '_____ a big tree in the garden.'",
+    "prompt": "_____ a big tree in the garden.",
     "options": [
       "There is",
       "There are",
@@ -3316,7 +3316,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q209",
-    "prompt": "Complete the sentence: 'There _____ three chairs in the room.'",
+    "prompt": "There _____ three chairs in the room.",
     "options": [
       "have",
       "has",
@@ -3332,7 +3332,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q210",
-    "prompt": "Complete: '_____ any messages for me?'",
+    "prompt": "_____ any messages for me?",
     "options": [
       "Are there",
       "Is there",
@@ -3348,7 +3348,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q211",
-    "prompt": "Complete the sentence: '_____ there a good restaurant near here?'",
+    "prompt": "_____ there a good restaurant near here?",
     "options": [
       "Is",
       "Are",
@@ -3364,7 +3364,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q212",
-    "prompt": "Complete: 'There _____ a lot of people at the party.'",
+    "prompt": "There _____ a lot of people at the party.",
     "options": [
       "were",
       "was",
@@ -3380,7 +3380,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q213",
-    "prompt": "Complete the sentence: 'When I arrived yesterday, there _____ nobody at home.'",
+    "prompt": "When I arrived yesterday, there _____ nobody at home.",
     "options": [
       "were",
       "is",
@@ -3396,7 +3396,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q214",
-    "prompt": "Complete: '_____ going to be a storm tomorrow.'",
+    "prompt": "_____ going to be a storm tomorrow.",
     "options": [
       "There is",
       "There are",
@@ -3412,7 +3412,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q215",
-    "prompt": "Complete the sentence: '_____ any biscuits in the box?'",
+    "prompt": "_____ any biscuits in the box?",
     "options": [
       "Does there",
       "Are there",
@@ -3428,7 +3428,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q216",
-    "prompt": "Complete: '_____ a mistake in this exercise.'",
+    "prompt": "_____ a mistake in this exercise.",
     "options": [
       "There is",
       "There are",
@@ -3444,7 +3444,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q217",
-    "prompt": "Complete: 'This is not my pen. It is _____.'",
+    "prompt": "This is not my pen. It is _____.",
     "options": [
       "yours",
       "your",
@@ -3460,7 +3460,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q218",
-    "prompt": "Complete: '_____ car is parked outside.'",
+    "prompt": "_____ car is parked outside.",
     "options": [
       "Her",
       "Hers",
@@ -3476,7 +3476,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q219",
-    "prompt": "Complete: 'That house is _____.' (of us)",
+    "prompt": "That house belongs to us. It is _____.",
     "options": [
       "ours",
       "our",
@@ -3492,7 +3492,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q220",
-    "prompt": "Complete: 'Is this book _____?' (of him)",
+    "prompt": "Does this book belong to him? Yes, it is _____.",
     "options": [
       "his",
       "him",
@@ -3508,7 +3508,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q221",
-    "prompt": "Complete: 'These are _____ shoes.'",
+    "prompt": "These are _____ shoes.",
     "options": [
       "my",
       "mine",
@@ -3524,7 +3524,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q222",
-    "prompt": "Complete: 'The dog is wagging _____ tail.'",
+    "prompt": "The dog is wagging _____ tail.",
     "options": [
       "its",
       "it's",
@@ -3540,7 +3540,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q223",
-    "prompt": "Complete: 'Are those keys _____?' (of them)",
+    "prompt": "Do those keys belong to them? Yes, they are _____.",
     "options": [
       "theirs",
       "their",
@@ -3556,7 +3556,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q224",
-    "prompt": "Complete: 'I lost _____ keys yesterday.'",
+    "prompt": "I lost _____ keys yesterday.",
     "options": [
       "my",
       "mine",
@@ -3572,7 +3572,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q225",
-    "prompt": "Complete: 'This laptop is _____, not yours.'",
+    "prompt": "This laptop is _____, not yours.",
     "options": [
       "mine",
       "my",
@@ -3588,7 +3588,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q226",
-    "prompt": "Complete the sentence: 'This book is _____.'",
+    "prompt": "This book is _____.",
     "options": [
       "my",
       "me",
@@ -3604,7 +3604,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q227",
-    "prompt": "Complete the sentence: '_____ house is very big.'",
+    "prompt": "_____ house is very big.",
     "options": [
       "Their",
       "Theirs",
@@ -3620,7 +3620,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q228",
-    "prompt": "Complete the sentence: 'That blue jacket belongs to Anna, so it is _____.'",
+    "prompt": "That blue jacket belongs to Anna, so it is _____.",
     "options": [
       "her",
       "her's",
@@ -3636,7 +3636,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q229",
-    "prompt": "Complete the sentence: '_____ friends are coming.'",
+    "prompt": "_____ friends are coming.",
     "options": [
       "Ours",
       "Our",
@@ -3652,7 +3652,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q230",
-    "prompt": "Complete the sentence: 'Is this money _____?'",
+    "prompt": "Is this money _____?",
     "options": [
       "your",
       "you",
@@ -3668,7 +3668,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q231",
-    "prompt": "Complete the sentence: 'Tom is happy because _____ phone is new.'",
+    "prompt": "Tom is happy because _____ phone is new.",
     "options": [
       "his",
       "him",
@@ -3684,7 +3684,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q232",
-    "prompt": "Complete the sentence: 'My brother and I have cars: mine is red and _____ is blue.'",
+    "prompt": "My brother and I have cars: mine is red and _____ is blue.",
     "options": [
       "hers",
       "his",
@@ -3700,7 +3700,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q233",
-    "prompt": "Complete the sentence: 'I forgot _____ umbrella at home.'",
+    "prompt": "I forgot _____ umbrella at home.",
     "options": [
       "mine",
       "me",
@@ -3716,7 +3716,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q234",
-    "prompt": "Complete the sentence: 'Those pens belong to my neighbours, so they are _____.'",
+    "prompt": "Those pens belong to my neighbours, so they are _____.",
     "options": [
       "their",
       "them",
@@ -3732,7 +3732,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q235",
-    "prompt": "Complete: 'I call _____ every day.' (him/he/his/himself)",
+    "prompt": "I call _____ every day.",
     "options": [
       "him",
       "he",
@@ -3748,7 +3748,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q236",
-    "prompt": "Complete: 'She loves _____ very much.' (me/I/my/mine)",
+    "prompt": "She loves _____ very much.",
     "options": [
       "me",
       "I",
@@ -3764,7 +3764,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q237",
-    "prompt": "Complete: 'Can you help _____ with this exercise?' (us/we/our/ours)",
+    "prompt": "Can you help _____ with this exercise?",
     "options": [
       "us",
       "we",
@@ -3780,7 +3780,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q238",
-    "prompt": "Complete: 'I don't know _____.' (them/they/their/theirs)",
+    "prompt": "I don't know _____.",
     "options": [
       "them",
       "they",
@@ -3796,7 +3796,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q239",
-    "prompt": "Complete: 'Look at _____!' (her/she/hers/herself)",
+    "prompt": "Look at _____!",
     "options": [
       "her",
       "she",
@@ -3812,7 +3812,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q240",
-    "prompt": "Complete: 'He wants to speak to _____.' (you/your/yours/yourself)",
+    "prompt": "He wants to speak to _____.",
     "options": [
       "you",
       "your",
@@ -3828,7 +3828,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q241",
-    "prompt": "Complete: 'Give _____ to me.' (it/its/it's/itself)",
+    "prompt": "Give _____ to me.",
     "options": [
       "it",
       "its",
@@ -3844,7 +3844,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q242",
-    "prompt": "Complete: 'My parents are visiting _____.' (me/I/my/mine)",
+    "prompt": "My parents are visiting _____.",
     "options": [
       "me",
       "I",
@@ -3860,7 +3860,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q243",
-    "prompt": "Complete: 'Are you listening to _____?' (him/he/his/himself)",
+    "prompt": "Are you listening to _____?",
     "options": [
       "him",
       "he",
@@ -3876,7 +3876,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q244",
-    "prompt": "Complete the sentence: 'Tom speaks too fast and I do not understand _____.'",
+    "prompt": "Tom speaks too fast and I do not understand _____.",
     "options": [
       "him",
       "he",
@@ -3892,7 +3892,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q245",
-    "prompt": "Complete the sentence: 'We are waving at you: can you see _____?'",
+    "prompt": "We are waving at you: can you see _____?",
     "options": [
       "we",
       "us",
@@ -3908,7 +3908,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q246",
-    "prompt": "Complete the sentence: 'My sister has a birthday today, so I bought _____ a present.'",
+    "prompt": "My sister has a birthday today, so I bought _____ a present.",
     "options": [
       "she",
       "hers",
@@ -3924,7 +3924,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q247",
-    "prompt": "Complete the sentence: 'My parents are late, so I will wait for _____ here.'",
+    "prompt": "My parents are late, so I will wait for _____ here.",
     "options": [
       "they",
       "their",
@@ -3940,7 +3940,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q248",
-    "prompt": "Complete the sentence: 'Please give _____ that book.'",
+    "prompt": "Please give _____ that book.",
     "options": [
       "me",
       "I",
@@ -3956,7 +3956,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q249",
-    "prompt": "Complete the sentence: 'You always tell lies, so I do not believe _____.'",
+    "prompt": "You always tell lies, so I do not believe _____.",
     "options": [
       "your",
       "you",
@@ -3972,7 +3972,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q250",
-    "prompt": "Complete the sentence: 'This pen is very nice and I want _____ now.'",
+    "prompt": "This pen is very nice and I want _____ now.",
     "options": [
       "its",
       "they",
@@ -3988,7 +3988,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q251",
-    "prompt": "Complete the sentence: 'Are you coming with _____ to the cinema?'",
+    "prompt": "Are you coming with _____ to the cinema?",
     "options": [
       "we",
       "our",
@@ -4004,7 +4004,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q252",
-    "prompt": "Complete the sentence: 'These boys are new in the class and I do not know _____.'",
+    "prompt": "These boys are new in the class and I do not know _____.",
     "options": [
       "them",
       "they",
@@ -4020,7 +4020,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q253",
-    "prompt": "Complete: '_____ is my friend, Paul.' (near)",
+    "prompt": "Look at the man next to me: _____ is my friend, Paul.",
     "options": [
       "This",
       "These",
@@ -4036,7 +4036,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q254",
-    "prompt": "Complete: 'Look at _____ birds in the sky.'",
+    "prompt": "Look at _____ birds in the sky.",
     "options": [
       "those",
       "that",
@@ -4052,7 +4052,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q255",
-    "prompt": "Complete: 'Are _____ your shoes here?'",
+    "prompt": "Are _____ your shoes here?",
     "options": [
       "these",
       "this",
@@ -4068,7 +4068,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q256",
-    "prompt": "Complete: '_____ building over there is a hospital.'",
+    "prompt": "_____ building over there is a hospital.",
     "options": [
       "That",
       "This",
@@ -4084,7 +4084,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q257",
-    "prompt": "Complete: '_____ days are the best of my life.'",
+    "prompt": "_____ days are the best of my life.",
     "options": [
       "These",
       "This",
@@ -4100,7 +4100,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q258",
-    "prompt": "Complete: 'I don't like _____ kind of music.' (near/current)",
+    "prompt": "I don't like _____ kind of music.",
     "options": [
       "this",
       "these",
@@ -4116,7 +4116,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q259",
-    "prompt": "Complete: 'Did you buy _____ apples from the market?' (far/past)",
+    "prompt": "Did you buy _____ apples from the market?",
     "options": [
       "those",
       "that",
@@ -4132,7 +4132,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q260",
-    "prompt": "Complete: '_____ is a very interesting book.' (holding it)",
+    "prompt": "I am holding it in my hands: _____ is a very interesting book.",
     "options": [
       "This",
       "These",
@@ -4148,7 +4148,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q261",
-    "prompt": "Complete: 'Can you pass me _____ pen?' (far)",
+    "prompt": "Can you pass me _____ pen over there?",
     "options": [
       "that",
       "those",
@@ -4164,7 +4164,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q262",
-    "prompt": "Complete the sentence: '_____ cat in my arms is called Leo.'",
+    "prompt": "_____ cat in my arms is called Leo.",
     "options": [
       "These",
       "Those",
@@ -4180,7 +4180,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q263",
-    "prompt": "Complete the sentence: '_____ books on the shelf over there are mine.'",
+    "prompt": "_____ books on the shelf over there are mine.",
     "options": [
       "That",
       "Those",
@@ -4196,7 +4196,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q264",
-    "prompt": "Complete the sentence: 'Try a slice of the pizza in my hand: _____ pizza is very good.'",
+    "prompt": "Try a slice of the pizza in my hand: _____ pizza is very good.",
     "options": [
       "These",
       "Those",
@@ -4212,7 +4212,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q265",
-    "prompt": "Complete the sentence: 'Look at the girls next to me: _____ girls are Italian.'",
+    "prompt": "Look at the girls next to me: _____ girls are Italian.",
     "options": [
       "These",
       "This",
@@ -4228,7 +4228,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q266",
-    "prompt": "Complete the sentence: 'Look at _____ man over there: he is my father.'",
+    "prompt": "Look at _____ man over there: he is my father.",
     "options": [
       "those",
       "that",
@@ -4244,7 +4244,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q267",
-    "prompt": "Complete the sentence: 'What are _____ things in the box over there?'",
+    "prompt": "What are _____ things in the box over there?",
     "options": [
       "that",
       "this",
@@ -4260,7 +4260,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q268",
-    "prompt": "Complete the sentence: 'I prefer _____ dress that I am holding now.'",
+    "prompt": "I prefer _____ dress that I am holding now.",
     "options": [
       "this",
       "these",
@@ -4276,7 +4276,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q269",
-    "prompt": "Complete the sentence: 'Do you know _____ people over there?'",
+    "prompt": "Do you know _____ people over there?",
     "options": [
       "that",
       "this",
@@ -4292,7 +4292,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q270",
-    "prompt": "Complete the sentence: 'Look at the papers in my hands: _____ are my notes.'",
+    "prompt": "Look at the papers in my hands: _____ are my notes.",
     "options": [
       "this",
       "these",
@@ -4308,7 +4308,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q271",
-    "prompt": "Complete: 'The cat is hiding _____ the bed.'",
+    "prompt": "The cat is hiding _____ the bed.",
     "options": [
       "under",
       "between",
@@ -4324,7 +4324,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q272",
-    "prompt": "Complete: 'She is waiting _____ the bus stop.'",
+    "prompt": "She is waiting _____ the bus stop.",
     "options": [
       "at",
       "in",
@@ -4340,7 +4340,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q273",
-    "prompt": "Complete: 'The picture is hanging _____ the wall.'",
+    "prompt": "The picture is hanging _____ the wall.",
     "options": [
       "on",
       "in",
@@ -4356,7 +4356,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q274",
-    "prompt": "Complete: 'He lives _____ London.'",
+    "prompt": "He lives _____ London.",
     "options": [
       "in",
       "at",
@@ -4372,7 +4372,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q275",
-    "prompt": "Complete: 'The car is parked _____ the house.'",
+    "prompt": "The car is parked _____ the house.",
     "options": [
       "behind",
       "under",
@@ -4388,7 +4388,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q276",
-    "prompt": "Complete: 'She sat _____ her two best friends.'",
+    "prompt": "She sat _____ her two best friends.",
     "options": [
       "between",
       "among",
@@ -4404,7 +4404,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q277",
-    "prompt": "Complete: 'The bank is _____ the post office.'",
+    "prompt": "The bank is _____ the post office.",
     "options": [
       "next to",
       "in",
@@ -4420,7 +4420,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q278",
-    "prompt": "Complete: 'There is a bridge _____ the river.'",
+    "prompt": "There is a bridge _____ the river.",
     "options": [
       "over",
       "under",
@@ -4436,7 +4436,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q279",
-    "prompt": "Complete: 'I left my keys _____ the table.'",
+    "prompt": "I left my keys _____ the table.",
     "options": [
       "on",
       "in",
@@ -4452,7 +4452,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q280",
-    "prompt": "Complete the sentence: 'The dog is lying on the floor, _____ the table.'",
+    "prompt": "The dog is lying on the floor, _____ the table.",
     "options": [
       "on",
       "in",
@@ -4468,7 +4468,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q281",
-    "prompt": "Complete the sentence: 'I am _____ the cinema now; the film starts in ten minutes.'",
+    "prompt": "I am _____ the cinema now; the film starts in ten minutes.",
     "options": [
       "at",
       "into",
@@ -4484,7 +4484,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q282",
-    "prompt": "Complete the sentence: 'There is a big spider _____ the ceiling of my room.'",
+    "prompt": "There is a big spider _____ the ceiling of my room.",
     "options": [
       "to",
       "into",
@@ -4500,7 +4500,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q283",
-    "prompt": "Complete the sentence: 'The office is _____ the bank, so it takes one minute to walk there.'",
+    "prompt": "The office is _____ the bank, so it takes one minute to walk there.",
     "options": [
       "between",
       "near",
@@ -4516,7 +4516,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q284",
-    "prompt": "Complete the sentence: 'The child is standing _____ his mother and his father.'",
+    "prompt": "The child is standing _____ his mother and his father.",
     "options": [
       "between",
       "on",
@@ -4532,7 +4532,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q285",
-    "prompt": "Complete the sentence: 'Hide _____ the door, so nobody can see you.'",
+    "prompt": "Hide _____ the door, so nobody can see you.",
     "options": [
       "under",
       "in",
@@ -4548,7 +4548,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q286",
-    "prompt": "Complete the sentence: 'Please put your clothes _____ the wardrobe and close the doors.'",
+    "prompt": "Please put your clothes _____ the wardrobe and close the doors.",
     "options": [
       "on",
       "at",
@@ -4564,7 +4564,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q287",
-    "prompt": "Complete the sentence: 'I met Marco _____ the station at six o'clock.'",
+    "prompt": "I met Marco _____ the station at six o'clock.",
     "options": [
       "into",
       "at",
@@ -4580,7 +4580,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q288",
-    "prompt": "Complete the sentence: 'There is a garden _____ the house, so you can't see it from the street.'",
+    "prompt": "There is a garden _____ the house, so you can't see it from the street.",
     "options": [
       "behind",
       "under",
@@ -4596,7 +4596,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q289",
-    "prompt": "Complete: '_____ to me carefully.'",
+    "prompt": "_____ to me carefully.",
     "options": [
       "Listen",
       "Listening",
@@ -4612,7 +4612,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q290",
-    "prompt": "Complete: '_____ open the window. It's cold.'",
+    "prompt": "_____ open the window. It's cold.",
     "options": [
       "Don't",
       "Not",
@@ -4628,7 +4628,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q291",
-    "prompt": "Complete: '_____ your vegetables!'",
+    "prompt": "_____ your vegetables!",
     "options": [
       "Eat",
       "Eating",
@@ -4644,7 +4644,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q292",
-    "prompt": "Complete: '_____ be late for the meeting.'",
+    "prompt": "_____ be late for the meeting.",
     "options": [
       "Don't",
       "Not",
@@ -4660,7 +4660,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q293",
-    "prompt": "Complete: '_____ quiet, please.'",
+    "prompt": "_____ quiet, please.",
     "options": [
       "Be",
       "Are",
@@ -4676,7 +4676,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q294",
-    "prompt": "Complete: '_____ touch that plate, it's hot.'",
+    "prompt": "_____ touch that plate, it's hot.",
     "options": [
       "Don't",
       "No",
@@ -4692,7 +4692,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q295",
-    "prompt": "Complete: '_____ your homework before dinner.'",
+    "prompt": "_____ your homework before dinner.",
     "options": [
       "Do",
       "Does",
@@ -4708,7 +4708,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q296",
-    "prompt": "Complete: '_____ me the salt, please.'",
+    "prompt": "_____ me the salt, please.",
     "options": [
       "Pass",
       "Passing",
@@ -4724,7 +4724,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q297",
-    "prompt": "Complete: '_____ worry about it.'",
+    "prompt": "_____ worry about it.",
     "options": [
       "Don't",
       "Not",
@@ -4740,7 +4740,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q298",
-    "prompt": "Complete the sentence: '_____ touch my phone!'",
+    "prompt": "_____ touch my phone!",
     "options": [
       "Not",
       "No",
@@ -4756,7 +4756,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q299",
-    "prompt": "Complete the sentence: 'Please _____ attention to the road!'",
+    "prompt": "Please _____ attention to the road!",
     "options": [
       "pay",
       "do",
@@ -4772,7 +4772,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q300",
-    "prompt": "Complete the sentence: 'Listen _____ when I speak.'",
+    "prompt": "Listen _____ when I speak.",
     "options": [
       "me",
       "at me",
@@ -4788,7 +4788,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q301",
-    "prompt": "Complete the sentence: 'Don't _____ your keys at home, please.'",
+    "prompt": "Don't _____ your keys at home, please.",
     "options": [
       "forgetting",
       "forget",
@@ -4804,7 +4804,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q302",
-    "prompt": "Complete the sentence: 'Please _____ the door; it is cold in here.'",
+    "prompt": "Please _____ the door; it is cold in here.",
     "options": [
       "closing",
       "closes",
@@ -4820,7 +4820,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q303",
-    "prompt": "Complete the sentence: 'Silence, please: _____ during the exam.'",
+    "prompt": "Silence, please: _____ during the exam.",
     "options": [
       "don't speak",
       "not speak",
@@ -4836,7 +4836,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q304",
-    "prompt": "Complete the sentence: '_____ here until I come back, please.'",
+    "prompt": "_____ here until I come back, please.",
     "options": [
       "Waiting",
       "Waits",
@@ -4852,7 +4852,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q305",
-    "prompt": "Complete the sentence: 'Students, _____ your names on the paper, please.'",
+    "prompt": "Students, _____ your names on the paper, please.",
     "options": [
       "writing",
       "write",
@@ -4868,7 +4868,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q306",
-    "prompt": "Complete the sentence: 'This is a hospital, so _____ in this room, please.'",
+    "prompt": "This is a hospital, so _____ in this room, please.",
     "options": [
       "smoke not",
       "not smoke",
@@ -4884,7 +4884,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q307",
-    "prompt": "Complete: 'I _____ to visit my grandparents this weekend.'",
+    "prompt": "I _____ to visit my grandparents this weekend.",
     "options": [
       "am going",
       "go",
@@ -4900,7 +4900,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q308",
-    "prompt": "Complete: 'Look at those dark clouds. It _____ rain.'",
+    "prompt": "Look at those dark clouds. It _____ rain.",
     "options": [
       "is going to",
       "will to",
@@ -4916,7 +4916,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q309",
-    "prompt": "Complete: 'What _____ you going to do tonight?'",
+    "prompt": "What _____ you going to do tonight?",
     "options": [
       "are",
       "do",
@@ -4932,7 +4932,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q310",
-    "prompt": "Complete: 'She _____ not going to buy a new car.'",
+    "prompt": "She _____ not going to buy a new car.",
     "options": [
       "is",
       "does",
@@ -4948,7 +4948,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q311",
-    "prompt": "Complete: 'We are going to _____ a movie after dinner.'",
+    "prompt": "We are going to _____ a movie after dinner.",
     "options": [
       "watch",
       "watching",
@@ -4964,7 +4964,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q312",
-    "prompt": "Complete: '_____ he going to invite her to the party?'",
+    "prompt": "_____ he going to invite her to the party?",
     "options": [
       "Is",
       "Does",
@@ -4980,7 +4980,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q313",
-    "prompt": "Complete: 'They _____ going to start a new business next year.'",
+    "prompt": "They _____ going to start a new business next year.",
     "options": [
       "are",
       "will",
@@ -4996,7 +4996,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q314",
-    "prompt": "Complete: 'I'm going to _____ English in London.'",
+    "prompt": "I'm going to _____ English in London.",
     "options": [
       "study",
       "studying",
@@ -5012,7 +5012,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q315",
-    "prompt": "Complete: 'My parents are _____ to travel to Spain.'",
+    "prompt": "My parents are _____ to travel to Spain.",
     "options": [
       "going",
       "go",
@@ -5028,7 +5028,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q317",
-    "prompt": "Complete the sentence: 'I _____ to wait all day for the bus.'",
+    "prompt": "I _____ to wait all day for the bus.",
     "options": [
       "don't go",
       "am not going",
@@ -5044,7 +5044,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q318",
-    "prompt": "Complete the sentence: 'He _____ study medicine at university; he has already decided.'",
+    "prompt": "He _____ study medicine at university; he has already decided.",
     "options": [
       "is going to",
       "going to",
@@ -5060,7 +5060,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q319",
-    "prompt": "Complete the sentence: 'We _____ buy a new house next year; we have already chosen it.'",
+    "prompt": "We _____ buy a new house next year; we have already chosen it.",
     "options": [
       "is going to",
       "are going",
@@ -5076,7 +5076,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q321",
-    "prompt": "Complete the sentence: 'They _____ attend the meeting because they are on holiday.'",
+    "prompt": "They _____ attend the meeting because they are on holiday.",
     "options": [
       "aren't going to",
       "not going to",
@@ -5092,7 +5092,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q322",
-    "prompt": "Complete the sentence: 'What are you _____ eat for dinner tonight?'",
+    "prompt": "What are you _____ eat for dinner tonight?",
     "options": [
       "go to",
       "going to",
@@ -5108,7 +5108,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q323",
-    "prompt": "Complete the sentence: '_____ she going to sell her car soon?'",
+    "prompt": "_____ she going to sell her car soon?",
     "options": [
       "Does",
       "Do",
@@ -5124,7 +5124,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q324",
-    "prompt": "Complete the sentence: 'He is running on the ice and he _____ fall!'",
+    "prompt": "He is running on the ice and he _____ fall!",
     "options": [
       "is going to",
       "is going",
@@ -5140,7 +5140,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q325",
-    "prompt": "Complete: 'I _____ TV when the phone rang.'",
+    "prompt": "I _____ TV when the phone rang.",
     "options": [
       "was watching",
       "watched",
@@ -5156,7 +5156,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q326",
-    "prompt": "Complete: 'While she was reading, her brother _____ video games.'",
+    "prompt": "While she was reading, her brother _____ video games.",
     "options": [
       "was playing",
       "were playing",
@@ -5172,7 +5172,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q327",
-    "prompt": "Complete: 'What _____ you doing at 8 PM yesterday?'",
+    "prompt": "What _____ you doing at 8 PM yesterday?",
     "options": [
       "were",
       "was",
@@ -5188,7 +5188,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q328",
-    "prompt": "Complete: 'They _____ in the park when it started to rain.'",
+    "prompt": "They _____ in the park when it started to rain.",
     "options": [
       "were walking",
       "was walking",
@@ -5204,7 +5204,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q329",
-    "prompt": "Complete: 'He _____ (not) listening to the teacher.'",
+    "prompt": "He _____ (not) listening to the teacher.",
     "options": [
       "wasn't",
       "weren't",
@@ -5220,7 +5220,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q330",
-    "prompt": "Complete: 'While I _____ home, I saw a car accident.'",
+    "prompt": "While I _____ home, I saw a car accident.",
     "options": [
       "was driving",
       "were driving",
@@ -5236,7 +5236,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q331",
-    "prompt": "Complete: 'We were having dinner when the lights _____ out.'",
+    "prompt": "We were having dinner when the lights _____ out.",
     "options": [
       "went",
       "were going",
@@ -5252,7 +5252,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q332",
-    "prompt": "Complete: '_____ it raining when you left?'",
+    "prompt": "_____ it raining when you left?",
     "options": [
       "Was",
       "Were",
@@ -5268,7 +5268,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q333",
-    "prompt": "Complete: 'I broke my leg while I _____ football.'",
+    "prompt": "I broke my leg while I _____ football.",
     "options": [
       "was playing",
       "played",
@@ -5284,7 +5284,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q334",
-    "prompt": "Complete the sentence: 'What _____ you doing when I called you?'",
+    "prompt": "What _____ you doing when I called you?",
     "options": [
       "was",
       "did",
@@ -5300,7 +5300,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q335",
-    "prompt": "Complete the sentence: 'I _____ when the alarm rang.'",
+    "prompt": "I _____ when the alarm rang.",
     "options": [
       "am sleeping",
       "was sleeping",
@@ -5316,7 +5316,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q336",
-    "prompt": "Complete the sentence: 'While we _____ in the park, we found some money.'",
+    "prompt": "While we _____ in the park, we found some money.",
     "options": [
       "was walking",
       "walking",
@@ -5332,7 +5332,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q337",
-    "prompt": "Complete the sentence: 'She wasn't watching TV; she _____ a book.'",
+    "prompt": "She wasn't watching TV; she _____ a book.",
     "options": [
       "reading",
       "were reading",
@@ -5348,7 +5348,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q338",
-    "prompt": "Complete the sentence: 'While I was cooking, he _____ to music.'",
+    "prompt": "While I was cooking, he _____ to music.",
     "options": [
       "were listening",
       "was listening",
@@ -5364,7 +5364,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q339",
-    "prompt": "Complete the sentence: '_____ it raining hard yesterday morning?'",
+    "prompt": "_____ it raining hard yesterday morning?",
     "options": [
       "Were",
       "Did",
@@ -5380,7 +5380,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q340",
-    "prompt": "Complete the sentence: 'We _____ going too fast when the police stopped us.'",
+    "prompt": "We _____ going too fast when the police stopped us.",
     "options": [
       "wasn't",
       "didn't",
@@ -5396,7 +5396,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q341",
-    "prompt": "Complete the sentence: 'What were you _____ at that moment?'",
+    "prompt": "What were you _____ at that moment?",
     "options": [
       "thinking",
       "think",
@@ -5412,7 +5412,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q342",
-    "prompt": "Complete the sentence: 'They _____ when I entered the room.'",
+    "prompt": "They _____ when I entered the room.",
     "options": [
       "was laughing",
       "were laugh",
@@ -5428,7 +5428,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q343",
-    "prompt": "Complete: 'You look tired. You _____ go to bed early.'",
+    "prompt": "You look tired. You _____ go to bed early.",
     "options": [
       "should",
       "have to",
@@ -5444,7 +5444,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q344",
-    "prompt": "Complete: 'In many countries, you _____ wear a seatbelt when driving.'",
+    "prompt": "In many countries, you _____ wear a seatbelt when driving.",
     "options": [
       "have to",
       "has to",
@@ -5460,7 +5460,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q345",
-    "prompt": "Complete: 'Tomorrow is Sunday, so I _____ wake up early.'",
+    "prompt": "Tomorrow is Sunday, so I _____ wake up early.",
     "options": [
       "don't have to",
       "mustn't",
@@ -5476,7 +5476,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q346",
-    "prompt": "Complete: 'You _____ use your phone during the exam! It's forbidden.'",
+    "prompt": "You _____ use your phone during the exam! It's forbidden.",
     "options": [
       "mustn't",
       "don't have to",
@@ -5492,7 +5492,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q347",
-    "prompt": "Complete: '_____ I wear a suit to the interview?'",
+    "prompt": "_____ I wear a suit to the interview?",
     "options": [
       "Should",
       "Does",
@@ -5508,7 +5508,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q348",
-    "prompt": "Complete: 'We have plenty of time. We _____ hurry.'",
+    "prompt": "We have plenty of time. We _____ hurry.",
     "options": [
       "don't have to",
       "mustn't",
@@ -5524,7 +5524,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q349",
-    "prompt": "Complete: 'All visitors _____ wear a helmet on the building site. It's the law.'",
+    "prompt": "All visitors _____ wear a helmet on the building site. It's the law.",
     "options": [
       "must",
       "mustn't",
@@ -5540,7 +5540,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q350",
-    "prompt": "Complete: 'He _____ wear glasses to read because his eyesight is bad.'",
+    "prompt": "He _____ wear glasses to read because his eyesight is bad.",
     "options": [
       "has to",
       "must to",
@@ -5556,7 +5556,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q351",
-    "prompt": "Complete: 'Do I _____ pay for this ticket now?'",
+    "prompt": "Do I _____ pay for this ticket now?",
     "options": [
       "have to",
       "must",
@@ -5572,7 +5572,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q352",
-    "prompt": "Complete the sentence: 'You _____ eat more vegetables; your diet is poor.'",
+    "prompt": "You _____ eat more vegetables; your diet is poor.",
     "options": [
       "shouldn't",
       "should to",
@@ -5588,7 +5588,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q353",
-    "prompt": "Complete the sentence: 'Anna _____ come to the meeting if she's tired; it isn't necessary.'",
+    "prompt": "Anna _____ come to the meeting if she's tired; it isn't necessary.",
     "options": [
       "doesn't have to",
       "mustn't",
@@ -5604,7 +5604,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q354",
-    "prompt": "Complete the sentence: 'Stop! You _____ touch that wire, or you will get an electric shock!'",
+    "prompt": "Stop! You _____ touch that wire, or you will get an electric shock!",
     "options": [
       "not must",
       "haven't to",
@@ -5620,7 +5620,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q355",
-    "prompt": "Complete the sentence: 'He _____ work late today because his boss asked him.'",
+    "prompt": "He _____ work late today because his boss asked him.",
     "options": [
       "have to",
       "has to",
@@ -5636,7 +5636,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q356",
-    "prompt": "Complete the sentence: 'You _____ drink so much coffee; it's bad for your health.'",
+    "prompt": "You _____ drink so much coffee; it's bad for your health.",
     "options": [
       "shouldn't to",
       "shouldn't",
@@ -5652,7 +5652,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q357",
-    "prompt": "Complete the sentence: '_____ take off my shoes when I come in?'",
+    "prompt": "_____ take off my shoes when I come in?",
     "options": [
       "Must I to",
       "Do I must",
@@ -5668,7 +5668,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q358",
-    "prompt": "Complete the sentence: 'Entry is free, so you _____ buy a ticket.'",
+    "prompt": "Entry is free, so you _____ buy a ticket.",
     "options": [
       "don't have to",
       "mustn't",
@@ -5684,7 +5684,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q359",
-    "prompt": "Complete the sentence: 'I have a problem with my phone. What _____ do?'",
+    "prompt": "I have a problem with my phone. What _____ do?",
     "options": [
       "I should",
       "do I should",
@@ -5700,7 +5700,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q360",
-    "prompt": "Complete the sentence: 'It's a secret, so you _____ tell anyone.'",
+    "prompt": "It's a secret, so you _____ tell anyone.",
     "options": [
       "mustn't",
       "mustn't to",
@@ -5716,7 +5716,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q361",
-    "prompt": "Complete: 'She speaks English very _____.' (good/well)",
+    "prompt": "She speaks English very _____.",
     "options": [
       "well",
       "good",
@@ -5732,7 +5732,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q362",
-    "prompt": "Complete: 'He drives very _____. It's dangerous!'",
+    "prompt": "He drives very _____. It's dangerous!",
     "options": [
       "fast",
       "fastly",
@@ -5748,7 +5748,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q363",
-    "prompt": "Complete: 'Please do your work _____. Take your time.'",
+    "prompt": "Please do your work _____. Take your time.",
     "options": [
       "carefully",
       "careful",
@@ -5764,7 +5764,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q364",
-    "prompt": "Complete: 'They won the game _____. They were much better.'",
+    "prompt": "They won the game _____. They were much better.",
     "options": [
       "easily",
       "easy",
@@ -5780,7 +5780,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q365",
-    "prompt": "Complete: 'The old man walked _____ down the street.'",
+    "prompt": "The old man walked _____ down the street.",
     "options": [
       "slowly",
       "slowlier",
@@ -5796,7 +5796,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q366",
-    "prompt": "Complete: 'She looked at him _____ when he broke the glass.'",
+    "prompt": "She looked at him _____ when he broke the glass.",
     "options": [
       "angrily",
       "angry",
@@ -5812,7 +5812,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q367",
-    "prompt": "Complete: 'He worked _____ to pass the exam.'",
+    "prompt": "He worked _____ to pass the exam.",
     "options": [
       "hard",
       "hardly",
@@ -5828,7 +5828,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q368",
-    "prompt": "Complete: 'The children were playing _____ in the garden.'",
+    "prompt": "The children were playing _____ in the garden.",
     "options": [
       "happily",
       "happy",
@@ -5844,7 +5844,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q369",
-    "prompt": "Complete: 'I can run very _____.'",
+    "prompt": "I can run very _____.",
     "options": [
       "fast",
       "fastly",
@@ -5860,7 +5860,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q370",
-    "prompt": "Complete the sentence: 'He answered the question _____.'",
+    "prompt": "He answered the question _____.",
     "options": [
       "quickily",
       "fastly",
@@ -5876,7 +5876,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q371",
-    "prompt": "Complete the sentence: 'She sings really _____.'",
+    "prompt": "She sings really _____.",
     "options": [
       "goodly",
       "well",
@@ -5892,7 +5892,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q372",
-    "prompt": "Complete the sentence: 'They worked _____ all day.'",
+    "prompt": "They worked _____ all day.",
     "options": [
       "hardly",
       "difficultly",
@@ -5908,7 +5908,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q373",
-    "prompt": "Complete the sentence: 'Please speak _____ because I don't understand.'",
+    "prompt": "Please speak _____ because I don't understand.",
     "options": [
       "slowness",
       "slowlier",
@@ -5924,7 +5924,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q374",
-    "prompt": "Complete the sentence: 'He closed the door _____ because the baby was sleeping.'",
+    "prompt": "He closed the door _____ because the baby was sleeping.",
     "options": [
       "quietness",
       "quietly",
@@ -5940,7 +5940,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q375",
-    "prompt": "Complete the sentence: 'They solved the problem _____.'",
+    "prompt": "They solved the problem _____.",
     "options": [
       "easy",
       "easyly",
@@ -5956,7 +5956,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q376",
-    "prompt": "Complete the sentence: 'He always drives _____.'",
+    "prompt": "He always drives _____.",
     "options": [
       "carefully",
       "careful",
@@ -5972,7 +5972,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q377",
-    "prompt": "Complete the sentence: 'The teacher explained the rule _____.'",
+    "prompt": "The teacher explained the rule _____.",
     "options": [
       "clear",
       "cleary",
@@ -5988,7 +5988,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q378",
-    "prompt": "Complete the sentence: 'Thank you, I understood _____.'",
+    "prompt": "Thank you, I understood _____.",
     "options": [
       "perfect",
       "perfection",
@@ -6004,7 +6004,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q379",
-    "prompt": "Complete the sentence: 'If I _____ the lottery, I would buy a big house.'",
+    "prompt": "If I _____ the lottery, I would buy a big house.",
     "options": [
       "win",
       "won",
@@ -6020,7 +6020,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q380",
-    "prompt": "Complete the sentence: 'If I _____ you, I would study more.'",
+    "prompt": "If I _____ you, I would study more.",
     "options": [
       "were",
       "am",
@@ -6036,7 +6036,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q381",
-    "prompt": "Complete the sentence: 'If I had studied, I _____ the exam.'",
+    "prompt": "If I had studied, I _____ the exam.",
     "options": [
       "would pass",
       "passed",
@@ -6052,7 +6052,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q382",
-    "prompt": "Complete the sentence: 'If we _____ earlier, we wouldn't have missed the train.'",
+    "prompt": "If we _____ earlier, we wouldn't have missed the train.",
     "options": [
       "had leave",
       "had left",
@@ -6068,7 +6068,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q383",
-    "prompt": "Complete the sentence: 'The letter _____ by John yesterday.'",
+    "prompt": "The letter _____ by John yesterday.",
     "options": [
       "wrote",
       "was written",
@@ -6084,7 +6084,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q384",
-    "prompt": "Complete the sentence: 'Look! The new house _____ built right now.'",
+    "prompt": "Look! The new house _____ built right now.",
     "options": [
       "is",
       "is being",
@@ -6100,7 +6100,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q385",
-    "prompt": "Complete the sentence: 'Yesterday Tom said that he _____ very tired.'",
+    "prompt": "Yesterday Tom said that he _____ very tired.",
     "options": [
       "was",
       "were",
@@ -6116,7 +6116,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q386",
-    "prompt": "Complete the sentence: 'Last night Anna told me that she _____ me the next day.'",
+    "prompt": "Last night Anna told me that she _____ me the next day.",
     "options": [
       "would called",
       "would calling",
@@ -6132,7 +6132,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q387",
-    "prompt": "Complete the sentence: 'When I arrived at the station, the train _____.'",
+    "prompt": "When I arrived at the station, the train _____.",
     "options": [
       "will already leave",
       "has already left",
@@ -6148,7 +6148,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q388",
-    "prompt": "Complete the sentence: 'I _____ when you called me.'",
+    "prompt": "I _____ when you called me.",
     "options": [
       "had already eat",
       "have already eaten",
@@ -6164,7 +6164,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q389",
-    "prompt": "Complete the sentence: 'I _____ tennis when I was young.'",
+    "prompt": "I _____ tennis when I was young.",
     "options": [
       "used to play",
       "was playing",
@@ -6180,7 +6180,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q390",
-    "prompt": "Complete the sentence: 'She _____ like vegetables when she was a child.'",
+    "prompt": "She _____ like vegetables when she was a child.",
     "options": [
       "doesn't use to",
       "isn't used to",
@@ -6196,7 +6196,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q391",
-    "prompt": "Complete the sentence: 'The man _____ lives next door is a doctor.'",
+    "prompt": "The man _____ lives next door is a doctor.",
     "options": [
       "which",
       "who",
@@ -6212,7 +6212,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q392",
-    "prompt": "Complete the sentence: 'That's the house _____ I grew up.'",
+    "prompt": "That's the house _____ I grew up.",
     "options": [
       "which",
       "who",
@@ -6228,7 +6228,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q393",
-    "prompt": "Complete the sentence: 'The girl _____ car was stolen is at the police station.'",
+    "prompt": "The girl _____ car was stolen is at the police station.",
     "options": [
       "who",
       "which",
@@ -6244,7 +6244,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q394",
-    "prompt": "Complete the sentence: 'You are Italian, _____?'",
+    "prompt": "You are Italian, _____?",
     "options": [
       "are you",
       "aren't you",
@@ -6260,7 +6260,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q395",
-    "prompt": "Complete the sentence: 'She didn't go to the party, _____?'",
+    "prompt": "She didn't go to the party, _____?",
     "options": [
       "did she",
       "didn't she",
@@ -6276,7 +6276,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q396",
-    "prompt": "Complete the sentence: 'He has a Ferrari and a mansion. I am sure he _____ be very rich.'",
+    "prompt": "He has a Ferrari and a mansion. I am sure he _____ be very rich.",
     "options": [
       "can't",
       "must",
@@ -6292,7 +6292,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q397",
-    "prompt": "Complete the sentence: 'That _____ be Sarah. Sarah is currently in London.'",
+    "prompt": "That _____ be Sarah. Sarah is currently in London.",
     "options": [
       "mustn't",
       "will",
@@ -6308,7 +6308,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q398",
-    "prompt": "Complete the sentence: 'I really enjoy _____ books in my free time.'",
+    "prompt": "I really enjoy _____ books in my free time.",
     "options": [
       "to read",
       "read",
@@ -6324,7 +6324,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q399",
-    "prompt": "Complete the sentence: 'She decided _____ a new car.'",
+    "prompt": "She decided _____ a new car.",
     "options": [
       "buying",
       "to buy",
@@ -6340,7 +6340,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q400",
-    "prompt": "Complete the sentence: 'Do you mind _____ the window?'",
+    "prompt": "Do you mind _____ the window?",
     "options": [
       "open",
       "to open",
@@ -6404,7 +6404,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q404",
-    "prompt": "Complete the sentence: 'The movie _____ we watched yesterday was boring.'",
+    "prompt": "The movie _____ we watched yesterday was boring.",
     "options": [
       "who",
       "where",
@@ -6420,7 +6420,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q405",
-    "prompt": "Complete the sentence: 'The woman _____ car was stolen is my neighbor.'",
+    "prompt": "The woman _____ car was stolen is my neighbor.",
     "options": [
       "who",
       "whose",
@@ -6484,7 +6484,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q409",
-    "prompt": "Complete the sentence: 'This is the book _____ I was telling you about.'",
+    "prompt": "This is the book _____ I was telling you about.",
     "options": [
       "which",
       "who",
@@ -6500,7 +6500,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q410",
-    "prompt": "Complete the sentence: 'Paris, _____ is the capital of France, is beautiful.'",
+    "prompt": "Paris, _____ is the capital of France, is beautiful.",
     "options": [
       "which",
       "who",
@@ -6660,7 +6660,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q420",
-    "prompt": "Complete the sentence: 'I finished _____ the book last night.'",
+    "prompt": "I finished _____ the book last night.",
     "options": [
       "to read",
       "reading",
@@ -6676,7 +6676,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q421",
-    "prompt": "Complete the sentence: 'He decided _____ abroad.'",
+    "prompt": "He decided _____ abroad.",
     "options": [
       "studying",
       "study",
@@ -6724,7 +6724,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q424",
-    "prompt": "Complete the sentence: 'I don't mind _____ up early.'",
+    "prompt": "I don't mind _____ up early.",
     "options": [
       "to get",
       "get",
@@ -6740,7 +6740,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q425",
-    "prompt": "Complete the sentence: 'They want _____ a new house.'",
+    "prompt": "They want _____ a new house.",
     "options": [
       "buying",
       "buy",
@@ -6884,7 +6884,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q434",
-    "prompt": "Complete the sentence: 'If I _____ rich, I _____ travel the world.'",
+    "prompt": "If I _____ rich, I _____ travel the world.",
     "options": [
       "were / would",
       "am / will",
@@ -6900,7 +6900,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q435",
-    "prompt": "Complete the sentence: 'If she _____ the truth, she would be angry.'",
+    "prompt": "If she _____ the truth, she would be angry.",
     "options": [
       "knows",
       "knew",
@@ -6964,7 +6964,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q439",
-    "prompt": "Complete the sentence: 'I _____ go there if I were you.'",
+    "prompt": "I _____ go there if I were you.",
     "options": [
       "won't",
       "didn't",
@@ -6980,7 +6980,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q440",
-    "prompt": "Complete the sentence: 'If we had a car, we _____ go to the mountains.'",
+    "prompt": "If we had a car, we _____ go to the mountains.",
     "options": [
       "can",
       "will",
@@ -7076,7 +7076,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q446",
-    "prompt": "Complete the sentence: 'If I spoke French, I _____ to Paris.'",
+    "prompt": "If I spoke French, I _____ to Paris.",
     "options": [
       "would move",
       "will move",
@@ -7140,7 +7140,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q450",
-    "prompt": "Complete the sentence: 'If I _____ to bed early, I wouldn't have been tired.'",
+    "prompt": "If I _____ to bed early, I wouldn't have been tired.",
     "options": [
       "would have gone",
       "have gone",
@@ -7156,7 +7156,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q451",
-    "prompt": "Complete the sentence: 'If it had rained, we _____ at home.'",
+    "prompt": "If it had rained, we _____ at home.",
     "options": [
       "would have stay",
       "would have stayed",
@@ -7220,7 +7220,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q455",
-    "prompt": "Complete the sentence: 'What _____ if you had known?'",
+    "prompt": "What _____ if you had known?",
     "options": [
       "did you do",
       "would you have done",
@@ -7236,7 +7236,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q456",
-    "prompt": "Complete the sentence: 'If I _____ the message, I would have replied to you.'",
+    "prompt": "If I _____ the message, I would have replied to you.",
     "options": [
       "would have seen",
       "have seen",
@@ -7332,7 +7332,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q462",
-    "prompt": "Complete the sentence: 'She would have come if she _____ time.'",
+    "prompt": "She would have come if she _____ time.",
     "options": [
       "had had",
       "would have had",
@@ -7396,7 +7396,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q466",
-    "prompt": "Complete the sentence: 'This book _____ in 1990.'",
+    "prompt": "This book _____ in 1990.",
     "options": [
       "is written",
       "wrote",
@@ -7412,7 +7412,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q467",
-    "prompt": "Complete the sentence: 'Nowadays the room _____ every day.'",
+    "prompt": "Nowadays the room _____ every day.",
     "options": [
       "was cleaned",
       "is cleaned",
@@ -7476,7 +7476,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q471",
-    "prompt": "Complete the sentence: 'The tickets _____ sold already.'",
+    "prompt": "The tickets _____ sold already.",
     "options": [
       "have been",
       "has been",
@@ -7492,7 +7492,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q472",
-    "prompt": "Complete the sentence: 'The problem must _____ immediately.'",
+    "prompt": "The problem must _____ immediately.",
     "options": [
       "solve",
       "been solved",
@@ -7588,7 +7588,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q478",
-    "prompt": "Complete the sentence: 'My bicycle _____ yesterday.'",
+    "prompt": "My bicycle _____ yesterday.",
     "options": [
       "is stolen",
       "was stolen",
@@ -7604,7 +7604,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q479",
-    "prompt": "He said, 'I like apples.' -> He said that he _____ apples.",
+    "prompt": "He said, 'I like apples.' He said that he _____ apples.",
     "options": [
       "liked",
       "was liking",
@@ -7620,7 +7620,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q480",
-    "prompt": "She said, 'I am watching TV.' -> She said that she _____ TV.",
+    "prompt": "She said, 'I am watching TV.' She said that she _____ TV.",
     "options": [
       "was watching",
       "were watching",
@@ -7636,7 +7636,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q481",
-    "prompt": "'I will go,' he said. -> He said that he _____ go.",
+    "prompt": "'I will go,' he said. He said that he _____ go.",
     "options": [
       "would",
       "going to",
@@ -7652,7 +7652,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q482",
-    "prompt": "Complete the sentence: 'He told _____ that he was tired.'",
+    "prompt": "He told _____ that he was tired.",
     "options": [
       "to me",
       "for me",
@@ -7668,7 +7668,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q483",
-    "prompt": "Complete the sentence: 'She _____ that she didn't know the answer.'",
+    "prompt": "She _____ that she didn't know the answer.",
     "options": [
       "said",
       "told",
@@ -7684,7 +7684,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q484",
-    "prompt": "'I have finished,' she said. -> She said that she _____ finished.",
+    "prompt": "'I have finished,' she said. She said that she _____ finished.",
     "options": [
       "had",
       "have",
@@ -7732,7 +7732,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q487",
-    "prompt": "Complete the sentence: 'He asked me _____ I wanted to come.'",
+    "prompt": "He asked me _____ I wanted to come.",
     "options": [
       "do",
       "that",
@@ -7748,7 +7748,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q488",
-    "prompt": "Complete the sentence: 'The doctor told me _____ more water.'",
+    "prompt": "The doctor told me _____ more water.",
     "options": [
       "drink",
       "to drink",
@@ -7764,7 +7764,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q489",
-    "prompt": "'Don't touch that!' he said. -> He told me _____ that.",
+    "prompt": "'Don't touch that!' he said. He told me _____ that.",
     "options": [
       "not to touch",
       "don't touch",
@@ -7780,7 +7780,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q490",
-    "prompt": "'Open the door,' she said. -> She told me _____ the door.",
+    "prompt": "'Open the door,' she said. She told me _____ the door.",
     "options": [
       "to open",
       "open",
@@ -7796,7 +7796,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q491",
-    "prompt": "He said, 'I can swim.' -> He said that he _____ swim.",
+    "prompt": "He said, 'I can swim.' He said that he _____ swim.",
     "options": [
       "could",
       "can to",
@@ -7812,7 +7812,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q492",
-    "prompt": "She asked, 'Are you okay?' -> She asked me _____ okay.",
+    "prompt": "She asked, 'Are you okay?' She asked me _____ okay.",
     "options": [
       "if I was",
       "if was I",
@@ -7828,7 +7828,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q493",
-    "prompt": "'I must go,' he said. -> He said that he _____ go.",
+    "prompt": "'I must go,' he said. He said that he _____ go.",
     "options": [
       "had to",
       "musts",
@@ -7844,7 +7844,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q494",
-    "prompt": "Complete the sentence: 'He advised me _____ harder for the test.'",
+    "prompt": "He advised me _____ harder for the test.",
     "options": [
       "study",
       "studying",
@@ -7908,7 +7908,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q498",
-    "prompt": "Complete the sentence: 'I had just _____ eating when he knocked.'",
+    "prompt": "I had just _____ eating when he knocked.",
     "options": [
       "finish",
       "to finish",
@@ -7924,7 +7924,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q499",
-    "prompt": "Complete the sentence: 'I _____ that movie before yesterday.'",
+    "prompt": "I _____ that movie before yesterday.",
     "options": [
       "had never seen",
       "had never saw",
@@ -7972,7 +7972,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q503",
-    "prompt": "Complete the sentence: 'I was angry because I _____ my wallet.'",
+    "prompt": "I was angry because I _____ my wallet.",
     "options": [
       "was lost",
       "have lost",
@@ -7988,7 +7988,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q504",
-    "prompt": "Complete the sentence: 'They _____ there for ten years before moving.'",
+    "prompt": "They _____ there for ten years before moving.",
     "options": [
       "had live",
       "had lived",
@@ -8084,7 +8084,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q510",
-    "prompt": "Complete the sentence: 'The party had already _____ when we arrived.'",
+    "prompt": "The party had already _____ when we arrived.",
     "options": [
       "ended",
       "end",
@@ -8148,7 +8148,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q514",
-    "prompt": "Complete the sentence: 'We _____ live in London when I was a kid.'",
+    "prompt": "We _____ live in London when I was a kid.",
     "options": [
       "use to",
       "are used to",
@@ -8164,7 +8164,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q515",
-    "prompt": "Complete the sentence: 'He _____ smoke, but now he smokes a pack a day.'",
+    "prompt": "He _____ smoke, but now he smokes a pack a day.",
     "options": [
       "wasn't used to",
       "didn't use to",
@@ -8228,7 +8228,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q519",
-    "prompt": "Complete the sentence: 'My sister is used to _____ in a big city.'",
+    "prompt": "My sister is used to _____ in a big city.",
     "options": [
       "live",
       "living",
@@ -8244,7 +8244,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q520",
-    "prompt": "Complete the sentence: 'She used to have long hair, _____ she?'",
+    "prompt": "She used to have long hair, _____ she?",
     "options": [
       "didn't",
       "doesn't",
@@ -8340,7 +8340,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q526",
-    "prompt": "Complete the sentence: '_____ your parents use to live in the countryside when they were young?'",
+    "prompt": "_____ your parents use to live in the countryside when they were young?",
     "options": [
       "Were",
       "Do",
@@ -8404,7 +8404,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q530",
-    "prompt": "Complete the sentence: 'You are Italian, _____ you?'",
+    "prompt": "You are Italian, _____ you?",
     "options": [
       "isn't",
       "don't",
@@ -8420,7 +8420,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q531",
-    "prompt": "Complete the sentence: 'You haven't seen the movie, _____ you?'",
+    "prompt": "You haven't seen the movie, _____ you?",
     "options": [
       "haven't",
       "have",
@@ -8484,7 +8484,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q535",
-    "prompt": "Complete the sentence: 'It's cold today, _____ it?'",
+    "prompt": "It's cold today, _____ it?",
     "options": [
       "isn't",
       "doesn't",
@@ -8500,7 +8500,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q536",
-    "prompt": "Complete the sentence: 'He can't swim, _____ he?'",
+    "prompt": "He can't swim, _____ he?",
     "options": [
       "can't",
       "does",
@@ -8596,7 +8596,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q542",
-    "prompt": "Complete the sentence: 'Your sister lives here, _____ she?'",
+    "prompt": "Your sister lives here, _____ she?",
     "options": [
       "don't",
       "doesn't",
@@ -8660,7 +8660,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q546",
-    "prompt": "Complete the sentence: 'It's already dark, so it _____ be late.'",
+    "prompt": "It's already dark, so it _____ be late.",
     "options": [
       "can't",
       "may to",
@@ -8676,7 +8676,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q547",
-    "prompt": "Complete the sentence: 'That's impossible! It _____ be true!'",
+    "prompt": "That's impossible! It _____ be true!",
     "options": [
       "can't",
       "might",
@@ -8740,7 +8740,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q552",
-    "prompt": "Complete the sentence: 'That man is wearing a suit and sitting in the manager's office. He _____ be your new boss.'",
+    "prompt": "That man is wearing a suit and sitting in the manager's office. He _____ be your new boss.",
     "options": [
       "can't",
       "must",
@@ -8836,7 +8836,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q558",
-    "prompt": "Complete the sentence: 'The address says number 12, but this house is number 20. This _____ be the right house.'",
+    "prompt": "The address says number 12, but this house is number 20. This _____ be the right house.",
     "options": [
       "must",
       "needn't",
@@ -8852,7 +8852,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q559",
-    "prompt": "Complete the sentence: 'Don't forget _____ the front door before you go to bed.'",
+    "prompt": "Don't forget _____ the front door before you go to bed.",
     "options": [
       "to lock",
       "locking",
@@ -8868,7 +8868,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q560",
-    "prompt": "Complete the sentence: 'I will never forget _____ the Colosseum for the very first time.'",
+    "prompt": "I will never forget _____ the Colosseum for the very first time.",
     "options": [
       "seeing",
       "to see",
@@ -8884,7 +8884,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q561",
-    "prompt": "Complete the sentence: 'On the road trip, we stopped _____ a coffee and stretch our legs.'",
+    "prompt": "On the road trip, we stopped _____ a coffee and stretch our legs.",
     "options": [
       "to have",
       "having",
@@ -8900,7 +8900,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q562",
-    "prompt": "Complete the sentence: 'The doctor told him that he must stop _____ immediately for his health.'",
+    "prompt": "The doctor told him that he must stop _____ immediately for his health.",
     "options": [
       "smoking",
       "to smoke",
@@ -8916,7 +8916,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q563",
-    "prompt": "Complete the sentence: 'If the app keeps crashing, try _____ your smartphone.'",
+    "prompt": "If the app keeps crashing, try _____ your smartphone.",
     "options": [
       "restarting",
       "to restarting",
@@ -8932,7 +8932,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q564",
-    "prompt": "Complete the sentence: 'I tried _____ the heavy wardrobe, but it was impossible alone.'",
+    "prompt": "I tried _____ the heavy wardrobe, but it was impossible alone.",
     "options": [
       "to lift",
       "to lifting",
@@ -8948,7 +8948,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q565",
-    "prompt": "Complete the sentence: 'Look at the kitchen floor! It really needs _____.'",
+    "prompt": "Look at the kitchen floor! It really needs _____.",
     "options": [
       "cleaning",
       "to clean",
@@ -8964,7 +8964,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q566",
-    "prompt": "Complete the sentence: 'I am really looking forward to _____ you at the conference next week.'",
+    "prompt": "I am really looking forward to _____ you at the conference next week.",
     "options": [
       "meeting",
       "meet",
@@ -8980,7 +8980,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q567",
-    "prompt": "Complete the sentence: 'I can't help _____ when I hear that joke.'",
+    "prompt": "I can't help _____ when I hear that joke.",
     "options": [
       "laughing",
       "to laugh",
@@ -8996,7 +8996,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q568",
-    "prompt": "Complete the sentence: 'It's no use _____ over spilled milk.'",
+    "prompt": "It's no use _____ over spilled milk.",
     "options": [
       "cry",
       "cried",
@@ -9012,7 +9012,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q569",
-    "prompt": "Complete the sentence: 'Could you please give me _____ about the flight schedule?'",
+    "prompt": "Could you please give me _____ about the flight schedule?",
     "options": [
       "some information",
       "an information",
@@ -9028,7 +9028,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q570",
-    "prompt": "Complete the sentence: 'My grandfather gave me a very useful _____ before my interview.'",
+    "prompt": "My grandfather gave me a very useful _____ before my interview.",
     "options": [
       "piece of advice",
       "advice",
@@ -9044,7 +9044,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q571",
-    "prompt": "Complete the sentence: 'The news _____ so surprising that nobody believed it at first.'",
+    "prompt": "The news _____ so surprising that nobody believed it at first.",
     "options": [
       "was",
       "were",
@@ -9060,7 +9060,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q572",
-    "prompt": "Complete the sentence: 'All the furniture in their new apartment _____ made of solid oak.'",
+    "prompt": "All the furniture in their new apartment _____ made of solid oak.",
     "options": [
       "is",
       "are",
@@ -9076,7 +9076,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q573",
-    "prompt": "Complete the sentence: 'How _____ luggage are you planning to take on the flight?'",
+    "prompt": "How _____ luggage are you planning to take on the flight?",
     "options": [
       "much",
       "many",
@@ -9092,7 +9092,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q574",
-    "prompt": "Complete the sentence: 'The police _____ investigating the cause of the fire.'",
+    "prompt": "The police _____ investigating the cause of the fire.",
     "options": [
       "are",
       "is",
@@ -9108,7 +9108,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q575",
-    "prompt": "Complete the sentence: 'I don't have _____ homework for tomorrow.'",
+    "prompt": "I don't have _____ homework for tomorrow.",
     "options": [
       "many",
       "much",
@@ -9124,7 +9124,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q577",
-    "prompt": "Complete the sentence: 'Let's take a short break, _____?'",
+    "prompt": "Let's take a short break, _____?",
     "options": [
       "shall we",
       "will we",
@@ -9140,7 +9140,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q578",
-    "prompt": "Complete the sentence: 'Close the window, _____?'",
+    "prompt": "Close the window, _____?",
     "options": [
       "will you",
       "do you",
@@ -9156,7 +9156,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q579",
-    "prompt": "Complete the sentence: 'She never drinks alcohol, _____?'",
+    "prompt": "She never drinks alcohol, _____?",
     "options": [
       "does she",
       "doesn't she",
@@ -9172,7 +9172,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q580",
-    "prompt": "Complete the sentence: 'Nobody phoned while I was away, _____?'",
+    "prompt": "Nobody phoned while I was away, _____?",
     "options": [
       "did they",
       "didn't they",
@@ -9188,7 +9188,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q581",
-    "prompt": "Complete the sentence: 'Nothing went wrong during the test, _____?'",
+    "prompt": "Nothing went wrong during the test, _____?",
     "options": [
       "did it",
       "didn't it",
@@ -9204,7 +9204,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q582",
-    "prompt": "Complete the sentence: 'Everybody is ready for the presentation, _____?'",
+    "prompt": "Everybody is ready for the presentation, _____?",
     "options": [
       "aren't they",
       "isn't he",
@@ -9220,7 +9220,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q583",
-    "prompt": "Complete the sentence: 'I will call you as soon as I _____ at the airport.'",
+    "prompt": "I will call you as soon as I _____ at the airport.",
     "options": [
       "arrive",
       "will arrive",
@@ -9236,7 +9236,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q584",
-    "prompt": "Complete the sentence: 'We will stay inside until the heavy rain _____.'",
+    "prompt": "We will stay inside until the heavy rain _____.",
     "options": [
       "stops",
       "will stop",
@@ -9252,7 +9252,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q585",
-    "prompt": "Complete the sentence: 'You won't pass your driving test unless you _____ every day.'",
+    "prompt": "You won't pass your driving test unless you _____ every day.",
     "options": [
       "practice",
       "don't practice",
@@ -9268,7 +9268,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q586",
-    "prompt": "Complete the sentence: 'Take an umbrella with you in case it _____ later.'",
+    "prompt": "Take an umbrella with you in case it _____ later.",
     "options": [
       "rains",
       "will rain",
@@ -9284,7 +9284,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q587",
-    "prompt": "Complete the sentence: 'I will tell you as soon as I _____ the answer.'",
+    "prompt": "I will tell you as soon as I _____ the answer.",
     "options": [
       "will know",
       "would know",
@@ -9300,7 +9300,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q588",
-    "prompt": "Complete the sentence: 'I _____ what you mean, but I still disagree with your conclusion.'",
+    "prompt": "I _____ what you mean, but I still disagree with your conclusion.",
     "options": [
       "understand",
       "am understanding",
@@ -9316,7 +9316,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q589",
-    "prompt": "Complete the sentence: 'Please don't disturb Marco right now; he _____ lunch with a client.'",
+    "prompt": "Please don't disturb Marco right now; he _____ lunch with a client.",
     "options": [
       "is having",
       "has",
@@ -9332,7 +9332,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q590",
-    "prompt": "Complete the sentence: 'Be quiet for a minute! I _____ about how to solve this math problem.'",
+    "prompt": "Be quiet for a minute! I _____ about how to solve this math problem.",
     "options": [
       "am thinking",
       "think",
@@ -9348,7 +9348,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q591",
-    "prompt": "Complete the sentence: 'I _____ that learning English is essential for your career.'",
+    "prompt": "I _____ that learning English is essential for your career.",
     "options": [
       "think",
       "am thinking",
@@ -9364,7 +9364,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q592",
-    "prompt": "Complete the sentence: 'This delicious pasta dish _____ of fresh tomatoes and basil.'",
+    "prompt": "This delicious pasta dish _____ of fresh tomatoes and basil.",
     "options": [
       "tastes",
       "is tasting",
@@ -9380,7 +9380,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q593",
-    "prompt": "Complete the sentence: 'For _____ details regarding the hotel booking, contact customer support.'",
+    "prompt": "For _____ details regarding the hotel booking, contact customer support.",
     "options": [
       "further",
       "farther",
@@ -9396,7 +9396,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q594",
-    "prompt": "Complete the sentence: 'Today the traffic is _____ than it was yesterday morning.'",
+    "prompt": "Today the traffic is _____ than it was yesterday morning.",
     "options": [
       "heavier",
       "more heavy",
@@ -9412,7 +9412,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q595",
-    "prompt": "Complete the sentence: 'The new laptop is great, but it is not _____ fast as I expected.'",
+    "prompt": "The new laptop is great, but it is not _____ fast as I expected.",
     "options": [
       "as",
       "so much",
@@ -9428,7 +9428,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q596",
-    "prompt": "Complete the sentence: 'The _____ you practice speaking, the _____ confident you will feel.'",
+    "prompt": "The _____ you practice speaking, the _____ confident you will feel.",
     "options": [
       "more / more",
       "most / most",
@@ -9444,7 +9444,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q597",
-    "prompt": "Complete the sentence: 'My brother, who lives in London, is _____ than me.'",
+    "prompt": "My brother, who lives in London, is _____ than me.",
     "options": [
       "older",
       "more old",
@@ -9460,7 +9460,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q598",
-    "prompt": "Complete the sentence: 'When I moved to the UK, it took me a long time to get used to _____ on the left.'",
+    "prompt": "When I moved to the UK, it took me a long time to get used to _____ on the left.",
     "options": [
       "driving",
       "drive",
@@ -9476,7 +9476,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q599",
-    "prompt": "Complete the sentence: 'I am a nurse, so I am used to _____ night shifts.'",
+    "prompt": "I am a nurse, so I am used to _____ night shifts.",
     "options": [
       "working",
       "work",
@@ -9492,7 +9492,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q600",
-    "prompt": "Complete the sentence: 'I _____ drink coffee when I was younger, but now I drink three cups a day.'",
+    "prompt": "I _____ drink coffee when I was younger, but now I drink three cups a day.",
     "options": [
       "didn't use to",
       "don't use to",
@@ -9508,7 +9508,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q601",
-    "prompt": "Complete the sentence: 'Have you _____ to the cold weather yet?'",
+    "prompt": "Have you _____ to the cold weather yet?",
     "options": [
       "used",
       "got use",
@@ -9524,7 +9524,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q602",
-    "prompt": "Complete the sentence: 'Venice, _____ is famous for its canals, attracts millions of tourists every year.'",
+    "prompt": "Venice, _____ is famous for its canals, attracts millions of tourists every year.",
     "options": [
       "which",
       "that",
@@ -9540,7 +9540,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q603",
-    "prompt": "Complete the sentence: 'Mr. Davis, _____ you met yesterday at the reception, is our new director.'",
+    "prompt": "Mr. Davis, _____ you met yesterday at the reception, is our new director.",
     "options": [
       "whom",
       "which",
@@ -9556,7 +9556,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q604",
-    "prompt": "Complete the sentence: 'That is the student _____ backpack was accidentally left in the classroom.'",
+    "prompt": "That is the student _____ backpack was accidentally left in the classroom.",
     "options": [
       "whose",
       "who's",
@@ -9572,7 +9572,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q605",
-    "prompt": "Complete the sentence: 'The hotel _____ we stayed at during our holiday was right on the beach.'",
+    "prompt": "The hotel _____ we stayed at during our holiday was right on the beach.",
     "options": [
       "that",
       "where",
@@ -9588,7 +9588,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q606",
-    "prompt": "Complete the sentence: 'Milan, _____ I was born, is a big city.'",
+    "prompt": "Milan, _____ I was born, is a big city.",
     "options": [
       "which",
       "who",
@@ -9604,7 +9604,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q612",
-    "prompt": "Complete the sentence: 'Marco is a vegetarian, so he _____ meat.'",
+    "prompt": "Marco is a vegetarian, so he _____ meat.",
     "options": [
       "eats not",
       "don't eat",
@@ -9620,7 +9620,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q615",
-    "prompt": "Complete the sentence: 'Of all the subjects I studied this year, physics was the _____.'",
+    "prompt": "Of all the subjects I studied this year, physics was the _____.",
     "options": [
       "hardly",
       "hardest",
@@ -9636,7 +9636,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q616",
-    "prompt": "Complete the sentence: 'We can't make pancakes because there isn't _____ flour left.'",
+    "prompt": "We can't make pancakes because there isn't _____ flour left.",
     "options": [
       "some",
       "a",
@@ -9652,7 +9652,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q617",
-    "prompt": "Complete the sentence: 'Every morning Anna _____ to the university by bus.'",
+    "prompt": "Every morning Anna _____ to the university by bus.",
     "options": [
       "goes",
       "go",
@@ -9668,7 +9668,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q619",
-    "prompt": "Complete the sentence: 'How often _____ your sister visit your grandparents?'",
+    "prompt": "How often _____ your sister visit your grandparents?",
     "options": [
       "do",
       "is",
@@ -9684,7 +9684,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q620",
-    "prompt": "Complete the sentence: 'Look! The children _____ in the garden.'",
+    "prompt": "Look! The children _____ in the garden.",
     "options": [
       "is playing",
       "playing",
@@ -9700,7 +9700,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q621",
-    "prompt": "Complete the sentence: '_____ a supermarket near the university?'",
+    "prompt": "_____ a supermarket near the university?",
     "options": [
       "Do there",
       "Is there",
@@ -9716,7 +9716,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q628",
-    "prompt": "Complete the sentence: 'My grandparents live _____ a small village near Bergamo.'",
+    "prompt": "My grandparents live _____ a small village near Bergamo.",
     "options": [
       "in",
       "at",
@@ -9732,7 +9732,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q629",
-    "prompt": "Complete the sentence: 'We went to my _____ house for dinner on Sunday.'",
+    "prompt": "We went to my _____ house for dinner on Sunday.",
     "options": [
       "grandmother",
       "grandmothers",
@@ -9748,7 +9748,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q630",
-    "prompt": "Complete the sentence: '_____ does the library close on Fridays?' 'At six o'clock.'",
+    "prompt": "_____ does the library close on Fridays?' 'At six o'clock.",
     "options": [
       "Who",
       "What time",
@@ -9764,7 +9764,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q631",
-    "prompt": "Complete the sentence: 'How _____ money do you spend on books every semester?'",
+    "prompt": "How _____ money do you spend on books every semester?",
     "options": [
       "many",
       "few",
@@ -9780,7 +9780,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q632",
-    "prompt": "Complete the sentence: 'Sorry, I _____ come to the party on Saturday because I have to work.'",
+    "prompt": "Sorry, I _____ come to the party on Saturday because I have to work.",
     "options": [
       "not can",
       "don't can",
@@ -9796,7 +9796,7 @@ export const questions: Question[] = [
   },
   {
     "id": "q635",
-    "prompt": "Complete the sentence: 'I think this book is _____ than the film.'",
+    "prompt": "I think this book is _____ than the film.",
     "options": [
       "more interesting",
       "interestinger",

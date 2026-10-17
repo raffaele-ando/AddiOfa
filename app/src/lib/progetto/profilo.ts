@@ -4,7 +4,9 @@
 import type { AppState } from '../../types';
 import { ECOSYSTEM, ISCRIZIONE_VERSIONE, REQUIRED_SCOPES, SCOPES, type ScopeId } from '../../config/ecosystem';
 import type { CorpoIscrizione } from '../atlas';
-import { eCorso, eProvenienza, eSede, type Provenienza, type Sede } from './corsi';
+import { provenienzaDa, type Provenienza } from './corsi';
+import { LIVELLI_ID, SCUOLE_ID, type LivelloId, type ScuolaId } from './percorso';
+import { nomeDaEmail } from './nomeDaEmail';
 import { controllaEmailPolimi, pulisciNome } from './validazione';
 
 export const CHIAVE_PROGETTO = 'progetto';
@@ -15,16 +17,24 @@ export interface Consensi { noi: boolean; atlas: boolean; comunicazioni: boolean
 export const CONSENSI_VUOTI: Readonly<Consensi> = Object.freeze({ noi: false, atlas: false, comunicazioni: false });
 
 export interface Profilo {
-  nome: string;
   email: string;
-  /** Sempre false: l'indirizzo è controllato solo nel formato e nel dominio, mai verificato con un invio di posta. */
-  emailVerificata: false;
+  /** Ricavato dall'email (o scritto a mano quando non si ricava); modificabile con la matita. */
+  nome: string;
+  /** True solo dopo una verifica vera con il link (lib/progetto/verificaEmail.ts) per questa email; altrimenti false: l'indirizzo è controllato solo nel formato e nel dominio. */
+  emailVerificata: boolean;
+  /** Percorso di studi: ids di scuola e sede, livello, nome e id del corso, anno. */
+  scuola?: ScuolaId;
+  sede?: string;
+  livello?: LivelloId;
   corso?: string;
-  sede?: Sede;
+  corsoId?: string;
+  anno?: number;
   provenienza?: Provenienza;
   consensi: Consensi;
   /** Versione del testo dei consensi che l'utente ha visto quando li ha scelti. */
   versioneInformativa: string;
+  /** False finché la registrazione non è arrivata ai consensi (salvataggi parziali dei passi); i profili senza il campo contano come completi. */
+  completato: boolean;
   creatoIl: number;
   aggiornatoIl: number;
 }
@@ -48,23 +58,41 @@ function leggiConsensi(v: unknown): Consensi {
   return { noi: c.noi === true, atlas: c.atlas === true, comunicazioni: c.comunicazioni === true };
 }
 
-/** Rilegge un profilo salvato (anche rovinato o venuto da un file importato). Se nome o email non valgono, non c'è profilo. */
+const ID_BREVE = /^[a-z0-9-]{2,30}$/;
+const testoBreve = (v: unknown, max: number): string | undefined => (typeof v === 'string' && v.trim() && v.trim().length <= max ? v.trim() : undefined);
+
+/** I campi del percorso di studi, ripuliti: ids ammessi, anno intero da 1 a 6. */
+function leggiPercorso(v: Record<string, unknown>) {
+  const scuola = SCUOLE_ID.find(x => x === v.scuola);
+  const livello = LIVELLI_ID.find(x => x === v.livello);
+  // la sede della prima versione era il testo «Leonardo»: si rilegge come id minuscolo
+  const sedeGrezza = typeof v.sede === 'string' ? v.sede.trim().toLowerCase() : '';
+  const sede = ID_BREVE.test(sedeGrezza) ? sedeGrezza : undefined;
+  const corso = testoBreve(v.corso, 120);
+  const corsoId = typeof v.corsoId === 'string' && /^[A-Za-z0-9._-]{1,40}$/.test(v.corsoId) ? v.corsoId : undefined;
+  const anno = typeof v.anno === 'number' && Number.isInteger(v.anno) && v.anno >= 1 && v.anno <= 6 ? v.anno : undefined;
+  return { ...(scuola ? { scuola } : {}), ...(sede ? { sede } : {}), ...(livello ? { livello } : {}), ...(corso ? { corso } : {}), ...(corsoId ? { corsoId } : {}), ...(anno ? { anno } : {}) };
+}
+
+/** Rilegge un profilo salvato (anche rovinato, di una versione vecchia o venuto da un file importato). Se l'email non vale, non c'è profilo; il nome, se manca, si ricava dall'email. */
 export function leggiProfilo(v: unknown): Profilo | undefined {
   if (!isObj(v)) return undefined;
-  const nome = typeof v.nome === 'string' ? pulisciNome(v.nome) : null;
   const e = typeof v.email === 'string' ? controllaEmailPolimi(v.email) : null;
-  if (!nome || !e || !e.ok) return undefined;
+  if (!e || !e.ok) return undefined;
+  const nome = (typeof v.nome === 'string' ? pulisciNome(v.nome) : null) ?? nomeDaEmail(e.email)?.nome ?? null;
+  if (!nome) return undefined;
   const ora = Date.now();
   const creatoIl = tempo(v.creatoIl, ora);
+  const provenienza = provenienzaDa(v.provenienza);
   return {
     nome,
     email: e.email,
-    emailVerificata: false,
-    ...(eCorso(v.corso) ? { corso: v.corso } : {}),
-    ...(eSede(v.sede) ? { sede: v.sede } : {}),
-    ...(eProvenienza(v.provenienza) ? { provenienza: v.provenienza } : {}),
+    emailVerificata: v.emailVerificata === true,
+    ...leggiPercorso(v),
+    ...(provenienza ? { provenienza } : {}),
     consensi: leggiConsensi(v.consensi),
     versioneInformativa: typeof v.versioneInformativa === 'string' && v.versioneInformativa ? v.versioneInformativa : ISCRIZIONE_VERSIONE,
+    completato: v.completato !== false,
     creatoIl,
     aggiornatoIl: tempo(v.aggiornatoIl, creatoIl),
   };
@@ -101,31 +129,40 @@ export function aggiornaProgetto(stato: AppState, fn: (p: DatiProgetto) => DatiP
 }
 
 export interface FormProfilo {
-  nome: string;
+  /** Se manca o è vuoto si ricava dall'email. */
+  nome?: string;
   email: string;
-  corso?: string;
+  scuola?: string;
   sede?: string;
+  livello?: string;
+  corso?: string;
+  corsoId?: string;
+  anno?: number;
   provenienza?: string;
   consensi?: Partial<Consensi>;
+  /** Default true. I salvataggi dei passi intermedi della registrazione passano false. */
+  completato?: boolean;
 }
 
 /**
- * Crea (o aggiorna) il profilo dai dati del modulo. Restituisce null se nome o email non valgono.
- * I consensi mancanti sono NON dati: nessuna scorciatoia verso «sì».
+ * Crea (o aggiorna) il profilo dai dati del modulo. Restituisce null se l'email non vale o il nome non c'è e non si ricava.
+ * I consensi mancanti sono NON dati: nessuna scorciatoia verso «sì». «Verificata» si conserva solo se l'email è la stessa di prima.
  */
 export function creaProfilo(form: FormProfilo, ora: number, precedente?: Profilo): Profilo | null {
-  const nome = pulisciNome(form.nome);
   const e = controllaEmailPolimi(form.email);
-  if (!nome || !e.ok) return null;
+  if (!e.ok) return null;
+  const nome = pulisciNome(form.nome ?? '') ?? nomeDaEmail(e.email)?.nome ?? null;
+  if (!nome) return null;
+  const provenienza = provenienzaDa(form.provenienza);
   return {
     nome,
     email: e.email,
-    emailVerificata: false,
-    ...(eCorso(form.corso) ? { corso: form.corso } : {}),
-    ...(eSede(form.sede) ? { sede: form.sede } : {}),
-    ...(eProvenienza(form.provenienza) ? { provenienza: form.provenienza } : {}),
+    emailVerificata: !!precedente?.emailVerificata && precedente.email === e.email,
+    ...leggiPercorso({ ...form }),
+    ...(provenienza ? { provenienza } : {}),
     consensi: { noi: form.consensi?.noi === true, atlas: form.consensi?.atlas === true, comunicazioni: form.consensi?.comunicazioni === true },
     versioneInformativa: ISCRIZIONE_VERSIONE,
+    completato: form.completato !== false,
     creatoIl: precedente?.creatoIl ?? ora,
     aggiornatoIl: ora,
   };
@@ -136,22 +173,32 @@ export function impostaProfilo(stato: AppState, profilo: Profilo): AppState {
   return aggiornaProgetto(stato, p => ({ ...p, profilo }));
 }
 
-/** Il corpo di `POST /v1/signups` per questo profilo. */
+/** Il corpo di `POST /v1/signups` per questo profilo: nome ricavato, percorso di studi (ids), provenienza (id), consensi. Solo i campi compilati. */
 export function corpoIscrizione(p: Profilo): CorpoIscrizione {
   return {
     appId: ECOSYSTEM.appId,
     nome: p.nome,
     email: p.email,
-    ...(p.corso ? { corso: p.corso } : {}),
+    ...(p.scuola ? { scuola: p.scuola } : {}),
     ...(p.sede ? { sede: p.sede } : {}),
+    ...(p.livello ? { livello: p.livello } : {}),
+    ...(p.corso ? { corso: p.corso } : {}),
+    ...(p.anno ? { anno: p.anno } : {}),
     ...(p.provenienza ? { provenienza: p.provenienza } : {}),
     consensi: { ...p.consensi },
     consentVersion: p.versioneInformativa,
   };
 }
 
-/** Chi ha già usato l'app ma non ha ancora un profilo vede «Completa il profilo» una volta. Chi non ha mai usato l'app passa dalla registrazione nel funnel. */
+/** Segna l'email «verificata» solo se è quella del profilo (dopo un `signInWithEmailLink` riuscito: vedi lib/firebase.ts). */
+export function segnaEmailVerificata(stato: AppState, email: string): AppState {
+  const { profilo } = leggiProgetto(stato);
+  if (!profilo || profilo.email !== email.trim().toLowerCase() || profilo.emailVerificata) return stato;
+  return impostaProfilo(stato, { ...profilo, emailVerificata: true, aggiornatoIl: Date.now() });
+}
+
+/** Chi ha già usato l'app ma non ha finito la registrazione (email e percorso di studi) la vede una volta come «Completa il profilo». Chi non ha mai usato l'app passa dalla registrazione nel funnel. */
 export function serveRegistrazione(stato: AppState): boolean {
-  if (leggiProgetto(stato).profilo) return false;
+  if (leggiProgetto(stato).profilo?.completato) return false;
   return !!stato.onboarding || (stato.history?.length ?? 0) > 0 || Object.keys(stato.stats ?? {}).length > 0;
 }

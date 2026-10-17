@@ -1,7 +1,7 @@
 [
   {
     "id": "q1",
-    "prompt": "Complete the sentence: '_____ your sister ever lived abroad?'",
+    "prompt": "_____ your sister ever lived abroad?",
     "options": [
       "Is",
       "Has",
@@ -18,7 +18,7 @@
   },
   {
     "id": "q2",
-    "prompt": "Choose the correct question: '_____ a bank in this street?'",
+    "prompt": "_____ a bank in this street?",
     "options": [
       "Is there",
       "There is",
@@ -35,7 +35,7 @@
   },
   {
     "id": "q3",
-    "prompt": "Complete the sentence: 'Did your brother _____ the match last night?'",
+    "prompt": "Did your brother _____ the match last night?",
     "options": [
       "won",
       "wins",
@@ -52,7 +52,7 @@
   },
   {
     "id": "q4",
-    "prompt": "Complete the sentence: 'August is the _____ month of the year.'",
+    "prompt": "August is the _____ month of the year.",
     "options": [
       "hottest",
       "most hot",
@@ -69,7 +69,7 @@
   },
   {
     "id": "q5",
-    "prompt": "Complete the sentence: 'We _____ this house in 2018.'",
+    "prompt": "We _____ this house in 2018.",
     "options": [
       "have bought",
       "buyed",
@@ -86,7 +86,7 @@
   },
   {
     "id": "q6",
-    "prompt": "Complete the sentence: 'The red bag is _____ than the blue one.'",
+    "prompt": "The red bag is _____ than the blue one.",
     "options": [
       "expensiver",
       "more expensive",
@@ -103,7 +103,7 @@
   },
   {
     "id": "q7",
-    "prompt": "Complete the sentence: '_____ did Anna buy that jacket?' - 'Last Saturday.'",
+    "prompt": "_____ did Anna buy that jacket?' - 'Last Saturday.",
     "options": [
       "Where",
       "Who",
@@ -120,7 +120,7 @@
   },
   {
     "id": "q8",
-    "prompt": "Complete the sentence: '_____ books are there on the shelf?'",
+    "prompt": "_____ books are there on the shelf?",
     "options": [
       "How many",
       "How much",
@@ -137,7 +137,7 @@
   },
   {
     "id": "q9",
-    "prompt": "Complete the sentence: 'The film will start _____ an hour.'",
+    "prompt": "The film will start _____ an hour.",
     "options": [
       "between",
       "at",
@@ -154,7 +154,7 @@
   },
   {
     "id": "q10",
-    "prompt": "Complete the sentence: 'Can I _____ your phone, please?'",
+    "prompt": "Can I _____ your phone, please?",
     "options": [
       "to use",
       "using",
@@ -171,7 +171,7 @@
   },
   {
     "id": "q11",
-    "prompt": "Complete the sentence: 'Laura _____ in Naples with her parents.'",
+    "prompt": "Laura _____ in Naples with her parents.",
     "options": [
       "live",
       "lives",
@@ -188,7 +188,7 @@
   },
   {
     "id": "q12",
-    "prompt": "Complete the sentence: 'Be quiet! The baby is _____.'",
+    "prompt": "Be quiet! The baby is _____.",
     "options": [
       "sleep",
       "sleeped",
@@ -205,7 +205,7 @@
   },
   {
     "id": "q13",
-    "prompt": "Complete the sentence: 'Is there _____ rice in the cupboard?'",
+    "prompt": "Is there _____ rice in the cupboard?",
     "options": [
       "any",
       "many",
@@ -222,7 +222,7 @@
   },
   {
     "id": "q14",
-    "prompt": "Complete the sentence: 'How long _____ you lived in Rome?'",
+    "prompt": "How long _____ you lived in Rome?",
     "options": [
       "do",
       "did",
@@ -239,7 +239,7 @@
   },
   {
     "id": "q15",
-    "prompt": "Complete the sentence: 'My grandmother can _____ the piano.'",
+    "prompt": "My grandmother can _____ the piano.",
     "options": [
       "plays",
       "to play",
@@ -256,7 +256,7 @@
   },
   {
     "id": "q16",
-    "prompt": "Complete the sentence: 'What did Marco _____ last night?'",
+    "prompt": "What did Marco _____ last night?",
     "options": [
       "ate",
       "eat",
@@ -273,7 +273,7 @@
   },
   {
     "id": "q17",
-    "prompt": "Complete the sentence: 'We _____ pizza last Friday night.'",
+    "prompt": "We _____ pizza last Friday night.",
     "options": [
       "ate",
       "have eaten",
@@ -290,7 +290,7 @@
   },
   {
     "id": "q18",
-    "prompt": "Complete the sentence: 'In my building there are many students who _____ to university by bike.'",
+    "prompt": "In my building there are many students who _____ to university by bike.",
     "options": [
       "go",
       "goes",
@@ -307,7 +307,7 @@
   },
   {
     "id": "q19",
-    "prompt": "Complete the sentence: 'My sister _____ her driving test in 2019.'",
+    "prompt": "My sister _____ her driving test in 2019.",
     "options": [
       "pass",
       "has passed",
@@ -324,7 +324,7 @@
   },
   {
     "id": "q20",
-    "prompt": "Complete the sentence: 'My umbrella is broken, so I need a new _____.'",
+    "prompt": "My umbrella is broken, so I need a new _____.",
     "options": [
       "ones",
       "it",
@@ -341,7 +341,7 @@
   },
   {
     "id": "q21",
-    "prompt": "Complete the sentence: 'The windows are open and I can hear music. Someone _____ at home.'",
+    "prompt": "The windows are open and I can hear music. Someone _____ at home.",
     "options": [
       "must to be",
       "must be",
@@ -358,7 +358,7 @@
   },
   {
     "id": "q22",
-    "prompt": "Complete the sentence: 'My sister has lived in Turin _____ she started university.'",
+    "prompt": "My sister has lived in Turin _____ she started university.",
     "options": [
       "for",
       "during",
@@ -375,7 +375,7 @@
   },
   {
     "id": "q23",
-    "prompt": "Complete the sentence: 'What time _____ the concert begin tomorrow?'",
+    "prompt": "What time _____ the concert begin tomorrow?",
     "options": [
       "is",
       "does",
@@ -392,7 +392,7 @@
   },
   {
     "id": "q24",
-    "prompt": "Complete the sentence: 'When my uncle was young, he _____ run a marathon in under three hours, but now he can't.'",
+    "prompt": "When my uncle was young, he _____ run a marathon in under three hours, but now he can't.",
     "options": [
       "could",
       "can",
@@ -409,7 +409,7 @@
   },
   {
     "id": "q25",
-    "prompt": "Complete the sentence: 'I called Laura yesterday evening while she _____ dinner.'",
+    "prompt": "I called Laura yesterday evening while she _____ dinner.",
     "options": [
       "cooks",
       "were cooking",
@@ -426,7 +426,7 @@
   },
   {
     "id": "q26",
-    "prompt": "Complete the sentence: 'My sister always does her homework very _____.'",
+    "prompt": "My sister always does her homework very _____.",
     "options": [
       "careful",
       "carefully",
@@ -443,7 +443,7 @@
   },
   {
     "id": "q27",
-    "prompt": "Complete the sentence: 'Our teacher wants _____ to finish the project by Friday.'",
+    "prompt": "Our teacher wants _____ to finish the project by Friday.",
     "options": [
       "we",
       "our",
@@ -460,7 +460,7 @@
   },
   {
     "id": "q28",
-    "prompt": "Complete the sentence: 'I need to buy _____ apples for the cake.'",
+    "prompt": "I need to buy _____ apples for the cake.",
     "options": [
       "a",
       "much",
@@ -477,7 +477,7 @@
   },
   {
     "id": "q29",
-    "prompt": "Complete the sentence: 'We _____ a great film at the cinema last night.'",
+    "prompt": "We _____ a great film at the cinema last night.",
     "options": [
       "saw",
       "see",
@@ -494,7 +494,7 @@
   },
   {
     "id": "q30",
-    "prompt": "Complete the sentence: 'The exam _____ at nine o'clock tomorrow, so don't be late.'",
+    "prompt": "The exam _____ at nine o'clock tomorrow, so don't be late.",
     "options": [
       "start",
       "will starts",
@@ -511,7 +511,7 @@
   },
   {
     "id": "q31",
-    "prompt": "Complete the sentence: 'There isn't _____ sugar in my coffee.'",
+    "prompt": "There isn't _____ sugar in my coffee.",
     "options": [
       "no",
       "any",
@@ -528,7 +528,7 @@
   },
   {
     "id": "q32",
-    "prompt": "Complete the sentence: 'How long _____ your brother lived in London?'",
+    "prompt": "How long _____ your brother lived in London?",
     "options": [
       "has",
       "have",
@@ -545,7 +545,7 @@
   },
   {
     "id": "q33",
-    "prompt": "Complete the sentence: 'Listen! Someone _____ at the door.'",
+    "prompt": "Listen! Someone _____ at the door.",
     "options": [
       "knocks",
       "knock",
@@ -562,7 +562,7 @@
   },
   {
     "id": "q34",
-    "prompt": "Complete the sentence: 'Who _____ the window in the kitchen?'",
+    "prompt": "Who _____ the window in the kitchen?",
     "options": [
       "did broke",
       "breaked",
@@ -579,7 +579,7 @@
   },
   {
     "id": "q35",
-    "prompt": "Complete the sentence: 'This is the _____ city I have ever visited.'",
+    "prompt": "This is the _____ city I have ever visited.",
     "options": [
       "more beautiful",
       "beautifullest",
@@ -596,7 +596,7 @@
   },
   {
     "id": "q36",
-    "prompt": "Complete the sentence: 'My brother _____ football every Saturday.'",
+    "prompt": "My brother _____ football every Saturday.",
     "options": [
       "plays",
       "play",
@@ -613,7 +613,7 @@
   },
   {
     "id": "q37",
-    "prompt": "Complete the sentence: 'What time _____ the film finish last night?'",
+    "prompt": "What time _____ the film finish last night?",
     "options": [
       "do",
       "have",
@@ -630,7 +630,7 @@
   },
   {
     "id": "q38",
-    "prompt": "Complete the sentence: 'Excuse me, where is your friend _____? Is he Spanish?'",
+    "prompt": "Excuse me, where is your friend _____? Is he Spanish?",
     "options": [
       "of",
       "from",
@@ -647,7 +647,7 @@
   },
   {
     "id": "q39",
-    "prompt": "Complete the sentence: 'The shop has been closed _____ last Tuesday.'",
+    "prompt": "The shop has been closed _____ last Tuesday.",
     "options": [
       "for",
       "since",
@@ -664,7 +664,7 @@
   },
   {
     "id": "q40",
-    "prompt": "Complete the sentence: 'I _____ study for the exam yesterday.'",
+    "prompt": "I _____ study for the exam yesterday.",
     "options": [
       "wasn't",
       "don't",
@@ -681,7 +681,7 @@
   },
   {
     "id": "q41",
-    "prompt": "Complete the sentence: 'The last ferry to the island _____ at 11 p.m., so we mustn't miss it.'",
+    "prompt": "The last ferry to the island _____ at 11 p.m., so we mustn't miss it.",
     "options": [
       "leaving",
       "leave",
@@ -698,7 +698,7 @@
   },
   {
     "id": "q42",
-    "prompt": "Complete the sentence: 'He is the kindest teacher I have _____ met.'",
+    "prompt": "He is the kindest teacher I have _____ met.",
     "options": [
       "never",
       "always",
@@ -715,7 +715,7 @@
   },
   {
     "id": "q43",
-    "prompt": "Complete the sentence: 'Our team _____ the national cup in 2016.'",
+    "prompt": "Our team _____ the national cup in 2016.",
     "options": [
       "won",
       "wins",
@@ -732,7 +732,7 @@
   },
   {
     "id": "q44",
-    "prompt": "Complete the sentence: '_____ you already met the new professor?'",
+    "prompt": "_____ you already met the new professor?",
     "options": [
       "Did",
       "Have",
@@ -749,7 +749,7 @@
   },
   {
     "id": "q45",
-    "prompt": "Complete the sentence: 'I have worked here _____ three years.'",
+    "prompt": "I have worked here _____ three years.",
     "options": [
       "since",
       "during",
@@ -766,7 +766,7 @@
   },
   {
     "id": "q46",
-    "prompt": "Complete the sentence: 'I like _____ car.'",
+    "prompt": "I like _____ car.",
     "options": [
       "Paolo",
       "Paolos'",
@@ -783,7 +783,7 @@
   },
   {
     "id": "q47",
-    "prompt": "Complete the sentence: 'In my town _____ are three cinemas.'",
+    "prompt": "In my town _____ are three cinemas.",
     "options": [
       "It",
       "This",
@@ -800,7 +800,7 @@
   },
   {
     "id": "q48",
-    "prompt": "Complete the sentence: 'My parents _____ dinner in the kitchen at the moment.'",
+    "prompt": "My parents _____ dinner in the kitchen at the moment.",
     "options": [
       "are cooking",
       "cook",
@@ -817,7 +817,7 @@
   },
   {
     "id": "q49",
-    "prompt": "Complete the sentence: 'If the weather is nice tomorrow, we _____ a picnic in the park.'",
+    "prompt": "If the weather is nice tomorrow, we _____ a picnic in the park.",
     "options": [
       "will have",
       "would have",
@@ -834,7 +834,7 @@
   },
   {
     "id": "q50",
-    "prompt": "Complete the sentence: 'She _____ learning Chinese since she was twelve.'",
+    "prompt": "She _____ learning Chinese since she was twelve.",
     "options": [
       "is",
       "has been",
@@ -851,7 +851,7 @@
   },
   {
     "id": "q51",
-    "prompt": "Complete the sentence: 'What _____ for dinner last night?'",
+    "prompt": "What _____ for dinner last night?",
     "options": [
       "did you cook",
       "you cooked",
@@ -868,7 +868,7 @@
   },
   {
     "id": "q52",
-    "prompt": "Complete the sentence: 'This phone is _____ cheaper than that one.'",
+    "prompt": "This phone is _____ cheaper than that one.",
     "options": [
       "very",
       "much",
@@ -885,7 +885,7 @@
   },
   {
     "id": "q53",
-    "prompt": "Complete the sentence: 'Anna is ill. She _____ in bed since Sunday.'",
+    "prompt": "Anna is ill. She _____ in bed since Sunday.",
     "options": [
       "was",
       "is",
@@ -902,7 +902,7 @@
   },
   {
     "id": "q54",
-    "prompt": "Complete the sentence: 'The Moon _____ around the Earth every 27 days.'",
+    "prompt": "The Moon _____ around the Earth every 27 days.",
     "options": [
       "go",
       "goes",
@@ -919,7 +919,7 @@
   },
   {
     "id": "q55",
-    "prompt": "Complete the sentence: 'Where is Paolo?' - 'He has _____ to the supermarket. He'll be back in ten minutes.'",
+    "prompt": "Where is Paolo?' - 'He has _____ to the supermarket. He'll be back in ten minutes.",
     "options": [
       "been",
       "go",
@@ -936,7 +936,7 @@
   },
   {
     "id": "q56",
-    "prompt": "Complete the sentence: 'Are they _____ the match on TV?'",
+    "prompt": "Are they _____ the match on TV?",
     "options": [
       "watching",
       "watch",
@@ -953,7 +953,7 @@
   },
   {
     "id": "q57",
-    "prompt": "Complete the sentence: 'Have you ever _____ the guitar?'",
+    "prompt": "Have you ever _____ the guitar?",
     "options": [
       "play",
       "plays",
@@ -970,7 +970,7 @@
   },
   {
     "id": "q58",
-    "prompt": "Complete the sentence: 'The plane _____ just landed.'",
+    "prompt": "The plane _____ just landed.",
     "options": [
       "have",
       "has",
@@ -987,7 +987,7 @@
   },
   {
     "id": "q59",
-    "prompt": "Complete the sentence: 'Marta hasn't _____ my email yet.'",
+    "prompt": "Marta hasn't _____ my email yet.",
     "options": [
       "answered",
       "answer",
@@ -1004,7 +1004,7 @@
   },
   {
     "id": "q60",
-    "prompt": "Complete the sentence: '_____ your parents ever visited Scotland?'",
+    "prompt": "_____ your parents ever visited Scotland?",
     "options": [
       "Has",
       "Did",
@@ -1021,7 +1021,7 @@
   },
   {
     "id": "q61",
-    "prompt": "Complete the sentence: 'He _____ in this town since 2015.'",
+    "prompt": "He _____ in this town since 2015.",
     "options": [
       "lives",
       "lived",
@@ -1038,7 +1038,7 @@
   },
   {
     "id": "q62",
-    "prompt": "Complete the sentence: 'There _____ three cars on the street today.'",
+    "prompt": "There _____ three cars on the street today.",
     "options": [
       "is",
       "are",
@@ -1055,7 +1055,7 @@
   },
   {
     "id": "q63",
-    "prompt": "Complete the sentence: '_____ any milk in the fridge?'",
+    "prompt": "_____ any milk in the fridge?",
     "options": [
       "Is there",
       "Are there",
@@ -1072,7 +1072,7 @@
   },
   {
     "id": "q64",
-    "prompt": "Complete the sentence: 'There is _____ problem with my computer.'",
+    "prompt": "There is _____ problem with my computer.",
     "options": [
       "any",
       "not",
@@ -1089,7 +1089,7 @@
   },
   {
     "id": "q65",
-    "prompt": "Complete the sentence: '_____ some apples on the table.'",
+    "prompt": "_____ some apples on the table.",
     "options": [
       "There are",
       "There is",
@@ -1106,7 +1106,7 @@
   },
   {
     "id": "q66",
-    "prompt": "Complete the sentence: '_____ there a dog in the garden?'",
+    "prompt": "_____ there a dog in the garden?",
     "options": [
       "Are",
       "Does",
@@ -1123,7 +1123,7 @@
   },
   {
     "id": "q67",
-    "prompt": "Complete the sentence: 'I _____ to the cinema yesterday.'",
+    "prompt": "I _____ to the cinema yesterday.",
     "options": [
       "went",
       "go",
@@ -1140,7 +1140,7 @@
   },
   {
     "id": "q68",
-    "prompt": "Complete the sentence: 'We _____ at home last night. We were at the cinema.'",
+    "prompt": "We _____ at home last night. We were at the cinema.",
     "options": [
       "wasn't",
       "weren't",
@@ -1157,7 +1157,7 @@
   },
   {
     "id": "q69",
-    "prompt": "Complete the sentence: '_____ you see the football match last night?'",
+    "prompt": "_____ you see the football match last night?",
     "options": [
       "Did",
       "Do",
@@ -1174,7 +1174,7 @@
   },
   {
     "id": "q70",
-    "prompt": "Complete the sentence: 'She _____ to the cinema last week.'",
+    "prompt": "She _____ to the cinema last week.",
     "options": [
       "goes",
       "went",
@@ -1191,7 +1191,7 @@
   },
   {
     "id": "q71",
-    "prompt": "Complete the sentence: 'We _____ very tired after the trip.'",
+    "prompt": "We _____ very tired after the trip.",
     "options": [
       "were",
       "was",
@@ -1208,7 +1208,7 @@
   },
   {
     "id": "q72",
-    "prompt": "Complete the sentence: 'When _____ you arrive at the hotel yesterday?'",
+    "prompt": "When _____ you arrive at the hotel yesterday?",
     "options": [
       "do",
       "have",
@@ -1225,7 +1225,7 @@
   },
   {
     "id": "q73",
-    "prompt": "Complete the sentence: 'Please be quiet, I _____.'",
+    "prompt": "Please be quiet, I _____.",
     "options": [
       "am working",
       "work",
@@ -1242,7 +1242,7 @@
   },
   {
     "id": "q74",
-    "prompt": "Complete the sentence: 'What _____ they doing?'",
+    "prompt": "What _____ they doing?",
     "options": [
       "are",
       "do",
@@ -1259,7 +1259,7 @@
   },
   {
     "id": "q75",
-    "prompt": "Complete the sentence: 'She _____ to music at the moment.'",
+    "prompt": "She _____ to music at the moment.",
     "options": [
       "is listening",
       "listens",
@@ -1276,7 +1276,7 @@
   },
   {
     "id": "q76",
-    "prompt": "Complete the sentence: 'I'm not reading a book, I'm _____ TV.'",
+    "prompt": "I'm not reading a book, I'm _____ TV.",
     "options": [
       "watch",
       "to watch",
@@ -1293,7 +1293,7 @@
   },
   {
     "id": "q77",
-    "prompt": "Complete the sentence: '_____ it raining outside?'",
+    "prompt": "_____ it raining outside?",
     "options": [
       "Is",
       "Does",
@@ -1310,7 +1310,7 @@
   },
   {
     "id": "q78",
-    "prompt": "Complete the sentence: 'If you study hard, you _____ the exam.'",
+    "prompt": "If you study hard, you _____ the exam.",
     "options": [
       "will pass",
       "will passing",
@@ -1327,7 +1327,7 @@
   },
   {
     "id": "q79",
-    "prompt": "Complete the sentence: 'If it _____, we won't go to the beach.'",
+    "prompt": "If it _____, we won't go to the beach.",
     "options": [
       "raining",
       "rains",
@@ -1344,7 +1344,7 @@
   },
   {
     "id": "q80",
-    "prompt": "Complete the sentence: 'I will call you if I _____ any news.'",
+    "prompt": "I will call you if I _____ any news.",
     "options": [
       "hear",
       "will hear",
@@ -1361,7 +1361,7 @@
   },
   {
     "id": "q81",
-    "prompt": "Complete the sentence: 'What will you do if you _____ the train?'",
+    "prompt": "What will you do if you _____ the train?",
     "options": [
       "will miss",
       "missing",
@@ -1378,7 +1378,7 @@
   },
   {
     "id": "q82",
-    "prompt": "Complete the sentence: 'If she _____ invite me, I won't go to the party.'",
+    "prompt": "If she _____ invite me, I won't go to the party.",
     "options": [
       "doesn't",
       "don't",
@@ -1395,7 +1395,7 @@
   },
   {
     "id": "q83",
-    "prompt": "Complete the sentence: 'If you _____ hurry, we will be late.'",
+    "prompt": "If you _____ hurry, we will be late.",
     "options": [
       "don't",
       "won't",
@@ -1412,7 +1412,7 @@
   },
   {
     "id": "q84",
-    "prompt": "Complete the sentence: 'Russia is the _____ country in the world.'",
+    "prompt": "Russia is the _____ country in the world.",
     "options": [
       "largest",
       "larger",
@@ -1429,7 +1429,7 @@
   },
   {
     "id": "q85",
-    "prompt": "Complete the sentence: 'English is _____ than Chinese.'",
+    "prompt": "English is _____ than Chinese.",
     "options": [
       "easy",
       "easiest",
@@ -1446,7 +1446,7 @@
   },
   {
     "id": "q86",
-    "prompt": "Complete the sentence: 'This book is _____ interesting than the last one.'",
+    "prompt": "This book is _____ interesting than the last one.",
     "options": [
       "more",
       "most",
@@ -1463,7 +1463,7 @@
   },
   {
     "id": "q87",
-    "prompt": "Complete the sentence: 'It's the _____ movie I've ever seen.'",
+    "prompt": "It's the _____ movie I've ever seen.",
     "options": [
       "worse",
       "worst",
@@ -1480,7 +1480,7 @@
   },
   {
     "id": "q88",
-    "prompt": "Complete the sentence: 'My brother is much _____ than me.'",
+    "prompt": "My brother is much _____ than me.",
     "options": [
       "taller",
       "tall",
@@ -1497,7 +1497,7 @@
   },
   {
     "id": "q89",
-    "prompt": "Complete the sentence: 'Giulia is the youngest _____ my three cousins.'",
+    "prompt": "Giulia is the youngest _____ my three cousins.",
     "options": [
       "in",
       "than",
@@ -1514,7 +1514,7 @@
   },
   {
     "id": "q90",
-    "prompt": "Complete the sentence: 'I have been studying English _____ three years.'",
+    "prompt": "I have been studying English _____ three years.",
     "options": [
       "for",
       "since",
@@ -1531,7 +1531,7 @@
   },
   {
     "id": "q91",
-    "prompt": "Complete the sentence: 'I _____ my best friend since primary school.'",
+    "prompt": "I _____ my best friend since primary school.",
     "options": [
       "know",
       "am knowing",
@@ -1548,7 +1548,7 @@
   },
   {
     "id": "q92",
-    "prompt": "Complete the sentence: 'She hasn't eaten anything _____ yesterday morning.'",
+    "prompt": "She hasn't eaten anything _____ yesterday morning.",
     "options": [
       "since",
       "for",
@@ -1565,7 +1565,7 @@
   },
   {
     "id": "q93",
-    "prompt": "Complete the sentence: 'We have been waiting _____ two hours.'",
+    "prompt": "We have been waiting _____ two hours.",
     "options": [
       "for",
       "since",
@@ -1582,7 +1582,7 @@
   },
   {
     "id": "q94",
-    "prompt": "Complete the sentence: 'I haven't seen him _____ a long time.'",
+    "prompt": "I haven't seen him _____ a long time.",
     "options": [
       "for",
       "since",
@@ -1599,7 +1599,7 @@
   },
   {
     "id": "q95",
-    "prompt": "Complete the sentence: 'He usually _____ up at 7 AM.'",
+    "prompt": "He usually _____ up at 7 AM.",
     "options": [
       "wakes",
       "wake",
@@ -1616,7 +1616,7 @@
   },
   {
     "id": "q96",
-    "prompt": "Complete the sentence: 'My parents _____ live in London.'",
+    "prompt": "My parents _____ live in London.",
     "options": [
       "doesn't",
       "aren't",
@@ -1633,7 +1633,7 @@
   },
   {
     "id": "q97",
-    "prompt": "Complete the sentence: '_____ she like chocolate?'",
+    "prompt": "_____ she like chocolate?",
     "options": [
       "Does",
       "Do",
@@ -1650,7 +1650,7 @@
   },
   {
     "id": "q98",
-    "prompt": "Complete the sentence: 'The train _____ at 8 o'clock.'",
+    "prompt": "The train _____ at 8 o'clock.",
     "options": [
       "leaves",
       "leaving",
@@ -1667,7 +1667,7 @@
   },
   {
     "id": "q99",
-    "prompt": "Complete the sentence: 'Water _____ at 100 degrees Celsius.'",
+    "prompt": "Water _____ at 100 degrees Celsius.",
     "options": [
       "boils",
       "boil",
@@ -1684,7 +1684,7 @@
   },
   {
     "id": "q100",
-    "prompt": "Complete the sentence: 'This is my _____ car.' (The car belongs to my friend)",
+    "prompt": "This car belongs to my friend. It is my _____ car.",
     "options": [
       "friend's",
       "friends'",

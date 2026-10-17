@@ -7,8 +7,9 @@ import { CONSENT_VERSION, SCOPES, Scope, isScope } from './scopes';
 import { HttpError, json, readJson, readBodyText } from './http';
 import { enforceRateLimit, rateLimitKey } from './limite';
 import {
-  CSV_COLUMNS, SignupRow, consensiOf, exportSignups, getLinkedSignup, parseSignup, publicSignup, safeEqual,
-  normalizePolimiEmail, setPolimiEmail, toCsv, updateLinkedSignupFields, upsertSignup, validateProfileFields,
+  CSV_COLUMNS, consensiOf, exportSignups, getLinkedSignup, hasProfileFields, parseExportFilters, parseSignup,
+  publicSignup, safeEqual, normalizePolimiEmail, setPolimiEmail, toCsv, updateLinkedSignupFields, upsertSignup,
+  validateProfileFields,
 } from './signups';
 
 const SIGNUP_BODY_MAX = 4096;          // byte
@@ -151,7 +152,14 @@ function publicAccount(a: AccountRow) {
 async function profileData(env: Env, account: AccountRow) {
   const signup = await getLinkedSignup(env, account.id);
   return {
-    profile: { nome: signup?.nome ?? account.display_name, corso: signup?.corso ?? null, sede: signup?.sede ?? null },
+    profile: {
+      nome: signup?.nome ?? account.display_name,
+      scuola: signup?.scuola ?? null,
+      sede: signup?.sede ?? null,
+      livello: signup?.livello ?? null,
+      corso: signup?.corso ?? null,
+      anno: signup?.anno ?? null,
+    },
     consensi: signup ? consensiOf(signup) : null,
     signup: signup ? publicSignup(signup) : null,
     signupRow: signup,
@@ -234,7 +242,7 @@ async function handle(request: Request, env: Env): Promise<Response> {
     if (!token || !(await safeEqual(token, env.ADMIN_TOKEN))) throw new HttpError(401, 'non autorizzato');
     const formato = (url.searchParams.get('formato') ?? 'json').toLowerCase();
     if (formato !== 'csv' && formato !== 'json') throw new HttpError(400, 'formato: csv o json');
-    const rows = await exportSignups(env, url.searchParams.get('comunicazioni') === '1');
+    const rows = await exportSignups(env, parseExportFilters(url.searchParams));
     if (formato === 'csv') {
       const day = new Date().toISOString().slice(0, 10);
       return new Response(toCsv(rows), {
@@ -262,14 +270,18 @@ async function handle(request: Request, env: Env): Promise<Response> {
       const body = await readJson<{
         displayName?: string; handle?: string; polimiEmail?: string | null;
         corso?: string | null; sede?: string | null; provenienza?: string | null;
+        scuola?: string | null; livello?: string | null; anno?: number | null;
       }>(request);
       const displayName = body.displayName?.trim().slice(0, 60) || account.display_name;
       const handle = body.handle?.trim().toLowerCase() ?? account.handle;
       if (!HANDLE_RE.test(handle)) throw new HttpError(400, 'nome utente: 3-20 caratteri tra a-z, 0-9, _ e .');
       const taken = await env.DB.prepare('SELECT 1 FROM accounts WHERE handle = ? AND id != ?').bind(handle, account.id).first();
       if (taken) throw new HttpError(409, 'nome utente già in uso');
-      const profileFields = { corso: body.corso, sede: body.sede, provenienza: body.provenienza };
-      const touchesProfile = Object.values(profileFields).some(v => v !== undefined);
+      const profileFields = {
+        corso: body.corso, sede: body.sede, provenienza: body.provenienza,
+        scuola: body.scuola, livello: body.livello, anno: body.anno,
+      };
+      const touchesProfile = hasProfileFields(profileFields);
       validateProfileFields(profileFields);
       if (body.polimiEmail !== undefined && body.polimiEmail !== null && body.polimiEmail !== ''
         && !normalizePolimiEmail(body.polimiEmail)) throw new HttpError(400, 'email PoliMi non valida (@polimi.it, @mail.polimi.it o @…polimi.it)');

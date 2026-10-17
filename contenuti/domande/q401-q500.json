@@ -52,7 +52,7 @@
   },
   {
     "id": "q404",
-    "prompt": "Complete the sentence: 'The movie _____ we watched yesterday was boring.'",
+    "prompt": "The movie _____ we watched yesterday was boring.",
     "options": [
       "who",
       "where",
@@ -69,7 +69,7 @@
   },
   {
     "id": "q405",
-    "prompt": "Complete the sentence: 'The woman _____ car was stolen is my neighbor.'",
+    "prompt": "The woman _____ car was stolen is my neighbor.",
     "options": [
       "who",
       "whose",
@@ -137,7 +137,7 @@
   },
   {
     "id": "q409",
-    "prompt": "Complete the sentence: 'This is the book _____ I was telling you about.'",
+    "prompt": "This is the book _____ I was telling you about.",
     "options": [
       "which",
       "who",
@@ -154,7 +154,7 @@
   },
   {
     "id": "q410",
-    "prompt": "Complete the sentence: 'Paris, _____ is the capital of France, is beautiful.'",
+    "prompt": "Paris, _____ is the capital of France, is beautiful.",
     "options": [
       "which",
       "who",
@@ -324,7 +324,7 @@
   },
   {
     "id": "q420",
-    "prompt": "Complete the sentence: 'I finished _____ the book last night.'",
+    "prompt": "I finished _____ the book last night.",
     "options": [
       "to read",
       "reading",
@@ -341,7 +341,7 @@
   },
   {
     "id": "q421",
-    "prompt": "Complete the sentence: 'He decided _____ abroad.'",
+    "prompt": "He decided _____ abroad.",
     "options": [
       "studying",
       "study",
@@ -392,7 +392,7 @@
   },
   {
     "id": "q424",
-    "prompt": "Complete the sentence: 'I don't mind _____ up early.'",
+    "prompt": "I don't mind _____ up early.",
     "options": [
       "to get",
       "get",
@@ -409,7 +409,7 @@
   },
   {
     "id": "q425",
-    "prompt": "Complete the sentence: 'They want _____ a new house.'",
+    "prompt": "They want _____ a new house.",
     "options": [
       "buying",
       "buy",
@@ -562,7 +562,7 @@
   },
   {
     "id": "q434",
-    "prompt": "Complete the sentence: 'If I _____ rich, I _____ travel the world.'",
+    "prompt": "If I _____ rich, I _____ travel the world.",
     "options": [
       "were / would",
       "am / will",
@@ -579,7 +579,7 @@
   },
   {
     "id": "q435",
-    "prompt": "Complete the sentence: 'If she _____ the truth, she would be angry.'",
+    "prompt": "If she _____ the truth, she would be angry.",
     "options": [
       "knows",
       "knew",
@@ -647,7 +647,7 @@
   },
   {
     "id": "q439",
-    "prompt": "Complete the sentence: 'I _____ go there if I were you.'",
+    "prompt": "I _____ go there if I were you.",
     "options": [
       "won't",
       "didn't",
@@ -664,7 +664,7 @@
   },
   {
     "id": "q440",
-    "prompt": "Complete the sentence: 'If we had a car, we _____ go to the mountains.'",
+    "prompt": "If we had a car, we _____ go to the mountains.",
     "options": [
       "can",
       "will",
@@ -766,7 +766,7 @@
   },
   {
     "id": "q446",
-    "prompt": "Complete the sentence: 'If I spoke French, I _____ to Paris.'",
+    "prompt": "If I spoke French, I _____ to Paris.",
     "options": [
       "would move",
       "will move",
@@ -834,7 +834,7 @@
   },
   {
     "id": "q450",
-    "prompt": "Complete the sentence: 'If I _____ to bed early, I wouldn't have been tired.'",
+    "prompt": "If I _____ to bed early, I wouldn't have been tired.",
     "options": [
       "would have gone",
       "have gone",
@@ -851,7 +851,7 @@
   },
   {
     "id": "q451",
-    "prompt": "Complete the sentence: 'If it had rained, we _____ at home.'",
+    "prompt": "If it had rained, we _____ at home.",
     "options": [
       "would have stay",
       "would have stayed",
@@ -919,7 +919,7 @@
   },
   {
     "id": "q455",
-    "prompt": "Complete the sentence: 'What _____ if you had known?'",
+    "prompt": "What _____ if you had known?",
     "options": [
       "did you do",
       "would you have done",
@@ -936,7 +936,7 @@
   },
   {
     "id": "q456",
-    "prompt": "Complete the sentence: 'If I _____ the message, I would have replied to you.'",
+    "prompt": "If I _____ the message, I would have replied to you.",
     "options": [
       "would have seen",
       "have seen",
@@ -1038,7 +1038,7 @@
   },
   {
     "id": "q462",
-    "prompt": "Complete the sentence: 'She would have come if she _____ time.'",
+    "prompt": "She would have come if she _____ time.",
     "options": [
       "had had",
       "would have had",
@@ -1106,7 +1106,7 @@
   },
   {
     "id": "q466",
-    "prompt": "Complete the sentence: 'This book _____ in 1990.'",
+    "prompt": "This book _____ in 1990.",
     "options": [
       "is written",
       "wrote",
@@ -1123,7 +1123,7 @@
   },
   {
     "id": "q467",
-    "prompt": "Complete the sentence: 'Nowadays the room _____ every day.'",
+    "prompt": "Nowadays the room _____ every day.",
     "options": [
       "was cleaned",
       "is cleaned",
@@ -1191,7 +1191,7 @@
   },
   {
     "id": "q471",
-    "prompt": "Complete the sentence: 'The tickets _____ sold already.'",
+    "prompt": "The tickets _____ sold already.",
     "options": [
       "have been",
       "has been",
@@ -1208,7 +1208,7 @@
   },
   {
     "id": "q472",
-    "prompt": "Complete the sentence: 'The problem must _____ immediately.'",
+    "prompt": "The problem must _____ immediately.",
     "options": [
       "solve",
       "been solved",
@@ -1310,7 +1310,7 @@
   },
   {
     "id": "q478",
-    "prompt": "Complete the sentence: 'My bicycle _____ yesterday.'",
+    "prompt": "My bicycle _____ yesterday.",
     "options": [
       "is stolen",
       "was stolen",
@@ -1327,7 +1327,7 @@
   },
   {
     "id": "q479",
-    "prompt": "He said, 'I like apples.' -> He said that he _____ apples.",
+    "prompt": "He said, 'I like apples.' He said that he _____ apples.",
     "options": [
       "liked",
       "was liking",
@@ -1344,7 +1344,7 @@
   },
   {
     "id": "q480",
-    "prompt": "She said, 'I am watching TV.' -> She said that she _____ TV.",
+    "prompt": "She said, 'I am watching TV.' She said that she _____ TV.",
     "options": [
       "was watching",
       "were watching",
@@ -1361,7 +1361,7 @@
   },
   {
     "id": "q481",
-    "prompt": "'I will go,' he said. -> He said that he _____ go.",
+    "prompt": "'I will go,' he said. He said that he _____ go.",
     "options": [
       "would",
       "going to",
@@ -1378,7 +1378,7 @@
   },
   {
     "id": "q482",
-    "prompt": "Complete the sentence: 'He told _____ that he was tired.'",
+    "prompt": "He told _____ that he was tired.",
     "options": [
       "to me",
       "for me",
@@ -1395,7 +1395,7 @@
   },
   {
     "id": "q483",
-    "prompt": "Complete the sentence: 'She _____ that she didn't know the answer.'",
+    "prompt": "She _____ that she didn't know the answer.",
     "options": [
       "said",
       "told",
@@ -1412,7 +1412,7 @@
   },
   {
     "id": "q484",
-    "prompt": "'I have finished,' she said. -> She said that she _____ finished.",
+    "prompt": "'I have finished,' she said. She said that she _____ finished.",
     "options": [
       "had",
       "have",
@@ -1463,7 +1463,7 @@
   },
   {
     "id": "q487",
-    "prompt": "Complete the sentence: 'He asked me _____ I wanted to come.'",
+    "prompt": "He asked me _____ I wanted to come.",
     "options": [
       "do",
       "that",
@@ -1480,7 +1480,7 @@
   },
   {
     "id": "q488",
-    "prompt": "Complete the sentence: 'The doctor told me _____ more water.'",
+    "prompt": "The doctor told me _____ more water.",
     "options": [
       "drink",
       "to drink",
@@ -1497,7 +1497,7 @@
   },
   {
     "id": "q489",
-    "prompt": "'Don't touch that!' he said. -> He told me _____ that.",
+    "prompt": "'Don't touch that!' he said. He told me _____ that.",
     "options": [
       "not to touch",
       "don't touch",
@@ -1514,7 +1514,7 @@
   },
   {
     "id": "q490",
-    "prompt": "'Open the door,' she said. -> She told me _____ the door.",
+    "prompt": "'Open the door,' she said. She told me _____ the door.",
     "options": [
       "to open",
       "open",
@@ -1531,7 +1531,7 @@
   },
   {
     "id": "q491",
-    "prompt": "He said, 'I can swim.' -> He said that he _____ swim.",
+    "prompt": "He said, 'I can swim.' He said that he _____ swim.",
     "options": [
       "could",
       "can to",
@@ -1548,7 +1548,7 @@
   },
   {
     "id": "q492",
-    "prompt": "She asked, 'Are you okay?' -> She asked me _____ okay.",
+    "prompt": "She asked, 'Are you okay?' She asked me _____ okay.",
     "options": [
       "if I was",
       "if was I",
@@ -1565,7 +1565,7 @@
   },
   {
     "id": "q493",
-    "prompt": "'I must go,' he said. -> He said that he _____ go.",
+    "prompt": "'I must go,' he said. He said that he _____ go.",
     "options": [
       "had to",
       "musts",
@@ -1582,7 +1582,7 @@
   },
   {
     "id": "q494",
-    "prompt": "Complete the sentence: 'He advised me _____ harder for the test.'",
+    "prompt": "He advised me _____ harder for the test.",
     "options": [
       "study",
       "studying",
@@ -1650,7 +1650,7 @@
   },
   {
     "id": "q498",
-    "prompt": "Complete the sentence: 'I had just _____ eating when he knocked.'",
+    "prompt": "I had just _____ eating when he knocked.",
     "options": [
       "finish",
       "to finish",
@@ -1667,7 +1667,7 @@
   },
   {
     "id": "q499",
-    "prompt": "Complete the sentence: 'I _____ that movie before yesterday.'",
+    "prompt": "I _____ that movie before yesterday.",
     "options": [
       "had never seen",
       "had never saw",

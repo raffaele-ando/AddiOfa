@@ -33,6 +33,7 @@ export async function avvia(vars: Record<string, string>): Promise<Istanza> {
   proc.stdout?.on('data', d => { log += d; });
   proc.stderr?.on('data', d => { log += d; });
 
+  proc.once('exit', (codice, segnale) => { if (process.env.ATLAS_DEBUG) console.error(`[wrangler ${porta}] uscito: ${codice} ${segnale}\n${log.slice(-1500)}`); });
   const base = `http://127.0.0.1:${porta}`;
   const fine = Date.now() + 60_000;
   for (;;) {
@@ -56,11 +57,20 @@ export async function avvia(vars: Record<string, string>): Promise<Istanza> {
         if (proc.exitCode === null) proc.kill('SIGKILL');
       }
     },
-    chiama(percorso, { ip, token, headers, ...resto } = {}) {
+    async chiama(percorso, { ip, token, headers, ...resto } = {}) {
       const h = new Headers(headers);
       if (ip) h.set('CF-Connecting-IP', ip);
       if (token) h.set('Authorization', `Bearer ${token}`);
-      return fetch(`${base}${percorso}`, { ...resto, headers: h });
+      // `wrangler dev` si ricarica da solo quando i file di lavoro cambiano (altri wrangler avviati dalle prove):
+      // per qualche decimo di secondo la porta non risponde. Si riprova solo se la connessione fallisce.
+      for (let tentativo = 0; ; tentativo++) {
+        try {
+          return await fetch(`${base}${percorso}`, { ...resto, headers: h });
+        } catch (err) {
+          if (tentativo >= 8) throw err;
+          await new Promise(r => setTimeout(r, 400));
+        }
+      }
     },
   };
 }
@@ -70,7 +80,7 @@ export const iscrizione = (extra: Record<string, unknown> = {}) => ({
   nome: 'Mario Rossi',
   email: 'mario.rossi@mail.polimi.it',
   corso: 'Ingegneria Gestionale',
-  sede: 'Leonardo',
+  sede: 'leonardo',
   provenienza: 'amici',
   consensi: { noi: true, atlas: false, comunicazioni: true },
   consentVersion: 'iscrizione-2026-10-16',
@@ -82,3 +92,10 @@ export const postJson = (corpo: unknown) => ({
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(corpo),
 });
+
+/** Esegue wrangler (comandi d1) su un database locale in una cartella temporanea con le migrazioni indicate. */
+export function wranglerD1(dati: string, config: string, args: string[]) {
+  const r = spawnSync(WRANGLER, ['d1', ...args, '--local', '--persist-to', dati, '-c', config], { cwd: RADICE, encoding: 'utf8' });
+  if (r.status !== 0) throw new Error(`wrangler d1 ${args.join(' ')} fallito:\n${r.stdout}\n${r.stderr}`);
+  return r.stdout;
+}

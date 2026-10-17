@@ -1,7 +1,7 @@
 [
   {
     "id": "q201",
-    "prompt": "Complete: '_____ do you live?'",
+    "prompt": "_____ do you live?",
     "options": [
       "Where",
       "What",
@@ -18,7 +18,7 @@
   },
   {
     "id": "q202",
-    "prompt": "Complete the sentence: '_____ do you go to work?'",
+    "prompt": "_____ do you go to work?",
     "options": [
       "How",
       "Who",
@@ -35,7 +35,7 @@
   },
   {
     "id": "q203",
-    "prompt": "Complete: '_____ is your favorite color?'",
+    "prompt": "_____ is your favorite color?",
     "options": [
       "What",
       "Whose",
@@ -52,7 +52,7 @@
   },
   {
     "id": "q204",
-    "prompt": "Complete the sentence: '_____ bag is this?'",
+    "prompt": "_____ bag is this?",
     "options": [
       "Who",
       "Whom",
@@ -69,7 +69,7 @@
   },
   {
     "id": "q205",
-    "prompt": "Complete: '_____ time does the movie start?'",
+    "prompt": "_____ time does the movie start?",
     "options": [
       "What",
       "Where",
@@ -86,7 +86,7 @@
   },
   {
     "id": "q206",
-    "prompt": "Complete the sentence: '_____ does this book cost?'",
+    "prompt": "_____ does this book cost?",
     "options": [
       "How many",
       "How much",
@@ -103,7 +103,7 @@
   },
   {
     "id": "q207",
-    "prompt": "Complete: '_____ languages do you speak?'",
+    "prompt": "_____ languages do you speak?",
     "options": [
       "How many",
       "How much",
@@ -120,7 +120,7 @@
   },
   {
     "id": "q208",
-    "prompt": "Complete: '_____ a big tree in the garden.'",
+    "prompt": "_____ a big tree in the garden.",
     "options": [
       "There is",
       "There are",
@@ -137,7 +137,7 @@
   },
   {
     "id": "q209",
-    "prompt": "Complete the sentence: 'There _____ three chairs in the room.'",
+    "prompt": "There _____ three chairs in the room.",
     "options": [
       "have",
       "has",
@@ -154,7 +154,7 @@
   },
   {
     "id": "q210",
-    "prompt": "Complete: '_____ any messages for me?'",
+    "prompt": "_____ any messages for me?",
     "options": [
       "Are there",
       "Is there",
@@ -171,7 +171,7 @@
   },
   {
     "id": "q211",
-    "prompt": "Complete the sentence: '_____ there a good restaurant near here?'",
+    "prompt": "_____ there a good restaurant near here?",
     "options": [
       "Is",
       "Are",
@@ -188,7 +188,7 @@
   },
   {
     "id": "q212",
-    "prompt": "Complete: 'There _____ a lot of people at the party.'",
+    "prompt": "There _____ a lot of people at the party.",
     "options": [
       "were",
       "was",
@@ -205,7 +205,7 @@
   },
   {
     "id": "q213",
-    "prompt": "Complete the sentence: 'When I arrived yesterday, there _____ nobody at home.'",
+    "prompt": "When I arrived yesterday, there _____ nobody at home.",
     "options": [
       "were",
       "is",
@@ -222,7 +222,7 @@
   },
   {
     "id": "q214",
-    "prompt": "Complete: '_____ going to be a storm tomorrow.'",
+    "prompt": "_____ going to be a storm tomorrow.",
     "options": [
       "There is",
       "There are",
@@ -239,7 +239,7 @@
   },
   {
     "id": "q215",
-    "prompt": "Complete the sentence: '_____ any biscuits in the box?'",
+    "prompt": "_____ any biscuits in the box?",
     "options": [
       "Does there",
       "Are there",
@@ -256,7 +256,7 @@
   },
   {
     "id": "q216",
-    "prompt": "Complete: '_____ a mistake in this exercise.'",
+    "prompt": "_____ a mistake in this exercise.",
     "options": [
       "There is",
       "There are",
@@ -273,7 +273,7 @@
   },
   {
     "id": "q217",
-    "prompt": "Complete: 'This is not my pen. It is _____.'",
+    "prompt": "This is not my pen. It is _____.",
     "options": [
       "yours",
       "your",
@@ -290,7 +290,7 @@
   },
   {
     "id": "q218",
-    "prompt": "Complete: '_____ car is parked outside.'",
+    "prompt": "_____ car is parked outside.",
     "options": [
       "Her",
       "Hers",
@@ -307,7 +307,7 @@
   },
   {
     "id": "q219",
-    "prompt": "Complete: 'That house is _____.' (of us)",
+    "prompt": "That house belongs to us. It is _____.",
     "options": [
       "ours",
       "our",
@@ -324,7 +324,7 @@
   },
   {
     "id": "q220",
-    "prompt": "Complete: 'Is this book _____?' (of him)",
+    "prompt": "Does this book belong to him? Yes, it is _____.",
     "options": [
       "his",
       "him",
@@ -341,7 +341,7 @@
   },
   {
     "id": "q221",
-    "prompt": "Complete: 'These are _____ shoes.'",
+    "prompt": "These are _____ shoes.",
     "options": [
       "my",
       "mine",
@@ -358,7 +358,7 @@
   },
   {
     "id": "q222",
-    "prompt": "Complete: 'The dog is wagging _____ tail.'",
+    "prompt": "The dog is wagging _____ tail.",
     "options": [
       "its",
       "it's",
@@ -375,7 +375,7 @@
   },
   {
     "id": "q223",
-    "prompt": "Complete: 'Are those keys _____?' (of them)",
+    "prompt": "Do those keys belong to them? Yes, they are _____.",
     "options": [
       "theirs",
       "their",
@@ -392,7 +392,7 @@
   },
   {
     "id": "q224",
-    "prompt": "Complete: 'I lost _____ keys yesterday.'",
+    "prompt": "I lost _____ keys yesterday.",
     "options": [
       "my",
       "mine",
@@ -409,7 +409,7 @@
   },
   {
     "id": "q225",
-    "prompt": "Complete: 'This laptop is _____, not yours.'",
+    "prompt": "This laptop is _____, not yours.",
     "options": [
       "mine",
       "my",
@@ -426,7 +426,7 @@
   },
   {
     "id": "q226",
-    "prompt": "Complete the sentence: 'This book is _____.'",
+    "prompt": "This book is _____.",
     "options": [
       "my",
       "me",
@@ -443,7 +443,7 @@
   },
   {
     "id": "q227",
-    "prompt": "Complete the sentence: '_____ house is very big.'",
+    "prompt": "_____ house is very big.",
     "options": [
       "Their",
       "Theirs",
@@ -460,7 +460,7 @@
   },
   {
     "id": "q228",
-    "prompt": "Complete the sentence: 'That blue jacket belongs to Anna, so it is _____.'",
+    "prompt": "That blue jacket belongs to Anna, so it is _____.",
     "options": [
       "her",
       "her's",
@@ -477,7 +477,7 @@
   },
   {
     "id": "q229",
-    "prompt": "Complete the sentence: '_____ friends are coming.'",
+    "prompt": "_____ friends are coming.",
     "options": [
       "Ours",
       "Our",
@@ -494,7 +494,7 @@
   },
   {
     "id": "q230",
-    "prompt": "Complete the sentence: 'Is this money _____?'",
+    "prompt": "Is this money _____?",
     "options": [
       "your",
       "you",
@@ -511,7 +511,7 @@
   },
   {
     "id": "q231",
-    "prompt": "Complete the sentence: 'Tom is happy because _____ phone is new.'",
+    "prompt": "Tom is happy because _____ phone is new.",
     "options": [
       "his",
       "him",
@@ -528,7 +528,7 @@
   },
   {
     "id": "q232",
-    "prompt": "Complete the sentence: 'My brother and I have cars: mine is red and _____ is blue.'",
+    "prompt": "My brother and I have cars: mine is red and _____ is blue.",
     "options": [
       "hers",
       "his",
@@ -545,7 +545,7 @@
   },
   {
     "id": "q233",
-    "prompt": "Complete the sentence: 'I forgot _____ umbrella at home.'",
+    "prompt": "I forgot _____ umbrella at home.",
     "options": [
       "mine",
       "me",
@@ -562,7 +562,7 @@
   },
   {
     "id": "q234",
-    "prompt": "Complete the sentence: 'Those pens belong to my neighbours, so they are _____.'",
+    "prompt": "Those pens belong to my neighbours, so they are _____.",
     "options": [
       "their",
       "them",
@@ -579,7 +579,7 @@
   },
   {
     "id": "q235",
-    "prompt": "Complete: 'I call _____ every day.' (him/he/his/himself)",
+    "prompt": "I call _____ every day.",
     "options": [
       "him",
       "he",
@@ -596,7 +596,7 @@
   },
   {
     "id": "q236",
-    "prompt": "Complete: 'She loves _____ very much.' (me/I/my/mine)",
+    "prompt": "She loves _____ very much.",
     "options": [
       "me",
       "I",
@@ -613,7 +613,7 @@
   },
   {
     "id": "q237",
-    "prompt": "Complete: 'Can you help _____ with this exercise?' (us/we/our/ours)",
+    "prompt": "Can you help _____ with this exercise?",
     "options": [
       "us",
       "we",
@@ -630,7 +630,7 @@
   },
   {
     "id": "q238",
-    "prompt": "Complete: 'I don't know _____.' (them/they/their/theirs)",
+    "prompt": "I don't know _____.",
     "options": [
       "them",
       "they",
@@ -647,7 +647,7 @@
   },
   {
     "id": "q239",
-    "prompt": "Complete: 'Look at _____!' (her/she/hers/herself)",
+    "prompt": "Look at _____!",
     "options": [
       "her",
       "she",
@@ -664,7 +664,7 @@
   },
   {
     "id": "q240",
-    "prompt": "Complete: 'He wants to speak to _____.' (you/your/yours/yourself)",
+    "prompt": "He wants to speak to _____.",
     "options": [
       "you",
       "your",
@@ -681,7 +681,7 @@
   },
   {
     "id": "q241",
-    "prompt": "Complete: 'Give _____ to me.' (it/its/it's/itself)",
+    "prompt": "Give _____ to me.",
     "options": [
       "it",
       "its",
@@ -698,7 +698,7 @@
   },
   {
     "id": "q242",
-    "prompt": "Complete: 'My parents are visiting _____.' (me/I/my/mine)",
+    "prompt": "My parents are visiting _____.",
     "options": [
       "me",
       "I",
@@ -715,7 +715,7 @@
   },
   {
     "id": "q243",
-    "prompt": "Complete: 'Are you listening to _____?' (him/he/his/himself)",
+    "prompt": "Are you listening to _____?",
     "options": [
       "him",
       "he",
@@ -732,7 +732,7 @@
   },
   {
     "id": "q244",
-    "prompt": "Complete the sentence: 'Tom speaks too fast and I do not understand _____.'",
+    "prompt": "Tom speaks too fast and I do not understand _____.",
     "options": [
       "him",
       "he",
@@ -749,7 +749,7 @@
   },
   {
     "id": "q245",
-    "prompt": "Complete the sentence: 'We are waving at you: can you see _____?'",
+    "prompt": "We are waving at you: can you see _____?",
     "options": [
       "we",
       "us",
@@ -766,7 +766,7 @@
   },
   {
     "id": "q246",
-    "prompt": "Complete the sentence: 'My sister has a birthday today, so I bought _____ a present.'",
+    "prompt": "My sister has a birthday today, so I bought _____ a present.",
     "options": [
       "she",
       "hers",
@@ -783,7 +783,7 @@
   },
   {
     "id": "q247",
-    "prompt": "Complete the sentence: 'My parents are late, so I will wait for _____ here.'",
+    "prompt": "My parents are late, so I will wait for _____ here.",
     "options": [
       "they",
       "their",
@@ -800,7 +800,7 @@
   },
   {
     "id": "q248",
-    "prompt": "Complete the sentence: 'Please give _____ that book.'",
+    "prompt": "Please give _____ that book.",
     "options": [
       "me",
       "I",
@@ -817,7 +817,7 @@
   },
   {
     "id": "q249",
-    "prompt": "Complete the sentence: 'You always tell lies, so I do not believe _____.'",
+    "prompt": "You always tell lies, so I do not believe _____.",
     "options": [
       "your",
       "you",
@@ -834,7 +834,7 @@
   },
   {
     "id": "q250",
-    "prompt": "Complete the sentence: 'This pen is very nice and I want _____ now.'",
+    "prompt": "This pen is very nice and I want _____ now.",
     "options": [
       "its",
       "they",
@@ -851,7 +851,7 @@
   },
   {
     "id": "q251",
-    "prompt": "Complete the sentence: 'Are you coming with _____ to the cinema?'",
+    "prompt": "Are you coming with _____ to the cinema?",
     "options": [
       "we",
       "our",
@@ -868,7 +868,7 @@
   },
   {
     "id": "q252",
-    "prompt": "Complete the sentence: 'These boys are new in the class and I do not know _____.'",
+    "prompt": "These boys are new in the class and I do not know _____.",
     "options": [
       "them",
       "they",
@@ -885,7 +885,7 @@
   },
   {
     "id": "q253",
-    "prompt": "Complete: '_____ is my friend, Paul.' (near)",
+    "prompt": "Look at the man next to me: _____ is my friend, Paul.",
     "options": [
       "This",
       "These",
@@ -902,7 +902,7 @@
   },
   {
     "id": "q254",
-    "prompt": "Complete: 'Look at _____ birds in the sky.'",
+    "prompt": "Look at _____ birds in the sky.",
     "options": [
       "those",
       "that",
@@ -919,7 +919,7 @@
   },
   {
     "id": "q255",
-    "prompt": "Complete: 'Are _____ your shoes here?'",
+    "prompt": "Are _____ your shoes here?",
     "options": [
       "these",
       "this",
@@ -936,7 +936,7 @@
   },
   {
     "id": "q256",
-    "prompt": "Complete: '_____ building over there is a hospital.'",
+    "prompt": "_____ building over there is a hospital.",
     "options": [
       "That",
       "This",
@@ -953,7 +953,7 @@
   },
   {
     "id": "q257",
-    "prompt": "Complete: '_____ days are the best of my life.'",
+    "prompt": "_____ days are the best of my life.",
     "options": [
       "These",
       "This",
@@ -970,7 +970,7 @@
   },
   {
     "id": "q258",
-    "prompt": "Complete: 'I don't like _____ kind of music.' (near/current)",
+    "prompt": "I don't like _____ kind of music.",
     "options": [
       "this",
       "these",
@@ -987,7 +987,7 @@
   },
   {
     "id": "q259",
-    "prompt": "Complete: 'Did you buy _____ apples from the market?' (far/past)",
+    "prompt": "Did you buy _____ apples from the market?",
     "options": [
       "those",
       "that",
@@ -1004,7 +1004,7 @@
   },
   {
     "id": "q260",
-    "prompt": "Complete: '_____ is a very interesting book.' (holding it)",
+    "prompt": "I am holding it in my hands: _____ is a very interesting book.",
     "options": [
       "This",
       "These",
@@ -1021,7 +1021,7 @@
   },
   {
     "id": "q261",
-    "prompt": "Complete: 'Can you pass me _____ pen?' (far)",
+    "prompt": "Can you pass me _____ pen over there?",
     "options": [
       "that",
       "those",
@@ -1038,7 +1038,7 @@
   },
   {
     "id": "q262",
-    "prompt": "Complete the sentence: '_____ cat in my arms is called Leo.'",
+    "prompt": "_____ cat in my arms is called Leo.",
     "options": [
       "These",
       "Those",
@@ -1055,7 +1055,7 @@
   },
   {
     "id": "q263",
-    "prompt": "Complete the sentence: '_____ books on the shelf over there are mine.'",
+    "prompt": "_____ books on the shelf over there are mine.",
     "options": [
       "That",
       "Those",
@@ -1072,7 +1072,7 @@
   },
   {
     "id": "q264",
-    "prompt": "Complete the sentence: 'Try a slice of the pizza in my hand: _____ pizza is very good.'",
+    "prompt": "Try a slice of the pizza in my hand: _____ pizza is very good.",
     "options": [
       "These",
       "Those",
@@ -1089,7 +1089,7 @@
   },
   {
     "id": "q265",
-    "prompt": "Complete the sentence: 'Look at the girls next to me: _____ girls are Italian.'",
+    "prompt": "Look at the girls next to me: _____ girls are Italian.",
     "options": [
       "These",
       "This",
@@ -1106,7 +1106,7 @@
   },
   {
     "id": "q266",
-    "prompt": "Complete the sentence: 'Look at _____ man over there: he is my father.'",
+    "prompt": "Look at _____ man over there: he is my father.",
     "options": [
       "those",
       "that",
@@ -1123,7 +1123,7 @@
   },
   {
     "id": "q267",
-    "prompt": "Complete the sentence: 'What are _____ things in the box over there?'",
+    "prompt": "What are _____ things in the box over there?",
     "options": [
       "that",
       "this",
@@ -1140,7 +1140,7 @@
   },
   {
     "id": "q268",
-    "prompt": "Complete the sentence: 'I prefer _____ dress that I am holding now.'",
+    "prompt": "I prefer _____ dress that I am holding now.",
     "options": [
       "this",
       "these",
@@ -1157,7 +1157,7 @@
   },
   {
     "id": "q269",
-    "prompt": "Complete the sentence: 'Do you know _____ people over there?'",
+    "prompt": "Do you know _____ people over there?",
     "options": [
       "that",
       "this",
@@ -1174,7 +1174,7 @@
   },
   {
     "id": "q270",
-    "prompt": "Complete the sentence: 'Look at the papers in my hands: _____ are my notes.'",
+    "prompt": "Look at the papers in my hands: _____ are my notes.",
     "options": [
       "this",
       "these",
@@ -1191,7 +1191,7 @@
   },
   {
     "id": "q271",
-    "prompt": "Complete: 'The cat is hiding _____ the bed.'",
+    "prompt": "The cat is hiding _____ the bed.",
     "options": [
       "under",
       "between",
@@ -1208,7 +1208,7 @@
   },
   {
     "id": "q272",
-    "prompt": "Complete: 'She is waiting _____ the bus stop.'",
+    "prompt": "She is waiting _____ the bus stop.",
     "options": [
       "at",
       "in",
@@ -1225,7 +1225,7 @@
   },
   {
     "id": "q273",
-    "prompt": "Complete: 'The picture is hanging _____ the wall.'",
+    "prompt": "The picture is hanging _____ the wall.",
     "options": [
       "on",
       "in",
@@ -1242,7 +1242,7 @@
   },
   {
     "id": "q274",
-    "prompt": "Complete: 'He lives _____ London.'",
+    "prompt": "He lives _____ London.",
     "options": [
       "in",
       "at",
@@ -1259,7 +1259,7 @@
   },
   {
     "id": "q275",
-    "prompt": "Complete: 'The car is parked _____ the house.'",
+    "prompt": "The car is parked _____ the house.",
     "options": [
       "behind",
       "under",
@@ -1276,7 +1276,7 @@
   },
   {
     "id": "q276",
-    "prompt": "Complete: 'She sat _____ her two best friends.'",
+    "prompt": "She sat _____ her two best friends.",
     "options": [
       "between",
       "among",
@@ -1293,7 +1293,7 @@
   },
   {
     "id": "q277",
-    "prompt": "Complete: 'The bank is _____ the post office.'",
+    "prompt": "The bank is _____ the post office.",
     "options": [
       "next to",
       "in",
@@ -1310,7 +1310,7 @@
   },
   {
     "id": "q278",
-    "prompt": "Complete: 'There is a bridge _____ the river.'",
+    "prompt": "There is a bridge _____ the river.",
     "options": [
       "over",
       "under",
@@ -1327,7 +1327,7 @@
   },
   {
     "id": "q279",
-    "prompt": "Complete: 'I left my keys _____ the table.'",
+    "prompt": "I left my keys _____ the table.",
     "options": [
       "on",
       "in",
@@ -1344,7 +1344,7 @@
   },
   {
     "id": "q280",
-    "prompt": "Complete the sentence: 'The dog is lying on the floor, _____ the table.'",
+    "prompt": "The dog is lying on the floor, _____ the table.",
     "options": [
       "on",
       "in",
@@ -1361,7 +1361,7 @@
   },
   {
     "id": "q281",
-    "prompt": "Complete the sentence: 'I am _____ the cinema now; the film starts in ten minutes.'",
+    "prompt": "I am _____ the cinema now; the film starts in ten minutes.",
     "options": [
       "at",
       "into",
@@ -1378,7 +1378,7 @@
   },
   {
     "id": "q282",
-    "prompt": "Complete the sentence: 'There is a big spider _____ the ceiling of my room.'",
+    "prompt": "There is a big spider _____ the ceiling of my room.",
     "options": [
       "to",
       "into",
@@ -1395,7 +1395,7 @@
   },
   {
     "id": "q283",
-    "prompt": "Complete the sentence: 'The office is _____ the bank, so it takes one minute to walk there.'",
+    "prompt": "The office is _____ the bank, so it takes one minute to walk there.",
     "options": [
       "between",
       "near",
@@ -1412,7 +1412,7 @@
   },
   {
     "id": "q284",
-    "prompt": "Complete the sentence: 'The child is standing _____ his mother and his father.'",
+    "prompt": "The child is standing _____ his mother and his father.",
     "options": [
       "between",
       "on",
@@ -1429,7 +1429,7 @@
   },
   {
     "id": "q285",
-    "prompt": "Complete the sentence: 'Hide _____ the door, so nobody can see you.'",
+    "prompt": "Hide _____ the door, so nobody can see you.",
     "options": [
       "under",
       "in",
@@ -1446,7 +1446,7 @@
   },
   {
     "id": "q286",
-    "prompt": "Complete the sentence: 'Please put your clothes _____ the wardrobe and close the doors.'",
+    "prompt": "Please put your clothes _____ the wardrobe and close the doors.",
     "options": [
       "on",
       "at",
@@ -1463,7 +1463,7 @@
   },
   {
     "id": "q287",
-    "prompt": "Complete the sentence: 'I met Marco _____ the station at six o'clock.'",
+    "prompt": "I met Marco _____ the station at six o'clock.",
     "options": [
       "into",
       "at",
@@ -1480,7 +1480,7 @@
   },
   {
     "id": "q288",
-    "prompt": "Complete the sentence: 'There is a garden _____ the house, so you can't see it from the street.'",
+    "prompt": "There is a garden _____ the house, so you can't see it from the street.",
     "options": [
       "behind",
       "under",
@@ -1497,7 +1497,7 @@
   },
   {
     "id": "q289",
-    "prompt": "Complete: '_____ to me carefully.'",
+    "prompt": "_____ to me carefully.",
     "options": [
       "Listen",
       "Listening",
@@ -1514,7 +1514,7 @@
   },
   {
     "id": "q290",
-    "prompt": "Complete: '_____ open the window. It's cold.'",
+    "prompt": "_____ open the window. It's cold.",
     "options": [
       "Don't",
       "Not",
@@ -1531,7 +1531,7 @@
   },
   {
     "id": "q291",
-    "prompt": "Complete: '_____ your vegetables!'",
+    "prompt": "_____ your vegetables!",
     "options": [
       "Eat",
       "Eating",
@@ -1548,7 +1548,7 @@
   },
   {
     "id": "q292",
-    "prompt": "Complete: '_____ be late for the meeting.'",
+    "prompt": "_____ be late for the meeting.",
     "options": [
       "Don't",
       "Not",
@@ -1565,7 +1565,7 @@
   },
   {
     "id": "q293",
-    "prompt": "Complete: '_____ quiet, please.'",
+    "prompt": "_____ quiet, please.",
     "options": [
       "Be",
       "Are",
@@ -1582,7 +1582,7 @@
   },
   {
     "id": "q294",
-    "prompt": "Complete: '_____ touch that plate, it's hot.'",
+    "prompt": "_____ touch that plate, it's hot.",
     "options": [
       "Don't",
       "No",
@@ -1599,7 +1599,7 @@
   },
   {
     "id": "q295",
-    "prompt": "Complete: '_____ your homework before dinner.'",
+    "prompt": "_____ your homework before dinner.",
     "options": [
       "Do",
       "Does",
@@ -1616,7 +1616,7 @@
   },
   {
     "id": "q296",
-    "prompt": "Complete: '_____ me the salt, please.'",
+    "prompt": "_____ me the salt, please.",
     "options": [
       "Pass",
       "Passing",
@@ -1633,7 +1633,7 @@
   },
   {
     "id": "q297",
-    "prompt": "Complete: '_____ worry about it.'",
+    "prompt": "_____ worry about it.",
     "options": [
       "Don't",
       "Not",
@@ -1650,7 +1650,7 @@
   },
   {
     "id": "q298",
-    "prompt": "Complete the sentence: '_____ touch my phone!'",
+    "prompt": "_____ touch my phone!",
     "options": [
       "Not",
       "No",
@@ -1667,7 +1667,7 @@
   },
   {
     "id": "q299",
-    "prompt": "Complete the sentence: 'Please _____ attention to the road!'",
+    "prompt": "Please _____ attention to the road!",
     "options": [
       "pay",
       "do",
@@ -1684,7 +1684,7 @@
   },
   {
     "id": "q300",
-    "prompt": "Complete the sentence: 'Listen _____ when I speak.'",
+    "prompt": "Listen _____ when I speak.",
     "options": [
       "me",
       "at me",

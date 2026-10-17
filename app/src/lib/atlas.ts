@@ -28,6 +28,9 @@ export interface SignupRemota {
   nome: string;
   corso: string | null;
   sede: string | null;
+  scuola?: string | null;
+  livello?: string | null;
+  anno?: number | null;
   provenienza: string | null;
   consensi: { noi: boolean; atlas: boolean; comunicazioni: boolean };
   emailVerificata: boolean;
@@ -38,7 +41,7 @@ export interface SignupRemota {
 export interface MeRisposta {
   account: ProjectAccount;
   links: AppLink[];
-  profile?: { nome: string; corso: string | null; sede: string | null };
+  profile?: { nome: string; corso: string | null; sede: string | null; scuola?: string | null; livello?: string | null; anno?: number | null };
   consensi?: { noi: boolean; atlas: boolean; comunicazioni: boolean } | null;
   signup?: SignupRemota | null;
 }
@@ -102,10 +105,16 @@ export async function chiama<T>(percorso: string, init: RequestInit = {}, autent
 
 export interface CorpoIscrizione {
   appId: string;
+  /** Ricavato dall'email dall'app (il Worker lo ricava anche da solo se manca). */
   nome: string;
   email: string;
-  corso?: string;
+  /** Percorso di studi: scuola (ing-ind-inf | icat | auic | design), sede (id breve), livello (triennale | magistrale | ciclo-unico), nome del corso, anno 1-6. */
+  scuola?: string;
   sede?: string;
+  livello?: string;
+  corso?: string;
+  anno?: number;
+  /** Come ci hai conosciuto: gruppo-chat | instagram | amici | altro. */
   provenienza?: string;
   consensi: { noi: boolean; atlas: boolean; comunicazioni: boolean };
   consentVersion: string;
@@ -116,7 +125,7 @@ export const atlas = {
   iscrivi: (corpo: CorpoIscrizione, opz?: OpzioniChiamata) =>
     chiama<{ ok: boolean }>('/v1/signups', { method: 'POST', body: JSON.stringify(corpo) }, false, { ...opz, token: null }),
   me: () => chiama<MeRisposta>('/v1/me'),
-  updateMe: (patch: { displayName?: string; handle?: string; polimiEmail?: string | null; corso?: string | null; sede?: string | null; provenienza?: string | null }) =>
+  updateMe: (patch: { displayName?: string; handle?: string; polimiEmail?: string | null; corso?: string | null; sede?: string | null; provenienza?: string | null; scuola?: string | null; livello?: string | null; anno?: number | null }) =>
     chiama<MeRisposta>('/v1/me', { method: 'PATCH', body: JSON.stringify(patch) }),
   deleteMe: () => chiama<{ deleted: boolean }>('/v1/me', { method: 'DELETE' }),
   exportMe: () => chiama<unknown>('/v1/me/export'),

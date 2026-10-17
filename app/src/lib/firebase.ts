@@ -3,6 +3,7 @@
 // L'accesso prova soltanto l'account Google: non dimostra di essere uno studente del Politecnico.
 import type { Auth, User } from 'firebase/auth';
 import { FIREBASE_CONFIG } from '../config/ecosystem';
+import { CHIAVE_VERIFICA_EMAIL, emailCoincide, impostazioniLink, messaggioVerifica, sembraLinkDiAccesso } from './progetto/verificaEmail';
 
 export const isDemoMode = (): boolean => import.meta.env.VITE_MODE === 'demo';
 
@@ -118,4 +119,64 @@ export function onAuthChange(callback: (user: User | null) => void): () => void 
     }
   })();
   return () => { annullato = true; smetti?.(); };
+}
+
+// ---- Verifica dell'email con un link (non bloccante: l'utente intanto prosegue) -----------------------------------------------------------
+// Solo con Firebase configurato. Le parti pure (impostazioni, errori, confronto) sono in lib/progetto/verificaEmail.ts, provate con test.
+// NON provato contro un Firebase vero: servono il provider «Link via email» abilitato e il dominio del sito tra quelli autorizzati.
+
+const memoriaLocale = {
+  leggi(k: string): string | null { try { return localStorage.getItem(k); } catch { return null; } },
+  scrivi(k: string, v: string) { try { localStorage.setItem(k, v); } catch { /* niente */ } },
+  togli(k: string) { try { localStorage.removeItem(k); } catch { /* niente */ } },
+};
+
+/** La verifica si può offrire solo se l'accesso Firebase è configurato. */
+export const verificaDisponibile = (): boolean => loginDisponibile();
+
+export type EsitoInvioLink = { ok: true } | { ok: false; messaggio: string };
+
+/** Chiede a Firebase di scrivere all'indirizzo con un link di accesso. Non lancia mai: restituisce l'esito con una riga già pronta. */
+export async function inviaLinkVerifica(email: string): Promise<EsitoInvioLink> {
+  if (PROVA) return { ok: true }; // solo sviluppo: finto
+  try {
+    const auth = await carica();
+    const { sendSignInLinkToEmail } = await sdkAuth();
+    await sendSignInLinkToEmail(auth, email, impostazioniLink(location));
+    memoriaLocale.scrivi(CHIAVE_VERIFICA_EMAIL, email.trim().toLowerCase());
+    return { ok: true };
+  } catch (error) {
+    if (error instanceof LoginError) return { ok: false, messaggio: error.message };
+    return { ok: false, messaggio: messaggioVerifica((error as { code?: string }).code, 'invio') };
+  }
+}
+
+export type EsitoRitorno = { tipo: 'nessuno' } | { tipo: 'ok'; email: string } | { tipo: 'errore'; messaggio: string };
+
+/**
+ * Al ritorno dal link: se l'indirizzo è un link di accesso, completa `signInWithEmailLink` con l'email salvata quando è stato chiesto,
+ * controlla che sia la stessa del profilo (`emailProfilo`), esce subito dall'account (serve solo a provare l'indirizzo) e ripulisce l'indirizzo della pagina.
+ * `ok` solo dopo il successo reale e solo se l'email coincide. Non lancia mai.
+ */
+export async function ritornoDaLinkVerifica(emailProfilo: string | undefined): Promise<EsitoRitorno> {
+  if (typeof location === 'undefined' || !sembraLinkDiAccesso(location.search) || !loginDisponibile()) return { tipo: 'nessuno' };
+  const pulisci = () => { try { history.replaceState(null, '', location.pathname); } catch { /* niente */ } };
+  try {
+    const auth = await carica();
+    const { isSignInWithEmailLink, signInWithEmailLink, signOut } = await sdkAuth();
+    if (!isSignInWithEmailLink(auth, location.href)) return { tipo: 'nessuno' };
+    const salvata = memoriaLocale.leggi(CHIAVE_VERIFICA_EMAIL);
+    if (!salvata) { pulisci(); return { tipo: 'errore', messaggio: messaggioVerifica('nessuna-email-salvata', 'ritorno') }; }
+    const cred = await signInWithEmailLink(auth, salvata, location.href);
+    const emailLink = cred.user.email;
+    await signOut(auth).catch(() => undefined);
+    memoriaLocale.togli(CHIAVE_VERIFICA_EMAIL);
+    pulisci();
+    if (!emailCoincide(emailProfilo, emailLink)) return { tipo: 'errore', messaggio: messaggioVerifica('email-diversa', 'ritorno') };
+    return { tipo: 'ok', email: (emailLink as string).toLowerCase() };
+  } catch (error) {
+    pulisci();
+    if (error instanceof LoginError) return { tipo: 'errore', messaggio: error.message };
+    return { tipo: 'errore', messaggio: messaggioVerifica((error as { code?: string }).code, 'ritorno') };
+  }
 }

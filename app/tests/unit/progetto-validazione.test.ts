@@ -3,9 +3,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { controllaDatiMinimi, controllaEmailPolimi, dominioPolimi, pulisciNome } from '../../src/lib/progetto/validazione';
 import {
-  aggiornaProgetto, CONSENSI_VUOTI, corpoIscrizione, creaProfilo, impostaProfilo, leggiProfilo, leggiProgetto, serveRegistrazione,
+  aggiornaProgetto, CONSENSI_VUOTI, corpoIscrizione, creaProfilo, impostaProfilo, leggiProfilo, leggiProgetto, segnaEmailVerificata, serveRegistrazione,
 } from '../../src/lib/progetto/profilo';
-import { CORSI, CORSO_ALTRO, eCorso, eProvenienza, eSede, PROVENIENZE, SEDI } from '../../src/lib/progetto/corsi';
+import { eProvenienza, nomeProvenienza, PROVENIENZE, provenienzaDa } from '../../src/lib/progetto/corsi';
 import { ISCRIZIONE_VERSIONE } from '../../src/config/ecosystem';
 import { statoVuoto } from './aiuti';
 
@@ -67,49 +67,83 @@ test('consensi: partono tutti spenti e solo «true» esplicito vale come sì', (
   assert.deepEqual(uno.consensi, { noi: false, atlas: true, comunicazioni: false });
 });
 
-test('profilo: l\'email non è mai «verificata», nemmeno rileggendo un file che lo dice', () => {
-  const p = creaProfilo({ nome: 'Mario', email: 'Mario@Mail.Polimi.it', corso: 'Ingegneria Gestionale', sede: 'Bovisa', provenienza: 'Amici o compagni' }, 5)!;
+test('profilo: il nome si ricava dall\'email; «verificata» solo se lo era per la stessa email', () => {
+  const p = creaProfilo({ email: 'Maria.Rossi@Mail.Polimi.it' }, 5)!;
+  assert.equal(p.nome, 'Maria Rossi');
+  assert.equal(p.email, 'maria.rossi@mail.polimi.it');
   assert.equal(p.emailVerificata, false);
-  assert.equal(p.email, 'mario@mail.polimi.it');
-  const riletto = leggiProfilo({ ...p, emailVerificata: true, consensi: { noi: 1, atlas: 'true', comunicazioni: true } })!;
-  assert.equal(riletto.emailVerificata, false);
-  assert.deepEqual(riletto.consensi, { noi: false, atlas: false, comunicazioni: true });
+  assert.equal(p.completato, true);
+  assert.equal(creaProfilo({ email: 'maria.rossi@mail.polimi.it', nome: '  Maria  Chiara Rossi ' }, 5)!.nome, 'Maria Chiara Rossi');
+  // matricola: il nome non si ricava, serve scriverlo
+  assert.equal(creaProfilo({ email: '10501234@polimi.it' }, 5), null);
+  assert.equal(creaProfilo({ email: '10501234@polimi.it', nome: 'Mario' }, 5)?.nome, 'Mario');
+  // salvando di nuovo con la stessa email resta verificata; con un'altra email no
+  const verificata = { ...p, emailVerificata: true };
+  assert.equal(creaProfilo({ email: 'maria.rossi@mail.polimi.it' }, 9, verificata)!.emailVerificata, true);
+  assert.equal(creaProfilo({ email: 'maria.bianchi@mail.polimi.it' }, 9, verificata)!.emailVerificata, false);
+  assert.equal(creaProfilo({ email: 'maria.rossi@mail.polimi.it' }, 9, verificata)!.creatoIl, 5);
 });
 
-test('profilo: nome o email non validi non fanno un profilo; corso, sede e provenienza fuori elenco si scartano', () => {
-  assert.equal(creaProfilo({ nome: 'M', email: 'mario@mail.polimi.it' }, 1), null);
-  assert.equal(creaProfilo({ nome: 'Mario', email: 'mario@gmail.com' }, 1), null);
-  const p = creaProfilo({ nome: 'Mario', email: 'mario@polimi.it', corso: 'Corso inventato', sede: 'Luna', provenienza: 'boh' }, 1)!;
-  assert.equal(p.corso, undefined);
-  assert.equal(p.sede, undefined);
-  assert.equal(p.provenienza, undefined);
+test('segnaEmailVerificata: solo per l\'email del profilo', () => {
+  const p = creaProfilo({ email: 'maria.rossi@mail.polimi.it' }, 5)!;
+  const s = impostaProfilo(statoVuoto(), p);
+  assert.equal(leggiProgetto(segnaEmailVerificata(s, 'altra.persona@mail.polimi.it')).profilo?.emailVerificata, false);
+  assert.equal(leggiProgetto(segnaEmailVerificata(s, ' Maria.Rossi@Mail.Polimi.it ')).profilo?.emailVerificata, true);
+  assert.equal(segnaEmailVerificata(statoVuoto(), 'maria.rossi@mail.polimi.it').extra, undefined);
+});
+
+test('profilo: percorso di studi con ids ammessi; fuori elenco si scarta', () => {
+  const p = creaProfilo({ email: 'maria.rossi@mail.polimi.it', scuola: 'icat', sede: 'Lecco', livello: 'triennale', corso: 'Un corso', corsoId: 'ic-c-t-1', anno: 2, provenienza: 'instagram' }, 1)!;
+  assert.deepEqual([p.scuola, p.sede, p.livello, p.corso, p.corsoId, p.anno, p.provenienza], ['icat', 'lecco', 'triennale', 'Un corso', 'ic-c-t-1', 2, 'instagram']);
+  const x = creaProfilo({ email: 'maria.rossi@mail.polimi.it', scuola: 'luna', sede: 'Via Lattea 1', livello: 'dottorato', anno: 9, provenienza: 'boh' }, 1)!;
+  assert.deepEqual([x.scuola, x.sede, x.livello, x.anno, x.provenienza], [undefined, undefined, undefined, undefined, undefined]);
+  assert.equal(creaProfilo({ email: 'maria.rossi@mail.polimi.it', anno: 2.5 }, 1)!.anno, undefined);
+});
+
+test('profilo salvato dalla prima versione (nome scritto, sede e provenienza a testo): si rilegge', () => {
+  const vecchio = leggiProfilo({ nome: 'Maria Rossi', email: 'maria.rossi@mail.polimi.it', emailVerificata: false, corso: 'Ingegneria Gestionale', sede: 'Bovisa', provenienza: 'Instagram (polimi.agora)', consensi: { noi: true, atlas: false, comunicazioni: false }, versioneInformativa: 'iscrizione-2026-10-16', creatoIl: 1, aggiornatoIl: 2 })!;
+  assert.equal(vecchio.nome, 'Maria Rossi');
+  assert.equal(vecchio.sede, 'bovisa');
+  assert.equal(vecchio.provenienza, 'instagram');
+  assert.equal(vecchio.corso, 'Ingegneria Gestionale');
+  assert.equal(vecchio.completato, true);
+  assert.equal(vecchio.consensi.noi, true);
+});
+
+test('profilo rovinato: email non valida = nessun profilo; nome mancante si ricava; consensi solo se true', () => {
   assert.equal(leggiProfilo({ nome: 'Mario', email: 'x@gmail.com' }), undefined);
+  assert.equal(leggiProfilo({ nome: 'Mario' }), undefined);
   assert.equal(leggiProfilo(null), undefined);
   assert.equal(leggiProfilo('testo'), undefined);
+  assert.equal(leggiProfilo({ email: 'maria.rossi@mail.polimi.it', nome: 5 })?.nome, 'Maria Rossi');
+  assert.equal(leggiProfilo({ email: '10501234@polimi.it' }), undefined);
+  assert.deepEqual(leggiProfilo({ email: 'maria.rossi@mail.polimi.it', consensi: { noi: 1, atlas: 'true', comunicazioni: true } })!.consensi, { noi: false, atlas: false, comunicazioni: true });
+  assert.equal(leggiProfilo({ email: 'maria.rossi@mail.polimi.it', completato: false })!.completato, false);
 });
 
-test('elenchi: «Altro» chiude corsi e sedi, tutti i valori sono riconosciuti', () => {
-  assert.ok(CORSI.length >= 20);
-  assert.equal(new Set(CORSI).size, CORSI.length);
-  assert.ok(CORSI.every(c => c.length <= 120));
-  assert.ok(eCorso(CORSO_ALTRO) && eCorso(CORSI[0]) && !eCorso('x'));
-  assert.deepEqual([...SEDI], ['Leonardo', 'Bovisa', 'Altro']);
-  assert.ok(SEDI.every(eSede) && PROVENIENZE.every(eProvenienza));
-  assert.ok(PROVENIENZE.includes('Instagram (polimi.agora)'));
+test('provenienza: quattro id; le risposte della prima versione si rileggono', () => {
+  assert.deepEqual(PROVENIENZE.map(p => p.id), ['gruppo-chat', 'instagram', 'amici', 'altro']);
+  assert.ok(PROVENIENZE.every(p => eProvenienza(p.id) && /^[a-z0-9-]{2,30}$/.test(p.id)));
+  assert.equal(provenienzaDa('Gruppo o chat'), 'gruppo-chat');
+  assert.equal(provenienzaDa('Amici o compagni'), 'amici');
+  assert.equal(provenienzaDa('Ricerca su internet'), 'altro');
+  assert.equal(provenienzaDa('boh'), undefined);
+  assert.equal(nomeProvenienza('instagram'), 'Instagram');
 });
 
 test('invio: il corpo di POST /v1/signups ha i campi del Worker e solo quelli compilati', () => {
-  const minimo = corpoIscrizione(creaProfilo({ nome: 'Mario', email: 'mario@mail.polimi.it' }, 1)!);
+  const minimo = corpoIscrizione(creaProfilo({ email: 'maria.rossi@mail.polimi.it' }, 1)!);
   assert.deepEqual(minimo, {
-    appId: 'addiofa', nome: 'Mario', email: 'mario@mail.polimi.it',
+    appId: 'addiofa', nome: 'Maria Rossi', email: 'maria.rossi@mail.polimi.it',
     consensi: { noi: false, atlas: false, comunicazioni: false }, consentVersion: ISCRIZIONE_VERSIONE,
   });
   assert.ok(/^[A-Za-z0-9._-]{1,32}$/.test(minimo.consentVersion));
-  const pieno = corpoIscrizione(creaProfilo({ nome: 'Mario', email: 'mario@mail.polimi.it', corso: 'Ingegneria Gestionale', sede: 'Leonardo', provenienza: 'Gruppo o chat', consensi: { noi: true } }, 1)!);
-  assert.equal(pieno.corso, 'Ingegneria Gestionale');
-  assert.equal(pieno.sede, 'Leonardo');
-  assert.equal(pieno.provenienza, 'Gruppo o chat');
-  assert.equal(pieno.consensi.noi, true);
+  const pieno = corpoIscrizione(creaProfilo({ email: 'maria.rossi@mail.polimi.it', scuola: 'ing-ind-inf', sede: 'leonardo', livello: 'magistrale', corso: 'Ingegneria Gestionale', corsoId: 'x', anno: 2, provenienza: 'amici', consensi: { noi: true } }, 1)!);
+  assert.deepEqual(pieno, {
+    appId: 'addiofa', nome: 'Maria Rossi', email: 'maria.rossi@mail.polimi.it',
+    scuola: 'ing-ind-inf', sede: 'leonardo', livello: 'magistrale', corso: 'Ingegneria Gestionale', anno: 2, provenienza: 'amici',
+    consensi: { noi: true, atlas: false, comunicazioni: false }, consentVersion: ISCRIZIONE_VERSIONE,
+  });
 });
 
 test('stato: un salvataggio vecchio senza profilo si legge; il profilo si aggiunge e si rilegge senza toccare il resto', () => {

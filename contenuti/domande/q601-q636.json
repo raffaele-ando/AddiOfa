@@ -1,7 +1,7 @@
 [
   {
     "id": "q601",
-    "prompt": "Complete the sentence: 'Have you _____ to the cold weather yet?'",
+    "prompt": "Have you _____ to the cold weather yet?",
     "options": [
       "used",
       "got use",
@@ -18,7 +18,7 @@
   },
   {
     "id": "q602",
-    "prompt": "Complete the sentence: 'Venice, _____ is famous for its canals, attracts millions of tourists every year.'",
+    "prompt": "Venice, _____ is famous for its canals, attracts millions of tourists every year.",
     "options": [
       "which",
       "that",
@@ -35,7 +35,7 @@
   },
   {
     "id": "q603",
-    "prompt": "Complete the sentence: 'Mr. Davis, _____ you met yesterday at the reception, is our new director.'",
+    "prompt": "Mr. Davis, _____ you met yesterday at the reception, is our new director.",
     "options": [
       "whom",
       "which",
@@ -52,7 +52,7 @@
   },
   {
     "id": "q604",
-    "prompt": "Complete the sentence: 'That is the student _____ backpack was accidentally left in the classroom.'",
+    "prompt": "That is the student _____ backpack was accidentally left in the classroom.",
     "options": [
       "whose",
       "who's",
@@ -69,7 +69,7 @@
   },
   {
     "id": "q605",
-    "prompt": "Complete the sentence: 'The hotel _____ we stayed at during our holiday was right on the beach.'",
+    "prompt": "The hotel _____ we stayed at during our holiday was right on the beach.",
     "options": [
       "that",
       "where",
@@ -86,7 +86,7 @@
   },
   {
     "id": "q606",
-    "prompt": "Complete the sentence: 'Milan, _____ I was born, is a big city.'",
+    "prompt": "Milan, _____ I was born, is a big city.",
     "options": [
       "which",
       "who",
@@ -188,7 +188,7 @@
   },
   {
     "id": "q612",
-    "prompt": "Complete the sentence: 'Marco is a vegetarian, so he _____ meat.'",
+    "prompt": "Marco is a vegetarian, so he _____ meat.",
     "options": [
       "eats not",
       "don't eat",
@@ -239,7 +239,7 @@
   },
   {
     "id": "q615",
-    "prompt": "Complete the sentence: 'Of all the subjects I studied this year, physics was the _____.'",
+    "prompt": "Of all the subjects I studied this year, physics was the _____.",
     "options": [
       "hardly",
       "hardest",
@@ -256,7 +256,7 @@
   },
   {
     "id": "q616",
-    "prompt": "Complete the sentence: 'We can't make pancakes because there isn't _____ flour left.'",
+    "prompt": "We can't make pancakes because there isn't _____ flour left.",
     "options": [
       "some",
       "a",
@@ -273,7 +273,7 @@
   },
   {
     "id": "q617",
-    "prompt": "Complete the sentence: 'Every morning Anna _____ to the university by bus.'",
+    "prompt": "Every morning Anna _____ to the university by bus.",
     "options": [
       "goes",
       "go",
@@ -307,7 +307,7 @@
   },
   {
     "id": "q619",
-    "prompt": "Complete the sentence: 'How often _____ your sister visit your grandparents?'",
+    "prompt": "How often _____ your sister visit your grandparents?",
     "options": [
       "do",
       "is",
@@ -324,7 +324,7 @@
   },
   {
     "id": "q620",
-    "prompt": "Complete the sentence: 'Look! The children _____ in the garden.'",
+    "prompt": "Look! The children _____ in the garden.",
     "options": [
       "is playing",
       "playing",
@@ -341,7 +341,7 @@
   },
   {
     "id": "q621",
-    "prompt": "Complete the sentence: '_____ a supermarket near the university?'",
+    "prompt": "_____ a supermarket near the university?",
     "options": [
       "Do there",
       "Is there",
@@ -460,7 +460,7 @@
   },
   {
     "id": "q628",
-    "prompt": "Complete the sentence: 'My grandparents live _____ a small village near Bergamo.'",
+    "prompt": "My grandparents live _____ a small village near Bergamo.",
     "options": [
       "in",
       "at",
@@ -477,7 +477,7 @@
   },
   {
     "id": "q629",
-    "prompt": "Complete the sentence: 'We went to my _____ house for dinner on Sunday.'",
+    "prompt": "We went to my _____ house for dinner on Sunday.",
     "options": [
       "grandmother",
       "grandmothers",
@@ -494,7 +494,7 @@
   },
   {
     "id": "q630",
-    "prompt": "Complete the sentence: '_____ does the library close on Fridays?' 'At six o'clock.'",
+    "prompt": "_____ does the library close on Fridays?' 'At six o'clock.",
     "options": [
       "Who",
       "What time",
@@ -511,7 +511,7 @@
   },
   {
     "id": "q631",
-    "prompt": "Complete the sentence: 'How _____ money do you spend on books every semester?'",
+    "prompt": "How _____ money do you spend on books every semester?",
     "options": [
       "many",
       "few",
@@ -528,7 +528,7 @@
   },
   {
     "id": "q632",
-    "prompt": "Complete the sentence: 'Sorry, I _____ come to the party on Saturday because I have to work.'",
+    "prompt": "Sorry, I _____ come to the party on Saturday because I have to work.",
     "options": [
       "not can",
       "don't can",
@@ -579,7 +579,7 @@
   },
   {
     "id": "q635",
-    "prompt": "Complete the sentence: 'I think this book is _____ than the film.'",
+    "prompt": "I think this book is _____ than the film.",
     "options": [
       "more interesting",
       "interestinger",

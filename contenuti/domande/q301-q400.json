@@ -1,7 +1,7 @@
 [
   {
     "id": "q301",
-    "prompt": "Complete the sentence: 'Don't _____ your keys at home, please.'",
+    "prompt": "Don't _____ your keys at home, please.",
     "options": [
       "forgetting",
       "forget",
@@ -18,7 +18,7 @@
   },
   {
     "id": "q302",
-    "prompt": "Complete the sentence: 'Please _____ the door; it is cold in here.'",
+    "prompt": "Please _____ the door; it is cold in here.",
     "options": [
       "closing",
       "closes",
@@ -35,7 +35,7 @@
   },
   {
     "id": "q303",
-    "prompt": "Complete the sentence: 'Silence, please: _____ during the exam.'",
+    "prompt": "Silence, please: _____ during the exam.",
     "options": [
       "don't speak",
       "not speak",
@@ -52,7 +52,7 @@
   },
   {
     "id": "q304",
-    "prompt": "Complete the sentence: '_____ here until I come back, please.'",
+    "prompt": "_____ here until I come back, please.",
     "options": [
       "Waiting",
       "Waits",
@@ -69,7 +69,7 @@
   },
   {
     "id": "q305",
-    "prompt": "Complete the sentence: 'Students, _____ your names on the paper, please.'",
+    "prompt": "Students, _____ your names on the paper, please.",
     "options": [
       "writing",
       "write",
@@ -86,7 +86,7 @@
   },
   {
     "id": "q306",
-    "prompt": "Complete the sentence: 'This is a hospital, so _____ in this room, please.'",
+    "prompt": "This is a hospital, so _____ in this room, please.",
     "options": [
       "smoke not",
       "not smoke",
@@ -103,7 +103,7 @@
   },
   {
     "id": "q307",
-    "prompt": "Complete: 'I _____ to visit my grandparents this weekend.'",
+    "prompt": "I _____ to visit my grandparents this weekend.",
     "options": [
       "am going",
       "go",
@@ -120,7 +120,7 @@
   },
   {
     "id": "q308",
-    "prompt": "Complete: 'Look at those dark clouds. It _____ rain.'",
+    "prompt": "Look at those dark clouds. It _____ rain.",
     "options": [
       "is going to",
       "will to",
@@ -137,7 +137,7 @@
   },
   {
     "id": "q309",
-    "prompt": "Complete: 'What _____ you going to do tonight?'",
+    "prompt": "What _____ you going to do tonight?",
     "options": [
       "are",
       "do",
@@ -154,7 +154,7 @@
   },
   {
     "id": "q310",
-    "prompt": "Complete: 'She _____ not going to buy a new car.'",
+    "prompt": "She _____ not going to buy a new car.",
     "options": [
       "is",
       "does",
@@ -171,7 +171,7 @@
   },
   {
     "id": "q311",
-    "prompt": "Complete: 'We are going to _____ a movie after dinner.'",
+    "prompt": "We are going to _____ a movie after dinner.",
     "options": [
       "watch",
       "watching",
@@ -188,7 +188,7 @@
   },
   {
     "id": "q312",
-    "prompt": "Complete: '_____ he going to invite her to the party?'",
+    "prompt": "_____ he going to invite her to the party?",
     "options": [
       "Is",
       "Does",
@@ -205,7 +205,7 @@
   },
   {
     "id": "q313",
-    "prompt": "Complete: 'They _____ going to start a new business next year.'",
+    "prompt": "They _____ going to start a new business next year.",
     "options": [
       "are",
       "will",
@@ -222,7 +222,7 @@
   },
   {
     "id": "q314",
-    "prompt": "Complete: 'I'm going to _____ English in London.'",
+    "prompt": "I'm going to _____ English in London.",
     "options": [
       "study",
       "studying",
@@ -239,7 +239,7 @@
   },
   {
     "id": "q315",
-    "prompt": "Complete: 'My parents are _____ to travel to Spain.'",
+    "prompt": "My parents are _____ to travel to Spain.",
     "options": [
       "going",
       "go",
@@ -256,7 +256,7 @@
   },
   {
     "id": "q316",
-    "prompt": "Complete the sentence: 'What _____ you going to do on Saturday?'",
+    "prompt": "What _____ you going to do on Saturday?",
     "options": [
       "do",
       "will",
@@ -273,7 +273,7 @@
   },
   {
     "id": "q317",
-    "prompt": "Complete the sentence: 'I _____ to wait all day for the bus.'",
+    "prompt": "I _____ to wait all day for the bus.",
     "options": [
       "don't go",
       "am not going",
@@ -290,7 +290,7 @@
   },
   {
     "id": "q318",
-    "prompt": "Complete the sentence: 'He _____ study medicine at university; he has already decided.'",
+    "prompt": "He _____ study medicine at university; he has already decided.",
     "options": [
       "is going to",
       "going to",
@@ -307,7 +307,7 @@
   },
   {
     "id": "q319",
-    "prompt": "Complete the sentence: 'We _____ buy a new house next year; we have already chosen it.'",
+    "prompt": "We _____ buy a new house next year; we have already chosen it.",
     "options": [
       "is going to",
       "are going",
@@ -324,7 +324,7 @@
   },
   {
     "id": "q320",
-    "prompt": "Complete the sentence: 'Look at those black clouds: it _____ rain soon.'",
+    "prompt": "Look at those black clouds: it _____ rain soon.",
     "options": [
       "going to",
       "is raining",
@@ -341,7 +341,7 @@
   },
   {
     "id": "q321",
-    "prompt": "Complete the sentence: 'They _____ attend the meeting because they are on holiday.'",
+    "prompt": "They _____ attend the meeting because they are on holiday.",
     "options": [
       "aren't going to",
       "not going to",
@@ -358,7 +358,7 @@
   },
   {
     "id": "q322",
-    "prompt": "Complete the sentence: 'What are you _____ eat for dinner tonight?'",
+    "prompt": "What are you _____ eat for dinner tonight?",
     "options": [
       "go to",
       "going to",
@@ -375,7 +375,7 @@
   },
   {
     "id": "q323",
-    "prompt": "Complete the sentence: '_____ she going to sell her car soon?'",
+    "prompt": "_____ she going to sell her car soon?",
     "options": [
       "Does",
       "Do",
@@ -392,7 +392,7 @@
   },
   {
     "id": "q324",
-    "prompt": "Complete the sentence: 'He is running on the ice and he _____ fall!'",
+    "prompt": "He is running on the ice and he _____ fall!",
     "options": [
       "is going to",
       "is going",
@@ -409,7 +409,7 @@
   },
   {
     "id": "q325",
-    "prompt": "Complete: 'I _____ TV when the phone rang.'",
+    "prompt": "I _____ TV when the phone rang.",
     "options": [
       "was watching",
       "watched",
@@ -426,7 +426,7 @@
   },
   {
     "id": "q326",
-    "prompt": "Complete: 'While she was reading, her brother _____ video games.'",
+    "prompt": "While she was reading, her brother _____ video games.",
     "options": [
       "was playing",
       "were playing",
@@ -443,7 +443,7 @@
   },
   {
     "id": "q327",
-    "prompt": "Complete: 'What _____ you doing at 8 PM yesterday?'",
+    "prompt": "What _____ you doing at 8 PM yesterday?",
     "options": [
       "were",
       "was",
@@ -460,7 +460,7 @@
   },
   {
     "id": "q328",
-    "prompt": "Complete: 'They _____ in the park when it started to rain.'",
+    "prompt": "They _____ in the park when it started to rain.",
     "options": [
       "were walking",
       "was walking",
@@ -477,7 +477,7 @@
   },
   {
     "id": "q329",
-    "prompt": "Complete: 'He _____ (not) listening to the teacher.'",
+    "prompt": "He _____ (not) listening to the teacher.",
     "options": [
       "wasn't",
       "weren't",
@@ -494,7 +494,7 @@
   },
   {
     "id": "q330",
-    "prompt": "Complete: 'While I _____ home, I saw a car accident.'",
+    "prompt": "While I _____ home, I saw a car accident.",
     "options": [
       "was driving",
       "were driving",
@@ -511,7 +511,7 @@
   },
   {
     "id": "q331",
-    "prompt": "Complete: 'We were having dinner when the lights _____ out.'",
+    "prompt": "We were having dinner when the lights _____ out.",
     "options": [
       "went",
       "were going",
@@ -528,7 +528,7 @@
   },
   {
     "id": "q332",
-    "prompt": "Complete: '_____ it raining when you left?'",
+    "prompt": "_____ it raining when you left?",
     "options": [
       "Was",
       "Were",
@@ -545,7 +545,7 @@
   },
   {
     "id": "q333",
-    "prompt": "Complete: 'I broke my leg while I _____ football.'",
+    "prompt": "I broke my leg while I _____ football.",
     "options": [
       "was playing",
       "played",
@@ -562,7 +562,7 @@
   },
   {
     "id": "q334",
-    "prompt": "Complete the sentence: 'What _____ you doing when I called you?'",
+    "prompt": "What _____ you doing when I called you?",
     "options": [
       "was",
       "did",
@@ -579,7 +579,7 @@
   },
   {
     "id": "q335",
-    "prompt": "Complete the sentence: 'I _____ when the alarm rang.'",
+    "prompt": "I _____ when the alarm rang.",
     "options": [
       "am sleeping",
       "was sleeping",
@@ -596,7 +596,7 @@
   },
   {
     "id": "q336",
-    "prompt": "Complete the sentence: 'While we _____ in the park, we found some money.'",
+    "prompt": "While we _____ in the park, we found some money.",
     "options": [
       "was walking",
       "walking",
@@ -613,7 +613,7 @@
   },
   {
     "id": "q337",
-    "prompt": "Complete the sentence: 'She wasn't watching TV; she _____ a book.'",
+    "prompt": "She wasn't watching TV; she _____ a book.",
     "options": [
       "reading",
       "were reading",
@@ -630,7 +630,7 @@
   },
   {
     "id": "q338",
-    "prompt": "Complete the sentence: 'While I was cooking, he _____ to music.'",
+    "prompt": "While I was cooking, he _____ to music.",
     "options": [
       "were listening",
       "was listening",
@@ -647,7 +647,7 @@
   },
   {
     "id": "q339",
-    "prompt": "Complete the sentence: '_____ it raining hard yesterday morning?'",
+    "prompt": "_____ it raining hard yesterday morning?",
     "options": [
       "Were",
       "Did",
@@ -664,7 +664,7 @@
   },
   {
     "id": "q340",
-    "prompt": "Complete the sentence: 'We _____ going too fast when the police stopped us.'",
+    "prompt": "We _____ going too fast when the police stopped us.",
     "options": [
       "wasn't",
       "didn't",
@@ -681,7 +681,7 @@
   },
   {
     "id": "q341",
-    "prompt": "Complete the sentence: 'What were you _____ at that moment?'",
+    "prompt": "What were you _____ at that moment?",
     "options": [
       "thinking",
       "think",
@@ -698,7 +698,7 @@
   },
   {
     "id": "q342",
-    "prompt": "Complete the sentence: 'They _____ when I entered the room.'",
+    "prompt": "They _____ when I entered the room.",
     "options": [
       "was laughing",
       "were laugh",
@@ -715,7 +715,7 @@
   },
   {
     "id": "q343",
-    "prompt": "Complete: 'You look tired. You _____ go to bed early.'",
+    "prompt": "You look tired. You _____ go to bed early.",
     "options": [
       "should",
       "have to",
@@ -732,7 +732,7 @@
   },
   {
     "id": "q344",
-    "prompt": "Complete: 'In many countries, you _____ wear a seatbelt when driving.'",
+    "prompt": "In many countries, you _____ wear a seatbelt when driving.",
     "options": [
       "have to",
       "has to",
@@ -749,7 +749,7 @@
   },
   {
     "id": "q345",
-    "prompt": "Complete: 'Tomorrow is Sunday, so I _____ wake up early.'",
+    "prompt": "Tomorrow is Sunday, so I _____ wake up early.",
     "options": [
       "don't have to",
       "mustn't",
@@ -766,7 +766,7 @@
   },
   {
     "id": "q346",
-    "prompt": "Complete: 'You _____ use your phone during the exam! It's forbidden.'",
+    "prompt": "You _____ use your phone during the exam! It's forbidden.",
     "options": [
       "mustn't",
       "don't have to",
@@ -783,7 +783,7 @@
   },
   {
     "id": "q347",
-    "prompt": "Complete: '_____ I wear a suit to the interview?'",
+    "prompt": "_____ I wear a suit to the interview?",
     "options": [
       "Should",
       "Does",
@@ -800,7 +800,7 @@
   },
   {
     "id": "q348",
-    "prompt": "Complete: 'We have plenty of time. We _____ hurry.'",
+    "prompt": "We have plenty of time. We _____ hurry.",
     "options": [
       "don't have to",
       "mustn't",
@@ -817,7 +817,7 @@
   },
   {
     "id": "q349",
-    "prompt": "Complete: 'All visitors _____ wear a helmet on the building site. It's the law.'",
+    "prompt": "All visitors _____ wear a helmet on the building site. It's the law.",
     "options": [
       "must",
       "mustn't",
@@ -834,7 +834,7 @@
   },
   {
     "id": "q350",
-    "prompt": "Complete: 'He _____ wear glasses to read because his eyesight is bad.'",
+    "prompt": "He _____ wear glasses to read because his eyesight is bad.",
     "options": [
       "has to",
       "must to",
@@ -851,7 +851,7 @@
   },
   {
     "id": "q351",
-    "prompt": "Complete: 'Do I _____ pay for this ticket now?'",
+    "prompt": "Do I _____ pay for this ticket now?",
     "options": [
       "have to",
       "must",
@@ -868,7 +868,7 @@
   },
   {
     "id": "q352",
-    "prompt": "Complete the sentence: 'You _____ eat more vegetables; your diet is poor.'",
+    "prompt": "You _____ eat more vegetables; your diet is poor.",
     "options": [
       "shouldn't",
       "should to",
@@ -885,7 +885,7 @@
   },
   {
     "id": "q353",
-    "prompt": "Complete the sentence: 'Anna _____ come to the meeting if she's tired; it isn't necessary.'",
+    "prompt": "Anna _____ come to the meeting if she's tired; it isn't necessary.",
     "options": [
       "doesn't have to",
       "mustn't",
@@ -902,7 +902,7 @@
   },
   {
     "id": "q354",
-    "prompt": "Complete the sentence: 'Stop! You _____ touch that wire, or you will get an electric shock!'",
+    "prompt": "Stop! You _____ touch that wire, or you will get an electric shock!",
     "options": [
       "not must",
       "haven't to",
@@ -919,7 +919,7 @@
   },
   {
     "id": "q355",
-    "prompt": "Complete the sentence: 'He _____ work late today because his boss asked him.'",
+    "prompt": "He _____ work late today because his boss asked him.",
     "options": [
       "have to",
       "has to",
@@ -936,7 +936,7 @@
   },
   {
     "id": "q356",
-    "prompt": "Complete the sentence: 'You _____ drink so much coffee; it's bad for your health.'",
+    "prompt": "You _____ drink so much coffee; it's bad for your health.",
     "options": [
       "shouldn't to",
       "shouldn't",
@@ -953,7 +953,7 @@
   },
   {
     "id": "q357",
-    "prompt": "Complete the sentence: '_____ take off my shoes when I come in?'",
+    "prompt": "_____ take off my shoes when I come in?",
     "options": [
       "Must I to",
       "Do I must",
@@ -970,7 +970,7 @@
   },
   {
     "id": "q358",
-    "prompt": "Complete the sentence: 'Entry is free, so you _____ buy a ticket.'",
+    "prompt": "Entry is free, so you _____ buy a ticket.",
     "options": [
       "don't have to",
       "mustn't",
@@ -987,7 +987,7 @@
   },
   {
     "id": "q359",
-    "prompt": "Complete the sentence: 'I have a problem with my phone. What _____ do?'",
+    "prompt": "I have a problem with my phone. What _____ do?",
     "options": [
       "I should",
       "do I should",
@@ -1004,7 +1004,7 @@
   },
   {
     "id": "q360",
-    "prompt": "Complete the sentence: 'It's a secret, so you _____ tell anyone.'",
+    "prompt": "It's a secret, so you _____ tell anyone.",
     "options": [
       "mustn't",
       "mustn't to",
@@ -1021,7 +1021,7 @@
   },
   {
     "id": "q361",
-    "prompt": "Complete: 'She speaks English very _____.' (good/well)",
+    "prompt": "She speaks English very _____.",
     "options": [
       "well",
       "good",
@@ -1038,7 +1038,7 @@
   },
   {
     "id": "q362",
-    "prompt": "Complete: 'He drives very _____. It's dangerous!'",
+    "prompt": "He drives very _____. It's dangerous!",
     "options": [
       "fast",
       "fastly",
@@ -1055,7 +1055,7 @@
   },
   {
     "id": "q363",
-    "prompt": "Complete: 'Please do your work _____. Take your time.'",
+    "prompt": "Please do your work _____. Take your time.",
     "options": [
       "carefully",
       "careful",
@@ -1072,7 +1072,7 @@
   },
   {
     "id": "q364",
-    "prompt": "Complete: 'They won the game _____. They were much better.'",
+    "prompt": "They won the game _____. They were much better.",
     "options": [
       "easily",
       "easy",
@@ -1089,7 +1089,7 @@
   },
   {
     "id": "q365",
-    "prompt": "Complete: 'The old man walked _____ down the street.'",
+    "prompt": "The old man walked _____ down the street.",
     "options": [
       "slowly",
       "slowlier",
@@ -1106,7 +1106,7 @@
   },
   {
     "id": "q366",
-    "prompt": "Complete: 'She looked at him _____ when he broke the glass.'",
+    "prompt": "She looked at him _____ when he broke the glass.",
     "options": [
       "angrily",
       "angry",
@@ -1123,7 +1123,7 @@
   },
   {
     "id": "q367",
-    "prompt": "Complete: 'He worked _____ to pass the exam.'",
+    "prompt": "He worked _____ to pass the exam.",
     "options": [
       "hard",
       "hardly",
@@ -1140,7 +1140,7 @@
   },
   {
     "id": "q368",
-    "prompt": "Complete: 'The children were playing _____ in the garden.'",
+    "prompt": "The children were playing _____ in the garden.",
     "options": [
       "happily",
       "happy",
@@ -1157,7 +1157,7 @@
   },
   {
     "id": "q369",
-    "prompt": "Complete: 'I can run very _____.'",
+    "prompt": "I can run very _____.",
     "options": [
       "fast",
       "fastly",
@@ -1174,7 +1174,7 @@
   },
   {
     "id": "q370",
-    "prompt": "Complete the sentence: 'He answered the question _____.'",
+    "prompt": "He answered the question _____.",
     "options": [
       "quickily",
       "fastly",
@@ -1191,7 +1191,7 @@
   },
   {
     "id": "q371",
-    "prompt": "Complete the sentence: 'She sings really _____.'",
+    "prompt": "She sings really _____.",
     "options": [
       "goodly",
       "well",
@@ -1208,7 +1208,7 @@
   },
   {
     "id": "q372",
-    "prompt": "Complete the sentence: 'They worked _____ all day.'",
+    "prompt": "They worked _____ all day.",
     "options": [
       "hardly",
       "difficultly",
@@ -1225,7 +1225,7 @@
   },
   {
     "id": "q373",
-    "prompt": "Complete the sentence: 'Please speak _____ because I don't understand.'",
+    "prompt": "Please speak _____ because I don't understand.",
     "options": [
       "slowness",
       "slowlier",
@@ -1242,7 +1242,7 @@
   },
   {
     "id": "q374",
-    "prompt": "Complete the sentence: 'He closed the door _____ because the baby was sleeping.'",
+    "prompt": "He closed the door _____ because the baby was sleeping.",
     "options": [
       "quietness",
       "quietly",
@@ -1259,7 +1259,7 @@
   },
   {
     "id": "q375",
-    "prompt": "Complete the sentence: 'They solved the problem _____.'",
+    "prompt": "They solved the problem _____.",
     "options": [
       "easy",
       "easyly",
@@ -1276,7 +1276,7 @@
   },
   {
     "id": "q376",
-    "prompt": "Complete the sentence: 'He always drives _____.'",
+    "prompt": "He always drives _____.",
     "options": [
       "carefully",
       "careful",
@@ -1293,7 +1293,7 @@
   },
   {
     "id": "q377",
-    "prompt": "Complete the sentence: 'The teacher explained the rule _____.'",
+    "prompt": "The teacher explained the rule _____.",
     "options": [
       "clear",
       "cleary",
@@ -1310,7 +1310,7 @@
   },
   {
     "id": "q378",
-    "prompt": "Complete the sentence: 'Thank you, I understood _____.'",
+    "prompt": "Thank you, I understood _____.",
     "options": [
       "perfect",
       "perfection",
@@ -1327,7 +1327,7 @@
   },
   {
     "id": "q379",
-    "prompt": "Complete the sentence: 'If I _____ the lottery, I would buy a big house.'",
+    "prompt": "If I _____ the lottery, I would buy a big house.",
     "options": [
       "win",
       "won",
@@ -1344,7 +1344,7 @@
   },
   {
     "id": "q380",
-    "prompt": "Complete the sentence: 'If I _____ you, I would study more.'",
+    "prompt": "If I _____ you, I would study more.",
     "options": [
       "were",
       "am",
@@ -1361,7 +1361,7 @@
   },
   {
     "id": "q381",
-    "prompt": "Complete the sentence: 'If I had studied, I _____ the exam.'",
+    "prompt": "If I had studied, I _____ the exam.",
     "options": [
       "would pass",
       "passed",
@@ -1378,7 +1378,7 @@
   },
   {
     "id": "q382",
-    "prompt": "Complete the sentence: 'If we _____ earlier, we wouldn't have missed the train.'",
+    "prompt": "If we _____ earlier, we wouldn't have missed the train.",
     "options": [
       "had leave",
       "had left",
@@ -1395,7 +1395,7 @@
   },
   {
     "id": "q383",
-    "prompt": "Complete the sentence: 'The letter _____ by John yesterday.'",
+    "prompt": "The letter _____ by John yesterday.",
     "options": [
       "wrote",
       "was written",
@@ -1412,7 +1412,7 @@
   },
   {
     "id": "q384",
-    "prompt": "Complete the sentence: 'Look! The new house _____ built right now.'",
+    "prompt": "Look! The new house _____ built right now.",
     "options": [
       "is",
       "is being",
@@ -1429,7 +1429,7 @@
   },
   {
     "id": "q385",
-    "prompt": "Complete the sentence: 'Yesterday Tom said that he _____ very tired.'",
+    "prompt": "Yesterday Tom said that he _____ very tired.",
     "options": [
       "was",
       "were",
@@ -1446,7 +1446,7 @@
   },
   {
     "id": "q386",
-    "prompt": "Complete the sentence: 'Last night Anna told me that she _____ me the next day.'",
+    "prompt": "Last night Anna told me that she _____ me the next day.",
     "options": [
       "would called",
       "would calling",
@@ -1463,7 +1463,7 @@
   },
   {
     "id": "q387",
-    "prompt": "Complete the sentence: 'When I arrived at the station, the train _____.'",
+    "prompt": "When I arrived at the station, the train _____.",
     "options": [
       "will already leave",
       "has already left",
@@ -1480,7 +1480,7 @@
   },
   {
     "id": "q388",
-    "prompt": "Complete the sentence: 'I _____ when you called me.'",
+    "prompt": "I _____ when you called me.",
     "options": [
       "had already eat",
       "have already eaten",
@@ -1497,7 +1497,7 @@
   },
   {
     "id": "q389",
-    "prompt": "Complete the sentence: 'I _____ tennis when I was young.'",
+    "prompt": "I _____ tennis when I was young.",
     "options": [
       "used to play",
       "was playing",
@@ -1514,7 +1514,7 @@
   },
   {
     "id": "q390",
-    "prompt": "Complete the sentence: 'She _____ like vegetables when she was a child.'",
+    "prompt": "She _____ like vegetables when she was a child.",
     "options": [
       "doesn't use to",
       "isn't used to",
@@ -1531,7 +1531,7 @@
   },
   {
     "id": "q391",
-    "prompt": "Complete the sentence: 'The man _____ lives next door is a doctor.'",
+    "prompt": "The man _____ lives next door is a doctor.",
     "options": [
       "which",
       "who",
@@ -1548,7 +1548,7 @@
   },
   {
     "id": "q392",
-    "prompt": "Complete the sentence: 'That's the house _____ I grew up.'",
+    "prompt": "That's the house _____ I grew up.",
     "options": [
       "which",
       "who",
@@ -1565,7 +1565,7 @@
   },
   {
     "id": "q393",
-    "prompt": "Complete the sentence: 'The girl _____ car was stolen is at the police station.'",
+    "prompt": "The girl _____ car was stolen is at the police station.",
     "options": [
       "who",
       "which",
@@ -1582,7 +1582,7 @@
   },
   {
     "id": "q394",
-    "prompt": "Complete the sentence: 'You are Italian, _____?'",
+    "prompt": "You are Italian, _____?",
     "options": [
       "are you",
       "aren't you",
@@ -1599,7 +1599,7 @@
   },
   {
     "id": "q395",
-    "prompt": "Complete the sentence: 'She didn't go to the party, _____?'",
+    "prompt": "She didn't go to the party, _____?",
     "options": [
       "did she",
       "didn't she",
@@ -1616,7 +1616,7 @@
   },
   {
     "id": "q396",
-    "prompt": "Complete the sentence: 'He has a Ferrari and a mansion. I am sure he _____ be very rich.'",
+    "prompt": "He has a Ferrari and a mansion. I am sure he _____ be very rich.",
     "options": [
       "can't",
       "must",
@@ -1633,7 +1633,7 @@
   },
   {
     "id": "q397",
-    "prompt": "Complete the sentence: 'That _____ be Sarah. Sarah is currently in London.'",
+    "prompt": "That _____ be Sarah. Sarah is currently in London.",
     "options": [
       "mustn't",
       "will",
@@ -1650,7 +1650,7 @@
   },
   {
     "id": "q398",
-    "prompt": "Complete the sentence: 'I really enjoy _____ books in my free time.'",
+    "prompt": "I really enjoy _____ books in my free time.",
     "options": [
       "to read",
       "read",
@@ -1667,7 +1667,7 @@
   },
   {
     "id": "q399",
-    "prompt": "Complete the sentence: 'She decided _____ a new car.'",
+    "prompt": "She decided _____ a new car.",
     "options": [
       "buying",
       "to buy",
@@ -1684,7 +1684,7 @@
   },
   {
     "id": "q400",
-    "prompt": "Complete the sentence: 'Do you mind _____ the window?'",
+    "prompt": "Do you mind _____ the window?",
     "options": [
       "open",
       "to open",

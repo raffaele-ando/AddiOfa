@@ -33,7 +33,7 @@ export const FIREBASE_CONFIG: { apiKey: string; authDomain: string; projectId: s
 export const CONSENT_VERSION = '2026-09-27';
 
 /** Versione del testo dei consensi dell'iscrizione (nome, email, corso, tre consensi facoltativi): si cambia a ogni cambio di testo. Formato richiesto dal Worker: [A-Za-z0-9._-]{1,32}. */
-export const ISCRIZIONE_VERSIONE = 'iscrizione-2026-10-16';
+export const ISCRIZIONE_VERSIONE = 'iscrizione-2026-10-17';
 
 export type ScopeId = 'profile' | 'progress.share' | 'noi.leaderboard' | 'atlas.personalize';
 

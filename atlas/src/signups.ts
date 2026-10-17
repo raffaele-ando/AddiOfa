@@ -14,6 +14,9 @@ export interface SignupRow {
   corso: string | null;
   sede: string | null;
   provenienza: string | null;
+  scuola: string | null;
+  livello: string | null;
+  anno: number | null;
   consenso_noi: number;
   consenso_atlas: number;
   consenso_comunicazioni: number;
@@ -31,6 +34,9 @@ export interface SignupInput {
   corso: string | null;
   sede: string | null;
   provenienza: string | null;
+  scuola: string | null;
+  livello: string | null;
+  anno: number | null;
   consensi: { noi: boolean; atlas: boolean; comunicazioni: boolean };
   consentVersion: string;
 }
@@ -77,6 +83,43 @@ function cleanText(value: unknown, field: string, max: number, required: boolean
   return text;
 }
 
+export const SCUOLE = ['ing-ind-inf', 'icat', 'auic', 'design'] as const;
+export const LIVELLI = ['triennale', 'magistrale', 'ciclo-unico'] as const;
+
+// Id breve: a-z, 0-9 e trattino (sede, provenienza). Accetta maiuscole e spazi ai bordi, che normalizza.
+function cleanId(value: unknown, field: string, min = 2, max = 30): string | null {
+  if (value === undefined || value === null || value === '') return null;
+  const id = typeof value === 'string' ? value.trim().toLowerCase() : '';
+  if (!new RegExp(`^[a-z0-9-]{${min},${max}}$`).test(id)) {
+    throw new HttpError(400, `${field} non valido (${min}-${max} caratteri tra a-z, 0-9 e -)`);
+  }
+  return id;
+}
+
+function cleanEnum<T extends string>(value: unknown, field: string, allowed: readonly T[]): T | null {
+  if (value === undefined || value === null || value === '') return null;
+  const v = typeof value === 'string' ? value.trim().toLowerCase() : '';
+  if (!(allowed as readonly string[]).includes(v)) throw new HttpError(400, `${field} non valido (${allowed.join(', ')})`);
+  return v as T;
+}
+
+function cleanAnno(value: unknown): number | null {
+  if (value === undefined || value === null || value === '') return null;
+  if (typeof value !== 'number' || !Number.isInteger(value) || value < 1 || value > 6) {
+    throw new HttpError(400, 'anno non valido (intero da 1 a 6)');
+  }
+  return value;
+}
+
+// Nome ricavato dall'email quando l'app non lo manda: parte prima della @ (e prima di un eventuale +),
+// separata sui punti, senza cifre, con l'iniziale maiuscola: "mario.rossi12@polimi.it" -> "Mario Rossi".
+export function nomeDaEmail(email: string): string | null {
+  const locale = email.split('@')[0].split('+')[0];
+  const parti = locale.split('.').map(p => p.replace(/[0-9]/g, '').replace(/[^a-z'-]/g, '')).filter(p => p.length > 0);
+  const nome = parti.map(p => p[0].toUpperCase() + p.slice(1)).join(' ').slice(0, 80);
+  return nome.length >= 2 ? nome : null;
+}
+
 export function parseSignup(body: unknown): SignupInput {
   if (!body || typeof body !== 'object' || Array.isArray(body)) throw new HttpError(400, 'corpo non valido');
   const b = body as Record<string, unknown>;
@@ -84,9 +127,11 @@ export function parseSignup(body: unknown): SignupInput {
   const appId = typeof b.appId === 'string' ? b.appId.trim() : '';
   if (!/^[a-z0-9-]{1,32}$/.test(appId)) throw new HttpError(400, 'appId non valido');
 
-  const nome = cleanText(b.nome, 'nome', 80, true)!;
   const email = normalizePolimiEmail(b.email);
   if (!email) throw new HttpError(400, 'serve un\'email del Politecnico (@polimi.it, @mail.polimi.it o @…polimi.it)');
+  // Il nome è facoltativo: se manca (o è vuoto) si ricava dall'email
+  const nome = cleanText(b.nome, 'nome', 80, false) ?? nomeDaEmail(email);
+  if (!nome) throw new HttpError(400, 'campo obbligatorio: nome (non si ricava dall\'email)');
 
   const c = b.consensi as Record<string, unknown> | undefined;
   if (!c || typeof c !== 'object' || Array.isArray(c)
@@ -102,8 +147,11 @@ export function parseSignup(body: unknown): SignupInput {
     nome,
     email,
     corso: cleanText(b.corso, 'corso', 120, false),
-    sede: cleanText(b.sede, 'sede', 60, false),
-    provenienza: cleanText(b.provenienza, 'provenienza', 80, false),
+    sede: cleanId(b.sede, 'sede'),
+    provenienza: cleanId(b.provenienza, 'provenienza'),
+    scuola: cleanEnum(b.scuola, 'scuola', SCUOLE),
+    livello: cleanEnum(b.livello, 'livello', LIVELLI),
+    anno: cleanAnno(b.anno),
     consensi: { noi: c.noi, atlas: c.atlas, comunicazioni: c.comunicazioni },
     consentVersion,
   };
@@ -119,12 +167,13 @@ export async function upsertSignup(env: SignupEnv, input: SignupInput, now = Dat
   const [ins] = await env.DB.batch([
     env.DB.prepare(
       `INSERT INTO signups (email, nome, app_id, corso, sede, provenienza, consenso_noi, consenso_atlas,
-         consenso_comunicazioni, consent_version, email_verificata, account_id, created_at, updated_at)
+         consenso_comunicazioni, consent_version, email_verificata, account_id, created_at, updated_at,
+         scuola, livello, anno)
        VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, 0,
-         (SELECT id FROM accounts WHERE polimi_email = ?1 ORDER BY created_at LIMIT 1), ?11, ?11)
+         (SELECT id FROM accounts WHERE polimi_email = ?1 ORDER BY created_at LIMIT 1), ?11, ?11, ?12, ?13, ?14)
        ON CONFLICT (email) DO NOTHING`
     ).bind(input.email, input.nome, input.appId, input.corso, input.sede, input.provenienza,
-      flags[0], flags[1], flags[2], input.consentVersion, now),
+      flags[0], flags[1], flags[2], input.consentVersion, now, input.scuola, input.livello, input.anno),
     // Prima voce del registro, solo se l'iscrizione ne è ancora priva (vale per l'inserimento appena fatto)
     env.DB.prepare(
       `INSERT INTO consent_log (account_id, signup_id, app_id, action, scopes, consent_version, created_at)
@@ -142,10 +191,11 @@ export async function upsertSignup(env: SignupEnv, input: SignupInput, now = Dat
   const statements = [
     env.DB.prepare(
       `UPDATE signups SET nome = ?, corso = COALESCE(?, corso), sede = COALESCE(?, sede),
-         provenienza = COALESCE(?, provenienza), consenso_noi = ?, consenso_atlas = ?, consenso_comunicazioni = ?,
+         provenienza = COALESCE(?, provenienza), scuola = COALESCE(?, scuola), livello = COALESCE(?, livello),
+         anno = COALESCE(?, anno), consenso_noi = ?, consenso_atlas = ?, consenso_comunicazioni = ?,
          consent_version = ?, updated_at = ? WHERE id = ? AND account_id IS NULL`
-    ).bind(input.nome, input.corso, input.sede, input.provenienza, flags[0], flags[1], flags[2],
-      input.consentVersion, now, row.id),
+    ).bind(input.nome, input.corso, input.sede, input.provenienza, input.scuola, input.livello, input.anno,
+      flags[0], flags[1], flags[2], input.consentVersion, now, row.id),
   ];
   if (changed) {
     statements.push(env.DB.prepare(
@@ -186,8 +236,11 @@ export function publicSignup(s: SignupRow) {
     email: s.email,
     nome: s.nome,
     appId: s.app_id,
-    corso: s.corso,
+    scuola: s.scuola,
     sede: s.sede,
+    livello: s.livello,
+    corso: s.corso,
+    anno: s.anno,
     provenienza: s.provenienza,
     consensi: consensiOf(s),
     consentVersion: s.consent_version,
@@ -201,42 +254,83 @@ export function consensiOf(s: SignupRow) {
   return { noi: s.consenso_noi === 1, atlas: s.consenso_atlas === 1, comunicazioni: s.consenso_comunicazioni === 1 };
 }
 
-// Aggiornamento di corso, sede e provenienza da parte di chi ha il Project ID (PATCH /v1/me)
-export async function updateLinkedSignupFields(
-  env: SignupEnv, signup: SignupRow, fields: { corso?: unknown; sede?: unknown; provenienza?: unknown }, now = Date.now()
-): Promise<void> {
-  const corso = fields.corso === undefined ? signup.corso : cleanText(fields.corso, 'corso', 120, false);
-  const sede = fields.sede === undefined ? signup.sede : cleanText(fields.sede, 'sede', 60, false);
-  const provenienza = fields.provenienza === undefined ? signup.provenienza : cleanText(fields.provenienza, 'provenienza', 80, false);
-  await env.DB.prepare('UPDATE signups SET corso = ?, sede = ?, provenienza = ?, updated_at = ? WHERE id = ?')
-    .bind(corso, sede, provenienza, now, signup.id).run();
+// Campi del percorso di studi modificabili da chi ha il Project ID (PATCH /v1/me). Un campo assente non cambia;
+// null o stringa vuota lo svuota.
+export interface ProfileFields {
+  corso?: unknown; sede?: unknown; provenienza?: unknown; scuola?: unknown; livello?: unknown; anno?: unknown;
 }
 
-export function validateProfileFields(fields: { corso?: unknown; sede?: unknown; provenienza?: unknown }) {
-  cleanText(fields.corso, 'corso', 120, false);
-  cleanText(fields.sede, 'sede', 60, false);
-  cleanText(fields.provenienza, 'provenienza', 80, false);
+function parseProfileFields(f: ProfileFields) {
+  return {
+    corso: f.corso === undefined ? undefined : cleanText(f.corso, 'corso', 120, false),
+    sede: f.sede === undefined ? undefined : cleanId(f.sede, 'sede'),
+    provenienza: f.provenienza === undefined ? undefined : cleanId(f.provenienza, 'provenienza'),
+    scuola: f.scuola === undefined ? undefined : cleanEnum(f.scuola, 'scuola', SCUOLE),
+    livello: f.livello === undefined ? undefined : cleanEnum(f.livello, 'livello', LIVELLI),
+    anno: f.anno === undefined ? undefined : cleanAnno(f.anno),
+  };
+}
+
+export function validateProfileFields(fields: ProfileFields) {
+  parseProfileFields(fields);
+}
+
+export function hasProfileFields(fields: ProfileFields): boolean {
+  return Object.values(fields).some(v => v !== undefined);
+}
+
+export async function updateLinkedSignupFields(
+  env: SignupEnv, signup: SignupRow, fields: ProfileFields, now = Date.now()
+): Promise<void> {
+  const p = parseProfileFields(fields);
+  await env.DB.prepare(
+    'UPDATE signups SET corso = ?, sede = ?, provenienza = ?, scuola = ?, livello = ?, anno = ?, updated_at = ? WHERE id = ?'
+  ).bind(
+    p.corso === undefined ? signup.corso : p.corso,
+    p.sede === undefined ? signup.sede : p.sede,
+    p.provenienza === undefined ? signup.provenienza : p.provenienza,
+    p.scuola === undefined ? signup.scuola : p.scuola,
+    p.livello === undefined ? signup.livello : p.livello,
+    p.anno === undefined ? signup.anno : p.anno,
+    now, signup.id,
+  ).run();
 }
 
 // --- Esportazione (solo per l'autore, con ADMIN_TOKEN) -----------------------------------------
 
 export const CSV_COLUMNS = [
-  'id', 'email', 'nome', 'app', 'corso', 'sede', 'provenienza',
+  'id', 'email', 'nome', 'app', 'scuola', 'sede', 'livello', 'corso', 'anno', 'provenienza',
   'consenso_noi', 'consenso_atlas', 'consenso_comunicazioni', 'versione_consenso',
   'email_verificata', 'project_id', 'creato', 'aggiornato',
 ] as const;
 
-export async function exportSignups(env: SignupEnv, onlyComunicazioni: boolean) {
+export interface ExportFilters { comunicazioni?: boolean; scuola?: string | null; livello?: string | null }
+
+export function parseExportFilters(params: URLSearchParams): ExportFilters {
+  return {
+    comunicazioni: params.get('comunicazioni') === '1',
+    scuola: cleanEnum(params.get('scuola'), 'scuola', SCUOLE),
+    livello: cleanEnum(params.get('livello'), 'livello', LIVELLI),
+  };
+}
+
+export async function exportSignups(env: SignupEnv, filters: ExportFilters = {}) {
+  const where: string[] = [];
+  const extra: (string | number)[] = [];
+  if (filters.comunicazioni) where.push('s.consenso_comunicazioni = 1');
+  if (filters.scuola) { where.push('s.scuola = ?'); extra.push(filters.scuola); }
+  if (filters.livello) { where.push('s.livello = ?'); extra.push(filters.livello); }
   const out: Record<(typeof CSV_COLUMNS)[number], string | number>[] = [];
   let after = 0;
   for (;;) {
     const { results } = await env.DB.prepare(
       `SELECT s.*, a.id AS project_id FROM signups s LEFT JOIN accounts a ON a.id = s.account_id
-       WHERE s.id > ? ${onlyComunicazioni ? 'AND s.consenso_comunicazioni = 1' : ''} ORDER BY s.id LIMIT 2000`
-    ).bind(after).all<SignupRow & { project_id: string | null }>();
+       WHERE s.id > ? ${where.map(w => `AND ${w}`).join(' ')} ORDER BY s.id LIMIT 2000`
+    ).bind(after, ...extra).all<SignupRow & { project_id: string | null }>();
     for (const r of results) {
       out.push({
-        id: r.id, email: r.email, nome: r.nome, app: r.app_id, corso: r.corso ?? '', sede: r.sede ?? '',
+        id: r.id, email: r.email, nome: r.nome, app: r.app_id, scuola: r.scuola ?? '', sede: r.sede ?? '',
+        livello: r.livello ?? '', corso: r.corso ?? '', anno: r.anno ?? '',
         provenienza: r.provenienza ?? '', consenso_noi: r.consenso_noi, consenso_atlas: r.consenso_atlas,
         consenso_comunicazioni: r.consenso_comunicazioni, versione_consenso: r.consent_version,
         email_verificata: r.email_verificata, project_id: r.project_id ?? '',
