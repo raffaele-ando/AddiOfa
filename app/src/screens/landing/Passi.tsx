@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Icona, type NomeIcona } from '../../brand/icone/Icona';
 import { Illustrazione } from '../../brand/Illustrazione';
 import { BottoneAzione, Colonna } from './comune';
-import Telefono from './Telefono';
+import TelefonoPassi from './TelefonoPassi';
 
 // Mini-schermate dei passi: disegnate con gli stessi token dell'app, ferme.
 function Schermo({ children, inclina }: { children: ReactNode; inclina: string }) {
@@ -70,7 +70,7 @@ const PASSI: { n: string; titolo: string; testo: string; Schermo: () => ReactNod
   },
 ];
 
-// «Come funziona»: da 1024 px titolo a sinistra e quattro colonne; sotto, i passi in colonna e il telefono a destra (concetto 12).
+// «Come funziona»: da 1024 px titolo a sinistra e quattro colonne con le mini-schermate; da telefono, un telefono grande con selettore dei passi (concetti 12 e 45).
 export default function Passi({ onStart }: { onStart(): void }) {
   return (
     <section id="come-funziona" aria-labelledby="t-passi" className="scroll-mt-20 py-14 sm:py-20">
@@ -87,24 +87,20 @@ export default function Passi({ onStart }: { onStart(): void }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-[1fr_11.5rem] gap-2 sm:grid-cols-[1fr_17rem] lg:block">
-            <ol className="relative flex flex-col gap-7 lg:grid lg:grid-cols-4 lg:gap-4" data-testo-ok>
-              {PASSI.map((p, i) => (
-                <li key={p.titolo} className="relative pl-14 lg:pl-0">
-                  {i < PASSI.length - 1 && <span aria-hidden className="absolute left-[19px] top-10 -bottom-7 w-0.5 bg-azione/25 lg:hidden" />}
-                  <div className="flex items-center gap-3 lg:mb-4">
-                    <span aria-hidden className="absolute left-0 top-0 grid h-10 w-10 place-items-center rounded-full bg-azione-tinta text-sm font-extrabold text-azione-scuro ring-4 ring-fondo lg:static lg:h-9 lg:w-9 lg:text-[13px] lg:ring-0">{p.n}</span>
-                    <h3 className="text-base font-extrabold leading-snug text-testo">{p.titolo}</h3>
-                  </div>
-                  {p.Schermo()}
-                  <p className="mt-1 text-[13.5px] leading-snug text-testo-tenue lg:mt-4 lg:text-center">{p.testo}</p>
-                </li>
-              ))}
-            </ol>
-            <div className="relative h-[21rem] w-full lg:hidden sm:h-[27rem]" aria-hidden>
-              <div className="absolute left-0 top-0 w-[290px] origin-top-left scale-[.6] sm:scale-[.82]"><Telefono pillole={false} /></div>
-            </div>
-          </div>
+          {/* da telefono: telefono grande con il passo scelto (TelefonoPassi); da 1024 px: quattro colonne con le mini-schermate */}
+          <TelefonoPassi />
+          <ol className="relative hidden lg:grid lg:grid-cols-4 lg:gap-4" data-testo-ok>
+            {PASSI.map(p => (
+              <li key={p.titolo} className="relative">
+                <div className="mb-4 flex items-center gap-3">
+                  <span aria-hidden className="grid h-9 w-9 place-items-center rounded-full bg-azione-tinta text-[13px] font-extrabold text-azione-scuro">{p.n}</span>
+                  <h3 className="text-base font-extrabold leading-snug text-testo">{p.titolo}</h3>
+                </div>
+                {p.Schermo()}
+                <p className="mt-4 text-center text-[13.5px] leading-snug text-testo-tenue">{p.testo}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </Colonna>
     </section>
