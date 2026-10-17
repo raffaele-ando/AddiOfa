@@ -339,7 +339,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
       return (
         <Screen>
           <TopBar {...bar} />
-          <Scena nome="rischio-economico" />
+          <Scena nome="rischio-economico-ali" />
           <div className="flex items-center gap-2">
             <h2 className={`${titolo} flex-1`}>Se non superi</h2>
             <InfoFoglio titolo="OFA di inglese" etichetta="Informazioni sulle conseguenze">

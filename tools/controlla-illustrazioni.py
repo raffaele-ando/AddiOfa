@@ -36,6 +36,12 @@ NON_USATE_OK: dict[str, str] = {
     "kit-rosso/*": "kit rosso: alternativa di colore, l'app è blu; le sue composizioni diverse esistono in blu (vedi docs/design/ILLUSTRAZIONI.md)",
     "kit-blu/stati/caricamento": "immagine ferma di un anello: lo spinner che gira è il componente Caricamento (brand/componenti.tsx); un'immagine ferma darebbe l'idea di un blocco",
     "kit-blu/illustrazioni/composizione-tre": "ha scritto nel disegno «82 %»: un numero inventato accanto al misuratore; in app il misuratore è il componente con il valore vero",
+    "kit-blu/stati/notifica": "l'app non ha notifiche (nessun invio dal server): un'illustrazione di notifica promette ciò che non c'è",
+    "kit-blu/sfere/sfera-costi": "pronta per una voce «Costi»: l'app non ha prezzi; il costo del test (~30 €) è già nella scheda «Se non superi» con rischio-economico-ali",
+    "kit-blu/sfere/sfera-tips": "pronta per «Consigli»: i consigli di studio usano suggerimenti-consigli (stesso mestiere, non si duplica)",
+    "kit-luminoso/illustrazioni/attesa-caricamento": "doppione luminoso di attesa-caricamento (usata): stesso mestiere, la seconda sarebbe un doppione",
+    "kit-luminoso/illustrazioni/piano-studi-bloccato": "doppione luminoso di piano-studi-bloccato (usata nella landing e negli Obiettivi): stesso mestiere",
+    "kit-luminoso/illustrazioni/rischio-economico": "doppione luminoso di rischio-economico (usata nella landing) e rischio-economico-ali (onboarding): stesso mestiere",
     "kit-luminoso/illustrazioni/risultato-probabilita": "ha scritto nel disegno «82 %»: un numero inventato; in app il misuratore è il componente con il valore vero",
 }
 
@@ -59,7 +65,7 @@ process.stdout.write(JSON.stringify(m.exports.CATALOGO));
 
 
 # un file «usa illustrazioni» se nomina il componente, la funzione dei percorsi o un campo `illustrazione` (esclude parole comuni come 'vuoto')
-ILLUSTRA = re.compile(r"Illustrazione|urlDisegno|illustrazion", re.I)
+ILLUSTRA = re.compile(r"Illustrazione|urlDisegno|Disegno|illustrazion", re.I)
 
 
 def file_sorgenti() -> list[pathlib.Path]:
