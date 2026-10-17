@@ -56,3 +56,5 @@ Tutti in Python 3; rendono in Chromium con Playwright (`render.py`). Si lanciano
 Chromium: `/opt/pw-browsers/chromium-1194/chrome-linux/chrome` (variabile `CHROMIUM`). Pacchetti:
 numpy, scipy, Pillow, scikit-image, opencv, vtracer, fonttools+brotli (per `testo_svg.py`),
 playwright.
+
+- `carta_identita.py`: ridisegna da zero la tessera `kit-luminoso/verifica-utente` (chiara e scura), tutta dentro la carta. Dopo `porta_in_disegni.py` va rilanciato, altrimenti torna la versione ricalcata con il busto fuori dal cerchio.
