@@ -6,7 +6,7 @@ import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { SCHERMATE } from '../registro';
 import { BottoneAzione, BottoneSecondario, Nota, Pagina, Sezione, Testata } from './comuni';
-import { messaggioErrore, useAccesso } from './hooks';
+import { linkRemoto, messaggioErrore, useAccesso, useSincronizzaCollegamento } from './hooks';
 import { atlas, type Leaderboard } from '../../../lib/atlas';
 import { aggiornaProgetto, leggiProgetto } from '../../../lib/progetto/profilo';
 import { statoNoi, valoriNoi, type StatoNoi } from '../../../lib/progetto/noi';
@@ -28,6 +28,9 @@ export default function Noi() {
   const { appState, aggiorna, vai } = useExtra();
   const { collegamento } = leggiProgetto(appState);
   const acc = useAccesso(!!collegamento);
+  useSincronizzaCollegamento(acc.me, aggiorna);
+  // il punteggio si invia solo se è il servizio a dire che si partecipa (altrimenti darebbe 403)
+  const serverInClassifica = !!linkRemoto(acc.me)?.scopes.includes('noi.leaderboard');
   const inClassifica = !!collegamento?.scopes.includes('noi.leaderboard');
   const stato = statoNoi({ atlasOnline: acc.atlasOnline, loginDisponibile: acc.loginDisponibile, connesso: !!acc.utente, inClassifica });
   const mio = valoriNoi(appState);
@@ -41,13 +44,13 @@ export default function Noi() {
     if (!acc.atlasOnline) return;
     setDati({ fase: 'carico' });
     try {
-      if (inClassifica && acc.utente) await atlas.postScore(ECOSYSTEM.appId, mio.imparate, mio.migliorSimulazione);
+      if (serverInClassifica) await atlas.postScore(ECOSYSTEM.appId, mio.imparate, mio.migliorSimulazione);
       setDati({ fase: 'ok', classifica: await atlas.leaderboard(ECOSYSTEM.appId) });
     } catch (e) {
       setDati({ fase: 'errore', testo: messaggioErrore(e) });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [acc.atlasOnline, inClassifica, !!acc.utente, mio.imparate, mio.migliorSimulazione]);
+  }, [acc.atlasOnline, serverInClassifica, mio.imparate, mio.migliorSimulazione]);
   useEffect(() => { if (!acc.controllo) void carica(); }, [carica, acc.controllo]);
 
   const cambiaPermesso = async (aderisci: boolean) => {

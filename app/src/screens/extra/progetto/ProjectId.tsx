@@ -1,12 +1,12 @@
 // «Project ID» (concept 06 profilo, 30/34/36): l'account unico delle app di Project, più i dati della registrazione e il loro stato di invio.
 // Tre blocchi: «La tua iscrizione» (i dati salvati nel dispositivo e se sono arrivati ad ATLAS), «Project ID» (accesso con Google, permessi uno per uno,
 // tutti spenti di partenza) e «I tuoi dati» (esporta, scollega, cancella dal dispositivo, elimina l'account). Se ATLAS o Google non sono configurati, lo dice con una riga vera.
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { BottoneAzione, BottoneRiga, BottoneSecondario, Etichetta, Interruttore, Nota, Pagina, RigaDato, Sezione, Testata, copiaTesto } from './comuni';
 import { CampiChiSei, CampiConsensi, CampiCorso, formDa, type FormRegistrazione } from './registrazione';
-import { useAccesso, useInvio } from './hooks';
+import { useAccesso, useInvio, useSincronizzaCollegamento } from './hooks';
 import { atlas, type MeRisposta } from '../../../lib/atlas';
 import { coda, descriviInvio, type ChiaveStato } from '../../../lib/progetto/coda';
 import { aggiornaProgetto, corpoIscrizione, creaProfilo, impostaProfilo, leggiProgetto, type Collegamento, type Profilo } from '../../../lib/progetto/profilo';
@@ -42,20 +42,7 @@ export default function ProjectId() {
     ? { chiave: 'inviata' as const, titolo: 'Inviata', dettaglio: `Registrata su ${ECOSYSTEM.engineName} e collegata al tuo ${ECOSYSTEM.accountName}.` }
     : descriviInvio(invio, adesso);
 
-  // L'account sul servizio è la fonte: se ha il collegamento di AddiOFA, lo si rispecchia qui; se non l'ha più (account eliminato altrove), si toglie qui.
-  const sincronizzato = useRef('');
-  useEffect(() => {
-    if (!acc.me) return;
-    const link = acc.me.links.find(l => l.appId === ECOSYSTEM.appId);
-    const firma = JSON.stringify([acc.me.account.id, acc.me.account.handle, link?.scopes, link?.updatedAt]);
-    if (sincronizzato.current === firma) return;
-    sincronizzato.current = firma;
-    aggiorna(s => aggiornaProgetto(s, p => {
-      if (!link) { const { collegamento: _c, ...resto } = p; return resto; }
-      const nuovo: Collegamento = { scopes: Array.from(new Set([...REQUIRED_SCOPES, ...link.scopes])), collegatoIl: link.grantedAt, aggiornatoIl: link.updatedAt, projectId: acc.me!.account.id, handle: acc.me!.account.handle };
-      return { ...p, collegamento: nuovo };
-    }));
-  }, [acc.me, aggiorna]);
+  useSincronizzaCollegamento(acc.me, aggiorna);
 
   const salvaCollegamento = (scopes: ScopeId[], r: MeRisposta) => {
     const link = r.links.find(l => l.appId === ECOSYSTEM.appId);

@@ -1,10 +1,12 @@
 // Hook delle schermate di Project: lo stato dell'iscrizione in coda e quello dell'accesso (Project ID).
-import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import type { User } from 'firebase/auth';
 import { atlas, AtlasErrore, AtlasNonConfigurato, type MeRisposta } from '../../../lib/atlas';
 import { coda, type RecordInvio } from '../../../lib/progetto/coda';
 import { loginDisponibile, logout, onAuthChange, signInWithGoogle, LoginError } from '../../../lib/firebase';
-import { ATLAS_API_URL } from '../../../config/ecosystem';
+import { aggiornaProgetto, type Collegamento } from '../../../lib/progetto/profilo';
+import { ATLAS_API_URL, ECOSYSTEM, REQUIRED_SCOPES } from '../../../config/ecosystem';
+import type { AppState } from '../../../types';
 
 /** Lo stato dell'invio dell'iscrizione, sempre aggiornato; e fa partire i tentativi automatici finché la schermata è aperta. */
 export function useInvio(): RecordInvio | null {
@@ -93,4 +95,29 @@ export function useAccesso(haCollegamento: boolean): StatoAccesso {
   }, []);
 
   return { atlasOnline: !!ATLAS_API_URL, loginDisponibile: loginDisponibile(), controllo, utente, me, errore, occupato, accedi, esci, ricarica, esegui };
+}
+
+/** I permessi di AddiOFA su ATLAS (la fonte vera), se c'è un account e il servizio ha risposto. */
+export function linkRemoto(me: MeRisposta | null) {
+  return me?.links.find(l => l.appId === ECOSYSTEM.appId);
+}
+
+/**
+ * L'account sul servizio è la fonte: quando `me` arriva, si rispecchia sul dispositivo. Se ha il collegamento di AddiOFA lo si copia qui;
+ * se non l'ha più (account eliminato o permesso tolto altrove) si toglie qui. Così Esplora e NOI non dicono cose che il servizio non conferma.
+ */
+export function useSincronizzaCollegamento(me: MeRisposta | null, aggiorna: (fn: (s: AppState) => AppState) => void) {
+  const fatto = useRef('');
+  useEffect(() => {
+    if (!me) return;
+    const link = linkRemoto(me);
+    const firma = JSON.stringify([me.account.id, me.account.handle, link?.scopes, link?.updatedAt]);
+    if (fatto.current === firma) return;
+    fatto.current = firma;
+    aggiorna(s => aggiornaProgetto(s, p => {
+      if (!link) { const { collegamento: _c, ...resto } = p; return resto; }
+      const nuovo: Collegamento = { scopes: Array.from(new Set([...REQUIRED_SCOPES, ...link.scopes])), collegatoIl: link.grantedAt, aggiornatoIl: link.updatedAt, projectId: me.account.id, handle: me.account.handle };
+      return { ...p, collegamento: nuovo };
+    }));
+  }, [me, aggiorna]);
 }

@@ -80,9 +80,12 @@ export default function AtlasAnalisi() {
 
       {stima ? (
         <section aria-labelledby="an-stima" className="mt-3">
-          <h2 id="an-stima" className="sr-only">Probabilità stimata di superare il test</h2>
-          <StimaSezione stima={stima} livello={an.livelloStima!} />
-          <RigaIntervallo intervallo={stima.intervallo} className="mt-2" />
+          <h2 id="an-stima" data-testo-ok className="sr-only">Probabilità stimata di superare il test</h2>
+          {/* le etichette del misuratore e la riga del punteggio sono dati della stima, gli stessi della Home */}
+          <div data-testo-ok>
+            <StimaSezione stima={stima} livello={an.livelloStima!} />
+            <RigaIntervallo intervallo={stima.intervallo} className="mt-2" />
+          </div>
           <p data-testo-ok className="mt-1 text-center text-[12.5px] leading-[18px] text-testo-tenue">
             All&apos;80 % di credibilità la probabilità sta {formatIntervallo(stima.intervallo)}. Stima su {stima.risposte} risposte.
           </p>
