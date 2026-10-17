@@ -156,7 +156,7 @@ test('stato: un salvataggio vecchio senza profilo si legge; il profilo si aggiun
   const nuovo = impostaProfilo(vecchio, p);
   assert.equal(nuovo.streak, 3);
   assert.deepEqual(nuovo.extra!.sfide, { amici: [] });
-  assert.equal(leggiProgetto(nuovo).profilo?.nome, 'Mario');
+  assert.equal(leggiProgetto(nuovo).profilo?.nome, 'Mario Rossi');
   // l'originale non è stato modificato
   assert.equal(vecchio.extra!.progetto, undefined);
   // dati rovinati: nessun errore

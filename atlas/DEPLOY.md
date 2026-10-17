@@ -18,11 +18,13 @@ Se il database non esistesse più: `npx wrangler d1 create atlas` e copia il nuo
 
 ```bash
 npx wrangler d1 migrations list atlas --remote     # cosa manca
-npx wrangler d1 migrations apply atlas --remote    # applica 0002_signups.sql (la 0001 è già applicata)
+npx wrangler d1 migrations apply atlas --remote    # applica 0002_signups.sql e 0003_percorso_studi.sql (la 0001 è già applicata)
 ```
 
 `0002_signups.sql` aggiunge `signups`, `rate_limit`, la colonna `accounts.polimi_email` e ricostruisce `consent_log`
-(stesse righe e stessi id, in più `signup_id`; `account_id` diventa facoltativo). Non cancella dati. Fai comunque un backup prima:
+(stesse righe e stessi id, in più `signup_id`; `account_id` diventa facoltativo).
+`0003_percorso_studi.sql` aggiunge a `signups` le colonne facoltative `scuola`, `livello`, `anno` (le righe esistenti restano con valore vuoto) e gli indici su `scuola`, `livello`, `corso`.
+Nessuna delle due cancella dati. Fai comunque un backup prima:
 
 ```bash
 npx wrangler d1 export atlas --remote --output=atlas-backup.sql    # il file contiene dati personali: non va nel repository
@@ -73,8 +75,8 @@ Verifica rapida dell'iscrizione pubblica (usa un indirizzo di prova tuo, poi can
 ```bash
 curl -X POST https://atlas.<tuo-sottodominio>.workers.dev/v1/signups \
   -H 'Content-Type: application/json' \
-  -d '{"appId":"addiofa","nome":"Prova","email":"tuonome@mail.polimi.it","consensi":{"noi":false,"atlas":false,"comunicazioni":false},"consentVersion":"iscrizione-2026-10-16"}'
-# risposta attesa: {"ok":true}
+  -d '{"appId":"addiofa","email":"tuonome@mail.polimi.it","scuola":"icat","sede":"leonardo","livello":"triennale","corso":"Ingegneria Civile","anno":1,"provenienza":"amici","consensi":{"noi":false,"atlas":false,"comunicazioni":false},"consentVersion":"iscrizione-2026-10-16"}'
+# risposta attesa: {"ok":true}  (senza "nome" il Worker lo ricava dall'email: tuonome -> "Tuonome")
 ```
 
 ## 5. Lato app (sito)
@@ -109,10 +111,12 @@ curl -H "Authorization: Bearer $ADMIN_TOKEN" "$ATLAS/v1/admin/signups?formato=cs
 curl -H "Authorization: Bearer $ADMIN_TOKEN" "$ATLAS/v1/admin/signups?formato=json" -o iscrizioni.json
 # solo chi ha dato il consenso «comunicazioni»:
 curl -H "Authorization: Bearer $ADMIN_TOKEN" "$ATLAS/v1/admin/signups?formato=csv&comunicazioni=1" -o contatti.csv
+# per percorso di studi (i filtri si combinano): scuola = ing-ind-inf | icat | auic | design, livello = triennale | magistrale | ciclo-unico
+curl -H "Authorization: Bearer $ADMIN_TOKEN" "$ATLAS/v1/admin/signups?formato=csv&scuola=icat&livello=magistrale" -o icat-magistrale.csv
 ```
 
-Il segreto va nell'header `Authorization`, mai nell'indirizzo (nell'URL verrebbe rifiutato). Il file ha come colonne `id, email, nome, app, corso, sede, provenienza, consenso_noi, consenso_atlas, consenso_comunicazioni, versione_consenso, email_verificata, project_id, creato, aggiornato` (UTF-8 con BOM, si apre in Excel e Fogli; le celle che inizierebbero con `=`, `+`, `-`, `@` sono precedute da un apice, per non farle eseguire come formule).
-Per uso marketing contano solo le righe con `consenso_comunicazioni = 1`. Il file contiene dati personali: non va nel repository né in chat.
+Il segreto va nell'header `Authorization`, mai nell'indirizzo (nell'URL verrebbe rifiutato). Il file ha come colonne `id, email, nome, app, scuola, sede, livello, corso, anno, provenienza, consenso_noi, consenso_atlas, consenso_comunicazioni, versione_consenso, email_verificata, project_id, creato, aggiornato` (UTF-8 con BOM, si apre in Excel e Fogli; le celle che inizierebbero con `=`, `+`, `-`, `@` sono precedute da un apice, per non farle eseguire come formule).
+Le colonne `scuola`, `sede`, `livello`, `corso`, `anno` e `provenienza` sono facoltative e possono essere vuote (iscrizioni fatte prima della 0003 o senza percorso indicato); `sede` e `provenienza` nelle righe vecchie possono essere testo libero. Per uso marketing contano solo le righe con `consenso_comunicazioni = 1`. Il file contiene dati personali: non va nel repository né in chat.
 
 Senza il comando curl, dalla riga di comando del database: `npx wrangler d1 execute atlas --remote --command "SELECT email, nome, corso, sede, consenso_comunicazioni FROM signups ORDER BY id"`.
 

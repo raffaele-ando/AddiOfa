@@ -40,7 +40,7 @@ export function attesaDopo(tentativi: number): number {
 
 /** Firma corta e stabile dei dati (non crittografica: serve solo a notare un cambiamento). */
 export function firmaCorpo(c: CorpoIscrizione): string {
-  const s = JSON.stringify([c.nome, c.email, c.corso ?? '', c.sede ?? '', c.provenienza ?? '', c.consensi.noi, c.consensi.atlas, c.consensi.comunicazioni, c.consentVersion]);
+  const s = JSON.stringify([c.nome, c.email, c.scuola ?? '', c.sede ?? '', c.livello ?? '', c.corso ?? '', c.anno ?? '', c.provenienza ?? '', c.consensi.noi, c.consensi.atlas, c.consensi.comunicazioni, c.consentVersion]);
   let h = 5381;
   for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
   return h.toString(36);

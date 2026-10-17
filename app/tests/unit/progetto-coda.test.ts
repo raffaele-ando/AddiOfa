@@ -254,3 +254,34 @@ test('applicaEsito è pura: non cambia il record di partenza', () => {
 test('descrizione: profilo salvato ma mai messo in coda = solo su questo dispositivo', () => {
   assert.equal(descriviInvio(null, T0).chiave, 'solo-locale');
 });
+
+test('percorso di studi: entra nel corpo inviato e nella firma (cambiare anno o sede = nuovo invio)', async () => {
+  const s = server(200);
+  const { c } = nuova({ fetchImpl: s.f });
+  const base = corpo({ scuola: 'icat', sede: 'lecco', livello: 'triennale', corso: 'Un corso', anno: 1, provenienza: 'amici' });
+  await c.accoda(base);
+  assert.deepEqual(JSON.parse(String(s.chiamate[0].init.body)), base);
+  await c.accoda({ ...base });
+  assert.equal(s.chiamate.length, 1);
+  await c.accoda({ ...base, anno: 2 });
+  assert.equal(s.chiamate.length, 2);
+  await c.accoda({ ...base, anno: 2, sede: 'leonardo' });
+  assert.equal(s.chiamate.length, 3);
+  assert.notEqual(firmaCorpo(base), firmaCorpo({ ...base, livello: 'magistrale' }));
+});
+
+test('coda scritta dalla versione precedente (corpo con corso e sede a testo): si ritenta com\'è, poi un nuovo invio la sostituisce', async () => {
+  const arch = archivio();
+  const vecchio = corpo({ corso: 'Ingegneria Gestionale', sede: 'Bovisa', provenienza: 'Gruppo o chat' });
+  arch.setItem(CHIAVE_CODA, JSON.stringify({ ...nuovoRecord(vecchio, T0), stato: 'in-attesa', tentativi: 2, motivo: 'rete', prossimoTentativo: T0 }));
+  const s = server(200);
+  const c = creaCoda({ archivio: arch, fetchImpl: s.f, baseUrl: 'https://atlas.test', ora: () => T0 + 1000, online: () => true });
+  const r = await c.prova();
+  assert.equal(r?.stato, 'inviata');
+  assert.deepEqual(JSON.parse(String(s.chiamate[0].init.body)), vecchio);
+  const nuovoCorpo = corpo({ scuola: 'ing-ind-inf', sede: 'bovisa', livello: 'triennale', corso: 'Ingegneria Gestionale', anno: 1, provenienza: 'gruppo-chat' });
+  const r2 = await c.accoda(nuovoCorpo);
+  assert.equal(r2?.stato, 'inviata');
+  assert.equal(s.chiamate.length, 2);
+  assert.deepEqual(JSON.parse(String(s.chiamate[1].init.body)), nuovoCorpo);
+});

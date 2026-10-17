@@ -30,10 +30,10 @@ Tutte le rotte con `(auth)` vogliono `Authorization: Bearer <ID token Firebase>`
 |---|---|---|
 | GET | `/v1/health` | Stato del servizio |
 | GET | `/v1/scopes` | Permessi disponibili e versione dell'informativa |
-| POST | `/v1/signups` | Iscrizione pubblica, senza token: `{ appId, nome, email, corso?, sede?, provenienza?, consensi: { noi, atlas, comunicazioni }, consentVersion }`. Solo email `@polimi.it`, `@mail.polimi.it` o `@…polimi.it`; idempotente per email; 10 richieste al minuto per IP (429), corpo max 4 KB (413). Risponde sempre `{ ok: true }` |
-| GET | `/v1/admin/signups?formato=csv\|json` | Solo l'autore: `Authorization: Bearer <ADMIN_TOKEN>`; senza `ADMIN_TOKEN` impostato risponde 404; `&comunicazioni=1` filtra chi ha dato quel consenso |
-| GET | `/v1/me` (auth) | Project ID (creato al primo accesso), app collegate, e se c'è l'iscrizione collegata: `profile` (nome, corso, sede), `consensi`, `signup` |
-| PATCH | `/v1/me` (auth) | Cambia nome, @nome utente (3-20 caratteri a-z 0-9 _ .), `polimiEmail` (collega l'iscrizione), `corso`, `sede`, `provenienza` |
+| POST | `/v1/signups` | Iscrizione pubblica, senza token: `{ appId, email, nome?, scuola?, sede?, livello?, corso?, anno?, provenienza?, consensi: { noi, atlas, comunicazioni }, consentVersion }`. `nome` se manca si ricava dall'email; `scuola` ∈ `ing-ind-inf`, `icat`, `auic`, `design`; `livello` ∈ `triennale`, `magistrale`, `ciclo-unico`; `anno` intero 1-6; `sede` e `provenienza` id brevi (a-z, 0-9, `-`, 2-30 caratteri); `corso` max 120. Solo email `@polimi.it`, `@mail.polimi.it` o `@…polimi.it`; idempotente per email; 10 richieste al minuto per IP (429), corpo max 4 KB (413). Risponde sempre `{ ok: true }` |
+| GET | `/v1/admin/signups?formato=csv\|json` | Solo l'autore: `Authorization: Bearer <ADMIN_TOKEN>`; senza `ADMIN_TOKEN` impostato risponde 404; filtri `&comunicazioni=1`, `&scuola=`, `&livello=` |
+| GET | `/v1/me` (auth) | Project ID (creato al primo accesso), app collegate, e se c'è l'iscrizione collegata: `profile` (nome, scuola, sede, livello, corso, anno), `consensi`, `signup` |
+| PATCH | `/v1/me` (auth) | Cambia nome, @nome utente (3-20 caratteri a-z 0-9 _ .), `polimiEmail` (collega l'iscrizione), `corso`, `sede`, `provenienza`, `scuola`, `livello`, `anno` |
 | DELETE | `/v1/me` (auth) | Elimina account, collegamenti, consensi, punteggi e l'iscrizione collegata |
 | GET | `/v1/me/export` (auth) | Copia di tutti i dati (account, iscrizione e suo registro, collegamenti, registro consensi, punteggi) |
 | PUT | `/v1/links/:app` (auth) | Concede o modifica i permessi: `{ scopes, consentVersion, polimiEmail? }`, `profile` obbligatorio |
