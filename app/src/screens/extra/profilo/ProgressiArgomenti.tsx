@@ -70,8 +70,11 @@ export default function ProgressiArgomenti() {
           <Radar assi={radar.map(a => ({ nome: a.nome, valore: a.percento ?? 0 }))}
             descrizione={`Radar dell'accuratezza su ${radar.length} argomenti: ${radar.map(a => `${a.nome} ${a.percento} per cento`).join(', ')}.`} />
           <ul className="mt-1 flex flex-wrap justify-center gap-x-4 gap-y-1" aria-label="Colori">
-            {([['alto', 'Solido'], ['medio', 'Da migliorare'], ['basso', 'Da ripassare']] as const).map(([t, nome]) => (
-              <li key={t} role="img" aria-label={nome} className="flex items-center"><span aria-hidden="true" className={`h-3 w-3 rounded-full ${t === 'alto' ? 'bg-alto' : t === 'medio' ? 'bg-medio' : 'bg-basso'}`} /></li>
+            {/* ogni fascia ha il suo colore, la sua forma (icona) e la sua parola: mai il solo colore */}
+            {([['alto', 'Solido', 'stato-ok'], ['medio', 'Da migliorare', 'trend-uguale'], ['basso', 'Da ripassare', 'stato-da-ripassare']] as const).map(([t, nome, icona]) => (
+              <li key={t} className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12.5px] leading-[16px] font-bold ${TONI[t].tinta} ${TONI[t].testo}`}>
+                <Icona nome={icona} size={14} />{nome}
+              </li>
             ))}
           </ul>
         </Carta>
@@ -83,7 +86,7 @@ export default function ProgressiArgomenti() {
         </ul>
         {(altri > 0 || tutti) && (
           <button type="button" onClick={() => { playTapSound(); setTutti(v => !v); }} aria-expanded={tutti} aria-label={tutti ? 'Mostra meno argomenti' : `Mostra tutti i ${an.argomenti.length} argomenti`}
-            className="brand-premibile mt-2 flex w-full items-center justify-center gap-1.5 rounded-[10px] py-2.5 text-[14px] font-bold text-azione-scuro tabular-nums">
+            className="brand-premibile mt-2 flex w-full items-center justify-center gap-1.5 rounded-[10px] py-2.5 text-[14px] font-bold text-azione-testo tabular-nums">
             <Icona nome="espandi" size={20} className={tutti ? 'rotate-180' : undefined} />{tutti ? '' : an.argomenti.length}
           </button>
         )}

@@ -38,7 +38,7 @@ function Gruppo({ children, etichetta }: { children: ReactNode; etichetta: strin
   return <section aria-label={etichetta} className="mt-[14px] rounded-[12px] bg-superficie-2 overflow-hidden divide-y divide-linea">{children}</section>;
 }
 
-/** Icona della riga: il colore dice il significato (dati = azione, cancellare = corallo); le utilità senza significato restano neutre. */
+/** Icona della riga: il colore dice il significato (dati = azione, cancellare = errore); le utilità senza significato restano neutre. */
 function IconaRiga({ nome, tono }: { nome: NomeIcona; tono?: Tono }) {
   return tono
     ? <IconaTono tono={tono} lato={32} className="rounded-[9px]"><Icona nome={nome} size={18} /></IconaTono>
@@ -66,8 +66,8 @@ function Riga({ icona, illustrazione, tono, titolo, destra, onClick }: { icona?:
 function Interruttore({ acceso, onCambia, etichetta }: { acceso: boolean; onCambia: (v: boolean) => void; etichetta: string }) {
   return (
     <button type="button" role="switch" aria-checked={acceso} aria-label={etichetta} onClick={() => onCambia(!acceso)}
-      className={cn('relative shrink-0 w-[51px] h-[31px] rounded-full', acceso ? 'bg-azione' : 'bg-tacca')}>
-      <span className={cn('absolute top-[2px] w-[27px] h-[27px] rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.25)]', acceso ? 'left-[22px]' : 'left-[2px]')} />
+      className={cn('relative shrink-0 w-[51px] h-[31px] rounded-full', acceso ? 'bg-azione' : 'bg-tacca ring-2 ring-inset ring-bordo-campo')}>
+      <span className={cn('absolute top-[2px] w-[27px] h-[27px] rounded-full bg-superficie dark:bg-testo shadow-[0_1px_3px_rgba(0,0,0,0.25)]', acceso ? 'left-[22px]' : 'left-[2px]')} />
     </button>
   );
 }
@@ -78,7 +78,7 @@ function Segmento<T extends string>({ nome, voci, valore, onScegli }: { nome: st
     <div role="radiogroup" aria-label={nome} className="shrink-0 grid gap-0.5 p-0.5 rounded-[10px] bg-superficie" style={{ gridTemplateColumns: `repeat(${voci.length}, minmax(0, 1fr))` }}>
       {voci.map(v => (
         <button key={v.id} type="button" role="radio" aria-checked={valore === v.id} aria-label={v.nome} title={v.nome} onClick={() => { playTapSound(); onScegli(v.id); }}
-          className={cn('grid h-9 w-11 place-items-center rounded-[8px]', valore === v.id ? 'bg-superficie-2 text-azione-scuro shadow-[0_1px_3px_rgba(15,23,42,0.1)] dark:shadow-none dark:border dark:border-tacca' : 'text-testo-tenue')}>
+          className={cn('grid h-9 w-11 place-items-center rounded-[8px]', valore === v.id ? 'bg-superficie-2 text-azione-testo shadow-[0_1px_3px_rgba(15,23,42,0.1)] dark:shadow-none dark:border dark:border-tacca' : 'text-testo-tenue')}>
           <Icona nome={v.icona} size={20} />
         </button>
       ))}
@@ -87,10 +87,10 @@ function Segmento<T extends string>({ nome, voci, valore, onScegli }: { nome: st
 }
 
 /** Pulsante tondo con la sola icona (esporta, importa, copia, cancella). */
-function IconaComando({ icona, nome, tono, onClick }: { icona: NomeIcona; nome: string; tono: 'azione' | 'basso'; onClick: () => void }) {
+function IconaComando({ icona, nome, tono, onClick }: { icona: NomeIcona; nome: string; tono: 'azione' | 'errore'; onClick: () => void }) {
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }} aria-label={nome} title={nome}
-      className={cn('brand-premibile grid h-10 w-10 place-items-center rounded-full', tono === 'basso' ? 'bg-basso-tinta text-basso-numero' : 'bg-azione-tinta text-azione-scuro')}>
+      className={cn('brand-premibile grid h-10 w-10 place-items-center rounded-full', tono === 'errore' ? 'bg-errore-tinta text-errore' : 'bg-azione-tinta text-azione-testo')}>
       <Icona nome={icona} size={20} />
     </button>
   );
@@ -149,7 +149,7 @@ export default function Impostazioni({ onBack, onImport, onExport, onReset }: Pr
               {onExport
                 ? <IconaComando icona="esporta" nome="Esporta progressi" tono="azione" onClick={onExport} />
                 : <IconaComando icona="copia" nome="Copia i progressi" tono="azione" onClick={() => void copiaProgressi()} />}
-              <IconaComando icona="cancella" nome="Cancella i dati di questo dispositivo" tono="basso" onClick={() => setChiediCancella(true)} />
+              <IconaComando icona="cancella" nome="Cancella i dati di questo dispositivo" tono="errore" onClick={() => setChiediCancella(true)} />
             </div>
           } />
         </Gruppo>
@@ -157,7 +157,7 @@ export default function Impostazioni({ onBack, onImport, onExport, onReset }: Pr
           <div className="mt-2">
             <label htmlFor="testo-progressi" className="sr-only">Testo dei progressi</label>
             <textarea id="testo-progressi" data-testo-ok readOnly value={testoCopia} rows={6} onFocus={e => e.currentTarget.select()}
-              className="w-full rounded-[12px] bg-superficie-2 border border-linea p-3 text-[12px] font-mono text-testo" />
+              className="w-full rounded-[12px] bg-superficie-2 border border-bordo-campo p-3 text-[12px] font-mono text-testo" />
           </div>
         )}
 

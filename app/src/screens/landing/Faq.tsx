@@ -62,7 +62,7 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
           <div className="px-5 pb-5 sm:px-6">
             <p data-testo-ok className="text-sm font-medium leading-relaxed text-testo">{voce.r}</p>
             {voce.legale && (
-              <button type="button" onClick={() => onOpenLegal(voce.legale!.sezione)} className={cn('mt-2 inline-flex items-center gap-1.5 rounded text-sm font-bold text-azione-scuro underline underline-offset-2', FOCUS)}>
+              <button type="button" onClick={() => onOpenLegal(voce.legale!.sezione)} className={cn('mt-2 inline-flex items-center gap-1.5 rounded text-sm font-bold text-azione-testo underline underline-offset-2', FOCUS)}>
                 <Icona nome={ICONE_LEGALI[voce.legale!.sezione]} size={16} />{voce.legale.testo}
               </button>
             )}

@@ -327,7 +327,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
               </span>
             )}
             <Illustrazione nome="documento-in-corso" lato={96} />
-            <Icona nome="stato-caricamento" size={26} className="animate-spin text-azione-scuro" />
+            <Icona nome="stato-caricamento" size={26} className="animate-spin text-azione-testo" />
           </div>
         ) : (
           <div className="flex w-full max-w-xs flex-col items-center gap-4">

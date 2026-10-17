@@ -11,6 +11,8 @@ import { playTapSound } from '../../lib/audio';
 const W = 342.8, ALTO = 84, SU = 6, GIU = 38;
 const yDi = (p: number) => GIU - (Math.max(0, Math.min(100, p)) / 100) * (GIU - SU);
 // Punti sulla stessa griglia del concept: dal 8 % al 91 % della larghezza (un punto solo: al centro)
+/** Riempimento di una fascia: l'ambra da sola non arriva a 3:1 sullo sfondo, quindi la fascia media usa medio-numero. */
+const riempimento = (f: string) => (f === 'medio' ? 'var(--color-medio-numero)' : `var(--color-${f})`);
 const xDi = (i: number, n: number) => (n === 1 ? 0.5 : 0.08 + (0.832 * i) / (n - 1)) * W;
 
 /**
@@ -57,14 +59,14 @@ export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; o
           <defs>
             {n > 1 && (
               <linearGradient id={`l${id}`} gradientUnits="userSpaceOnUse" x1={xs[0]} y1="0" x2={xs[n - 1]} y2="0">
-                {fasce.map((f, i) => <stop key={i} offset={i / (n - 1)} style={{ stopColor: `var(--color-${f})` }} />)}
+                {fasce.map((f, i) => <stop key={i} offset={i / (n - 1)} style={{ stopColor: riempimento(f) }} />)}
               </linearGradient>
             )}
           </defs>
           {n > 1 && <path d={linea} fill="none" stroke={`url(#l${id})`} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />}
           {/* come nel concept: un filo sotto il punto di oggi */}
-          <line x1={xs[n - 1]} y1={ys[n - 1] + 8} x2={xs[n - 1]} y2={ys[n - 1] + 15} strokeWidth="1.4" strokeLinecap="round" style={{ stroke: `var(--color-${fasce[n - 1]})`, opacity: 0.45 }} />
-          {xs.map((x, i) => <circle key={i} cx={x} cy={ys[i]} r="5.64" style={{ fill: `var(--color-${fasce[i]})` }} />)}
+          <line x1={xs[n - 1]} y1={ys[n - 1] + 8} x2={xs[n - 1]} y2={ys[n - 1] + 15} strokeWidth="1.4" strokeLinecap="round" style={{ stroke: riempimento(fasce[n - 1]), opacity: 0.45 }} />
+          {xs.map((x, i) => <circle key={i} cx={x} cy={ys[i]} r="5.64" style={{ fill: riempimento(fasce[i]) }} />)}
         </svg>
         {punti.map((p, i) => {
           const ultimo = i === n - 1;

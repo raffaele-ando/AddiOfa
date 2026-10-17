@@ -113,7 +113,7 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
           {sceltaArgomento && (
             <div className="mt-3 flex items-center gap-2.5">
               <select aria-label="Argomento" value={filtro} onChange={e => setFiltro(e.target.value)}
-                className="flex-1 min-w-0 min-h-[48px] appearance-none rounded-[12px] border border-linea bg-superficie px-4 text-[15px] font-semibold text-testo outline-none focus:border-azione">
+                className="flex-1 min-w-0 min-h-[48px] appearance-none rounded-[12px] border border-bordo-campo bg-superficie px-4 text-[15px] font-semibold text-testo outline-none focus:border-azione">
                 <option value="" disabled>Argomento</option>
                 <optgroup label="Categorie">
                   {categorie.map(c => <option key={`category:${c}`} value={`category:${c}`}>{c}</option>)}

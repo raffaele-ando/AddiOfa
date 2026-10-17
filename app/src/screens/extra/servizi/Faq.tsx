@@ -12,7 +12,7 @@ import { cn } from '../../../lib/utils';
 // Un colore e un'icona per categoria (non a rotazione): il test = blu, lo studio = ambra, i dati = verde (al sicuro), l'app = viola.
 const TONO_CATEGORIA: Record<CategoriaFaq, Tono> = { test: 'azione', studio: 'medio', dati: 'alto', app: 'viola' };
 const ICONA_CATEGORIA: Record<CategoriaFaq, NomeIcona> = { test: 'esame', studio: 'esercizi', dati: 'dati', app: 'app' };
-const PUNTO: Record<Tono, string> = { azione: 'bg-azione', alto: 'bg-alto', medio: 'bg-medio', basso: 'bg-basso', viola: 'bg-viola' };
+const PUNTO: Record<Tono, string> = { azione: 'bg-azione', alto: 'bg-alto', medio: 'bg-medio-numero', basso: 'bg-basso', viola: 'bg-viola' };
 
 function Voce({ voce, aperta, onToggle }: { voce: VoceFaq; aperta: boolean; onToggle: () => void }) {
   const { vai, apriLegale } = useExtra();
@@ -30,8 +30,8 @@ function Voce({ voce, aperta, onToggle }: { voce: VoceFaq; aperta: boolean; onTo
         <div id={`${id}-p`} role="region" aria-labelledby={`${id}-b`} className="px-3.5 pb-3.5">
           {voce.risposta.map((p, i) => <p key={i} className={cn('text-[13.5px] leading-[21px] text-testo', i > 0 && 'mt-2')}>{p}</p>)}
           <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1">
-            {voce.vai && <button type="button" onClick={() => vai(voce.vai!.id, voce.vai!.params)} className="rounded text-[13.5px] font-bold text-azione-scuro underline underline-offset-2">{voce.vai.testo}</button>}
-            {voce.legale && <button type="button" onClick={() => apriLegale(voce.legale!.sezione)} className="rounded text-[13.5px] font-bold text-azione-scuro underline underline-offset-2">{voce.legale.testo}</button>}
+            {voce.vai && <button type="button" onClick={() => vai(voce.vai!.id, voce.vai!.params)} className="rounded text-[13.5px] font-bold text-azione-testo underline underline-offset-2">{voce.vai.testo}</button>}
+            {voce.legale && <button type="button" onClick={() => apriLegale(voce.legale!.sezione)} className="rounded text-[13.5px] font-bold text-azione-testo underline underline-offset-2">{voce.legale.testo}</button>}
           </div>
         </div>
       )}
@@ -57,7 +57,7 @@ export default function Faq() {
 
       <div className="mt-3">
         <label htmlFor={campo} className="sr-only">Cerca nelle domande</label>
-        <div className="flex items-center gap-2 rounded-[12px] bg-superficie-2 px-3.5 focus-within:outline focus-within:outline-2 focus-within:outline-azione">
+        <div className="flex items-center gap-2 rounded-[12px] border border-bordo-campo bg-superficie-2 px-3.5 focus-within:outline focus-within:outline-2 focus-within:outline-azione">
           <Icona nome="cerca" size={20} className="shrink-0 text-testo-tenue" />
           <input id={campo} type="search" value={testo} onChange={e => setTesto(e.target.value)} placeholder="Cerca" autoComplete="off" maxLength={80}
             className="h-12 min-w-0 flex-1 bg-transparent text-[15px] text-testo placeholder:text-testo-tenue outline-none [&::-webkit-search-cancel-button]:hidden" />

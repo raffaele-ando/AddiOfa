@@ -123,7 +123,7 @@ export default function SfidaRisultato() {
                 <FoglioCondividi aperto={foglio} onChiudi={() => setFoglio(false)} testo={testo} url={url} titolo="Condividi" />
               </>
             ) : (
-              <p role="alert" className="flex items-center gap-2 text-[14px] font-bold text-basso-testo"><Icona nome="stato-attenzione" size={18} />Link non disponibile.</p>
+              <p role="alert" className="flex items-center gap-2 text-[14px] font-bold text-errore-testo"><Icona nome="stato-attenzione" size={18} />Link non disponibile.</p>
             )}
             {!sfidato && !avv && (
               <div className="flex items-start gap-2">

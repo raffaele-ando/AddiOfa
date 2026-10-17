@@ -45,7 +45,7 @@ export default function Perche({ onStart }: { onStart(): void }) {
             Tutto ciò che ti serve <span className="text-azione">per arrivare preparato.</span>
           </h2>
           <button type="button" onClick={onStart}
-            className="inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-azione-tinta px-5 py-3 text-sm font-bold text-azione-scuro hover:bg-azione hover:text-azione-su transition-colors duration-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione sm:self-auto">
+            className="inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-azione-tinta px-5 py-3 text-sm font-bold text-azione-testo hover:bg-azione hover:text-azione-su transition-colors duration-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione sm:self-auto">
             Parti dal diagnostico<Icona nome="avanti" size={18} />
           </button>
         </div>
@@ -64,7 +64,7 @@ export default function Perche({ onStart }: { onStart(): void }) {
           <div className="vetro flex flex-col items-center gap-5 rounded-[28px] p-6 sm:flex-row sm:p-8 lg:flex-col lg:items-start xl:flex-row xl:items-center">
             <Anello />
             <div data-testo-ok>
-              <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-azione-scuro dark:text-azione">
+              <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-azione-testo">
                 Il test in cifre
                 <InfoFoglio titolo="Il test di recupero" etichetta="Informazioni sul test">
                   <p>Il test di riferimento è quello di recupero nel formato LinguaViva: {EXAM.questions} domande, {EXAM.minutes} minuti, si supera con {EXAM.passMark} risposte esatte. Le regole possono cambiare: controlla il regolamento del tuo corso.</p>

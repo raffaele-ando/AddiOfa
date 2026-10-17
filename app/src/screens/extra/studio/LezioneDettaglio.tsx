@@ -84,7 +84,7 @@ export default function LezioneDettaglio() {
             <span className="block text-[15px] leading-[20px] font-bold text-testo">Verifica</span>
             <span className="mt-1.5 block"><BarraTono valore={percento} tono={imparata ? 'alto' : 'azione'} className="h-2" /></span>
           </span>
-          <span aria-hidden="true" className={cn('shrink-0 text-[22px] leading-[24px] font-extrabold tabular-nums', imparata ? 'text-alto-numero' : 'text-azione-scuro')}>
+          <span aria-hidden="true" className={cn('shrink-0 text-[22px] leading-[24px] font-extrabold tabular-nums', imparata ? 'text-alto-numero' : 'text-azione-testo')}>
             {l.imparate}<span className="text-[14px] font-bold text-testo-tenue">/{totaleDomande}</span>
           </span>
         </li>

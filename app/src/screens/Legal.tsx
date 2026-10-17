@@ -72,7 +72,7 @@ export default function Legal({ section, onBack, onSection }: {
                     <button
                       type="button"
                       onClick={() => vai(sid(i))}
-                      className="w-full py-1.5 text-left font-semibold text-azione-scuro hover:underline underline-offset-2"
+                      className="w-full py-1.5 text-left font-semibold text-azione-testo hover:underline underline-offset-2"
                     >
                       {i + 1}. {s.titolo}
                     </button>
@@ -85,7 +85,7 @@ export default function Legal({ section, onBack, onSection }: {
           {doc.sezioni.map((s, i) => (
             <section key={sid(i)} id={sid(i)} className="scroll-mt-4 border-t border-linea pt-5 mt-2">
               <h2 className="text-[17px] font-extrabold leading-snug text-testo">
-                <span className="mr-1.5 text-azione-scuro tabular-nums">{i + 1}.</span>{s.titolo}
+                <span className="mr-1.5 text-azione-testo tabular-nums">{i + 1}.</span>{s.titolo}
               </h2>
               {s.paragrafi.map((p, j) => (
                 <p key={j} className={cn(TESTO, 'mt-2')}>{p}</p>

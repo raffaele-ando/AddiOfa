@@ -16,7 +16,7 @@ const tutteLeFrasi = () => (cache ??= estraiFrasi(questions));
 
 // Il filtro scelto prende il colore dell'icona che compare sulle righe: preferite ambra, da ripassare corallo, già note verde. Solo icone e numeri.
 const FILTRI: { id: FiltroFrasi; nome: string; icona: NomeIcona; attivo: string }[] = [
-  { id: 'tutte', nome: 'Tutte', icona: 'filtro-tutte', attivo: 'bg-azione-tinta text-azione-scuro border-azione' },
+  { id: 'tutte', nome: 'Tutte', icona: 'filtro-tutte', attivo: 'bg-azione-tinta text-azione-testo border-azione' },
   { id: 'preferite', nome: 'Preferite', icona: 'preferita', attivo: 'bg-medio-tinta text-medio-testo border-medio' },
   { id: 'da-ripassare', nome: 'Da ripassare', icona: 'stato-da-ripassare', attivo: 'bg-basso-tinta text-basso-testo border-basso' },
   { id: 'gia-note', nome: 'Già note', icona: 'stato-imparata', attivo: 'bg-alto-tinta text-alto-testo border-alto' },
@@ -60,7 +60,7 @@ export default function Frasi() {
         <span aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none"><Icona nome="cerca" size={18} /></span>
         <input type="search" value={testo} onChange={e => { setTesto(e.target.value); setQuante(PAGINA); }}
           aria-label="Cerca" placeholder="Cerca" autoComplete="off" spellCheck={false}
-          className="w-full h-[46px] rounded-[12px] border border-linea bg-superficie-2 pl-10 pr-10 text-[15px] text-testo placeholder:text-testo-tenue outline-none focus:border-azione" />
+          className="w-full h-[46px] rounded-[12px] border border-bordo-campo bg-superficie-2 pl-10 pr-10 text-[15px] text-testo placeholder:text-testo-tenue outline-none focus:border-azione" />
         {testo && (
           <button type="button" onClick={() => { setTesto(''); setQuante(PAGINA); }} aria-label="Cancella"
             className="absolute right-1.5 top-1/2 -translate-y-1/2 grid place-items-center w-9 h-9 rounded-full text-testo-tenue hover:text-testo">
@@ -110,7 +110,7 @@ export default function Frasi() {
                       className={cn('flex-1 min-w-0 py-3 text-left', disponibile ? 'pl-0' : 'pl-4')}>
                       <span data-testo-ok lang="en" className="block text-[15.5px] leading-[21px] font-bold text-testo break-words">{f.en}</span>
                       <span data-testo-ok className={cn('mt-0.5 block text-[13.5px] leading-[19px] text-testo-tenue break-words', apertaOra ? '' : 'line-clamp-2')}>
-                        {f.itTipo === 'regola' && <span aria-hidden="true" className="mr-1 inline-block align-[-3px] text-azione-scuro"><Icona nome="teoria" size={15} /></span>}{f.it}
+                        {f.itTipo === 'regola' && <span aria-hidden="true" className="mr-1 inline-block align-[-3px] text-azione-testo"><Icona nome="teoria" size={15} /></span>}{f.it}
                       </span>
                       {(stato.daRipassare || stato.nota) && (
                         <span role="img" aria-label={stato.daRipassare ? 'Da ripassare' : 'Già nota'}

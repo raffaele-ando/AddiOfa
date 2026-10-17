@@ -55,7 +55,7 @@ function RigaRivale({ r, aperto, onToggle, onRimuovi, onApri }: { r: Rivale; ape
               </li>
             ))}
           </ul>
-          <button type="button" aria-label={`Togli ${r.nome}`} onClick={() => { playTapSound(); onRimuovi(); }} className="brand-premibile mt-1 inline-flex items-center gap-1.5 text-[13px] font-bold text-basso-testo">
+          <button type="button" aria-label={`Togli ${r.nome}`} onClick={() => { playTapSound(); onRimuovi(); }} className="brand-premibile mt-1 inline-flex items-center gap-1.5 text-[13px] font-bold text-errore-testo">
             <Icona nome="cancella" size={15} /> Togli
           </button>
         </div>

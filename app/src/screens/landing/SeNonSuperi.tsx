@@ -78,7 +78,7 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
               ))}
               <li className="col-span-2 lg:col-span-1 lg:min-w-0 lg:flex-[1.3] lg:-translate-y-8 lg:rotate-[-1.5deg]">
                 <div className="vetro relative flex h-full min-h-[11rem] flex-col items-start justify-between gap-4 rounded-[26px] !border-azione/45 !bg-azione-tinta p-5 lg:min-h-[17rem]">
-                  <p className="text-[17px] font-extrabold leading-snug text-testo">Con AddiOFA ti prepari <span className="text-azione-scuro">ed eviti tutto questo.</span></p>
+                  <p className="text-[17px] font-extrabold leading-snug text-testo">Con AddiOFA ti prepari <span className="text-azione-testo">ed eviti tutto questo.</span></p>
                   <div className="flex w-full items-end justify-between">
                     <Illustrazione nome="progressi-statistiche" lato={62} />
                     <button

@@ -101,7 +101,7 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
               <Icona nome="correzioni" size={22} />Correzioni
             </button>
             <button type="button" onClick={() => { playTapSound(); onRetry(); }}
-              className="flex h-[54px] flex-[2] items-center justify-center gap-2 rounded-[12px] border border-azione/60 bg-superficie text-[15px] font-bold text-azione-scuro transition-colors duration-100 hover:bg-azione-tinta">
+              className="flex h-[54px] flex-[2] items-center justify-center gap-2 rounded-[12px] border border-azione/60 bg-superficie text-[15px] font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
               <Icona nome="riprova" size={22} />Rifai
             </button>
           </div>

@@ -38,7 +38,7 @@ export function AndamentoSimulazioni({ stato }: { stato: AppState }) {
   const superate = punti.filter(p => p.esatte >= REAL_TEST_PASS_MARK).length;
   return (
     <section aria-labelledby="titolo-andamento" className="flex flex-col gap-2.5">
-      <TitoloSezione id="titolo-andamento" destra={ultimo ? <span className="inline-flex items-center gap-1.5 text-[13px] font-bold tabular-nums text-testo" role="img" aria-label={`Ultima: ${ultimo.esatte} su ${ultimo.totale}`}><Icona nome="simulazioni" size={16} className="text-azione-scuro" />{ultimo.esatte}/{ultimo.totale}</span> : undefined}>
+      <TitoloSezione id="titolo-andamento" destra={ultimo ? <span className="inline-flex items-center gap-1.5 text-[13px] font-bold tabular-nums text-testo" role="img" aria-label={`Ultima: ${ultimo.esatte} su ${ultimo.totale}`}><Icona nome="simulazioni" size={16} className="text-azione-testo" />{ultimo.esatte}/{ultimo.totale}</span> : undefined}>
         Risultati
       </TitoloSezione>
       {punti.length === 0 ? (

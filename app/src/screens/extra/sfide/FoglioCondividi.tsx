@@ -31,7 +31,7 @@ const cerchio = 'w-11 h-11 rounded-full flex items-center justify-center';
 // Un colore per canale (come nel concept): WhatsApp verde, Telegram blu, Messaggi viola; «Altre» e «Copia» restano neutri.
 const COLORE_CANALE: Record<string, string> = {
   whatsapp: 'bg-alto-tinta text-alto-numero',
-  telegram: 'bg-azione-tinta text-azione-scuro',
+  telegram: 'bg-azione-tinta text-azione-testo',
   messaggi: 'bg-viola-tinta text-viola',
 };
 const NEUTRO = 'bg-superficie text-testo-tenue border border-linea';
@@ -85,9 +85,9 @@ export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { te
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center gap-2">
           <input id="condividi-link" ref={campo} readOnly value={url} aria-label="Il link" onFocus={e => e.currentTarget.select()}
-            className="min-w-0 flex-1 rounded-2xl border border-linea bg-superficie px-4 py-3 text-[13px] font-semibold text-testo focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
+            className="min-w-0 flex-1 rounded-2xl border border-bordo-campo bg-superficie px-4 py-3 text-[13px] font-semibold text-testo focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
           <button type="button" onClick={() => { playTapSound(); void copia(); }} aria-label="Copia il link"
-            className="brand-premibile grid h-12 w-14 shrink-0 place-items-center rounded-2xl border border-azione bg-superficie text-azione-scuro">
+            className="brand-premibile grid h-12 w-14 shrink-0 place-items-center rounded-2xl border border-azione bg-superficie text-azione-testo">
             <Icona nome="copia" size={22} />
           </button>
         </div>

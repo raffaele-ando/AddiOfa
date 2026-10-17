@@ -20,7 +20,7 @@ function Scelte({ nome, valori, scelto, onScegli, formato }: { nome: string; val
     <div role="radiogroup" aria-label={nome} className="flex flex-wrap gap-2">
       {valori.map(v => (
         <button key={v} type="button" role="radio" aria-checked={scelto === v} onClick={() => { playTapSound(); onScegli(v); }}
-          className={cn('brand-premibile h-9 px-3.5 rounded-full text-[13.5px] font-semibold tabular-nums', scelto === v ? 'bg-azione-tinta text-azione-scuro border border-azione' : 'bg-superficie text-testo border border-linea')}>
+          className={cn('brand-premibile h-9 px-3.5 rounded-full text-[13.5px] font-semibold tabular-nums', scelto === v ? 'bg-azione-tinta text-azione-testo border border-azione' : 'bg-superficie text-testo border border-linea')}>
           {formato(v)}
         </button>
       ))}
@@ -73,7 +73,7 @@ export default function Obiettivi() {
           <div className="flex items-center gap-2.5">
             <label htmlFor="data-test" className="sr-only">Data del test</label>
             <input id="data-test" type="date" value={ob.dataTest ?? ''} onChange={e => imposta({ dataTest: e.target.value || null })}
-              className="h-11 min-w-0 flex-1 rounded-[10px] bg-superficie border border-linea px-3 text-[15px] text-testo focus:outline-none focus:border-azione" />
+              className="h-11 min-w-0 flex-1 rounded-[10px] bg-superficie border border-bordo-campo px-3 text-[15px] text-testo focus:outline-none focus:border-azione" />
             {ob.dataTest && (
               <button type="button" onClick={() => { playTapSound(); imposta({ dataTest: null }); }} aria-label="Togli la data"
                 className="brand-premibile grid h-11 w-11 place-items-center rounded-[10px] bg-superficie border border-linea text-testo-tenue"><Icona nome="chiudi" size={20} /></button>

@@ -32,8 +32,8 @@ export function Bottone({ children, onClick, variante = 'primario', disabled, cl
 }) {
   const v = {
     primario: 'bg-azione text-azione-su hover:bg-azione-scuro',
-    secondario: 'border border-azione text-azione-scuro bg-superficie',
-    testo: 'text-azione-scuro bg-transparent',
+    secondario: 'border border-azione text-azione-testo bg-superficie',
+    testo: 'text-azione-testo bg-transparent',
   } as const;
   return (
     <button type={type} disabled={disabled} aria-label={aria} onClick={onClick ? () => { playTapSound(); onClick(); } : undefined} className={cn(BASE_BOTTONE, v[variante], className)}>
@@ -55,9 +55,9 @@ export function Campo({ id, aria, valore, onCambia, segnaposto, maxLength, error
           autoComplete="off" spellCheck={false}
           onKeyDown={onInvio ? e => { if (e.key === 'Enter') onInvio(); } : undefined}
           aria-invalid={errore ? true : undefined} aria-describedby={errore ? `${id}-err` : undefined}
-          className={cn('w-full min-w-0 rounded-2xl border border-linea bg-superficie py-3 pr-4 text-[15px] font-semibold text-testo placeholder:text-testo-tenue placeholder:font-medium focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30', icona ? 'pl-11' : 'pl-4')} />
+          className={cn('w-full min-w-0 rounded-2xl border border-bordo-campo bg-superficie py-3 pr-4 text-[15px] font-semibold text-testo placeholder:text-testo-tenue placeholder:font-medium focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30', icona ? 'pl-11' : 'pl-4')} />
       </div>
-      {errore && <p id={`${id}-err`} role="alert" className="flex items-center gap-1.5 text-[13px] font-bold text-basso-testo"><Icona nome="stato-attenzione" size={15} />{errore}</p>}
+      {errore && <p id={`${id}-err`} role="alert" className="flex items-center gap-1.5 text-[13px] font-bold text-errore-testo"><Icona nome="stato-attenzione" size={15} />{errore}</p>}
     </div>
   );
 }

@@ -26,7 +26,7 @@ function SchermoTest() {
       <p className="text-[15px] font-extrabold leading-snug text-testo">She _____ to Milan every day.</p>
       <ul className="flex flex-col gap-2">
         {OPZIONI.map((o, i) => (
-          <li key={o} className={cn('flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-[13px] font-bold', i === 1 ? 'border-azione bg-azione-tinta text-azione-scuro' : 'border-linea bg-superficie text-testo')}>
+          <li key={o} className={cn('flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-[13px] font-bold', i === 1 ? 'border-azione bg-azione-tinta text-azione-testo' : 'border-linea bg-superficie text-testo')}>
             <span className={cn('grid h-4 w-4 place-items-center rounded-full border-2', i === 1 ? 'border-azione bg-azione' : 'border-tacca')} />{o}
           </li>
         ))}
@@ -51,7 +51,7 @@ function SchermoRipasso() {
       <div className="grid grid-cols-2 gap-2">
         {tessere.map(t => (
           <div key={t.nome} className="flex flex-col items-center gap-1.5 rounded-xl bg-superficie-2 py-3 text-[11.5px] font-bold text-testo">
-            <Icona nome={t.icona} size={22} className="text-azione-scuro dark:text-azione" />{t.nome}
+            <Icona nome={t.icona} size={22} className="text-azione-testo" />{t.nome}
           </div>
         ))}
       </div>
@@ -70,7 +70,7 @@ function SchermoSimulazione() {
       <p className="text-[15px] font-extrabold leading-snug text-testo">I have _____ finished my dinner.</p>
       <ul className="flex flex-col gap-2">
         {['ever', 'already', 'yet', 'since'].map((o, i) => (
-          <li key={o} className={cn('flex items-center gap-2.5 rounded-xl border px-2.5 py-2 text-[13px] font-bold', i === 1 ? 'border-azione bg-azione-tinta text-azione-scuro' : 'border-linea bg-superficie text-testo')}>
+          <li key={o} className={cn('flex items-center gap-2.5 rounded-xl border px-2.5 py-2 text-[13px] font-bold', i === 1 ? 'border-azione bg-azione-tinta text-azione-testo' : 'border-linea bg-superficie text-testo')}>
             <span className={cn('grid h-6 w-6 place-items-center rounded-full text-[11px]', i === 1 ? 'bg-azione text-azione-su' : 'bg-superficie-2 text-testo-tenue')}>{LETTERE[i]}</span>{o}
           </li>
         ))}
@@ -118,7 +118,7 @@ export default function TelefonoPassi() {
           const on = i === attivo;
           return (
             <button key={x.n} type="button" aria-pressed={on} onClick={() => setAttivo(i)} className="brand-premibile flex flex-col items-center gap-1.5 rounded-2xl px-1 py-2">
-              <span className={cn('grid h-11 w-11 place-items-center rounded-full text-[15px] font-extrabold transition-colors duration-100', on ? 'bg-azione text-azione-su' : 'bg-azione-tinta text-azione-scuro dark:text-azione')}>{x.n}</span>
+              <span className={cn('grid h-11 w-11 place-items-center rounded-full text-[15px] font-extrabold transition-colors duration-100', on ? 'bg-azione text-azione-su' : 'bg-azione-tinta text-azione-testo')}>{x.n}</span>
               <span className={cn('text-[11.5px] leading-tight font-bold', on ? 'text-testo' : 'text-testo-tenue')}>{x.titolo.replace('Supera l\'OFA', 'Supera')}</span>
             </button>
           );
@@ -130,18 +130,18 @@ export default function TelefonoPassi() {
         <div aria-hidden className="absolute left-1/2 top-1/2 h-[92%] w-[82%] -translate-x-1/2 -translate-y-1/2 rotate-[5deg] rounded-[44px] bg-gradient-to-br from-azione-tinta via-azione/25 to-azione/45" />
         <div className={cn('absolute top-0 z-10', p.pillola.lato === 'sx' ? 'left-0' : 'right-0')} aria-hidden>
           <span className="flex items-center gap-2 whitespace-nowrap rounded-full border border-linea bg-superficie px-3 py-2 text-[12px] font-bold text-testo shadow-[0_10px_24px_rgba(15,23,42,0.14)] dark:shadow-none">
-            <Icona nome={p.pillola.icona} size={15} className="text-azione-scuro dark:text-azione" />{p.pillola.testo}
+            <Icona nome={p.pillola.icona} size={15} className="text-azione-testo" />{p.pillola.testo}
           </span>
         </div>
-        <div aria-hidden data-testo-ok className="relative mx-auto w-[262px] overflow-hidden rounded-[40px] border-[8px] border-[#0E1B3F] bg-fondo shadow-[0_30px_60px_rgba(30,64,175,0.28)] dark:border-tacca dark:shadow-none">
-          <div className="mx-auto mt-2 h-4 w-20 rounded-full bg-[#0E1B3F] dark:bg-tacca" />
+        <div aria-hidden data-testo-ok className="relative mx-auto w-[262px] overflow-hidden rounded-[40px] border-[8px] border-[var(--landing-blocco-scuro-da)] bg-fondo shadow-[0_30px_60px_rgba(30,64,175,0.28)] dark:border-tacca dark:shadow-none">
+          <div className="mx-auto mt-2 h-4 w-20 rounded-full bg-[var(--landing-blocco-scuro-da)] dark:bg-tacca" />
           <div className="flex items-center justify-between px-4 pt-2 text-[10px] font-bold text-testo-tenue">
-            <span>9:41</span><span className="rounded-full bg-azione-tinta px-2 py-0.5 text-azione-scuro dark:text-azione">Esempio</span>
+            <span>9:41</span><span className="rounded-full bg-azione-tinta px-2 py-0.5 text-azione-testo">Esempio</span>
           </div>
           <div className="h-[384px] px-4 pb-3 pt-3"><Schermo /></div>
           <div className="flex justify-around border-t border-linea bg-superficie py-2">
             {SCHEDE.map(s => (
-              <span key={s.id} className={cn('flex flex-col items-center gap-0.5 text-[10px] font-bold', s.id === p.tab ? 'text-azione-scuro dark:text-azione' : 'text-testo-tenue')}>
+              <span key={s.id} className={cn('flex flex-col items-center gap-0.5 text-[10px] font-bold', s.id === p.tab ? 'text-azione-testo' : 'text-testo-tenue')}>
                 <Icona nome={s.icona} size={18} />{s.nome}
               </span>
             ))}

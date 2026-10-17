@@ -31,7 +31,7 @@ function BloccoTesto({ testo, id }: { testo: string; id: string }) {
     <div>
       <label htmlFor={id} className="sr-only">Testo da copiare</label>
       <textarea id={id} data-testo-ok readOnly value={testo} rows={Math.min(9, testo.split('\n').length + 1)} onFocus={e => e.currentTarget.select()}
-        className="w-full resize-none rounded-[10px] bg-superficie p-3 text-[13px] leading-[19px] text-testo outline-none focus:outline focus:outline-2 focus:outline-azione" />
+        className="w-full resize-none rounded-[10px] border border-bordo-campo bg-superficie p-3 text-[13px] leading-[19px] text-testo outline-none focus:outline focus:outline-2 focus:outline-azione" />
       <button type="button" onClick={async () => { playTapSound(); setEsito((await copiaTesto(testo)) ? 'ok' : 'no'); }}
         className="brand-premibile mt-2 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-[13px] bg-superficie-2 px-4 py-3 text-[15px] font-bold text-testo">
         <Icona nome={esito === 'ok' ? 'stato-ok' : 'copia'} size={18} />{esito === 'ok' ? 'Copiato' : 'Copia'}
@@ -78,7 +78,7 @@ export default function Segnala() {
             <button type="button" onClick={() => { playTapSound(); setFatta(null); }}
               className="brand-premibile flex min-h-[48px] w-full items-center justify-center gap-2 rounded-[13px] bg-superficie-2 px-4 py-3 text-[15px] font-bold text-testo"><Icona nome="segnala" size={18} />Un'altra</button>
             <button type="button" onClick={() => { playTapSound(); indietro(); }}
-              className="brand-premibile flex min-h-[48px] w-full items-center justify-center gap-2 rounded-[13px] px-4 py-3 text-[15px] font-bold text-azione-scuro"><Icona nome="indietro" size={18} />Indietro</button>
+              className="brand-premibile flex min-h-[48px] w-full items-center justify-center gap-2 rounded-[13px] px-4 py-3 text-[15px] font-bold text-azione-testo"><Icona nome="indietro" size={18} />Indietro</button>
           </div>
         </div>
       ) : (
@@ -118,7 +118,7 @@ export default function Segnala() {
             <label htmlFor={campo} className="sr-only">Cosa non va?</label>
             <textarea id={campo} value={testo} onChange={e => setTesto(e.target.value.slice(0, LUNGHEZZA_MAX))} rows={5} maxLength={LUNGHEZZA_MAX}
               placeholder="Cosa non va?"
-              className="w-full resize-y rounded-[12px] bg-superficie-2 p-3.5 text-[15px] leading-[22px] text-testo placeholder:text-testo-tenue outline-none focus:outline focus:outline-2 focus:outline-azione" />
+              className="w-full resize-y rounded-[12px] border border-bordo-campo bg-superficie-2 p-3.5 text-[15px] leading-[22px] text-testo placeholder:text-testo-tenue outline-none focus:outline focus:outline-2 focus:outline-azione" />
             <p className="text-right text-[12px] tabular-nums text-testo-tenue">{testo.length}/{LUNGHEZZA_MAX}</p>
           </div>
           <div className="mt-3">
@@ -143,7 +143,7 @@ export default function Segnala() {
                 <p data-testo-ok className="mt-1 text-[13.5px] leading-[20px] text-testo break-words">{accorcia(s.testo, 140)}</p>
                 <div className="mt-2 flex gap-2">
                   <button type="button" onClick={() => { playTapSound(); setFatta(s); }} aria-label="Rivedi e copia"
-                    className="brand-premibile grid h-10 w-10 place-items-center rounded-[10px] bg-superficie text-azione-scuro"><Icona nome="copia" size={18} /></button>
+                    className="brand-premibile grid h-10 w-10 place-items-center rounded-[10px] bg-superficie text-azione-testo"><Icona nome="copia" size={18} /></button>
                   <button type="button" onClick={() => { playTapSound(); salva(prec => rimuovi(leggiSalvate(prec), s.id)); }} aria-label="Elimina questa segnalazione"
                     className="brand-premibile grid h-10 w-10 place-items-center rounded-[10px] bg-superficie text-testo-tenue"><Icona nome="cancella" size={18} /></button>
                 </div>

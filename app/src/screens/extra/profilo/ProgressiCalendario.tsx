@@ -100,7 +100,7 @@ export default function ProgressiCalendario() {
               onClick={() => { playTapSound(); setScelto(c.data); }}
               className="relative h-11 grid place-items-center">
               <span className={cn('w-10 h-10 rounded-full grid place-items-center text-[14.5px] tabular-nums',
-                c.studiato ? 'bg-medio-chiaro text-testo dark:bg-medio dark:text-azione-su font-bold' : c.futuro ? 'text-testo-tenue' : 'text-testo',
+                c.studiato ? 'bg-medio-chiaro border-2 border-medio-numero text-testo dark:bg-medio dark:text-medio-su font-bold' : c.futuro ? 'text-testo-tenue' : 'text-testo',
                 c.oggi && !c.studiato && 'border-2 border-azione font-bold',
                 c.oggi && c.studiato && 'ring-2 ring-offset-2 ring-azione ring-offset-superficie-2',
                 scelto === c.data && !c.studiato && !c.oggi && 'bg-azione-tinta font-bold',
@@ -131,7 +131,7 @@ export default function ProgressiCalendario() {
         <div role="radiogroup" aria-label="Periodo" className="grid grid-cols-2 gap-1 rounded-[10px] bg-superficie-2 p-1">
           {([7, 30] as const).map(p => (
             <button key={p} type="button" role="radio" aria-checked={periodo === p} aria-label={`Ultimi ${p} giorni`} onClick={() => { playTapSound(); setPeriodo(p); }}
-              className={cn('h-8 min-w-[44px] rounded-[7px] px-2.5 text-[13.5px] font-bold tabular-nums', periodo === p ? 'bg-superficie text-azione-scuro shadow-[0_1px_3px_rgba(15,23,42,0.08)] dark:shadow-none dark:border dark:border-linea' : 'text-testo-tenue')}>{p}</button>
+              className={cn('h-8 min-w-[44px] rounded-[7px] px-2.5 text-[13.5px] font-bold tabular-nums', periodo === p ? 'bg-superficie text-azione-testo shadow-[0_1px_3px_rgba(15,23,42,0.08)] dark:shadow-none dark:border dark:border-linea' : 'text-testo-tenue')}>{p}</button>
           ))}
         </div>
       </div>

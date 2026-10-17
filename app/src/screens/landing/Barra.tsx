@@ -64,7 +64,7 @@ export default function Barra({ onStart }: { onStart(): void }) {
               onClick={e => { e.preventDefault(); vai(a.id); }}
               className={cn(
                 'rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-100',
-                attiva === a.id ? 'bg-azione-tinta text-azione-scuro' : 'text-testo hover:bg-azione-tinta hover:text-azione-scuro',
+                attiva === a.id ? 'bg-azione-tinta text-azione-testo' : 'text-testo hover:bg-azione-tinta hover:text-azione-testo',
                 FOCUS,
               )}
             >
@@ -103,7 +103,7 @@ export default function Barra({ onStart }: { onStart(): void }) {
               key={a.id}
               href={`#${a.id}`}
               onClick={e => { e.preventDefault(); vai(a.id); }}
-              className={cn('rounded-2xl px-4 py-3 text-base font-semibold text-testo hover:bg-azione-tinta', attiva === a.id && 'bg-azione-tinta text-azione-scuro', FOCUS)}
+              className={cn('rounded-2xl px-4 py-3 text-base font-semibold text-testo hover:bg-azione-tinta', attiva === a.id && 'bg-azione-tinta text-azione-testo', FOCUS)}
             >
               {a.label}
             </a>

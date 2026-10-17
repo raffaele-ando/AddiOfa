@@ -22,10 +22,10 @@ export default function CtaFinale({ onStart, onSkip }: { scuro?: boolean; onStar
               <button
                 type="button"
                 onClick={() => { playTapSound(); onStart(); }}
-                className="inline-flex items-center justify-between gap-4 rounded-full bg-white py-2.5 pl-7 pr-2.5 text-base font-bold text-[#123EA8] transition-colors duration-100 hover:bg-[#DBEAFE] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="inline-flex items-center justify-between gap-4 rounded-full bg-white py-2.5 pl-7 pr-2.5 text-base font-bold text-[var(--landing-blocco-blu-a)] transition-colors duration-100 hover:bg-azione-tinta dark:hover:bg-white/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 <span>Fai il diagnostico</span>
-                <span aria-hidden className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2563EB] text-white"><Icona nome="avanti" size={22} /></span>
+                <span aria-hidden className="flex h-10 w-10 items-center justify-center rounded-full bg-azione text-azione-su"><Icona nome="avanti" size={22} /></span>
               </button>
               <button
                 type="button"

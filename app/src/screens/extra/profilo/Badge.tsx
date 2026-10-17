@@ -35,7 +35,7 @@ function SchedaBadge({ b, onApri }: { b: BadgeValutato; onApri: () => void }) {
         className="brand-premibile flex h-full w-full flex-col items-center gap-2 rounded-[14px] bg-superficie-2 px-2 pb-3 pt-3.5 text-center">
         <span className={cn('relative grid h-[72px] w-[72px] place-items-center rounded-[18px]', b.sbloccato ? TONI[tono].tinta : 'bg-superficie')} aria-hidden="true">
           <Disegno nome={arte(b)} lato={60} className={cn(!b.sbloccato && 'grayscale opacity-45')} />
-          {b.sbloccato && <span className="absolute -right-1.5 -top-1.5 grid h-6 w-6 place-items-center rounded-full border-2 border-superficie-2 bg-alto-pieno text-azione-su"><Icona nome="stato-ok" size={13} /></span>}
+          {b.sbloccato && <span className="absolute -right-1.5 -top-1.5 grid h-6 w-6 place-items-center rounded-full border-2 border-superficie-2 bg-alto-pieno text-alto-su"><Icona nome="stato-ok" size={13} /></span>}
         </span>
         <h3 className="text-[13px] leading-[17px] font-bold text-testo">{b.titolo}</h3>
         {!b.sbloccato && (

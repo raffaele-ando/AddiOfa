@@ -75,7 +75,7 @@ export function SelettoreIcone<T extends string>({ nome, voci, valore, onScegli 
         return (
           <button key={v.id} type="button" role="radio" aria-checked={on} aria-label={v.nome} title={v.nome}
             onClick={() => { playTapSound(); onScegli(v.id); }}
-            className={cn('brand-premibile h-11 rounded-[10px] grid place-items-center', on ? 'bg-superficie text-azione-scuro shadow-[0_1px_3px_rgba(15,23,42,0.08)] dark:shadow-none dark:border dark:border-linea' : 'text-testo-tenue')}>
+            className={cn('brand-premibile h-11 rounded-[10px] grid place-items-center', on ? 'bg-superficie text-azione-testo shadow-[0_1px_3px_rgba(15,23,42,0.08)] dark:shadow-none dark:border dark:border-linea' : 'text-testo-tenue')}>
             {v.icona}
           </button>
         );

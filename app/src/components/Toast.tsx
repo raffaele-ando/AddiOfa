@@ -16,7 +16,7 @@ export function useToast(): Mostra {
 const ICONE: Record<Tipo, NomeIcona> = { ok: 'stato-ok', errore: 'stato-errore', info: 'info' };
 const COLORI: Record<Tipo, string> = {
   ok: 'text-alto-testo',
-  errore: 'text-basso-testo',
+  errore: 'text-errore-testo',
   info: 'text-azione',
 };
 

@@ -149,13 +149,13 @@ function Dettaglio({ topic, prec, succ, titoloRef, onList, onGo }: {
       {/* Il testo della scheda è contenuto (esente dal controllo di testo): attorno non c'è nessuna introduzione. */}
       <article data-testo-ok className="mt-5 flex flex-col gap-6">
         <section aria-labelledby="t-regola" className="flex flex-col gap-2.5">
-          <h2 id="t-regola" className={h2}><span aria-hidden="true" className="text-azione-scuro"><Icona nome="teoria-regola" size={20} /></span>Regola</h2>
+          <h2 id="t-regola" className={h2}><span aria-hidden="true" className="text-azione-testo"><Icona nome="teoria-regola" size={20} /></span>Regola</h2>
           {topic.regola.map((r, i) => <p key={i} className={corpo}><RichText text={r} /></p>)}
         </section>
 
         {topic.esempi.length > 0 && (
           <section aria-labelledby="t-esempi">
-            <h2 id="t-esempi" className={h2}><span aria-hidden="true" className="text-azione-scuro"><Icona nome="teoria-esempi" size={20} /></span>Esempi</h2>
+            <h2 id="t-esempi" className={h2}><span aria-hidden="true" className="text-azione-testo"><Icona nome="teoria-esempi" size={20} /></span>Esempi</h2>
             <ul className="mt-2.5 flex flex-col gap-3">
               {topic.esempi.map((e, i) => (
                 <li key={i} className="border-l-[3px] border-azione pl-3">
@@ -169,14 +169,14 @@ function Dettaglio({ topic, prec, succ, titoloRef, onList, onGo }: {
 
         {topic.errori.length > 0 && (
           <section aria-labelledby="t-errori">
-            <h2 id="t-errori" className={h2}><span aria-hidden="true" className="text-basso-numero"><Icona nome="stato-risposta-sbagliata" size={20} /></span>Errori</h2>
+            <h2 id="t-errori" className={h2}><span aria-hidden="true" className="text-errore"><Icona nome="stato-risposta-sbagliata" size={20} /></span>Errori</h2>
             <ul className="mt-2.5 flex flex-col gap-2.5">
               {topic.errori.map((e, i) => (
                 <li key={i} className="rounded-[12px] bg-superficie-2 p-4 flex flex-col gap-2.5">
                   <h3 className="sr-only">Errore {i + 1}</h3>
                   <p className="flex gap-2.5 items-start">
-                    <span role="img" aria-label="Sbagliato" className="mt-0.5 inline-flex items-center shrink-0 rounded-full bg-basso-tinta text-basso-testo p-1"><Icona nome="stato-risposta-sbagliata" size={16} /></span>
-                    <span lang="en" className="font-semibold text-testo line-through decoration-basso/60 leading-snug break-words min-w-0">{e.sbagliato}</span>
+                    <span role="img" aria-label="Sbagliato" className="mt-0.5 inline-flex items-center shrink-0 rounded-full bg-errore-tinta text-errore-testo p-1"><Icona nome="stato-risposta-sbagliata" size={16} /></span>
+                    <span lang="en" className="font-semibold text-testo line-through decoration-errore/60 leading-snug break-words min-w-0">{e.sbagliato}</span>
                   </p>
                   <p className="flex gap-2.5 items-start">
                     <span role="img" aria-label="Giusto" className="mt-0.5 inline-flex items-center shrink-0 rounded-full bg-alto-tinta text-alto-testo p-1"><Icona nome="stato-risposta-giusta" size={16} /></span>
@@ -222,7 +222,7 @@ function Vicino({ t, verso, onGo }: { t: TheoryTopic; verso: 'prec' | 'succ'; on
     >
       {!succ && <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="indietro" size={20} /></span>}
       <span className="block min-w-0 flex-1 font-bold leading-snug text-testo break-words">{titoloBreve(t)}</span>
-      {succ && <span aria-hidden="true" className="shrink-0 text-azione-scuro"><Icona nome="avanti" size={20} /></span>}
+      {succ && <span aria-hidden="true" className="shrink-0 text-azione-testo"><Icona nome="avanti" size={20} /></span>}
     </button>
   );
 }

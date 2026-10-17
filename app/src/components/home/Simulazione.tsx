@@ -14,7 +14,7 @@ function dataBreve(t: number): string {
 function DatiFormato() {
   const dato = (icona: 'risposte' | 'tempo' | 'soglia', valore: string, aria: string) => (
     <span role="img" aria-label={aria} className="inline-flex items-center gap-1 text-[14px] leading-[18px] font-bold tabular-nums text-testo">
-      <Icona nome={icona} size={16} className="text-azione-scuro" />{valore}
+      <Icona nome={icona} size={16} className="text-azione-testo" />{valore}
     </span>
   );
   return (

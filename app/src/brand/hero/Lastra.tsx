@@ -29,8 +29,8 @@ export function LastraContenuto({ idp }: { idp: string }) {
           <stop offset="1" style={s('--landing-lastra-fianco')} />
         </linearGradient>
         <radialGradient id={`${idp}p`} gradientUnits="userSpaceOnUse" cx="620" cy="690" r="330">
-          <stop offset="0" stopColor="#FFFFFF" />
-          <stop offset=".45" stopColor="#FFFFFF" />
+          <stop offset="0" style={s('--landing-gradino-sopra')} />
+          <stop offset=".45" style={s('--landing-gradino-sopra')} />
           <stop offset=".8" style={s('--landing-luce')} />
           <stop offset="1" style={s('--landing-luce-bordo')} />
         </radialGradient>
@@ -40,17 +40,17 @@ export function LastraContenuto({ idp }: { idp: string }) {
           <stop offset="1" style={{ stopColor: 'var(--landing-luce-bordo)', stopOpacity: 0 }} />
         </radialGradient>
         <linearGradient id={`${idp}b`} gradientUnits="userSpaceOnUse" x1="0" y1="250" x2="0" y2="865">
-          <stop offset="0" stopColor="#E8932C" />
-          <stop offset=".5" stopColor="#FFC766" />
-          <stop offset="1" stopColor="#FFF1C4" />
+          <stop offset="0" style={s('--landing-luce-ombra')} />
+          <stop offset=".5" style={s('--landing-luce-bordo')} />
+          <stop offset="1" style={s('--landing-luce')} />
         </linearGradient>
         <linearGradient id={`${idp}w`} gradientUnits="userSpaceOnUse" x1="0" y1="450" x2="0" y2="865">
           <stop offset="0" style={{ stopColor: 'var(--landing-luce)', stopOpacity: 0 }} />
           <stop offset="1" style={{ stopColor: 'var(--landing-luce)', stopOpacity: 0.95 }} />
         </linearGradient>
         <linearGradient id={`${idp}v`} gradientUnits="userSpaceOnUse" x1="120" y1="100" x2="700" y2="500">
-          <stop offset="0" stopColor="#FFFFFF" stopOpacity=".55" />
-          <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+          <stop offset="0" style={{ stopColor: 'var(--landing-gradino-sopra)', stopOpacity: 0.55 }} />
+          <stop offset="1" style={{ stopColor: 'var(--landing-gradino-sopra)', stopOpacity: 0 }} />
         </linearGradient>
         <clipPath id={`${idp}c`}><path d={FRONTE} /></clipPath>
         <clipPath id={`${idp}d`}><path d={PORTA} /></clipPath>
@@ -75,7 +75,7 @@ export function LastraContenuto({ idp }: { idp: string }) {
       <path d={PORTA} fill={`url(#${idp}w)`} />
       <g clipPath={`url(#${idp}d)`}>
         <path d={PORTA} fill="none" stroke={`url(#${idp}b)`} strokeWidth="46" strokeLinejoin="round" filter={`url(#${idp}z)`} />
-        <path d={`M300 200L470 520L360 880L110 880L110 200Z`} fill="#0B1F66" opacity=".16" filter={`url(#${idp}y)`} />
+        <path d={`M300 200L470 520L360 880L110 880L110 200Z`} style={{ fill: 'var(--landing-lastra-ombra)' }} opacity=".16" filter={`url(#${idp}y)`} />
       </g>
     </>
   );

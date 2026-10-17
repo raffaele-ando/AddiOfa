@@ -85,7 +85,7 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
         <div className="overflow-y-auto px-5 pb-2 scrollbar-hide">
           {/* Come nel concept 25: la domanda in un riquadro tinto, poi una riga per voce (icona, titolo, una frase breve). */}
           <div className="flex items-start gap-3 rounded-2xl bg-azione-tinta p-3.5">
-            <Icona nome="soglia" size={22} className="mt-0.5 shrink-0 text-azione-scuro" />
+            <Icona nome="soglia" size={22} className="mt-0.5 shrink-0 text-azione-testo" />
             <p className="text-[14.5px] leading-snug font-semibold text-testo">
               Se facessi oggi un test da {REAL_TEST_QUESTIONS} domande, quanto è probabile azzeccarne almeno {REAL_TEST_PASS_MARK}?
             </p>

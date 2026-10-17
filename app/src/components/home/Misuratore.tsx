@@ -32,6 +32,8 @@ export default function Misuratore({ percento, livello, etichetta, sotto, onInfo
   const frazione = vuoto ? 0 : Math.max(0, Math.min(1, percento / 100));
   const gradiValore = 180 * frazione; // angolo dal lato sinistro
   const col = `var(--color-${livello})`;
+  // L'ambra da sola non arriva a 3:1 sullo sfondo: arco e pallino della fascia media hanno un bordo di 2 px in medio-numero.
+  const bordo = livello === 'medio' ? 'var(--color-medio-numero)' : null;
   const [x0, y0] = pt(180, R);
   const [x1, y1] = pt(0, R);
   const [px, py] = pt(180 - gradiValore, R);
@@ -80,12 +82,13 @@ export default function Misuratore({ percento, livello, etichetta, sotto, onInfo
 
         {!vuoto && <circle cx={px} cy={py} r="51.3" fill={`url(#h1${id})`} />}
         <path d={arcoFondo} fill="none" strokeWidth={SPESSORE} strokeLinecap="round" style={{ stroke: 'var(--color-linea)' }} />
-        {!vuoto && frazione > 0 && <path d={arcoValore} fill="none" stroke={`url(#a${id})`} strokeWidth={SPESSORE} strokeLinecap="round" />}
+        {!vuoto && frazione > 0 && bordo && <path d={arcoValore} fill="none" strokeWidth={SPESSORE} strokeLinecap="round" style={{ stroke: bordo }} />}
+        {!vuoto && frazione > 0 && <path d={arcoValore} fill="none" stroke={`url(#a${id})`} strokeWidth={bordo ? SPESSORE - 4 : SPESSORE} strokeLinecap="round" />}
         {!vuoto && (
           <>
             <circle cx={px} cy={py} r="38.5" fill={`url(#h2${id})`} />
-            <circle cx={px} cy={py} r="17.45" fill="#FFFFFF" style={{ filter: `drop-shadow(0 1px 2px color-mix(in srgb, ${col} 40%, transparent))` }} />
-            <circle cx={px} cy={py} r="10.26" style={{ fill: col }} />
+            <circle cx={px} cy={py} r="17.45" style={{ fill: 'var(--color-superficie)', filter: `drop-shadow(0 1px 2px color-mix(in srgb, ${col} 40%, transparent))` }} />
+            <circle cx={px} cy={py} r={bordo ? 9.26 : 10.26} style={{ fill: col, ...(bordo ? { stroke: bordo, strokeWidth: 2 } : {}) }} />
           </>
         )}
       </svg>

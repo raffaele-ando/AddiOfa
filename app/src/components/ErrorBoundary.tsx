@@ -74,7 +74,7 @@ export class ErrorBoundary extends Component<Props, State> {
               <div>
                 <p className="text-[13px] leading-[19px] text-testo-tenue">Non riesco ad aprire la pagina di segnalazione. Seleziona e copia questo testo:</p>
                 <textarea readOnly rows={3} value={`Segnalazione AddiOFA · Problema dell'app\n\nDettaglio tecnico: ${testo}`} onFocus={e => e.currentTarget.select()}
-                  className="mt-2 w-full resize-none rounded-[10px] bg-superficie-2 p-3 text-[12.5px] leading-[18px] text-testo" aria-label="Dettaglio tecnico da copiare" />
+                  className="mt-2 w-full resize-none rounded-[10px] border border-bordo-campo bg-superficie-2 p-3 text-[12.5px] leading-[18px] text-testo" aria-label="Dettaglio tecnico da copiare" />
               </div>
             )}
           </StatoPagina>

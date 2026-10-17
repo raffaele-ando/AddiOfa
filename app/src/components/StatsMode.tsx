@@ -60,7 +60,7 @@ function Intestazione({ onExit }: { onExit: () => void }) {
 /** Conteggio con icona: giuste, sbagliate, omesse. Il colore dice quale è. */
 function Conto({ tipo, n, piccolo }: { tipo: 'giuste' | 'sbagliate' | 'omesse'; n: number; piccolo?: boolean }) {
   const stile = tipo === 'giuste' ? (n > 0 ? 'bg-alto-tinta text-alto-testo border-alto/30' : 'bg-superficie text-testo-tenue border-linea')
-    : tipo === 'sbagliate' ? (n > 0 ? 'bg-basso-tinta text-basso-testo border-basso/30' : 'bg-superficie text-testo-tenue border-linea')
+    : tipo === 'sbagliate' ? (n > 0 ? 'bg-errore-tinta text-errore-testo border-errore/30' : 'bg-superficie text-testo-tenue border-linea')
     : (n > 0 ? 'bg-medio-tinta text-medio-testo border-medio/30' : 'bg-superficie text-testo-tenue border-linea');
   const icona = tipo === 'giuste' ? 'stato-risposta-giusta' : tipo === 'sbagliate' ? 'stato-risposta-sbagliata' : 'stato-risposta-omessa';
   return (
@@ -223,7 +223,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
 
       {/* Errori frequenti */}
       <section aria-labelledby="titolo-errori" className="flex flex-col gap-2.5">
-        <h2 id="titolo-errori" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><Icona nome="errori" size={20} className="text-basso-numero" />Errori</h2>
+        <h2 id="titolo-errori" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><Icona nome="errori" size={20} className="text-errore" />Errori</h2>
         {topErrors.length === 0 ? (
           <div role="status" className="rounded-[12px] border border-linea py-6 flex items-center justify-center text-testo-tenue"><Icona nome="stato-ok" size={26} /></div>
         ) : (
@@ -232,7 +232,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
               const text = prompts[err.qId];
               const rightAnswer = answersText[err.qId];
               return (
-                <div key={err.qId} className="bg-superficie-2 rounded-[12px] border-l-[3px] border-basso p-3 sm:p-4 flex flex-col gap-2.5">
+                <div key={err.qId} className="bg-superficie-2 rounded-[12px] border-l-[3px] border-errore p-3 sm:p-4 flex flex-col gap-2.5">
                   <p data-testo-ok className="font-bold text-sm sm:text-base text-testo line-clamp-2 leading-tight">{text ?? '…'}</p>
                   <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                     <Conto tipo="giuste" n={err.correct} piccolo />
@@ -240,7 +240,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
                     <Conto tipo="omesse" n={err.omitted} piccolo />
                   </div>
                   <div className="flex items-center justify-between pt-1 border-t border-linea">
-                    <span className="text-xs sm:text-sm font-bold text-basso-testo tabular-nums">{Math.round(err.errorRate * 100)}%</span>
+                    <span className="text-xs sm:text-sm font-bold text-errore-testo tabular-nums">{Math.round(err.errorRate * 100)}%</span>
                     <span data-testo-ok className="text-xs sm:text-sm font-bold text-alto-testo truncate max-w-[70%]">{rightAnswer ?? ''}</span>
                   </div>
                 </div>
@@ -278,7 +278,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
           </div>
           <button type="button"
             onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-            className="flex shrink-0 items-center gap-2 text-sm font-bold text-azione hover:text-azione-scuro transition-colors duration-100"
+            className="flex shrink-0 items-center gap-2 text-sm font-bold text-azione hover:text-azione-testo transition-colors duration-100"
           >
             <Icona nome="ordina" size={18} />
             {sortOrder === 'asc' ? 'Peggiori' : 'Migliori'}
@@ -289,7 +289,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
             <p role="status" className="flex items-center gap-2 text-sm font-bold text-testo-tenue"><Icona nome="stato-caricamento" size={18} className="animate-spin" /></p>
           )}
           {promptsState === 'error' && (
-            <p role="alert" className="flex items-center gap-2 text-sm font-bold text-basso-testo bg-basso-tinta rounded-xl px-3 py-2">
+            <p role="alert" className="flex items-center gap-2 text-sm font-bold text-errore-testo bg-errore-tinta rounded-xl px-3 py-2">
               <Icona nome="stato-errore" size={18} />Domande non caricate
             </p>
           )}

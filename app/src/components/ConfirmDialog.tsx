@@ -26,7 +26,7 @@ export default function ConfirmDialog({ open, title, message, confirmLabel = 'Co
         {message && <p className="mt-2 text-sm text-testo-tenue">{message}</p>}
         <div className="mt-5 flex gap-3">
           <button type="button" onClick={onCancel} className="flex-1 rounded-xl border border-tacca py-3 font-semibold text-testo">{cancelLabel}</button>
-          <button ref={ref} type="button" onClick={onConfirm} className={`flex-1 rounded-xl py-3 font-semibold ${danger ? 'bg-basso-pieno text-azione-su' : 'bg-azione text-azione-su'}`}>{confirmLabel}</button>
+          <button ref={ref} type="button" onClick={onConfirm} className={`flex-1 rounded-xl py-3 font-semibold ${danger ? 'bg-errore text-errore-su' : 'bg-azione text-azione-su'}`}>{confirmLabel}</button>
         </div>
       </div>
     </div>

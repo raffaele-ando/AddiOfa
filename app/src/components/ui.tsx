@@ -118,7 +118,7 @@ export function RichText({ text }: { text: string }) {
     <>
       {parts.map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) return <strong key={i}>{part.slice(2, -2)}</strong>;
-        if (part.startsWith('*') && part.endsWith('*')) return <em key={i} className="font-bold not-italic text-azione-scuro">{part.slice(1, -1)}</em>;
+        if (part.startsWith('*') && part.endsWith('*')) return <em key={i} className="font-bold not-italic text-azione-testo">{part.slice(1, -1)}</em>;
         return <span key={i}>{part}</span>;
       })}
     </>

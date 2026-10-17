@@ -14,7 +14,7 @@ const LIVELLI = ['A1', 'A2', 'B1'] as const;
 
 const STATO: Record<LezionePercorso['stato'], { icona: NomeIcona; colore: string; nome: string }> = {
   imparata: { icona: 'stato-imparata', colore: 'text-alto-numero', nome: 'imparata' },
-  'in-corso': { icona: 'stato-in-corso', colore: 'text-azione-scuro', nome: 'in corso' },
+  'in-corso': { icona: 'stato-in-corso', colore: 'text-azione-testo', nome: 'in corso' },
   'da-iniziare': { icona: 'stato-da-iniziare', colore: 'text-testo-tenue', nome: 'da iniziare' },
 };
 
@@ -35,7 +35,7 @@ function Riga({ l, prossima, onApri }: { l: LezionePercorso; prossima: boolean; 
           {l.stato === 'in-corso' && (
             <span className="mt-1.5 flex items-center gap-2.5">
               <BarraTono valore={percento} tono="azione" className="h-[6px] flex-1" />
-              <span className="shrink-0 text-[12px] leading-[14px] font-semibold tabular-nums text-azione-scuro">{l.imparate}/{totale}</span>
+              <span className="shrink-0 text-[12px] leading-[14px] font-semibold tabular-nums text-azione-testo">{l.imparate}/{totale}</span>
             </span>
           )}
         </span>

@@ -2,9 +2,10 @@ import { useId } from 'react';
 import type { Livello } from './stima';
 import { formatProbabilita } from '../../lib/diagnostic';
 
-export const COLORI_STATO: Record<Livello, { arco: [string, string]; punto: string; numero: string }> = {
+/** `bordo`: l'ambra da sola non arriva a 3:1 sullo sfondo (1,71:1): ogni arco e ogni pallino ambra ha un bordo di 2 px in medio-numero. */
+export const COLORI_STATO: Record<Livello, { arco: [string, string]; punto: string; numero: string; bordo?: string }> = {
   basso: { arco: ['var(--color-basso-chiaro)', 'var(--color-basso)'], punto: 'var(--color-basso)', numero: 'text-basso-numero' },
-  medio: { arco: ['var(--color-medio-chiaro)', 'var(--color-medio)'], punto: 'var(--color-medio)', numero: 'text-medio-numero' },
+  medio: { arco: ['var(--color-medio-chiaro)', 'var(--color-medio)'], punto: 'var(--color-medio)', numero: 'text-medio-numero', bordo: 'var(--color-medio-numero)' },
   alto: { arco: ['var(--color-alto-chiaro)', 'var(--color-alto)'], punto: 'var(--color-alto)', numero: 'text-alto-numero' },
 };
 
@@ -34,11 +35,15 @@ export default function Indicatore({ percento, livello, etichetta, sotto }: { pe
           return <line key={i} x1={a} y1={b} x2={e} y2={f} strokeWidth="2.5" strokeLinecap="round" className="stroke-tacca" />;
         })}
         <path d={d} fill="none" strokeWidth="18" strokeLinecap="round" className="stroke-linea" />
+        {frazione > 0 && c.bordo && (
+          <path d={d} fill="none" stroke={c.bordo} strokeWidth="18" strokeLinecap="round" strokeDasharray={`${lung * frazione} ${lung}`} />
+        )}
         {frazione > 0 && (
-          <path d={d} fill="none" stroke={`url(#g${id})`} strokeWidth="18" strokeLinecap="round" strokeDasharray={`${lung * frazione} ${lung}`} />
+          <path d={d} fill="none" stroke={`url(#g${id})`} strokeWidth={c.bordo ? 14 : 18} strokeLinecap="round" strokeDasharray={`${lung * frazione} ${lung}`} />
         )}
         <circle cx={px} cy={py} r="15" fill={c.punto} opacity="0.22" />
-        <circle cx={px} cy={py} r="10" fill={c.punto} stroke="#fff" strokeWidth="4.5" />
+        <circle cx={px} cy={py} r="10" fill={c.punto} stroke="var(--color-superficie)" strokeWidth="4.5" />
+        {c.bordo && <circle cx={px} cy={py} r="5.5" fill="none" stroke={c.bordo} strokeWidth="2" />}
       </svg>
       <div className="absolute inset-x-0 top-[44%] flex flex-col items-center text-center pointer-events-none">
         <div className={`text-[52px] leading-none font-extrabold tabular-nums whitespace-nowrap ${c.numero}`}>{formatProbabilita(percento / 100)}</div>

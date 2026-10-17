@@ -250,7 +250,7 @@ export default function SfidaGioco() {
           </div>
           {indice < domande.length - 1 ? (
             <button type="button" onClick={() => (rimaste > 0 ? setConferma('consegna') : void consegna())}
-              className="text-[12px] font-bold text-azione-scuro hover:bg-azione-tinta border border-azione/60 px-4 py-2 rounded-xl transition-colors duration-100">
+              className="text-[12px] font-bold text-azione-testo hover:bg-azione-tinta border border-azione/60 px-4 py-2 rounded-xl transition-colors duration-100">
               Consegna
             </button>
           ) : <span className="w-[84px]" aria-hidden />}

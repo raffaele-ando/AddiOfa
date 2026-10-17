@@ -18,7 +18,7 @@ function SchermoDiagnostico() {
       <p className="mt-0.5 text-[13px] font-bold text-testo">She ___ to Milan every day.</p>
       <ul className="mt-2.5 space-y-1.5">
         {OPZIONI.map((o, i) => (
-          <li key={o} className={`flex items-center gap-2 rounded-lg border px-2.5 py-1.5 text-[11px] font-semibold ${i === 1 ? 'border-azione bg-azione-tinta text-azione-scuro' : 'border-linea bg-superficie text-testo'}`}>
+          <li key={o} className={`flex items-center gap-2 rounded-lg border px-2.5 py-1.5 text-[11px] font-semibold ${i === 1 ? 'border-azione bg-azione-tinta text-azione-testo' : 'border-linea bg-superficie text-testo'}`}>
             <span className={`h-3 w-3 rounded-full border-2 ${i === 1 ? 'border-azione bg-azione' : 'border-tacca'}`} />{o}
           </li>
         ))}
@@ -77,7 +77,7 @@ export default function Passi({ onStart }: { onStart(): void }) {
       <Colonna>
         <div className="grid gap-8 lg:grid-cols-[1.1fr_2.9fr] lg:gap-8">
           <div className="lg:pt-8" data-testo-ok>
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-azione-scuro dark:text-azione">Come funziona</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-azione-testo">Come funziona</p>
             <h2 id="t-passi" className="mt-3 text-[2.3rem] font-extrabold leading-[1.05] tracking-[-0.03em] text-testo sm:text-5xl lg:text-[2.25rem]">
               Un percorso su misura, in <span className="text-azione">4 passi</span>
             </h2>
@@ -93,7 +93,7 @@ export default function Passi({ onStart }: { onStart(): void }) {
             {PASSI.map(p => (
               <li key={p.titolo} className="relative">
                 <div className="mb-4 flex items-center gap-3">
-                  <span aria-hidden className="grid h-9 w-9 place-items-center rounded-full bg-azione-tinta text-[13px] font-extrabold text-azione-scuro">{p.n}</span>
+                  <span aria-hidden className="grid h-9 w-9 place-items-center rounded-full bg-azione-tinta text-[13px] font-extrabold text-azione-testo">{p.n}</span>
                   <h3 className="text-base font-extrabold leading-snug text-testo">{p.titolo}</h3>
                 </div>
                 {p.Schermo()}

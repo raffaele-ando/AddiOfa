@@ -47,7 +47,7 @@ export const KIT: Record<Kit, TokenKit> = {
     interruttore: { w: 47, h: 27, acceso: '#226EFD', spento: '#D7DBE3', pomello: '#FFFFFF', alone: 'rgba(34, 110, 253, 0.12)' },
     casella: { lato: 24, r: 4, piena: '#246FFD', bordo: '#DEE1E9' },
     radio: { lato: 26, colore: '#1F6BFD', bordo: '#DADEE8', alone: 'rgba(31, 107, 253, 0.18)' },
-    avanzamento: { cerchio: 22, fatto: '#236EFD', attuale: '#236EFD', futuro: '#FFFFFF', futuroTesto: '#6B7280', linea: '#E5E7EB', lineaFatta: '#236EFD', etichetta: '#6B7280', stileAttuale: 'pieno' },
+    avanzamento: { cerchio: 22, fatto: '#236EFD', attuale: '#236EFD', futuro: 'var(--color-superficie)', futuroTesto: '#6B7280', linea: '#E5E7EB', lineaFatta: '#236EFD', etichetta: '#6B7280', stileAttuale: 'pieno' },
     barra: { pieno: '#236EFD', chiaro: '#BFD5FE', vuoto: '#EEF1F6', gradiente: ['#6EA0FE', '#1F63F5'] },
   },
   rosso: {

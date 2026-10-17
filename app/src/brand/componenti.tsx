@@ -82,12 +82,12 @@ export function Casella({ spuntata, onChange, kit = 'blu', etichetta, children }
         style={{ position: 'absolute', opacity: 0, width: 1, height: 1 }} />
       <span className="brand-premibile" aria-hidden style={{
         width: t.lato, height: t.lato, borderRadius: t.r, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-        background: spuntata ? t.piena : '#FFFFFF', border: spuntata ? 'none' : `1.5px solid ${t.bordo}`,
+        background: spuntata ? t.piena : 'var(--color-superficie)', border: spuntata ? 'none' : `1.5px solid ${t.bordo}`,
         boxShadow: spuntata ? `0 1px 3px ${t.piena}30` : 'none', transition: 'background .1s ease',
       }}>
         {spuntata && (
           <svg width={t.lato * 0.62} height={t.lato * 0.62} viewBox="0 0 16 16">
-            <path d="M3.2 8.4 6.6 11.6 12.8 4.6" fill="none" stroke="#fff" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M3.2 8.4 6.6 11.6 12.8 4.6" fill="none" stroke="var(--color-azione-su)" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         )}
       </span>
@@ -106,7 +106,7 @@ export function Radio({ selezionato, onChange, kit = 'blu', nome, valore, etiche
         style={{ position: 'absolute', opacity: 0, width: 1, height: 1 }} />
       <span className="brand-premibile" aria-hidden style={{
         width: t.lato, height: t.lato, borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-        background: '#FFFFFF', border: `2px solid ${selezionato ? t.colore : t.bordo}`,
+        background: 'var(--color-superficie)', border: `2px solid ${selezionato ? t.colore : t.bordo}`,
         boxShadow: selezionato ? `0 0 0 1px ${t.alone}` : 'none', boxSizing: 'border-box',
       }}>
         {selezionato && <span style={{ width: t.lato * 0.46, height: t.lato * 0.46, borderRadius: '50%', background: t.colore }} />}
@@ -136,9 +136,9 @@ export function Avanzamento({ passi, attuale, kit = 'blu', larghezza = 480 }: {
             <span style={{
               width: t.cerchio, height: t.cerchio, borderRadius: '50%', boxSizing: 'border-box',
               display: 'flex', alignItems: 'center', justifyContent: 'center', font: `700 ${Math.round(t.cerchio * 0.5)}px ${FONT}`,
-              background: anello ? '#FFFFFF' : fatto || ora ? t.fatto : t.futuro,
-              color: anello ? t.attuale : fatto || ora ? '#FFFFFF' : t.futuroTesto,
-              border: anello ? `2px solid ${t.attuale}` : !(fatto || ora) && t.futuro === '#FFFFFF' ? `1.5px solid ${t.linea}` : 'none',
+              background: anello ? 'var(--color-superficie)' : fatto || ora ? t.fatto : t.futuro,
+              color: anello ? t.attuale : fatto || ora ? 'var(--color-azione-su)' : t.futuroTesto,
+              border: anello ? `2px solid ${t.attuale}` : !(fatto || ora) && t.futuro === 'var(--color-superficie)' ? `1.5px solid ${t.linea}` : 'none',
               boxShadow: ora ? `0 0 0 4px ${t.attuale}22` : 'none',
             }}>{i + 1}</span>
             <span style={{ marginTop: 7, color: t.etichetta, whiteSpace: 'nowrap' }}>{nome}</span>
@@ -175,7 +175,7 @@ export function Barra({ valore, segmenti, kit = KIT_APP, larghezza = 168 }: {
 
 function IconaBadge({ tipo, colore }: { tipo: keyof typeof BADGE; colore: string }) {
   if (tipo === 'piu-scelto') return <svg width="19" height="19" viewBox="0 0 16 16"><path d="M8 13V3.5M3.8 7.6 8 3.4l4.2 4.2" fill="none" stroke={colore} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>;
-  if (tipo === 'massima-sicurezza') return <svg width="19" height="19" viewBox="0 0 16 16"><path d="M8 1.5 13.5 3.6v4c0 3.2-2.3 5.8-5.5 6.9C4.8 13.4 2.5 10.8 2.5 7.6v-4Z" fill={colore} /><path d="m5.3 8 1.9 1.9L10.8 6" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+  if (tipo === 'massima-sicurezza') return <svg width="19" height="19" viewBox="0 0 16 16"><path d="M8 1.5 13.5 3.6v4c0 3.2-2.3 5.8-5.5 6.9C4.8 13.4 2.5 10.8 2.5 7.6v-4Z" fill={colore} /><path d="m5.3 8 1.9 1.9L10.8 6" fill="none" stroke="var(--color-azione-su)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>;
   return <svg width="19" height="19" viewBox="0 0 16 16"><path d="m8 1.6 1.95 4 4.4.64-3.18 3.1.75 4.38L8 11.65l-3.92 2.07.75-4.38-3.18-3.1 4.4-.64Z" fill={colore} strokeLinejoin="round" /></svg>;
 }
 
@@ -195,9 +195,9 @@ function SimboloStato({ tipo }: { tipo: keyof typeof STATI }) {
   return (
     <svg width="33" height="33" viewBox="0 0 28 28" aria-hidden>
       <circle cx="14" cy="14" r="14" fill={STATI[tipo].cerchio} />
-      <path d={d} fill="none" stroke="#fff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
-      {tipo === 'attenzione' && <circle cx="14" cy="19.6" r="1.7" fill="#fff" />}
-      {tipo === 'info' && <circle cx="14" cy="8.4" r="1.8" fill="#fff" />}
+      <path d={d} fill="none" stroke="var(--color-azione-su)" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
+      {tipo === 'attenzione' && <circle cx="14" cy="19.6" r="1.7" fill="var(--color-azione-su)" />}
+      {tipo === 'info' && <circle cx="14" cy="8.4" r="1.8" fill="var(--color-azione-su)" />}
     </svg>
   );
 }
@@ -224,25 +224,15 @@ export function Stato({ tipo, titolo, testo, onChiudi }: {
 
 // ---------------------------------------------------------------- misti
 
-// Colori dei cerchi misurati sulle icone (brand/glifi.json)
-const CERCHI: Record<string, string> = {
-  'kit-blu/studio': '#F0F4FE', 'kit-blu/statistiche': '#FEF7EC', 'kit-blu/quiz': '#EFF3FE', 'kit-blu/contenuti': '#FEEFF0',
-  'kit-blu/costo': '#FEEFEF', 'kit-blu/blocco': '#FEEEEF', 'kit-blu/successo': '#EBF9F0', 'kit-blu/email': '#FEF0F0',
-  'kit-blu/profilo': '#EBF0FE', 'kit-blu/impostazioni': '#F1F3F6', 'kit-blu/aiuto': '#F1F2F6', 'kit-blu/completato': '#EBF9F0',
-  'kit-blu/errore': '#FEEFEF', 'kit-blu/info': '#EBF0FE',
-  'kit-rosso/studio': '#FEEBEC', 'kit-rosso/statistiche': '#FEF3E7', 'kit-rosso/quiz': '#ECEDFE', 'kit-rosso/contenuti': '#FEF0F0',
-  'kit-rosso/costo': '#FEF0F1', 'kit-rosso/blocco': '#FEECED', 'kit-rosso/successo': '#E4F7EA', 'kit-rosso/email': '#FEF0F1',
-  'kit-rosso/profilo': '#EBEFFE', 'kit-rosso/impostazioni': '#F1F3F7', 'kit-rosso/aiuto': '#ECEEF1', 'kit-rosso/completato': '#E4F7EC',
-  'kit-rosso/errore': '#FEE7E9', 'kit-rosso/info': '#E8EDFE',
-};
-
-// Nel tema scuro il cerchio pastel diventa la tinta tenue del token (niente macchie chiare sul fondo blu-nero).
-const CERCHIO_SCURO: Record<string, string> = {
-  studio: 'dark:bg-azione-tinta', quiz: 'dark:bg-azione-tinta', profilo: 'dark:bg-azione-tinta', info: 'dark:bg-azione-tinta',
-  statistiche: 'dark:bg-medio-tinta',
-  contenuti: 'dark:bg-basso-tinta', costo: 'dark:bg-basso-tinta', blocco: 'dark:bg-basso-tinta', email: 'dark:bg-basso-tinta', errore: 'dark:bg-basso-tinta',
-  successo: 'dark:bg-alto-tinta', completato: 'dark:bg-alto-tinta',
-  impostazioni: 'dark:bg-superficie-2', aiuto: 'dark:bg-superficie-2',
+// Colore del cerchio dietro ogni glifo: una tinta dei token (segue da sola il tema scuro), mai un esadecimale.
+// Rosati: errore-tinta solo per «errore»; gli altri sono la fascia bassa (corallo).
+const CERCHIO: Record<string, string> = {
+  studio: 'bg-superficie-2', quiz: 'bg-superficie-2', impostazioni: 'bg-superficie-2', aiuto: 'bg-superficie-2',
+  profilo: 'bg-azione-tinta', info: 'bg-azione-tinta',
+  statistiche: 'bg-medio-tinta',
+  contenuti: 'bg-basso-tinta', costo: 'bg-basso-tinta', blocco: 'bg-basso-tinta', email: 'bg-basso-tinta',
+  errore: 'bg-errore-tinta',
+  successo: 'bg-alto-tinta', completato: 'bg-alto-tinta',
 };
 
 export const NOMI_ICONE = ['studio', 'statistiche', 'quiz', 'contenuti', 'costo', 'blocco', 'successo', 'email', 'profilo', 'impostazioni', 'aiuto', 'completato', 'errore', 'info'] as const;
@@ -252,10 +242,9 @@ export const NOMI_ICONE = ['studio', 'statistiche', 'quiz', 'contenuti', 'costo'
 export function IconaChip({ nome, kit = KIT_APP, lato = 57, cerchio, onClick, etichetta }: {
   nome: typeof NOMI_ICONE[number]; kit?: Kit; lato?: number; cerchio?: string; onClick?: () => void; etichetta?: string;
 }) {
-  const chiave = `kit-${kit}/${nome}`;
   const contenuto = (
-    <span className={cerchio ? undefined : `bg-[var(--cerchio)] ${CERCHIO_SCURO[nome]}`}
-      style={{ display: 'inline-block', width: lato, height: lato, borderRadius: '50%', background: cerchio, ['--cerchio' as string]: CERCHI[chiave], position: 'relative' }}>
+    <span className={cerchio ? undefined : CERCHIO[nome]}
+      style={{ display: 'inline-block', width: lato, height: lato, borderRadius: '50%', background: cerchio, position: 'relative' }}>
       <img src={urlGlifo(`kit-${kit}`, nome)} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
     </span>
   );
@@ -270,7 +259,7 @@ export function Misuratore({ valore, larghezza = 232, etichetta, testo }: {
   testo?: string;
 }) {
   const id = useId().replace(/:/g, '');
-  // Colore semantico della probabilità (rosso basso, giallo medio, verde alto), non il colore d'azione
+  // Colore semantico della probabilità (corallo basso, ambra medio, verde-acqua alto), non il colore d'azione
   const col = COLORI_STATO[livelloDi(valore / 100)];
   const mostrato = valore;
   // arco di 220° che si apre in basso, come nel kit: dal basso a sinistra, sopra, al basso a destra
@@ -289,9 +278,12 @@ export function Misuratore({ valore, larghezza = 232, etichetta, testo }: {
         </linearGradient>
       </defs>
       <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" className="stroke-linea" strokeWidth="16" strokeLinecap="round" />
-      <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" stroke={`url(#g${id})`} strokeWidth="16" strokeLinecap="round"
+      {col.bordo && <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" stroke={col.bordo} strokeWidth="16" strokeLinecap="round"
+        strokeDasharray={`${lung * frazione} ${lung}`} />}
+      <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" stroke={`url(#g${id})`} strokeWidth={col.bordo ? 12 : 16} strokeLinecap="round"
         strokeDasharray={`${lung * frazione} ${lung}`} />
-      <circle cx={px} cy={py} r="11" fill={col.punto} stroke="#fff" strokeWidth="4" />
+      <circle cx={px} cy={py} r="11" fill={col.punto} stroke="var(--color-superficie)" strokeWidth="4" />
+      {col.bordo && <circle cx={px} cy={py} r="5" fill="none" stroke={col.bordo} strokeWidth="2" />}
       <text x={cx} y={cy + 8} textAnchor="middle" fill="currentColor" className={col.numero} style={{ font: `800 48px ${FONT}` }}>{scritto}</text>
     </svg>
   );

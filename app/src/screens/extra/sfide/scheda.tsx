@@ -30,7 +30,7 @@ function SelettoreSfide({ sezione }: { sezione: SezioneScheda }) {
           <button key={v.id} type="button" aria-current={on ? 'page' : undefined}
             onClick={() => { if (!on) { playTapSound(); vai(v.id); } }}
             className={cn('flex h-11 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full border text-[14px] font-bold transition-colors duration-100',
-              on ? 'border-azione/40 bg-azione-tinta text-azione-scuro' : 'border-transparent text-testo-tenue hover:text-testo')}>
+              on ? 'border-azione/40 bg-azione-tinta text-azione-testo' : 'border-transparent text-testo-tenue hover:text-testo')}>
             <Icona nome={v.icona} size={20} /><span className="truncate">{v.nome}</span>
           </button>
         );

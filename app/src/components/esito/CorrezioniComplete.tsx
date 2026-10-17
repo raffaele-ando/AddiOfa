@@ -12,17 +12,17 @@ type Stato = 'giusta' | 'sbagliata' | 'vuota';
 type Filtro = 'tutte' | Stato;
 
 const FILTRI: { id: Filtro; nome: NomeIcona; aria: string; attivo: string }[] = [
-  { id: 'tutte', nome: 'risposte', aria: 'Tutte', attivo: 'bg-azione-tinta text-azione-scuro border-azione' },
-  { id: 'sbagliata', nome: 'stato-risposta-sbagliata', aria: 'Sbagliate', attivo: 'bg-basso-tinta text-basso-testo border-basso' },
+  { id: 'tutte', nome: 'risposte', aria: 'Tutte', attivo: 'bg-azione-tinta text-azione-testo border-azione' },
+  { id: 'sbagliata', nome: 'stato-risposta-sbagliata', aria: 'Sbagliate', attivo: 'bg-errore-tinta text-errore-testo border-errore' },
   { id: 'vuota', nome: 'stato-risposta-omessa', aria: 'Senza risposta', attivo: 'bg-medio-tinta text-medio-testo border-medio' },
   { id: 'giusta', nome: 'stato-risposta-giusta', aria: 'Giuste', attivo: 'bg-alto-tinta text-alto-testo border-alto' },
 ];
 
 // Ogni riga ha la sua carta neutra: il colore sta nell'icona di stato e nelle caselle della risposta.
 const STATO = {
-  giusta: { parola: 'Giusta', nome: 'stato-risposta-giusta', badge: 'bg-alto-pieno text-azione-su' },
-  sbagliata: { parola: 'Sbagliata', nome: 'stato-risposta-sbagliata', badge: 'bg-basso-pieno text-azione-su' },
-  vuota: { parola: 'Senza risposta', nome: 'stato-risposta-omessa', badge: 'bg-medio-pieno text-azione-su' },
+  giusta: { parola: 'Giusta', nome: 'stato-risposta-giusta', badge: 'bg-alto-pieno text-alto-su' },
+  sbagliata: { parola: 'Sbagliata', nome: 'stato-risposta-sbagliata', badge: 'bg-errore text-errore-su' },
+  vuota: { parola: 'Senza risposta', nome: 'stato-risposta-omessa', badge: 'bg-medio-pieno text-medio-su' },
 } as const satisfies Record<Stato, { parola: string; nome: NomeIcona; badge: string }>;
 
 interface Props {
@@ -118,14 +118,14 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               ) : (
                 // Confronto affiancato: a sinistra cosa hai risposto, a destra la risposta esatta
                 <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div className={cn('flex items-start gap-2 rounded-[10px] border p-2.5', dato === undefined ? 'border-medio/30 bg-medio-tinta' : 'border-basso/30 bg-basso-tinta')}>
-                    <Icona nome={dato === undefined ? 'stato-risposta-omessa' : 'stato-risposta-sbagliata'} size={17} className={cn('mt-0.5 shrink-0', dato === undefined ? 'text-medio-testo' : 'text-basso-testo')} />
+                  <div className={cn('flex items-start gap-2 rounded-[10px] border p-2.5', dato === undefined ? 'border-medio/30 bg-medio-tinta' : 'border-errore/30 bg-errore-tinta')}>
+                    <Icona nome={dato === undefined ? 'stato-risposta-omessa' : 'stato-risposta-sbagliata'} size={17} className={cn('mt-0.5 shrink-0', dato === undefined ? 'text-medio-testo' : 'text-errore-testo')} />
                     <p data-testo-ok className="min-w-0 font-semibold text-testo break-words">
                       {dato === undefined
                         ? '–'
                         : dato < 0 || q.options[dato] === undefined
                           ? <span className="text-testo-tenue">?</span>
-                          : <>{lettera(dato)}<span className="line-through decoration-basso/60">{q.options[dato]}</span></>}
+                          : <>{lettera(dato)}<span className="line-through decoration-errore/60">{q.options[dato]}</span></>}
                     </p>
                   </div>
                   <div className="flex items-start gap-2 rounded-[10px] border border-alto/30 bg-alto-tinta p-2.5">
@@ -137,7 +137,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
 
               {compatta && r?.explanation && (
                 <button type="button" onClick={() => { playTapSound(); alterna(q.id); }} aria-expanded={apertaSpieg} aria-controls={idSpieg} aria-label="Spiegazione"
-                  className="mt-2.5 inline-flex min-h-[32px] items-center gap-1 text-xs font-bold text-azione-scuro">
+                  className="mt-2.5 inline-flex min-h-[32px] items-center gap-1 text-xs font-bold text-azione-testo">
                   <Icona nome="suggerimento" size={16} /><Icona nome="espandi" size={14} className={apertaSpieg ? 'rotate-180' : undefined} />
                 </button>
               )}
@@ -148,7 +148,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
                   )}
                   {r?.theoryId && onOpenTheory && (
                     <button type="button" onClick={() => { playTapSound(); onOpenTheory(r.theoryId!); }}
-                      className="mt-2 inline-flex min-h-[32px] items-center gap-1.5 text-sm font-bold text-azione-scuro underline underline-offset-2">
+                      className="mt-2 inline-flex min-h-[32px] items-center gap-1.5 text-sm font-bold text-azione-testo underline underline-offset-2">
                       <Icona nome="teoria" size={16} /> Regola
                     </button>
                   )}

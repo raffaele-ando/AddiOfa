@@ -3,8 +3,9 @@ import { cn } from '../../lib/utils';
 import { formatPunteggio, type IntervalloStima } from '../../lib/diagnostic';
 import { REAL_TEST_PASS_MARK } from '../../config/offer';
 
-/** Colore semantico di un valore 0-100 (sempre accompagnato dal numero scritto, mai solo colore). */
-export function coloreValore(v: number): string { return v < 40 ? 'var(--color-basso)' : v < 70 ? 'var(--color-medio)' : 'var(--color-alto)'; }
+/** Colore semantico di un valore 0-100 (sempre accompagnato dal numero scritto, mai solo colore).
+ *  Per le barre la fascia media usa medio-numero: l'ambra da sola non arriva a 3:1 sullo sfondo. */
+export function coloreValore(v: number): string { return v < 40 ? 'var(--color-basso)' : v < 70 ? 'var(--color-medio-numero)' : 'var(--color-alto)'; }
 
 /** Carta chiara come nel concept: tinta della superficie-2, angoli larghi, niente bordo né ombra. Ferma. */
 export function Carta({ className, children, tinta }: { className?: string; children: ReactNode; tinta?: string }) {

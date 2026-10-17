@@ -183,7 +183,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
     return (
       <Screen className="items-center justify-center text-center">
  <Illustrazione nome="documento-errore" gruppo="stati" lato={110} />
-        <p role="alert" className="font-bold text-basso-testo max-w-sm">Domande non caricate</p>
+        <p role="alert" className="font-bold text-errore-testo max-w-sm">Domande non caricate</p>
         <button onClick={() => { playTapSound(); setLoadKey(k => k + 1); }} className="w-full max-w-xs inline-flex items-center justify-center gap-2 bg-azione hover:bg-azione-scuro text-azione-su font-bold py-3.5 rounded-2xl transition-colors duration-100"><Icona nome="riprova" size={20} />Riprova</button>
         <button onClick={onExit} className="inline-flex items-center gap-1.5 text-sm font-bold text-testo-tenue"><Icona nome="indietro" size={18} />Indietro</button>
       </Screen>
@@ -394,13 +394,13 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
               {!showHint ? (
                 <button 
                   onClick={() => { playTapSound(); setShowHint(true); }}
-                  className="flex items-center gap-2 px-4 py-2 bg-azione-tinta text-azione-scuro font-bold rounded-xl hover:bg-azione-tinta/70 transition-colors duration-100"
+                  className="flex items-center gap-2 px-4 py-2 bg-azione-tinta text-azione-testo font-bold rounded-xl hover:bg-azione-tinta/70 transition-colors duration-100"
                 >
                   <Icona nome="suggerimento" size={20} />
                   Suggerimento
                 </button>
               ) : (
-                <div className="bg-azione-tinta text-azione-scuro px-4 py-2 rounded-xl text-sm font-bold text-center">
+                <div className="bg-azione-tinta text-azione-testo px-4 py-2 rounded-xl text-sm font-bold text-center">
                   {question.grammarTopic || question.category}{question.level && ` · ${question.level}`}
                 </div>
               )}
@@ -409,7 +409,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
             {/* Answer Box */}
             <div className={cn(
               "min-h-[100px] w-full p-4 flex flex-wrap content-start gap-2 items-center bg-superficie-2/50 rounded-t-2xl transition-colors duration-100",
-              hasChecked && !isCorrect ? "border-basso/30 bg-basso-tinta/50" : "border-linea"
+              hasChecked && !isCorrect ? "border-errore/30 bg-errore-tinta/50" : "border-linea"
             )}>
               {selectedRecallWords.map((wordIndex) => (
                 <button
@@ -476,10 +476,10 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
               if (hasChecked) {
                 if (idx === correctDisplay) {
                   stateClass = "border-alto/30 bg-alto-tinta text-testo";
-                  numberClass = "border-alto bg-alto-pieno text-azione-su";
+                  numberClass = "border-alto bg-alto-pieno text-alto-su";
                 } else if (idx === selectedOption) {
-                  stateClass = "border-basso/30 bg-basso-tinta text-testo";
-                  numberClass = "border-basso bg-basso-pieno text-azione-su";
+                  stateClass = "border-errore/30 bg-errore-tinta text-testo";
+                  numberClass = "border-errore bg-errore text-errore-su";
                 } else if (wrongOptions.has(idx)) {
                   stateClass = "border-linea bg-superficie opacity-40";
                 } else {
@@ -508,7 +508,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
                     </span>
                     <span data-testo-ok className="text-[15px] sm:text-base font-semibold leading-snug flex-1">{opt}</span>
                     {hasChecked && idx === correctDisplay && <><Icona nome="stato-risposta-giusta" size={22} className="text-alto-testo" /><span className="sr-only">Giusta</span></>}
-                    {hasChecked && idx !== correctDisplay && idx === selectedOption && <><Icona nome="stato-risposta-sbagliata" size={22} className="text-basso-testo" /><span className="sr-only">Sbagliata</span></>}
+                    {hasChecked && idx !== correctDisplay && idx === selectedOption && <><Icona nome="stato-risposta-sbagliata" size={22} className="text-errore-testo" /><span className="sr-only">Sbagliata</span></>}
                   </div>
                 </button>
               );
@@ -518,19 +518,19 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
       </main>
 
       {checkError && (
-        <div role="alert" className="shrink-0 flex items-center justify-between gap-3 px-4 py-2 bg-basso-tinta text-basso-testo text-sm font-bold">
+        <div role="alert" className="shrink-0 flex items-center justify-between gap-3 px-4 py-2 bg-errore-tinta text-errore-testo text-sm font-bold">
           <span>{checkError}</span>
           <button onClick={() => { const l = lastCheckRef.current; if (l) void handleCheck(l.confidence, l.isTimeout); }} className="underline shrink-0">Riprova</button>
         </div>
       )}
       {/* Bottom Action Bar */}
-      <div className={cn("border-t border-linea shrink-0 p-4 transition-colors duration-100", hasChecked ? (isCorrect ? "bg-alto-tinta border-alto/30" : "bg-basso-tinta border-basso/30") : "bg-superficie")}>
+      <div className={cn("border-t border-linea shrink-0 p-4 transition-colors duration-100", hasChecked ? (isCorrect ? "bg-alto-tinta border-alto/30" : "bg-errore-tinta border-errore/30") : "bg-superficie")}>
         <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-between">
           {hasChecked && (
               <div
                 className={cn(
                   "font-bold flex flex-col gap-1 text-center sm:text-left w-full sm:w-auto",
-                  isCorrect ? "text-alto-testo" : "text-basso-testo"
+                  isCorrect ? "text-alto-testo" : "text-errore-testo"
                 )}
               >
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">

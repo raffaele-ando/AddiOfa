@@ -18,11 +18,11 @@ const L = 976, A = 490;
 function Bandiera() {
   return (
     <svg viewBox="0 0 60 36" width="40" height="24" aria-hidden focusable="false" className="rounded-[3px]">
-      <rect width="60" height="36" fill="#1E3A8A" />
-      <path d="M0 0L60 36M60 0L0 36" stroke="#fff" strokeWidth="7" />
-      <path d="M0 0L60 36M60 0L0 36" stroke="#E11D2E" strokeWidth="2.4" />
-      <path d="M30 0V36M0 18H60" stroke="#fff" strokeWidth="11" />
-      <path d="M30 0V36M0 18H60" stroke="#E11D2E" strokeWidth="6.5" />
+      <rect width="60" height="36" fill="var(--color-azione-tinta-scura)" />
+      <path d="M0 0L60 36M60 0L0 36" stroke="var(--landing-gradino-sopra)" strokeWidth="7" />
+      <path d="M0 0L60 36M60 0L0 36" stroke="var(--landing-corallo-linea)" strokeWidth="2.4" />
+      <path d="M30 0V36M0 18H60" stroke="var(--landing-gradino-sopra)" strokeWidth="11" />
+      <path d="M30 0V36M0 18H60" stroke="var(--landing-corallo-linea)" strokeWidth="6.5" />
     </svg>
   );
 }
@@ -58,7 +58,7 @@ export default function Scena({ scuro: _scuro, conCarte = true, className = '' }
           <div className="vetro absolute rounded-[24px] p-[14px]" style={{ left: 684, top: 30, width: 144, transform: 'rotate(-4deg)' }}>
             <Bandiera />
             <ul className="mt-2.5 space-y-2">
-              {[['A', 'bg-azione text-azione-su'], ['B', 'bg-basso-pieno text-azione-su'], ['C', 'bg-azione text-azione-su']].map(([l, c], i) => (
+              {[['A', 'bg-azione text-azione-su'], ['B', 'bg-alto-pieno text-alto-su'], ['C', 'bg-azione text-azione-su']].map(([l, c], i) => (
                 <li key={l} className="flex items-center gap-2">
                   <span className={`grid h-[22px] w-[22px] place-items-center rounded-md text-[11px] font-extrabold ${c}`}>{i === 1 ? <Icona nome="stato-risposta-giusta" size={14} /> : l}</span>
                   <span className="h-1.5 flex-1 rounded-full bg-testo/15" /><span className="h-1.5 w-3 rounded-full bg-testo/15" />

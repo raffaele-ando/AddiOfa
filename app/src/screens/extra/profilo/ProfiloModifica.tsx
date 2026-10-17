@@ -7,7 +7,7 @@ import { useExtra } from '../contesto';
 import { Disegno } from '../servizi/componenti';
 import { Avatar, Pagina, Sezione, useProfilo } from './componenti';
 
-const CAMPO = 'w-full h-12 rounded-[12px] bg-superficie-2 border border-linea px-3.5 text-[16px] text-testo placeholder:text-testo-tenue focus:outline-none focus:border-azione';
+const CAMPO = 'w-full h-12 rounded-[12px] bg-superficie-2 border border-bordo-campo px-3.5 text-[16px] text-testo placeholder:text-testo-tenue focus:outline-none focus:border-azione';
 
 /** Modifica nome, avatar e corso di studi. Si salva solo con «Salva»; la freccia indietro lascia tutto com'era. */
 export default function ProfiloModifica() {
