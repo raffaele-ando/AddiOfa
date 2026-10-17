@@ -7,6 +7,8 @@ import { loginDisponibile, logout, onAuthChange, signInWithGoogle, LoginError } 
 import { aggiornaProgetto, type Collegamento } from '../../../lib/progetto/profilo';
 import { ATLAS_API_URL, ECOSYSTEM, REQUIRED_SCOPES } from '../../../config/ecosystem';
 import type { AppState } from '../../../types';
+import { applicaRitornoVerifica } from '../../../lib/progetto/ritorno';
+import type { EsitoRitorno } from '../../../lib/firebase';
 
 /** Lo stato dell'invio dell'iscrizione, sempre aggiornato; e fa partire i tentativi automatici finché la schermata è aperta. */
 export function useInvio(): RecordInvio | null {
@@ -120,4 +122,18 @@ export function useSincronizzaCollegamento(me: MeRisposta | null, aggiorna: (fn:
       return { ...p, collegamento: nuovo };
     }));
   }, [me, aggiorna]);
+}
+
+/** Al primo montaggio completa la verifica dell'email se la pagina è stata aperta dal link (vedi lib/progetto/ritorno.ts). Restituisce l'esito da mostrare, o null. */
+export function useRitornoVerifica(appState: AppState, aggiorna: (fn: (s: AppState) => AppState) => void): EsitoRitorno | null {
+  const [esito, setEsito] = useState<EsitoRitorno | null>(null);
+  const stato = useRef(appState);
+  stato.current = appState;
+  useEffect(() => {
+    let vivo = true;
+    void applicaRitornoVerifica(() => stato.current, aggiorna).then(e => { if (vivo && e.tipo !== 'nessuno') setEsito(e); });
+    return () => { vivo = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return esito;
 }

@@ -5,12 +5,16 @@ import { useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { BottoneAzione, BottoneRiga, BottoneSecondario, Etichetta, Interruttore, Nota, Pagina, RigaDato, Sezione, Testata, copiaTesto } from './comuni';
-import { CampiChiSei, CampiConsensi, CampiCorso, formDa, type FormRegistrazione } from './registrazione';
-import { useAccesso, useInvio, useSincronizzaCollegamento } from './hooks';
+import { CampiConsensi, CampoEmail, campiPercorso, formDa, nomeEffettivo, PassoPercorso, ScelteProvenienza, type FormRegistrazione } from './registrazione';
+import { useAccesso, useInvio, useRitornoVerifica, useSincronizzaCollegamento } from './hooks';
 import { atlas, type MeRisposta } from '../../../lib/atlas';
 import { coda, descriviInvio, type ChiaveStato } from '../../../lib/progetto/coda';
 import { aggiornaProgetto, corpoIscrizione, creaProfilo, impostaProfilo, leggiProgetto, type Collegamento, type Profilo } from '../../../lib/progetto/profilo';
 import { controllaDatiMinimi } from '../../../lib/progetto/validazione';
+import { nomeProvenienza } from '../../../lib/progetto/corsi';
+import { esitoPercorso } from '../../../lib/progetto/percorso';
+import { fonteCorsi, riepilogoPercorso } from '../../../lib/progetto/percorsoDati';
+import { inviaLinkVerifica, verificaDisponibile } from '../../../lib/firebase';
 import { ATLAS_API_URL, CONSENT_VERSION, ECOSYSTEM, REQUIRED_SCOPES, SCOPES, type ScopeId } from '../../../config/ecosystem';
 import { CONTACT_EMAIL } from '../../../config/offer';
 import { playTapSound } from '../../../lib/audio';
@@ -43,6 +47,14 @@ export default function ProjectId() {
     : descriviInvio(invio, adesso);
 
   useSincronizzaCollegamento(acc.me, aggiorna);
+  const ritorno = useRitornoVerifica(appState, aggiorna);
+  const [link, setLink] = useState<{ fase: 'quiete' | 'invio' | 'inviato' | 'errore'; messaggio?: string }>({ fase: 'quiete' });
+  const chiediLink = async () => {
+    if (!profilo) return;
+    setLink({ fase: 'invio' });
+    const r = await inviaLinkVerifica(profilo.email);
+    setLink('messaggio' in r ? { fase: 'errore', messaggio: r.messaggio } : { fase: 'inviato' });
+  };
 
   const salvaCollegamento = (scopes: ScopeId[], r: MeRisposta) => {
     const link = r.links.find(l => l.appId === ECOSYSTEM.appId);
@@ -92,32 +104,44 @@ export default function ProjectId() {
     );
   }
 
+  const percorso = riepilogoPercorso(profilo);
   const puoRiprovare = (statoInvio.chiave === 'in-attesa' || statoInvio.chiave === 'rifiutata') && acc.atlasOnline;
 
   return (
     <Pagina titolo={ECOSYSTEM.accountName}>
       <Testata nome="verifica-utente" kit="kit-luminoso" lato={150} />
       {esito && <Nota tono="riuscito" className="mt-4"><p role="status" data-testo-ok>{esito}</p></Nota>}
+      {ritorno?.tipo === 'ok' && <Nota tono="riuscito" className="mt-4"><p role="status" data-testo-ok>Email verificata: {ritorno.email}.</p></Nota>}
+      {ritorno?.tipo === 'errore' && <Nota tono="attenzione" className="mt-4"><p role="alert" data-testo-ok>{ritorno.messaggio}</p></Nota>}
 
       <Sezione id="pid-iscrizione" titolo="La tua iscrizione">
         {!profilo ? (
           <>
-            <Nota><p data-testo-ok>Non hai ancora scritto nome ed email: l&apos;iscrizione non c&apos;è.</p></Nota>
+            <Nota><p data-testo-ok>Non hai ancora scritto la tua email: l&apos;iscrizione non c&apos;è.</p></Nota>
             <BottoneAzione onClick={() => vai('completa-profilo')}>Completa il profilo</BottoneAzione>
           </>
         ) : (
           <>
             <ul className="divide-y divide-linea overflow-hidden rounded-[14px] bg-superficie-2">
+              <RigaDato icona="email" etichetta="Email PoliMi" tono={profilo.emailVerificata ? 'alto' : 'medio'}
+                valore={<span className="flex flex-wrap items-center gap-2">{profilo.email}{profilo.emailVerificata ? <Etichetta tono="alto">Verificata</Etichetta> : <Etichetta tono="medio">Non verificata</Etichetta>}</span>} />
               <RigaDato icona="profilo" etichetta="Nome" valore={profilo.nome} />
-              <RigaDato icona="email" etichetta="Email PoliMi" valore={<span className="flex flex-wrap items-center gap-2">{profilo.email}<Etichetta tono="medio">Non verificata</Etichetta></span>} tono="medio" />
-              <RigaDato icona="lezioni" etichetta="Corso" valore={profilo.corso ?? '–'} />
-              <RigaDato icona="home" etichetta="Sede" valore={profilo.sede ?? '–'} tono="alto" />
-              <RigaDato icona="condividi" etichetta="Come ci hai conosciuto" valore={profilo.provenienza ?? '–'} tono="viola" />
+              {percorso.length > 0
+                ? percorso.map(r => <RigaDato key={r.etichetta} icona={r.etichetta === 'Corso' ? 'lezioni' : r.etichetta === 'Sede' ? 'home' : 'livello'} etichetta={r.etichetta} valore={r.valore} tono="alto" />)
+                : <RigaDato icona="lezioni" etichetta="Percorso di studi" valore="–" tono="alto" />}
+              <RigaDato icona="condividi" etichetta="Come ci hai conosciuto" valore={nomeProvenienza(profilo.provenienza) ?? '–'} tono="viola" />
               <RigaDato icona="privacy" etichetta="Consensi" valore={consensiDati(iscrizioneRemota?.consensi ?? profilo.consensi)} tono="viola" />
               <RigaDato icona={statoInvio.chiave === 'inviata' ? 'stato-ok' : statoInvio.chiave === 'rifiutata' ? 'stato-errore' : 'stato-attesa'} etichetta={`Invio ad ${ECOSYSTEM.engineName}`} tono={statoInvio.chiave === 'inviata' ? 'alto' : statoInvio.chiave === 'rifiutata' ? 'basso' : 'medio'}
                 valore={<span><Etichetta tono={TONO_INVIO[statoInvio.chiave]}>{statoInvio.titolo}</Etichetta><span className="mt-1 block text-[13px] font-normal leading-[18px] text-testo-tenue">{statoInvio.dettaglio}</span></span>} />
             </ul>
             <div className="flex flex-col gap-2">
+              {!profilo.emailVerificata && verificaDisponibile() && (
+                <>
+                  <BottoneSecondario onClick={() => { void chiediLink(); }} disabled={link.fase === 'invio'} icona={<Icona nome="email" size={20} />}>{link.fase === 'invio' ? 'Invio…' : 'Verifica con un link'}</BottoneSecondario>
+                  {link.fase === 'inviato' && <p role="status" data-testo-ok className="text-[13px] leading-[18px] font-semibold text-alto-testo">Link inviato. Aprilo dalla posta: l&apos;email resta non verificata finché non lo fai.</p>}
+                  {link.fase === 'errore' && <ErroreRiga testo={link.messaggio ?? ''} />}
+                </>
+              )}
               {puoRiprovare && <BottoneSecondario onClick={() => { void coda.riprova(); }} icona={<Icona nome="riprova" size={20} />}>Riprova ora</BottoneSecondario>}
               {statoInvio.chiave === 'solo-locale' && acc.atlasOnline && !iscrizioneRemota && (
                 <BottoneSecondario onClick={() => { void coda.accoda(corpoIscrizione(profilo), { forza: true }); }} icona={<Icona nome="condividi" size={20} />}>{`Invia ad ${ECOSYSTEM.engineName}`}</BottoneSecondario>
@@ -278,21 +302,29 @@ function Consenso({ profilo, acc, onAnnulla, onFatto }: {
   );
 }
 
-/** Modifica dei dati della registrazione. Se l'iscrizione è collegata a un Project ID, dal modulo pubblico non si cambia più: restano corso, sede e provenienza (via account). */
+/** Modifica dei dati della registrazione. Se l'iscrizione è collegata a un Project ID, dal modulo pubblico non si cambia più: restano percorso di studi e provenienza (via account). */
 function Modifica({ profilo, remota, acc, onAnnulla, onSalva, apriLegale }: {
   profilo: Profilo; remota: MeRisposta['signup']; acc: ReturnType<typeof useAccesso>; onAnnulla: () => void; onSalva: (p: Profilo) => void; apriLegale: (s: 'privacy') => void;
 }) {
   const [form, setForm] = useState<FormRegistrazione>(() => formDa(profilo));
   const [provato, setProvato] = useState(false);
   const [errore, setErrore] = useState<string | null>(null);
+  const [cambiaPercorso, setCambiaPercorso] = useState(false);
   const bloccata = !!remota; // iscrizione collegata
   const errori = controllaDatiMinimi({ nome: form.nome, email: form.email });
+  const corrente = riepilogoPercorso(profilo);
   const salva = async () => {
     if (!bloccata && (errori.nome || errori.email)) { setProvato(true); return; }
-    const p = creaProfilo(bloccata ? { ...form, nome: profilo.nome, email: profilo.email, consensi: profilo.consensi } : form, Date.now(), profilo);
+    const p = creaProfilo(
+      { email: bloccata ? profilo.email : form.email, nome: bloccata ? profilo.nome : nomeEffettivo(form) ?? '', ...(cambiaPercorso && esitoPercorso(form.percorso, fonteCorsi) ? campiPercorso(form.percorso) : { scuola: profilo.scuola, sede: profilo.sede, livello: profilo.livello, corso: profilo.corso, corsoId: profilo.corsoId, anno: profilo.anno }),
+        provenienza: form.provenienza, consensi: bloccata ? profilo.consensi : form.consensi, completato: true },
+      Date.now(), profilo);
     if (!p) { setProvato(true); return; }
     if (bloccata) {
-      const r = await acc.esegui(async () => { await atlas.updateMe({ corso: p.corso ?? null, sede: p.sede ?? null, provenienza: p.provenienza ?? null }); return true; });
+      const r = await acc.esegui(async () => {
+        await atlas.updateMe({ corso: p.corso ?? null, sede: p.sede ?? null, scuola: p.scuola ?? null, livello: p.livello ?? null, anno: p.anno ?? null, provenienza: p.provenienza ?? null });
+        return true;
+      });
       if (!r) { setErrore(acc.errore ?? 'Non riesco ad aggiornare i dati su ATLAS.'); return; }
     } else {
       void coda.accoda(corpoIscrizione(p));
@@ -303,11 +335,33 @@ function Modifica({ profilo, remota, acc, onAnnulla, onSalva, apriLegale }: {
     <Pagina titolo="Modifica" indietroA={onAnnulla}>
       <div className="mt-4 flex flex-col gap-6">
         {bloccata ? (
-          <Nota tono="neutro"><p data-testo-ok>Nome, email e consensi sono registrati su {ECOSYSTEM.engineName} e legati al tuo {ECOSYSTEM.accountName}: da qui non si cambiano. Per ritirare i consensi puoi eliminare il {ECOSYSTEM.accountName}.</p></Nota>
+          <Nota tono="neutro"><p data-testo-ok>Email, nome e consensi sono registrati su {ECOSYSTEM.engineName} e legati al tuo {ECOSYSTEM.accountName}: da qui non si cambiano. Per ritirare i consensi puoi eliminare il {ECOSYSTEM.accountName}.</p></Nota>
         ) : (
-          <CampiChiSei form={form} onChange={setForm} provato={provato} />
+          <CampoEmail form={form} onChange={setForm} provato={provato} verificata={profilo.emailVerificata && profilo.email === form.email.trim().toLowerCase()} />
         )}
-        <CampiCorso form={form} onChange={setForm} />
+
+        <section aria-labelledby="mod-percorso" className="flex flex-col gap-3">
+          <h2 id="mod-percorso" className="text-[15.5px] leading-[20px] font-bold text-testo">Cosa fai al Poli</h2>
+          {cambiaPercorso ? (
+            <PassoPercorso scelte={form.percorso} onChange={percorso => setForm(f => ({ ...f, percorso }))} onFine={() => undefined}
+              fine={<BottoneSecondario onClick={() => setCambiaPercorso(false)}>Fatto</BottoneSecondario>} />
+          ) : (
+            <>
+              {corrente.length > 0 && (
+                <ul className="divide-y divide-linea overflow-hidden rounded-[14px] bg-superficie-2">
+                  {corrente.map(r => <RigaDato key={r.etichetta} etichetta={r.etichetta} valore={r.valore} />)}
+                </ul>
+              )}
+              <BottoneSecondario onClick={() => { setForm(f => ({ ...f, percorso: {} })); setCambiaPercorso(true); }} icona={<Icona nome="modifica" size={20} />}>{corrente.length ? 'Cambia' : 'Scegli'}</BottoneSecondario>
+            </>
+          )}
+        </section>
+
+        <section aria-labelledby="mod-prov" className="flex flex-col gap-3">
+          <h2 id="mod-prov" className="text-[15.5px] leading-[20px] font-bold text-testo">Come ci hai conosciuto</h2>
+          <ScelteProvenienza valore={form.provenienza} onChange={id => setForm({ ...form, provenienza: form.provenienza === id ? '' : id })} />
+        </section>
+
         {!bloccata && <CampiConsensi consensi={form.consensi} onChange={c => setForm({ ...form, consensi: c })} onOpenLegal={() => apriLegale('privacy')} />}
         {(errore || acc.errore) && <ErroreRiga testo={errore ?? acc.errore ?? ''} />}
         <div className="flex flex-col gap-2.5">

@@ -8,7 +8,7 @@ import { TONI, type Tono } from '../ui';
 
 export { Pagina, Sezione, Nota, Etichetta, BottoneAzione, BottoneSecondario, copiaTesto } from '../servizi/componenti';
 
-/** Illustrazione di testata della pagina (le sfere del kit blu sono per le testate da 96 px; le altre secondo il piano d'uso). */
+/** Illustrazione di testata della pagina (illustrazioni piane del kit blu o luminoso, senza sfondi tondi). */
 export function Testata({ nome, kit = 'kit-blu', lato = 96, className }: { nome: string; kit?: 'kit-blu' | 'kit-luminoso'; lato?: number; className?: string }) {
   return (
     <div className={cn('mt-3 flex justify-center', className)}>

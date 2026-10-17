@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { Illustrazione } from '../../../brand/Illustrazione';
 import { useExtra } from '../contesto';
-import { BottoneAzione, BottoneSecondario, Nota, Pagina, Sezione, Testata } from './comuni';
+import { BottoneAzione, BottoneSecondario, Nota, Pagina, Sezione } from './comuni';
 import Radar from '../servizi/Radar';
 import { StimaSezione } from '../../../components/home/Stima';
 import { Carta, RigaIntervallo, REGOLA_IMPARATA } from '../../../components/home/comune';
@@ -76,8 +76,6 @@ export default function AtlasAnalisi() {
 
   return (
     <Pagina titolo={ECOSYSTEM.engineName} destra={info}>
-      <Testata nome="sfera-opportunita" />
-
       {stima ? (
         <section aria-labelledby="an-stima" className="mt-3">
           <h2 id="an-stima" data-testo-ok className="sr-only">Probabilità stimata di superare il test</h2>

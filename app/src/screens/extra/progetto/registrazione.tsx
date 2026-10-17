@@ -15,7 +15,7 @@ import {
   briciole, CORSI_PER_RICERCA, esitoPercorso, filtraCorsi, risolvi, scegli, torna,
   type EsitoPercorso, type FonteCorsi, type PassoPercorso, type ScelteCorso,
 } from '../../../lib/progetto/percorso';
-import { DATI_DI_PROVA, fonteCorsi } from '../../../lib/progetto/percorsoDati';
+import { fonteCorsi } from '../../../lib/progetto/percorsoDati';
 import { CONSENSI_VUOTI, type Consensi, type Profilo } from '../../../lib/progetto/profilo';
 import { controllaEmailPolimi, NOME_MAX, pulisciNome, TESTO_MOTIVO_EMAIL } from '../../../lib/progetto/validazione';
 import type { EsitoInvioLink } from '../../../lib/firebase';
@@ -172,8 +172,8 @@ export function CampoEmail({ form, onChange, provato, verificata, onInviaVerific
 // ---------------------------------------------------------------------------------------------------------------------------------
 // Cosa fai al Poli
 
-/** Un'illustrazione per scuola dal kit blu (non ce n'è una per ciascuna: le sfere più vicine al tema, vedi la nota di consegna). */
-const ARTE_SCUOLA: Record<string, string> = { 'ing-ind-inf': 'sfera-app', icat: 'sfera-opportunita', auic: 'sfera-polimi', design: 'sfera-tips' };
+/** Un'illustrazione piana del kit blu per scuola (non ce n'è una dedicata a ciascuna: le più vicine al tema, vedi la nota di consegna). */
+const ARTE_SCUOLA: Record<string, string> = { 'ing-ind-inf': 'progressi-statistiche', icat: 'mondo-internazionale', auic: 'studio-inglese', design: 'suggerimenti-consigli' };
 
 const TITOLO_PASSO: Record<PassoPercorso, string> = { scuola: 'La tua scuola', sede: 'La sede', livello: 'Il livello', corso: 'Il tuo corso', anno: 'Che anno?' };
 
@@ -229,7 +229,6 @@ export function PassoPercorso({ scelte, onChange, onFine, fonte = fonteCorsi, fi
       ) : (
         <>
           <h2 data-testo-ok className="text-2xl sm:text-3xl font-bold text-testo">{TITOLO_PASSO[stato.passo]}</h2>
-          {import.meta.env.DEV && DATI_DI_PROVA && <p className="text-[11px] font-bold text-basso-testo">DATI DI PROVA</p>}
           {conRicerca && (
             <div className="flex items-center gap-2 rounded-[12px] bg-superficie-2 px-3.5 focus-within:outline focus-within:outline-2 focus-within:outline-azione">
               <Icona nome="cerca" size={20} className="shrink-0 text-testo-tenue" />
@@ -243,7 +242,7 @@ export function PassoPercorso({ scelte, onChange, onFine, fonte = fonteCorsi, fi
               {opzioni.map(o => (
                 <button key={o.id} type="button" onClick={() => scelto('scuola', o.id)}
                   className="brand-premibile flex min-h-[148px] flex-col items-center justify-center gap-2 rounded-[18px] border border-linea bg-superficie-2 p-3 text-center">
-                  {ARTE_SCUOLA[o.id] && <Illustrazione nome={ARTE_SCUOLA[o.id]} lato={64} />}
+                  {ARTE_SCUOLA[o.id] && <Illustrazione nome={ARTE_SCUOLA[o.id]} lato={72} />}
                   <span data-testo-ok className="text-[14px] leading-[18px] font-bold text-testo">{o.nome}</span>
                 </button>
               ))}

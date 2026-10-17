@@ -1,12 +1,32 @@
-// Il collegamento tra la cascata (percorso.ts) e i dati dei corsi. Oggi i dati sono quelli di PROVA (percorsoProva.ts, corsi finti);
-// quando esiste `src/data/corsi.ts` basta sostituire `fonteCorsi` con un adattatore su sediDellaScuola, livelliDisponibili,
-// corsiDisponibili e anniDelCorso, e cancellare percorsoProva.ts.
-import { NOMI_LIVELLO, type FonteCorsi, type LivelloId, type Opzione } from './percorso';
-import { fonteProva } from './percorsoProva';
+// Il collegamento tra la cascata (percorso.ts) e i dati ufficiali dei corsi (src/data/corsi.ts, generato da contenuti/corsi/corsi-polimi.json,
+// a.a. 2026/27). Le sedi senza corsi attivi non compaiono mai (lo garantisce data/corsi.ts). I corsi sono una voce per sede.
+import { corsiDisponibili, livelliDisponibili, scuole, sediDellaScuola, anniDelCorso, VERSIONE_CORSI } from '../../data/corsi';
+import { NOMI_LIVELLO, type FonteCorsi, type LivelloId, type Opzione, type OpzioneCorso } from './percorso';
 
-export const fonteCorsi: FonteCorsi = fonteProva;
-/** Vero finché i dati sono quelli di prova (la schermata lo dice solo in sviluppo). */
-export const DATI_DI_PROVA = true;
+const ORDINE: LivelloId[] = ['triennale', 'ciclo-unico', 'magistrale'];
+
+export const fonteCorsi: FonteCorsi = {
+  scuole: () => scuole.map(s => ({ id: s.id, nome: s.nome })),
+  sedi: scuola => sediDellaScuola(scuola).map(s => ({ id: s.id, nome: s.nome })),
+  livelli(scuola, sede) {
+    const sedi = sede ? [sede] : sediDellaScuola(scuola).map(s => s.id);
+    const presenti = new Set<LivelloId>(sedi.flatMap(s => livelliDisponibili(scuola, s)));
+    return ORDINE.filter(l => presenti.has(l));
+  },
+  corsi(scuola, sede, livello) {
+    const sedi = sede ? [sede] : sediDellaScuola(scuola).map(s => s.id);
+    const out: OpzioneCorso[] = [];
+    for (const s of sedi) {
+      for (const l of (livello ? [livello] : livelliDisponibili(scuola, s))) {
+        out.push(...corsiDisponibili(scuola, s, l).map(c => ({ id: c.id, nome: c.nome, anni: anniDelCorso(c).length })));
+      }
+    }
+    return out;
+  },
+};
+
+/** Versione dei dati dei corsi (a.a.). */
+export const VERSIONE_DATI_CORSI = VERSIONE_CORSI;
 
 export const nomeScuola = (id: string | undefined, fonte: FonteCorsi = fonteCorsi): string | undefined => fonte.scuole().find(s => s.id === id)?.nome;
 

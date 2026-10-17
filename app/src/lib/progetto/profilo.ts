@@ -69,7 +69,7 @@ function leggiPercorso(v: Record<string, unknown>) {
   const sedeGrezza = typeof v.sede === 'string' ? v.sede.trim().toLowerCase() : '';
   const sede = ID_BREVE.test(sedeGrezza) ? sedeGrezza : undefined;
   const corso = testoBreve(v.corso, 120);
-  const corsoId = typeof v.corsoId === 'string' && /^[A-Za-z0-9._-]{1,40}$/.test(v.corsoId) ? v.corsoId : undefined;
+  const corsoId = typeof v.corsoId === 'string' && /^[A-Za-z0-9._-]{1,100}$/.test(v.corsoId) ? v.corsoId : undefined;
   const anno = typeof v.anno === 'number' && Number.isInteger(v.anno) && v.anno >= 1 && v.anno <= 6 ? v.anno : undefined;
   return { ...(scuola ? { scuola } : {}), ...(sede ? { sede } : {}), ...(livello ? { livello } : {}), ...(corso ? { corso } : {}), ...(corsoId ? { corsoId } : {}), ...(anno ? { anno } : {}) };
 }

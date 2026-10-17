@@ -70,7 +70,7 @@ export default function Noi() {
 
   return (
     <Pagina titolo={ECOSYSTEM.rankingName}>
-      <Testata nome="sfera-community" />
+      <Testata nome="successo" lato={130} />
 
       {!acc.controllo && (
         <Nota tono={stato === 'aderito' ? 'riuscito' : stato === 'non-collegato' ? 'attenzione' : 'neutro'} className="mt-4">

@@ -13,7 +13,7 @@ export default function Agora() {
   const messaggi = profilo?.consensi.comunicazioni === true;
   return (
     <Pagina titolo={ECOSYSTEM.agoraName}>
-      <Testata nome="sfera-polimi" />
+      <Testata nome="messaggi-supporto" lato={140} />
       <p data-testo-ok className="mt-3 text-center text-[15px] leading-[22px] text-testo">
         Agorà è la pagina di Project per gli studenti del Politecnico di Milano: idee, domande e confronto.
       </p>

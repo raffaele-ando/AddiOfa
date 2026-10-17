@@ -5,7 +5,7 @@ import {
   anniDelCorso, briciole, CORSI_PER_RICERCA, CORSO_ALTRO_ID, esitoPercorso, filtraCorsi, opzioniPasso, risolvi, scegli, torna,
   type ScelteCorso,
 } from '../../src/lib/progetto/percorso';
-import { fonteProva } from '../../src/lib/progetto/percorsoProva';
+import { fonteProva } from './percorso-fixture';
 
 const F = fonteProva;
 const ids = (o: { id: string }[]) => o.map(x => x.id);
@@ -123,4 +123,59 @@ test('dati mancanti: un passo senza scelte si salta senza inventare niente', () 
   const r = risolvi({ scuola: 'design' }, vuota);
   assert.equal(r.scelte.sede, undefined);
   assert.equal(r.passo, 'livello');
+});
+
+// ---- Con i dati veri (src/data/corsi.ts, a.a. 2026/27)
+import { fonteCorsi } from '../../src/lib/progetto/percorsoDati';
+import { corsiInEsaurimento, sedi as sediVere } from '../../src/data/corsi';
+import { SCUOLE_ID } from '../../src/lib/progetto/percorso';
+
+test('dati veri: le quattro scuole hanno gli id che il Worker accetta', () => {
+  assert.deepEqual(ids(fonteCorsi.scuole()), [...SCUOLE_ID]);
+});
+
+test('dati veri: ogni percorso (scuola, sede, livello, corso, anno) si completa con i soli tocchi, e l\'esito è valido per il Worker', () => {
+  let percorsi = 0;
+  for (const scuola of fonteCorsi.scuole()) {
+    for (const sede of fonteCorsi.sedi(scuola.id)) {
+      assert.match(sede.id, /^[a-z0-9-]{2,30}$/, `sede ${sede.id}`);
+      assert.ok(sediVere.find(s => s.id === sede.id)?.attiva, `sede inattiva proposta: ${sede.id}`);
+      const livelli = fonteCorsi.livelli(scuola.id, sede.id);
+      assert.ok(livelli.length > 0, `${scuola.id}/${sede.id} senza livelli`);
+      for (const livello of livelli) {
+        const corsi = fonteCorsi.corsi(scuola.id, sede.id, livello);
+        assert.ok(corsi.length > 0);
+        for (const corso of corsi) {
+          assert.ok(corso.nome.length > 0 && corso.nome.length <= 120, corso.nome);
+          assert.ok(corso.anni >= 1 && corso.anni <= 6, `${corso.nome}: ${corso.anni} anni`);
+          // si va da zero all'esito solo scegliendo
+          let s: ScelteCorso = {};
+          s = scegli(s, 'scuola', scuola.id);
+          for (let giro = 0; giro < 6; giro++) {
+            const r = risolvi(s, fonteCorsi);
+            if (r.passo === null) break;
+            const voce = r.passo === 'sede' ? sede.id : r.passo === 'livello' ? livello : r.passo === 'corso' ? corso.id : String(corso.anni);
+            s = scegli(r.scelte, r.passo, voce);
+          }
+          const e = esitoPercorso(s, fonteCorsi);
+          assert.ok(e, `${scuola.id}/${sede.id}/${livello}/${corso.id} non si completa`);
+          assert.equal(e!.corso, corso.nome);
+          assert.equal(e!.anno, corso.anni);
+          assert.equal(e!.scuola, scuola.id);
+          assert.equal(e!.sede, sede.id);
+          percorsi++;
+        }
+      }
+    }
+  }
+  assert.ok(percorsi >= 80, `percorsi provati: ${percorsi}`);
+});
+
+test('dati veri: le sedi proposte sono solo quelle attive di quella scuola; i livelli solo quelli che esistono', () => {
+  const lecco = fonteCorsi.sedi('design').map(s => s.id);
+  assert.ok(lecco.includes('bovisa'));
+  assert.ok(!fonteCorsi.sedi('icat').some(s => s.id === 'bovisa'));
+  assert.ok(!fonteCorsi.sedi('ing-ind-inf').some(s => !sediVere.find(v => v.id === s.id)?.attiva));
+  assert.ok(!fonteCorsi.livelli('icat', 'lecco').includes('triennale'));
+  assert.equal(corsiInEsaurimento.length, 0);
 });

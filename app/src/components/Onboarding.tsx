@@ -15,7 +15,7 @@ import CalcoloRisultato from './CalcoloRisultato';
 import { Barra, coloreValore } from './home/comune';
 import { livelloDi, type Livello } from './home/stima';
 import { PulsanteInfo, IconaTono } from '../screens/extra/ui';
-import { Dato, Fatti, InfoFoglio } from '../screens/landing/comune';
+import { Dato, InfoFoglio } from '../screens/landing/comune';
 import { CONSEGUENZE } from '../screens/landing/dati';
 import { InfoIndipendenza } from '../screens/Footer';
 import { CampiConsensi, CampoEmail, campiPercorso, formDa, nomeEffettivo, PassoPercorso, ScelteProvenienza, type FormRegistrazione } from '../screens/extra/progetto/registrazione';
@@ -363,7 +363,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
           <TopBar {...bar} onBack={soloRegistrazione ? () => setStep('email') : () => { setQuizIndex(quiz.length - 1); setStep('quiz'); }} />
           <TestataDomanda icona="lezioni" titolo="Cosa fai al Poli" />
           <PassoPercorso scelte={reg.percorso} onChange={percorso => setReg(r => ({ ...r, percorso }))}
-            onFine={e => { salva(false); void e; setStep(soloRegistrazione ? 'provenienza' : 'certification'); }}
+            onFine={() => { salva(false); setStep(soloRegistrazione ? 'provenienza' : 'certification'); }}
             fine={<PrimaryButton onClick={() => { salva(false); setStep(soloRegistrazione ? 'provenienza' : 'certification'); }}>Avanti</PrimaryButton>} />
         </Screen>
       );

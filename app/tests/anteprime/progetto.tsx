@@ -26,7 +26,7 @@ function statoIniziale(): AppState {
     const logs = questions.slice(0, 30).map((qq, i) => ({ questionId: qq.id, userAnswerIndex: i < 21 ? qq.correctIndex : (qq.correctIndex + 1) % 4, correctIndex: qq.correctIndex, isCorrect: i < 21, category: qq.category }));
     return { ...diag, stats, history: [{ id: 's1', date: Date.now() - 86400000, score: 21, passed: false, timeSpentSeconds: 700, questionLogs: logs, questionIds: logs.map(l => l.questionId) }] };
   }
-  const p = creaProfilo({ nome: 'Maria Rossi', email: 'maria.rossi@mail.polimi.it', corso: 'Ingegneria Gestionale', sede: 'Bovisa', provenienza: 'Gruppo o chat', consensi: { noi: true } }, Date.now())!;
+  const p = creaProfilo({ email: 'maria.rossi@mail.polimi.it', scuola: 'ing-ind-inf', sede: 'bovisa', livello: 'triennale', corso: 'Corso di prova II-B-T 1', corsoId: 'ii-b-t-1', anno: 2, provenienza: 'gruppo-chat', consensi: { noi: true } }, Date.now())!;
   const conProfilo = impostaProfilo(diag, p);
   if (stato === 'profilo') return conProfilo;
   return { ...conProfilo, extra: { ...conProfilo.extra, [CHIAVE_PROGETTO]: { profilo: p, collegamento: { scopes: ['profile', 'noi.leaderboard'], collegatoIl: Date.now(), aggiornatoIl: Date.now() } } } };
