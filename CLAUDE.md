@@ -45,7 +45,7 @@ Gli script Python della grafica si lanciano **da `grafica/`**: `python3 strument
 - Non si cancellano `app/firebase-applet-config.json` e `app/bun.lock`: li toglie l'utente.
 - Niente PR né push su `main` senza richiesta; si lavora sul branch indicato.
 - Pagine legali (Termini, Privacy, Cookie): scritte per un sito gratuito, senza account né pagamenti, con dati solo nel dispositivo. Nell'app niente marcatori «bozza»; resta l'avvertenza «Progetto studentesco indipendente, non affiliato al Politecnico di Milano». Una revisione di un professionista resta consigliata (si dice qui e nelle note, non nell'app).
-- Niente animazioni decorative (scala, rimbalzo, galleggiamento, pulsazione, conteggi che salgono, coriandoli): l'interfaccia è statica; restano gli spinner di caricamento, cambi di colore ≤ 120 ms e le animazioni a pezzi delle illustrazioni in `app/src/brand/animazioni/`.
+- Niente animazioni decorative (scala, rimbalzo, galleggiamento, pulsazione, conteggi che salgono, coriandoli): l'interfaccia è statica. Unica eccezione richiesta dall'utente: nella landing le schede sotto l'hero compaiono (dissolvenza breve) solo quando chi scorre ci arriva (`useRivelaScorrendo` in `Landing.tsx`); la pagina da sola non si muove; restano gli spinner di caricamento, cambi di colore ≤ 120 ms e le animazioni a pezzi delle illustrazioni in `app/src/brand/animazioni/`.
 
 ## Prima di dire "fatto"
 

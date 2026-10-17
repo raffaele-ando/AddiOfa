@@ -6,3 +6,8 @@
     radial-gradient(42% 380px at 6% 840px, var(--landing-alone-2), transparent),
     radial-gradient(40% 300px at 70% 1160px, var(--landing-alone-1), transparent);
 }
+
+/* Schede che compaiono scorrendo (Landing.tsx, useRivelaScorrendo): ferme finché non si scorre. È l'unica eccezione alla regola «niente transizioni lunghe», richiesta dall'utente: parte solo dal gesto di scorrimento. */
+.rivela { opacity: 0; transform: translateY(18px); transition: opacity 380ms ease, transform 380ms ease; }
+.rivela.rivela-si { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .rivela { opacity: 1; transform: none; transition: none; } }

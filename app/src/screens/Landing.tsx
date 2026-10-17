@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { LegalSection } from '../types';
 import Footer from './Footer';
 import Barra from './landing/Barra';
@@ -31,8 +31,12 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal }: Land
     return () => o.disconnect();
   }, []);
 
+  // Pagina ferma: sotto l'hero ogni scheda compare solo quando chi scorre (rotella o dito) ci arriva. Niente movimento da sola.
+  const scorri = useRef<HTMLDivElement>(null);
+  useRivelaScorrendo(scorri);
+
   return (
-    <div className="fixed inset-0 z-40 overflow-y-auto overflow-x-hidden bg-fondo text-testo">
+    <div ref={scorri} className="fixed inset-0 z-40 overflow-y-auto overflow-x-hidden bg-fondo text-testo">
       <Barra onStart={onStartDiagnostic} />
       <main className="landing-pagina">
         <Hero onStart={onStartDiagnostic} onSkip={onSkip} scuro={scuro} />
@@ -48,4 +52,24 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal }: Land
       </Colonna>
     </div>
   );
+}
+
+/** Le schede sotto l'hero (liste, carte, titoli, domande) partono nascoste e compaiono quando entrano nella finestra mentre si scorre.
+ *  Non si applica con «riduci movimento» o senza IntersectionObserver: allora tutto è già visibile. Le mini-schermate (aria-hidden) non si toccano. */
+function useRivelaScorrendo(radice: React.RefObject<HTMLDivElement | null>) {
+  useLayoutEffect(() => {
+    const el = radice.current;
+    if (!el || typeof IntersectionObserver === 'undefined' || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    const schede = Array.from(el.querySelectorAll<HTMLElement>('main > section:not(:first-of-type) :is(li, article, details, h2, figure, [data-scheda])'))
+      .filter(n => !n.closest('[aria-hidden="true"]'));
+    // un elemento dentro un'altra scheda non si rivela due volte: si tengono i più esterni
+    const esterne = schede.filter(n => !schede.some(m => m !== n && m.contains(n)));
+    esterne.forEach(n => n.classList.add('rivela'));
+    const o = new IntersectionObserver(voci => {
+      const entrano = voci.filter(v => v.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left);
+      entrano.forEach((v, i) => { (v.target as HTMLElement).style.transitionDelay = `${Math.min(i, 5) * 70}ms`; v.target.classList.add('rivela-si'); o.unobserve(v.target); });
+    }, { root: el, threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    esterne.forEach(n => o.observe(n));
+    return () => { o.disconnect(); esterne.forEach(n => { n.classList.remove('rivela', 'rivela-si'); n.style.transitionDelay = ''; }); };
+  }, [radice]);
 }

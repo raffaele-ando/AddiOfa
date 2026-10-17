@@ -111,7 +111,7 @@ export default function TelefonoPassi() {
   const p = PASSI[attivo];
   const Schermo = p.Schermo;
   return (
-    <div className="mt-8 lg:hidden">
+    <div data-scheda className="mt-8 lg:hidden">
       {/* scelta del passo: quattro cerchi numerati con il nome sotto */}
       <div role="group" aria-label="Passi" className="grid grid-cols-4 gap-1" data-testo-ok>
         {PASSI.map((x, i) => {
