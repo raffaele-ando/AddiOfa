@@ -4,14 +4,14 @@ Lingua: italiano nei testi per l'utente e nei documenti; codice, nomi di variabi
 
 ## Cos'è
 
-Sito web statico, gratuito e senza account, per preparare il test d'inglese dell'OFA del Politecnico di Milano. Nessun server: domande, correzione, simulazioni e progressi stanno nel browser (i progressi nel dispositivo, con esporta/importa), quindi regge qualsiasi numero di studenti contemporanei. Decisione del 16/10: non si pensa più alla monetizzazione (niente Pass, pagamenti, lista d'attesa, inviti, Project ID, classifica NOI). Il vecchio piano di business in `docs/business/AddiOFA_piano_definitivo.md` è superato e resta come storico. Come si pubblica: `app/DEPLOY.md`.
+Sito web (PWA) gratuito per preparare il test d'inglese dell'OFA del Politecnico di Milano. È anche il canale con cui l'autore distribuisce il suo ecosistema: **Project** (l'autore), **Project ID** (account), **ATLAS** (algoritmo e infrastruttura, Worker in `atlas/`), **NOI** (classifica e community), **Agorà** (`polimi.agora`). Domande, correzione, simulazioni e progressi stanno nel browser (progressi nel dispositivo, esporta/importa), quindi il sito statico regge qualsiasi numero di studenti insieme; ATLAS serve per le iscrizioni (nome, email PoliMi, corso: raccolte subito al primo avvio), l'accesso Project ID e la classifica NOI. Decisione del 16/10: niente monetizzazione (niente Pass, pagamenti, lista d'attesa, inviti; il Worker `pass/` è in `docs/archivio/pass-worker/`). Il vecchio piano di business in `docs/business/AddiOFA_piano_definitivo.md` è superato. Come si pubblica: `app/DEPLOY.md` (sito) e `atlas/DEPLOY.md` (Worker).
 
 ## Mappa
 
 | Cartella | Cosa c'è | Si lavora qui quando |
 |---|---|---|
 | `app/` | App React 19 + Vite 6 + Tailwind 4 (`src/components`, `src/screens` (le schermate extra stanno in `src/screens/extra/<area>/` e si registrano in `registro.ts`, contratto in `extra/contesto.tsx`), `src/access` (il banco domande: `import { provider } from '../access'`), `src/lib`, `src/config`, `src/data`, `src/brand`) | si cambia l'app |
-| `pass/`, `atlas/` | I due Worker Cloudflare del vecchio progetto a pagamento: **fuori uso**, l'app non li chiama più. Non si toccano; vanno spostati in `docs/archivio/` | mai |
+| `atlas/` | Worker Cloudflare + D1 di ATLAS: iscrizioni con email PoliMi, Project ID (verifica i token Firebase), classifica NOI, esportazione per l'autore. Si pubblica con `atlas/DEPLOY.md`; prove: `cd atlas && npm test` | si cambia il server |
 | `contenuti/` | Fonte unica di domande, teoria e spiegazioni; genera i file in `app/src/data/` e il seed del Worker | si cambiano i contenuti |
 | `grafica/` | Officina grafica: `brand/` (risultati), `strumenti/` (programmi Python), `sapere/` (metodo), `fonti/` (immagini di partenza) | si ridisegna o si estrae grafica |
 | `docs/` | `business/` (piano, conti, ricerche), `design/` (catalogo dei concept), `lavoro/` (note degli agenti), `strategia/`, `dati/` (graduatorie), `archivio/` (storico) | si leggono o scrivono documenti |
@@ -26,7 +26,7 @@ Gli script Python della grafica si lanciano **da `grafica/`**: `python3 strument
 
 ## Regole di nome e di posto
 
-- Minuscole e trattini, mai spazi né UUID. Cartelle di primo livello in italiano chiaro; i prodotti si chiamano `app`, `pass`, `atlas`.
+- Minuscole e trattini, mai spazi né UUID. Cartelle di primo livello in italiano chiaro; i prodotti si chiamano `app`, `atlas`.
 - Mai rinominare i file di `grafica/fonti/design-concept/`: il numero NN del catalogo è la loro posizione alfabetica.
 - Cartelle di grafica come `grafica/brand/*` non si rinominano (centinaia di riferimenti).
 - Un documento nuovo va in `docs/` (non alla radice); uno vecchio e superato va in `docs/archivio/`.
@@ -39,7 +39,7 @@ Gli script Python della grafica si lanciano **da `grafica/`**: `python3 strument
 
 ## Cose che non si fanno
 
-- Niente server, account, pagamenti, analytics, cookie di tracciamento: ogni funzione deve lavorare nel browser e funzionare subito. Se una funzione ha bisogno di un server, non si fa a metà: non c'è. Niente urgenza finta, account o recensioni finti, notifiche inventate.
+- Niente pagamenti, analytics, cookie di tracciamento. Ogni funzione funziona subito nel browser; ciò che ha bisogno di ATLAS (iscrizione, Project ID, classifica NOI) dice con una riga vera se non è collegato e non finge mai. Dati personali raccolti solo con informativa, consensi facoltativi non preselezionati, email PoliMi mai segnata «verificata» se non lo è. Niente urgenza finta, account o recensioni finti, notifiche inventate.
 - Nei testi per l'utente: niente «Pass», «Sblocca», «Gratis/Prova» come etichette, niente beta, dimostrativo, esperimento, «presto», «in arrivo». Tutto è aperto e senza limiti. «Simulazione di prova» è lecito. Un solo formato di test: 30 domande, 15 minuti, soglia 25/30.
 - Niente `<text>` negli SVG generati (testi come tracciati), niente font esterni nella demo.
 - Non si cancellano `app/firebase-applet-config.json` e `app/bun.lock`: li toglie l'utente.
