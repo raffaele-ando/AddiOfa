@@ -3,7 +3,7 @@
 // L'accesso prova soltanto l'account Google: non dimostra di essere uno studente del Politecnico.
 import type { Auth, User } from 'firebase/auth';
 import { FIREBASE_CONFIG } from '../config/ecosystem';
-import { CHIAVE_VERIFICA_EMAIL, emailCoincide, impostazioniLink, messaggioVerifica, sembraLinkDiAccesso } from './progetto/verificaEmail';
+import { CHIAVE_VERIFICA_EMAIL, emailCoincide, impostazioniLink, leggiPendente, messaggioVerifica, sembraLinkDiAccesso, serializzaPendente, type ScopoLink } from './progetto/verificaEmail';
 
 export const isDemoMode = (): boolean => import.meta.env.VITE_MODE === 'demo';
 
@@ -121,9 +121,9 @@ export function onAuthChange(callback: (user: User | null) => void): () => void 
   return () => { annullato = true; smetti?.(); };
 }
 
-// ---- Verifica dell'email con un link (non bloccante: l'utente intanto prosegue) -----------------------------------------------------------
-// Solo con Firebase configurato. Le parti pure (impostazioni, errori, confronto) sono in lib/progetto/verificaEmail.ts, provate con test.
-// NON provato contro un Firebase vero: servono il provider «Link via email» abilitato e il dominio del sito tra quelli autorizzati.
+// ---- Link via email: per entrare nel Project ID («accesso») e per provare un indirizzo PoliMi («verifica») -------------------------------------
+// Solo con Firebase configurato, e solo dopo un gesto dell'utente. Le parti pure (impostazioni, errori, confronto) sono in lib/progetto/verificaEmail.ts,
+// provate con test. NON provato contro un Firebase vero: servono il provider «Link via email» abilitato e il dominio del sito tra quelli autorizzati.
 
 const memoriaLocale = {
   leggi(k: string): string | null { try { return localStorage.getItem(k); } catch { return null; } },
@@ -131,19 +131,18 @@ const memoriaLocale = {
   togli(k: string) { try { localStorage.removeItem(k); } catch { /* niente */ } },
 };
 
-/** La verifica si può offrire solo se l'accesso Firebase è configurato. */
+/** I link via email si possono offrire solo se l'accesso Firebase è configurato. */
 export const verificaDisponibile = (): boolean => loginDisponibile();
 
 export type EsitoInvioLink = { ok: true } | { ok: false; messaggio: string };
 
-/** Chiede a Firebase di scrivere all'indirizzo con un link di accesso. Non lancia mai: restituisce l'esito con una riga già pronta. */
-export async function inviaLinkVerifica(email: string): Promise<EsitoInvioLink> {
+async function inviaLink(email: string, scopo: ScopoLink): Promise<EsitoInvioLink> {
   if (PROVA) return { ok: true }; // solo sviluppo: finto
   try {
     const auth = await carica();
     const { sendSignInLinkToEmail } = await sdkAuth();
     await sendSignInLinkToEmail(auth, email, impostazioniLink(location));
-    memoriaLocale.scrivi(CHIAVE_VERIFICA_EMAIL, email.trim().toLowerCase());
+    memoriaLocale.scrivi(CHIAVE_VERIFICA_EMAIL, serializzaPendente({ email, scopo }));
     return { ok: true };
   } catch (error) {
     if (error instanceof LoginError) return { ok: false, messaggio: error.message };
@@ -151,29 +150,46 @@ export async function inviaLinkVerifica(email: string): Promise<EsitoInvioLink> 
   }
 }
 
-export type EsitoRitorno = { tipo: 'nessuno' } | { tipo: 'ok'; email: string } | { tipo: 'errore'; messaggio: string };
+/** «Accedi con email»: scrive all'indirizzo (qualunque) un link per entrare. Non lancia mai. */
+export const inviaLinkAccesso = (email: string) => inviaLink(email, 'accesso');
+/** «Verifica con un link»: scrive a un indirizzo PoliMi un link per provare che è tuo (badge studente). Non lancia mai. */
+export const inviaLinkVerifica = (email: string) => inviaLink(email, 'verifica');
+
+/** Cancella ciò che si era salvato per un link in attesa (per «Cancella dal dispositivo»). */
+export const dimenticaLinkInAttesa = () => memoriaLocale.togli(CHIAVE_VERIFICA_EMAIL);
+
+export type EsitoRitorno = { tipo: 'nessuno' } | { tipo: 'ok'; scopo: ScopoLink; email: string } | { tipo: 'errore'; messaggio: string };
 
 /**
- * Al ritorno dal link: se l'indirizzo è un link di accesso, completa `signInWithEmailLink` con l'email salvata quando è stato chiesto,
- * controlla che sia la stessa del profilo (`emailProfilo`), esce subito dall'account (serve solo a provare l'indirizzo) e ripulisce l'indirizzo della pagina.
- * `ok` solo dopo il successo reale e solo se l'email coincide. Non lancia mai.
+ * Al ritorno dal link, se l'indirizzo della pagina è un link di accesso di Firebase:
+ *  - «accesso»: completa `signInWithEmailLink` e RESTA nell'account;
+ *  - «verifica»: lo completa e controlla che l'email del link sia quella attesa (`emailAttesa`, l'indirizzo PoliMi indicato); se c'è già un accesso lo
+ *    collega a quell'account senza cambiarlo, altrimenti entra e subito esce (serve solo a provare l'indirizzo).
+ * `ok` solo dopo il successo reale e, per la verifica, solo se l'email coincide. Ripulisce l'indirizzo della pagina. Non lancia mai.
  */
-export async function ritornoDaLinkVerifica(emailProfilo: string | undefined): Promise<EsitoRitorno> {
+export async function ritornoDaLink(): Promise<EsitoRitorno> {
   if (typeof location === 'undefined' || !sembraLinkDiAccesso(location.search) || !loginDisponibile()) return { tipo: 'nessuno' };
   const pulisci = () => { try { history.replaceState(null, '', location.pathname); } catch { /* niente */ } };
   try {
     const auth = await carica();
-    const { isSignInWithEmailLink, signInWithEmailLink, signOut } = await sdkAuth();
+    const { isSignInWithEmailLink, signInWithEmailLink, signOut, EmailAuthProvider, linkWithCredential } = await sdkAuth();
     if (!isSignInWithEmailLink(auth, location.href)) return { tipo: 'nessuno' };
-    const salvata = memoriaLocale.leggi(CHIAVE_VERIFICA_EMAIL);
-    if (!salvata) { pulisci(); return { tipo: 'errore', messaggio: messaggioVerifica('nessuna-email-salvata', 'ritorno') }; }
-    const cred = await signInWithEmailLink(auth, salvata, location.href);
-    const emailLink = cred.user.email;
-    await signOut(auth).catch(() => undefined);
+    const pendente = leggiPendente(memoriaLocale.leggi(CHIAVE_VERIFICA_EMAIL));
+    if (!pendente) { pulisci(); return { tipo: 'errore', messaggio: messaggioVerifica('nessuna-email-salvata', 'ritorno') }; }
+    let emailLink: string | null;
+    if (pendente.scopo === 'accesso') {
+      emailLink = (await signInWithEmailLink(auth, pendente.email, location.href)).user.email;
+    } else if (auth.currentUser) {
+      const cred = await linkWithCredential(auth.currentUser, EmailAuthProvider.credentialWithLink(pendente.email, location.href));
+      emailLink = cred.user.providerData.find(p => p.providerId === 'password')?.email ?? null;
+    } else {
+      emailLink = (await signInWithEmailLink(auth, pendente.email, location.href)).user.email;
+      await signOut(auth).catch(() => undefined);
+    }
     memoriaLocale.togli(CHIAVE_VERIFICA_EMAIL);
     pulisci();
-    if (!emailCoincide(emailProfilo, emailLink)) return { tipo: 'errore', messaggio: messaggioVerifica('email-diversa', 'ritorno') };
-    return { tipo: 'ok', email: (emailLink as string).toLowerCase() };
+    if (!emailCoincide(pendente.email, emailLink)) return { tipo: 'errore', messaggio: messaggioVerifica('email-diversa', 'ritorno') };
+    return { tipo: 'ok', scopo: pendente.scopo, email: (emailLink as string).toLowerCase() };
   } catch (error) {
     pulisci();
     if (error instanceof LoginError) return { tipo: 'errore', messaggio: error.message };

@@ -1,6 +1,6 @@
-// Client dell'API ATLAS (il Worker Cloudflare in atlas/). Due modi di chiamare:
-//  - pubblico, senza token: l'iscrizione (`POST /v1/signups`), che l'app fa subito dopo la registrazione;
-//  - con il token del login Google (Project ID): account, permessi, classifica NOI, esportazione e cancellazione.
+// Client dell'API ATLAS (il Worker Cloudflare in atlas/). Si chiama solo dopo un gesto dell'utente (accesso al Project ID, casella della classifica,
+// casella delle comunicazioni): all'avvio non parte nessuna richiesta. Tutte le rotte dell'account vogliono il token del login (Firebase);
+// l'unica pubblica è la classifica NOI (sola lettura).
 // Se `VITE_ATLAS_API_URL` non c'è, ogni chiamata si rifiuta con AtlasNonConfigurato: l'app lo dice con una riga vera e resta locale.
 import { getIdToken } from './firebase';
 import { ATLAS_API_URL, CONSENT_VERSION, ECOSYSTEM, type ScopeId } from '../config/ecosystem';
@@ -8,10 +8,7 @@ import { ATLAS_API_URL, CONSENT_VERSION, ECOSYSTEM, type ScopeId } from '../conf
 export interface ProjectAccount {
   id: string;
   email: string | null;
-  displayName: string;
   handle: string;
-  avatarUrl: string | null;
-  polimiEmail?: string | null;
   createdAt: number;
 }
 
@@ -23,34 +20,22 @@ export interface AppLink {
   updatedAt: number;
 }
 
-export interface SignupRemota {
-  email: string;
-  nome: string;
-  corso: string | null;
-  sede: string | null;
-  scuola?: string | null;
-  livello?: string | null;
-  anno?: number | null;
-  provenienza: string | null;
-  consensi: { noi: boolean; atlas: boolean; comunicazioni: boolean };
-  emailVerificata: boolean;
-  creatoIl: number;
-  aggiornatoIl: number;
+/** I consensi dell'account: classifica (sì/no) e comunicazioni (null = nessun consenso; «in-attesa» = dato ma non confermato con il link, nessun messaggio parte). */
+export interface ConsensiAccount {
+  noi: boolean;
+  comunicazioni: { stato: 'in-attesa' | 'confermato'; email: string; dal: number } | null;
 }
 
 export interface MeRisposta {
   account: ProjectAccount;
   links: AppLink[];
-  profile?: { nome: string; corso: string | null; sede: string | null; scuola?: string | null; livello?: string | null; anno?: number | null };
-  consensi?: { noi: boolean; atlas: boolean; comunicazioni: boolean } | null;
-  signup?: SignupRemota | null;
+  consensi: ConsensiAccount;
+  consentVersion: string;
 }
 
 export interface LeaderboardEntry {
   rank: number;
   handle: string;
-  displayName: string;
-  avatarUrl: string | null;
   mastered: number;
   bestSim: number;
   isMe: boolean;
@@ -103,38 +88,23 @@ export async function chiama<T>(percorso: string, init: RequestInit = {}, autent
   return dati as T;
 }
 
-export interface CorpoIscrizione {
-  appId: string;
-  /** Ricavato dall'email dall'app (il Worker lo ricava anche da solo se manca). */
-  nome: string;
-  email: string;
-  /** Percorso di studi: scuola (ing-ind-inf | icat | auic | design), sede (id breve), livello (triennale | magistrale | ciclo-unico), nome del corso, anno 1-6. */
-  scuola?: string;
-  sede?: string;
-  livello?: string;
-  corso?: string;
-  anno?: number;
-  /** Come ci hai conosciuto: gruppo-chat | instagram | amici | altro. */
-  provenienza?: string;
-  consensi: { noi: boolean; atlas: boolean; comunicazioni: boolean };
-  consentVersion: string;
+/** Cosa si può cambiare con `PATCH /v1/me`: il @nome utente e i consensi (uno alla volta o insieme). Un campo che il Worker non conosce è un errore. */
+export interface ModificaAccount {
+  handle?: string;
+  consensi?: { noi?: boolean; comunicazioni?: boolean };
+  /** Serve quando si accende il consenso alle comunicazioni (indirizzo qualunque). */
+  comunicazioniEmail?: string;
 }
 
 export const atlas = {
-  /** Iscrizione pubblica, senza token. Il Worker risponde sempre `{ ok: true }` (non dice se l'email esisteva già). */
-  iscrivi: (corpo: CorpoIscrizione, opz?: OpzioniChiamata) =>
-    chiama<{ ok: boolean }>('/v1/signups', { method: 'POST', body: JSON.stringify(corpo) }, false, { ...opz, token: null }),
+  /** Il primo accesso crea l'account sul servizio (solo email e identificativo). */
   me: () => chiama<MeRisposta>('/v1/me'),
-  updateMe: (patch: { displayName?: string; handle?: string; polimiEmail?: string | null; corso?: string | null; sede?: string | null; provenienza?: string | null; scuola?: string | null; livello?: string | null; anno?: number | null }) =>
-    chiama<MeRisposta>('/v1/me', { method: 'PATCH', body: JSON.stringify(patch) }),
+  modifica: (patch: ModificaAccount) => chiama<MeRisposta>('/v1/me', { method: 'PATCH', body: JSON.stringify(patch) }),
   deleteMe: () => chiama<{ deleted: boolean }>('/v1/me', { method: 'DELETE' }),
   exportMe: () => chiama<unknown>('/v1/me/export'),
-  setLink: (appId: string, scopes: ScopeId[], polimiEmail?: string | null) =>
-    chiama<MeRisposta>(`/v1/links/${appId}`, {
-      method: 'PUT',
-      body: JSON.stringify({ scopes, consentVersion: CONSENT_VERSION, ...(polimiEmail !== undefined ? { polimiEmail } : {}) }),
-    }),
-  removeLink: (appId: string) => chiama<{ links: AppLink[] }>(`/v1/links/${appId}`, { method: 'DELETE' }),
+  /** Permessi per app: il profilo è sempre dentro; la classifica solo se richiesta. */
+  setLink: (appId: string, scopes: ScopeId[]) =>
+    chiama<MeRisposta>(`/v1/links/${appId}`, { method: 'PUT', body: JSON.stringify({ scopes, consentVersion: CONSENT_VERSION }) }),
   postScore: (appId: string, mastered: number, bestSim: number) =>
     chiama<{ score: number }>(`/v1/noi/${appId}/score`, { method: 'POST', body: JSON.stringify({ mastered, bestSim }) }),
   /** La classifica è pubblica; con il login include anche la tua posizione. */

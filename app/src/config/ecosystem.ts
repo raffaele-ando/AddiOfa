@@ -29,13 +29,11 @@ export const FIREBASE_CONFIG: { apiKey: string; authDomain: string; projectId: s
   return apiKey && authDomain && projectId && appId ? { apiKey, authDomain, projectId, appId } : undefined;
 })();
 
-/** Versione del consenso ai permessi del Project ID: uguale a CONSENT_VERSION di atlas/src/scopes.ts. Cambiando testi o permessi si aumenta in tutti e due. */
-export const CONSENT_VERSION = '2026-09-27';
+/** Versione del testo dei consensi (classifica NOI e comunicazioni): una sola, uguale a CONSENT_VERSION di atlas/src/scopes.ts. Si cambia a ogni cambio di testo, qui e nel Worker. */
+export const CONSENT_VERSION = '2026-10-17';
 
-/** Versione del testo dei consensi dell'iscrizione (nome, email, corso, tre consensi facoltativi): si cambia a ogni cambio di testo. Formato richiesto dal Worker: [A-Za-z0-9._-]{1,32}. */
-export const ISCRIZIONE_VERSIONE = 'iscrizione-2026-10-17';
-
-export type ScopeId = 'profile' | 'progress.share' | 'noi.leaderboard' | 'atlas.personalize';
+/** Permessi del Project ID. Restano solo quelli con un uso reale: il profilo (l'account) e la classifica NOI. «Personalizzazione ATLAS» e «progress.share» non esistono più. */
+export type ScopeId = 'profile' | 'noi.leaderboard';
 
 export interface ScopeInfo {
   id: ScopeId;
@@ -47,26 +45,14 @@ export interface ScopeInfo {
 export const SCOPES: ScopeInfo[] = [
   {
     id: 'profile',
-    title: 'Profilo di base',
-    description: `Nome, foto ed email del tuo ${ECOSYSTEM.accountName}, per creare l'account e riconoscerti.`,
+    title: 'Account',
+    description: `La tua email e un identificativo, per creare il ${ECOSYSTEM.accountName} e riconoscerti.`,
     required: true,
-  },
-  {
-    id: 'progress.share',
-    title: `Progressi condivisi tra le app ${ECOSYSTEM.name}`,
-    description: 'Domande imparate, simulazioni e statistiche disponibili anche nelle altre app collegate.',
-    required: false,
   },
   {
     id: 'noi.leaderboard',
     title: `Classifica ${ECOSYSTEM.rankingName}`,
-    description: 'Il tuo @nome utente, le domande imparate e il miglior punteggio in simulazione sono visibili agli altri.',
-    required: false,
-  },
-  {
-    id: 'atlas.personalize',
-    title: `Personalizzazione con ${ECOSYSTEM.engineName}`,
-    description: `${ECOSYSTEM.engineName} usa i dati di questa app per adattare ripasso e suggerimenti nelle altre app ${ECOSYSTEM.name}.`,
+    description: 'Il tuo @nome utente, le domande imparate e il miglior punteggio in simulazione sono visibili a tutti i partecipanti.',
     required: false,
   },
 ];
