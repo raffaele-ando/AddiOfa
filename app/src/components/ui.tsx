@@ -99,7 +99,7 @@ export function ChoiceCard({ selected, onClick, title, subtitle }: {
     >
       <span className={cn(
         "w-7 h-7 rounded-full border flex items-center justify-center shrink-0 transition-colors duration-100",
-        selected ? "bg-azione border-azione text-azione-su" : "border-linea text-transparent"
+        selected ? "bg-azione border-azione text-azione-su" : "border-bordo-campo text-transparent"
       )}>
         <Icona nome="stato-ok" size={16} />
       </span>

@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { sembraLinkDiAccesso } from './lib/progetto/verificaEmail';
 import React, { Suspense, lazy, useState, useEffect, useRef } from 'react';
 import { AppState, UserStats, ExamHistory, OnboardingResult, LegalSection } from './types';
 import { loadState, saveState, updateStreak, exportData, importData } from './lib/storage';
@@ -19,7 +20,6 @@ import Onboarding from './components/Onboarding';
 import CheatSheet from './components/CheatSheet';
 import Navigazione, { Scheda } from './components/Navigazione';
 import { coda } from './lib/progetto/coda';
-import { serveRegistrazione } from './lib/progetto/profilo';
 import { ToastProvider, useToast } from './components/Toast';
 import Landing from './screens/Landing';
 import Legal from './screens/Legal';
@@ -50,12 +50,13 @@ const NO_RETURN: View[] = ['learn', 'brand'];
 function initialView(state: AppState): View {
   const params = new URLSearchParams(window.location.search);
   if (params.has('landing')) return 'landing';
+  if (sembraLinkDiAccesso(window.location.search)) return 'extra'; // ritorno dal link email di Project ID
   if (params.has('vista') && SCHERMATE[params.get('vista') ?? '']) return 'extra';
   if (params.has('sfida')) return 'extra';
   if (import.meta.env.DEV && params.has('brand')) return 'brand';
   const isNewUser = !state.onboarding && state.history.length === 0 && Object.keys(state.stats).length === 0;
   if (isNewUser) return 'landing';
-  return serveRegistrazione(state) ? 'extra' : 'menu'; // chi ha già usato l'app completa il profilo alla prima apertura
+  return 'menu';
 }
 
 function Caricamento() {
@@ -78,8 +79,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   const [view, setViewRaw] = useState<View>(() => initialView(appState));
   const [extra, setExtra] = useState<{ id: string; params: Record<string, string> }>(() => {
     const q = new URLSearchParams(window.location.search);
-    const id = q.has('sfida') && !q.has('vista') ? 'sfida-accetta' : (q.get('vista') ?? '');
-    if (!id && !q.has('landing') && serveRegistrazione(appState)) return { id: 'completa-profilo', params: {} };
+    const id = sembraLinkDiAccesso(window.location.search) ? 'projectid' : q.has('sfida') && !q.has('vista') ? 'sfida-accetta' : (q.get('vista') ?? '');
     return { id: SCHERMATE[id] || id === 'sfida-accetta' ? id : 'profilo', params: Object.fromEntries(q.entries()) };
   });
   const extraPila = useRef<{ id: string; params: Record<string, string> }[]>([]);
@@ -123,7 +123,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
 
   const apriLegale = (s: LegalSection) => { setLegalSection(s); apri('legal'); };
 
-  useEffect(() => { coda.avvia(); }, []); // invio delle iscrizioni ad ATLAS, con nuovi tentativi
+  useEffect(() => { coda.avvia(); }, []); // toglie solo la vecchia coda di iscrizione (niente rete)
 
   useEffect(() => {
     // Update streak on load
@@ -310,7 +310,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
       {view === 'landing' && (
         <Landing
           onStartDiagnostic={() => setView('onboarding')}
-          onSkip={() => vaiExtra('completa-profilo')}
+          onSkip={() => setView('menu')}
           onOpenLegal={apriLegale}
         />
       )}

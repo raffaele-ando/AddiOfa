@@ -7,7 +7,7 @@ import type { AppState } from '../../src/types';
 import { ExtraProvider, type ExtraCtx } from '../../src/screens/extra/contesto';
 import { SCHERMATE_PROGETTO } from '../../src/screens/extra/progetto';
 import Onboarding from '../../src/components/Onboarding';
-import { CHIAVE_PROGETTO, creaProfilo, impostaProfilo } from '../../src/lib/progetto/profilo';
+import { CHIAVE_PROGETTO, leggiProfilo, impostaProfilo } from '../../src/lib/progetto/profilo';
 import { coda } from '../../src/lib/progetto/coda';
 import { questions } from '../../src/data/questions';
 
@@ -26,7 +26,7 @@ function statoIniziale(): AppState {
     const logs = questions.slice(0, 30).map((qq, i) => ({ questionId: qq.id, userAnswerIndex: i < 21 ? qq.correctIndex : (qq.correctIndex + 1) % 4, correctIndex: qq.correctIndex, isCorrect: i < 21, category: qq.category }));
     return { ...diag, stats, history: [{ id: 's1', date: Date.now() - 86400000, score: 21, passed: false, timeSpentSeconds: 700, questionLogs: logs, questionIds: logs.map(l => l.questionId) }] };
   }
-  const p = creaProfilo({ email: 'maria.rossi@mail.polimi.it', scuola: 'ing-ind-inf', sede: 'bovisa', livello: 'triennale', corso: 'Corso di prova II-B-T 1', corsoId: 'ii-b-t-1', anno: 2, provenienza: 'gruppo-chat', consensi: { noi: true } }, Date.now())!;
+  const p = leggiProfilo({ scuola: 'ing-ind-inf', sede: 'bovisa', livello: 'triennale', corso: 'Corso di prova II-B-T 1', corsoId: 'ii-b-t-1', anno: 2, provenienza: 'gruppo-chat', aggiornatoIl: Date.now() })!;
   const conProfilo = impostaProfilo(diag, p);
   if (stato === 'profilo') return conProfilo;
   return { ...conProfilo, extra: { ...conProfilo.extra, [CHIAVE_PROGETTO]: { profilo: p, collegamento: { scopes: ['profile', 'noi.leaderboard'], collegatoIl: Date.now(), aggiornatoIl: Date.now() } } } };

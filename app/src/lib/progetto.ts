@@ -1,6 +1,5 @@
-// Punto d'ingresso unico della logica di «Project»: registrazione, percorso di studi, coda di invio ad ATLAS, NOI. Le schermate importano da qui.
+// Punto d'ingresso unico della logica di «Project»: percorso di studi, profilo locale, verifica con link, informative, NOI. Le schermate importano da qui.
 export * from './progetto/validazione';
-export * from './progetto/nomeDaEmail';
 export * from './progetto/corsi';
 export * from './progetto/percorso';
 export * from './progetto/percorsoDati';

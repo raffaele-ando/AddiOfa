@@ -1,5 +1,5 @@
 # Copia in .dev.vars (non va nel repository). Solo sviluppo locale.
 ALLOW_TEST_TOKENS=true
 ALLOWED_ORIGINS=*
-# Facoltativo: abilita GET /v1/admin/signups in locale
+# Facoltativo: abilita GET /v1/admin/comunicazioni in locale
 # ADMIN_TOKEN=prova-locale

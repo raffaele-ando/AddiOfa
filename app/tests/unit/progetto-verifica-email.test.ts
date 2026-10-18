@@ -1,7 +1,7 @@
 // Verifica dell'email con un link: parti pure (impostazioni, ritorno dal link, confronto, errori). NON prova Firebase vero.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { CHIAVE_VERIFICA_EMAIL, emailCoincide, impostazioniLink, messaggioVerifica, sembraLinkDiAccesso } from '../../src/lib/progetto/verificaEmail';
+import { CHIAVE_VERIFICA_EMAIL, emailCoincide, impostazioniLink, leggiPendente, messaggioVerifica, sembraLinkDiAccesso, serializzaPendente } from '../../src/lib/progetto/verificaEmail';
 
 test('impostazioni del link: stessa pagina senza parametri, aperto nell\'app', () => {
   assert.deepEqual(impostazioniLink({ origin: 'https://addiofa.example', pathname: '/' }), { url: 'https://addiofa.example/', handleCodeInApp: true });
@@ -44,4 +44,12 @@ test('errori: ogni codice di Firebase diventa una riga onesta, e l\'email resta 
   assert.match(messaggioVerifica('email-diversa', 'ritorno'), /diverso/);
   assert.match(messaggioVerifica(undefined, 'invio'), /Non sono riuscito a inviare/);
   assert.match(messaggioVerifica(undefined, 'ritorno'), /completare/);
+});
+
+test('link in attesa: si salva con lo scopo (accesso o verifica) e si rilegge; un testo semplice vecchio era una verifica', () => {
+  const raw = serializzaPendente({ email: ' Maria.Rossi@Mail.Polimi.it ', scopo: 'verifica' });
+  assert.deepEqual(leggiPendente(raw), { email: 'maria.rossi@mail.polimi.it', scopo: 'verifica' });
+  assert.deepEqual(leggiPendente(serializzaPendente({ email: 'a@b.it', scopo: 'accesso' })), { email: 'a@b.it', scopo: 'accesso' });
+  assert.deepEqual(leggiPendente('maria.rossi@mail.polimi.it'), { email: 'maria.rossi@mail.polimi.it', scopo: 'verifica' });
+  for (const x of [null, undefined, '', '{"email":"a@b.it","scopo":"altro"}', '{"scopo":"accesso"}', 'testo senza chiocciola']) assert.equal(leggiPendente(x as string), null);
 });

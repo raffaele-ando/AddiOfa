@@ -1,25 +1,19 @@
-// Hook delle schermate di Project: lo stato dell'iscrizione in coda e quello dell'accesso (Project ID).
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+// Hook delle schermate di Project: l'accesso (Project ID) e il ritorno dal link inviato per email. Niente parte da solo: Firebase e ATLAS si contattano
+// solo dopo un gesto dell'utente, oppure se su questo dispositivo c'è già un Project ID (`haCollegamento`) o si arriva da un link di accesso.
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { User } from 'firebase/auth';
 import { atlas, AtlasErrore, AtlasNonConfigurato, type MeRisposta } from '../../../lib/atlas';
-import { coda, type RecordInvio } from '../../../lib/progetto/coda';
-import { loginDisponibile, logout, onAuthChange, signInWithGoogle, LoginError } from '../../../lib/firebase';
-import { aggiornaProgetto, type Collegamento } from '../../../lib/progetto/profilo';
+import { inviaLinkAccesso, loginDisponibile, logout, onAuthChange, signInWithGoogle, LoginError, type EsitoInvioLink, type EsitoRitorno } from '../../../lib/firebase';
+import { aggiornaProgetto } from '../../../lib/progetto/profilo';
+import { applicaRitornoVerifica } from '../../../lib/progetto/ritorno';
+import { sembraLinkDiAccesso } from '../../../lib/progetto/verificaEmail';
 import { ATLAS_API_URL, ECOSYSTEM, REQUIRED_SCOPES } from '../../../config/ecosystem';
 import type { AppState } from '../../../types';
-import { applicaRitornoVerifica } from '../../../lib/progetto/ritorno';
-import type { EsitoRitorno } from '../../../lib/firebase';
-
-/** Lo stato dell'invio dell'iscrizione, sempre aggiornato; e fa partire i tentativi automatici finché la schermata è aperta. */
-export function useInvio(): RecordInvio | null {
-  useEffect(() => { coda.avvia(); }, []);
-  return useSyncExternalStore(coda.iscriviti, coda.istantanea, coda.istantanea);
-}
 
 export interface StatoAccesso {
   /** Servizio ATLAS configurato in questa versione. */
   atlasOnline: boolean;
-  /** «Accedi con Google» è disponibile in questa versione. */
+  /** L'accesso (Google o email) è disponibile in questa versione. */
   loginDisponibile: boolean;
   /** Si sta controllando se c'è già un accesso. */
   controllo: boolean;
@@ -30,10 +24,14 @@ export interface StatoAccesso {
   errore: string | null;
   occupato: boolean;
   accedi: () => Promise<boolean>;
+  /** Scrive un link all'indirizzo; l'accesso si completa aprendolo (stesso browser). */
+  accediEmail: (email: string) => Promise<EsitoInvioLink>;
   esci: () => Promise<void>;
   ricarica: () => Promise<MeRisposta | null>;
   /** Esegue un'azione sul servizio con gestione dell'errore in una riga di testo. */
   esegui: <T>(fn: () => Promise<T>) => Promise<T | null>;
+  /** Sostituisce `me` con la risposta di un'azione (che restituisce già lo stato aggiornato). */
+  impostaMe: (m: MeRisposta) => void;
 }
 
 export function messaggioErrore(e: unknown): string {
@@ -44,12 +42,13 @@ export function messaggioErrore(e: unknown): string {
 }
 
 /**
- * L'accesso con Google e il Project ID. Firebase si carica solo se serve: subito se su questo dispositivo c'è già un collegamento
- * (`haCollegamento`), altrimenti solo quando l'utente tocca «Accedi con Google».
+ * L'accesso con Google o con un link via email e il Project ID. Firebase si carica solo se serve: subito se su questo dispositivo c'è già un Project ID
+ * (`haCollegamento`) o si arriva da un link di accesso, altrimenti solo quando l'utente tocca «Accedi».
  */
 export function useAccesso(haCollegamento: boolean): StatoAccesso {
-  const [attivo, setAttivo] = useState(haCollegamento);
-  const [controllo, setControllo] = useState(haCollegamento && loginDisponibile());
+  const daLink = typeof location !== 'undefined' && sembraLinkDiAccesso(location.search);
+  const [attivo, setAttivo] = useState(haCollegamento || daLink);
+  const [controllo, setControllo] = useState((haCollegamento || daLink) && loginDisponibile());
   const [utente, setUtente] = useState<User | null>(null);
   const [me, setMe] = useState<MeRisposta | null>(null);
   const [errore, setErrore] = useState<string | null>(null);
@@ -88,7 +87,12 @@ export function useAccesso(haCollegamento: boolean): StatoAccesso {
     setAttivo(true);
     setUtente(u); // il resto (lettura dell'account) lo fa l'ascolto dei cambi di accesso
     return true;
-  }, [esegui, ricarica]);
+  }, [esegui]);
+
+  const accediEmail = useCallback(async (email: string): Promise<EsitoInvioLink> => {
+    setOccupato(true);
+    try { return await inviaLinkAccesso(email); } finally { setOccupato(false); }
+  }, []);
 
   const esci = useCallback(async () => {
     await logout();
@@ -96,36 +100,36 @@ export function useAccesso(haCollegamento: boolean): StatoAccesso {
     setMe(null);
   }, []);
 
-  return { atlasOnline: !!ATLAS_API_URL, loginDisponibile: loginDisponibile(), controllo, utente, me, errore, occupato, accedi, esci, ricarica, esegui };
-}
-
-/** I permessi di AddiOFA su ATLAS (la fonte vera), se c'è un account e il servizio ha risposto. */
-export function linkRemoto(me: MeRisposta | null) {
-  return me?.links.find(l => l.appId === ECOSYSTEM.appId);
+  return { atlasOnline: !!ATLAS_API_URL, loginDisponibile: loginDisponibile(), controllo, utente, me, errore, occupato, accedi, accediEmail, esci, ricarica, esegui, impostaMe: setMe };
 }
 
 /**
- * L'account sul servizio è la fonte: quando `me` arriva, si rispecchia sul dispositivo. Se ha il collegamento di AddiOFA lo si copia qui;
- * se non l'ha più (account eliminato o permesso tolto altrove) si toglie qui. Così Esplora e NOI non dicono cose che il servizio non conferma.
+ * Mentre c'è un accesso, su questo dispositivo c'è un Project ID: lo si ricorda (`collegamento`) così, aprendo l'app un'altra volta, l'accesso si ritrova
+ * da solo. Con `me` del servizio si rispecchiano permessi e @nome utente. Nessuna scrittura se `me` non c'è.
  */
 export function useSincronizzaCollegamento(me: MeRisposta | null, aggiorna: (fn: (s: AppState) => AppState) => void) {
   const fatto = useRef('');
   useEffect(() => {
     if (!me) return;
-    const link = linkRemoto(me);
+    const link = me.links.find(l => l.appId === ECOSYSTEM.appId);
     const firma = JSON.stringify([me.account.id, me.account.handle, link?.scopes, link?.updatedAt]);
     if (fatto.current === firma) return;
     fatto.current = firma;
-    aggiorna(s => aggiornaProgetto(s, p => {
-      if (!link) { const { collegamento: _c, ...resto } = p; return resto; }
-      const nuovo: Collegamento = { scopes: Array.from(new Set([...REQUIRED_SCOPES, ...link.scopes])), collegatoIl: link.grantedAt, aggiornatoIl: link.updatedAt, projectId: me.account.id, handle: me.account.handle };
-      return { ...p, collegamento: nuovo };
-    }));
+    aggiorna(s => aggiornaProgetto(s, p => ({
+      ...p,
+      collegamento: {
+        scopes: Array.from(new Set([...REQUIRED_SCOPES, ...(link?.scopes ?? [])])),
+        collegatoIl: p.collegamento?.collegatoIl ?? link?.grantedAt ?? Date.now(),
+        aggiornatoIl: link?.updatedAt ?? Date.now(),
+        projectId: me.account.id,
+        handle: me.account.handle,
+      },
+    })));
   }, [me, aggiorna]);
 }
 
-/** Al primo montaggio completa la verifica dell'email se la pagina è stata aperta dal link (vedi lib/progetto/ritorno.ts). Restituisce l'esito da mostrare, o null. */
-export function useRitornoVerifica(appState: AppState, aggiorna: (fn: (s: AppState) => AppState) => void): EsitoRitorno | null {
+/** Al primo montaggio completa il link inviato per email se la pagina è stata aperta da lì (vedi lib/progetto/ritorno.ts). Restituisce l'esito da mostrare, o null. */
+export function useRitornoLink(appState: AppState, aggiorna: (fn: (s: AppState) => AppState) => void): EsitoRitorno | null {
   const [esito, setEsito] = useState<EsitoRitorno | null>(null);
   const stato = useRef(appState);
   stato.current = appState;

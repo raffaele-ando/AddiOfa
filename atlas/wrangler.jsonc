@@ -10,9 +10,7 @@
     // Origini del sito che possono chiamare l'API dal browser, separate da virgole, senza barra finale
     // (es. "https://addiofa.example"). Va compilato prima del deploy: vuoto = il browser blocca le chiamate.
     // "*" è accettato solo in locale (.dev.vars con ALLOW_TEST_TOKENS=true).
-    "ALLOWED_ORIGINS": "",
-    // Richieste al minuto per IP su POST /v1/signups
-    "SIGNUP_RATE_LIMIT": "10"
+    "ALLOWED_ORIGINS": ""
   },
   "d1_databases": [
     {

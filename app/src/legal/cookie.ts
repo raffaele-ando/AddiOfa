@@ -17,9 +17,8 @@ export const cookie: LegalDoc = {
         'Usiamo la memoria locale del browser (localStorage), che resta sul tuo dispositivo e non viene inviata a nessuno quando apri una pagina. Sono dati tecnici, necessari al servizio che hai chiesto. Le chiavi principali sono:',
       ],
       elenco: [
-        'ofa_polimi_app_state: progressi di studio, simulazioni, profilo, obiettivi, badge, sfide e i dati della tua registrazione (email, nome ricavato dall\'email, percorso di studi, provenienza, consensi).',
-        `addiofa_progetto_coda: lo stato dell'invio dell'iscrizione a ${ECOSYSTEM.engineName} («inviata» o «in attesa di collegamento»), con i dati da inviare finché non sono partiti.`,
-        'addiofa_verifica_email: solo se chiedi il link di verifica dell\'email, l\'indirizzo a cui l\'hai chiesto, finché non apri il link; poi si cancella.',
+        'ofa_polimi_app_state: progressi di studio, simulazioni, profilo, obiettivi, badge, sfide e, se li hai scelti in «Project ID», il percorso di studi, come ci hai conosciuto, il badge «studente PoliMi» e il collegamento al Project ID.',
+        'addiofa_verifica_email: solo se chiedi un link via email (per accedere o per verificare l\'indirizzo PoliMi), l\'indirizzo a cui l\'hai chiesto, finché non apri il link; poi si cancella.',
         'theme: tema chiaro o scuro.',
         'sound_muted: suoni attivi o spenti.',
         'Poche altre chiavi tecniche dello stesso tipo, per esempio l\'ultimo diagnostico.',
@@ -28,13 +27,13 @@ export const cookie: LegalDoc = {
     {
       titolo: 'Se accedi con Google',
       paragrafi: [
-        `Solo se scegli «Accedi con Google» per il ${ECOSYSTEM.accountName}, la finestra di accesso è di Google e vale la sua informativa; Firebase salva nel browser (IndexedDB) i dati dell'accesso per ricordarti. Sono dati tecnici necessari all'accesso che hai chiesto. Esci dall'account per cancellarli.`,
+        `Solo se scegli «Accedi con Google» o «Accedi con email» per il ${ECOSYSTEM.accountName}, l'accesso passa da Google (Firebase) e vale la sua informativa; Firebase salva nel browser (IndexedDB) i dati dell'accesso per ricordarti. Sono dati tecnici necessari all'accesso che hai chiesto. Esci dall'account per cancellarli.`,
       ],
     },
     {
       titolo: 'Come cancellarli',
       paragrafi: [
-        'Da «Project ID» › «Cancella dal dispositivo» togli i dati della registrazione e il collegamento; dalle Impostazioni di AddiOFA cancelli tutti i dati di questo dispositivo; oppure dalle impostazioni del browser cancella i dati del sito. Cancellandoli perdi i progressi salvati: esportali prima se vuoi tenerli.',
+        'Da «Project ID» › «Cancella dal dispositivo» togli le scelte e il collegamento; dalle Impostazioni di AddiOFA cancelli tutti i dati di questo dispositivo; oppure dalle impostazioni del browser cancella i dati del sito. Cancellandoli perdi i progressi salvati: esportali prima se vuoi tenerli.',
         'Per ogni altro trattamento di dati personali vedi l\'informativa sulla privacy.',
       ],
     },

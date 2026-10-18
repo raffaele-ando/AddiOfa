@@ -52,8 +52,9 @@ export function formatEur(value: number): string {
 export const CONTACT_EMAIL: string | undefined = undefined;
 
 /**
- * Titolare del trattamento dei dati raccolti con l'iscrizione (nome, email PoliMi, corso...). DA COMPILARE PRIMA DEL LANCIO:
- * `nome` oggi è il nome del progetto; per il GDPR serve la persona o l'ente che risponde (cognome e nome, o ragione sociale)
- * e un indirizzo di contatto. Le pagine legali scrivono la riga «Contatto» solo se `CONTACT_EMAIL` esiste.
+ * Titolare del trattamento dei dati personali (art. 13.1.a GDPR): persona o ente che risponde, con un recapito vero. DA COMPILARE PRIMA DI PUBBLICARE
+ * il Worker ATLAS (per ora non è pubblicato e l'app non raccoglie niente senza una scelta dell'utente). Finché `nome` manca, i testi legali non nominano
+ * nessun titolare (non si scrive un nome finto); `CONTACT_EMAIL` (sopra) è il recapito: le righe «Titolare» e «Contatto» compaiono solo se esistono.
+ * `nome` = nome e cognome (o ragione sociale); `indirizzo` facoltativo (un professionista dirà se serve).
  */
-export const TITOLARE: { nome: string; responsabile?: string; indirizzo?: string } = { nome: 'Project' };
+export const TITOLARE: { nome: string | undefined; indirizzo?: string } = { nome: undefined };
