@@ -102,7 +102,7 @@ export default function AtlasAnalisi() {
               descrizione={`Radar dell'accuratezza su ${radar.length} argomenti: ${radar.map(a => `${a.nome} ${a.percento} per cento`).join(', ')}.`} />
             <ul className="mt-1 flex flex-wrap justify-center gap-x-3.5 gap-y-1 text-[12px] leading-[17px] text-testo-tenue" aria-label="Legenda dei colori">
               {([['alto', `Da ${SOGLIA_DA_MIGLIORARE} %`], ['medio', 'Da migliorare'], ['basso', `Sotto ${SOGLIA_DA_RIPASSARE} %`]] as const).map(([t, nome]) => (
-                <li key={t} className="flex items-center gap-1.5"><span aria-hidden="true" className={`h-2.5 w-2.5 rounded-full ${t === 'alto' ? 'bg-alto' : t === 'medio' ? 'bg-medio' : 'bg-basso'}`} />{nome}</li>
+                <li key={t} className="flex items-center gap-1.5"><span aria-hidden="true" className={`h-2.5 w-2.5 ${t === 'alto' ? 'rounded-full bg-alto-numero' : t === 'medio' ? 'rounded-[2px] bg-medio-numero' : 'rotate-45 rounded-[1px] bg-basso-numero'}`} />{nome}</li>
               ))}
             </ul>
             <p data-testo-ok className="mt-2 text-[12px] leading-[17px] text-testo-tenue">

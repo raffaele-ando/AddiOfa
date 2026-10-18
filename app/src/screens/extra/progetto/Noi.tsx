@@ -22,7 +22,7 @@ const TESTO_STATO: Record<StatoNoi, { titolo: string; testo: string }> = {
 };
 
 type Dati = { fase: 'carico' } | { fase: 'ok'; classifica: Leaderboard } | { fase: 'errore'; testo: string };
-const MEDAGLIA = ['bg-medio-pieno', 'bg-testo-tenue', 'bg-medio-pieno/80'];
+const MEDAGLIA = ['bg-medio-pieno text-medio-su', 'bg-testo-tenue text-azione-su', 'bg-basso-pieno text-basso-su'];
 
 export default function Noi() {
   const { appState, aggiorna, vai } = useExtra();
@@ -83,13 +83,13 @@ export default function Noi() {
         <Sezione id="noi-classifica" titolo="Classifica">
           {dati.fase === 'carico' && <div role="status" aria-label="Carico la classifica" className="mx-auto my-3 h-7 w-7 animate-spin rounded-full border-[3px] border-azione/30 border-t-azione" />}
           {dati.fase === 'errore' && (
-            <div role="alert" className="flex flex-col items-center gap-2 rounded-[14px] bg-basso-tinta p-4 text-center">
-              <p data-testo-ok className="text-[14px] font-bold text-basso-testo">{dati.testo}</p>
+            <div role="alert" className="flex flex-col items-center gap-2 rounded-[14px] bg-errore-tinta p-4 text-center">
+              <p data-testo-ok className="text-[14px] font-bold text-errore-testo">{dati.testo}</p>
               <BottoneSecondario onClick={() => { void carica(); }} icona={<Icona nome="riprova" size={18} />}>Riprova</BottoneSecondario>
             </div>
           )}
           {c && c.me && (
-            <div role="status" className="flex items-center justify-between rounded-[14px] bg-azione-tinta p-4 text-azione-scuro">
+            <div role="status" className="flex items-center justify-between rounded-[14px] bg-azione-tinta p-4 text-azione-testo">
               <span className="font-bold">La tua posizione</span>
               <span className="text-[26px] font-extrabold tabular-nums">#{c.me.rank} <span className="text-[14px] font-bold">su {c.total}</span></span>
             </div>
@@ -98,7 +98,7 @@ export default function Noi() {
             <ol className="flex flex-col gap-2">
               {c.entries.map(e => (
                 <li key={e.handle} className={cn('flex items-center gap-3 rounded-[14px] p-3', e.isMe ? 'bg-azione-tinta' : 'bg-superficie-2')}>
-                  <span className={cn('grid h-8 w-8 shrink-0 place-items-center rounded-full text-[14px] font-bold tabular-nums', e.rank <= 3 ? `${MEDAGLIA[e.rank - 1]} text-azione-su` : 'bg-superficie text-testo-tenue')}>{e.rank}</span>
+                  <span className={cn('grid h-8 w-8 shrink-0 place-items-center rounded-full text-[14px] font-bold tabular-nums', e.rank <= 3 ? MEDAGLIA[e.rank - 1] : 'bg-superficie text-testo-tenue')}>{e.rank}</span>
                   {/* solo il @nome utente: è ciò che il consenso dice che si vede */}
                   <span data-testo-ok className="min-w-0 flex-1 truncate text-[15px] font-bold text-testo">@{e.handle}</span>
                   <span className="text-right leading-tight"><span className="block font-bold tabular-nums text-alto-testo">{e.mastered}</span><span className="block text-[11px] font-bold text-testo-tenue tabular-nums">imparate · {e.bestSim}/30</span></span>
@@ -122,14 +122,14 @@ export default function Noi() {
             <p data-testo-ok className="mt-0.5 text-[12.5px] leading-[17px] text-testo-tenue">domande imparate</p>
           </div>
           <div className="rounded-[12px] bg-superficie-2 p-3.5">
-            <p className={cn('text-[26px] leading-[30px] font-extrabold tabular-nums', haSimulazioni ? 'text-azione-scuro' : 'text-testo-tenue')}>{haSimulazioni ? `${mio.migliorSimulazione}/30` : '–'}</p>
+            <p className={cn('text-[26px] leading-[30px] font-extrabold tabular-nums', haSimulazioni ? 'text-azione-testo' : 'text-testo-tenue')}>{haSimulazioni ? `${mio.migliorSimulazione}/30` : '–'}</p>
             <p data-testo-ok className="mt-0.5 text-[12.5px] leading-[17px] text-testo-tenue">{haSimulazioni ? 'miglior simulazione' : 'nessuna simulazione'}</p>
           </div>
         </div>
         <p data-testo-ok className="text-[12.5px] leading-[18px] text-testo-tenue">Dati di questo dispositivo: la classifica li usa solo se aderisci. Non sono una posizione.</p>
       </Sezione>
 
-      {errore && <p role="alert" data-testo-ok className="mt-4 rounded-[12px] bg-basso-tinta p-3 text-center text-[13px] font-bold text-basso-testo">{errore}</p>}
+      {errore && <p role="alert" data-testo-ok className="mt-4 rounded-[12px] bg-errore-tinta p-3 text-center text-[13px] font-bold text-errore-testo">{errore}</p>}
       <div className="mt-6 flex flex-col gap-2.5">
         {stato === 'da-aderire' && <BottoneAzione disabled={lavoro} onClick={() => { void cambiaPermesso(true); }}>Entra in classifica</BottoneAzione>}
         {stato === 'aderito' && <BottoneSecondario disabled={lavoro} onClick={() => { void cambiaPermesso(false); }}>Esci dalla classifica</BottoneSecondario>}

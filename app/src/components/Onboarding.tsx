@@ -74,9 +74,9 @@ function Tessera({ nome, n, m }: { nome: string; n: number; m: number }) {
 
 // Il messaggio del risultato è l'unico blocco tinto della schermata: ha la tinta e l'icona della fascia, come il banner della Home.
 const STILE_MESSAGGIO: Record<Livello, { tinta: string; tessera: string; icona: NomeIcona }> = {
-  alto: { tinta: 'bg-alto-tinta', tessera: 'bg-alto-pieno text-azione-su', icona: 'stato-ok' },
-  medio: { tinta: 'bg-medio-tinta', tessera: 'bg-medio-pieno text-azione-su', icona: 'stato-attenzione' },
-  basso: { tinta: 'bg-basso-tinta', tessera: 'bg-basso-pieno text-azione-su', icona: 'errori' },
+  alto: { tinta: 'bg-alto-tinta', tessera: 'bg-alto-pieno text-alto-su', icona: 'stato-ok' },
+  medio: { tinta: 'bg-medio-tinta', tessera: 'bg-medio-pieno text-medio-su', icona: 'stato-attenzione' },
+  basso: { tinta: 'bg-basso-tinta', tessera: 'bg-basso-pieno text-basso-su', icona: 'errori' },
 };
 
 // Illustrazioni del Brand Kit (kit blu). Il tema scuro usa la variante con aloni semitrasparenti.

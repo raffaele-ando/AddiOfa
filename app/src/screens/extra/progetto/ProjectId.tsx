@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
-import { BottoneAzione, BottoneRiga, BottoneSecondario, Etichetta, Interruttore, Nota, Pagina, RigaDato, Sezione, Testata, copiaTesto } from './comuni';
+import { BottoneAzione, BottoneRiga, BottoneSecondario, Etichetta, Interruttore, Nota, Pagina, RigaDato, Sezione, Testata, copiaTesto, type TonoStato } from './comuni';
 import { CampiConsensi, CampoEmail, campiPercorso, formDa, nomeEffettivo, PassoPercorso, ScelteProvenienza, type FormRegistrazione } from './registrazione';
 import { useAccesso, useInvio, useRitornoVerifica, useSincronizzaCollegamento } from './hooks';
 import { atlas, type MeRisposta } from '../../../lib/atlas';
@@ -23,7 +23,7 @@ import type { Tono } from '../ui';
 
 type Vista = 'principale' | 'consenso' | 'modifica' | 'esporta' | 'cancella-locale' | 'elimina-account';
 
-const TONO_INVIO: Record<ChiaveStato, Tono | 'neutro'> = { inviata: 'alto', 'in-attesa': 'medio', invio: 'azione', rifiutata: 'basso', 'solo-locale': 'neutro' };
+const TONO_INVIO: Record<ChiaveStato, TonoStato> = { inviata: 'alto', 'in-attesa': 'medio', invio: 'azione', rifiutata: 'errore', 'solo-locale': 'neutro' };
 const NOMI_CONSENSI = { noi: `Classifica ${ECOSYSTEM.rankingName}`, atlas: `Personalizzazione ${ECOSYSTEM.engineName}`, comunicazioni: `Messaggi da ${ECOSYSTEM.name} e ${ECOSYSTEM.agoraName}` } as const;
 
 function consensiDati(p: { noi: boolean; atlas: boolean; comunicazioni: boolean }): string {
@@ -131,7 +131,7 @@ export default function ProjectId() {
                 : <RigaDato icona="lezioni" etichetta="Percorso di studi" valore="–" tono="alto" />}
               <RigaDato icona="condividi" etichetta="Come ci hai conosciuto" valore={nomeProvenienza(profilo.provenienza) ?? '–'} tono="viola" />
               <RigaDato icona="privacy" etichetta="Consensi" valore={consensiDati(iscrizioneRemota?.consensi ?? profilo.consensi)} tono="viola" />
-              <RigaDato icona={statoInvio.chiave === 'inviata' ? 'stato-ok' : statoInvio.chiave === 'rifiutata' ? 'stato-errore' : 'stato-attesa'} etichetta={`Invio ad ${ECOSYSTEM.engineName}`} tono={statoInvio.chiave === 'inviata' ? 'alto' : statoInvio.chiave === 'rifiutata' ? 'basso' : 'medio'}
+              <RigaDato icona={statoInvio.chiave === 'inviata' ? 'stato-ok' : statoInvio.chiave === 'rifiutata' ? 'stato-errore' : 'stato-attesa'} etichetta={`Invio ad ${ECOSYSTEM.engineName}`} tono={statoInvio.chiave === 'inviata' ? 'alto' : statoInvio.chiave === 'rifiutata' ? 'errore' : 'medio'}
                 valore={<span><Etichetta tono={TONO_INVIO[statoInvio.chiave]}>{statoInvio.titolo}</Etichetta><span className="mt-1 block text-[13px] font-normal leading-[18px] text-testo-tenue">{statoInvio.dettaglio}</span></span>} />
             </ul>
             <div className="flex flex-col gap-2">
@@ -212,7 +212,7 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
       <div className="flex items-center gap-3 rounded-[14px] bg-superficie-2 p-3.5">
         {u.photoURL
           ? <img src={u.photoURL} alt="" referrerPolicy="no-referrer" className="h-12 w-12 rounded-full" />
-          : <span aria-hidden="true" className="grid h-12 w-12 place-items-center rounded-full bg-azione-tinta text-[20px] font-extrabold text-azione-scuro">{(u.displayName || u.email || '?').charAt(0).toUpperCase()}</span>}
+          : <span aria-hidden="true" className="grid h-12 w-12 place-items-center rounded-full bg-azione-tinta text-[20px] font-extrabold text-azione-testo">{(u.displayName || u.email || '?').charAt(0).toUpperCase()}</span>}
         <span className="min-w-0 flex-1">
           <span className="block truncate text-[16px] font-bold text-testo">{account?.displayName ?? u.displayName}</span>
           {account && <span className="block truncate text-[13.5px] font-semibold text-testo-tenue">@{account.handle} · {account.id}</span>}
@@ -247,7 +247,7 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
 /** Il permesso senza il quale l'account non esiste: non è una scelta, quindi nessun interruttore. */
 const Obbligatorio = () => <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-superficie px-2.5 py-1 text-[11.5px] font-bold text-testo-tenue"><Icona nome="blocco" size={12} />Necessario</span>;
 
-const ErroreRiga = ({ testo }: { testo: string }) => <p role="alert" data-testo-ok className="rounded-[12px] bg-basso-tinta p-3 text-center text-[13px] font-bold text-basso-testo">{testo}</p>;
+const ErroreRiga = ({ testo }: { testo: string }) => <p role="alert" data-testo-ok className="rounded-[12px] bg-errore-tinta p-3 text-center text-[13px] font-bold text-errore-testo">{testo}</p>;
 
 /** Schermata di consenso «Accedi con Project ID»: i permessi uno per uno, tutti spenti, tranne il profilo di base senza il quale l'account non esiste. */
 function Consenso({ profilo, acc, onAnnulla, onFatto }: {
@@ -264,7 +264,7 @@ function Consenso({ profilo, acc, onAnnulla, onFatto }: {
   return (
     <Pagina titolo={`Accedi con ${ECOSYSTEM.accountName}`} indietroA={onAnnulla}>
       <div className="mt-4 flex items-center gap-3 rounded-[14px] bg-superficie-2 p-3.5">
-        <span aria-hidden="true" className="grid h-11 w-11 place-items-center rounded-full bg-azione-tinta text-[18px] font-extrabold text-azione-scuro">{(u.displayName || u.email || '?').charAt(0).toUpperCase()}</span>
+        <span aria-hidden="true" className="grid h-11 w-11 place-items-center rounded-full bg-azione-tinta text-[18px] font-extrabold text-azione-testo">{(u.displayName || u.email || '?').charAt(0).toUpperCase()}</span>
         <span className="min-w-0"><span className="block truncate font-bold text-testo">{u.displayName}</span><span className="block truncate text-[13px] text-testo-tenue">{u.email}</span></span>
       </div>
       <Sezione id="cons-permessi" titolo="Cosa condividere">
@@ -397,7 +397,7 @@ function Esporta({ profilo, collegamento, acc, onChiudi }: { profilo: Profilo | 
           <>
             <p role="status" data-testo-ok className="text-[13px] font-semibold text-testo-tenue">{copiato ? 'Copiato negli appunti. Puoi anche selezionare il testo qui sotto.' : 'Non riesco a copiare da solo: seleziona il testo qui sotto e copialo a mano.'}</p>
             <textarea readOnly value={testo} rows={12} onFocus={e => e.currentTarget.select()} aria-label="I tuoi dati"
-              className="w-full resize-y rounded-[12px] border border-linea bg-superficie-2 p-3 font-mono text-[11px] leading-[16px] text-testo" />
+              className="w-full resize-y rounded-[12px] border border-bordo-campo bg-superficie-2 p-3 font-mono text-[11px] leading-[16px] text-testo" />
           </>
         )}
       </div>
@@ -410,11 +410,11 @@ function Conferma({ titolo, children, etichetta, onConferma, onAnnulla, occupato
 }) {
   return (
     <Pagina titolo={titolo} indietroA={onAnnulla}>
-      <div role="alertdialog" aria-label={titolo} className="mt-5 rounded-[14px] bg-basso-tinta p-4 text-[14px] leading-[21px] text-testo">{children}</div>
+      <div role="alertdialog" aria-label={titolo} className="mt-5 rounded-[14px] bg-errore-tinta p-4 text-[14px] leading-[21px] text-testo">{children}</div>
       {errore && <div className="mt-3"><ErroreRiga testo={errore} /></div>}
       <div className="mt-5 flex flex-col gap-2.5">
         <button type="button" disabled={occupato} onClick={() => { playTapSound(); onConferma(); }}
-          className={cn('brand-premibile w-full min-h-[52px] rounded-[13px] bg-basso-pieno px-4 py-3 text-[16px] font-bold text-azione-su disabled:opacity-40')}>{occupato ? 'Attendi…' : etichetta}</button>
+          className={cn('brand-premibile w-full min-h-[52px] rounded-[13px] bg-errore px-4 py-3 text-[16px] font-bold text-errore-su disabled:opacity-40')}>{occupato ? 'Attendi…' : etichetta}</button>
         <BottoneSecondario onClick={onAnnulla} disabled={occupato}>Annulla</BottoneSecondario>
       </div>
     </Pagina>

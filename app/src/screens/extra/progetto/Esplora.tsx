@@ -3,7 +3,7 @@
 import { Icona } from '../../../brand/icone/Icona';
 import { Illustrazione } from '../../../brand/Illustrazione';
 import { useExtra } from '../contesto';
-import { Etichetta, Pagina, Testata } from './comuni';
+import { Etichetta, Pagina, Testata, type TonoStato } from './comuni';
 import { useInvio } from './hooks';
 import { ATLAS_API_URL, FRASE_PROJECT } from '../../../config/ecosystem';
 import { descriviInvio, type ChiaveStato } from '../../../lib/progetto/coda';
@@ -12,9 +12,9 @@ import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import type { Tono } from '../ui';
 
-interface Carta { id: string; titolo: string; riga: string; arte: string; tono: Tono; stato: { testo: string; tono: Tono | 'neutro' } }
+interface Carta { id: string; titolo: string; riga: string; arte: string; tono: Tono; stato: { testo: string; tono: TonoStato } }
 
-const TONO_INVIO: Record<ChiaveStato, Tono | 'neutro'> = { inviata: 'alto', 'in-attesa': 'medio', invio: 'azione', rifiutata: 'basso', 'solo-locale': 'neutro' };
+const TONO_INVIO: Record<ChiaveStato, TonoStato> = { inviata: 'alto', 'in-attesa': 'medio', invio: 'azione', rifiutata: 'errore', 'solo-locale': 'neutro' };
 const FONDO: Record<Tono, string> = { azione: 'bg-azione-tinta', alto: 'bg-alto-tinta', medio: 'bg-medio-tinta', basso: 'bg-basso-tinta', viola: 'bg-viola-tinta' };
 
 export default function Esplora() {
