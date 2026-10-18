@@ -1,7 +1,7 @@
 // Componenti del Brand Kit ricreati in codice, con le misure prese dalle immagini.
 // Interattivi: Pulsante, Interruttore, Casella, Radio (e IconaChip se riceve onClick).
 // Solo visivi: Avanzamento, Barra, Badge, Stato, Misuratore, Caricamento.
-import { CSSProperties, ReactNode, useId } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { COLORI_STATO } from '../components/home/Indicatore';
 import { livelloDi } from '../components/home/stima';
 import { formatProbabilita } from '../lib/diagnostic';
@@ -252,39 +252,39 @@ export function IconaChip({ nome, kit = KIT_APP, lato = 57, cerchio, onClick, et
   return <button className="brand-premibile" aria-label={etichetta ?? nome} onClick={onClick} style={{ border: 'none', padding: 0, background: 'none', borderRadius: '50%' }}>{contenuto}</button>;
 }
 
-/** Misuratore (illustrazione "Risultato / Probabilità") ricreato in codice: il valore è vero e l'arco è fermo, già al valore finale. */
+/**
+ * Misuratore (illustrazione "Risultato / Probabilità") ricreato in codice: il valore è vero e l'arco è fermo, già al valore finale.
+ * Arco spesso (26 su 300), numero grande senza spazio prima del «%», pallino sempre SULL'ASSE dell'arco. Sotto il 5 % il riempimento
+ * e il pallino restano a quel minimo, così 1-2 % non sembra un caricamento fallito (il numero scritto è sempre quello vero).
+ * La traccia è un grigio-azzurro a ≥ 2:1 sulla superficie in tutti e due i temi; il riempimento è a tinta unita (l'inizio chiaro
+ * di un gradiente si confondeva con la traccia proprio dove stanno i valori bassi). Niente animazione.
+ */
 export function Misuratore({ valore, larghezza = 232, etichetta, testo }: {
   valore: number; larghezza?: number; etichetta?: string; // 0-100
   /** Testo al posto del numero (es. '<1 %'). Senza, il numero è formatProbabilita(valore). */
   testo?: string;
 }) {
-  const id = useId().replace(/:/g, '');
   // Colore semantico della probabilità (corallo basso, ambra medio, verde-acqua alto), non il colore d'azione
   const col = COLORI_STATO[livelloDi(valore / 100)];
-  const mostrato = valore;
   // arco di 220° che si apre in basso, come nel kit: dal basso a sinistra, sopra, al basso a destra
-  const cx = 116, cy = 104, r = 90, da = 160, ampiezza = 220;
+  const cx = 150, cy = 148, r = 116, da = 160, ampiezza = 220, spessore = 26;
   const punto = (g: number) => [cx + r * Math.cos((g * Math.PI) / 180), cy + r * Math.sin((g * Math.PI) / 180)];
   const [x0, y0] = punto(da); const [x1, y1] = punto(da + ampiezza);
   const lung = (Math.PI * r * ampiezza) / 180;
-  const frazione = Math.max(0, Math.min(1, mostrato / 100));
-  const [px, py] = punto(da + ampiezza * frazione);
-  const scritto = testo ?? formatProbabilita(valore / 100);
+  const frazione = Math.max(0, Math.min(1, valore / 100));
+  const visibile = Math.max(frazione, 0.05);
+  const [px, py] = punto(da + ampiezza * visibile);
+  const scritto = (testo ?? formatProbabilita(valore / 100)).replace(/\s+%/, '%');
+  const d = `M${x0.toFixed(2)} ${y0.toFixed(2)}A${r} ${r} 0 1 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+  const tratto = `${(lung * visibile).toFixed(2)} ${lung.toFixed(2)}`;
   return (
-    <svg width={larghezza} height={larghezza * 0.62} viewBox="0 0 232 144" role="img" aria-label={etichetta ?? scritto}>
-      <defs>
-        <linearGradient id={`g${id}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor={col.arco[0]} /><stop offset="1" stopColor={col.arco[1]} />
-        </linearGradient>
-      </defs>
-      <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" className="stroke-linea" strokeWidth="16" strokeLinecap="round" />
-      {col.bordo && <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" stroke={col.bordo} strokeWidth="16" strokeLinecap="round"
-        strokeDasharray={`${lung * frazione} ${lung}`} />}
-      <path d={`M${x0} ${y0}A${r} ${r} 0 1 1 ${x1} ${y1}`} fill="none" stroke={`url(#g${id})`} strokeWidth={col.bordo ? 12 : 16} strokeLinecap="round"
-        strokeDasharray={`${lung * frazione} ${lung}`} />
-      <circle cx={px} cy={py} r="11" fill={col.punto} stroke="var(--color-superficie)" strokeWidth="4" />
-      {col.bordo && <circle cx={px} cy={py} r="5" fill="none" stroke={col.bordo} strokeWidth="2" />}
-      <text x={cx} y={cy + 8} textAnchor="middle" fill="currentColor" className={col.numero} style={{ font: `800 48px ${FONT}` }}>{scritto}</text>
+    <svg width={larghezza} height={larghezza * (206 / 300)} viewBox="0 0 300 206" role="img" aria-label={etichetta ?? scritto}>
+      <path d={d} fill="none" className="stroke-testo-tenue" strokeOpacity={0.45} strokeWidth={spessore} strokeLinecap="round" />
+      {col.bordo && <path d={d} fill="none" stroke={col.bordo} strokeWidth={spessore} strokeLinecap="round" strokeDasharray={tratto} />}
+      <path d={d} fill="none" stroke={col.punto} strokeWidth={col.bordo ? spessore - 5 : spessore} strokeLinecap="round" strokeDasharray={tratto} />
+      <circle cx={px} cy={py} r="13" fill={col.punto} stroke="var(--color-superficie)" strokeWidth="4.5" />
+      {col.bordo && <circle cx={px} cy={py} r="6" fill="none" stroke={col.bordo} strokeWidth="2" />}
+      <text x={cx} y={cy + 18} textAnchor="middle" fill="currentColor" className={col.numero} style={{ font: `800 60px ${FONT}`, fontVariantNumeric: 'tabular-nums' }}>{scritto}</text>
     </svg>
   );
 }

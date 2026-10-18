@@ -1,98 +1,112 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { Disegno } from '../servizi/componenti';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { GRUPPI_BADGE, type BadgeValutato, type GruppoBadge } from '../../../lib/profilo/badge';
-import { BarraTono, FoglioInfo, TONI, type Tono } from '../ui';
+import { BarraTono, Carta, FoglioInfo, Segmenti, TONI, TitoloSezione, type Tono } from '../ui';
 import { useExtra } from '../contesto';
-import { Pagina, SelettoreIcone, useBadge } from './componenti';
+import { Pagina, arteBadge, useBadge } from './componenti';
 
 type Filtro = 'tutti' | 'ottenuti' | 'da-ottenere';
-const FILTRI = [
-  { id: 'tutti' as const, icona: <Icona nome="filtro-tutte" size={22} />, nome: 'Tutti' },
-  { id: 'ottenuti' as const, icona: <Icona nome="stato-ok" size={22} />, nome: 'Ottenuti' },
-  { id: 'da-ottenere' as const, icona: <Icona nome="stato-da-iniziare" size={22} />, nome: 'Da ottenere' },
-];
 
 /** Ogni gruppo ha il suo colore, lo stesso in tutta l'app: domande e argomenti imparati = verde, simulazioni = blu, giorni di studio = ambra, livelli = viola. */
 const TONO_GRUPPO: Record<GruppoBadge, Tono> = { studio: 'alto', simulazioni: 'azione', costanza: 'medio', livello: 'viola' };
 
-/** L'arte di ogni badge. Due scelte del piano d'uso (docs/design/ILLUSTRAZIONI.md §3.4): i badge di costanza hanno il calendario;
- *  `risultato-probabilita` ha scritto nel disegno «82 %», un numero che sembrerebbe dell'utente, e qui non si usa. */
-function arte(b: BadgeValutato): string {
-  if (b.gruppo === 'costanza') return 'piano-superamento';
-  if (b.illustrazione === 'risultato-probabilita') return 'progressi-statistiche-scheda';
-  return b.illustrazione;
-}
-
-/** Tessera di un badge (concept 06.4: griglia a tre colonne): arte, titolo e, se ancora da ottenere, avanzamento. */
+/** Tessera di un badge (griglia a tre colonne, altezza fissa): arte, titolo su al massimo due righe e, se ancora da ottenere, avanzamento.
+ *  Ottenuto = a colori, con la spunta; da ottenere = lo stesso disegno al 45 %, non grigio, con la barra e il numero. */
 function SchedaBadge({ b, onApri }: { b: BadgeValutato; onApri: () => void }) {
   const tono = TONO_GRUPPO[b.gruppo];
   return (
     <li>
       <button type="button" onClick={() => { playTapSound(); onApri(); }} aria-label={`${b.titolo}: ${b.sbloccato ? 'ottenuto' : b.avanzamento}`}
-        className="brand-premibile flex h-full w-full flex-col items-center gap-2 rounded-[14px] bg-superficie-2 px-2 pb-3 pt-3.5 text-center">
-        <span className={cn('relative grid h-[72px] w-[72px] place-items-center rounded-[18px]', b.sbloccato ? TONI[tono].tinta : 'bg-superficie')} aria-hidden="true">
-          <Disegno nome={arte(b)} lato={60} className={cn(!b.sbloccato && 'grayscale opacity-45')} />
-          {b.sbloccato && <span className="absolute -right-1.5 -top-1.5 grid h-6 w-6 place-items-center rounded-full border-2 border-superficie-2 bg-alto-pieno text-alto-su"><Icona nome="stato-ok" size={13} /></span>}
+        className={cn('brand-premibile flex h-[164px] w-full flex-col items-center rounded-[16px] border bg-superficie px-2 pb-3 pt-3 text-center shadow-sm dark:shadow-none', b.sbloccato ? TONI[tono].bordo : 'border-linea')}>
+        <span className="relative grid h-[64px] w-[64px] shrink-0 place-items-center" aria-hidden="true">
+          <Disegno nome={arteBadge(b)} lato={56} className={cn(!b.sbloccato && 'opacity-45')} />
+          {b.sbloccato
+            ? <span className="absolute -right-1 -top-1 grid h-6 w-6 place-items-center rounded-[8px] border-2 border-superficie bg-alto-pieno text-alto-su"><Icona nome="stato-ok" size={13} /></span>
+            : <span className="absolute -bottom-0.5 -right-0.5 grid h-5 w-5 place-items-center rounded-[7px] bg-superficie-2 text-testo-tenue"><Icona nome="blocco" size={11} /></span>}
         </span>
-        <h3 className="text-[13px] leading-[17px] font-bold text-testo">{b.titolo}</h3>
-        {!b.sbloccato && (
-          <span className="mt-auto flex w-full flex-col items-center gap-1">
-            <BarraTono valore={b.quota * 100} tono={tono} className="h-1.5" />
-            {b.numeri && <span className="text-[11.5px] leading-[14px] font-bold tabular-nums text-testo-tenue">{b.numeri.corrente}/{b.numeri.obiettivo}</span>}
-          </span>
-        )}
+        <h3 className="mt-1.5 line-clamp-2 text-[13px] leading-[17px] font-bold text-testo">{b.titolo}</h3>
+        <span className="mt-auto flex w-full flex-col items-center gap-1">
+          {b.sbloccato ? (
+            <span className={cn('text-[12px] leading-[16px] font-bold', TONI[tono].testo)}>Ottenuto</span>
+          ) : (
+            <>
+              <BarraTono valore={b.quota * 100} tono={tono} className="h-1.5" />
+              {b.numeri && <span className="text-[12px] leading-[16px] font-semibold tabular-nums text-testo-tenue">{b.numeri.corrente}/{b.numeri.obiettivo}</span>}
+            </>
+          )}
+        </span>
       </button>
     </li>
   );
 }
 
-/** Traguardi veri di studio: niente punti né XP. Icone, barre e numeri; la condizione di ogni badge si apre toccandolo. */
+/** Traguardi veri di studio: niente punti né XP. Selettore a parole, prossimo badge in testa, griglia a altezza fissa; la condizione di ogni badge si apre toccandolo. */
 export default function Badge() {
   const { indietro } = useExtra();
   const badge = useBadge();
   const [filtro, setFiltro] = useState<Filtro>('tutti');
   const [aperto, setAperto] = useState<BadgeValutato | null>(null);
-  const sbloccati = badge.filter(b => b.sbloccato).length;
+  const ottenuti = badge.filter(b => b.sbloccato);
   const visibili = badge.filter(b => filtro === 'tutti' || (filtro === 'ottenuti') === b.sbloccato);
+  // il più vicino da ottenere: quello con la barra più piena
+  const prossimo = useMemo(() => badge.filter(b => !b.sbloccato && b.raggiungibile).sort((a, b) => b.quota - a.quota)[0], [badge]);
 
   return (
     <Pagina titolo="Badge" indietro={indietro} destra={
-      <span className="inline-flex h-10 items-center gap-1.5 rounded-full bg-viola-tinta px-3.5 text-[15px] font-extrabold tabular-nums text-viola-testo" role="img" aria-label={`${sbloccati} su ${badge.length} ottenuti`}>
-        <Icona nome="badge" size={18} />{sbloccati}/{badge.length}
+      <span className="inline-flex h-9 items-center rounded-full bg-viola-tinta px-3.5 text-[14px] font-bold tabular-nums text-viola-testo dark:bg-superficie-2" role="img" aria-label={`${ottenuti.length} su ${badge.length} ottenuti`}>
+        {ottenuti.length} di {badge.length}
       </span>
     }>
-      <div className="mt-4"><SelettoreIcone<Filtro> nome="Filtro" voci={FILTRI} valore={filtro} onScegli={setFiltro} /></div>
+      <Segmenti<Filtro> className="mt-3" nome="Mostra" valore={filtro} onScegli={setFiltro} voci={[
+        { id: 'tutti', nome: 'Tutti' }, { id: 'ottenuti', nome: 'Ottenuti' }, { id: 'da-ottenere', nome: 'Da ottenere' },
+      ]} />
+
+      {prossimo && filtro !== 'ottenuti' && (
+        <Carta tono="viola" className="mt-4">
+          <p className="text-[12px] leading-[16px] font-semibold text-testo-tenue">Il prossimo badge</p>
+          <button type="button" onClick={() => { playTapSound(); setAperto(prossimo); }} className="brand-premibile mt-2 flex w-full items-center gap-3 text-left" aria-label={`${prossimo.titolo}: ${prossimo.avanzamento}`}>
+            <Disegno nome={arteBadge(prossimo)} lato={56} />
+            <span className="min-w-0 flex-1">
+              <span className="block text-[16px] leading-[22px] font-bold text-testo">{prossimo.titolo}</span>
+              <span className="block text-[13px] leading-[18px] text-testo-tenue">{prossimo.avanzamento}</span>
+            </span>
+          </button>
+          <BarraTono className="mt-3 h-2" tono={TONO_GRUPPO[prossimo.gruppo]} valore={prossimo.quota * 100} />
+        </Carta>
+      )}
+
       {visibili.length === 0 && (
-        <div className="mt-8 flex flex-col items-center gap-2 text-center" role="status">
-          <Disegno nome={filtro === 'ottenuti' ? 'vuoto' : 'celebrazione-fiocco'} lato={filtro === 'ottenuti' ? 120 : 96} />
-          <p className="text-[15px] font-bold text-testo-tenue">{filtro === 'ottenuti' ? 'Nessun badge ancora' : 'Tutti ottenuti'}</p>
+        <div className="mt-10 flex flex-col items-center gap-3 text-center" role="status">
+          <Disegno nome={filtro === 'ottenuti' ? 'celebrazione-fiocco' : 'successo'} lato={96} />
+          <p className="text-[17px] leading-[24px] font-bold text-testo">{filtro === 'ottenuti' ? 'Nessun badge ancora' : 'Li hai ottenuti tutti'}</p>
+          {filtro === 'ottenuti' && <p data-testo-ok className="max-w-[28ch] text-[14px] leading-[20px] text-testo-tenue">Il primo arriva con la prima domanda imparata.</p>}
         </div>
       )}
       {GRUPPI_BADGE.map(g => {
         const dentro = visibili.filter(b => b.gruppo === g.id);
         if (dentro.length === 0) return null;
+        const quanti = badge.filter(b => b.gruppo === g.id && b.sbloccato).length;
         return (
-          <section key={g.id} aria-labelledby={`badge-${g.id}`} className="mt-[22px] flex flex-col gap-[10px]">
-            <div className="flex items-baseline justify-between gap-3">
-              <h2 id={`badge-${g.id}`} className="text-[15.5px] leading-[20px] font-bold text-testo">{g.titolo}</h2>
-              <span className={cn('text-[12.5px] font-semibold tabular-nums', TONI[TONO_GRUPPO[g.id]].testo)}>{badge.filter(b => b.gruppo === g.id && b.sbloccato).length}/{badge.filter(b => b.gruppo === g.id).length}</span>
-            </div>
-            <ul className="grid grid-cols-3 gap-2.5">{dentro.map(b => <SchedaBadge key={b.id} b={b} onApri={() => setAperto(b)} />)}</ul>
+          <section key={g.id} aria-labelledby={`badge-${g.id}`} className="mt-7 flex flex-col gap-3">
+            <TitoloSezione id={`badge-${g.id}`} destra={
+              // il colore c'è solo da 1 in su: con zero ottenuti il conteggio è neutro
+              <span className={cn('text-[13px] font-semibold tabular-nums', quanti > 0 ? TONI[TONO_GRUPPO[g.id]].testo : 'text-testo-tenue')}>{quanti} di {badge.filter(b => b.gruppo === g.id).length}</span>
+            }>{g.titolo}</TitoloSezione>
+            <ul className="grid grid-cols-3 gap-3">{dentro.map(b => <SchedaBadge key={b.id} b={b} onApri={() => setAperto(b)} />)}</ul>
           </section>
         );
       })}
       <FoglioInfo aperto={!!aperto} onChiudi={() => setAperto(null)} titolo={aperto?.titolo ?? ''}>
         {aperto && (
           <>
-            <div className="mb-3 flex items-center justify-center gap-3">
-              <Disegno nome={arte(aperto)} lato={72} className={cn(!aperto.sbloccato && 'grayscale opacity-45')} />
-              {aperto.sbloccato && <Disegno nome="celebrazione-fiocco" lato={96} />}
+            <div className="mb-3 flex items-center justify-center">
+              <Disegno nome={arteBadge(aperto)} lato={96} className={cn(!aperto.sbloccato && 'opacity-45')} />
             </div>
             <p>{aperto.condizione}</p>
-            {!aperto.sbloccato && <p className="mt-2 font-bold tabular-nums">{aperto.avanzamento}</p>}
+            <p className="mt-2 font-bold tabular-nums">{aperto.sbloccato ? 'Ottenuto' : aperto.avanzamento}</p>
             <p className="mt-2 text-testo-tenue">I badge si ottengono solo studiando davvero: non danno punti.</p>
           </>
         )}

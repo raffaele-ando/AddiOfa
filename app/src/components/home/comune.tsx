@@ -2,25 +2,36 @@ import { ReactNode } from 'react';
 import { cn } from '../../lib/utils';
 import { formatPunteggio, type IntervalloStima } from '../../lib/diagnostic';
 import { REAL_TEST_PASS_MARK } from '../../config/offer';
+import type { Livello } from './stima';
 
 /** Colore semantico di un valore 0-100 (sempre accompagnato dal numero scritto, mai solo colore).
  *  Per le barre la fascia media usa medio-numero: l'ambra da sola non arriva a 3:1 sullo sfondo. */
 export function coloreValore(v: number): string { return v < 40 ? 'var(--color-basso)' : v < 70 ? 'var(--color-medio-numero)' : 'var(--color-alto)'; }
 
-/** Carta chiara come nel concept: tinta della superficie-2, angoli larghi, niente bordo né ombra. Ferma. */
+/** Carta chiara come nel concept: tinta della superficie-2, raggio 16, niente bordo né ombra. Ferma. */
 export function Carta({ className, children, tinta }: { className?: string; children: ReactNode; tinta?: string }) {
   return (
     <section
-      className={cn('rounded-[12px]', tinta ?? 'bg-superficie-2', className)}>
+      className={cn('rounded-[16px]', tinta ?? 'bg-superficie-2', className)}>
       {children}
     </section>
   );
 }
 
+/** Colore pieno di una fascia per barre e punti: la fascia media usa un ambra più profondo (senza contorno) così si distingue dal fondo chiaro. */
+export const PIENO_FASCIA: Record<Livello, string> = {
+  basso: 'var(--color-basso)',
+  medio: 'color-mix(in srgb, var(--color-medio) 55%, var(--color-medio-numero))',
+  alto: 'var(--color-alto)',
+};
+
+/** Riempimento a sfumatura di una barra: dal chiaro della fascia al suo colore pieno. */
+export const sfumaturaFascia = (f: Livello) => `linear-gradient(90deg, var(--color-${f}-chiaro), ${PIENO_FASCIA[f]})`;
+
 /** Barra di avanzamento: la larghezza è subito quella finale. */
 export function Barra({ valore, colore, alta = 8, sfondo }: { valore: number; colore: string; alta?: number; sfondo?: string }) {
   return (
-    <div className={cn('rounded-full overflow-hidden', sfondo ?? 'bg-linea')} style={{ height: alta }}>
+    <div className={cn('rounded-full overflow-hidden', sfondo ?? 'bg-linea dark:bg-tacca')} style={{ height: alta }}>
       <div className="h-full rounded-full" style={{ background: colore, width: `${Math.max(0, Math.min(100, valore))}%` }} />
     </div>
   );

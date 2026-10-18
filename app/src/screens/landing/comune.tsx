@@ -18,76 +18,82 @@ export const dataEstesa = (iso: string) =>
 export const dataCorta = (iso: string) =>
   new Date(`${iso}T12:00:00`).toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
-/** Colonna centrata della pagina: sensata a 1280 px, a tutta larghezza sotto. */
+/** Colonna centrata della pagina: sensata a 1280 px, a tutta larghezza sotto. Barra, sezioni e piè di pagina usano la stessa (margini di 72 px a 1280). */
 export function Colonna({ children, className }: { children: ReactNode; className?: string }) {
   return <div className={cn('mx-auto w-full max-w-[1200px] px-5 sm:px-8', className)}>{children}</div>;
 }
 
+/** Ritmo verticale unico: 40 px sopra e sotto sul telefono (80 tra due sezioni), 56 px da 1024 px (112 tra due sezioni). */
 export function Sezione({ id, titoloId, className, children }: { id?: string; titoloId?: string; className?: string; children: ReactNode }) {
   return (
-    <section id={id} aria-labelledby={titoloId} className={cn('scroll-mt-20 py-14 sm:py-20', className)}>
+    <section id={id} aria-labelledby={titoloId} className={cn('scroll-mt-20 py-10 lg:py-14', className)}>
       <Colonna>{children}</Colonna>
     </section>
   );
 }
 
-/** Etichetta sopra il titolo: pillola con l'icona della sezione e lettere spaziate, come nei concept. */
-export function Occhiello({ children, icona }: { children: ReactNode; icona?: NomeIcona }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-azione-tinta px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-azione-testo">
-      {icona && <Icona nome={icona} size={14} />}{children}
-    </span>
-  );
+/** Etichetta di sezione: l'unico stile della pagina (12 px, maiuscolo, blu, niente pillola né numero). */
+export function Occhiello({ children, className, ...resto }: { children: ReactNode; className?: string; 'data-testo-ok'?: boolean }) {
+  return <p {...resto} className={cn('text-xs font-bold uppercase tracking-[0.08em] text-azione-testo', className)}>{children}</p>;
 }
 
-export function TitoloSezione({ id, occhiello, icona, children, className, destra }: { id: string; occhiello?: string; icona?: NomeIcona; children: ReactNode; className?: string; destra?: ReactNode }) {
+/** Titolo di sezione: l'unica scala della pagina (32 px sul telefono, 44 px da 1024 px); la parte in `<Evidenza>` è blu. */
+export const TITOLO_H2 = 'text-[2rem] leading-[1.1] font-extrabold tracking-[-0.025em] text-testo text-balance lg:text-[2.75rem]';
+
+export function TitoloSezione({ id, occhiello, children, className }: { id: string; occhiello?: string; children: ReactNode; className?: string }) {
   return (
     <div className={cn('max-w-2xl', className)}>
-      {occhiello && <Occhiello icona={icona}>{occhiello}</Occhiello>}
-      <div className={cn('flex items-start gap-2', occhiello && 'mt-4')}>
-        <h2 id={id} className="text-[2.4rem] sm:text-5xl font-extrabold leading-[1.05] tracking-tight text-testo">{children}</h2>
-        {destra}
-      </div>
+      {occhiello && <Occhiello>{occhiello}</Occhiello>}
+      <h2 id={id} className={cn(TITOLO_H2, occhiello && 'mt-2')}>{children}</h2>
     </div>
   );
 }
 
 export function Evidenza({ children }: { children: ReactNode }) {
-  return <span className="text-azione ">{children}</span>;
+  return <span className="text-azione">{children}</span>;
 }
 
-/** Pulsante pieno blu, a pillola, con la freccia in un cerchio chiaro. */
-export function BottoneAzione({ children, onClick, className, freccia = true, etichetta }: { children: ReactNode; onClick: () => void; className?: string; freccia?: boolean; etichetta?: string }) {
+/** Pulsante primario: blu pieno, testo bianco, freccia semplice (niente cerchio). Un solo stile e un solo nome per l'azione in tutta la pagina. */
+export function BottoneAzione({ children, onClick, className, freccia = true, grande }: { children: ReactNode; onClick: () => void; className?: string; freccia?: boolean; grande?: boolean }) {
   return (
     <button
       type="button"
-      aria-label={etichetta}
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        'inline-flex items-center justify-between gap-4 rounded-full bg-azione hover:bg-azione-scuro text-azione-su font-bold text-base sm:text-lg py-2.5 pl-7 pr-2.5 shadow-[0_14px_28px_-8px_rgba(37,99,235,0.55)] dark:shadow-none transition-colors duration-100 ',
+        'inline-flex items-center justify-center gap-2 rounded-full bg-azione hover:bg-azione-scuro text-azione-su font-bold text-base px-7 transition-colors duration-100 whitespace-nowrap',
+        grande ? 'h-14' : 'h-[52px] lg:h-12',
         FOCUS, className,
       )}
     >
       <span>{children}</span>
-      {freccia && (
-        <span aria-hidden className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-azione-su text-azione">
-          <Icona nome="avanti" size={22} />
-        </span>
-      )}
+      {freccia && <Icona nome="avanti" size={20} />}
     </button>
   );
 }
 
-/** Pulsante a contorno, per l'azione secondaria. */
+/** Pulsante secondario: contorno di 1,5 px. */
 export function BottoneContorno({ children, onClick, className, freccia }: { children: ReactNode; onClick: () => void; className?: string; freccia?: boolean }) {
   return (
     <button
       type="button"
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        'vetro vetro-forte inline-flex items-center justify-center gap-2 rounded-full !border-testo/30 hover:bg-linea text-testo font-bold text-base py-3.5 px-7 transition-colors duration-100 ',
+        'inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] border-azione-testo/60 bg-transparent hover:bg-azione-tinta text-azione-testo font-bold text-base h-[52px] px-7 transition-colors duration-100 whitespace-nowrap lg:h-12',
         FOCUS, className,
       )}
+    >
+      {children}{freccia && <Icona nome="avanti" size={18} />}
+    </button>
+  );
+}
+
+/** Link: testo blu con freccia, per le azioni di terzo livello. */
+export function BottoneLink({ children, onClick, className, freccia = true }: { children: ReactNode; onClick: () => void; className?: string; freccia?: boolean }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn('inline-flex min-h-11 items-center gap-1.5 rounded text-[15px] font-bold text-azione-testo underline-offset-4 hover:underline', FOCUS, className)}
     >
       {children}{freccia && <Icona nome="avanti" size={18} />}
     </button>

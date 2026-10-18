@@ -1,25 +1,18 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { AppState, OnboardingResult, Question } from '../types';
-import { OFA_RULES_NOTE, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, RETAKE_COST_EUR } from '../config/offer';
-import { pickDiagnosticQuestions, estimatePassProbability, intervalloStima, formatProbabilita, weakTopics, DIAGNOSTIC_LENGTH } from '../lib/diagnostic';
+import { DISCLAIMER, OFA_CONSEQUENCES, OFA_RULES_NOTE, EXAM, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, RETAKE_COST_EUR } from '../config/offer';
+import { pickDiagnosticQuestions, estimatePassProbability, intervalloStima, DIAGNOSTIC_LENGTH } from '../lib/diagnostic';
 import { updateStats } from '../lib/spacedRepetition';
-import { playTapSound } from '../lib/audio';
-import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard } from './ui';
-import { Illustrazione } from '../brand/Illustrazione';
-import { IllustrazioneAnimata, eAnimata } from '../brand/IllustrazioneAnimata';
+import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard, Segmenti, TastoTesto, Titolo, Eroe, RigaStoria } from './ui';
 import { Misuratore } from '../brand/componenti';
 import { Icona, type NomeIcona } from '../brand/icone/Icona';
 import Marchio from '../brand/Marchio';
 import FoglioStima from './FoglioStima';
-import CalcoloRisultato from './CalcoloRisultato';
-import { Barra, coloreValore } from './home/comune';
 import { livelloDi, type Livello } from './home/stima';
-import { PulsanteInfo, IconaTono } from '../screens/extra/ui';
-import { Dato, InfoFoglio } from '../screens/landing/comune';
-import { CONSEGUENZE } from '../screens/landing/dati';
-import { InfoIndipendenza } from '../screens/Footer';
-import { CampiConsensi, CampoEmail, campiPercorso, formDa, nomeEffettivo, PassoPercorso, ScelteProvenienza, type FormRegistrazione } from '../screens/extra/progetto/registrazione';
-import { risolvi } from '../lib/progetto/percorso';
+import { InfoFoglio } from '../screens/landing/comune';
+import { CampiConsensi, CampoEmail, campiPercorso, ElencoCorsi, formDa, nomeEffettivo, PilloleAnno, ScelteProvenienza, type FormRegistrazione } from '../screens/extra/progetto/registrazione';
+import { anniDelLivello, elencoCorsi, livelliPresenti, corsoScelto, cammino, indiceDomanda, argomentiDaRipassare, testoErrori, ORDINE_RICHIESTE, type Richiesta } from './funnel-logica';
+import { CORSO_ALTRO_ID, type LivelloId } from '../lib/progetto/percorso';
 import { fonteCorsi } from '../lib/progetto/percorsoDati';
 import { coda } from '../lib/progetto/coda';
 import { corpoIscrizione, creaProfilo, impostaProfilo, leggiProgetto } from '../lib/progetto/profilo';
@@ -27,108 +20,74 @@ import { controllaDatiMinimi } from '../lib/progetto/validazione';
 import { inviaLinkVerifica } from '../lib/firebase';
 import type { LegalSection } from '../types';
 
-type Step = 'pain' | 'gain' | 'quizIntro' | 'quiz' | 'email' | 'provenienza' | 'percorso' | 'certification' | 'certInfo' | 'ofa' | 'consensi' | 'calcolo' | 'result';
-
 interface OnboardingProps {
   appState: AppState;
   onUpdateAppState: (state: AppState) => void;
   onFinish: (result: OnboardingResult) => void;
-  /** Solo la registrazione («Completa il profilo»): email, percorso di studi, come ci hai conosciuto, consensi. Chi ha già usato l'app non rifà il diagnostico. */
+  /** Solo la registrazione («Completa il profilo»): email, corso, come ci hai conosciuto, consensi. Chi ha già usato l'app non rifà il test di livello. */
   soloRegistrazione?: boolean;
   /** Apre una pagina legale (per il link all'informativa nel passo dei consensi). Senza, il link non compare. */
   onOpenLegal?: (s: LegalSection) => void;
 }
 
-// Ordine del funnel (decisione del 17/10, rivista il 18/10): perché farlo (pain e gain) → le 10 domande del test, con le altre richieste SPARSE fra una domanda e l'altra, una per volta,
-// così ogni schermata è leggera: email PoliMi (dopo la 2ª) → «Come ci hai conosciuto?» → i passi di «Cosa fai al Poli» (scuola, sede, livello, corso, anno: uno per schermata) →
-// certificazione → OFA → consensi → calcolo e risultato. Le richieste non fatte in tempo (passi saltati, ecc.) si mettono dopo l'ultima domanda.
-const DOPO_EMAIL = 2;        // la prima richiesta può comparire dopo la seconda domanda
-type Inserto = 'email' | 'provenienza' | 'percorso' | 'certification' | 'ofa';
+// Ordine del percorso (decisione del 17/10, rivista il 18/10): perché farlo (pain → gain) → certificazione e OFA in una schermata (possono esonerare,
+// quindi vengono prima di tutto) → le 10 domande del test, con le altre richieste SPARSE fra una domanda e l'altra, una per volta
+// (email PoliMi dopo la 2ª, «come ci hai conosciuto» dopo la 3ª, il corso dopo la 5ª, i consensi dopo la 7ª) → risultato. Le ultime tre domande
+// sono solo domande e fra l'ultima e il risultato non c'è nulla. 18 schermate in tutto; l'ordine è calcolato da `cammino` (funnel-logica.ts).
+// «Calcolo» non c'è più: il risultato è già noto, un finto caricamento avrebbe solo aggiunto un tocco e una promessa non vera.
 
-/** Perché farlo: guadagni (icona + poche parole). Le promesse sono quelle che AddiOFA può mantenere; il resto sta dietro la «i». */
+/** Perché farlo: guadagni (icona + frase intera). Le promesse sono quelle che AddiOFA può mantenere; il resto sta dietro la «i». */
 const GUADAGNI: { icona: NomeIcona; testo: string }[] = [
-  { icona: 'probabilita', testo: 'Sai a che punto sei' },
-  { icona: 'modo-punti-deboli', testo: 'Ripassi ciò che sbagli' },
-  { icona: 'soglia', testo: 'Arrivi preparato' },
-  { icona: 'scadenze-piano', testo: 'Verso il 2° anno libero' },
+  { icona: 'probabilita', testo: 'Una stima onesta della probabilità di superare il test' },
+  { icona: 'modo-punti-deboli', testo: 'Quali argomenti ripassare, in ordine' },
+  { icona: 'simulazioni', testo: `Simulazioni da ${EXAM.questions} domande in ${EXAM.minutes} minuti, come il test vero` },
 ];
 
-// Messaggio per fascia di probabilità: in pagina c'è solo il titolo (con l'icona della fascia); la spiegazione onesta sta dietro la «i».
+// Messaggio per fascia di probabilità, visibile in pagina (non dietro la «i»): il titolo non contraddice mai il numero, la frase è vera e rassicura.
 // La soglia (25 su 30) è alta: la fascia 'basso' comprende anche chi ha risposto bene a 8 domande su 10, e il testo lo dice.
-const MESSAGGI: Record<Livello, { titolo: string; testo: string }> = {
-  alto: { titolo: 'Hai buone basi', testo: 'Con queste risposte la stima è favorevole, ma dieci domande sono poche per dirlo con sicurezza. Una simulazione da 30 domande lo conferma o lo corregge.' },
-  medio: { titolo: 'Sei vicino alla soglia', testo: 'Oggi potrebbe andare in un modo o nell\'altro. Ripassare gli argomenti sbagliati qui sotto e fare una simulazione ti dice meglio a che punto sei.' },
-  basso: { titolo: 'Hai margine', testo: `Per superare il test servono ${REAL_TEST_PASS_MARK} risposte esatte su ${REAL_TEST_QUESTIONS}, quindi la stima parte bassa anche con un buon risultato. Non è un giudizio su di te: ripassa gli argomenti sbagliati qui sotto, poi misurati con una simulazione.` },
+const MESSAGGI: Record<Livello, { titolo: string; testo: string; icona: NomeIcona }> = {
+  alto: { titolo: 'Hai buone basi', icona: 'stato-ok', testo: 'Con queste risposte la stima è favorevole. Con dieci domande è larga: una simulazione da 30 la conferma o la corregge.' },
+  medio: { titolo: 'Sei vicino alla soglia', icona: 'stato-attenzione', testo: 'Oggi potrebbe andare in un modo o nell\'altro. Con dieci domande la stima è larga: ripassa gli errori e prova una simulazione.' },
+  basso: { titolo: 'Si parte da qui', icona: 'stato-basso', testo: `Servono ${REAL_TEST_PASS_MARK} risposte esatte su ${REAL_TEST_QUESTIONS}: con dieci domande la stima parte bassa anche andando bene. Non è un giudizio su di te.` },
 };
+// La probabilità (arco) è un numero solo, intero, mai «0 %» né «100 %» (formatProbabilita) e sempre con la sua didascalia; per area o livello,
+// su 3-5 domande, non si scrivono percentuali: il risultato mostra il punteggio probabile (fascia) contro la soglia e gli argomenti da ripassare con i loro errori.
+const TESTO_FASCIA: Record<Livello, string> = { alto: 'text-alto-numero', medio: 'text-medio-numero', basso: 'text-basso-numero' };
 
-// Tessera "n/m" per area o livello: mai percentuali precise su così poche domande.
-// Barra e numero hanno il tono della fascia (stesse soglie della Home): verde solido, ambra a metà, corallo da ripassare.
-const TESTO_FASCIA: Record<Livello, string> = { alto: 'text-alto-testo', medio: 'text-medio-testo', basso: 'text-basso-testo' };
-function Tessera({ nome, n, m }: { nome: string; n: number; m: number }) {
-  const frazione = m ? n / m : 0;
-  return (
-    <div className="rounded-2xl border border-linea bg-superficie-2 p-3">
-      <div className="text-xs font-bold text-testo-tenue">{nome}</div>
-      <div className={`mt-0.5 text-lg font-extrabold leading-tight tabular-nums ${TESTO_FASCIA[livelloDi(frazione)]}`}>{n}/{m}</div>
-      <div className="mt-2"><Barra valore={frazione * 100} colore={coloreValore(frazione * 100)} alta={6} /></div>
-    </div>
-  );
+/** Un testo con «___» (la parola mancante): il vuoto si disegna come un tratto, non come trattini di battitura. */
+function ConVuoto({ testo }: { testo: string }) {
+  const pezzi = testo.split(/(_{2,})/);
+  return <>{pezzi.map((p, i) => /^_{2,}$/.test(p)
+    ? <span key={i} role="img" aria-label="spazio da completare" className="mx-1 inline-block h-[3px] w-12 translate-y-[-0.2em] rounded-full bg-azione align-middle" />
+    : <span key={i}>{p}</span>)}</>;
 }
 
-// Il messaggio del risultato è l'unico blocco tinto della schermata: ha la tinta e l'icona della fascia, come il banner della Home.
-const STILE_MESSAGGIO: Record<Livello, { tinta: string; tessera: string; icona: NomeIcona }> = {
-  alto: { tinta: 'bg-alto-tinta', tessera: 'bg-alto-pieno text-alto-su', icona: 'stato-ok' },
-  medio: { tinta: 'bg-medio-tinta', tessera: 'bg-medio-pieno text-medio-su', icona: 'stato-attenzione' },
-  basso: { tinta: 'bg-basso-tinta', tessera: 'bg-basso-pieno text-basso-su', icona: 'errori' },
-};
-
-// Illustrazioni del Brand Kit (kit blu). Il tema scuro usa la variante con aloni semitrasparenti.
-function Scena({ nome, gruppo }: { nome: string; gruppo?: string }) {
-  const scuro = document.documentElement.classList.contains('dark');
-  return (
-    <div className="mx-auto my-3 flex items-center justify-center" style={{ minHeight: 150 }}>
-      {eAnimata(nome)
-        ? <IllustrazioneAnimata nome={nome} lato={200} />
-        : <Illustrazione kit="kit-blu" nome={nome} gruppo={gruppo} lato={200} fondoScuro={scuro} />}
-    </div>
-  );
-}
-
-/** Titolo di una schermata di domanda: icona tonda + poche parole (+ «i» facoltativa con i dettagli). */
-function TestataDomanda({ icona, titolo, info, titoloInfo }: { icona: NomeIcona; titolo: string; info?: string; titoloInfo?: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <IconaTono tono="azione" lato={52} className="!rounded-full"><Icona nome={icona} size={28} /></IconaTono>
-      <h2 className="min-w-0 flex-1 text-2xl sm:text-3xl font-bold text-testo">{titolo}</h2>
-      {info && <InfoFoglio titolo={titoloInfo ?? titolo}><p>{info}</p></InfoFoglio>}
-    </div>
-  );
-}
+/** Messaggio di una riga sotto un pulsante o nel piè di pagina. */
+const Micro = ({ children }: { children: ReactNode }) => <p data-testo-ok className="text-center text-[13px] leading-[18px] text-testo-tenue">{children}</p>;
 
 export default function Onboarding({ appState, onUpdateAppState, onFinish, soloRegistrazione = false, onOpenLegal }: OnboardingProps) {
-  // Chi ha già una registrazione completa non la rifà (apre il diagnostico dalla Home); gli altri la fanno nel funnel, con i dati già inseriti se c'erano.
+  // Chi ha già una registrazione completa non la rifà (apre il test dalla Home); gli altri la fanno nel funnel, con i dati già inseriti se c'erano.
   const giaRegistrato = useRef(!!leggiProgetto(appState).profilo?.completato && !soloRegistrazione);
-  const [step, setStep] = useState<Step>(soloRegistrazione ? 'email' : giaRegistrato.current ? 'quizIntro' : 'pain');
+  const precedente = appState.onboarding;
+  // chi ha già detto se ha l'OFA e la certificazione non lo rifà
+  const giaDetto = giaRegistrato.current && !!precedente;
   const [reg, setRegStato] = useState<FormRegistrazione>(() => formDa(leggiProgetto(appState).profilo));
   const regRef = useRef(reg);
   const setReg = (n: FormRegistrazione | ((r: FormRegistrazione) => FormRegistrazione)) => { const v = typeof n === 'function' ? n(regRef.current) : n; regRef.current = v; setRegStato(v); };
   const [provato, setProvato] = useState(false);
-  const [esente, setEsente] = useState(false);
-  const precedente = appState.onboarding;
-  const [hasCertification, setHasCertification] = useState<boolean | null>(() => (giaRegistrato.current && precedente ? precedente.hasCertification : null));
-  const [hasOfa, setHasOfa] = useState<OnboardingResult['hasOfa'] | null>(() => (giaRegistrato.current && precedente ? precedente.hasOfa : null));
-  // Se la scelta delle domande diventa asincrona (lib/diagnostic.ts) questo codice regge lo stesso
-  // Che cosa è già stato chiesto (riferimento, così la scelta appena fatta conta subito per decidere la richiesta successiva)
-  const fatti = useRef<{ email: boolean; provenienza: boolean; cert: boolean | null; ofa: OnboardingResult['hasOfa'] | null }>({ email: false, provenienza: false, cert: null, ofa: null });
+  const [hasCertification, setHasCertification] = useState<boolean | null>(() => (giaDetto && precedente ? precedente.hasCertification : null));
+  const [hasOfa, setHasOfa] = useState<OnboardingResult['hasOfa'] | null>(() => (giaDetto && precedente ? precedente.hasOfa : null));
   const [quiz, setQuiz] = useState<Question[]>([]);
-  const [quizIndex, setQuizIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const questionStart = useRef(Date.now());
+  const tempi = useRef<Record<string, number>>({});
   const stateRef = useRef(appState);
   stateRef.current = appState;
   const [foglio, setFoglio] = useState(false);
-  // Quale richiesta sta prima della domanda n (per tornare indietro dalla domanda alla richiesta).
-  const [primaDi, setPrimaDi] = useState<Record<number, Inserto>>({});
+  // il corso: livello e anno stanno qui perché le pillole dell'anno sono nel piè di pagina
+  const voci = useMemo(() => elencoCorsi(fonteCorsi), []);
+  const [livCorso, setLivCorso] = useState<LivelloId>(() => reg.percorso.livello ?? corsoScelto(voci, reg.percorso)?.livello ?? livelliPresenti(voci)[0] ?? 'triennale');
+  const [annoCorso, setAnnoCorso] = useState<number>(() => reg.percorso.anno ?? 1);
 
   // L'iscrizione parte da sola appena possibile e si riprova se il server non risponde (lib/progetto/coda.ts): mai un blocco per l'utente.
   useEffect(() => { coda.avvia(); }, []);
@@ -139,21 +98,31 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     return () => { vivo = false; };
   }, []);
 
-  // Barra di avanzamento: un segmento per fase del cammino scelto.
-  const bar = useMemo(() => {
-    let n: number; let tot: number;
-    if (soloRegistrazione) {
-      tot = 4; n = { email: 1, percorso: 2, provenienza: 3, consensi: 4 }[step as 'email'] ?? 4;
-    } else if (giaRegistrato.current) {
-      tot = 4; n = step === 'quizIntro' ? 1 : step === 'quiz' ? 2 : step === 'certification' || step === 'certInfo' || step === 'ofa' ? 3 : 4;
-    } else {
-      // un segmento per ogni domanda; le richieste fra una domanda e l'altra tengono il segmento della domanda appena fatta
-      tot = 14;
-      const fatte = step === 'quiz' ? quizIndex : Math.min(quizIndex + 1, DIAGNOSTIC_LENGTH);
-      n = step === 'pain' ? 1 : step === 'gain' ? 2 : step === 'quiz' ? 3 + fatte : step === 'calcolo' || step === 'result' ? 14 : step === 'consensi' ? 13 : 2 + fatte;
-    }
-    return { step: n, totalSteps: tot };
-  }, [step, quizIndex, soloRegistrazione, quiz.length]);
+  // ---- La sequenza delle schermate e dove siamo
+  const domande = quiz.length || DIAGNOSTIC_LENGTH;
+  const passi = useMemo<string[]>(() => {
+    if (soloRegistrazione) return ['email', 'corso', 'prov', 'consensi'];
+    const richieste: Richiesta[] = giaRegistrato.current ? [] : [...ORDINE_RICHIESTE];
+    return cammino({ domande, richieste, racconto: !giaRegistrato.current, avvio: giaRegistrato.current, certOfa: !giaDetto });
+  }, [soloRegistrazione, domande, giaDetto]);
+  const [pos, setPos] = useState(0);
+  const k = passi[Math.min(pos, passi.length - 1)];
+  const avanti = () => setPos(p => Math.min(p + 1, passi.length - 1));
+  const indietro = () => setPos(p => Math.max(0, p - 1));
+  const barra = { step: pos + 1, totalSteps: passi.length };
+  const daIndietro = pos > 0 ? indietro : undefined;
+
+  // il tocco su una scelta evidenzia la voce per un attimo e poi porta avanti da solo (col tasto indietro si corregge)
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const bloccato = useRef(false);
+  useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
+  const poi = (fn: () => void) => {
+    if (bloccato.current) return;
+    bloccato.current = true;
+    timer.current = setTimeout(() => { bloccato.current = false; fn(); }, 140);
+  };
+  // ogni schermata nuova riparte da capo (le domande misurano il tempo da qui)
+  useEffect(() => { questionStart.current = Date.now(); bloccato.current = false; }, [pos]);
 
   const answered = quiz.length > 0 && Object.keys(answers).length === quiz.length;
   const correct = quiz.filter(q => answers[q.id] === q.correctIndex).length;
@@ -188,159 +157,233 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     return profilo;
   };
 
-  const handleQuizNext = () => {
-    const q = quiz[quizIndex];
-    const chosen = answers[q.id];
-    // Le risposte del diagnostico alimentano già il ripasso dilazionato
-    onUpdateAppState(updateStats(stateRef.current, q.id, chosen === q.correctIndex, Date.now() - questionStart.current));
-    questionStart.current = Date.now();
-    if (giaRegistrato.current) { if (quizIndex + 1 < quiz.length) setQuizIndex(quizIndex + 1); else setStep('certification'); return; }
-    avanti(true);
+  /** Una risposta del test (indice della voce, -1 = «Non lo so», che conta come errata). L'ultima porta al risultato; le statistiche si scrivono una volta sola, alla fine. */
+  const rispondi = (q: Question, i: number, ultima: boolean) => {
+    if (bloccato.current) return;
+    const nuove = { ...answers, [q.id]: i };
+    setAnswers(nuove);
+    tempi.current[q.id] = Date.now() - questionStart.current;
+    poi(() => {
+      if (ultima) {
+        // le risposte del test alimentano già il ripasso dilazionato: una sola scrittura, in ordine di domanda
+        let st = stateRef.current;
+        const ora = Date.now();
+        for (const d of quiz) if (nuove[d.id] !== undefined) st = updateStats(st, d.id, nuove[d.id] === d.correctIndex, tempi.current[d.id] ?? ora - questionStart.current);
+        onUpdateAppState(st);
+      }
+      avanti();
+    });
   };
 
-  // Le richieste ancora da fare, nell'ordine (si leggono dai riferimenti: la scelta appena fatta non è ancora nello stato).
-  const prossimaRichiesta = (): Inserto | null => {
-    if (!fatti.current.email) return 'email';
-    if (!fatti.current.provenienza) return 'provenienza';
-    if (risolvi(regRef.current.percorso, fonteCorsi).passo !== null) return 'percorso';
-    if (fatti.current.cert === null) return 'certification';
-    if (fatti.current.ofa === null) return 'ofa';
-    return null;
-  };
-  // Dopo una domanda (`daDomanda`) o dopo una richiesta: la prossima richiesta sta fra una domanda e l'altra (dalla seconda in poi), una per schermata;
-  // finite le domande, le richieste rimaste e poi i consensi.
-  const avanti = (daDomanda: boolean) => {
-    const risposte = quizIndex + 1;                      // domande già fatte
-    const finite = risposte >= quiz.length;
-    if (daDomanda ? (risposte >= DOPO_EMAIL || finite) : finite) {
-      const richiesta = prossimaRichiesta();
-      if (richiesta) { if (daDomanda) setPrimaDi(m => ({ ...m, [risposte]: richiesta })); setStep(richiesta); return; }
+  const indiceQ = indiceDomanda(k);
+
+  // ---- La schermata di una domanda di profilo: titolo + campi + piè di pagina
+  const barraTesta = (destra?: ReactNode) => <TopBar {...barra} onBack={daIndietro} destra={destra} />;
+
+  // Risultato: nessuna freccia indietro (non si rifà il test dal risultato), la barra è piena
+  if (k === 'result') {
+    const argomenti = argomentiDaRipassare(quiz, answers);
+    const livello = livelloDi(passProb);
+    const msg = MESSAGGI[livello];
+    const { min, max } = intervallo.punteggio;
+    const totale = REAL_TEST_QUESTIONS;
+    const da = (min / totale) * 100, a = (max / totale) * 100;
+    const soglia = (REAL_TEST_PASS_MARK / totale) * 100;
+    return (
+      <Screen
+        testata={<TopBar {...barra} />}
+        piede={<>
+          <PrimaryButton onClick={() => onFinish(result())}>Vai alla tua Home</PrimaryButton>
+          <SecondaryButton onClick={() => setFoglio(true)}>Come viene calcolata la stima</SecondaryButton>
+        </>}
+      >
+        <Titolo titolo="Il tuo punto di partenza" sotto={`Hai risposto bene a ${correct} domande su ${quiz.length}.`} />
+
+        {/* 1. L'arco: la probabilità di superare il test, con la sua didascalia */}
+        <div className="flex flex-col items-center">
+          <Misuratore valore={passProb * 100} larghezza={264} etichetta={`Probabilità di superare il test: ${Math.round(passProb * 100)} %`} />
+          <p data-testo-ok className="mt-0 text-center text-[16px] leading-[22px] font-semibold text-testo">probabilità di superare il test</p>
+        </div>
+
+        {/* 2. Il punteggio probabile contro la soglia, e che cosa vuol dire */}
+        <section aria-label="Punteggio probabile" className="flex flex-col gap-3 rounded-2xl border border-tacca bg-superficie-2 p-4">
+          <div className="flex items-baseline justify-between gap-3">
+            <span data-testo-ok className="text-[15px] leading-[20px] font-semibold text-testo">Punteggio probabile</span>
+            <span className="text-[17px] leading-[24px] font-bold tabular-nums text-testo">{min === max ? min : `${min}–${max}`} <span className="text-[14px] font-medium text-testo-tenue">su {totale}</span></span>
+          </div>
+          <div className="relative pt-5" role="img" aria-label={`Punteggio probabile da ${min} a ${max} su ${totale}; la soglia è ${REAL_TEST_PASS_MARK}`}>
+            <span data-testo-ok className="absolute top-0 -translate-x-1/2 whitespace-nowrap text-[13px] leading-[16px] font-semibold text-testo" style={{ left: `${soglia}%` }}>soglia {REAL_TEST_PASS_MARK}</span>
+            <div className="relative h-3 rounded-full bg-testo-tenue/30">
+              <div className="absolute inset-y-0 rounded-full bg-azione" style={{ left: `${da}%`, width: `max(${a - da}%, 8px)` }} />
+              <div className="absolute -top-2 h-7 w-[3px] -translate-x-1/2 rounded-full bg-testo" style={{ left: `${soglia}%` }} />
+            </div>
+            <div aria-hidden="true" className="mt-1.5 flex justify-between text-[12px] leading-[16px] tabular-nums text-testo-tenue"><span>0</span><span>10</span><span>20</span><span>30</span></div>
+          </div>
+          <div className="flex items-start gap-3 border-t border-linea pt-3">
+            <Icona nome={msg.icona} size={24} className={`mt-0.5 ${TESTO_FASCIA[livello]}`} />
+            <div className="min-w-0">
+              <h3 data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">{msg.titolo}</h3>
+              <p data-testo-ok className="mt-0.5 text-[15px] leading-[22px] text-testo-tenue">{msg.testo}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Da dove cominciare */}
+        <section aria-label="Da dove cominciare" className="flex flex-col gap-2">
+          <h3 data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">Da dove cominciare</h3>
+          {argomenti.length > 0 ? (
+            <>
+              <ul className="flex flex-col gap-2">
+                {argomenti.slice(0, 3).map(x => (
+                  <li key={x.nome} className="flex min-h-12 items-center justify-between gap-3 rounded-2xl border border-tacca bg-superficie-2 px-4 py-2">
+                    <span data-testo-ok className="min-w-0 text-[16px] leading-[22px] font-semibold text-testo">{x.nome}</span>
+                    <span className="shrink-0 text-[14px] leading-[20px] tabular-nums text-testo-tenue">{testoErrori(x.errori)}</span>
+                  </li>
+                ))}
+              </ul>
+              {argomenti.length > 3 && <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">e altri {argomenti.length - 3} {argomenti.length - 3 === 1 ? 'argomento' : 'argomenti'}</p>}
+            </>
+          ) : (
+            <p className="inline-flex items-center gap-2 text-[16px] leading-[22px] font-semibold text-alto-testo"><Icona nome="stato-ok" size={22} />Nessun errore</p>
+          )}
+        </section>
+        <FoglioStima aperto={foglio} onChiudi={() => setFoglio(false)} tipo="diagnostico" risposte={quiz.length} />
+      </Screen>
+    );
+  }
+
+  // ---- Una domanda del test
+  if (indiceQ !== null) {
+    const q = quiz[indiceQ];
+    if (!q) {
+      return (
+        <Screen testata={barraTesta()}>
+          <div role="status" aria-label="Preparo le domande" className="mx-auto mt-8 h-7 w-7 animate-spin rounded-full border-[3px] border-azione/30 border-t-azione" />
+        </Screen>
+      );
     }
-    if (!finite) { setQuizIndex(risposte); setStep('quiz'); return; }
-    setStep('consensi');
-  };
-  /** Indietro da una richiesta: alla domanda che la precede. */
-  const indietroRichiesta = () => { setStep('quiz'); };
+    const n = quiz.length;
+    const tappa = indiceQ + 1 === Math.ceil(n / 2) ? ' · Sei a metà' : indiceQ + 1 === n - 2 ? ' · Ultime tre' : '';
+    const ultima = indiceQ + 1 >= n;
+    return (
+      <Screen testata={barraTesta()} piede={<div className="flex justify-center"><TastoTesto onClick={() => rispondi(q, -1, ultima)}>Non lo so</TastoTesto></div>}>
+        <div className="flex flex-col gap-2">
+          <p className="text-[13px] leading-[18px] font-medium text-testo-tenue tabular-nums" aria-label={`Domanda ${indiceQ + 1} di ${n}`}>Domanda {indiceQ + 1} di {n}{tappa}</p>
+          {/* la domanda e le opzioni sono contenuto del test */}
+          <h2 data-testo-ok className="text-[24px] leading-[32px] font-semibold text-testo"><ConVuoto testo={q.prompt} /></h2>
+          {indiceQ === 0 && <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">Scegli la risposta giusta: toccandola passi alla domanda dopo.</p>}
+        </div>
+        <div data-testo-ok className="flex flex-1 flex-col gap-3">
+          {q.options.map((opt, i) => (
+            <div key={i} className="flex min-h-16 max-h-[104px] flex-1 [&>button]:h-full">
+              <ChoiceCard selected={answers[q.id] === i} onClick={() => rispondi(q, i, ultima)} title={opt} />
+            </div>
+          ))}
+        </div>
+      </Screen>
+    );
+  }
 
-  const titolo = 'text-2xl sm:text-3xl font-bold text-testo';
-  const righe = (voci: { icona: NomeIcona; testo: string }[]) => (
-    <ul className="flex flex-col gap-3">
-      {voci.map(v => (
-        <li key={v.testo} className="flex items-center gap-4 rounded-2xl bg-superficie-2 p-3">
-          <IconaTono tono="alto" lato={48}><Icona nome={v.icona} size={26} /></IconaTono>
-          <span className="text-lg font-extrabold leading-tight text-testo">{v.testo}</span>
-        </li>
-      ))}
-    </ul>
-  );
-
-  switch (step) {
+  switch (k) {
     // ---- Perché farlo: prima di qualsiasi domanda. «Se non superi» (pain) e cosa si ottiene (gain).
     case 'pain':
       return (
-        <Screen>
-          <div className="flex items-center justify-between gap-2 shrink-0">
-            <Marchio disposizione="orizzontale" altezza={34} />
-            <InfoIndipendenza />
-          </div>
-          <Scena nome="rischio-economico-ali" />
-          <div className="flex items-center gap-2">
-            <h2 className={`${titolo} flex-1`}>Se non superi</h2>
-            <InfoFoglio titolo="OFA di inglese" etichetta="Informazioni sulle conseguenze">
-              <div className="flex flex-col gap-2">
-                <p>Il test di recupero presso gli enti convenzionati costa circa {RETAKE_COST_EUR} € a tentativo. Finché l'OFA non è tolto, nel piano degli studi puoi inserire solo esami del 1° anno. Le scadenze per avere il piano completo del 2° anno cadono tra fine agosto e fine settembre.</p>
-                <p>{OFA_RULES_NOTE}</p>
-              </div>
-            </InfoFoglio>
-          </div>
-          <ul className="flex flex-col gap-3">
-            {CONSEGUENZE.map(c => (
-              <li key={c.etichetta} className="flex items-center gap-4 rounded-2xl bg-superficie-2 p-3">
-                <IconaTono tono={c.tono} lato={48}><Icona nome={c.icona} size={26} /></IconaTono>
-                <span className="text-2xl font-extrabold leading-none text-testo">{c.valore}</span>
-                <span className="ml-auto text-sm font-bold text-testo-tenue">{c.etichetta}</span>
-              </li>
-            ))}
+        <Screen
+          testata={<div className="flex h-14 shrink-0 items-center"><Marchio disposizione="orizzontale" altezza={34} /></div>}
+          piede={<>
+            <PrimaryButton onClick={avanti}>Scopri a che punto sei</PrimaryButton>
+            <Micro>{DISCLAIMER}</Micro>
+          </>}
+        >
+          <Eroe nome="rischio-economico-ali" min={112} />
+          <Titolo titolo="Se non superi l'OFA di inglese"
+            destra={
+              <InfoFoglio titolo="OFA di inglese" etichetta="Informazioni sulle conseguenze">
+                <div className="flex flex-col gap-2">
+                  <p>{OFA_CONSEQUENCES[0]}. {OFA_CONSEQUENCES[1]}. {OFA_CONSEQUENCES[2]}.</p>
+                  <p>{OFA_RULES_NOTE}</p>
+                </div>
+              </InfoFoglio>
+            } />
+          <ul className="flex flex-col">
+            <RigaStoria tono="basso" icona="soglia" testo={`Si supera con ${REAL_TEST_PASS_MARK} risposte esatte su ${REAL_TEST_QUESTIONS}`} />
+            <RigaStoria tono="basso" icona="costo" testo={`Un nuovo tentativo costa circa ${RETAKE_COST_EUR} €`} />
+            <RigaStoria tono="basso" icona="blocco" testo="Finché c'è l'OFA, nel piano di studi puoi inserire solo esami del 1° anno" />
           </ul>
-          <div className="mt-auto">
-            <PrimaryButton onClick={() => setStep('gain')}>Avanti</PrimaryButton>
-          </div>
         </Screen>
       );
 
     case 'gain':
       return (
-        <Screen>
-          <TopBar {...bar} onBack={() => setStep('pain')} />
-          <Scena nome="obiettivo" />
-          <div className="flex items-center gap-2">
-            <h2 className={`${titolo} flex-1`}>Con AddiOFA</h2>
-            <InfoFoglio titolo="Che cosa ottieni" etichetta="Informazioni su cosa ottieni">
-              <div className="flex flex-col gap-2">
-                <p>Il diagnostico ti dà una stima onesta della probabilità di superare il test, con l'intervallo di incertezza: con dieci domande è larga, e si stringe con le simulazioni.</p>
-                <p>AddiOFA non toglie l'OFA e non garantisce l'esito: ti aiuta a ripassare ciò che sbagli e ad arrivare preparato al test. Se lo superi, l'OFA si toglie e il piano del 2° anno si apre.</p>
+        <Screen
+          testata={<TopBar {...barra} onBack={daIndietro} />}
+          piede={<PrimaryButton onClick={avanti} disabled={quiz.length === 0}>Inizia il test di livello</PrimaryButton>}
+        >
+          <Eroe nome="piano-superamento" min={112} />
+          <Titolo titolo="Arrivi al test sapendo a che punto sei" sotto={`${DIAGNOSTIC_LENGTH} domande e una stima subito dopo.`}
+            destra={
+              <InfoFoglio titolo="Che cosa ottieni" etichetta="Informazioni su cosa ottieni">
+                <div className="flex flex-col gap-2">
+                  <p>Il test di livello ti dà una stima onesta della probabilità di superare il test, con l'intervallo di incertezza: con dieci domande è larga, e si stringe con le simulazioni.</p>
+                  <p>AddiOFA non toglie l'OFA e non garantisce l'esito: ti aiuta a ripassare ciò che sbagli e ad arrivare preparato al test. Se lo superi, l'OFA si toglie e il piano del 2° anno si apre.</p>
+                </div>
+              </InfoFoglio>
+            } />
+          <ul className="flex flex-col">
+            {GUADAGNI.map(g => <RigaStoria key={g.testo} tono="alto" icona={g.icona} testo={g.testo} />)}
+          </ul>
+        </Screen>
+      );
+
+    // Chi ha già la registrazione e rifà il test dalla Home: una schermata di avvio
+    case 'avvio':
+      return (
+        <Screen
+          testata={<TopBar {...barra} />}
+          piede={<PrimaryButton onClick={avanti} disabled={quiz.length === 0}>Inizia le {DIAGNOSTIC_LENGTH} domande</PrimaryButton>}
+        >
+          <Eroe nome="quiz-test" min={112} />
+          <Titolo titolo="Test di livello" sotto={`${DIAGNOSTIC_LENGTH} domande e la tua stima aggiornata.`} />
+        </Screen>
+      );
+
+    // ---- Certificazione e OFA in una schermata: prima delle domande, perché possono esonerare dal test
+    case 'certOfa': {
+      const esenteForse = hasCertification === true;
+      const pronto = hasCertification !== null && hasOfa !== null;
+      return (
+        <Screen
+          testata={<TopBar {...barra} onBack={daIndietro} />}
+          piede={esenteForse ? (
+            <>
+              <PrimaryButton disabled={!pronto} onClick={avanti}>Mi preparo lo stesso</PrimaryButton>
+              <SecondaryButton onClick={() => onFinish(result())}>Vai all'app</SecondaryButton>
+            </>
+          ) : (
+            <PrimaryButton disabled={!pronto} onClick={avanti}>Continua</PrimaryButton>
+          )}
+        >
+          <Eroe nome="superamento" />
+          <Titolo titolo="Da dove parti" />
+          <div role="group" aria-labelledby="dom-ofa" className="flex flex-col gap-2">
+            <p id="dom-ofa" data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">Hai l'OFA di inglese?</p>
+            <Segmenti<'yes' | 'no' | 'unknown'> etichetta="OFA di inglese" voci={[{ id: 'yes', nome: 'Sì' }, { id: 'no', nome: 'No' }, { id: 'unknown', nome: 'Non so' }]} valore={hasOfa} onChange={setHasOfa} />
+            <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">Se non sei sicuro, scegli «Non so»: puoi prepararti lo stesso.</p>
+          </div>
+          <div role="group" aria-labelledby="dom-cert" className="flex flex-col gap-2">
+            <p id="dom-cert" data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">Hai una certificazione d'inglese?</p>
+            <Segmenti etichetta="Certificazione d'inglese" voci={[{ id: 'si', nome: 'Sì' }, { id: 'no', nome: 'No' }]} valore={hasCertification === null ? null : hasCertification ? 'si' : 'no'} onChange={id => setHasCertification(id === 'si')} />
+            <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">Per esempio Cambridge, IELTS o TOEFL.</p>
+          </div>
+          {esenteForse && (
+            <div role="status" className="flex items-start gap-3 rounded-2xl bg-azione-tinta p-4">
+              <Icona nome="certificazione" size={24} className="mt-0.5 text-azione-testo" />
+              <div className="min-w-0">
+                <p data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">Forse non devi fare il test</p>
+                <p data-testo-ok className="mt-0.5 text-[15px] leading-[22px] text-testo">Se la tua certificazione è tra quelle accettate dal Politecnico, potresti essere esentato. Controlla l'elenco e i livelli minimi sul sito del tuo corso.</p>
               </div>
-            </InfoFoglio>
-          </div>
-          {righe(GUADAGNI)}
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <Dato icona="risposte" tono="azione" etichetta="Domande">{DIAGNOSTIC_LENGTH}</Dato>
-            <Dato icona="tempo" tono="medio" etichetta="Durata">3 min</Dato>
-          </div>
-          <div className="mt-auto">
-            <PrimaryButton onClick={() => { questionStart.current = Date.now(); setStep('quiz'); }} disabled={quiz.length === 0}>Inizia</PrimaryButton>
-          </div>
-        </Screen>
-      );
-
-    case 'quizIntro':
-      return (
-        <Screen>
-          <TopBar {...bar} />
-          <h2 className={titolo}>Diagnostico</h2>
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <Dato icona="risposte" tono="azione" etichetta="Domande">{DIAGNOSTIC_LENGTH}</Dato>
-            <Dato icona="tempo" tono="medio" etichetta="Durata">3 min</Dato>
-          </div>
-          <Scena nome="quiz-test" />
-          <div className="mt-auto">
-            <PrimaryButton disabled={quiz.length === 0} onClick={() => { questionStart.current = Date.now(); setStep('quiz'); }}>Inizia</PrimaryButton>
-          </div>
-        </Screen>
-      );
-
-    // ---- Le domande del test (1-2, poi 3-10): l'email PoliMi sta dopo la seconda, «Come ci hai conosciuto?» dopo la sesta.
-    case 'quiz': {
-      const q = quiz[quizIndex];
-      const indietroQuiz = () => {
-        if (quizIndex === 0) { setStep(giaRegistrato.current ? 'quizIntro' : 'gain'); return; }
-        if (!giaRegistrato.current && primaDi[quizIndex]) { setQuizIndex(quizIndex - 1); setStep(primaDi[quizIndex]); return; }
-        setQuizIndex(quizIndex - 1);
-      };
-      if (!q) {
-        return (
-          <Screen>
-            <TopBar {...bar} onBack={() => setStep(giaRegistrato.current ? 'quizIntro' : 'gain')} />
-            <div role="status" aria-label="Preparo le domande" className="mx-auto mt-8 h-7 w-7 animate-spin rounded-full border-[3px] border-azione/30 border-t-azione" />
-          </Screen>
-        );
-      }
-      return (
-        <Screen>
-          <TopBar {...bar} onBack={indietroQuiz} />
-          <span className="inline-flex items-center gap-1.5 text-sm font-bold text-testo-tenue tabular-nums" aria-label={`Domanda ${quizIndex + 1} di ${quiz.length}`}>
-            <Icona nome="risposte" size={18} />{quizIndex + 1}/{quiz.length}
-          </span>
-          {/* la domanda e le opzioni sono contenuto del test */}
-          <h2 data-testo-ok className="text-xl sm:text-2xl font-bold text-testo leading-snug">{q.prompt}</h2>
-          <div data-testo-ok className="flex flex-col gap-2.5">
-            {q.options.map((opt, i) => (
-              <ChoiceCard key={i} selected={answers[q.id] === i} onClick={() => setAnswers({ ...answers, [q.id]: i })} title={opt} />
-            ))}
-          </div>
-          <div className="mt-auto">
-            <PrimaryButton disabled={answers[q.id] === undefined} onClick={handleQuizNext}>Avanti</PrimaryButton>
-          </div>
+            </div>
+          )}
         </Screen>
       );
     }
@@ -348,190 +391,81 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     // ---- Email PoliMi: un solo campo; il nome si ricava
     case 'email':
       return (
-        <Screen>
-          <TopBar {...bar} onBack={soloRegistrazione ? undefined : indietroRichiesta} />
-          <TestataDomanda icona="email" titolo="La tua email" />
-          <div className="flex justify-center"><Illustrazione kit="kit-luminoso" nome="verifica-utente" lato={130} /></div>
+        <Screen
+          testata={<TopBar {...barra} onBack={soloRegistrazione ? undefined : daIndietro} />}
+          piede={<PrimaryButton onClick={() => {
+            if (!emailOk) { setProvato(true); return; }
+            salva(false);
+            avanti();
+          }}>Continua</PrimaryButton>}
+        >
+          <Eroe nome="verifica-utente" max={240} />
+          <Titolo etichetta="Su di te" titolo="La tua email PoliMi" sotto="Ci serve per creare la tua iscrizione. Le novità per email sono facoltative." />
           <CampoEmail form={reg} onChange={setReg} provato={provato}
             verificata={leggiProgetto(appState).profilo?.emailVerificata && leggiProgetto(appState).profilo?.email === reg.email.trim().toLowerCase()}
             onInviaVerifica={async () => {
               if (!emailOk || !salva(false)) return { ok: false as const, messaggio: 'Scrivi prima il tuo nome.' };
               return inviaLinkVerifica(reg.email);
             }} />
-          <div className="mt-auto">
-            <PrimaryButton onClick={() => {
-              if (!emailOk) { setProvato(true); return; }
-              salva(false);
-              fatti.current.email = true;
-              if (soloRegistrazione) setStep('percorso'); else avanti(false);
-            }}>Avanti</PrimaryButton>
-          </div>
         </Screen>
       );
 
-    // ---- «Come ci hai conosciuto?»: una domanda come le altre, ma non conta nel punteggio né nel x/10
-    case 'provenienza':
+    // ---- «Come ci hai conosciuto?»: una domanda come le altre, ma non conta nel punteggio né nel x/10. Il tocco avanza da solo; «Salta» in alto.
+    case 'prov':
       return (
-        <Screen>
-          <TopBar {...bar} onBack={() => { if (soloRegistrazione) setStep('percorso'); else indietroRichiesta(); }} />
-          <h2 data-testo-ok className="text-xl sm:text-2xl font-bold text-testo leading-snug">Come ci hai conosciuto?</h2>
-          <ScelteProvenienza valore={reg.provenienza} onChange={id => setReg({ ...reg, provenienza: id })} />
-          <div className="mt-auto flex flex-col gap-3">
-            <PrimaryButton disabled={!reg.provenienza} onClick={() => { fatti.current.provenienza = true; salva(false); if (soloRegistrazione) setStep('consensi'); else avanti(false); }}>Avanti</PrimaryButton>
-            <button onClick={() => { playTapSound(); setReg({ ...reg, provenienza: '' }); fatti.current.provenienza = true; if (soloRegistrazione) setStep('consensi'); else avanti(false); }} aria-label="Salta questa domanda" className="inline-flex items-center justify-center gap-1.5 text-sm font-bold text-testo-tenue hover:text-testo py-1">
-              <Icona nome="salta" size={16} />Salta
-            </button>
-          </div>
+        <Screen
+          testata={<TopBar {...barra} onBack={soloRegistrazione && pos === 0 ? undefined : daIndietro}
+            destra={<TastoTesto icona="salta" etichetta="Salta questa domanda" onClick={() => { setReg({ ...reg, provenienza: '' }); salva(false); avanti(); }}>Salta</TastoTesto>} />}
+          piede={<Micro>Tocca una voce per continuare.</Micro>}
+        >
+          <Eroe nome="messaggi-supporto" max={240} />
+          <Titolo etichetta="Su di te" titolo="Come ci hai conosciuto?" sotto="Ci aiuta a capire dove farci trovare." />
+          <ScelteProvenienza valore={reg.provenienza} onChange={id => {
+            setReg({ ...reg, provenienza: id });
+            salva(false);
+            poi(avanti);
+          }} />
         </Screen>
       );
 
-    // ---- Cosa fai al Poli: il tocco avanza da solo
-    case 'percorso':
+    // ---- Che corso frequenti: livello, ricerca, elenco (scuola e sede si ricavano dal corso), anno nelle pillole in basso. Il tocco su un corso avanza da solo.
+    case 'corso':
       return (
-        <Screen>
-          <TopBar {...bar} onBack={soloRegistrazione ? () => setStep('email') : indietroRichiesta} />
-          <TestataDomanda icona="lezioni" titolo="Cosa fai al Poli" />
-          <PassoPercorso scelte={reg.percorso} onChange={percorso => setReg(r => ({ ...r, percorso }))}
-            unPasso={soloRegistrazione ? undefined : () => { salva(false); avanti(false); }}
-            onFine={() => { salva(false); setStep('provenienza'); }}
-            fine={<PrimaryButton onClick={() => { salva(false); if (soloRegistrazione) setStep('provenienza'); else avanti(false); }}>Avanti</PrimaryButton>} />
-        </Screen>
-      );
-
-    case 'certification':
-      return (
-        <Screen>
-          <TopBar {...bar} onBack={() => (giaRegistrato.current ? (setQuizIndex(quiz.length - 1), setStep('quiz')) : indietroRichiesta())} />
-          <TestataDomanda icona="certificazione" titolo="Certificazione?" info="Una certificazione di inglese riconosciuta dal tuo ateneo (Cambridge, IELTS, TOEFL…)." titoloInfo="Certificazione" />
-          <div className="flex flex-col gap-3 mt-2">
-            <ChoiceCard selected={hasCertification === true} onClick={() => { fatti.current.cert = true; setHasCertification(true); }} title="Sì" />
-            <ChoiceCard selected={hasCertification === false} onClick={() => { fatti.current.cert = false; setHasCertification(false); }} title="No" />
-          </div>
-          <div className="mt-auto">
-            <PrimaryButton disabled={hasCertification === null} onClick={() => { if (hasCertification) setStep('certInfo'); else if (giaRegistrato.current) setStep('ofa'); else avanti(false); }}>Avanti</PrimaryButton>
-          </div>
-        </Screen>
-      );
-
-    case 'certInfo':
-      return (
-        <Screen>
-          <TopBar onBack={() => setStep('certification')} />
-          <Scena nome="superamento" />
-          <div className="flex items-center justify-center gap-2">
-            <h2 className={`${titolo} text-center`}>Forse sei esente</h2>
-            <InfoFoglio titolo="Certificazione" etichetta="Dettagli sulla certificazione">
-              <p>Se la tua certificazione è tra quelle accettate dal Politecnico, potresti non dover fare il test. Controlla l'elenco e i livelli minimi sul sito del tuo corso prima di iscriverti al test.</p>
-            </InfoFoglio>
-          </div>
-          <div className="mt-auto flex flex-col gap-3">
-            <PrimaryButton onClick={() => { setEsente(false); if (giaRegistrato.current) setStep('ofa'); else avanti(false); }}>Mi alleno</PrimaryButton>
-            <SecondaryButton onClick={() => { setEsente(true); if (giaRegistrato.current) onFinish(result()); else setStep('consensi'); }}>Vai all'app</SecondaryButton>
-          </div>
-        </Screen>
-      );
-
-    case 'ofa':
-      return (
-        <Screen>
-          <TopBar {...bar} onBack={() => (giaRegistrato.current ? setStep('certification') : indietroRichiesta())} />
-          <TestataDomanda icona="ofa" titolo="OFA di inglese?" info="Se non sei sicuro, scegli «Non so»: puoi allenarti lo stesso." titoloInfo="OFA di inglese" />
-          <div className="flex flex-col gap-3 mt-2">
-            <ChoiceCard selected={hasOfa === 'yes'} onClick={() => { fatti.current.ofa = 'yes'; setHasOfa('yes'); }} title="Sì" />
-            <ChoiceCard selected={hasOfa === 'no'} onClick={() => { fatti.current.ofa = 'no'; setHasOfa('no'); }} title="No" />
-            <ChoiceCard selected={hasOfa === 'unknown'} onClick={() => { fatti.current.ofa = 'unknown'; setHasOfa('unknown'); }} title="Non so" />
-          </div>
-          <div className="mt-auto">
-            <PrimaryButton disabled={hasOfa === null} onClick={() => { setEsente(false); if (giaRegistrato.current) setStep('calcolo'); else avanti(false); }}>Avanti</PrimaryButton>
-          </div>
+        <Screen
+          testata={<TopBar {...barra} onBack={soloRegistrazione && pos === 0 ? undefined : daIndietro} />}
+          piede={
+            <div className="flex flex-col gap-2">
+              <p data-testo-ok className="text-[13px] leading-[18px] font-medium text-testo-tenue">In che anno sei? Poi tocca il tuo corso.</p>
+              <PilloleAnno voci={voci} livello={livCorso} anno={annoCorso} onChange={setAnnoCorso} />
+            </div>
+          }
+        >
+          <Titolo etichetta="Su di te" titolo="Che corso frequenti?" />
+          <ElencoCorsi
+            scelte={reg.percorso} livello={livCorso} onLivello={l => { setLivCorso(l); setAnnoCorso(a => Math.min(a, anniDelLivello(voci, l))); }} anno={annoCorso}
+            onScelto={s => { setReg(r => ({ ...r, percorso: s })); salva(false); poi(avanti); }}
+            onAltro={() => { setReg(r => ({ ...r, percorso: { livello: livCorso, corso: CORSO_ALTRO_ID, anno: annoCorso } })); salva(false); poi(avanti); }} />
         </Screen>
       );
 
     // ---- Consensi facoltativi, mai preselezionati; qui l'iscrizione si completa e parte la coda
-    case 'consensi':
+    case 'consensi': {
+      const nessuno = !reg.consensi.noi && !reg.consensi.atlas && !reg.consensi.comunicazioni;
       return (
-        <Screen>
-          <TopBar {...bar} onBack={() => setStep(soloRegistrazione ? 'provenienza' : esente ? 'certInfo' : 'quiz')} />
-          <TestataDomanda icona="privacy" titolo="Consensi" />
-          <CampiConsensi consensi={reg.consensi} onChange={c => setReg({ ...reg, consensi: c })} onOpenLegal={onOpenLegal} />
-          <div className="mt-auto">
-            <PrimaryButton onClick={() => {
-              if (!salva(true)) return;
-              if (soloRegistrazione) onFinish(stateRef.current.onboarding ?? result());
-              else if (esente) onFinish(result());
-              else setStep('calcolo');
-            }}>{soloRegistrazione ? 'Salva' : 'Avanti'}</PrimaryButton>
-          </div>
-        </Screen>
-      );
-
-    case 'calcolo': {
-      const livelli = ['A1', 'A2', 'B1'].map(l => [l, quiz.filter(q => q.level === l).length] as const).filter(([, n]) => n > 0).map(([l, n]) => `${n} ${l}`).join(' · ');
-      return (
-        <Screen>
-          <TopBar {...bar} />
-          <CalcoloRisultato
-            dati={{ esatte: correct, totale: quiz.length, livelli: livelli || 'misti', soglia: REAL_TEST_PASS_MARK, domandeTest: REAL_TEST_QUESTIONS }}
-            onFine={() => setStep('result')}
-          />
-        </Screen>
-      );
-    }
-
-
-    case 'result': {
-      const weak = weakTopics(quiz, answers);
-      const livello = livelloDi(passProb);
-      const msg = MESSAGGI[livello];
-      const conta = (filtro: (q: Question) => boolean) => {
-        const dom = quiz.filter(filtro);
-        return { m: dom.length, n: dom.filter(q => answers[q.id] === q.correctIndex).length };
-      };
-      const aree = ['Grammatica', 'Traduzione'].map(nome => ({ nome, ...conta(q => q.category === nome) })).filter(x => x.m > 0);
-      const livelli = ['A1', 'A2', 'B1'].map(nome => ({ nome, ...conta(q => q.level === nome) })).filter(x => x.m >= 3);
-      const tessere = [...aree, ...livelli];
-      const { min, max } = intervallo.punteggio;
-      return (
-        <Screen>
-          <TopBar {...bar} />
-          <div className="flex items-center justify-center gap-4">
-            <h2 className={titolo}>Risultato</h2>
-            <Dato icona="risposte" tono="alto" etichetta="Risposte esatte">{correct}/{quiz.length}</Dato>
-          </div>
-          <div className="flex justify-center -mb-1"><Misuratore valore={passProb * 100} larghezza={300} testo={formatProbabilita(passProb)} etichetta={`Probabilità ${formatProbabilita(passProb)}`} /></div>
-          <div className="flex items-center justify-center gap-4 -mt-1">
-            <Dato icona="stima-intervallo" tono="azione" etichetta="Punteggio probabile al test">{min === max ? min : `${min}–${max}`}</Dato>
-            <Dato icona="soglia" tono="medio" etichetta="Soglia">{REAL_TEST_PASS_MARK}</Dato>
-            <PulsanteInfo onClick={() => setFoglio(true)} etichetta="Come viene calcolata la stima" />
-          </div>
-          <div className={`flex items-center gap-3 rounded-2xl p-4 ${STILE_MESSAGGIO[livello].tinta}`}>
-            <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${STILE_MESSAGGIO[livello].tessera}`}><Icona nome={STILE_MESSAGGIO[livello].icona} size={20} /></span>
-            <h3 className="min-w-0 flex-1 font-bold text-testo">{msg.titolo}</h3>
-            <InfoFoglio titolo={msg.titolo} etichetta="Che cosa significa"><p>{msg.testo}</p></InfoFoglio>
-          </div>
-          {tessere.length > 0 && (
-            <div className={`grid grid-cols-2 gap-2.5 ${tessere.length === 4 ? 'sm:grid-cols-4' : 'sm:grid-cols-3'}`}>
-              {tessere.map(x => <Tessera key={x.nome} nome={x.nome} n={x.n} m={x.m} />)}
-            </div>
-          )}
-          <div className="flex flex-col gap-2">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-testo-tenue"><Icona nome="errori" size={16} />Da ripassare</span>
-            {weak.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
-                {weak.map(t => (
-                  <span key={t} className="px-3 py-1 rounded-full text-xs font-bold bg-basso-tinta text-basso-testo">{t}</span>
-                ))}
-              </div>
-            ) : (
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-alto-testo"><Icona nome="stato-ok" size={20} />Nessun errore</span>
-            )}
-          </div>
-          <div className="mt-auto pt-1">
-            <PrimaryButton onClick={() => onFinish(result())}>Avanti</PrimaryButton>
-          </div>
-          <FoglioStima aperto={foglio} onChiudi={() => setFoglio(false)} tipo="diagnostico" risposte={quiz.length} />
+        <Screen
+          testata={<TopBar {...barra} onBack={daIndietro} />}
+          piede={<PrimaryButton onClick={() => {
+            if (!salva(true)) return;
+            if (soloRegistrazione) onFinish(stateRef.current.onboarding ?? result());
+            else avanti();
+          }}>{soloRegistrazione ? 'Salva' : nessuno ? 'Continua senza' : 'Continua'}</PrimaryButton>}
+        >
+          <Eroe nome="documento-completato" max={160} />
+          <Titolo etichetta="Su di te" titolo="Le tue scelte" sotto="Sono tutte facoltative. Puoi cambiare idea quando vuoi." />
+          <CampiConsensi senzaIntro consensi={reg.consensi} onChange={c => setReg({ ...reg, consensi: c })} onOpenLegal={onOpenLegal} />
         </Screen>
       );
     }
   }
+  return null;
 }

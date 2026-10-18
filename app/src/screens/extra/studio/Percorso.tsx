@@ -1,14 +1,13 @@
 // «Percorso»: le lezioni in ordine didattico (una per argomento di teoria), con stato a icona e minuti.
 // Aprire una lezione = `lezione-dettaglio` (teoria, esercizi, verifica). Concept: 49 (scheda 4, elenco lezioni), 31 (11-13), 25.
-// Nessuna frase: stati a icona, numeri accanto a icone. Gli stati vengono dai progressi veri (lib/studio/percorso.ts).
+// Ogni riga ha il suo numero (niente miniature ripetute), i minuti a parole e lo stato a icona. Gli stati vengono dai progressi veri (lib/studio/percorso.ts).
 import { useMemo } from 'react';
 import { useExtra } from '../contesto';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { lezioniPercorso, prossimaLezione, titoloBreve, type LezionePercorso } from '../../../lib/studio/percorso';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { famigliaDi } from '../../../lib/studio/famiglie';
-import { Pagina, Bottone, StatoVuoto, BarraTono, ChipLivello, Arte, TesseraArte } from './comune';
+import { Pagina, Bottone, StatoVuoto, BarraTono, ChipLivello, Arte } from './comune';
 
 const LIVELLI = ['A1', 'A2', 'B1'] as const;
 
@@ -23,25 +22,24 @@ function Riga({ l, prossima, onApri }: { l: LezionePercorso; prossima: boolean; 
   const totale = l.intere;
   const percento = totale > 0 ? Math.round((l.imparate / totale) * 100) : 0;
   const titolo = titoloBreve(l.topic);
-  const famiglia = famigliaDi(l.topic.id);
   return (
-    <li className={prossima ? 'my-1' : 'border-b border-linea last:border-b-0'}>
+    <li className="border-b border-linea last:border-b-0">
       <button type="button" onClick={() => { playTapSound(); onApri(); }}
-        aria-label={`${titolo}, ${st.nome}`}
-        className={cn('brand-premibile -mx-3 w-[calc(100%+24px)] flex items-center gap-3 rounded-[12px] px-3 py-2.5 text-left', prossima && 'bg-azione-tinta')}>
-        <TesseraArte nome={famiglia.illustrazione} lato={48} className={prossima ? 'bg-superficie' : 'bg-superficie-2'} />
+        aria-label={`Lezione ${l.numero}: ${titolo}, ${st.nome}${prossima ? ', la prossima' : ''}`}
+        className={cn('brand-premibile flex w-full items-center gap-3 py-2.5 text-left', prossima ? 'border-l-[3px] border-azione pl-3 pr-1' : 'pr-1')}>
+        {/* Il numero della lezione: ogni riga è diversa dalle altre, niente miniature che si ripetono */}
+        <span aria-hidden="true" className={cn('grid h-11 w-11 shrink-0 place-items-center rounded-[12px] text-[16px] font-extrabold tabular-nums', prossima ? 'bg-azione-tinta text-azione-testo' : 'bg-superficie-2 text-testo-tenue')}>{l.numero}</span>
         <span className="flex-1 min-w-0">
           <span className="block text-[15px] leading-[20px] font-bold text-testo break-words">{titolo}</span>
+          {prossima && <span className="mt-0.5 block text-[12.5px] leading-[16px] font-bold text-azione-testo">Prossima</span>}
           {l.stato === 'in-corso' && (
             <span className="mt-1.5 flex items-center gap-2.5">
               <BarraTono valore={percento} tono="azione" className="h-[6px] flex-1" />
-              <span className="shrink-0 text-[12px] leading-[14px] font-semibold tabular-nums text-azione-testo">{l.imparate}/{totale}</span>
+              <span className="shrink-0 text-[12px] leading-[14px] font-semibold tabular-nums text-azione-testo">{l.imparate} di {totale}</span>
             </span>
           )}
         </span>
-        <span className="shrink-0 inline-flex items-center gap-1 text-[12.5px] leading-[17px] tabular-nums text-testo-tenue">
-          <Icona nome="tempo" size={14} />{l.minuti.totale}
-        </span>
+        <span className="shrink-0 text-[12.5px] leading-[17px] tabular-nums text-testo-tenue">{l.minuti.totale} min</span>
         <span aria-hidden="true" className={cn('shrink-0', st.colore)}><Icona nome={st.icona} size={26} /></span>
       </button>
     </li>
@@ -54,28 +52,32 @@ export default function Percorso() {
   const fatte = lezioni.filter(l => l.stato === 'imparata').length;
   const prossima = prossimaLezione(lezioni);
   const vaiLezione = (l: LezionePercorso) => vai('lezione-dettaglio', { id: l.topic.id });
+  const daCapo = fatte === 0 && prossima?.stato === 'da-iniziare';
 
   return (
-    <Pagina titolo="Percorso" onIndietro={indietro} destra={<Arte nome="studio-inglese" kit="kit-luminoso" lato={132} className="-mt-3 -mb-3" />}>
+    <Pagina titolo="Percorso" onIndietro={indietro}>
       {lezioni.length === 0 ? (
-        <div className="mt-6"><StatoVuoto illustrazione={{ nome: 'vuoto' }} titolo="Nessuna lezione" /></div>
+        <div className="mt-6"><StatoVuoto illustrazione={{ nome: 'vuoto' }} titolo="Nessuna lezione" testo="Le lezioni non sono state caricate.">
+          <Bottone variante="secondario" onClick={indietro} icona={<Icona nome="indietro" size={18} />}>Indietro</Bottone>
+        </StatoVuoto></div>
       ) : (
         <div className="mt-4 rounded-[16px] bg-superficie-2 p-4">
           <div className="flex items-center gap-4">
-            <Arte nome="piano-superamento" lato={84} />
+            <Arte nome="piano-superamento" lato={72} />
             <div className="flex-1 min-w-0">
-              <p role="img" aria-label={`${fatte} lezioni su ${lezioni.length}`} className="text-[32px] leading-[34px] font-extrabold tabular-nums text-alto-numero">
-                {fatte}<span className="text-[16px] font-bold text-testo-tenue">/{lezioni.length}</span>
+              <p aria-label={`${fatte} lezioni imparate su ${lezioni.length}`} className="text-[22px] leading-[28px] font-extrabold tabular-nums text-testo">
+                <span className="text-alto-numero">{fatte}</span> di {lezioni.length} <span className="text-[15px] font-bold text-testo-tenue">lezioni</span>
               </p>
-              <BarraTono valore={(fatte / lezioni.length) * 100} tono="alto" className="mt-2.5 h-2" />
+              <BarraTono valore={(fatte / lezioni.length) * 100} tono="alto" className="mt-2 h-2" />
             </div>
           </div>
           {prossima && (
-            <div className="mt-4">
-              <Bottone onClick={() => vaiLezione(prossima)} icona={<Icona nome="studia" size={18} />}>
-                {fatte === 0 && prossima.stato === 'da-iniziare' ? 'Inizia' : 'Continua'}
-              </Bottone>
-            </div>
+            <>
+              <p data-testo-ok className="mt-3 text-[14px] leading-[20px] text-testo-tenue">{daCapo ? 'Inizia dalla prima' : 'Prossima'}: <span className="font-bold text-testo">{titoloBreve(prossima.topic)}</span></p>
+              <div className="mt-3">
+                <Bottone onClick={() => vaiLezione(prossima)} icona={<Icona nome="studia" size={18} />}>{daCapo ? 'Inizia' : 'Continua'}</Bottone>
+              </div>
+            </>
           )}
         </div>
       )}
@@ -86,11 +88,9 @@ export default function Percorso() {
         const fatteLiv = delLivello.filter(l => l.stato === 'imparata').length;
         return (
           <section key={liv} aria-labelledby={`liv-${liv}`} className="mt-6 flex flex-col gap-1">
-            <h2 id={`liv-${liv}`} className="flex items-center justify-between gap-3">
-              <span className="inline-flex items-center"><ChipLivello livello={liv} className="text-[14px] leading-[18px] px-2 py-1" /><span className="sr-only"> livello {liv}</span></span>
-              <span className="inline-flex items-center gap-1 text-[12.5px] font-semibold tabular-nums text-testo-tenue">
-                <Icona nome="stato-imparata" size={15} />{fatteLiv}/{delLivello.length}
-              </span>
+            <h2 id={`liv-${liv}`} className="flex items-center gap-2.5">
+              <ChipLivello livello={liv} className="text-[14px] leading-[18px] px-2 py-1" /><span className="sr-only"> livello {liv}</span>
+              <span className="text-[13px] font-semibold tabular-nums text-testo-tenue">{fatteLiv} di {delLivello.length} imparate</span>
             </h2>
             <ol className="flex flex-col">
               {delLivello.map(l => <Riga key={l.topic.id} l={l} prossima={prossima?.topic.id === l.topic.id} onApri={() => vaiLezione(l)} />)}

@@ -32,8 +32,9 @@ export default function Misuratore({ percento, livello, etichetta, sotto, onInfo
   const frazione = vuoto ? 0 : Math.max(0, Math.min(1, percento / 100));
   const gradiValore = 180 * frazione; // angolo dal lato sinistro
   const col = `var(--color-${livello})`;
-  // L'ambra da sola non arriva a 3:1 sullo sfondo: arco e pallino della fascia media hanno un bordo di 2 px in medio-numero.
-  const bordo = livello === 'medio' ? 'var(--color-medio-numero)' : null;
+  // Fascia media: niente contorno. La parte satura dell'arco e il pallino prendono un ambra più profondo (medio verso medio-numero);
+  // il valore resta scritto e con la sua parola, quindi il colore non è l'unico portatore dell'informazione.
+  const fine = livello === 'medio' ? 'color-mix(in srgb, var(--color-medio) 55%, var(--color-medio-numero))' : col;
   const [x0, y0] = pt(180, R);
   const [x1, y1] = pt(0, R);
   const [px, py] = pt(180 - gradiValore, R);
@@ -51,7 +52,7 @@ export default function Misuratore({ percento, livello, etichetta, sotto, onInfo
         <defs>
           <linearGradient id={`a${id}`} gradientUnits="userSpaceOnUse" x1={x0} y1="0" x2={x1} y2="0">
             <stop offset="0" style={{ stopColor: `var(--color-${livello}-chiaro)` }} />
-            <stop offset="1" style={{ stopColor: col }} />
+            <stop offset="1" style={{ stopColor: fine }} />
           </linearGradient>
           <radialGradient id={`h1${id}`} cx="0.5" cy="0.5" r="0.5">
             <stop offset="0" style={{ stopColor: col, stopOpacity: ALONE[livello] }} />
@@ -81,14 +82,15 @@ export default function Misuratore({ percento, livello, etichetta, sotto, onInfo
         })}
 
         {!vuoto && <circle cx={px} cy={py} r="51.3" fill={`url(#h1${id})`} />}
-        <path d={arcoFondo} fill="none" strokeWidth={SPESSORE} strokeLinecap="round" style={{ stroke: 'var(--color-linea)' }} />
-        {!vuoto && frazione > 0 && bordo && <path d={arcoValore} fill="none" strokeWidth={SPESSORE} strokeLinecap="round" style={{ stroke: bordo }} />}
-        {!vuoto && frazione > 0 && <path d={arcoValore} fill="none" stroke={`url(#a${id})`} strokeWidth={bordo ? SPESSORE - 4 : SPESSORE} strokeLinecap="round" />}
+        {/* traccia: nel tema scuro un gradino più chiara (tacca), così si vede sul fondo */}
+        <path d={arcoFondo} fill="none" strokeWidth={SPESSORE} strokeLinecap="round" className="stroke-linea dark:stroke-tacca" />
+        {!vuoto && frazione > 0 && <path d={arcoValore} fill="none" stroke={`url(#a${id})`} strokeWidth={SPESSORE} strokeLinecap="round" />}
         {!vuoto && (
           <>
             <circle cx={px} cy={py} r="38.5" fill={`url(#h2${id})`} />
-            <circle cx={px} cy={py} r="17.45" style={{ fill: 'var(--color-superficie)', filter: `drop-shadow(0 1px 2px color-mix(in srgb, ${col} 40%, transparent))` }} />
-            <circle cx={px} cy={py} r={bordo ? 9.26 : 10.26} style={{ fill: col, ...(bordo ? { stroke: bordo, strokeWidth: 2 } : {}) }} />
+            {/* anello del marcatore: bianco in chiaro, chiaro in scuro (come una maniglia); con l'anello blu notte sembrava un buco */}
+            <circle cx={px} cy={py} r="17.45" className="fill-superficie dark:fill-testo" style={{ filter: `drop-shadow(0 1px 2px color-mix(in srgb, ${col} 40%, transparent))` }} />
+            <circle cx={px} cy={py} r="10.26" style={{ fill: fine }} />
           </>
         )}
       </svg>

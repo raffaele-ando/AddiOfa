@@ -3,9 +3,9 @@ import { cheatSheet } from '../data/cheatSheet';
 import { RichText } from './ui';
 import { Pagina } from '../screens/extra/ui';
 import { Icona } from '../brand/icone/Icona';
-import { Arte, StatoVuoto } from '../screens/extra/studio/comune';
+import { Bottone, StatoVuoto } from '../screens/extra/studio/comune';
 
-/** Prontuario: le regole che tornano più spesso. L'argomento è blu (studio), la trappola ha il filo corallo a sinistra: una sola riga di colore per carta. Il testo delle regole è contenuto. */
+/** Riepilogo di grammatica (il vecchio «Prontuario»): le regole che tornano più spesso. L'argomento è blu (studio), la trappola ha il filo corallo a sinistra: una sola riga di colore per carta. Il testo delle regole è contenuto. */
 export default function CheatSheet({ onBack }: { onBack: () => void }) {
   const [query, setQuery] = useState('');
   const q = query.trim().toLowerCase();
@@ -14,11 +14,11 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
     : cheatSheet;
 
   return (
-    <Pagina titolo="Prontuario" onBack={onBack} destra={<Arte nome="suggerimenti-consigli" lato={72} />}>
+    <Pagina titolo="Riepilogo di grammatica" sottotitolo={<span data-testo-ok>Le regole che tornano più spesso</span>} onBack={onBack}>
       <div className="mt-4 relative">
         <span aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none"><Icona nome="cerca" size={18} /></span>
-        <input type="search" value={query} onChange={e => setQuery(e.target.value)} aria-label="Cerca"
-          placeholder="Cerca" autoComplete="off" spellCheck={false}
+        <input type="search" value={query} onChange={e => setQuery(e.target.value)} aria-label="Cerca una regola"
+          placeholder="Cerca una regola" autoComplete="off" spellCheck={false}
           className="w-full h-[46px] rounded-[12px] border border-bordo-campo bg-superficie-2 pl-10 pr-10 text-[15px] text-testo placeholder:text-testo-tenue outline-none focus:border-azione" />
         {query && (
           <button type="button" onClick={() => setQuery('')} aria-label="Cancella"
@@ -31,9 +31,7 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
       <div className="mt-4 flex flex-col gap-2.5">
         {rules.map(r => (
           <div key={r.topic} data-testo-ok className="bg-superficie-2 rounded-[12px] p-4">
-            <div className="flex items-center gap-2 text-[13px] font-bold text-azione-testo">
-              <Icona nome="prontuario" size={16} />{r.topic}
-            </div>
+            <div className="text-[13px] font-bold text-azione-testo">{r.topic}</div>
             <p className="mt-1.5 text-[15px] font-medium text-testo leading-[23px]">
               <RichText text={r.rule} />
             </p>
@@ -45,7 +43,11 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
             )}
           </div>
         ))}
-        {rules.length === 0 && <StatoVuoto illustrazione={{ nome: 'ricerca-scintille' }} titolo="Nessun risultato" />}
+        {rules.length === 0 && (
+          <StatoVuoto illustrazione={{ nome: 'ricerca-scintille' }} titolo="Nessun risultato" testo="Prova con un'altra parola.">
+            <Bottone variante="secondario" onClick={() => setQuery('')} icona={<Icona nome="chiudi" size={18} />}>Cancella la ricerca</Bottone>
+          </StatoVuoto>
+        )}
       </div>
     </Pagina>
   );

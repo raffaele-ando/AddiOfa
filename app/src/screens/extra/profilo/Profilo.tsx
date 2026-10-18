@@ -1,90 +1,212 @@
 import { useMemo } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
-import { calcolaStima } from '../../../components/home/stima';
+import { Disegno } from '../servizi/componenti';
 import { playTapSound } from '../../../lib/audio';
 import { nomeVisibile } from '../../../lib/profilo/dati';
-import { giorniMancanti, normalizzaObiettivi, OBIETTIVI_INIZIALI, type ObiettiviDati } from '../../../lib/profilo/obiettivi';
+import { avanzamentoGiornaliero, avanzamentoStima, giorniMancanti, normalizzaObiettivi, OBIETTIVI_INIZIALI, type ObiettiviDati } from '../../../lib/profilo/obiettivi';
 import { livelloAttuale, SOGLIA_LIVELLO } from '../../../lib/profilo/livello';
+import { DOMANDE_TEST, SOGLIA_TEST } from '../../../lib/profilo/numeri';
+import { descriviInvio } from '../../../lib/progetto/coda';
+import { leggiProgetto } from '../../../lib/progetto/profilo';
 import { AVVERTENZA_INDIPENDENZA, LEGAL_TABS } from '../../../legal';
 import { ICONE_LEGALI } from '../../Footer';
 import { SCHERMATE } from '../registro';
-import { BarraTono } from '../ui';
+import { BarraTono, Carta, GruppoRighe, IconaTono, Riga, Sezione } from '../ui';
 import { useExtra, useExtraDati } from '../contesto';
-import { Disegno } from '../servizi/componenti';
-import { Avatar, GruppoRighe, Pagina, RigaElenco, TesseraIllustrata, useBadge, useBanco, useOggi, useProfilo } from './componenti';
+import { useInvio } from '../progetto/hooks';
+import { Avatar, Pagina, arteBadge, badgeInVista, useBadge, useBanco, useNumeri, useOggi, useProfilo } from './componenti';
+
+/** Una riga della card dei progressi: nome, valore a destra, barra. */
+function RigaAvanzamento({ nome, valore, quota, tono }: { nome: string; valore: string; quota: number; tono: 'alto' | 'viola' }) {
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-3">
+        <span className="text-[15px] leading-[21px] font-semibold text-testo">{nome}</span>
+        <span className="text-[14px] leading-[20px] font-semibold tabular-nums text-testo-tenue">{valore}</span>
+      </div>
+      <BarraTono className="mt-1.5 h-2" tono={tono} valore={quota * 100} />
+    </div>
+  );
+}
 
 /**
- * Profilo, hub a tessere: in alto chi sei (avatar, nome, livello); poi Progressi, Obiettivi, Badge e Progetto, ognuna con la sua
- * illustrazione (piano d'uso: docs/design/ILLUSTRAZIONI.md §3.4); poi Aiuto (FAQ, Segnala) e Informazioni (presentazione, legali).
- * L'ingranaggio porta alle Impostazioni.
+ * Profilo come cruscotto (concept 22 e 06, revisione 18/10): chi sei, la scheda Project ID, quattro numeri veri, i progressi, l'obiettivo e i badge,
+ * ognuno con il titolo a sinistra e «Vedi tutti» a destra; poi Community, Aiuto e Informazioni. Con il profilo vuoto non si mostrano trattini
+ * né frazioni senza nome: si dice cosa fare. I numeri vengono da lib/profilo/numeri.ts, gli stessi di Progressi, Obiettivi e NOI.
  */
 export default function Profilo() {
-  const { appState, vai, indietro, apriImpostazioni, apriLanding, apriLegale } = useExtra();
+  const { appState, vai, indietro, apriImpostazioni, apriLanding, apriLegale, avviaDiagnostico } = useExtra();
   const { profilo } = useProfilo();
   const banco = useBanco();
   const badge = useBadge();
   const oggi = useOggi();
+  const n = useNumeri();
+  const invio = useInvio();
   const [grezzi] = useExtraDati<ObiettiviDati>('obiettivi', OBIETTIVI_INIZIALI);
+  const ob = useMemo(() => normalizzaObiettivi(grezzi), [grezzi]);
 
+  const { profilo: iscrizione, collegamento } = leggiProgetto(appState);
   const livello = useMemo(() => livelloAttuale(appState.stats, banco), [appState.stats, banco]);
   const prossimo = livello.prossimo;
   const necessarie = prossimo ? Math.ceil(SOGLIA_LIVELLO * prossimo.totale - 1e-9) : 0;
-  const stima = useMemo(() => calcolaStima(appState), [appState]);
-  const mancano = giorniMancanti(normalizzaObiettivi(grezzi).dataTest, oggi);
+  const av = avanzamentoStima(n.stima?.p, ob.stimaTarget);
+  const giorno = useMemo(() => avanzamentoGiornaliero(appState, oggi, ob.minutiGiorno), [appState, oggi, ob.minutiGiorno]);
+  const mancano = giorniMancanti(ob.dataTest, oggi);
   const ottenuti = badge.filter(b => b.sbloccato).length;
-  // senza nome e senza avatar scelto la testata mostra la tessera d'identità del kit, non una lettera
-  const anonimo = !profilo.nome && profilo.avatar === 'iniziale';
+  const inVista = useMemo(() => badgeInVista(badge, 5), [badge]);
+  const senzaDati = n.imparate === 0 && n.simulazioni === 0 && n.probabilita === null;
+  const senzaNome = !profilo.nome;
 
-  // i dati piccoli sotto le parole sono veri e compaiono solo se esistono
-  const tessere: { id: string; illustrazione: string; parola: string; dato?: string }[] = [
-    { id: 'progressi', illustrazione: 'progressi-statistiche', parola: 'Progressi', dato: stima ? `${Math.round(stima.p * 100)}%` : undefined },
-    { id: 'obiettivi', illustrazione: 'obiettivo', parola: 'Obiettivi', dato: mancano?.quando === 'futuro' ? `${mancano.giorni} gg` : mancano?.quando === 'oggi' ? 'Oggi' : undefined },
-    { id: 'badge', illustrazione: 'celebrazione-fiocco', parola: 'Badge', dato: `${ottenuti}/${badge.length}` },
-    { id: 'esplora', illustrazione: 'mondo-internazionale', parola: 'Progetto' },
-  ];
+  // Project ID: cosa c'è davvero su questo dispositivo, in una riga
+  const sInvio = descriviInvio(invio, Date.now());
+  const idValore = collegamento?.handle ? `@${collegamento.handle}` : iscrizione ? 'Iscrizione salvata' : 'Non ancora creato';
+  const idStato = collegamento ? 'Collegato' : iscrizione ? sInvio.titolo : 'Completa l\'iscrizione';
 
   return (
     <Pagina titolo="Profilo" indietro={indietro} destra={
       <button type="button" onClick={() => { playTapSound(); apriImpostazioni(); }} aria-label="Impostazioni"
-        className="brand-premibile w-10 h-10 rounded-full bg-superficie-2 text-testo grid place-items-center">
+        className="brand-premibile grid h-11 w-11 place-items-center rounded-full border border-linea bg-superficie text-testo shadow-sm dark:shadow-none">
         <Icona nome="impostazioni" size={22} />
       </button>
     }>
-      <section aria-label="Il tuo profilo" className="mt-4 rounded-[14px] bg-superficie-2 p-4">
-        <div className="flex items-center gap-4">
-          <button type="button" onClick={() => { playTapSound(); vai('profilo-modifica'); }} aria-label="Modifica il profilo" className="brand-premibile relative shrink-0 rounded-full">
-            {anonimo ? <Disegno nome="verifica-utente" lato={96} /> : <Avatar profilo={profilo} lato={72} />}
-            <span className="absolute -right-1 -bottom-1 grid h-7 w-7 place-items-center rounded-full border-2 border-superficie-2 bg-azione text-azione-su" aria-hidden="true"><Icona nome="modifica" size={14} /></span>
-          </button>
-          <div className="min-w-0 flex-1">
-            <h2 className="truncate text-[22px] leading-[28px] font-extrabold text-testo">{nomeVisibile(profilo)}</h2>
-            {profilo.corso && <p className="truncate text-[13.5px] leading-[18px] text-testo-tenue">{profilo.corso}</p>}
+      {/* identità: tutta la card apre la modifica */}
+      <button type="button" onClick={() => { playTapSound(); vai('profilo-modifica'); }} aria-label="Modifica il profilo"
+        className="brand-premibile mt-3 flex w-full items-center gap-4 rounded-[16px] border border-linea bg-superficie p-4 text-left shadow-sm dark:shadow-none">
+        <Avatar profilo={profilo} lato={72} />
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-[22px] leading-[28px] font-extrabold text-testo">{senzaNome ? 'Aggiungi il tuo nome' : nomeVisibile(profilo)}</span>
+          <span className="block truncate text-[14px] leading-[20px] text-testo-tenue">
+            {profilo.corso || (senzaNome ? 'e il corso, per personalizzare l\'app' : 'Aggiungi il corso di studi')}
+          </span>
+        </span>
+        <span className="flex shrink-0 items-center gap-0.5 text-[14px] font-bold text-azione-testo">Modifica<Icona nome="avanti" size={16} /></span>
+      </button>
+
+      {/* scheda Project ID */}
+      <Carta tono="azione" className="mt-3 p-0">
+        <button type="button" onClick={() => { playTapSound(); vai('projectid'); }} aria-label="Apri Project ID"
+          className="brand-premibile flex min-h-[64px] w-full items-center gap-3 rounded-[16px] px-4 py-3 text-left">
+          <IconaTono tono="azione" lato={40} className="bg-superficie dark:bg-superficie-2"><Icona nome="projectid" size={22} /></IconaTono>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[12px] leading-[16px] font-semibold text-testo-tenue">Project ID</span>
+            <span className="block truncate text-[16px] leading-[22px] font-bold text-testo">{idValore}</span>
+            <span className="block truncate text-[13px] leading-[18px] text-testo-tenue">{idStato}</span>
+          </span>
+          <Icona nome="avanti" size={20} className="shrink-0 text-testo-tenue" />
+        </button>
+      </Carta>
+
+      {/* quattro numeri veri */}
+      <Carta className="mt-3 px-2 py-3.5">
+        <dl className="flex divide-x divide-linea" aria-label="I tuoi numeri">
+          {[
+            { v: n.probabilita !== null ? `${n.probabilita}%` : '–', e: 'probabilità' },
+            { v: String(n.imparate), e: 'domande imparate' },
+            { v: n.migliorSimulazione !== null ? `${n.migliorSimulazione}/${DOMANDE_TEST}` : '–', e: 'miglior simulazione' },
+            { v: `${ottenuti}/${badge.length}`, e: 'badge' },
+          ].map(x => (
+            <div key={x.e} className="min-w-0 flex-1 px-1 text-center">
+              <dd className="text-[22px] leading-[28px] font-extrabold tabular-nums text-testo">{x.v}</dd>
+              <dt className="mt-0.5 text-[12px] leading-[16px] font-medium text-testo-tenue">{x.e}</dt>
+            </div>
+          ))}
+        </dl>
+        {senzaDati && <p data-testo-ok className="mt-3 border-t border-linea px-2 pt-3 text-center text-[13px] leading-[18px] text-testo-tenue">Rispondi a qualche domanda e qui compaiono i tuoi numeri.</p>}
+      </Carta>
+
+      <Sezione id="pr-progressi" titolo="I tuoi progressi" azione={{ testo: 'Vedi dettagli', onClick: () => vai('progressi') }}>
+        <Carta className="flex flex-col gap-4">
+          <RigaAvanzamento nome="Domande imparate" valore={`${n.imparate} di ${n.totaleDomande}`} quota={n.totaleDomande ? n.imparate / n.totaleDomande : 0} tono="alto" />
+          {prossimo ? (
+            <RigaAvanzamento nome={livello.livello ? `Livello ${livello.livello}: verso ${prossimo.livello}` : `Livello: verso ${prossimo.livello}`} valore={`${Math.min(prossimo.imparate, necessarie)} di ${necessarie}`}
+              quota={necessarie ? Math.min(1, prossimo.imparate / necessarie) : 0} tono="viola" />
+          ) : livello.livello ? (
+            <p className="flex items-center gap-2 text-[15px] font-semibold text-testo"><Icona nome="livello" size={18} className="text-viola" />Livello {livello.livello} raggiunto</p>
+          ) : null}
+          <p className="flex items-center justify-between gap-3 border-t border-linea pt-3 text-[15px] leading-[21px]">
+            <span className="font-semibold text-testo">Simulazioni</span>
+            <span className="text-[14px] font-semibold tabular-nums text-testo-tenue">
+              {n.simulazioni === 0 ? 'Nessuna ancora' : `${n.simulazioni} fatte · media ${String(n.mediaSimulazioni).replace('.', ',')}/${DOMANDE_TEST}`}
+            </span>
+          </p>
+        </Carta>
+      </Sezione>
+
+      <Sezione id="pr-obiettivi" titolo="Obiettivi" azione={{ testo: 'Vedi tutti', onClick: () => vai('obiettivi') }}>
+        <Carta tono={av.raggiunto ? 'alto' : 'neutro'}>
+          <div className="flex items-center gap-3">
+            <IconaTono tono="alto" lato={44}><Icona nome="obiettivi" size={24} /></IconaTono>
+            <div className="min-w-0 flex-1">
+              <p className="text-[16px] leading-[22px] font-bold text-testo">Superare il test</p>
+              <p className="text-[13px] leading-[18px] text-testo-tenue">{SOGLIA_TEST} risposte giuste su {DOMANDE_TEST}</p>
+            </div>
           </div>
+          {av.corrente !== null ? (
+            <>
+              <p className="mt-3 text-[14px] leading-[20px] font-semibold text-testo">Probabilità ora {av.corrente}% · obiettivo {av.target}%</p>
+              <BarraTono className="mt-2" tono="alto" valore={av.quota * 100} />
+            </>
+          ) : (
+            <div className="mt-3 flex items-center justify-between gap-3">
+              <p data-testo-ok className="min-w-0 flex-1 text-[14px] leading-[20px] text-testo-tenue">Non c'è ancora una stima. Si calcola dal diagnostico.</p>
+              <button type="button" onClick={() => { playTapSound(); avviaDiagnostico(); }}
+                className="brand-premibile inline-flex min-h-[44px] shrink-0 items-center rounded-[12px] border border-tacca bg-superficie px-3.5 text-[14px] font-bold text-azione-testo">Fai il diagnostico</button>
+            </div>
+          )}
+        </Carta>
+        <div className="grid grid-cols-2 gap-3">
+          <Carta className="p-3.5">
+            <p className="text-[12px] leading-[16px] font-medium text-testo-tenue">Studio oggi</p>
+            <p className="mt-0.5 text-[17px] leading-[24px] font-extrabold tabular-nums text-testo">{Math.floor(giorno.secondi / 60)} <span className="text-[13px] font-semibold text-testo-tenue">di {ob.minutiGiorno} min</span></p>
+            <BarraTono className="mt-2 h-1.5" tono="medio" valore={giorno.quota * 100} />
+          </Carta>
+          <Carta className="p-3.5">
+            <p className="text-[12px] leading-[16px] font-medium text-testo-tenue">Data del test</p>
+            <p className="mt-0.5 text-[17px] leading-[24px] font-extrabold text-testo">
+              {mancano?.quando === 'futuro' ? <>{mancano.giorni} <span className="text-[13px] font-semibold text-testo-tenue">{mancano.giorni === 1 ? 'giorno' : 'giorni'}</span></>
+                : mancano?.quando === 'oggi' ? 'Oggi' : mancano ? 'Passata' : <span className="text-[14px] font-semibold text-testo-tenue">Non impostata</span>}
+            </p>
+          </Carta>
         </div>
-        <div className="mt-4 flex flex-wrap items-center gap-2.5">
-          <div role="status" aria-label={`Livello: ${livello.livello ?? 'da definire'}`} className="flex items-center gap-2 rounded-full bg-superficie py-1 pl-2.5 pr-3.5 text-[13.5px] font-bold text-testo">
-            <Icona nome="livello" size={18} className="text-viola" />
-            <span className={livello.livello ? 'text-viola-testo text-[16px]' : 'text-testo-tenue'}>{livello.livello ?? '–'}</span>
-            {prossimo && <span className="text-[12.5px] font-semibold tabular-nums text-testo-tenue">{prossimo.imparate}/{necessarie}</span>}
-          </div>
-        </div>
-        {prossimo && <div className="mt-3"><BarraTono tono="viola" valore={Math.min(1, prossimo.imparate / necessarie) * 100} /></div>}
-      </section>
+      </Sezione>
 
-      <nav aria-label="Aree del profilo" className="mt-4 grid grid-cols-2 gap-2.5">
-        {tessere.map(t => <TesseraIllustrata key={t.id} illustrazione={t.illustrazione} parola={t.parola} dato={t.dato} onClick={() => vai(t.id)} />)}
-      </nav>
+      <Sezione id="pr-badge" titolo="Badge" azione={{ testo: 'Vedi tutti', onClick: () => vai('badge') }}>
+        <Carta>
+          <p className="text-[14px] leading-[20px] font-semibold text-testo">{ottenuti} di {badge.length} ottenuti</p>
+          <ul className="mt-3 flex items-start justify-between gap-1" aria-label="Badge in vista">
+            {inVista.map(b => (
+              <li key={b.id} className="flex w-[64px] justify-center" title={b.titolo}>
+                <span className={b.sbloccato ? '' : 'opacity-45'} role="img" aria-label={`${b.titolo}: ${b.sbloccato ? 'ottenuto' : b.avanzamento}`}><Disegno nome={arteBadge(b)} lato={56} /></span>
+              </li>
+            ))}
+          </ul>
+          {ottenuti === 0 && <p data-testo-ok className="mt-3 text-[13px] leading-[18px] text-testo-tenue">Il primo arriva con la prima domanda imparata.</p>}
+        </Carta>
+      </Sezione>
 
-      <GruppoRighe etichetta="Aiuto">
-        {SCHERMATE.faq && <RigaElenco illustrazione="messaggi-supporto" parola="FAQ" onClick={() => vai('faq')} />}
-        {SCHERMATE.segnala && <RigaElenco icona={<Icona nome="segnala" size={22} />} tono="basso" parola="Segnala" onClick={() => vai('segnala')} />}
-      </GruppoRighe>
+      {SCHERMATE.esplora && (
+        <Sezione id="pr-community" titolo="Community">
+          <GruppoRighe etichetta="Community">
+            <Riga icona="amici" titolo="Community" sottotitolo="Project ID, ATLAS, NOI, Agorà" onClick={() => vai('esplora')} />
+          </GruppoRighe>
+        </Sezione>
+      )}
 
-      <GruppoRighe etichetta="Informazioni">
-        <RigaElenco illustrazione="studio-inglese" parola="Presentazione" onClick={apriLanding} />
-        {LEGAL_TABS.map(t => <RigaElenco key={t.id} icona={<Icona nome={ICONE_LEGALI[t.id]} size={22} />} parola={t.label} onClick={() => apriLegale(t.id)} />)}
-      </GruppoRighe>
-      <p data-testo-ok className="mx-auto mt-4 max-w-[52ch] text-center text-[11px] leading-snug text-testo-tenue">{AVVERTENZA_INDIPENDENZA}</p>
+      <Sezione id="pr-aiuto" titolo="Aiuto">
+        <GruppoRighe etichetta="Aiuto">
+          {SCHERMATE.faq && <Riga icona="faq" titolo="Domande frequenti" onClick={() => vai('faq')} />}
+          {SCHERMATE.segnala && <Riga icona="segnala" titolo="Segnala un problema o un'idea" onClick={() => vai('segnala')} />}
+          <Riga icona="presentazione" titolo="Cos'è AddiOFA" onClick={apriLanding} />
+        </GruppoRighe>
+      </Sezione>
+
+      <Sezione id="pr-info" titolo="Informazioni">
+        <GruppoRighe etichetta="Informazioni">
+          {LEGAL_TABS.map(t => <Riga key={t.id} icona={ICONE_LEGALI[t.id]} titolo={t.label} onClick={() => apriLegale(t.id)} />)}
+        </GruppoRighe>
+      </Sezione>
+      <p data-testo-ok className="mx-auto mt-5 max-w-[52ch] text-center text-[12px] leading-[17px] text-testo-tenue">{AVVERTENZA_INDIPENDENZA}</p>
     </Pagina>
   );
 }
+

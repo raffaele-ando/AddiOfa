@@ -1,54 +1,50 @@
-import { DISCLAIMER, EXAM } from '../../config/offer';
-import Scena from '../../brand/hero/Scena';
-import { Icona } from '../../brand/icone/Icona';
-import { BottoneAzione, BottoneContorno, Colonna, InfoFoglio } from './comune';
+import { EXAM } from '../../config/offer';
+import scenaChiara from '../../brand/essenziali/hero/scena-chiara.webp';
+import scenaScura from '../../brand/essenziali/hero/scena-scura.webp';
+import { BottoneAzione, BottoneContorno, Colonna, Occhiello } from './comune';
 import { vaiA } from './Barra';
+import { Telefono, SchermoSimulazione, SchermoTest } from './TelefonoPassi';
 
-// Hero (concetti 41 e 45): a sinistra l'etichetta, il titolo grande, due righe e i due pulsanti; a destra la scena con la porta di luce
-// e le carte di vetro vere. Sul telefono la scena sta sopra il titolo, ritagliata sulla porta. Il titolo e le frasi sono marketing (`data-testo-ok`).
-export default function Hero({ onStart, onSkip, scuro }: { onStart(): void; onSkip(): void; scuro: boolean }) {
+// Hero in un'unica composizione. Telefono: la scena (porta di luce, studente) a grandezza vera dietro la barra, il titolo si appoggia sui gradini che sfumano
+// nel fondo, il pulsante sta sopra la piega. Da 1024 px: testo a sinistra, scena al centro e due telefoni con schermate d'esempio a destra (niente carte con dati).
+// Una promessa («scopri a che punto sei»), un'azione con un solo nome. Il titolo e le frasi sono marketing (`data-testo-ok`).
+export default function Hero({ onStart, onSkip }: { onStart(): void; onSkip(): void }) {
   return (
     <section id="home" aria-labelledby="t-hero" className="relative overflow-hidden scroll-mt-0 lg:min-h-[41rem]">
-      {/* telefono: scena a tutta larghezza, ritagliata attorno alla porta */}
-      <div aria-hidden className="pointer-events-none relative mt-[3.5rem] h-[18.5rem] overflow-hidden sm:hidden">
-        <div className="absolute left-[-24%] top-0 w-[148%]"><Scena scuro={scuro} conCarte={false} /></div>
+      {/* scena: i due file (chiaro e notte) si scambiano col tema; la maschera sfuma tutti i lati, così non resta nessun bordo rettangolare */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 mx-auto h-[27rem] max-w-[1280px] lg:inset-y-0 lg:h-auto">
+        <div className="landing-scena absolute left-1/2 top-6 h-[26rem] w-[52rem] -translate-x-1/2 lg:left-[26%] lg:top-16 lg:h-auto lg:w-[70%] lg:translate-x-0">
+          <img src={scenaChiara} alt="" draggable={false} className="landing-scena-chiara h-full w-full select-none object-cover" />
+          <img src={scenaScura} alt="" draggable={false} className="landing-scena-scura h-full w-full select-none object-cover" />
+        </div>
       </div>
-      <Colonna className="relative z-10 pb-24 pt-2 sm:pt-28 lg:pb-32 lg:pt-36">
-        <div className="max-w-[26rem] sm:max-w-xl lg:max-w-[33rem] xl:max-w-[38rem]">
-          <p data-testo-ok className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-testo-tenue sm:text-xs">
-            <Icona nome="avanti" size={14} className="text-azione" />Per gli studenti del Politecnico di Milano
-          </p>
-          <h1 id="t-hero" data-testo-ok className="mt-4 text-[2.7rem] font-extrabold leading-[1.0] tracking-[-0.035em] text-testo sm:text-6xl lg:text-[3.4rem] xl:text-[4rem]">
-            Oltre l'OFA,
-            <span className="block text-azione">un passo<br className="sm:hidden" /> in più.</span>
+
+      {/* telefoni d'esempio (da 1024 px): uno dietro, uno davanti, schermate vere dell'app */}
+      <div aria-hidden className="pointer-events-none absolute inset-y-0 inset-x-0 mx-auto hidden max-w-[1280px] lg:block">
+        <Telefono larghezza={232} altezzaSchermo={316} scheda="home" className="absolute right-[8.5rem] top-[4.75rem] -rotate-[5deg]"><SchermoSimulazione /></Telefono>
+        <Telefono larghezza={248} altezzaSchermo={366} scheda="home" className="absolute right-6 top-[6.5rem] rotate-[3deg]"><SchermoTest /></Telefono>
+      </div>
+
+      <Colonna className="relative z-10 pb-12 pt-[21.5rem] lg:pb-32 lg:pt-36">
+        <div className="max-w-[34rem] lg:max-w-[28rem] xl:max-w-[33rem]">
+          <Occhiello data-testo-ok className="text-testo-tenue">Per gli studenti del Politecnico di Milano</Occhiello>
+          <h1 id="t-hero" data-testo-ok className="mt-3 text-[2.125rem] font-extrabold leading-[1.06] tracking-[-0.03em] text-testo text-balance sm:text-5xl lg:text-[2.5rem] xl:text-[3.1rem]">
+            Scopri a che punto sei <span className="text-azione">con l’OFA di inglese.</span>
           </h1>
-          <p data-testo-ok className="mt-5 max-w-[22rem] text-base font-medium leading-relaxed text-testo-tenue sm:max-w-md sm:text-lg">
-            AddiOFA ti aiuta a prepararti all'OFA di inglese con un percorso personalizzato: scopri a che punto sei, ripassa i tuoi errori e allenati sul formato del test.
+          <p data-testo-ok className="mt-4 max-w-[26rem] text-base font-medium leading-relaxed text-testo-tenue sm:text-lg">
+            In 3 minuti. Poi ripassi solo ciò che sbagli e provi il test vero: {EXAM.questions} domande, {EXAM.minutes} minuti.
           </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <BottoneAzione onClick={onStart} className="w-full whitespace-nowrap sm:w-auto">Fai il diagnostico</BottoneAzione>
-            <BottoneContorno onClick={() => vaiA('come-funziona')} freccia className="hidden whitespace-nowrap sm:inline-flex">Come funziona</BottoneContorno>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <BottoneAzione grande onClick={onStart} className="w-full sm:w-auto">Inizia il test di livello</BottoneAzione>
+            <BottoneContorno onClick={() => vaiA('come-funziona')} className="hidden lg:inline-flex">Come funziona</BottoneContorno>
           </div>
-          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold text-testo">
-            <span className="inline-flex items-center gap-2"><Icona nome="stato-incluso" size={18} className="text-alto-pieno" />Senza limiti</span>
-            <span className="inline-flex items-center gap-2"><Icona nome="senza-account" size={18} className="text-viola" />Senza password</span>
-            <InfoFoglio titolo="Il test e la stima">
-              <div className="flex flex-col gap-2">
-                <p>Il test di riferimento è quello di recupero nel formato LinguaViva: {EXAM.questions} domande in {EXAM.minutes} minuti, soglia {EXAM.passMark}/{EXAM.questions}.</p>
-                <p>La probabilità è una stima calcolata sulle tue risposte e non garantisce l'esito. {DISCLAIMER}</p>
-              </div>
-            </InfoFoglio>
-            <button type="button" onClick={onSkip} aria-label="Salta e vai all'app"
-              className="inline-flex items-center gap-1.5 rounded px-1 py-1 text-sm font-semibold text-testo-tenue hover:text-azione focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione">
-              <Icona nome="salta" size={16} />Salta
-            </button>
-          </div>
+          <p data-testo-ok className="mt-4 text-[13px] font-medium leading-snug text-testo-tenue">Gratuita, senza password, con i progressi sul tuo dispositivo.</p>
+          <button type="button" onClick={onSkip} data-testo-ok
+            className="mt-1 inline-flex min-h-11 items-center rounded text-[13px] font-semibold text-azione-testo underline underline-offset-4 hover:text-azione focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione">
+            Preferisci esplorare? Vai all’app senza test
+          </button>
         </div>
       </Colonna>
-
-      <div aria-hidden className="pointer-events-none absolute hidden sm:relative sm:left-auto sm:top-auto sm:-mt-24 sm:block sm:w-full lg:absolute lg:right-0 lg:top-14 lg:mt-0 lg:-right-[2%] lg:w-[64%] xl:w-[62%] min-[1500px]:right-0 min-[1500px]:w-[58%]">
-        <Scena scuro={scuro} />
-      </div>
     </section>
   );
 }

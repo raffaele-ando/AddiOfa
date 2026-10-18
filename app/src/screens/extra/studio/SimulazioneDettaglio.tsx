@@ -1,4 +1,4 @@
-// Dettaglio di una simulazione svolta (concept 18.9, 30.11, 43): illustrazione dell'esito (kit luminoso, in testata), misuratore, tessere icona/numero,
+// Dettaglio di una simulazione svolta (concept 18.9, 30.11, 43): lo stesso riquadro del risultato della consegna (RiepilogoEsito), tessere icona/numero/parola,
 // confronto con la precedente, riepilogo per argomento e correzioni complete con confronto.
 // Le regole del punteggio stanno dietro la «i». Senza `id` (o con un id che non c'è) mostra solo «non trovata»: la nuova simulazione si avvia dalla scheda.
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -10,15 +10,13 @@ import type { ExamQuestionResult, PublicQuestion, DataProvider } from '../../../
 import { EXAM } from '../../../config/offer';
 import { calcolaStima } from '../../../components/home/stima';
 import { elencoSimulazioni, entrataStorico, perArgomentoSimulazione, trovaSimulazione } from '../../../lib/studio/simulazioni';
-import MisuratoreEsito from '../../../components/esito/MisuratoreEsito';
+import RiepilogoEsito from '../../../components/esito/RiepilogoEsito';
 import CorrezioniComplete from '../../../components/esito/CorrezioniComplete';
 import InfoPunteggio from '../../../components/esito/InfoPunteggio';
-import { TessereEsito, RigaTempo } from '../../../components/esito/TessereEsito';
+import { TessereEsito } from '../../../components/esito/TessereEsito';
 import ConfrontoPrecedente from '../../../components/esito/ConfrontoPrecedente';
-import { cn } from '../../../lib/utils';
-import { Pagina, Carta, Barra, coloreValore, dataBreve } from './comune';
+import { Pagina, Carta, Barra, coloreValore, dataBreve, StatoVuoto, Bottone as BottoneStudio } from './comune';
 import { PulsanteInfo } from '../ui';
-import { Bottone, Fermo } from '../sfide/comuni';
 import type { ExamHistory } from '../../../types';
 
 // ---- Correzioni di una simulazione svolta
@@ -87,32 +85,18 @@ function Svolta({ chiave }: { chiave: string }) {
   return (
     <div className="relative h-full">
       <Pagina titolo={`Simulazione ${s.numero}`} onIndietro={indietro} destra={<PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole della simulazione" />}>
-        <Carta className="mt-4 px-4 pt-3 pb-4 text-center">
-          <div className="flex justify-center">
-            <Illustrazione kit="kit-luminoso" nome={s.superata ? 'superamento' : 'mancato-superamento'} lato={s.superata ? 150 : 130} />
-          </div>
-          <MisuratoreEsito giuste={s.esatte} totale={s.totale} soglia={s.soglia} superata={s.superata} />
-          <div className="-mt-1 flex justify-center">
-            <span className={cn('inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[16px] font-extrabold', s.superata ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
-              <Icona nome={s.superata ? 'stato-ok' : 'stato-errore'} size={19} />
-              {s.superata ? 'Superata' : 'Non superata'}
-            </span>
-          </div>
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5">
-            <span className="text-[13.5px] font-bold tabular-nums text-testo-tenue">{dataBreve(s.data)}</span>
-            <span role="img" aria-label={`Soglia ${s.soglia} su ${s.totale}`} className="inline-flex items-center gap-1.5 text-[14px] font-bold tabular-nums text-testo">
-              <Icona nome="soglia" size={17} className="text-alto-numero" />{s.soglia}/{s.totale}
-            </span>
-            <RigaTempo secondi={s.tempoSecondi} minuti={f.minutes} scaduto={scaduta} />
-          </div>
-        </Carta>
+        <div className="mt-4">
+          <RiepilogoEsito giuste={s.esatte} totale={s.totale} soglia={s.soglia} superata={s.superata} vuote={s.omesse}
+            secondi={s.tempoSecondi} minuti={f.minutes} scaduto={scaduta} data={dataBreve(s.data)}
+            arte={<Illustrazione kit="kit-luminoso" nome="superamento" lato={110} />} />
+        </div>
 
         <div className="mt-3"><TessereEsito giuste={s.esatte} sbagliate={s.sbagliate} vuote={s.omesse} /></div>
         {prima && <div className="mt-3"><ConfrontoPrecedente prima={{ esatte: prima.esatte, totale: prima.totale }} dopo={{ esatte: s.esatte, totale: s.totale }} /></div>}
 
         {righe.length > 0 && (
           <section aria-labelledby="titolo-argomenti" className="mt-7 flex flex-col gap-2.5">
-            <h2 id="titolo-argomenti" className="flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />Argomenti</h2>
+            <h2 id="titolo-argomenti" className="flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />Come sei andato per argomento</h2>
             <Carta className="p-4">
               <ul className="flex flex-col gap-3.5">
                 {righe.map(r => (
@@ -132,17 +116,12 @@ function Svolta({ chiave }: { chiave: string }) {
         <div ref={correzioniRef} className="mt-7 scroll-mt-3">
           {corr.fase === 'carico' && <p role="status" aria-label="Carico le correzioni" className="flex justify-center text-testo-tenue"><Icona nome="stato-caricamento" size={22} className="animate-spin" /></p>}
           {corr.fase === 'errore' && (
-            <Carta className="flex items-center gap-3">
-              <Icona nome="stato-attenzione" size={22} className="shrink-0 text-medio-numero" />
-              <p role="alert" className="flex-1 text-[14px] font-bold text-testo">Correzioni non disponibili.</p>
-              <Bottone variante="secondario" icona="riprova" aria="Riprova" className="w-14 px-0" onClick={() => setTentativo(n => n + 1)} />
-            </Carta>
+            <StatoVuoto icona="stato-attenzione" titolo="Correzioni non disponibili" testo="Non siamo riusciti a leggerle.">
+              <BottoneStudio variante="secondario" icona={<Icona nome="riprova" size={18} />} onClick={() => setTentativo(n => n + 1)}>Riprova</BottoneStudio>
+            </StatoVuoto>
           )}
           {corr.fase === 'assenti' && (
-            <Carta className="flex items-center gap-3">
-              <Icona nome="correzioni" size={22} className="shrink-0 text-testo-tenue" />
-              <p role="status" className="text-[14px] font-bold text-testo-tenue">Correzioni non salvate.</p>
-            </Carta>
+            <StatoVuoto icona="correzioni" titolo="Correzioni non salvate" testo="Questa simulazione è di una versione precedente." />
           )}
           {corr.fase === 'ok' && <CorrezioniComplete questions={corr.domande} perQuestion={corr.perQ} answers={corr.risposte} onOpenTheory={apriTeoria} senzaLettere />}
         </div>
@@ -155,9 +134,11 @@ function Svolta({ chiave }: { chiave: string }) {
 function NonTrovata({ onIndietro, onSimulazioni }: { onIndietro: () => void; onSimulazioni: () => void }) {
   return (
     <Pagina titolo="Simulazione" onIndietro={onIndietro}>
-      <Fermo icona="stato-attenzione" tono="basso" testo="Simulazione non trovata.">
-        <Bottone icona="simulazioni" aria="Le mie simulazioni" onClick={onSimulazioni} />
-      </Fermo>
+      <div className="mt-6">
+        <StatoVuoto illustrazione={{ nome: 'ricerca-scintille' }} titolo="Simulazione non trovata" testo="Non è più salvata su questo dispositivo.">
+          <BottoneStudio onClick={onSimulazioni} icona={<Icona nome="simulazioni" size={18} />}>Vai alle simulazioni</BottoneStudio>
+        </StatoVuoto>
+      </div>
     </Pagina>
   );
 }

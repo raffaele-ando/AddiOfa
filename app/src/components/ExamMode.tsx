@@ -6,6 +6,8 @@ import { Icona } from '../brand/icone/Icona';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 import { Illustrazione } from '../brand/Illustrazione';
 import { Screen, TopBar } from './ui';
+import { FoglioInfo } from '../screens/extra/ui';
+import { Bottone, OpzioneRisposta, StatoVuoto } from '../screens/extra/studio/comune';
 import ConfirmDialog from './ConfirmDialog';
 import EsitoSimulazione from './esito/EsitoSimulazione';
 import { provider } from '../access';
@@ -35,11 +37,10 @@ type Phase = 'select' | 'starting' | 'running' | 'submitting' | 'submitError' | 
 
 // Un solo formato (EXAM: 30 domande, 15 minuti, soglia 25): non c'è nulla da scegliere e la prova parte da sola
 // (la fase «select» resta solo come stato di attesa dell'avvio, con l'errore se non parte).
-const MESSAGGIO_ERRORE = 'Qualcosa è andato storto. Riprova.';
 
 export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteStima, storico }: ExamModeProps) {
   const [phase, setPhase] = useState<Phase>('select');
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<boolean>(false);
   const [session, setSession] = useState<ExamSession | null>(null);
   const [result, setResult] = useState<ExamResult | null>(null);
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -47,6 +48,9 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
   const [timeLeft, setTimeLeft] = useState(0);
   const [elapsedFinal, setElapsedFinal] = useState(0);
   const [confirm, setConfirm] = useState<null | 'exit' | 'submit'>(null);
+  // Il foglio con la griglia delle 30 domande e le domande già viste (per distinguere «saltata» da «ancora da vedere»)
+  const [griglia, setGriglia] = useState(false);
+  const [viste, setViste] = useState<Set<number>>(new Set([0]));
   // La simulazione svolta prima di questa (per il confronto prima/dopo) e se la prova si è chiusa perché il tempo è finito.
   const [precedente, setPrecedente] = useState<PuntiConfronto | null>(null);
   const [scaduto, setScaduto] = useState(false);
@@ -86,7 +90,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
   // ---- Avvio
   const avvia = async (rifai = false) => {
     if (phase !== 'select' && !(rifai && phase === 'done')) return;
-    setError(null);
+    setError(false);
     // Il confronto è con l'ultima simulazione: se si rifà subito, quella appena finita (non serve aspettare il salvataggio).
     if (rifai && result) setPrecedente({ esatte: result.rawCorrect, totale: EXAM.questions });
     else {
@@ -114,12 +118,13 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
       pendingRef.current = null;
       setAnswers({});
       setCurrentIndex(0);
+      setViste(new Set([0]));
       setTimeLeft(f.minutes * 60);
       setSession(s);
       setPhase('running');
     } catch {
       if (!aliveRef.current) return;
-      setError(MESSAGGIO_ERRORE);
+      setError(true);
       setPhase('select');
     }
   };
@@ -160,7 +165,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
     }
     const { payload, elapsed } = pendingRef.current;
     setElapsedFinal(elapsed);
-    setError(null);
+    setError(false);
     setPhase('submitting');
     try {
       const res = await provider.submitExam(session.id, payload, elapsed);
@@ -169,7 +174,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
     } catch {
       submittingRef.current = false;
       if (!aliveRef.current) return;
-      setError(MESSAGGIO_ERRORE);
+      setError(true);
       setPhase('submitError');
     }
   };
@@ -252,6 +257,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
     const next = Math.min(questions.length - 1, Math.max(0, i));
     indexRef.current = next;
     setCurrentIndex(next);
+    setViste(prev => (prev.has(next) ? prev : new Set(prev).add(next)));
   };
 
   const requestExit = () => {
@@ -268,12 +274,12 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
   const dialog = (
     <ConfirmDialog
       open={confirm !== null}
-      title={confirm === 'exit' ? 'Uscire dalla simulazione?' : 'Consegnare adesso?'}
+      title={confirm === 'exit' ? 'Uscire dalla simulazione?' : 'Vuoi consegnare ora?'}
       message={confirm === 'exit'
-        ? 'La simulazione non verrà salvata e non conta tra quelle fatte.'
-        : `Hai ancora ${missing} ${missing === 1 ? 'domanda' : 'domande'} senza risposta. Dopo la consegna non si torna indietro.`}
+        ? 'Le risposte date andranno perse.'
+        : `${missing === 1 ? 'Manca 1 risposta' : `Mancano ${missing} risposte`}. Una volta consegnato non puoi più cambiare niente.`}
       confirmLabel={confirm === 'exit' ? 'Esci' : 'Consegna'}
-      cancelLabel={confirm === 'exit' ? 'Resta' : 'Continua'}
+      cancelLabel={confirm === 'exit' ? 'Resta' : 'Torna alle domande'}
       danger={confirm === 'exit'}
       illustrazione={confirm === 'exit' ? <Illustrazione nome="attenzione-rischio" lato={72} /> : <Illustrazione nome="simulazione-esame" lato={80} />}
       onCancel={() => setConfirm(null)}
@@ -287,9 +293,9 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
   );
 
   // ================== Avvio (nessuna scelta: un solo formato) ==================
-  // Preparo le domande: solo il caricamento. Se non parte, l'icona di avviso e un pulsante per riprovare.
+  // Preparo le domande: solo il caricamento. Se non parte, la causa e un pulsante per riprovare.
   if (phase === 'select' || phase === 'starting') {
-    const mostraStato = phase === 'select' && !!error;
+    const mostraStato = phase === 'select' && error;
     return (
       <Screen>
         <TopBar onBack={onExit} />
@@ -297,15 +303,10 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
           {!mostraStato ? (
             <div role="status" aria-label="Preparo le domande"><IllustrazioneAnimata nome="attesa-caricamento" lato={110} /></div>
           ) : (
-            <div className="flex w-full max-w-xs flex-col items-center gap-4">
-              <Illustrazione nome="documento-errore" lato={96} />
-              {error && <p role="alert" className="text-[15px] leading-[22px] font-bold text-testo">{error}</p>}
-              <button type="button" onClick={() => { playTapSound(); void avvia(); }}
-                aria-label="Riprova"
-                className="flex h-[54px] w-full items-center justify-center rounded-2xl bg-azione text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
-                <Icona nome="riprova" size={26} />
-              </button>
-            </div>
+            <StatoVuoto pagina illustrazione={{ nome: 'documento-errore', lato: 96 }} titolo="La simulazione non parte" testo="Le domande non si sono caricate.">
+              <Bottone onClick={() => void avvia()} icona={<Icona nome="riprova" size={20} />}>Riprova</Bottone>
+              <Bottone variante="secondario" onClick={onExit} icona={<Icona nome="indietro" size={18} />}>Indietro</Bottone>
+            </StatoVuoto>
           )}
         </div>
         {dialog}
@@ -330,20 +331,10 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
             <Icona nome="stato-caricamento" size={26} className="animate-spin text-azione-testo" />
           </div>
         ) : (
-          <div className="flex w-full max-w-xs flex-col items-center gap-4">
-            <Illustrazione nome="documento-errore" lato={96} />
-            <p role="alert" className="text-[15px] leading-[22px] font-bold text-testo">{error}</p>
-            <div className="flex w-full gap-2">
-              <button type="button" onClick={() => { playTapSound(); void finish(); }} aria-label="Riprova a consegnare"
-                className="flex h-[54px] flex-1 items-center justify-center rounded-2xl bg-azione text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
-                <Icona nome="riprova" size={26} />
-              </button>
-              <button type="button" onClick={onExit} aria-label="Esci senza salvare"
-                className="grid h-[54px] w-16 shrink-0 place-items-center rounded-2xl border border-linea bg-superficie text-testo-tenue transition-colors duration-100 hover:text-testo">
-                <Icona nome="chiudi" size={24} />
-              </button>
-            </div>
-          </div>
+          <StatoVuoto pagina illustrazione={{ nome: 'documento-errore', lato: 96 }} titolo="Consegna non riuscita" testo="Le tue risposte sono ancora qui.">
+            <Bottone onClick={() => void finish()} icona={<Icona nome="riprova" size={20} />}>Riprova a consegnare</Bottone>
+            <Bottone variante="secondario" onClick={onExit} icona={<Icona nome="chiudi" size={18} />}>Esci senza salvare</Bottone>
+          </StatoVuoto>
         )}
       </Screen>
     );
@@ -378,105 +369,102 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
   const m = Math.floor(timeLeft / 60);
   const s = timeLeft % 60;
   const timeStr = `${m}:${s.toString().padStart(2, '0')}`;
+  // Il tempo è neutro finché c'è margine, ambra negli ultimi 5 minuti, corallo nell'ultimo
+  const tempoAmbra = timeLeft <= 300;
+  const tempoCorallo = timeLeft <= 60;
+  const statoDomanda = (i: number): 'risposta' | 'saltata' | 'da-vedere' =>
+    answers[questions[i].id] !== undefined ? 'risposta' : (viste.has(i) && i !== currentIndex ? 'saltata' : 'da-vedere');
+  const nSaltate = questions.filter((_, i) => statoDomanda(i) === 'saltata').length;
+  const nDaVedere = questions.length - answeredCount - nSaltate;
+  const vaiA = (i: number) => { setGriglia(false); goTo(i); };
 
   return (
-    <div className="flex flex-col h-full w-full sm:max-h-[calc(100dvh-3rem)] bg-superficie sm:rounded-[32px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
-      <header className="flex flex-col gap-2 p-3 sm:p-4 border-b border-linea shrink-0 transition-colors duration-100">
-        <div className="flex items-center justify-between">
-          <button onClick={requestExit} aria-label="Esci dalla simulazione" className="p-1 sm:p-2 text-testo-tenue hover:text-testo hover:bg-linea rounded-full transition-colors duration-100">
-            <Icona nome="chiudi" size={22} />
-          </button>
-          <div role="timer" aria-label="Tempo rimasto" className={cn("font-bold tabular-nums text-base sm:text-xl flex items-center gap-1.5 rounded-full px-3 py-1", timeLeft < 120 ? "bg-basso-tinta text-basso-testo" : "bg-medio-tinta text-medio-testo")}>
-            <Icona nome="tempo" size={19} /> {timeStr}
+    <div className="relative flex flex-col h-full w-full bg-superficie overflow-hidden transition-colors duration-100">
+      <header className="shrink-0 border-b border-linea">
+        <div className="mx-auto flex w-full max-w-[520px] flex-col gap-2 px-2 pb-3 pt-2 sm:px-4">
+          <div className="flex items-center justify-between">
+            <button onClick={requestExit} aria-label="Esci dalla simulazione" className="grid h-11 w-11 place-items-center rounded-full text-testo-tenue hover:text-testo transition-colors duration-100">
+              <Icona nome="chiudi" size={24} />
+            </button>
+            <div role="timer" aria-label="Tempo rimasto"
+              className={cn('flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-base font-bold tabular-nums transition-colors duration-100',
+                tempoCorallo ? 'bg-basso-tinta text-basso-testo' : tempoAmbra ? 'bg-medio-tinta text-medio-testo' : 'bg-superficie-2 text-testo')}>
+              <Icona nome="tempo" size={18} /> {timeStr}
+            </div>
+            <button onClick={requestSubmit}
+              className="inline-flex h-10 items-center rounded-[10px] border border-azione/60 px-4 text-[13px] font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
+              Consegna
+            </button>
           </div>
-          <button
-            onClick={requestSubmit}
-            className="text-xs sm:text-sm font-bold text-azione hover:bg-azione-tinta border border-azione/60 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-[10px] transition-colors duration-100"
-          >
-            Consegna
-          </button>
-        </div>
-        <div className="flex items-center gap-2 mt-1 sm:mt-2">
-          <span className="text-[11px] sm:text-xs font-bold tabular-nums text-testo-tenue w-10 text-right">{answeredCount}/{questions.length}</span>
-          <div className="flex-1 bg-tacca h-3 sm:h-4 rounded-full overflow-hidden transition-colors duration-100">
-            <div className="bg-azione h-full rounded-full transition-colors duration-100" style={{ width: `${progress}%` }} />
+          <div className="flex items-center gap-3 px-1">
+            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-tacca" role="presentation">
+              <div className="h-full rounded-full bg-azione" style={{ width: `${progress}%` }} />
+            </div>
+            <span className="shrink-0 text-[12px] font-semibold tabular-nums text-testo-tenue">{answeredCount === 1 ? '1 risposta' : `${answeredCount} risposte`} su {questions.length}</span>
           </div>
         </div>
       </header>
 
-      <main className="flex-1 p-4 sm:p-8 flex flex-col w-full overflow-y-auto scrollbar-hide">
-        <div className="mb-4 shrink-0 flex items-center gap-2">
-          <span aria-label={`Domanda ${currentIndex + 1} di ${questions.length}`} className="grid h-9 min-w-9 place-items-center rounded-full bg-superficie-2 px-2 text-[15px] font-extrabold tabular-nums text-testo">{currentIndex + 1}</span>
-          <span data-testo-ok className="inline-flex items-center gap-1.5 rounded-full bg-viola-tinta px-3 py-1.5 text-[13px] font-bold text-viola-testo"><Icona nome="argomenti" size={15} />{question.category}</span>
-        </div>
-        <h2 data-testo-ok className="text-xl sm:text-2xl font-bold text-testo mb-5 sm:mb-6 leading-snug shrink-0">
-          {question.prompt}
-        </h2>
-
-        <div data-testo-ok className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 content-start">
-          {question.options.map((opt, idx) => {
-            const isSelected = answers[question.id] === idx;
-            return (
-              <button
-                key={idx}
-                onClick={() => handleOptionSelect(question.id, idx)}
-                aria-pressed={isSelected}
-                className={cn(
-                  "p-3 sm:p-3.5 text-left border rounded-2xl group transition-colors duration-100 flex items-center min-h-[56px]",
-                  isSelected
-                    ? "bg-azione-tinta border-azione text-testo"
-                    : "border-linea bg-superficie-2 hover:bg-linea hover:border-tacca text-testo  "
-                )}
-              >
-                <div className="flex items-center gap-4 w-full">
-                  <span className={cn("w-8 h-8 text-sm flex shrink-0 items-center justify-center border rounded-full font-bold transition-colors duration-100",
-                    isSelected ? "border-azione bg-azione text-azione-su" : "border-linea text-testo-tenue bg-superficie"
-                  )}>
-                    {String.fromCharCode(65 + idx)}
-                  </span>
-                  <span className="text-[15px] sm:text-base font-semibold leading-snug flex-1">{opt}</span>
-                </div>
-              </button>
-            );
-          })}
+      <main className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
+        <div className="mx-auto flex w-full max-w-[520px] flex-col px-5 pb-4 pt-5">
+          <h2 data-testo-ok aria-label={`Domanda ${currentIndex + 1} di ${questions.length}: ${question.prompt}`} className="mb-5 text-xl sm:text-2xl font-bold leading-snug text-testo">
+            {question.prompt}
+          </h2>
+          <div className="grid grid-cols-1 gap-2.5">
+            {question.options.map((opt, idx) => (
+              <OpzioneRisposta key={idx} lettera={String.fromCharCode(65 + idx)} testo={opt}
+                stato={answers[question.id] === idx ? 'scelta' : 'neutra'} onClick={() => handleOptionSelect(question.id, idx)} />
+            ))}
+          </div>
         </div>
       </main>
 
-      <div className="p-3 sm:p-4 border-t border-linea bg-superficie shrink-0 flex items-center transition-colors duration-100 min-h-[70px] sm:min-h-[80px]">
-        <div className="max-w-4xl w-full mx-auto flex justify-between items-center px-2 sm:px-4">
-          <button
-            onClick={() => goTo(currentIndex - 1)}
-            disabled={currentIndex === 0}
-            aria-label="Domanda precedente"
-            className="p-2 sm:p-3 text-testo-tenue disabled:opacity-30 rounded-xl hover:bg-linea transition-colors duration-100 border border-transparent active:bg-linea"
-          >
+      <div className="shrink-0 border-t border-linea bg-superficie">
+        <div className="mx-auto flex w-full max-w-[520px] items-center justify-between gap-2 px-3 py-3 sm:px-4">
+          <button onClick={() => goTo(currentIndex - 1)} disabled={currentIndex === 0} aria-label="Domanda precedente"
+            className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-testo hover:bg-linea disabled:opacity-30 transition-colors duration-100">
             <Icona nome="indietro" size={28} />
           </button>
-
-          <div className="flex gap-1 overflow-x-auto max-w-[150px] sm:max-w-xs px-1 scrollbar-hide items-center">
-            {questions.map((q, idx) => (
-              <button
-                key={q.id}
-                onClick={() => goTo(idx)}
-                aria-label={`Vai alla domanda ${idx + 1}`}
-                className={cn(
-                  "h-1.5 sm:h-2 min-w-[6px] sm:min-w-[8px] flex-1 rounded-full transition-colors duration-100 cursor-pointer",
-                  currentIndex === idx ? "bg-testo h-2.5 sm:h-3" : answers[q.id] !== undefined ? "bg-azione" : "bg-tacca"
-                )}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={() => goTo(currentIndex + 1)}
-            disabled={currentIndex === questions.length - 1}
-            aria-label="Domanda successiva"
-            className="p-2 sm:p-3 text-testo-tenue disabled:opacity-30 rounded-xl hover:bg-linea transition-colors duration-100 border border-transparent active:bg-linea"
-          >
+          <button onClick={() => { playTapSound(); setGriglia(true); }} aria-haspopup="dialog"
+            className="inline-flex h-12 min-w-0 flex-1 max-w-[240px] items-center justify-center gap-2 rounded-xl border border-tacca bg-superficie-2 px-3 text-[15px] font-bold tabular-nums text-testo transition-colors duration-100 hover:bg-linea">
+            Domanda {currentIndex + 1} di {questions.length}<Icona nome="espandi" size={18} className="text-testo-tenue" />
+          </button>
+          <button onClick={() => goTo(currentIndex + 1)} disabled={currentIndex === questions.length - 1} aria-label="Domanda successiva"
+            className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-testo hover:bg-linea disabled:opacity-30 transition-colors duration-100">
             <Icona nome="avanti" size={28} />
           </button>
         </div>
       </div>
+
+      {/* Griglia delle domande: tessere da 48 px, con stato (risposta, saltata, da vedere) detto anche a parole */}
+      <FoglioInfo aperto={griglia} onChiudi={() => setGriglia(false)} titolo="Vai a una domanda">
+        <ul className="mb-4 flex flex-wrap gap-x-4 gap-y-2 text-[13px] font-semibold text-testo">
+          <li className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-4 w-4 rounded-[5px] border-2 border-azione bg-azione" />Risposte <span className="tabular-nums">{answeredCount}</span></li>
+          <li className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-4 w-4 rounded-[5px] border-2 border-dashed border-medio-numero bg-medio-tinta" />Saltate <span className="tabular-nums">{nSaltate}</span></li>
+          <li className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-4 w-4 rounded-[5px] border-2 border-tacca bg-superficie-2" />Da vedere <span className="tabular-nums">{Math.max(0, nDaVedere)}</span></li>
+        </ul>
+        <div role="group" aria-label="Domande" className="grid grid-cols-6 gap-2">
+          {questions.map((q, i) => {
+            const st = statoDomanda(i);
+            const corrente = i === currentIndex;
+            return (
+              <button key={q.id} type="button" onClick={() => vaiA(i)} aria-current={corrente ? 'true' : undefined}
+                aria-label={`Domanda ${i + 1}: ${st === 'risposta' ? 'risposta data' : st === 'saltata' ? 'saltata' : corrente ? 'quella di ora' : 'da vedere'}`}
+                className={cn('grid h-12 w-full place-items-center rounded-[10px] border-2 text-[15px] font-bold tabular-nums transition-colors duration-100',
+                  st === 'risposta' && 'border-azione bg-azione text-azione-su',
+                  st === 'saltata' && 'border-dashed border-medio-numero bg-medio-tinta text-medio-testo',
+                  st === 'da-vedere' && 'border-tacca bg-superficie-2 text-testo',
+                  corrente && 'outline outline-2 outline-offset-2 outline-testo')}>
+                {i + 1}
+              </button>
+            );
+          })}
+        </div>
+        <button type="button" onClick={() => { setGriglia(false); requestSubmit(); }}
+          className="mt-5 flex h-[52px] w-full items-center justify-center rounded-[12px] border border-azione/60 text-[15px] font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
+          Consegna
+        </button>
+      </FoglioInfo>
       {dialog}
     </div>
   );

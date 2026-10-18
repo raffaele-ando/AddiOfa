@@ -11,3 +11,37 @@
 .rivela { opacity: 0; transform: translateY(18px); transition: opacity 380ms ease, transform 380ms ease; }
 .rivela.rivela-si { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .rivela { opacity: 1; transform: none; transition: none; } }
+
+/* Scena dell'hero: una maschera sfuma tutti i lati (sinistra e destra, alto e basso), così in nessun tema resta il bordo del rettangolo.
+   Telefono: il basso sfuma di più, perché è lì che si appoggia il titolo. */
+.landing-scena {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 80%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 56%, transparent 98%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 80%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 56%, transparent 98%);
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+@media (min-width: 1024px) {
+  .landing-scena {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 74%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 74%, transparent 100%);
+  }
+}
+.landing-scena-scura { display: none; }
+.dark .landing-scena-chiara { display: none; }
+.dark .landing-scena-scura { display: block; }
+
+/* Immagini che nel tema scuro vanno rigradate in blu notte (banner con l'edificio, sfondo della chiusura): non un velo grigio sopra l'immagine chiara,
+   ma luminosità abbassata e un livello di colore blu notte (modo «color») che toglie il giallo caldo e tiene i volumi. La maschera sfuma verso il testo. */
+.landing-notte { isolation: isolate; }
+.dark .landing-notte img { filter: saturate(.6) brightness(.78) contrast(1.08); }
+.dark .landing-notte::after { content: ""; position: absolute; inset: 0; background: var(--landing-blocco-scuro-a); mix-blend-mode: color; opacity: .8; pointer-events: none; }
+.landing-notte-banner { -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent); mask-image: linear-gradient(to bottom, #000 55%, transparent); }
+@media (min-width: 640px) {
+  .landing-notte-banner { -webkit-mask-image: linear-gradient(to right, transparent, #000 48%); mask-image: linear-gradient(to right, transparent, #000 48%); }
+}
+/* Sfondo della chiusura: nel chiaro l'immagine sfuma nel blu del blocco (alto sul telefono, sinistra da 640 px) senza lasciare un bordo. */
+.landing-notte-cta { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 55%); mask-image: linear-gradient(to bottom, transparent 0%, #000 55%); }
+@media (min-width: 640px) {
+  .landing-notte-cta { -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 40%); mask-image: linear-gradient(to right, transparent 0%, #000 40%); }
+}
+.dark .landing-notte-cta img { filter: saturate(.85) brightness(.72) contrast(1.06); }
+.dark .landing-notte-cta::after { background: var(--landing-blocco-blu-a); mix-blend-mode: multiply; opacity: .5; }

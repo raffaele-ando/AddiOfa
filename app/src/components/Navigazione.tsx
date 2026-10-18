@@ -13,7 +13,10 @@ const VOCI: { id: Scheda; nome: string; icona: NomeIcona }[] = [
 
 /**
  * Barra in basso come nei concept 14 e 45: tre voci con icona e nome, senza pillole né riquadri.
- * La voce attiva è blu e in grassetto (`aria-current`); le altre grigio-blu. Area di tocco: tutta la colonna, alta almeno 56 px.
+ * Voce attiva: icona PIENA, blu, nome in grassetto (`aria-current`). Voci inattive: icona a contorno, tutte dello stesso grigio-blu `testo-tenue`,
+ * senza alcun cambio di colore al passaggio del mouse (il vecchio `hover:text-testo` faceva sembrare più scura la voce toccata per ultima).
+ * `attiva = null`: nessuna voce evidenziata (pagina che non appartiene a una scheda).
+ * Area di tocco: tutta la colonna, alta almeno 56 px (minimo richiesto 44); etichette da 12,5 px. Larga quanto la colonna del Layout.
  */
 export default function Navigazione({ attiva, onVai }: { attiva: Scheda | null; onVai: (s: Scheda) => void }) {
   return (
@@ -23,8 +26,8 @@ export default function Navigazione({ attiva, onVai }: { attiva: Scheda | null; 
         return (
           <button key={id} type="button" onClick={() => { playTapSound(); onVai(id); }} aria-current={on ? 'page' : undefined}
             className={cn('brand-premibile flex-1 min-w-0 min-h-[56px] flex flex-col items-center justify-center gap-[3px] rounded-[12px] text-[12.5px] leading-[16px] transition-colors duration-100',
-              on ? 'text-azione font-bold' : 'text-testo-tenue font-medium hover:text-testo')}>
-            <Icona nome={icona} size={27} />
+              on ? 'text-azione font-bold' : 'text-testo-tenue font-medium')}>
+            <Icona nome={icona} size={27} pieno={on} />
             {nome}
           </button>
         );

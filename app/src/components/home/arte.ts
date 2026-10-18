@@ -1,5 +1,4 @@
-// L'arte della Home: quale illustrazione del Brand Kit va con quale argomento e con quale stato (piano d'uso: docs/design/ILLUSTRAZIONI.md, sezione 3.1).
-import type { ChiaveBanner } from './Stima';
+// L'arte della Home: quale illustrazione del Brand Kit va con quale argomento e con quale stato (piano d'uso: docs/design/ILLUSTRAZIONI.md, sezione 3.1). La fascia di stato non usa più illustrazioni: ha un glifo da 40 px (Stima.tsx).
 
 /**
  * Una illustrazione per famiglia di argomento (tabella «Famiglie di argomento» del piano d'uso). Chiave = id della scheda di teoria.
@@ -21,19 +20,12 @@ const FAMIGLIA: Record<string, string> = {
   'reported-speech': 'messaggi-supporto', 'passive-voice': 'messaggi-supporto', 'relative-clauses': 'messaggi-supporto', 'gerunds-infinitives': 'messaggi-supporto',
   // Chi e dove
   'object-pronouns': 'verifica-utente', possessives: 'verifica-utente', 'possessive-s': 'verifica-utente', demonstratives: 'verifica-utente',
-  'there-is-are': 'verifica-utente', 'prepositions-place': 'verifica-utente', 'prepositions-time': 'verifica-utente',
+  // «There is / There are» e le preposizioni di luogo dicono dove sono le cose (lente), quelle di tempo l'orario (clessidra):
+  // la carta d'identità della famiglia «Chi e dove» qui non c'entra
+  'there-is-are': 'ricerca', 'prepositions-place': 'ricerca', 'prepositions-time': 'attesa-caricamento',
 };
 
 /** Nome dell'illustrazione (kit blu, gruppo illustrazioni) dell'argomento di teoria `topicId`. */
 export function arteArgomento(topicId: string): string {
   return FAMIGLIA[topicId] ?? 'studio-inglese';
 }
-
-/** Illustrazione della fascia di stato sotto il misuratore: nuovo, basso, medio, alto (concept 01: avvertenza, andamento, traguardo). */
-export const ARTE_STATO: Record<ChiaveBanner, string> = {
-  nuovo: 'quiz-test-lista',
-  partenza: 'attenzione-rischio',
-  margine: 'attenzione-rischio',
-  soglia: 'progressi-statistiche',
-  strada: 'successo',
-};

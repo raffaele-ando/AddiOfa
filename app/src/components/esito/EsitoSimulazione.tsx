@@ -1,16 +1,15 @@
-// Esito della simulazione (concept 18.9, 30.11, 10, 43): illustrazione dell'esito (superata `celebrazione`, non superata `mancato-superamento`),
-// misuratore, tessere icona/numero, confronto con la precedente, «Correzioni» e «Rifai», aree, correzioni complete.
-// Solo disegno: la consegna e i dati restano in ExamMode. Niente frasi: le regole stanno dietro la «i» (InfoPunteggio).
+// Risultato della simulazione (concept 18.9, 30.11, 10, 43): misuratore con la soglia nominata (RiepilogoEsito; la celebrazione solo se superata),
+// tessere icona/numero/parola, confronto con la precedente (solo dalla seconda), «Vedi le correzioni» e «Rifai la simulazione», argomenti, correzioni complete.
+// Solo disegno: la consegna e i dati restano in ExamMode. Le regole stanno dietro la «i» (InfoPunteggio).
 import { useRef, useState } from 'react';
 import type { ExamResult, PublicQuestion } from '../../access/provider';
 import type { ExamFormat } from '../../config/offer';
 import { Icona } from '../../brand/icone/Icona';
-import { cn } from '../../lib/utils';
 import { playTapSound } from '../../lib/audio';
-import MisuratoreEsito from './MisuratoreEsito';
+import RiepilogoEsito from './RiepilogoEsito';
 import CorrezioniComplete from './CorrezioniComplete';
 import InfoPunteggio from './InfoPunteggio';
-import { TessereEsito, RigaTempo } from './TessereEsito';
+import { TessereEsito } from './TessereEsito';
 import ConfrontoPrecedente, { type PuntiConfronto } from './ConfrontoPrecedente';
 import { coloreValore } from '../home/comune';
 import { IllustrazioneAnimata } from '../../brand/IllustrazioneAnimata';
@@ -55,60 +54,46 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
   };
 
   return (
-    <div className="relative h-full w-full sm:max-h-[calc(100dvh-3rem)] overflow-hidden bg-superficie sm:rounded-[32px] sm:border sm:border-linea shadow-sm dark:shadow-none transition-colors duration-100">
+    <div className="relative h-full w-full overflow-hidden bg-superficie transition-colors duration-100">
       <div className="h-full overflow-y-auto scrollbar-hide">
-        <div className="max-w-2xl mx-auto w-full p-4 sm:p-6 flex flex-col gap-5">
-          <header className="flex items-center gap-2 min-h-[40px]">
-            <button type="button" onClick={() => { playTapSound(); onExit(); }} aria-label="Indietro" className="brand-premibile -ml-2 grid h-10 w-10 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo">
+        <div className="max-w-[520px] mx-auto w-full p-4 sm:p-6 flex flex-col gap-4">
+          <header className="flex items-center gap-2 min-h-[44px]">
+            <button type="button" onClick={() => { playTapSound(); onExit(); }} aria-label="Indietro" className="brand-premibile -ml-2 grid h-11 w-11 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo">
               <Icona nome="indietro" size={28} />
             </button>
-            <h2 className="min-w-0 flex-1 text-[22px] leading-[30px] font-extrabold tracking-[-0.01em] text-testo">Esito</h2>
+            <h2 className="min-w-0 flex-1 text-[22px] leading-[30px] font-extrabold tracking-[-0.01em] text-testo">Risultato</h2>
             <PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole della simulazione" />
           </header>
 
-          <section aria-label="Risultato" className="rounded-[12px] bg-superficie-2 px-4 pt-3 pb-4 text-center">
-            {/* L'animazione parte una volta all'apertura; toccandola si rivede (Invio e Spazio compresi). */}
-            <button type="button" onClick={() => setRivedi(n => n + 1)} aria-label="Rivedi l'animazione"
-              className="mx-auto mb-1 block rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione ">
-              <IllustrazioneAnimata nome={superata ? 'celebrazione' : 'mancato-superamento'} lato={120} riavvia={rivedi} />
-            </button>
-            <MisuratoreEsito giuste={result.rawCorrect} totale={totale} soglia={format.passMark} superata={superata} />
-            <div className="-mt-1 flex justify-center">
-              <span className={cn(
-                'inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-base font-extrabold',
-                superata ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo'
-              )}>
-                <Icona nome={superata ? 'stato-ok' : 'stato-errore'} size={19} />
-                {superata ? 'Superata' : 'Non superata'}
-              </span>
-            </div>
-            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5">
-              <span role="img" aria-label={`Soglia ${format.passMark} su ${totale}`} className="inline-flex items-center gap-1.5 text-[14px] font-bold text-testo">
-                <Icona nome="soglia" size={17} className="text-alto-numero" /><span className="tabular-nums">{format.passMark}/{totale}</span>
-              </span>
-              <RigaTempo secondi={elapsedSeconds} minuti={format.minutes} scaduto={scaduto} />
-            </div>
-          </section>
+          <RiepilogoEsito giuste={result.rawCorrect} totale={totale} soglia={format.passMark} superata={superata} vuote={result.omitted}
+            secondi={elapsedSeconds} minuti={format.minutes} scaduto={scaduto}
+            arte={
+              // L'animazione parte una volta all'apertura; toccandola si rivede (Invio e Spazio compresi).
+              <button type="button" onClick={() => setRivedi(n => n + 1)} aria-label="Rivedi l'animazione"
+                className="rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione">
+                <IllustrazioneAnimata nome="celebrazione" lato={96} riavvia={rivedi} />
+              </button>
+            } />
 
           <TessereEsito giuste={result.rawCorrect} sbagliate={result.wrong} vuote={result.omitted} />
 
           {precedente && <ConfrontoPrecedente prima={precedente} dopo={{ esatte: result.rawCorrect, totale }} />}
 
-          {/* Un solo pulsante pieno: «Correzioni» (sono sotto, a un tocco); «Rifai» ricomincia con altre 30 domande. */}
-          <div className="flex gap-2.5">
+          {/* Un solo pulsante pieno: le correzioni (sono sotto, a un tocco); «Rifai la simulazione» ricomincia con altre 30 domande. */}
+          <div className="flex flex-col gap-2.5">
             <button type="button" onClick={vaiAlleCorrezioni}
-              className="flex h-[54px] flex-[3] items-center justify-center gap-2 rounded-[12px] bg-azione text-[15px] font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
-              <Icona nome="correzioni" size={22} />Correzioni
+              className="flex h-[54px] items-center justify-center gap-2 rounded-[12px] bg-azione text-[15px] font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
+              <Icona nome="correzioni" size={22} />Vedi le correzioni
             </button>
             <button type="button" onClick={() => { playTapSound(); onRetry(); }}
-              className="flex h-[54px] flex-[2] items-center justify-center gap-2 rounded-[12px] border border-azione/60 bg-superficie text-[15px] font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
-              <Icona nome="riprova" size={22} />Rifai
+              className="flex h-[54px] items-center justify-center gap-2 rounded-[12px] border border-azione/60 bg-superficie text-[15px] font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
+              <Icona nome="riprova" size={22} />Rifai la simulazione
             </button>
           </div>
 
           {Object.keys(aree).length > 0 && (
             <section aria-labelledby="titolo-aree" className="rounded-[12px] bg-superficie-2 p-4 text-left">
-              <h3 id="titolo-aree" className="mb-3 flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />Aree</h3>
+              <h3 id="titolo-aree" className="mb-3 flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />Come sei andato per argomento</h3>
               <ul className="space-y-3">
                 {Object.entries(aree).map(([nome, a]) => {
                   const pct = a.total > 0 ? Math.round((a.correct / a.total) * 100) : 0;

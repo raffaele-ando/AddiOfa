@@ -170,9 +170,9 @@ const livello = (l: Livello, titolo: string, illustrazione: string): Definizione
 });
 
 export const BADGE: DefinizioneBadge[] = [
-  domande('prima-domanda', 1, 'Prima domanda imparata', 'suggerimenti-consigli'),
-  domande('domande-25', 25, '25 domande imparate', 'studio-inglese'),
-  domande('domande-100', 100, '100 domande imparate', 'quiz-test'),
+  domande('prima-domanda', 1, 'Prima domanda', 'suggerimenti-consigli'),
+  domande('domande-25', 25, '25 domande', 'studio-inglese'),
+  domande('domande-100', 100, '100 domande', 'quiz-test'),
   argomenti('argomento-1', 1, 'Primo argomento', 'ricerca'),
   argomenti('argomenti-10', 10, '10 argomenti', 'successo'),
   argomenti('argomenti-20', 20, '20 argomenti', 'risultato-probabilita'),
@@ -213,7 +213,7 @@ export const BADGE: DefinizioneBadge[] = [
     valuta: (_c, m) => conteggio(m.simulazioniSuperate, 1, 'simulazione superata'),
   },
   {
-    id: 'simulazioni-superate-3', gruppo: 'simulazioni', titolo: 'Tre simulazioni superate', illustrazione: 'celebrazione',
+    id: 'simulazioni-superate-3', gruppo: 'simulazioni', titolo: '3 simulazioni superate', illustrazione: 'celebrazione',
     condizione: `Supera tre simulazioni (${EXAM.passMark}/${EXAM.questions} o più), anche non di fila.`,
     valuta: (_c, m) => conteggio(m.simulazioniSuperate, 3, 'simulazioni superate'),
   },

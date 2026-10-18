@@ -1,15 +1,14 @@
 import { useMemo, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
-import { Carta } from '../../../components/home/comune';
 import { REGOLA_IMPARATA } from '../../../components/home/comune';
 import { MIN_RISPOSTE } from '../../../components/home/stima';
 import { REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS } from '../../../config/offer';
 import { playTapSound } from '../../../lib/audio';
 import { analizzaLivello, argomentiRadar, MIN_RISPOSTE_ARGOMENTO, SOGLIA_DA_MIGLIORARE, type ArgomentoAnalisi } from '../../../lib/servizi/analisi';
-import { BarraTono, FoglioInfo, TONI, type Tono } from '../ui';
+import { BarraTono, Carta, FoglioInfo, TONI, type Tono } from '../ui';
 import { useExtra } from '../contesto';
 import Radar from '../servizi/Radar';
-import { Disegno } from '../servizi/componenti';
+import { BottoneAzione, Vuoto } from '../servizi/componenti';
 import { SOGLIA_DA_RIPASSARE, TESTO_TONO, tonoAccuratezza } from '../servizi/tono';
 
 const TONO_LIVELLO: Record<string, Tono> = { A1: 'azione', A2: 'viola', B1: 'medio' };
@@ -19,16 +18,16 @@ function RigaArgomento({ a, onApri }: { a: ArgomentoAnalisi; onApri: () => void 
   const tono = tonoAccuratezza(a.percento);
   return (
     <button type="button" onClick={() => { playTapSound(); onApri(); }} aria-label={`${a.titolo}: apri la lezione`}
-      className="brand-premibile block w-full rounded-[10px] bg-superficie px-3 py-2.5 text-left">
-      <span className="flex items-center justify-between gap-2">
-        <span data-testo-ok className="min-w-0 text-[14px] leading-[19px] font-semibold text-testo">{a.titolo}</span>
-        <span className={`shrink-0 text-[13px] tabular-nums ${dato ? 'font-bold' : ''} ${TESTO_TONO[tono ?? 'nessuno']}`}>{dato ? `${a.percento}%` : '–'}</span>
+      className="brand-premibile block w-full px-1 py-3 text-left">
+      <span className="flex items-baseline justify-between gap-3">
+        <span data-testo-ok className="min-w-0 text-[15px] leading-[21px] font-semibold text-testo">{a.titolo}</span>
+        <span className={`shrink-0 text-[14px] tabular-nums ${dato ? 'font-bold' : ''} ${TESTO_TONO[tono ?? 'nessuno']}`}>{dato ? `${a.percento}%` : '–'}</span>
       </span>
       <span className="mt-2 block"><BarraTono valore={dato ? a.percento! : 0} tono={tono ?? 'azione'} className="h-1.5" /></span>
-      <span className="mt-1.5 flex items-center gap-3 text-[12px] leading-[15px] text-testo-tenue tabular-nums">
-        <span className={`rounded-full px-1.5 font-bold ${TONI[TONO_LIVELLO[a.livello] ?? 'azione'].tinta} ${TONI[TONO_LIVELLO[a.livello] ?? 'azione'].testo}`}>{a.livello}</span>
-        <span className="inline-flex items-center gap-1" role="img" aria-label={`${a.risposte} risposte`}><Icona nome="risposte" size={13} />{a.risposte}</span>
-        <span className="inline-flex items-center gap-1" role="img" aria-label={`${a.imparate} imparate su ${a.totaleDomande}`}><Icona nome="imparate" size={13} />{a.imparate}/{a.totaleDomande}</span>
+      <span className="mt-2 flex items-center gap-3 text-[12px] leading-[16px] text-testo-tenue tabular-nums">
+        <span className={`rounded-full px-2 font-bold ${TONI[TONO_LIVELLO[a.livello] ?? 'azione'].tinta} ${TONI[TONO_LIVELLO[a.livello] ?? 'azione'].testo}`}>{a.livello}</span>
+        <span>{a.risposte} {a.risposte === 1 ? 'risposta' : 'risposte'}</span>
+        <span>{a.imparate} di {a.totaleDomande} imparate</span>
       </span>
     </button>
   );
@@ -54,25 +53,21 @@ export default function ProgressiArgomenti() {
 
   if (!an.haDati) {
     return (
-      <div role="status" className="mt-4 flex flex-col items-center text-center">
-        <Disegno nome="ricerca-scintille" lato={96} />
-        <h3 className="mt-3 text-[18px] leading-[24px] font-extrabold text-testo">Nessun dato</h3>
-        <button type="button" onClick={() => { playTapSound(); avviaEsercizi('smart'); }}
-          className="brand-premibile mt-4 inline-flex min-h-[48px] items-center gap-2 rounded-[13px] bg-azione px-6 text-[16px] font-bold text-azione-su"><Icona nome="studia" size={20} />Studia</button>
-      </div>
+      <Vuoto className="mt-4" illustrazione="progressi-statistiche" titolo="Ancora nessun argomento" causa="Servono tre risposte su un argomento per vederlo qui."
+        azioni={<BottoneAzione icona={<Icona nome="studia" size={20} />} onClick={() => avviaEsercizi('smart')}>Inizia a studiare</BottoneAzione>} />
     );
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="mt-4 flex flex-col gap-3">
       {radar.length > 0 && (
-        <Carta className="p-3.5">
+        <Carta>
           <Radar assi={radar.map(a => ({ nome: a.nome, valore: a.percento ?? 0 }))}
             descrizione={`Radar dell'accuratezza su ${radar.length} argomenti: ${radar.map(a => `${a.nome} ${a.percento} per cento`).join(', ')}.`} />
           <ul className="mt-1 flex flex-wrap justify-center gap-x-4 gap-y-1" aria-label="Colori">
             {/* ogni fascia ha il suo colore, la sua forma (icona) e la sua parola: mai il solo colore */}
             {([['alto', 'Solido', 'stato-ok'], ['medio', 'Da migliorare', 'trend-uguale'], ['basso', 'Da ripassare', 'stato-da-ripassare']] as const).map(([t, nome, icona]) => (
-              <li key={t} className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12.5px] leading-[16px] font-bold ${TONI[t].tinta} ${TONI[t].testo}`}>
+              <li key={t} className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] leading-[16px] font-bold ${TONI[t].tinta} ${TONI[t].testo}`}>
                 <Icona nome={icona} size={14} />{nome}
               </li>
             ))}
@@ -80,20 +75,20 @@ export default function ProgressiArgomenti() {
         </Carta>
       )}
 
-      <Carta className="p-2.5">
-        <ul className="flex flex-col gap-[6px]">
+      <Carta className="px-3 py-1">
+        <ul className="flex flex-col divide-y divide-linea">
           {mostrati.map(a => <li key={a.id}><RigaArgomento a={a} onApri={() => vai('lezione-dettaglio', { id: a.id })} /></li>)}
         </ul>
         {(altri > 0 || tutti) && (
-          <button type="button" onClick={() => { playTapSound(); setTutti(v => !v); }} aria-expanded={tutti} aria-label={tutti ? 'Mostra meno argomenti' : `Mostra tutti i ${an.argomenti.length} argomenti`}
-            className="brand-premibile mt-2 flex w-full items-center justify-center gap-1.5 rounded-[10px] py-2.5 text-[14px] font-bold text-azione-testo tabular-nums">
-            <Icona nome="espandi" size={20} className={tutti ? 'rotate-180' : undefined} />{tutti ? '' : an.argomenti.length}
+          <button type="button" onClick={() => { playTapSound(); setTutti(v => !v); }} aria-expanded={tutti}
+            className="brand-premibile flex min-h-[44px] w-full items-center justify-center gap-1.5 border-t border-linea text-[14px] font-bold text-azione-testo">
+            <Icona nome="espandi" size={18} className={tutti ? 'rotate-180' : undefined} />{tutti ? 'Mostra meno argomenti' : `Mostra tutti i ${an.argomenti.length} argomenti`}
           </button>
         )}
       </Carta>
 
-      <button type="button" onClick={() => { playTapSound(); setInfo(true); }} aria-label="Come si calcola"
-        className="brand-premibile mx-auto grid h-9 w-9 place-items-center rounded-full text-testo-tenue hover:text-testo"><Icona nome="info" size={20} /></button>
+      <button type="button" onClick={() => { playTapSound(); setInfo(true); }}
+        className="brand-premibile mx-auto inline-flex min-h-[44px] items-center gap-1.5 rounded-full px-3 text-[14px] font-semibold text-testo-tenue hover:text-testo"><Icona nome="info" size={18} />Come si calcola</button>
 
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Come si calcola">
         <ul className="flex list-disc flex-col gap-2 pl-5">

@@ -27,8 +27,8 @@ function DatiFormato() {
 }
 
 /**
- * «Simulazione»: una carta con l'ultimo risultato (x/30 e data) e il ▶ per iniziarne una nuova; senza simulazioni svolte,
- * i tre dati del formato. Toccando il risultato si apre il dettaglio. «Tutte» apre l'elenco.
+ * «Simulazione»: una carta con l'ultimo risultato (x/30, esito con segno e parola, data; sotto soglia anche la soglia) e un pulsante con la parola
+ * per iniziarne una nuova; senza simulazioni svolte, i tre dati del formato. Toccando il risultato si apre il dettaglio. «Tutte le simulazioni» apre l'elenco.
  */
 export default function Simulazione({ ultima, onInizia, onApriUltima, onTutte }: {
   ultima: RiepilogoSimulazione | null; onInizia?: () => void; onApriUltima?: () => void; onTutte?: () => void;
@@ -42,28 +42,31 @@ export default function Simulazione({ ultima, onInizia, onApriUltima, onTutte }:
           <Icona nome={ultima.superata ? 'stato-ok' : 'stato-attenzione'} size={14} />{ultima.superata ? 'Superata' : 'Sotto soglia'}
         </span>
       </span>
-      <span aria-hidden="true" className="block text-[13px] leading-[17px] text-testo-tenue">{dataBreve(ultima.data)}</span>
+      <span aria-hidden="true" className="block text-[13px] leading-[17px] text-testo-tenue">
+        {dataBreve(ultima.data)}{!ultima.superata && <> · soglia {EXAM.passMark} su {EXAM.questions}</>}
+      </span>
     </span>
   ) : <DatiFormato />;
 
-  const etichettaUltima = ultima ? `Ultima simulazione, ${dataBreve(ultima.data)}: ${ultima.esatte} su ${ultima.totale}, ${ultima.superata ? 'superata' : 'sotto soglia'}` : '';
-  const arte = <span aria-hidden="true" className="w-[58px] h-[56px] shrink-0 grid place-items-center"><Illustrazione nome="simulazione-esame" lato={54} /></span>;
-  const classiCorpo = 'flex flex-1 min-w-0 items-center gap-[10px] text-left';
+  const etichettaUltima = ultima ? `Ultima simulazione, ${dataBreve(ultima.data)}: ${ultima.esatte} su ${ultima.totale}, ${ultima.superata ? 'superata' : `sotto soglia (soglia ${EXAM.passMark})`}` : '';
+  const arte = <span aria-hidden="true" className="w-[56px] h-[56px] shrink-0 grid place-items-center"><Illustrazione nome="simulazione-esame" lato={54} /></span>;
+  const classiCorpo = 'flex flex-1 min-w-0 items-center gap-3 text-left';
 
   return (
-    <section aria-labelledby="titolo-simulazione" className="flex flex-col gap-[10px]">
-      <TitoloSezione id="titolo-simulazione" destra={onTutte ? <LinkTutte onClick={onTutte} aria="Tutte le simulazioni" /> : undefined}>Simulazione</TitoloSezione>
-      <div className="flex items-center gap-[10px] rounded-[12px] bg-superficie-2 p-[9px] pr-[10px]">
+    <section aria-labelledby="titolo-simulazione" className="flex flex-col gap-3">
+      <TitoloSezione id="titolo-simulazione" destra={onTutte ? <LinkTutte onClick={onTutte} aria="Tutte le simulazioni" testo="Tutte le simulazioni" testoBreve="Tutte" /> : undefined}>Simulazione</TitoloSezione>
+      <div className="rounded-[16px] bg-superficie-2 p-4">
         {ultima && onApriUltima ? (
-          <button type="button" onClick={() => { playTapSound(); onApriUltima(); }} aria-label={etichettaUltima} className={cn(classiCorpo, 'brand-premibile rounded-[10px]')}>{arte}{corpo}</button>
+          <button type="button" onClick={() => { playTapSound(); onApriUltima(); }} aria-label={etichettaUltima} className={cn(classiCorpo, 'brand-premibile w-full rounded-[10px]')}>
+            {arte}{corpo}<Icona nome="avanti" size={20} className="ml-auto shrink-0 text-testo-tenue lg:hidden" />
+          </button>
         ) : (
           <div className={classiCorpo} role={ultima ? 'img' : undefined} aria-label={ultima ? etichettaUltima : undefined}>{arte}{corpo}</div>
         )}
         {onInizia && (
-          <button type="button" onClick={() => { playTapSound(); onInizia(); }} aria-label="Inizia una simulazione"
-            className="brand-premibile shrink-0 w-[48px] h-[48px] rounded-full grid place-items-center text-azione-su shadow-[0_2px_8px_rgba(37,99,235,0.24)] dark:shadow-none"
-            style={{ background: 'linear-gradient(90deg, var(--color-azione-da), var(--color-azione-a))' }}>
-            <Icona nome="studia" size={24} />
+          <button type="button" onClick={() => { playTapSound(); onInizia(); }}
+            className="brand-premibile mt-3 w-full min-h-[48px] flex items-center justify-center gap-2 rounded-[12px] bg-azione-tinta text-azione-testo text-[15px] leading-[20px] font-bold">
+            <Icona nome="studia" size={18} />{ultima ? 'Fai un’altra simulazione' : 'Fai una simulazione'}
           </button>
         )}
       </div>

@@ -1,8 +1,8 @@
 // NOI, la classifica: gli stati in cui può trovarsi per chi apre la schermata, e i due numeri che l'app calcola (e invia solo a chi ha dato il consenso).
 // Niente classifiche inventate: la classifica la dà ATLAS e solo se risponde; qui si decide soltanto quale frase vera dire.
 import type { AppState } from '../../types';
-import { countLearned } from '../spacedRepetition';
 import { questions } from '../../data/questions';
+import { numeriUtente } from '../profilo/numeri';
 
 export interface IngressiNoi {
   /** ATLAS ha un indirizzo configurato. */
@@ -30,9 +30,9 @@ export function statoNoi(i: IngressiNoi): StatoNoi {
   return i.inClassifica ? 'aderito' : 'da-aderire';
 }
 
-/** Domande imparate e miglior punteggio in simulazione: la formula che il Worker usa per ordinare (imparate × 100 + miglior simulazione). Dati locali: non sono una posizione. */
+/** Domande imparate e miglior punteggio in simulazione: la formula che il Worker usa per ordinare (imparate × 100 + miglior simulazione). Dati locali: non sono una posizione.
+ *  Stessa fonte di Profilo e Progressi (lib/profilo/numeri.ts): un numero ha un solo valore in tutta l'app. */
 export function valoriNoi(stato: AppState): { imparate: number; migliorSimulazione: number } {
-  const imparate = countLearned(stato.stats, questions.map(q => q.id));
-  const punteggi = (Array.isArray(stato.history) ? stato.history : []).map(h => h.score).filter(Number.isFinite);
-  return { imparate, migliorSimulazione: Math.max(0, ...punteggi) };
+  const n = numeriUtente(stato, questions);
+  return { imparate: n.imparate, migliorSimulazione: n.migliorSimulazione ?? 0 };
 }

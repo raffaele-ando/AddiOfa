@@ -216,3 +216,13 @@
   background-size: 100% 1500px;
   background-repeat: repeat-y;
 }
+
+/* Guscio (components/Layout.tsx): colonna unica da 480 px; da 1024 px una pagina può chiedere 960 px con useColonnaLarga() o <Layout larga>. */
+:root { --colonna: 480px; }
+@media (min-width: 1024px) { :root[data-colonna="larga"] { --colonna: 960px; } }
+/* Le schermate che hanno ancora la cornice finta (angoli arrotondati, filo, altezza massima) la perdono dentro la colonna: la colonna è la cornice. */
+@media (min-width: 640px) {
+  .guscio-colonna [class*="sm:rounded-[28px]"],
+  .guscio-colonna [class*="sm:rounded-[32px]"] { border-radius: 0; border-width: 0; box-shadow: none; }
+  .guscio-colonna [class*="sm:max-h-[calc(100dvh-3rem)]"] { max-height: none; }
+}

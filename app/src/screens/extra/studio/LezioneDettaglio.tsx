@@ -1,5 +1,5 @@
 // Una lezione (params.id = id dell'argomento di teoria): tre passi a icone (teoria, esercizi, verifica) con avanzamento vero e tempo.
-// Concept: 31 («dettaglio lezione», 12) e 49. Nessuna frase: icone, numeri, un solo ▶. La verifica è la misura: quante domande sono imparate.
+// Concept: 31 («dettaglio lezione», 12) e 49. Passi con la parola, minuti con l'unità, un solo ▶. La verifica è la misura: quante domande sono imparate.
 import { useMemo, type ReactNode } from 'react';
 import { useExtra } from '../contesto';
 import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
@@ -12,7 +12,7 @@ import { Pagina, Bottone, StatoVuoto, BarraTono, IconaTono, ChipLivello, Arte, t
 const CLASSE_RIGA = 'w-full flex items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left';
 
 function Minuti({ n }: { n: number }) {
-  return <span className="shrink-0 inline-flex items-center gap-1 text-[12.5px] leading-[17px] tabular-nums text-testo-tenue"><Icona nome="tempo" size={14} />{n}</span>;
+  return <span className="shrink-0 text-[12.5px] leading-[17px] tabular-nums text-testo-tenue">{n} min</span>;
 }
 
 /** Un passo che si apre (teoria, esercizi): icona nel suo tono, nome, minuti, e a destra la freccia o il ▶. */
@@ -41,8 +41,8 @@ export default function LezioneDettaglio() {
     return (
       <Pagina titolo="Lezione" onIndietro={indietro}>
         <div className="mt-6">
-          <StatoVuoto illustrazione={{ nome: 'ricerca-scintille' }} titolo="Lezione non trovata">
-            <Bottone onClick={() => vai('percorso')} icona={<Icona nome="percorso" size={18} />}>Percorso</Bottone>
+          <StatoVuoto illustrazione={{ nome: 'ricerca-scintille' }} titolo="Lezione non trovata" testo="Scegline un'altra dal percorso.">
+            <Bottone onClick={() => vai('percorso')} icona={<Icona nome="percorso" size={18} />}>Apri il percorso</Bottone>
           </StatoVuoto>
         </div>
       </Pagina>
@@ -60,12 +60,12 @@ export default function LezioneDettaglio() {
 
   return (
     <Pagina titolo={titoloBreve(topic)} onIndietro={indietro}
-      destra={<Arte nome={famigliaDi(topic.id).illustrazione} lato={76} className="-mt-0.5" />}
+      destra={<Arte nome={famigliaDi(topic.id).illustrazione} lato={40} />}
       sotto={
         <span className="inline-flex items-center gap-3">
           <ChipLivello livello={topic.livello} /><span className="sr-only">Livello {topic.livello}</span>
-          <span className="inline-flex items-center gap-1 tabular-nums"><Icona nome="tempo" size={15} />{l.minuti.totale}</span>
-          <span className="tabular-nums" aria-label={`Lezione ${l.numero} di ${lezioni.length}`}>{l.numero}/{lezioni.length}</span>
+          <span className="inline-flex items-center gap-1 tabular-nums"><Icona nome="tempo" size={15} />{l.minuti.totale} min</span>
+          <span className="tabular-nums">Lezione {l.numero} di {lezioni.length}</span>
         </span>
       }>
       <ol className="mt-5 flex flex-col gap-2.5" aria-label="Passi della lezione">
@@ -94,7 +94,7 @@ export default function LezioneDettaglio() {
         <div className="mt-5 flex flex-col items-center gap-3 rounded-[16px] bg-superficie-2 px-4 py-4">
           <Arte nome="documento-completato" gruppo="stati" lato={96} />
           {successiva && (
-            <Bottone onClick={() => vai('lezione-dettaglio', { id: successiva.topic.id })} icona={<Icona nome="studia" size={18} />}>Continua</Bottone>
+            <Bottone onClick={() => vai('lezione-dettaglio', { id: successiva.topic.id })} icona={<Icona nome="studia" size={18} />}>Lezione successiva</Bottone>
           )}
         </div>
       )}

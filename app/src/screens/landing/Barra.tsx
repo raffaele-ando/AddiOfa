@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Icona } from '../../brand/icone/Icona';
 import { playTapSound } from '../../lib/audio';
 import Marchio from '../../brand/Marchio';
-import { FOCUS } from './comune';
+import { Colonna, FOCUS } from './comune';
 import { cn } from '../../lib/utils';
 
 export const ANCORE = [
-  { id: 'home', label: 'Home' },
-  { id: 'ofa', label: 'Cos\'è l\'OFA' },
+  { id: 'ofa', label: 'Cos’è l’OFA' },
   { id: 'come-funziona', label: 'Come funziona' },
-  { id: 'perche', label: 'Funzionalità' },
-  { id: 'domande', label: 'FAQ' },
+  { id: 'perche', label: 'Il test' },
+  { id: 'domande', label: 'Domande' },
 ];
 
 /** Porta alla sezione senza toccare l'indirizzo della pagina (l'app usa l'URL per altro). */
@@ -25,7 +24,7 @@ export function vaiA(id: string) {
 
 /** Sezione in vista: la voce del menu si colora. Nessun movimento, solo il cambio di colore. */
 function useSezioneAttiva(): string {
-  const [attiva, setAttiva] = useState(ANCORE[0].id);
+  const [attiva, setAttiva] = useState('');
   useEffect(() => {
     if (typeof IntersectionObserver === 'undefined') return;
     const visibili = new Map<string, number>();
@@ -41,21 +40,35 @@ function useSezioneAttiva(): string {
   return attiva;
 }
 
-// Barra in alto, sopra la scena: il marchio, il menu a pillola (da 1024 px), il pulsante d'azione e, sul telefono, il menu a tendina.
+// Barra in alto: il marchio, il menu a pillola (da 1024 px), il pulsante d'azione e, sul telefono, il menu a tendina. Sta nella stessa colonna dei contenuti.
+// In cima alla pagina è trasparente (sotto c'è la scena); appena si scorre diventa piena (fondo al 96 %, sfocatura, filetto), così il testo non passa sotto il marchio.
+// Il pulsante d'azione sul telefono compare solo quando quello dell'hero è uscito dalla vista: un solo pulsante alla volta.
 export default function Barra({ onStart }: { onStart(): void }) {
   const attiva = useSezioneAttiva();
   const [aperto, setAperto] = useState(false);
+  const [scorsa, setScorsa] = useState(false);
+  const [oltreHero, setOltreHero] = useState(false);
+  const rif = useRef<HTMLElement>(null);
   const vai = (id: string) => { playTapSound(); setAperto(false); vaiA(id); };
 
+  useEffect(() => {
+    const radice = rif.current?.parentElement;
+    if (!radice) return;
+    const f = () => { setScorsa(radice.scrollTop > 8); setOltreHero(radice.scrollTop > 400); };
+    f();
+    radice.addEventListener('scroll', f, { passive: true });
+    return () => radice.removeEventListener('scroll', f);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-30 -mb-16 h-16">
-      <div className="absolute inset-0 backdrop-blur-md [background:var(--landing-barra)] lg:[background:transparent] lg:backdrop-blur-none" aria-hidden />
-      <div className="relative mx-auto flex h-16 w-full max-w-[1280px] items-center justify-between gap-3 px-5 sm:px-8">
+    <header ref={rif} className="sticky top-0 z-30 -mb-16 h-16">
+      <div aria-hidden className={cn('absolute inset-0 border-b transition-colors duration-100', scorsa || aperto ? 'border-linea bg-fondo/96 backdrop-blur-md' : 'border-transparent bg-transparent')} />
+      <Colonna className="relative flex h-16 items-center justify-between gap-3">
         <button type="button" onClick={() => vai('home')} aria-label="AddiOFA, torna in cima" className={cn('flex shrink-0 items-center rounded-lg', FOCUS)}>
-          <Marchio disposizione="orizzontale" altezza={34} />
+          <Marchio disposizione="orizzontale" altezza={28} />
         </button>
 
-        <nav aria-label="Sezioni della pagina" className="vetro vetro-forte hidden lg:flex items-center gap-0.5 rounded-full p-1">
+        <nav aria-label="Sezioni della pagina" className="hidden items-center gap-0.5 rounded-full border border-linea bg-superficie p-1 lg:flex">
           {ANCORE.map(a => (
             <a
               key={a.id}
@@ -73,15 +86,15 @@ export default function Barra({ onStart }: { onStart(): void }) {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <button
             type="button"
+            aria-label="Inizia il test di livello"
             onClick={() => { playTapSound(); onStart(); }}
-            className={cn('flex shrink-0 items-center gap-2.5 rounded-full bg-azione hover:bg-azione-scuro py-1.5 pl-5 pr-1.5 text-sm font-bold text-azione-su transition-colors duration-100', FOCUS)}
+            className={cn('h-10 shrink-0 items-center gap-2 rounded-full bg-azione px-5 text-sm font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro', oltreHero ? 'inline-flex' : 'hidden lg:inline-flex', FOCUS)}
           >
-            <span className="sm:hidden">Inizia</span>
-            <span className="hidden sm:inline">Fai il diagnostico</span>
-            <span aria-hidden className="flex h-8 w-8 items-center justify-center rounded-full bg-azione-su text-azione"><Icona nome="avanti" size={18} /></span>
+            <span className="lg:hidden">Inizia il test</span>
+            <span className="hidden lg:inline">Inizia il test di livello</span>
           </button>
           <button
             type="button"
@@ -89,15 +102,15 @@ export default function Barra({ onStart }: { onStart(): void }) {
             aria-controls="menu-landing"
             aria-label={aperto ? 'Chiudi il menu' : 'Apri il menu'}
             onClick={() => { playTapSound(); setAperto(v => !v); }}
-            className={cn('flex h-10 w-10 items-center justify-center rounded-full text-testo hover:bg-linea lg:hidden', FOCUS)}
+            className={cn('flex h-11 w-11 items-center justify-center rounded-full text-testo hover:bg-linea lg:hidden', FOCUS)}
           >
             <Icona nome={aperto ? 'chiudi' : 'menu'} size={24} />
           </button>
         </div>
-      </div>
+      </Colonna>
 
       {aperto && (
-        <nav id="menu-landing" aria-label="Sezioni della pagina" className="vetro vetro-forte absolute inset-x-4 top-[4.25rem] flex flex-col rounded-3xl p-2 lg:hidden">
+        <nav id="menu-landing" aria-label="Sezioni della pagina" className="absolute inset-x-4 top-[4.25rem] flex flex-col rounded-3xl border border-linea bg-superficie p-2 shadow-lg dark:shadow-none lg:hidden">
           {ANCORE.map(a => (
             <a
               key={a.id}

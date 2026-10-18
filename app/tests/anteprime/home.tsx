@@ -1,5 +1,5 @@
 // Anteprima della home con dati di prova.
-// Uso: /tests/anteprime/home.html?vista=home|lezioni|impostazioni|misuratore  &stato=nuovo|basso|medio|alto (nuovo = senza diagnostico; basso 5/10, medio 9/10, alto 10/10)  &tema=dark  &sim=0|1  &punti=1..5 (punti del grafico: diagnostico + simulazioni)  &focus=0 (barre non cliccabili)
+// Uso: /tests/anteprime/home.html?vista=home|lezioni|impostazioni|misuratore  &stato=nuovo|basso|medio|alto (nuovo = senza diagnostico; basso 5/10, medio 9/10, alto 10/10)  &tema=dark  &sim=0|1  &punti=1..5 (punti del grafico: diagnostico + simulazioni)  &nome=Raffaele (profilo con nome: saluto, se la finestra è alta) &aree=0 (nessuna risposta per area: carta vuota) &debole=1 (un'area sotto il 40 %)
 // Registro per Playwright: window.__log (callback chiamate).
 import { StrictMode, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -31,8 +31,10 @@ function costruisci(): AppState {
   if (stato === 'nuovo') return base;
   const acc = stato === 'basso' ? 0.3 : stato === 'medio' ? 0.55 : 0.85;
   const nStats: AppState['stats'] = {};
-  questions.slice(0, 160).forEach((qq, i) => {
-    const ok = (i * 37 % 100) / 100 < acc;
+  // debole=1: le domande di Traduzione sono quasi tutte sbagliate (area sotto il 40 %); aree=0: nessuna risposta registrata per area
+  const slice = q.get('aree') === '0' ? [] : questions.slice(0, 160);
+  slice.forEach((qq, i) => {
+    const ok = q.get('debole') === '1' && qq.category === 'Traduzione' ? i % 6 === 0 : (i * 37 % 100) / 100 < acc;
     nStats[qq.id] = { correct: ok ? 3 : 1, incorrect: ok ? 1 : 3, lastSeen: Date.now(), box: ok && i % 3 ? 2 : 0, easiness: 2.3 };
   });
   const diagOk = stato === 'basso' ? 5 : stato === 'medio' ? 9 : 10; // 5/10 = basso, 9/10 = 62 % (medio), 10/10 = 87 % (alto)
@@ -47,6 +49,7 @@ function costruisci(): AppState {
   return {
     ...base, stats: nStats, history, streak: stato === 'basso' ? 1 : 3, lastActiveDate: Date.now(),
     onboarding: { completedAt: Date.now() - 3 * 864e5, hasCertification: false, hasOfa: 'unknown', diagnosticCorrect: diagOk, diagnosticTotal: 10 },
+    ...(q.get('nome') ? { extra: { progetto: { profilo: { nome: q.get('nome'), email: 'raffaele.rossi@mail.polimi.it', emailVerificata: false, consensi: { noi: false, atlas: false, comunicazioni: false }, versioneInformativa: 'x', creatoIl: 1760000000000, aggiornatoIl: 1760000000000 } } } } : {}),
     dailyActivity: { [giorno(0)]: 14, [giorno(1)]: 22, [giorno(2)]: 8, [giorno(4)]: 30, [giorno(6)]: 5 },
   };
 }
