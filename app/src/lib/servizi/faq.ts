@@ -1,5 +1,5 @@
 // «Guida e FAQ»: testi veri, presi da config/offer.ts. Nessuna promessa che non si possa mantenere:
-// l'app è gratuita, statica, senza dati richiesti, e i dati restano nel dispositivo. Cercare e filtrare sono funzioni pure.
+// l'app è gratuita, statica, senza account, e i dati restano nel dispositivo. Cercare e filtrare sono funzioni pure.
 import type { LegalSection } from '../../types';
 import {
   DISCLAIMER, EXAM, OFA_CONSEQUENCES, OFA_RULES_NOTE, DIAGNOSTIC_QUESTIONS, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, RETAKE_COST_EUR,
@@ -102,15 +102,9 @@ export function vociFaq(): VoceFaq[] {
     {
       id: 'dati-raccolti', categoria: 'dati', domanda: 'Che dati raccogliete?',
       risposta: [
-        'Nessun dato per studiare: domande, correzione e progressi restano nel tuo browser. Solo se crei un Project ID, entri nella classifica NOI o chiedi le email di Project raccogliamo ciò che serve a quella cosa. Le caselle sono spente finché non le accendi tu e le puoi spegnere quando vuoi.',
+        'I progressi di studio restano nel tuo browser. All\'inizio ti chiediamo la tua email del Politecnico (obbligatoria: il nome lo ricaviamo dall\'email) e il percorso di studi (scuola, sede, livello, corso, anno), e ti chiediamo come ci hai conosciuto: li riceve ATLAS, il servizio di Project che gestisce AddiOFA. La classifica NOI, la personalizzazione e le comunicazioni sono consensi facoltativi, spenti finché non li accendi tu.',
       ],
       chiavi: 'privacy gdpr tracciamento account email',
-      legale: { sezione: 'privacy', testo: 'Leggi l\'informativa privacy' },
-    },
-    {
-      id: 'dati-email-polimi', categoria: 'dati', domanda: 'Devo dare l\'email del Politecnico?',
-      risposta: ['No. Non è necessaria per studiare. La chiediamo solo se vuoi una funzione che ne ha bisogno (il badge «studente PoliMi», che compare dopo aver aperto un link che ti scriviamo), e in quel caso te lo diciamo prima.'],
-      chiavi: 'email polimi istituzionale registrazione account iscrizione obbligatoria',
       legale: { sezione: 'privacy', testo: 'Leggi l\'informativa privacy' },
     },
     {

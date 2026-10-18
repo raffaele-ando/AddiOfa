@@ -1,5 +1,5 @@
 import { ECOSYSTEM } from '../config/ecosystem';
-import { AVVERTENZA_INDIPENDENZA, LEGAL_AGGIORNATO, rigaContatto, type LegalDoc } from './base';
+import { AVVERTENZA_INDIPENDENZA, LEGAL_AGGIORNATO, descrizioneTitolare, rigaContatto, type LegalDoc } from './base';
 
 const P = ECOSYSTEM.name;
 const A = ECOSYSTEM.engineName;
@@ -19,7 +19,7 @@ export const termini: LegalDoc = {
     {
       titolo: 'Chi lo pubblica',
       paragrafi: [
-        `AddiOFA fa parte di ${P}, insieme a NOI, ${A} e Agorà: ${P} è il progetto studentesco che lo pubblica. ${A} è il servizio che custodisce l'account e la classifica, NOI è la classifica, Agorà è la pagina di ${P} per gli studenti del Politecnico, il ${ID} è l'account facoltativo.`,
+        `AddiOFA fa parte di ${P}, insieme a NOI, ${A} e Agorà: ${P} è il progetto studentesco che lo pubblica (${descrizioneTitolare()}). ${A} è il servizio che custodisce le iscrizioni e la classifica, NOI è la classifica, Agorà è la pagina di ${P} per gli studenti del Politecnico, il ${ID} è l'account facoltativo.`,
         ...rigaContatto(),
       ],
     },
@@ -34,21 +34,22 @@ export const termini: LegalDoc = {
     {
       titolo: 'Come si usa',
       paragrafi: [
-        'Puoi usare il sito quanto vuoi, per studiare: tutte le domande, le schede di teoria e le simulazioni sono aperte. Non ti chiediamo dati per studiare. Project ID, classifica NOI e le email di Project sono facoltativi e si attivano solo se lo scegli.',
+        'Puoi usare il sito quanto vuoi, per studiare: tutte le domande, le schede di teoria e le simulazioni sono aperte. All\'inizio ti chiediamo l\'email del Politecnico (il nome lo ricaviamo da lì, e lo puoi correggere) e che cosa studi al Politecnico; i consensi sono facoltativi.',
         'I tuoi progressi, il profilo, gli obiettivi e le sfide restano nel browser di questo dispositivo. Se cancelli i dati del sito o cambi dispositivo li perdi, a meno che tu non li abbia esportati dalle Impostazioni.',
+        `Se ${A} non è raggiungibile o sei senza connessione, l'app funziona lo stesso: l'iscrizione resta sul dispositivo e viene inviata appena possibile.`,
       ],
     },
     {
-      titolo: 'Il tuo indirizzo email',
+      titolo: 'Dati veri e email',
       paragrafi: [
-        'Se crei un Project ID, scrivi il tuo indirizzo, non quello di un\'altra persona.',
+        'Scrivi i tuoi dati veri, e solo il tuo indirizzo email: non usare quello di un\'altra persona. L\'email è «non verificata» finché non la verifichi con il link (quando questa versione lo offre): per questo non dà diritto a nulla di più di quanto dice la schermata «Project ID».',
         'Come trattiamo i dati lo dice l\'informativa sulla privacy; chi vuole può cambiarli o cancellarli da «Project ID».',
       ],
     },
     {
       titolo: `${ID}, NOI e Agorà`,
       paragrafi: [
-        `Il ${ID} è facoltativo e serve per entrare in NOI e per ricevere le email di ${P}. Per crearlo devi avere almeno 14 anni. Entrare nella classifica NOI è una casella a parte, spenta di partenza: chi entra è visibile con il @nome utente, le domande imparate e il miglior punteggio. Uscire dalla classifica o dalle comunicazioni non richiede di eliminare il ${ID}.`,
+        `Il ${ID} è facoltativo: serve a ritrovare l'iscrizione e a scegliere cosa condividere, permesso per permesso. Entrare nella classifica NOI è un permesso a parte, spento di partenza: chi entra è visibile con il @nome utente, le domande imparate e il miglior punteggio.`,
         'Scegli un @nome utente che non offenda nessuno: ci riserviamo di togliere dalla classifica chi non lo fa. I punteggi li invia l\'app e non sono controllati: la classifica è un gioco, non una prova di merito.',
         'Agorà è su Instagram: aprendo il suo profilo lasci AddiOFA e valgono le regole di Instagram.',
       ],

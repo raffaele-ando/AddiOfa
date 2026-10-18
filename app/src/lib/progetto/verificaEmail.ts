@@ -3,27 +3,8 @@
 // stanno in lib/firebase.ts. Regola: `emailVerificata` diventa true SOLO dopo un `signInWithEmailLink` riuscito per la stessa email del profilo;
 // in ogni altro caso (errore, offline, provider non abilitato, dominio non autorizzato) l'etichetta resta «non verificata» e si dice perché.
 
-/** Dove si salva (nel browser) l'email a cui si è inviato il link e per quale scopo: serve al ritorno per completare l'operazione. Si cancella al ritorno. */
+/** Dove si salva (nel browser) l'email a cui si è inviato il link: serve al ritorno per completare l'accesso. */
 export const CHIAVE_VERIFICA_EMAIL = 'addiofa_verifica_email';
-
-/** Un link serve a due cose diverse: entrare nel Project ID con l'email («accesso») oppure provare che un indirizzo PoliMi è tuo («verifica», per il badge studente). */
-export type ScopoLink = 'accesso' | 'verifica';
-
-export interface LinkPendente { email: string; scopo: ScopoLink }
-
-export const serializzaPendente = (p: LinkPendente): string => JSON.stringify({ email: p.email.trim().toLowerCase(), scopo: p.scopo });
-
-/** Rilegge ciò che si è salvato all'invio. Un testo semplice (versione precedente) era sempre una verifica. Null se non si capisce. */
-export function leggiPendente(raw: string | null | undefined): LinkPendente | null {
-  if (!raw) return null;
-  try {
-    const v = JSON.parse(raw) as Partial<LinkPendente>;
-    if (v && typeof v.email === 'string' && v.email && (v.scopo === 'accesso' || v.scopo === 'verifica')) return { email: v.email, scopo: v.scopo };
-    return null;
-  } catch {
-    return raw.includes('@') ? { email: raw.trim().toLowerCase(), scopo: 'verifica' } : null;
-  }
-}
 
 export interface ImpostazioniLink { url: string; handleCodeInApp: true }
 
@@ -68,9 +49,6 @@ export function messaggioVerifica(codice: string | undefined, fase: FaseVerifica
       return 'Il link non è valido o è già stato usato: chiedine uno nuovo.';
     case 'auth/user-disabled':
       return 'Questo indirizzo non può essere verificato.';
-    case 'auth/email-already-in-use':
-    case 'auth/credential-already-in-use':
-      return 'Questo indirizzo è già legato a un altro accesso: l\'email resta non verificata.';
     case 'nessuna-email-salvata':
       return 'Apri il link dallo stesso browser in cui l\'hai chiesto: qui non so a quale indirizzo si riferisce.';
     case 'email-diversa':

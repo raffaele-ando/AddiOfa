@@ -1,13 +1,13 @@
-// Permessi che un'app Project può chiedere al Project ID. Devono coincidere con quelli mostrati dalle app (app/src/config/ecosystem.ts).
-// Restano solo quelli che hanno un uso reale: il profilo di base (l'account stesso) e la classifica NOI.
-// «Personalizzazione ATLAS» e «progress.share» non esistono più: nessun codice li usava.
+// Permessi che un'app Project può chiedere al Project ID. Devono coincidere con quelli mostrati
+// nella schermata di consenso delle app (app/src/config/ecosystem.ts).
 
-/** Versione del testo dei consensi (classifica NOI e comunicazioni): una sola, registrata in `consent_log` con ogni scelta. Si cambia a ogni cambio di testo, qui e in app. */
-export const CONSENT_VERSION = '2026-10-17';
+export const CONSENT_VERSION = '2026-09-27';
 
 export const SCOPES = {
-  profile: { required: true },            // l'account (email e identificativo): servizio richiesto, non è un consenso
-  'noi.leaderboard': { required: false }, // @nome utente, domande imparate e miglior simulazione visibili a tutti in classifica
+  profile: { required: true },            // nome, foto ed email del Project ID
+  'progress.share': { required: false },  // progressi di studio condivisi con le altre app Project
+  'noi.leaderboard': { required: false }, // @nome e punteggio visibili nella classifica NOI
+  'atlas.personalize': { required: false }, // ATLAS usa questi dati per personalizzare le altre app
 } as const;
 
 export type Scope = keyof typeof SCOPES;

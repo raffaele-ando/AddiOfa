@@ -34,10 +34,10 @@ test('ricerca: la categoria restringe', () => {
   assert.ok(cercaFaq(voci, 'browser', 'dati').length >= 1);
 });
 
-test('l\'app è gratuita e lo dice: nessuna voce parla di Pass, prezzi, pagamenti, lista d\'attesa, codici o account a pagamento', () => {
+test('l\'app è gratuita e lo dice: nessuna voce parla di Pass, prezzi, pagamenti, lista d\'attesa, codici o account Project', () => {
   // la sola voce che nomina i pagamenti è «È davvero gratis?», per dire che non ce ne sono
   const tutto = voci.filter(v => v.id !== 'app-gratis').map(v => [v.domanda, ...v.risposta, v.chiavi ?? ''].join(' ')).join(' ').toLowerCase();
-  for (const vietata of ['il pass', 'pagamento', 'lista d\'attesa', 'invit', 'garanzia', 'recesso', 'beta', 'dimostrativ']) {
+  for (const vietata of ['il pass', 'pagamento', 'lista d\'attesa', 'invit', 'project id', 'garanzia', 'recesso', 'beta', 'dimostrativ']) {
     assert.ok(!tutto.includes(vietata), `non deve comparire «${vietata}»`);
   }
   assert.ok(voci.find(v => v.id === 'app-gratis')!.risposta.join(' ').includes('Nessun pagamento'));

@@ -18,22 +18,29 @@ import { PulsanteInfo, IconaTono } from '../screens/extra/ui';
 import { Dato, InfoFoglio } from '../screens/landing/comune';
 import { CONSEGUENZE } from '../screens/landing/dati';
 import { InfoIndipendenza } from '../screens/Footer';
+import { CampiConsensi, CampoEmail, campiPercorso, formDa, nomeEffettivo, PassoPercorso, ScelteProvenienza, type FormRegistrazione } from '../screens/extra/progetto/registrazione';
+import { coda } from '../lib/progetto/coda';
+import { corpoIscrizione, creaProfilo, impostaProfilo, leggiProgetto } from '../lib/progetto/profilo';
+import { controllaDatiMinimi } from '../lib/progetto/validazione';
+import { inviaLinkVerifica } from '../lib/firebase';
 import type { LegalSection } from '../types';
-import { RIGA_APERTURA } from '../lib/progetto/informativa';
 
-type Step = 'pain' | 'gain' | 'quizIntro' | 'quiz' | 'calcolo' | 'result';
+type Step = 'pain' | 'gain' | 'quizIntro' | 'quiz' | 'email' | 'provenienza' | 'percorso' | 'certification' | 'certInfo' | 'ofa' | 'consensi' | 'calcolo' | 'result';
 
 interface OnboardingProps {
   appState: AppState;
   onUpdateAppState: (state: AppState) => void;
   onFinish: (result: OnboardingResult) => void;
-  /** Apre una pagina legale (per il link alla privacy nella riga di apertura). Senza, il link non compare. */
+  /** Solo la registrazione («Completa il profilo»): email, percorso di studi, come ci hai conosciuto, consensi. Chi ha già usato l'app non rifà il diagnostico. */
+  soloRegistrazione?: boolean;
+  /** Apre una pagina legale (per il link all'informativa nel passo dei consensi). Senza, il link non compare. */
   onOpenLegal?: (s: LegalSection) => void;
 }
 
-// Il funnel (decisione del 17/10, docs/design/PRIVACY-LEGGE.md): perché farlo (pain e gain) → diagnostico (10 domande) → calcolo → risultato.
-// NESSUN dato personale: niente email, nome, provenienza, percorso di studi, caselle di consenso, e nessuna richiesta di rete (questo file non importa
-// né ATLAS né Firebase: lo garantisce una prova). Le scelte facoltative stanno in «Project ID».
+// Ordine del funnel (decisione del 17/10): perché farlo (pain e gain) → prime due domande → email PoliMi → altre domande, con «Come ci hai conosciuto?» dopo la sesta →
+// «Cosa fai al Poli» → certificazione e OFA → consensi → calcolo e risultato. Le domande del test sono 10 (DIAGNOSTIC_LENGTH).
+const DOPO_EMAIL = 2;        // l'email si chiede dopo la seconda domanda
+const DOPO_PROVENIENZA = 6;  // «Come ci hai conosciuto?» dopo la sesta
 
 /** Perché farlo: guadagni (icona + poche parole). Le promesse sono quelle che AddiOFA può mantenere; il resto sta dietro la «i». */
 const GUADAGNI: { icona: NomeIcona; testo: string }[] = [
@@ -67,9 +74,9 @@ function Tessera({ nome, n, m }: { nome: string; n: number; m: number }) {
 
 // Il messaggio del risultato è l'unico blocco tinto della schermata: ha la tinta e l'icona della fascia, come il banner della Home.
 const STILE_MESSAGGIO: Record<Livello, { tinta: string; tessera: string; icona: NomeIcona }> = {
-  alto: { tinta: 'bg-alto-tinta', tessera: 'bg-alto-pieno text-alto-su', icona: 'stato-ok' },
-  medio: { tinta: 'bg-medio-tinta', tessera: 'bg-medio-pieno text-medio-su', icona: 'stato-attenzione' },
-  basso: { tinta: 'bg-basso-tinta', tessera: 'bg-basso-pieno text-basso-su', icona: 'errori' },
+  alto: { tinta: 'bg-alto-tinta', tessera: 'bg-alto-pieno text-azione-su', icona: 'stato-ok' },
+  medio: { tinta: 'bg-medio-tinta', tessera: 'bg-medio-pieno text-azione-su', icona: 'stato-attenzione' },
+  basso: { tinta: 'bg-basso-tinta', tessera: 'bg-basso-pieno text-azione-su', icona: 'errori' },
 };
 
 // Illustrazioni del Brand Kit (kit blu). Il tema scuro usa la variante con aloni semitrasparenti.
@@ -95,10 +102,18 @@ function TestataDomanda({ icona, titolo, info, titoloInfo }: { icona: NomeIcona;
   );
 }
 
-export default function Onboarding({ appState, onUpdateAppState, onFinish, onOpenLegal }: OnboardingProps) {
-  // Chi ha già fatto il diagnostico e lo riapre dalla Home salta pain e gain.
+export default function Onboarding({ appState, onUpdateAppState, onFinish, soloRegistrazione = false, onOpenLegal }: OnboardingProps) {
+  // Chi ha già una registrazione completa non la rifà (apre il diagnostico dalla Home); gli altri la fanno nel funnel, con i dati già inseriti se c'erano.
+  const giaRegistrato = useRef(!!leggiProgetto(appState).profilo?.completato && !soloRegistrazione);
+  const [step, setStep] = useState<Step>(soloRegistrazione ? 'email' : giaRegistrato.current ? 'quizIntro' : 'pain');
+  const [reg, setReg] = useState<FormRegistrazione>(() => formDa(leggiProgetto(appState).profilo));
+  const [provato, setProvato] = useState(false);
+  const [emailConfermata, setEmailConfermata] = useState(false);
+  const [provenienzaFatta, setProvenienzaFatta] = useState(false);
+  const [esente, setEsente] = useState(false);
   const precedente = appState.onboarding;
-  const [step, setStep] = useState<Step>(precedente ? 'quizIntro' : 'pain');
+  const [hasCertification, setHasCertification] = useState<boolean | null>(() => (giaRegistrato.current && precedente ? precedente.hasCertification : null));
+  const [hasOfa, setHasOfa] = useState<OnboardingResult['hasOfa'] | null>(() => (giaRegistrato.current && precedente ? precedente.hasOfa : null));
   // Se la scelta delle domande diventa asincrona (lib/diagnostic.ts) questo codice regge lo stesso
   const [quiz, setQuiz] = useState<Question[]>([]);
   const [quizIndex, setQuizIndex] = useState(0);
@@ -108,17 +123,29 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, onOpe
   stateRef.current = appState;
   const [foglio, setFoglio] = useState(false);
 
+  // L'iscrizione parte da sola appena possibile e si riprova se il server non risponde (lib/progetto/coda.ts): mai un blocco per l'utente.
+  useEffect(() => { coda.avvia(); }, []);
+
   useEffect(() => {
     let vivo = true;
     Promise.resolve(pickDiagnosticQuestions()).then(q => { if (vivo) setQuiz(q); });
     return () => { vivo = false; };
   }, []);
 
-  // Barra di avanzamento: un segmento per fase.
+  // Barra di avanzamento: un segmento per fase del cammino scelto.
   const bar = useMemo(() => {
-    if (precedente) return { step: step === 'quizIntro' ? 1 : step === 'quiz' ? 2 : 3, totalSteps: 3 };
-    return { step: step === 'pain' ? 1 : step === 'gain' ? 2 : step === 'quiz' ? 3 : 4, totalSteps: 4 };
-  }, [step, precedente]);
+    let n: number; let tot: number;
+    if (soloRegistrazione) {
+      tot = 4; n = { email: 1, percorso: 2, provenienza: 3, consensi: 4 }[step as 'email'] ?? 4;
+    } else if (giaRegistrato.current) {
+      tot = 4; n = step === 'quizIntro' ? 1 : step === 'quiz' ? 2 : step === 'certification' || step === 'certInfo' || step === 'ofa' ? 3 : 4;
+    } else {
+      tot = 9;
+      n = step === 'pain' ? 1 : step === 'gain' ? 2 : step === 'quiz' ? (quizIndex < DOPO_EMAIL ? 3 : 5) : step === 'email' ? 4 : step === 'provenienza' ? 5
+        : step === 'percorso' ? 6 : step === 'certification' || step === 'certInfo' || step === 'ofa' ? 7 : step === 'consensi' ? 8 : 9;
+    }
+    return { step: n, totalSteps: tot };
+  }, [step, quizIndex, soloRegistrazione]);
 
   const answered = quiz.length > 0 && Object.keys(answers).length === quiz.length;
   const correct = quiz.filter(q => answers[q.id] === q.correctIndex).length;
@@ -129,15 +156,28 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, onOpe
   );
   const intervallo = useMemo(() => intervalloStima(correct, quiz.length || DIAGNOSTIC_LENGTH), [correct, quiz.length]);
 
-  // Certificazione e OFA non si chiedono più: nessuna funzione le usa. I valori di un giro precedente si conservano; altrimenti «non so».
   const result = (): OnboardingResult => ({
     completedAt: Date.now(),
-    hasCertification: precedente?.hasCertification ?? false,
-    hasOfa: precedente?.hasOfa ?? 'unknown',
+    hasCertification: !!hasCertification,
+    hasOfa: hasOfa ?? 'unknown',
     diagnosticCorrect: answered ? correct : undefined,
     diagnosticTotal: answered ? quiz.length : undefined,
     passProbability: answered ? passProb : undefined,
   });
+
+  const errori = controllaDatiMinimi({ nome: reg.nome, email: reg.email });
+  const emailOk = !errori.email && !errori.nome;
+
+  // Salva il profilo nel dispositivo (subito, a ogni passo). `completato` = la registrazione è arrivata ai consensi: solo allora si mette in coda l'invio ad ATLAS,
+  // cioè dopo che l'utente ha visto l'informativa breve. I passi intermedi restano su questo dispositivo.
+  const salva = (completato: boolean) => {
+    const prec = leggiProgetto(stateRef.current).profilo;
+    const profilo = creaProfilo({ email: reg.email, nome: nomeEffettivo(reg) ?? '', ...campiPercorso(reg.percorso), provenienza: reg.provenienza, consensi: reg.consensi, completato }, Date.now(), prec);
+    if (!profilo) return null;
+    onUpdateAppState(impostaProfilo(stateRef.current, profilo));
+    if (completato) void coda.accoda(corpoIscrizione(profilo));
+    return profilo;
+  };
 
   const handleQuizNext = () => {
     const q = quiz[quizIndex];
@@ -145,8 +185,11 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, onOpe
     // Le risposte del diagnostico alimentano già il ripasso dilazionato
     onUpdateAppState(updateStats(stateRef.current, q.id, chosen === q.correctIndex, Date.now() - questionStart.current));
     questionStart.current = Date.now();
+    const nuovo = !giaRegistrato.current && !soloRegistrazione;
+    if (nuovo && quizIndex + 1 === DOPO_EMAIL && !emailConfermata) { setQuizIndex(quizIndex + 1); setStep('email'); return; }
+    if (nuovo && quizIndex + 1 === DOPO_PROVENIENZA && !provenienzaFatta && quiz.length > DOPO_PROVENIENZA) { setQuizIndex(quizIndex + 1); setStep('provenienza'); return; }
     if (quizIndex + 1 < quiz.length) setQuizIndex(quizIndex + 1);
-    else setStep('calcolo');
+    else setStep(giaRegistrato.current ? 'certification' : 'percorso');
   };
 
   const titolo = 'text-2xl sm:text-3xl font-bold text-testo';
@@ -214,10 +257,6 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, onOpe
             <Dato icona="risposte" tono="azione" etichetta="Domande">{DIAGNOSTIC_LENGTH}</Dato>
             <Dato icona="tempo" tono="medio" etichetta="Durata">3 min</Dato>
           </div>
-          <p data-testo-ok className="text-[13px] leading-[19px] text-testo-tenue">
-            {RIGA_APERTURA}{' '}
-            {onOpenLegal && <button type="button" onClick={() => onOpenLegal('privacy')} className="font-bold text-azione-testo underline underline-offset-2">Privacy</button>}
-          </p>
           <div className="mt-auto">
             <PrimaryButton onClick={() => { questionStart.current = Date.now(); setStep('quiz'); }} disabled={quiz.length === 0}>Inizia</PrimaryButton>
           </div>
@@ -244,13 +283,15 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, onOpe
     case 'quiz': {
       const q = quiz[quizIndex];
       const indietroQuiz = () => {
-        if (quizIndex === 0) { setStep(precedente ? 'quizIntro' : 'gain'); return; }
+        if (quizIndex === 0) { setStep(giaRegistrato.current ? 'quizIntro' : 'gain'); return; }
+        if (!giaRegistrato.current && quizIndex === DOPO_EMAIL) { setQuizIndex(quizIndex - 1); setStep('email'); return; }
+        if (!giaRegistrato.current && quizIndex === DOPO_PROVENIENZA && quiz.length > DOPO_PROVENIENZA) { setQuizIndex(quizIndex - 1); setStep('provenienza'); return; }
         setQuizIndex(quizIndex - 1);
       };
       if (!q) {
         return (
           <Screen>
-            <TopBar {...bar} onBack={() => setStep(precedente ? 'quizIntro' : 'gain')} />
+            <TopBar {...bar} onBack={() => setStep(giaRegistrato.current ? 'quizIntro' : 'gain')} />
             <div role="status" aria-label="Preparo le domande" className="mx-auto mt-8 h-7 w-7 animate-spin rounded-full border-[3px] border-azione/30 border-t-azione" />
           </Screen>
         );
@@ -274,6 +315,125 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, onOpe
         </Screen>
       );
     }
+
+    // ---- Email PoliMi: un solo campo; il nome si ricava
+    case 'email':
+      return (
+        <Screen>
+          <TopBar {...bar} onBack={soloRegistrazione ? undefined : () => { setQuizIndex(DOPO_EMAIL - 1); setStep('quiz'); }} />
+          <TestataDomanda icona="email" titolo="La tua email" />
+          <div className="flex justify-center"><Illustrazione kit="kit-luminoso" nome="verifica-utente" lato={130} /></div>
+          <CampoEmail form={reg} onChange={setReg} provato={provato}
+            verificata={leggiProgetto(appState).profilo?.emailVerificata && leggiProgetto(appState).profilo?.email === reg.email.trim().toLowerCase()}
+            onInviaVerifica={async () => {
+              if (!emailOk || !salva(false)) return { ok: false as const, messaggio: 'Scrivi prima il tuo nome.' };
+              return inviaLinkVerifica(reg.email);
+            }} />
+          <div className="mt-auto">
+            <PrimaryButton onClick={() => {
+              if (!emailOk) { setProvato(true); return; }
+              salva(false);
+              setEmailConfermata(true);
+              setStep(soloRegistrazione ? 'percorso' : 'quiz');
+            }}>Avanti</PrimaryButton>
+          </div>
+        </Screen>
+      );
+
+    // ---- «Come ci hai conosciuto?»: una domanda come le altre, ma non conta nel punteggio né nel x/10
+    case 'provenienza':
+      return (
+        <Screen>
+          <TopBar {...bar} onBack={() => { if (soloRegistrazione) setStep('percorso'); else { setQuizIndex(DOPO_PROVENIENZA - 1); setStep('quiz'); } }} />
+          <h2 data-testo-ok className="text-xl sm:text-2xl font-bold text-testo leading-snug">Come ci hai conosciuto?</h2>
+          <ScelteProvenienza valore={reg.provenienza} onChange={id => setReg({ ...reg, provenienza: id })} />
+          <div className="mt-auto flex flex-col gap-3">
+            <PrimaryButton disabled={!reg.provenienza} onClick={() => { setProvenienzaFatta(true); salva(false); setStep(soloRegistrazione ? 'consensi' : 'quiz'); }}>Avanti</PrimaryButton>
+            <button onClick={() => { playTapSound(); setReg({ ...reg, provenienza: '' }); setProvenienzaFatta(true); setStep(soloRegistrazione ? 'consensi' : 'quiz'); }} aria-label="Salta questa domanda" className="inline-flex items-center justify-center gap-1.5 text-sm font-bold text-testo-tenue hover:text-testo py-1">
+              <Icona nome="salta" size={16} />Salta
+            </button>
+          </div>
+        </Screen>
+      );
+
+    // ---- Cosa fai al Poli: il tocco avanza da solo
+    case 'percorso':
+      return (
+        <Screen>
+          <TopBar {...bar} onBack={soloRegistrazione ? () => setStep('email') : () => { setQuizIndex(quiz.length - 1); setStep('quiz'); }} />
+          <TestataDomanda icona="lezioni" titolo="Cosa fai al Poli" />
+          <PassoPercorso scelte={reg.percorso} onChange={percorso => setReg(r => ({ ...r, percorso }))}
+            onFine={() => { salva(false); setStep(soloRegistrazione ? 'provenienza' : 'certification'); }}
+            fine={<PrimaryButton onClick={() => { salva(false); setStep(soloRegistrazione ? 'provenienza' : 'certification'); }}>Avanti</PrimaryButton>} />
+        </Screen>
+      );
+
+    case 'certification':
+      return (
+        <Screen>
+          <TopBar {...bar} onBack={() => (giaRegistrato.current ? (setQuizIndex(quiz.length - 1), setStep('quiz')) : setStep('percorso'))} />
+          <TestataDomanda icona="certificazione" titolo="Certificazione?" info="Una certificazione di inglese riconosciuta dal tuo ateneo (Cambridge, IELTS, TOEFL…)." titoloInfo="Certificazione" />
+          <div className="flex flex-col gap-3 mt-2">
+            <ChoiceCard selected={hasCertification === true} onClick={() => setHasCertification(true)} title="Sì" />
+            <ChoiceCard selected={hasCertification === false} onClick={() => setHasCertification(false)} title="No" />
+          </div>
+          <div className="mt-auto">
+            <PrimaryButton disabled={hasCertification === null} onClick={() => setStep(hasCertification ? 'certInfo' : 'ofa')}>Avanti</PrimaryButton>
+          </div>
+        </Screen>
+      );
+
+    case 'certInfo':
+      return (
+        <Screen>
+          <TopBar onBack={() => setStep('certification')} />
+          <Scena nome="superamento" />
+          <div className="flex items-center justify-center gap-2">
+            <h2 className={`${titolo} text-center`}>Forse sei esente</h2>
+            <InfoFoglio titolo="Certificazione" etichetta="Dettagli sulla certificazione">
+              <p>Se la tua certificazione è tra quelle accettate dal Politecnico, potresti non dover fare il test. Controlla l'elenco e i livelli minimi sul sito del tuo corso prima di iscriverti al test.</p>
+            </InfoFoglio>
+          </div>
+          <div className="mt-auto flex flex-col gap-3">
+            <PrimaryButton onClick={() => { setEsente(false); setStep('ofa'); }}>Mi alleno</PrimaryButton>
+            <SecondaryButton onClick={() => { setEsente(true); if (giaRegistrato.current) onFinish(result()); else setStep('consensi'); }}>Vai all'app</SecondaryButton>
+          </div>
+        </Screen>
+      );
+
+    case 'ofa':
+      return (
+        <Screen>
+          <TopBar {...bar} onBack={() => setStep('certification')} />
+          <TestataDomanda icona="ofa" titolo="OFA di inglese?" info="Se non sei sicuro, scegli «Non so»: puoi allenarti lo stesso." titoloInfo="OFA di inglese" />
+          <div className="flex flex-col gap-3 mt-2">
+            <ChoiceCard selected={hasOfa === 'yes'} onClick={() => setHasOfa('yes')} title="Sì" />
+            <ChoiceCard selected={hasOfa === 'no'} onClick={() => setHasOfa('no')} title="No" />
+            <ChoiceCard selected={hasOfa === 'unknown'} onClick={() => setHasOfa('unknown')} title="Non so" />
+          </div>
+          <div className="mt-auto">
+            <PrimaryButton disabled={hasOfa === null} onClick={() => { setEsente(false); setStep(giaRegistrato.current ? 'calcolo' : 'consensi'); }}>Avanti</PrimaryButton>
+          </div>
+        </Screen>
+      );
+
+    // ---- Consensi facoltativi, mai preselezionati; qui l'iscrizione si completa e parte la coda
+    case 'consensi':
+      return (
+        <Screen>
+          <TopBar {...bar} onBack={() => setStep(soloRegistrazione ? 'provenienza' : esente ? 'certInfo' : 'ofa')} />
+          <TestataDomanda icona="privacy" titolo="Consensi" />
+          <CampiConsensi consensi={reg.consensi} onChange={c => setReg({ ...reg, consensi: c })} onOpenLegal={onOpenLegal} />
+          <div className="mt-auto">
+            <PrimaryButton onClick={() => {
+              if (!salva(true)) return;
+              if (soloRegistrazione) onFinish(stateRef.current.onboarding ?? result());
+              else if (esente) onFinish(result());
+              else setStep('calcolo');
+            }}>{soloRegistrazione ? 'Salva' : 'Avanti'}</PrimaryButton>
+          </div>
+        </Screen>
+      );
 
     case 'calcolo': {
       const livelli = ['A1', 'A2', 'B1'].map(l => [l, quiz.filter(q => q.level === l).length] as const).filter(([, n]) => n > 0).map(([l, n]) => `${n} ${l}`).join(' · ');

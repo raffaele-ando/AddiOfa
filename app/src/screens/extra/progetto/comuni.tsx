@@ -22,8 +22,8 @@ export function Interruttore({ acceso, onChange, etichetta, disabled }: { acceso
   return (
     <button type="button" role="switch" aria-checked={acceso} aria-label={etichetta} disabled={disabled}
       onClick={() => { playTapSound(); onChange(!acceso); }}
-      className={cn('relative h-7 w-12 shrink-0 rounded-full border-2 transition-colors duration-100 disabled:opacity-50', acceso ? 'border-azione bg-azione' : 'border-bordo-campo bg-superficie-2')}>
-      <span className={cn('absolute left-0.5 top-0.5 h-5 w-5 rounded-full shadow', acceso ? 'translate-x-5 bg-azione-su' : 'bg-bordo-campo')} />
+      className={cn('relative h-7 w-12 shrink-0 rounded-full transition-colors duration-100 disabled:opacity-50', acceso ? 'bg-azione' : 'bg-tacca')}>
+      <span className={cn('absolute left-1 top-1 h-5 w-5 rounded-full bg-superficie shadow', acceso && 'translate-x-5')} />
     </button>
   );
 }
@@ -47,7 +47,7 @@ export function BottoneRiga({ icona, children, onClick, tono = 'neutro', disable
     <button type="button" disabled={disabled} onClick={() => { playTapSound(); onClick(); }}
       className={cn('brand-premibile flex w-full items-center gap-3 rounded-[13px] px-3.5 py-3.5 text-left text-[15px] font-bold disabled:opacity-40 disabled:pointer-events-none',
         tono === 'rischio' ? 'bg-basso-tinta text-basso-testo' : 'bg-superficie-2 text-testo')}>
-      <Icona nome={icona} size={20} className={tono === 'rischio' ? '' : 'text-azione-testo'} />{children}
+      <Icona nome={icona} size={20} className={tono === 'rischio' ? '' : 'text-azione-scuro'} />{children}
     </button>
   );
 }

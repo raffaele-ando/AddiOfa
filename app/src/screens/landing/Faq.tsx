@@ -24,7 +24,7 @@ const VOCI: Voce[] = [
   },
   {
     d: 'Dove restano i progressi?',
-    r: 'I progressi di studio restano nel tuo browser: dalle Impostazioni li esporti e li importi su un altro dispositivo. Non ti chiediamo nessun dato per studiare; account, classifica e email di Project sono facoltativi e si attivano solo se li accendi tu. Niente matricola, niente codice fiscale. Non vendiamo dati.',
+    r: 'I progressi di studio restano nel tuo browser: dalle Impostazioni li esporti e li importi su un altro dispositivo. All\'inizio ti chiediamo la tua email del Politecnico (il nome lo ricaviamo da lì) e che cosa studi: li ricevono Project e ATLAS, che gestiscono questo sito. Niente matricola, niente codice fiscale. Non vendiamo dati; le comunicazioni e la classifica sono consensi facoltativi.',
     legale: { sezione: 'privacy', testo: 'Privacy' },
   },
   {

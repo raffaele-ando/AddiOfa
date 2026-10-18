@@ -1,16 +1,21 @@
 // ATLAS: l'API condivisa dalle app Project.
-// Gestisce il Project ID (account), il permesso della classifica NOI, il consenso alle comunicazioni e la classifica.
-// Nessuna raccolta anonima: ogni dato personale arriva da una persona che ha creato il suo Project ID (docs/design/PRIVACY-LEGGE.md).
+// Gestisce il Project ID (account), i collegamenti tra app con consenso esplicito, la classifica NOI
+// e le iscrizioni (nome, email PoliMi, consensi) raccolte dalle app.
 
 import { verifyFirebaseToken, AuthClaims } from './auth';
 import { CONSENT_VERSION, SCOPES, Scope, isScope } from './scopes';
-import { HttpError, json, readJson } from './http';
+import { HttpError, json, readJson, readBodyText } from './http';
 import { enforceRateLimit, rateLimitKey } from './limite';
-import { CSV_COLUMNS, esportaComunicazioni, impostaComunicazioni, impostaNoi, linkScopes, safeEqual, statoConsensi, toCsv, type AccountConsensi } from './consensi';
+import {
+  CSV_COLUMNS, consensiOf, exportSignups, getLinkedSignup, hasProfileFields, parseExportFilters, parseSignup,
+  publicSignup, safeEqual, normalizePolimiEmail, setPolimiEmail, toCsv, updateLinkedSignupFields, upsertSignup,
+  validateProfileFields,
+} from './signups';
 
+const SIGNUP_BODY_MAX = 4096;          // byte
+const SIGNUP_LIMIT_DEFAULT = 10;       // richieste per IP ...
+const SIGNUP_WINDOW_MS = 60_000;       // ... al minuto
 const ADMIN_LIMIT = 20;                // tentativi per IP al minuto sulle rotte admin
-const ADMIN_WINDOW_MS = 60_000;
-const APP_PREDEFINITA = 'addiofa';
 
 export interface Env {
   DB: D1Database;
@@ -18,19 +23,23 @@ export interface Env {
   // Origini del sito autorizzate dal browser, separate da virgole (es. https://addiofa.example). Vuoto = nessuna.
   // "*" vale solo in sviluppo locale (cioè con ALLOW_TEST_TOKENS=true).
   ALLOWED_ORIGINS: string;
-  // Segreto dell'autore per scaricare l'elenco delle comunicazioni (wrangler secret put ADMIN_TOKEN). Non impostato = rotta admin 404.
+  // Segreto dell'autore per scaricare le iscrizioni (wrangler secret put ADMIN_TOKEN). Non impostato = rotta admin 404.
   ADMIN_TOKEN?: string;
+  // Richieste al minuto per IP su POST /v1/signups (default 10)
+  SIGNUP_RATE_LIMIT?: string;
   ACCOUNT_ID_PREFIX: string; // es. PRJ
   // Solo sviluppo locale (.dev.vars): accetta token "test:<uid>:<nome>". Mai in produzione.
   ALLOW_TEST_TOKENS?: string;
 }
 
-interface AccountRow extends AccountConsensi {
+interface AccountRow {
+  id: string;
   auth_uid: string;
   email: string | null;
   display_name: string;
   handle: string;
   avatar_url: string | null;
+  polimi_email: string | null;
   created_at: number;
   updated_at: number;
 }
@@ -84,25 +93,34 @@ function randomId(prefix: string): string {
   return `${prefix}-${Array.from(bytes, b => alphabet[b % alphabet.length]).join('')}`;
 }
 
+function slugify(name: string): string {
+  const base = name
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '')
+    .slice(0, 14);
+  return base.length >= 3 ? base : 'studente';
+}
+
 const HANDLE_RE = /^[a-z0-9_.]{3,20}$/;
 
-// Account: solo ciò che serve. Niente nome né foto dell'account Google (nessuna schermata li usa): l'identità pubblica è il @nome utente,
-// che parte neutro («studente1234») e lo cambia l'utente.
 async function getOrCreateAccount(env: Env, claims: AuthClaims): Promise<AccountRow> {
   const existing = await env.DB.prepare('SELECT * FROM accounts WHERE auth_uid = ?').bind(claims.uid).first<AccountRow>();
   if (existing) return existing;
 
   const now = Date.now();
+  const displayName = (claims.name || claims.email?.split('@')[0] || 'Studente').slice(0, 60);
   for (let attempt = 0; attempt < 5; attempt++) {
     const suffix = Math.floor(1000 + Math.random() * 9000);
     const row: AccountRow = {
       id: randomId(env.ACCOUNT_ID_PREFIX || 'PRJ'),
       auth_uid: claims.uid,
       email: claims.email ?? null,
-      display_name: 'Studente',
-      handle: `studente${suffix}`,
-      avatar_url: null,
-      comunicazioni_email: null, comunicazioni_stato: null, comunicazioni_at: null,
+      display_name: displayName,
+      handle: `${slugify(displayName)}${suffix}`,
+      avatar_url: claims.picture ?? null,
+      polimi_email: null,
       created_at: now,
       updated_at: now,
     };
@@ -119,13 +137,45 @@ async function getOrCreateAccount(env: Env, claims: AuthClaims): Promise<Account
 }
 
 function publicAccount(a: AccountRow) {
-  return { id: a.id, email: a.email, handle: a.handle, createdAt: a.created_at };
+  return {
+    id: a.id,
+    email: a.email,
+    displayName: a.display_name,
+    handle: a.handle,
+    avatarUrl: a.avatar_url,
+    polimiEmail: a.polimi_email,
+    createdAt: a.created_at,
+  };
+}
+
+// Dati dell'iscrizione collegata al Project ID (nome, corso, sede, consensi), se c'è
+async function profileData(env: Env, account: AccountRow) {
+  const signup = await getLinkedSignup(env, account.id);
+  return {
+    profile: {
+      nome: signup?.nome ?? account.display_name,
+      scuola: signup?.scuola ?? null,
+      sede: signup?.sede ?? null,
+      livello: signup?.livello ?? null,
+      corso: signup?.corso ?? null,
+      anno: signup?.anno ?? null,
+    },
+    consensi: signup ? consensiOf(signup) : null,
+    signup: signup ? publicSignup(signup) : null,
+    signupRow: signup,
+  };
+}
+
+async function profilePayload(env: Env, account: AccountRow) {
+  const { signupRow, ...data } = await profileData(env, account);
+  void signupRow;
+  return data;
 }
 
 function publicLink(l: LinkRow) {
   return {
     appId: l.app_id,
-    scopes: linkScopes(l.scopes),
+    scopes: JSON.parse(l.scopes) as Scope[],
     consentVersion: l.consent_version,
     grantedAt: l.granted_at,
     updatedAt: l.updated_at,
@@ -142,22 +192,13 @@ async function listLinks(env: Env, accountId: string) {
 async function getLinkScopes(env: Env, accountId: string, appId: string): Promise<Scope[] | null> {
   const row = await env.DB.prepare('SELECT scopes FROM app_links WHERE account_id = ? AND app_id = ?')
     .bind(accountId, appId).first<{ scopes: string }>();
-  return row ? linkScopes(row.scopes) : null;
+  return row ? (JSON.parse(row.scopes) as Scope[]) : null;
 }
 
 async function requireApp(env: Env, appId: string) {
   const app = await env.DB.prepare('SELECT id FROM apps WHERE id = ?').bind(appId).first();
   if (!app) throw new HttpError(404, 'app sconosciuta');
 }
-
-/** Lo stato completo dell'account come lo vede l'app: account, collegamenti e consensi (classifica e comunicazioni). */
-async function quadroAccount(env: Env, account: AccountRow) {
-  const links = await listLinks(env, account.id);
-  const scopes = links.find(l => l.appId === APP_PREDEFINITA)?.scopes ?? null;
-  return { account: publicAccount(account), links, consensi: statoConsensi(account, scopes), consentVersion: CONSENT_VERSION };
-}
-
-const rileggi = async (env: Env, id: string) => (await env.DB.prepare('SELECT * FROM accounts WHERE id = ?').bind(id).first<AccountRow>())!;
 
 async function handle(request: Request, env: Env): Promise<Response> {
   const url = new URL(request.url);
@@ -169,34 +210,51 @@ async function handle(request: Request, env: Env): Promise<Response> {
 
   if (path === '/v1/scopes' && method === 'GET') return json({ consentVersion: CONSENT_VERSION, scopes: SCOPES });
 
-  // --- Nessuna iscrizione senza Project ID --------------------------------------------------------------------------------------------
-  // Prima qui si raccoglievano nome ed email all'avvio. Ora non più: non si risponde «ok» a una richiesta che non fa niente.
+  // --- Iscrizioni (pubbliche, senza token) ---------------------------------
   if (path === '/v1/signups') {
-    throw new HttpError(410, 'iscrizione senza Project ID non più disponibile: crea il Project ID da AddiOFA e scegli lì i consensi');
+    if (method === 'POST') {
+      const limit = Math.max(1, Number(env.SIGNUP_RATE_LIMIT) || SIGNUP_LIMIT_DEFAULT);
+      await enforceRateLimit(env, await rateLimitKey(request, 'signups'), limit, SIGNUP_WINDOW_MS);
+      let body: unknown;
+      try {
+        body = JSON.parse(await readBodyText(request, SIGNUP_BODY_MAX));
+      } catch (err) {
+        throw err instanceof HttpError ? err : new HttpError(400, 'JSON non valido');
+      }
+      const input = parseSignup(body);
+      await requireApp(env, input.appId);
+      await upsertSignup(env, input);
+      return json({ ok: true });
+    }
+    // Niente DELETE pubblico: senza verificare l'email chiunque potrebbe cancellare l'iscrizione di un altro.
+    if (method === 'DELETE') {
+      throw new HttpError(405, 'cancellazione su richiesta: chi ha il Project ID usa DELETE /v1/me, gli altri scrivono all\'autore', { Allow: 'POST, OPTIONS' });
+    }
+    throw new HttpError(405, 'metodo non consentito', { Allow: 'POST, OPTIONS' });
   }
 
-  // --- Elenco delle comunicazioni per l'autore (protetto da ADMIN_TOKEN) ----------------------------------------------------------------
-  if (path === '/v1/admin/comunicazioni' && method === 'GET') {
+  // --- Esportazione per l'autore (protetta da ADMIN_TOKEN) -------------------
+  if (path === '/v1/admin/signups' && method === 'GET') {
     if (!env.ADMIN_TOKEN) throw new HttpError(404, 'non trovato'); // rotta spenta finché non c'è il segreto
-    await enforceRateLimit(env, await rateLimitKey(request, 'admin'), ADMIN_LIMIT, ADMIN_WINDOW_MS);
+    await enforceRateLimit(env, await rateLimitKey(request, 'admin'), ADMIN_LIMIT, SIGNUP_WINDOW_MS);
     const header = request.headers.get('Authorization') ?? '';
     const token = header.startsWith('Bearer ') ? header.slice(7) : '';
     if (!token || !(await safeEqual(token, env.ADMIN_TOKEN))) throw new HttpError(401, 'non autorizzato');
     const formato = (url.searchParams.get('formato') ?? 'json').toLowerCase();
     if (formato !== 'csv' && formato !== 'json') throw new HttpError(400, 'formato: csv o json');
-    const rows = await esportaComunicazioni(env, url.searchParams.get('stato') === 'confermato');
+    const rows = await exportSignups(env, parseExportFilters(url.searchParams));
     if (formato === 'csv') {
       const day = new Date().toISOString().slice(0, 10);
       return new Response(toCsv(rows), {
         headers: {
           'Content-Type': 'text/csv; charset=utf-8',
-          'Content-Disposition': `attachment; filename="comunicazioni-${day}.csv"`,
+          'Content-Disposition': `attachment; filename="iscrizioni-${day}.csv"`,
           'Cache-Control': 'no-store',
           'X-Content-Type-Options': 'nosniff',
         },
       });
     }
-    return json({ colonne: CSV_COLUMNS, totale: rows.length, comunicazioni: rows });
+    return json({ colonne: CSV_COLUMNS, totale: rows.length, iscrizioni: rows });
   }
 
   // --- Project ID ---------------------------------------------------------
@@ -204,47 +262,48 @@ async function handle(request: Request, env: Env): Promise<Response> {
     const claims = await authenticate(request, env);
     const account = await getOrCreateAccount(env, claims);
 
-    if (method === 'GET') return json(await quadroAccount(env, account));
+    if (method === 'GET') {
+      return json({ account: publicAccount(account), links: await listLinks(env, account.id), ...(await profilePayload(env, account)) });
+    }
 
     if (method === 'PATCH') {
-      const body = await readJson<Record<string, unknown>>(request);
-      // Un campo che non si conosce è un errore, non un «ok» che non fa niente
-      const noti = ['displayName', 'handle', 'consensi', 'comunicazioniEmail', 'appId'];
-      for (const k of Object.keys(body)) if (!noti.includes(k)) throw new HttpError(400, `campo non riconosciuto: ${k}`);
-      const appId = typeof body.appId === 'string' ? body.appId : APP_PREDEFINITA;
-      await requireApp(env, appId);
-
-      const displayName = typeof body.displayName === 'string' ? body.displayName.trim().slice(0, 60) || account.display_name : account.display_name;
-      if (body.displayName !== undefined && typeof body.displayName !== 'string') throw new HttpError(400, 'displayName non valido');
-      const handle = typeof body.handle === 'string' ? body.handle.trim().toLowerCase() : account.handle;
-      if (body.handle !== undefined && typeof body.handle !== 'string') throw new HttpError(400, 'handle non valido');
+      const body = await readJson<{
+        displayName?: string; handle?: string; polimiEmail?: string | null;
+        corso?: string | null; sede?: string | null; provenienza?: string | null;
+        scuola?: string | null; livello?: string | null; anno?: number | null;
+      }>(request);
+      const displayName = body.displayName?.trim().slice(0, 60) || account.display_name;
+      const handle = body.handle?.trim().toLowerCase() ?? account.handle;
       if (!HANDLE_RE.test(handle)) throw new HttpError(400, 'nome utente: 3-20 caratteri tra a-z, 0-9, _ e .');
       const taken = await env.DB.prepare('SELECT 1 FROM accounts WHERE handle = ? AND id != ?').bind(handle, account.id).first();
       if (taken) throw new HttpError(409, 'nome utente già in uso');
-
-      let noi: boolean | undefined; let comunicazioni: boolean | undefined;
-      if (body.consensi !== undefined) {
-        const c = body.consensi as Record<string, unknown>;
-        if (!c || typeof c !== 'object' || Array.isArray(c)) throw new HttpError(400, 'consensi non valido');
-        for (const k of Object.keys(c)) if (k !== 'noi' && k !== 'comunicazioni') throw new HttpError(400, `consenso non riconosciuto: ${k}`);
-        for (const k of ['noi', 'comunicazioni'] as const) if (c[k] !== undefined && typeof c[k] !== 'boolean') throw new HttpError(400, `consensi.${k}: serve true o false`);
-        noi = c.noi as boolean | undefined; comunicazioni = c.comunicazioni as boolean | undefined;
+      const profileFields = {
+        corso: body.corso, sede: body.sede, provenienza: body.provenienza,
+        scuola: body.scuola, livello: body.livello, anno: body.anno,
+      };
+      const touchesProfile = hasProfileFields(profileFields);
+      validateProfileFields(profileFields);
+      if (body.polimiEmail !== undefined && body.polimiEmail !== null && body.polimiEmail !== ''
+        && !normalizePolimiEmail(body.polimiEmail)) throw new HttpError(400, 'email PoliMi non valida (@polimi.it, @mail.polimi.it o @…polimi.it)');
+      await env.DB.prepare('UPDATE accounts SET display_name = ?, handle = ?, updated_at = ? WHERE id = ?')
+        .bind(displayName, handle, Date.now(), account.id).run();
+      if (body.polimiEmail !== undefined) await setPolimiEmail(env, account.id, body.polimiEmail);
+      if (touchesProfile) {
+        const linked = await getLinkedSignup(env, account.id);
+        if (!linked) throw new HttpError(409, 'nessuna iscrizione collegata: indica prima l\'email PoliMi usata nell\'iscrizione');
+        await updateLinkedSignupFields(env, linked, profileFields);
       }
-      if (comunicazioni === true && body.comunicazioniEmail === undefined && !account.comunicazioni_email) throw new HttpError(400, 'serve un indirizzo email valido per le comunicazioni');
-
-      if (displayName !== account.display_name || handle !== account.handle) {
-        await env.DB.prepare('UPDATE accounts SET display_name = ?, handle = ?, updated_at = ? WHERE id = ?').bind(displayName, handle, Date.now(), account.id).run();
-      }
-      if (noi !== undefined) await impostaNoi(env, account.id, appId, noi);
-      if (comunicazioni !== undefined) {
-        await impostaComunicazioni(env, await rileggi(env, account.id), appId, comunicazioni, body.comunicazioniEmail ?? account.comunicazioni_email);
-      }
-      return json(await quadroAccount(env, await rileggi(env, account.id)));
+      const updated = await env.DB.prepare('SELECT * FROM accounts WHERE id = ?').bind(account.id).first<AccountRow>();
+      return json({ account: publicAccount(updated!), ...(await profilePayload(env, updated!)) });
     }
 
     if (method === 'DELETE') {
-      // ON DELETE CASCADE rimuove collegamenti, registro dei consensi e punteggi
-      await env.DB.prepare('DELETE FROM accounts WHERE id = ?').bind(account.id).run();
+      // ON DELETE CASCADE rimuove collegamenti, registro dei consensi e punteggi; l'iscrizione collegata
+      // (e il suo registro dei consensi) si cancella a parte, perché il legame è solo SET NULL.
+      await env.DB.batch([
+        env.DB.prepare('DELETE FROM signups WHERE account_id = ?').bind(account.id),
+        env.DB.prepare('DELETE FROM accounts WHERE id = ?').bind(account.id),
+      ]);
       return json({ deleted: true });
     }
   }
@@ -252,16 +311,31 @@ async function handle(request: Request, env: Env): Promise<Response> {
   if (path === '/v1/me/export' && method === 'GET') {
     const claims = await authenticate(request, env);
     const account = await getOrCreateAccount(env, claims);
-    const [consents, scores] = await Promise.all([
-      env.DB.prepare('SELECT app_id, action, scopes, consent_version, created_at FROM consent_log WHERE account_id = ? ORDER BY created_at, id')
+    const extra = await profileData(env, account);
+    const [consents, scores, signupConsents] = await Promise.all([
+      env.DB.prepare('SELECT app_id, action, scopes, consent_version, created_at FROM consent_log WHERE account_id = ? ORDER BY created_at')
         .bind(account.id).all(),
       env.DB.prepare('SELECT app_id, score, mastered, best_sim, updated_at FROM noi_scores WHERE account_id = ?')
         .bind(account.id).all(),
+      extra.signupRow
+        ? env.DB.prepare('SELECT app_id, action, scopes, consent_version, created_at FROM consent_log WHERE signup_id = ? ORDER BY created_at')
+          .bind(extra.signupRow.id).all()
+        : Promise.resolve({ results: [] }),
     ]);
-    return json({ exportedAt: Date.now(), ...(await quadroAccount(env, account)), consentLog: consents.results, noiScores: scores.results });
+    return json({
+      exportedAt: Date.now(),
+      account: publicAccount(account),
+      links: await listLinks(env, account.id),
+      profile: extra.profile,
+      consensi: extra.consensi,
+      signup: extra.signup,
+      signupConsentLog: signupConsents.results,
+      consentLog: consents.results,
+      noiScores: scores.results,
+    });
   }
 
-  // --- Permessi per app (profilo e classifica NOI) --------------------------------------------------------------------------------------
+  // --- Collegamenti tra app (consenso) ------------------------------------
   if ((m = path.match(/^\/v1\/links\/([a-z0-9-]+)$/))) {
     const appId = m[1];
     const claims = await authenticate(request, env);
@@ -270,15 +344,35 @@ async function handle(request: Request, env: Env): Promise<Response> {
     const now = Date.now();
 
     if (method === 'PUT') {
-      const body = await readJson<{ scopes?: unknown[]; consentVersion?: string }>(request);
-      const richiesti = body.scopes ?? [];
-      for (const s of richiesti) if (!isScope(s)) throw new HttpError(400, `permesso sconosciuto: ${String(s)}`);
-      const scopes = Array.from(new Set(richiesti.filter(isScope)));
+      const body = await readJson<{ scopes?: unknown[]; consentVersion?: string; polimiEmail?: string | null }>(request);
+      const scopes = Array.from(new Set((body.scopes ?? []).filter(isScope)));
       const missingRequired = (Object.keys(SCOPES) as Scope[]).filter(s => SCOPES[s].required && !scopes.includes(s));
       if (missingRequired.length) throw new HttpError(400, `permessi obbligatori mancanti: ${missingRequired.join(', ')}`);
-      if (body.consentVersion !== CONSENT_VERSION) throw new HttpError(409, 'informativa aggiornata: mostra di nuovo il testo');
-      await impostaNoi(env, account.id, appId, scopes.includes('noi.leaderboard'), now);
-      return json(await quadroAccount(env, await rileggi(env, account.id)));
+      if (body.consentVersion !== CONSENT_VERSION) throw new HttpError(409, 'informativa aggiornata: mostra di nuovo il consenso');
+      if (body.polimiEmail !== undefined && body.polimiEmail !== null && body.polimiEmail !== ''
+        && !normalizePolimiEmail(body.polimiEmail)) throw new HttpError(400, 'email PoliMi non valida (@polimi.it, @mail.polimi.it o @…polimi.it)');
+
+      const previous = await getLinkScopes(env, account.id, appId);
+      const scopesJson = JSON.stringify(scopes);
+      const statements = [
+        env.DB.prepare(
+          `INSERT INTO app_links (account_id, app_id, scopes, consent_version, granted_at, updated_at)
+           VALUES (?, ?, ?, ?, ?, ?)
+           ON CONFLICT (account_id, app_id) DO UPDATE SET scopes = excluded.scopes,
+             consent_version = excluded.consent_version, updated_at = excluded.updated_at`
+        ).bind(account.id, appId, scopesJson, CONSENT_VERSION, now, now),
+        env.DB.prepare(
+          'INSERT INTO consent_log (account_id, app_id, action, scopes, consent_version, created_at) VALUES (?, ?, ?, ?, ?, ?)'
+        ).bind(account.id, appId, previous ? 'update' : 'grant', scopesJson, CONSENT_VERSION, now),
+      ];
+      // Tolto il consenso alla classifica, il punteggio sparisce subito
+      if (!scopes.includes('noi.leaderboard')) {
+        statements.push(env.DB.prepare('DELETE FROM noi_scores WHERE account_id = ? AND app_id = ?').bind(account.id, appId));
+      }
+      await env.DB.batch(statements);
+      if (body.polimiEmail !== undefined) await setPolimiEmail(env, account.id, body.polimiEmail);
+      const fresh = (await env.DB.prepare('SELECT * FROM accounts WHERE id = ?').bind(account.id).first<AccountRow>())!;
+      return json({ links: await listLinks(env, account.id), account: publicAccount(fresh), ...(await profilePayload(env, fresh)) });
     }
 
     if (method === 'DELETE') {
@@ -321,14 +415,16 @@ async function handle(request: Request, env: Env): Promise<Response> {
     const appId = m[1];
     const limit = Math.min(100, Math.max(1, Number(url.searchParams.get('limit')) || 50));
     const { results } = await env.DB.prepare(
-      `SELECT a.id AS account_id, a.handle, s.score, s.mastered, s.best_sim
+      `SELECT a.id AS account_id, a.handle, a.display_name, a.avatar_url, s.score, s.mastered, s.best_sim
        FROM noi_scores s JOIN accounts a ON a.id = s.account_id
        WHERE s.app_id = ? ORDER BY s.score DESC, s.updated_at ASC LIMIT ?`
-    ).bind(appId, limit).all<{ account_id: string; handle: string; score: number; mastered: number; best_sim: number }>();
+    ).bind(appId, limit).all<{ account_id: string; handle: string; display_name: string; avatar_url: string | null; score: number; mastered: number; best_sim: number }>();
 
     const entries = results.map((r, i) => ({
       rank: i + 1,
       handle: r.handle,
+      displayName: r.display_name,
+      avatarUrl: r.avatar_url,
       mastered: r.mastered,
       bestSim: r.best_sim,
       isMe: false,

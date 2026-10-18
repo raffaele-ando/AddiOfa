@@ -1,3 +1,5 @@
+> Scartato dall'utente (18/10): la parte legale la fa chi ne ha l'autorità. Nessuna modifica del prodotto deriva da questo documento.
+
 # Privacy e consenso: cosa si può e si deve fare (agente LEGGE)
 
 Data della ricerca: 17 ottobre 2026. Autore del documento: agente LEGGE (nessuna modifica al codice, nessun comando git).

@@ -4,8 +4,9 @@ import { Icona } from '../../../brand/icone/Icona';
 import { Illustrazione } from '../../../brand/Illustrazione';
 import { useExtra } from '../contesto';
 import { Etichetta, Pagina, Testata } from './comuni';
+import { useInvio } from './hooks';
 import { ATLAS_API_URL, FRASE_PROJECT } from '../../../config/ecosystem';
-import { RIGA_APERTURA } from '../../../lib/progetto/informativa';
+import { descriviInvio, type ChiaveStato } from '../../../lib/progetto/coda';
 import { leggiProgetto } from '../../../lib/progetto/profilo';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
@@ -13,16 +14,20 @@ import type { Tono } from '../ui';
 
 interface Carta { id: string; titolo: string; riga: string; arte: string; tono: Tono; stato: { testo: string; tono: Tono | 'neutro' } }
 
+const TONO_INVIO: Record<ChiaveStato, Tono | 'neutro'> = { inviata: 'alto', 'in-attesa': 'medio', invio: 'azione', rifiutata: 'basso', 'solo-locale': 'neutro' };
 const FONDO: Record<Tono, string> = { azione: 'bg-azione-tinta', alto: 'bg-alto-tinta', medio: 'bg-medio-tinta', basso: 'bg-basso-tinta', viola: 'bg-viola-tinta' };
 
 export default function Esplora() {
   const { appState, vai } = useExtra();
-  const { collegamento } = leggiProgetto(appState);
+  const invio = useInvio();
+  const { profilo, collegamento } = leggiProgetto(appState);
+  const sInvio = descriviInvio(invio, Date.now());
 
-  // Ogni carta dice com'è, in una riga vera: niente è attivo finché l'utente non lo sceglie.
-  const statoProjectId: Carta['stato'] = collegamento ? { testo: 'Accesso attivo', tono: 'alto' } : { testo: 'Facoltativo', tono: 'neutro' };
+  const statoProjectId: Carta['stato'] = collegamento ? { testo: 'Collegato', tono: 'alto' }
+    : !profilo ? { testo: 'Completa il profilo', tono: 'medio' }
+    : { testo: sInvio.titolo, tono: TONO_INVIO[sInvio.chiave] };
   const statoNoi: Carta['stato'] = !ATLAS_API_URL ? { testo: 'Non collegato', tono: 'neutro' }
-    : collegamento?.scopes.includes('noi.leaderboard') ? { testo: 'Ci sei', tono: 'alto' } : { testo: 'Facoltativo', tono: 'neutro' };
+    : collegamento?.scopes.includes('noi.leaderboard') ? { testo: 'Aderito', tono: 'alto' } : { testo: 'Non aderito', tono: 'neutro' };
 
   const carte: Carta[] = [
     { id: 'projectid', titolo: 'Project ID', riga: 'Il tuo account', arte: 'verifica-utente', tono: 'viola', stato: statoProjectId },
@@ -50,8 +55,7 @@ export default function Esplora() {
           </li>
         ))}
       </ul>
-      <p data-testo-ok className="mt-6 text-center text-[13px] leading-[19px] text-testo">{RIGA_APERTURA}</p>
-      <p data-testo-ok className="mt-3 text-center text-[12.5px] leading-[18px] text-testo-tenue">{FRASE_PROJECT}</p>
+      <p data-testo-ok className="mt-6 text-center text-[12.5px] leading-[18px] text-testo-tenue">{FRASE_PROJECT}</p>
     </Pagina>
   );
 }

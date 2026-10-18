@@ -5,11 +5,10 @@ import assert from 'node:assert/strict';
 import { copyFileSync, mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { avvia, postJson, wranglerD1, RADICE, type Istanza } from './aiuti.ts';
+import { avvia, iscrizione, postJson, wranglerD1, RADICE, type Istanza } from './aiuti.ts';
 
 const ADMIN = 'segreto-di-prova-con-abbastanza-caratteri';
 const SITO = 'https://addiofa.example';
-const V = '2026-10-17'; // CONSENT_VERSION (src/scopes.ts)
 
 let dev: Istanza;   // sviluppo: token di prova, ADMIN_TOKEN, CORS con *
 let prod: Istanza;  // come in produzione: niente token di prova, niente ADMIN_TOKEN
@@ -24,35 +23,204 @@ after(async () => { await Promise.all([dev?.ferma(), prod?.ferma()]); });
 
 let ipN = 10;
 const nuovoIp = () => `203.0.113.${ipN++}`;
-const json = (corpo: unknown) => ({ headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(corpo) });
-const patch = (token: string, corpo: unknown) => dev.chiama('/v1/me', { method: 'PATCH', token, ip: nuovoIp(), ...json(corpo) });
-const me = async (token: string) => (await (await dev.chiama('/v1/me', { token, ip: nuovoIp() })).json()) as any;
+const elenco = async () => {
+  const r = await dev.chiama('/v1/admin/signups?formato=json', { token: ADMIN, ip: nuovoIp() });
+  assert.equal(r.status, 200);
+  return (await r.json()) as { totale: number; iscrizioni: Record<string, string | number>[] };
+};
 
-describe('niente raccolta anonima', () => {
-  test('POST /v1/signups non esiste più: 410 con qualunque corpo, nessun «ok» che non fa niente', async () => {
-    const corpo = { appId: 'addiofa', email: 'mario.rossi@mail.polimi.it', consensi: { noi: true, comunicazioni: true }, consentVersion: V };
-    for (const richiesta of [postJson(corpo), postJson({}), { method: 'GET' }, { method: 'DELETE' }]) {
-      const r = await dev.chiama('/v1/signups', { ...richiesta, ip: nuovoIp() });
-      assert.equal(r.status, 410);
-      const testo = await r.text();
-      assert.match(testo, /Project ID/);
-      assert.ok(!/"ok":\s*true/.test(testo));
+describe('iscrizioni', () => {
+  test('iscrizione valida: { ok: true } e riga con email normalizzata, non verificata', async () => {
+    const r = await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: '  Mario.Rossi@MAIL.Polimi.it ' })), ip: nuovoIp() });
+    assert.equal(r.status, 200);
+    assert.deepEqual(await r.json(), { ok: true });
+    const { iscrizioni } = await elenco();
+    const riga = iscrizioni.find(i => i.email === 'mario.rossi@mail.polimi.it');
+    assert.ok(riga, 'riga non trovata');
+    assert.equal(riga.nome, 'Mario Rossi');
+    assert.equal(riga.email_verificata, 0);
+    assert.equal(riga.consenso_noi, 1);
+    assert.equal(riga.consenso_atlas, 0);
+    assert.equal(riga.consenso_comunicazioni, 1);
+  });
+
+  test('accetta polimi.it, mail.polimi.it e sottodomini', async () => {
+    for (const email of ['a.b@polimi.it', 'a.c@mail.polimi.it', 'a.d@dei.polimi.it']) {
+      const r = await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email })), ip: nuovoIp() });
+      assert.equal(r.status, 200, email);
     }
   });
 
-  test('le rotte dell\'account senza token rispondono 401: nessun dato si legge né si scrive da anonimi', async () => {
-    for (const [metodo, percorso] of [['GET', '/v1/me'], ['PATCH', '/v1/me'], ['DELETE', '/v1/me'], ['GET', '/v1/me/export'], ['PUT', '/v1/links/addiofa']]) {
-      assert.equal((await dev.chiama(percorso, { method: metodo, ip: nuovoIp() })).status, 401, `${metodo} ${percorso}`);
+  test('rifiuta email non PoliMi, domini simili e forme sbagliate', async () => {
+    const cattive = ['mario@gmail.com', 'mario@polimi.com', 'mario@evilpolimi.it', 'mario@polimi.it.evil.com',
+      'mario@xpolimi.it', 'mario@@polimi.it', 'mario polimi.it', '@polimi.it', 'a b@polimi.it', '', 42, null];
+    for (const email of cattive) {
+      const r = await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email })), ip: nuovoIp() });
+      assert.equal(r.status, 400, `email ${JSON.stringify(email)}`);
     }
+    const { iscrizioni } = await elenco();
+    assert.ok(!iscrizioni.some(i => String(i.email).includes('gmail') || String(i.email).includes('evil')));
+  });
+
+  test('rifiuta forma sbagliata: consensi non booleani, nome vuoto, app sconosciuta', async () => {
+    const casi: Record<string, unknown>[] = [
+      { consensi: { noi: 'si', atlas: false, comunicazioni: false } },
+      { consensi: { noi: true } },
+      { consentVersion: '' },
+      { appId: 'inesistente' },
+      { corso: 'x'.repeat(500) },
+    ];
+    for (const caso of casi) {
+      const r = await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'forma@polimi.it', ...caso })), ip: nuovoIp() });
+      assert.ok(r.status === 400 || r.status === 404, `${JSON.stringify(caso)} -> ${r.status}`);
+    }
+    const r = await dev.chiama('/v1/signups', { method: 'POST', body: 'non json', ip: nuovoIp() });
+    assert.equal(r.status, 400);
+  });
+
+  test('doppia iscrizione: idempotente, stessa risposta, una sola riga', async () => {
+    const corpo = iscrizione({ email: 'doppia@polimi.it' });
+    const a = await dev.chiama('/v1/signups', { ...postJson(corpo), ip: nuovoIp() });
+    const b = await dev.chiama('/v1/signups', { ...postJson(corpo), ip: nuovoIp() });
+    const c = await dev.chiama('/v1/signups', { ...postJson({ ...corpo, email: 'DOPPIA@polimi.it', nome: 'Mario R.' }), ip: nuovoIp() });
+    for (const r of [a, b, c]) {
+      assert.equal(r.status, 200);
+      assert.deepEqual(await r.json(), { ok: true });
+    }
+    const righe = (await elenco()).iscrizioni.filter(i => i.email === 'doppia@polimi.it');
+    assert.equal(righe.length, 1);
+    assert.equal(righe[0].nome, 'Mario R.');
+  });
+
+  test('corpo troppo grande: 413', async () => {
+    const r = await dev.chiama('/v1/signups', { ...postJson(iscrizione({ nome: 'x'.repeat(10_000) })), ip: nuovoIp() });
+    assert.equal(r.status, 413);
+  });
+
+  test('limite di richieste per IP: 429 con Retry-After, un altro IP passa', async () => {
+    const ip = '198.51.100.7';
+    const stati: number[] = [];
+    let ultima!: Response;
+    for (let i = 0; i < 12; i++) {
+      ultima = await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: `limite${i}@polimi.it` })), ip });
+      stati.push(ultima.status);
+    }
+    assert.deepEqual(stati, [...Array(10).fill(200), 429, 429]);
+    assert.ok(Number(ultima.headers.get('Retry-After')) >= 1);
+    const altro = await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'limite-altro@polimi.it' })), ip: '198.51.100.8' });
+    assert.equal(altro.status, 200);
+  });
+
+  test('DELETE pubblico non esiste (405) e GET non è consentito', async () => {
+    const d = await dev.chiama('/v1/signups', { method: 'DELETE', body: JSON.stringify({ email: 'doppia@polimi.it' }), ip: nuovoIp() });
+    assert.equal(d.status, 405);
+    const g = await dev.chiama('/v1/signups', { ip: nuovoIp() });
+    assert.equal(g.status, 405);
+    assert.ok((await elenco()).iscrizioni.some(i => i.email === 'doppia@polimi.it'));
   });
 });
 
-describe('migrazione 0004', () => {
-  test('su un database con dati delle migrazioni precedenti: righe conservate, colonne inutili tolte, colonne nuove vuote', () => {
+describe('percorso di studi', () => {
+  const invia = (corpo: Record<string, unknown>) => dev.chiama('/v1/signups', { ...postJson(corpo), ip: nuovoIp() });
+  const riga = async (email: string) => (await elenco()).iscrizioni.find(i => i.email === email);
+
+  test('valori validi: salvati e normalizzati', async () => {
+    const r = await invia(iscrizione({
+      email: 'percorso.uno@polimi.it', scuola: 'icat', sede: ' Bovisa ', livello: 'magistrale',
+      corso: 'Ingegneria Civile', anno: 2, provenienza: 'instagram',
+    }));
+    assert.equal(r.status, 200);
+    const x = await riga('percorso.uno@polimi.it');
+    assert.ok(x);
+    assert.deepEqual([x.scuola, x.sede, x.livello, x.corso, x.anno, x.provenienza], ['icat', 'bovisa', 'magistrale', 'Ingegneria Civile', 2, 'instagram']);
+    for (const scuola of ['ing-ind-inf', 'icat', 'auic', 'design']) {
+      for (const livello of ['triennale', 'magistrale', 'ciclo-unico']) {
+        const email = `p.${scuola}.${livello}@polimi.it`.replace(/-/g, '');
+        assert.equal((await invia(iscrizione({ email, scuola, livello, anno: 6 }))).status, 200, email);
+      }
+    }
+  });
+
+  test('campi del percorso facoltativi: omessi o null restano vuoti', async () => {
+    const r = await invia({ ...iscrizione({ email: 'percorso.due@polimi.it' }), corso: undefined, sede: null, provenienza: '' });
+    assert.equal(r.status, 200);
+    const x = await riga('percorso.due@polimi.it');
+    assert.deepEqual([x?.scuola, x?.livello, x?.anno, x?.corso, x?.sede], ['', '', '', '', '']);
+  });
+
+  test('scuola o livello non validi: 400', async () => {
+    for (const extra of [{ scuola: 'medicina' }, { scuola: 'ICAT 2' }, { scuola: 5 }, { livello: 'dottorato' }, { livello: ['triennale'] }]) {
+      assert.equal((await invia(iscrizione({ email: 'no.uno@polimi.it', ...extra }))).status, 400, JSON.stringify(extra));
+    }
+    assert.equal(await riga('no.uno@polimi.it'), undefined);
+  });
+
+  test('anno fuori intervallo o non intero: 400', async () => {
+    for (const anno of [0, 7, -1, 1.5, '2', true, {}, 100]) {
+      assert.equal((await invia(iscrizione({ email: 'no.due@polimi.it', anno }))).status, 400, JSON.stringify(anno));
+    }
+  });
+
+  test('sede e provenienza: solo id brevi a-z0-9-; corso max 120', async () => {
+    for (const extra of [{ sede: 'x' }, { sede: 'a'.repeat(31) }, { sede: 'via roma' }, { sede: 'città' }, { provenienza: 'dal gruppo!' }, { provenienza: 'a'.repeat(31) }, { corso: 'x'.repeat(121) }]) {
+      assert.equal((await invia(iscrizione({ email: 'no.tre@polimi.it', ...extra }))).status, 400, JSON.stringify(extra));
+    }
+  });
+
+  test('nome ricavato dall\'email se manca o è vuoto; se c\'è si tiene', async () => {
+    const casi: [string, unknown, string][] = [
+      ['mario.rossi@mail.polimi.it', undefined, 'Mario Rossi'],
+      ['luca.bianchi12@polimi.it', '', 'Luca Bianchi'],
+      ['anna.maria.verdi3@dei.polimi.it', '   ', 'Anna Maria Verdi'],
+      ['giulia99@polimi.it', null, 'Giulia'],
+      ['Paolo.Neri@POLIMI.it', undefined, 'Paolo Neri'],
+    ];
+    for (const [email, nome, atteso] of casi) {
+      const r = await invia({ ...iscrizione({ email }), nome });
+      assert.equal(r.status, 200, email);
+      assert.equal((await riga(email.toLowerCase()))?.nome, atteso, email);
+    }
+    await invia(iscrizione({ email: 'sara.gialli@polimi.it', nome: 'Sarina' }));
+    assert.equal((await riga('sara.gialli@polimi.it'))?.nome, 'Sarina');
+    // niente da ricavare e nessun nome: 400
+    assert.equal((await invia({ ...iscrizione({ email: '12345@polimi.it' }), nome: undefined })).status, 400);
+    // il nome facoltativo non cambia i controlli del dominio
+    assert.equal((await invia({ ...iscrizione({ email: 'mario.rossi@gmail.com' }), nome: undefined })).status, 400);
+  });
+
+  test('upsert idempotente con i nuovi campi: una riga, campi aggiornati, omessi conservati', async () => {
+    const email = 'percorso.tre@polimi.it';
+    const base = iscrizione({ email, scuola: 'auic', livello: 'ciclo-unico', anno: 1, corso: 'Architettura', sede: 'leonardo' });
+    for (let i = 0; i < 3; i++) assert.equal((await invia(base)).status, 200);
+    assert.equal((await elenco()).iscrizioni.filter(i => i.email === email).length, 1);
+    await invia({ ...base, scuola: undefined, livello: undefined, anno: 2 });
+    const x = await riga(email);
+    assert.deepEqual([x?.scuola, x?.livello, x?.anno, x?.corso], ['auic', 'ciclo-unico', 2, 'Architettura']);
+  });
+
+  test('esportazione: colonne nuove e filtri scuola e livello', async () => {
+    const csv = await (await dev.chiama('/v1/admin/signups?formato=csv', { token: ADMIN, ip: nuovoIp() })).text();
+    const intestazione = csv.replace(/^﻿/, '').split('\r\n')[0].split(',');
+    for (const c of ['scuola', 'sede', 'livello', 'corso', 'anno', 'provenienza']) assert.ok(intestazione.includes(c), c);
+    const f = async (q: string) => (await (await dev.chiama(`/v1/admin/signups?formato=json&${q}`, { token: ADMIN, ip: nuovoIp() })).json()) as { iscrizioni: Record<string, string | number>[] };
+    const icat = await f('scuola=icat');
+    assert.ok(icat.iscrizioni.length >= 1 && icat.iscrizioni.every(i => i.scuola === 'icat'));
+    const mag = await f('livello=magistrale');
+    assert.ok(mag.iscrizioni.length >= 1 && mag.iscrizioni.every(i => i.livello === 'magistrale'));
+    const entrambi = await f('scuola=icat&livello=magistrale');
+    assert.ok(entrambi.iscrizioni.length >= 1 && entrambi.iscrizioni.every(i => i.scuola === 'icat' && i.livello === 'magistrale'));
+    const conComunicazioni = await f('scuola=design&livello=triennale&comunicazioni=1');
+    assert.ok(conComunicazioni.iscrizioni.length >= 1);
+    assert.ok(conComunicazioni.iscrizioni.every(i => i.scuola === 'design' && i.livello === 'triennale' && i.consenso_comunicazioni === 1));
+    assert.equal((await dev.chiama('/v1/admin/signups?scuola=medicina', { token: ADMIN, ip: nuovoIp() })).status, 400);
+    assert.equal((await dev.chiama('/v1/admin/signups?livello=x', { token: ADMIN, ip: nuovoIp() })).status, 400);
+  });
+
+  test('migrazione 0003 su un database con dati della 0002: righe conservate, colonne nuove vuote', () => {
     const dir = mkdtempSync(join(tmpdir(), 'atlas-mig-'));
     const migrazioni = join(dir, 'migrazioni');
     mkdirSync(migrazioni);
-    for (const f of ['0001_init.sql', '0002_signups.sql', '0003_percorso_studi.sql']) copyFileSync(join(RADICE, 'migrations', f), join(migrazioni, f));
+    for (const f of ['0001_init.sql', '0002_signups.sql']) copyFileSync(join(RADICE, 'migrations', f), join(migrazioni, f));
     const config = join(dir, 'wrangler.jsonc');
     writeFileSync(config, JSON.stringify({
       name: 'atlas', compatibility_date: '2026-09-01',
@@ -62,55 +230,56 @@ describe('migrazione 0004', () => {
     wranglerD1(dati, config, ['migrations', 'apply', 'atlas']);
     wranglerD1(dati, config, ['execute', 'atlas', '--command',
       `INSERT INTO accounts (id, auth_uid, display_name, handle, created_at, updated_at, polimi_email) VALUES ('PRJ-1', 'u', 'N', 'n1', 1, 1, 'vecchio@polimi.it');
-       INSERT INTO signups (email, nome, app_id, corso, sede, provenienza, scuola, livello, anno, consent_version, account_id, created_at, updated_at)
-         VALUES ('vecchio@polimi.it', 'Vecchio', 'addiofa', 'Gestionale', 'leonardo', 'amici', 'icat', 'triennale', 2, 'v1', 'PRJ-1', 5, 6);
+       INSERT INTO signups (email, nome, app_id, corso, sede, provenienza, consent_version, account_id, created_at, updated_at)
+         VALUES ('vecchio@polimi.it', 'Vecchio', 'addiofa', 'Gestionale', 'Leonardo', 'amici', 'v1', 'PRJ-1', 5, 6);
        INSERT INTO consent_log (account_id, signup_id, app_id, action, scopes, consent_version, created_at)
          VALUES (NULL, 1, 'addiofa', 'grant', '[]', 'v1', 5);`]);
-    copyFileSync(join(RADICE, 'migrations', '0004_consensi_unificati.sql'), join(migrazioni, '0004_consensi_unificati.sql'));
+    copyFileSync(join(RADICE, 'migrations', '0003_percorso_studi.sql'), join(migrazioni, '0003_percorso_studi.sql'));
     wranglerD1(dati, config, ['migrations', 'apply', 'atlas']);
     const interroga = (sql: string) => JSON.parse(wranglerD1(dati, config, ['execute', 'atlas', '--json', '--command', sql]))[0].results;
-    assert.deepEqual(interroga('SELECT email, nome, account_id FROM signups'), [{ email: 'vecchio@polimi.it', nome: 'Vecchio', account_id: 'PRJ-1' }]);
-    const colonneSignups = interroga("SELECT name FROM pragma_table_info('signups')").map((r: any) => r.name);
-    for (const tolta of ['scuola', 'livello', 'anno', 'corso', 'sede', 'provenienza', 'consenso_atlas']) assert.ok(!colonneSignups.includes(tolta), tolta);
-    const colonneAccounts = interroga("SELECT name FROM pragma_table_info('accounts')").map((r: any) => r.name);
-    assert.ok(!colonneAccounts.includes('polimi_email'));
-    for (const nuova of ['comunicazioni_email', 'comunicazioni_stato', 'comunicazioni_at']) assert.ok(colonneAccounts.includes(nuova), nuova);
-    assert.deepEqual(interroga('SELECT id, comunicazioni_stato FROM accounts'), [{ id: 'PRJ-1', comunicazioni_stato: null }]);
+    assert.deepEqual(interroga('SELECT email, nome, corso, sede, provenienza, scuola, livello, anno, account_id FROM signups'), [{
+      email: 'vecchio@polimi.it', nome: 'Vecchio', corso: 'Gestionale', sede: 'Leonardo', provenienza: 'amici',
+      scuola: null, livello: null, anno: null, account_id: 'PRJ-1',
+    }]);
+    assert.equal(interroga("SELECT name FROM sqlite_master WHERE type = 'index' AND name IN ('idx_signups_scuola', 'idx_signups_livello', 'idx_signups_corso')").length, 3);
     assert.equal(interroga('SELECT COUNT(*) AS n FROM consent_log')[0].n, 1);
+    assert.equal(interroga('SELECT COUNT(*) AS n FROM accounts')[0].n, 1);
   });
 });
 
-describe('admin: comunicazioni', () => {
-  test('senza ADMIN_TOKEN impostato la rotta risponde 404, anche con un token; la vecchia rotta delle iscrizioni non c\'è più', async () => {
-    assert.equal((await prod.chiama('/v1/admin/comunicazioni?formato=csv', { ip: nuovoIp() })).status, 404);
-    assert.equal((await prod.chiama('/v1/admin/comunicazioni?formato=csv', { token: ADMIN, ip: nuovoIp() })).status, 404);
-    assert.equal((await dev.chiama('/v1/admin/signups', { token: ADMIN, ip: nuovoIp() })).status, 404);
+describe('admin', () => {
+  test('senza ADMIN_TOKEN impostato la rotta risponde 404, anche con un token', async () => {
+    const senza = await prod.chiama('/v1/admin/signups?formato=csv', { ip: nuovoIp() });
+    assert.equal(senza.status, 404);
+    const con = await prod.chiama('/v1/admin/signups?formato=csv', { token: ADMIN, ip: nuovoIp() });
+    assert.equal(con.status, 404);
+    const vuoto = await prod.chiama('/v1/admin/signups', { token: '', ip: nuovoIp() });
+    assert.equal(vuoto.status, 404);
   });
 
-  test('con il segreto sbagliato o mancante: 401 (e mai nell\'URL)', async () => {
-    assert.equal((await dev.chiama('/v1/admin/comunicazioni', { ip: nuovoIp() })).status, 401);
-    assert.equal((await dev.chiama('/v1/admin/comunicazioni', { token: ADMIN + 'x', ip: nuovoIp() })).status, 401);
-    assert.equal((await dev.chiama('/v1/admin/comunicazioni?token=' + ADMIN, { ip: nuovoIp() })).status, 401);
+  test('con il segreto sbagliato o mancante: 401', async () => {
+    assert.equal((await dev.chiama('/v1/admin/signups', { ip: nuovoIp() })).status, 401);
+    assert.equal((await dev.chiama('/v1/admin/signups', { token: ADMIN + 'x', ip: nuovoIp() })).status, 401);
+    assert.equal((await dev.chiama('/v1/admin/signups?token=' + ADMIN, { ip: nuovoIp() })).status, 401); // mai nell'URL
   });
 
-  test('con il segreto: elenco JSON e CSV di chi ha dato il consenso (stato in attesa); filtro «confermato» vuoto; formato sbagliato 400', async () => {
-    assert.equal((await patch('test:adm1:Adm', { consensi: { comunicazioni: true }, comunicazioniEmail: 'Lista@Gmail.com' })).status, 200);
-    const j = (await (await dev.chiama('/v1/admin/comunicazioni?formato=json', { token: ADMIN, ip: nuovoIp() })).json()) as any;
-    const mia = j.comunicazioni.find((r: any) => r.email_comunicazioni === 'lista@gmail.com');
-    assert.ok(mia);
-    assert.equal(mia.stato, 'in-attesa');
-    const csv = await dev.chiama('/v1/admin/comunicazioni?formato=csv', { token: ADMIN, ip: nuovoIp() });
+  test('con il segreto: elenco JSON e CSV con la colonna consenso_comunicazioni', async () => {
+    await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'csv@polimi.it', nome: '=HYPERLINK("http://x")', consensi: { noi: false, atlas: false, comunicazioni: false } })), ip: nuovoIp() });
+    const j = await elenco();
+    assert.ok(j.totale >= 1);
+    assert.ok('consenso_comunicazioni' in j.iscrizioni[0]);
+    const csv = await dev.chiama('/v1/admin/signups?formato=csv', { token: ADMIN, ip: nuovoIp() });
+    assert.equal(csv.status, 200);
     assert.match(csv.headers.get('Content-Type') ?? '', /text\/csv/);
     const testo = await csv.text();
-    assert.deepEqual(testo.replace(/^﻿/, '').split('\r\n')[0].split(','), ['project_id', 'email_comunicazioni', 'stato', 'consenso_dal', 'creato']);
-    assert.match(testo, /lista@gmail\.com/);
-    const confermati = (await (await dev.chiama('/v1/admin/comunicazioni?formato=json&stato=confermato', { token: ADMIN, ip: nuovoIp() })).json()) as any;
-    assert.equal(confermati.totale, 0);
-    assert.equal((await dev.chiama('/v1/admin/comunicazioni?formato=xml', { token: ADMIN, ip: nuovoIp() })).status, 400);
-    // spenta la casella, l'indirizzo sparisce dall'elenco
-    await patch('test:adm1:Adm', { consensi: { comunicazioni: false } });
-    const dopo = (await (await dev.chiama('/v1/admin/comunicazioni?formato=json', { token: ADMIN, ip: nuovoIp() })).json()) as any;
-    assert.ok(!dopo.comunicazioni.some((r: any) => r.email_comunicazioni === 'lista@gmail.com'));
+    const intestazione = testo.replace(/^﻿/, '').split('\r\n')[0].split(',');
+    assert.ok(intestazione.includes('consenso_comunicazioni'));
+    assert.ok(intestazione.includes('email_verificata'));
+    assert.match(testo, /'=HYPERLINK/, 'le formule devono essere neutralizzate');
+    const solo = await dev.chiama('/v1/admin/signups?formato=json&comunicazioni=1', { token: ADMIN, ip: nuovoIp() });
+    const filtrate = (await solo.json()) as { iscrizioni: Record<string, number>[] };
+    assert.ok(filtrate.iscrizioni.length >= 1 && filtrate.iscrizioni.every(i => i.consenso_comunicazioni === 1));
+    assert.equal((await dev.chiama('/v1/admin/signups?formato=xml', { token: ADMIN, ip: nuovoIp() })).status, 400);
   });
 });
 
@@ -144,9 +313,13 @@ describe('CORS', () => {
   });
 });
 
-describe('Project ID: account, consensi, cancellazione', () => {
+describe('Project ID e collegamento con l\'iscrizione', () => {
   const MARIA = 'test:maria:Maria';
   const LUCA = 'test:luca:Luca';
+  const link = (token: string, extra: Record<string, unknown> = {}) => dev.chiama('/v1/links/addiofa', {
+    method: 'PUT', token, ip: nuovoIp(), headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ scopes: ['profile'], consentVersion: '2026-09-27', ...extra }),
+  });
 
   test('token di prova: accettato solo con ALLOW_TEST_TOKENS; token falso 401', async () => {
     assert.equal((await dev.chiama('/v1/me', { token: MARIA, ip: nuovoIp() })).status, 200);
@@ -155,131 +328,100 @@ describe('Project ID: account, consensi, cancellazione', () => {
     assert.equal((await prod.chiama('/v1/me', { ip: nuovoIp() })).status, 401);
   });
 
-  test('il primo accesso crea l\'account con il minimo: email, identificativo, @nome neutro; niente nome né foto; nessun consenso', async () => {
-    const q = await me('test:neutro:Nome Segreto Rossi');
-    assert.match(q.account.id, /^PRJ-/);
-    assert.match(q.account.handle, /^studente\d{4}$/);
-    assert.equal(q.account.email, 'neutro@example.test');
-    assert.deepEqual(Object.keys(q.account).sort(), ['createdAt', 'email', 'handle', 'id']);
-    assert.ok(!JSON.stringify(q).includes('Segreto'));
-    assert.deepEqual(q.consensi, { noi: false, comunicazioni: null });
-    assert.equal(q.consentVersion, V);
-    assert.deepEqual(q.links, []);
-  });
-
-  test('PATCH: @nome utente e controlli; i campi che non si conoscono sono un errore, non un «ok» che non fa niente', async () => {
-    const r = await patch(MARIA, { handle: 'Maria.Rossi_1' });
+  test('PUT /v1/links con polimiEmail collega l\'iscrizione; /me ed export mostrano nome, corso, sede, consensi', async () => {
+    await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'maria@polimi.it', nome: 'Maria B.', corso: 'Informatica', sede: 'bovisa', scuola: 'ing-ind-inf', livello: 'triennale', anno: 1 })), ip: nuovoIp() });
+    const r = await link(MARIA, { polimiEmail: ' Maria@POLIMI.it ' });
     assert.equal(r.status, 200);
-    assert.equal(((await r.json()) as any).account.handle, 'maria.rossi_1');
-    assert.equal((await patch(LUCA, { handle: 'maria.rossi_1' })).status, 409);
-    assert.equal((await patch(LUCA, { handle: 'a' })).status, 400);
-    for (const campo of [{ polimiEmail: 'x@polimi.it' }, { corso: 'Gestionale' }, { scuola: 'icat' }, { provenienza: 'amici' }, { consensi: { atlas: true } }]) {
-      const e = await patch(LUCA, campo);
-      assert.equal(e.status, 400, JSON.stringify(campo));
-      assert.match(await e.text(), /non riconosciut/);
+    const me = (await (await dev.chiama('/v1/me', { token: MARIA, ip: nuovoIp() })).json()) as any;
+    assert.equal(me.account.polimiEmail, 'maria@polimi.it');
+    assert.deepEqual(me.profile, { nome: 'Maria B.', scuola: 'ing-ind-inf', sede: 'bovisa', livello: 'triennale', corso: 'Informatica', anno: 1 });
+    assert.deepEqual(me.consensi, { noi: true, atlas: false, comunicazioni: true });
+    assert.equal(me.signup.email, 'maria@polimi.it');
+    assert.equal(me.signup.emailVerificata, false);
+
+    // una nuova iscrizione con consensi cambiati non passa più dal modulo pubblico (è collegata a un login)
+    await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'maria@polimi.it', nome: 'Hacker', consensi: { noi: false, atlas: true, comunicazioni: false } })), ip: nuovoIp() });
+    const dopo = (await (await dev.chiama('/v1/me', { token: MARIA, ip: nuovoIp() })).json()) as any;
+    assert.equal(dopo.profile.nome, 'Maria B.');
+
+    const ex = (await (await dev.chiama('/v1/me/export', { token: MARIA, ip: nuovoIp() })).json()) as any;
+    assert.equal(ex.signup.corso, 'Informatica');
+    assert.equal(ex.signupConsentLog.length, 1);
+    assert.equal(ex.signupConsentLog[0].action, 'grant');
+    assert.deepEqual(JSON.parse(ex.signupConsentLog[0].scopes), ['noi.leaderboard', 'comunicazioni']);
+    assert.equal(ex.consentLog.length, 1); // il consenso del collegamento resta separato
+  });
+
+  test('un secondo account non si prende un\'iscrizione già collegata', async () => {
+    assert.equal((await link(LUCA, { polimiEmail: 'maria@polimi.it' })).status, 200);
+    const me = (await (await dev.chiama('/v1/me', { token: LUCA, ip: nuovoIp() })).json()) as any;
+    assert.equal(me.signup, null);
+    assert.equal(me.consensi, null);
+  });
+
+  test('l\'iscrizione che arriva dopo l\'email indicata si collega da sola; email non PoliMi rifiutata', async () => {
+    const BEA = 'test:bea:Bea';
+    assert.equal((await link(BEA, { polimiEmail: 'bea@gmail.com' })).status, 400);
+    assert.equal((await link(BEA, { polimiEmail: 'bea@polimi.it' })).status, 200);
+    assert.equal(((await (await dev.chiama('/v1/me', { token: BEA, ip: nuovoIp() })).json()) as any).signup, null);
+    await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'bea@polimi.it', nome: 'Bea' })), ip: nuovoIp() });
+    const me = (await (await dev.chiama('/v1/me', { token: BEA, ip: nuovoIp() })).json()) as any;
+    assert.equal(me.signup?.nome, 'Bea');
+  });
+
+  test('registro dei consensi: grant, poi update solo se i consensi cambiano', async () => {
+    const NINA = 'test:nina:Nina';
+    const corpo = iscrizione({ email: 'nina@polimi.it', nome: 'Nina' });
+    await dev.chiama('/v1/signups', { ...postJson(corpo), ip: nuovoIp() });
+    await dev.chiama('/v1/signups', { ...postJson(corpo), ip: nuovoIp() }); // uguale: nessuna voce nuova
+    await dev.chiama('/v1/signups', { ...postJson({ ...corpo, consensi: { noi: false, atlas: true, comunicazioni: false } }), ip: nuovoIp() });
+    await link(NINA, { polimiEmail: 'nina@polimi.it' });
+    const ex = (await (await dev.chiama('/v1/me/export', { token: NINA, ip: nuovoIp() })).json()) as any;
+    assert.deepEqual(ex.signupConsentLog.map((l: any) => l.action), ['grant', 'update']);
+    assert.deepEqual(JSON.parse(ex.signupConsentLog[1].scopes), ['atlas.personalize']);
+    assert.equal(ex.signupConsentLog[1].consent_version, 'iscrizione-2026-10-16');
+    assert.ok(ex.signupConsentLog[1].created_at > 0);
+    assert.deepEqual(ex.consensi, { noi: false, atlas: true, comunicazioni: false });
+  });
+
+  test('PATCH /v1/me: polimiEmail, corso e sede', async () => {
+    const r = await dev.chiama('/v1/me', {
+      method: 'PATCH', token: MARIA, ip: nuovoIp(), headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ corso: 'Ingegneria Elettrica', sede: 'leonardo', livello: 'magistrale', anno: 2 }),
+    });
+    assert.equal(r.status, 200);
+    const j = (await r.json()) as any;
+    assert.deepEqual(j.profile, { nome: 'Maria B.', scuola: 'ing-ind-inf', sede: 'leonardo', livello: 'magistrale', corso: 'Ingegneria Elettrica', anno: 2 });
+    const senza = await dev.chiama('/v1/me', {
+      method: 'PATCH', token: 'test:zeno:Zeno', ip: nuovoIp(), headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ corso: 'X' }),
+    });
+    assert.equal(senza.status, 409);
+    for (const corpo of [{ scuola: 'medicina' }, { livello: 'dottorato' }, { anno: 7 }, { sede: 'Via Roma 1' }]) {
+      const no = await dev.chiama('/v1/me', {
+        method: 'PATCH', token: MARIA, ip: nuovoIp(), headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(corpo),
+      });
+      assert.equal(no.status, 400, JSON.stringify(corpo));
     }
-    assert.equal((await patch(LUCA, { consensi: { noi: 'sì' } })).status, 400);
+    const cattiva = await dev.chiama('/v1/me', {
+      method: 'PATCH', token: MARIA, ip: nuovoIp(), headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ polimiEmail: 'maria@altro.it' }),
+    });
+    assert.equal(cattiva.status, 400);
   });
 
-  test('classifica NOI: un tocco per entrare, un tocco per uscire (il punteggio sparisce subito), senza eliminare l\'account; registro unico', async () => {
-    const T = 'test:noi1:Noi';
-    assert.deepEqual((await me(T)).consensi.noi, false);
-    const on = (await (await patch(T, { consensi: { noi: true } })).json()) as any;
-    assert.equal(on.consensi.noi, true);
-    assert.deepEqual(on.links[0].scopes, ['profile', 'noi.leaderboard']);
-    assert.equal(on.links[0].consentVersion, V);
-    // lo stesso valore due volte: niente righe doppie nel registro
-    await patch(T, { consensi: { noi: true } });
-    assert.equal((await dev.chiama('/v1/noi/addiofa/score', { method: 'POST', token: T, ip: nuovoIp(), ...json({ mastered: 10, bestSim: 20 }) })).status, 200);
-    const off = (await (await patch(T, { consensi: { noi: false } })).json()) as any;
-    assert.equal(off.consensi.noi, false);
-    assert.equal(off.account.id, on.account.id, 'l\'account c\'è ancora');
-    const lista = (await (await dev.chiama('/v1/noi/addiofa/leaderboard', { token: T, ip: nuovoIp() })).json()) as any;
-    assert.ok(!lista.entries.some((e: any) => e.isMe), 'il punteggio è sparito');
-    assert.equal((await dev.chiama('/v1/noi/addiofa/score', { method: 'POST', token: T, ip: nuovoIp(), ...json({ mastered: 1, bestSim: 1 }) })).status, 403);
-    const ex = (await (await dev.chiama('/v1/me/export', { token: T, ip: nuovoIp() })).json()) as any;
-    assert.deepEqual(ex.consentLog.map((l: any) => l.action), ['grant', 'update']);
-    assert.ok(ex.consentLog.every((l: any) => l.consent_version === V));
-  });
-
-  test('classifica: in elenco solo @nome utente, domande imparate e miglior punteggio (mai nome, foto o email)', async () => {
-    const T = 'test:noi2:Persona Vera';
-    await patch(T, { consensi: { noi: true } });
-    await dev.chiama('/v1/noi/addiofa/score', { method: 'POST', token: T, ip: nuovoIp(), ...json({ mastered: 5, bestSim: 5 }) });
-    const lista = (await (await dev.chiama('/v1/noi/addiofa/leaderboard', { ip: nuovoIp() })).json()) as any;
-    const mia = lista.entries.find((e: any) => e.mastered === 5 && e.bestSim === 5);
-    assert.deepEqual(Object.keys(mia).sort(), ['bestSim', 'handle', 'isMe', 'mastered', 'rank']);
-    assert.ok(!JSON.stringify(lista).includes('Persona'));
-    assert.ok(!JSON.stringify(lista).includes('example.test'));
-  });
-
-  test('comunicazioni: indirizzo qualunque (anche personale), stato «in attesa» perché la conferma con link non esiste ancora; revoca con un tocco e l\'indirizzo si cancella', async () => {
-    const T = 'test:com1:Com';
-    assert.equal((await patch(T, { consensi: { comunicazioni: true } })).status, 400, 'serve un indirizzo');
-    assert.equal((await patch(T, { consensi: { comunicazioni: true }, comunicazioniEmail: 'non-una-email' })).status, 400);
-    const on = (await (await patch(T, { consensi: { comunicazioni: true }, comunicazioniEmail: ' Persona.Qualunque@Gmail.com ' })).json()) as any;
-    assert.equal(on.consensi.comunicazioni.stato, 'in-attesa');
-    assert.equal(on.consensi.comunicazioni.email, 'persona.qualunque@gmail.com');
-    assert.ok(on.consensi.comunicazioni.dal > 0);
-    // ripetere lo stesso non duplica il registro; cambiare indirizzo è un «update»
-    await patch(T, { consensi: { comunicazioni: true }, comunicazioniEmail: 'persona.qualunque@gmail.com' });
-    await patch(T, { consensi: { comunicazioni: true }, comunicazioniEmail: 'altra@posta.it' });
-    const off = (await (await patch(T, { consensi: { comunicazioni: false } })).json()) as any;
-    assert.equal(off.consensi.comunicazioni, null);
-    assert.ok(!JSON.stringify(off).includes('posta.it'));
-    assert.equal((await me(T)).account.id, off.account.id);
-    const ex = (await (await dev.chiama('/v1/me/export', { token: T, ip: nuovoIp() })).json()) as any;
-    assert.deepEqual(ex.consentLog.map((l: any) => [l.action, l.scopes]), [['grant', '["comunicazioni"]'], ['update', '["comunicazioni"]'], ['revoke', '["comunicazioni"]']]);
-    assert.ok(ex.consentLog.every((l: any) => l.consent_version === V));
-    // spegnere di nuovo non scrive niente
-    await patch(T, { consensi: { comunicazioni: false } });
-    const ex2 = (await (await dev.chiama('/v1/me/export', { token: T, ip: nuovoIp() })).json()) as any;
-    assert.equal(ex2.consentLog.length, 3);
-  });
-
-  test('i due consensi sono indipendenti: spegnere uno non tocca l\'altro', async () => {
-    const T = 'test:due:Due';
-    await patch(T, { consensi: { noi: true, comunicazioni: true }, comunicazioniEmail: 'due@posta.it' });
-    const r = (await (await patch(T, { consensi: { noi: false } })).json()) as any;
-    assert.equal(r.consensi.noi, false);
-    assert.equal(r.consensi.comunicazioni.email, 'due@posta.it');
-    const r2 = (await (await patch(T, { consensi: { comunicazioni: false } })).json()) as any;
-    assert.equal(r2.consensi.comunicazioni, null);
-  });
-
-  test('PUT /v1/links: solo permessi veri (profilo e classifica); versione vecchia 409; permessi che non esistono più 400', async () => {
-    const put = (token: string, corpo: unknown) => dev.chiama('/v1/links/addiofa', { method: 'PUT', token, ip: nuovoIp(), ...json(corpo) });
-    assert.equal((await put(LUCA, { scopes: ['profile'], consentVersion: '2026-09-27' })).status, 409);
-    assert.equal((await put(LUCA, { scopes: ['profile', 'atlas.personalize'], consentVersion: V })).status, 400);
-    assert.equal((await put(LUCA, { scopes: ['profile', 'progress.share'], consentVersion: V })).status, 400);
-    assert.equal((await put(LUCA, { scopes: [], consentVersion: V })).status, 400);
-    assert.equal((await put(LUCA, { scopes: ['profile'], consentVersion: V })).status, 200);
-    const s = (await (await dev.chiama('/v1/scopes')).json()) as any;
-    assert.deepEqual(Object.keys(s.scopes), ['profile', 'noi.leaderboard']);
-    assert.equal(s.consentVersion, V);
-  });
-
-  test('DELETE /v1/me cancella tutto: account, collegamenti, punteggio, comunicazioni, registro', async () => {
-    const T = 'test:del1:Del';
-    await patch(T, { consensi: { noi: true, comunicazioni: true }, comunicazioniEmail: 'del@posta.it' });
-    await dev.chiama('/v1/noi/addiofa/score', { method: 'POST', token: T, ip: nuovoIp(), ...json({ mastered: 3, bestSim: 3 }) });
-    const prima = await me(T);
-    assert.equal((await dev.chiama('/v1/me', { method: 'DELETE', token: T, ip: nuovoIp() })).status, 200);
-    const dopo = await me(T);
-    assert.notEqual(dopo.account.id, prima.account.id, 'un nuovo accesso crea un account vuoto');
-    assert.deepEqual(dopo.consensi, { noi: false, comunicazioni: null });
-    const ex = (await (await dev.chiama('/v1/me/export', { token: T, ip: nuovoIp() })).json()) as any;
-    assert.deepEqual(ex.consentLog, []);
-    assert.deepEqual(ex.noiScores, []);
-    const elenco = (await (await dev.chiama('/v1/admin/comunicazioni?formato=json', { token: ADMIN, ip: nuovoIp() })).json()) as any;
-    assert.ok(!elenco.comunicazioni.some((r: any) => r.email_comunicazioni === 'del@posta.it'));
+  test('DELETE /v1/me cancella anche l\'iscrizione collegata e il suo registro', async () => {
+    assert.ok((await elenco()).iscrizioni.some(i => i.email === 'maria@polimi.it'));
+    const r = await dev.chiama('/v1/me', { method: 'DELETE', token: MARIA, ip: nuovoIp() });
+    assert.equal(r.status, 200);
+    assert.ok(!(await elenco()).iscrizioni.some(i => i.email === 'maria@polimi.it'));
   });
 });
 
-describe('classifica NOI', () => {
+describe('classifica NOI (invariata)', () => {
   const put = (token: string, scopes: string[]) => dev.chiama('/v1/links/addiofa', {
     method: 'PUT', token, ip: nuovoIp(), headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ scopes, consentVersion: V }),
+    body: JSON.stringify({ scopes, consentVersion: '2026-09-27' }),
   });
   const punteggio = (token: string, body: unknown) => dev.chiama('/v1/noi/addiofa/score', {
     method: 'POST', token, ip: nuovoIp(), headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
@@ -296,12 +438,13 @@ describe('classifica NOI', () => {
     assert.equal((await punteggio('test:a1:Anna', { mastered: 9999, bestSim: 1 })).status, 400);
 
     const lista = (await (await dev.chiama('/v1/noi/addiofa/leaderboard', { token: 'test:a1:Anna', ip: nuovoIp() })).json()) as any;
-    assert.deepEqual(lista.entries.slice(0, 2).map((e: any) => [e.rank, e.mastered, e.bestSim, e.isMe]), [[1, 40, 29, false], [2, 40, 27, true]]);
+    assert.equal(lista.total, 2);
+    assert.deepEqual(lista.entries.map((e: any) => [e.rank, e.mastered, e.bestSim, e.isMe]), [[1, 40, 29, false], [2, 40, 27, true]]);
     assert.equal(lista.me.rank, 2);
 
     await put('test:a1:Anna', ['profile']);
     const dopo = (await (await dev.chiama('/v1/noi/addiofa/leaderboard', { ip: nuovoIp() })).json()) as any;
-    assert.ok(!dopo.entries.some((e: any) => e.mastered === 40 && e.bestSim === 27));
+    assert.equal(dopo.total, 1);
   });
 
   test('scopes e health', async () => {

@@ -1,10 +1,17 @@
-// Controlli del formato delle email e del @nome utente. Le regole sono le stesse del Worker (atlas/src/consensi.ts, atlas/src/index.ts):
-// minuscola e senza spazi; per il badge «studente PoliMi» solo il dominio polimi.it, mail.polimi.it e i sottodomini *.polimi.it.
-// IMPORTANTE: si controlla solo il formato e il dominio. Senza il link di verifica non si può sapere se l'indirizzo è davvero di chi lo scrive:
-// per questo il badge esiste solo dopo la verifica.
+// Controlli dei dati della registrazione. Le regole dell'email sono le stesse del Worker (atlas/src/signups.ts):
+// minuscola e senza spazi; solo il dominio polimi.it, mail.polimi.it e i sottodomini *.polimi.it.
+// IMPORTANTE: si controlla solo il formato e il dominio. Senza un invio di posta non si può sapere se l'indirizzo è davvero di chi lo scrive:
+// per questo il dato si chiama sempre «non verificata» e non esiste nessuna funzione che dica il contrario.
+
+import { nomeDaEmail } from './nomeDaEmail';
 
 const LOCAL_RE = /^[a-z0-9][a-z0-9._%+'-]{0,63}$/;
 const DOMAIN_RE = /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)+$/;
+// eslint-disable-next-line no-control-regex
+const CONTROLLO_RE = /[\u0000-\u001f\u007f]/g;
+
+export const NOME_MAX = 80;
+export const NOME_MIN = 2;
 
 export type MotivoEmail = 'vuota' | 'formato' | 'dominio';
 
@@ -36,18 +43,23 @@ export const TESTO_MOTIVO_EMAIL: Record<MotivoEmail, string> = {
   dominio: 'Serve un indirizzo @polimi.it o @mail.polimi.it.',
 };
 
-/** Email qualunque (non solo PoliMi), per l'accesso con link e per le comunicazioni: stessa regola del Worker (atlas/src/consensi.ts). Restituisce l'indirizzo normalizzato o il motivo. */
-export function controllaEmail(grezza: string): { ok: true; email: string } | { ok: false; motivo: 'vuota' | 'formato' } {
-  const email = (grezza ?? '').trim().toLowerCase();
-  if (!email) return { ok: false, motivo: 'vuota' };
-  if (email.length < 6 || email.length > 254 || email.includes('..')) return { ok: false, motivo: 'formato' };
-  const parti = email.split('@');
-  if (parti.length !== 2 || !LOCAL_RE.test(parti[0]) || parti[0].endsWith('.') || !DOMAIN_RE.test(parti[1])) return { ok: false, motivo: 'formato' };
-  return { ok: true, email };
+/** Nome come lo vuole essere chiamato: spazi ripuliti, niente caratteri di controllo. Restituisce null se troppo corto o troppo lungo. */
+export function pulisciNome(grezzo: string): string | null {
+  const nome = (grezzo ?? '').replace(CONTROLLO_RE, ' ').replace(/\s+/g, ' ').trim();
+  return nome.length >= NOME_MIN && nome.length <= NOME_MAX ? nome : null;
 }
 
-/** Il @nome utente: 3-20 caratteri tra a-z, 0-9, _ e . (stessa regola del Worker). Restituisce il nome normalizzato o null. */
-export function controllaHandle(grezzo: string): string | null {
-  const h = (grezzo ?? '').trim().toLowerCase();
-  return /^[a-z0-9_.]{3,20}$/.test(h) ? h : null;
+export interface DatiMinimi { nome: string; email: string }
+
+export interface ErroriDati { nome?: string; email?: string }
+
+/** L'email è l'unico dato obbligatorio; il nome serve scriverlo solo quando non si ricava dall'email (matricola, una sola parola). */
+export function controllaDatiMinimi(d: DatiMinimi): ErroriDati {
+  const errori: ErroriDati = {};
+  const e = controllaEmailPolimi(d.email);
+  if ('motivo' in e) errori.email = TESTO_MOTIVO_EMAIL[e.motivo];
+  const scritto = (d.nome ?? '').trim();
+  if (scritto.length > NOME_MAX) errori.nome = `Al massimo ${NOME_MAX} caratteri.`;
+  else if (pulisciNome(d.nome) === null && !(e.ok && nomeDaEmail(e.email))) errori.nome = 'Scrivi il tuo nome.';
+  return errori;
 }
