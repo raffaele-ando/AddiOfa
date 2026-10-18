@@ -42,7 +42,7 @@ Il più pulito e il più utile come sistema. Struttura fissa (saluto, misuratore
 - **Home implementata: 6,5/10 chiaro, 6/10 scuro.**
   - Perché 6,5 e non meno: il misuratore (specie verde) è all'altezza del concept; la struttura è onesta; i contrasti sono verificati; c'è una carta Simulazione vera.
   - Perché non di più: fascia di stato muta, pulsante «Continua» senza oggetto, tre righe uguali a 0/N come unico contenuto sotto il pulsante, nessuna area debole, scala tipografica piatta, desktop sprecato, stato ambra sporco.
-  - Perché il scuro è mezzo punto sotto: fascia ambra come lastra marrone con filo, marcatore del misuratore con anello blu notte (sparisce nel fondo), tracce e barre quasi invisibili.
+  - Perché il tema scuro è mezzo punto sotto: fascia ambra come lastra marrone con filo, marcatore del misuratore con anello blu notte (sparisce nel fondo), tracce e barre quasi invisibili.
 
 ---
 
@@ -53,10 +53,10 @@ Il più pulito e il più utile come sistema. Struttura fissa (saluto, misuratore
 | Misuratore: geometria, tacche, alone, numero da 42 px | **Pari** al 14. Nello stato verde (87 %, anteprima) è bello quanto il concept. |
 | Stati e colori a tre fasce | **Pari**: la logica è la stessa del 01 (corallo, ambra, verde). |
 | Contenuto vero | **Migliore**: concept con 82/62/28 % inventati; qui solo punti misurati, «Nessuna stima» onesto, vuoto onesto del grafico. |
-| Tema scuro | **Migliore per esistenza** (i concept non hanno scuro); da rifinire (punto 5). |
-| Desktop | **Esiste** (i concept no), anche se mal sfruttato (punto 4.3). |
+| Tema scuro | **Migliore per esistenza** (i concept non hanno scuro); da rifinire (5.2 e 6.6-6.7). |
+| Desktop | **Esiste** (i concept no), anche se mal sfruttato (5.3). |
 | Carta Simulazione (x/30, «Superata» / «Sotto soglia» con icona, data, ▶) | **Migliore**: nei concept non c'è nulla di simile; il numero 24/30 colorato con icona è un buon dato leggibile. |
-| Tessere illustrate per famiglia di argomento (clessidra, ecc.) | **Pari o migliore** del libro unico del concept 14: distinguono le righe. Ma due tessere non c'entrano (vedi 5.9). |
+| Tessere illustrate per famiglia di argomento (clessidra, ecc.) | **Pari o migliore** del libro unico del concept 14: distinguono le righe. Ma due tessere non c'entrano (vedi 6.9). |
 | Contrasto: l'ambra ha bordo per arrivare a 3:1, testi con token «-numero» e «-testo» | **Migliore** come rigore. Il costo estetico (contorno marrone) si può ridurre. |
 | Navigazione a tre voci con voce attiva evidente e area di tocco ≥ 56 px | **Pari** al 14. |
 
@@ -135,7 +135,7 @@ Ogni voce: elemento, come appare nel concept (riferimenti), come riprodurlo.
 | Titolo «Il tuo rischio OFA» sopra il misuratore | 03, 39, 21 | Ripete ciò che il numero dice e costa ~60 px; il 14 e il 33 ne fanno a meno. |
 | (i) isolata in alto a destra | 33 | Orfana; nella Home è già dentro il misuratore. |
 | Testi da 10-11 px | 39, 11 | Sotto il minimo leggibile per studenti su telefono in movimento. |
-| Il marchio «AddiOfa» bicolore e il saluto con nome fisso | 14, 01 | Il marchio è una decisione di brand (vedi 5.3); il saluto non va mostrato senza nome. |
+| Il marchio «AddiOfa» bicolore e il saluto con nome fisso | 14, 01 | Il marchio è una decisione di brand (vedi 6.8); il saluto non va mostrato senza nome. |
 
 ---
 
@@ -149,7 +149,7 @@ Convenzioni: px a 390-400 di larghezza, margini laterali 24 (come ora), colonna 
 
 **B. (facoltativo) Saluto**, solo se `profilo.nome` ≠ '' e altezza finestra > 820 px: «Ciao, {nome}» 24/30 ExtraBold, riga sotto 14/20 `testo-tenue`. Testi della riga: nuovo «Facciamo la prima stima.», basso «Ripartiamo dalle aree più deboli.», medio «Ci sei quasi.», alto «Ottimo lavoro.» (usare «Stai migliorando.» solo se la differenza dalla prima stima è positiva). Distanza dall'intestazione 12, dal misuratore 0 (il misuratore ha già ~20 px d'aria).
 
-**C. Misuratore**, a tutta larghezza (−24 di margine), identico a oggi (geometria 14, rapporto 390 × 204). Cambia solo la fascia ambra (6.4) e, nel tema scuro, il marcatore (5.2). Sotto «Probabilità stimata» (15 px, semibold, colore di fascia) e «di superare il test» (13,5 px, `testo-tenue`). Nessuna carta intorno.
+**C. Misuratore**, a tutta larghezza (−24 di margine), identico a oggi (geometria 14, rapporto 390 × 204). Cambia solo la fascia ambra (6.6) e, nel tema scuro, il marcatore (5.2). Sotto «Probabilità stimata» (15 px, semibold, colore di fascia) e «di superare il test» (13,5 px, `testo-tenue`). Nessuna carta intorno.
 
 **D. Fascia di stato**, distanza dal misuratore 14. Altezza min 76, raggio 16, padding 14/16, fondo `{fascia}-tinta`. Tondo 40 px (fondo `{fascia}`, glifo 22 px: «!»/barre/spunta; nel medio glifo navy). Titolo 17/22 bold; riga 14/19 `testo-tenue`, max 2 righe. A destra, solo con ≥ 2 misure, chip variazione (3.6): 13 px bold. Testi (titolo / riga):
 - nuovo: «Da iniziare» / «Con 10 domande ottieni la prima stima.»
@@ -158,7 +158,7 @@ Convenzioni: px a 390-400 di larghezza, margini laterali 24 (come ora), colonna 
 - alto: «In linea» / «Mantieni il ritmo con una simulazione.»
 Etichetta di accessibilità invariata (`role="status"`).
 
-**E. Pulsante principale**, distanza 9. Altezza 60-64, raggio 14, gradiente `azione-da → azione-a`, cerchio bianco 38 px con ▶, testo 17 px semibold a x = 14 + 38 + 14 (ossia **allineato al testo della fascia D**: stessa colonna di testo a 66 px dal bordo della carta; oggi sono 98, 112 e 103 px: tre allineamenti diversi in 130 px di altezza). Freccia a destra 26 px. Etichette: nuovo «Fai il test iniziale»; basso/medio «Continua»; alto «Fai una simulazione». Riga piccola sotto (solo basso/medio): «Allenamento su {area più debole}» 12,5 px.
+**E. Pulsante principale**, distanza 9. Altezza 60-64, raggio 14, gradiente `azione-da → azione-a`, cerchio bianco 38 px con ▶, testo 17 px semibold a 68 px dal bordo sinistro (**allineato al testo della fascia D**: tondo 40 + padding 16 + gap 12; oggi sono 98, 112 e 103 px: tre allineamenti diversi in 130 px di altezza). Freccia a destra 26 px. Etichette: nuovo «Fai il test iniziale»; basso/medio «Continua»; alto «Fai una simulazione». Riga piccola sotto (solo basso/medio): «Allenamento su {area più debole}» 12,5 px.
 
 **F. Prossima lezione** (nuova), distanza 32. Titolo di sezione «Prossima lezione» 18/24 ExtraBold, a destra «Tutte ›» (44 px di tocco, come oggi). Sotto, 12 px: carta `superficie-2`, raggio 16, padding 14. Dentro: a sinistra tessera dell'argomento 56 px; accanto, eyebrow «A1 · GRAMMATICA» 11 px maiuscolo `testo-tenue`, titolo 20/26 ExtraBold «{titolo lezione}», e sotto, su una riga, tre dati da 13 px con icona 16 px: «35 domande», «10 min», «0 imparate». Sotto, pulsante secondario a larghezza piena, 48 px, `azione-tinta` con testo `azione-testo`, ▶ e «Inizia la lezione» (o «Riprendi la lezione» se già iniziata). Poi, a 8 px, **due righe compatte** (le attuali `RigaLezione` ridotte: tessera 44, titolo 15/20, a destra «0/29», nessuna barra se 0) sotto un'etichetta 12 px «Poi» `testo-tenue`.
 
@@ -172,16 +172,16 @@ Etichetta di accessibilità invariata (`role="status"`).
 
 **K. Barra di navigazione**: invariata nelle voci (Home, Esercizi, Sfide); voce attiva piena o con tratto più spesso (3.10).
 
-Altezza stimata della colonna: ~1250 px a 400 (oggi ~990 senza i nuovi blocchi). Primo schermo a 390 × 700: A, C, D, E visibili e l'inizio di F (il pulsante resta sopra la piega anche a 360 × 640 se il saluto B è nascosto; con B nascosto il pulsante finisce a ~y 540 a 360 × 640).
+Primo schermo a 390 × 700: A, C, D, E visibili (il pulsante finisce a circa y 425) e l'inizio di F. A 360 × 640 il pulsante resta sopra la piega solo con il saluto B nascosto (calcolo sulle misure del codice, non provato in Chromium).
 
 ### 5.2 Telefono, tema scuro
 
 Stessa struttura. Differenze:
-- **Fondo pagina** `#0D1526` (un gradino più scuro di `superficie`) e carte `#17223A` con bordo interno 1 px `rgba(255,255,255,0.05)`. Oggi `superficie` `#111A2E` e carte `#17223A` sono quasi lo stesso colore (rapporto ~1,1:1): le tre lezioni sembrano buchi.
-- **Misuratore**: traccia da `#1F2B45` a `#2A3A60` (oggi si legge appena); **anello del marcatore chiaro** (`#EAF0FC` a 90 %) invece di blu notte: nell'anteprima precedente era bianco e il pallino sembrava un maniglia, oggi (anello `superficie`) sembra un buco. Alone invariato.
+- **Fondo pagina** `#0D1526` (un gradino più scuro di `superficie`) e carte `#17223A` con bordo interno 1 px `rgba(255,255,255,0.05)`. Oggi `superficie` `#111A2E` e carte `#17223A` sono quasi lo stesso colore (rapporto stimato ~1,1:1): le tre lezioni si distinguono appena.
+- **Misuratore**: traccia da `#1F2B45` a `#2A3A60` (oggi si legge appena); **anello del marcatore chiaro** (`#EAF0FC` a 90 %) invece di blu notte: nell'anteprima precedente (`medio-alto-chiaro-scuro-400.png`) era bianco e il pallino sembrava una maniglia, oggi (anello `superficie`) sembra un buco. Alone invariato.
 - **Fascia di stato**: niente lastra marrone con filo ocra. Fondo `color-mix(in srgb, {fascia} 14%, var(--color-superficie-2))`, nessun contorno; tondo con il colore di fascia e glifo scuro `#0A101F`; titolo `testo`, riga `testo-tenue`.
-- **Pulsante**: gradiente azzurro chiaro con testo `#0A101F` come ora, ma più saturo (`#4F86F7 → #3F76EA` con testo bianco **non** va: bianco su #4F86F7 è ~3,5:1 e a 17 px semibold non passa). Mantenere testo scuro; ridurre la luminosità di 6 punti per non essere l'elemento più chiaro della pagina (oggi è più luminoso del numero).
-- **Barre aree e lezioni**: traccia `#26345A` (oggi `#1F2B45` su `#17223A`, invisibile), riempimenti con le tinte «-chiaro» di fascia.
+- **Pulsante**: tenere il testo scuro `#0A101F` (il bianco sull'azzurro chiaro non arriva a 4,5:1 a 17 px) ma abbassare la luminosità del gradiente di circa 6 punti: oggi è l'elemento più chiaro della pagina e supera il numero del misuratore.
+- **Barre aree e lezioni**: traccia `#26345A` (oggi `#1F2B45` su `#17223A`), riempimenti con le tinte «-chiaro» di fascia.
 - **Chip variazione**: fondo `alto` 16 % e testo `alto-chiaro`.
 - Illustrazioni: tessere con fondo `azione-tinta` come oggi.
 
@@ -209,20 +209,20 @@ Ordinati per gravità.
 1. **La fascia di stato è muta e il pulsante non dice cosa fa.** «Vicino» (a cosa? a 25 su 30?) e «Continua» (cosa?) sono le due parole più importanti della pagina e nessuna ha un oggetto. Il progetto ha un limite interno «niente frasi, 5 parole»: ottimo in generale, ma qui una riga concreta di 6-8 parole («Punteggio probabile tra 22 e 27 su 30, soglia 25») è un **dato**, non una frase.
 2. **Gerarchia piatta sotto il pulsante.** Titolo di sezione 15,5 px e titolo di riga 15 px, stesso peso e stessi grigi; tre righe identiche e tutte a 0/N (tre barre vuote = zero informazione). Il primo scorrimento non mostra niente che una persona al primo giorno non sappia già.
 3. **Manca il dato più utile: le aree deboli.** `Fattori.tsx` esiste ma sulla Home non c'è.
-4. **Tre allineamenti diversi del testo in 130 px** (fascia x = 112, pulsante x = 98, righe x = 103, misurati a 400 px): la pila sembra storta. Un'unica colonna testo (66 px dal bordo carta) li risolve.
+4. **Tre allineamenti diversi del testo in 130 px** (fascia x = 112, pulsante x = 98, righe x = 103, misurati a 400 px): la pila sembra storta. Un'unica colonna di testo a 68 px dal bordo li risolve.
 5. **Tre blocchi pieni a larghezza piena impilati** (fascia 62 px, pulsante 60 px, riga 73 px, riga 73 px): la fascia color crema (`#FFF7DE`) è luminosa quanto il pulsante e ne attenua la forza. Una fascia più bassa di contrasto (con tondo-glifo) la rimette al suo posto.
 6. **Stato ambra sporco.** Arco con contorno marrone di 2 px, estremità sinistra molto pallida, cerchietto con bordo marrone: l'effetto è «disegno con contorno» in mezzo a tutto il resto senza contorni. Il 3:1 si può ottenere senza contorno usando un ambra più profondo per la parte satura dell'arco (da `#F7BD36` a `#E5A113` al valore) e tenendo la fascia chiara solo come inizio sfumato; il contorno si può tenere sul solo marcatore. Da verificare con il controllo dei contrasti già presente.
 7. **Marcatore in tema scuro**: anello `superficie` (blu notte) invece di chiaro: sembra un buco, non una maniglia. Nell'anteprima precedente era bianco.
 8. **Logo più pesante del dato**: marchio 34 px ExtraBold nerissimo con due stelle nelle A; sul telefono pesa più del 41 %. A 28-30 px, o con «OFA» in blu come nel marchio dei concept, la gerarchia torna. Le stelle nelle A a 30 px sono al limite della leggibilità. Questa è una scelta di marchio: la segnalo, non la impongo.
 9. **Due tessere illustrate sbagliate.** «Quantificatori» usa le barre blu, **la stessa illustrazione della fascia** a 130 px di distanza; «There is / There are» usa una carta d'identità (famiglia «chi e dove»), che non c'entra con la grammatica. Cambiare famiglia o mettere un glifo neutro (libro).
 10. **Il contatore «0/35»** ha un'icona di doppia spunta da 14 px e nessuna unità: 35 cosa? Meglio «0/35 imparate» o solo la barra più «35 domande» in caption.
-11. **Barre e tracce quasi invisibili in scuro** (barra lezione `#1F2B45` su `#17223A`), e la traccia del misuratore con rapporto ~1,2:1.
+11. **Barre e tracce quasi invisibili in scuro** (barra lezione `#1F2B45` su `#17223A`), e la traccia del misuratore, appena percepibile sul fondo.
 12. **Desktop**: vedi 5.3. La Home mostra a 1280 × 800 meno contenuto di quella telefonica (la Simulazione non compare), con scorrimento annidato (pagina > riquadro > colonna).
 13. **Fondo `fondo` `#F7F9FD` contro carta bianca** a 1280: il riquadro si distingue solo per il filo; sembra un telefono sospeso nel vuoto.
 14. **Grafico andamento**: scala 0-100 su altezza ridotta, quindi la linea è piatta per variazioni normali; nelle anteprime è già tagliata sotto la barra (si vede solo la linea), cioè la parte più «morbida» della pagina è anche la meno visibile.
 15. **Icone di navigazione**: manubrio e spade sono i due glifi più complessi e più scuri della schermata e pesano più della voce attiva.
 16. **Nomi**: la Home non fa mai vedere il nome della persona, che pure l'app raccoglie e conserva nel dispositivo; costa poco (3.9), però non va fatto a scapito del pulsante sopra la piega.
-17. **Il menu non ha un percorso di ritorno al punto debole**: la riga della lezione apre la scheda, ma non c'è nulla che colleghi la stima bassa al dato per cui è bassa (le aree). Risolto da 3.3.
+17. **La stima bassa non è collegata a una causa**: nulla sulla Home lega il numero al dato per cui è basso (le aree). Risolto da 3.3.
 
 ---
 
