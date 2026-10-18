@@ -81,3 +81,7 @@ Nei miei file non c'è più nessun `sfera-*` né cerchio dietro l'arte. Esplora:
 ## File toccati
 `app/src/components/Onboarding.tsx`, `app/src/config/{ecosystem,offer}.ts`, `app/src/legal/*.ts`, `app/src/lib/{atlas,firebase,progetto}.ts`, `app/src/lib/progetto/*` (nuovi: `nomeDaEmail`, `percorso`, `percorsoDati`, `verificaEmail`, `ritorno`; riscritti: `profilo`, `corsi`; `percorsoProva.ts` svuotato), `app/src/screens/extra/progetto/*`, `app/src/lib/servizi/faq.ts` e `app/src/screens/landing/Faq.tsx` (una frase ciascuno), `app/.env.example`, `app/tests/unit/progetto-*.test.ts`, `app/tests/unit/percorso-fixture.ts`, `app/tests/anteprime/progetto.{html,tsx}`.
 **File da cancellare**: `app/src/lib/progetto/percorsoProva.ts` (svuotato), `app/tests/unit/zz-dbg.test.ts` (scratch svuotato).
+
+## Aggiornamento 18/10: richieste sparse nel test
+
+Su richiesta dell'utente le richieste del profilo non stanno più in blocco: fra una domanda e l'altra del diagnostico ne compare UNA per schermata, a partire dopo la seconda domanda. Ordine: email PoliMi → «Come ci hai conosciuto?» → i passi di «Cosa fai al Poli» (scuola, sede, livello, corso, anno, uno per schermata; quelli con una sola scelta si saltano) → certificazione → OFA; poi consensi, calcolo, risultato. Le richieste non esaurite entro la decima domanda si mettono dopo l'ultima. La logica è in `components/Onboarding.tsx` (`prossimaRichiesta`, `avanti`, `primaDi`); `PassoPercorso` ha la prop `unPasso`. La barra ha 14 segmenti (uno per domanda). «Completa il profilo» e chi ha già usato l'app restano come prima.

@@ -182,8 +182,10 @@ const TITOLO_PASSO: Record<PassoPercorso, string> = { scuola: 'La tua scuola', s
  * toccandone una si torna a quel passo. I passi con una sola scelta si saltano (la briciola resta, ferma). Quando il percorso è completo chiama `onFine`.
  * Se arriva già completo (si è tornati indietro o si modifica) mostra il riepilogo e il pulsante `fine`.
  */
-export function PassoPercorso({ scelte, onChange, onFine, fonte = fonteCorsi, fine }: {
+export function PassoPercorso({ scelte, onChange, onFine, fonte = fonteCorsi, fine, unPasso }: {
   scelte: ScelteCorso; onChange: (s: ScelteCorso) => void; onFine: (esito: EsitoPercorso) => void; fonte?: FonteCorsi;
+  /** Un passo per schermata, tra una domanda del test e l'altra: dopo ogni scelta chiama questo invece di mostrare il passo successivo. */
+  unPasso?: () => void;
   /** Pulsante da mostrare quando il percorso è completo (di solito «Avanti»). */
   fine?: ReactNode;
 }) {
@@ -196,6 +198,7 @@ export function PassoPercorso({ scelte, onChange, onFine, fonte = fonteCorsi, fi
     const nuove = risolvi(scegli(stato.scelte, passo, idOpzione), fonte);
     setRicerca('');
     onChange(nuove.scelte);
+    if (unPasso) { unPasso(); return; }
     if (nuove.passo === null) {
       const e = esitoPercorso(nuove.scelte, fonte);
       if (e) onFine(e);
