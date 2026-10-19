@@ -8,14 +8,13 @@ import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'rea
 import { Icona } from '../../../brand/icone/Icona';
 import { InfoFoglio } from '../../landing/comune';
 import { ChoiceCard, Segmenti } from '../../../components/ui';
-import { anniDelLivello, corsoScelto, elencoCorsi, livelliPresenti, NOME_LIVELLO_ELENCO, type VoceCorso } from '../../../components/funnel-logica';
 import { ECOSYSTEM } from '../../../config/ecosystem';
 import { PROVENIENZE } from '../../../lib/progetto/corsi';
 import { INFORMATIVA_BREVE } from '../../../lib/progetto/informativa';
 import { nomeDaEmail } from '../../../lib/progetto/nomeDaEmail';
 import {
-  briciole, CORSI_PER_RICERCA, CORSO_ALTRO_ID, CORSO_ALTRO_NOME, esitoPercorso, filtraCorsi, opzioniPasso, risolvi, scegli, torna,
-  type EsitoPercorso, type FonteCorsi, type LivelloId, type PassoPercorso, type ScelteCorso,
+  anniDelCorso, briciole, CORSI_PER_RICERCA, CORSO_ALTRO_ID, CORSO_ALTRO_NOME, esitoPercorso, filtraCorsi, opzioniPasso, risolvi, scegli, torna,
+  type EsitoPercorso, type FonteCorsi, type PassoPercorso, type ScelteCorso,
 } from '../../../lib/progetto/percorso';
 import { fonteCorsi } from '../../../lib/progetto/percorsoDati';
 import { CONSENSI_VUOTI, type Consensi, type Profilo } from '../../../lib/progetto/profilo';
@@ -176,50 +175,58 @@ export function CampoEmail({ form, onChange, provato, verificata, onInviaVerific
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------
-// Il corso: «Che corso frequenti?» (funnel)
+// Il percorso di studi nel funnel: una richiesta per schermata (scuola → sede → livello → corso e anno), fra una domanda e l'altra
+
+/** Titoli dei passi del funnel (frasi intere). */
+export const TITOLO_RICHIESTA: Record<'scuola' | 'sede' | 'livello' | 'corso', string> = {
+  scuola: 'Che scuola frequenti?', sede: 'Dove segui le lezioni?', livello: 'Che laurea frequenti?', corso: 'Che corso frequenti?',
+};
 
 /**
- * La schermata «Lista» del funnel: livello (Triennale · Ciclo unico · Magistrale) in alto, la ricerca, poi i corsi di tutte le scuole, uno per sede,
- * con la sede sotto il nome. Toccare un corso lo sceglie e porta avanti: scuola, sede e livello si ricavano dal corso e l'anno è quello delle pillole
- * (che stanno nel piè di pagina, vicino al pollice, e partono dal 1°: non è un consenso). In fondo «Non trovo il mio corso». Controllata da fuori:
- * il livello e l'anno stanno in chi la usa, perché le pillole dell'anno sono nel piè di pagina e dipendono dal livello.
+ * Le scelte di un passo (scuola, sede o livello) come righe uguali: il tocco sceglie e porta avanti. Le opzioni sono quelle vere della cascata
+ * (le sedi sono solo quelle attive della scuola, i livelli solo quelli che la scuola e la sede hanno). `onScelto` riceve l'id.
  */
-export function ElencoCorsi({ fonte = fonteCorsi, scelte, livello, onLivello, anno, onScelto, onAltro }: {
-  fonte?: FonteCorsi; scelte: ScelteCorso; livello: LivelloId; onLivello: (l: LivelloId) => void; anno: number;
-  onScelto: (s: ScelteCorso, v: VoceCorso) => void; onAltro: () => void;
-}) {
-  const voci = useMemo(() => elencoCorsi(fonte), [fonte]);
-  const livelli = useMemo(() => livelliPresenti(voci), [voci]);
+export function SceltePasso({ passo, scelte, onScelto, fonte = fonteCorsi }: { passo: 'scuola' | 'sede' | 'livello'; scelte: ScelteCorso; onScelto: (id: string) => void; fonte?: FonteCorsi }) {
+  const opzioni = opzioniPasso(passo, scelte, fonte);
+  const attuale = scelte[passo];
+  return (
+    <ul data-testo-ok className="flex flex-col gap-3">
+      {opzioni.map(o => (
+        <li key={o.id}><ChoiceCard avanza selected={attuale === o.id} onClick={() => onScelto(o.id)} title={o.nome} /></li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * L'elenco dei corsi della scuola, della sede e del livello già scelti, con la ricerca se sono tanti e «Non trovo il mio corso» in fondo.
+ * Toccare un corso lo sceglie (resta evidenziato) e fa comparire le pillole dell'anno (`PilloleAnno`, nel piè di pagina): è quel tocco a portare avanti.
+ */
+export function ElencoCorsi({ scelte, onScelto, fonte = fonteCorsi }: { scelte: ScelteCorso; onScelto: (id: string) => void; fonte?: FonteCorsi }) {
+  const opzioni = useMemo(() => opzioniPasso('corso', scelte, fonte), [scelte.scuola, scelte.sede, scelte.livello, fonte]); // eslint-disable-line react-hooks/exhaustive-deps
   const [ricerca, setRicerca] = useState('');
-  const cerca = ricerca.trim().length > 0;
-  const scelto = corsoScelto(voci, scelte);
-  const visibili = cerca ? filtraCorsi(voci, ricerca) : voci.filter(v => v.livello === livello);
-  // sfumatura in fondo solo se c'è altro da scorrere
+  const conRicerca = opzioni.length - 1 > CORSI_PER_RICERCA; // «Altro» non conta
+  const visibili = filtraCorsi(opzioni.filter(o => o.id !== CORSO_ALTRO_ID), ricerca);
   const lista = useRef<HTMLUListElement>(null);
   const [piuSotto, setPiuSotto] = useState(false);
   const misura = () => { const el = lista.current; if (el) setPiuSotto(el.scrollHeight - el.scrollTop - el.clientHeight > 8); };
-  useEffect(() => { misura(); }, [visibili.length, livello, ricerca]);
-  const tocca = (v: VoceCorso) => { playTapSound(); onScelto({ scuola: v.scuola, sede: v.sede, livello: v.livello, corso: v.id, anno: Math.max(1, Math.min(v.anni, anno)) }, v); };
-
+  useEffect(() => { misura(); }, [visibili.length, ricerca]);
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-3">
-      {livelli.length > 1 && !cerca && (
-        <Segmenti compatto etichetta="Livello" voci={livelli.map(l => ({ id: l, nome: NOME_LIVELLO_ELENCO[l] }))} valore={livello} onChange={onLivello} />
+    <div className="flex min-h-0 flex-col gap-3">
+      {conRicerca && (
+        <div className="flex items-center gap-2 rounded-2xl border border-bordo-campo bg-superficie-2 px-4 min-h-12 focus-within:outline focus-within:outline-2 focus-within:outline-azione">
+          <Icona nome="cerca" size={20} className="shrink-0 text-testo-tenue" />
+          <input type="search" value={ricerca} onChange={ev => setRicerca(ev.target.value)} placeholder="Cerca il tuo corso" aria-label="Cerca il tuo corso" autoComplete="off" maxLength={60}
+            className="w-full bg-transparent py-3 text-[17px] text-testo placeholder:text-testo-tenue focus:outline-none" />
+        </div>
       )}
-      <div className="flex items-center gap-2 rounded-2xl border border-bordo-campo bg-superficie-2 px-4 min-h-12 focus-within:outline focus-within:outline-2 focus-within:outline-azione">
-        <Icona nome="cerca" size={20} className="shrink-0 text-testo-tenue" />
-        <input type="search" value={ricerca} onChange={ev => setRicerca(ev.target.value)} placeholder="Cerca il tuo corso" aria-label="Cerca il tuo corso" autoComplete="off" maxLength={60}
-          className="w-full bg-transparent py-3 text-[17px] text-testo placeholder:text-testo-tenue focus:outline-none" />
-      </div>
-      <div className="relative flex min-h-[168px] flex-1 flex-col">
-        <ul ref={lista} onScroll={misura} className="absolute inset-0 flex flex-col gap-2 overflow-y-auto scrollbar-hide pb-1">
-          {visibili.map(v => (
-            <li key={v.chiave} data-testo-ok>
-              <ChoiceCard avanza selected={scelto?.chiave === v.chiave} onClick={() => tocca(v)} title={v.nome} subtitle={cerca ? `${NOME_LIVELLO_ELENCO[v.livello]} · ${v.sedeNome}` : v.sedeNome} />
-            </li>
+      <div className="relative flex min-h-[168px] shrink flex-col">
+        <ul ref={lista} onScroll={misura} className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto scrollbar-hide pb-1">
+          {visibili.map(o => (
+            <li key={o.id} data-testo-ok><ChoiceCard selected={scelte.corso === o.id} onClick={() => onScelto(o.id)} title={o.nome} /></li>
           ))}
           {visibili.length === 0 && <li role="status" data-testo-ok className="px-1 py-2 text-[15px] leading-[22px] text-testo-tenue">Nessun corso con queste parole.</li>}
-          <li><ChoiceCard avanza selected={scelte.corso === CORSO_ALTRO_ID} onClick={onAltro} title="Non trovo il mio corso" subtitle="Puoi continuare lo stesso" /></li>
+          <li><ChoiceCard selected={scelte.corso === CORSO_ALTRO_ID} onClick={() => onScelto(CORSO_ALTRO_ID)} title="Non trovo il mio corso" subtitle="Puoi continuare lo stesso" /></li>
         </ul>
         {piuSotto && <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-superficie to-transparent" />}
       </div>
@@ -227,17 +234,16 @@ export function ElencoCorsi({ fonte = fonteCorsi, scelte, livello, onLivello, an
   );
 }
 
-/** Le pillole dell'anno per un livello (1°, 2°, 3°…): il numero dipende dal livello. */
-export function PilloleAnno({ voci, livello, anno, onChange }: { voci?: VoceCorso[]; livello: LivelloId; anno: number; onChange: (a: number) => void }) {
-  const tutte = useMemo(() => voci ?? elencoCorsi(fonteCorsi), [voci]);
-  const n = anniDelLivello(tutte, livello);
-  return <Segmenti compatto etichetta="Anno di corso" voci={Array.from({ length: n }, (_, i) => ({ id: i + 1, nome: `${i + 1}°` }))} valore={anno} onChange={onChange} />;
+/** Le pillole dell'anno del corso scelto (1°, 2°, 3°…): nessuna è scelta in partenza, il tocco su una porta avanti. */
+export function PilloleAnno({ scelte, onScelto, fonte = fonteCorsi }: { scelte: ScelteCorso; onScelto: (anno: number) => void; fonte?: FonteCorsi }) {
+  const n = anniDelCorso(scelte, fonte);
+  return <Segmenti compatto etichetta="Anno di corso" voci={Array.from({ length: n }, (_, i) => ({ id: i + 1, nome: `${i + 1}°` }))} valore={scelte.anno ?? null} onChange={onScelto} />;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------
 // Cosa fai al Poli (cascata completa: serve a Project ID, dove si modifica il percorso)
 
-const TITOLO_PASSO: Record<PassoPercorso, string> = { scuola: 'Che scuola frequenti?', sede: 'Dove segui le lezioni?', livello: 'Che livello?', corso: 'Che corso frequenti?', anno: 'In che anno sei?' };
+const TITOLO_PASSO: Record<PassoPercorso, string> = { ...TITOLO_RICHIESTA, anno: 'In che anno sei?' };
 
 /**
  * Cascata completa: scuola → sede → livello → corso → anno, una scelta per volta, il tocco avanza da solo. In alto le scelte già fatte come

@@ -265,10 +265,10 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     if (s === 'sfide' && SCHERMATE.sfide) { extraPila.current = []; setExtra({ id: 'sfide', params: {} }); setView('extra'); return; }
     setView(({ home: 'menu', esercizi: 'esercizi', sfide: 'menu' } as const)[s]);
   };
-  const conBarra = (scheda: Scheda | null, pagina: React.ReactNode) => (
+  const conBarra = (scheda: Scheda | 'nessuna' | null, pagina: React.ReactNode) => (
     <div className="h-full w-full flex flex-col overflow-hidden sm:rounded-[28px] sm:border sm:border-linea bg-superficie">
       <div className="flex-1 min-h-0 [&>*]:sm:rounded-none [&>*]:sm:border-0">{pagina}</div>
-      <Navigazione attiva={scheda} onVai={vaiScheda} />
+      <Navigazione attiva={scheda === 'nessuna' ? null : scheda} onVai={vaiScheda} />
     </div>
   );
 
@@ -327,6 +327,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onOpenDiagnostic={() => setView('onboarding')}
           onApriLezione={id => vaiExtra('lezione-dettaglio', { id })}
           onStartExam={avviaSimulazione}
+          onAllenaArea={f => { setLearnMode('category'); setLearnCategory(f); setView('learn'); }}
           onApriExtra={vaiExtra}
           onOpenImpostazioni={() => (SCHERMATE.profilo ? vaiExtra('profilo') : apri('impostazioni'))}
           onNaviga={vaiScheda}

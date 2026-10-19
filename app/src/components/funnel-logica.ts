@@ -1,24 +1,25 @@
 // Logica pura del percorso di ingresso (components/Onboarding.tsx): niente React, così si prova con `npm test`.
 // 1. l'ordine delle schermate (le richieste SPARSE fra le domande, nessuna fra l'ultima domanda e il risultato);
-// 2. l'elenco dei corsi di «Che corso frequenti?» (scuola, sede e livello si ricavano dal corso);
+// 2. i passi del percorso di studi da chiedere (quelli con una sola scelta si saltano);
 // 3. gli argomenti da ripassare nel risultato (con il numero di errori, mai percentuali su così poche domande).
 import type { Question } from '../types';
-import { CORSO_ALTRO_ID, NOMI_LIVELLO, type FonteCorsi, type LivelloId, type ScelteCorso } from '../lib/progetto/percorso';
+import { risolvi, type FonteCorsi, type ScelteCorso } from '../lib/progetto/percorso';
 
 // ---------------------------------------------------------------------------------------------------------------------------------
 // Ordine delle schermate
 
-/** Le richieste che stanno fra una domanda e l'altra (la certificazione e l'OFA, che possono esonerare, stanno invece subito prima della prima domanda). */
-export type Richiesta = 'email' | 'prov' | 'corso' | 'consensi';
-/** L'ordine in cui si chiedono. Decisione dell'autore: email PoliMi (nome ricavato), come ci hai conosciuto, percorso di studi, consensi. */
-export const ORDINE_RICHIESTE: readonly Richiesta[] = ['email', 'prov', 'corso', 'consensi'];
-/** Dopo quante domande può comparire ciascuna richiesta: le ultime tre domande restano sempre solo domande. */
-export const DOPO_DOMANDA: Record<Richiesta, number> = { email: 2, prov: 3, corso: 5, consensi: 7 };
+/** Le richieste che stanno fra una domanda e l'altra, una per schermata (la certificazione e l'OFA, che possono esonerare, stanno invece subito prima della prima domanda). */
+export type PassoRichiesto = 'scuola' | 'sede' | 'livello' | 'corso';
+export type Richiesta = 'email' | 'prov' | PassoRichiesto | 'consensi';
+/** L'ordine in cui si chiedono. Decisione dell'autore: email PoliMi (nome ricavato), come ci hai conosciuto, percorso di studi a cascata (scuola, sede, livello, corso e anno), consensi. */
+export const ORDINE_RICHIESTE: readonly Richiesta[] = ['email', 'prov', 'scuola', 'sede', 'livello', 'corso', 'consensi'];
+/** Dopo quante domande può comparire la prima richiesta; poi una per ogni pausa fra due domande. */
+export const PRIMA_RICHIESTA_DOPO = 2;
 
 export interface OpzioniCammino {
   /** Quante domande ha il test (di norma 10). */
   domande: number;
-  /** Le richieste ancora da fare, qualunque ordine. */
+  /** Le richieste da fare (quelle che non servono, come un passo con una sola scelta, non ci sono). */
   richieste: readonly Richiesta[];
   /** Schermata iniziale «Perché farlo» (pain e gain): chi apre il test dalla Home non la rivede. */
   racconto: boolean;
@@ -30,8 +31,9 @@ export interface OpzioniCammino {
 
 /**
  * La sequenza delle schermate, nell'ordine: 'pain', 'gain', 'avvio', 'certOfa', 'q0'… 'q9' con le richieste in mezzo, 'result'.
- * Una richiesta per volta fra una domanda e l'altra (dopo la `DOPO_DOMANDA[r]`-esima); se le domande sono poche, le ultime richieste
- * si mettono di fila prima dell'ultima domanda. Dopo l'ultima domanda c'è solo il risultato.
+ * Una richiesta per pausa fra due domande, a partire da dopo la `PRIMA_RICHIESTA_DOPO`-esima: email dopo la 2ª, provenienza dopo la 3ª, scuola dopo la 4ª,
+ * sede dopo la 5ª, livello dopo la 6ª, corso e anno dopo la 7ª, consensi dopo l'8ª. Se un passo non serve le successive scorrono prima; se le
+ * domande sono poche le ultime richieste si mettono di fila prima dell'ultima domanda. Dopo l'ultima domanda c'è solo il risultato.
  */
 export function cammino(o: OpzioniCammino): string[] {
   const out: string[] = [];
@@ -45,7 +47,7 @@ export function cammino(o: OpzioniCammino): string[] {
     const fatte = i + 1;
     if (fatte >= n) break;                                   // dopo l'ultima domanda: niente
     if (fatte >= n - 1) { out.push(...da.splice(0)); continue; } // prima dell'ultima domanda si chiude ogni richiesta rimasta
-    if (da.length && fatte >= DOPO_DOMANDA[da[0]]) out.push(da.shift()!);
+    if (da.length && fatte >= PRIMA_RICHIESTA_DOPO) out.push(da.shift()!);
   }
   out.push('result');
   return out;
@@ -57,48 +59,13 @@ export function indiceDomanda(k: string): number | null {
   return m ? Number(m[1]) : null;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------
-// Elenco dei corsi
-
-export interface VoceCorso { chiave: string; id: string; nome: string; scuola: string; sede: string; sedeNome: string; livello: LivelloId; anni: number }
-
-/** Tutti i corsi di tutte le scuole, uno per sede, in ordine alfabetico (poi per sede). */
-export function elencoCorsi(fonte: FonteCorsi): VoceCorso[] {
-  const out: VoceCorso[] = [];
-  for (const sc of fonte.scuole()) {
-    for (const se of fonte.sedi(sc.id)) {
-      for (const lv of fonte.livelli(sc.id, se.id)) {
-        for (const c of fonte.corsi(sc.id, se.id, lv)) {
-          out.push({ chiave: `${sc.id}/${se.id}/${lv}/${c.id}`, id: c.id, nome: c.nome, scuola: sc.id, sede: se.id, sedeNome: se.nome, livello: lv, anni: c.anni });
-        }
-      }
-    }
-  }
-  const norma = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-  return out.sort((a, b) => norma(a.nome).localeCompare(norma(b.nome), 'it') || a.sedeNome.localeCompare(b.sedeNome, 'it'));
-}
-
-/** I livelli che hanno almeno un corso, nell'ordine Triennale, Ciclo unico, Magistrale. */
-export function livelliPresenti(voci: readonly VoceCorso[]): LivelloId[] {
-  const ordine: LivelloId[] = ['triennale', 'ciclo-unico', 'magistrale'];
-  return ordine.filter(l => voci.some(v => v.livello === l));
-}
-
-export const NOME_LIVELLO_ELENCO: Record<LivelloId, string> = { ...NOMI_LIVELLO, 'ciclo-unico': 'Ciclo unico' };
-
-/** Quanti anni mostrare per un livello (le pillole prima di scegliere il corso): quelli del livello più lungo fra i suoi corsi. */
-export function anniDelLivello(voci: readonly VoceCorso[], livello: LivelloId): number {
-  return Math.max(1, ...voci.filter(v => v.livello === livello).map(v => v.anni));
-}
-
-/** Le scelte da salvare quando si tocca un corso con un certo anno (l'anno si porta nei limiti del corso). */
-export function sceltaDaCorso(v: VoceCorso, anno: number): ScelteCorso {
-  return { scuola: v.scuola, sede: v.sede, livello: v.livello, corso: v.id, anno: Math.max(1, Math.min(v.anni, Math.round(anno))) };
-}
-
-/** Il corso già scelto (per riaprire la schermata con la voce evidenziata). */
-export function corsoScelto(voci: readonly VoceCorso[], s: ScelteCorso): VoceCorso | undefined {
-  return s.corso && s.corso !== CORSO_ALTRO_ID ? voci.find(v => v.id === s.corso && v.scuola === s.scuola && (!s.sede || v.sede === s.sede)) : undefined;
+/**
+ * I passi del percorso di studi da chiedere: scuola, sede, livello, corso (con l'anno). I passi con una sola scelta si saltano: lo si sa solo
+ * dopo aver scelto quelli prima (la sede dipende dalla scuola, il livello dalla scuola e dalla sede), quindi finché non si sa si contano tutti.
+ */
+export function passiPercorso(s: ScelteCorso, fonte: FonteCorsi): PassoRichiesto[] {
+  const auto = risolvi(s, fonte).automatici;
+  return (['scuola', 'sede', 'livello', 'corso'] as const).filter(p => !auto.includes(p));
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------

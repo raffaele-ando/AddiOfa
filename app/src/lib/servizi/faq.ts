@@ -53,12 +53,12 @@ export function vociFaq(): VoceFaq[] {
       chiavi: 'soglia 25 30 domande quindici minuti enti convenzionati linguaviva costo',
     },
     {
-      id: 'test-chi', categoria: 'test', domanda: 'Il test lo faccio con AddiOFA?',
+      id: 'test-chi', categoria: 'test', domanda: 'Il test ufficiale lo faccio su AddiOFA?',
       risposta: [`No. ${DISCLAIMER} Il test lo sostieni con l'ente che scegli: AddiOFA serve a prepararti.`],
       chiavi: 'politecnico affiliazione ufficiale non ufficiale',
     },
     {
-      id: 'test-certificazione', categoria: 'test', domanda: 'Ho già una certificazione o ho già fatto il test: cosa cambia?',
+      id: 'test-certificazione', categoria: 'test', domanda: 'Ho già una certificazione: devo fare il test?',
       risposta: [
         'Il riconoscimento di una certificazione e l\'esito di un test già sostenuto si gestiscono con il Politecnico, non con l\'app: AddiOFA non li verifica e non ti chiede nessuna email istituzionale.',
         OFA_RULES_NOTE,
@@ -66,7 +66,7 @@ export function vociFaq(): VoceFaq[] {
       chiavi: 'gia sostenuto certificazione ielts cambridge esonero email polimi',
     },
     {
-      id: 'stima-cosa', categoria: 'test', domanda: 'La probabilità che vedo è una promessa?',
+      id: 'stima-cosa', categoria: 'test', domanda: 'La probabilità è una garanzia di passare?',
       risposta: [
         `No. È una stima, calcolata sulle tue risposte: la probabilità di fare almeno ${REAL_TEST_PASS_MARK} risposte esatte su ${REAL_TEST_QUESTIONS}. Con poche risposte è approssimativa e non dice come andrà il test vero; si affina con le simulazioni.`,
         'Nella Home, con il pulsante «i» sotto la probabilità, vedi come è calcolata e tra quali valori può stare.',

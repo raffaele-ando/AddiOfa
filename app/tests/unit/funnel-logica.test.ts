@@ -1,42 +1,49 @@
-// Percorso di ingresso: ordine delle schermate (richieste sparse, nessuna fra l'ultima domanda e il risultato), elenco dei corsi, argomenti da ripassare.
+// Percorso di ingresso: ordine delle schermate (richieste sparse, nessuna fra l'ultima domanda e il risultato), passi del percorso di studi, argomenti da ripassare.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {
-  anniDelLivello, argomentiDaRipassare, cammino, corsoScelto, elencoCorsi, indiceDomanda, livelliPresenti, ORDINE_RICHIESTE, sceltaDaCorso, testoErrori,
-} from '../../src/components/funnel-logica';
+import { argomentiDaRipassare, cammino, indiceDomanda, ORDINE_RICHIESTE, passiPercorso, testoErrori } from '../../src/components/funnel-logica';
 import { fonteProva } from './percorso-fixture';
 import type { Question } from '../../src/types';
 
 const TUTTE = [...ORDINE_RICHIESTE];
 const base = { domande: 10, richieste: TUTTE, racconto: true, avvio: false, certOfa: true };
 
-test('percorso di un nuovo utente: 18 schermate, certificazione e OFA prima delle domande, risultato subito dopo la decima', () => {
+test('percorso di un nuovo utente con tutti i passi: pain, gain, certificazione/OFA, 10 domande, 7 richieste, risultato', () => {
   const c = cammino(base);
-  assert.equal(c.length, 18);
+  assert.equal(c.length, 3 + 10 + 7 + 1);
   assert.deepEqual(c.slice(0, 4), ['pain', 'gain', 'certOfa', 'q0']);
   assert.equal(c[c.length - 1], 'result');
   assert.equal(c[c.length - 2], 'q9');
 });
 
-test('le richieste stanno SPARSE fra le domande, una per volta, nell\'ordine dell\'autore', () => {
+test('distribuzione: email dopo la 2ª, provenienza dopo la 3ª, scuola 4ª, sede 5ª, livello 6ª, corso 7ª, consensi 8ª', () => {
   const c = cammino(base);
-  const pos = (k: string) => c.indexOf(k);
-  assert.ok(pos('email') < pos('prov') && pos('prov') < pos('corso') && pos('corso') < pos('consensi'));
-  assert.equal(c[pos('email') - 1], 'q1');           // email dopo la 2ª domanda
-  for (const r of ORDINE_RICHIESTE) assert.ok(indiceDomanda(c[pos(r) - 1]) !== null && indiceDomanda(c[pos(r) + 1]) !== null, `${r} sta fra due domande`);
+  const dopo: Record<string, string> = { email: 'q1', prov: 'q2', scuola: 'q3', sede: 'q4', livello: 'q5', corso: 'q6', consensi: 'q7' };
+  for (const [r, q] of Object.entries(dopo)) assert.equal(c[c.indexOf(r) - 1], q, `${r} dopo ${q}`);
+  for (const r of ORDINE_RICHIESTE) assert.ok(indiceDomanda(c[c.indexOf(r) + 1]) !== null, `${r} è seguita da una domanda`);
 });
 
-test('le ultime tre domande sono solo domande e fra l\'ultima e il risultato non c\'è nessuna richiesta', () => {
+test('le ultime due domande sono solo domande e fra l\'ultima e il risultato non c\'è nessuna richiesta', () => {
   const c = cammino(base);
-  assert.deepEqual(c.slice(-4), ['q7', 'q8', 'q9', 'result']);
+  assert.deepEqual(c.slice(-3), ['q8', 'q9', 'result']);
+  assert.equal(c[c.length - 4], 'consensi');
+});
+
+test('un passo con una sola scelta si salta e le richieste dopo scorrono prima', () => {
+  const senzaSede = ORDINE_RICHIESTE.filter(r => r !== 'sede');
+  const c = cammino({ ...base, richieste: senzaSede });
+  assert.ok(!c.includes('sede'));
+  assert.equal(c[c.indexOf('livello') - 1], 'q4');
+  assert.equal(c[c.indexOf('consensi') - 1], 'q6');
+  assert.equal(c.length, 3 + 10 + 6 + 1);
 });
 
 test('con poche domande le richieste rimaste si chiudono tutte prima dell\'ultima domanda', () => {
-  for (const n of [1, 2, 3, 4, 5, 6]) {
+  for (const n of [2, 3, 4, 5, 6, 8]) {
     const c = cammino({ ...base, domande: n });
     assert.equal(c[c.length - 1], 'result');
-    if (n > 1) assert.ok(indiceDomanda(c[c.length - 2]) === n - 1, `ultima domanda subito prima del risultato (n=${n})`);
-    for (const r of ORDINE_RICHIESTE) if (n > 1) assert.ok(c.indexOf(r) < c.indexOf(`q${n - 1}`), `${r} prima dell'ultima domanda (n=${n})`);
+    assert.ok(indiceDomanda(c[c.length - 2]) === n - 1, `ultima domanda subito prima del risultato (n=${n})`);
+    for (const r of ORDINE_RICHIESTE) assert.ok(c.indexOf(r) < c.indexOf(`q${n - 1}`), `${r} prima dell'ultima domanda (n=${n})`);
   }
 });
 
@@ -47,38 +54,14 @@ test('chi ha già la registrazione non rivede racconto né richieste; l\'avvio e
   assert.ok(cammino({ domande: 10, richieste: [], racconto: false, avvio: true, certOfa: true }).includes('certOfa'));
 });
 
-test('una richiesta già fatta non compare', () => {
-  const c = cammino({ ...base, richieste: ['corso', 'consensi'] });
-  assert.ok(!c.includes('email') && !c.includes('prov'));
-  assert.equal(c.length, 16);
-});
-
-test('elenco dei corsi: tutte le scuole, una voce per sede, in ordine alfabetico; scuola, sede e livello si ricavano dal corso', () => {
-  const v = elencoCorsi(fonteProva);
-  assert.ok(v.length > 40);
-  const nomi = v.map(x => x.nome.toLowerCase());
-  assert.deepEqual(nomi, [...nomi].sort((a, b) => a.localeCompare(b, 'it')));
-  const x = v.find(c => c.id === 'au-l-u-1')!;
-  assert.equal(x.scuola, 'auic'); assert.equal(x.sede, 'leonardo'); assert.equal(x.livello, 'ciclo-unico'); assert.equal(x.anni, 5);
-  assert.equal(new Set(v.map(c => c.chiave)).size, v.length, 'ogni voce ha una chiave unica');
-});
-
-test('livelli presenti e anni delle pillole', () => {
-  const v = elencoCorsi(fonteProva);
-  assert.deepEqual(livelliPresenti(v), ['triennale', 'ciclo-unico', 'magistrale']);
-  assert.equal(anniDelLivello(v, 'triennale'), 3);
-  assert.equal(anniDelLivello(v, 'magistrale'), 2);
-  assert.equal(anniDelLivello(v, 'ciclo-unico'), 5);
-});
-
-test('scelta di un corso: l\'anno resta nei limiti del corso e il corso scelto si ritrova', () => {
-  const v = elencoCorsi(fonteProva);
-  const x = v.find(c => c.id === 'ii-l-m-1')!;
-  const s = sceltaDaCorso(x, 3);
-  assert.deepEqual(s, { scuola: 'ing-ind-inf', sede: 'leonardo', livello: 'magistrale', corso: 'ii-l-m-1', anno: 2 });
-  assert.equal(sceltaDaCorso(x, 0).anno, 1);
-  assert.equal(corsoScelto(v, s)?.chiave, x.chiave);
-  assert.equal(corsoScelto(v, { corso: 'altro', anno: 1 }), undefined);
+test('passi del percorso di studi: all\'inizio si contano tutti; sede e livello con una sola scelta si saltano', () => {
+  assert.deepEqual(passiPercorso({}, fonteProva), ['scuola', 'sede', 'livello', 'corso']);
+  // Design ha una sola sede attiva (Bovisa): la sede si salta, restano il livello e il corso
+  assert.deepEqual(passiPercorso({ scuola: 'design' }, fonteProva), ['scuola', 'livello', 'corso']);
+  // Ingegneria industriale ha tre sedi
+  assert.deepEqual(passiPercorso({ scuola: 'ing-ind-inf' }, fonteProva), ['scuola', 'sede', 'livello', 'corso']);
+  // sede con un solo livello (Lecco, solo triennale): salta anche il livello
+  assert.deepEqual(passiPercorso({ scuola: 'ing-ind-inf', sede: 'lecco' }, fonteProva), ['scuola', 'sede', 'corso']);
 });
 
 const dom = (id: string, topic: string, correctIndex = 0) => ({ id, grammarTopic: topic, category: 'Grammatica', correctIndex } as unknown as Question);

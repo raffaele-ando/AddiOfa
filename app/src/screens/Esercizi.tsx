@@ -55,7 +55,7 @@ function RigaTesto({ icona, tono, nome, riga, onClick }: { icona: NomeIcona; ton
       <IconaTono tono={tono} lato={48} className="rounded-[12px]"><Icona nome={icona} size={26} /></IconaTono>
       <span className="flex-1 min-w-0">
         <span className="block text-[16px] leading-[22px] font-bold text-testo">{nome}</span>
-        <span className="block text-[13px] leading-[18px] text-testo-tenue">{riga}</span>
+        <span data-testo-ok className="block text-[13px] leading-[18px] text-testo-tenue">{riga}</span>
       </span>
       <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="avanti" size={22} /></span>
     </button>

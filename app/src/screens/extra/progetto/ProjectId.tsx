@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
-import { BottoneAzione, BottoneRiga, BottoneSecondario, Etichetta, Interruttore, Nota, Pagina, RigaDato, Sezione, Testata, copiaTesto, type TonoStato } from './comuni';
+import { BottoneAzione, BottoneRiga, BottoneSecondario, Etichetta, Interruttore, Nota, Pagina, RigaDato, Sezione, copiaTesto, type TonoStato } from './comuni';
 import { CampiConsensi, CampoEmail, campiPercorso, formDa, nomeEffettivo, PassoPercorso, ScelteProvenienza, type FormRegistrazione } from './registrazione';
 import { useAccesso, useInvio, useRitornoVerifica, useSincronizzaCollegamento } from './hooks';
 import { atlas, type MeRisposta } from '../../../lib/atlas';
@@ -28,7 +28,7 @@ const NOMI_CONSENSI = { noi: `Classifica ${ECOSYSTEM.rankingName}`, atlas: `Pers
 
 function consensiDati(p: { noi: boolean; atlas: boolean; comunicazioni: boolean }): string {
   const dati = (Object.keys(NOMI_CONSENSI) as (keyof typeof NOMI_CONSENSI)[]).filter(k => p[k]).map(k => NOMI_CONSENSI[k]);
-  return dati.length ? dati.join(', ') : 'Nessuno';
+  return dati.length ? dati.join(', ') : 'Nessun consenso dato';
 }
 
 export default function ProjectId() {
@@ -109,27 +109,26 @@ export default function ProjectId() {
 
   return (
     <Pagina titolo={ECOSYSTEM.accountName}>
-      <Testata nome="verifica-utente" kit="kit-luminoso" lato={150} />
       {esito && <Nota tono="riuscito" className="mt-4"><p role="status" data-testo-ok>{esito}</p></Nota>}
       {ritorno?.tipo === 'ok' && <Nota tono="riuscito" className="mt-4"><p role="status" data-testo-ok>Email verificata: {ritorno.email}.</p></Nota>}
       {ritorno?.tipo === 'errore' && <Nota tono="attenzione" className="mt-4"><p role="alert" data-testo-ok>{ritorno.messaggio}</p></Nota>}
 
-      <Sezione id="pid-iscrizione" titolo="La tua iscrizione">
+      <Sezione id="pid-iscrizione" titolo="I tuoi dati">
         {!profilo ? (
           <>
-            <Nota><p data-testo-ok>Non hai ancora scritto la tua email: l&apos;iscrizione non c&apos;è.</p></Nota>
+            <Nota><p data-testo-ok>Non hai ancora scritto la tua email: manca l&apos;iscrizione.</p></Nota>
             <BottoneAzione onClick={() => vai('completa-profilo')}>Completa il profilo</BottoneAzione>
           </>
         ) : (
           <>
-            <ul className="divide-y divide-linea overflow-hidden rounded-[14px] bg-superficie-2">
+            <ul className="divide-y divide-linea overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none">
               <RigaDato icona="email" etichetta="Email PoliMi" tono={profilo.emailVerificata ? 'alto' : 'medio'}
                 valore={<span className="flex flex-wrap items-center gap-2">{profilo.email}{profilo.emailVerificata ? <Etichetta tono="alto">Verificata</Etichetta> : <Etichetta tono="medio">Non verificata</Etichetta>}</span>} />
-              <RigaDato icona="profilo" etichetta="Nome" valore={profilo.nome} />
+              <RigaDato icona="profilo" etichetta="Nome" valore={profilo.nome || 'Non indicato'} />
               {percorso.length > 0
                 ? percorso.map(r => <RigaDato key={r.etichetta} icona={r.etichetta === 'Corso' ? 'lezioni' : r.etichetta === 'Sede' ? 'home' : 'livello'} etichetta={r.etichetta} valore={r.valore} tono="alto" />)
-                : <RigaDato icona="lezioni" etichetta="Percorso di studi" valore="–" tono="alto" />}
-              <RigaDato icona="condividi" etichetta="Come ci hai conosciuto" valore={nomeProvenienza(profilo.provenienza) ?? '–'} tono="viola" />
+                : <RigaDato icona="lezioni" etichetta="Percorso di studi" valore="Non indicato" tono="alto" />}
+              <RigaDato icona="condividi" etichetta="Come ci hai conosciuto" valore={nomeProvenienza(profilo.provenienza) ?? 'Non indicato'} tono="viola" />
               <RigaDato icona="privacy" etichetta="Consensi" valore={consensiDati(iscrizioneRemota?.consensi ?? profilo.consensi)} tono="viola" />
               <RigaDato icona={statoInvio.chiave === 'inviata' ? 'stato-ok' : statoInvio.chiave === 'rifiutata' ? 'stato-errore' : 'stato-attesa'} etichetta={`Invio ad ${ECOSYSTEM.engineName}`} tono={statoInvio.chiave === 'inviata' ? 'alto' : statoInvio.chiave === 'rifiutata' ? 'errore' : 'medio'}
                 valore={<span><Etichetta tono={TONO_INVIO[statoInvio.chiave]}>{statoInvio.titolo}</Etichetta><span className="mt-1 block text-[13px] font-normal leading-[18px] text-testo-tenue">{statoInvio.dettaglio}</span></span>} />
@@ -146,13 +145,13 @@ export default function ProjectId() {
               {statoInvio.chiave === 'solo-locale' && acc.atlasOnline && !iscrizioneRemota && (
                 <BottoneSecondario onClick={() => { void coda.accoda(corpoIscrizione(profilo), { forza: true }); }} icona={<Icona nome="condividi" size={20} />}>{`Invia ad ${ECOSYSTEM.engineName}`}</BottoneSecondario>
               )}
-              <BottoneSecondario onClick={() => setVista('modifica')} icona={<Icona nome="modifica" size={20} />}>Modifica</BottoneSecondario>
+              <BottoneSecondario onClick={() => setVista('modifica')} icona={<Icona nome="modifica" size={20} />}>Modifica i dati</BottoneSecondario>
             </div>
           </>
         )}
       </Sezione>
 
-      <Sezione id="pid-account" titolo={ECOSYSTEM.accountName}>
+      <Sezione id="pid-account" titolo="Accesso con Google">
         <AccountBlocco acc={acc} collegamento={collegamento} profilo={profilo}
           onCollega={() => setVista('consenso')}
           onPermesso={async (id, acceso) => {
@@ -169,7 +168,7 @@ export default function ProjectId() {
           onElimina={() => setVista('elimina-account')} />
       </Sezione>
 
-      <Sezione id="pid-dati" titolo="I tuoi dati">
+      <Sezione id="pid-dati" titolo="Esporta e cancella">
         <div className="flex flex-col gap-2">
           <BottoneRiga icona="esporta" onClick={() => setVista('esporta')}>Esporta</BottoneRiga>
           <BottoneRiga icona="privacy" onClick={() => apriLegale('privacy')}>Informativa privacy</BottoneRiga>
@@ -188,10 +187,10 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
 }) {
   void profilo;
   if (!acc.atlasOnline) {
-    return <Nota tono="attenzione"><p data-testo-ok>{ECOSYSTEM.engineName} non è collegato in questa versione: l&apos;accesso non è disponibile e i tuoi dati restano su questo dispositivo.</p></Nota>;
+    return <Nota tono="neutro"><p data-testo-ok>Il collegamento ad {ECOSYSTEM.engineName} non è attivo: i dati non sono stati inviati e restano su questo dispositivo.</p></Nota>;
   }
   if (!acc.loginDisponibile) {
-    return <Nota tono="attenzione"><p data-testo-ok>L&apos;accesso con Google non è configurato in questa versione.</p></Nota>;
+    return <Nota tono="neutro"><p data-testo-ok>L&apos;accesso con Google non è attivo su questo sito.</p></Nota>;
   }
   if (acc.controllo) {
     return <div role="status" aria-label="Controllo l'accesso" className="mx-auto my-3 h-7 w-7 animate-spin rounded-full border-[3px] border-azione/30 border-t-azione" />;
@@ -209,7 +208,7 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
   const account = acc.me?.account;
   return (
     <>
-      <div className="flex items-center gap-3 rounded-[14px] bg-superficie-2 p-3.5">
+      <div className="flex items-center gap-3 rounded-[16px] border border-linea bg-superficie p-3.5 shadow-sm dark:shadow-none">
         {u.photoURL
           ? <img src={u.photoURL} alt="" referrerPolicy="no-referrer" className="h-12 w-12 rounded-full" />
           : <span aria-hidden="true" className="grid h-12 w-12 place-items-center rounded-full bg-azione-tinta text-[20px] font-extrabold text-azione-testo">{(u.displayName || u.email || '?').charAt(0).toUpperCase()}</span>}
@@ -223,7 +222,7 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
       {!collegamento ? (
         <BottoneAzione onClick={onCollega}>Scegli cosa condividere</BottoneAzione>
       ) : (
-        <ul className="divide-y divide-linea overflow-hidden rounded-[14px] bg-superficie-2" aria-label="Permessi">
+        <ul className="divide-y divide-linea overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none" aria-label="Permessi">
           {SCOPES.map(s => (
             <li key={s.id} className="flex items-start gap-3 p-3.5">
               <span className="min-w-0 flex-1">
@@ -245,9 +244,9 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
 }
 
 /** Il permesso senza il quale l'account non esiste: non è una scelta, quindi nessun interruttore. */
-const Obbligatorio = () => <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-superficie px-2.5 py-1 text-[11.5px] font-bold text-testo-tenue"><Icona nome="blocco" size={12} />Necessario</span>;
+const Obbligatorio = () => <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-superficie px-2.5 py-1 text-[12px] font-semibold text-testo-tenue"><Icona nome="blocco" size={12} />Necessario</span>;
 
-const ErroreRiga = ({ testo }: { testo: string }) => <p role="alert" data-testo-ok className="rounded-[12px] bg-errore-tinta p-3 text-center text-[13px] font-bold text-errore-testo">{testo}</p>;
+const ErroreRiga = ({ testo }: { testo: string }) => <p role="alert" data-testo-ok className="rounded-[14px] border border-errore/30 bg-errore-tinta p-3 text-center text-[14px] font-bold text-errore-testo dark:bg-superficie">{testo}</p>;
 
 /** Schermata di consenso «Accedi con Project ID»: i permessi uno per uno, tutti spenti, tranne il profilo di base senza il quale l'account non esiste. */
 function Consenso({ profilo, acc, onAnnulla, onFatto }: {
@@ -263,12 +262,12 @@ function Consenso({ profilo, acc, onAnnulla, onFatto }: {
   };
   return (
     <Pagina titolo={`Accedi con ${ECOSYSTEM.accountName}`} indietroA={onAnnulla}>
-      <div className="mt-4 flex items-center gap-3 rounded-[14px] bg-superficie-2 p-3.5">
+      <div className="mt-4 flex items-center gap-3 rounded-[16px] border border-linea bg-superficie p-3.5 shadow-sm dark:shadow-none">
         <span aria-hidden="true" className="grid h-11 w-11 place-items-center rounded-full bg-azione-tinta text-[18px] font-extrabold text-azione-testo">{(u.displayName || u.email || '?').charAt(0).toUpperCase()}</span>
         <span className="min-w-0"><span className="block truncate font-bold text-testo">{u.displayName}</span><span className="block truncate text-[13px] text-testo-tenue">{u.email}</span></span>
       </div>
       <Sezione id="cons-permessi" titolo="Cosa condividere">
-        <ul className="divide-y divide-linea overflow-hidden rounded-[14px] bg-superficie-2">
+        <ul className="divide-y divide-linea overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none">
           {SCOPES.map(s => (
             <li key={s.id} className="flex items-start gap-3 p-3.5">
               <span className="min-w-0 flex-1">
@@ -332,7 +331,7 @@ function Modifica({ profilo, remota, acc, onAnnulla, onSalva, apriLegale }: {
     onSalva(p);
   };
   return (
-    <Pagina titolo="Modifica" indietroA={onAnnulla}>
+    <Pagina titolo="Modifica i dati" indietroA={onAnnulla}>
       <div className="mt-4 flex flex-col gap-6">
         {bloccata ? (
           <Nota tono="neutro"><p data-testo-ok>Email, nome e consensi sono registrati su {ECOSYSTEM.engineName} e legati al tuo {ECOSYSTEM.accountName}: da qui non si cambiano. Per ritirare i consensi puoi eliminare il {ECOSYSTEM.accountName}.</p></Nota>
@@ -341,14 +340,14 @@ function Modifica({ profilo, remota, acc, onAnnulla, onSalva, apriLegale }: {
         )}
 
         <section aria-labelledby="mod-percorso" className="flex flex-col gap-3">
-          <h2 id="mod-percorso" className="text-[15.5px] leading-[20px] font-bold text-testo">Cosa fai al Poli</h2>
+          <h2 id="mod-percorso" className="text-[17px] leading-[24px] font-bold text-testo">Corso di studi</h2>
           {cambiaPercorso ? (
             <PassoPercorso scelte={form.percorso} onChange={percorso => setForm(f => ({ ...f, percorso }))} onFine={() => undefined}
               fine={<BottoneSecondario onClick={() => setCambiaPercorso(false)}>Fatto</BottoneSecondario>} />
           ) : (
             <>
               {corrente.length > 0 && (
-                <ul className="divide-y divide-linea overflow-hidden rounded-[14px] bg-superficie-2">
+                <ul className="divide-y divide-linea overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none">
                   {corrente.map(r => <RigaDato key={r.etichetta} etichetta={r.etichetta} valore={r.valore} />)}
                 </ul>
               )}
@@ -358,7 +357,7 @@ function Modifica({ profilo, remota, acc, onAnnulla, onSalva, apriLegale }: {
         </section>
 
         <section aria-labelledby="mod-prov" className="flex flex-col gap-3">
-          <h2 id="mod-prov" className="text-[15.5px] leading-[20px] font-bold text-testo">Come ci hai conosciuto</h2>
+          <h2 id="mod-prov" className="text-[17px] leading-[24px] font-bold text-testo">Come ci hai conosciuto</h2>
           <ScelteProvenienza valore={form.provenienza} onChange={id => setForm({ ...form, provenienza: form.provenienza === id ? '' : id })} />
         </section>
 
@@ -397,7 +396,7 @@ function Esporta({ profilo, collegamento, acc, onChiudi }: { profilo: Profilo | 
           <>
             <p role="status" data-testo-ok className="text-[13px] font-semibold text-testo-tenue">{copiato ? 'Copiato negli appunti. Puoi anche selezionare il testo qui sotto.' : 'Non riesco a copiare da solo: seleziona il testo qui sotto e copialo a mano.'}</p>
             <textarea readOnly value={testo} rows={12} onFocus={e => e.currentTarget.select()} aria-label="I tuoi dati"
-              className="w-full resize-y rounded-[12px] border border-bordo-campo bg-superficie-2 p-3 font-mono text-[11px] leading-[16px] text-testo" />
+              className="w-full resize-y rounded-[12px] border border-bordo-campo bg-superficie p-3 font-mono text-[12px] leading-[17px] text-testo" />
           </>
         )}
       </div>
@@ -410,11 +409,11 @@ function Conferma({ titolo, children, etichetta, onConferma, onAnnulla, occupato
 }) {
   return (
     <Pagina titolo={titolo} indietroA={onAnnulla}>
-      <div role="alertdialog" aria-label={titolo} className="mt-5 rounded-[14px] bg-errore-tinta p-4 text-[14px] leading-[21px] text-testo">{children}</div>
+      <div role="alertdialog" aria-label={titolo} className="mt-5 rounded-[16px] border border-errore/30 bg-errore-tinta p-4 text-[14px] leading-[21px] text-testo dark:bg-superficie">{children}</div>
       {errore && <div className="mt-3"><ErroreRiga testo={errore} /></div>}
       <div className="mt-5 flex flex-col gap-2.5">
         <button type="button" disabled={occupato} onClick={() => { playTapSound(); onConferma(); }}
-          className={cn('brand-premibile w-full min-h-[52px] rounded-[13px] bg-errore px-4 py-3 text-[16px] font-bold text-errore-su disabled:opacity-40')}>{occupato ? 'Attendi…' : etichetta}</button>
+          className={cn('brand-premibile w-full min-h-[52px] rounded-[14px] bg-errore px-4 py-3 text-[16px] font-bold text-errore-su disabled:opacity-45')}>{occupato ? 'Attendi…' : etichetta}</button>
         <BottoneSecondario onClick={onAnnulla} disabled={occupato}>Annulla</BottoneSecondario>
       </div>
     </Pagina>

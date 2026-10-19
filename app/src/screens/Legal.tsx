@@ -5,7 +5,6 @@ import { Screen, TopBar } from '../components/ui';
 import { cn } from '../lib/utils';
 import { LEGAL_DOCS, LEGAL_TABS } from '../legal';
 import { ICONE_LEGALI } from './Footer';
-import { Disegno } from './extra/servizi/componenti';
 
 const MISURA = 'mx-auto w-full max-w-[65ch]';
 const TESTO = 'text-[15px] leading-[1.7] text-testo';
@@ -43,7 +42,7 @@ export default function Legal({ section, onBack, onSection }: {
               aria-controls="legal-pannello"
               onClick={() => onSection(t.id)}
               className={cn(
-                'flex flex-col items-center rounded-lg px-1 py-2 text-[12px] font-bold transition-colors duration-100',
+                'flex min-h-[52px] flex-col items-center justify-center rounded-lg px-1 py-2 text-[13px] font-bold transition-colors duration-100',
                 t.id === section
                   ? 'bg-superficie text-testo shadow-sm dark:shadow-none'
                   : 'text-testo-tenue hover:text-testo'
@@ -56,9 +55,8 @@ export default function Legal({ section, onBack, onSection }: {
         </div>
 
         <article id="legal-pannello" data-testo-ok role="tabpanel" aria-labelledby={`tab-${section}`} className="flex flex-col gap-3">
-          <Disegno nome="documento-completato" lato={56} />
           <h1 className="text-2xl font-extrabold leading-tight text-testo">{doc.titolo}</h1>
-          <p className="text-sm text-testo-tenue">Aggiornato il {doc.aggiornato}</p>
+          <p className="text-[13px] text-testo-tenue">Aggiornato il {doc.aggiornato}</p>
 
           <nav aria-label="Indice della pagina" className="rounded-xl bg-superficie-2">
             <details className="group">

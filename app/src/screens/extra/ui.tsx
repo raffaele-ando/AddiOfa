@@ -41,7 +41,7 @@ export function Pagina({ titolo, sottotitolo, onBack, destra, velata, piede, chi
             )}
             <div className="min-w-0 flex-1">
               <h1 className="text-[26px] leading-[44px] font-extrabold tracking-[-0.02em] text-testo">{titolo}</h1>
-              {sottotitolo && <p className="-mt-1 text-[15px] leading-[21px] text-testo-tenue">{sottotitolo}</p>}
+              {sottotitolo && <p data-testo-ok className="-mt-1 text-[15px] leading-[21px] text-testo-tenue">{sottotitolo}</p>}
             </div>
             {destra && <div className="shrink-0 pt-0.5">{destra}</div>}
           </header>

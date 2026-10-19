@@ -10,9 +10,9 @@ import Marchio from '../brand/Marchio';
 import FoglioStima from './FoglioStima';
 import { livelloDi, type Livello } from './home/stima';
 import { InfoFoglio } from '../screens/landing/comune';
-import { CampiConsensi, CampoEmail, campiPercorso, ElencoCorsi, formDa, nomeEffettivo, PilloleAnno, ScelteProvenienza, type FormRegistrazione } from '../screens/extra/progetto/registrazione';
-import { anniDelLivello, elencoCorsi, livelliPresenti, corsoScelto, cammino, indiceDomanda, argomentiDaRipassare, testoErrori, ORDINE_RICHIESTE, type Richiesta } from './funnel-logica';
-import { CORSO_ALTRO_ID, type LivelloId } from '../lib/progetto/percorso';
+import { CampiConsensi, CampoEmail, campiPercorso, ElencoCorsi, formDa, nomeEffettivo, PilloleAnno, SceltePasso, ScelteProvenienza, TITOLO_RICHIESTA, type FormRegistrazione } from '../screens/extra/progetto/registrazione';
+import { cammino, indiceDomanda, argomentiDaRipassare, passiPercorso, testoErrori, type Richiesta } from './funnel-logica';
+import { scegli } from '../lib/progetto/percorso';
 import { fonteCorsi } from '../lib/progetto/percorsoDati';
 import { coda } from '../lib/progetto/coda';
 import { corpoIscrizione, creaProfilo, impostaProfilo, leggiProgetto } from '../lib/progetto/profilo';
@@ -32,8 +32,9 @@ interface OnboardingProps {
 
 // Ordine del percorso (decisione del 17/10, rivista il 18/10): perché farlo (pain → gain) → certificazione e OFA in una schermata (possono esonerare,
 // quindi vengono prima di tutto) → le 10 domande del test, con le altre richieste SPARSE fra una domanda e l'altra, una per volta
-// (email PoliMi dopo la 2ª, «come ci hai conosciuto» dopo la 3ª, il corso dopo la 5ª, i consensi dopo la 7ª) → risultato. Le ultime tre domande
-// sono solo domande e fra l'ultima e il risultato non c'è nulla. 18 schermate in tutto; l'ordine è calcolato da `cammino` (funnel-logica.ts).
+// (email PoliMi dopo la 2ª, «come ci hai conosciuto» dopo la 3ª, poi il percorso di studi a cascata: scuola dopo la 4ª, sede dopo la 5ª, livello dopo la 6ª,
+// corso e anno dopo la 7ª, i consensi dopo l'8ª) → risultato. Le ultime due domande sono solo domande e fra l'ultima e il risultato non c'è nulla.
+// L'ordine è calcolato da `cammino` (funnel-logica.ts); un passo con una sola scelta si salta e le richieste dopo scorrono prima.
 // «Calcolo» non c'è più: il risultato è già noto, un finto caricamento avrebbe solo aggiunto un tocco e una promessa non vera.
 
 /** Perché farlo: guadagni (icona + frase intera). Le promesse sono quelle che AddiOFA può mantenere; il resto sta dietro la «i». */
@@ -84,11 +85,6 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
   const stateRef = useRef(appState);
   stateRef.current = appState;
   const [foglio, setFoglio] = useState(false);
-  // il corso: livello e anno stanno qui perché le pillole dell'anno sono nel piè di pagina
-  const voci = useMemo(() => elencoCorsi(fonteCorsi), []);
-  const [livCorso, setLivCorso] = useState<LivelloId>(() => reg.percorso.livello ?? corsoScelto(voci, reg.percorso)?.livello ?? livelliPresenti(voci)[0] ?? 'triennale');
-  const [annoCorso, setAnnoCorso] = useState<number>(() => reg.percorso.anno ?? 1);
-
   // L'iscrizione parte da sola appena possibile e si riprova se il server non risponde (lib/progetto/coda.ts): mai un blocco per l'utente.
   useEffect(() => { coda.avvia(); }, []);
 
@@ -100,11 +96,15 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
 
   // ---- La sequenza delle schermate e dove siamo
   const domande = quiz.length || DIAGNOSTIC_LENGTH;
+  // i passi del percorso di studi con una sola scelta si saltano: la sequenza si ricalcola a ogni scelta (le schermate già viste restano)
+  const richiestePercorso = passiPercorso(reg.percorso, fonteCorsi);
+  const chiavePercorso = richiestePercorso.join();
   const passi = useMemo<string[]>(() => {
-    if (soloRegistrazione) return ['email', 'corso', 'prov', 'consensi'];
-    const richieste: Richiesta[] = giaRegistrato.current ? [] : [...ORDINE_RICHIESTE];
+    const percorso = chiavePercorso ? chiavePercorso.split(',') as Richiesta[] : [];
+    if (soloRegistrazione) return ['email', ...percorso, 'prov', 'consensi'];
+    const richieste: Richiesta[] = giaRegistrato.current ? [] : ['email', 'prov', ...percorso, 'consensi'];
     return cammino({ domande, richieste, racconto: !giaRegistrato.current, avvio: giaRegistrato.current, certOfa: !giaDetto });
-  }, [soloRegistrazione, domande, giaDetto]);
+  }, [soloRegistrazione, domande, giaDetto, chiavePercorso]);
   const [pos, setPos] = useState(0);
   const k = passi[Math.min(pos, passi.length - 1)];
   const avanti = () => setPos(p => Math.min(p + 1, passi.length - 1));
@@ -428,23 +428,43 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
         </Screen>
       );
 
-    // ---- Che corso frequenti: livello, ricerca, elenco (scuola e sede si ricavano dal corso), anno nelle pillole in basso. Il tocco su un corso avanza da solo.
-    case 'corso':
+    // ---- Il percorso di studi a cascata, una richiesta per schermata: scuola → sede → livello (il tocco avanza da solo), poi corso e anno
+    case 'scuola':
+    case 'sede':
+    case 'livello': {
+      const eroe = { scuola: 'cappello-laurea-orologio', sede: 'mondo-internazionale', livello: 'progressi-statistiche' }[k];
       return (
         <Screen
           testata={<TopBar {...barra} onBack={soloRegistrazione && pos === 0 ? undefined : daIndietro} />}
-          piede={
-            <div className="flex flex-col gap-2">
-              <p data-testo-ok className="text-[13px] leading-[18px] font-medium text-testo-tenue">In che anno sei? Poi tocca il tuo corso.</p>
-              <PilloleAnno voci={voci} livello={livCorso} anno={annoCorso} onChange={setAnnoCorso} />
-            </div>
-          }
+          piede={<Micro>Tocca una voce per continuare.</Micro>}
         >
-          <Titolo etichetta="Su di te" titolo="Che corso frequenti?" />
-          <ElencoCorsi
-            scelte={reg.percorso} livello={livCorso} onLivello={l => { setLivCorso(l); setAnnoCorso(a => Math.min(a, anniDelLivello(voci, l))); }} anno={annoCorso}
-            onScelto={s => { setReg(r => ({ ...r, percorso: s })); salva(false); poi(avanti); }}
-            onAltro={() => { setReg(r => ({ ...r, percorso: { livello: livCorso, corso: CORSO_ALTRO_ID, anno: annoCorso } })); salva(false); poi(avanti); }} />
+          <Eroe nome={eroe} max={200} />
+          <Titolo etichetta="Su di te" titolo={TITOLO_RICHIESTA[k]} />
+          <SceltePasso passo={k} scelte={reg.percorso} onScelto={id => {
+            // riscegliere la stessa voce non cancella le scelte dopo; sceglierne un'altra sì
+            if (reg.percorso[k] !== id) setReg(r => ({ ...r, percorso: scegli(r.percorso, k, id) }));
+            salva(false);
+            poi(avanti);
+          }} />
+        </Screen>
+      );
+    }
+
+    // ---- Il corso e l'anno: l'elenco dei corsi di quella scuola, sede e livello; scelto il corso compaiono gli anni e il tocco su un anno avanza da solo
+    case 'corso':
+      return (
+        <Screen
+          testata={<TopBar {...barra} onBack={daIndietro} />}
+          piede={reg.percorso.corso
+            ? <div className="flex flex-col gap-2">
+                <p data-testo-ok className="text-[13px] leading-[18px] font-medium text-testo-tenue">In che anno sei?</p>
+                <PilloleAnno scelte={reg.percorso} onScelto={anno => { setReg(r => ({ ...r, percorso: { ...r.percorso, anno } })); salva(false); poi(avanti); }} />
+              </div>
+            : <Micro>Tocca il tuo corso.</Micro>}
+        >
+          <Eroe nome="ricerca" max={160} />
+          <Titolo etichetta="Su di te" titolo={TITOLO_RICHIESTA.corso} />
+          <ElencoCorsi scelte={reg.percorso} onScelto={id => { if (reg.percorso.corso !== id) setReg(r => ({ ...r, percorso: { ...r.percorso, corso: id, anno: undefined } })); }} />
         </Screen>
       );
 

@@ -12,16 +12,16 @@ export { Pagina, Sezione, Nota, BottoneAzione, BottoneSecondario, copiaTesto } f
 /** Tono di uno stato: i toni delle fasce più `errore` (rosso: solo per ciò che è andato storto, mai per la fascia «bassa»). */
 export type TonoStato = Tono | 'neutro' | 'errore';
 
-/** Etichetta di stato: come quella dei servizi, più il tono `errore` (classi `errore*`, con la parola sempre scritta). */
+/** Pillola di stato: come quella dei servizi, più il tono `errore` (classi `errore*`, con la parola sempre scritta). In scuro il fondo è neutro. */
 export function Etichetta({ tono = 'neutro', children, className }: { tono?: TonoStato; children: ReactNode; className?: string }) {
-  if (tono !== 'errore') return <EtichettaBase tono={tono} className={className}>{children}</EtichettaBase>;
-  return <span className={cn('inline-flex items-center gap-1 rounded-full bg-errore-tinta px-2 py-[2px] text-[11.5px] leading-[16px] font-bold text-errore-testo', className)}>{children}</span>;
+  if (tono !== 'errore') return <EtichettaBase tono={tono} className={cn(tono !== 'neutro' && 'dark:bg-superficie-2', className)}>{children}</EtichettaBase>;
+  return <span className={cn('inline-flex items-center gap-1 rounded-full bg-errore-tinta px-2.5 py-[3px] text-[12px] leading-[16px] font-semibold text-errore-testo dark:bg-superficie-2', className)}>{children}</span>;
 }
 
-/** Illustrazione di testata della pagina (illustrazioni piane del kit blu o luminoso, senza sfondi tondi). */
-export function Testata({ nome, kit = 'kit-blu', lato = 96, className }: { nome: string; kit?: 'kit-blu' | 'kit-luminoso'; lato?: number; className?: string }) {
+/** Illustrazione di testata: SOLO in Community, NOI e Agorà, centrata, sempre a 72 px (la stessa posizione e dimensione ovunque). */
+export function Testata({ nome, kit = 'kit-blu', lato = 72, className }: { nome: string; kit?: 'kit-blu' | 'kit-luminoso'; lato?: number; className?: string }) {
   return (
-    <div className={cn('mt-3 flex justify-center', className)}>
+    <div className={cn('mt-2 flex justify-center', className)}>
       <Illustrazione kit={kit} nome={nome} lato={lato} />
     </div>
   );
@@ -38,14 +38,14 @@ export function Interruttore({ acceso, onChange, etichetta, disabled }: { acceso
   );
 }
 
-/** Una riga di dato: etichetta piccola sopra, valore sotto. `valore` può essere un nodo (per le etichette di stato). */
-export function RigaDato({ icona, etichetta, valore, tono = 'azione' }: { icona?: NomeIcona; etichetta: string; valore: ReactNode; tono?: Tono | 'errore' }) {
-  const stile = tono === 'errore' ? { tinta: 'bg-errore-tinta', icona: 'text-errore-testo' } : TONI[tono];
+/** Una riga di dato (come quelle di Project ID): tessera neutra con l'icona, etichetta 13 px sopra, valore 15/600 sotto. `valore` può essere un nodo (pillole di stato).
+ *  Le icone sono tutte neutre: la categoria si legge dall'icona e dall'etichetta, il colore sta solo nelle pillole di stato. */
+export function RigaDato({ icona, etichetta, valore }: { icona?: NomeIcona; etichetta: string; valore: ReactNode; tono?: Tono | 'errore' }) {
   return (
     <li className="flex items-start gap-3 px-3.5 py-3">
-      {icona && <span aria-hidden="true" className={cn('mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full', stile.tinta, stile.icona)}><Icona nome={icona} size={17} /></span>}
+      {icona && <span aria-hidden="true" className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-superficie-2 text-testo-tenue"><Icona nome={icona} size={22} /></span>}
       <span className="min-w-0 flex-1">
-        <span className="block text-[12.5px] leading-[16px] font-bold text-testo-tenue">{etichetta}</span>
+        <span className="block text-[13px] leading-[18px] font-semibold text-testo-tenue">{etichetta}</span>
         <span data-testo-ok className="block break-words text-[15px] leading-[21px] font-semibold text-testo">{valore}</span>
       </span>
     </li>
@@ -56,8 +56,8 @@ export function RigaDato({ icona, etichetta, valore, tono = 'azione' }: { icona?
 export function BottoneRiga({ icona, children, onClick, tono = 'neutro', disabled }: { icona: NomeIcona; children: ReactNode; onClick: () => void; tono?: 'neutro' | 'rischio'; disabled?: boolean }) {
   return (
     <button type="button" disabled={disabled} onClick={() => { playTapSound(); onClick(); }}
-      className={cn('brand-premibile flex w-full items-center gap-3 rounded-[13px] px-3.5 py-3.5 text-left text-[15px] font-bold disabled:opacity-40 disabled:pointer-events-none',
-        tono === 'rischio' ? 'bg-basso-tinta text-basso-testo' : 'bg-superficie-2 text-testo')}>
+      className={cn('brand-premibile flex min-h-[52px] w-full items-center gap-3 rounded-[14px] border px-3.5 py-3 text-left text-[15px] font-bold disabled:opacity-45 disabled:pointer-events-none',
+        tono === 'rischio' ? 'border-basso/40 bg-basso-tinta text-basso-testo dark:bg-superficie' : 'border-linea bg-superficie text-testo shadow-sm dark:shadow-none')}>
       <Icona nome={icona} size={20} className={tono === 'rischio' ? '' : 'text-azione-testo'} />{children}
     </button>
   );
