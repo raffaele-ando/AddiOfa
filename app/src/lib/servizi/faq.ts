@@ -66,7 +66,7 @@ export function vociFaq(): VoceFaq[] {
       chiavi: 'gia sostenuto certificazione ielts cambridge esonero email polimi',
     },
     {
-      id: 'stima-cosa', categoria: 'test', domanda: 'La probabilità è una garanzia di passare?',
+      id: 'stima-cosa', categoria: 'test', domanda: 'Con una probabilità alta passo di sicuro?',
       risposta: [
         `No. È una stima, calcolata sulle tue risposte: la probabilità di fare almeno ${REAL_TEST_PASS_MARK} risposte esatte su ${REAL_TEST_QUESTIONS}. Con poche risposte è approssimativa e non dice come andrà il test vero; si affina con le simulazioni.`,
         'Nella Home, con il pulsante «i» sotto la probabilità, vedi come è calcolata e tra quali valori può stare.',

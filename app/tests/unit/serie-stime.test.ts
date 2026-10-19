@@ -16,7 +16,7 @@ test('solo diagnostico: un punto, uguale alla stima', () => {
   const st = statoVuoto({ onboarding: diag(8) });
   const s = serieStime(st);
   assert.equal(s.length, 1);
-  assert.equal(s[0].nome, 'Diagnostico');
+  assert.equal(s[0].nome, 'Test di livello');
   assert.ok(vicino(s[0].p, e(8, 10)));
   assert.ok(vicino(s[0].p, calcolaStima(st)!.p));
 });
@@ -24,7 +24,7 @@ test('solo diagnostico: un punto, uguale alla stima', () => {
 test('diagnostico e due simulazioni: ogni punto usa la regola della stima di quel momento', () => {
   const st = statoVuoto({ onboarding: diag(8), history: [simulazione({ id: 'a', date: 10, esatte: 24 }), simulazione({ id: 'b', date: 20, esatte: 27 })] });
   const s = serieStime(st);
-  assert.deepEqual(s.map(x => x.nome), ['Diagnostico', 'Dopo sim. 1', 'Dopo sim. 2']);
+  assert.deepEqual(s.map(x => x.nome), ['Test di livello', 'Dopo sim. 1', 'Dopo sim. 2']);
   assert.ok(vicino(s[0].p, e(8, 10)));
   assert.ok(vicino(s[1].p, e(8 + 24, 10 + 30)), 'con una sola simulazione il diagnostico entra ancora');
   assert.ok(vicino(s[2].p, e(24 + 27, 60)), 'con due simulazioni il diagnostico esce');

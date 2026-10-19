@@ -173,7 +173,7 @@ export interface PuntoStima {
 export function serieStime(stato: AppState, max = 5): PuntoStima[] {
   const d = datiStima(stato);
   const punti: PuntoStima[] = [];
-  if (d.diag) { const s = stimaDopo(d, 0); if (s) punti.push({ p: s.p, nome: 'Diagnostico', tipo: 'diagnostico' }); }
+  if (d.diag) { const s = stimaDopo(d, 0); if (s) punti.push({ p: s.p, nome: 'Test di livello', tipo: 'diagnostico' }); }
   for (let k = 1; k <= d.valide.length; k++) {
     const s = stimaDopo(d, k);
     if (s) punti.push({ p: s.p, nome: `Dopo sim. ${k}`, tipo: 'simulazione' });

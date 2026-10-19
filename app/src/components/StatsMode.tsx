@@ -186,7 +186,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
       {onDiagnostico && (
         <button type="button" onClick={() => { playTapSound(); onDiagnostico(); }}
           className="brand-premibile w-full min-h-[52px] rounded-[13px] bg-azione px-4 py-3 text-[16px] font-bold text-azione-su flex items-center justify-center gap-2">
-          <Icona nome="diagnostico" size={20} />Diagnostico
+          <Icona nome="diagnostico" size={20} />Test di livello
         </button>
       )}
       <button type="button" onClick={() => { playTapSound(); setShowDetailedStats(true); }}

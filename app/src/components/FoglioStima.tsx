@@ -94,8 +94,8 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
           <ul className="mt-4 flex flex-col gap-3.5">
             <Voce icona={<Icona nome="risposte" size={20} />} titolo={`Le tue ${risposte} risposte`}>
               {soloDiagnostico
-                ? `Le esatte sul diagnostico. Le domande hanno i livelli A1, A2, B1 in proporzione al banco.`
-                : `Diagnostico e simulazioni insieme. Contano le ultime 3 simulazioni; dopo due, il diagnostico esce. Le vuote valgono zero.`}
+                ? `Le esatte sul test di livello. Le domande hanno i livelli A1, A2, B1 in proporzione al banco.`
+                : `Test di livello e simulazioni insieme. Contano le ultime 3 simulazioni; dopo due, il test di livello esce. Le vuote valgono zero.`}
             </Voce>
             <Voce icona={<Icona nome="soglia" size={20} />} titolo={`Soglia ${REAL_TEST_PASS_MARK} su ${REAL_TEST_QUESTIONS}`}>
               La soglia del test di recupero di LinguaViva. Controlla sempre quella del test che farai.

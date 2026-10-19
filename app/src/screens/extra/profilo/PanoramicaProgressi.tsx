@@ -34,7 +34,7 @@ function GraficoProbabilita() {
   const nSim = punti.filter(p => p.tipo === 'simulazione').length;
   const dateSim = date.slice(Math.max(0, date.length - nSim));
   let k = 0;
-  const etichette = punti.map(p => (p.tipo === 'diagnostico' ? 'Diagnostico' : dateSim[k] ? data(dateSim[k++]) : `Sim. ${++k}`));
+  const etichette = punti.map(p => (p.tipo === 'diagnostico' ? 'Test di livello' : dateSim[k] ? data(dateSim[k++]) : `Sim. ${++k}`));
 
   const larghezza = 100, altezza = 100;
   const x = (i: number) => (punti.length === 1 ? 50 : 4 + (i / (punti.length - 1)) * (larghezza - 8));
