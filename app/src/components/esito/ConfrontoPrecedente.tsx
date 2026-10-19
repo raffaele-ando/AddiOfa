@@ -2,20 +2,10 @@
 // (altrimenti non sono confrontabili) e solo dalla seconda simulazione in poi. Tono neutro: i due punteggi con la loro parola
 // e una riga che dice la differenza, senza frecce rosse né giudizi.
 import { Icona } from '../../brand/icone/Icona';
+import { differenzaEsatte, fraseDifferenza, type PuntiConfronto } from './testi';
 
-export interface PuntiConfronto { esatte: number; totale: number }
-
-/** Differenza di risposte esatte, solo se le due prove avevano lo stesso numero di domande (altrimenti i numeri non sono confrontabili). */
-export function differenzaEsatte(prima: PuntiConfronto, dopo: PuntiConfronto): number | null {
-  return prima.totale === dopo.totale ? dopo.esatte - prima.esatte : null;
-}
-
-/** La riga della differenza: «3 risposte esatte in più», «Come la precedente». */
-export function fraseDifferenza(d: number): string {
-  if (d === 0) return 'Come la precedente';
-  const n = Math.abs(d);
-  return `${n} ${n === 1 ? 'risposta esatta' : 'risposte esatte'} ${d > 0 ? 'in più' : 'in meno'} della precedente`;
-}
+export type { PuntiConfronto };
+export { differenzaEsatte, fraseDifferenza };
 
 export default function ConfrontoPrecedente({ prima, dopo }: { prima: PuntiConfronto; dopo: PuntiConfronto }) {
   const d = differenzaEsatte(prima, dopo);

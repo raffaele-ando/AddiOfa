@@ -9,8 +9,9 @@ import { SCHERMATE_PROGETTO } from './progetto';
 export interface DefSchermata {
   titolo: string;
   carica: () => Promise<{ default: ComponentType }>;
-  /** Scheda della barra in basso evidenziata; `null` = schermata senza barra (a tutto schermo). Default: 'home'. */
-  barra?: 'home' | 'esercizi' | 'sfide' | null;
+  /** Scheda della barra in basso evidenziata; `null` = schermata senza barra (a tutto schermo); `'nessuna'` = la barra c'è ma nessuna voce è attiva
+   *  (pagine che non appartengono a Home, Esercizi o Sfide: profilo, progressi, FAQ, community...). Default: 'home'. */
+  barra?: 'home' | 'esercizi' | 'sfide' | 'nessuna' | null;
 }
 
 export const SCHERMATE: Record<string, DefSchermata> = {

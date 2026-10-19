@@ -10,10 +10,10 @@ import type { DefSchermata } from '../registro';
  *  - completa-profilo: la registrazione per chi ha già usato l'app (a tutto schermo, come il funnel).
  */
 export const SCHERMATE_PROGETTO: Record<string, DefSchermata> = {
-  esplora: { titolo: 'Esplora', carica: () => import('./Esplora') },
-  projectid: { titolo: 'Project ID', carica: () => import('./ProjectId') },
-  'atlas-analisi': { titolo: 'ATLAS', carica: () => import('./AtlasAnalisi') },
-  noi: { titolo: 'NOI', carica: () => import('./Noi') },
-  agora: { titolo: 'Agorà', carica: () => import('./Agora') },
+  esplora: { titolo: 'Esplora', carica: () => import('./Esplora'), barra: 'nessuna' },
+  projectid: { titolo: 'Project ID', carica: () => import('./ProjectId'), barra: 'nessuna' },
+  'atlas-analisi': { titolo: 'ATLAS', carica: () => import('./AtlasAnalisi'), barra: 'nessuna' },
+  noi: { titolo: 'NOI', carica: () => import('./Noi'), barra: 'nessuna' },
+  agora: { titolo: 'Agorà', carica: () => import('./Agora'), barra: 'nessuna' },
   'completa-profilo': { titolo: 'Completa il profilo', carica: () => import('./CompletaProfilo'), barra: null },
 };
