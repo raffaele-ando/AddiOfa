@@ -1,4 +1,4 @@
-// Prontuario: le regole chiave e le trappole tipiche ricavate dal banco di domande (REPORT.md §4.1).
+// Riepilogo di grammatica (già «Prontuario»): le regole chiave e le trappole tipiche ricavate dal banco di domande (REPORT.md §4.1).
 // Il testo usa *asterischi* per il corsivo, reso dal componente CheatSheet.
 
 export interface CheatSheetRule {

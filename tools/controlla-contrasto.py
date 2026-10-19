@@ -255,7 +255,7 @@ async def percorso(page, nome_schema, larghezza, risposte, foto, risultati, qual
             await page.get_by_role('button', name=re.compile(nome_btn)).first.click(); await page.wait_for_timeout(700)
             await c('correzioni'); break
     # Progressi, Teoria, Esercizi, Prontuario
-    for voce, nome in (('^Progressi', 'progressi'), ('^Teoria', 'teoria'), ('^Prontuario', 'prontuario'), ('^Esercizi mirati', 'esercizi')):
+    for voce, nome in (('^Progressi', 'progressi'), ('^Teoria', 'teoria'), ('^Riepilogo', 'prontuario'), ('^Esercizi mirati', 'esercizi')):
         await ricarica_e_vai('Lezioni')
         await page.get_by_role('button', name=re.compile(voce)).first.click(timeout=4000); await page.wait_for_timeout(1000)
         await c(nome)

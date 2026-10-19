@@ -47,7 +47,7 @@ export function SchermoRipasso() {
       <p className="text-[19px] font-extrabold tracking-[-0.02em] text-testo">Esercizi</p>
       <div className="rounded-2xl bg-azione-tinta p-3">
         <div className="flex justify-center"><Illustrazione nome="quiz-test" kit="kit-luminoso" lato={84} /></div>
-        <div className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-azione py-2.5 text-[13px] font-bold text-azione-su"><Icona nome="studia" size={16} />Intelligente</div>
+        <div className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-azione py-2.5 text-[13px] font-bold text-azione-su"><Icona nome="studia" size={16} />Allenamento consigliato</div>
       </div>
       <div className="grid grid-cols-2 gap-2">
         {tessere.map(t => (

@@ -74,12 +74,12 @@ export default function Profilo() {
         className="brand-premibile mt-3 flex w-full items-center gap-4 rounded-[16px] border border-linea bg-superficie p-4 text-left shadow-sm dark:shadow-none">
         <Avatar profilo={profilo} lato={72} />
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-[22px] leading-[28px] font-extrabold text-testo">{senzaNome ? 'Aggiungi il tuo nome' : nomeVisibile(profilo)}</span>
-          <span className="block truncate text-[14px] leading-[20px] text-testo-tenue">
+          <span className="line-clamp-2 break-words text-[22px] leading-[27px] font-extrabold text-testo">{senzaNome ? 'Aggiungi il tuo nome' : nomeVisibile(profilo)}</span>
+          <span className="mt-0.5 line-clamp-2 text-[14px] leading-[20px] text-testo-tenue">
             {profilo.corso || (senzaNome ? 'e il corso, per personalizzare l\'app' : 'Aggiungi il corso di studi')}
           </span>
         </span>
-        <span className="flex shrink-0 items-center gap-0.5 text-[14px] font-bold text-azione-testo">Modifica<Icona nome="avanti" size={16} /></span>
+        <Icona nome="avanti" size={22} className="shrink-0 text-testo-tenue" />
       </button>
 
       {/* scheda Project ID */}
