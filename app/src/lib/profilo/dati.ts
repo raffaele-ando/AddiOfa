@@ -27,6 +27,7 @@ export const AVATAR: { id: string; etichetta: string }[] = [
   { id: 'progressi-statistiche', etichetta: 'Grafico' },
   { id: 'ricerca', etichetta: 'Lente' },
   { id: 'messaggi-supporto', etichetta: 'Messaggi' },
+  { id: 'obiettivo', etichetta: 'Bersaglio' },
 ];
 
 const ID_AVATAR = new Set(AVATAR.map(a => a.id));

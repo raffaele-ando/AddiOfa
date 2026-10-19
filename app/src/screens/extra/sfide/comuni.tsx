@@ -9,76 +9,64 @@ import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { fraseEsito, tempoBreve, type Esito, type Risultato } from '../../../lib/sfide/risultati';
 
-export { Pagina, Sezione } from '../ui';
+export { Pagina as PaginaBase, Sezione } from '../ui';
+import { Carta as CartaBase, Pagina as PaginaUi } from '../ui';
+import type { PropsPagina } from '../ui';
 
+/** Pagina delle sfide: la pagina comune a fondo velato. */
+export function Pagina(props: PropsPagina) { return <PaginaUi velata {...props} />; }
+
+/** Card bianca del sistema (ui.tsx): `tono` solo per la card in evidenza. */
 export function Carta({ children, className, tono = 'neutro' }: { children: ReactNode; className?: string; tono?: 'neutro' | Tono }) {
-  const toni = {
-    neutro: 'bg-superficie-2 border-linea',
-    azione: 'bg-azione-tinta border-azione/25',
-    alto: 'bg-alto-tinta border-alto/25',
-    medio: 'bg-medio-tinta border-medio/30',
-    basso: 'bg-basso-tinta border-basso/25',
-    viola: 'bg-viola-tinta border-viola/25',
-  } as const;
-  return <div className={cn('rounded-[16px] border p-4', toni[tono], className)}>{children}</div>;
+  return <CartaBase tono={tono} className={className}>{children}</CartaBase>;
 }
 
-const BASE_BOTTONE = 'brand-premibile w-full inline-flex items-center justify-center gap-2 rounded-2xl py-3.5 px-5 text-[15px] font-bold transition-colors duration-100 disabled:opacity-40 disabled:pointer-events-none';
+const BASE_BOTTONE = 'brand-premibile w-full inline-flex min-h-[52px] items-center justify-center gap-2 rounded-[14px] px-5 py-3 text-[16px] font-bold transition-colors duration-100 disabled:opacity-45 disabled:pointer-events-none';
 
-/** Pulsante: un verbo, oppure solo l'icona (con `aria` che dice cosa fa). Uno solo pieno per schermata. */
-export function Bottone({ children, onClick, variante = 'primario', disabled, className, icona, aria, type = 'button' }: {
-  children?: ReactNode; onClick?: () => void; variante?: 'primario' | 'secondario' | 'testo'; disabled?: boolean; className?: string;
-  icona?: NomeIcona; aria?: string; type?: 'button' | 'submit';
+/** Pulsante: SEMPRE con un verbo scritto (l'icona è facoltativa, a sinistra). Uno solo pieno per schermata. */
+export function Bottone({ children, onClick, variante = 'primario', disabled, className, icona, type = 'button' }: {
+  children: ReactNode; onClick?: () => void; variante?: 'primario' | 'secondario' | 'testo'; disabled?: boolean; className?: string;
+  icona?: NomeIcona; type?: 'button' | 'submit';
 }) {
   const v = {
     primario: 'bg-azione text-azione-su hover:bg-azione-scuro',
-    secondario: 'border border-azione text-azione-testo bg-superficie',
+    secondario: 'border border-tacca bg-superficie text-testo',
     testo: 'text-azione-testo bg-transparent',
   } as const;
   return (
-    <button type={type} disabled={disabled} aria-label={aria} onClick={onClick ? () => { playTapSound(); onClick(); } : undefined} className={cn(BASE_BOTTONE, v[variante], className)}>
-      {icona && <Icona nome={icona} size={children ? 20 : 26} />}{children}
+    <button type={type} disabled={disabled} onClick={onClick ? () => { playTapSound(); onClick(); } : undefined} className={cn(BASE_BOTTONE, v[variante], className)}>
+      {icona && <Icona nome={icona} size={20} />}{children}
     </button>
   );
 }
 
-/** Campo di testo senza etichetta in pagina: il segnaposto e l'icona dicono cosa scrivere (`aria` per chi non vede). */
-export function Campo({ id, aria, valore, onCambia, segnaposto, maxLength, errore, onInvio, icona, className }: {
-  id: string; aria: string; valore: string; onCambia: (v: string) => void; segnaposto?: string; maxLength?: number; errore?: string | null;
+/** Campo di testo con la sua etichetta scritta sopra (non solo il segnaposto: dopo averlo scritto l'etichetta resta). */
+export function Campo({ id, etichetta, valore, onCambia, segnaposto, maxLength, errore, onInvio, icona, className }: {
+  id: string; etichetta: string; valore: string; onCambia: (v: string) => void; segnaposto?: string; maxLength?: number; errore?: string | null;
   onInvio?: () => void; icona?: NomeIcona; className?: string;
 }) {
   return (
     <div className={cn('flex min-w-0 flex-col gap-1.5', className)}>
+      <label htmlFor={id} className="text-[14px] leading-[20px] font-bold text-testo">{etichetta}</label>
       <div className="relative">
         {icona && <Icona nome={icona} size={20} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue" />}
-        <input id={id} value={valore} onChange={e => onCambia(e.target.value)} placeholder={segnaposto} maxLength={maxLength} aria-label={aria}
+        <input id={id} value={valore} onChange={e => onCambia(e.target.value)} placeholder={segnaposto} maxLength={maxLength}
           autoComplete="off" spellCheck={false}
           onKeyDown={onInvio ? e => { if (e.key === 'Enter') onInvio(); } : undefined}
           aria-invalid={errore ? true : undefined} aria-describedby={errore ? `${id}-err` : undefined}
-          className={cn('w-full min-w-0 rounded-2xl border border-bordo-campo bg-superficie py-3 pr-4 text-[15px] font-semibold text-testo placeholder:text-testo-tenue placeholder:font-medium focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30', icona ? 'pl-11' : 'pl-4')} />
+          className={cn('h-12 w-full min-w-0 rounded-[12px] border border-bordo-campo bg-superficie pr-4 text-[16px] font-semibold text-testo placeholder:font-normal placeholder:text-testo-tenue focus:border-azione focus:outline-none focus:ring-2 focus:ring-azione/30', icona ? 'pl-11' : 'pl-3.5')} />
       </div>
       {errore && <p id={`${id}-err`} role="alert" className="flex items-center gap-1.5 text-[13px] font-bold text-errore-testo"><Icona nome="stato-attenzione" size={15} />{errore}</p>}
     </div>
   );
 }
 
-/** Icona in tessera e numero accanto: «10» con le domande, «5 min» con il tempo. Sostituisce le frasi. */
-export function Dato({ icona, tono, valore, aria, unita, className }: { icona: NomeIcona; tono: Tono; valore: ReactNode; aria: string; unita?: string; className?: string }) {
-  return (
-    <span role="group" aria-label={aria} className={cn('inline-flex items-center gap-2', className)}>
-      <IconaTono tono={tono} lato={34} className="rounded-full bg-superficie"><Icona nome={icona} size={18} /></IconaTono>
-      <span aria-hidden className="text-[19px] leading-[22px] font-extrabold tabular-nums text-testo">{valore}{unita && <span className="ml-0.5 text-[12.5px] font-bold text-testo-tenue">{unita}</span>}</span>
-    </span>
-  );
-}
-
-/** I due dati di ogni sfida: le domande e il tempo. */
+/** I due dati di ogni sfida, scritti: «10 domande · 5 minuti» (niente icone da decifrare). */
 export function DatiSfida({ domande, minuti, className }: { domande: number; minuti: number; className?: string }) {
   return (
-    <div className={cn('flex items-center gap-5', className)}>
-      <Dato icona="risposte" tono="azione" valore={domande} aria={`${domande} domande`} />
-      <Dato icona="tempo" tono="medio" valore={minuti} unita="min" aria={`${minuti} minuti`} />
-    </div>
+    <p className={cn('text-[15px] leading-[21px] font-semibold text-testo', className)}>
+      {domande} domande <span aria-hidden="true" className="text-testo-tenue">·</span> {minuti} {minuti === 1 ? 'minuto' : 'minuti'}
+    </p>
   );
 }
 
@@ -89,12 +77,12 @@ const ESITO_VISTA = {
   perso: { nome: 'stato-perso', tono: 'basso', parola: 'Perso' },
 } as const satisfies Record<Esito, { nome: NomeIcona; tono: Tono; parola: string }>;
 
-/** Icona tonda dell'esito (nelle righe di elenco): niente parola, `aria-label` con la parola. */
-export function IconaEsito({ esito, lato = 34 }: { esito: Esito; lato?: number }) {
+/** L'esito di un confronto in una pillola: icona e PAROLA («Vinto», «Pari», «Perso»), nel tono dell'esito. In scuro il fondo è neutro. */
+export function PillolaEsito({ esito, className }: { esito: Esito; className?: string }) {
   const e = ESITO_VISTA[esito];
   return (
-    <span role="img" aria-label={e.parola} className={cn('grid shrink-0 place-items-center rounded-full', TONI[e.tono].tinta, TONI[e.tono].icona)} style={{ width: lato, height: lato }}>
-      <Icona nome={e.nome} size={Math.round(lato * 0.52)} />
+    <span className={cn('inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-[3px] text-[12px] leading-[16px] font-bold dark:bg-superficie-2', TONI[e.tono].tinta, TONI[e.tono].testo, className)}>
+      <Icona nome={e.nome} size={13} />{e.parola}
     </span>
   );
 }
@@ -130,20 +118,19 @@ export function Tempo({ secondi, className }: { secondi: number; className?: str
 
 function Colonna({ nome, r, io, vince }: { nome: string; r: Risultato; io?: boolean; vince: boolean }) {
   return (
-    <div className={cn('min-w-0 flex-1 rounded-[14px] bg-superficie p-3 text-center border', io ? 'border-azione/50' : 'border-linea')}>
-      <p className="truncate text-[13px] font-bold text-testo-tenue">{nome}</p>
+    <div className={cn('min-w-0 flex-1 rounded-[14px] bg-superficie p-3 text-center border', io ? 'border-azione/60' : 'border-linea')}>
+      <p className="truncate text-[13px] font-bold text-testo-tenue">{io ? `${nome} (tu)` : nome}</p>
       <p className={cn('mt-1 text-[30px] leading-[34px] font-extrabold tabular-nums', vince ? 'text-alto-numero' : 'text-testo')}>{r.corrette}<span className="text-[16px] font-bold text-testo-tenue">/{r.totale}</span></p>
       <p className="mt-1 text-[13px] font-semibold text-testo-tenue"><Tempo secondi={r.secondi} /></p>
     </div>
   );
 }
 
-/** L'illustrazione di ogni esito (piano d'uso, docs/design/ILLUSTRAZIONI.md §3.2): vinto = coriandoli luminosi, pari = piccolo traguardo (il fiocco),
- *  perso = il foglio con la croce (piatto, più piccolo). Una per esito, mai le stesse per altro. */
+/** L'illustrazione di ogni esito: vinto = coriandoli luminosi, pari = il fiocco, perso = il quiz (calmo: una sfida persa non è un fallimento, niente foglio con la croce). */
 export function IlluEsito({ esito }: { esito: Esito }) {
   if (esito === 'vinto') return <Illustrazione kit="kit-luminoso" nome="celebrazione" lato={104} />;
   if (esito === 'pari') return <Illustrazione nome="celebrazione-fiocco" lato={92} />;
-  return <Illustrazione nome="mancato-superamento" lato={112} />;
+  return <Illustrazione nome="quiz-test" lato={96} />;
 }
 
 /** L'esito di un duello: UN blocco tinto nel tono dell'esito (verde vinto, ambra pari, corallo smorzato perso) con l'illustrazione, la frase
@@ -171,18 +158,17 @@ export function dataBreve(ms: number): string {
   return `${d.getDate()} ${MESI[d.getMonth()]}`;
 }
 
-/** Stato che ferma la strada: un'illustrazione degli stati (o, se non ce n'è una adatta, l'icona grande nel tono), al massimo una riga corta
- *  (≤ 8 parole), poi le azioni (uno solo pieno). */
-export function Fermo({ icona, tono, testo, illustrazione, children }: {
-  icona?: NomeIcona; tono: Tono; testo?: string; illustrazione?: { nome: string; kit?: 'kit-blu' | 'kit-luminoso'; lato?: number }; children?: ReactNode;
+/** Stato che ferma la strada, lo stesso di tutta l'app: illustrazione dell'area (96 px, mai una faccia triste), titolo 20/700 senza punto, UNA riga di causa
+ *  sempre visibile, azioni con un verbo (una sola piena). */
+export function Fermo({ illustrazione, titolo, causa, children }: {
+  illustrazione?: { nome: string; kit?: 'kit-blu' | 'kit-luminoso'; lato?: number }; titolo: string; causa?: string; children?: ReactNode;
 }) {
   return (
-    <div className="mt-8 flex flex-col items-center text-center">
-      {illustrazione
-        ? <Illustrazione nome={illustrazione.nome} kit={illustrazione.kit} lato={illustrazione.lato ?? 120} />
-        : icona && <IconaTono tono={tono} lato={72} className="rounded-full"><Icona nome={icona} size={34} /></IconaTono>}
-      {testo && <p role="status" className="mt-3 max-w-[30ch] text-[15px] leading-[21px] font-bold text-testo">{testo}</p>}
-      {children && <div className="mt-6 flex w-full flex-col gap-2">{children}</div>}
+    <div role="status" className="mt-10 flex flex-col items-center text-center">
+      {illustrazione && <Illustrazione nome={illustrazione.nome} kit={illustrazione.kit} lato={illustrazione.lato ?? 96} />}
+      <h2 className={cn('text-[20px] leading-[26px] font-bold text-testo', illustrazione && 'mt-4')}>{titolo}</h2>
+      {causa && <p data-testo-ok className="mt-1.5 max-w-[32ch] text-[15px] leading-[21px] text-testo-tenue">{causa}</p>}
+      {children && <div className="mt-6 flex w-full flex-col gap-2.5">{children}</div>}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { AppState } from '../types';
 import { Icona } from '../brand/icone/Icona';
 import { playTapSound } from '../lib/audio';
@@ -18,6 +18,7 @@ import { lezioniPercorso } from '../lib/studio/percorso';
 import { elencoSimulazioni } from '../lib/studio/simulazioni';
 import { leggiProgetto } from '../lib/progetto/profilo';
 import { cn } from '../lib/utils';
+import { useColonnaLarga } from './Layout';
 
 interface MenuProps {
   appState: AppState;
@@ -46,6 +47,21 @@ interface MenuProps {
   onAllenaArea?: (filtro: string) => void;
 }
 
+/** Vero da `px` di larghezza in su (la Home mette la Simulazione in un posto diverso sul desktop; si disegna una volta sola). */
+function usePiuLargoDi(px: number): boolean {
+  const q = `(min-width: ${px}px)`;
+  const [vero, setVero] = useState(() => typeof window !== 'undefined' && !!window.matchMedia?.(q).matches);
+  useEffect(() => {
+    if (!window.matchMedia) return;
+    const m = window.matchMedia(q);
+    const aggiorna = () => setVero(m.matches);
+    aggiorna();
+    m.addEventListener('change', aggiorna);
+    return () => m.removeEventListener('change', aggiorna);
+  }, [q]);
+  return vero;
+}
+
 const SCHEDE_DESKTOP: { id: Scheda; nome: string; icona: 'home' | 'esercizi' | 'sfide' }[] = [
   { id: 'home', nome: 'Home', icona: 'home' },
   { id: 'esercizi', nome: 'Esercizi', icona: 'esercizi' },
@@ -56,11 +72,13 @@ const SCHEDE_DESKTOP: { id: Scheda; nome: string; icona: 'home' | 'esercizi' | '
  * Home «completa»: stato e prossime azioni (concept 14, 01, 33, 21, 03; revisione 18/10). Dall'alto: intestazione (marchio e profilo), saluto con nome (solo se
  * il nome esiste e lo schermo è alto), misuratore con la «i», fascia di stato (glifo, titolo, riga), un solo pulsante che dice cosa fa, prossima lezione,
  * le tue aree (dalla più debole), ultima simulazione, andamento, barra a tre voci.
- * Da 1024 px: due colonne (a sinistra misuratore, fascia e pulsante, fissi; a destra il resto), navigazione in alto, senza la cornice da telefono.
+ * Da 1024 px (colonna da 960 px del guscio, `useColonnaLarga`): due colonne (a sinistra misuratore, fascia, pulsante e simulazione, fissi; a destra lezione, aree, andamento) e navigazione in alto.
  * Strumenti, frasi e prontuario stanno in Esercizi (docs/design/ARCHITETTURA.md).
  */
 export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheoryTopic, onApriLezione, onOpenDiagnostic, onOpenImpostazioni, onNaviga, onStartExam, onApriExtra, onAllenaArea }: MenuProps) {
   const [foglio, setFoglio] = useState(false);
+  useColonnaLarga(); // da 1024 px la colonna del guscio passa a 960 px: due colonne
+  const largo = usePiuLargoDi(1024);
 
   // Tutti i numeri vengono da qui (la stessa fonte delle altre schermate): stima, serie misurata, aree, lezioni del percorso, ultima simulazione
   const dati = useMemo(() => ({
@@ -88,10 +106,16 @@ export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheor
   const cta = ctaPrincipale(stima, livello, !!onOpenDiagnostic, !!onStartExam);
   const azione = cta.azione === 'diagnostico' ? onOpenDiagnostic ?? onStartSmart : cta.azione === 'simulazione' ? onStartExam ?? onStartSmart : onStartSmart;
 
+  const sezioneSimulazione = (
+    <Simulazione ultima={ultima} onInizia={onStartExam}
+      onApriUltima={onApriExtra && ultima ? () => onApriExtra('simulazione-dettaglio', { id: ultima.id }) : undefined}
+      onTutte={onApriExtra ? () => onApriExtra('simulazioni') : undefined} />
+  );
+
   return (
-    <div className="h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col lg:fixed lg:inset-0 lg:z-20 lg:rounded-none lg:border-0" style={{ fontFamily: FONT }}>
+    <div className="h-full w-full bg-superficie text-testo overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
-        <div className="mx-auto w-full max-w-[440px] sm:max-w-[480px] lg:max-w-[1080px] px-6 lg:px-8 pt-[max(16px,env(safe-area-inset-top))] corto:pt-[max(10px,env(safe-area-inset-top))] lg:pt-6 pb-6">
+        <div className="w-full px-6 lg:px-8 pt-[max(16px,env(safe-area-inset-top))] corto:pt-[max(10px,env(safe-area-inset-top))] lg:pt-6 pb-6">
           {/* intestazione: marchio più leggero del numero a sinistra, il profilo a destra; da 1024 px anche le tre schede */}
           <header className="flex items-center justify-between gap-4 h-9">
             <Marchio disposizione="orizzontale" altezza={28} />
@@ -133,21 +157,17 @@ export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheor
 
               <div className="mt-[14px] corto:mt-[8px]"><BannerStato chiave={chiave} stima={stima} areeConDati={areeConDati} variazione={variazione} /></div>
               <div className="mt-[9px]"><Cta onClick={azione} sotto={cta.sotto}>{cta.etichetta}</Cta></div>
+              {/* sul desktop la Simulazione sta sotto il pulsante: resta visibile senza scorrere */}
+              {largo && <div className="mt-8">{sezioneSimulazione}</div>}
             </div>
 
             {/* destra (sul telefono sotto): prossima lezione, aree, simulazione, andamento */}
             <div className="mt-8 corto:mt-6 lg:mt-0 flex flex-col gap-8 corto:gap-6 lg:gap-8">
               <Lezioni lezioni={prossime} onApri={apriLezione} onTutte={onApriExtra ? () => onApriExtra('percorso') : undefined} />
-              <div className="flex flex-col gap-8 corto:gap-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-8">
-                <Aree categorie={fattori.categorie} livelli={fattori.livelli} onVai={onAllenaArea} />
-                <div className="flex flex-col gap-8 corto:gap-6 lg:gap-8">
-                  <Simulazione ultima={ultima} onInizia={onStartExam}
-                    onApriUltima={onApriExtra && ultima ? () => onApriExtra('simulazione-dettaglio', { id: ultima.id }) : undefined}
-                    onTutte={onApriExtra ? () => onApriExtra('simulazioni') : undefined} />
-                  {/* Andamento: solo punti misurati (diagnostico e simulazioni) */}
-                  <GraficoStime punti={punti} onInfo={stima ? () => setFoglio(true) : undefined} />
-                </div>
-              </div>
+              <Aree categorie={fattori.categorie} livelli={fattori.livelli} onVai={onAllenaArea} />
+              {!largo && sezioneSimulazione}
+              {/* Andamento: solo punti misurati (diagnostico e simulazioni) */}
+              <GraficoStime punti={punti} onInfo={stima ? () => setFoglio(true) : undefined} />
             </div>
           </div>
         </div>

@@ -28,7 +28,8 @@ function giorno(i: number) { const d = new Date(); d.setDate(d.getDate() - i); r
 // Risposte di prova: la precisione dipende dallo stato (basso 30%, medio 55%, alto 85%)
 function costruisci(): AppState {
   const base: AppState = { stats: {}, history: [], streak: 0, lastActiveDate: null } as AppState;
-  if (stato === 'nuovo') return base;
+  const profilo = q.get('nome') ? { extra: { progetto: { profilo: { nome: q.get('nome'), email: 'raffaele.rossi@mail.polimi.it', emailVerificata: false, consensi: { noi: false, atlas: false, comunicazioni: false }, versioneInformativa: 'x', creatoIl: 1760000000000, aggiornatoIl: 1760000000000 } } } } : {};
+  if (stato === 'nuovo') return { ...base, ...profilo };
   const acc = stato === 'basso' ? 0.3 : stato === 'medio' ? 0.55 : 0.85;
   const nStats: AppState['stats'] = {};
   // debole=1: le domande di Traduzione sono quasi tutte sbagliate (area sotto il 40 %); aree=0: nessuna risposta registrata per area
@@ -49,7 +50,7 @@ function costruisci(): AppState {
   return {
     ...base, stats: nStats, history, streak: stato === 'basso' ? 1 : 3, lastActiveDate: Date.now(),
     onboarding: { completedAt: Date.now() - 3 * 864e5, hasCertification: false, hasOfa: 'unknown', diagnosticCorrect: diagOk, diagnosticTotal: 10 },
-    ...(q.get('nome') ? { extra: { progetto: { profilo: { nome: q.get('nome'), email: 'raffaele.rossi@mail.polimi.it', emailVerificata: false, consensi: { noi: false, atlas: false, comunicazioni: false }, versioneInformativa: 'x', creatoIl: 1760000000000, aggiornatoIl: 1760000000000 } } } } : {}),
+    ...profilo,
     dailyActivity: { [giorno(0)]: 14, [giorno(1)]: 22, [giorno(2)]: 8, [giorno(4)]: 30, [giorno(6)]: 5 },
   };
 }

@@ -42,11 +42,11 @@ export function ctaPrincipale(stima: Stima | null, livello: Livello, puoDiagnost
   return { azione: 'allenamento', etichetta: stima ? 'Continua l’allenamento' : 'Inizia ad allenarti', sotto: '10 domande scelte per te' };
 }
 
-/** Chip della fascia: da quale stima si è partiti (la prima misura, in %), con la direzione. Nessun chip con meno di due misure o senza differenza. */
+/** Chip della fascia: da quale stima si è partiti (la prima misura, in %), con la direzione. Nessun chip con meno di due misure o con una differenza di un solo punto (rumore, non un andamento). */
 export function variazioneDaPrima(tutti: readonly PuntoStima[]): { da: number; verso: 'su' | 'giu' } | null {
   if (tutti.length < 2) return null;
   const prima = Math.round(tutti[0].p * 100), ultima = Math.round(tutti[tutti.length - 1].p * 100);
-  if (prima === ultima) return null;
+  if (Math.abs(ultima - prima) < 2) return null;
   return { da: prima, verso: ultima > prima ? 'su' : 'giu' };
 }
 

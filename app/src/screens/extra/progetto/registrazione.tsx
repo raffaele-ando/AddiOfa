@@ -214,7 +214,7 @@ export function ElencoCorsi({ fonte = fonteCorsi, scelte, livello, onLivello, an
       <div className="relative flex min-h-[168px] flex-1 flex-col">
         <ul ref={lista} onScroll={misura} className="absolute inset-0 flex flex-col gap-2 overflow-y-auto scrollbar-hide pb-1">
           {visibili.map(v => (
-            <li key={v.chiave}>
+            <li key={v.chiave} data-testo-ok>
               <ChoiceCard avanza selected={scelto?.chiave === v.chiave} onClick={() => tocca(v)} title={v.nome} subtitle={cerca ? `${NOME_LIVELLO_ELENCO[v.livello]} · ${v.sedeNome}` : v.sedeNome} />
             </li>
           ))}

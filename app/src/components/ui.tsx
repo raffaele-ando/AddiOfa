@@ -64,7 +64,7 @@ export function TopBar({ step, totalSteps, onBack, destra, centro }: { step?: nu
       {centro}
       {conBarra && (
         // traccia scura ≥ 2:1 sulla superficie, in tutti e due i temi; una sola barra continua (niente tacche)
-        <div role="progressbar" aria-label="Avanzamento" aria-valuemin={0} aria-valuemax={totalSteps} aria-valuenow={step} className="h-1.5 flex-1 overflow-hidden rounded-full bg-testo-tenue/45">
+        <div role="progressbar" aria-label="Avanzamento" aria-valuemin={0} aria-valuemax={totalSteps} aria-valuenow={step} className="h-1.5 flex-1 overflow-hidden rounded-full bg-testo-tenue/50">
           <div className="h-full rounded-full bg-azione" style={{ width: `${frazione * 100}%` }} />
         </div>
       )}

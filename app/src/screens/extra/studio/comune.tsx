@@ -94,7 +94,7 @@ export function OpzioneRisposta({ lettera, testo, stato, disabilitata, onClick }
 
 /** Virgolette dritte attorno a una parola o a una frase («'more' …») diventano caporali; gli apostrofi (l'auto, students') restano. */
 export function tipografiche(t: string): string {
-  return t.replace(/(^|[\s(\[—-])'([^'\n]{1,80}?)'(?=$|[\s.,;:!?)\]—])/g, '$1«$2»');
+  return t.replace(/(^|[\s(\[—-])'((?:[^'\n]|'(?=\p{L})){1,80}?)'(?=$|[\s.,;:!?)\]—])/gu, '$1«$2»');
 }
 
 /** Data breve in italiano: «12 ott»; l'anno compare solo se non è quello in corso («12 ott 2025»). */

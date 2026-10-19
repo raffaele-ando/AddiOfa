@@ -154,29 +154,30 @@ export default function SfidaGioco() {
   const rimaste = domande.length - Object.keys(risposte).length;
   const titoloSfida = tipo === 'giorno' ? 'Sfida del giorno' : ruolo === 'sfidato' ? `Duello con ${avversario?.nome ?? ''}` : 'Duello';
   const cornice = 'relative h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col';
+  const corniceVelata = cornice.replace('bg-superficie', 'bg-fondo');
 
   // ================== Schermate di attesa e di errore ==================
   if (fase === 'carico' || fase === 'consegna') {
     return (
-      <div className={cn(cornice, 'items-center justify-center gap-3 p-8 text-center')} style={{ fontFamily: FONT }} role="status">
+      <div className={cn(corniceVelata, 'items-center justify-center gap-3 p-8 text-center')} style={{ fontFamily: FONT }} role="status">
         <Illustrazione nome="attesa-caricamento" lato={110} />
-        <p className="font-bold text-testo">{fase === 'carico' ? 'Preparo le domande…' : 'Consegno e correggo…'}</p>
+        <p className="text-[17px] font-bold text-testo">{fase === 'carico' ? 'Preparo le domande' : 'Consegno e correggo'}</p>
       </div>
     );
   }
   if (fase === 'errore-carico' || fase === 'errore-consegna') {
     return (
-      <div className={cn(cornice, 'items-center justify-center gap-4 p-8 text-center')} style={{ fontFamily: FONT }}>
+      <div className={cn(corniceVelata, 'items-center justify-center gap-4 p-8 text-center')} style={{ fontFamily: FONT }}>
         {giaGiocata.current ? (
           <Icona nome="stato-caricamento" size={28} className="animate-spin text-testo-tenue" />
         ) : (
           <>
-            <Illustrazione nome="documento-errore" lato={104} />
-            <p role="alert" className="max-w-sm text-[15px] leading-[22px] font-bold text-testo">{errore}</p>
-            <div className="flex w-full max-w-xs gap-2">
-              {fase === 'errore-consegna' && <Bottone icona="riprova" aria="Riprova a consegnare" onClick={() => void consegna()} />}
-              {fase === 'errore-carico' && !erroreIniziale && <Bottone icona="riprova" aria="Riprova" onClick={() => void prepara()} />}
-              <Bottone variante="secondario" icona="indietro" aria="Indietro" className={erroreIniziale ? '' : 'w-16 shrink-0 px-0'} onClick={indietro} />
+            <Illustrazione nome="documento-errore" lato={96} />
+            <h1 role="alert" className="max-w-sm text-[20px] leading-[26px] font-bold text-testo">{errore}</h1>
+            <div className="flex w-full max-w-xs flex-col gap-2.5">
+              {fase === 'errore-consegna' && <Bottone icona="riprova" onClick={() => void consegna()}>Riprova a consegnare</Bottone>}
+              {fase === 'errore-carico' && !erroreIniziale && <Bottone icona="riprova" onClick={() => void prepara()}>Riprova</Bottone>}
+              <Bottone variante="secondario" icona="indietro" onClick={indietro}>Torna indietro</Bottone>
             </div>
           </>
         )}
@@ -196,23 +197,24 @@ export default function SfidaGioco() {
         'Conta quante risposte giuste dai e in quanto tempo: a parità di risposte vince chi è più veloce.',
       ]} />
     );
+    const aiuto = tipo === 'giorno' ? 'Rispondi più che puoi.' : ruolo === 'sfidato' ? `Giochi le stesse domande di ${avversario?.nome}.` : 'Poi mandi il link a un amico.';
     return (
-      <div className={cornice} style={{ fontFamily: FONT }}>
-        <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
-          <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(16px,env(safe-area-inset-top))] pb-8">
-            <div className="flex items-center justify-between">
-              <button type="button" onClick={() => { playTapSound(); indietro(); }} aria-label="Indietro" className="brand-premibile -ml-2 grid h-10 w-10 place-items-center rounded-full text-testo-tenue hover:text-testo">
-                <Icona nome="indietro" size={28} />
-              </button>
-              <PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />
-            </div>
-            <div className="mt-1 flex flex-col items-center text-center">
-              <Illustrazione nome="quiz-test" lato={120} />
-              <h1 className="mt-2 text-[28px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo">{titoloSfida}</h1>
-            </div>
-            <DatiSfida domande={domande.length} minuti={SECONDI_SFIDA / 60} className="mt-5 justify-center" />
-            <div className="mt-6"><Bottone icona="studia" onClick={avvia}>Inizia</Bottone></div>
-          </div>
+      <div className={corniceVelata} style={{ fontFamily: FONT }}>
+        {/* testata fissa, blocco al centro, pulsante fisso in basso: niente vuoto fra il testo e il pulsante */}
+        <div className="mx-auto flex w-full max-w-[440px] shrink-0 items-center justify-between px-6 pt-[max(14px,env(safe-area-inset-top))]">
+          <button type="button" onClick={() => { playTapSound(); indietro(); }} aria-label="Indietro" className="brand-premibile -ml-3 grid h-11 w-11 place-items-center rounded-full text-testo-tenue hover:text-testo">
+            <Icona nome="indietro" size={28} />
+          </button>
+          <PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />
+        </div>
+        <div className="mx-auto flex w-full max-w-[440px] flex-1 min-h-0 flex-col items-center justify-center px-6 text-center">
+          <Illustrazione nome="quiz-test" lato={120} />
+          <h1 className="mt-3 text-[28px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo">{titoloSfida}</h1>
+          <DatiSfida domande={domande.length} minuti={SECONDI_SFIDA / 60} className="mt-2" />
+          <p data-testo-ok className="mt-1 text-[15px] leading-[21px] text-testo-tenue">{aiuto}</p>
+        </div>
+        <div className="shrink-0 border-t border-linea px-6 pt-3 pb-[max(14px,env(safe-area-inset-bottom))]">
+          <div className="mx-auto w-full max-w-[440px]"><Bottone icona="studia" onClick={avvia}>Inizia la sfida</Bottone></div>
         </div>
         <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Regole">{regole}</FoglioInfo>
       </div>

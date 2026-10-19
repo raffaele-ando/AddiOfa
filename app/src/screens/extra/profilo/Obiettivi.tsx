@@ -1,7 +1,5 @@
-import { useMemo, useState, type ReactNode } from 'react';
-import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
-import { calcolaStima } from '../../../components/home/stima';
-import { Carta } from '../../../components/home/comune';
+import { useMemo, useState } from 'react';
+import { Icona } from '../../../brand/icone/Icona';
 import { OFA_DEADLINES, OFA_RULES_NOTE } from '../../../config/offer';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
@@ -10,17 +8,22 @@ import {
   avanzamentoGiornaliero, avanzamentoStima, giorniConObiettivo, giorniMancanti, MINUTI_OPZIONI, normalizzaObiettivi, OBIETTIVI_INIZIALI, STIMA_OPZIONI,
   type ObiettiviDati,
 } from '../../../lib/profilo/obiettivi';
-import { BarraTono, FoglioInfo, IconaTono, PulsanteInfo, type Tono } from '../ui';
+import { DOMANDE_TEST, SOGLIA_TEST } from '../../../lib/profilo/numeri';
+import { BarraTono, Carta, FoglioInfo, IconaTono, PulsanteInfo } from '../ui';
 import { useExtra, useExtraDati } from '../contesto';
-import { Disegno } from '../servizi/componenti';
-import { Pagina, useOggi } from './componenti';
+import { BottoneSecondario } from '../servizi/componenti';
+import CampoData from './CampoData';
+import { Pagina, useNumeri, useOggi } from './componenti';
 
+/** Scelta fra pochi valori: chip a colonne uguali, alti 44 px (cinque per riga: nessun chip rimane da solo a capo). */
 function Scelte({ nome, valori, scelto, onScegli, formato }: { nome: string; valori: number[]; scelto: number; onScegli: (v: number) => void; formato: (v: number) => string }) {
+  const elenco = valori.includes(scelto) ? valori : [...valori, scelto].sort((a, b) => a - b);
   return (
-    <div role="radiogroup" aria-label={nome} className="flex flex-wrap gap-2">
-      {valori.map(v => (
+    <div role="radiogroup" aria-label={nome} className="grid grid-cols-5 gap-2">
+      {elenco.map(v => (
         <button key={v} type="button" role="radio" aria-checked={scelto === v} onClick={() => { playTapSound(); onScegli(v); }}
-          className={cn('brand-premibile h-9 px-3.5 rounded-full text-[13.5px] font-semibold tabular-nums', scelto === v ? 'bg-azione-tinta text-azione-testo border border-azione' : 'bg-superficie text-testo border border-linea')}>
+          className={cn('brand-premibile h-11 rounded-[12px] border text-[15px] font-semibold tabular-nums',
+            scelto === v ? 'border-azione border-[1.5px] bg-azione-tinta text-azione-testo' : 'border-linea bg-superficie text-testo')}>
           {formato(v)}
         </button>
       ))}
@@ -28,110 +31,108 @@ function Scelte({ nome, valori, scelto, onScegli, formato }: { nome: string; val
   );
 }
 
-/** Intestazione di carta: tessera icona nel tono del significato (data e tempo = ambra, probabilità = verde) e titolo di due parole. */
-function Titolo({ tono, icona, children, destra }: { tono: Tono; icona: NomeIcona; children: ReactNode; destra?: ReactNode }) {
-  return (
-    <div className="flex items-center gap-3">
-      <IconaTono tono={tono} lato={36} className="bg-superficie"><Icona nome={icona} size={19} /></IconaTono>
-      <h2 className="flex-1 text-[15px] leading-[20px] font-bold text-testo">{children}</h2>
-      {destra}
-    </div>
-  );
-}
+const Domanda = ({ id, children, sotto }: { id: string; children: string; sotto?: string }) => (
+  <div>
+    <h2 id={id} className="text-[17px] leading-[24px] font-bold text-testo">{children}</h2>
+    {sotto && <p data-testo-ok className="text-[13px] leading-[18px] text-testo-tenue">{sotto}</p>}
+  </div>
+);
 
-/** Obiettivo raggiunto: segno verde (il colore dice che è riuscito). */
-const Raggiunto = () => <span role="img" aria-label="Raggiunto" className="text-alto-numero"><Icona nome="stato-ok" size={22} /></span>;
-
-/** Obiettivi scelti dall'utente (data del test, minuti al giorno, probabilità) con l'avanzamento vero verso ciascuno: solo icone, numeri e barre. */
+/** Obiettivi: in testa la scheda dell'obiettivo principale (la probabilità SALE verso il traguardo: barra e numero vanno nello stesso verso), poi le tre scelte dell'utente. */
 export default function Obiettivi() {
-  const { appState, indietro } = useExtra();
+  const { appState, indietro, avviaDiagnostico } = useExtra();
   const [grezzi, salva] = useExtraDati<ObiettiviDati>('obiettivi', OBIETTIVI_INIZIALI);
   const ob = useMemo(() => normalizzaObiettivi(grezzi), [grezzi]);
   const oggi = useOggi();
+  const n = useNumeri();
   const [foglio, setFoglio] = useState(false);
   const imposta = (p: Partial<ObiettiviDati>) => salva(normalizzaObiettivi({ ...ob, ...p }));
 
   const mancano = giorniMancanti(ob.dataTest, oggi);
   const giorno = useMemo(() => avanzamentoGiornaliero(appState, oggi, ob.minutiGiorno), [appState, oggi, ob.minutiGiorno]);
   const settimana = useMemo(() => giorniConObiettivo(appState, oggi, ob.minutiGiorno, 7), [appState, oggi, ob.minutiGiorno]);
-  const stima = useMemo(() => calcolaStima(appState), [appState]);
-  const av = avanzamentoStima(stima?.p, ob.stimaTarget);
+  const av = avanzamentoStima(n.stima?.p, ob.stimaTarget);
+  const anni = useMemo(() => [oggi.getFullYear(), oggi.getFullYear() + 1, oggi.getFullYear() + 2], [oggi]);
 
-  const dataCol = mancano?.quando === 'passato' ? 'text-testo-tenue' : 'text-medio-numero';
   return (
-    <Pagina titolo="Obiettivi" indietro={indietro}>
-      <div className="mt-2 flex justify-center"><Disegno nome="obiettivo" lato={120} /></div>
-      <div className="mt-3 flex flex-col gap-3">
-        <Carta className="p-4 flex flex-col gap-3">
-          <Titolo tono="medio" icona="data-test" destra={<PulsanteInfo onClick={() => setFoglio(true)} etichetta="Scadenze del test" />}>Data del test</Titolo>
-          {mancano && (
-            <p className={`flex items-baseline gap-2 text-[34px] leading-[38px] font-extrabold tabular-nums ${dataCol}`} aria-live="polite"
-              aria-label={mancano.quando === 'oggi' ? 'Il test è oggi' : mancano.quando === 'futuro' ? `Mancano ${mancano.giorni} giorni` : `Data passata da ${-mancano.giorni} giorni`}>
-              {mancano.quando === 'oggi' ? 'Oggi' : <>{mancano.quando === 'passato' ? '−' : ''}{Math.abs(mancano.giorni)}<span className="text-[15px] font-bold text-testo-tenue">{Math.abs(mancano.giorni) === 1 ? 'giorno' : 'giorni'}</span></>}
-            </p>
-          )}
-          <div className="flex items-center gap-2.5">
-            <label htmlFor="data-test" className="sr-only">Data del test</label>
-            <input id="data-test" type="date" value={ob.dataTest ?? ''} onChange={e => imposta({ dataTest: e.target.value || null })}
-              className="h-11 min-w-0 flex-1 rounded-[10px] bg-superficie border border-bordo-campo px-3 text-[15px] text-testo focus:outline-none focus:border-azione" />
-            {ob.dataTest && (
-              <button type="button" onClick={() => { playTapSound(); imposta({ dataTest: null }); }} aria-label="Togli la data"
-                className="brand-premibile grid h-11 w-11 place-items-center rounded-[10px] bg-superficie border border-linea text-testo-tenue"><Icona nome="chiudi" size={20} /></button>
-            )}
+    <Pagina titolo="Obiettivi" indietro={indietro} destra={<PulsanteInfo onClick={() => setFoglio(true)} etichetta="Come funzionano gli obiettivi" />}>
+      <Carta tono={av.raggiunto ? 'alto' : 'azione'} className="mt-3">
+        <div className="flex items-center gap-3">
+          <IconaTono tono="azione" lato={48} className="bg-superficie dark:bg-superficie-2"><Icona nome="obiettivi" size={26} /></IconaTono>
+          <div className="min-w-0 flex-1">
+            <h2 className="text-[17px] leading-[24px] font-bold text-testo">Superare il test</h2>
+            <p className="text-[13px] leading-[18px] text-testo-tenue">{SOGLIA_TEST} risposte giuste su {DOMANDE_TEST}</p>
           </div>
+          {av.raggiunto && <span role="img" aria-label="Raggiunto" className="text-alto-numero"><Icona nome="stato-ok" size={24} /></span>}
+        </div>
+        {av.corrente !== null ? (
+          <>
+            <div className="mt-4 flex items-baseline justify-between gap-3">
+              <p className="text-[30px] leading-[34px] font-extrabold tabular-nums text-testo">{av.corrente}%<span className="ml-1.5 text-[14px] font-semibold text-testo-tenue">probabilità ora</span></p>
+              <p className="text-[14px] leading-[20px] font-bold tabular-nums text-testo">Obiettivo {av.target}%</p>
+            </div>
+            <BarraTono className="mt-2 h-2.5" tono="alto" valore={av.quota * 100} />
+            <p className="mt-2 text-[13px] leading-[18px] text-testo-tenue">{av.raggiunto ? 'Obiettivo raggiunto.' : `Mancano ${av.mancano} punti percentuali.`}</p>
+          </>
+        ) : (
+          <div className="mt-4 flex flex-col gap-3">
+            <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">Non c'è ancora una stima: la calcola il diagnostico.</p>
+            <BottoneSecondario icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Fai il diagnostico</BottoneSecondario>
+          </div>
+        )}
+      </Carta>
+
+      <div className="mt-3 flex flex-col gap-3">
+        <Carta as="section" className="flex flex-col gap-3">
+          <Domanda id="ob-data" sotto="Ti diciamo quanti giorni mancano.">Quando fai il test?</Domanda>
+          <CampoData valore={ob.dataTest} onCambia={v => imposta({ dataTest: v })} anni={anni} />
+          {mancano && (
+            <div className="flex items-center justify-between gap-3" aria-live="polite">
+              <p className="text-[17px] leading-[24px] font-extrabold tabular-nums text-testo">
+                {mancano.quando === 'oggi' ? 'Il test è oggi'
+                  : mancano.quando === 'futuro' ? `Mancano ${mancano.giorni} ${mancano.giorni === 1 ? 'giorno' : 'giorni'}`
+                  : `Data passata da ${-mancano.giorni} ${-mancano.giorni === 1 ? 'giorno' : 'giorni'}`}
+              </p>
+              <button type="button" onClick={() => { playTapSound(); imposta({ dataTest: null }); }}
+                className="brand-premibile inline-flex min-h-[44px] items-center gap-1.5 rounded-[12px] px-3 text-[14px] font-bold text-testo-tenue"><Icona nome="chiudi" size={16} />Togli la data</button>
+            </div>
+          )}
         </Carta>
 
-        <Carta className="p-4 flex flex-col gap-3">
-          <Titolo tono="medio" icona="minuti-giorno">Minuti al giorno</Titolo>
+        <Carta as="section" className="flex flex-col gap-3">
+          <Domanda id="ob-minuti" sotto="Minuti di studio al giorno.">Quanto studi al giorno?</Domanda>
           <Scelte nome="Minuti di studio al giorno" valori={MINUTI_OPZIONI} scelto={ob.minutiGiorno} onScegli={v => imposta({ minutiGiorno: v })} formato={v => `${v}`} />
           <div>
-            <div className="flex items-center justify-between gap-3 text-[14px]">
-              <span className="inline-flex items-center gap-1.5 font-bold tabular-nums text-testo"><Icona nome="tempo" size={17} className="text-medio-numero" />{formatoDurata(giorno.secondi)}<span className="font-semibold text-testo-tenue">/ {ob.minutiGiorno} min</span></span>
-              {giorno.raggiunto && <Raggiunto />}
+            <div className="flex items-center justify-between gap-3 text-[14px] leading-[20px]">
+              <span className="font-semibold text-testo">Oggi {formatoDurata(giorno.secondi)} · obiettivo {ob.minutiGiorno} min</span>
+              {giorno.raggiunto && <span role="img" aria-label="Raggiunto" className="text-alto-numero"><Icona nome="stato-ok" size={20} /></span>}
             </div>
-            <div className="mt-1.5"><BarraTono tono="alto" valore={giorno.quota * 100} /></div>
-            <p className="mt-2 inline-flex items-center gap-1.5 text-[13.5px] font-bold tabular-nums text-testo" role="img" aria-label={`Obiettivo raggiunto ${settimana.raggiunti} volte su ${settimana.giorni} giorni`}>
-              <Icona nome="giorni-studio" size={17} className="text-medio-numero" />{settimana.raggiunti}/{settimana.giorni}
-            </p>
+            <BarraTono className="mt-1.5" tono="medio" valore={giorno.quota * 100} />
+            <p className="mt-2 text-[13px] leading-[18px] tabular-nums text-testo-tenue">{settimana.raggiunti} giorni su {settimana.giorni} questa settimana</p>
           </div>
         </Carta>
 
-        <Carta className="p-4 flex flex-col gap-3">
-          <Titolo tono="alto" icona="probabilita">Probabilità</Titolo>
+        <Carta as="section" className="flex flex-col gap-3">
+          <Domanda id="ob-prob" sotto="Probabilità di superare il test.">Quanto vuoi esserne sicuro?</Domanda>
           <Scelte nome="Probabilità da raggiungere" valori={STIMA_OPZIONI} scelto={ob.stimaTarget} onScegli={v => imposta({ stimaTarget: v })} formato={v => `${v}%`} />
-          {av.corrente === null ? (
-            <p className="inline-flex items-center gap-2 text-[15px] font-bold text-testo-tenue" role="img" aria-label="Ancora nessuna stima">
-              <Icona nome="stato-non-attivo" size={18} />–
-            </p>
-          ) : (
-            <div>
-              <div className="flex items-baseline justify-between gap-3">
-                <span className={`text-[26px] leading-[30px] font-extrabold tabular-nums ${av.raggiunto ? 'text-alto-numero' : 'text-testo'}`}>{av.corrente}%</span>
-                <span className="inline-flex items-center gap-1.5 text-[14px] font-bold tabular-nums text-testo-tenue"><Icona nome="obiettivi" size={16} />{av.target}%</span>
-                {av.raggiunto && <Raggiunto />}
-              </div>
-              <div className="mt-1.5"><BarraTono tono="alto" valore={av.quota * 100} /></div>
-            </div>
-          )}
+          <p className="text-[14px] leading-[20px] font-semibold tabular-nums text-testo">{av.corrente !== null ? `Ora ${av.corrente}% · obiettivo ${av.target}%` : `Obiettivo ${av.target}%`}</p>
         </Carta>
 
-        <Carta className="flex items-center gap-2 p-4 pr-3">
-          <div className="min-w-0 flex-1 flex flex-col gap-3">
-            <Titolo tono="medio" icona="scadenza">Scadenze</Titolo>
-            <dl className="flex flex-col gap-2.5">
-              {OFA_DEADLINES.map(d => (
-                <div key={d.scuola} className="flex flex-col">
-                  <dt className="text-[13.5px] leading-[18px] text-testo-tenue">{d.scuola}</dt>
-                  <dd className="text-[16px] leading-[22px] font-bold text-testo">{d.data}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <Disegno nome="accesso-bloccato" kit="kit-luminoso" lato={136} className="shrink-0" />
+        <Carta as="section">
+          <h2 className="text-[17px] leading-[24px] font-bold text-testo">Scadenze</h2>
+          <p className="text-[13px] leading-[18px] text-testo-tenue">Per il piano completo del 2° anno</p>
+          <dl className="mt-3 flex flex-col divide-y divide-linea">
+            {OFA_DEADLINES.map(d => (
+              <div key={d.scuola} className="flex items-baseline justify-between gap-3 py-2 first:pt-0 last:pb-0">
+                <dt className="text-[15px] leading-[21px] text-testo-tenue">{d.scuola}</dt>
+                <dd className="text-[15px] leading-[21px] font-bold text-testo">{d.data}</dd>
+              </div>
+            ))}
+          </dl>
         </Carta>
       </div>
-      <FoglioInfo aperto={foglio} onChiudi={() => setFoglio(false)} titolo="Data del test">
-        <p>La data è facoltativa e serve solo a te, per contare i giorni che mancano. Il tempo conta mentre fai esercizi, simulazioni e il diagnostico. La probabilità cambia solo con il diagnostico e le simulazioni, non con gli esercizi.</p>
+      <FoglioInfo aperto={foglio} onChiudi={() => setFoglio(false)} titolo="Come funzionano gli obiettivi">
+        <p>La data è facoltativa e serve solo a te, per contare i giorni che mancano. Il tempo conta mentre fai esercizi, simulazioni e il diagnostico. La probabilità è una stima: cambia solo con il diagnostico e le simulazioni, non con gli esercizi, e dice quanto è probabile fare almeno {SOGLIA_TEST} risposte giuste su {DOMANDE_TEST}.</p>
         <p className="mt-2">Le scadenze sono quelle per avere il piano completo del 2° anno (calendario 2026/27). {OFA_RULES_NOTE}</p>
       </FoglioInfo>
     </Pagina>

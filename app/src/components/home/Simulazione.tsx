@@ -54,11 +54,11 @@ export default function Simulazione({ ultima, onInizia, onApriUltima, onTutte }:
 
   return (
     <section aria-labelledby="titolo-simulazione" className="flex flex-col gap-3">
-      <TitoloSezione id="titolo-simulazione" destra={onTutte ? <LinkTutte onClick={onTutte} aria="Tutte le simulazioni" testo="Tutte le simulazioni" testoBreve="Tutte" /> : undefined}>Simulazione</TitoloSezione>
+      <TitoloSezione id="titolo-simulazione" destra={onTutte ? <LinkTutte onClick={onTutte} aria="Tutte le simulazioni" testo="Tutte le simulazioni" /> : undefined}>Simulazione</TitoloSezione>
       <div className="rounded-[16px] bg-superficie-2 p-4">
         {ultima && onApriUltima ? (
           <button type="button" onClick={() => { playTapSound(); onApriUltima(); }} aria-label={etichettaUltima} className={cn(classiCorpo, 'brand-premibile w-full rounded-[10px]')}>
-            {arte}{corpo}<Icona nome="avanti" size={20} className="ml-auto shrink-0 text-testo-tenue lg:hidden" />
+            {arte}{corpo}<Icona nome="avanti" size={20} className="ml-auto shrink-0 text-testo-tenue" />
           </button>
         ) : (
           <div className={classiCorpo} role={ultima ? 'img' : undefined} aria-label={ultima ? etichettaUltima : undefined}>{arte}{corpo}</div>

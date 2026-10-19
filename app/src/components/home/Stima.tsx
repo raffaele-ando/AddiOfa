@@ -69,12 +69,12 @@ export function TitoloSezione({ children, destra, id }: { children: ReactNode; d
   );
 }
 
-/** «Tutte ›» a destra del titolo di una sezione: area di tocco di 44 px, colore tenue. `testo` dice cosa si apre; `testoBreve` lo sostituisce da 1024 px, dove la colonna è stretta. */
-export function LinkTutte({ onClick, aria, testo = 'Tutte', testoBreve }: { onClick: () => void; aria: string; testo?: string; testoBreve?: string }) {
+/** «Tutte ›» a destra del titolo di una sezione: area di tocco di 44 px, colore tenue. `testo` dice cosa si apre. */
+export function LinkTutte({ onClick, aria, testo = 'Tutte' }: { onClick: () => void; aria: string; testo?: string }) {
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }} aria-label={aria}
       className="brand-premibile -my-3 -mr-2 inline-flex min-h-[44px] items-center gap-0.5 rounded-[10px] pl-3 pr-2 text-[14px] leading-[18px] font-semibold text-testo-tenue hover:text-testo">
-      {testoBreve ? <><span className="lg:hidden">{testo}</span><span className="hidden lg:inline">{testoBreve}</span></> : testo}<Icona nome="avanti" size={18} />
+      {testo}<Icona nome="avanti" size={18} />
     </button>
   );
 }

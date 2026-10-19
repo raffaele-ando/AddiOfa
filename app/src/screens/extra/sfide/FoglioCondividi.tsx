@@ -26,15 +26,15 @@ export function linkCondivisione(testo: string, url: string): LinkCondivisione[]
 
 const ICONE: Record<string, NomeIcona> = { whatsapp: 'whatsapp', telegram: 'telegram', messaggi: 'messaggi' };
 
-const piastrella = 'brand-premibile flex w-full flex-col items-center gap-1.5 rounded-[14px] bg-superficie-2 border border-linea px-1 py-3 text-center text-[12.5px] font-semibold text-testo';
+const piastrella = 'brand-premibile flex w-full min-h-[88px] flex-col items-center gap-1.5 rounded-[14px] bg-superficie border border-linea px-1 py-3 text-center text-[13px] font-semibold text-testo shadow-sm dark:shadow-none';
 const cerchio = 'w-11 h-11 rounded-full flex items-center justify-center';
 // Un colore per canale (come nel concept): WhatsApp verde, Telegram blu, Messaggi viola; «Altre» e «Copia» restano neutri.
 const COLORE_CANALE: Record<string, string> = {
-  whatsapp: 'bg-alto-tinta text-alto-numero',
-  telegram: 'bg-azione-tinta text-azione-testo',
-  messaggi: 'bg-viola-tinta text-viola',
+  whatsapp: 'bg-alto-tinta text-alto-numero dark:bg-superficie-2',
+  telegram: 'bg-azione-tinta text-azione-testo dark:bg-superficie-2',
+  messaggi: 'bg-viola-tinta text-viola dark:bg-superficie-2',
 };
-const NEUTRO = 'bg-superficie text-testo-tenue border border-linea';
+const NEUTRO = 'bg-superficie-2 text-testo-tenue border border-linea';
 
 export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { testo: string; url: string; mostraAnteprima?: boolean }) {
   const [stato, setStato] = useState<string | null>(null);
@@ -64,7 +64,7 @@ export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { te
     <div className="flex flex-col gap-4">
       {mostraAnteprima && (
         // il messaggio che parte è contenuto, non una spiegazione dell'app
-        <p data-testo-ok className="rounded-[14px] bg-superficie-2 border border-linea p-3 text-[14px] leading-[20px] text-testo whitespace-pre-line break-words">{testo}</p>
+        <p data-testo-ok className="rounded-[14px] bg-superficie border border-linea p-3 text-[14px] leading-[20px] text-testo whitespace-pre-line break-words">{testo}</p>
       )}
       <ul className="grid grid-cols-[repeat(auto-fit,minmax(78px,1fr))] gap-2.5">
         {linkCondivisione(testo, url).map(l => (
@@ -82,15 +82,14 @@ export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { te
           </li>
         )}
       </ul>
-      <div className="flex flex-col gap-1.5">
-        <div className="flex items-center gap-2">
-          <input id="condividi-link" ref={campo} readOnly value={url} aria-label="Il link" onFocus={e => e.currentTarget.select()}
-            className="min-w-0 flex-1 rounded-2xl border border-bordo-campo bg-superficie px-4 py-3 text-[13px] font-semibold text-testo focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
-          <button type="button" onClick={() => { playTapSound(); void copia(); }} aria-label="Copia il link"
-            className="brand-premibile grid h-12 w-14 shrink-0 place-items-center rounded-2xl border border-azione bg-superficie text-azione-testo">
-            <Icona nome="copia" size={22} />
-          </button>
-        </div>
+      <div className="flex flex-col gap-2.5">
+        <label htmlFor="condividi-link" className="text-[14px] leading-[20px] font-bold text-testo">Il link</label>
+        <input id="condividi-link" ref={campo} readOnly value={url} onFocus={e => e.currentTarget.select()}
+          className="h-12 min-w-0 rounded-[12px] border border-bordo-campo bg-superficie px-3.5 text-[13px] font-semibold text-testo focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
+        <button type="button" onClick={() => { playTapSound(); void copia(); }}
+          className="brand-premibile flex min-h-[52px] w-full items-center justify-center gap-2 rounded-[14px] bg-azione px-4 py-3 text-[16px] font-bold text-azione-su">
+          <Icona nome="copia" size={20} />Copia il link
+        </button>
         <p role="status" className="min-h-[18px] text-[13px] font-bold text-alto-testo">{stato}</p>
       </div>
     </div>

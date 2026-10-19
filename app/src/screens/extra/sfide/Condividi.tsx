@@ -1,24 +1,23 @@
 // `condividi`: il foglio di condivisione come schermata. Parametri: `testo` (il messaggio), `url` (il link), `titolo` (facoltativo).
-// Solo le scelte (canali e copia): il messaggio parte con il canale scelto. In testa la clessidra: si aspetta l'amico (piano d'uso, §3.2).
-import { Illustrazione } from '../../../brand/Illustrazione';
+// Solo le scelte (canali e copia): il messaggio parte con il canale scelto. Senza niente da condividere non è un vicolo cieco: dice perché e porta a farlo.
 import { useExtra } from '../contesto';
 import { OpzioniCondivisione } from './FoglioCondividi';
-import { Fermo, Pagina } from './comuni';
+import { Bottone, Fermo, Pagina } from './comuni';
 
 export default function Condividi() {
-  const { params, indietro } = useExtra();
+  const { params, indietro, vai, avviaSimulazione } = useExtra();
   const testo = (params.testo ?? '').slice(0, 600);
   const url = (params.url ?? '').slice(0, 1000);
   return (
     <Pagina titolo={params.titolo?.slice(0, 40) || 'Condividi'} onBack={indietro}>
-      <div className="mt-5">
+      <div className="mt-2">
         {!url && !testo ? (
-          <Fermo tono="azione" illustrazione={{ nome: 'vuoto' }} testo="Niente da condividere." />
+          <Fermo illustrazione={{ nome: 'messaggi-supporto' }} titolo="Niente da condividere" causa="Fai una sfida o una simulazione, poi manda il risultato.">
+            <Bottone icona="simulazioni" onClick={avviaSimulazione}>Fai una simulazione</Bottone>
+            <Bottone variante="secondario" icona="sfide" onClick={() => vai('sfide')}>Vai alle sfide</Bottone>
+          </Fermo>
         ) : (
-          <>
-            <div className="mb-4 flex justify-center"><Illustrazione nome="attesa" lato={64} /></div>
-            <OpzioniCondivisione testo={testo} url={url} mostraAnteprima={false} />
-          </>
+          <OpzioniCondivisione testo={testo} url={url} mostraAnteprima={false} />
         )}
       </div>
     </Pagina>

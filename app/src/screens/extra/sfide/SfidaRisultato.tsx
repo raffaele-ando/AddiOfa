@@ -8,7 +8,7 @@ import { useExtra } from '../contesto';
 import { provider } from '../../../access';
 import CorrezioniComplete from '../../../components/esito/CorrezioniComplete';
 import { SECONDI_SFIDA } from '../../../lib/sfide/seme';
-import { FoglioInfo, IconaTono, PulsanteInfo } from '../ui';
+import { FoglioInfo, PulsanteInfo } from '../ui';
 import { codificaSfida, estraiCodice, linkSfida } from '../../../lib/sfide/codice';
 import { confronta, tempoBreve, type VoceSfida } from '../../../lib/sfide/risultati';
 import { indirizzoApp, useBancoSfide, useProfiloSfide, useStorico } from './dati';
@@ -30,14 +30,13 @@ function RivediRisposte({ voce, primario }: { voce: VoceSfida; primario: boolean
       setStato('errore');
     }
   };
-  if (stato === 'chiuso') return <Bottone variante={primario ? 'primario' : 'secondario'} icona="correzioni" aria="Correzioni" onClick={() => void apri()}>Correzioni</Bottone>;
+  if (stato === 'chiuso') return <Bottone variante={primario ? 'primario' : 'secondario'} icona="correzioni" onClick={() => void apri()}>Rivedi le risposte</Bottone>;
   if (stato === 'carico') return <p role="status" aria-label="Carico" className="flex items-center justify-center py-3 text-testo-tenue"><Icona nome="stato-caricamento" size={22} className="animate-spin" /></p>;
   if (stato === 'errore' || !c) {
     return (
-      <Carta tono="medio" className="flex items-center gap-3">
-        <Icona nome="stato-attenzione" size={22} className="shrink-0 text-medio-numero" />
-        <p role="alert" className="flex-1 text-[14px] font-bold text-medio-testo">Correzioni non disponibili.</p>
-        <Bottone variante="secondario" icona="riprova" aria="Riprova" className="w-14 px-0" onClick={() => void apri()} />
+      <Carta tono="medio" className="flex flex-col gap-3">
+        <p role="alert" className="flex items-center gap-2 text-[15px] font-bold text-medio-testo"><Icona nome="stato-attenzione" size={20} className="shrink-0 text-medio-numero" />Non riesco a caricare le correzioni.</p>
+        <Bottone variante="secondario" icona="riprova" onClick={() => void apri()}>Riprova</Bottone>
       </Carta>
     );
   }
@@ -58,8 +57,8 @@ export default function SfidaRisultato() {
   if (!voce) {
     return (
       <Pagina titolo="Sfida" onBack={indietro}>
-        <Fermo tono="basso" illustrazione={{ nome: 'ricerca-scintille' }} testo="Sfida non trovata.">
-          <Bottone icona="sfide" aria="Vai alle sfide" onClick={() => vai('sfide')} />
+        <Fermo illustrazione={{ nome: 'ricerca' }} titolo="Sfida non trovata" causa="Il link non è valido o la sfida non è più disponibile.">
+          <Bottone icona="sfide" onClick={() => vai('sfide')}>Vai alle sfide</Bottone>
         </Fermo>
       </Pagina>
     );
@@ -123,15 +122,15 @@ export default function SfidaRisultato() {
                 <FoglioCondividi aperto={foglio} onChiudi={() => setFoglio(false)} testo={testo} url={url} titolo="Condividi" />
               </>
             ) : (
-              <p role="alert" className="flex items-center gap-2 text-[14px] font-bold text-errore-testo"><Icona nome="stato-attenzione" size={18} />Link non disponibile.</p>
+              <p role="alert" className="flex items-center gap-2 text-[14px] font-bold text-errore-testo"><Icona nome="stato-attenzione" size={18} />Non riesco a creare il link. Riprova dopo aver giocato di nuovo.</p>
             )}
             {!sfidato && !avv && (
-              <div className="flex items-start gap-2">
-                <IconaTono tono="azione" lato={48} className="rounded-[13px]"><Icona nome="incolla" size={26} /></IconaTono>
-                <Campo id="incolla-risposta" aria="Il link con il risultato dell'amico" valore={incolla} onCambia={v => { setIncolla(v); setErroreIncolla(null); }}
-                  segnaposto="Incolla il link" errore={erroreIncolla} onInvio={apriRisposta} className="flex-1" />
-                <Bottone icona="avanti" aria="Vedi il confronto" variante="secondario" disabled={!incolla.trim()} className="w-14 shrink-0 px-0" onClick={apriRisposta} />
-              </div>
+              <Carta className="flex flex-col gap-3">
+                <h2 className="text-[17px] leading-[24px] font-bold text-testo">Il tuo amico ha giocato?</h2>
+                <Campo id="incolla-risposta" etichetta="Link con il suo risultato" valore={incolla} onCambia={v => { setIncolla(v); setErroreIncolla(null); }}
+                  segnaposto="Incolla qui il link" errore={erroreIncolla} onInvio={apriRisposta} />
+                <Bottone icona="avanti" variante="secondario" disabled={!incolla.trim()} onClick={apriRisposta}>Vedi il confronto</Bottone>
+              </Carta>
             )}
           </div>
         )}

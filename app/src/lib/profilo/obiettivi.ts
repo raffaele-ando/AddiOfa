@@ -14,7 +14,7 @@ export interface ObiettiviDati {
 }
 
 export const OBIETTIVI_INIZIALI: ObiettiviDati = { dataTest: null, minutiGiorno: 30, stimaTarget: 70 };
-export const MINUTI_OPZIONI = [10, 15, 20, 30, 45, 60, 90];
+export const MINUTI_OPZIONI = [15, 30, 45, 60, 90];
 export const STIMA_OPZIONI = [50, 60, 70, 80, 90];
 const MINUTI_MAX = 600;
 

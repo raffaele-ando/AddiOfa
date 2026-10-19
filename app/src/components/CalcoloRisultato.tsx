@@ -1,3 +1,6 @@
+// FUORI DAL PERCORSO (revisione del 18/10): il funnel non passa più da «Calcolo». Il risultato è già noto quando si risponde all'ultima domanda: un
+// finto caricamento avrebbe aggiunto un tocco e una promessa non vera, e il percorso deve stare in 18 schermate senza richieste fra l'ultima domanda
+// e il risultato. Il file resta solo perché non si cancellano file: si può togliere (nessuno lo importa).
 // «Come ho calcolato la stima»: schermata ferma prima del risultato (concept 09, 10, 20, 29, 42, 43, senza le animazioni: l'app è statica).
 // Le tre tappe sono quelle che fa davvero il calcolo (conta le risposte, guarda i livelli delle domande, applica la soglia del test):
 // ciascuna è un'icona, il suo nome in una o due parole e il suo numero vero, già «fatta» (spunta). Il risultato si apre solo quando l'utente preme il pulsante.

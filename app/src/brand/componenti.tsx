@@ -279,7 +279,7 @@ export function Misuratore({ valore, larghezza = 232, etichetta, testo }: {
   const tratto = `${(lung * visibile).toFixed(2)} ${lung.toFixed(2)}`;
   return (
     <svg width={larghezza} height={larghezza * (206 / 300)} viewBox="0 0 300 206" role="img" aria-label={etichetta ?? scritto}>
-      <path d={d} fill="none" className="stroke-testo-tenue" strokeOpacity={0.45} strokeWidth={spessore} strokeLinecap="round" />
+      <path d={d} fill="none" className="stroke-testo-tenue" strokeOpacity={0.5} strokeWidth={spessore} strokeLinecap="round" />
       {col.bordo && <path d={d} fill="none" stroke={col.bordo} strokeWidth={spessore} strokeLinecap="round" strokeDasharray={tratto} />}
       <path d={d} fill="none" stroke={col.punto} strokeWidth={col.bordo ? spessore - 5 : spessore} strokeLinecap="round" strokeDasharray={tratto} />
       <circle cx={px} cy={py} r="13" fill={col.punto} stroke="var(--color-superficie)" strokeWidth="4.5" />

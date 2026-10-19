@@ -6,23 +6,22 @@ import { useExtra } from '../contesto';
 import ConfirmDialog from '../../../components/ConfirmDialog';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { Illustrazione } from '../../../brand/Illustrazione';
 import { confronta, duelliInAttesa, ricavaRivali, tempoBreve, type Rivale } from '../../../lib/sfide/risultati';
 import { useStorico } from './dati';
-import { IconaTono } from '../ui';
-import { Avatar, Bottone, Carta, IconaEsito, dataBreve } from './comuni';
+import { GruppoRighe, Riga, Sezione } from '../ui';
+import { Avatar, Bottone, Fermo, PillolaEsito, dataBreve } from './comuni';
 import { Regole, SchedaProveSfide } from './scheda';
 
 /** Il saldo di una persona: vinti, pari, persi, ognuno con la sua icona e il suo colore; solo quelli che ci sono. */
 function Saldo({ r }: { r: Rivale }) {
-  const voci: [NomeIcona, number, string, string][] = [
-    ['stato-vinto', r.vinti, 'text-alto-testo', `${r.vinti} vinti`],
-    ['trend-uguale', r.pari, 'text-medio-testo', `${r.pari} pari`],
-    ['stato-perso', r.persi, 'text-basso-testo', `${r.persi} persi`],
+  const voci: [NomeIcona, number, string, string, string][] = [
+    ['stato-vinto', r.vinti, 'text-alto-testo', `${r.vinti} vinti`, r.vinti === 1 ? 'vinto' : 'vinti'],
+    ['trend-uguale', r.pari, 'text-medio-testo', `${r.pari} pari`, 'pari'],
+    ['stato-perso', r.persi, 'text-basso-testo', `${r.persi} persi`, r.persi === 1 ? 'perso' : 'persi'],
   ];
   return (
-    <span className="mt-0.5 flex items-center gap-3 text-[14px] leading-[18px] font-extrabold tabular-nums">
-      {voci.filter(([, n]) => n > 0).map(([nome, n, colore, aria]) => (
+    <span className="mt-0.5 flex items-center gap-3 text-[14px] leading-[18px] font-extrabold tabular-nums" aria-label="Saldo">
+      {voci.filter(([, n]) => n > 0).map(([nome, n, colore, aria, parola]) => (
         <span key={nome} role="img" aria-label={aria} className={cn('inline-flex items-center gap-1', colore)}><Icona nome={nome} size={15} />{n}</span>
       ))}
     </span>
@@ -31,7 +30,7 @@ function Saldo({ r }: { r: Rivale }) {
 
 function RigaRivale({ r, aperto, onToggle, onRimuovi, onApri }: { r: Rivale; aperto: boolean; onToggle: () => void; onRimuovi: () => void; onApri: (id: string) => void }) {
   return (
-    <li className="overflow-hidden rounded-[14px] border border-linea bg-superficie-2">
+    <li className="overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none">
       <button type="button" aria-expanded={aperto} aria-label={r.nome} onClick={() => { playTapSound(); onToggle(); }} className="brand-premibile flex w-full items-center gap-3 p-3 text-left">
         <Avatar nome={r.nome} />
         <span className="min-w-0 flex-1">
@@ -50,7 +49,7 @@ function RigaRivale({ r, aperto, onToggle, onRimuovi, onApri }: { r: Rivale; ape
                     {v.corrette} – {v.avversario!.corrette}
                     <span className="block text-[12px] font-semibold text-testo-tenue">{dataBreve(v.quando)} · {tempoBreve(v.secondi)} – {tempoBreve(v.avversario!.secondi)}</span>
                   </span>
-                  <IconaEsito esito={confronta(v, v.avversario!)} lato={30} />
+                  <PillolaEsito esito={confronta(v, v.avversario!)} />
                 </button>
               </li>
             ))}
@@ -83,16 +82,13 @@ export default function Amici() {
   return (
     <SchedaProveSfide sezione="amici" info={info} titoloInfo="Amici">
       {rivali.length === 0 && attesa.length === 0 ? (
-        <Carta className="mt-4 flex flex-col items-center py-6 text-center">
-          <Illustrazione nome="messaggi-supporto" lato={128} />
-          <p className="mt-3 text-[18px] leading-[24px] font-extrabold text-testo">Nessun amico</p>
-          <p className="mt-1 max-w-[26ch] text-[14px] leading-[20px] text-testo-tenue">Compaiono dopo il primo duello.</p>
-          <div className="mt-5 w-full"><Bottone icona="sfide" onClick={() => vai('sfide')}>Sfida un amico</Bottone></div>
-        </Carta>
+        <Fermo illustrazione={{ nome: 'messaggi-supporto' }} titolo="Ancora nessun amico" causa="Gli amici compaiono dopo la prima sfida a due.">
+          <Bottone icona="sfide" onClick={() => vai('sfide')}>Sfida un amico</Bottone>
+        </Fermo>
       ) : (
         <>
           {rivali.length > 0 && (
-            <ul aria-label="Amici" className="mt-4 flex flex-col gap-2">
+            <ul aria-label="Amici" className="mt-4 flex flex-col gap-3">
               {rivali.map(r => (
                 <RigaRivale key={r.id} r={r} aperto={aperto === r.id} onToggle={() => setAperto(a => (a === r.id ? null : r.id))}
                   onRimuovi={() => setDaRimuovere(r)} onApri={id => vai('sfida-risultato', { voce: id })} />
@@ -100,32 +96,19 @@ export default function Amici() {
             </ul>
           )}
           {attesa.length > 0 && (
-            <div className="mt-5 flex items-center gap-2">
-              <Illustrazione nome="attesa" lato={20} />
-              <h2 className="text-[15.5px] leading-[20px] font-bold text-testo">In attesa</h2>
-            </div>
+            <Sezione id="amici-attesa" titolo="In attesa">
+              <GruppoRighe etichetta="In attesa">
+                {attesa.map(v => (
+                  <Riga key={v.id} icona="stato-attesa" tono="medio" onClick={() => vai('sfida-risultato', { voce: v.id })}
+                    titolo={<span aria-label={`Duello del ${dataBreve(v.quando)} in attesa`} className="tabular-nums">{v.corrette}/{v.totale}</span>}
+                    sottotitolo={`Duello del ${dataBreve(v.quando)}: aspetti il risultato dell'amico`} />
+                ))}
+              </GruppoRighe>
+            </Sezione>
           )}
-          {attesa.length > 0 && (
-            <ul aria-label="In attesa" className="mt-2.5 flex flex-col gap-2">
-              {attesa.map(v => (
-                <li key={v.id}>
-                  <button type="button" aria-label={`Duello del ${dataBreve(v.quando)} in attesa`} onClick={() => { playTapSound(); vai('sfida-risultato', { voce: v.id }); }} className="brand-premibile flex w-full items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left">
-                    <IconaTono tono="medio"><Icona nome="stato-attesa" size={22} /></IconaTono>
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-[20px] leading-[24px] font-extrabold tabular-nums text-testo">{v.corrette}<span className="text-[14px] font-bold text-testo-tenue">/{v.totale}</span></span>
-                      <span className="block text-[12.5px] leading-[17px] text-testo-tenue">{dataBreve(v.quando)}</span>
-                    </span>
-                    <Icona nome="avanti" size={20} className="shrink-0 -mr-1 text-testo-tenue" />
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-          <Carta tono="alto" className="mt-4 flex items-center gap-3">
-            <IconaTono tono="alto" lato={44} className="rounded-[13px] bg-superficie"><Icona nome="sfide" size={24} /></IconaTono>
-            <h2 className="flex-1 text-[16px] leading-[22px] font-extrabold text-testo">Sfida un amico</h2>
-            <Bottone icona="studia" aria="Sfida un amico" className="w-14 shrink-0 px-0" onClick={() => vai('sfide')} />
-          </Carta>
+          <div className="mt-6">
+            <Bottone variante="secondario" icona="sfide" onClick={() => vai('sfide')}>Sfida un amico</Bottone>
+          </div>
         </>
       )}
 

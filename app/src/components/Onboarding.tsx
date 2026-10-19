@@ -197,7 +197,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
           <SecondaryButton onClick={() => setFoglio(true)}>Come viene calcolata la stima</SecondaryButton>
         </>}
       >
-        <Titolo titolo="Il tuo punto di partenza" sotto={`Hai risposto bene a ${correct} domande su ${quiz.length}.`} />
+        <Titolo titolo="Il tuo punto di partenza" sotto={`Hai risposto bene a ${correct} ${correct === 1 ? 'domanda' : 'domande'} su ${quiz.length}.`} />
 
         {/* 1. L'arco: la probabilità di superare il test, con la sua didascalia */}
         <div className="flex flex-col items-center">
@@ -211,11 +211,11 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
             <span data-testo-ok className="text-[15px] leading-[20px] font-semibold text-testo">Punteggio probabile</span>
             <span className="text-[17px] leading-[24px] font-bold tabular-nums text-testo">{min === max ? min : `${min}–${max}`} <span className="text-[14px] font-medium text-testo-tenue">su {totale}</span></span>
           </div>
-          <div className="relative pt-5" role="img" aria-label={`Punteggio probabile da ${min} a ${max} su ${totale}; la soglia è ${REAL_TEST_PASS_MARK}`}>
+          <div className="relative pt-6" role="img" aria-label={`Punteggio probabile da ${min} a ${max} su ${totale}; la soglia è ${REAL_TEST_PASS_MARK}`}>
             <span data-testo-ok className="absolute top-0 -translate-x-1/2 whitespace-nowrap text-[13px] leading-[16px] font-semibold text-testo" style={{ left: `${soglia}%` }}>soglia {REAL_TEST_PASS_MARK}</span>
             <div className="relative h-3 rounded-full bg-testo-tenue/30">
               <div className="absolute inset-y-0 rounded-full bg-azione" style={{ left: `${da}%`, width: `max(${a - da}%, 8px)` }} />
-              <div className="absolute -top-2 h-7 w-[3px] -translate-x-1/2 rounded-full bg-testo" style={{ left: `${soglia}%` }} />
+              <div className="absolute -top-1.5 h-6 w-[3px] -translate-x-1/2 rounded-full bg-testo" style={{ left: `${soglia}%` }} />
             </div>
             <div aria-hidden="true" className="mt-1.5 flex justify-between text-[12px] leading-[16px] tabular-nums text-testo-tenue"><span>0</span><span>10</span><span>20</span><span>30</span></div>
           </div>

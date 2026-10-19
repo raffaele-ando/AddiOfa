@@ -62,12 +62,14 @@ test('chip di variazione: solo con due misure e una differenza; direzione e prim
   assert.equal(variazioneDaPrima([]), null);
   assert.equal(variazioneDaPrima([p(0.4)]), null);
   assert.equal(variazioneDaPrima([p(0.4), p(0.401)]), null, 'stessa percentuale: nessun chip');
+  assert.equal(variazioneDaPrima([p(0.18), p(0.17)]), null, 'un solo punto di differenza: nessun chip');
   assert.deepEqual(variazioneDaPrima([p(0.18), p(0.2), p(0.41)]), { da: 18, verso: 'su' });
   assert.deepEqual(variazioneDaPrima([p(0.62), p(0.51)]), { da: 62, verso: 'giu' });
   // la serie vera: la prima è il diagnostico
   const tutti = serieStime(statoVuoto({ onboarding: diag(7), history: [simulazione({ date: 5, esatte: 28 })] }), 0);
   const v = variazioneDaPrima(tutti)!;
   assert.equal(v.da, Math.round(tutti[0].p * 100));
+  assert.equal(v.verso, 'su');
 });
 
 test('aree: prima quelle con dati dalla più debole, poi senza dati; i livelli si chiamano «Livello»', () => {
