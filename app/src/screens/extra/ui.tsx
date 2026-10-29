@@ -201,7 +201,7 @@ export function Riga({ icona, tono, titolo, sottotitolo, destra, onClick, classN
         : <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-superficie-2 text-testo-tenue"><Icona nome={icona} size={22} /></span>)}
       <span className="min-w-0 flex-1">
         <span className="block text-[15px] leading-[21px] font-semibold text-testo">{titolo}</span>
-        {sottotitolo && <span className="block text-[13px] leading-[18px] text-testo-tenue">{sottotitolo}</span>}
+        {sottotitolo && <span data-testo-ok className="block text-[13px] leading-[18px] text-testo-tenue">{sottotitolo}</span>}
       </span>
       {destra}
       {onClick && !destra && <Icona nome="avanti" size={20} className="shrink-0 text-testo-tenue" />}

@@ -29,9 +29,9 @@ export default function Progressi() {
     <Pagina titolo="Progressi" indietro={indietro}>
       {!haDati ? (
         <Vuoto className="mt-6" illustrazione="progressi-statistiche" titolo="Ancora nessun progresso"
-          causa="Compaiono dopo le prime risposte o il diagnostico."
+          causa="Compaiono dopo le prime risposte o il test di livello."
           azioni={<>
-            <BottoneAzione icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Fai il diagnostico</BottoneAzione>
+            <BottoneAzione icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Fai il test di livello</BottoneAzione>
             <BottoneSecondario icona={<Icona nome="studia" size={20} />} onClick={() => avviaEsercizi('smart')}>Inizia a studiare</BottoneSecondario>
           </>} />
       ) : (<>
@@ -41,7 +41,7 @@ export default function Progressi() {
         {sezione === 'calendario' && <ProgressiCalendario />}
         {sezione === 'panoramica' && (
           <div className="mt-4">
-            <BottoneSecondario icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Rifai il diagnostico</BottoneSecondario>
+            <BottoneSecondario icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Rifai il test di livello</BottoneSecondario>
           </div>
         )}
       </>)}

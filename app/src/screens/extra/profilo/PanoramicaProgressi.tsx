@@ -22,7 +22,7 @@ import { useBanco, useNumeri } from './componenti';
 const data = (ms: number) => { const d = new Date(ms); return `${d.getDate()} ${NOMI_MESI[d.getMonth()].slice(0, 3)}`; };
 const virgola = (n: number) => String(n).replace('.', ',');
 
-/** Grafico della probabilità: una linea fra le stime MISURATE (dopo il diagnostico e dopo ogni simulazione), l'ultimo punto scritto, l'obiettivo tratteggiato. */
+/** Grafico della probabilità: una linea fra le stime MISURATE (dopo il test di livello e dopo ogni simulazione), l'ultimo punto scritto, l'obiettivo tratteggiato. */
 function GraficoProbabilita() {
   const { appState } = useExtra();
   const n = useNumeri();
@@ -30,7 +30,7 @@ function GraficoProbabilita() {
   const target = normalizzaObiettivi(grezzi).stimaTarget;
   const punti = useMemo(() => serieStime(appState, 6), [appState]);
   const date = useMemo(() => andamentoSimulazioni(appState, 0).map(p => p.data), [appState]);
-  // le date delle simulazioni, in coda: il diagnostico non ha una data in archivio e si chiama per nome
+  // le date delle simulazioni, in coda: il test di livello non ha una data in archivio e si chiama per nome
   const nSim = punti.filter(p => p.tipo === 'simulazione').length;
   const dateSim = date.slice(Math.max(0, date.length - nSim));
   let k = 0;
@@ -72,7 +72,7 @@ function GraficoProbabilita() {
         </>
       ) : (
         <p data-testo-ok className="mt-3 text-[14px] leading-[20px] text-testo-tenue">
-          {n.probabilita !== null ? 'Servono il diagnostico e una simulazione per tracciare la linea.' : 'La stima nasce dal diagnostico: poi qui compare la linea.'}
+          {n.probabilita !== null ? 'Servono il test di livello e una simulazione per tracciare la linea.' : 'La stima nasce dal test di livello: poi qui compare la linea.'}
         </p>
       )}
     </Carta>
@@ -120,8 +120,9 @@ function RisultatiSimulazioni() {
         <>
           <div className="relative mt-6 h-[120px]" role="img" aria-label={`Risultati delle ultime ${punti.length} simulazioni: ${punti.map(p => `${p.esatte} su ${p.totale}`).join(', ')}. Soglia ${REAL_TEST_PASS_MARK}.`}>
             <div aria-hidden="true" className="absolute inset-x-0 border-t-2 border-dashed border-testo-tenue/70" style={{ bottom: `${(REAL_TEST_PASS_MARK / totali) * 100}%` }} />
-            <span aria-hidden="true" className="absolute right-0 rounded-md bg-superficie px-1 text-[12px] leading-[16px] font-semibold text-testo-tenue" style={{ bottom: `calc(${(REAL_TEST_PASS_MARK / totali) * 100}% + 3px)` }}>Soglia {REAL_TEST_PASS_MARK}</span>
-            <div aria-hidden="true" className="absolute inset-0 flex items-end gap-2 pr-0">
+            {/* la soglia si scrive nella colonna a destra, fuori dalle barre: non copre i valori */}
+            <span aria-hidden="true" className="absolute right-0 whitespace-nowrap pl-1 text-[12px] leading-[16px] font-semibold text-testo-tenue" style={{ bottom: `calc(${(REAL_TEST_PASS_MARK / totali) * 100}% + 3px)` }}>Soglia {REAL_TEST_PASS_MARK}</span>
+            <div aria-hidden="true" className="absolute inset-y-0 left-0 right-[68px] flex items-end gap-2">
               {punti.map(p => {
                 const alt = Math.max(4, (p.esatte / totali) * 100);
                 const ok = p.esatte >= REAL_TEST_PASS_MARK;
@@ -134,7 +135,7 @@ function RisultatiSimulazioni() {
               })}
             </div>
           </div>
-          <div aria-hidden="true" className="mt-1.5 flex gap-2">
+          <div aria-hidden="true" className="mt-1.5 flex gap-2 pr-[68px]">
             {punti.map(p => <span key={p.numero} className="min-w-0 flex-1 truncate text-center text-[12px] leading-[16px] font-medium text-testo-tenue">{data(p.data)}</span>)}
           </div>
           <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[12px] leading-[16px] font-semibold" aria-label="Legenda">

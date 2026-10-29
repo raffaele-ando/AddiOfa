@@ -2,7 +2,7 @@
 // Prima ogni schermata faceva i suoi conti e davano risposte diverse («Progressi 41 %» accanto a «0/116», «Risposte 0» accanto a «Media 24/30»).
 // Due grandezze con due nomi, in tutta l'app:
 //  - «Domande imparate» (`imparate` su `totaleDomande`): quante domande del banco conta isLearned, solo dal ripasso;
-//  - «Probabilità» (`probabilita`): la stima di superare il test, che nasce dal diagnostico e dalle simulazioni (calcolaStima).
+//  - «Probabilità» (`probabilita`): la stima di superare il test, che nasce dal test di livello e dalle simulazioni (calcolaStima).
 // Le risposte date e le simulazioni sono altre due misure, con il loro nome: «Risposte» (allenamento e simulazioni, dalle statistiche
 // delle domande) e «Simulazioni» (quante, miglior punteggio, media). Nessuna misura prende il nome di un'altra.
 import type { AppState } from '../../types';
@@ -16,7 +16,7 @@ export interface NumeriUtente {
   imparate: number;
   /** Domande del banco. */
   totaleDomande: number;
-  /** Stima di superare il test (0-1), oppure null se non c'è ancora (serve il diagnostico o una simulazione). */
+  /** Stima di superare il test (0-1), oppure null se non c'è ancora (serve il test di livello o una simulazione). */
   stima: Stima | null;
   /** La stessa stima in percentuale intera, per scriverla. */
   probabilita: number | null;

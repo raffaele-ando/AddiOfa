@@ -1,5 +1,5 @@
 // «ATLAS · analisi del livello» (concept 13/30/34/36): calcolata SUI DATI VERI dell'utente, sul suo dispositivo, in tre viste a parole: Probabilità, Argomenti, Piano.
-// Niente confronto con altri studenti, niente «intelligenza artificiale», nessun invio. Due basi di dati, due nomi: la STIMA nasce dal diagnostico e dalle simulazioni
+// Niente confronto con altri studenti, niente «intelligenza artificiale», nessun invio. Due basi di dati, due nomi: la STIMA nasce dal test di livello e dalle simulazioni
 // («si basa su N risposte»), gli ARGOMENTI dalle risposte di allenamento («argomenti con dati»): non si confondono più (prima «stima su 60 risposte» e «ne hai 0»).
 import { useMemo, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
@@ -61,7 +61,7 @@ export default function AtlasAnalisi() {
       <ul className="flex list-disc flex-col gap-2 pl-5 text-[14px] leading-[21px]">
         <li>È la probabilità di fare almeno {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}, la soglia del test di recupero.</li>
         <li>Parte da ciò che non sai ancora sulla tua accuratezza e la aggiorna con ogni risposta. Con poche risposte la stima è larga: si stringe a ogni simulazione.</li>
-        <li>Entrano le risposte del diagnostico e delle ultime 3 simulazioni. Con almeno 2 simulazioni il diagnostico esce dal calcolo.</li>
+        <li>Entrano le risposte del test di livello e delle ultime 3 simulazioni. Con almeno 2 simulazioni il test di livello esce dal calcolo.</li>
         <li>Le domande lasciate senza risposta in simulazione contano come errori, perché al test valgono zero. Negli argomenti non sono errori di conoscenza.</li>
         <li>«Da migliorare» significa meno dell&apos;{SOGLIA_DA_MIGLIORARE}% di risposte esatte, con almeno {MIN_RISPOSTE_ARGOMENTO} risposte.</li>
         <li>Tutto è calcolato sul tuo dispositivo, solo sulle tue risposte. {ECOSYSTEM.engineName} è il nome dell&apos;algoritmo di ripasso: qui non c&apos;è nessun chatbot, nessun invio e nessun confronto con altri studenti.</li>
@@ -73,9 +73,9 @@ export default function AtlasAnalisi() {
   if (!an.haDati) {
     return (
       <Pagina titolo={ECOSYSTEM.engineName} destra={info}>
-        <Vuoto className="mt-6" illustrazione="progressi-statistiche" titolo="Ancora nessuna risposta" causa="L'analisi parte dal diagnostico o dai primi esercizi."
+        <Vuoto className="mt-6" illustrazione="progressi-statistiche" titolo="Ancora nessuna risposta" causa="L'analisi parte dal test di livello o dai primi esercizi."
           azioni={<>
-            <BottoneAzione icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Fai il diagnostico</BottoneAzione>
+            <BottoneAzione icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Fai il test di livello</BottoneAzione>
             <BottoneSecondario icona={<Icona nome="studia" size={20} />} onClick={() => avviaEsercizi('smart')}>Allenati</BottoneSecondario>
           </>} />
         {fogliCome}
@@ -110,19 +110,19 @@ export default function AtlasAnalisi() {
               </details>
             </Carta>
           ) : (
-            <Vuoto className="mt-4" illustrazione="progressi-statistiche" titolo="La stima non c'è ancora" causa="La calcolano il diagnostico e le simulazioni."
-              azioni={<BottoneAzione icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Fai il diagnostico</BottoneAzione>} />
+            <Vuoto className="mt-4" illustrazione="progressi-statistiche" titolo="La stima non c'è ancora" causa="La calcolano il test di livello e le simulazioni."
+              azioni={<BottoneAzione icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Fai il test di livello</BottoneAzione>} />
           )}
 
           <Sezione id="an-fattori" titolo="Come calcoliamo la stima">
             <Carta>
               <ul className="flex list-disc flex-col gap-1.5 pl-5 text-[14px] leading-[20px] text-testo marker:text-testo-tenue">
-                <li data-testo-ok>{stima ? descriviFonte(stima) : 'Senza diagnostico né simulazioni non c\'è una stima.'}</li>
+                <li data-testo-ok>{stima ? descriviFonte(stima) : 'Senza test di livello né simulazioni non c\'è una stima.'}</li>
                 <li data-testo-ok>Più rispondi, più la stima si stringe.</li>
                 <li data-testo-ok>Il ripasso non entra: sceglie le domande più difficili.</li>
               </ul>
               {stima?.delta !== undefined && (
-                <p data-testo-ok className="mt-2 text-[14px] leading-[20px] text-testo">Rispetto al solo diagnostico è {stima.delta > 0 ? 'salita' : 'scesa'} di {Math.abs(stima.delta)} punti percentuali.</p>
+                <p data-testo-ok className="mt-2 text-[14px] leading-[20px] text-testo">Rispetto al solo test di livello è {stima.delta > 0 ? 'salita' : 'scesa'} di {Math.abs(stima.delta)} punti percentuali.</p>
               )}
             </Carta>
           </Sezione>

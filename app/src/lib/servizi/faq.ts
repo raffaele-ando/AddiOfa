@@ -86,9 +86,9 @@ export function vociFaq(): VoceFaq[] {
     {
       id: 'studio-da-dove', categoria: 'studio', domanda: 'Da dove comincio?',
       risposta: [
-        `Dal quiz diagnostico: ${DIAGNOSTIC_QUESTIONS} domande, circa 3 minuti. Ti dà una prima stima e ti dice quali argomenti guardare. Poi ripasso sugli errori e, quando ti senti pronto, una simulazione.`,
+        `Dal test di livello: ${DIAGNOSTIC_QUESTIONS} domande, circa 3 minuti. Ti dà una prima stima e ti dice quali argomenti guardare. Poi ripasso sugli errori e, quando ti senti pronto, una simulazione.`,
       ],
-      chiavi: 'diagnostico iniziare partire primo passo',
+      chiavi: 'diagnostico test di livello iniziare partire primo passo',
     },
     {
       id: 'studio-ripasso', categoria: 'studio', domanda: 'Come sceglie le domande il ripasso?',

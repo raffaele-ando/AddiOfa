@@ -118,7 +118,7 @@ test('radar: servono almeno 3 argomenti con dati; si scelgono quelli con più ri
 
 test('descrizione della fonte: una frase per ogni caso', () => {
   const solo = calcolaStima(statoVuoto({ onboarding: diag(8) }))!;
-  assert.match(descriviFonte(solo), /diagnostico/);
+  assert.match(descriviFonte(solo), /test di livello/);
   const sim = calcolaStima(statoVuoto({ history: [simulazione({ id: 'a', date: 1, esatte: 20 })] }))!;
   assert.match(descriviFonte(sim), /simulazioni/);
   const ent = calcolaStima(statoVuoto({ onboarding: diag(8), history: [simulazione({ date: 5, esatte: 22 })] }))!;

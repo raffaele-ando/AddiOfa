@@ -61,7 +61,7 @@ export function giorniConObiettivo(stato: AppState, oggi: Date, minutiGiorno: nu
 }
 
 export interface AvanzamentoStima {
-  /** Stima attuale in percentuale intera; null se non ce n'è ancora una (serve il diagnostico o una simulazione). */
+  /** Stima attuale in percentuale intera; null se non ce n'è ancora una (serve il test di livello o una simulazione). */
   corrente: number | null;
   target: number;
   /** 0-1: la stima attuale sul valore da raggiungere. */

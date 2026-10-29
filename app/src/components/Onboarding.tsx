@@ -271,7 +271,6 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
           <p className="text-[13px] leading-[18px] font-medium text-testo-tenue tabular-nums" aria-label={`Domanda ${indiceQ + 1} di ${n}`}>Domanda {indiceQ + 1} di {n}{tappa}</p>
           {/* la domanda e le opzioni sono contenuto del test */}
           <h2 data-testo-ok className="text-[24px] leading-[32px] font-semibold text-testo"><ConVuoto testo={q.prompt} /></h2>
-          {indiceQ === 0 && <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">Scegli la risposta giusta: toccandola passi alla domanda dopo.</p>}
         </div>
         <div data-testo-ok className="flex flex-1 flex-col gap-3">
           {q.options.map((opt, i) => (

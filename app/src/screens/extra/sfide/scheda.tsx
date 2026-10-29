@@ -54,7 +54,7 @@ export function SchedaProveSfide({ sezione, info, titoloInfo = 'Regole', velata,
             <>
               <TestataScheda titolo="Sfide" onProfilo={() => vai('profilo')}
                 destra={info ? <PulsanteInfo onClick={() => setAperto(true)} etichetta={titoloInfo} /> : undefined} />
-              <p className="-mt-0.5 text-[15px] leading-[21px] text-testo-tenue">Gioca la sfida del giorno o sfida un amico.</p>
+              <p data-testo-ok className="-mt-0.5 text-[15px] leading-[21px] text-testo-tenue">Gioca la sfida del giorno o sfida un amico.</p>
               <SelettoreSfide sezione={sezione} />
             </>
           )}

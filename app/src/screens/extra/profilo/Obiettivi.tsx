@@ -76,8 +76,8 @@ export default function Obiettivi() {
           </>
         ) : (
           <div className="mt-4 flex flex-col gap-3">
-            <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">Non c'è ancora una stima: la calcola il diagnostico.</p>
-            <BottoneSecondario icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Fai il diagnostico</BottoneSecondario>
+            <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">Non c'è ancora una stima: la calcola il test di livello.</p>
+            <BottoneSecondario icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Fai il test di livello</BottoneSecondario>
           </div>
         )}
       </Carta>
@@ -120,7 +120,7 @@ export default function Obiettivi() {
 
         <Carta as="section">
           <h2 className="text-[17px] leading-[24px] font-bold text-testo">Scadenze</h2>
-          <p className="text-[13px] leading-[18px] text-testo-tenue">Per il piano completo del 2° anno</p>
+          <p data-testo-ok className="text-[13px] leading-[18px] text-testo-tenue">Per il piano completo del 2° anno</p>
           <dl className="mt-3 flex flex-col divide-y divide-linea">
             {OFA_DEADLINES.map(d => (
               <div key={d.scuola} className="flex items-baseline justify-between gap-3 py-2 first:pt-0 last:pb-0">
@@ -132,7 +132,7 @@ export default function Obiettivi() {
         </Carta>
       </div>
       <FoglioInfo aperto={foglio} onChiudi={() => setFoglio(false)} titolo="Come funzionano gli obiettivi">
-        <p>La data è facoltativa e serve solo a te, per contare i giorni che mancano. Il tempo conta mentre fai esercizi, simulazioni e il diagnostico. La probabilità è una stima: cambia solo con il diagnostico e le simulazioni, non con gli esercizi, e dice quanto è probabile fare almeno {SOGLIA_TEST} risposte giuste su {DOMANDE_TEST}.</p>
+        <p>La data è facoltativa e serve solo a te, per contare i giorni che mancano. Il tempo conta mentre fai esercizi, simulazioni e il test di livello. La probabilità è una stima: cambia solo con il test di livello e le simulazioni, non con gli esercizi, e dice quanto è probabile fare almeno {SOGLIA_TEST} risposte giuste su {DOMANDE_TEST}.</p>
         <p className="mt-2">Le scadenze sono quelle per avere il piano completo del 2° anno (calendario 2026/27). {OFA_RULES_NOTE}</p>
       </FoglioInfo>
     </Pagina>

@@ -113,9 +113,9 @@ export function analizzaLivello(stato: AppState): AnalisiLivello {
 
 /** Quello che entra nella stima, in parole: per la sezione «Cosa pesa sulla stima». */
 export function descriviFonte(stima: Stima): string {
-  if (stima.fonte === 'diagnostico') return 'Solo il quiz diagnostico: dieci risposte sono poche, per questo l\'intervallo è largo.';
-  if (stima.fonte === 'simulazioni') return 'Le tue ultime simulazioni (il diagnostico non entra più, perché è più vecchio e meno preciso).';
-  return 'Il quiz diagnostico e le tue simulazioni insieme.';
+  if (stima.fonte === 'diagnostico') return 'Solo il test di livello: dieci risposte sono poche, per questo l\'intervallo è largo.';
+  if (stima.fonte === 'simulazioni') return 'Le tue ultime simulazioni (il test di livello non entra più, perché è più vecchio e meno preciso).';
+  return 'Il test di livello e le tue simulazioni insieme.';
 }
 
 export type { Fattore };

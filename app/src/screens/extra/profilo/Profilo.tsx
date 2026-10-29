@@ -75,7 +75,7 @@ export default function Profilo() {
         <Avatar profilo={profilo} lato={72} />
         <span className="min-w-0 flex-1">
           <span className="line-clamp-2 break-words text-[22px] leading-[27px] font-extrabold text-testo">{senzaNome ? 'Aggiungi il tuo nome' : nomeVisibile(profilo)}</span>
-          <span className="mt-0.5 line-clamp-2 text-[14px] leading-[20px] text-testo-tenue">
+          <span data-testo-ok className="mt-0.5 line-clamp-2 text-[14px] leading-[20px] text-testo-tenue">
             {profilo.corso || (senzaNome ? 'e il corso, per personalizzare l\'app' : 'Aggiungi il corso di studi')}
           </span>
         </span>
@@ -148,9 +148,9 @@ export default function Profilo() {
             </>
           ) : (
             <div className="mt-3 flex items-center justify-between gap-3">
-              <p data-testo-ok className="min-w-0 flex-1 text-[14px] leading-[20px] text-testo-tenue">Non c'è ancora una stima. Si calcola dal diagnostico.</p>
+              <p data-testo-ok className="min-w-0 flex-1 text-[14px] leading-[20px] text-testo-tenue">Non c'è ancora una stima. Si calcola dal test di livello.</p>
               <button type="button" onClick={() => { playTapSound(); avviaDiagnostico(); }}
-                className="brand-premibile inline-flex min-h-[44px] shrink-0 items-center rounded-[12px] border border-tacca bg-superficie px-3.5 text-[14px] font-bold text-azione-testo">Fai il diagnostico</button>
+                className="brand-premibile inline-flex min-h-[44px] shrink-0 items-center rounded-[12px] border border-tacca bg-superficie px-3.5 text-[14px] font-bold text-azione-testo">Fai il test di livello</button>
             </div>
           )}
         </Carta>
