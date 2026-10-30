@@ -28,13 +28,8 @@ I valori di Firebase sono già nel codice (non sono segreti): non devi inserirli
 
 ## 3. Il server ATLAS (Project ID, classifica NOI, iscrizioni)
 
-1. https://dash.cloudflare.com → **Storage & Databases → D1 SQL database**: deve esserci un database chiamato `atlas`. Se **manca**: **Create database**, nome `atlas`; poi apri il database, copia il suo **Database ID** e mandamelo (o sostituiscilo tu al posto di `fae6dddc-a787-474b-9699-e23bab53eb4d` in https://github.com/raffaele-ando/AddiOfa/edit/claude/folder-review-h3xnww/atlas/wrangler.jsonc).
-2. Tabelle del database: apri `atlas` → scheda **Console**. Incolla ed esegui:
-   `SELECT name FROM sqlite_master WHERE type='table';`
-   - Se **non compare nessuna tabella `accounts`**: apri https://github.com/raffaele-ando/AddiOfa/blob/claude/folder-review-h3xnww/atlas/migrations/0001_init.sql , premi il pulsante **Copy raw file**, incollalo nella Console ed **Execute**.
-   - Se **non compare la tabella `signups`**: stessa cosa con https://github.com/raffaele-ando/AddiOfa/blob/claude/folder-review-h3xnww/atlas/migrations/0002_signups.sql e poi con https://github.com/raffaele-ando/AddiOfa/blob/claude/folder-review-h3xnww/atlas/migrations/0003_percorso_studi.sql
-   - Se `signups` c'è già ma **non ha le colonne `scuola`, `livello`, `anno`**: esegui solo la 0003.
-   (In ordine: 0001, 0002, 0003. Se un comando dice «duplicate column» o «already exists», quella parte c'era già: passa alla successiva.)
+1. **Database: già fatto (30/10).** Nel tuo account il database D1 `atlas` (id `fae6dddc-a787-474b-9699-e23bab53eb4d`) esiste, ed ho applicato io le migrazioni 0002 e 0003: ora ha le tabelle `accounts`, `app_links`, `apps`, `consent_log`, `noi_scores`, `signups` (con scuola, livello, anno) e `rate_limit`. Non devi fare nulla.
+2. (salto: le tabelle sono già a posto)
 3. Il Worker: **Workers & Pages → Create → Workers → Import a repository** → `AddiOfa`. **Project name**: `atlas`. **Branch**: `claude/folder-review-h3xnww`. **Root directory**: `atlas`. **Build command**: lascia vuoto o `npm ci`. **Deploy command**: `npx wrangler deploy`. **Deploy**.
 4. Quando finisce, il Worker ha un indirizzo tipo `https://atlas.IL-TUO-NOME.workers.dev` (lo vedi nella pagina del Worker): **copialo**.
 5. Segreto per scaricare le iscrizioni: Worker `atlas` → **Settings → Variables and Secrets → Add** → Type **Secret**, Name `ADMIN_TOKEN`, Value = una password lunga (generala con un gestore di password, 32 caratteri casuali) → **Deploy**. Conservala.
