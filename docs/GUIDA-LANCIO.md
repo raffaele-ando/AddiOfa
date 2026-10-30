@@ -1,150 +1,77 @@
-# Guida al lancio: cosa fare, in ordine, con i comandi da copiare
+# Guida al lancio: solo browser, nessun comando
 
-Tempo: circa 45-60 minuti. Serve un computer con **Node 20 o più recente** e **git** (https://nodejs.org), un account **Cloudflare** gratuito (https://dash.cloudflare.com/sign-up) e l'accesso alla console **Firebase** del progetto `mimetic-resolver-7szp9` (https://console.firebase.google.com/project/mimetic-resolver-7szp9). Il sito (parte statica) funziona anche senza i passi 2-6: domande, correzione, simulazioni e progressi sono nel browser. I passi 2-6 servono a far funzionare Project ID, classifica NOI, iscrizioni e verifica dell'email.
+Tempo: circa 45 minuti. Serve: un account **Cloudflare** gratuito (https://dash.cloudflare.com/sign-up), l'accesso a **GitHub** (il repository `raffaele-ando/AddiOfa`) e al progetto **Firebase** `mimetic-resolver-7szp9`. Il lavoro è sul branch `claude/folder-review-h3xnww`: negli elenchi qui sotto «il branch» è sempre quello.
 
-Ordine: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8.
+Ordine: 1 → 2 → 3 → 4 → 5 → 6 → 7.
 
-## 0. Scarica il codice
+## 1. Dammi (o scrivi tu) il tuo nome e la tua email di contatto
 
-```bash
-git clone https://github.com/raffaele-ando/AddiOfa.git
-cd AddiOfa
-git checkout claude/folder-review-h3xnww      # il branch con tutto il lavoro; quando vuoi lo porti su main tu
-```
+Compaiono nelle pagine legali, in «Segnala» e per le richieste di cancellazione dei dati. Puoi scrivermi in chat nome, cognome ed email e li inserisco io. Se preferisci farlo da solo: apri
+https://github.com/raffaele-ando/AddiOfa/edit/claude/folder-review-h3xnww/app/src/config/offer.ts
+cerca `CONTACT_EMAIL` e `TITOLARE`, sostituisci `undefined` con `'tua.email@esempio.it'` e aggiungi `responsabile: 'Nome Cognome'` dentro le graffe di `TITOLARE`, poi **Commit changes** (in alto a destra, «Commit directly to the claude/folder-review-h3xnww branch»).
+I testi legali li fai rivedere a chi ne ha l'autorità (sono in `app/src/legal/` e `app/src/lib/servizi/faq.ts`).
 
-## 1. Decidi l'indirizzo del sito (serve per i passi dopo)
+## 2. Il sito su Cloudflare Pages
 
-Con Cloudflare Pages l'indirizzo è `https://NOME.pages.dev`. Scegli **NOME** adesso (minuscolo, senza spazi, esempio `addiofa`). Se `addiofa` è già preso da altri ti darà un'altra proposta al passo 6: se cambia, ripeti i passi 3 (`ALLOWED_ORIGINS`) e 4 (dominio autorizzato) con quello vero. Un dominio tuo (es. `addiofa.it`) si aggiunge dopo da Cloudflare Pages → Custom domains e va aggiunto allo stesso modo ai passi 3 e 4.
+1. https://dash.cloudflare.com → **Workers & Pages** → **Create** → **Pages** → **Import an existing Git repository** → collega GitHub e scegli `AddiOfa`.
+2. **Project name**: `addiofa` (importante: il server del passo 3 è già impostato per accettare `https://addiofa.pages.dev`; se il nome è occupato e ne usi un altro, vedi la nota in fondo).
+3. **Production branch**: `claude/folder-review-h3xnww` (quando porti tutto su `main`, potrai cambiarlo).
+4. Build settings: **Framework preset** = None; **Build command** = `cd app && npm ci && npm run build`; **Build output directory** = `app/dist`.
+5. **Environment variables** → aggiungi `NODE_VERSION` = `20`. (L'indirizzo del server lo aggiungi al passo 4.)
+6. **Save and Deploy**. Alla fine apri `https://addiofa.pages.dev`: deve comparire la landing.
 
-Da qui in poi `SITO` = `https://NOME.pages.dev`.
+I valori di Firebase sono già nel codice (non sono segreti): non devi inserirli.
 
-## 2. Pubblica il server ATLAS (Cloudflare Worker + database)
+## 3. Il server ATLAS (Project ID, classifica NOI, iscrizioni)
 
-```bash
-cd atlas
-npm ci
-npx wrangler login                    # si apre il browser: accedi a Cloudflare e conferma
-npx wrangler d1 list                  # deve comparire un database "atlas"
-```
+1. https://dash.cloudflare.com → **Storage & Databases → D1 SQL database**: deve esserci un database chiamato `atlas`. Se **manca**: **Create database**, nome `atlas`; poi apri il database, copia il suo **Database ID** e mandamelo (o sostituiscilo tu al posto di `fae6dddc-a787-474b-9699-e23bab53eb4d` in https://github.com/raffaele-ando/AddiOfa/edit/claude/folder-review-h3xnww/atlas/wrangler.jsonc).
+2. Tabelle del database: apri `atlas` → scheda **Console**. Incolla ed esegui:
+   `SELECT name FROM sqlite_master WHERE type='table';`
+   - Se **non compare nessuna tabella `accounts`**: apri https://github.com/raffaele-ando/AddiOfa/blob/claude/folder-review-h3xnww/atlas/migrations/0001_init.sql , premi il pulsante **Copy raw file**, incollalo nella Console ed **Execute**.
+   - Se **non compare la tabella `signups`**: stessa cosa con https://github.com/raffaele-ando/AddiOfa/blob/claude/folder-review-h3xnww/atlas/migrations/0002_signups.sql e poi con https://github.com/raffaele-ando/AddiOfa/blob/claude/folder-review-h3xnww/atlas/migrations/0003_percorso_studi.sql
+   - Se `signups` c'è già ma **non ha le colonne `scuola`, `livello`, `anno`**: esegui solo la 0003.
+   (In ordine: 0001, 0002, 0003. Se un comando dice «duplicate column» o «already exists», quella parte c'era già: passa alla successiva.)
+3. Il Worker: **Workers & Pages → Create → Workers → Import a repository** → `AddiOfa`. **Project name**: `atlas`. **Branch**: `claude/folder-review-h3xnww`. **Root directory**: `atlas`. **Build command**: lascia vuoto o `npm ci`. **Deploy command**: `npx wrangler deploy`. **Deploy**.
+4. Quando finisce, il Worker ha un indirizzo tipo `https://atlas.IL-TUO-NOME.workers.dev` (lo vedi nella pagina del Worker): **copialo**.
+5. Segreto per scaricare le iscrizioni: Worker `atlas` → **Settings → Variables and Secrets → Add** → Type **Secret**, Name `ADMIN_TOKEN`, Value = una password lunga (generala con un gestore di password, 32 caratteri casuali) → **Deploy**. Conservala.
+6. Prova: apri `https://atlas.IL-TUO-NOME.workers.dev/v1/health` nel browser: deve mostrare un messaggio di «ok».
 
-- Se **compare** `atlas` con id `fae6dddc-a787-474b-9699-e23bab53eb4d`: vai avanti.
-- Se **non compare**: `npx wrangler d1 create atlas`, copia il `database_id` che stampa e incollalo in `atlas/wrangler.jsonc` al posto dell'id attuale.
+## 4. Collega il sito al server
 
-Crea le tabelle nel database vero:
+Cloudflare → Workers & Pages → progetto Pages `addiofa` → **Settings → Environment variables → Production → Add**: nome `VITE_ATLAS_API_URL`, valore `https://atlas.IL-TUO-NOME.workers.dev` (senza barra finale) → **Save**. Poi **Deployments → ⋯ sull'ultimo deploy → Retry deployment** (le variabili valgono solo alla costruzione del sito).
 
-```bash
-npx wrangler d1 migrations apply atlas --remote      # conferma con "y": applica 0001, 0002, 0003
-```
+## 5. Firebase (login con Google e verifica email)
 
-Imposta l'indirizzo del sito che può chiamare il server: apri `atlas/wrangler.jsonc` e cambia
+Apri https://console.firebase.google.com/project/mimetic-resolver-7szp9/authentication/providers
 
-```jsonc
-"ALLOWED_ORIGINS": ""
-```
-in
-```jsonc
-"ALLOWED_ORIGINS": "https://NOME.pages.dev"
-```
-(se hai anche un dominio tuo: `"https://NOME.pages.dev,https://addiofa.it"`, senza barra finale).
+1. **Sign-in method → Google → Abilita** → scegli l'email di assistenza → **Salva**.
+2. **Sign-in method → Email/Password → Abilita**, poi accendi anche **«Link via email (accesso senza password)»** → **Salva**. (Serve a «Verifica con un link» per l'email PoliMi: l'email la invia Firebase.)
+3. **Settings → Authorized domains → Add domain** → `addiofa.pages.dev` (e il tuo dominio, se ne hai uno).
 
-Segreto per scaricare le iscrizioni (conservalo in un gestore di password):
+## 6. Prove (5 minuti, da telefono o computer)
 
-```bash
-openssl rand -base64 32               # copia l'output
-npx wrangler secret put ADMIN_TOKEN   # incolla l'output quando lo chiede
-```
+1. `https://addiofa.pages.dev` → «Inizia il test di livello» → fino al risultato.
+2. Profilo → **Community** → **Project ID** → **Accedi con Google**: si apre Google e torna «collegato».
+3. Alla schermata «La tua email» (nel percorso) o in Project ID: con il tuo indirizzo `@mail.polimi.it` premi **«Verifica con un link»**: arriva l'email di Firebase (guarda lo spam); il link riporta al sito.
+4. NOI: attiva la casella della classifica: compare il tuo nome.
+5. Iscrizioni: Cloudflare → D1 → `atlas` → **Console** → esegui
+   `SELECT email, nome, scuola, sede, livello, corso, anno, provenienza, consenso_comunicazioni FROM signups ORDER BY id;`
+   e vedi le righe (puoi copiarle in un foglio di calcolo). Dati personali: non condividerli.
+6. Sul telefono: menu del browser → «Aggiungi a schermata Home».
 
-Pubblica:
+## 7. Dopo
 
-```bash
-npx wrangler deploy
-```
-Alla fine stampa un indirizzo `https://atlas.QUALCOSA.workers.dev`: **copialo**, è `ATLAS_URL`. Controllo:
+- Togli i due file inutili: su GitHub apri `app/firebase-applet-config.json` → ⋯ → **Delete file**; stessa cosa per `app/bun.lock`; **Commit changes**.
+- Ogni modifica che fai sul branch ricostruisce il sito da sola (Pages) e il server (Workers Builds).
+- Per portare tutto su `main`: https://github.com/raffaele-ando/AddiOfa/compare/main...claude/folder-review-h3xnww → **Create pull request** → **Merge**; poi cambia il **Production branch** del progetto Pages (Settings → Builds → Branch control) e del Worker (Settings → Builds) in `main`.
 
-```bash
-curl https://atlas.QUALCOSA.workers.dev/v1/health        # deve rispondere con "ok"
-```
+## Se il nome `addiofa` è occupato
 
-## 3. Firebase: login con Google e verifica email (console, a mano)
+Usa un altro nome (es. `addiofa-polimi`): il sito sarà `https://addiofa-polimi.pages.dev`. Allora in https://github.com/raffaele-ando/AddiOfa/edit/claude/folder-review-h3xnww/atlas/wrangler.jsonc cambia la riga `"ALLOWED_ORIGINS": "https://addiofa.pages.dev"` con il nuovo indirizzo (più indirizzi si separano con la virgola) e rifai il commit; al passo 5.3 aggiungi lo stesso dominio.
 
-Apri https://console.firebase.google.com/project/mimetic-resolver-7szp9/authentication/providers e:
+## Cosa NON funziona da solo
 
-1. **Authentication → Sign-in method → Google → Abilita**, scegli l'email di assistenza del progetto, **Salva**.
-2. **Sign-in method → Email/Password → Abilita**, poi attiva anche **«Link via email (accesso senza password)»**, **Salva**. (La verifica dell'email PoliMi funziona con questo: Firebase invia lui l'email col link.)
-3. **Authentication → Settings → Authorized domains → Add domain**: aggiungi `NOME.pages.dev` (e il tuo dominio, se ne hai uno).
-4. Consigliato: in https://console.cloud.google.com/apis/credentials seleziona la «Browser key» del progetto → **Restrizioni applicazione: Referrer HTTP** → aggiungi `https://NOME.pages.dev/*` (e `https://mimetic-resolver-7szp9.firebaseapp.com/*`). Non è un segreto, ma così non la usa nessun altro.
-
-## 4. Compila i tuoi dati (due righe)
-
-Apri `app/src/config/offer.ts` e sostituisci:
-
-```ts
-export const CONTACT_EMAIL: string | undefined = undefined;
-```
-con il tuo indirizzo di contatto (compare nelle pagine legali, in Segnala e nella cancellazione dei dati):
-```ts
-export const CONTACT_EMAIL: string | undefined = 'tua.email@esempio.it';
-```
-e il titolare:
-```ts
-export const TITOLARE: { nome: string; responsabile?: string; indirizzo?: string } = { nome: 'Project', responsabile: 'Nome Cognome' };
-```
-Il testo delle pagine legali lo fai rivedere da chi ne ha l'autorità: sono in `app/src/legal/` (`privacy.ts`, `termini.ts`, `cookie.ts`) e nelle FAQ `app/src/lib/servizi/faq.ts`.
-
-## 5. Costruisci il sito con i collegamenti
-
-Sostituisci `ATLAS_URL` con l'indirizzo del passo 2 e lancia (tutto su una riga per variabile, così com'è):
-
-```bash
-cd ../app
-npm ci
-export VITE_ATLAS_API_URL="https://atlas.QUALCOSA.workers.dev"
-export VITE_FIREBASE_API_KEY="AIzaSyARzkGVZMnvklPOqtxFkW2fgUs5Ygptum0"
-export VITE_FIREBASE_AUTH_DOMAIN="mimetic-resolver-7szp9.firebaseapp.com"
-export VITE_FIREBASE_PROJECT_ID="mimetic-resolver-7szp9"
-export VITE_FIREBASE_APP_ID="1:92251035376:web:0e0b135d58c86431495435"
-npm run build
-```
-(La chiave e l'id sono quelli di `app/firebase-applet-config.json`; non sono segreti.) Se un valore è sbagliato l'app non si rompe: dice «non collegato» e tiene i dati nel dispositivo.
-
-## 6. Pubblica il sito su Cloudflare Pages
-
-Ancora da `app/`:
-
-```bash
-npx wrangler pages project create NOME --production-branch main    # solo la prima volta
-npx wrangler pages deploy dist --project-name NOME --branch main
-```
-Stampa l'indirizzo del sito (`https://NOME.pages.dev`). Aprilo da telefono e da computer.
-
-(Alternativa senza terminale: Cloudflare → Workers & Pages → Create → Pages → Connect to Git → repository `AddiOfa` → Build command `cd app && npm ci && npm run build`, Output directory `app/dist`, Environment variables: `NODE_VERSION=20` e le cinque `VITE_*` sopra. Ogni push ricostruisce il sito.)
-
-## 7. Controlli finali (5 minuti)
-
-1. Apri `https://NOME.pages.dev`: landing → «Inizia il test di livello» → percorso → risultato.
-2. Profilo → **Community** → **Project ID** → **Accedi con Google**: deve aprire la finestra di Google e tornare «collegato».
-3. Verifica email: nel percorso, alla schermata «La tua email», o in Community → Project ID, con il tuo indirizzo `@mail.polimi.it` premi **«Verifica con un link»**: arriva un'email di Firebase (controlla lo spam), il link riporta al sito e l'email passa da «Non verificata» a verificata (solo sul tuo dispositivo; il server continua a registrarla come non verificata).
-4. NOI: attiva la classifica con la casella: compare il tuo nome.
-5. Iscrizioni: dopo il percorso, le righe arrivano al server. Per scaricarle:
-
-```bash
-export ATLAS=https://atlas.QUALCOSA.workers.dev
-export ADMIN_TOKEN='il segreto del passo 2'
-curl -H "Authorization: Bearer $ADMIN_TOKEN" "$ATLAS/v1/admin/signups?formato=csv" -o iscrizioni.csv
-```
-(Solo chi ha dato il consenso «comunicazioni»: aggiungi `&comunicazioni=1`. Il file contiene dati personali: non metterlo nel repository.)
-6. Installabile da telefono: menu del browser → «Aggiungi a schermata Home».
-
-## 8. Pulizia e aggiornamenti
-
-- Togli dal repository `app/firebase-applet-config.json` e `app/bun.lock` (non servono più: i valori sono nelle variabili del passo 5): `git rm app/firebase-applet-config.json app/bun.lock && git commit -m "Tolti file non più usati" && git push`.
-- Per aggiornare il sito dopo ogni modifica: ripeti i passi 5 e 6 (le variabili `VITE_*` vanno rimesse nella stessa shell).
-- Per portare il lavoro su `main`: apri tu la richiesta di merge su GitHub (https://github.com/raffaele-ando/AddiOfa/compare/main...claude/folder-review-h3xnww).
-
-## Cosa NON funziona da solo (da sapere)
-
-- **Email di conferma per le comunicazioni (double opt-in) e disiscrizione da email**: non c'è un servizio di posta collegato (Firebase manda solo il link di verifica dell'email PoliMi). Per scrivere agli iscritti serve un servizio di posta (Resend, Brevo, Mailgun…) e un invio fatto da te: l'app non invia nulla da sola.
-- **Cancellazione dati di chi non ha Project ID**: si fa a mano (comandi in `atlas/DEPLOY.md`, sezione 7).
-- **L'email PoliMi inserita nel percorso resta «non verificata»** finché la persona non preme «Verifica» e clicca il link ricevuto.
-- **Non provato da me**: Cloudflare vero, Firebase vero (Google, link email), Safari/iPhone e telefoni veri, lettore di schermo. Al primo collegamento controlla i punti del passo 7.
-- **Testi legali**: da far rivedere a chi ne ha l'autorità prima di promuovere il sito.
+- **Email di conferma e disiscrizione per le comunicazioni**: non c'è un servizio di posta collegato (Firebase manda solo il link di verifica dell'email PoliMi). Per scrivere agli iscritti serve un servizio tuo (Brevo, Resend…) e l'invio lo fai tu.
+- **Cancellare i dati di chi non ha Project ID**: dalla Console D1, con le istruzioni di `atlas/DEPLOY.md` (sezione 7).
+- **L'email PoliMi del percorso resta «non verificata» sul server**: solo sul dispositivo di chi preme «Verifica» diventa verificata.
+- **Non provato da me**: Cloudflare e Firebase veri (i menu possono avere nomi leggermente diversi dai miei), Safari, telefoni veri, lettore di schermo.

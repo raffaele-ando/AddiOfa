@@ -22,11 +22,25 @@ export const FRASE_PROJECT = 'AddiOFA fa parte di Project, insieme a NOI, ATLAS 
 // Senza URL l'app non contatta nessun server: le iscrizioni restano in coda nel dispositivo e NOI dice «non collegato».
 export const ATLAS_API_URL: string | undefined = import.meta.env.VITE_ATLAS_API_URL?.replace(/\/+$/, '') || undefined;
 
-/** Configurazione pubblica di Firebase (serve solo per «Accedi con Google»). Non sono segreti: finiscono nel sito. */
+/**
+ * Configurazione pubblica di Firebase del progetto di Project (serve solo per «Accedi con Google» e per il link di verifica dell'email).
+ * Non sono segreti: finiscono comunque nel sito. Si possono sovrascrivere alla build con le variabili VITE_FIREBASE_*; senza, valgono questi valori
+ * (gli stessi di app/firebase-applet-config.json), così per pubblicare il sito non serve impostare nulla.
+ */
+const FIREBASE_PREDEFINITA = {
+  apiKey: 'AIzaSyARzkGVZMnvklPOqtxFkW2fgUs5Ygptum0',
+  authDomain: 'mimetic-resolver-7szp9.firebaseapp.com',
+  projectId: 'mimetic-resolver-7szp9',
+  appId: '1:92251035376:web:0e0b135d58c86431495435',
+};
 export const FIREBASE_CONFIG: { apiKey: string; authDomain: string; projectId: string; appId: string } | undefined = (() => {
   const env = import.meta.env;
-  const apiKey = env.VITE_FIREBASE_API_KEY, authDomain = env.VITE_FIREBASE_AUTH_DOMAIN, projectId = env.VITE_FIREBASE_PROJECT_ID, appId = env.VITE_FIREBASE_APP_ID;
-  return apiKey && authDomain && projectId && appId ? { apiKey, authDomain, projectId, appId } : undefined;
+  return {
+    apiKey: env.VITE_FIREBASE_API_KEY || FIREBASE_PREDEFINITA.apiKey,
+    authDomain: env.VITE_FIREBASE_AUTH_DOMAIN || FIREBASE_PREDEFINITA.authDomain,
+    projectId: env.VITE_FIREBASE_PROJECT_ID || FIREBASE_PREDEFINITA.projectId,
+    appId: env.VITE_FIREBASE_APP_ID || FIREBASE_PREDEFINITA.appId,
+  };
 })();
 
 /** Versione del consenso ai permessi del Project ID: uguale a CONSENT_VERSION di atlas/src/scopes.ts. Cambiando testi o permessi si aumenta in tutti e due. */
