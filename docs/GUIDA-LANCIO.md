@@ -1,76 +1,99 @@
-# Guida al lancio: solo browser, nessun comando
+# Guida al lancio: solo browser, solo copia e incolla
 
-Tempo: circa 45 minuti. Serve: un account **Cloudflare** gratuito (https://dash.cloudflare.com/sign-up), l'accesso a **GitHub** (il repository `raffaele-ando/AddiOfa`) e al progetto **Firebase** `mimetic-resolver-7szp9`. Il lavoro è sul branch `claude/folder-review-h3xnww`: negli elenchi qui sotto «il branch» è sempre quello.
+Stato al 30/10: il codice è pronto (test, build, controlli verdi) e il database ATLAS nel tuo account Cloudflare è già a posto (tabelle create, vuoto). Restano le cose che solo tu puoi fare con i tuoi account. Sono 6 blocchi, circa 40 minuti. Le parti in `questo stile` si copiano così come sono.
 
-Ordine: 1 → 2 → 3 → 4 → 5 → 6 → 7.
+Prima di cominciare, due controlli veloci sul dominio, per non creare conflitti: l'indirizzo `addiofa.theproject.world` oggi non risponde a nessun sito (verificato dall'esterno), quindi è libero. Il dominio `theproject.world` sembra gestito da **Namecheap** (la pagina principale risponde «Namecheap URL Forward»): perciò al blocco 4 si aggiunge un record DNS lì.
 
-## 1. Dammi (o scrivi tu) il tuo nome e la tua email di contatto
+---
 
-Compaiono nelle pagine legali, in «Segnala» e per le richieste di cancellazione dei dati. Puoi scrivermi in chat nome, cognome ed email e li inserisco io. Se preferisci farlo da solo: apri
-https://github.com/raffaele-ando/AddiOfa/edit/claude/folder-review-h3xnww/app/src/config/offer.ts
-cerca `CONTACT_EMAIL` e `TITOLARE`, sostituisci `undefined` con `'tua.email@esempio.it'` e aggiungi `responsabile: 'Nome Cognome'` dentro le graffe di `TITOLARE`, poi **Commit changes** (in alto a destra, «Commit directly to the claude/folder-review-h3xnww branch»).
-I testi legali li fai rivedere a chi ne ha l'autorità (sono in `app/src/legal/` e `app/src/lib/servizi/faq.ts`).
+## Blocco 1 · Il server ATLAS su Cloudflare (5 minuti)
 
-## 2. Il sito su Cloudflare Pages
+1. Apri https://dash.cloudflare.com → menu a sinistra **Workers & Pages** → **Create application** → scegli **Import a repository** (se vedi due schede, quella «Workers») → **GitHub** → autorizza e scegli il repository **AddiOfa**.
+2. Compila i campi così:
+   - **Project name**: `atlas`
+   - **Production branch**: `claude/folder-review-h3xnww`
+   - **Root directory** (in «Advanced settings» o «Build settings»): `atlas`
+   - **Build command**: lascia vuoto
+   - **Deploy command**: `npx wrangler deploy`
+3. **Save and Deploy**. Aspetta «Success».
+4. Apri il Worker `atlas` → in alto c'è il suo indirizzo, del tipo `https://atlas.QUALCOSA.workers.dev`. **Copialo** (serve al blocco 3).
+5. Nel Worker `atlas`: **Settings → Variables and Secrets → Add**:
+   - **Type**: `Secret`
+   - **Variable name**: `ADMIN_TOKEN`
+   - **Value**: una stringa lunga e casuale (ti ho dato in chat un valore pronto da incollare; non va scritta in questo file né nel repository)
+   - **Deploy**. (È la password con cui si scaricano le iscrizioni: conservala in un gestore di password.)
+6. Prova: apri nel browser `https://atlas.QUALCOSA.workers.dev/v1/health`: deve mostrare un messaggio di «ok».
 
-1. https://dash.cloudflare.com → **Workers & Pages** → **Create** → **Pages** → **Import an existing Git repository** → collega GitHub e scegli `AddiOfa`.
-2. **Project name**: `addiofa` (importante: il server del passo 3 è già impostato per accettare `https://addiofa.theproject.world` e `https://addiofa.pages.dev`; se il nome è occupato e ne usi un altro, vedi la nota in fondo).
-3. **Production branch**: `claude/folder-review-h3xnww` (quando porti tutto su `main`, potrai cambiarlo).
-4. Build settings: **Framework preset** = None; **Build command** = `cd app && npm ci && npm run build`; **Build output directory** = `app/dist`.
-5. **Environment variables** → aggiungi `NODE_VERSION` = `20`. (L'indirizzo del server lo aggiungi al passo 4.)
-6. **Save and Deploy**. Alla fine apri `https://addiofa.pages.dev`: deve comparire la landing.
-7. **Il tuo dominio `addiofa.theproject.world`**: nel progetto Pages → **Custom domains → Set up a custom domain** → scrivi `addiofa.theproject.world` → **Continue**.
-   - Se `theproject.world` è gestito da Cloudflare (lo vedi nell'elenco dei siti/«Websites» del tuo account), Cloudflare aggiunge da solo il record DNS: premi **Activate domain** e aspetta 1-5 minuti.
-   - Se il dominio è presso un altro servizio (registrar), Cloudflare ti mostra un record da creare: nel pannello DNS di quel servizio aggiungi un record **CNAME** con nome `addiofa` e valore `addiofa.pages.dev`, poi torna in Cloudflare e premi **Verify**.
-   Quando lo stato diventa «Active», `https://addiofa.theproject.world` è il sito.
+## Blocco 2 · Il sito su Cloudflare Pages (5 minuti)
 
-I valori di Firebase sono già nel codice (non sono segreti): non devi inserirli.
+1. **Workers & Pages → Create application** → scheda **Pages** → **Import an existing Git repository** → repository **AddiOfa**.
+2. Compila i campi:
+   - **Project name**: `addiofa`
+   - **Production branch**: `claude/folder-review-h3xnww`
+   - **Framework preset**: `None`
+   - **Build command**: `cd app && npm ci && npm run build`
+   - **Build output directory**: `app/dist`
+3. Prima di premere Deploy, apri **Environment variables (advanced)** e aggiungi (per **Production**):
+   - `NODE_VERSION` = `20`
+   - `VITE_ATLAS_API_URL` = l'indirizzo del Worker copiato al blocco 1, **senza barra finale** (esempio: `https://atlas.QUALCOSA.workers.dev`)
+4. **Save and Deploy**. Alla fine apri `https://addiofa.pages.dev`: deve comparire la landing.
 
-## 3. Il server ATLAS (Project ID, classifica NOI, iscrizioni)
+(Se in seguito cambi `VITE_ATLAS_API_URL`: Pages → progetto → **Settings → Environment variables**, modifica, poi **Deployments → ⋯ → Retry deployment**.)
 
-1. **Database: già fatto (30/10).** Nel tuo account il database D1 `atlas` (id `fae6dddc-a787-474b-9699-e23bab53eb4d`) esiste, ed ho applicato io le migrazioni 0002 e 0003: ora ha le tabelle `accounts`, `app_links`, `apps`, `consent_log`, `noi_scores`, `signups` (con scuola, livello, anno) e `rate_limit`. Non devi fare nulla.
-2. (salto: le tabelle sono già a posto)
-3. Il Worker: **Workers & Pages → Create → Workers → Import a repository** → `AddiOfa`. **Project name**: `atlas`. **Branch**: `claude/folder-review-h3xnww`. **Root directory**: `atlas`. **Build command**: lascia vuoto o `npm ci`. **Deploy command**: `npx wrangler deploy`. **Deploy**.
-4. Quando finisce, il Worker ha un indirizzo tipo `https://atlas.IL-TUO-NOME.workers.dev` (lo vedi nella pagina del Worker): **copialo**.
-5. Segreto per scaricare le iscrizioni: Worker `atlas` → **Settings → Variables and Secrets → Add** → Type **Secret**, Name `ADMIN_TOKEN`, Value = una password lunga (generala con un gestore di password, 32 caratteri casuali) → **Deploy**. Conservala.
-6. Prova: apri `https://atlas.IL-TUO-NOME.workers.dev/v1/health` nel browser: deve mostrare un messaggio di «ok».
+## Blocco 3 · Il tuo dominio `addiofa.theproject.world` (5-10 minuti)
 
-## 4. Collega il sito al server
+1. Cloudflare → Workers & Pages → progetto Pages **addiofa** → **Custom domains** → **Set up a custom domain** → scrivi `addiofa.theproject.world` → **Continue**. Cloudflare ti mostrerà il record DNS da creare e resterà in attesa.
+2. Apri https://ap.www.namecheap.com/domains/list/ → accanto a `theproject.world` premi **Manage** → scheda **Advanced DNS** → **Add New Record**:
+   - **Type**: `CNAME Record`
+   - **Host**: `addiofa`
+   - **Value**: `addiofa.pages.dev`
+   - **TTL**: `Automatic`
+   - premi la spunta verde per salvare.
+3. Torna su Cloudflare → Custom domains → **Check DNS / Verify**. Dopo 1-15 minuti lo stato diventa **Active**. Apri `https://addiofa.theproject.world`.
 
-Cloudflare → Workers & Pages → progetto Pages `addiofa` → **Settings → Environment variables → Production → Add**: nome `VITE_ATLAS_API_URL`, valore `https://atlas.IL-TUO-NOME.workers.dev` (senza barra finale) → **Save**. Poi **Deployments → ⋯ sull'ultimo deploy → Retry deployment** (le variabili valgono solo alla costruzione del sito).
+(Se il tuo `theproject.world` invece è gestito da Cloudflare, al punto 1 Cloudflare aggiunge da solo il record e non devi fare il punto 2. Se compare un errore di conflitto con un Worker esistente (nel tuo account c'è un Worker chiamato `ofa`): apri Workers & Pages → `ofa` → Settings → Domains & Routes, togli da lì `addiofa.theproject.world` e riprova.)
 
-## 5. Firebase (login con Google e verifica email)
+## Blocco 4 · Firebase: login con Google e verifica email (5 minuti)
 
 Apri https://console.firebase.google.com/project/mimetic-resolver-7szp9/authentication/providers
 
-1. **Sign-in method → Google → Abilita** → scegli l'email di assistenza → **Salva**.
-2. **Sign-in method → Email/Password → Abilita**, poi accendi anche **«Link via email (accesso senza password)»** → **Salva**. (Serve a «Verifica con un link» per l'email PoliMi: l'email la invia Firebase.)
-3. **Settings → Authorized domains → Add domain** → aggiungi `addiofa.theproject.world` e anche `addiofa.pages.dev`.
+1. **Sign-in method → Google → Abilita** → scegli come email di assistenza `andolinaraffaele70@gmail.com` → **Salva**.
+2. **Sign-in method → Aggiungi nuovo provider → Email/Password → Abilita**, poi accendi anche **«Link via email (accesso senza password)»** → **Salva**.
+3. **Settings → Authorized domains → Aggiungi dominio** (due volte):
+   - `addiofa.theproject.world`
+   - `addiofa.pages.dev`
 
-## 6. Prove (5 minuti, da telefono o computer)
+## Blocco 5 · Prove (5 minuti)
 
-1. `https://addiofa.theproject.world` → «Inizia il test di livello» → fino al risultato.
-2. Profilo → **Community** → **Project ID** → **Accedi con Google**: si apre Google e torna «collegato».
-3. Alla schermata «La tua email» (nel percorso) o in Project ID: con il tuo indirizzo `@mail.polimi.it` premi **«Verifica con un link»**: arriva l'email di Firebase (guarda lo spam); il link riporta al sito.
-4. NOI: attiva la casella della classifica: compare il tuo nome.
-5. Iscrizioni: Cloudflare → D1 → `atlas` → **Console** → esegui
+Apri `https://addiofa.theproject.world` da telefono, poi:
+
+1. «Inizia il test di livello» → percorso completo → risultato.
+2. Menu del profilo (icona in alto a destra) → **Community** → **Project ID** → **Accedi con Google**: si apre Google e torna «collegato».
+3. Alla schermata «La tua email» del percorso (o in Project ID), con il tuo indirizzo `@mail.polimi.it`, premi **«Verifica con un link»**: arriva un'email da Firebase (guarda lo spam); il link riporta al sito.
+4. Attiva la casella della classifica NOI: compare il tuo nome.
+5. Per vedere le iscrizioni: Cloudflare → **Storage & Databases → D1 SQL database → atlas → Console**, incolla ed esegui:
    `SELECT email, nome, scuola, sede, livello, corso, anno, provenienza, consenso_comunicazioni FROM signups ORDER BY id;`
-   e vedi le righe (puoi copiarle in un foglio di calcolo). Dati personali: non condividerli.
+   (Sono dati personali: non condividerli.)
 6. Sul telefono: menu del browser → «Aggiungi a schermata Home».
 
-## 7. Dopo
+Se un passaggio non va, scrivimi quale e cosa vedi: ti dico il testo esatto da correggere.
 
-- Togli i due file inutili: su GitHub apri `app/firebase-applet-config.json` → ⋯ → **Delete file**; stessa cosa per `app/bun.lock`; **Commit changes**.
-- Ogni modifica che fai sul branch ricostruisce il sito da sola (Pages) e il server (Workers Builds).
-- Per portare tutto su `main`: https://github.com/raffaele-ando/AddiOfa/compare/main...claude/folder-review-h3xnww → **Create pull request** → **Merge**; poi cambia il **Production branch** del progetto Pages (Settings → Builds → Branch control) e del Worker (Settings → Builds) in `main`.
+## Blocco 6 · Facoltativo, quando vuoi
 
-## Se il nome `addiofa` è occupato
+- Togli i due file non più usati: su GitHub apri `app/firebase-applet-config.json` → ⋯ → **Delete file** → Commit; poi lo stesso per `app/bun.lock`.
+- Portare tutto su `main`: https://github.com/raffaele-ando/AddiOfa/compare/main...claude/folder-review-h3xnww → **Create pull request** → **Merge**; poi cambia il **Production branch** del Worker `atlas` e del progetto Pages in `main` (Settings → Builds).
+- Pulizia del vecchio Worker `ofa`: solo se confermi che non ti serve più (non l'ho toccato).
 
-Usa un altro nome (es. `addiofa-polimi`): il sito sarà `https://addiofa-polimi.pages.dev`. Allora in https://github.com/raffaele-ando/AddiOfa/edit/claude/folder-review-h3xnww/atlas/wrangler.jsonc cambia la riga `"ALLOWED_ORIGINS": "https://addiofa.pages.dev"` con il nuovo indirizzo (più indirizzi si separano con la virgola) e rifai il commit; al passo 5.3 aggiungi lo stesso dominio.
+---
 
-## Cosa NON funziona da solo
+## Cosa ho già fatto io (non devi rifarlo)
+
+- Codice, test e build verdi; titolare e contatto compilati (`Raffaele Tiziano Andolina`, `andolinaraffaele70@gmail.com`); configurazione Firebase nel codice; server che accetta chiamate da `addiofa.theproject.world` e `addiofa.pages.dev`; intestazioni di sicurezza e cache, `robots.txt`, anteprime per i social, zoom abilitato su telefono.
+- Database `atlas` nel tuo Cloudflare: migrazioni 0002 e 0003 applicate, tabelle verificate.
+
+## Cosa NON funziona da solo (da sapere)
 
 - **Email di conferma e disiscrizione per le comunicazioni**: non c'è un servizio di posta collegato (Firebase manda solo il link di verifica dell'email PoliMi). Per scrivere agli iscritti serve un servizio tuo (Brevo, Resend…) e l'invio lo fai tu.
 - **Cancellare i dati di chi non ha Project ID**: dalla Console D1, con le istruzioni di `atlas/DEPLOY.md` (sezione 7).
 - **L'email PoliMi del percorso resta «non verificata» sul server**: solo sul dispositivo di chi preme «Verifica» diventa verificata.
-- **Non provato da me**: Cloudflare e Firebase veri (i menu possono avere nomi leggermente diversi dai miei), Safari, telefoni veri, lettore di schermo.
+- **Non provato da me**: Cloudflare Pages/Workers e Firebase veri (i menu possono avere nomi un po' diversi), Safari, telefoni veri, lettore di schermo. I testi legali vanno rivisti da chi ne ha l'autorità.
