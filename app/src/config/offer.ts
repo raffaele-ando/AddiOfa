@@ -49,11 +49,11 @@ export function formatEur(value: number): string {
 }
 
 /** Indirizzo a cui arrivano le segnalazioni. Finché non c'è un indirizzo vero resta `undefined`: la schermata Segnala offre solo «Copia». */
-export const CONTACT_EMAIL: string | undefined = undefined;
+export const CONTACT_EMAIL: string | undefined = 'andolinaraffaele70@gmail.com';
 
 /**
  * Titolare del trattamento dei dati raccolti con l'iscrizione (nome, email PoliMi, corso...). DA COMPILARE PRIMA DEL LANCIO:
  * `nome` oggi è il nome del progetto; per il GDPR serve la persona o l'ente che risponde (cognome e nome, o ragione sociale)
  * e un indirizzo di contatto. Le pagine legali scrivono la riga «Contatto» solo se `CONTACT_EMAIL` esiste.
  */
-export const TITOLARE: { nome: string; responsabile?: string; indirizzo?: string } = { nome: 'Project' };
+export const TITOLARE: { nome: string; responsabile?: string; indirizzo?: string } = { nome: 'Project', responsabile: 'Raffaele Tiziano Andolina' };
