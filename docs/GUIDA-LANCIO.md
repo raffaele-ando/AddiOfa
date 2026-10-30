@@ -14,11 +14,15 @@ I testi legali li fai rivedere a chi ne ha l'autorità (sono in `app/src/legal/`
 ## 2. Il sito su Cloudflare Pages
 
 1. https://dash.cloudflare.com → **Workers & Pages** → **Create** → **Pages** → **Import an existing Git repository** → collega GitHub e scegli `AddiOfa`.
-2. **Project name**: `addiofa` (importante: il server del passo 3 è già impostato per accettare `https://addiofa.pages.dev`; se il nome è occupato e ne usi un altro, vedi la nota in fondo).
+2. **Project name**: `addiofa` (importante: il server del passo 3 è già impostato per accettare `https://addiofa.theproject.world` e `https://addiofa.pages.dev`; se il nome è occupato e ne usi un altro, vedi la nota in fondo).
 3. **Production branch**: `claude/folder-review-h3xnww` (quando porti tutto su `main`, potrai cambiarlo).
 4. Build settings: **Framework preset** = None; **Build command** = `cd app && npm ci && npm run build`; **Build output directory** = `app/dist`.
 5. **Environment variables** → aggiungi `NODE_VERSION` = `20`. (L'indirizzo del server lo aggiungi al passo 4.)
 6. **Save and Deploy**. Alla fine apri `https://addiofa.pages.dev`: deve comparire la landing.
+7. **Il tuo dominio `addiofa.theproject.world`**: nel progetto Pages → **Custom domains → Set up a custom domain** → scrivi `addiofa.theproject.world` → **Continue**.
+   - Se `theproject.world` è gestito da Cloudflare (lo vedi nell'elenco dei siti/«Websites» del tuo account), Cloudflare aggiunge da solo il record DNS: premi **Activate domain** e aspetta 1-5 minuti.
+   - Se il dominio è presso un altro servizio (registrar), Cloudflare ti mostra un record da creare: nel pannello DNS di quel servizio aggiungi un record **CNAME** con nome `addiofa` e valore `addiofa.pages.dev`, poi torna in Cloudflare e premi **Verify**.
+   Quando lo stato diventa «Active», `https://addiofa.theproject.world` è il sito.
 
 I valori di Firebase sono già nel codice (non sono segreti): non devi inserirli.
 
@@ -46,11 +50,11 @@ Apri https://console.firebase.google.com/project/mimetic-resolver-7szp9/authenti
 
 1. **Sign-in method → Google → Abilita** → scegli l'email di assistenza → **Salva**.
 2. **Sign-in method → Email/Password → Abilita**, poi accendi anche **«Link via email (accesso senza password)»** → **Salva**. (Serve a «Verifica con un link» per l'email PoliMi: l'email la invia Firebase.)
-3. **Settings → Authorized domains → Add domain** → `addiofa.pages.dev` (e il tuo dominio, se ne hai uno).
+3. **Settings → Authorized domains → Add domain** → aggiungi `addiofa.theproject.world` e anche `addiofa.pages.dev`.
 
 ## 6. Prove (5 minuti, da telefono o computer)
 
-1. `https://addiofa.pages.dev` → «Inizia il test di livello» → fino al risultato.
+1. `https://addiofa.theproject.world` → «Inizia il test di livello» → fino al risultato.
 2. Profilo → **Community** → **Project ID** → **Accedi con Google**: si apre Google e torna «collegato».
 3. Alla schermata «La tua email» (nel percorso) o in Project ID: con il tuo indirizzo `@mail.polimi.it` premi **«Verifica con un link»**: arriva l'email di Firebase (guarda lo spam); il link riporta al sito.
 4. NOI: attiva la casella della classifica: compare il tuo nome.
