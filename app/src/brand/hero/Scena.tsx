@@ -71,7 +71,7 @@ export default function Scena({ scuro: _scuro, conCarte = true, className = '' }
             <ul className="mt-2.5 space-y-1.5">
               {[0, 1, 2].map(i => (
                 <li key={i} className="flex items-center gap-2 rounded-lg bg-superficie/70 px-2 py-1.5">
-                  <Icona nome="stato-incluso" size={15} className="text-alto-pieno" />
+                  <Icona nome="selezionato" size={15} className="text-alto-pieno" />
                   <span className="h-1.5 rounded-full bg-testo/15" style={{ width: `${70 - i * 14}%` }} />
                 </li>
               ))}

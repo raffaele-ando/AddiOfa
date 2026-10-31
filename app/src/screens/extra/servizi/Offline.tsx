@@ -24,7 +24,7 @@ export default function Offline() {
       titolo="Sei di nuovo online"
       testo="La connessione è tornata: sfide e iscrizione funzionano di nuovo."
       azioni={[
-        { testo: 'Riprendi da dove eri', onClick: indietro, icona: <Icona nome="studia" size={18} /> },
+        { testo: 'Riprendi da dove eri', onClick: indietro, icona: <Icona nome="indietro" size={18} /> },
         { testo: 'Vai alla Home', onClick: vaiHome, tipo: 'secondaria', icona: <Icona nome="home" size={18} /> },
       ]} />
   ) : (

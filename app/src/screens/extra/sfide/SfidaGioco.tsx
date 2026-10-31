@@ -208,13 +208,12 @@ export default function SfidaGioco() {
           <PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />
         </div>
         <div className="mx-auto flex w-full max-w-[440px] flex-1 min-h-0 flex-col items-center justify-center px-6 text-center">
-          <Illustrazione nome="quiz-test" lato={120} />
-          <h1 className="mt-3 text-[28px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo">{titoloSfida}</h1>
+          <h1 className="text-[28px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo">{titoloSfida}</h1>
           <DatiSfida domande={domande.length} minuti={SECONDI_SFIDA / 60} className="mt-2" />
           <p data-testo-ok className="mt-1 text-[15px] leading-[21px] text-testo-tenue">{aiuto}</p>
         </div>
         <div className="shrink-0 border-t border-linea px-6 pt-3 pb-[max(14px,env(safe-area-inset-bottom))]">
-          <div className="mx-auto w-full max-w-[440px]"><Bottone icona="studia" onClick={avvia}>Inizia la sfida</Bottone></div>
+          <div className="mx-auto w-full max-w-[440px]"><Bottone icona={tipo === 'giorno' ? 'sfida-giorno' : 'duello'} onClick={avvia}>Inizia la sfida</Bottone></div>
         </div>
         <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Regole">{regole}</FoglioInfo>
       </div>
@@ -269,11 +268,11 @@ export default function SfidaGioco() {
         <div className="mb-4 flex items-center justify-between gap-2">
           <span role="img" aria-label={tipo === 'giorno' ? 'Sfida del giorno' : titoloSfida}
             className={cn('grid h-8 w-8 place-items-center rounded-full', tipo === 'giorno' ? 'bg-alto-tinta text-alto-numero' : 'bg-basso-tinta text-basso-numero')}>
-            <Icona nome={tipo === 'giorno' ? 'sfida-giorno' : 'sfide'} size={17} />
+            <Icona nome={tipo === 'giorno' ? 'sfida-giorno' : 'duello'} size={17} />
           </span>
           <span role="img" aria-label={rimaste === 0 ? 'Hai risposto a tutte' : `${rimaste} senza risposta`}
             className={cn('inline-flex items-center gap-1 text-[15px] font-extrabold tabular-nums', rimaste === 0 ? 'text-alto-testo' : 'text-medio-testo')}>
-            <Icona nome={rimaste === 0 ? 'stato-risposta-giusta' : 'stato-risposta-omessa'} size={16} />{rimaste}
+            <Icona nome={rimaste === 0 ? 'stato-ok' : 'stato-risposta-omessa'} size={16} />{rimaste}
           </span>
         </div>
         <h2 data-testo-ok className="text-xl sm:text-2xl font-bold text-testo mb-5 leading-snug">{q.prompt}</h2>

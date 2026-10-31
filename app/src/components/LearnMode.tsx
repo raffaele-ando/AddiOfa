@@ -8,6 +8,7 @@ import { provider } from '../access';
 import type { GradeResult, PublicQuestion } from '../access/provider';
 import { Screen } from './ui';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
+import { Illustrazione } from '../brand/Illustrazione';
 import { Bottone, OpzioneRisposta, StatoVuoto, tipografiche, type StatoOpzione } from '../screens/extra/studio/comune';
 
 interface LearnModeProps {
@@ -624,7 +625,7 @@ function FineSessione({ corrette, totale, secondi, prima, dopo, gruppo, daRipren
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="mx-auto w-full max-w-[520px] px-5 py-5 flex flex-col gap-4">
           <div className="flex flex-col items-center text-center">
-            <span aria-hidden="true" className="grid place-items-center"><IllustrazioneAnimata nome="successo" lato={112} /></span>
+            <span aria-hidden="true" className="grid place-items-center"><Illustrazione nome="celebrazione-fiocco" lato={112} /></span>
             <h2 className="mt-1 text-[20px] leading-[26px] font-bold text-testo">Sessione completata</h2>
             <p role="img" aria-label={`${corrette} giuste su ${totale} al primo tentativo`} className="mt-1 text-[40px] leading-[44px] font-extrabold tabular-nums text-testo">
               {corrette}<span className="text-[22px] font-bold text-testo-tenue">/{totale}</span>

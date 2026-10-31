@@ -116,7 +116,7 @@ function Svolta({ chiave }: { chiave: string }) {
         <div ref={correzioniRef} className="mt-7 scroll-mt-3">
           {corr.fase === 'carico' && <p role="status" aria-label="Carico le correzioni" className="flex justify-center text-testo-tenue"><Icona nome="stato-caricamento" size={22} className="animate-spin" /></p>}
           {corr.fase === 'errore' && (
-            <StatoVuoto icona="stato-attenzione" titolo="Correzioni non disponibili" testo="Non siamo riusciti a leggerle.">
+            <StatoVuoto icona="stato-errore" titolo="Correzioni non disponibili" testo="Non siamo riusciti a leggerle.">
               <BottoneStudio variante="secondario" icona={<Icona nome="riprova" size={18} />} onClick={() => setTentativo(n => n + 1)}>Riprova</BottoneStudio>
             </StatoVuoto>
           )}

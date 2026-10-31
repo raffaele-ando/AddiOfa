@@ -41,9 +41,9 @@ function RigaArgomento({ a, onTeoria }: { a: ArgomentoAnalisi; onTeoria: () => v
 }
 
 /** Priorità del piano: parola, forma e colore (basso/medio/alto, mai il solo colore). */
-function priorita(percento: number | null): { parola: string; classe: string; icona: 'stato-attenzione' | 'trend-uguale' | 'stato-ok' } {
+function priorita(percento: number | null): { parola: string; classe: string; icona: 'stato-attenzione' | 'stato-medio' | 'stato-ok' } {
   if (percento === null || percento < 50) return { parola: 'Priorità alta', classe: 'bg-basso-tinta text-basso-testo dark:bg-superficie-2', icona: 'stato-attenzione' };
-  if (percento < SOGLIA_DA_MIGLIORARE) return { parola: 'Priorità media', classe: 'bg-medio-tinta text-medio-testo dark:bg-superficie-2', icona: 'trend-uguale' };
+  if (percento < SOGLIA_DA_MIGLIORARE) return { parola: 'Priorità media', classe: 'bg-medio-tinta text-medio-testo dark:bg-superficie-2', icona: 'stato-medio' };
   return { parola: 'Priorità bassa', classe: 'bg-alto-tinta text-alto-testo dark:bg-superficie-2', icona: 'stato-ok' };
 }
 

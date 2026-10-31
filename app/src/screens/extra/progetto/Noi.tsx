@@ -135,7 +135,7 @@ export default function Noi() {
         {stato === 'da-aderire' && <BottoneAzione disabled={lavoro} onClick={() => { void cambiaPermesso(true); }}>Entra in classifica</BottoneAzione>}
         {stato === 'aderito' && <BottoneSecondario disabled={lavoro} onClick={() => { void cambiaPermesso(false); }}>Esci dalla classifica</BottoneSecondario>}
         {(stato === 'da-accedere' || stato === 'da-aderire') && <BottoneSecondario onClick={() => vai('projectid')} icona={<Icona nome="projectid" size={20} />}>{ECOSYSTEM.accountName}</BottoneSecondario>}
-        {'classifica' in SCHERMATE && <BottoneSecondario onClick={() => vai('classifica')} icona={<Icona nome="amici" size={20} />}>Classifica tra amici</BottoneSecondario>}
+        {'classifica' in SCHERMATE && <BottoneSecondario onClick={() => vai('classifica')} icona={<Icona nome="classifica" size={20} />}>Classifica tra amici</BottoneSecondario>}
       </div>
     </Pagina>
   );

@@ -66,7 +66,7 @@ export default function ProgressiArgomenti() {
             descrizione={`Radar dell'accuratezza su ${radar.length} argomenti: ${radar.map(a => `${a.nome} ${a.percento} per cento`).join(', ')}.`} />
           <ul className="mt-1 flex flex-wrap justify-center gap-x-4 gap-y-1" aria-label="Colori">
             {/* ogni fascia ha il suo colore, la sua forma (icona) e la sua parola: mai il solo colore */}
-            {([['alto', 'Solido', 'stato-ok'], ['medio', 'Da migliorare', 'trend-uguale'], ['basso', 'Da ripassare', 'stato-da-ripassare']] as const).map(([t, nome, icona]) => (
+            {([['alto', 'Solido', 'stato-ok'], ['medio', 'Da migliorare', 'stato-medio'], ['basso', 'Da ripassare', 'stato-da-ripassare']] as const).map(([t, nome, icona]) => (
               <li key={t} className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] leading-[16px] font-bold ${TONI[t].tinta} ${TONI[t].testo}`}>
                 <Icona nome={icona} size={14} />{nome}
               </li>

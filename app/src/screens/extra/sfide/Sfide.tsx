@@ -3,7 +3,6 @@
 // utente è inventato; lo storico vuoto è una riga di testo. Regole dietro la «i».
 import { useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
-import { Illustrazione } from '../../../brand/Illustrazione';
 import { useExtra } from '../contesto';
 import { playTapSound } from '../../../lib/audio';
 import { nuovoSeme, semeDelGiorno, DOMANDE_SFIDA, SECONDI_SFIDA } from '../../../lib/sfide/seme';
@@ -20,7 +19,7 @@ function RigaStorico({ voce, onApri }: { voce: VoceSfida; onApri: () => void }) 
   const giorno = voce.tipo === 'giorno';
   const aria = giorno ? `Sfida del giorno, ${dataBreve(voce.quando)}` : avv ? `Duello con ${avv.nome}, ${dataBreve(voce.quando)}` : `Duello in attesa, ${dataBreve(voce.quando)}`;
   return (
-    <Riga icona={giorno ? 'sfida-giorno' : 'sfide'} tono={giorno ? 'alto' : 'basso'} onClick={onApri}
+    <Riga icona={giorno ? 'sfida-giorno' : 'duello'} tono={giorno ? 'alto' : 'basso'} onClick={onApri}
       titolo={<span aria-label={aria} className="tabular-nums">{avv ? `${voce.corrette} – ${avv.corrette}` : `${voce.corrette}/${voce.totale}`}</span>}
       sottotitolo={<span className="tabular-nums">{giorno ? 'Sfida del giorno' : avv ? `Duello con ${avv.nome}` : 'Duello'} · {dataBreve(voce.quando)} · {tempoBreve(voce.secondi)}</span>}
       destra={(
@@ -78,26 +77,25 @@ export default function Sfide() {
             <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} className="mt-1" />
             <p data-testo-ok className="mt-0.5 text-[13px] leading-[18px] text-testo-tenue">Le stesse domande per tutti, ogni giorno.</p>
           </div>
-          <Illustrazione nome="successo" lato={80} />
         </div>
         {oggi ? (
           <button type="button" aria-label={`Sfida del giorno: ${oggi.corrette} su ${oggi.totale}, tempo ${tempoBreve(oggi.secondi)}`} onClick={() => { playTapSound(); vai('sfida-risultato', { voce: oggi.id }); }}
             className="brand-premibile mt-4 flex w-full items-center gap-3 rounded-[14px] border border-linea bg-superficie p-3 text-left">
-            <Icona nome="stato-risposta-giusta" size={22} className="text-alto-numero" />
+            <Icona nome="stato-ok" size={22} className="text-alto-numero" />
             <span className="text-[26px] leading-[30px] font-extrabold tabular-nums text-testo">{oggi.corrette}<span className="text-[16px] font-bold text-testo-tenue">/{oggi.totale}</span></span>
             <span className="flex-1 text-[14px] font-semibold tabular-nums text-medio-testo"><span className="inline-flex items-center gap-1"><Icona nome="tempo" size={15} />{tempoBreve(oggi.secondi)}</span></span>
             <span className="text-[13px] font-semibold text-testo-tenue">La prossima domani</span>
             <Icona nome="avanti" size={20} className="text-testo-tenue" />
           </button>
         ) : (
-          <Bottone className="mt-4" icona="studia" onClick={() => vai('sfida-gioco', { tipo: 'giorno', seme: semeDelGiorno() })}>Gioca la sfida</Bottone>
+          <Bottone className="mt-4" icona="sfida-giorno" onClick={() => vai('sfida-gioco', { tipo: 'giorno', seme: semeDelGiorno() })}>Gioca la sfida</Bottone>
         )}
       </Carta>
 
       {/* Due righe uguali: i campi di testo si aprono in un foglio */}
       <div className="mt-3">
         <GruppoRighe etichetta="Sfide con gli amici">
-          <Riga icona="sfide" tono="basso" titolo="Sfida un amico" sottotitolo={`Un duello da ${DOMANDE_SFIDA} domande: gli mandi un link.`} onClick={() => setFoglio('amico')} />
+          <Riga icona="duello" tono="basso" titolo="Sfida un amico" sottotitolo={`Un duello da ${DOMANDE_SFIDA} domande: gli mandi un link.`} onClick={() => setFoglio('amico')} />
           <Riga icona="incolla" tono="azione" titolo="Ho ricevuto una sfida" sottotitolo="Incolla il link per accettarla." onClick={() => setFoglio('link')} />
         </GruppoRighe>
       </div>
@@ -116,7 +114,7 @@ export default function Sfide() {
         <p data-testo-ok className="text-testo-tenue">Crea un link e mandalo a chi vuoi sfidare.</p>
         <Campo className="mt-4" id="nome-sfida" etichetta="Il tuo nome" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
           segnaposto="Come ti chiami?" maxLength={NOME_MAX} errore={erroreNome} onInvio={iniziaDuello} />
-        <Bottone className="mt-4" icona="studia" onClick={iniziaDuello}>Crea link</Bottone>
+        <Bottone className="mt-4" icona="crea-link" onClick={iniziaDuello}>Crea link</Bottone>
       </FoglioInfo>
       <FoglioInfo aperto={foglio === 'link'} onChiudi={() => setFoglio(null)} titolo="Ho ricevuto una sfida">
         <Campo id="link-sfida" etichetta="Il link della sfida" valore={link} onCambia={v => { setLink(v); setErroreLink(null); }}

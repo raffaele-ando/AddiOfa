@@ -1,12 +1,15 @@
 import { Icona, type NomeIcona } from '../../brand/icone/Icona';
 import { Illustrazione } from '../../brand/Illustrazione';
+import { ChipLivello } from '../../screens/extra/studio/comune';
 import { TitoloSezione } from './Stima';
 import { sfumaturaFascia } from './comune';
 import { AREA_DEBOLE, areeOrdinate, nomeArea } from './stato';
 import { livelloDi, MIN_RISPOSTE, type Fattore } from './stima';
 import { playTapSound } from '../../lib/audio';
 
-const ICONA_AREA = (f: Fattore): NomeIcona => f.filtro.startsWith('level:') ? 'livello' : f.nome === 'Traduzione' ? 'frasi' : 'teoria-regola';
+// Grammatica e Traduzione hanno la loro icona; i tre livelli (A1, A2, B1) non possono avere la stessa: ognuno mostra il proprio chip di testo.
+const ICONA_CATEGORIA = (f: Fattore): NomeIcona => f.nome === 'Traduzione' ? 'frasi' : 'teoria-regola';
+const eLivello = (f: Fattore) => f.filtro.startsWith('level:');
 
 const TESTO_PERCENTO = { basso: 'text-basso-testo', medio: 'text-medio-testo', alto: 'text-alto-testo' } as const;
 
@@ -22,7 +25,9 @@ function Riga({ f, onVai }: { f: Fattore; onVai?: (filtro: string) => void }) {
   const nome = nomeArea(f);
   const corpo = (
     <>
-      <span aria-hidden="true" className="w-10 h-10 shrink-0 grid place-items-center text-azione"><Icona nome={ICONA_AREA(f)} size={28} /></span>
+      <span aria-hidden="true" className="w-10 h-10 shrink-0 grid place-items-center text-azione">
+        {eLivello(f) ? <ChipLivello livello={f.nome} className="text-[15px] leading-[20px] px-2 py-1" /> : <Icona nome={ICONA_CATEGORIA(f)} size={28} />}
+      </span>
       <span className="flex-1 min-w-0">
         <span className="flex items-baseline justify-between gap-2">
           <span className="min-w-0 truncate text-[15px] leading-[20px] font-semibold text-testo">{nome}</span>
@@ -60,7 +65,7 @@ export default function Aree({ categorie, livelli, onVai }: { categorie: Fattore
       <TitoloSezione id="titolo-aree">Le tue aree</TitoloSezione>
       {!conDati ? (
         <div role="status" className="flex items-center gap-[14px] rounded-[16px] bg-superficie-2 p-[14px]">
-          <span aria-hidden="true" className="w-[68px] h-[56px] shrink-0 grid place-items-center"><Illustrazione nome="progressi-statistiche-scheda" lato={64} /></span>
+          <span aria-hidden="true" className="w-[68px] h-[56px] shrink-0 grid place-items-center"><Illustrazione nome="vuoto" lato={64} /></span>
           <span className="min-w-0">
             <span className="block text-[16px] leading-[22px] font-bold text-testo">Nessun dato per area</span>
             <span data-testo-ok className="block text-[14px] leading-[19px] text-testo-tenue">Rispondi ad almeno {MIN_RISPOSTE} domande per area.</span>

@@ -71,7 +71,7 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
               // L'animazione parte una volta all'apertura; toccandola si rivede (Invio e Spazio compresi).
               <button type="button" onClick={() => setRivedi(n => n + 1)} aria-label="Rivedi l'animazione"
                 className="rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione">
-                <IllustrazioneAnimata nome="celebrazione" lato={96} riavvia={rivedi} />
+                <IllustrazioneAnimata nome="superamento" lato={96} riavvia={rivedi} />
               </button>
             } />
 

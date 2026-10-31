@@ -66,7 +66,7 @@ export default function Simulazione({ ultima, onInizia, onApriUltima, onTutte }:
         {onInizia && (
           <button type="button" onClick={() => { playTapSound(); onInizia(); }}
             className="brand-premibile mt-3 w-full min-h-[48px] flex items-center justify-center gap-2 rounded-[12px] bg-azione-tinta text-azione-testo text-[15px] leading-[20px] font-bold">
-            <Icona nome="studia" size={18} />{ultima ? 'Fai un’altra simulazione' : 'Fai una simulazione'}
+            <Icona nome="simulazioni" size={18} />{ultima ? 'Fai un’altra simulazione' : 'Fai una simulazione'}
           </button>
         )}
       </div>

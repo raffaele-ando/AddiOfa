@@ -136,7 +136,7 @@ export default function Frasi() {
                     <div className="px-4 pb-3.5 pt-0.5">
                       {f.itTipo === 'traduzione' && f.spiegazione && (
                         <p data-testo-ok className="flex gap-2 text-[13.5px] leading-[20px] text-testo">
-                          <span aria-hidden="true" className="mt-0.5 shrink-0 text-medio-numero"><Icona nome="suggerimento" size={16} /></span>{tipografiche(f.spiegazione)}
+                          <span aria-hidden="true" className="mt-0.5 shrink-0 text-medio-numero"><Icona nome="spiegazioni" size={16} /></span>{tipografiche(f.spiegazione)}
                         </p>
                       )}
                       {f.itTipo === 'regola' && f.spiegazione && f.spiegazione !== f.it && (

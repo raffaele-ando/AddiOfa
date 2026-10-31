@@ -94,7 +94,7 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
                 <h2 id="titolo-consigliato" className="text-[19px] leading-[25px] font-extrabold tracking-[-0.01em] text-testo">Allenamento consigliato</h2>
                 <p data-testo-ok className="mt-1 text-[14px] leading-[20px] text-testo-tenue">10 domande scelte per te</p>
               </div>
-              <Arte nome="quiz-test" kit="kit-luminoso" lato={88} />
+              <Arte nome="quiz-test-lista" lato={88} />
             </div>
             <button type="button" onClick={() => { playTapSound(); avvia('smart'); }}
               className="brand-premibile mt-3 flex h-[56px] w-full items-center justify-center gap-2.5 rounded-[14px] bg-azione text-[17px] font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">

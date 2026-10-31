@@ -1,45 +1,26 @@
-// Dati del profilo (nome, avatar, corso di studi): restano sul dispositivo, in appState.extra['profilo'].
-// Nessuna foto: l'avatar è una lettera o un'illustrazione del kit.
+// Dati del profilo (nome, corso di studi): restano sul dispositivo, in appState.extra['profilo'].
+// Nessuna foto e nessuna scelta d'avatar: l'avatar è sempre la lettera del nome (le illustrazioni hanno un altro mestiere nell'app).
+// I profili salvati quando l'avatar si poteva scegliere hanno ancora un campo `avatar`: normalizzaProfilo lo ignora, e si vede la lettera.
 
 export interface ProfiloDati {
   /** Nome scelto dall'utente. Vuoto = «Studente». */
   nome: string;
-  /** 'iniziale' (la lettera del nome) oppure il nome di un'illustrazione del kit blu (vedi AVATAR). */
-  avatar: string;
   /** Corso di studi, facoltativo. */
   corso: string;
 }
 
-export const PROFILO_INIZIALE: ProfiloDati = { nome: '', avatar: 'iniziale', corso: '' };
+export const PROFILO_INIZIALE: ProfiloDati = { nome: '', corso: '' };
 export const NOME_MAX = 30;
 export const CORSO_MAX = 60;
 export const NOME_DI_RIPIEGO = 'Studente';
 
-/** Le scelte d'avatar oltre alla lettera: illustrazioni del kit blu (gruppo `illustrazioni`). */
-export const AVATAR: { id: string; etichetta: string }[] = [
-  { id: 'studio-inglese', etichetta: 'Libri' },
-  { id: 'quiz-test', etichetta: 'Quiz' },
-  { id: 'successo', etichetta: 'Coppa' },
-  { id: 'superamento', etichetta: 'Documento' },
-  { id: 'celebrazione', etichetta: 'Festa' },
-  { id: 'suggerimenti-consigli', etichetta: 'Idea' },
-  { id: 'mondo-internazionale', etichetta: 'Mondo' },
-  { id: 'progressi-statistiche', etichetta: 'Grafico' },
-  { id: 'ricerca', etichetta: 'Lente' },
-  { id: 'messaggi-supporto', etichetta: 'Messaggi' },
-  { id: 'cappello-laurea-orologio', etichetta: 'Laurea' },
-];
-
-const ID_AVATAR = new Set(AVATAR.map(a => a.id));
-
 const ripulisci = (v: unknown, max: number): string =>
   typeof v === 'string' ? v.replace(/\s+/g, ' ').trim().slice(0, max).trim() : '';
 
-/** Porta qualunque cosa sia salvata a un profilo valido (testi ripuliti e accorciati, avatar noto). */
+/** Porta qualunque cosa sia salvata a un profilo valido (testi ripuliti e accorciati; un vecchio campo `avatar` si scarta: resta la lettera). */
 export function normalizzaProfilo(raw: unknown): ProfiloDati {
   const r = (typeof raw === 'object' && raw !== null ? raw : {}) as Record<string, unknown>;
-  const avatar = typeof r.avatar === 'string' && ID_AVATAR.has(r.avatar) ? r.avatar : 'iniziale';
-  return { nome: ripulisci(r.nome, NOME_MAX), avatar, corso: ripulisci(r.corso, CORSO_MAX) };
+  return { nome: ripulisci(r.nome, NOME_MAX), corso: ripulisci(r.corso, CORSO_MAX) };
 }
 
 export function nomeVisibile(p: ProfiloDati): string {

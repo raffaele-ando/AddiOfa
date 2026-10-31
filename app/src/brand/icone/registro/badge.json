@@ -1,0 +1,22 @@
+{
+  "_nota": "Un'icona per ogni badge (nessun riuso fra badge né con altre funzioni dell'app): al posto delle illustrazioni, che fanno altri mestieri.",
+  "badge-prima-domanda": "badge-question-mark",
+  "badge-domande-25": "files",
+  "badge-domande-100": "library",
+  "badge-argomento-1": "bookmark-check",
+  "badge-argomenti-10": "puzzle",
+  "badge-argomenti-20": "blocks",
+  "badge-argomenti-tutti": "gem",
+  "badge-memoria-10": "memory-stick",
+  "badge-accuratezza-80": "focus",
+  "badge-ore-5": "alarm-clock-check",
+  "badge-prima-simulazione": "file-pen-line",
+  "badge-simulazione-superata": "file-check",
+  "badge-simulazioni-superate-3": "ribbon",
+  "badge-giorni-7": "calendar-heart",
+  "badge-giorni-14": "calendar-sync",
+  "badge-giorni-31": "calendar-fold",
+  "badge-livello-a1": "footprints",
+  "badge-livello-a2": "compass",
+  "badge-livello-b1": "mountain-snow"
+}

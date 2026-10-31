@@ -2,14 +2,13 @@
 // leggono il banco domande attivo, i numeri dell'utente e i badge. Il resto (card, righe, segmenti, titoli di sezione) è in ../ui.
 import { useEffect, useMemo, type ReactNode } from 'react';
 import { questions } from '../../../data/questions';
-import { urlDisegno } from '../../../brand/risorse';
-import { useTheme } from '../../../hooks/useTheme';
-import { cn } from '../../../lib/utils';
 import { iniziale, normalizzaProfilo, type ProfiloDati } from '../../../lib/profilo/dati';
-import { valutaBadge, type BadgeValutato } from '../../../lib/profilo/badge';
+import { valutaBadge, type BadgeValutato, type GruppoBadge } from '../../../lib/profilo/badge';
+import { Icona } from '../../../brand/icone/Icona';
+import { cn } from '../../../lib/utils';
 import { numeriUtente, type NumeriUtente } from '../../../lib/profilo/numeri';
 import { useExtra, useExtraDati } from '../contesto';
-import { Pagina as PaginaBase, Sezione } from '../ui';
+import { Pagina as PaginaBase, Sezione, IconaTono, type Tono } from '../ui';
 export { Sezione };
 
 /** Pagina del profilo: la pagina comune a fondo velato, con `indietro` come nome della prop (compatibilità con le schermate esistenti). */
@@ -17,14 +16,12 @@ export function Pagina({ titolo, indietro, destra, piede, children }: { titolo: 
   return <PaginaBase velata titolo={titolo} onBack={indietro} destra={destra} piede={piede}>{children}</PaginaBase>;
 }
 
-/** Avatar: la lettera del nome oppure un'illustrazione del kit, in un quadrato dagli angoli morbidi (mai un cerchio attorno a un'illustrazione). Mai una foto. */
+/** Avatar: la lettera del nome in un quadrato dagli angoli morbidi. Nessuna illustrazione e nessuna foto. */
 export function Avatar({ profilo, lato = 72 }: { profilo: ProfiloDati; lato?: number }) {
-  const { isDark } = useTheme();
-  const src = profilo.avatar === 'iniziale' ? undefined : urlDisegno('kit-blu', 'illustrazioni', profilo.avatar, isDark);
   return (
-    <span className={cn('shrink-0 overflow-hidden grid place-items-center font-extrabold select-none', src ? 'bg-superficie-2' : 'bg-azione-tinta text-azione-testo dark:bg-superficie-2')}
+    <span className="shrink-0 overflow-hidden grid place-items-center font-extrabold select-none bg-azione-tinta text-azione-testo dark:bg-superficie-2"
       style={{ width: lato, height: lato, borderRadius: lato * 0.28, fontSize: lato * 0.42 }} aria-hidden="true">
-      {src ? <img src={src} alt="" draggable={false} className="w-[80%] h-[80%] object-contain" /> : iniziale(profilo)}
+      {iniziale(profilo)}
     </span>
   );
 }
@@ -76,12 +73,17 @@ export function useBadge(): BadgeValutato[] {
   return valutati;
 }
 
-/** L'arte di ogni badge. Due scelte del piano d'uso (docs/design/ILLUSTRAZIONI.md §3.4): i badge di costanza hanno il calendario;
- *  `risultato-probabilita` ha scritto nel disegno «82 %», un numero che sembrerebbe dell'utente, e qui non si usa. */
-export function arteBadge(b: BadgeValutato): string {
-  if (b.gruppo === 'costanza') return 'piano-superamento';
-  if (b.illustrazione === 'risultato-probabilita') return 'progressi-statistiche-scheda';
-  return b.illustrazione;
+/** Ogni gruppo di badge ha il suo colore, lo stesso in tutta l'app: domande e argomenti imparati = verde, simulazioni = blu, giorni di studio = ambra, livelli = viola. */
+export const TONO_GRUPPO: Record<GruppoBadge, Tono> = { studio: 'alto', simulazioni: 'azione', costanza: 'medio', livello: 'viola' };
+
+/** Il segno di un badge: la SUA icona (una per badge, nel colore del gruppo) in una tessera. Nessuna illustrazione: quelle fanno altri mestieri.
+ *  Da ottenere = la stessa tessera al 45 %. */
+export function IconaBadge({ b, lato = 56 }: { b: Pick<BadgeValutato, 'icona' | 'gruppo' | 'sbloccato'>; lato?: number }) {
+  return (
+    <IconaTono tono={TONO_GRUPPO[b.gruppo]} lato={lato} className={cn(!b.sbloccato && 'opacity-45')}>
+      <Icona nome={b.icona} size={Math.round(lato * 0.52)} />
+    </IconaTono>
+  );
 }
 
 /** I badge da mettere in vista: prima gli ottenuti, poi quelli più vicini (barra più piena). */

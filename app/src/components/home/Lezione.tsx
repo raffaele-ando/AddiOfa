@@ -1,20 +1,9 @@
 import { Icona, type NomeIcona } from '../../brand/icone/Icona';
-import { Illustrazione } from '../../brand/Illustrazione';
 import { TitoloSezione, LinkTutte } from './Stima';
-import { arteArgomento } from './arte';
+import { ChipLivello, TesseraLezione } from '../../screens/extra/studio/comune';
 import { titoloBreve, type LezionePercorso } from '../../lib/studio/percorso';
 import { playTapSound } from '../../lib/audio';
 import { Barra } from './comune';
-
-/** Tessera quadrata con l'illustrazione dell'argomento (una per famiglia di argomenti), come la tessera del libro del concept 14. */
-export function TesseraArgomento({ topicId, lato = 56 }: { topicId: string; lato?: number }) {
-  return (
-    <span aria-hidden="true" className="shrink-0 rounded-[14px] bg-superficie grid place-items-center shadow-[0_1px_4px_rgba(15,23,42,0.07)] dark:shadow-none dark:bg-azione-tinta"
-      style={{ width: lato, height: lato }}>
-      <Illustrazione nome={arteArgomento(topicId)} lato={Math.round(lato * 0.78)} />
-    </span>
-  );
-}
 
 function Dato({ icona, children }: { icona: NomeIcona; children: React.ReactNode }) {
   return (
@@ -35,9 +24,9 @@ export function ProssimaLezione({ lezione, onApri }: { lezione: LezionePercorso;
   return (
     <div className="rounded-[16px] bg-superficie-2 p-4">
       <div className="flex items-center gap-3">
-        <TesseraArgomento topicId={lezione.topic.id} lato={56} />
+        <TesseraLezione numero={lezione.numero} lato={56} tono="carta" />
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] leading-[14px] font-semibold uppercase tracking-[0.06em] text-testo-tenue">Lezione {lezione.numero} · {lezione.topic.livello}</p>
+          <p className="flex items-center gap-1.5 text-[11px] leading-[14px] font-semibold uppercase tracking-[0.06em] text-testo-tenue">Lezione {lezione.numero} <ChipLivello livello={lezione.topic.livello} /></p>
           <p className="mt-0.5 text-[20px] leading-[26px] font-extrabold tracking-[-0.01em] text-testo break-words">{titolo}</p>
         </div>
       </div>
@@ -66,7 +55,7 @@ export function RigaLezione({ lezione, onApri }: { lezione: LezionePercorso; onA
     <button type="button" onClick={() => { playTapSound(); onApri(); }}
       aria-label={`${titolo}: ${imparate} su ${totale} domande imparate`}
       className="brand-premibile w-full flex items-center gap-3 rounded-[14px] bg-superficie-2 p-3 pr-[10px] text-left">
-      <TesseraArgomento topicId={lezione.topic.id} lato={44} />
+      <TesseraLezione numero={lezione.numero} lato={44} tono="carta" />
       <span className="flex-1 min-w-0">
         <span className="block text-[15px] leading-[20px] font-bold text-testo truncate">{titolo}</span>
         {imparate > 0 ? (
@@ -75,7 +64,7 @@ export function RigaLezione({ lezione, onApri }: { lezione: LezionePercorso; onA
             <span className="shrink-0 text-[12.5px] leading-[16px] font-semibold tabular-nums text-alto-testo">{imparate}/{totale} imparate</span>
           </span>
         ) : (
-          <span className="block text-[13px] leading-[18px] text-testo-tenue">{lezione.topic.livello} · {totale} domande</span>
+          <span className="flex items-center gap-1.5 text-[13px] leading-[18px] text-testo-tenue"><ChipLivello livello={lezione.topic.livello} />{totale} domande</span>
         )}
       </span>
       <Icona nome="avanti" size={20} className="shrink-0 text-testo-tenue" />

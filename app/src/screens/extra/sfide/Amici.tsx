@@ -16,7 +16,7 @@ import { Regole, SchedaProveSfide } from './scheda';
 function Saldo({ r }: { r: Rivale }) {
   const voci: [NomeIcona, number, string, string, string][] = [
     ['stato-vinto', r.vinti, 'text-alto-testo', `${r.vinti} vinti`, r.vinti === 1 ? 'vinto' : 'vinti'],
-    ['trend-uguale', r.pari, 'text-medio-testo', `${r.pari} pari`, 'pari'],
+    ['stato-pari', r.pari, 'text-medio-testo', `${r.pari} pari`, 'pari'],
     ['stato-perso', r.persi, 'text-basso-testo', `${r.persi} persi`, r.persi === 1 ? 'perso' : 'persi'],
   ];
   return (
@@ -82,8 +82,8 @@ export default function Amici() {
   return (
     <SchedaProveSfide sezione="amici" info={info} titoloInfo="Amici">
       {rivali.length === 0 && attesa.length === 0 ? (
-        <Fermo illustrazione={{ nome: 'messaggi-supporto' }} titolo="Ancora nessun amico" causa="Gli amici compaiono dopo la prima sfida a due.">
-          <Bottone icona="sfide" onClick={() => vai('sfide')}>Sfida un amico</Bottone>
+        <Fermo illustrazione={{ nome: 'vuoto' }} titolo="Ancora nessun amico" causa="Gli amici compaiono dopo la prima sfida a due.">
+          <Bottone icona="duello" onClick={() => vai('sfide')}>Sfida un amico</Bottone>
         </Fermo>
       ) : (
         <>
@@ -107,7 +107,7 @@ export default function Amici() {
             </Sezione>
           )}
           <div className="mt-6">
-            <Bottone variante="secondario" icona="sfide" onClick={() => vai('sfide')}>Sfida un amico</Bottone>
+            <Bottone variante="secondario" icona="duello" onClick={() => vai('sfide')}>Sfida un amico</Bottone>
           </div>
         </>
       )}

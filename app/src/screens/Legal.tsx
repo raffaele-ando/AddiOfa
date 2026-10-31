@@ -61,7 +61,7 @@ export default function Legal({ section, onBack, onSection }: {
           <nav aria-label="Indice della pagina" className="rounded-xl bg-superficie-2">
             <details className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-3 text-sm font-bold text-testo [&::-webkit-details-marker]:hidden">
-                <h2 className="flex items-center gap-2 text-sm font-bold"><Icona nome="dettaglio" size={18} />Indice <span className="font-normal text-testo-tenue">{doc.sezioni.length}</span></h2>
+                <h2 className="flex items-center gap-2 text-sm font-bold"><Icona nome="indice" size={18} />Indice <span className="font-normal text-testo-tenue">{doc.sezioni.length}</span></h2>
                 <Icona nome="espandi" size={20} className="shrink-0 text-testo-tenue group-open:rotate-180" />
               </summary>
               <ol className="space-y-0.5 px-3 pb-3 text-sm">

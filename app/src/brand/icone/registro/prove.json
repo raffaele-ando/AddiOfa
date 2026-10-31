@@ -3,7 +3,7 @@
   "sfide": "swords",
   "amici": "users",
   "classifica": "trophy",
-  "sfida-giorno": "calendar-check-2",
+  "sfida-giorno": "sunrise",
   "incolla": "clipboard-paste",
   "soglia": "ruler",
   "correzioni": "book-open-check",
@@ -16,5 +16,8 @@
   "stato-attesa": "ellipsis",
   "stato-link-rotto": "link-2-off",
   "stato-primo": "medal",
-  "espandi": "chevron-down"
+  "espandi": "chevron-down",
+  "duello": "git-compare-arrows",
+  "crea-link": "link-2",
+  "stato-pari": "handshake"
 }

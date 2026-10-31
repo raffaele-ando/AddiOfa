@@ -8,6 +8,7 @@ import { getQuestionStats, isLearned } from '../spacedRepetition';
 import { riassuntoStudio } from './giorni';
 import { livelloAttuale, LIVELLI, type Livello } from './livello';
 import type { DomandaBanco } from './tipi';
+import type { NomeIcona } from '../../brand/icone/nomi.generato';
 
 export type GruppoBadge = 'studio' | 'simulazioni' | 'costanza' | 'livello';
 export const GRUPPI_BADGE: { id: GruppoBadge; titolo: string }[] = [
@@ -49,8 +50,8 @@ export interface DefinizioneBadge {
   titolo: string;
   /** La condizione, in una frase. */
   condizione: string;
-  /** Nome dell'illustrazione del kit blu (brand/essenziali/disegni/kit-blu/illustrazioni). */
-  illustrazione: string;
+  /** L'icona del badge (registro `badge.json`): una per badge, mai la stessa di un altro badge né di un'altra funzione dell'app. Nessuna illustrazione. */
+  icona: NomeIcona;
   valuta: (c: ContestoBadge, m: Misure) => ValutazioneBadge;
 }
 
@@ -129,14 +130,14 @@ const conteggio = (corrente: number, obiettivo: number, unita: string, possibile
   numeri: { corrente: Math.min(corrente, obiettivo), obiettivo },
 });
 
-const domande = (id: string, obiettivo: number, titolo: string, illustrazione: string): DefinizioneBadge => ({
-  id, gruppo: 'studio', titolo, illustrazione,
+const domande = (id: string, obiettivo: number, titolo: string, icona: NomeIcona): DefinizioneBadge => ({
+  id, gruppo: 'studio', titolo, icona,
   condizione: obiettivo === 1 ? 'Impara la prima domanda: due risposte esatte di fila, a distanza di mezza giornata.' : `Impara ${obiettivo} domande.`,
   valuta: (c, m) => conteggio(m.imparate, obiettivo, obiettivo === 1 ? 'domanda imparata' : 'domande imparate', c.banco.length),
 });
 
-const argomenti = (id: string, obiettivo: number | 'tutti', titolo: string, illustrazione: string): DefinizioneBadge => ({
-  id, gruppo: 'studio', titolo, illustrazione,
+const argomenti = (id: string, obiettivo: number | 'tutti', titolo: string, icona: NomeIcona): DefinizioneBadge => ({
+  id, gruppo: 'studio', titolo, icona,
   condizione: obiettivo === 1
     ? `Padroneggia il primo argomento: impara l'${Math.round(SOGLIA_ARGOMENTO * 100)} % delle sue domande.`
     : `Padroneggia ${obiettivo === 'tutti' ? 'tutti gli argomenti' : `${obiettivo} argomenti`} (almeno l'${Math.round(SOGLIA_ARGOMENTO * 100)} % delle domande di ciascuno imparate).`,
@@ -146,14 +147,14 @@ const argomenti = (id: string, obiettivo: number | 'tutti', titolo: string, illu
   },
 });
 
-const giorni = (id: string, obiettivo: number, titolo: string, illustrazione: string): DefinizioneBadge => ({
-  id, gruppo: 'costanza', titolo, illustrazione,
+const giorni = (id: string, obiettivo: number, titolo: string, icona: NomeIcona): DefinizioneBadge => ({
+  id, gruppo: 'costanza', titolo, icona,
   condizione: `Studia in ${obiettivo} giorni diversi. Non devono essere di fila: conta ogni giorno in cui studi.`,
   valuta: (_c, m) => conteggio(m.giorniDiStudio, obiettivo, 'giorni di studio'),
 });
 
-const livello = (l: Livello, titolo: string, illustrazione: string): DefinizioneBadge => ({
-  id: `livello-${l.toLowerCase()}`, gruppo: 'livello', titolo, illustrazione,
+const livello = (l: Livello, titolo: string, icona: NomeIcona): DefinizioneBadge => ({
+  id: `livello-${l.toLowerCase()}`, gruppo: 'livello', titolo, icona,
   condizione: `Raggiungi il livello ${l}: impara il 60 % delle domande ${l}${l === 'A1' ? '' : ` dopo aver raggiunto ${LIVELLI[LIVELLI.indexOf(l) - 1]}`}.`,
   valuta: (_c, m) => {
     const q = m.livelli.quote.find(x => x.livello === l);
@@ -170,20 +171,20 @@ const livello = (l: Livello, titolo: string, illustrazione: string): Definizione
 });
 
 export const BADGE: DefinizioneBadge[] = [
-  domande('prima-domanda', 1, 'Prima domanda', 'suggerimenti-consigli'),
-  domande('domande-25', 25, '25 domande', 'studio-inglese'),
-  domande('domande-100', 100, '100 domande', 'quiz-test'),
-  argomenti('argomento-1', 1, 'Primo argomento', 'ricerca'),
-  argomenti('argomenti-10', 10, '10 argomenti', 'successo'),
-  argomenti('argomenti-20', 20, '20 argomenti', 'risultato-probabilita'),
-  argomenti('argomenti-tutti', 'tutti', 'Tutti gli argomenti', 'celebrazione'),
+  domande('prima-domanda', 1, 'Prima domanda', 'badge-prima-domanda'),
+  domande('domande-25', 25, '25 domande', 'badge-domande-25'),
+  domande('domande-100', 100, '100 domande', 'badge-domande-100'),
+  argomenti('argomento-1', 1, 'Primo argomento', 'badge-argomento-1'),
+  argomenti('argomenti-10', 10, '10 argomenti', 'badge-argomenti-10'),
+  argomenti('argomenti-20', 20, '20 argomenti', 'badge-argomenti-20'),
+  argomenti('argomenti-tutti', 'tutti', 'Tutti gli argomenti', 'badge-argomenti-tutti'),
   {
-    id: 'memoria-10', gruppo: 'studio', titolo: 'Memoria a lungo termine', illustrazione: 'attesa-caricamento',
+    id: 'memoria-10', gruppo: 'studio', titolo: 'Memoria a lungo termine', icona: 'badge-memoria-10',
     condizione: `Ricorda 10 domande imparate anche a distanza: il ripasso le ha portate a un intervallo di almeno ${GIORNI_MEMORIA} giorni.`,
     valuta: (c, m) => conteggio(m.ricordateA7Giorni, 10, 'domande ricordate a lungo', c.banco.length),
   },
   {
-    id: 'accuratezza-80', gruppo: 'studio', titolo: 'Accuratezza 80 %', illustrazione: 'verifica-utente',
+    id: 'accuratezza-80', gruppo: 'studio', titolo: 'Accuratezza 80 %', icona: 'badge-accuratezza-80',
     condizione: `Rispondi bene all'${Math.round(SOGLIA_ACCURATEZZA * 100)} % o più, su almeno ${MIN_RISPOSTE_ACCURATEZZA} risposte date.`,
     valuta: (_c, m) => {
       if (m.risposte < MIN_RISPOSTE_ACCURATEZZA) {
@@ -195,7 +196,7 @@ export const BADGE: DefinizioneBadge[] = [
     },
   },
   {
-    id: 'ore-5', gruppo: 'studio', titolo: '5 ore di studio', illustrazione: 'mondo-internazionale',
+    id: 'ore-5', gruppo: 'studio', titolo: '5 ore di studio', icona: 'badge-ore-5',
     condizione: 'Studia per 5 ore in tutto (tempo attivo nelle schermate di studio).',
     valuta: (_c, m) => {
       const minuti = Math.floor(m.secondiTotali / 60);
@@ -203,26 +204,26 @@ export const BADGE: DefinizioneBadge[] = [
     },
   },
   {
-    id: 'prima-simulazione', gruppo: 'simulazioni', titolo: 'Prima simulazione', illustrazione: 'quiz-test',
+    id: 'prima-simulazione', gruppo: 'simulazioni', titolo: 'Prima simulazione', icona: 'badge-prima-simulazione',
     condizione: 'Completa la prima simulazione del test.',
     valuta: (_c, m) => conteggio(m.simulazioni, 1, 'simulazione fatta'),
   },
   {
-    id: 'simulazione-superata', gruppo: 'simulazioni', titolo: 'Simulazione superata', illustrazione: 'superamento',
+    id: 'simulazione-superata', gruppo: 'simulazioni', titolo: 'Simulazione superata', icona: 'badge-simulazione-superata',
     condizione: `Supera una simulazione: almeno ${EXAM.passMark} risposte esatte su ${EXAM.questions}.`,
     valuta: (_c, m) => conteggio(m.simulazioniSuperate, 1, 'simulazione superata'),
   },
   {
-    id: 'simulazioni-superate-3', gruppo: 'simulazioni', titolo: '3 simulazioni superate', illustrazione: 'celebrazione',
+    id: 'simulazioni-superate-3', gruppo: 'simulazioni', titolo: '3 simulazioni superate', icona: 'badge-simulazioni-superate-3',
     condizione: `Supera tre simulazioni (${EXAM.passMark}/${EXAM.questions} o più), anche non di fila.`,
     valuta: (_c, m) => conteggio(m.simulazioniSuperate, 3, 'simulazioni superate'),
   },
-  giorni('giorni-7', 7, '7 giorni di studio', 'progressi-statistiche'),
-  giorni('giorni-14', 14, '14 giorni di studio', 'studio-inglese'),
-  giorni('giorni-31', 31, '31 giorni di studio', 'celebrazione'),
-  livello('A1', 'Livello A1', 'suggerimenti-consigli'),
-  livello('A2', 'Livello A2', 'verifica-utente'),
-  livello('B1', 'Livello B1', 'superamento'),
+  giorni('giorni-7', 7, '7 giorni di studio', 'badge-giorni-7'),
+  giorni('giorni-14', 14, '14 giorni di studio', 'badge-giorni-14'),
+  giorni('giorni-31', 31, '31 giorni di studio', 'badge-giorni-31'),
+  livello('A1', 'Livello A1', 'badge-livello-a1'),
+  livello('A2', 'Livello A2', 'badge-livello-a2'),
+  livello('B1', 'Livello B1', 'badge-livello-b1'),
 ];
 
 export interface BadgeValutato extends DefinizioneBadge, ValutazioneBadge {}

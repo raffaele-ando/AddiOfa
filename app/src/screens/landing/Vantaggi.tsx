@@ -6,7 +6,7 @@ import { Colonna } from './comune';
 // Striscia dei quattro vantaggi: una voce per cosa che fai, tutte all'imperativo come i pulsanti. Icone di un solo tono (il blu del marchio).
 // Qui stanno i numeri veri (domande, minuti, ripasso) e non si ripetono nelle sezioni sotto. Sale di 24 px sul bordo basso della scena.
 const VANTAGGI: { icona: NomeIcona; titolo: string; sotto: string }[] = [
-  { icona: 'probabilita', titolo: 'Scopri il tuo livello', sotto: `${DIAGNOSTIC_QUESTIONS} domande, 3 minuti` },
+  { icona: 'diagnostico', titolo: 'Scopri il tuo livello', sotto: `${DIAGNOSTIC_QUESTIONS} domande, 3 minuti` },
   { icona: 'simulazioni', titolo: 'Simula il test vero', sotto: `${EXAM.questions} domande, ${EXAM.minutes} minuti` },
   { icona: 'errori', titolo: 'Ripassa i tuoi errori', sotto: `tra ${questions.length} domande` },
   { icona: 'spiegazioni', titolo: 'Capisci perché', sotto: 'ogni risposta è spiegata' },

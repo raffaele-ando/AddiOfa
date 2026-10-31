@@ -39,8 +39,10 @@ NON_USATE_OK: dict[str, str] = {
     "kit-blu/stati/notifica": "l'app non ha notifiche (nessun invio dal server): un'illustrazione di notifica promette ciò che non c'è",
     "kit-blu/sfere/*": "sfere di vetro: l'utente (17/10) non le vuole attorno alle illustrazioni; restano solo nel catalogo di sviluppo ?brand, l'app usa le illustrazioni piane",
     "kit-luminoso/illustrazioni/attesa-caricamento": "doppione luminoso di attesa-caricamento (usata): stesso mestiere, la seconda sarebbe un doppione",
-    "kit-luminoso/illustrazioni/piano-studi-bloccato": "doppione luminoso di piano-studi-bloccato (usata nella landing e negli Obiettivi): stesso mestiere",
+    "kit-luminoso/illustrazioni/piano-studi-bloccato": "doppione luminoso di piano-studi-bloccato (usata solo nella landing, carta «Piano di studi limitato»): stesso mestiere",
     "kit-luminoso/illustrazioni/rischio-economico": "doppione luminoso di rischio-economico (usata nella landing) e rischio-economico-ali (onboarding): stesso mestiere",
+    "kit-blu/stati/messaggi": "tre fumetti: stessa idea di messaggi-supporto (Agorà); nessuna schermata ha bisogno di un secondo disegno di conversazione («Come ci hai conosciuto» usa l'icona provenienza)",
+    "kit-luminoso/illustrazioni/*": "versione luminosa (formati da 160 px in su) di un soggetto che l'app usa già nel kit blu a una sola dimensione; usata solo dove la dimensione lo richiede (celebrazione, superamento, suggerimenti-consigli): una seconda copia darebbe a un'immagine due mestieri",
     "kit-luminoso/illustrazioni/risultato-probabilita": "ha scritto nel disegno «82 %»: un numero inventato; in app il misuratore è il componente con il valore vero",
 }
 
@@ -64,7 +66,9 @@ process.stdout.write(JSON.stringify(m.exports.CATALOGO));
 
 
 # un file «usa illustrazioni» se nomina il componente, la funzione dei percorsi o un campo `illustrazione` (esclude parole comuni come 'vuoto')
-ILLUSTRA = re.compile(r"Illustrazione|urlDisegno|Disegno|illustrazion", re.I)
+# Include anche i componenti che mostrano un'illustrazione senza nominarla (Eroe nell'onboarding, Arte, Testata, Vuoto, Fermo, StatoPagina, Messaggio):
+# senza, un'illustrazione usata solo tramite <Eroe> (rischio-economico-ali, studio-inglese...) risultava «non usata».
+ILLUSTRA = re.compile(r"Illustrazione|urlDisegno|Disegno|illustrazion|\bEroe\b|\bArte\b|\bTestata\b|\bVuoto\b|\bFermo\b|StatoPagina|\bMessaggio\b", re.I)
 
 
 def file_sorgenti() -> list[pathlib.Path]:

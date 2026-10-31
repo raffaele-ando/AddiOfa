@@ -29,7 +29,7 @@ export const privacy: LegalDoc = {
       titolo: 'Quali dati trattiamo',
       paragrafi: ['Solo questi, e solo nei casi indicati:'],
       elenco: [
-        'Sempre, sul tuo dispositivo e non inviati a nessuno: progressi di studio (risposte, simulazioni, ripasso, statistiche), profilo scelto (nome, corso, avatar), obiettivi, badge, sfide e preferenze (tema, suoni).',
+        'Sempre, sul tuo dispositivo e non inviati a nessuno: progressi di studio (risposte, simulazioni, ripasso, statistiche), profilo scelto (nome, corso), obiettivi, badge, sfide e preferenze (tema, suoni).',
         `Con la registrazione, inviati ad ${A}: l'email del Politecnico (controllata nel formato e nel dominio; «verificata» solo se apri il link di verifica), il nome che ricaviamo dall'email (per esempio nome.cognome@… diventa «Nome Cognome»: lo puoi correggere), il percorso di studi (scuola, sede, livello, corso, anno), come ci hai conosciuto (gruppo o chat, Instagram, amici, altro); i tre consensi facoltativi con data e versione del testo che hai visto.`,
         `Se scegli «Accedi con Google» (${ID}): nome, foto ed email del tuo account Google, un identificativo del ${ID}, il @nome utente, i permessi che concedi con il loro registro (concessione, modifica, revoca, con data).`,
         'Se aderisci alla classifica NOI: il tuo @nome utente, le domande imparate e il miglior punteggio in simulazione, visibili agli altri partecipanti.',

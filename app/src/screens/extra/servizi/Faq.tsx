@@ -68,7 +68,7 @@ export default function Faq() {
           {risultati.map(v => <Voce key={v.id} voce={v} aperta={aperta === v.id} onToggle={() => setAperta(aperta === v.id ? null : v.id)} />)}
         </ul>
       ) : (
-        <Vuoto className="mt-4" illustrazione="ricerca" titolo="Nessun risultato" causa="Prova con altre parole, o scrivici cosa cercavi."
+        <Vuoto className="mt-4" illustrazione="ricerca-scintille" titolo="Nessun risultato" causa="Prova con altre parole, o scrivici cosa cercavi."
           azioni={<BottoneSecondario icona={<Icona nome="segnala" size={20} />} onClick={() => vai('segnala', { tipo: 'idea' })}>Scrivici un'idea</BottoneSecondario>} />
       )}
 

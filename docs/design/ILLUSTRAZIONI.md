@@ -4,6 +4,8 @@ Scritto dall'agente ASSET il 16/10. Risponde a «non stai usando tutte le illust
 
 Numeri (verificati con `python3 tools/controlla-illustrazioni.py`): **67 illustrazioni** dell'app, più il misuratore (in codice) e il logo; **16 sono già usate** da qualche schermata, **48 aspettano** le schermate (il piano è nella sezione 3), **3 non si usano** con motivo (sezione 4); il kit rosso (21 file) resta solo per il catalogo `?brand`.
 
+> **Regola che prevale su questo piano (31/10/2026).** Ogni illustrazione e ogni icona ha UN solo significato: una funzione = una icona, un'immagine = un mestiere, e gli elementi di una lista (lezioni, badge, scuole, livelli, aree) non condividono la stessa immagine. Le righe della sezione 3 che riciclano un'immagine per più mestieri (lezioni per famiglia, badge, avatar, `successo` come traguardo generico, `quiz-test` o `ricerca` fuori dal loro significato, esito del duello) sono **superate**: l'uso vero e la tabella finale nome → unico uso stanno in `docs/lavoro/extra/NOTE-CORREGGI-USO.md`. Le lezioni mostrano il loro numero, i badge un'icona ciascuno, l'avatar è la lettera; `successo` è solo NOI/classifica.
+
 ## 1. Come si usano
 
 ```tsx

@@ -145,7 +145,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               {compatta && r?.explanation && (
                 <button type="button" onClick={() => { playTapSound(); alterna(q.id); }} aria-expanded={apertaSpieg} aria-controls={idSpieg}
                   className="mt-2 inline-flex min-h-[44px] items-center gap-1.5 text-[14px] font-bold text-azione-testo">
-                  <Icona nome="suggerimento" size={18} />Spiegazione<Icona nome="espandi" size={16} className={apertaSpieg ? 'rotate-180' : undefined} />
+                  <Icona nome="spiegazioni" size={18} />Spiegazione<Icona nome="espandi" size={16} className={apertaSpieg ? 'rotate-180' : undefined} />
                 </button>
               )}
               {apertaSpieg && (r?.explanation || (r?.theoryId && onOpenTheory)) && (

@@ -2,7 +2,7 @@
 // Tre blocchi: «La tua iscrizione» (i dati salvati nel dispositivo e se sono arrivati ad ATLAS), «Project ID» (accesso con Google, permessi uno per uno,
 // tutti spenti di partenza) e «I tuoi dati» (esporta, scollega, cancella dal dispositivo, elimina l'account). Se ATLAS o Google non sono configurati, lo dice con una riga vera.
 import { useState } from 'react';
-import { Icona } from '../../../brand/icone/Icona';
+import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { BottoneAzione, BottoneRiga, BottoneSecondario, Etichetta, Interruttore, Nota, Pagina, RigaDato, Sezione, copiaTesto, type TonoStato } from './comuni';
 import { CampiConsensi, CampoEmail, campiPercorso, formDa, nomeEffettivo, PassoPercorso, ScelteProvenienza, type FormRegistrazione } from './registrazione';
@@ -23,6 +23,8 @@ import type { Tono } from '../ui';
 
 type Vista = 'principale' | 'consenso' | 'modifica' | 'esporta' | 'cancella-locale' | 'elimina-account';
 
+/** Una icona per ogni riga del percorso di studi (nessuna in comune: ogni dato ha il suo segno). */
+const ICONA_PERCORSO: Record<string, NomeIcona> = { Scuola: 'percorso-scuola', Sede: 'percorso-sede', Livello: 'percorso-livello', Anno: 'percorso-anno', Corso: 'percorso-corso' };
 const TONO_INVIO: Record<ChiaveStato, TonoStato> = { inviata: 'alto', 'in-attesa': 'medio', invio: 'azione', rifiutata: 'errore', 'solo-locale': 'neutro' };
 const NOMI_CONSENSI = { noi: `Classifica ${ECOSYSTEM.rankingName}`, atlas: `Personalizzazione ${ECOSYSTEM.engineName}`, comunicazioni: `Messaggi da ${ECOSYSTEM.name} e ${ECOSYSTEM.agoraName}` } as const;
 
@@ -126,10 +128,10 @@ export default function ProjectId() {
                 valore={<span className="flex flex-wrap items-center gap-2">{profilo.email}{profilo.emailVerificata ? <Etichetta tono="alto">Verificata</Etichetta> : <Etichetta tono="medio">Non verificata</Etichetta>}</span>} />
               <RigaDato icona="profilo" etichetta="Nome" valore={profilo.nome || 'Non indicato'} />
               {percorso.length > 0
-                ? percorso.map(r => <RigaDato key={r.etichetta} icona={r.etichetta === 'Corso' ? 'lezioni' : r.etichetta === 'Sede' ? 'home' : 'livello'} etichetta={r.etichetta} valore={r.valore} tono="alto" />)
-                : <RigaDato icona="lezioni" etichetta="Percorso di studi" valore="Non indicato" tono="alto" />}
-              <RigaDato icona="condividi" etichetta="Come ci hai conosciuto" valore={nomeProvenienza(profilo.provenienza) ?? 'Non indicato'} tono="viola" />
-              <RigaDato icona="privacy" etichetta="Consensi" valore={consensiDati(iscrizioneRemota?.consensi ?? profilo.consensi)} tono="viola" />
+                ? percorso.map(r => <RigaDato key={r.etichetta} icona={ICONA_PERCORSO[r.etichetta] ?? 'percorso-corso'} etichetta={r.etichetta} valore={r.valore} tono="alto" />)
+                : <RigaDato icona="percorso-corso" etichetta="Percorso di studi" valore="Non indicato" tono="alto" />}
+              <RigaDato icona="provenienza" etichetta="Come ci hai conosciuto" valore={nomeProvenienza(profilo.provenienza) ?? 'Non indicato'} tono="viola" />
+              <RigaDato icona="consensi" etichetta="Consensi" valore={consensiDati(iscrizioneRemota?.consensi ?? profilo.consensi)} tono="viola" />
               <RigaDato icona={statoInvio.chiave === 'inviata' ? 'stato-ok' : statoInvio.chiave === 'rifiutata' ? 'stato-errore' : 'stato-attesa'} etichetta={`Invio ad ${ECOSYSTEM.engineName}`} tono={statoInvio.chiave === 'inviata' ? 'alto' : statoInvio.chiave === 'rifiutata' ? 'errore' : 'medio'}
                 valore={<span><Etichetta tono={TONO_INVIO[statoInvio.chiave]}>{statoInvio.titolo}</Etichetta><span className="mt-1 block text-[13px] font-normal leading-[18px] text-testo-tenue">{statoInvio.dettaglio}</span></span>} />
             </ul>
@@ -143,7 +145,7 @@ export default function ProjectId() {
               )}
               {puoRiprovare && <BottoneSecondario onClick={() => { void coda.riprova(); }} icona={<Icona nome="riprova" size={20} />}>Riprova ora</BottoneSecondario>}
               {statoInvio.chiave === 'solo-locale' && acc.atlasOnline && !iscrizioneRemota && (
-                <BottoneSecondario onClick={() => { void coda.accoda(corpoIscrizione(profilo), { forza: true }); }} icona={<Icona nome="condividi" size={20} />}>{`Invia ad ${ECOSYSTEM.engineName}`}</BottoneSecondario>
+                <BottoneSecondario onClick={() => { void coda.accoda(corpoIscrizione(profilo), { forza: true }); }} icona={<Icona nome="invia-dati" size={20} />}>{`Invia ad ${ECOSYSTEM.engineName}`}</BottoneSecondario>
               )}
               <BottoneSecondario onClick={() => setVista('modifica')} icona={<Icona nome="modifica" size={20} />}>Modifica i dati</BottoneSecondario>
             </div>
@@ -244,7 +246,7 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
 }
 
 /** Il permesso senza il quale l'account non esiste: non è una scelta, quindi nessun interruttore. */
-const Obbligatorio = () => <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-superficie px-2.5 py-1 text-[12px] font-semibold text-testo-tenue"><Icona nome="blocco" size={12} />Necessario</span>;
+const Obbligatorio = () => <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-superficie px-2.5 py-1 text-[12px] font-semibold text-testo-tenue">Necessario</span>;
 
 const ErroreRiga = ({ testo }: { testo: string }) => <p role="alert" data-testo-ok className="rounded-[14px] border border-errore/30 bg-errore-tinta p-3 text-center text-[14px] font-bold text-errore-testo dark:bg-superficie">{testo}</p>;
 

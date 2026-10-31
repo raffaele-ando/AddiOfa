@@ -24,7 +24,7 @@ const FASCIA: Record<ChiaveBanner, { icona: NomeIcona; fondo: string; glifo: str
   partenza: { icona: 'stato-attenzione', fondo: 'bg-basso-tinta dark:bg-[color-mix(in_srgb,var(--color-basso)_12%,var(--color-superficie-2))]', glifo: 'bg-basso-pieno text-basso-su' },
   margine: { icona: 'stato-attenzione', fondo: 'bg-basso-tinta dark:bg-[color-mix(in_srgb,var(--color-basso)_12%,var(--color-superficie-2))]', glifo: 'bg-basso-pieno text-basso-su' },
   soglia: { icona: 'progressi', fondo: 'bg-medio-tinta dark:bg-[color-mix(in_srgb,var(--color-medio)_12%,var(--color-superficie-2))]', glifo: 'bg-medio-pieno text-medio-su' },
-  strada: { icona: 'stato-risposta-giusta', fondo: 'bg-alto-tinta dark:bg-[color-mix(in_srgb,var(--color-alto)_12%,var(--color-superficie-2))]', glifo: 'bg-alto-pieno text-alto-su' },
+  strada: { icona: 'stato-ok', fondo: 'bg-alto-tinta dark:bg-[color-mix(in_srgb,var(--color-alto)_12%,var(--color-superficie-2))]', glifo: 'bg-alto-pieno text-alto-su' },
 };
 
 /**

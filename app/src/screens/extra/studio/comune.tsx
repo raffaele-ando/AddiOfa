@@ -40,12 +40,15 @@ export function Arte({ nome, lato, kit, gruppo, className }: { nome: string; lat
   return <span aria-hidden="true" className={cn('inline-block shrink-0', className)}><Illustrazione nome={nome} lato={lato} kit={kit} gruppo={gruppo} /></span>;
 }
 
-/** Tessera quadrata con una piccola illustrazione dentro (righe di elenco e carte di argomento). */
-export function TesseraArte({ nome, kit, gruppo, lato = 56, className }: { nome: string; kit?: KitId; gruppo?: string; lato?: number; className?: string }) {
+/**
+ * La tessera di una lezione: il suo NUMERO (quello del percorso: 1-31), mai un'illustrazione. Ogni lezione è diversa dalle altre e nessuna immagine
+ * finisce riciclata. `azione` = la lezione da fare adesso o aperta, `carta` = sopra una carta grigia, `neutra` = nelle liste su fondo bianco.
+ */
+export function TesseraLezione({ numero, lato = 44, tono = 'neutra', className }: { numero: number; lato?: number; tono?: 'neutra' | 'azione' | 'carta'; className?: string }) {
+  const toni = { neutra: 'bg-superficie-2 text-testo-tenue', azione: 'bg-azione-tinta text-azione-testo dark:bg-superficie-2', carta: 'bg-superficie text-azione-testo dark:bg-azione-tinta' } as const;
   return (
-    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center', className)} style={{ width: lato, height: lato }}>
-      <Illustrazione nome={nome} lato={lato} kit={kit} gruppo={gruppo} />
-    </span>
+    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center font-extrabold tabular-nums', toni[tono], className)}
+      style={{ width: lato, height: lato, borderRadius: Math.round(lato * 0.27), fontSize: Math.round(lato * 0.38), lineHeight: 1 }}>{numero}</span>
   );
 }
 

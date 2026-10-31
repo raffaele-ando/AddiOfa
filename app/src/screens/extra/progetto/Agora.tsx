@@ -21,7 +21,7 @@ export default function Agora() {
 
       <a href={AGORA_URL} target="_blank" rel="noopener noreferrer" onClick={() => playTapSound()}
         className="brand-premibile mt-5 flex w-full min-h-[52px] items-center justify-center gap-2 rounded-[14px] bg-azione px-4 py-3 text-[16px] font-bold text-azione-su">
-        <Icona nome="presentazione" size={20} />Apri su Instagram
+        <Icona nome="instagram" size={20} />Apri su Instagram
       </a>
       <p data-testo-ok className="mt-2 text-center text-[13px] leading-[18px] text-testo-tenue">Si apre Instagram, fuori da AddiOFA. Qui non ci sono commenti.</p>
 

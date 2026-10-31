@@ -1,20 +1,16 @@
 import { useMemo, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
-import { Disegno } from '../servizi/componenti';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { GRUPPI_BADGE, type BadgeValutato, type GruppoBadge } from '../../../lib/profilo/badge';
-import { BarraTono, Carta, FoglioInfo, Segmenti, TONI, TitoloSezione, type Tono } from '../ui';
+import { GRUPPI_BADGE, type BadgeValutato } from '../../../lib/profilo/badge';
+import { BarraTono, Carta, FoglioInfo, IconaTono, Segmenti, TONI, TitoloSezione } from '../ui';
 import { useExtra } from '../contesto';
-import { Pagina, arteBadge, useBadge } from './componenti';
+import { IconaBadge, Pagina, TONO_GRUPPO, useBadge } from './componenti';
 
 type Filtro = 'tutti' | 'ottenuti' | 'da-ottenere';
 
-/** Ogni gruppo ha il suo colore, lo stesso in tutta l'app: domande e argomenti imparati = verde, simulazioni = blu, giorni di studio = ambra, livelli = viola. */
-const TONO_GRUPPO: Record<GruppoBadge, Tono> = { studio: 'alto', simulazioni: 'azione', costanza: 'medio', livello: 'viola' };
-
-/** Tessera di un badge (griglia a tre colonne, altezza fissa): arte, titolo su al massimo due righe e, se ancora da ottenere, avanzamento.
- *  Ottenuto = a colori, con la spunta; da ottenere = lo stesso disegno al 45 %, non grigio, con la barra e il numero. */
+/** Tessera di un badge (griglia a tre colonne, altezza fissa): icona, titolo su al massimo due righe e, se ancora da ottenere, avanzamento.
+ *  Ottenuto = a colori, con la spunta; da ottenere = la stessa icona al 45 %, non grigia, con la barra e il numero. */
 function SchedaBadge({ b, onApri }: { b: BadgeValutato; onApri: () => void }) {
   const tono = TONO_GRUPPO[b.gruppo];
   return (
@@ -22,7 +18,7 @@ function SchedaBadge({ b, onApri }: { b: BadgeValutato; onApri: () => void }) {
       <button type="button" onClick={() => { playTapSound(); onApri(); }} aria-label={`${b.titolo}: ${b.sbloccato ? 'ottenuto' : b.avanzamento}`}
         className={cn('brand-premibile flex h-[164px] w-full flex-col items-center rounded-[16px] border bg-superficie px-2 pb-3 pt-3 text-center shadow-sm dark:shadow-none', b.sbloccato ? TONI[tono].bordo : 'border-linea')}>
         <span className="relative grid h-[64px] w-[64px] shrink-0 place-items-center" aria-hidden="true">
-          <Disegno nome={arteBadge(b)} lato={56} className={cn(!b.sbloccato && 'opacity-45')} />
+          <IconaBadge b={b} lato={56} />
           {b.sbloccato
             ? <span className="absolute -right-1 -top-1 grid h-6 w-6 place-items-center rounded-[8px] border-2 border-superficie bg-alto-pieno text-alto-su"><Icona nome="stato-ok" size={13} /></span>
             : <span className="absolute -bottom-0.5 -right-0.5 grid h-5 w-5 place-items-center rounded-[7px] bg-superficie-2 text-testo-tenue"><Icona nome="blocco" size={11} /></span>}
@@ -68,7 +64,7 @@ export default function Badge() {
         <Carta tono="viola" className="mt-4">
           <p className="text-[12px] leading-[16px] font-semibold text-testo-tenue">Il prossimo badge</p>
           <button type="button" onClick={() => { playTapSound(); setAperto(prossimo); }} className="brand-premibile mt-2 flex w-full items-center gap-3 text-left" aria-label={`${prossimo.titolo}: ${prossimo.avanzamento}`}>
-            <Disegno nome={arteBadge(prossimo)} lato={56} />
+            <IconaBadge b={prossimo} lato={56} />
             <span className="min-w-0 flex-1">
               <span className="block text-[16px] leading-[22px] font-bold text-testo">{prossimo.titolo}</span>
               <span className="block text-[13px] leading-[18px] text-testo-tenue">{prossimo.avanzamento}</span>
@@ -80,7 +76,7 @@ export default function Badge() {
 
       {visibili.length === 0 && (
         <div className="mt-10 flex flex-col items-center gap-3 text-center" role="status">
-          <Disegno nome={filtro === 'ottenuti' ? 'celebrazione-fiocco' : 'successo'} lato={96} />
+          <IconaTono tono={filtro === 'ottenuti' ? 'viola' : 'alto'} lato={64}><Icona nome={filtro === 'ottenuti' ? 'badge' : 'stato-ok'} size={32} /></IconaTono>
           <p className="text-[17px] leading-[24px] font-bold text-testo">{filtro === 'ottenuti' ? 'Nessun badge ancora' : 'Li hai ottenuti tutti'}</p>
           {filtro === 'ottenuti' && <p data-testo-ok className="max-w-[28ch] text-[14px] leading-[20px] text-testo-tenue">Il primo arriva con la prima domanda imparata.</p>}
         </div>
@@ -103,7 +99,7 @@ export default function Badge() {
         {aperto && (
           <>
             <div className="mb-3 flex items-center justify-center">
-              <Disegno nome={arteBadge(aperto)} lato={96} className={cn(!aperto.sbloccato && 'opacity-45')} />
+              <IconaBadge b={aperto} lato={80} />
             </div>
             <p>{aperto.condizione}</p>
             <p className="mt-2 font-bold tabular-nums">{aperto.sbloccato ? 'Ottenuto' : aperto.avanzamento}</p>

@@ -12,11 +12,11 @@
   "certificazione": "file-badge",
   "ofa": "book-a",
   "cookie": "cookie",
-  "stato-incluso": "circle-check-big",
   "stima-modello": "dices",
   "stima-intervallo": "move-horizontal",
   "stima-escluso": "ban",
   "stima-campione": "chart-scatter",
   "stima-garanzia": "shield-alert",
-  "stima-miglioramento": "chart-spline"
+  "stima-miglioramento": "chart-spline",
+  "selezionato": "circle-check-big"
 }

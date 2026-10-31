@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ReactNode, RefObject } from 'react';
 import { theoryTopics, type TheoryTopic } from '../data/theory';
 import { playTapSound } from '../lib/audio';
@@ -6,9 +6,8 @@ import { cn } from '../lib/utils';
 import { RichText } from '../components/ui';
 import { FONT } from '../brand/tokens';
 import { Icona } from '../brand/icone/Icona';
-import { ChipLivello, Arte, TesseraArte, StatoVuoto } from './extra/studio/comune';
-import { famigliaDi } from '../lib/studio/famiglie';
-import { titoloBreve } from '../lib/studio/percorso';
+import { ChipLivello, Arte, TesseraLezione, StatoVuoto } from './extra/studio/comune';
+import { ordinaPercorso, titoloBreve } from '../lib/studio/percorso';
 
 interface TheoryProps {
   onBack(): void;
@@ -18,11 +17,11 @@ interface TheoryProps {
 type Livello = TheoryTopic['livello'];
 const LIVELLI: { id: Livello }[] = [{ id: 'A1' }, { id: 'A2' }, { id: 'B1' }];
 
-// Ordine di studio: per livello, poi nell'ordine del file (sort stabile). Si mostrano solo gli argomenti pronti.
-const ordinati: TheoryTopic[] = theoryTopics.filter(t => t.pronta).sort(
-  (a, b) => LIVELLI.findIndex(l => l.id === a.livello) - LIVELLI.findIndex(l => l.id === b.livello),
-);
+// Ordine di studio: quello del Percorso (per livello, poi didattico), così il numero di ogni lezione è lo stesso ovunque. Solo gli argomenti pronti.
+const ordinati: TheoryTopic[] = ordinaPercorso(theoryTopics);
 const pronti = ordinati;
+/** Il numero della lezione (1-31), lo stesso del Percorso e della Home. */
+const numeroLezione = (t: TheoryTopic) => pronti.findIndex(x => x.id === t.id) + 1;
 
 /** Pagina di teoria: stessa cornice delle schermate extra (freccia a sinistra del titolo, colonna di 440 px), ma con il riferimento al titolo per il focus. */
 function Cornice({ titolo, titoloRef, onBack, children, intestazione, arte }: {
@@ -74,6 +73,7 @@ export default function Theory({ onBack, initialTopicId }: TheoryProps) {
     return (
       <Dettaglio
         topic={topic}
+        numero={i + 1}
         prec={i > 0 ? pronti[i - 1] : null}
         succ={i >= 0 && i < pronti.length - 1 ? pronti[i + 1] : null}
         titoloRef={titoloRef}
@@ -122,7 +122,7 @@ function Riga({ t, onOpen }: { t: TheoryTopic; onOpen: (t: TheoryTopic) => void 
           'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione',
         )}
       >
-        <TesseraArte nome={famigliaDi(t.id).illustrazione} lato={44} />
+        <TesseraLezione numero={numeroLezione(t)} lato={44} tono="carta" />
         <span className="min-w-0 flex-1">
           <span className="block font-bold leading-snug break-words text-testo">{titoloBreve(t)}</span>
         </span>
@@ -132,8 +132,9 @@ function Riga({ t, onOpen }: { t: TheoryTopic; onOpen: (t: TheoryTopic) => void 
   );
 }
 
-function Dettaglio({ topic, prec, succ, titoloRef, onList, onGo }: {
+function Dettaglio({ topic, numero, prec, succ, titoloRef, onList, onGo }: {
   topic: TheoryTopic;
+  numero: number;
   prec: TheoryTopic | null;
   succ: TheoryTopic | null;
   titoloRef: React.RefObject<HTMLHeadingElement | null>;
@@ -144,7 +145,7 @@ function Dettaglio({ topic, prec, succ, titoloRef, onList, onGo }: {
   const corpo = 'text-[15px] font-medium text-testo leading-[24px]';
   return (
     <Cornice titoloRef={titoloRef} titolo={titoloBreve(topic)} onBack={onList}
-      arte={<Arte nome={famigliaDi(topic.id).illustrazione} lato={76} />}
+      arte={<TesseraLezione numero={numero} lato={56} tono="azione" />}
       intestazione={<p className="flex items-center gap-2 pt-1"><ChipLivello livello={topic.livello} /><span className="sr-only">Livello {topic.livello}</span></p>}>
       {/* Il testo della scheda è contenuto (esente dal controllo di testo): attorno non c'è nessuna introduzione. */}
       <article data-testo-ok className="mt-5 flex flex-col gap-6">
@@ -183,7 +184,7 @@ function Dettaglio({ topic, prec, succ, titoloRef, onList, onGo }: {
                     <span lang="en" className="font-bold text-testo leading-snug break-words min-w-0">{e.giusto}</span>
                   </p>
                   <p className="flex gap-2.5 items-start text-[14px] font-medium text-testo-tenue leading-relaxed">
-                    <span role="img" aria-label="Perché" className="mt-0.5 shrink-0 text-medio-numero"><Icona nome="suggerimento" size={18} /></span>
+                    <span role="img" aria-label="Perché" className="mt-0.5 shrink-0 text-medio-numero"><Icona nome="spiegazioni" size={18} /></span>
                     <span className="min-w-0"><RichText text={e.perche} /></span>
                   </p>
                 </li>

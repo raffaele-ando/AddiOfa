@@ -3,7 +3,7 @@ import { AppState, OnboardingResult, Question } from '../types';
 import { DISCLAIMER, OFA_CONSEQUENCES, OFA_RULES_NOTE, EXAM, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, RETAKE_COST_EUR } from '../config/offer';
 import { pickDiagnosticQuestions, estimatePassProbability, intervalloStima, DIAGNOSTIC_LENGTH } from '../lib/diagnostic';
 import { updateStats } from '../lib/spacedRepetition';
-import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard, Segmenti, TastoTesto, Titolo, Eroe, RigaStoria } from './ui';
+import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard, Segmenti, TastoTesto, Titolo, Eroe, EroeIcona, RigaStoria } from './ui';
 import { Misuratore } from '../brand/componenti';
 import { Icona, type NomeIcona } from '../brand/icone/Icona';
 import Marchio from '../brand/Marchio';
@@ -362,7 +362,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
             <PrimaryButton disabled={!pronto} onClick={avanti}>Continua</PrimaryButton>
           )}
         >
-          <Eroe nome="superamento" />
+          <Eroe nome="studio-inglese" max={200} />
           <Titolo titolo="Da dove parti" />
           <div role="group" aria-labelledby="dom-ofa" className="flex flex-col gap-2">
             <p id="dom-ofa" data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">Hai l'OFA di inglese?</p>
@@ -417,7 +417,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
             destra={<TastoTesto icona="salta" etichetta="Salta questa domanda" onClick={() => { setReg({ ...reg, provenienza: '' }); salva(false); avanti(); }}>Salta</TastoTesto>} />}
           piede={<Micro>Tocca una voce per continuare.</Micro>}
         >
-          <Eroe nome="messaggi-supporto" max={240} />
+          <EroeIcona icona="provenienza" max={112} />
           <Titolo etichetta="Su di te" titolo="Come ci hai conosciuto?" sotto="Ci aiuta a capire dove farci trovare." />
           <ScelteProvenienza valore={reg.provenienza} onChange={id => {
             setReg({ ...reg, provenienza: id });
@@ -431,13 +431,15 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     case 'scuola':
     case 'sede':
     case 'livello': {
-      const eroe = { scuola: 'cappello-laurea-orologio', sede: 'mondo-internazionale', livello: 'progressi-statistiche' }[k];
+      // scuola e sede hanno la loro illustrazione; per il livello di studi (triennale, magistrale) nessuna illustrazione dice la cosa giusta senza essere
+      // quella di un'altra schermata: l'icona del livello, la stessa della riga «Livello» del riepilogo in Project ID
+      const eroe = { scuola: 'cappello-laurea-orologio', sede: 'mondo-internazionale', livello: null }[k];
       return (
         <Screen
           testata={<TopBar {...barra} onBack={soloRegistrazione && pos === 0 ? undefined : daIndietro} />}
           piede={<Micro>Tocca una voce per continuare.</Micro>}
         >
-          <Eroe nome={eroe} max={200} />
+          {eroe ? <Eroe nome={eroe} max={200} /> : <EroeIcona icona="percorso-livello" max={112} />}
           <Titolo etichetta="Su di te" titolo={TITOLO_RICHIESTA[k]} />
           <SceltePasso passo={k} scelte={reg.percorso} onScelto={id => {
             // riscegliere la stessa voce non cancella le scelte dopo; sceglierne un'altra sì
@@ -479,7 +481,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
             else avanti();
           }}>{soloRegistrazione ? 'Salva' : nessuno ? 'Continua senza' : 'Continua'}</PrimaryButton>}
         >
-          <Eroe nome="documento-completato" max={160} />
+          <EroeIcona icona="consensi" max={112} />
           <Titolo etichetta="Su di te" titolo="Le tue scelte" sotto="Sono tutte facoltative. Puoi cambiare idea quando vuoi." />
           <CampiConsensi senzaIntro consensi={reg.consensi} onChange={c => setReg({ ...reg, consensi: c })} onOpenLegal={onOpenLegal} />
         </Screen>

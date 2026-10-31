@@ -134,16 +134,19 @@ test('badge: un badge già visto sbloccato resta sbloccato anche se la domanda t
   assert.equal(badge(stato, ['prima-domanda'])['prima-domanda'].sbloccato, true);
 });
 
-test('profilo: nome, avatar e corso ripuliti; senza nome è «Studente»', () => {
+test('profilo: nome e corso ripuliti; senza nome è «Studente»; un vecchio avatar si scarta e resta la lettera', () => {
   assert.deepEqual(normalizzaProfilo(undefined), PROFILO_INIZIALE);
   assert.deepEqual(normalizzaProfilo('boh'), PROFILO_INIZIALE);
   const p = normalizzaProfilo({ nome: '  Anna   Rossi ', avatar: 'sconosciuto', corso: 'x'.repeat(200) });
   assert.equal(p.nome, 'Anna Rossi');
-  assert.equal(p.avatar, 'iniziale');
   assert.equal(p.corso.length, 60);
   assert.equal(normalizzaProfilo({ nome: 'y'.repeat(100), avatar: 'successo' }).nome.length, NOME_MAX);
-  assert.equal(normalizzaProfilo({ avatar: 'successo' }).avatar, 'successo');
-  assert.equal(nomeVisibile(PROFILO_INIZIALE), 'Studente');
+  // profili salvati quando l'avatar era un'illustrazione: nessun errore, il campo sparisce e il resto resta
+  const vecchio = normalizzaProfilo({ nome: 'Anna', avatar: 'successo', corso: 'Design' });
+  assert.deepEqual(vecchio, { nome: 'Anna', corso: 'Design' });
+  assert.equal('avatar' in vecchio, false);
+  assert.deepEqual(normalizzaProfilo({ avatar: 'successo' }), PROFILO_INIZIALE);
+assert.equal(nomeVisibile(PROFILO_INIZIALE), 'Studente');
   assert.equal(iniziale(PROFILO_INIZIALE), 'S');
   assert.equal(iniziale({ ...PROFILO_INIZIALE, nome: 'élodie' }), 'É');
 });

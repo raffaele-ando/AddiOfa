@@ -46,7 +46,7 @@ export function SchermoRipasso() {
     <div className="flex h-full flex-col gap-2.5">
       <p className="text-[19px] font-extrabold tracking-[-0.02em] text-testo">Esercizi</p>
       <div className="rounded-2xl bg-azione-tinta p-3">
-        <div className="flex justify-center"><Illustrazione nome="quiz-test" kit="kit-luminoso" lato={84} /></div>
+        <div className="flex justify-center"><Illustrazione nome="quiz-test-lista" lato={84} /></div>
         <div className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-azione py-2.5 text-[13px] font-bold text-azione-su"><Icona nome="studia" size={16} />Allenamento consigliato</div>
       </div>
       <div className="grid grid-cols-2 gap-2">
@@ -84,7 +84,7 @@ export function SchermoSimulazione() {
 export function SchermoEsito() {
   return (
     <div className="flex h-full flex-col items-center gap-2 text-center">
-      <Illustrazione nome="celebrazione" lato={96} />
+      <Illustrazione nome="superamento" lato={96} />
       <p className="text-[34px] font-extrabold leading-none tracking-[-0.03em] text-testo">27<span className="text-[16px] text-testo-tenue">/{EXAM.questions}</span></p>
       <span className="flex items-center gap-1 rounded-full bg-alto-tinta px-3 py-1 text-[12px] font-extrabold text-alto-testo"><Icona nome="stato-ok" size={14} />Soglia raggiunta</span>
       <div className="mt-2 grid w-full grid-cols-3 gap-2">

@@ -84,7 +84,7 @@ export default function Classifica() {
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[15px] font-bold text-testo">{r.io ? `${r.nome} (tu)` : r.nome}</span>
                       <span className="flex items-center gap-3 text-[13px] tabular-nums text-testo-tenue">
-                        <span role="img" aria-label={`${r.duelli} duelli`} className="inline-flex items-center gap-1"><Icona nome="sfide" size={13} />{r.duelli} {r.duelli === 1 ? 'duello' : 'duelli'}</span>
+                        <span role="img" aria-label={`${r.duelli} duelli`} className="inline-flex items-center gap-1"><Icona nome="duello" size={13} />{r.duelli} {r.duelli === 1 ? 'duello' : 'duelli'}</span>
                         <span role="img" aria-label={`Tempo medio ${tempoBreve(r.secondiMedi)}`} className="inline-flex items-center gap-1 text-medio-testo"><Icona nome="tempo" size={13} />{tempoBreve(r.secondiMedi)}</span>
                       </span>
                     </span>

@@ -7,7 +7,7 @@ import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { lezioniPercorso, prossimaLezione, titoloBreve, type LezionePercorso } from '../../../lib/studio/percorso';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { Pagina, Bottone, StatoVuoto, BarraTono, ChipLivello, Arte } from './comune';
+import { Pagina, Bottone, StatoVuoto, BarraTono, ChipLivello, TesseraLezione, Arte } from './comune';
 
 const LIVELLI = ['A1', 'A2', 'B1'] as const;
 
@@ -28,7 +28,7 @@ function Riga({ l, prossima, onApri }: { l: LezionePercorso; prossima: boolean; 
         aria-label={`Lezione ${l.numero}: ${titolo}, ${st.nome}${prossima ? ', la prossima' : ''}`}
         className={cn('brand-premibile flex w-full items-center gap-3 py-2.5 text-left', prossima ? 'border-l-[3px] border-azione pl-3 pr-1' : 'pr-1')}>
         {/* Il numero della lezione: ogni riga è diversa dalle altre, niente miniature che si ripetono */}
-        <span aria-hidden="true" className={cn('grid h-11 w-11 shrink-0 place-items-center rounded-[12px] text-[16px] font-extrabold tabular-nums', prossima ? 'bg-azione-tinta text-azione-testo' : 'bg-superficie-2 text-testo-tenue')}>{l.numero}</span>
+        <TesseraLezione numero={l.numero} lato={44} tono={prossima ? 'azione' : 'neutra'} />
         <span className="flex-1 min-w-0">
           <span className="block text-[15px] leading-[20px] font-bold text-testo break-words">{titolo}</span>
           {prossima && <span className="mt-0.5 block text-[12.5px] leading-[16px] font-bold text-azione-testo">Prossima</span>}

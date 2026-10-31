@@ -46,7 +46,7 @@ export default function Simulazioni() {
             <Dato icona="soglia" tono="alto">Si supera con {f.passMark}</Dato>
           </ul>
         </div>
-        <Bottone className="mt-4" icona={<Icona nome="studia" size={20} />} onClick={avviaSimulazione}>Inizia la simulazione</Bottone>
+        <Bottone className="mt-4" icona={<Icona nome="simulazioni" size={20} />} onClick={avviaSimulazione}>Inizia la simulazione</Bottone>
       </Carta>
 
       <section aria-labelledby="titolo-svolte" className="mt-6 flex flex-col gap-2.5">

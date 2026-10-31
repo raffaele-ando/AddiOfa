@@ -6,8 +6,7 @@ import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { lezioniPercorso, filtroArgomento, titoloBreve } from '../../../lib/studio/percorso';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { famigliaDi } from '../../../lib/studio/famiglie';
-import { Pagina, Bottone, StatoVuoto, BarraTono, IconaTono, ChipLivello, Arte, type Tono } from './comune';
+import { Pagina, Bottone, StatoVuoto, BarraTono, IconaTono, ChipLivello, TesseraLezione, Arte, type Tono } from './comune';
 
 const CLASSE_RIGA = 'w-full flex items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left';
 
@@ -60,7 +59,7 @@ export default function LezioneDettaglio() {
 
   return (
     <Pagina titolo={titoloBreve(topic)} onIndietro={indietro}
-      destra={<Arte nome={famigliaDi(topic.id).illustrazione} lato={40} />}
+      destra={<TesseraLezione numero={l.numero} lato={44} tono="azione" />}
       sotto={
         <span className="inline-flex items-center gap-3">
           <ChipLivello livello={topic.livello} /><span className="sr-only">Livello {topic.livello}</span>
@@ -94,7 +93,7 @@ export default function LezioneDettaglio() {
         <div className="mt-5 flex flex-col items-center gap-3 rounded-[16px] bg-superficie-2 px-4 py-4">
           <Arte nome="documento-completato" gruppo="stati" lato={96} />
           {successiva && (
-            <Bottone onClick={() => vai('lezione-dettaglio', { id: successiva.topic.id })} icona={<Icona nome="studia" size={18} />}>Lezione successiva</Bottone>
+            <Bottone onClick={() => vai('lezione-dettaglio', { id: successiva.topic.id })} icona={<Icona nome="avanti" size={18} />}>Lezione successiva</Bottone>
           )}
         </div>
       )}

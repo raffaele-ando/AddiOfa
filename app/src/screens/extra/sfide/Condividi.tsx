@@ -12,7 +12,7 @@ export default function Condividi() {
     <Pagina titolo={params.titolo?.slice(0, 40) || 'Condividi'} onBack={indietro}>
       <div className="mt-2">
         {!url && !testo ? (
-          <Fermo illustrazione={{ nome: 'messaggi-supporto' }} titolo="Niente da condividere" causa="Fai una sfida o una simulazione, poi manda il risultato.">
+          <Fermo illustrazione={{ nome: 'vuoto' }} titolo="Niente da condividere" causa="Fai una sfida o una simulazione, poi manda il risultato.">
             <Bottone icona="simulazioni" onClick={avviaSimulazione}>Fai una simulazione</Bottone>
             <Bottone variante="secondario" icona="sfide" onClick={() => vai('sfide')}>Vai alle sfide</Bottone>
           </Fermo>

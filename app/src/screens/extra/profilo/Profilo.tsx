@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
-import { Disegno } from '../servizi/componenti';
 import { playTapSound } from '../../../lib/audio';
 import { nomeVisibile } from '../../../lib/profilo/dati';
 import { avanzamentoGiornaliero, avanzamentoStima, giorniMancanti, normalizzaObiettivi, OBIETTIVI_INIZIALI, type ObiettiviDati } from '../../../lib/profilo/obiettivi';
@@ -14,7 +13,7 @@ import { SCHERMATE } from '../registro';
 import { BarraTono, Carta, GruppoRighe, IconaTono, Riga, Sezione } from '../ui';
 import { useExtra, useExtraDati } from '../contesto';
 import { useInvio } from '../progetto/hooks';
-import { Avatar, Pagina, arteBadge, badgeInVista, useBadge, useBanco, useNumeri, useOggi, useProfilo } from './componenti';
+import { Avatar, IconaBadge, Pagina, badgeInVista, useBadge, useBanco, useNumeri, useOggi, useProfilo } from './componenti';
 
 /** Una riga della card dei progressi: nome, valore a destra, barra. */
 function RigaAvanzamento({ nome, valore, quota, tono }: { nome: string; valore: string; quota: number; tono: 'alto' | 'viola' }) {
@@ -176,7 +175,7 @@ export default function Profilo() {
           <ul className="mt-3 flex items-start justify-between gap-1" aria-label="Badge in vista">
             {inVista.map(b => (
               <li key={b.id} className="flex w-[64px] justify-center" title={b.titolo}>
-                <span className={b.sbloccato ? '' : 'opacity-45'} role="img" aria-label={`${b.titolo}: ${b.sbloccato ? 'ottenuto' : b.avanzamento}`}><Disegno nome={arteBadge(b)} lato={56} /></span>
+                <span className={b.sbloccato ? '' : 'opacity-45'} role="img" aria-label={`${b.titolo}: ${b.sbloccato ? 'ottenuto' : b.avanzamento}`}><IconaBadge b={b} lato={56} /></span>
               </li>
             ))}
           </ul>
@@ -187,7 +186,7 @@ export default function Profilo() {
       {SCHERMATE.esplora && (
         <Sezione id="pr-community" titolo="Community">
           <GruppoRighe etichetta="Community">
-            <Riga icona="amici" titolo="Community" sottotitolo="Project ID, ATLAS, NOI, Agorà" onClick={() => vai('esplora')} />
+            <Riga icona="community" titolo="Community" sottotitolo="Project ID, ATLAS, NOI, Agorà" onClick={() => vai('esplora')} />
           </GruppoRighe>
         </Sezione>
       )}

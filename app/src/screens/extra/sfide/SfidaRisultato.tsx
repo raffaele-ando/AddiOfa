@@ -35,7 +35,7 @@ function RivediRisposte({ voce, primario }: { voce: VoceSfida; primario: boolean
   if (stato === 'errore' || !c) {
     return (
       <Carta tono="medio" className="flex flex-col gap-3">
-        <p role="alert" className="flex items-center gap-2 text-[15px] font-bold text-medio-testo"><Icona nome="stato-attenzione" size={20} className="shrink-0 text-medio-numero" />Non riesco a caricare le correzioni.</p>
+        <p role="alert" className="flex items-center gap-2 text-[15px] font-bold text-medio-testo"><Icona nome="stato-errore" size={20} className="shrink-0 text-errore-testo" />Non riesco a caricare le correzioni.</p>
         <Bottone variante="secondario" icona="riprova" onClick={() => void apri()}>Riprova</Bottone>
       </Carta>
     );
@@ -57,7 +57,7 @@ export default function SfidaRisultato() {
   if (!voce) {
     return (
       <Pagina titolo="Sfida" onBack={indietro}>
-        <Fermo illustrazione={{ nome: 'ricerca' }} titolo="Sfida non trovata" causa="Il link non è valido o la sfida non è più disponibile.">
+        <Fermo illustrazione={{ nome: 'ricerca-scintille' }} titolo="Sfida non trovata" causa="Il link non è valido o la sfida non è più disponibile.">
           <Bottone icona="sfide" onClick={() => vai('sfide')}>Vai alle sfide</Bottone>
         </Fermo>
       </Pagina>
@@ -110,7 +110,7 @@ export default function SfidaRisultato() {
               <p aria-hidden className="text-[34px] leading-[38px] font-extrabold tabular-nums text-testo">{voce.corrette}<span className="text-[18px] font-bold text-testo-tenue">/{voce.totale}</span></p>
               <p aria-hidden className="mt-0.5 text-[14px] font-semibold text-testo-tenue"><Tempo secondi={voce.secondi} /> / {tempoBreve(SECONDI_SFIDA)}</p>
             </div>
-            {duello ? <Illustrazione nome="attesa" lato={68} /> : <Illustrazione nome="successo" lato={96} />}
+            {duello ? <Illustrazione nome="attesa" lato={68} /> : <Illustrazione nome="celebrazione-fiocco" lato={96} />}
           </Carta>
         )}
 
@@ -122,7 +122,7 @@ export default function SfidaRisultato() {
                 <FoglioCondividi aperto={foglio} onChiudi={() => setFoglio(false)} testo={testo} url={url} titolo="Condividi" />
               </>
             ) : (
-              <p role="alert" className="flex items-center gap-2 text-[14px] font-bold text-errore-testo"><Icona nome="stato-attenzione" size={18} />Non riesco a creare il link. Riprova dopo aver giocato di nuovo.</p>
+              <p role="alert" className="flex items-center gap-2 text-[14px] font-bold text-errore-testo"><Icona nome="stato-errore" size={18} />Non riesco a creare il link. Riprova dopo aver giocato di nuovo.</p>
             )}
             {!sfidato && !avv && (
               <Carta className="flex flex-col gap-3">

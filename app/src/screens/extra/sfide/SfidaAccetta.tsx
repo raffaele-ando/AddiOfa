@@ -118,14 +118,11 @@ export default function SfidaAccetta() {
   return (
     <div className="relative h-full">
       <Pagina titolo={`${dati.nome} ti sfida`} onBack={() => vai('sfide')} destra={<PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />}>
-        <div className="mt-3 flex justify-center">
-          <Illustrazione kit="kit-luminoso" nome="successo" lato={128} />
-        </div>
         <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} className="mt-3 text-center" />
         <Carta className="mt-5 flex flex-col gap-3">
           <Campo id="nome-accetta" etichetta="Il tuo nome" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
             segnaposto="Come ti chiami?" maxLength={NOME_MAX} errore={erroreNome} onInvio={gioca} />
-          <Bottone icona="studia" onClick={gioca}>Accetta la sfida</Bottone>
+          <Bottone icona="duello" onClick={gioca}>Accetta la sfida</Bottone>
         </Carta>
       </Pagina>
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Regole">{regole}</FoglioInfo>

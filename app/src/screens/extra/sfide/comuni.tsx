@@ -56,7 +56,7 @@ export function Campo({ id, etichetta, valore, onCambia, segnaposto, maxLength, 
           aria-invalid={errore ? true : undefined} aria-describedby={errore ? `${id}-err` : undefined}
           className={cn('h-12 w-full min-w-0 rounded-[12px] border border-bordo-campo bg-superficie pr-4 text-[16px] font-semibold text-testo placeholder:font-normal placeholder:text-testo-tenue focus:border-azione focus:outline-none focus:ring-2 focus:ring-azione/30', icona ? 'pl-11' : 'pl-3.5')} />
       </div>
-      {errore && <p id={`${id}-err`} role="alert" className="flex items-center gap-1.5 text-[13px] font-bold text-errore-testo"><Icona nome="stato-attenzione" size={15} />{errore}</p>}
+      {errore && <p id={`${id}-err`} role="alert" className="flex items-center gap-1.5 text-[13px] font-bold text-errore-testo"><Icona nome="stato-errore" size={15} />{errore}</p>}
     </div>
   );
 }
@@ -73,7 +73,7 @@ export function DatiSfida({ domande, minuti, className }: { domande: number; min
 /** L'esito di un confronto, solo icona e colore (verde, ambra, corallo smorzato) più una parola: «Vinto», «Pari», «Perso». */
 const ESITO_VISTA = {
   vinto: { nome: 'stato-vinto', tono: 'alto', parola: 'Vinto' },
-  pari: { nome: 'trend-uguale', tono: 'medio', parola: 'Pari' },
+  pari: { nome: 'stato-pari', tono: 'medio', parola: 'Pari' },
   perso: { nome: 'stato-perso', tono: 'basso', parola: 'Perso' },
 } as const satisfies Record<Esito, { nome: NomeIcona; tono: Tono; parola: string }>;
 
@@ -126,11 +126,12 @@ function Colonna({ nome, r, io, vince }: { nome: string; r: Risultato; io?: bool
   );
 }
 
-/** L'illustrazione di ogni esito: vinto = coriandoli luminosi, pari = il fiocco, perso = il quiz (calmo: una sfida persa non è un fallimento, niente foglio con la croce). */
+/** Il segno di ogni esito: solo «vinto» ha un'illustrazione (i coriandoli, che nell'app non fanno altro che questo); «pari» e «perso» hanno solo l'icona di stato,
+ *  nel tono dell'esito (calmo: una sfida persa non è un fallimento, niente illustrazione che la ingrandisca). */
 export function IlluEsito({ esito }: { esito: Esito }) {
   if (esito === 'vinto') return <Illustrazione kit="kit-luminoso" nome="celebrazione" lato={104} />;
-  if (esito === 'pari') return <Illustrazione nome="celebrazione-fiocco" lato={92} />;
-  return <Illustrazione nome="quiz-test" lato={96} />;
+  const e = ESITO_VISTA[esito];
+  return <span aria-hidden="true" className={TONI[e.tono].testo}><Icona nome={e.nome} size={44} /></span>;
 }
 
 /** L'esito di un duello: UN blocco tinto nel tono dell'esito (verde vinto, ambra pari, corallo smorzato perso) con l'illustrazione, la frase

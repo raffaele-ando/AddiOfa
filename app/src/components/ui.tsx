@@ -150,7 +150,7 @@ export function ChoiceCard({ selected, onClick, title, subtitle, avanza }: {
         {subtitle && <span className="text-[14px] leading-[20px] font-medium text-testo-tenue">{subtitle}</span>}
       </span>
       {selected
-        ? <Icona nome="stato-risposta-giusta" size={22} className="text-azione-testo" />
+        ? <Icona nome="selezionato" size={22} className="text-azione-testo" />
         : avanza ? <Icona nome="avanti" size={20} className="text-testo-tenue" /> : null}
     </button>
   );
@@ -205,6 +205,27 @@ export function Titolo({ etichetta, titolo, sotto, destra }: { etichetta?: strin
  * `min`: altezza sotto cui la zona non scende (le schermate di racconto la vogliono sempre).
  */
 export function Eroe({ nome, kit = 'kit-blu', gruppo, max = 280, min = 0, className }: { nome: string; kit?: 'kit-blu' | 'kit-luminoso'; gruppo?: string; max?: number; min?: number; className?: string }) {
+  const [ref, lato] = useLatoZona(max);
+  return (
+    <div ref={ref} aria-hidden="true" data-eroe className={cn('flex flex-1 basis-0 items-center justify-center overflow-hidden', className)} style={{ minHeight: min }}>
+      {lato > 0 && <Illustrazione kit={kit} nome={nome} gruppo={gruppo} lato={lato} />}
+    </div>
+  );
+}
+
+/** Come `Eroe`, ma con l'icona della funzione al posto dell'illustrazione, quando nessuna illustrazione dice la cosa giusta (e nessuna può essere riciclata):
+ *  la stessa zona flessibile, l'icona nuda nel colore d'azione (nessuna cornice, nessun cerchio), al massimo `max` px. */
+export function EroeIcona({ icona, max = 112, min = 0, className }: { icona: NomeIcona; max?: number; min?: number; className?: string }) {
+  const [ref, lato] = useLatoZona(max);
+  return (
+    <div ref={ref} aria-hidden="true" data-eroe className={cn('flex flex-1 basis-0 items-center justify-center overflow-hidden text-azione-testo', className)} style={{ minHeight: min }}>
+      {lato > 0 && <Icona nome={icona} size={lato} />}
+    </div>
+  );
+}
+
+/** Misura la zona flessibile: il lato dell'immagine è il minore fra `max`, la larghezza e l'altezza della zona; sotto i 96 px non si disegna nulla. */
+function useLatoZona(max: number) {
   const ref = useRef<HTMLDivElement>(null);
   const [lato, setLato] = useState(0);
   useEffect(() => {
@@ -220,11 +241,7 @@ export function Eroe({ nome, kit = 'kit-blu', gruppo, max = 280, min = 0, classN
     ro.observe(el);
     return () => ro.disconnect();
   }, [max]);
-  return (
-    <div ref={ref} aria-hidden="true" data-eroe className={cn('flex flex-1 basis-0 items-center justify-center overflow-hidden', className)} style={{ minHeight: min }}>
-      {lato > 0 && <Illustrazione kit={kit} nome={nome} gruppo={gruppo} lato={lato} />}
-    </div>
-  );
+  return [ref, lato] as const;
 }
 
 /** Riga di racconto (Perché farlo): icona nuda a sinistra (24 px, nel colore della fascia), frase intera 17/24, filetto sotto. Nessun riquadro. */
