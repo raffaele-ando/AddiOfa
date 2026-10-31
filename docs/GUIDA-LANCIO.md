@@ -11,7 +11,7 @@ Prima di cominciare, due controlli veloci sul dominio, per non creare conflitti:
 1. Apri https://dash.cloudflare.com → menu a sinistra **Workers & Pages** → **Create application** → scegli **Import a repository** (se vedi due schede, quella «Workers») → **GitHub** → autorizza e scegli il repository **AddiOfa**.
 2. Compila i campi così:
    - **Project name**: `atlas`
-   - **Production branch**: `claude/folder-review-h3xnww`
+   - **Production branch**: `main`
    - **Root directory** (in «Advanced settings» o «Build settings»): `atlas`
    - **Build command**: lascia vuoto
    - **Deploy command**: `npx wrangler deploy`
@@ -29,7 +29,7 @@ Prima di cominciare, due controlli veloci sul dominio, per non creare conflitti:
 1. **Workers & Pages → Create application** → scheda **Pages** → **Import an existing Git repository** → repository **AddiOfa**.
 2. Compila i campi:
    - **Project name**: `addiofa`
-   - **Production branch**: `claude/folder-review-h3xnww`
+   - **Production branch**: `main`
    - **Framework preset**: `None`
    - **Build command**: `cd app && npm ci && npm run build`
    - **Build output directory**: `app/dist`
@@ -81,7 +81,7 @@ Se un passaggio non va, scrivimi quale e cosa vedi: ti dico il testo esatto da c
 ## Blocco 6 · Facoltativo, quando vuoi
 
 - Togli i due file non più usati: su GitHub apri `app/firebase-applet-config.json` → ⋯ → **Delete file** → Commit; poi lo stesso per `app/bun.lock`.
-- Portare tutto su `main`: https://github.com/raffaele-ando/AddiOfa/compare/main...claude/folder-review-h3xnww → **Create pull request** → **Merge**; poi cambia il **Production branch** del Worker `atlas` e del progetto Pages in `main` (Settings → Builds).
+- Il lavoro è già su `main` (unito il 31/10): non serve nessun merge.
 - Pulizia del vecchio Worker `ofa`: solo se confermi che non ti serve più (non l'ho toccato).
 
 ---
