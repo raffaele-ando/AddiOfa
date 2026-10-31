@@ -3,6 +3,7 @@
 // L'accesso prova soltanto l'account Google: non dimostra di essere uno studente del Politecnico.
 import type { Auth, User } from 'firebase/auth';
 import { FIREBASE_CONFIG } from '../config/ecosystem';
+import { inAppNativa } from './nativo';
 import { CHIAVE_VERIFICA_EMAIL, emailCoincide, impostazioniLink, messaggioVerifica, sembraLinkDiAccesso } from './progetto/verificaEmail';
 
 export const isDemoMode = (): boolean => import.meta.env.VITE_MODE === 'demo';
@@ -20,7 +21,8 @@ const PROVA: { uid: string; nome: string } | null = (() => {
 const utenteProva = (): User => ({ uid: PROVA!.uid, displayName: PROVA!.nome, email: `${PROVA!.uid}@example.test`, photoURL: null }) as unknown as User;
 
 /** L'accesso con Google si può offrire solo con la configurazione di Firebase e fuori dalla build a file unico. */
-export const loginDisponibile = (): boolean => !!PROVA || (!isDemoMode() && !!FIREBASE_CONFIG);
+// Dentro l'app Android la finestra di accesso di Google e il link per email (che riporta a un indirizzo web) non funzionano: lì l'accesso non si offre.
+export const loginDisponibile = (): boolean => !!PROVA || (!isDemoMode() && !inAppNativa() && !!FIREBASE_CONFIG);
 
 /** Errore di login con un messaggio già pronto da mostrare nella pagina. */
 export class LoginError extends Error {}

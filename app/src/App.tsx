@@ -8,6 +8,7 @@ import { AppState, UserStats, ExamHistory, OnboardingResult, LegalSection } from
 import { loadState, saveState, updateStreak, exportData, importData } from './lib/storage';
 import { getQuestionStats, applySm2, qualityForResult } from './lib/spacedRepetition';
 import { chiaveGiorno } from './lib/utils';
+import { inAppNativa } from './lib/nativo';
 import { questions } from './data/questions';
 import Menu from './components/Menu';
 import Esercizi from './screens/Esercizi';
@@ -124,6 +125,24 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   const apriLegale = (s: LegalSection) => { setLegalSection(s); apri('legal'); };
 
   useEffect(() => { coda.avvia(); }, []); // invio delle iscrizioni ad ATLAS, con nuovi tentativi
+
+  // Tasto «indietro» di Android: torna alla schermata precedente; dalla Home (o dalla landing) esce dall'app.
+  const indietroNativo = useRef<() => void>(() => {});
+  indietroNativo.current = () => {
+    const v = viewRef.current;
+    if (v === 'extra') { indietroExtra(); return; }
+    if (v === 'menu' || v === 'landing') { void import('@capacitor/app').then(m => m.App.exitApp()); return; }
+    if (pila.current.length > 0) indietro(); else setView('menu');
+  };
+  useEffect(() => {
+    if (!inAppNativa()) return;
+    let tolto = false; let rimuovi: (() => void) | undefined;
+    void import('@capacitor/app').then(async m => {
+      const l = await m.App.addListener('backButton', () => indietroNativo.current());
+      if (tolto) void l.remove(); else rimuovi = () => void l.remove();
+    });
+    return () => { tolto = true; rimuovi?.(); };
+  }, []);
 
   useEffect(() => {
     // Update streak on load
