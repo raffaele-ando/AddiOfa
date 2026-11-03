@@ -1,13 +1,8 @@
 name: APK Android
 # Costruisce l'APK di prova (firmato con la chiave di debug, installabile a mano). Si lancia da GitHub: Actions → «APK Android» → Run workflow.
-# Scarica il file dalla sezione «Artifacts» della esecuzione. Facoltativo: l'indirizzo del server ATLAS (senza barra finale).
+# Scarica il file dalla sezione «Artifacts» della esecuzione.
 on:
   workflow_dispatch:
-    inputs:
-      atlas_url:
-        description: "Indirizzo del Worker ATLAS (es. https://atlas.nome.workers.dev), vuoto = non collegato"
-        required: false
-        default: ""
 jobs:
   apk:
     runs-on: ubuntu-latest
@@ -24,8 +19,6 @@ jobs:
           java-version: 21
       - name: Costruisci il sito e sincronizza Android
         working-directory: app
-        env:
-          VITE_ATLAS_API_URL: ${{ inputs.atlas_url }}
         run: |
           npm ci
           npm run build

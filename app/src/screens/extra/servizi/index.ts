@@ -6,5 +6,6 @@ export const SCHERMATE_SERVIZI: Record<string, DefSchermata> = {
   segnala: { titolo: 'Segnala un problema', carica: () => import('./Segnala'), barra: 'nessuna' },
   'stato-vuoto': { titolo: 'Niente da vedere', carica: () => import('./StatoVuoto'), barra: 'nessuna' },
   offline: { titolo: 'Offline', carica: () => import('./Offline'), barra: 'nessuna' },
+  admin: { titolo: 'Iscrizioni', carica: () => import('./Admin'), barra: 'nessuna' },
   splash: { titolo: 'Avvio', carica: () => import('./SplashExtra'), barra: null },
 };

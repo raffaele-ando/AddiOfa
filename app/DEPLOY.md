@@ -22,7 +22,7 @@ Si copia il **contenuto** di `app/dist/` nel posto da cui il sito viene servito.
 - **Cloudflare Pages, Netlify, Vercel, GitHub Pages**: comando di build `npm run build`, cartella di base `app`, cartella di uscita `dist`. Nessuna variabile d'ambiente.
 - Consigliato HTTPS (lo fanno tutti i servizi sopra): serve a salvare i progressi nel browser in modo affidabile e a usare il sito come app sul telefono («Aggiungi alla schermata Home»).
 
-Cosa il sito **non** fa: non c'è un service worker, quindi per aprirlo serve la connessione; una volta caricato, domande e correzioni sono già nella pagina e non chiede altro alla rete. L'uso offline completo non è fornito.
+Uso offline: il sito registra un service worker (`sw.js`, generato dalla build con vite-plugin-pwa) che salva tutti i file (circa 4 MB) alla prima visita; da lì in poi si apre anche senza rete e si può installare («Installa app» in Chrome, «Aggiungi a schermata Home» su iPhone). Si aggiorna da solo alla visita successiva a una nuova pubblicazione. Le funzioni che richiedono il server (iscrizioni, classifica NOI, Project ID) dicono «non collegato» finché non c'è rete.
 
 ## Aggiornare
 
@@ -38,8 +38,6 @@ Stanno solo nel browser di ciascuno (`localStorage`): non passano da nessun serv
 
 `npm run build:demo` (dalla cartella `app/`) produce `app/dist-demo/index.html`, un solo file con tutto incorporato (JavaScript, CSS, font, immagini), e `app/dist-demo/artifact.html`, la stessa pagina nel formato per essere incollata in una pagina claude.ai (senza `<html>`, `<head>`, `<body>`). Poi `tools/check-artifact.mjs` controlla peso (limite 8 MB, obiettivo 3 MB), rete esterna e funzioni vietate (`alert(`, `confirm(`, `prompt(`, `serviceWorker.register`, `window.print`, host esterni). È la stessa app: nessuna funzione è tolta o simulata. Se cambia la grafica, rilanciare prima `npm run grafica:sync` dalla radice.
 
-## I Worker
-
 ## ATLAS: iscrizioni, Project ID, classifica NOI
 
-Il sito funziona da solo, ma le iscrizioni (nome, email PoliMi, corso), l'accesso con Google e la classifica NOI passano dal Worker ATLAS in `atlas/`. Finché non è pubblicato l'app lo dice («in attesa di collegamento») e tiene le iscrizioni in coda nel dispositivo, poi le invia da sola. Per collegarlo: pubblica il Worker (`atlas/DEPLOY.md`), poi imposta alla build `VITE_ATLAS_API_URL` e le `VITE_FIREBASE_*` (elenco in `app/.env.example`) e metti il dominio del sito in `ALLOWED_ORIGINS` del Worker. Prima del lancio compila `TITOLARE` e `CONTACT_EMAIL` in `app/src/config/offer.ts` e fai rivedere i testi legali.
+Sul sito pubblicato con Cloudflare Pages l'API di ATLAS è **nello stesso progetto**: `functions/v1/[[path]].ts` rende `atlas/src` disponibile sotto `/v1/*` sullo stesso indirizzo del sito, e `wrangler.jsonc` alla radice dichiara database D1, variabili e origini consentite. Non servono un secondo Worker né variabili di build: l'app usa da sola l'indirizzo del sito (da https). L'unico segreto, `ADMIN_TOKEN`, si imposta nel pannello di Pages; la pagina `?vista=admin` del sito scarica le iscrizioni in CSV con quella password. Guida passo per passo: `docs/GUIDA-LANCIO.md`.

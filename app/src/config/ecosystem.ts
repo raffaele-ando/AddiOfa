@@ -2,6 +2,8 @@
 // NOI (classifica e community), Agorà (la pagina per gli studenti del Politecnico). Nomi e permessi stanno qui, in un posto solo.
 // I permessi devono coincidere con atlas/src/scopes.ts (lato server).
 
+import { inAppNativa } from '../lib/nativo';
+
 export const ECOSYSTEM = {
   name: 'Project',           // l'autore: la famiglia di app
   accountName: 'Project ID', // l'account unico per tutte le app
@@ -18,9 +20,17 @@ export const AGORA_HANDLE = 'polimi.agora';
 /** Una sola frase: chi sono gli autori e che cosa non sono. Compare in Esplora, nella registrazione e nelle pagine legali. */
 export const FRASE_PROJECT = 'AddiOFA fa parte di Project, insieme a NOI, ATLAS e Agorà. Progetto studentesco indipendente, non affiliato al Politecnico di Milano.';
 
-// URL del Worker ATLAS (es. https://atlas.<sottodominio>.workers.dev), impostato alla build con VITE_ATLAS_API_URL.
-// Senza URL l'app non contatta nessun server: le iscrizioni restano in coda nel dispositivo e NOI dice «non collegato».
-export const ATLAS_API_URL: string | undefined = import.meta.env.VITE_ATLAS_API_URL?.replace(/\/+$/, '') || undefined;
+// Indirizzo dell'API di ATLAS. Nel sito pubblicato su Cloudflare Pages l'API risponde sullo stesso indirizzo del sito (/v1/*, vedi functions/ e wrangler.jsonc):
+// basta aprire il sito da https. Nell'app Android si usa l'indirizzo del sito. Si può forzare alla build con VITE_ATLAS_API_URL (senza barra finale).
+// Nella build a file unico, in sviluppo (http://localhost) e nei test non c'è nessun server: l'app lo dice («non collegato») e tiene i dati nel dispositivo.
+const SITO_PUBBLICO = 'https://addiofa.theproject.world';
+export const ATLAS_API_URL: string | undefined = (() => {
+  const forzato = import.meta.env.VITE_ATLAS_API_URL?.replace(/\/+$/, '');
+  if (forzato) return forzato;
+  if (import.meta.env.VITE_MODE === 'demo' || typeof window === 'undefined') return undefined;
+  if (inAppNativa()) return SITO_PUBBLICO;
+  return window.location.protocol === 'https:' ? window.location.origin : undefined;
+})();
 
 /**
  * Configurazione pubblica di Firebase del progetto di Project (serve solo per «Accedi con Google» e per il link di verifica dell'email).

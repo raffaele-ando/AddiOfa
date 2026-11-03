@@ -2,11 +2,30 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
+import {VitePWA} from 'vite-plugin-pwa';
 
 export default defineConfig(() => {
   return {
     base: './',
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(),
+      tailwindcss(),
+      // Uso offline: il service worker salva tutti i file del sito (circa 4 MB) alla prima visita; da lì in poi il sito si apre anche senza rete.
+      // Il manifesto è quello di public/manifest.json; la registrazione è in src/main.tsx (non nell'app Android, che ha già i file dentro).
+      VitePWA({
+        injectRegister: false,
+        manifest: false,
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,svg,png,webp,woff2,json,ico}'],
+          maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
+          navigateFallback: 'index.html',
+          navigateFallbackDenylist: [/^\/v1\//],
+          cleanupOutdatedCaches: true,
+          clientsClaim: true,
+          skipWaiting: true,
+        },
+      }),
+    ],
     resolve: {
       dedupe: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'react-dom/client'],
       alias: {

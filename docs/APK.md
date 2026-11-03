@@ -5,10 +5,10 @@ L'app Android è lo stesso sito dentro una WebView (Capacitor): i file del sito 
 ## Cosa cambia rispetto al sito
 - Funziona offline. I progressi stanno nella memoria dell'app (si perdono se si disinstalla: usa «Esporta» nelle Impostazioni).
 - Il tasto «indietro» di Android torna alla schermata precedente; dalla Home esce dall'app. Orientamento verticale.
-- «Accedi con Google» e il link di verifica email non si offrono nell'app (la finestra di Google e il link, che riporta a un indirizzo web, non funzionano in una WebView): l'accesso a Project ID resta sul sito. Le iscrizioni e la classifica NOI funzionano solo con il server ATLAS collegato (`VITE_ATLAS_API_URL`); il server accetta la chiamata dall'app perché `https://localhost` è tra le `ALLOWED_ORIGINS` di `atlas/wrangler.jsonc`.
+- «Accedi con Google» e il link di verifica email non si offrono nell'app (la finestra di Google e il link, che riporta a un indirizzo web, non funzionano in una WebView): l'accesso a Project ID resta sul sito. Le iscrizioni e la classifica NOI usano il server ATLAS dello stesso progetto Pages (`https://addiofa.theproject.world/v1`): funzionano con la rete e solo dopo che il sito è pubblicato; il server accetta la chiamata dall'app perché `https://localhost` è tra le `ALLOWED_ORIGINS` di `wrangler.jsonc`.
 
 ## Costruire l'APK
-- **Da GitHub, senza comandi**: Actions → **APK Android** → **Run workflow** (campo facoltativo: indirizzo del server ATLAS) → a fine esecuzione scarica `AddiOFA-apk` dagli Artifacts.
+- **Da GitHub, senza comandi**: Actions → **APK Android** → **Run workflow** → a fine esecuzione scarica `AddiOFA-apk` dagli Artifacts.
 - **Da terminale** (serve JDK 21 e Android SDK): `cd app && npm run build && npx cap sync android && cd android && ./gradlew assembleDebug` → `app/android/app/build/outputs/apk/debug/app-debug.apk`.
 
 ## Installare
