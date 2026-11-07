@@ -10,7 +10,9 @@ Dominio: `addiofa.theproject.world` oggi non risponde a nessun sito (verificato)
 
 Un solo progetto contiene sito **e** server: niente secondo Worker, niente indirizzi da copiare.
 
-1. Apri https://dash.cloudflare.com → **Workers & Pages** → **Create application** → scheda **Pages** → **Import an existing Git repository** → collega GitHub e scegli **AddiOfa**.
+1. Apri https://dash.cloudflare.com → **Workers & Pages** → **Create application** → scheda **Pages** (NON la scheda Workers) → **Import an existing Git repository** → collega GitHub e scegli **AddiOfa**.
+   - **Controllo**: se nella schermata compare il campo **Deploy command** (o «npx wrangler deploy»), sei nella scheda Workers: torna indietro e scegli **Pages**. Un progetto Pages non ha nessun comando di deploy da scrivere: pubblica da solo la cartella `app/dist`.
+   - **Se hai già creato un progetto dalla scheda Workers** (con il nome AddiOfa, atlas o simile): eliminalo (Settings → Delete) prima di crearne uno nuovo dalla scheda Pages. Il messaggio «It seems that you have run wrangler deploy on a Pages project» o «Missing entry-point» è esattamente questo errore.
 2. Compila i campi:
    - **Project name**: `addiofa`
    - **Production branch**: `main`
