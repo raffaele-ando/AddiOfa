@@ -1,22 +1,32 @@
 {
-  // Progetto Cloudflare Pages «addiofa»: il sito (app/dist) e l'API di ATLAS (functions/v1) sullo stesso indirizzo.
-  // Pages legge questo file: database e variabili sono qui. Il segreto ADMIN_TOKEN no (si imposta nel pannello: Settings → Variables and Secrets).
+  // Un solo progetto Cloudflare (Worker con file statici): il sito (app/dist) e l'API di ATLAS (atlas/src) sullo stesso indirizzo.
+  // Le richieste a /v1/* vanno al server ATLAS; tutto il resto è il sito statico (serviti da Cloudflare senza passare dal server).
+  // Il segreto ADMIN_TOKEN non sta qui: si imposta nel pannello (Settings → Variables and Secrets).
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "addiofa",
-  "pages_build_output_dir": "app/dist",
+  "main": "atlas/src/index.ts",
   "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "./app/dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/v1/*"],
+    "not_found_handling": "single-page-application"
+  },
   "vars": {
     "FIREBASE_PROJECT_ID": "mimetic-resolver-7szp9",
     "ACCOUNT_ID_PREFIX": "PRJ",
-    // Chi può chiamare l'API dal browser: il sito (stesso indirizzo) e l'app Android (https://localhost).
-    "ALLOWED_ORIGINS": "https://addiofa.theproject.world,https://addiofa.pages.dev,https://localhost",
+    // Chi può chiamare l'API da un altro sito nel browser. Il sito stesso (stesso indirizzo) non ha bisogno di questo elenco;
+    // serve all'app Android (https://localhost).
+    "ALLOWED_ORIGINS": "https://addiofa.theproject.world,https://localhost",
     "SIGNUP_RATE_LIMIT": "10"
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "atlas",
-      "database_id": "fae6dddc-a787-474b-9699-e23bab53eb4d"
+      "database_id": "fae6dddc-a787-474b-9699-e23bab53eb4d",
+      "migrations_dir": "atlas/migrations"
     }
   ]
 }

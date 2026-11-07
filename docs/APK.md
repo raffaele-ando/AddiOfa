@@ -5,7 +5,7 @@ L'app Android è lo stesso sito dentro una WebView (Capacitor): i file del sito 
 ## Cosa cambia rispetto al sito
 - Funziona offline. I progressi stanno nella memoria dell'app (si perdono se si disinstalla: usa «Esporta» nelle Impostazioni).
 - Il tasto «indietro» di Android torna alla schermata precedente; dalla Home esce dall'app. Orientamento verticale.
-- «Accedi con Google» e il link di verifica email non si offrono nell'app (la finestra di Google e il link, che riporta a un indirizzo web, non funzionano in una WebView): l'accesso a Project ID resta sul sito. Le iscrizioni e la classifica NOI usano il server ATLAS dello stesso progetto Pages (`https://addiofa.theproject.world/v1`): funzionano con la rete e solo dopo che il sito è pubblicato; il server accetta la chiamata dall'app perché `https://localhost` è tra le `ALLOWED_ORIGINS` di `wrangler.jsonc`.
+- «Accedi con Google» e il link di verifica email non si offrono nell'app (la finestra di Google e il link, che riporta a un indirizzo web, non funzionano in una WebView): l'accesso a Project ID resta sul sito. Le iscrizioni e la classifica NOI usano il server ATLAS dello stesso progetto Cloudflare (`https://addiofa.theproject.world/v1`, oppure l'indirizzo `workers.dev` se il dominio non è ancora collegato: vedi `app/src/config/ecosystem.ts`): funzionano con la rete e solo dopo che il sito è pubblicato; il server accetta la chiamata dall'app perché `https://localhost` è tra le `ALLOWED_ORIGINS` di `wrangler.jsonc`.
 
 ## Costruire l'APK
 - **Da GitHub, senza comandi**: Actions → **APK Android** → **Run workflow** → a fine esecuzione scarica `AddiOFA-apk` dagli Artifacts.

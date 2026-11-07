@@ -1,49 +1,48 @@
 # Guida al lancio: solo browser, solo copia e incolla
 
-Stato al 3/11: **tutto il collegamento è nel codice** (sul branch `main`). Sito, server (API di ATLAS), database, uso offline, app Android e pagina per scaricare le iscrizioni sono un unico progetto che Cloudflare pubblica da GitHub. Il database `atlas` nel tuo Cloudflare è già a posto (tabelle create). Restano solo le cose che richiedono i tuoi account: 4 blocchi, circa 25 minuti. I testi in `questo stile` si copiano così come sono.
+Stato al 7/11: **tutto il collegamento è nel codice** (sul branch `main`). Sito, server (API di ATLAS), database, uso offline, app Android e pagina per scaricare le iscrizioni sono un unico progetto Cloudflare che si pubblica da GitHub. Il database `atlas` nel tuo Cloudflare è già a posto (tabelle create). Restano solo le cose che richiedono i tuoi account: 4 blocchi, circa 25 minuti. I testi in `questo stile` si copiano così come sono.
 
 Dominio: `addiofa.theproject.world` oggi non risponde a nessun sito (verificato) e `theproject.world` sembra gestito da **Namecheap**: per questo al blocco 2 si aggiunge un record DNS lì.
 
 ---
 
-## Blocco 1 · Il progetto su Cloudflare Pages (10 minuti)
+## Blocco 1 · Il progetto su Cloudflare, da GitHub (10 minuti)
 
-Un solo progetto contiene sito **e** server: niente secondo Worker, niente indirizzi da copiare.
+Un solo progetto contiene sito **e** server: il sito è la cartella `app/dist`, le richieste a `/v1/*` vanno al server ATLAS. Cloudflare costruisce e pubblica da solo a ogni modifica del branch `main`.
 
-1. Apri https://dash.cloudflare.com → **Workers & Pages** → **Create application** → scheda **Pages** (NON la scheda Workers) → **Import an existing Git repository** → collega GitHub e scegli **AddiOfa**.
-   - **Controllo**: se nella schermata compare il campo **Deploy command** (o «npx wrangler deploy»), sei nella scheda Workers: torna indietro e scegli **Pages**. Un progetto Pages non ha nessun comando di deploy da scrivere: pubblica da solo la cartella `app/dist`.
-   - **Se hai già creato un progetto dalla scheda Workers** (con il nome AddiOfa, atlas o simile): eliminalo (Settings → Delete) prima di crearne uno nuovo dalla scheda Pages. Il messaggio «It seems that you have run wrangler deploy on a Pages project» o «Missing entry-point» è esattamente questo errore.
+1. Apri https://dash.cloudflare.com → **Workers & Pages** → **Create application** → **Import a repository** (scegli la voce con il nome del repository, non «Start with Hello World») → collega GitHub e scegli **AddiOfa**.
 2. Compila i campi:
-   - **Project name**: `addiofa`
+   - **Project name**: `addiofa` (deve essere questo nome: è quello scritto nel file `wrangler.jsonc`)
    - **Production branch**: `main`
-   - **Framework preset**: `None`
+   - **Root directory**: lascia vuoto
    - **Build command**: `cd app && npm ci && npm run build`
-   - **Build output directory**: `app/dist`
-3. Apri **Environment variables (advanced)** e aggiungi una variabile (Production): nome `NODE_VERSION`, valore `20`.
-4. **Save and Deploy**. Aspetta «Success».
-5. Password per scaricare le iscrizioni: nel progetto **addiofa** → **Settings → Variables and Secrets → Add**:
+   - **Deploy command**: `npx wrangler deploy`
+   - **Variables and secrets** (Build variables): aggiungi `NODE_VERSION` = `20`
+3. **Save and Deploy**. Aspetta che il log finisca con `Success`.
+4. Password per scaricare le iscrizioni: apri il progetto **addiofa** → **Settings → Variables and Secrets → Add**:
    - **Type**: `Secret`
    - **Variable name**: `ADMIN_TOKEN`
    - **Value**: una password lunga (almeno 20 caratteri) generata da un gestore di password; conservala. (Ti ho dato in chat un valore pronto: non è scritto in questo file.)
-   - **Save**, poi **Deployments → ⋯ sull'ultimo deploy → Retry deployment** (i segreti valgono dal deploy successivo).
-6. Controlli, nel browser:
-   - `https://addiofa.pages.dev` → deve comparire la landing.
-   - `https://addiofa.pages.dev/v1/health` → deve rispondere con un messaggio che contiene `"ok":true`.
+   - **Deploy** (o **Save** e poi **Deployments → Retry deployment**): il segreto vale dal deploy successivo.
+5. Trova l'indirizzo provvisorio nella pagina del progetto (del tipo `https://addiofa.NOME.workers.dev`), e controlla nel browser:
+   - `https://addiofa.NOME.workers.dev` → deve comparire la landing.
+   - `https://addiofa.NOME.workers.dev/v1/health` → deve rispondere con un messaggio che contiene `"ok":true`.
 
-(Il database D1 `atlas`, le variabili e le origini consentite sono già dichiarati nel file `wrangler.jsonc` del repository: Cloudflare li applica da solo. Se invece al passo 4 compare un errore sul database, apri Settings → Functions → D1 database bindings e aggiungi: nome `DB`, database `atlas`.)
+**Se il log dice «Missing entry-point» o «run wrangler deploy on a Pages project»**: il file `wrangler.jsonc` alla radice del repository, dopo l'ultimo aggiornamento, dichiara un Worker con gli asset: se vedi questi messaggi, la causa è che il progetto è stato creato con un altro tipo. Elimina il progetto (Settings → Delete), poi ricrealo come sopra da **Import a repository**.
 
-## Blocco 2 · Il tuo dominio `addiofa.theproject.world` (5-10 minuti)
+## Blocco 2 · Il tuo dominio `addiofa.theproject.world` (5-15 minuti)
 
-1. Nel progetto Pages **addiofa** → **Custom domains** → **Set up a custom domain** → scrivi `addiofa.theproject.world` → **Continue**. Cloudflare ti mostra il record da creare e resta in attesa.
-2. Apri https://ap.www.namecheap.com/domains/list/ → accanto a `theproject.world` premi **Manage** → scheda **Advanced DNS** → **Add New Record**:
-   - **Type**: `CNAME Record`
-   - **Host**: `addiofa`
-   - **Value**: `addiofa.pages.dev`
-   - **TTL**: `Automatic`
-   - salva con la spunta verde.
-3. Torna su Cloudflare → Custom domains → **Check DNS / Verify**. Dopo 1-15 minuti lo stato diventa **Active**. Apri `https://addiofa.theproject.world`.
+Un progetto Worker accetta un dominio personale **solo se il dominio è gestito da Cloudflare**. Prima controlla se `theproject.world` è nel tuo account:
 
-(Se `theproject.world` è invece gestito da Cloudflare, al punto 1 il record si aggiunge da solo: salta il punto 2. Se compare un conflitto con un Worker esistente — nel tuo account c'è un Worker `ofa` — apri Workers & Pages → `ofa` → Settings → Domains & Routes, togli `addiofa.theproject.world` e riprova.)
+1. Apri https://dash.cloudflare.com (la home) e guarda l'elenco dei siti (**Websites**). Se c'è `theproject.world`:
+   - Apri il progetto **addiofa** → **Settings → Domains & Routes → Add → Custom domain** → scrivi `addiofa.theproject.world` → **Add domain**. Cloudflare crea da solo il record DNS.
+2. Se `theproject.world` **non** è nel tuo Cloudflare, hai due strade:
+   - **Subito**: usa l'indirizzo `https://addiofa.NOME.workers.dev` (già pronto). Funziona tutto, con l'app Android compresa, a patto che l'indirizzo sia quello usato nei passi successivi.
+   - **Dopo, con calma**: aggiungi `theproject.world` a Cloudflare (Websites → Add a site) e cambia i nameserver da Namecheap (Domain List → Manage → Nameservers → Custom DNS) con quelli che Cloudflare ti indica. Attenzione: il reindirizzamento del dominio principale `theproject.world` fatto da Namecheap (URL Forward) va ricreato su Cloudflare prima di cambiare i nameserver, altrimenti smette di funzionare. Se non sei sicuro, chiedilo prima.
+
+## Blocco 2 bis · Lista di controllo del dominio
+- Il dominio è `addiofa.theproject.world` oppure `addiofa.NOME.workers.dev`: scegli uno dei due e usa lo stesso ovunque (Firebase, guida, app Android).
+- Se cambi indirizzo, l'app Android va ricostruita (il workflow su GitHub) perché l'indirizzo è scritto nell'app.
 
 ## Blocco 3 · Firebase: login con Google e verifica email (5 minuti)
 
@@ -51,7 +50,7 @@ Apri https://console.firebase.google.com/project/mimetic-resolver-7szp9/authenti
 
 1. **Sign-in method → Google → Abilita** → come email di assistenza `andolinaraffaele70@gmail.com` → **Salva**.
 2. **Sign-in method → Aggiungi nuovo provider → Email/Password → Abilita**, poi accendi anche **«Link via email (accesso senza password)»** → **Salva**.
-3. **Settings → Authorized domains → Aggiungi dominio** (due volte): `addiofa.theproject.world` e `addiofa.pages.dev`.
+3. **Settings → Authorized domains → Aggiungi dominio**: l'indirizzo che usi (`addiofa.theproject.world` oppure `addiofa.NOME.workers.dev`).
 
 ## Blocco 4 · Prove (5 minuti)
 
@@ -79,7 +78,7 @@ Non richiede nessun passaggio dei blocchi sopra per provarla: l'APK che ti ho in
 
 ## Cosa ho già fatto io (non devi rifarlo)
 
-- Un unico progetto: sito + API di ATLAS (`functions/v1`) + database D1 + origini consentite (`wrangler.jsonc`), provato in locale: sito, `/v1/health`, iscrizione, password dell'autore, scarico CSV.
+- Un unico Worker con file statici: sito (`app/dist`) + API di ATLAS (`/v1/*`) + database D1 + origini consentite (`wrangler.jsonc`), provato in locale con `wrangler dev`: sito, `/v1/health`, iscrizione, password dell'autore, scarico CSV.
 - Uso offline (service worker): provato in Chromium con la rete spenta.
 - App Android (APK) con Capacitor; workflow GitHub per ricostruirla.
 - Database `atlas` nel tuo Cloudflare: migrazioni 0002 e 0003 applicate e verificate.
@@ -91,4 +90,4 @@ Non richiede nessun passaggio dei blocchi sopra per provarla: l'APK che ti ho in
 - **Cancellare i dati di chi non ha Project ID**: dalla Console D1, con le istruzioni di `atlas/DEPLOY.md` (sezione 7).
 - **L'email PoliMi del percorso resta «non verificata» sul server**: solo sul dispositivo di chi preme «Verifica» diventa verificata.
 - **Nell'app Android** «Accedi con Google» e il link di verifica email non sono disponibili (restano sul sito).
-- **Non provato da me**: Cloudflare Pages e Firebase veri (i menu possono avere nomi un po' diversi), l'APK su un telefono vero, Safari/iPhone, lettore di schermo. I testi legali vanno rivisti da chi ne ha l'autorità.
+- **Non provato da me**: Cloudflare Workers e Firebase veri (i menu possono avere nomi un po' diversi), l'APK su un telefono vero, Safari/iPhone, lettore di schermo. I testi legali vanno rivisti da chi ne ha l'autorità.
