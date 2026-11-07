@@ -20,7 +20,7 @@ export const AGORA_HANDLE = 'polimi.agora';
 /** Una sola frase: chi sono gli autori e che cosa non sono. Compare in Esplora, nella registrazione e nelle pagine legali. */
 export const FRASE_PROJECT = 'AddiOFA fa parte di Project, insieme a NOI, ATLAS e Agorà. Progetto studentesco indipendente, non affiliato al Politecnico di Milano.';
 
-// Indirizzo dell'API di ATLAS. Nel sito pubblicato su Cloudflare Pages l'API risponde sullo stesso indirizzo del sito (/v1/*, vedi functions/ e wrangler.jsonc):
+// Indirizzo dell'API di ATLAS. Nel sito pubblicato su Cloudflare l'API risponde sullo stesso indirizzo del sito (/v1/*, vedi wrangler.jsonc alla radice):
 // basta aprire il sito da https. Nell'app Android si usa l'indirizzo del sito. Si può forzare alla build con VITE_ATLAS_API_URL (senza barra finale).
 // Nella build a file unico, in sviluppo (http://localhost) e nei test non c'è nessun server: l'app lo dice («non collegato») e tiene i dati nel dispositivo.
 const SITO_PUBBLICO = 'https://addiofa.theproject.world';

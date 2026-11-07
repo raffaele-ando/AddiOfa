@@ -1,6 +1,6 @@
 # ATLAS
 
-Algoritmo e infrastruttura condivisi dalle app Project: un Worker Cloudflare con database D1.
+Algoritmo e infrastruttura condivisi dalle app Project: un Worker Cloudflare (`addiofa`, dal file `wrangler.jsonc` alla radice) con database D1.
 
 - **Project ID**: un account unico per tutte le app, creato al primo accesso dal login Google (Firebase Auth).
 - **Collegamenti tra app**: un'app può leggere o condividere dati solo dopo il consenso, permesso per permesso. Ogni concessione, modifica e revoca finisce in `consent_log`.
@@ -8,8 +8,8 @@ Algoritmo e infrastruttura condivisi dalle app Project: un Worker Cloudflare con
 
 ## Stato su Cloudflare
 
-- Database D1 **`atlas`** già creato (id `fae6dddc-a787-474b-9699-e23bab53eb4d`, Europa occidentale) con lo schema di `migrations/0001_init.sql` già applicato.
-- Il Worker **non è ancora pubblicato**. Passi esatti (migrazione `0002_signups.sql`, segreto `ADMIN_TOKEN`, `ALLOWED_ORIGINS`, Firebase, variabili dell'app, esportazione e cancellazione dei dati): **`DEPLOY.md`**.
+- Database D1 **`atlas`** (id `fae6dddc-a787-474b-9699-e23bab53eb4d`, Europa occidentale) con le migrazioni 0001, 0002 e 0003 applicate e verificate.
+- Il Worker è creato come `addiofa`, con il dominio `addiofa.theproject.world`. Il codice pubblicato dipende dal collegamento al repository: vedi `docs/GUIDA-LANCIO.md`. Istruzioni operative: **`DEPLOY.md`**.
 
 ## Sviluppo locale
 

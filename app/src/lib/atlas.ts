@@ -1,7 +1,7 @@
 // Client dell'API ATLAS (il Worker Cloudflare in atlas/). Due modi di chiamare:
 //  - pubblico, senza token: l'iscrizione (`POST /v1/signups`), che l'app fa subito dopo la registrazione;
 //  - con il token del login Google (Project ID): account, permessi, classifica NOI, esportazione e cancellazione.
-// Se `VITE_ATLAS_API_URL` non c'è, ogni chiamata si rifiuta con AtlasNonConfigurato: l'app lo dice con una riga vera e resta locale.
+// Sul sito in https l'indirizzo è quello del sito stesso (vedi config/ecosystem.ts). Senza indirizzo (build demo, http, test) ogni chiamata si rifiuta con AtlasNonConfigurato: l'app lo dice con una riga vera e resta locale.
 import { getIdToken } from './firebase';
 import { ATLAS_API_URL, CONSENT_VERSION, ECOSYSTEM, type ScopeId } from '../config/ecosystem';
 

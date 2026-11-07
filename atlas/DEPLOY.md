@@ -1,124 +1,32 @@
-# ATLAS: come si pubblica
+# ATLAS: come funziona e come si gestisce
 
-Worker Cloudflare + database D1 `atlas` (id `fae6dddc-a787-474b-9699-e23bab53eb4d`, Europa occidentale, già creato).
-Tutti i comandi si lanciano da `atlas/`. Il Worker non è ancora pubblicato: da questa sessione non c'è accesso a Cloudflare.
+ATLAS non è un progetto a parte: è il server del sito. Un solo Worker Cloudflare, `addiofa`, dichiarato in `wrangler.jsonc` alla radice, serve:
+- le richieste a `/v1/*` con il codice di `atlas/src/` (iscrizioni, Project ID, classifica NOI, esportazione);
+- tutto il resto con i file statici del sito (`app/dist`).
 
-## 1. Prima volta
+Il database D1 `atlas` (id `fae6dddc-a787-474b-9699-e23bab53eb4d`) è già creato e con le migrazioni 0001-0003 applicate. Per il lancio passo per passo, con i testi da incollare: `docs/GUIDA-LANCIO.md`. Qui sotto solo i riferimenti tecnici.
 
-```bash
-cd atlas
-npm ci
-npx wrangler login                       # una volta sola, apre il browser
-npx wrangler d1 list                     # controlla che compaia "atlas" con l'id sopra
-```
+## 1. Migrazioni (già applicate)
 
-Se il database non esistesse più: `npx wrangler d1 create atlas` e copia il nuovo `database_id` in `wrangler.jsonc`.
+I file sono in `atlas/migrations/`. Se in futuro se ne aggiunge una, dalla console del database (Cloudflare → Storage & Databases → D1 → atlas → Console) si incolla il file, nell'ordine di numerazione. Le migrazioni non cancellano dati.
 
-## 2. Migrazioni sul database vero
+## 2. Segreti e variabili
 
-```bash
-npx wrangler d1 migrations list atlas --remote     # cosa manca
-npx wrangler d1 migrations apply atlas --remote    # applica 0002_signups.sql e 0003_percorso_studi.sql (la 0001 è già applicata)
-```
+- `ADMIN_TOKEN` (segreto): password per scaricare le iscrizioni. Si imposta da Cloudflare: progetto `addiofa` → Settings → Variables and Secrets. Senza di lui le rotte `/v1/admin/*` rispondono 404. Dopo ogni modifica serve un nuovo deploy.
+- `ALLOWED_ORIGINS` (in `wrangler.jsonc`): chi può chiamare l'API dal browser da un altro sito. Il sito stesso non ne ha bisogno (stesso indirizzo). Serve `https://localhost` per l'app Android. Mai `*` in produzione.
+- `ALLOW_TEST_TOKENS`: NON deve esserci in produzione (accetta token finti `test:<uid>:<nome>`, serve solo in locale con `.dev.vars`).
+- `FIREBASE_PROJECT_ID` = `mimetic-resolver-7szp9`: il Worker accetta solo ID token emessi da quel progetto.
 
-`0002_signups.sql` aggiunge `signups`, `rate_limit`, la colonna `accounts.polimi_email` e ricostruisce `consent_log`
-(stesse righe e stessi id, in più `signup_id`; `account_id` diventa facoltativo).
-`0003_percorso_studi.sql` aggiunge a `signups` le colonne facoltative `scuola`, `livello`, `anno` (le righe esistenti restano con valore vuoto) e gli indici su `scuola`, `livello`, `corso`.
-Nessuna delle due cancella dati. Fai comunque un backup prima:
+## 3. Firebase (login)
 
-```bash
-npx wrangler d1 export atlas --remote --output=atlas-backup.sql    # il file contiene dati personali: non va nel repository
-```
+Console Firebase, progetto `mimetic-resolver-7szp9`: abilitare Google, Email/Password con «Link via email», e aggiungere il dominio del sito ai domini autorizzati. Le chiavi pubbliche di Firebase sono nel codice del sito: non sono segreti.
 
-## 3. Configurazione
+## 4. Iscrizioni: come scaricarle
 
-### Origini consentite (CORS)
+- Pagina nel sito: `https://addiofa.theproject.world/?vista=admin` → password → «Scarica tutte le iscrizioni» (o «Solo chi accetta le email»).
+- Da riga di comando (facoltativo): `curl -H "Authorization: Bearer <ADMIN_TOKEN>" "https://addiofa.theproject.world/v1/admin/signups?formato=csv" -o iscrizioni.csv`. Filtri: `&comunicazioni=1`, `&scuola=icat`, `&livello=magistrale`.
 
-In `wrangler.jsonc`, sezione `vars`, metti l'indirizzo del sito che chiama l'API, senza barra finale. Più origini si separano con la virgola:
-
-```jsonc
-"ALLOWED_ORIGINS": "https://addiofa.example,https://www.addiofa.example"
-```
-
-Vuoto (com'è ora) significa che nessun sito può chiamare l'API dal browser. `*` funziona **solo in locale**
-(con `ALLOW_TEST_TOKENS=true` in `.dev.vars`): in produzione viene ignorato. Dopo ogni cambio serve un nuovo `deploy`.
-
-### Progetto Firebase che verifica i login
-
-`FIREBASE_PROJECT_ID` in `wrangler.jsonc` è `mimetic-resolver-7szp9`, lo stesso `projectId` di `app/firebase-applet-config.json`.
-Il Worker accetta solo ID token emessi da quel progetto (controlla firma, `iss`, `aud` e scadenza).
-
-### Segreto dell'autore per scaricare le iscrizioni
-
-```bash
-openssl rand -base64 32                  # genera un segreto lungo: copialo e conservalo (gestore di password)
-npx wrangler secret put ADMIN_TOKEN      # incolla il segreto quando lo chiede
-```
-
-Finché `ADMIN_TOKEN` non è impostato la rotta `/v1/admin/signups` risponde 404, come se non esistesse. Per spegnerla di nuovo: `npx wrangler secret delete ADMIN_TOKEN`.
-
-### Cosa NON impostare in produzione
-
-`ALLOW_TEST_TOKENS` (accetta token finti `test:<uid>:<nome>`): sta solo nel file `.dev.vars`, che è ignorato da git e da `wrangler deploy`.
-Controllo: `npx wrangler secret list` non deve mostrarlo e `wrangler.jsonc` non lo contiene.
-
-## 4. Deploy
-
-```bash
-npm run typecheck && npm test            # prove in locale (vedi sotto)
-npx wrangler deploy                      # pubblica su https://atlas.<tuo-sottodominio>.workers.dev
-curl https://atlas.<tuo-sottodominio>.workers.dev/v1/health
-```
-
-Verifica rapida dell'iscrizione pubblica (usa un indirizzo di prova tuo, poi cancellalo come al punto 7):
-
-```bash
-curl -X POST https://atlas.<tuo-sottodominio>.workers.dev/v1/signups \
-  -H 'Content-Type: application/json' \
-  -d '{"appId":"addiofa","email":"tuonome@mail.polimi.it","scuola":"icat","sede":"leonardo","livello":"triennale","corso":"Ingegneria Civile","anno":1,"provenienza":"amici","consensi":{"noi":false,"atlas":false,"comunicazioni":false},"consentVersion":"iscrizione-2026-10-16"}'
-# risposta attesa: {"ok":true}  (senza "nome" il Worker lo ricava dall'email: tuonome -> "Tuonome")
-```
-
-## 5. Lato app (sito)
-
-L'app legge l'indirizzo del Worker e la configurazione Firebase da variabili Vite, impostate **al momento della build** (non sono segreti: finiscono nel codice del sito).
-Se non c'è `VITE_ATLAS_API_URL` l'app mostra «non collegato» e tiene i dati nel dispositivo.
-
-```bash
-VITE_ATLAS_API_URL=https://atlas.<tuo-sottodominio>.workers.dev
-VITE_FIREBASE_API_KEY=<apiKey di app/firebase-applet-config.json>
-VITE_FIREBASE_AUTH_DOMAIN=mimetic-resolver-7szp9.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=mimetic-resolver-7szp9
-VITE_FIREBASE_APP_ID=<appId di app/firebase-applet-config.json>
-```
-
-I nomi esatti vanno allineati con quelli che legge il codice dell'app (`app/src/lib/`); il valore di `VITE_FIREBASE_PROJECT_ID` deve essere uguale a `FIREBASE_PROJECT_ID` del Worker, altrimenti ogni login dà 401 «aud non valido».
-Poi `npm run build` dall'app e ripubblica il sito (vedi `app/DEPLOY.md`).
-
-### Firebase Authentication (console Firebase, progetto `mimetic-resolver-7szp9`)
-
-1. **Authentication → Sign-in method → Google → Abilita** (scegli l'email di assistenza del progetto e salva).
-2. **Authentication → Settings → Authorized domains → Add domain**: aggiungi il dominio del sito (es. `addiofa.example`, e quello `*.pages.dev` se lo usi). `localhost` c'è già per lo sviluppo.
-3. Consigliato: nella console Google Cloud, limita la chiave API Firebase ai referrer HTTP del sito (la chiave non è segreta, ma così non la usa nessun altro).
-
-## 6. Iscrizioni: come esportarle
-
-```bash
-export ADMIN_TOKEN='...il segreto del punto 3...'
-export ATLAS=https://atlas.<tuo-sottodominio>.workers.dev
-
-curl -H "Authorization: Bearer $ADMIN_TOKEN" "$ATLAS/v1/admin/signups?formato=csv"  -o iscrizioni.csv
-curl -H "Authorization: Bearer $ADMIN_TOKEN" "$ATLAS/v1/admin/signups?formato=json" -o iscrizioni.json
-# solo chi ha dato il consenso «comunicazioni»:
-curl -H "Authorization: Bearer $ADMIN_TOKEN" "$ATLAS/v1/admin/signups?formato=csv&comunicazioni=1" -o contatti.csv
-# per percorso di studi (i filtri si combinano): scuola = ing-ind-inf | icat | auic | design, livello = triennale | magistrale | ciclo-unico
-curl -H "Authorization: Bearer $ADMIN_TOKEN" "$ATLAS/v1/admin/signups?formato=csv&scuola=icat&livello=magistrale" -o icat-magistrale.csv
-```
-
-Il segreto va nell'header `Authorization`, mai nell'indirizzo (nell'URL verrebbe rifiutato). Il file ha come colonne `id, email, nome, app, scuola, sede, livello, corso, anno, provenienza, consenso_noi, consenso_atlas, consenso_comunicazioni, versione_consenso, email_verificata, project_id, creato, aggiornato` (UTF-8 con BOM, si apre in Excel e Fogli; le celle che inizierebbero con `=`, `+`, `-`, `@` sono precedute da un apice, per non farle eseguire come formule).
-Le colonne `scuola`, `sede`, `livello`, `corso`, `anno` e `provenienza` sono facoltative e possono essere vuote (iscrizioni fatte prima della 0003 o senza percorso indicato); `sede` e `provenienza` nelle righe vecchie possono essere testo libero. Per uso marketing contano solo le righe con `consenso_comunicazioni = 1`. Il file contiene dati personali: non va nel repository né in chat.
-
-Senza il comando curl, dalla riga di comando del database: `npx wrangler d1 execute atlas --remote --command "SELECT email, nome, corso, sede, consenso_comunicazioni FROM signups ORDER BY id"`.
+Il file CSV contiene dati personali: non va nel repository né in chat.
 
 ## 7. Cancellare i dati di una persona su richiesta
 

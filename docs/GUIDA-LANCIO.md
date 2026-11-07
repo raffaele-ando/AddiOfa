@@ -17,13 +17,15 @@ Un solo progetto contiene sito **e** server: il sito è la cartella `app/dist`, 
    - **Root directory**: lascia vuoto
    - **Build command**: `cd app && npm ci && npm run build`
    - **Deploy command**: `npx wrangler deploy`
-   - **Variables and secrets** (Build variables): aggiungi `NODE_VERSION` = `20`
+   - **Variables and secrets** (Build variables): aggiungi `NODE_VERSION` = `22`
 3. **Save and Deploy**. Aspetta che il log finisca con `Success`.
 4. Password per scaricare le iscrizioni: apri il progetto **addiofa** → **Settings → Variables and Secrets → Add**:
    - **Type**: `Secret`
    - **Variable name**: `ADMIN_TOKEN`
    - **Value**: una password lunga (almeno 20 caratteri) generata da un gestore di password; conservala. (Ti ho dato in chat un valore pronto: non è scritto in questo file.)
    - **Deploy** (o **Save** e poi **Deployments → Retry deployment**): il segreto vale dal deploy successivo.
+
+**Se il Worker `addiofa` esiste già** (lo hai creato con «Start with Hello World»): il dominio `addiofa.theproject.world` risulta già collegato a lui e il Worker mostra ancora il testo di prova «Hello world». Non serve crearne un altro: apri il Worker → **Settings → Builds** → **Connect** → scegli il repository **AddiOfa**, branch `main`, Root directory vuota, Build command `cd app && npm ci && npm run build`, Deploy command `npx wrangler deploy` → **Save**, poi **Deployments → Retry deployment** (o fai un piccolo commit su `main`).
 5. Trova l'indirizzo provvisorio nella pagina del progetto (del tipo `https://addiofa.NOME.workers.dev`), e controlla nel browser:
    - `https://addiofa.NOME.workers.dev` → deve comparire la landing.
    - `https://addiofa.NOME.workers.dev/v1/health` → deve rispondere con un messaggio che contiene `"ok":true`.
