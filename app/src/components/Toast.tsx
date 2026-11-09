@@ -49,7 +49,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
           return (
             <div key={m.id} className="pointer-events-auto w-full max-w-sm flex items-start gap-2.5 rounded-2xl bg-superficie-2 border border-linea px-3.5 py-3 shadow-lg dark:shadow-none">
               <Icona nome={ICONE[m.tipo]} size={20} className={`mt-0.5 shrink-0 ${COLORI[m.tipo]}`} />
-              <p className="flex-1 min-w-0 text-sm text-testo break-words">{m.testo}</p>
+              <p className="flex-1 min-w-0 text-s2 text-testo break-words">{m.testo}</p>
               <button type="button" onClick={() => chiudi(m.id)} aria-label="Chiudi il messaggio" className="shrink-0 text-testo-tenue hover:text-testo p-0.5">
                 <Icona nome="chiudi" size={18} />
               </button>

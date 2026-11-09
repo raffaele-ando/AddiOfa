@@ -23,7 +23,7 @@ export function Screen({ children, className, testata, piede }: {
   const nuovo = testata !== undefined || piede !== undefined;
   return (
     // Su desktop una sola colonna da 480 px, la stessa del telefono: si progetta una volta sola.
-    <div className="h-full w-full sm:max-w-[480px] sm:mx-auto bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col">
+    <div className="h-full w-full sm:max-w-[480px] sm:mx-auto bg-superficie sm:rounded-2xl sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col">
       {testata !== undefined && <div className="shrink-0 px-5 sm:px-6 pt-1 sm:pt-4">{testata}</div>}
       <div className={cn(
         'flex flex-col flex-1 min-h-0 gap-4 overflow-y-auto scrollbar-hide',
@@ -33,7 +33,7 @@ export function Screen({ children, className, testata, piede }: {
         {children}
       </div>
       {piede !== undefined && (
-        <div className="relative shrink-0 flex flex-col gap-2 px-5 sm:px-6 pt-3 pb-5 sm:pb-6 before:pointer-events-none before:absolute before:inset-x-0 before:-top-4 before:h-4 before:bg-gradient-to-t before:from-superficie before:to-transparent">
+        <div className="relative shrink-0 flex flex-col gap-2 px-5 sm:px-6 pt-3 pb-5 sm:pb-6 before:pointer-events-none before:absolute before:inset-x-0 before:-top-4 before:h-4 before:bg-[linear-gradient(in_oklch_to_top,var(--color-superficie),transparent)]">
           {piede}
         </div>
       )}
@@ -87,7 +87,7 @@ export function PrimaryButton({ children, onClick, disabled, className, senzaFre
       disabled={disabled}
       className={cn(
         // disattivo = superficie e testo tenue (leggibile in tutti e due i temi), non il blu al 40 %
-        'w-full min-h-14 bg-azione hover:bg-azione-scuro text-azione-su font-bold text-[17px] leading-[24px] py-3.5 px-6 rounded-2xl shadow-sm dark:shadow-none flex items-center justify-center gap-2 transition-colors duration-100 disabled:bg-superficie-2 disabled:text-testo-tenue disabled:shadow-none disabled:border disabled:border-linea disabled:pointer-events-none shrink-0',
+        'w-full min-h-14 bg-azione hover:bg-azione-scuro text-azione-su font-bold text-s3 leading-[24px] py-3.5 px-6 rounded-2xl shadow-sm dark:shadow-none flex items-center justify-center gap-2 transition-colors duration-100 disabled:bg-superficie-2 disabled:text-testo-tenue disabled:shadow-none disabled:border disabled:border-linea disabled:pointer-events-none shrink-0',
         className,
       )}
     >
@@ -102,7 +102,7 @@ export function SecondaryButton({ children, onClick, className }: { children: Re
     <button
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        'w-full min-h-12 py-2.5 px-6 font-semibold text-[16px] leading-[22px] text-testo bg-transparent border border-bordo-campo rounded-2xl hover:bg-superficie-2 transition-colors duration-100 shrink-0',
+        'w-full min-h-12 py-2.5 px-6 font-semibold text-s2 leading-[22px] text-testo bg-transparent border border-bordo-campo rounded-2xl hover:bg-superficie-2 transition-colors duration-100 shrink-0',
         className,
       )}
     >
@@ -115,7 +115,7 @@ export function SecondaryButton({ children, onClick, className }: { children: Re
 export function TastoTesto({ children, onClick, icona, className, etichetta }: { children: ReactNode; onClick: () => void; icona?: NomeIcona; className?: string; etichetta?: string }) {
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }} aria-label={etichetta}
-      className={cn('inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl px-3 text-[15px] leading-[20px] font-semibold text-testo-tenue hover:text-testo transition-colors duration-100', className)}>
+      className={cn('inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl px-3 text-s2 leading-[20px] font-semibold text-testo-tenue hover:text-testo transition-colors duration-100', className)}>
       {icona && <Icona nome={icona} size={18} />}{children}
     </button>
   );
@@ -146,8 +146,8 @@ export function ChoiceCard({ selected, onClick, title, subtitle, avanza }: {
       )}
     >
       <span className="flex min-w-0 flex-1 flex-col">
-        <span className="text-[17px] leading-[24px] font-semibold text-testo">{title}</span>
-        {subtitle && <span className="text-[14px] leading-[20px] font-medium text-testo-tenue">{subtitle}</span>}
+        <span className="text-s3 leading-[24px] font-semibold text-testo">{title}</span>
+        {subtitle && <span className="text-s2 leading-[20px] font-medium text-testo-tenue">{subtitle}</span>}
       </span>
       {selected
         ? <Icona nome="selezionato" size={22} className="text-azione-testo" />
@@ -173,7 +173,7 @@ export function Segmenti<T extends string | number>({ voci, valore, onChange, et
         return (
           <button key={String(v.id)} type="button" role="radio" aria-checked={sel} onClick={() => { playTapSound(); onChange(v.id); }}
             className={cn(
-              'rounded-2xl border px-2 text-[16px] leading-[22px] font-semibold transition-colors duration-100',
+              'rounded-2xl border px-2 text-s2 leading-[22px] font-semibold transition-colors duration-100',
               compatto ? 'min-h-12' : 'min-h-14',
               sel ? 'border-azione ring-1 ring-azione bg-azione-tinta text-azione-testo' : 'border-tacca bg-superficie-2 text-testo hover:bg-linea',
             )}>
@@ -189,12 +189,12 @@ export function Segmenti<T extends string | number>({ voci, valore, onChange, et
 export function Titolo({ etichetta, titolo, sotto, destra }: { etichetta?: string; titolo: string; sotto?: ReactNode; destra?: ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      {etichetta && <p data-testo-ok className="text-[13px] leading-[18px] font-medium text-testo-tenue tabular-nums">{etichetta}</p>}
+      {etichetta && <p data-testo-ok className="text-s1 leading-[18px] font-medium text-testo-tenue tabular-nums">{etichetta}</p>}
       <div className="flex items-start gap-2">
-        <h2 data-testo-ok className="min-w-0 flex-1 text-[28px] leading-[34px] font-bold text-testo">{titolo}</h2>
+        <h2 data-testo-ok className="min-w-0 flex-1 text-s5 leading-[38px] font-bold text-testo">{titolo}</h2>
         {destra}
       </div>
-      {sotto && <p data-testo-ok className="text-[16px] leading-[24px] text-testo-tenue">{sotto}</p>}
+      {sotto && <p data-testo-ok className="text-s2 leading-[24px] text-testo-tenue">{sotto}</p>}
     </div>
   );
 }
@@ -250,7 +250,7 @@ export function RigaStoria({ icona, testo, tono = 'azione' }: { icona: NomeIcona
   return (
     <li className="flex items-start gap-3.5 border-b border-linea py-3 last:border-b-0">
       <Icona nome={icona} size={24} className={cn('mt-0.5', colore)} />
-      <span data-testo-ok className="min-w-0 flex-1 text-[17px] leading-[24px] font-semibold text-testo">{testo}</span>
+      <span data-testo-ok className="min-w-0 flex-1 text-s3 leading-[24px] font-semibold text-testo">{testo}</span>
     </li>
   );
 }

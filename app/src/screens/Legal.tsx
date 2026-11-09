@@ -7,7 +7,7 @@ import { LEGAL_DOCS, LEGAL_TABS } from '../legal';
 import { ICONE_LEGALI } from './Footer';
 
 const MISURA = 'mx-auto w-full max-w-[65ch]';
-const TESTO = 'text-[15px] leading-[1.7] text-testo';
+const TESTO = 'text-s2 leading-[1.7] text-testo';
 
 export default function Legal({ section, onBack, onSection }: {
   section: LegalSection;
@@ -42,7 +42,7 @@ export default function Legal({ section, onBack, onSection }: {
               aria-controls="legal-pannello"
               onClick={() => onSection(t.id)}
               className={cn(
-                'flex min-h-[52px] flex-col items-center justify-center rounded-lg px-1 py-2 text-[13px] font-bold transition-colors duration-100',
+                'flex min-h-[52px] flex-col items-center justify-center rounded-xl px-1 py-2 text-s1 font-bold transition-colors duration-100',
                 t.id === section
                   ? 'bg-superficie text-testo shadow-sm dark:shadow-none'
                   : 'text-testo-tenue hover:text-testo'
@@ -55,16 +55,16 @@ export default function Legal({ section, onBack, onSection }: {
         </div>
 
         <article id="legal-pannello" data-testo-ok role="tabpanel" aria-labelledby={`tab-${section}`} className="flex flex-col gap-3">
-          <h1 className="text-2xl font-extrabold leading-tight text-testo">{doc.titolo}</h1>
-          <p className="text-[13px] text-testo-tenue">Aggiornato il {doc.aggiornato}</p>
+          <h1 className="text-s4 font-extrabold leading-tight text-testo">{doc.titolo}</h1>
+          <p className="text-s1 text-testo-tenue">Aggiornato il {doc.aggiornato}</p>
 
           <nav aria-label="Indice della pagina" className="rounded-xl bg-superficie-2">
             <details className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-3 text-sm font-bold text-testo [&::-webkit-details-marker]:hidden">
-                <h2 className="flex items-center gap-2 text-sm font-bold"><Icona nome="indice" size={18} />Indice <span className="font-normal text-testo-tenue">{doc.sezioni.length}</span></h2>
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-3 text-s2 font-bold text-testo [&::-webkit-details-marker]:hidden">
+                <h2 className="flex items-center gap-2 text-s2 font-bold"><Icona nome="indice" size={18} />Indice <span className="font-normal text-testo-tenue">{doc.sezioni.length}</span></h2>
                 <Icona nome="espandi" size={20} className="shrink-0 text-testo-tenue group-open:rotate-180" />
               </summary>
-              <ol className="space-y-0.5 px-3 pb-3 text-sm">
+              <ol className="space-y-0.5 px-3 pb-3 text-s2">
                 {doc.sezioni.map((s, i) => (
                   <li key={sid(i)}>
                     <button
@@ -82,7 +82,7 @@ export default function Legal({ section, onBack, onSection }: {
 
           {doc.sezioni.map((s, i) => (
             <section key={sid(i)} id={sid(i)} className="scroll-mt-4 border-t border-linea pt-5 mt-2">
-              <h2 className="text-[17px] font-extrabold leading-snug text-testo">
+              <h2 className="text-s3 font-extrabold leading-snug text-testo">
                 <span className="mr-1.5 text-azione-testo tabular-nums">{i + 1}.</span>{s.titolo}
               </h2>
               {s.paragrafi.map((p, j) => (

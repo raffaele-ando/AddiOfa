@@ -35,7 +35,7 @@ function RivediRisposte({ voce, primario }: { voce: VoceSfida; primario: boolean
   if (stato === 'errore' || !c) {
     return (
       <Carta tono="medio" className="flex flex-col gap-3">
-        <p role="alert" className="flex items-center gap-2 text-[15px] font-bold text-medio-testo"><Icona nome="stato-errore" size={20} className="shrink-0 text-errore-testo" />Non riesco a caricare le correzioni.</p>
+        <p role="alert" className="flex items-center gap-2 text-s2 font-bold text-medio-testo"><Icona nome="stato-errore" size={20} className="shrink-0 text-errore-testo" />Non riesco a caricare le correzioni.</p>
         <Bottone variante="secondario" icona="riprova" onClick={() => void apri()}>Riprova</Bottone>
       </Carta>
     );
@@ -106,9 +106,9 @@ export default function SfidaRisultato() {
         ) : (
           <Carta tono={duello ? 'medio' : 'alto'} className="mt-5 flex items-center gap-4">
             <div className="min-w-0 flex-1" role="status" aria-label={`${voce.corrette} su ${voce.totale}, tempo ${tempoBreve(voce.secondi)} su ${tempoBreve(SECONDI_SFIDA)}`}>
-              {duello && <p aria-hidden className="text-[13px] font-semibold text-testo-tenue">Il tuo risultato</p>}
-              <p aria-hidden className="text-[34px] leading-[38px] font-extrabold tabular-nums text-testo">{voce.corrette}<span className="text-[18px] font-bold text-testo-tenue">/{voce.totale}</span></p>
-              <p aria-hidden className="mt-0.5 text-[14px] font-semibold text-testo-tenue"><Tempo secondi={voce.secondi} /> / {tempoBreve(SECONDI_SFIDA)}</p>
+              {duello && <p aria-hidden className="text-s1 font-semibold text-testo-tenue">Il tuo risultato</p>}
+              <p aria-hidden className="text-s5 leading-[38px] font-extrabold tabular-nums text-testo">{voce.corrette}<span className="text-s3 font-bold text-testo-tenue">/{voce.totale}</span></p>
+              <p aria-hidden className="mt-0.5 text-s2 font-semibold text-testo-tenue"><Tempo secondi={voce.secondi} /> / {tempoBreve(SECONDI_SFIDA)}</p>
             </div>
             {duello ? <Illustrazione nome="attesa" lato={68} /> : <Illustrazione nome="celebrazione-fiocco" lato={96} />}
           </Carta>
@@ -122,11 +122,11 @@ export default function SfidaRisultato() {
                 <FoglioCondividi aperto={foglio} onChiudi={() => setFoglio(false)} testo={testo} url={url} titolo="Condividi" />
               </>
             ) : (
-              <p role="alert" className="flex items-center gap-2 text-[14px] font-bold text-errore-testo"><Icona nome="stato-errore" size={18} />Non riesco a creare il link. Riprova dopo aver giocato di nuovo.</p>
+              <p role="alert" className="flex items-center gap-2 text-s2 font-bold text-errore-testo"><Icona nome="stato-errore" size={18} />Non riesco a creare il link. Riprova dopo aver giocato di nuovo.</p>
             )}
             {!sfidato && !avv && (
               <Carta className="flex flex-col gap-3">
-                <h2 className="text-[17px] leading-[24px] font-bold text-testo">Il tuo amico ha giocato?</h2>
+                <h2 className="text-s3 leading-[24px] font-bold text-testo">Il tuo amico ha giocato?</h2>
                 <Campo id="incolla-risposta" etichetta="Link con il suo risultato" valore={incolla} onCambia={v => { setIncolla(v); setErroreIncolla(null); }}
                   segnaposto="Incolla qui il link" errore={erroreIncolla} onInvio={apriRisposta} />
                 <Bottone icona="avanti" variante="secondario" disabled={!incolla.trim()} onClick={apriRisposta}>Vedi il confronto</Bottone>

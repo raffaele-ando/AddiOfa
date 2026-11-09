@@ -285,7 +285,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     setView(({ home: 'menu', esercizi: 'esercizi', sfide: 'menu' } as const)[s]);
   };
   const conBarra = (scheda: Scheda | 'nessuna' | null, pagina: React.ReactNode) => (
-    <div className="h-full w-full flex flex-col overflow-hidden sm:rounded-[28px] sm:border sm:border-linea bg-superficie">
+    <div className="h-full w-full flex flex-col overflow-hidden sm:rounded-2xl sm:border sm:border-linea bg-superficie">
       <div className="flex-1 min-h-0 [&>*]:sm:rounded-none [&>*]:sm:border-0">{pagina}</div>
       <Navigazione attiva={scheda === 'nessuna' ? null : scheda} onVai={vaiScheda} />
     </div>
@@ -364,8 +364,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
       )}
       {view === 'extra' && !SCHERMATE[extra.id] && conBarra('home', (
         <div className="flex h-full flex-col items-center justify-center gap-3 p-8 text-center">
-          <p className="text-base font-bold text-testo">Pagina non trovata.</p>
-          <button type="button" onClick={indietroExtra} className="rounded-xl bg-azione px-5 py-3 text-sm font-bold text-azione-su">Indietro</button>
+          <p className="text-s2 font-bold text-testo">Pagina non trovata.</p>
+          <button type="button" onClick={indietroExtra} className="rounded-xl bg-azione px-5 py-3 text-s2 font-bold text-azione-su">Indietro</button>
         </div>
       ))}
       {view === 'extra' && SCHERMATE[extra.id] && (() => {

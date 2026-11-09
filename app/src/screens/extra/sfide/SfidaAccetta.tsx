@@ -87,8 +87,8 @@ export default function SfidaAccetta() {
       <Pagina titolo="Hai già giocato" onBack={() => vai('sfide')}>
         <Carta tono="alto" className="mt-5 flex items-center gap-4">
           <div className="min-w-0 flex-1" role="status" aria-label={`${giaGiocata.corrette} su ${giaGiocata.totale}, tempo ${tempoBreve(giaGiocata.secondi)}`}>
-            <p aria-hidden className="text-[34px] leading-[38px] font-extrabold tabular-nums text-testo">{giaGiocata.corrette}<span className="text-[18px] font-bold text-testo-tenue">/{giaGiocata.totale}</span></p>
-            <p aria-hidden className="mt-0.5 text-[14px] font-semibold text-testo-tenue"><Tempo secondi={giaGiocata.secondi} /></p>
+            <p aria-hidden className="text-s5 leading-[38px] font-extrabold tabular-nums text-testo">{giaGiocata.corrette}<span className="text-s3 font-bold text-testo-tenue">/{giaGiocata.totale}</span></p>
+            <p aria-hidden className="mt-0.5 text-s2 font-semibold text-testo-tenue"><Tempo secondi={giaGiocata.secondi} /></p>
           </div>
           <Illustrazione nome="documento-completato" lato={84} />
         </Carta>

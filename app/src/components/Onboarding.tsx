@@ -64,7 +64,7 @@ function ConVuoto({ testo }: { testo: string }) {
 }
 
 /** Messaggio di una riga sotto un pulsante o nel piè di pagina. */
-const Micro = ({ children }: { children: ReactNode }) => <p data-testo-ok className="text-center text-[13px] leading-[18px] text-testo-tenue">{children}</p>;
+const Micro = ({ children }: { children: ReactNode }) => <p data-testo-ok className="text-center text-s1 leading-[18px] text-testo-tenue">{children}</p>;
 
 export default function Onboarding({ appState, onUpdateAppState, onFinish, soloRegistrazione = false, onOpenLegal }: OnboardingProps) {
   // Chi ha già una registrazione completa non la rifà (apre il test dalla Home); gli altri la fanno nel funnel, con i dati già inseriti se c'erano.
@@ -202,49 +202,49 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
         {/* 1. L'arco: la probabilità di superare il test, con la sua didascalia */}
         <div className="flex flex-col items-center">
           <Misuratore valore={passProb * 100} larghezza={264} etichetta={`Probabilità di superare il test: ${Math.round(passProb * 100)} %`} />
-          <p data-testo-ok className="mt-0 text-center text-[16px] leading-[22px] font-semibold text-testo">probabilità di superare il test</p>
+          <p data-testo-ok className="mt-0 text-center text-s2 leading-[22px] font-semibold text-testo">probabilità di superare il test</p>
         </div>
 
         {/* 2. Il punteggio probabile contro la soglia, e che cosa vuol dire */}
         <section aria-label="Punteggio probabile" className="flex flex-col gap-3 rounded-2xl border border-tacca bg-superficie-2 p-4">
           <div className="flex items-baseline justify-between gap-3">
-            <span data-testo-ok className="text-[15px] leading-[20px] font-semibold text-testo">Punteggio probabile</span>
-            <span className="text-[17px] leading-[24px] font-bold tabular-nums text-testo">{min === max ? min : `${min}–${max}`} <span className="text-[14px] font-medium text-testo-tenue">su {totale}</span></span>
+            <span data-testo-ok className="text-s2 leading-[20px] font-semibold text-testo">Punteggio probabile</span>
+            <span className="text-s3 leading-[24px] font-bold tabular-nums text-testo">{min === max ? min : `${min}–${max}`} <span className="text-s2 font-medium text-testo-tenue">su {totale}</span></span>
           </div>
           <div className="relative pt-6" role="img" aria-label={`Punteggio probabile da ${min} a ${max} su ${totale}; la soglia è ${REAL_TEST_PASS_MARK}`}>
-            <span data-testo-ok className="absolute top-0 -translate-x-1/2 whitespace-nowrap text-[13px] leading-[16px] font-semibold text-testo" style={{ left: `${soglia}%` }}>soglia {REAL_TEST_PASS_MARK}</span>
+            <span data-testo-ok className="absolute top-0 -translate-x-1/2 whitespace-nowrap text-s1 leading-[16px] font-semibold text-testo" style={{ left: `${soglia}%` }}>soglia {REAL_TEST_PASS_MARK}</span>
             <div className="relative h-3 rounded-full bg-testo-tenue/30">
               <div className="absolute inset-y-0 rounded-full bg-azione" style={{ left: `${da}%`, width: `max(${a - da}%, 8px)` }} />
               <div className="absolute -top-1.5 h-6 w-[3px] -translate-x-1/2 rounded-full bg-testo" style={{ left: `${soglia}%` }} />
             </div>
-            <div aria-hidden="true" className="mt-1.5 flex justify-between text-[12px] leading-[16px] tabular-nums text-testo-tenue"><span>0</span><span>10</span><span>20</span><span>30</span></div>
+            <div aria-hidden="true" className="mt-1.5 flex justify-between text-s1 leading-[16px] tabular-nums text-testo-tenue"><span>0</span><span>10</span><span>20</span><span>30</span></div>
           </div>
           <div className="flex items-start gap-3 border-t border-linea pt-3">
             <Icona nome={msg.icona} size={24} className={`mt-0.5 ${TESTO_FASCIA[livello]}`} />
             <div className="min-w-0">
-              <h3 data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">{msg.titolo}</h3>
-              <p data-testo-ok className="mt-0.5 text-[15px] leading-[22px] text-testo-tenue">{msg.testo}</p>
+              <h3 data-testo-ok className="text-s3 leading-[24px] font-semibold text-testo">{msg.titolo}</h3>
+              <p data-testo-ok className="mt-0.5 text-s2 leading-[22px] text-testo-tenue">{msg.testo}</p>
             </div>
           </div>
         </section>
 
         {/* 3. Da dove cominciare */}
         <section aria-label="Da dove cominciare" className="flex flex-col gap-2">
-          <h3 data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">Da dove cominciare</h3>
+          <h3 data-testo-ok className="text-s3 leading-[24px] font-semibold text-testo">Da dove cominciare</h3>
           {argomenti.length > 0 ? (
             <>
               <ul className="flex flex-col gap-2">
                 {argomenti.slice(0, 3).map(x => (
                   <li key={x.nome} className="flex min-h-12 items-center justify-between gap-3 rounded-2xl border border-tacca bg-superficie-2 px-4 py-2">
-                    <span data-testo-ok className="min-w-0 text-[16px] leading-[22px] font-semibold text-testo">{x.nome}</span>
-                    <span className="shrink-0 text-[14px] leading-[20px] tabular-nums text-testo-tenue">{testoErrori(x.errori)}</span>
+                    <span data-testo-ok className="min-w-0 text-s2 leading-[22px] font-semibold text-testo">{x.nome}</span>
+                    <span className="shrink-0 text-s2 leading-[20px] tabular-nums text-testo-tenue">{testoErrori(x.errori)}</span>
                   </li>
                 ))}
               </ul>
-              {argomenti.length > 3 && <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">e altri {argomenti.length - 3} {argomenti.length - 3 === 1 ? 'argomento' : 'argomenti'}</p>}
+              {argomenti.length > 3 && <p data-testo-ok className="text-s2 leading-[20px] text-testo-tenue">e altri {argomenti.length - 3} {argomenti.length - 3 === 1 ? 'argomento' : 'argomenti'}</p>}
             </>
           ) : (
-            <p className="inline-flex items-center gap-2 text-[16px] leading-[22px] font-semibold text-alto-testo"><Icona nome="stato-ok" size={22} />Nessun errore</p>
+            <p className="inline-flex items-center gap-2 text-s2 leading-[22px] font-semibold text-alto-testo"><Icona nome="stato-ok" size={22} />Nessun errore</p>
           )}
         </section>
         <FoglioStima aperto={foglio} onChiudi={() => setFoglio(false)} tipo="diagnostico" risposte={quiz.length} />
@@ -268,9 +268,9 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     return (
       <Screen testata={barraTesta()} piede={<div className="flex justify-center"><TastoTesto onClick={() => rispondi(q, -1, ultima)}>Non lo so</TastoTesto></div>}>
         <div className="flex flex-col gap-2">
-          <p className="text-[13px] leading-[18px] font-medium text-testo-tenue tabular-nums" aria-label={`Domanda ${indiceQ + 1} di ${n}`}>Domanda {indiceQ + 1} di {n}{tappa}</p>
+          <p className="text-s1 leading-[18px] font-medium text-testo-tenue tabular-nums" aria-label={`Domanda ${indiceQ + 1} di ${n}`}>Domanda {indiceQ + 1} di {n}{tappa}</p>
           {/* la domanda e le opzioni sono contenuto del test */}
-          <h2 data-testo-ok className="text-[24px] leading-[32px] font-semibold text-testo"><ConVuoto testo={q.prompt} /></h2>
+          <h2 data-testo-ok className="text-s4 leading-[32px] font-semibold text-testo"><ConVuoto testo={q.prompt} /></h2>
         </div>
         <div data-testo-ok className="flex flex-1 flex-col gap-3">
           {q.options.map((opt, i) => (
@@ -365,21 +365,21 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
           <Eroe nome="studio-inglese" max={200} />
           <Titolo titolo="Da dove parti" />
           <div role="group" aria-labelledby="dom-ofa" className="flex flex-col gap-2">
-            <p id="dom-ofa" data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">Hai l'OFA di inglese?</p>
+            <p id="dom-ofa" data-testo-ok className="text-s3 leading-[24px] font-semibold text-testo">Hai l'OFA di inglese?</p>
             <Segmenti<'yes' | 'no' | 'unknown'> etichetta="OFA di inglese" voci={[{ id: 'yes', nome: 'Sì' }, { id: 'no', nome: 'No' }, { id: 'unknown', nome: 'Non so' }]} valore={hasOfa} onChange={setHasOfa} />
-            <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">Se non sei sicuro, scegli «Non so»: puoi prepararti lo stesso.</p>
+            <p data-testo-ok className="text-s2 leading-[20px] text-testo-tenue">Se non sei sicuro, scegli «Non so»: puoi prepararti lo stesso.</p>
           </div>
           <div role="group" aria-labelledby="dom-cert" className="flex flex-col gap-2">
-            <p id="dom-cert" data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">Hai una certificazione d'inglese?</p>
+            <p id="dom-cert" data-testo-ok className="text-s3 leading-[24px] font-semibold text-testo">Hai una certificazione d'inglese?</p>
             <Segmenti etichetta="Certificazione d'inglese" voci={[{ id: 'si', nome: 'Sì' }, { id: 'no', nome: 'No' }]} valore={hasCertification === null ? null : hasCertification ? 'si' : 'no'} onChange={id => setHasCertification(id === 'si')} />
-            <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">Per esempio Cambridge, IELTS o TOEFL.</p>
+            <p data-testo-ok className="text-s2 leading-[20px] text-testo-tenue">Per esempio Cambridge, IELTS o TOEFL.</p>
           </div>
           {esenteForse && (
             <div role="status" className="flex items-start gap-3 rounded-2xl bg-azione-tinta p-4">
               <Icona nome="certificazione" size={24} className="mt-0.5 text-azione-testo" />
               <div className="min-w-0">
-                <p data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">Forse non devi fare il test</p>
-                <p data-testo-ok className="mt-0.5 text-[15px] leading-[22px] text-testo">Se la tua certificazione è tra quelle accettate dal Politecnico, potresti essere esentato. Controlla l'elenco e i livelli minimi sul sito del tuo corso.</p>
+                <p data-testo-ok className="text-s3 leading-[24px] font-semibold text-testo">Forse non devi fare il test</p>
+                <p data-testo-ok className="mt-0.5 text-s2 leading-[22px] text-testo">Se la tua certificazione è tra quelle accettate dal Politecnico, potresti essere esentato. Controlla l'elenco e i livelli minimi sul sito del tuo corso.</p>
               </div>
             </div>
           )}
@@ -458,7 +458,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
           testata={<TopBar {...barra} onBack={daIndietro} />}
           piede={reg.percorso.corso
             ? <div className="flex flex-col gap-2">
-                <p data-testo-ok className="text-[13px] leading-[18px] font-medium text-testo-tenue">In che anno sei?</p>
+                <p data-testo-ok className="text-s1 leading-[18px] font-medium text-testo-tenue">In che anno sei?</p>
                 <PilloleAnno scelte={reg.percorso} onScelto={anno => { setReg(r => ({ ...r, percorso: { ...r.percorso, anno } })); salva(false); poi(avanti); }} />
               </div>
             : <Micro>Tocca il tuo corso.</Micro>}

@@ -6,12 +6,12 @@ import { minSec } from '../../screens/extra/studio/comune';
 
 function Tessera({ nome, valore, tono, aria, parola }: { nome: NomeIcona; valore: string; tono: Tono | 'errore'; aria: string; parola: string }) {
   return (
-    <div role="group" aria-label={aria} className="rounded-[12px] bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1.5 min-w-0">
+    <div role="group" aria-label={aria} className="rounded-xl bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1.5 min-w-0">
       {tono === 'errore'
         ? <span aria-hidden="true" className="grid shrink-0 place-items-center rounded-full bg-errore-tinta text-errore" style={{ width: 36, height: 36 }}><Icona nome={nome} size={19} /></span>
         : <IconaTono tono={tono} lato={36} className="rounded-full"><Icona nome={nome} size={19} /></IconaTono>}
-      <span className="text-[26px] leading-[28px] font-extrabold tabular-nums text-testo" aria-hidden="true">{valore}</span>
-      <span className="text-[12.5px] leading-[16px] font-semibold text-testo-tenue text-center" aria-hidden="true">{parola}</span>
+      <span className="text-s4 leading-[28px] font-extrabold tabular-nums text-testo" aria-hidden="true">{valore}</span>
+      <span className="text-s1 leading-[16px] font-semibold text-testo-tenue text-center" aria-hidden="true">{parola}</span>
     </div>
   );
 }
@@ -32,10 +32,10 @@ export function RigaTempo({ secondi, minuti, scaduto }: { secondi: number; minut
   if (!(secondi > 0)) return null;
   return (
     <span className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-      <span className="inline-flex items-center gap-1.5 text-[14px] font-bold text-medio-testo" role="img" aria-label={`Tempo usato: ${minSec(secondi)} su ${minuti} minuti${scaduto ? '. Tempo scaduto' : ''}`}>
-        <Icona nome="tempo" size={17} />Tempo <span className="tabular-nums">{minSec(secondi)}</span><span className="text-[13px] font-semibold text-testo-tenue">su {minuti} min</span>
+      <span className="inline-flex items-center gap-1.5 text-s2 font-bold text-medio-testo" role="img" aria-label={`Tempo usato: ${minSec(secondi)} su ${minuti} minuti${scaduto ? '. Tempo scaduto' : ''}`}>
+        <Icona nome="tempo" size={17} />Tempo <span className="tabular-nums">{minSec(secondi)}</span><span className="text-s1 font-semibold text-testo-tenue">su {minuti} min</span>
       </span>
-      {scaduto && <span aria-hidden="true" className="inline-flex items-center rounded-full bg-basso-tinta px-2.5 py-0.5 text-[12.5px] font-extrabold text-basso-testo">Scaduto</span>}
+      {scaduto && <span aria-hidden="true" className="inline-flex items-center rounded-full bg-basso-tinta px-2.5 py-0.5 text-s1 font-extrabold text-basso-testo">Scaduto</span>}
     </span>
   );
 }

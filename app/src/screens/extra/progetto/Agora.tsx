@@ -15,15 +15,15 @@ export default function Agora() {
   return (
     <Pagina titolo={ECOSYSTEM.agoraName}>
       <Testata nome="messaggi-supporto" />
-      <p data-testo-ok className="mt-3 text-center text-[15px] leading-[22px] text-testo">
+      <p data-testo-ok className="mt-3 text-center text-s2 leading-[22px] text-testo">
         La pagina di Project per gli studenti del Politecnico.
       </p>
 
       <a href={AGORA_URL} target="_blank" rel="noopener noreferrer" onClick={() => playTapSound()}
-        className="brand-premibile mt-5 flex w-full min-h-[52px] items-center justify-center gap-2 rounded-[14px] bg-azione px-4 py-3 text-[16px] font-bold text-azione-su">
+        className="brand-premibile mt-5 flex w-full min-h-[52px] items-center justify-center gap-2 rounded-xl bg-azione px-4 py-3 text-s2 font-bold text-azione-su">
         <Icona nome="instagram" size={20} />Apri su Instagram
       </a>
-      <p data-testo-ok className="mt-2 text-center text-[13px] leading-[18px] text-testo-tenue">Si apre Instagram, fuori da AddiOFA. Qui non ci sono commenti.</p>
+      <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">Si apre Instagram, fuori da AddiOFA. Qui non ci sono commenti.</p>
 
       <Sezione id="agora-messaggi" titolo="Novità">
         <GruppoRighe etichetta="Novità">

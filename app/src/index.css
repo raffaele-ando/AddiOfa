@@ -61,13 +61,21 @@
   --color-alto-pieno: #007C60;
   --color-alto-su: #FFFFFF;
 
-  /* viola: apprendimento, traguardi e badge (al massimo un elemento per schermata). Tinta, icona, testo (≥4,5:1 sulla tinta), pieno (testo viola-su sopra). */
+  /* viola: solo il livello (icona e tappe dei livelli), non badge né quiz (al massimo un elemento per schermata). Tinta, icona, testo (≥4,5:1 sulla tinta), pieno (testo viola-su sopra). */
   --color-viola: #8C5AD3;
   --color-viola-chiaro: #D2BFF8;
   --color-viola-testo: #5C2F95;
   --color-viola-tinta: #F5F1FF;
   --color-viola-pieno: #763EBD;
   --color-viola-su: #FFFFFF;
+
+  /* scala tipografica a sei passi: text-s1 (12 px) … text-s6 (40 px). Nessun font-size in px nel codice: si usano solo questi token (le classi text-xs…text-4xl di Tailwind non si usano più). */
+  --text-s1: 0.75rem;
+  --text-s2: 0.9375rem;
+  --text-s3: 1.1875rem;
+  --text-s4: 1.5rem;
+  --text-s5: 1.875rem;
+  --text-s6: 2.5rem;
 }
 
 /* Tema scuro: stessi nomi, valori desaturati. Le tinte dei banner sono tinte morbide sulla superficie, niente riquadri fangosi. */
@@ -154,7 +162,7 @@
   --landing-vetro: rgba(255, 255, 255, 0.58);
   --landing-vetro-forte: rgba(255, 255, 255, 0.78);
   --landing-vetro-bordo: rgba(255, 255, 255, 0.9);
-  --landing-vetro-ombra: 0 22px 44px -16px rgba(30, 64, 175, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --landing-vetro-ombra: 0 1px 2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
   --landing-barra: rgba(247, 249, 253, 0.72);
   --landing-fascia: rgba(255, 255, 255, 0.82);
   --landing-pagina-da: #EEF5FF;
@@ -184,7 +192,7 @@
   --landing-vetro: rgba(23, 34, 58, 0.62);
   --landing-vetro-forte: rgba(23, 34, 58, 0.80);
   --landing-vetro-bordo: rgba(255, 255, 255, 0.14);
-  --landing-vetro-ombra: 0 22px 44px -16px rgba(2, 6, 18, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  --landing-vetro-ombra: 0 1px 2px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.10);
   --landing-barra: rgba(10, 16, 31, 0.72);
   --landing-fascia: rgba(17, 26, 46, 0.82);
   --landing-pagina-da: #0E172D;
@@ -205,24 +213,12 @@
   backdrop-filter: blur(14px) saturate(1.25);
 }
 .vetro-forte { background: var(--landing-vetro-forte); }
-/* Aloni azzurri dietro le sezioni: danno al vetro qualcosa da sfocare. Fermi. */
-:root { --landing-alone-1: rgba(96, 165, 250, 0.2); --landing-alone-2: rgba(147, 197, 253, 0.28); }
-.dark { --landing-alone-1: rgba(59, 120, 242, 0.16); --landing-alone-2: rgba(46, 90, 190, 0.14); }
-.landing-pagina {
-  background-image:
-    radial-gradient(46% 380px at 88% 140px, var(--landing-alone-1), transparent),
-    radial-gradient(42% 420px at 6% 760px, var(--landing-alone-2), transparent),
-    radial-gradient(40% 340px at 70% 1180px, var(--landing-alone-1), transparent);
-  background-size: 100% 1500px;
-  background-repeat: repeat-y;
-}
 
 /* Guscio (components/Layout.tsx): colonna unica da 480 px; da 1024 px una pagina può chiedere 960 px con useColonnaLarga() o <Layout larga>. */
 :root { --colonna: 480px; }
 @media (min-width: 1024px) { :root[data-colonna="larga"] { --colonna: 960px; } }
 /* Le schermate che hanno ancora la cornice finta (angoli arrotondati, filo, altezza massima) la perdono dentro la colonna: la colonna è la cornice. */
 @media (min-width: 640px) {
-  .guscio-colonna [class*="sm:rounded-[28px]"],
-  .guscio-colonna [class*="sm:rounded-[32px]"] { border-radius: 0; border-width: 0; box-shadow: none; }
+  .guscio-colonna [class*="sm:rounded-2xl sm:border sm:border-linea"] { border-radius: 0; border-width: 0; box-shadow: none; }
   .guscio-colonna [class*="sm:max-h-[calc(100dvh-3rem)]"] { max-height: none; }
 }

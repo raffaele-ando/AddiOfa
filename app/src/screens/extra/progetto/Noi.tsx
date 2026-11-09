@@ -1,7 +1,6 @@
 // «NOI» (concept 49 schermate 11-13, 30/34): la classifica. Quella vera la dà ATLAS, e solo se risponde: se non è collegato o non risponde, la schermata lo dice
 // con una riga e non mostra nessuna posizione, nessun utente, nessun numero inventato. Partecipare è un permesso a parte, spento di partenza.
 import { useCallback, useEffect, useState } from 'react';
-import { Illustrazione } from '../../../brand/Illustrazione';
 import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { SCHERMATE } from '../registro';
@@ -84,33 +83,32 @@ export default function Noi() {
         <Sezione id="noi-classifica" titolo="Classifica">
           {dati.fase === 'carico' && <div role="status" aria-label="Carico la classifica" className="mx-auto my-3 h-7 w-7 animate-spin rounded-full border-[3px] border-azione/30 border-t-azione" />}
           {dati.fase === 'errore' && (
-            <div role="alert" className="flex flex-col items-center gap-2 rounded-[16px] border border-errore/30 bg-errore-tinta p-4 text-center dark:bg-superficie">
-              <p data-testo-ok className="text-[14px] font-bold text-errore-testo">{dati.testo}</p>
+            <div role="alert" className="flex flex-col items-center gap-2 rounded-xl border border-errore/30 bg-errore-tinta p-4 text-center dark:bg-superficie">
+              <p data-testo-ok className="text-s2 font-bold text-errore-testo">{dati.testo}</p>
               <BottoneSecondario onClick={() => { void carica(); }} icona={<Icona nome="riprova" size={18} />}>Riprova</BottoneSecondario>
             </div>
           )}
           {c && c.me && (
-            <div role="status" className="flex items-center justify-between rounded-[16px] border border-azione/25 bg-azione-tinta p-4 text-azione-testo dark:border-azione/45 dark:bg-superficie">
+            <div role="status" className="flex items-center justify-between rounded-xl border border-azione/25 bg-azione-tinta p-4 text-azione-testo dark:border-azione/45 dark:bg-superficie">
               <span className="font-bold">La tua posizione</span>
-              <span className="text-[26px] font-extrabold tabular-nums">#{c.me.rank} <span className="text-[14px] font-bold">su {c.total}</span></span>
+              <span className="text-s4 font-extrabold tabular-nums">#{c.me.rank} <span className="text-s2 font-bold">su {c.total}</span></span>
             </div>
           )}
           {c && c.entries.length > 0 && (
             <ol className="flex flex-col gap-2">
               {c.entries.map(e => (
-                <li key={e.handle} className={cn('flex items-center gap-3 rounded-[14px] border p-3', e.isMe ? 'border-azione/40 bg-azione-tinta dark:bg-superficie dark:border-azione/60' : 'border-linea bg-superficie')}>
-                  <span className={cn('grid h-8 w-8 shrink-0 place-items-center rounded-full text-[14px] font-bold tabular-nums', e.rank <= 3 ? MEDAGLIA[e.rank - 1] : 'bg-superficie-2 text-testo-tenue')}>{e.rank}</span>
+                <li key={e.handle} className={cn('flex items-center gap-3 rounded-xl border p-3', e.isMe ? 'border-azione/40 bg-azione-tinta dark:bg-superficie dark:border-azione/60' : 'border-linea bg-superficie')}>
+                  <span className={cn('grid h-8 w-8 shrink-0 place-items-center rounded-full text-s2 font-bold tabular-nums', e.rank <= 3 ? MEDAGLIA[e.rank - 1] : 'bg-superficie-2 text-testo-tenue')}>{e.rank}</span>
                   {/* solo il @nome utente: è ciò che il consenso dice che si vede */}
-                  <span data-testo-ok className="min-w-0 flex-1 truncate text-[15px] font-bold text-testo">@{e.handle}</span>
-                  <span className="text-right leading-tight"><span className="block font-bold tabular-nums text-alto-testo">{e.mastered}</span><span className="block text-[12px] font-semibold text-testo-tenue tabular-nums">imparate · {e.bestSim}/30</span></span>
+                  <span data-testo-ok className="min-w-0 flex-1 truncate text-s2 font-bold text-testo">@{e.handle}</span>
+                  <span className="text-right leading-tight"><span className="block font-bold tabular-nums text-alto-testo">{e.mastered}</span><span className="block text-s1 font-semibold text-testo-tenue tabular-nums">imparate · {e.bestSim}/30</span></span>
                 </li>
               ))}
             </ol>
           )}
           {c && c.entries.length === 0 && (
             <div role="status" className="flex flex-col items-center gap-1 py-3 text-center">
-              <Illustrazione nome="vuoto" lato={110} />
-              <p data-testo-ok className="text-[14.5px] font-bold text-testo-tenue">Ancora nessuno in classifica</p>
+              <p data-testo-ok className="text-s2 font-bold text-testo-tenue">Ancora nessuno in classifica</p>
             </div>
           )}
         </Sezione>
@@ -119,18 +117,18 @@ export default function Noi() {
       <Sezione id="noi-numeri" titolo="I tuoi numeri">
         <div className="grid grid-cols-2 gap-3">
           <Carta className="p-3.5">
-            <p className="text-[26px] leading-[30px] font-extrabold tabular-nums text-testo">{mio.imparate}</p>
-            <p data-testo-ok className="mt-0.5 text-[13px] leading-[18px] text-testo-tenue">domande imparate</p>
+            <p className="text-s4 leading-[30px] font-extrabold tabular-nums text-testo">{mio.imparate}</p>
+            <p data-testo-ok className="mt-0.5 text-s1 leading-[18px] text-testo-tenue">domande imparate</p>
           </Carta>
           <Carta className="p-3.5">
-            <p className="text-[26px] leading-[30px] font-extrabold tabular-nums text-testo">{haSimulazioni ? `${mio.migliorSimulazione}/30` : '–'}</p>
-            <p data-testo-ok className="mt-0.5 text-[13px] leading-[18px] text-testo-tenue">{haSimulazioni ? 'miglior simulazione' : 'nessuna simulazione'}</p>
+            <p className="text-s4 leading-[30px] font-extrabold tabular-nums text-testo">{haSimulazioni ? `${mio.migliorSimulazione}/30` : '–'}</p>
+            <p data-testo-ok className="mt-0.5 text-s1 leading-[18px] text-testo-tenue">{haSimulazioni ? 'miglior simulazione' : 'nessuna simulazione'}</p>
           </Carta>
         </div>
-        <p data-testo-ok className="text-[13px] leading-[18px] text-testo-tenue">Alla classifica arrivano solo se aderisci.</p>
+        <p data-testo-ok className="text-s1 leading-[18px] text-testo-tenue">Alla classifica arrivano solo se aderisci.</p>
       </Sezione>
 
-      {errore && <p role="alert" data-testo-ok className="mt-4 rounded-[14px] border border-errore/30 bg-errore-tinta p-3 text-center text-[14px] font-bold text-errore-testo dark:bg-superficie">{errore}</p>}
+      {errore && <p role="alert" data-testo-ok className="mt-4 rounded-xl border border-errore/30 bg-errore-tinta p-3 text-center text-s2 font-bold text-errore-testo dark:bg-superficie">{errore}</p>}
       <div className="mt-6 flex flex-col gap-2.5">
         {stato === 'da-aderire' && <BottoneAzione disabled={lavoro} onClick={() => { void cambiaPermesso(true); }}>Entra in classifica</BottoneAzione>}
         {stato === 'aderito' && <BottoneSecondario disabled={lavoro} onClick={() => { void cambiaPermesso(false); }}>Esci dalla classifica</BottoneSecondario>}

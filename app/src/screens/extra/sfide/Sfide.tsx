@@ -24,7 +24,7 @@ function RigaStorico({ voce, onApri }: { voce: VoceSfida; onApri: () => void }) 
       sottotitolo={<span className="tabular-nums">{giorno ? 'Sfida del giorno' : avv ? `Duello con ${avv.nome}` : 'Duello'} · {dataBreve(voce.quando)} · {tempoBreve(voce.secondi)}</span>}
       destra={(
         <span className="flex shrink-0 items-center gap-1">
-          {avv ? <PillolaEsito esito={confronta(voce, avv)} /> : !giorno ? <span className="inline-flex items-center gap-1 rounded-full bg-medio-tinta px-2.5 py-[3px] text-[12px] leading-[16px] font-bold text-medio-testo dark:bg-superficie-2"><Icona nome="stato-attesa" size={13} />In attesa</span> : null}
+          {avv ? <PillolaEsito esito={confronta(voce, avv)} /> : !giorno ? <span className="inline-flex items-center gap-1 rounded-full bg-medio-tinta px-2.5 py-[3px] text-s1 leading-[16px] font-bold text-medio-testo dark:bg-superficie-2"><Icona nome="stato-attesa" size={13} />In attesa</span> : null}
           <Icona nome="avanti" size={20} className="text-testo-tenue" />
         </span>
       )} />
@@ -73,18 +73,18 @@ export default function Sfide() {
       <Carta tono="alto" className="mt-4">
         <div className="flex items-center gap-3">
           <div className="min-w-0 flex-1">
-            <h2 className="text-[22px] leading-[28px] font-extrabold tracking-[-0.01em] text-testo">Sfida del giorno</h2>
+            <h2 className="text-s4 leading-[30px] font-extrabold tracking-[-0.01em] text-testo">Sfida del giorno</h2>
             <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} className="mt-1" />
-            <p data-testo-ok className="mt-0.5 text-[13px] leading-[18px] text-testo-tenue">Le stesse domande per tutti, ogni giorno.</p>
+            <p data-testo-ok className="mt-0.5 text-s1 leading-[18px] text-testo-tenue">Le stesse domande per tutti, ogni giorno.</p>
           </div>
         </div>
         {oggi ? (
           <button type="button" aria-label={`Sfida del giorno: ${oggi.corrette} su ${oggi.totale}, tempo ${tempoBreve(oggi.secondi)}`} onClick={() => { playTapSound(); vai('sfida-risultato', { voce: oggi.id }); }}
-            className="brand-premibile mt-4 flex w-full items-center gap-3 rounded-[14px] border border-linea bg-superficie p-3 text-left">
+            className="brand-premibile mt-4 flex w-full items-center gap-3 rounded-xl border border-linea bg-superficie p-3 text-left">
             <Icona nome="stato-ok" size={22} className="text-alto-numero" />
-            <span className="text-[26px] leading-[30px] font-extrabold tabular-nums text-testo">{oggi.corrette}<span className="text-[16px] font-bold text-testo-tenue">/{oggi.totale}</span></span>
-            <span className="flex-1 text-[14px] font-semibold tabular-nums text-medio-testo"><span className="inline-flex items-center gap-1"><Icona nome="tempo" size={15} />{tempoBreve(oggi.secondi)}</span></span>
-            <span className="text-[13px] font-semibold text-testo-tenue">La prossima domani</span>
+            <span className="text-s4 leading-[30px] font-extrabold tabular-nums text-testo">{oggi.corrette}<span className="text-s2 font-bold text-testo-tenue">/{oggi.totale}</span></span>
+            <span className="flex-1 text-s2 font-semibold tabular-nums text-medio-testo"><span className="inline-flex items-center gap-1"><Icona nome="tempo" size={15} />{tempoBreve(oggi.secondi)}</span></span>
+            <span className="text-s1 font-semibold text-testo-tenue">La prossima domani</span>
             <Icona nome="avanti" size={20} className="text-testo-tenue" />
           </button>
         ) : (
@@ -102,7 +102,7 @@ export default function Sfide() {
 
       <Sezione id="titolo-storico" titolo="Ultime sfide">
         {voci.length === 0 ? (
-          <p data-testo-ok className="text-[15px] leading-[21px] text-testo-tenue">Non hai ancora giocato sfide.</p>
+          <p data-testo-ok className="text-s2 leading-[21px] text-testo-tenue">Non hai ancora giocato sfide.</p>
         ) : (
           <GruppoRighe etichetta="Ultime sfide">
             {voci.slice(0, 8).map(v => <RigaStorico key={v.id} voce={v} onApri={() => vai('sfida-risultato', { voce: v.id })} />)}

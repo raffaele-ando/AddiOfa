@@ -20,6 +20,10 @@ node "$RADICE/tools/ottimizza-svg.mjs" "$DEST/glifi" 1
 node "$RADICE/tools/ottimizza-svg.mjs" "$DEST/disegni" 2
 # la nuvoletta chiara dietro alle illustrazioni non si usa più
 node "$RADICE/tools/togli-nuvole.mjs" "$DEST/disegni"
+# illustrazioni e glifi piatti: niente gradienti, filtri, aloni né riflessi lucidi (tools/appiattisci-illustrazioni.py; le sfere restano lucide, escluse dallo script).
+# Va prima di ricolora-illustrazioni.py, che resta ultimo: così i colori della proposta si applicano alle forme già piatte.
+python3 "$RADICE/tools/appiattisci-illustrazioni.py" "$DEST/disegni"
+python3 "$RADICE/tools/appiattisci-illustrazioni.py" "$DEST/glifi"
 # scena dell'hero della landing (ritagliata dai concept con grafica/strumenti/brand/estrai_hero.py)
 mkdir -p "$DEST/hero" && cp "$RADICE/grafica/brand/hero/scena-chiara.webp" "$RADICE/grafica/brand/hero/scena-scura.webp" "$DEST/hero/"
 # banner con l'edificio e sfondo della chiusura della landing (grafica/strumenti/brand/estrai_landing.py)

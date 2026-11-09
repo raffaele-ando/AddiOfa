@@ -83,7 +83,7 @@ export default function Impostazioni({ onBack, onImport, onExport, onReset }: Pr
     <Pagina velata titolo="Impostazioni" onBack={onBack}>
       <Sezione id="imp-preferenze" titolo="Preferenze">
         <Carta as="section" className="flex flex-col gap-3">
-          <h3 className="text-[15px] leading-[21px] font-semibold text-testo">Tema</h3>
+          <h3 className="text-s2 leading-[21px] font-semibold text-testo">Tema</h3>
           <Segmenti<ModoTema> nome="Tema" voci={TEMI} valore={modo} onScegli={setModo} />
         </Carta>
         <GruppoRighe etichetta="Suoni">
@@ -103,7 +103,7 @@ export default function Impostazioni({ onBack, onImport, onExport, onReset }: Pr
           <div>
             <label htmlFor="testo-progressi" className="sr-only">Testo dei progressi</label>
             <textarea id="testo-progressi" data-testo-ok readOnly value={testoCopia} rows={6} onFocus={e => e.currentTarget.select()}
-              className="w-full rounded-[12px] border border-bordo-campo bg-superficie p-3 text-[12px] font-mono text-testo" />
+              className="w-full rounded-xl border border-bordo-campo bg-superficie p-3 text-s1 font-mono text-testo" />
           </div>
         )}
       </Sezione>
@@ -112,7 +112,7 @@ export default function Impostazioni({ onBack, onImport, onExport, onReset }: Pr
         <GruppoRighe etichetta="Informazioni">
           <Riga icona="app" titolo="Versione" destra={
             <span className="flex shrink-0 items-center gap-1">
-              <span className="text-[14px] text-testo-tenue tabular-nums">{VERSIONE_APP}</span>
+              <span className="text-s2 text-testo-tenue tabular-nums">{VERSIONE_APP}</span>
               <PulsanteInfo onClick={() => setInfo(true)} etichetta="Informazioni sull'app" className="-mr-2" />
             </span>
           } />

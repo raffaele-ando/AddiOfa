@@ -1,6 +1,4 @@
-import { useId } from 'react';
 import { Icona } from '../../brand/icone/Icona';
-import { Illustrazione } from '../../brand/Illustrazione';
 import type { PuntoStima } from './stima';
 import { livelloDi } from './stima';
 import { TitoloSezione } from './Stima';
@@ -21,7 +19,6 @@ const nomeBreve = (nome: string) => nome.replace(/^Dopo sim\.\s*/, 'Sim. ');
  * del successivo, valore e nome sotto ogni punto, tre filetti di riferimento. Con un solo punto si vede il punto e cosa fare per avere la curva.
  */
 export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; onInfo?: () => void }) {
-  const id = useId().replace(/:/g, '');
   const n = punti.length;
   const titolo = (
     <TitoloSezione id="titolo-grafico">
@@ -39,11 +36,11 @@ export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; o
     return (
       <section aria-labelledby="titolo-grafico" className="flex flex-col gap-3">
         {titolo}
-        <div role="status" className="flex items-center gap-[14px] rounded-[16px] bg-superficie-2 p-[14px]">
-          <span aria-hidden="true" className="w-[68px] h-[56px] shrink-0 grid place-items-center"><Illustrazione nome="progressi-statistiche-scheda" lato={64} /></span>
+        <div role="status" className="flex items-center gap-3 rounded-xl border border-linea dark:border-tacca bg-superficie px-3 py-3">
+          <span aria-hidden="true" className="w-8 h-8 shrink-0 grid place-items-center rounded-xl bg-superficie-2 text-testo-tenue"><Icona nome="andamento" size={18} /></span>
           <span className="min-w-0">
-            <span className="block text-[16px] leading-[22px] font-bold text-testo">Ancora nessun dato</span>
-            <span data-testo-ok className="block text-[14px] leading-[19px] text-testo-tenue">Dopo il test iniziale vedrai la curva.</span>
+            <span className="block text-s2 leading-[20px] font-bold text-testo">Ancora nessun dato</span>
+            <span data-testo-ok className="block text-s1 leading-[16px] text-testo-tenue">Dopo il test iniziale vedrai la curva.</span>
           </span>
         </div>
       </section>
@@ -60,21 +57,14 @@ export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; o
   return (
     <section aria-labelledby="titolo-grafico" className="flex flex-col gap-3">
       {titolo}
-      <div className="rounded-[16px] bg-superficie-2 px-3 pt-3 pb-3">
+      <div className="rounded-xl border border-linea dark:border-tacca bg-superficie px-3 pt-3 pb-3">
         <div role="img" aria-label={`Andamento della stima. ${descrizione}`}>
           <div className="relative w-full" style={{ height: ALTO }}>
             <svg viewBox={`0 0 ${W} ${ALTO}`} preserveAspectRatio="none" className="absolute inset-0 w-full h-full overflow-visible" aria-hidden="true">
-              <defs>
-                {n > 1 && (
-                  <linearGradient id={`l${id}`} gradientUnits="userSpaceOnUse" x1={xs[0]} y1="0" x2={xs[n - 1]} y2="0">
-                    {fasce.map((f, i) => <stop key={i} offset={i / (n - 1)} style={{ stopColor: PIENO_FASCIA[f] }} />)}
-                  </linearGradient>
-                )}
-              </defs>
               {[SU, (SU + ALTO - GIU) / 2, ALTO - GIU].map(y => (
                 <line key={y} x1="0" x2={W} y1={y} y2={y} strokeWidth="1" vectorEffect="non-scaling-stroke" className="stroke-tacca" opacity="0.7" />
               ))}
-              {n > 1 && <path d={linea} fill="none" stroke={`url(#l${id})`} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />}
+              {n > 1 && <path d={linea} fill="none" style={{ stroke: 'var(--color-testo-tenue)' }} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />}
             </svg>
             {/* i punti sono tondi veri (non si deformano con la larghezza); l'ultimo ha l'anello della carta da 3 px */}
             {punti.map((_, i) => {
@@ -89,14 +79,14 @@ export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; o
               const ultimo = i === n - 1;
               return (
                 <div key={i} className="absolute top-0 flex flex-col items-center text-center whitespace-nowrap -translate-x-1/2" style={{ left: `${(xs[i] / W) * 100}%` }}>
-                  <span className="text-[13px] leading-[18px] font-bold tabular-nums" style={{ color: `var(--color-${fasce[i]}-testo)` }}>{formatProbabilita(p.p).replace(/\s+%/, '%')}</span>
-                  <span className="text-[12px] leading-[16px] text-testo-tenue">{ultimo && n > 1 ? 'Oggi' : nomeBreve(p.nome)}</span>
+                  <span className="text-s1 leading-[18px] font-bold tabular-nums" style={{ color: `var(--color-${fasce[i]}-testo)` }}>{formatProbabilita(p.p).replace(/\s+%/, '%')}</span>
+                  <span className="text-s1 leading-[16px] text-testo-tenue">{ultimo && n > 1 ? 'Oggi' : nomeBreve(p.nome)}</span>
                 </div>
               );
             })}
           </div>
         </div>
-        {n === 1 && <p data-testo-ok className="mt-1 text-center text-[13px] leading-[18px] text-testo-tenue">Fai una simulazione per vedere la curva.</p>}
+        {n === 1 && <p data-testo-ok className="mt-1 text-center text-s1 leading-[18px] text-testo-tenue">Fai una simulazione per vedere la curva.</p>}
       </div>
     </section>
   );

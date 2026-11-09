@@ -43,19 +43,19 @@ export function ActivityChart({ dailyActivity }: ActivityChartProps) {
     <div className="h-full bg-superficie-2 rounded-xl sm:rounded-2xl p-2 sm:p-4 border border-linea  shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col justify-between min-h-0">
       <div className="flex justify-between items-end mb-1 sm:mb-2 shrink-0">
         <div>
-          <h3 className="text-xs sm:text-sm font-black text-testo leading-tight">Costanza</h3>
-          <p className="text-[8px] sm:text-[10px] font-bold text-testo-tenue mt-0.5">Ultimi 28 giorni</p>
+          <h3 className="text-s1 sm:text-s2 font-black text-testo leading-tight">Costanza</h3>
+          <p className="text-s1 sm:text-s1 font-bold text-testo-tenue mt-0.5">Ultimi 28 giorni</p>
         </div>
         <div className="text-right">
-          <div className="text-sm sm:text-lg font-black text-alto-testo leading-none">{activeDays}</div>
-          <div className="text-[8px] sm:text-[10px] font-bold text-testo-tenue uppercase tracking-widest mt-0.5">Giorni attivi</div>
+          <div className="text-s2 sm:text-s3 font-black text-alto-testo leading-none">{activeDays}</div>
+          <div className="text-s1 sm:text-s1 font-bold text-testo-tenue uppercase tracking-widest mt-0.5">Giorni attivi</div>
         </div>
       </div>
       
       <div className="flex flex-col gap-0.5 sm:gap-1 flex-1 min-h-0 justify-center">
         <div className="grid grid-cols-7 gap-0.5 sm:gap-1 shrink-0">
           {['L', 'M', 'M', 'G', 'V', 'S', 'D'].map((day, i) => (
-            <div key={i} className="text-center text-[7px] sm:text-[9px] font-black text-testo-tenue uppercase leading-none">{day}</div>
+            <div key={i} className="text-center text-s1 sm:text-s1 font-black text-testo-tenue uppercase leading-none">{day}</div>
           ))}
         </div>
         
@@ -64,7 +64,7 @@ export function ActivityChart({ dailyActivity }: ActivityChartProps) {
             <div 
               key={day.date}
               title={`${day.date}: ${day.count} ${day.count === 1 ? 'domanda' : 'domande'}`}
-              className={`w-full h-full min-h-[6px] sm:min-h-[12px] rounded-[2px] sm:rounded-sm border ${getColor(day.count, day.isFuture)} transition-colors duration-100 `}
+              className={`w-full h-full min-h-[6px] sm:min-h-[12px] rounded-xl sm:rounded-xl border ${getColor(day.count, day.isFuture)} transition-colors duration-100 `}
             />
           ))}
         </div>

@@ -17,7 +17,7 @@ export default function BottoneSegnala({ domandaId, onApri, className }: {
   return (
     <button type="button" onClick={() => { playTapSound(); onApri(domandaId); }}
       aria-label={domandaId ? 'Segnala un problema con questa domanda' : 'Segnala un problema'}
-      className={cn('brand-premibile inline-grid min-h-[44px] min-w-[44px] place-items-center rounded-[10px] bg-superficie-2 text-testo-tenue hover:text-testo', className)}>
+      className={cn('brand-premibile inline-grid min-h-[44px] min-w-[44px] place-items-center rounded-xl bg-superficie-2 text-testo-tenue hover:text-testo', className)}>
       <Icona nome="segnala" size={20} />
     </button>
   );

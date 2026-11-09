@@ -381,13 +381,13 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
             <div className="bg-azione h-full rounded-full" style={{ width: `${progress}%` }} />
           </div>
           {streak > 1 && (
-            <div className="flex items-center gap-1 text-medio-testo font-bold text-sm" role="img" aria-label={`${streak} giuste di fila`}>
+            <div className="flex items-center gap-1 text-medio-testo font-bold text-s2" role="img" aria-label={`${streak} giuste di fila`}>
               <Icona nome="serie" size={16} />
               <span className="tabular-nums">{streak}</span>
             </div>
           )}
           <div role="timer" aria-label={`Tempo per questa domanda: ${timeLeft} secondi`}
-            className={cn('inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 font-bold tabular-nums text-sm transition-colors duration-100',
+            className={cn('inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 font-bold tabular-nums text-s2 transition-colors duration-100',
               inAllarmeForte ? 'bg-basso-tinta text-basso-testo' : inAllarme ? 'bg-medio-tinta text-medio-testo' : 'bg-superficie-2 text-testo')}>
             <Icona nome="tempo" size={15} /><span>{timeLeft} s</span>
           </div>
@@ -402,10 +402,10 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
       {/* Domanda e risposte */}
       <main className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="mx-auto flex w-full max-w-[520px] flex-col px-5 pb-4 pt-4">
-          <p aria-label={`Domanda ${currentIndex + 1} di ${questions.length}`} className="mb-3 text-[13px] font-semibold tabular-nums text-testo-tenue">
+          <p aria-label={`Domanda ${currentIndex + 1} di ${questions.length}`} className="mb-3 text-s1 font-semibold tabular-nums text-testo-tenue">
             Domanda {currentIndex + 1} di {questions.length}
           </p>
-          <h2 data-testo-ok className="mb-5 text-xl sm:text-2xl font-bold leading-snug text-testo">
+          <h2 data-testo-ok className="mb-5 text-s3 sm:text-s4 font-bold leading-snug text-testo">
             {question.prompt}
           </h2>
 
@@ -415,7 +415,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
                 'flex min-h-[100px] w-full flex-wrap content-start items-center gap-2 rounded-2xl border-[1.5px] p-3 transition-colors duration-100',
                 hasChecked && !isCorrect ? 'border-errore bg-errore-tinta' : 'border-tacca bg-superficie-2'
               )}>
-                {selectedRecallWords.length === 0 && <span data-testo-ok className="px-1 text-[14px] text-testo-tenue">Tocca le parole per comporre la frase</span>}
+                {selectedRecallWords.length === 0 && <span data-testo-ok className="px-1 text-s2 text-testo-tenue">Tocca le parole per comporre la frase</span>}
                 {selectedRecallWords.map((wordIndex) => (
                   <button
                     key={`selected-${wordIndex}`}
@@ -447,7 +447,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
                       }}
                       disabled={isSelected || hasChecked}
                       className={cn(
-                        'min-h-[44px] rounded-xl border px-4 py-2 text-[15px] font-bold transition-colors duration-100',
+                        'min-h-[44px] rounded-xl border px-4 py-2 text-s2 font-bold transition-colors duration-100',
                         isSelected ? 'cursor-default border-linea bg-tacca text-transparent' : 'border-tacca bg-superficie-2 text-testo hover:bg-linea'
                       )}
                     >
@@ -464,12 +464,12 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
                     <Icona nome="suggerimento" size={20} />Suggerimento
                   </button>
                 ) : (
-                  <div data-testo-ok className="rounded-xl bg-azione-tinta px-4 py-2 text-center text-sm font-bold text-azione-testo">
+                  <div data-testo-ok className="rounded-xl bg-azione-tinta px-4 py-2 text-center text-s2 font-bold text-azione-testo">
                     {question.grammarTopic || question.category}{question.level && ` · ${question.level}`}
                   </div>
                 )}
                 <button onClick={() => { playTapSound(); setOptionsRevealed(true); }}
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-tacca px-4 text-[14px] font-bold text-testo transition-colors duration-100">
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-tacca px-4 text-s2 font-bold text-testo transition-colors duration-100">
                   <Icona nome="opzioni" size={18} />Mostra le opzioni
                 </button>
               </div>
@@ -495,7 +495,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
       </main>
 
       {checkError && (
-        <div role="alert" className="shrink-0 flex items-center justify-between gap-3 border-t border-errore/40 bg-errore-tinta px-4 py-2 text-sm font-bold text-errore-testo">
+        <div role="alert" className="shrink-0 flex items-center justify-between gap-3 border-t border-errore/40 bg-errore-tinta px-4 py-2 text-s2 font-bold text-errore-testo">
           <span>{checkError}</span>
           <button onClick={() => { const l = lastCheckRef.current; if (l) void handleCheck(l.confidence, l.isTimeout); }} className="min-h-[44px] shrink-0 px-2 underline">Riprova</button>
         </div>
@@ -506,7 +506,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
         <div className="mx-auto flex w-full max-w-[520px] flex-col gap-3 px-4 pb-4 pt-3">
           {!hasChecked ? (
             <>
-              <p id="etichetta-fiducia" data-testo-ok className="text-[13px] font-semibold text-testo-tenue">
+              <p id="etichetta-fiducia" data-testo-ok className="text-s1 font-semibold text-testo-tenue">
                 {daControllare
                   ? <><span className="text-testo">Quanto sei sicuro di questa risposta?</span> Tocca per controllare.</>
                   : (!optionsRevealed ? 'Prima componi la frase' : 'Scegli una risposta')}
@@ -514,7 +514,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
               <div role="group" aria-labelledby="etichetta-fiducia" className="grid grid-cols-3 gap-2">
                 {FIDUCIA.map(f => (
                   <button key={f.id} type="button" onClick={() => handleCheck(f.id)} disabled={checking || !daControllare}
-                    className={cn('flex h-[64px] flex-col items-center justify-center gap-1 rounded-[12px] border-[1.5px] text-[13.5px] font-bold text-testo transition-colors duration-100 disabled:opacity-45',
+                    className={cn('flex h-[64px] flex-col items-center justify-center gap-1 rounded-xl border-[1.5px] text-s1 font-bold text-testo transition-colors duration-100 disabled:opacity-45',
                       daControllare ? f.pronto : 'border-linea bg-superficie-2')}>
                     <BarreFiducia livello={f.livello} className={f.colore} />{f.nome}
                   </button>
@@ -527,24 +527,24 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
                 <span aria-hidden="true" className={cn('grid h-8 w-8 shrink-0 place-items-center rounded-full', isCorrect ? 'bg-alto-pieno text-alto-su' : 'bg-errore text-errore-su')}>
                   <Icona nome={isCorrect ? 'stato-risposta-giusta' : 'stato-risposta-sbagliata'} size={20} />
                 </span>
-                <p role="status" className={cn('flex-1 text-[16px] leading-[22px] font-bold', isCorrect ? 'text-alto-testo' : 'text-errore-testo')}>{titoloPannello}</p>
+                <p role="status" className={cn('flex-1 text-s2 leading-[22px] font-bold', isCorrect ? 'text-alto-testo' : 'text-errore-testo')}>{titoloPannello}</p>
                 {isCorrect && streak > 2 && (
-                  <span role="img" aria-label={`${streak} giuste di fila`} className="inline-flex items-center gap-1 text-base font-bold tabular-nums text-medio-testo"><Icona nome="serie" size={18} />{streak}</span>
+                  <span role="img" aria-label={`${streak} giuste di fila`} className="inline-flex items-center gap-1 text-s2 font-bold tabular-nums text-medio-testo"><Icona nome="serie" size={18} />{streak}</span>
                 )}
               </div>
               {rispostaEsatta && (
-                <p data-testo-ok className="text-[15px] leading-[22px] text-testo"><span className="font-bold">Risposta esatta:</span> {rispostaEsatta}</p>
+                <p data-testo-ok className="text-s2 leading-[22px] text-testo"><span className="font-bold">Risposta esatta:</span> {rispostaEsatta}</p>
               )}
               {result?.explanation && <Spiegazione key={`${question.id}-${attempts}`} testo={result.explanation} />}
               <div className="flex gap-2.5">
                 {result?.theoryId && onOpenTheory && (
                   <button type="button" onClick={() => { playTapSound(); onOpenTheory(result.theoryId!); }}
-                    className="inline-flex h-[52px] shrink-0 items-center justify-center gap-2 rounded-[12px] border border-azione/60 bg-superficie px-3.5 text-[14px] font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
+                    className="inline-flex h-[52px] shrink-0 items-center justify-center gap-2 rounded-xl border border-azione/60 bg-superficie px-3.5 text-s2 font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
                     <Icona nome="teoria" size={18} />Rivedi la teoria
                   </button>
                 )}
                 <button type="button" onClick={() => handleNext()}
-                  className="flex h-[52px] min-w-0 flex-1 items-center justify-center gap-2 rounded-[12px] bg-azione text-base font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
+                  className="flex h-[52px] min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-azione text-s2 font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
                   {isCorrect
                     ? <>{ultima ? 'Vedi com’è andata' : 'Avanti'} <Icona nome="avanti" size={22} /></>
                     : <>Riprova <Icona nome="riprova" size={20} /></>}
@@ -552,7 +552,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
               </div>
               {!isCorrect && attempts >= 2 && (
                 <button type="button" onClick={() => handleNext(true)}
-                  className="mx-auto inline-flex min-h-[44px] items-center gap-1.5 px-3 text-[14px] font-bold text-testo underline underline-offset-2">
+                  className="mx-auto inline-flex min-h-[44px] items-center gap-1.5 px-3 text-s2 font-bold text-testo underline underline-offset-2">
                   <Icona nome="salta" size={16} />Vai avanti
                 </button>
               )}
@@ -575,7 +575,7 @@ function BarreFiducia({ livello, className }: { livello: number; className?: str
   return (
     <span aria-hidden="true" className={cn('flex h-[18px] items-end gap-[3px]', className)}>
       {[7, 12, 18].map((alt, i) => (
-        <span key={alt} className={cn('w-[5px] rounded-[2px] bg-current', i >= livello && 'opacity-25')} style={{ height: alt }} />
+        <span key={alt} className={cn('w-[5px] rounded-xl bg-current', i >= livello && 'opacity-25')} style={{ height: alt }} />
       ))}
     </span>
   );
@@ -593,11 +593,11 @@ function Spiegazione({ testo }: { testo: string }) {
   return (
     <div data-testo-ok>
       <div className={aperta ? 'max-h-[30dvh] overflow-y-auto' : undefined}>
-        <p ref={ref} className={cn('text-[15px] leading-[22px] font-normal text-testo', !aperta && 'line-clamp-3')}>{tipografiche(testo)}</p>
+        <p ref={ref} className={cn('text-s2 leading-[22px] font-normal text-testo', !aperta && 'line-clamp-3')}>{tipografiche(testo)}</p>
       </div>
       {(troncata || aperta) && (
         <button type="button" aria-expanded={aperta} onClick={() => { playTapSound(); setAperta(v => !v); }}
-          className="mt-1 inline-flex min-h-[40px] items-center text-[14px] font-bold text-azione-testo underline underline-offset-2">
+          className="mt-1 inline-flex min-h-[40px] items-center text-s2 font-bold text-azione-testo underline underline-offset-2">
           {aperta ? 'Mostra meno' : 'Leggi tutto'}
         </button>
       )}
@@ -617,8 +617,8 @@ function FineSessione({ corrette, totale, secondi, prima, dopo, gruppo, daRipren
   const differenza = dopo - prima;
   const mm = Math.floor(secondi / 60);
   const ss = String(secondi % 60).padStart(2, '0');
-  const tessera = 'rounded-[12px] bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1.5 min-w-0';
-  const parola = 'text-[12.5px] leading-[16px] font-semibold text-testo-tenue text-center';
+  const tessera = 'rounded-xl bg-superficie-2 px-2 py-3 flex flex-col items-center gap-1.5 min-w-0';
+  const parola = 'text-s1 leading-[16px] font-semibold text-testo-tenue text-center';
 
   return (
     <div className="flex flex-col h-full w-full bg-superficie overflow-hidden transition-colors duration-100">
@@ -626,45 +626,45 @@ function FineSessione({ corrette, totale, secondi, prima, dopo, gruppo, daRipren
         <div className="mx-auto w-full max-w-[520px] px-5 py-5 flex flex-col gap-4">
           <div className="flex flex-col items-center text-center">
             <span aria-hidden="true" className="grid place-items-center"><Illustrazione nome="celebrazione-fiocco" lato={112} /></span>
-            <h2 className="mt-1 text-[20px] leading-[26px] font-bold text-testo">Sessione completata</h2>
-            <p role="img" aria-label={`${corrette} giuste su ${totale} al primo tentativo`} className="mt-1 text-[40px] leading-[44px] font-extrabold tabular-nums text-testo">
-              {corrette}<span className="text-[22px] font-bold text-testo-tenue">/{totale}</span>
+            <h2 className="mt-1 text-s3 leading-[26px] font-bold text-testo">Sessione completata</h2>
+            <p role="img" aria-label={`${corrette} giuste su ${totale} al primo tentativo`} className="mt-1 text-s6 leading-[44px] font-extrabold tabular-nums text-testo">
+              {corrette}<span className="text-s4 font-bold text-testo-tenue">/{totale}</span>
             </p>
-            <p className="text-[13px] font-semibold text-testo-tenue">giuste al primo tentativo</p>
+            <p className="text-s1 font-semibold text-testo-tenue">giuste al primo tentativo</p>
           </div>
 
           <div className="grid grid-cols-3 gap-2.5">
             <div role="group" aria-label={`${corrette} giuste al primo tentativo`} className={tessera}>
               <span className="w-9 h-9 rounded-full flex items-center justify-center bg-alto-tinta text-alto-testo"><Icona nome="stato-risposta-giusta" size={20} /></span>
-              <span aria-hidden className="text-2xl font-extrabold tabular-nums leading-none text-testo">{corrette}</span>
+              <span aria-hidden className="text-s4 font-extrabold tabular-nums leading-none text-testo">{corrette}</span>
               <span aria-hidden className={parola}>Giuste</span>
             </div>
             <div role="group" aria-label={`${daRiprendere.length} da riprendere`} className={tessera}>
               <span className="w-9 h-9 rounded-full flex items-center justify-center bg-basso-tinta text-basso-testo"><Icona nome="stato-da-ripassare" size={20} /></span>
-              <span aria-hidden className="text-2xl font-extrabold tabular-nums leading-none text-testo">{daRiprendere.length}</span>
+              <span aria-hidden className="text-s4 font-extrabold tabular-nums leading-none text-testo">{daRiprendere.length}</span>
               <span aria-hidden className={parola}>Da riprendere</span>
             </div>
             <div role="group" aria-label={`Tempo ${mm}:${ss}`} className={tessera}>
               <span className="w-9 h-9 rounded-full flex items-center justify-center bg-medio-tinta text-medio-testo"><Icona nome="tempo" size={20} /></span>
-              <span aria-hidden className="text-2xl font-extrabold tabular-nums leading-none text-testo">{mm}:{ss}</span>
+              <span aria-hidden className="text-s4 font-extrabold tabular-nums leading-none text-testo">{mm}:{ss}</span>
               <span aria-hidden className={parola}>Tempo</span>
             </div>
           </div>
 
           {gruppo > 0 && (
-            <section aria-label={`Domande imparate: prima ${prima}, ora ${dopo}, su ${gruppo}`} className="rounded-[12px] bg-superficie-2 p-4">
+            <section aria-label={`Domande imparate: prima ${prima}, ora ${dopo}, su ${gruppo}`} className="rounded-xl bg-superficie-2 p-4">
               <div className="flex items-center justify-between gap-3">
-                <h3 className="flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><span className="text-alto-numero"><Icona nome="stato-imparata" size={22} /></span>Domande imparate</h3>
+                <h3 className="flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo"><span className="text-alto-numero"><Icona nome="stato-imparata" size={22} /></span>Domande imparate</h3>
                 {differenza !== 0 && (
-                  <span className={cn('inline-flex items-center rounded-full text-[13px] font-bold px-2.5 py-1 tabular-nums', differenza > 0 ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
+                  <span className={cn('inline-flex items-center rounded-full text-s1 font-bold px-2.5 py-1 tabular-nums', differenza > 0 ? 'bg-alto-tinta text-alto-testo' : 'bg-basso-tinta text-basso-testo')}>
                     {differenza > 0 ? '+' : '−'}{Math.abs(differenza)}
                   </span>
                 )}
               </div>
               <div className="mt-3 flex items-end justify-center gap-5 tabular-nums">
-                <div className="text-center"><div className="text-3xl font-extrabold leading-none text-testo-tenue">{prima}</div><div className={cn(parola, 'mt-1')}>Prima</div></div>
+                <div className="text-center"><div className="text-s5 font-extrabold leading-none text-testo-tenue">{prima}</div><div className={cn(parola, 'mt-1')}>Prima</div></div>
                 <span className="mb-5 text-testo-tenue"><Icona nome="avanti" size={24} /></span>
-                <div className="text-center"><div className="text-3xl font-extrabold leading-none text-alto-numero">{dopo}</div><div className={cn(parola, 'mt-1')}>Ora, su {gruppo}</div></div>
+                <div className="text-center"><div className="text-s5 font-extrabold leading-none text-alto-numero">{dopo}</div><div className={cn(parola, 'mt-1')}>Ora, su {gruppo}</div></div>
               </div>
               <div className="mt-3 relative h-3 rounded-full bg-tacca overflow-hidden" role="presentation">
                 <div className="absolute inset-y-0 left-0 rounded-full bg-alto" style={{ width: `${pc(dopo)}%` }} />
@@ -674,20 +674,20 @@ function FineSessione({ corrette, totale, secondi, prima, dopo, gruppo, daRipren
           )}
 
           {daRiprendere.length > 0 && (
-            <section aria-labelledby="titolo-da-riprendere" className="rounded-[12px] bg-superficie-2 p-4 text-left">
-              <h3 id="titolo-da-riprendere" className="mb-2.5 flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><span className="text-basso-numero"><Icona nome="stato-da-ripassare" size={20} /></span>Da riprendere</h3>
+            <section aria-labelledby="titolo-da-riprendere" className="rounded-xl bg-superficie-2 p-4 text-left">
+              <h3 id="titolo-da-riprendere" className="mb-2.5 flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo"><span className="text-basso-numero"><Icona nome="stato-da-ripassare" size={20} /></span>Da riprendere</h3>
               <ul data-testo-ok className="divide-y divide-linea">
                 {daRiprendere.slice(0, 5).map(d => (
                   <li key={d.id} className="py-2 first:pt-0 last:pb-0">
-                    <p className="text-[14px] font-semibold text-testo leading-snug">{d.prompt}</p>
-                    <p className="text-[12px] font-semibold text-testo-tenue mt-0.5">{d.argomento}</p>
+                    <p className="text-s2 font-semibold text-testo leading-snug">{d.prompt}</p>
+                    <p className="text-s1 font-semibold text-testo-tenue mt-0.5">{d.argomento}</p>
                   </li>
                 ))}
               </ul>
-              {daRiprendere.length > 5 && <p className="mt-2 text-[13px] font-semibold text-testo-tenue tabular-nums">e altre {daRiprendere.length - 5}</p>}
+              {daRiprendere.length > 5 && <p className="mt-2 text-s1 font-semibold text-testo-tenue tabular-nums">e altre {daRiprendere.length - 5}</p>}
               {regola && onOpenTheory && (
                 <button type="button" onClick={() => { playTapSound(); onOpenTheory(regola.theoryId); }}
-                  className="mt-3 w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-azione/60 px-3 text-azione-testo font-bold text-sm hover:bg-azione-tinta transition-colors duration-100">
+                  className="mt-3 w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-azione/60 px-3 text-azione-testo font-bold text-s2 hover:bg-azione-tinta transition-colors duration-100">
                   <Icona nome="teoria" size={18} /><span data-testo-ok>Rivedi la teoria: {regola.nome}</span>
                 </button>
               )}
@@ -699,11 +699,11 @@ function FineSessione({ corrette, totale, secondi, prima, dopo, gruppo, daRipren
       <div className="shrink-0 border-t border-linea bg-superficie p-3 sm:p-4">
         <div className="mx-auto w-full max-w-[520px] flex flex-col gap-2">
           <button type="button" onClick={() => { playTapSound(); onContinua(); }}
-            className="w-full inline-flex h-[52px] items-center justify-center gap-2.5 bg-azione hover:bg-azione-scuro text-azione-su rounded-[12px] px-4 font-bold text-base transition-colors duration-100">
+            className="w-full inline-flex h-[52px] items-center justify-center gap-2.5 bg-azione hover:bg-azione-scuro text-azione-su rounded-xl px-4 font-bold text-s2 transition-colors duration-100">
             <Icona nome="studia" size={22} />Altre {QUANTE} domande
           </button>
           <button type="button" onClick={() => { playTapSound(); onExit(); }}
-            className="w-full inline-flex h-[52px] items-center justify-center gap-2 bg-superficie border border-azione/60 text-azione-testo font-bold text-base rounded-[12px] transition-colors duration-100 hover:bg-azione-tinta">
+            className="w-full inline-flex h-[52px] items-center justify-center gap-2 bg-superficie border border-azione/60 text-azione-testo font-bold text-s2 rounded-xl transition-colors duration-100 hover:bg-azione-tinta">
             <Icona nome="home" size={20} />Torna alla Home
           </button>
         </div>

@@ -69,9 +69,10 @@ const SCHEDE_DESKTOP: { id: Scheda; nome: string; icona: 'home' | 'esercizi' | '
 ];
 
 /**
- * Home «completa»: stato e prossime azioni (concept 14, 01, 33, 21, 03; revisione 18/10). Dall'alto: intestazione (marchio e profilo), saluto con nome (solo se
- * il nome esiste e lo schermo è alto), misuratore con la «i», fascia di stato (glifo, titolo, riga), un solo pulsante che dice cosa fa, prossima lezione,
- * le tue aree (dalla più debole), ultima simulazione, andamento, barra a tre voci.
+ * Home «completa»: stato e prossime azioni (concept 14, 01, 33, 21, 03; revisione 18/10). Gerarchia: una sola card dominante, il pulsante «prossimo passo» (pieno, `Cta`);
+ * il resto è secondario (bordo leggero, righe compatte, testi da 12 a 15 px, niente illustrazioni, misuratore più piccolo). Dall'alto: intestazione (marchio e profilo),
+ * saluto con nome (solo se il nome esiste e lo schermo è alto), misuratore con la «i», fascia di stato, il pulsante, prossima lezione, le tue aree (dalla più debole),
+ * ultima simulazione, andamento, barra a tre voci.
  * Da 1024 px (colonna da 960 px del guscio, `useColonnaLarga`): due colonne (a sinistra misuratore, fascia, pulsante e simulazione, fissi; a destra lezione, aree, andamento) e navigazione in alto.
  * Strumenti, frasi e prontuario stanno in Esercizi (docs/design/ARCHITETTURA.md).
  */
@@ -123,7 +124,7 @@ export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheor
               <nav aria-label="Sezioni" className="hidden lg:flex items-center gap-1">
                 {SCHEDE_DESKTOP.map(v => (
                   <button key={v.id} type="button" onClick={() => { playTapSound(); onNaviga(v.id); }} aria-current={v.id === 'home' ? 'page' : undefined}
-                    className={cn('brand-premibile inline-flex items-center gap-2 h-10 px-4 rounded-[12px] text-[15px] leading-[20px]',
+                    className={cn('brand-premibile inline-flex items-center gap-2 h-10 px-4 rounded-xl text-s2 leading-[20px]',
                       v.id === 'home' ? 'bg-azione-tinta text-azione-testo font-bold' : 'text-testo-tenue font-semibold hover:text-testo')}>
                     <Icona nome={v.icona} size={20} />{v.nome}
                   </button>
@@ -143,14 +144,14 @@ export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheor
             <div className="lg:sticky lg:top-6">
               {nome && (
                 <div className="mt-3 corto:hidden lg:block!">
-                  <p className="text-[24px] leading-[30px] font-extrabold tracking-[-0.01em] text-testo break-words">Ciao, {nome}</p>
-                  <p className="text-[14px] leading-[20px] text-testo-tenue">{rigaSaluto(chiave)}</p>
+                  <p className="text-s3 leading-[26px] font-bold tracking-[-0.01em] text-testo break-words">Ciao, {nome}</p>
+                  <p className="text-s2 leading-[20px] text-testo-tenue">{rigaSaluto(chiave)}</p>
                 </div>
               )}
 
               {/* misuratore a tutta larghezza (senza stima: arco vuoto e nessun numero) */}
               <div className="-mx-6 lg:mx-0 mt-[20px] corto:mt-[10px]">
-                <div className="mx-auto max-w-[440px] corto:max-w-[340px] lg:max-w-[400px]">
+                <div className="mx-auto max-w-[300px] corto:max-w-[260px] lg:max-w-[320px]">
                   <StimaSezione stima={stima} livello={livello} onInfo={stima ? () => setFoglio(true) : undefined} />
                 </div>
               </div>

@@ -15,7 +15,7 @@ export type TonoStato = Tono | 'neutro' | 'errore';
 /** Pillola di stato: come quella dei servizi, più il tono `errore` (classi `errore*`, con la parola sempre scritta). In scuro il fondo è neutro. */
 export function Etichetta({ tono = 'neutro', children, className }: { tono?: TonoStato; children: ReactNode; className?: string }) {
   if (tono !== 'errore') return <EtichettaBase tono={tono} className={cn(tono !== 'neutro' && 'dark:bg-superficie-2', className)}>{children}</EtichettaBase>;
-  return <span className={cn('inline-flex items-center gap-1 rounded-full bg-errore-tinta px-2.5 py-[3px] text-[12px] leading-[16px] font-semibold text-errore-testo dark:bg-superficie-2', className)}>{children}</span>;
+  return <span className={cn('inline-flex items-center gap-1 rounded-full bg-errore-tinta px-2.5 py-[3px] text-s1 leading-[16px] font-semibold text-errore-testo dark:bg-superficie-2', className)}>{children}</span>;
 }
 
 /** Illustrazione di testata: SOLO in Community, NOI e Agorà, centrata, sempre a 72 px (la stessa posizione e dimensione ovunque). */
@@ -43,10 +43,10 @@ export function Interruttore({ acceso, onChange, etichetta, disabled }: { acceso
 export function RigaDato({ icona, etichetta, valore }: { icona?: NomeIcona; etichetta: string; valore: ReactNode; tono?: Tono | 'errore' }) {
   return (
     <li className="flex items-start gap-3 px-3.5 py-3">
-      {icona && <span aria-hidden="true" className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-superficie-2 text-testo-tenue"><Icona nome={icona} size={22} /></span>}
+      {icona && <span aria-hidden="true" className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-superficie-2 text-testo-tenue"><Icona nome={icona} size={22} /></span>}
       <span className="min-w-0 flex-1">
-        <span className="block text-[13px] leading-[18px] font-semibold text-testo-tenue">{etichetta}</span>
-        <span data-testo-ok className="block break-words text-[15px] leading-[21px] font-semibold text-testo">{valore}</span>
+        <span className="block text-s1 leading-[18px] font-semibold text-testo-tenue">{etichetta}</span>
+        <span data-testo-ok className="block break-words text-s2 leading-[21px] font-semibold text-testo">{valore}</span>
       </span>
     </li>
   );
@@ -56,7 +56,7 @@ export function RigaDato({ icona, etichetta, valore }: { icona?: NomeIcona; etic
 export function BottoneRiga({ icona, children, onClick, tono = 'neutro', disabled }: { icona: NomeIcona; children: ReactNode; onClick: () => void; tono?: 'neutro' | 'rischio'; disabled?: boolean }) {
   return (
     <button type="button" disabled={disabled} onClick={() => { playTapSound(); onClick(); }}
-      className={cn('brand-premibile flex min-h-[52px] w-full items-center gap-3 rounded-[14px] border px-3.5 py-3 text-left text-[15px] font-bold disabled:opacity-45 disabled:pointer-events-none',
+      className={cn('brand-premibile flex min-h-[52px] w-full items-center gap-3 rounded-xl border px-3.5 py-3 text-left text-s2 font-bold disabled:opacity-45 disabled:pointer-events-none',
         tono === 'rischio' ? 'border-basso/40 bg-basso-tinta text-basso-testo dark:bg-superficie' : 'border-linea bg-superficie text-testo shadow-sm dark:shadow-none')}>
       <Icona nome={icona} size={20} className={tono === 'rischio' ? '' : 'text-azione-testo'} />{children}
     </button>

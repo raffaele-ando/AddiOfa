@@ -15,13 +15,13 @@ const VANTAGGI: { icona: NomeIcona; titolo: string; sotto: string }[] = [
 export default function Vantaggi() {
   return (
     <Colonna className="relative z-10 -mt-6">
-      <ul data-testo-ok className="vetro vetro-forte grid grid-cols-2 gap-x-4 gap-y-5 rounded-3xl px-4 py-5 sm:px-8 lg:grid-cols-4 lg:gap-x-0 lg:py-5" aria-label="I vantaggi in breve">
+      <ul data-testo-ok className="vetro vetro-forte grid grid-cols-2 gap-x-4 gap-y-5 rounded-2xl px-4 py-5 sm:px-8 lg:grid-cols-4 lg:gap-x-0 lg:py-5" aria-label="I vantaggi in breve">
         {VANTAGGI.map(({ icona, titolo, sotto }, i) => (
           <li key={titolo} className={`flex flex-col items-center gap-2.5 text-center lg:flex-row lg:items-start lg:gap-3 lg:text-left ${i > 0 ? 'lg:border-l lg:border-linea lg:pl-8' : 'lg:pl-2'}`}>
             <span aria-hidden className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-azione-tinta text-azione-testo"><Icona nome={icona} size={22} /></span>
             <span>
-              <span className="block text-[15px] font-bold leading-snug text-testo">{titolo}</span>
-              <span className="mt-0.5 block text-[13px] font-medium leading-snug text-testo-tenue">{sotto}</span>
+              <span className="block text-s2 font-bold leading-snug text-testo">{titolo}</span>
+              <span className="mt-0.5 block text-s1 font-medium leading-snug text-testo-tenue">{sotto}</span>
             </span>
           </li>
         ))}

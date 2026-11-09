@@ -20,7 +20,7 @@ function Saldo({ r }: { r: Rivale }) {
     ['stato-perso', r.persi, 'text-basso-testo', `${r.persi} persi`, r.persi === 1 ? 'perso' : 'persi'],
   ];
   return (
-    <span className="mt-0.5 flex items-center gap-3 text-[14px] leading-[18px] font-extrabold tabular-nums" aria-label="Saldo">
+    <span className="mt-0.5 flex items-center gap-3 text-s2 leading-[19px] font-extrabold tabular-nums" aria-label="Saldo">
       {voci.filter(([, n]) => n > 0).map(([nome, n, colore, aria, parola]) => (
         <span key={nome} role="img" aria-label={aria} className={cn('inline-flex items-center gap-1', colore)}><Icona nome={nome} size={15} />{n}</span>
       ))}
@@ -30,11 +30,11 @@ function Saldo({ r }: { r: Rivale }) {
 
 function RigaRivale({ r, aperto, onToggle, onRimuovi, onApri }: { r: Rivale; aperto: boolean; onToggle: () => void; onRimuovi: () => void; onApri: (id: string) => void }) {
   return (
-    <li className="overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none">
+    <li className="overflow-hidden rounded-xl border border-linea bg-superficie shadow-sm dark:shadow-none">
       <button type="button" aria-expanded={aperto} aria-label={r.nome} onClick={() => { playTapSound(); onToggle(); }} className="brand-premibile flex w-full items-center gap-3 p-3 text-left">
         <Avatar nome={r.nome} />
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-[15.5px] leading-[20px] font-bold text-testo">{r.nome}</span>
+          <span className="block truncate text-s2 leading-[20px] font-bold text-testo">{r.nome}</span>
           <Saldo r={r} />
         </span>
         <Icona nome="espandi" size={20} className={cn('shrink-0 text-testo-tenue', aperto && 'rotate-180')} />
@@ -45,16 +45,16 @@ function RigaRivale({ r, aperto, onToggle, onRimuovi, onApri }: { r: Rivale; ape
             {r.voci.map(v => (
               <li key={v.id}>
                 <button type="button" aria-label={`Duello del ${dataBreve(v.quando)}`} onClick={() => { playTapSound(); onApri(v.id); }} className="brand-premibile flex w-full items-center gap-3 py-2 text-left">
-                  <span className="min-w-0 flex-1 text-[16px] font-extrabold tabular-nums text-testo">
+                  <span className="min-w-0 flex-1 text-s2 font-extrabold tabular-nums text-testo">
                     {v.corrette} – {v.avversario!.corrette}
-                    <span className="block text-[12px] font-semibold text-testo-tenue">{dataBreve(v.quando)} · {tempoBreve(v.secondi)} – {tempoBreve(v.avversario!.secondi)}</span>
+                    <span className="block text-s1 font-semibold text-testo-tenue">{dataBreve(v.quando)} · {tempoBreve(v.secondi)} – {tempoBreve(v.avversario!.secondi)}</span>
                   </span>
                   <PillolaEsito esito={confronta(v, v.avversario!)} />
                 </button>
               </li>
             ))}
           </ul>
-          <button type="button" aria-label={`Togli ${r.nome}`} onClick={() => { playTapSound(); onRimuovi(); }} className="brand-premibile mt-1 inline-flex items-center gap-1.5 text-[13px] font-bold text-errore-testo">
+          <button type="button" aria-label={`Togli ${r.nome}`} onClick={() => { playTapSound(); onRimuovi(); }} className="brand-premibile mt-1 inline-flex items-center gap-1.5 text-s1 font-bold text-errore-testo">
             <Icona nome="cancella" size={15} /> Togli
           </button>
         </div>

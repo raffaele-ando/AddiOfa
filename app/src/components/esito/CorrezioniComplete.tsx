@@ -57,7 +57,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
 
   return (
     <section aria-labelledby={`${idBase}-titolo`} className="text-left">
-      <h3 id={`${idBase}-titolo`} className="flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo">
+      <h3 id={`${idBase}-titolo`} className="flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo">
         <Icona nome="correzioni" size={20} className="text-viola" />Correzioni
       </h3>
 
@@ -76,7 +76,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
             <button key={f.id} type="button" role="tab" id={`${idBase}-${f.id}`} aria-selected={attivo} aria-controls={`${idBase}-pannello`} tabIndex={attivo ? 0 : -1}
               onClick={() => { playTapSound(); setFiltro(f.id); }}
               className={cn(
-                'inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border px-3 text-[14px] font-bold transition-colors duration-100',
+                'inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border px-3 text-s2 font-bold transition-colors duration-100',
                 attivo ? f.attivo : 'bg-superficie text-testo border-linea hover:bg-superficie-2'
               )}>
               <Icona nome={f.nome} size={18} />{f.aria}<span className="tabular-nums font-extrabold">{conteggi[f.id]}</span>
@@ -88,9 +88,9 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
       <div role="tabpanel" id={`${idBase}-pannello`} aria-labelledby={`${idBase}-${filtro}`} className="mt-3 space-y-3">
         {visibili.length === 0 && (
           // Nessuna sbagliata o vuota: tutto in ordine (`documento-completato`); nessuna giusta: `vuoto`.
-          <div role="status" aria-label={filtro === 'giusta' ? 'Nessuna giusta' : 'Nessuna'} className="flex flex-col items-center rounded-[12px] border border-dashed border-linea py-5">
+          <div role="status" aria-label={filtro === 'giusta' ? 'Nessuna giusta' : 'Nessuna'} className="flex flex-col items-center rounded-xl border border-dashed border-linea py-5">
             <Illustrazione nome={filtro === 'giusta' ? 'vuoto' : 'documento-completato'} lato={88} />
-            <span data-testo-ok className="mt-1 text-[15px] font-semibold text-testo-tenue">{filtro === 'giusta' ? 'Nessuna risposta giusta' : filtro === 'sbagliata' ? 'Nessuna risposta sbagliata' : 'Nessuna domanda senza risposta'}</span>
+            <span data-testo-ok className="mt-1 text-s2 font-semibold text-testo-tenue">{filtro === 'giusta' ? 'Nessuna risposta giusta' : filtro === 'sbagliata' ? 'Nessuna risposta sbagliata' : 'Nessuna domanda senza risposta'}</span>
           </div>
         )}
         {visibili.map(({ q, n, r, stato }) => {
@@ -103,26 +103,26 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
           return (
             <article key={`${filtro}-${q.id}`}
               aria-label={`Domanda ${n}: ${s.parola.toLowerCase()}`}
-              className="rounded-[12px] bg-superficie-2 p-3.5 sm:p-4">
+              className="rounded-xl bg-superficie-2 p-3.5 sm:p-4">
               <div className="flex items-center gap-2.5 mb-2">
-                <span className="w-7 h-7 rounded-full bg-superficie text-xs font-bold tabular-nums text-testo-tenue flex items-center justify-center shrink-0">{n}</span>
+                <span className="w-7 h-7 rounded-full bg-superficie text-s1 font-bold tabular-nums text-testo-tenue flex items-center justify-center shrink-0">{n}</span>
                 <span role="img" aria-label={s.parola} className={cn('grid h-7 w-7 shrink-0 place-items-center rounded-full', s.badge)}><Icona nome={s.nome} size={16} /></span>
-                <span data-testo-ok className="ml-auto min-w-0 truncate text-right text-[11px] font-semibold text-testo-tenue">{q.grammarTopic || q.category}</span>
+                <span data-testo-ok className="ml-auto min-w-0 truncate text-right text-s1 font-semibold text-testo-tenue">{q.grammarTopic || q.category}</span>
               </div>
-              <p data-testo-ok className="font-bold text-[15px] sm:text-base text-testo leading-snug mb-2.5">{q.prompt}</p>
+              <p data-testo-ok className="font-bold text-s2 sm:text-s2 text-testo leading-snug mb-2.5">{q.prompt}</p>
 
               {stato === 'giusta' ? (
-                <div className="flex items-start gap-2 rounded-[10px] border border-alto/30 bg-alto-tinta p-2.5 text-sm">
+                <div className="flex items-start gap-2 rounded-xl border border-alto/30 bg-alto-tinta p-2.5 text-s2">
                   <Icona nome="stato-risposta-giusta" size={17} className="mt-0.5 shrink-0 text-alto-testo" />
                   <p data-testo-ok className="min-w-0 font-semibold text-testo break-words">{dato !== undefined && dato >= 0 ? <>{lettera(dato)}{q.options[dato]}</> : ''}</p>
                 </div>
               ) : (
                 // Confronto affiancato: a sinistra cosa hai risposto, a destra la risposta esatta
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div className={cn('flex items-start gap-2 rounded-[10px] border p-2.5', dato === undefined ? 'border-medio/30 bg-medio-tinta' : 'border-errore/30 bg-errore-tinta')}>
+                <div className="grid grid-cols-2 gap-2 text-s2">
+                  <div className={cn('flex items-start gap-2 rounded-xl border p-2.5', dato === undefined ? 'border-medio/30 bg-medio-tinta' : 'border-errore/30 bg-errore-tinta')}>
                     <Icona nome={dato === undefined ? 'stato-risposta-omessa' : 'stato-risposta-sbagliata'} size={17} className={cn('mt-0.5 shrink-0', dato === undefined ? 'text-medio-testo' : 'text-errore-testo')} />
                     <div className="min-w-0">
-                    <p className="mb-0.5 text-[12px] font-semibold text-testo-tenue">La tua</p>
+                    <p className="mb-0.5 text-s1 font-semibold text-testo-tenue">La tua</p>
                     <p data-testo-ok className="min-w-0 font-semibold text-testo break-words">
                       {dato === undefined
                         ? '–'
@@ -132,10 +132,10 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
                     </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2 rounded-[10px] border border-alto/30 bg-alto-tinta p-2.5">
+                  <div className="flex items-start gap-2 rounded-xl border border-alto/30 bg-alto-tinta p-2.5">
                     <Icona nome="stato-risposta-giusta" size={17} className="mt-0.5 shrink-0 text-alto-testo" />
                     <div className="min-w-0">
-                    <p className="mb-0.5 text-[12px] font-semibold text-testo-tenue">Esatta</p>
+                    <p className="mb-0.5 text-s1 font-semibold text-testo-tenue">Esatta</p>
                     <p data-testo-ok className="min-w-0 font-bold text-alto-testo break-words">{r ? <>{lettera(r.correctIndex)}{q.options[r.correctIndex]}</> : '…'}</p>
                     </div>
                   </div>
@@ -144,18 +144,18 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
 
               {compatta && r?.explanation && (
                 <button type="button" onClick={() => { playTapSound(); alterna(q.id); }} aria-expanded={apertaSpieg} aria-controls={idSpieg}
-                  className="mt-2 inline-flex min-h-[44px] items-center gap-1.5 text-[14px] font-bold text-azione-testo">
+                  className="mt-2 inline-flex min-h-[44px] items-center gap-1.5 text-s2 font-bold text-azione-testo">
                   <Icona nome="spiegazioni" size={18} />Spiegazione<Icona nome="espandi" size={16} className={apertaSpieg ? 'rotate-180' : undefined} />
                 </button>
               )}
               {apertaSpieg && (r?.explanation || (r?.theoryId && onOpenTheory)) && (
                 <div id={idSpieg} className="mt-2.5">
                   {r?.explanation && (
-                    <p data-testo-ok className="rounded-[10px] bg-superficie p-3 text-[14.5px] font-normal leading-[22px] text-testo">{tipografiche(r.explanation)}</p>
+                    <p data-testo-ok className="rounded-xl bg-superficie p-3 text-s2 font-normal leading-[22px] text-testo">{tipografiche(r.explanation)}</p>
                   )}
                   {r?.theoryId && onOpenTheory && (
                     <button type="button" onClick={() => { playTapSound(); onOpenTheory(r.theoryId!); }}
-                      className="mt-1 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-bold text-azione-testo underline underline-offset-2">
+                      className="mt-1 inline-flex min-h-[44px] items-center gap-1.5 text-s2 font-bold text-azione-testo underline underline-offset-2">
                       <Icona nome="teoria" size={16} /> Rivedi la teoria
                     </button>
                   )}

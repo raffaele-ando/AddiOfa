@@ -13,20 +13,20 @@ function Voce({ voce, aperta, onToggle }: { voce: VoceFaq; aperta: boolean; onTo
   const { vai, apriLegale } = useExtra();
   const id = useId();
   return (
-    <li data-testo-ok className="rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none">
+    <li data-testo-ok className="rounded-xl border border-linea bg-superficie shadow-sm dark:shadow-none">
       <h3>
         <button type="button" id={`${id}-b`} aria-expanded={aperta} aria-controls={`${id}-p`} onClick={() => { playTapSound(); onToggle(); }}
-          className="brand-premibile flex min-h-[56px] w-full items-center justify-between gap-3 rounded-[16px] px-4 py-3.5 text-left text-[15px] leading-[21px] font-semibold text-testo">
+          className="brand-premibile flex min-h-[56px] w-full items-center justify-between gap-3 rounded-xl px-4 py-3.5 text-left text-s2 leading-[21px] font-semibold text-testo">
           <span>{voce.domanda}</span>
           <Icona nome="espandi" size={20} className={cn('shrink-0 text-testo-tenue', aperta && 'rotate-180')} />
         </button>
       </h3>
       {aperta && (
         <div id={`${id}-p`} role="region" aria-labelledby={`${id}-b`} className="px-4 pb-4">
-          {voce.risposta.map((p, i) => <p key={i} className={cn('text-[14px] leading-[22px] text-testo', i > 0 && 'mt-2')}>{p}</p>)}
+          {voce.risposta.map((p, i) => <p key={i} className={cn('text-s2 leading-[22px] text-testo', i > 0 && 'mt-2')}>{p}</p>)}
           <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1">
-            {voce.vai && <button type="button" onClick={() => vai(voce.vai!.id, voce.vai!.params)} className="min-h-[44px] rounded text-[14px] font-bold text-azione-testo underline underline-offset-2">{voce.vai.testo}</button>}
-            {voce.legale && <button type="button" onClick={() => apriLegale(voce.legale!.sezione)} className="min-h-[44px] rounded text-[14px] font-bold text-azione-testo underline underline-offset-2">{voce.legale.testo}</button>}
+            {voce.vai && <button type="button" onClick={() => vai(voce.vai!.id, voce.vai!.params)} className="min-h-[44px] rounded-xl text-s2 font-bold text-azione-testo underline underline-offset-2">{voce.vai.testo}</button>}
+            {voce.legale && <button type="button" onClick={() => apriLegale(voce.legale!.sezione)} className="min-h-[44px] rounded-xl text-s2 font-bold text-azione-testo underline underline-offset-2">{voce.legale.testo}</button>}
           </div>
         </div>
       )}
@@ -49,10 +49,10 @@ export default function Faq() {
     <Pagina titolo="Domande frequenti" destra={<PulsanteInfo onClick={() => setInfo(true)} etichetta="Avvertenze" />}>
       <div className="mt-3">
         <label htmlFor={campo} className="sr-only">Cerca nelle domande</label>
-        <div className="flex items-center gap-2 rounded-[14px] border border-bordo-campo bg-superficie px-3.5 focus-within:outline focus-within:outline-2 focus-within:outline-azione">
+        <div className="flex items-center gap-2 rounded-xl border border-bordo-campo bg-superficie px-3.5 focus-within:outline focus-within:outline-2 focus-within:outline-azione">
           <Icona nome="cerca" size={20} className="shrink-0 text-testo-tenue" />
           <input id={campo} type="search" value={testo} onChange={e => setTesto(e.target.value)} placeholder="Cerca nelle domande" autoComplete="off" maxLength={80}
-            className="h-12 min-w-0 flex-1 bg-transparent text-[15px] text-testo placeholder:text-testo-tenue outline-none [&::-webkit-search-cancel-button]:hidden" />
+            className="h-12 min-w-0 flex-1 bg-transparent text-s2 text-testo placeholder:text-testo-tenue outline-none [&::-webkit-search-cancel-button]:hidden" />
           {testo && (
             <button type="button" onClick={() => setTesto('')} aria-label="Cancella la ricerca" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-testo-tenue">
               <Icona nome="chiudi" size={18} />

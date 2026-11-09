@@ -27,7 +27,7 @@ export default function Landing({ onStartDiagnostic, onSkip, onOpenLegal }: Land
   return (
     <div ref={scorri} className="fixed inset-0 z-40 overflow-y-auto overflow-x-hidden bg-fondo text-testo">
       <Barra onStart={onStartDiagnostic} />
-      <main className="landing-pagina">
+      <main>
         <Hero onStart={onStartDiagnostic} onSkip={onSkip} />
         <Vantaggi />
         <SeNonSuperi onStart={onStartDiagnostic} />

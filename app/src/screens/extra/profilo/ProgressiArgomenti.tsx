@@ -20,11 +20,11 @@ function RigaArgomento({ a, onApri }: { a: ArgomentoAnalisi; onApri: () => void 
     <button type="button" onClick={() => { playTapSound(); onApri(); }} aria-label={`${a.titolo}: apri la lezione`}
       className="brand-premibile block w-full px-1 py-3 text-left">
       <span className="flex items-baseline justify-between gap-3">
-        <span data-testo-ok className="min-w-0 text-[15px] leading-[21px] font-semibold text-testo">{a.titolo}</span>
-        <span className={`shrink-0 text-[14px] tabular-nums ${dato ? 'font-bold' : ''} ${TESTO_TONO[tono ?? 'nessuno']}`}>{dato ? `${a.percento}%` : '–'}</span>
+        <span data-testo-ok className="min-w-0 text-s2 leading-[21px] font-semibold text-testo">{a.titolo}</span>
+        <span className={`shrink-0 text-s2 tabular-nums ${dato ? 'font-bold' : ''} ${TESTO_TONO[tono ?? 'nessuno']}`}>{dato ? `${a.percento}%` : '–'}</span>
       </span>
       <span className="mt-2 block"><BarraTono valore={dato ? a.percento! : 0} tono={tono ?? 'azione'} className="h-1.5" /></span>
-      <span className="mt-2 flex items-center gap-3 text-[12px] leading-[16px] text-testo-tenue tabular-nums">
+      <span className="mt-2 flex items-center gap-3 text-s1 leading-[16px] text-testo-tenue tabular-nums">
         <span className={`rounded-full px-2 font-bold ${TONI[TONO_LIVELLO[a.livello] ?? 'azione'].tinta} ${TONI[TONO_LIVELLO[a.livello] ?? 'azione'].testo}`}>{a.livello}</span>
         <span>{a.risposte} {a.risposte === 1 ? 'risposta' : 'risposte'}</span>
         <span>{a.imparate} di {a.totaleDomande} imparate</span>
@@ -67,7 +67,7 @@ export default function ProgressiArgomenti() {
           <ul className="mt-1 flex flex-wrap justify-center gap-x-4 gap-y-1" aria-label="Colori">
             {/* ogni fascia ha il suo colore, la sua forma (icona) e la sua parola: mai il solo colore */}
             {([['alto', 'Solido', 'stato-ok'], ['medio', 'Da migliorare', 'stato-medio'], ['basso', 'Da ripassare', 'stato-da-ripassare']] as const).map(([t, nome, icona]) => (
-              <li key={t} className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] leading-[16px] font-bold ${TONI[t].tinta} ${TONI[t].testo}`}>
+              <li key={t} className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-s1 leading-[16px] font-bold ${TONI[t].tinta} ${TONI[t].testo}`}>
                 <Icona nome={icona} size={14} />{nome}
               </li>
             ))}
@@ -81,14 +81,14 @@ export default function ProgressiArgomenti() {
         </ul>
         {(altri > 0 || tutti) && (
           <button type="button" onClick={() => { playTapSound(); setTutti(v => !v); }} aria-expanded={tutti}
-            className="brand-premibile flex min-h-[44px] w-full items-center justify-center gap-1.5 border-t border-linea text-[14px] font-bold text-azione-testo">
+            className="brand-premibile flex min-h-[44px] w-full items-center justify-center gap-1.5 border-t border-linea text-s2 font-bold text-azione-testo">
             <Icona nome="espandi" size={18} className={tutti ? 'rotate-180' : undefined} />{tutti ? 'Mostra meno argomenti' : `Mostra tutti i ${an.argomenti.length} argomenti`}
           </button>
         )}
       </Carta>
 
       <button type="button" onClick={() => { playTapSound(); setInfo(true); }}
-        className="brand-premibile mx-auto inline-flex min-h-[44px] items-center gap-1.5 rounded-full px-3 text-[14px] font-semibold text-testo-tenue hover:text-testo"><Icona nome="info" size={18} />Come si calcola</button>
+        className="brand-premibile mx-auto inline-flex min-h-[44px] items-center gap-1.5 rounded-full px-3 text-s2 font-semibold text-testo-tenue hover:text-testo"><Icona nome="info" size={18} />Come si calcola</button>
 
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Come si calcola">
         <ul className="flex list-disc flex-col gap-2 pl-5">

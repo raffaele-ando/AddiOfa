@@ -52,7 +52,7 @@ function Intestazione({ onExit }: { onExit: () => void }) {
         className="-ml-3 grid place-items-center w-10 h-10 shrink-0 rounded-full text-testo-tenue hover:text-testo">
         <Icona nome="indietro" size={28} />
       </button>
-      <h1 className="min-w-0 flex-1 text-[26px] leading-[40px] font-extrabold tracking-[-0.02em] text-testo">Statistiche</h1>
+      <h1 className="min-w-0 flex-1 text-s4 leading-[40px] font-extrabold tracking-[-0.02em] text-testo">Statistiche</h1>
     </header>
   );
 }
@@ -64,7 +64,7 @@ function Conto({ tipo, n, piccolo }: { tipo: 'giuste' | 'sbagliate' | 'omesse'; 
     : (n > 0 ? 'bg-medio-tinta text-medio-testo border-medio/30' : 'bg-superficie text-testo-tenue border-linea');
   const icona = tipo === 'giuste' ? 'stato-risposta-giusta' : tipo === 'sbagliate' ? 'stato-risposta-sbagliata' : 'stato-risposta-omessa';
   return (
-    <span role="img" aria-label={`${n} ${tipo}`} className={cn('inline-flex items-center gap-1 text-[12px] font-bold tabular-nums px-2 py-0.5 rounded-lg border', stile)}>
+    <span role="img" aria-label={`${n} ${tipo}`} className={cn('inline-flex items-center gap-1 text-s1 font-bold tabular-nums px-2 py-0.5 rounded-xl border', stile)}>
       <Icona nome={icona} size={piccolo ? 12 : 13} />{n}
     </span>
   );
@@ -185,12 +185,12 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
     <div className="flex flex-col gap-2.5">
       {onDiagnostico && (
         <button type="button" onClick={() => { playTapSound(); onDiagnostico(); }}
-          className="brand-premibile w-full min-h-[52px] rounded-[13px] bg-azione px-4 py-3 text-[16px] font-bold text-azione-su flex items-center justify-center gap-2">
+          className="brand-premibile w-full min-h-[52px] rounded-xl bg-azione px-4 py-3 text-s2 font-bold text-azione-su flex items-center justify-center gap-2">
           <Icona nome="diagnostico" size={20} />Test di livello
         </button>
       )}
       <button type="button" onClick={() => { playTapSound(); setShowDetailedStats(true); }}
-        className="brand-premibile w-full min-h-[48px] rounded-[13px] bg-superficie-2 px-4 py-3 text-[15px] font-bold text-testo flex items-center justify-center gap-2">
+        className="brand-premibile w-full min-h-[48px] rounded-xl bg-superficie-2 px-4 py-3 text-s2 font-bold text-testo flex items-center justify-center gap-2">
         <Icona nome="dettaglio" size={20} />Dettaglio
       </button>
     </div>
@@ -203,14 +203,14 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
 
       {/* Progresso per livello: domande imparate e da imparare */}
       <section aria-labelledby="titolo-livello" className="flex flex-col gap-2.5">
-        <h2 id="titolo-livello" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><Icona nome="livello" size={20} className="text-viola" />Livelli</h2>
-        <div className="rounded-[12px] border border-linea p-4 flex flex-col">
+        <h2 id="titolo-livello" className="text-s2 leading-[20px] font-bold text-testo flex items-center gap-2"><Icona nome="livello" size={20} className="text-viola" />Livelli</h2>
+        <div className="rounded-xl border border-linea p-4 flex flex-col">
           <div className="w-full">
             <ResponsiveContainer width="100%" height={150}>
               <BarChart data={levelStatsData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={GRIGLIA} />
-                <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
-                <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: ASSE, fontWeight: 'bold' }} />
+                <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: '0.75rem', fill: ASSE, fontWeight: 'bold' }} allowDecimals={false} />
+                <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: '0.75rem', fill: ASSE, fontWeight: 'bold' }} />
                 <Tooltip isAnimationActive={false} cursor={{ fill: CURSORE }} contentStyle={TOOLTIP}
                   formatter={(value: number, name: string) => [value, name === 'daImparare' ? 'Da imparare' : name]} />
                 <Bar isAnimationActive={false} dataKey="imparate" name="Imparate" stackId="a" fill={ALTO} radius={[0, 0, 0, 0]} maxBarSize={30} />
@@ -223,25 +223,25 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
 
       {/* Errori frequenti */}
       <section aria-labelledby="titolo-errori" className="flex flex-col gap-2.5">
-        <h2 id="titolo-errori" className="text-[15.5px] leading-[20px] font-bold text-testo flex items-center gap-2"><Icona nome="errori" size={20} className="text-errore" />Errori</h2>
+        <h2 id="titolo-errori" className="text-s2 leading-[20px] font-bold text-testo flex items-center gap-2"><Icona nome="errori" size={20} className="text-errore" />Errori</h2>
         {topErrors.length === 0 ? (
-          <div role="status" className="rounded-[12px] border border-linea py-6 flex items-center justify-center text-testo-tenue"><Icona nome="stato-ok" size={26} /></div>
+          <div role="status" className="rounded-xl border border-linea py-6 flex items-center justify-center text-testo-tenue"><Icona nome="stato-ok" size={26} /></div>
         ) : (
           <div className="space-y-3">
             {topErrors.map(err => {
               const text = prompts[err.qId];
               const rightAnswer = answersText[err.qId];
               return (
-                <div key={err.qId} className="bg-superficie-2 rounded-[12px] border-l-[3px] border-errore p-3 sm:p-4 flex flex-col gap-2.5">
-                  <p data-testo-ok className="font-bold text-sm sm:text-base text-testo line-clamp-2 leading-tight">{text ?? '…'}</p>
+                <div key={err.qId} className="bg-superficie-2 rounded-xl border-l-[3px] border-errore p-3 sm:p-4 flex flex-col gap-2.5">
+                  <p data-testo-ok className="font-bold text-s2 sm:text-s2 text-testo line-clamp-2 leading-tight">{text ?? '…'}</p>
                   <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                     <Conto tipo="giuste" n={err.correct} piccolo />
                     <Conto tipo="sbagliate" n={err.incorrect} piccolo />
                     <Conto tipo="omesse" n={err.omitted} piccolo />
                   </div>
                   <div className="flex items-center justify-between pt-1 border-t border-linea">
-                    <span className="text-xs sm:text-sm font-bold text-errore-testo tabular-nums">{Math.round(err.errorRate * 100)}%</span>
-                    <span data-testo-ok className="text-xs sm:text-sm font-bold text-alto-testo truncate max-w-[70%]">{rightAnswer ?? ''}</span>
+                    <span className="text-s1 sm:text-s2 font-bold text-errore-testo tabular-nums">{Math.round(err.errorRate * 100)}%</span>
+                    <span data-testo-ok className="text-s1 sm:text-s2 font-bold text-alto-testo truncate max-w-[70%]">{rightAnswer ?? ''}</span>
                   </div>
                 </div>
               );
@@ -257,11 +257,11 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
   // ================== Dettaglio delle domande ==================
   if (showDetailedStats) {
     return (
-      <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col">
+      <div className="h-full w-full bg-superficie sm:rounded-2xl sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100 flex flex-col">
         <header className="flex items-center justify-between gap-3 p-4 border-b border-linea shrink-0 transition-colors duration-100">
           <button type="button" onClick={() => { playTapSound(); setShowDetailedStats(false); }} aria-label="Indietro"
             className="grid h-10 w-10 place-items-center rounded-full text-testo-tenue hover:text-testo"><Icona nome="indietro" size={26} /></button>
-          <h2 className="flex items-center gap-2 text-lg font-bold text-testo leading-tight"><Icona nome="dettaglio" size={20} /><span className="tabular-nums">{filteredAndSortedQuestions.length}</span></h2>
+          <h2 className="flex items-center gap-2 text-s3 font-bold text-testo leading-tight"><Icona nome="dettaglio" size={20} /><span className="tabular-nums">{filteredAndSortedQuestions.length}</span></h2>
         </header>
         <div className="flex items-center justify-between gap-3 p-4 border-b border-linea shrink-0 transition-colors duration-100 bg-superficie-2">
           <div className="flex min-w-0 items-center gap-2">
@@ -270,7 +270,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
               aria-label="Categoria"
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="min-w-0 bg-transparent border-none text-sm font-bold text-testo focus:ring-0 cursor-pointer"
+              className="min-w-0 bg-transparent border-none text-s2 font-bold text-testo focus:ring-0 cursor-pointer"
             >
               <option value="all">Tutte</option>
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
@@ -278,7 +278,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
           </div>
           <button type="button"
             onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
-            className="flex shrink-0 items-center gap-2 text-sm font-bold text-azione hover:text-azione-testo transition-colors duration-100"
+            className="flex shrink-0 items-center gap-2 text-s2 font-bold text-azione hover:text-azione-testo transition-colors duration-100"
           >
             <Icona nome="ordina" size={18} />
             {sortOrder === 'asc' ? 'Peggiori' : 'Migliori'}
@@ -286,10 +286,10 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
         </div>
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col gap-4">
           {promptsState === 'loading' && (
-            <p role="status" className="flex items-center gap-2 text-sm font-bold text-testo-tenue"><Icona nome="stato-caricamento" size={18} className="animate-spin" /></p>
+            <p role="status" className="flex items-center gap-2 text-s2 font-bold text-testo-tenue"><Icona nome="stato-caricamento" size={18} className="animate-spin" /></p>
           )}
           {promptsState === 'error' && (
-            <p role="alert" className="flex items-center gap-2 text-sm font-bold text-errore-testo bg-errore-tinta rounded-xl px-3 py-2">
+            <p role="alert" className="flex items-center gap-2 text-s2 font-bold text-errore-testo bg-errore-tinta rounded-xl px-3 py-2">
               <Icona nome="stato-errore" size={18} />Domande non caricate
             </p>
           )}
@@ -311,10 +311,10 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
             return (
               <div key={q.id} className="bg-superficie-2 border border-linea p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <div className="flex-1 flex gap-3 sm:gap-4 items-start">
-                  <span className="text-testo-tenue font-bold text-sm sm:text-base mt-0.5 shrink-0 w-6 sm:w-8 text-right tabular-nums">{index + 1}</span>
+                  <span className="text-testo-tenue font-bold text-s2 sm:text-s2 mt-0.5 shrink-0 w-6 sm:w-8 text-right tabular-nums">{index + 1}</span>
                   <div className="flex-1">
-                    <p data-testo-ok className="font-bold text-testo text-sm sm:text-base mb-1">{prompts[q.id] ?? '…'}</p>
-                    <p className="text-xs text-testo-tenue font-bold flex items-center gap-2 flex-wrap">
+                    <p data-testo-ok className="font-bold text-testo text-s2 sm:text-s2 mb-1">{prompts[q.id] ?? '…'}</p>
+                    <p className="text-s1 text-testo-tenue font-bold flex items-center gap-2 flex-wrap">
                       <span>{q.category}</span>
                       {q.level && (
                         <>
@@ -335,7 +335,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
                       <Conto tipo="sbagliate" n={incorrectCount} />
                       <Conto tipo="omesse" n={omittedCount} />
                       {stat?.lastResponseTimeMs !== undefined && (
-                        <span role="img" aria-label={`${(stat.lastResponseTimeMs / 1000).toFixed(1)} secondi`} className="inline-flex items-center gap-1 text-[12px] font-bold px-2 py-0.5 rounded-lg bg-medio-tinta text-medio-testo border border-medio/30 tabular-nums">
+                        <span role="img" aria-label={`${(stat.lastResponseTimeMs / 1000).toFixed(1)} secondi`} className="inline-flex items-center gap-1 text-s1 font-bold px-2 py-0.5 rounded-xl bg-medio-tinta text-medio-testo border border-medio/30 tabular-nums">
                             <Icona nome="tempo" size={12} />{(stat.lastResponseTimeMs / 1000).toFixed(1)}s
                         </span>
                       )}
@@ -345,7 +345,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
                 <div className="flex flex-row sm:flex-col gap-4 sm:gap-2 items-center sm:items-end w-full sm:w-auto shrink-0">
                   {hasSeen ? (
                     <>
-                      <span role="img" aria-label={`Accuratezza ${accuracy}%`} className={cn('inline-flex items-center gap-1.5 text-sm sm:text-base font-bold tabular-nums', accuracy > 70 ? 'text-alto-testo' : accuracy > 40 ? 'text-medio-testo' : 'text-basso-testo')}>
+                      <span role="img" aria-label={`Accuratezza ${accuracy}%`} className={cn('inline-flex items-center gap-1.5 text-s2 sm:text-s2 font-bold tabular-nums', accuracy > 70 ? 'text-alto-testo' : accuracy > 40 ? 'text-medio-testo' : 'text-basso-testo')}>
                         <Icona nome="accuratezza" size={16} />{accuracy}%
                       </span>
                       <div className="flex flex-col items-center sm:items-end w-full sm:w-24" role="img" aria-label={`Fiducia ${confidenceScore}%`}>
@@ -353,7 +353,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
                           <span className="inline-flex items-center gap-1 text-viola-testo">
                             <Icona nome={trend === 'up' ? 'trend-su' : trend === 'down' ? 'trend-giu' : 'trend-uguale'} size={13} className={trend === 'up' ? 'text-alto-testo' : trend === 'down' ? 'text-basso-testo' : 'text-testo-tenue'} />
                           </span>
-                          <span className="text-[11px] sm:text-xs font-bold text-viola-testo tabular-nums">{confidenceScore}%</span>
+                          <span className="text-s1 sm:text-s1 font-bold text-viola-testo tabular-nums">{confidenceScore}%</span>
                         </div>
                         <div className="w-full bg-tacca h-2 rounded-full overflow-hidden">
                           <div className="bg-viola h-full transition-colors duration-100" style={{ width: `${confidenceScore}%` }} />
@@ -376,7 +376,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
   if (incorporata) return <div className="flex flex-col gap-6">{corpo}</div>;
 
   return (
-    <div className="h-full w-full bg-superficie sm:rounded-[28px] sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
+    <div className="h-full w-full bg-superficie sm:rounded-2xl sm:border sm:border-linea overflow-hidden shadow-sm dark:shadow-none transition-colors duration-100">
       <div className="h-full overflow-y-auto scrollbar-hide">
         <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8 flex flex-col gap-6">
           <Intestazione onExit={onExit} />

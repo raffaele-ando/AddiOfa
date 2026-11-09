@@ -8,10 +8,10 @@ import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { Pagina, Bottone, StatoVuoto, BarraTono, IconaTono, ChipLivello, TesseraLezione, Arte, type Tono } from './comune';
 
-const CLASSE_RIGA = 'w-full flex items-center gap-3 rounded-[12px] bg-superficie-2 p-3 text-left';
+const CLASSE_RIGA = 'w-full flex items-center gap-3 rounded-xl bg-superficie-2 p-3 text-left';
 
 function Minuti({ n }: { n: number }) {
-  return <span className="shrink-0 text-[12.5px] leading-[17px] tabular-nums text-testo-tenue">{n} min</span>;
+  return <span className="shrink-0 text-s1 leading-[17px] tabular-nums text-testo-tenue">{n} min</span>;
 }
 
 /** Un passo che si apre (teoria, esercizi): icona nel suo tono, nome, minuti, e a destra la freccia o il ▶. */
@@ -22,7 +22,7 @@ function PassoAzione({ icona, tono, nome, minuti, fatto, fine, onClick }: {
     <li>
       <button type="button" onClick={() => { playTapSound(); onClick(); }} aria-label={`${nome}${fatto ? ', fatto' : ''}`} className={cn(CLASSE_RIGA, 'brand-premibile')}>
         <IconaTono tono={fatto ? 'alto' : tono} lato={44}><Icona nome={fatto ? 'stato-imparata' : icona} size={24} /></IconaTono>
-        <span className="flex-1 min-w-0 text-[15px] leading-[20px] font-bold text-testo">{nome}</span>
+        <span className="flex-1 min-w-0 text-s2 leading-[20px] font-bold text-testo">{nome}</span>
         {minuti !== undefined && minuti > 0 && <Minuti n={minuti} />}
         {fine}
       </button>
@@ -80,17 +80,17 @@ export default function LezioneDettaglio() {
         <li className={CLASSE_RIGA} aria-label={`Verifica: ${l.imparate} domande imparate su ${totaleDomande}${imparata ? ', lezione imparata' : ''}`}>
           <IconaTono tono="alto" lato={44}><Icona nome={imparata ? 'stato-imparata' : 'verifica'} size={24} /></IconaTono>
           <span className="flex-1 min-w-0">
-            <span className="block text-[15px] leading-[20px] font-bold text-testo">Verifica</span>
+            <span className="block text-s2 leading-[20px] font-bold text-testo">Verifica</span>
             <span className="mt-1.5 block"><BarraTono valore={percento} tono={imparata ? 'alto' : 'azione'} className="h-2" /></span>
           </span>
-          <span aria-hidden="true" className={cn('shrink-0 text-[22px] leading-[24px] font-extrabold tabular-nums', imparata ? 'text-alto-numero' : 'text-azione-testo')}>
-            {l.imparate}<span className="text-[14px] font-bold text-testo-tenue">/{totaleDomande}</span>
+          <span aria-hidden="true" className={cn('shrink-0 text-s4 leading-[30px] font-extrabold tabular-nums', imparata ? 'text-alto-numero' : 'text-azione-testo')}>
+            {l.imparate}<span className="text-s2 font-bold text-testo-tenue">/{totaleDomande}</span>
           </span>
         </li>
       </ol>
 
       {imparata && (
-        <div className="mt-5 flex flex-col items-center gap-3 rounded-[16px] bg-superficie-2 px-4 py-4">
+        <div className="mt-5 flex flex-col items-center gap-3 rounded-xl bg-superficie-2 px-4 py-4">
           <Arte nome="documento-completato" gruppo="stati" lato={96} />
           {successiva && (
             <Bottone onClick={() => vai('lezione-dettaglio', { id: successiva.topic.id })} icona={<Icona nome="avanti" size={18} />}>Lezione successiva</Bottone>
@@ -102,8 +102,8 @@ export default function LezioneDettaglio() {
         <button type="button" aria-label={`Lezione successiva: ${titoloBreve(successiva.topic)}`}
           onClick={() => { playTapSound(); vai('lezione-dettaglio', { id: successiva.topic.id }); }}
           className={cn(CLASSE_RIGA, 'brand-premibile mt-5 border border-linea bg-superficie')}>
-          <span aria-hidden="true" className="shrink-0 grid h-9 w-9 place-items-center rounded-[10px] bg-superficie-2 text-[14px] font-extrabold tabular-nums text-testo-tenue">{successiva.numero}</span>
-          <span className="flex-1 min-w-0 text-[14.5px] leading-[20px] font-bold text-testo break-words">{titoloBreve(successiva.topic)}</span>
+          <span aria-hidden="true" className="shrink-0 grid h-9 w-9 place-items-center rounded-xl bg-superficie-2 text-s2 font-extrabold tabular-nums text-testo-tenue">{successiva.numero}</span>
+          <span className="flex-1 min-w-0 text-s2 leading-[20px] font-bold text-testo break-words">{titoloBreve(successiva.topic)}</span>
           <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="avanti" size={22} /></span>
         </button>
       )}

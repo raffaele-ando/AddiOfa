@@ -168,7 +168,7 @@ export function Barra({ valore, segmenti, kit = KIT_APP, larghezza = 168 }: {
   return (
     <div role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(v * 100)}
       style={{ width: larghezza, height: 12, borderRadius: 6, background: t.vuoto, overflow: 'hidden' }}>
-      <div style={{ width: `${v * 100}%`, height: '100%', borderRadius: 6, background: `linear-gradient(90deg, ${t.gradiente[0]}, ${t.gradiente[1]})` }} />
+      <div style={{ width: `${v * 100}%`, height: '100%', borderRadius: 6, background: t.pieno }} />
     </div>
   );
 }

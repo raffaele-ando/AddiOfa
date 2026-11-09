@@ -37,7 +37,7 @@ export default function InfoPunteggio({ format, aperto, onChiudi, risposteStima,
       <RegoleFormato format={format} nota={nota} />
       {risposteStima !== undefined && (
         <button type="button" onClick={() => setStima(true)}
-          className="brand-premibile mt-4 flex w-full items-center gap-3 rounded-2xl bg-superficie-2 px-3.5 py-3 text-left text-[15px] font-bold text-testo">
+          className="brand-premibile mt-4 flex w-full items-center gap-3 rounded-2xl bg-superficie-2 px-3.5 py-3 text-left text-s2 font-bold text-testo">
           <IconaTono tono="azione" lato={36} className="rounded-full"><Icona nome="stima-modello" size={20} /></IconaTono>
           <span className="min-w-0 flex-1">Come viene calcolata la stima</span>
           <Icona nome="avanti" size={20} className="shrink-0 text-testo-tenue" />

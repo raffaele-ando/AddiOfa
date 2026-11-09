@@ -25,7 +25,7 @@ export default function Navigazione({ attiva, onVai }: { attiva: Scheda | null; 
         const on = id === attiva;
         return (
           <button key={id} type="button" onClick={() => { playTapSound(); onVai(id); }} aria-current={on ? 'page' : undefined}
-            className={cn('brand-premibile flex-1 min-w-0 min-h-[56px] flex flex-col items-center justify-center gap-[3px] rounded-[12px] text-[12.5px] leading-[16px] transition-colors duration-100',
+            className={cn('brand-premibile flex-1 min-w-0 min-h-[56px] flex flex-col items-center justify-center gap-[3px] rounded-xl text-s1 leading-[16px] transition-colors duration-100',
               on ? 'text-azione font-bold' : 'text-testo-tenue font-medium')}>
             <Icona nome={icona} size={27} pieno={on} />
             {nome}

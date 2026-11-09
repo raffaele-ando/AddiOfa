@@ -32,10 +32,10 @@ export default function Passi({ onStart }: { onStart(): void }) {
                   <button type="button" aria-pressed={on} onClick={() => setAttivo(i)}
                     className={cn('flex w-full items-start gap-3 rounded-2xl border p-3 text-left transition-colors duration-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione',
                       on ? 'border-azione/40 bg-azione-tinta' : 'border-transparent hover:bg-superficie-2')}>
-                    <span aria-hidden className={cn('grid h-9 w-9 shrink-0 place-items-center rounded-full text-[15px] font-extrabold', on ? 'bg-azione text-azione-su' : 'border-2 border-azione-testo/50 bg-fondo text-azione-testo')}>{i + 1}</span>
+                    <span aria-hidden className={cn('grid h-9 w-9 shrink-0 place-items-center rounded-full text-s2 font-extrabold', on ? 'bg-azione text-azione-su' : 'border-2 border-azione-testo/50 bg-fondo text-azione-testo')}>{i + 1}</span>
                     <span className="min-w-0 pt-0.5">
-                      <span className="block text-base font-bold leading-snug text-testo">{p.titolo}</span>
-                      <span className="mt-0.5 block text-[14px] leading-snug text-testo-tenue">{p.testo}</span>
+                      <span className="block text-s2 font-bold leading-snug text-testo">{p.titolo}</span>
+                      <span className="mt-0.5 block text-s2 leading-snug text-testo-tenue">{p.testo}</span>
                     </span>
                   </button>
                 </li>
@@ -46,7 +46,7 @@ export default function Passi({ onStart }: { onStart(): void }) {
 
         {/* il telefono su una lastra blu inclinata: solo il passo scelto, senza movimento */}
         <figure data-scheda aria-label="Esempio della schermata del passo scelto" className="relative mx-auto lg:row-span-2 lg:row-start-1 lg:col-start-2 lg:self-center flex w-full max-w-[26rem] justify-center py-6 lg:max-w-none">
-          <div aria-hidden className="absolute left-1/2 top-1/2 h-[88%] w-[78%] max-w-[22rem] -translate-x-1/2 -translate-y-1/2 rotate-[7deg] rounded-[44px] bg-gradient-to-br from-azione-tinta via-azione/25 to-azione/45" />
+          <div aria-hidden className="absolute left-1/2 top-1/2 h-[88%] w-[78%] max-w-[22rem] -translate-x-1/2 -translate-y-1/2 rotate-[7deg] rounded-2xl bg-azione-tinta" />
           <Telefono larghezza={280} altezzaSchermo={420} scheda={PASSI[attivo].scheda} className="relative rotate-[3deg] lg:rotate-[4deg]"><Schermo /></Telefono>
         </figure>
         <div className="lg:col-start-1 lg:row-start-2"><BottoneAzione onClick={onStart} className="w-full sm:w-auto">Inizia il test di livello</BottoneAzione></div>

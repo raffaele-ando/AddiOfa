@@ -26,7 +26,7 @@ export function Bottone({ children, onClick, variante = 'primario', disabled, cl
   return (
     <button type="button" disabled={disabled} onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        'w-full min-h-[52px] rounded-[12px] px-4 py-3 text-[15px] font-bold flex items-center justify-center gap-2 transition-colors duration-100 disabled:opacity-50',
+        'w-full min-h-[52px] rounded-xl px-4 py-3 text-s2 font-bold flex items-center justify-center gap-2 transition-colors duration-100 disabled:opacity-50',
         variante === 'primario' ? 'bg-azione text-azione-su hover:bg-azione-scuro' : 'border border-azione/60 bg-superficie text-azione hover:bg-azione-tinta',
         className,
       )}>
@@ -47,8 +47,8 @@ export function Arte({ nome, lato, kit, gruppo, className }: { nome: string; lat
 export function TesseraLezione({ numero, lato = 44, tono = 'neutra', className }: { numero: number; lato?: number; tono?: 'neutra' | 'azione' | 'carta'; className?: string }) {
   const toni = { neutra: 'bg-superficie-2 text-testo-tenue', azione: 'bg-azione-tinta text-azione-testo dark:bg-superficie-2', carta: 'bg-superficie text-azione-testo dark:bg-azione-tinta' } as const;
   return (
-    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center font-extrabold tabular-nums', toni[tono], className)}
-      style={{ width: lato, height: lato, borderRadius: Math.round(lato * 0.27), fontSize: Math.round(lato * 0.38), lineHeight: 1 }}>{numero}</span>
+    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center rounded-xl font-extrabold tabular-nums', toni[tono], className)}
+      style={{ width: lato, height: lato, fontSize: Math.round(lato * 0.38), lineHeight: 1 }}>{numero}</span>
   );
 }
 
@@ -58,12 +58,12 @@ export function StatoVuoto({ titolo, testo, icona, illustrazione, children, pagi
   titolo: string; testo?: string; icona?: NomeIcona; illustrazione?: { nome: string; gruppo?: string; kit?: KitId; lato?: number }; children?: ReactNode; pagina?: boolean;
 }) {
   return (
-    <div role="status" className={cn('text-center', pagina ? 'flex min-h-0 flex-1 flex-col items-center justify-center px-2 py-6' : 'rounded-[12px] bg-superficie-2 px-5 py-6')}>
+    <div role="status" className={cn('text-center', pagina ? 'flex min-h-0 flex-1 flex-col items-center justify-center px-2 py-6' : 'rounded-xl bg-superficie-2 px-5 py-6')}>
       {illustrazione
         ? <div className="mx-auto mb-3 flex justify-center"><Arte nome={illustrazione.nome} gruppo={illustrazione.gruppo ?? 'stati'} kit={illustrazione.kit} lato={illustrazione.lato ?? 96} /></div>
-        : icona && <span aria-hidden="true" className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-[14px] bg-superficie text-testo-tenue"><Icona nome={icona} size={26} /></span>}
-      <p className="text-[20px] leading-[26px] font-bold text-testo">{titolo}</p>
-      {testo && <p data-testo-ok className="mt-1.5 mx-auto max-w-[34ch] text-[15px] leading-[22px] text-testo-tenue">{testo}</p>}
+        : icona && <span aria-hidden="true" className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-xl bg-superficie text-testo-tenue"><Icona nome={icona} size={26} /></span>}
+      <p className="text-s3 leading-[26px] font-bold text-testo">{titolo}</p>
+      {testo && <p data-testo-ok className="mt-1.5 mx-auto max-w-[34ch] text-s2 leading-[22px] text-testo-tenue">{testo}</p>}
       {children && <div className="mt-5 mx-auto flex w-full max-w-[300px] flex-col gap-2.5">{children}</div>}
     </div>
   );
@@ -87,8 +87,8 @@ export function OpzioneRisposta({ lettera, testo, stato, disabilitata, onClick }
   return (
     <button type="button" disabled={disabilitata} onClick={onClick} aria-pressed={stato === 'scelta'}
       className={cn('flex min-h-[56px] w-full items-center gap-4 rounded-2xl border-[1.5px] p-3 text-left text-testo transition-colors duration-100', c.riga)}>
-      <span aria-hidden="true" className={cn('flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-bold transition-colors duration-100', c.cerchio)}>{lettera}</span>
-      <span data-testo-ok className="min-w-0 flex-1 text-[16px] font-semibold leading-snug">{testo}</span>
+      <span aria-hidden="true" className={cn('flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-s2 font-bold transition-colors duration-100', c.cerchio)}>{lettera}</span>
+      <span data-testo-ok className="min-w-0 flex-1 text-s2 font-semibold leading-snug">{testo}</span>
       {stato === 'giusta' && <><Icona nome="stato-risposta-giusta" size={22} className="shrink-0 text-alto-testo" /><span className="sr-only">Giusta</span></>}
       {stato === 'sbagliata' && <><Icona nome="stato-risposta-sbagliata" size={22} className="shrink-0 text-errore-testo" /><span className="sr-only">Sbagliata</span></>}
     </button>
@@ -118,5 +118,5 @@ export const TONO_LIVELLO: Record<string, Tono> = { A1: 'azione', A2: 'viola', B
 /** Piccola etichetta del livello («A1») nel tono del livello. */
 export function ChipLivello({ livello, className }: { livello: string; className?: string }) {
   const t = TONI[TONO_LIVELLO[livello] ?? 'azione'];
-  return <span className={cn('inline-flex items-center rounded-[7px] px-1.5 py-0.5 text-[11.5px] leading-[14px] font-extrabold tabular-nums', t.tinta, t.testo, className)}>{livello}</span>;
+  return <span className={cn('inline-flex items-center rounded-xl px-1.5 py-0.5 text-s1 leading-[15px] font-extrabold tabular-nums', t.tinta, t.testo, className)}>{livello}</span>;
 }

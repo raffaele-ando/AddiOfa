@@ -1,6 +1,12 @@
 import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { extendTailwindMerge } from "tailwind-merge";
 import type { Question } from "../types";
+
+// La scala tipografica del progetto (text-s1…text-s6, index.css @theme) è una classe di dimensione, non di colore:
+// senza questa estensione twMerge la prende per un colore e cancella il `text-…` colore che la precede (il testo torna nero).
+const twMerge = extendTailwindMerge({
+  extend: { classGroups: { "font-size": [{ text: ["s1", "s2", "s3", "s4", "s5", "s6"] }] } },
+});
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

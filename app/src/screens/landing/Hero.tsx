@@ -28,19 +28,19 @@ export default function Hero({ onStart, onSkip }: { onStart(): void; onSkip(): v
       <Colonna className="relative z-10 pb-12 pt-[21.5rem] lg:pb-32 lg:pt-36">
         <div className="max-w-[34rem] lg:max-w-[28rem] xl:max-w-[33rem]">
           <Occhiello data-testo-ok className="text-testo-tenue">Per gli studenti del Politecnico di Milano</Occhiello>
-          <h1 id="t-hero" data-testo-ok className="mt-3 text-[2.125rem] font-extrabold leading-[1.06] tracking-[-0.03em] text-testo text-balance sm:text-5xl lg:text-[2.5rem] xl:text-[3.1rem]">
+          <h1 id="t-hero" data-testo-ok className="mt-3 text-s5 font-extrabold leading-[1.06] tracking-[-0.03em] text-testo text-balance sm:text-s6 lg:text-s6 xl:text-s6">
             Scopri a che punto sei <span className="text-azione">con l’OFA di inglese.</span>
           </h1>
-          <p data-testo-ok className="mt-4 max-w-[26rem] text-base font-medium leading-relaxed text-testo-tenue sm:text-lg">
+          <p data-testo-ok className="mt-4 max-w-[26rem] text-s2 font-medium leading-relaxed text-testo-tenue sm:text-s3">
             In 3 minuti. Poi ripassi solo ciò che sbagli e provi il test vero: {EXAM.questions} domande, {EXAM.minutes} minuti.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
             <BottoneAzione grande onClick={onStart} className="w-full sm:w-auto">Inizia il test di livello</BottoneAzione>
             <BottoneContorno onClick={() => vaiA('come-funziona')} className="hidden lg:inline-flex">Come funziona</BottoneContorno>
           </div>
-          <p data-testo-ok className="mt-4 text-[13px] font-medium leading-snug text-testo-tenue">Gratuita, senza password, con i progressi sul tuo dispositivo.</p>
+          <p data-testo-ok className="mt-4 text-s1 font-medium leading-snug text-testo-tenue">Gratuita, senza password, con i progressi sul tuo dispositivo.</p>
           <button type="button" onClick={onSkip} data-testo-ok
-            className="mt-1 inline-flex min-h-11 items-center rounded text-[13px] font-semibold text-azione-testo underline underline-offset-4 hover:text-azione focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione">
+            className="mt-1 inline-flex min-h-11 items-center rounded-xl text-s1 font-semibold text-azione-testo underline underline-offset-4 hover:text-azione focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione">
             Preferisci esplorare? Vai all’app senza test
           </button>
         </div>

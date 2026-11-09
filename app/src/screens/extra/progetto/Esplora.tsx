@@ -1,8 +1,7 @@
-// «Community» (id `esplora`, concetti 49 e 13): l'indice di ciò che sta attorno ad AddiOFA. Quattro card tutte uguali (Project ID, ATLAS, NOI, Agorà): illustrazione
-// in una casella fissa, titolo, UNA riga e UNA pillola di stato vera. Niente foto dei concept, niente numeri o utenti inventati.
+// «Community» (id `esplora`, concetti 49 e 13): l'indice di ciò che sta attorno ad AddiOFA. Quattro card tutte uguali (Project ID, ATLAS, NOI, Agorà): titolo,
+// UNA riga e UNA pillola di stato vera, senza illustrazione (sarebbe una per riga). Niente foto dei concept, niente numeri o utenti inventati.
 // Pillole: «Su questo dispositivo», «Non attivo», il nome del servizio esterno («Instagram»), più gli stati veri dell'iscrizione.
 import { Icona } from '../../../brand/icone/Icona';
-import { Illustrazione } from '../../../brand/Illustrazione';
 import { useExtra } from '../contesto';
 import { Etichetta, Pagina, type TonoStato } from './comuni';
 import { useInvio } from './hooks';
@@ -11,7 +10,7 @@ import { descriviInvio, type ChiaveStato } from '../../../lib/progetto/coda';
 import { leggiProgetto } from '../../../lib/progetto/profilo';
 import { playTapSound } from '../../../lib/audio';
 
-interface Carta { id: string; titolo: string; riga: string; arte: string; stato: { testo: string; tono: TonoStato } }
+interface Carta { id: string; titolo: string; riga: string; stato: { testo: string; tono: TonoStato } }
 
 // il colore c'è solo dove dice qualcosa: ambra = non attivo o da completare, rosso = rifiutata
 const TONO_INVIO: Record<ChiaveStato, TonoStato> = { inviata: 'neutro', 'in-attesa': 'medio', invio: 'neutro', rifiutata: 'errore', 'solo-locale': 'neutro' };
@@ -29,10 +28,10 @@ export default function Esplora() {
     : collegamento?.scopes.includes('noi.leaderboard') ? { testo: 'Aderito', tono: 'neutro' } : { testo: 'Non hai aderito', tono: 'neutro' };
 
   const carte: Carta[] = [
-    { id: 'projectid', titolo: 'Project ID', riga: 'Il tuo profilo di iscrizione', arte: 'verifica-utente', stato: statoProjectId },
-    { id: 'atlas-analisi', titolo: 'ATLAS', riga: 'Quanto sei pronto o pronta', arte: 'progressi-statistiche', stato: { testo: 'Su questo dispositivo', tono: 'neutro' } },
-    { id: 'noi', titolo: 'NOI', riga: 'Classifica degli studenti', arte: 'successo', stato: statoNoi },
-    { id: 'agora', titolo: 'Agorà', riga: 'Idee e domande tra studenti', arte: 'messaggi-supporto', stato: { testo: 'Instagram', tono: 'neutro' } },
+    { id: 'projectid', titolo: 'Project ID', riga: 'Il tuo profilo di iscrizione', stato: statoProjectId },
+    { id: 'atlas-analisi', titolo: 'ATLAS', riga: 'Quanto sei pronto o pronta', stato: { testo: 'Su questo dispositivo', tono: 'neutro' } },
+    { id: 'noi', titolo: 'NOI', riga: 'Classifica degli studenti', stato: statoNoi },
+    { id: 'agora', titolo: 'Agorà', riga: 'Idee e domande tra studenti', stato: { testo: 'Instagram', tono: 'neutro' } },
   ];
 
   return (
@@ -41,11 +40,10 @@ export default function Esplora() {
         {carte.map(c => (
           <li key={c.id}>
             <button type="button" onClick={() => { playTapSound(); vai(c.id); }}
-              className="brand-premibile flex min-h-[96px] w-full items-center gap-4 rounded-[16px] border border-linea bg-superficie p-3.5 text-left shadow-sm dark:shadow-none">
-              <span className="grid h-16 w-16 shrink-0 place-items-center"><Illustrazione nome={c.arte} lato={60} /></span>
+              className="brand-premibile flex min-h-[72px] w-full items-center gap-4 rounded-xl border border-linea bg-superficie p-3.5 text-left shadow-sm dark:shadow-none">
               <span className="min-w-0 flex-1">
-                <span className="block text-[20px] leading-[26px] font-extrabold tracking-[-0.01em] text-testo">{c.titolo}</span>
-                <span data-testo-ok className="block text-[14px] leading-[19px] text-testo-tenue">{c.riga}</span>
+                <span className="block text-s3 leading-[26px] font-extrabold tracking-[-0.01em] text-testo">{c.titolo}</span>
+                <span data-testo-ok className="block text-s2 leading-[19px] text-testo-tenue">{c.riga}</span>
                 <Etichetta tono={c.stato.tono} className="mt-1.5">{c.stato.testo}</Etichetta>
               </span>
               <Icona nome="avanti" size={22} className="shrink-0 text-testo-tenue" />
@@ -53,7 +51,7 @@ export default function Esplora() {
           </li>
         ))}
       </ul>
-      <p data-testo-ok className="mt-6 text-center text-[13px] leading-[19px] text-testo-tenue">{FRASE_PROJECT}</p>
+      <p data-testo-ok className="mt-6 text-center text-s1 leading-[19px] text-testo-tenue">{FRASE_PROJECT}</p>
     </Pagina>
   );
 }

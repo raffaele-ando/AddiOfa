@@ -12,7 +12,7 @@ export function coloreValore(v: number): string { return v < 40 ? 'var(--color-b
 export function Carta({ className, children, tinta }: { className?: string; children: ReactNode; tinta?: string }) {
   return (
     <section
-      className={cn('rounded-[16px]', tinta ?? 'bg-superficie-2', className)}>
+      className={cn('rounded-xl', tinta ?? 'bg-superficie-2', className)}>
       {children}
     </section>
   );
@@ -25,8 +25,6 @@ export const PIENO_FASCIA: Record<Livello, string> = {
   alto: 'var(--color-alto)',
 };
 
-/** Riempimento a sfumatura di una barra: dal chiaro della fascia al suo colore pieno. */
-export const sfumaturaFascia = (f: Livello) => `linear-gradient(90deg, var(--color-${f}-chiaro), ${PIENO_FASCIA[f]})`;
 
 /** Barra di avanzamento: la larghezza è subito quella finale. */
 export function Barra({ valore, colore, alta = 8, sfondo }: { valore: number; colore: string; alta?: number; sfondo?: string }) {
@@ -46,7 +44,7 @@ export const RISPOSTE_PER_STIMA_STRETTA = 90;
  */
 export function RigaIntervallo({ intervallo, className }: { intervallo: IntervalloStima; className?: string }) {
   return (
-    <p className={cn('text-[12px] leading-snug text-testo-tenue text-center', className)}>
+    <p className={cn('text-s1 leading-snug text-testo-tenue text-center', className)}>
       Punteggio probabile al test: <span className="font-bold whitespace-nowrap">{formatPunteggio(intervallo)}</span> (soglia {REAL_TEST_PASS_MARK}).
     </p>
   );

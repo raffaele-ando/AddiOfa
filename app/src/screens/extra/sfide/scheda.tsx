@@ -47,14 +47,14 @@ export function SchedaProveSfide({ sezione, info, titoloInfo = 'Regole', velata,
                 className="brand-premibile -ml-3 grid h-11 w-11 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo">
                 <Icona nome="indietro" size={28} />
               </button>
-              <h1 className="min-w-0 flex-1 text-[26px] leading-[40px] font-extrabold tracking-[-0.02em] text-testo">Simulazioni</h1>
+              <h1 className="min-w-0 flex-1 text-s4 leading-[40px] font-extrabold tracking-[-0.02em] text-testo">Simulazioni</h1>
               {info && <PulsanteInfo onClick={() => setAperto(true)} etichetta={titoloInfo} />}
             </header>
           ) : (
             <>
               <TestataScheda titolo="Sfide" onProfilo={() => vai('profilo')}
                 destra={info ? <PulsanteInfo onClick={() => setAperto(true)} etichetta={titoloInfo} /> : undefined} />
-              <p data-testo-ok className="-mt-0.5 text-[15px] leading-[21px] text-testo-tenue">Gioca la sfida del giorno o sfida un amico.</p>
+              <p data-testo-ok className="-mt-0.5 text-s2 leading-[21px] text-testo-tenue">Gioca la sfida del giorno o sfida un amico.</p>
               <SelettoreSfide sezione={sezione} />
             </>
           )}

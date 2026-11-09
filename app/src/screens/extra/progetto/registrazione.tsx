@@ -65,17 +65,17 @@ export function campiPercorso(s: ScelteCorso, fonte: FonteCorsi = fonteCorsi): {
   return { scuola: r.scuola, sede: r.sede, livello: r.livello };
 }
 
-const CAMPO = 'w-full min-h-[52px] rounded-2xl border border-bordo-campo bg-superficie-2 px-4 py-3 text-[17px] leading-[24px] text-testo placeholder:text-testo-tenue focus:outline focus:outline-2 focus:outline-azione';
+const CAMPO = 'w-full min-h-[52px] rounded-2xl border border-bordo-campo bg-superficie-2 px-4 py-3 text-s3 leading-[24px] text-testo placeholder:text-testo-tenue focus:outline focus:outline-2 focus:outline-azione';
 
 function Campo({ id, etichetta, destra, errore, children }: { id: string; etichetta: string; destra?: ReactNode; errore?: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
       <div className="flex items-center justify-between gap-2">
-        <label htmlFor={id} className="text-[15px] leading-[20px] font-semibold text-testo">{etichetta}</label>
+        <label htmlFor={id} className="text-s2 leading-[20px] font-semibold text-testo">{etichetta}</label>
         {destra}
       </div>
       {children}
-      {errore && <p id={`${id}-errore`} role="alert" data-testo-ok className="text-[13px] leading-[18px] font-semibold text-errore-testo">{errore}</p>}
+      {errore && <p id={`${id}-errore`} role="alert" data-testo-ok className="text-s1 leading-[18px] font-semibold text-errore-testo">{errore}</p>}
     </div>
   );
 }
@@ -119,13 +119,13 @@ export function CampoEmail({ form, onChange, provato, verificata, onInviaVerific
     <div className="flex flex-col gap-3.5">
       <Campo id={`${id}-email`} etichetta="Email PoliMi" errore={erroreEmail}
         destra={!e.ok ? undefined : verificata ? (
-          <span className="inline-flex items-center gap-1 rounded-full bg-alto-tinta px-2.5 py-1 text-[13px] leading-[18px] font-semibold text-alto-testo"><Icona nome="stato-ok" size={14} />Verificata</span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-alto-tinta px-2.5 py-1 text-s1 leading-[18px] font-semibold text-alto-testo"><Icona nome="stato-ok" size={14} />Verificata</span>
         ) : (
           // «Da verificare» solo dopo aver scritto un indirizzo valido (mai a campo vuoto), in tono neutro: non è un rimprovero
           <InfoFoglio titolo="Email da verificare" etichetta="Perché da verificare"
             bottone={apri => (
               <button type="button" onClick={() => { playTapSound(); apri(); }} aria-label="Perché da verificare"
-                className="brand-premibile inline-flex items-center gap-1 rounded-full bg-superficie-2 px-2.5 py-1 text-[13px] leading-[18px] font-semibold text-testo-tenue">
+                className="brand-premibile inline-flex items-center gap-1 rounded-full bg-superficie-2 px-2.5 py-1 text-s1 leading-[18px] font-semibold text-testo-tenue">
                 <Icona nome="info" size={14} />Da verificare
               </button>
             )}>
@@ -138,12 +138,12 @@ export function CampoEmail({ form, onChange, provato, verificata, onInviaVerific
         <input id={`${id}-email`} type="email" inputMode="email" value={form.email} maxLength={254} autoComplete="email" autoCapitalize="none" autoCorrect="off" spellCheck={false} enterKeyHint="done"
           placeholder="nome.cognome@mail.polimi.it" aria-invalid={!!erroreEmail} aria-describedby={erroreEmail ? `${id}-email-errore` : undefined}
           onBlur={() => setToccato(true)} onChange={ev => onChange({ ...form, email: ev.target.value })} className={CAMPO} />
-        {!e.ok && !erroreEmail && <p data-testo-ok className="text-[13px] leading-[18px] text-testo-tenue">Ricaviamo il tuo nome da qui.</p>}
+        {!e.ok && !erroreEmail && <p data-testo-ok className="text-s1 leading-[18px] text-testo-tenue">Ricaviamo il tuo nome da qui.</p>}
       </Campo>
 
       {e.ok && derivato && !correggi && (
         <div className="flex items-center justify-between gap-3 rounded-2xl bg-superficie-2 pl-4 pr-1.5 py-1.5 min-h-14" role="status">
-          <span className="min-w-0 text-[17px] leading-[24px] font-semibold text-testo">Ciao <span className="break-words">{nomeEffettivo(form)}</span></span>
+          <span className="min-w-0 text-s3 leading-[24px] font-semibold text-testo">Ciao <span className="break-words">{nomeEffettivo(form)}</span></span>
           <button type="button" onClick={() => { playTapSound(); setCorreggi(true); }} aria-label="Correggi il nome"
             className="brand-premibile grid h-11 w-11 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo"><Icona nome="modifica" size={20} /></button>
         </div>
@@ -152,7 +152,7 @@ export function CampoEmail({ form, onChange, provato, verificata, onInviaVerific
       {chiediNome && (
         <Campo id={`${id}-nome`} etichetta={derivato ? 'Il tuo nome' : 'Come ti chiami?'} errore={erroreNome}
           destra={correggi && derivato ? (
-            <button type="button" onClick={() => { playTapSound(); setCorreggi(false); }} className="text-[14px] font-semibold text-azione-testo underline underline-offset-2">Fatto</button>
+            <button type="button" onClick={() => { playTapSound(); setCorreggi(false); }} className="text-s2 font-semibold text-azione-testo underline underline-offset-2">Fatto</button>
           ) : undefined}>
           <input id={`${id}-nome`} type="text" value={form.nome} maxLength={NOME_MAX} autoComplete="name" enterKeyHint="done" autoFocus={correggi}
             placeholder={derivato?.nome ?? ''} aria-invalid={!!erroreNome} aria-describedby={erroreNome ? `${id}-nome-errore` : undefined}
@@ -163,11 +163,11 @@ export function CampoEmail({ form, onChange, provato, verificata, onInviaVerific
       {puoVerificare && (
         <div className="flex flex-col gap-2">
           <button type="button" disabled={verifica.fase === 'invio'} onClick={() => { playTapSound(); void invia(); }}
-            className="brand-premibile flex w-full min-h-12 items-center justify-center gap-2 rounded-2xl border border-bordo-campo px-4 py-3 text-[15px] font-semibold text-testo disabled:opacity-50">
+            className="brand-premibile flex w-full min-h-12 items-center justify-center gap-2 rounded-2xl border border-bordo-campo px-4 py-3 text-s2 font-semibold text-testo disabled:opacity-50">
             <Icona nome="email" size={18} className="text-azione-testo" />{verifica.fase === 'invio' ? 'Invio…' : 'Verifica con un link'}
           </button>
-          {verifica.fase === 'inviato' && <p role="status" data-testo-ok className="text-[13px] leading-[18px] font-semibold text-alto-testo">Link inviato. Aprilo dalla posta quando vuoi: intanto puoi continuare.</p>}
-          {verifica.fase === 'errore' && <p role="alert" data-testo-ok className="text-[13px] leading-[18px] font-semibold text-errore-testo">{verifica.messaggio}</p>}
+          {verifica.fase === 'inviato' && <p role="status" data-testo-ok className="text-s1 leading-[18px] font-semibold text-alto-testo">Link inviato. Aprilo dalla posta quando vuoi: intanto puoi continuare.</p>}
+          {verifica.fase === 'errore' && <p role="alert" data-testo-ok className="text-s1 leading-[18px] font-semibold text-errore-testo">{verifica.messaggio}</p>}
         </div>
       )}
     </div>
@@ -217,7 +217,7 @@ export function ElencoCorsi({ scelte, onScelto, fonte = fonteCorsi }: { scelte: 
         <div className="flex items-center gap-2 rounded-2xl border border-bordo-campo bg-superficie-2 px-4 min-h-12 focus-within:outline focus-within:outline-2 focus-within:outline-azione">
           <Icona nome="cerca" size={20} className="shrink-0 text-testo-tenue" />
           <input type="search" value={ricerca} onChange={ev => setRicerca(ev.target.value)} placeholder="Cerca il tuo corso" aria-label="Cerca il tuo corso" autoComplete="off" maxLength={60}
-            className="w-full bg-transparent py-3 text-[17px] text-testo placeholder:text-testo-tenue focus:outline-none" />
+            className="w-full bg-transparent py-3 text-s3 text-testo placeholder:text-testo-tenue focus:outline-none" />
         </div>
       )}
       <div className="relative flex min-h-[168px] shrink flex-col">
@@ -225,10 +225,10 @@ export function ElencoCorsi({ scelte, onScelto, fonte = fonteCorsi }: { scelte: 
           {visibili.map(o => (
             <li key={o.id} data-testo-ok><ChoiceCard selected={scelte.corso === o.id} onClick={() => onScelto(o.id)} title={o.nome} /></li>
           ))}
-          {visibili.length === 0 && <li role="status" data-testo-ok className="px-1 py-2 text-[15px] leading-[22px] text-testo-tenue">Nessun corso con queste parole.</li>}
+          {visibili.length === 0 && <li role="status" data-testo-ok className="px-1 py-2 text-s2 leading-[22px] text-testo-tenue">Nessun corso con queste parole.</li>}
           <li><ChoiceCard selected={scelte.corso === CORSO_ALTRO_ID} onClick={() => onScelto(CORSO_ALTRO_ID)} title="Non trovo il mio corso" subtitle="Puoi continuare lo stesso" /></li>
         </ul>
-        {piuSotto && <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-superficie to-transparent" />}
+        {piuSotto && <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-[linear-gradient(in_oklch_to_top,var(--color-superficie),transparent)]" />}
       </div>
     </div>
   );
@@ -284,10 +284,10 @@ export function PassoPercorso({ scelte, onChange, onFine, fonte = fonteCorsi, fi
       {crumbs.length > 0 && (
         <nav aria-label="Scelte fatte" className="flex flex-wrap gap-2">
           {crumbs.map(c => c.automatica ? (
-            <span key={c.passo} className="inline-flex max-w-full items-center rounded-full bg-superficie-2 px-3 py-1.5 text-[14px] leading-[20px] font-medium text-testo-tenue"><span className="truncate">{nomeIntero(c.passo, c.id)}</span></span>
+            <span key={c.passo} className="inline-flex max-w-full items-center rounded-full bg-superficie-2 px-3 py-1.5 text-s2 leading-[20px] font-medium text-testo-tenue"><span className="truncate">{nomeIntero(c.passo, c.id)}</span></span>
           ) : (
             <button key={c.passo} type="button" onClick={() => { playTapSound(); onChange(torna(stato.scelte, c.passo)); setRicerca(''); }} aria-label={`Cambia: ${nomeIntero(c.passo, c.id)}`}
-              className="brand-premibile inline-flex max-w-full items-center rounded-full bg-azione-tinta px-3 py-1.5 text-[14px] leading-[20px] font-semibold text-azione-testo">
+              className="brand-premibile inline-flex max-w-full items-center rounded-full bg-azione-tinta px-3 py-1.5 text-s2 leading-[20px] font-semibold text-azione-testo">
               <span className="truncate">{nomeIntero(c.passo, c.id)}</span>
             </button>
           ))}
@@ -296,17 +296,17 @@ export function PassoPercorso({ scelte, onChange, onFine, fonte = fonteCorsi, fi
 
       {stato.passo === null ? (
         <div className="flex flex-col gap-3">
-          <p role="status" data-testo-ok className="text-[16px] leading-[22px] font-semibold text-testo">Percorso scelto</p>
+          <p role="status" data-testo-ok className="text-s2 leading-[22px] font-semibold text-testo">Percorso scelto</p>
           {fine}
         </div>
       ) : (
         <>
-          <h3 data-testo-ok className="text-[17px] leading-[24px] font-semibold text-testo">{TITOLO_PASSO[stato.passo]}</h3>
+          <h3 data-testo-ok className="text-s3 leading-[24px] font-semibold text-testo">{TITOLO_PASSO[stato.passo]}</h3>
           {conRicerca && (
             <div className="flex items-center gap-2 rounded-2xl border border-bordo-campo bg-superficie-2 px-4 min-h-12 focus-within:outline focus-within:outline-2 focus-within:outline-azione">
               <Icona nome="cerca" size={20} className="shrink-0 text-testo-tenue" />
               <input type="search" value={ricerca} onChange={ev => setRicerca(ev.target.value)} placeholder="Cerca il tuo corso" aria-label="Cerca il corso" autoComplete="off" maxLength={60}
-                className="w-full bg-transparent py-3 text-[17px] text-testo placeholder:text-testo-tenue focus:outline-none" />
+                className="w-full bg-transparent py-3 text-s3 text-testo placeholder:text-testo-tenue focus:outline-none" />
             </div>
           )}
 
@@ -319,7 +319,7 @@ export function PassoPercorso({ scelte, onChange, onFine, fonte = fonteCorsi, fi
                   <ChoiceCard avanza selected={false} onClick={() => scelto(stato.passo!, o.id)} title={o.nome} subtitle={stato.passo === 'scuola' && o.sigla ? o.sigla : undefined} />
                 </li>
               ))}
-              {corsi.length === 0 && <li role="status" data-testo-ok className="px-1 py-2 text-[15px] leading-[22px] text-testo-tenue">Nessun corso con queste parole.</li>}
+              {corsi.length === 0 && <li role="status" data-testo-ok className="px-1 py-2 text-s2 leading-[22px] text-testo-tenue">Nessun corso con queste parole.</li>}
             </ul>
           )}
         </>
@@ -351,15 +351,15 @@ export function CasellaConsenso({ spuntata, onChange, titolo, testo }: { spuntat
       onClick={() => { playTapSound(); onChange(!spuntata); }}
       className={cn('brand-premibile flex w-full min-h-16 items-start gap-3.5 rounded-2xl border p-4 text-left transition-colors duration-100',
         spuntata ? 'border-azione ring-1 ring-azione bg-azione-tinta' : 'border-tacca bg-superficie-2')}>
-      <span aria-hidden="true" className={cn('mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-md border-2 transition-colors duration-100',
+      <span aria-hidden="true" className={cn('mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-xl border-2 transition-colors duration-100',
         spuntata ? 'border-azione bg-azione text-azione-su' : 'border-bordo-campo bg-superficie')}>
         {spuntata && (
           <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 8.4 6.6 11.6 12.8 4.6" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
         )}
       </span>
       <span className="min-w-0">
-        <span id={`${id}-t`} data-testo-ok className="block text-[17px] leading-[24px] font-semibold text-testo">{titolo}</span>
-        <span id={`${id}-d`} data-testo-ok className="mt-0.5 block text-[14px] leading-[20px] text-testo-tenue">{testo}</span>
+        <span id={`${id}-t`} data-testo-ok className="block text-s3 leading-[24px] font-semibold text-testo">{titolo}</span>
+        <span id={`${id}-d`} data-testo-ok className="mt-0.5 block text-s2 leading-[20px] text-testo-tenue">{testo}</span>
       </span>
     </button>
   );
@@ -378,13 +378,13 @@ export const CONSENSI_TESTI: { chiave: keyof Consensi; titolo: string; testo: st
 export function CampiConsensi({ consensi, onChange, onOpenLegal, senzaIntro }: { consensi: Consensi; onChange: (c: Consensi) => void; onOpenLegal?: (s: LegalSection) => void; senzaIntro?: boolean }) {
   return (
     <div className="flex flex-col gap-3">
-      {!senzaIntro && <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">Sono tutti facoltativi: puoi continuare senza.</p>}
+      {!senzaIntro && <p data-testo-ok className="text-s2 leading-[20px] text-testo-tenue">Sono tutti facoltativi: puoi continuare senza.</p>}
       <div role="group" aria-label="Consensi facoltativi" className="flex flex-col gap-3">
         {CONSENSI_TESTI.map(c => (
           <CasellaConsenso key={c.chiave} spuntata={consensi[c.chiave]} titolo={c.titolo} testo={c.testo} onChange={v => onChange({ ...consensi, [c.chiave]: v })} />
         ))}
       </div>
-      <p data-testo-ok className="text-[13px] leading-[18px] text-testo-tenue">
+      <p data-testo-ok className="text-s1 leading-[18px] text-testo-tenue">
         Nome, email, corso e provenienza servono a creare la tua iscrizione.{' '}
         <InfoFoglio titolo="Come usiamo i tuoi dati" etichetta="Informativa breve"
           bottone={apri => (

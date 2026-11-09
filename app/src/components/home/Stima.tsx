@@ -28,8 +28,8 @@ const FASCIA: Record<ChiaveBanner, { icona: NomeIcona; fondo: string; glifo: str
 };
 
 /**
- * Fascia di stato (concept 14, 01): glifo da 40 px, titolo di al massimo tre parole e una riga di spiegazione (al massimo dieci, in `data-testo-ok`).
- * Non è cliccabile. A destra, con due o più misure, il chip «da {prima stima}» con la freccia (nessun rosso per un calo).
+ * Fascia di stato (concept 14, 01), secondaria: glifo da 32 px, titolo di al massimo tre parole (15 px) e una riga di spiegazione (al massimo dieci, 12 px, in `data-testo-ok`).
+ * Il colore della fascia è il suo significato di stato e resta. Non è cliccabile. A destra, con due o più misure, il chip «da {prima stima}» con la freccia (nessun rosso per un calo).
  * `onClick` esiste solo per le vecchie anteprime di prova e viene ignorato.
  */
 export function BannerStato({ chiave, stima = null, areeConDati = false, variazione }: {
@@ -39,21 +39,21 @@ export function BannerStato({ chiave, stima = null, areeConDati = false, variazi
   const { titolo, riga } = testiFascia(chiave, stima, areeConDati);
   return (
     <div role="status" aria-label={`Stato: ${titolo}. ${riga}`} data-testo-ok
-      className={`w-full min-h-[76px] flex items-center gap-3 rounded-[16px] px-4 py-[14px] ${m.fondo}`}>
-      <span aria-hidden="true" className={`w-10 h-10 shrink-0 rounded-full grid place-items-center ${m.glifo}`}>
-        <Icona nome={m.icona} size={22} />
+      className={`w-full flex items-center gap-3 rounded-xl px-3 py-[10px] ${m.fondo}`}>
+      <span aria-hidden="true" className={`w-8 h-8 shrink-0 rounded-full grid place-items-center ${m.glifo}`}>
+        <Icona nome={m.icona} size={18} />
       </span>
       <span className="flex-1 min-w-0">
         <span className="flex items-baseline justify-between gap-2">
-          <span className="text-[17px] leading-[22px] font-bold text-testo">{titolo}</span>
+          <span className="text-s2 leading-[20px] font-bold text-testo">{titolo}</span>
           {variazione && (
-            <span title={`Prima stima: ${variazione.da} %`} className={`shrink-0 inline-flex items-center gap-0.5 text-[13px] leading-[18px] font-bold tabular-nums ${variazione.verso === 'su' ? 'text-alto-testo' : 'text-testo-tenue'}`}>
+            <span title={`Prima stima: ${variazione.da} %`} className={`shrink-0 inline-flex items-center gap-0.5 text-s1 leading-[18px] font-bold tabular-nums ${variazione.verso === 'su' ? 'text-alto-testo' : 'text-testo-tenue'}`}>
               <Icona nome={variazione.verso === 'su' ? 'trend-su' : 'trend-giu'} size={14} />
               <span className="sr-only">Prima stima </span>da {variazione.da}%
             </span>
           )}
         </span>
-        <span className="block text-[14px] leading-[19px] text-testo-tenue">{riga}</span>
+        <span className="block text-s1 leading-[17px] text-testo-tenue">{riga}</span>
       </span>
     </div>
   );
@@ -63,7 +63,7 @@ export function BannerStato({ chiave, stima = null, areeConDati = false, variazi
 export function TitoloSezione({ children, destra, id }: { children: ReactNode; destra?: ReactNode; id?: string }) {
   return (
     <div className="flex items-center justify-between gap-3">
-      <h2 id={id} className="text-[18px] leading-[24px] lg:text-[20px] lg:leading-[26px] font-extrabold tracking-[-0.01em] text-testo">{children}</h2>
+      <h2 id={id} className="text-s3 leading-[24px] lg:text-s3 lg:leading-[26px] font-extrabold tracking-[-0.01em] text-testo">{children}</h2>
       {destra}
     </div>
   );
@@ -73,7 +73,7 @@ export function TitoloSezione({ children, destra, id }: { children: ReactNode; d
 export function LinkTutte({ onClick, aria, testo = 'Tutte' }: { onClick: () => void; aria: string; testo?: string }) {
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }} aria-label={aria}
-      className="brand-premibile -my-3 -mr-2 inline-flex min-h-[44px] items-center gap-0.5 rounded-[10px] pl-3 pr-2 text-[14px] leading-[18px] font-semibold text-testo-tenue hover:text-testo">
+      className="brand-premibile -my-3 -mr-2 inline-flex min-h-[44px] items-center gap-0.5 rounded-xl pl-3 pr-2 text-s2 leading-[19px] font-semibold text-testo-tenue hover:text-testo">
       {testo}<Icona nome="avanti" size={18} />
     </button>
   );

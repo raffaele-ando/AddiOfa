@@ -41,21 +41,21 @@ type ModoCard = { id: 'weakness' | 'blitz' | 'recall'; tono: Tono; icona: NomeIc
 const MODI: ModoCard[] = [
   { id: 'weakness', tono: 'basso', icona: 'modo-punti-deboli', nome: 'Punti deboli', riga: 'Le domande che sbagli' },
   { id: 'blitz', tono: 'medio', icona: 'modo-blitz', nome: 'Blitz', riga: '10 domande, 10 secondi l’una' },
-  { id: 'recall', tono: 'viola', icona: 'modo-richiamo', nome: 'Richiamo', riga: 'Componi la frase da zero' },
+  { id: 'recall', tono: 'azione', icona: 'modo-richiamo', nome: 'Richiamo', riga: 'Componi la frase da zero' },
 ];
 
-const TESSERA = 'brand-premibile flex min-h-[132px] flex-col items-start gap-1 rounded-[16px] bg-superficie-2 border border-linea p-3.5 text-left';
+const TESSERA = 'brand-premibile flex min-h-[132px] flex-col items-start gap-1 rounded-xl bg-superficie-2 border border-linea p-3.5 text-left';
 
 /** Riga con la sua icona in una tessera da 48 px (Frasi utili, Riepilogo di grammatica): stesso trattamento per tutte e due. */
 function RigaTesto({ icona, tono, nome, riga, onClick }: { icona: NomeIcona; tono: Tono; nome: string; riga: string; onClick?: () => void }) {
   if (!onClick) return null;
   return (
     <button type="button" onClick={() => { playTapSound(); onClick(); }}
-      className="brand-premibile flex w-full items-center gap-3.5 rounded-[16px] border border-linea bg-superficie-2 p-3 pr-4 text-left">
-      <IconaTono tono={tono} lato={48} className="rounded-[12px]"><Icona nome={icona} size={26} /></IconaTono>
+      className="brand-premibile flex w-full items-center gap-3.5 rounded-xl border border-linea bg-superficie-2 p-3 pr-4 text-left">
+      <IconaTono tono={tono} lato={48} className="rounded-xl"><Icona nome={icona} size={26} /></IconaTono>
       <span className="flex-1 min-w-0">
-        <span className="block text-[16px] leading-[22px] font-bold text-testo">{nome}</span>
-        <span data-testo-ok className="block text-[13px] leading-[18px] text-testo-tenue">{riga}</span>
+        <span className="block text-s2 leading-[22px] font-bold text-testo">{nome}</span>
+        <span data-testo-ok className="block text-s1 leading-[18px] text-testo-tenue">{riga}</span>
       </span>
       <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="avanti" size={22} /></span>
     </button>
@@ -88,41 +88,41 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
           <TestataScheda titolo="Esercizi" onProfilo={() => (onOpenProfilo ? onOpenProfilo() : onOpenExtra?.('profilo'))} />
 
           {/* L'unica azione primaria: titolo, che cosa fa, ▶ Inizia. L'illustrazione sta a destra, piccola */}
-          <section aria-labelledby="titolo-consigliato" className="mt-4 rounded-[20px] border border-azione/25 bg-azione-tinta p-4">
+          <section aria-labelledby="titolo-consigliato" className="mt-4 rounded-2xl border border-azione/25 bg-azione-tinta p-4">
             <div className="flex items-center gap-3">
               <div className="min-w-0 flex-1">
-                <h2 id="titolo-consigliato" className="text-[19px] leading-[25px] font-extrabold tracking-[-0.01em] text-testo">Allenamento consigliato</h2>
-                <p data-testo-ok className="mt-1 text-[14px] leading-[20px] text-testo-tenue">10 domande scelte per te</p>
+                <h2 id="titolo-consigliato" className="text-s3 leading-[25px] font-extrabold tracking-[-0.01em] text-testo">Allenamento consigliato</h2>
+                <p data-testo-ok className="mt-1 text-s2 leading-[20px] text-testo-tenue">10 domande scelte per te</p>
               </div>
               <Arte nome="quiz-test-lista" lato={88} />
             </div>
             <button type="button" onClick={() => { playTapSound(); avvia('smart'); }}
-              className="brand-premibile mt-3 flex h-[56px] w-full items-center justify-center gap-2.5 rounded-[14px] bg-azione text-[17px] font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
+              className="brand-premibile mt-3 flex h-[56px] w-full items-center justify-center gap-2.5 rounded-xl bg-azione text-s3 font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
               <Icona nome="studia" size={22} />Inizia
             </button>
           </section>
 
-          <h2 className="mt-6 text-[15.5px] leading-[20px] font-bold text-testo">Scegli come allenarti</h2>
+          <h2 className="mt-6 text-s2 leading-[20px] font-bold text-testo">Scegli come allenarti</h2>
           <div className="mt-2.5 grid grid-cols-2 gap-3">
             {MODI.map(m => (
               <button key={m.id} type="button" onClick={() => { playTapSound(); avvia(m.id); }} className={TESSERA}>
-                <IconaTono tono={m.tono} lato={44} className="mb-1.5 rounded-[13px]"><Icona nome={m.icona} size={26} /></IconaTono>
-                <span className="text-[16px] leading-[21px] font-bold text-testo">{m.nome}</span>
-                <span className="text-[13px] leading-[18px] text-testo-tenue">{m.id === 'weakness' && daRipassare > 0 ? `${daRipassare} da ripassare` : m.riga}</span>
+                <IconaTono tono={m.tono} lato={44} className="mb-1.5 rounded-xl"><Icona nome={m.icona} size={26} /></IconaTono>
+                <span className="text-s2 leading-[21px] font-bold text-testo">{m.nome}</span>
+                <span className="text-s1 leading-[18px] text-testo-tenue">{m.id === 'weakness' && daRipassare > 0 ? `${daRipassare} da ripassare` : m.riga}</span>
               </button>
             ))}
             <button type="button" aria-pressed={sceltaArgomento} onClick={() => { playTapSound(); setSceltaArgomento(v => !v); }}
               className={cn(TESSERA, sceltaArgomento && 'border-azione ring-1 ring-azione')}>
-              <IconaTono tono="alto" lato={44} className="mb-1.5 rounded-[13px]"><Icona nome="modo-argomento" size={26} /></IconaTono>
-              <span className="text-[16px] leading-[21px] font-bold text-testo">Per argomento</span>
-              <span className="text-[13px] leading-[18px] text-testo-tenue">Scegli tu cosa studiare</span>
+              <IconaTono tono="alto" lato={44} className="mb-1.5 rounded-xl"><Icona nome="modo-argomento" size={26} /></IconaTono>
+              <span className="text-s2 leading-[21px] font-bold text-testo">Per argomento</span>
+              <span className="text-s1 leading-[18px] text-testo-tenue">Scegli tu cosa studiare</span>
             </button>
           </div>
 
           {sceltaArgomento && (
             <div className="mt-3 flex flex-col gap-2.5">
               <select aria-label="Argomento" value={filtro} onChange={e => setFiltro(e.target.value)}
-                className="w-full min-h-[48px] appearance-none rounded-[12px] border border-bordo-campo bg-superficie px-4 text-[15px] font-semibold text-testo outline-none focus:border-azione">
+                className="w-full min-h-[48px] appearance-none rounded-xl border border-bordo-campo bg-superficie px-4 text-s2 font-semibold text-testo outline-none focus:border-azione">
                 <option value="" disabled>Scegli un argomento</option>
                 <optgroup label="Categorie">
                   {categorie.map(c => <option key={`category:${c}`} value={`category:${c}`}>{c}</option>)}
@@ -135,16 +135,16 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
                 </optgroup>
               </select>
               <button type="button" disabled={!filtro} onClick={() => { playTapSound(); avvia('category', filtro); }}
-                className="brand-premibile flex h-[52px] w-full items-center justify-center gap-2 rounded-[12px] bg-azione text-[15px] font-bold text-azione-su hover:bg-azione-scuro disabled:bg-tacca disabled:text-testo-tenue">
+                className="brand-premibile flex h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-azione text-s2 font-bold text-azione-su hover:bg-azione-scuro disabled:bg-tacca disabled:text-testo-tenue">
                 <Icona nome="studia" size={20} />Inizia con questo argomento
               </button>
             </div>
           )}
 
-          <h2 className="mt-6 text-[15.5px] leading-[20px] font-bold text-testo">Per studiare</h2>
+          <h2 className="mt-6 text-s2 leading-[20px] font-bold text-testo">Per studiare</h2>
           <div className="mt-2.5 flex flex-col gap-3">
             <RigaTesto icona="frasi" tono="azione" nome="Frasi utili" riga="Frasi con traduzione e spiegazione" onClick={onOpenExtra ? () => onOpenExtra('frasi') : undefined} />
-            <RigaTesto icona="prontuario" tono="viola" nome="Riepilogo di grammatica" riga="Le regole che tornano più spesso" onClick={onOpenCheatSheet} />
+            <RigaTesto icona="prontuario" tono="azione" nome="Riepilogo di grammatica" riga="Le regole che tornano più spesso" onClick={onOpenCheatSheet} />
           </div>
         </div>
       </div>

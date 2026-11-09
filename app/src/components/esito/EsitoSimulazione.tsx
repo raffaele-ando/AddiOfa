@@ -61,7 +61,7 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
             <button type="button" onClick={() => { playTapSound(); onExit(); }} aria-label="Indietro" className="brand-premibile -ml-2 grid h-11 w-11 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo">
               <Icona nome="indietro" size={28} />
             </button>
-            <h2 className="min-w-0 flex-1 text-[22px] leading-[30px] font-extrabold tracking-[-0.01em] text-testo">Risultato</h2>
+            <h2 className="min-w-0 flex-1 text-s4 leading-[30px] font-extrabold tracking-[-0.01em] text-testo">Risultato</h2>
             <PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole della simulazione" />
           </header>
 
@@ -82,24 +82,24 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
           {/* Un solo pulsante pieno: le correzioni (sono sotto, a un tocco); «Rifai la simulazione» ricomincia con altre 30 domande. */}
           <div className="flex flex-col gap-2.5">
             <button type="button" onClick={vaiAlleCorrezioni}
-              className="flex h-[54px] items-center justify-center gap-2 rounded-[12px] bg-azione text-[15px] font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
+              className="flex h-[54px] items-center justify-center gap-2 rounded-xl bg-azione text-s2 font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
               <Icona nome="correzioni" size={22} />Vedi le correzioni
             </button>
             <button type="button" onClick={() => { playTapSound(); onRetry(); }}
-              className="flex h-[54px] items-center justify-center gap-2 rounded-[12px] border border-azione/60 bg-superficie text-[15px] font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
+              className="flex h-[54px] items-center justify-center gap-2 rounded-xl border border-azione/60 bg-superficie text-s2 font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
               <Icona nome="riprova" size={22} />Rifai la simulazione
             </button>
           </div>
 
           {Object.keys(aree).length > 0 && (
-            <section aria-labelledby="titolo-aree" className="rounded-[12px] bg-superficie-2 p-4 text-left">
-              <h3 id="titolo-aree" className="mb-3 flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />Come sei andato per argomento</h3>
+            <section aria-labelledby="titolo-aree" className="rounded-xl bg-superficie-2 p-4 text-left">
+              <h3 id="titolo-aree" className="mb-3 flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />Come sei andato per argomento</h3>
               <ul className="space-y-3">
                 {Object.entries(aree).map(([nome, a]) => {
                   const pct = a.total > 0 ? Math.round((a.correct / a.total) * 100) : 0;
                   return (
                     <li key={nome}>
-                      <div className="flex items-baseline justify-between gap-3 text-sm">
+                      <div className="flex items-baseline justify-between gap-3 text-s2">
                         <span data-testo-ok className="font-bold text-testo">{nome}</span>
                         <span className="font-bold tabular-nums text-testo">{a.correct}/{a.total}</span>
                       </div>

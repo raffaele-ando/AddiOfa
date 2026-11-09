@@ -36,7 +36,7 @@ const VOCI: Voce[] = [
 function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: boolean; onToggle(): void; onOpenLegal(s: LegalSection): void }) {
   const id = useId();
   return (
-    <div className="overflow-hidden rounded-[20px] border border-linea bg-superficie">
+    <div className="overflow-hidden rounded-2xl border border-linea bg-superficie">
       <h3>
         <button
           type="button"
@@ -44,7 +44,7 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
           aria-controls={`${id}-p`}
           id={`${id}-b`}
           onClick={onToggle}
-          className={cn('flex w-full items-center justify-between gap-4 rounded-[20px] px-5 py-4 text-left text-base font-bold text-testo sm:px-6', FOCUS)}
+          className={cn('flex w-full items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left text-s2 font-bold text-testo sm:px-6', FOCUS)}
         >
           <span data-testo-ok>{voce.d}</span>
           <Icona nome="espandi" size={22} className={cn('text-azione', aperta && 'rotate-180')} />
@@ -60,9 +60,9 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
       >
         <div className="overflow-hidden">
           <div className="px-5 pb-5 sm:px-6">
-            <p data-testo-ok className="text-[15px] leading-relaxed text-testo">{voce.r}</p>
+            <p data-testo-ok className="text-s2 leading-relaxed text-testo">{voce.r}</p>
             {voce.legale && (
-              <button type="button" onClick={() => onOpenLegal(voce.legale!.sezione)} className={cn('mt-2 inline-flex min-h-9 items-center gap-1.5 rounded text-[15px] font-bold text-azione-testo underline underline-offset-2', FOCUS)}>
+              <button type="button" onClick={() => onOpenLegal(voce.legale!.sezione)} className={cn('mt-2 inline-flex min-h-9 items-center gap-1.5 rounded-xl text-s2 font-bold text-azione-testo underline underline-offset-2', FOCUS)}>
                 <Icona nome={ICONE_LEGALI[voce.legale!.sezione]} size={16} />{voce.legale.testo}
               </button>
             )}

@@ -23,10 +23,10 @@ function Numeri({ voci }: { voci: { icona: 'risposte' | 'tempo' | 'simulazioni' 
   return (
     <dl className="grid grid-cols-3 gap-2 text-center">
       {voci.map(v => (
-        <div key={v.nome} className="rounded-[12px] bg-superficie-2 px-1 py-3">
+        <div key={v.nome} className="rounded-xl bg-superficie-2 px-1 py-3">
           <Icona nome={v.icona} size={20} className={cn('mx-auto', TONI[v.tono].icona)} />
-          <dd className="mt-1 text-[18px] leading-[24px] font-extrabold text-testo tabular-nums whitespace-nowrap">{v.valore}</dd>
-          <dt className="text-[12px] leading-[16px] font-medium text-testo-tenue">{v.nome}</dt>
+          <dd className="mt-1 text-s3 leading-[24px] font-extrabold text-testo tabular-nums whitespace-nowrap">{v.valore}</dd>
+          <dt className="text-s1 leading-[16px] font-medium text-testo-tenue">{v.nome}</dt>
         </div>
       ))}
     </dl>
@@ -41,20 +41,20 @@ function Barre({ giorni, valore, titolo, icona, tono }: { giorni: GiornoRecente[
   return (
     <Carta>
       <div className="flex items-center justify-between gap-3">
-        <h3 className="inline-flex items-center gap-2 text-[15px] font-bold text-testo"><Icona nome={icona} size={18} className={TONI[tono].icona} />{titolo}</h3>
-        <span className="text-[13px] font-semibold text-testo-tenue tabular-nums">massimo {max}</span>
+        <h3 className="inline-flex items-center gap-2 text-s2 font-bold text-testo"><Icona nome={icona} size={18} className={TONI[tono].icona} />{titolo}</h3>
+        <span className="text-s1 font-semibold text-testo-tenue tabular-nums">massimo {max}</span>
       </div>
       <div className="mt-3 flex items-end h-[120px] border-b border-tacca" style={{ gap: sottile ? 2 : 6 }} role="img" aria-label={descrizione}>
         {giorni.map(g => {
           const v = valore(g);
-          return <span key={g.data} className={cn('flex-1 rounded-t-[3px]', v > 0 ? TONI[tono].barra : 'bg-linea')} style={{ height: v > 0 ? `${Math.max(4, Math.round((v / max) * 116))}px` : '2px' }} />;
+          return <span key={g.data} className={cn('flex-1 rounded-t-xl', v > 0 ? TONI[tono].barra : 'bg-linea')} style={{ height: v > 0 ? `${Math.max(4, Math.round((v / max) * 116))}px` : '2px' }} />;
         })}
       </div>
       {sottile ? (
-        <div className="mt-1.5 flex justify-between text-[12px] text-testo-tenue" aria-hidden="true"><span>{breve(giorni[0].data)}</span><span>{breve(giorni[giorni.length - 1].data)}</span></div>
+        <div className="mt-1.5 flex justify-between text-s1 text-testo-tenue" aria-hidden="true"><span>{breve(giorni[0].data)}</span><span>{breve(giorni[giorni.length - 1].data)}</span></div>
       ) : (
         <div className="mt-1.5 flex" style={{ gap: 6 }} aria-hidden="true">
-          {giorni.map(g => <span key={g.data} className="flex-1 text-center text-[12px] text-testo-tenue">{g.lettera}</span>)}
+          {giorni.map(g => <span key={g.data} className="flex-1 text-center text-s1 text-testo-tenue">{g.lettera}</span>)}
         </div>
       )}
     </Carta>
@@ -86,10 +86,10 @@ export default function ProgressiCalendario() {
       <Carta className="p-3.5">
         <div className="flex items-center justify-between">
           <button type="button" onClick={() => sposta(-1)} aria-label="Mese precedente" className="brand-premibile w-11 h-11 rounded-full grid place-items-center text-azione-testo"><Icona nome="indietro" size={26} /></button>
-          <h3 className="text-[16px] font-bold text-testo" aria-live="polite">{mese.etichetta}</h3>
+          <h3 className="text-s2 font-bold text-testo" aria-live="polite">{mese.etichetta}</h3>
           <button type="button" onClick={() => sposta(1)} aria-label="Mese successivo" className="brand-premibile w-11 h-11 rounded-full grid place-items-center text-azione-testo"><Icona nome="avanti" size={26} /></button>
         </div>
-        <div className="mt-1 grid grid-cols-7 text-center text-[12px] font-semibold text-testo-tenue" aria-hidden="true">
+        <div className="mt-1 grid grid-cols-7 text-center text-s1 font-semibold text-testo-tenue" aria-hidden="true">
           {INTESTAZIONE_SETTIMANA.map((l, i) => <span key={i} className="py-1.5">{l}</span>)}
         </div>
         <div className="grid grid-cols-7 gap-y-1" role="group" aria-label={`${mese.etichetta}, ${totaliPeriodo(mese.settimane.flat().filter(c => c.delMese).map(c => datiDelGiorno(registro, c.data))).giorniDiStudio} giorni di studio`}>
@@ -98,7 +98,7 @@ export default function ProgressiCalendario() {
               aria-label={`${nomeGiorno(c.data)}${c.studiato ? ', hai studiato' : ''}${c.oggi ? ', oggi' : ''}${c.test ? ', data del test' : ''}`}
               onClick={() => { playTapSound(); setScelto(c.data); }}
               className="relative h-11 grid place-items-center">
-              <span className={cn('w-10 h-10 rounded-full grid place-items-center text-[14.5px] tabular-nums',
+              <span className={cn('w-10 h-10 rounded-full grid place-items-center text-s2 tabular-nums',
                 c.studiato ? 'bg-medio-chiaro border-2 border-medio-numero text-testo dark:bg-medio dark:text-medio-su font-bold' : c.futuro ? 'text-testo-tenue' : 'text-testo',
                 c.oggi && !c.studiato && 'border-2 border-azione font-bold',
                 c.oggi && c.studiato && 'ring-2 ring-offset-2 ring-azione ring-offset-superficie',
@@ -112,7 +112,7 @@ export default function ProgressiCalendario() {
       </Carta>
 
       <Carta>
-        <h3 className="flex items-center gap-2 text-[16px] font-bold text-testo" aria-live="polite">
+        <h3 className="flex items-center gap-2 text-s2 font-bold text-testo" aria-live="polite">
           {nomeGiorno(scelto)}{scelto === chiaveOggi ? ' (oggi)' : ''}
           {eTest && <span role="img" aria-label="Data del test" className="text-medio-numero"><Icona nome="data-test" size={18} /></span>}
         </h3>
@@ -126,7 +126,7 @@ export default function ProgressiCalendario() {
       </Carta>
 
       <div className="mt-4">
-        <TitoloSezione destra={<span className="text-[13px] font-semibold tabular-nums text-testo-tenue">{attivi.giorniDiStudio} giorni su {attivi.giorni}</span>}>Attività</TitoloSezione>
+        <TitoloSezione destra={<span className="text-s1 font-semibold tabular-nums text-testo-tenue">{attivi.giorniDiStudio} giorni su {attivi.giorni}</span>}>Attività</TitoloSezione>
         <Segmenti<'7' | '30'> className="mt-3" nome="Periodo" valore={String(periodo) as '7' | '30'} onScegli={v => setPeriodo(Number(v) as 7 | 30)}
           voci={[{ id: '7', nome: 'Ultimi 7 giorni' }, { id: '30', nome: 'Ultimi 30 giorni' }]} />
       </div>

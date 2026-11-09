@@ -34,11 +34,11 @@ export function Sezione({ id, titoloId, className, children }: { id?: string; ti
 
 /** Etichetta di sezione: l'unico stile della pagina (12 px, maiuscolo, blu, niente pillola né numero). */
 export function Occhiello({ children, className, ...resto }: { children: ReactNode; className?: string; 'data-testo-ok'?: boolean }) {
-  return <p {...resto} className={cn('text-xs font-bold uppercase tracking-[0.08em] text-azione-testo', className)}>{children}</p>;
+  return <p {...resto} className={cn('text-s1 font-bold uppercase tracking-[0.08em] text-azione-testo', className)}>{children}</p>;
 }
 
 /** Titolo di sezione: l'unica scala della pagina (32 px sul telefono, 44 px da 1024 px); la parte in `<Evidenza>` è blu. */
-export const TITOLO_H2 = 'text-[2rem] leading-[1.1] font-extrabold tracking-[-0.025em] text-testo text-balance lg:text-[2.75rem]';
+export const TITOLO_H2 = 'text-s5 leading-[1.1] font-extrabold tracking-[-0.025em] text-testo text-balance lg:text-s6';
 
 export function TitoloSezione({ id, occhiello, children, className }: { id: string; occhiello?: string; children: ReactNode; className?: string }) {
   return (
@@ -60,7 +60,7 @@ export function BottoneAzione({ children, onClick, className, freccia = true, gr
       type="button"
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-full bg-azione hover:bg-azione-scuro text-azione-su font-bold text-base px-7 transition-colors duration-100 whitespace-nowrap',
+        'inline-flex items-center justify-center gap-2 rounded-full bg-azione hover:bg-azione-scuro text-azione-su font-bold text-s2 px-7 transition-colors duration-100 whitespace-nowrap',
         grande ? 'h-14' : 'h-[52px] lg:h-12',
         FOCUS, className,
       )}
@@ -78,7 +78,7 @@ export function BottoneContorno({ children, onClick, className, freccia }: { chi
       type="button"
       onClick={() => { playTapSound(); onClick(); }}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] border-azione-testo/60 bg-transparent hover:bg-azione-tinta text-azione-testo font-bold text-base h-[52px] px-7 transition-colors duration-100 whitespace-nowrap lg:h-12',
+        'inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] border-azione-testo/60 bg-transparent hover:bg-azione-tinta text-azione-testo font-bold text-s2 h-[52px] px-7 transition-colors duration-100 whitespace-nowrap lg:h-12',
         FOCUS, className,
       )}
     >
@@ -93,7 +93,7 @@ export function BottoneLink({ children, onClick, className, freccia = true }: { 
     <button
       type="button"
       onClick={onClick}
-      className={cn('inline-flex min-h-11 items-center gap-1.5 rounded text-[15px] font-bold text-azione-testo underline-offset-4 hover:underline', FOCUS, className)}
+      className={cn('inline-flex min-h-11 items-center gap-1.5 rounded-xl text-s2 font-bold text-azione-testo underline-offset-4 hover:underline', FOCUS, className)}
     >
       {children}{freccia && <Icona nome="avanti" size={18} />}
     </button>
@@ -101,7 +101,7 @@ export function BottoneLink({ children, onClick, className, freccia = true }: { 
 }
 
 /** Carta di vetro usata dalle sezioni (tondeggiante, bordo chiaro, ombra morbida). */
-export const SCHEDA = 'vetro rounded-[28px]';
+export const SCHEDA = 'vetro rounded-2xl';
 
 /** Icona nel suo tono + numero o parola: l'unità con cui la landing dice le cose (al posto delle frasi). */
 export function Dato({ icona, tono = 'azione', children, etichetta, className, lato = 32 }: { icona: NomeIcona; tono?: Tono; children: ReactNode; etichetta?: string; className?: string; lato?: number }) {
@@ -117,10 +117,10 @@ export function Dato({ icona, tono = 'azione', children, etichetta, className, l
 /** I fatti del diagnostico in una riga di icone: domande, minuti, senza password. */
 export function Fatti({ className }: { className?: string }) {
   return (
-    <ul className={cn('flex flex-wrap gap-x-5 gap-y-2.5 text-sm font-semibold text-testo', className)} aria-label="In breve">
+    <ul className={cn('flex flex-wrap gap-x-5 gap-y-2.5 text-s2 font-semibold text-testo', className)} aria-label="In breve">
       <li><Dato icona="risposte" tono="azione" etichetta="Domande">{DIAGNOSTIC_QUESTIONS}</Dato></li>
       <li><Dato icona="tempo" tono="medio" etichetta="Durata">3 min</Dato></li>
-      <li><Dato icona="senza-account" tono="viola">Senza password</Dato></li>
+      <li><Dato icona="senza-account" tono="azione">Senza password</Dato></li>
     </ul>
   );
 }
@@ -142,12 +142,12 @@ export function InfoFoglio({ titolo, etichetta = 'Informazioni', children, class
       {bottone ? bottone(() => setAperto(true)) : <PulsanteInfo onClick={() => setAperto(true)} etichetta={etichetta} className={className} />}
       {aperto && createPortal(
         <div className="fixed inset-0 z-[60] flex items-end justify-center bg-testo/40" onClick={e => { if (e.target === e.currentTarget) setAperto(false); }}>
-          <div role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full max-w-xl overflow-y-auto rounded-t-[24px] bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
+          <div role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full max-w-xl overflow-y-auto rounded-t-2xl bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
             <div className="mb-3 flex items-center justify-between gap-3">
-              <h2 className="text-[18px] leading-[24px] font-extrabold">{titolo}</h2>
+              <h2 className="text-s3 leading-[24px] font-extrabold">{titolo}</h2>
               <button type="button" onClick={() => setAperto(false)} aria-label="Chiudi" className="brand-premibile grid h-9 w-9 place-items-center rounded-full bg-superficie-2 text-testo"><Icona nome="chiudi" size={20} /></button>
             </div>
-            <div className="text-[14.5px] leading-[21px] text-testo">{children}</div>
+            <div className="text-s2 leading-[21px] text-testo">{children}</div>
           </div>
         </div>,
         document.body,

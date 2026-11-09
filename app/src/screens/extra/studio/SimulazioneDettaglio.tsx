@@ -96,12 +96,12 @@ function Svolta({ chiave }: { chiave: string }) {
 
         {righe.length > 0 && (
           <section aria-labelledby="titolo-argomenti" className="mt-7 flex flex-col gap-2.5">
-            <h2 id="titolo-argomenti" className="flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />Come sei andato per argomento</h2>
+            <h2 id="titolo-argomenti" className="flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />Come sei andato per argomento</h2>
             <Carta className="p-4">
               <ul className="flex flex-col gap-3.5">
                 {righe.map(r => (
                   <li key={r.nome}>
-                    <div className="flex items-baseline justify-between gap-3 text-[14px]">
+                    <div className="flex items-baseline justify-between gap-3 text-s2">
                       <span data-testo-ok className="font-semibold text-testo break-words min-w-0">{r.nome}</span>
                       <span className="shrink-0 font-bold tabular-nums text-testo">{r.esatte}/{r.totale}</span>
                     </div>

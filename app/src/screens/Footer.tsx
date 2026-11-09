@@ -14,7 +14,7 @@ export const ICONE_LEGALI: Record<LegalSection, NomeIcona> = {
 export default function Footer({ onOpenLegal }: { onOpenLegal: (s: LegalSection) => void }) {
   return (
     <footer className="shrink-0 pt-2 text-center">
-      <nav aria-label="Informazioni legali" className="flex flex-wrap items-center justify-center gap-x-1 text-xs font-semibold text-testo-tenue">
+      <nav aria-label="Informazioni legali" className="flex flex-wrap items-center justify-center gap-x-1 text-s1 font-semibold text-testo-tenue">
         {LEGAL_TABS.map(t => (
           <button
             key={t.id}
@@ -26,7 +26,7 @@ export default function Footer({ onOpenLegal }: { onOpenLegal: (s: LegalSection)
           </button>
         ))}
       </nav>
-      <p data-testo-ok className="mx-auto max-w-[52ch] text-[11px] leading-snug text-testo-tenue">{AVVERTENZA_INDIPENDENZA}</p>
+      <p data-testo-ok className="mx-auto max-w-[52ch] text-s1 leading-snug text-testo-tenue">{AVVERTENZA_INDIPENDENZA}</p>
     </footer>
   );
 }

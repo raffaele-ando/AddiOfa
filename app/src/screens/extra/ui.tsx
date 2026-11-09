@@ -40,8 +40,8 @@ export function Pagina({ titolo, sottotitolo, onBack, destra, velata, piede, chi
               </button>
             )}
             <div className="min-w-0 flex-1">
-              <h1 className="text-[26px] leading-[44px] font-extrabold tracking-[-0.02em] text-testo">{titolo}</h1>
-              {sottotitolo && <p data-testo-ok className="-mt-1 text-[15px] leading-[21px] text-testo-tenue">{sottotitolo}</p>}
+              <h1 className="text-s4 leading-[44px] font-extrabold tracking-[-0.02em] text-testo">{titolo}</h1>
+              {sottotitolo && <p data-testo-ok className="-mt-1 text-s2 leading-[21px] text-testo-tenue">{sottotitolo}</p>}
             </div>
             {destra && <div className="shrink-0 pt-0.5">{destra}</div>}
           </header>
@@ -60,7 +60,7 @@ export function Pagina({ titolo, sottotitolo, onBack, destra, velata, piede, chi
 // ---------------------------------------------------------------------------------------------------------------
 // Colore con significato (teoria dei colori dei concept): il blu è l'azione e lo studio; il verde è ciò che è riuscito
 // (obiettivi, accuratezza, superato); l'ambra è sforzo e premio (giorni di studio, tempo, trofei); il corallo è il confronto
-// e il rischio (duelli, da ripassare; l'errore vero è un'altra tinta: errore*); il viola è apprendimento e traguardi (badge, quiz). Un solo colore per significato, mai
+// e il rischio (duelli, da ripassare; l'errore vero è un'altra tinta: errore*); il viola è solo il livello (icona e tappe dei livelli). Un solo colore per significato, mai
 // a caso: i toni non si mescolano nella stessa riga. Il testo grande resta navy: il colore sta in icone, barre e numeri chiave.
 export type Tono = 'azione' | 'alto' | 'medio' | 'basso' | 'viola';
 
@@ -86,17 +86,17 @@ export function Carta({ children, className, tono = 'neutro', as: Tag = 'div' }:
     basso: 'border-basso/30 bg-basso-tinta dark:bg-superficie dark:border-basso/45',
     viola: 'border-viola/30 bg-viola-tinta dark:bg-superficie dark:border-viola/45',
   } as const;
-  return <Tag className={cn('rounded-[16px] border p-4 shadow-sm dark:shadow-none', stile[tono], className)}>{children}</Tag>;
+  return <Tag className={cn('rounded-xl border p-4 shadow-sm dark:shadow-none', stile[tono], className)}>{children}</Tag>;
 }
 
 /** Titolo di sezione 17/700, con a destra un'azione scritta («Vedi tutti») o un'indicazione breve. */
 export function TitoloSezione({ id, children, azione, destra }: { id?: string; children: ReactNode; azione?: { testo: string; onClick: () => void }; destra?: ReactNode }) {
   return (
     <div className="flex min-h-[28px] items-center justify-between gap-3">
-      <h2 id={id} className="text-[17px] leading-[24px] font-bold text-testo">{children}</h2>
+      <h2 id={id} className="text-s3 leading-[24px] font-bold text-testo">{children}</h2>
       {azione ? (
         <button type="button" onClick={() => { playTapSound(); azione.onClick(); }}
-          className="brand-premibile -my-2 -mr-2 inline-flex min-h-[44px] items-center gap-0.5 rounded-[10px] px-2 text-[14px] font-bold text-azione-testo">
+          className="brand-premibile -my-2 -mr-2 inline-flex min-h-[44px] items-center gap-0.5 rounded-xl px-2 text-s2 font-bold text-azione-testo">
           {azione.testo}<Icona nome="avanti" size={16} />
         </button>
       ) : destra}
@@ -118,7 +118,7 @@ export function Sezione({ id, titolo, destra, azione, children, className }: { i
  *  sembravano buchi), con l'icona nel colore del tono. */
 export function IconaTono({ tono, children, lato = 40, className }: { tono: Tono; children: ReactNode; lato?: number; className?: string }) {
   return (
-    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center rounded-[12px] dark:bg-superficie-2', TONI[tono].tinta, TONI[tono].icona, className)} style={{ width: lato, height: lato }}>
+    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center rounded-xl dark:bg-superficie-2', TONI[tono].tinta, TONI[tono].icona, className)} style={{ width: lato, height: lato }}>
       {children}
     </span>
   );
@@ -142,17 +142,17 @@ export function Segmenti<T extends string>({ nome, voci, valore, onScegli, class
   nome: string; voci: { id: T; nome: string; icona?: NomeIcona; conto?: ReactNode }[]; valore: T; onScegli: (v: T) => void; className?: string;
 }) {
   return (
-    <div role="radiogroup" aria-label={nome} className={cn('grid gap-1 rounded-[14px] border border-linea bg-superficie-2 p-1 dark:bg-fondo', className)}
+    <div role="radiogroup" aria-label={nome} className={cn('grid gap-1 rounded-xl border border-linea bg-superficie-2 p-1 dark:bg-fondo', className)}
       style={{ gridTemplateColumns: `repeat(${voci.length}, minmax(0, 1fr))` }}>
       {voci.map(v => {
         const on = v.id === valore;
         return (
           <button key={v.id} type="button" role="radio" aria-checked={on} onClick={() => { if (!on) { playTapSound(); onScegli(v.id); } }}
-            className={cn('brand-premibile flex h-11 min-w-0 items-center justify-center gap-1.5 rounded-[10px] px-1.5 text-[14px] leading-[18px] transition-colors duration-100',
+            className={cn('brand-premibile flex h-11 min-w-0 items-center justify-center gap-1.5 rounded-xl px-1.5 text-s2 leading-[19px] transition-colors duration-100',
               on ? 'bg-superficie font-bold text-azione-testo shadow-sm dark:bg-superficie-2 dark:shadow-none' : 'font-semibold text-testo-tenue')}>
             {v.icona && <Icona nome={v.icona} size={18} className="shrink-0" />}
             <span className="truncate">{v.nome}</span>
-            {v.conto !== undefined && <span className="shrink-0 text-[12px] font-semibold tabular-nums opacity-80">{v.conto}</span>}
+            {v.conto !== undefined && <span className="shrink-0 text-s1 font-semibold tabular-nums opacity-80">{v.conto}</span>}
           </button>
         );
       })}
@@ -170,9 +170,9 @@ export function FiltriChip<T extends string>({ nome, voci, valore, onScegli, cla
         const on = v.id === valore;
         return (
           <button key={v.id} type="button" role="radio" aria-checked={on} onClick={() => { playTapSound(); onScegli(v.id); }}
-            className={cn('brand-premibile inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border px-4 text-[14px] font-semibold',
+            className={cn('brand-premibile inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border px-4 text-s2 font-semibold',
               on ? 'border-azione bg-azione-tinta text-azione-testo' : 'border-linea bg-superficie text-testo')}>
-            {v.nome}{v.conto !== undefined && <span className="text-[12px] tabular-nums text-testo-tenue">{v.conto}</span>}
+            {v.nome}{v.conto !== undefined && <span className="text-s1 tabular-nums text-testo-tenue">{v.conto}</span>}
           </button>
         );
       })}
@@ -183,7 +183,7 @@ export function FiltriChip<T extends string>({ nome, voci, valore, onScegli, cla
 /** Gruppo di righe: UNA card con filetti che iniziano dopo la tessera (56 px). */
 export function GruppoRighe({ children, etichetta, className }: { children: ReactNode; etichetta: string; className?: string }) {
   return (
-    <section aria-label={etichetta} className={cn('overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none', className)}>
+    <section aria-label={etichetta} className={cn('overflow-hidden rounded-xl border border-linea bg-superficie shadow-sm dark:shadow-none', className)}>
       <ul className="flex flex-col">{children}</ul>
     </section>
   );
@@ -198,10 +198,10 @@ export function Riga({ icona, tono, titolo, sottotitolo, destra, onClick, classN
     <>
       {icona && (tono
         ? <IconaTono tono={tono} lato={40}><Icona nome={icona} size={22} /></IconaTono>
-        : <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-superficie-2 text-testo-tenue"><Icona nome={icona} size={22} /></span>)}
+        : <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-superficie-2 text-testo-tenue"><Icona nome={icona} size={22} /></span>)}
       <span className="min-w-0 flex-1">
-        <span className="block text-[15px] leading-[21px] font-semibold text-testo">{titolo}</span>
-        {sottotitolo && <span data-testo-ok className="block text-[13px] leading-[18px] text-testo-tenue">{sottotitolo}</span>}
+        <span className="block text-s2 leading-[21px] font-semibold text-testo">{titolo}</span>
+        {sottotitolo && <span data-testo-ok className="block text-s1 leading-[18px] text-testo-tenue">{sottotitolo}</span>}
       </span>
       {destra}
       {onClick && !destra && <Icona nome="avanti" size={20} className="shrink-0 text-testo-tenue" />}
@@ -225,7 +225,7 @@ export function Riga({ icona, tono, titolo, sottotitolo, destra, onClick, classN
 export function TestataScheda({ titolo, onProfilo, destra }: { titolo: string; onProfilo: () => void; destra?: ReactNode }) {
   return (
     <header className="flex items-center justify-between gap-3">
-      <h1 className="text-[26px] leading-[40px] font-extrabold tracking-[-0.02em] text-testo">{titolo}</h1>
+      <h1 className="text-s4 leading-[40px] font-extrabold tracking-[-0.02em] text-testo">{titolo}</h1>
       <div className="flex items-center gap-2">
         {destra}
         <button type="button" onClick={() => { playTapSound(); onProfilo(); }} aria-label="Profilo"
@@ -258,12 +258,12 @@ export function FoglioInfo({ aperto, onChiudi, titolo, children }: { aperto: boo
   if (!aperto) return null;
   return (
     <div className="absolute inset-0 z-50 flex items-end bg-testo/40" onClick={e => { if (e.target === e.currentTarget) onChiudi(); }}>
-      <div role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full overflow-y-auto rounded-t-[24px] border-t border-linea bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
+      <div role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full overflow-y-auto rounded-t-2xl border-t border-linea bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
         <div className="mb-3 flex items-center justify-between gap-3">
-          <h2 className="text-[18px] leading-[24px] font-extrabold">{titolo}</h2>
+          <h2 className="text-s3 leading-[24px] font-extrabold">{titolo}</h2>
           <button type="button" onClick={onChiudi} aria-label="Chiudi" className="brand-premibile grid h-11 w-11 place-items-center rounded-full bg-superficie-2 text-testo"><Icona nome="chiudi" size={20} /></button>
         </div>
-        <div className="text-[14.5px] leading-[21px] text-testo">{children}</div>
+        <div className="text-s2 leading-[21px] text-testo">{children}</div>
       </div>
     </div>
   );

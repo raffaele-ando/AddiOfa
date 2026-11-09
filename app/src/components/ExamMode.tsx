@@ -323,7 +323,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
         {phase === 'submitting' ? (
           <div role="status" aria-label={scaduto ? 'Tempo scaduto: consegno e correggo' : 'Consegno e correggo'} className="flex flex-col items-center gap-3">
             {scaduto && (
-              <span aria-hidden="true" className="inline-flex items-center gap-1.5 rounded-full bg-basso-tinta px-3.5 py-1.5 text-[15px] font-extrabold text-basso-testo">
+              <span aria-hidden="true" className="inline-flex items-center gap-1.5 rounded-full bg-basso-tinta px-3.5 py-1.5 text-s2 font-extrabold text-basso-testo">
                 <Icona nome="tempo" size={18} />Tempo scaduto
               </span>
             )}
@@ -387,12 +387,12 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
               <Icona nome="chiudi" size={24} />
             </button>
             <div role="timer" aria-label="Tempo rimasto"
-              className={cn('flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-base font-bold tabular-nums transition-colors duration-100',
+              className={cn('flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-s2 font-bold tabular-nums transition-colors duration-100',
                 tempoCorallo ? 'bg-basso-tinta text-basso-testo' : tempoAmbra ? 'bg-medio-tinta text-medio-testo' : 'bg-superficie-2 text-testo')}>
               <Icona nome="tempo" size={18} /> {timeStr}
             </div>
             <button onClick={requestSubmit}
-              className="inline-flex h-10 items-center rounded-[10px] border border-azione/60 px-4 text-[13px] font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
+              className="inline-flex h-10 items-center rounded-xl border border-azione/60 px-4 text-s1 font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
               Consegna
             </button>
           </div>
@@ -400,14 +400,14 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
             <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-tacca" role="presentation">
               <div className="h-full rounded-full bg-azione" style={{ width: `${progress}%` }} />
             </div>
-            <span className="shrink-0 text-[12px] font-semibold tabular-nums text-testo-tenue">{answeredCount === 1 ? '1 risposta' : `${answeredCount} risposte`} su {questions.length}</span>
+            <span className="shrink-0 text-s1 font-semibold tabular-nums text-testo-tenue">{answeredCount === 1 ? '1 risposta' : `${answeredCount} risposte`} su {questions.length}</span>
           </div>
         </div>
       </header>
 
       <main className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="mx-auto flex w-full max-w-[520px] flex-col px-5 pb-4 pt-5">
-          <h2 data-testo-ok aria-label={`Domanda ${currentIndex + 1} di ${questions.length}: ${question.prompt}`} className="mb-5 text-xl sm:text-2xl font-bold leading-snug text-testo">
+          <h2 data-testo-ok aria-label={`Domanda ${currentIndex + 1} di ${questions.length}: ${question.prompt}`} className="mb-5 text-s3 sm:text-s4 font-bold leading-snug text-testo">
             {question.prompt}
           </h2>
           <div className="grid grid-cols-1 gap-2.5">
@@ -426,7 +426,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
             <Icona nome="indietro" size={28} />
           </button>
           <button onClick={() => { playTapSound(); setGriglia(true); }} aria-haspopup="dialog"
-            className="inline-flex h-12 min-w-0 flex-1 max-w-[240px] items-center justify-center gap-2 rounded-xl border border-tacca bg-superficie-2 px-3 text-[15px] font-bold tabular-nums text-testo transition-colors duration-100 hover:bg-linea">
+            className="inline-flex h-12 min-w-0 flex-1 max-w-[240px] items-center justify-center gap-2 rounded-xl border border-tacca bg-superficie-2 px-3 text-s2 font-bold tabular-nums text-testo transition-colors duration-100 hover:bg-linea">
             Domanda {currentIndex + 1} di {questions.length}<Icona nome="espandi" size={18} className="text-testo-tenue" />
           </button>
           <button onClick={() => goTo(currentIndex + 1)} disabled={currentIndex === questions.length - 1} aria-label="Domanda successiva"
@@ -438,10 +438,10 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
 
       {/* Griglia delle domande: tessere da 48 px, con stato (risposta, saltata, da vedere) detto anche a parole */}
       <FoglioInfo aperto={griglia} onChiudi={() => setGriglia(false)} titolo="Vai a una domanda">
-        <ul className="mb-4 flex flex-wrap gap-x-4 gap-y-2 text-[13px] font-semibold text-testo">
-          <li className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-4 w-4 rounded-[5px] border-2 border-azione bg-azione" />Risposte <span className="tabular-nums">{answeredCount}</span></li>
-          <li className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-4 w-4 rounded-[5px] border-2 border-dashed border-medio-numero bg-medio-tinta" />Saltate <span className="tabular-nums">{nSaltate}</span></li>
-          <li className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-4 w-4 rounded-[5px] border-2 border-tacca bg-superficie-2" />Da vedere <span className="tabular-nums">{Math.max(0, nDaVedere)}</span></li>
+        <ul className="mb-4 flex flex-wrap gap-x-4 gap-y-2 text-s1 font-semibold text-testo">
+          <li className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-4 w-4 rounded-xl border-2 border-azione bg-azione" />Risposte <span className="tabular-nums">{answeredCount}</span></li>
+          <li className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-4 w-4 rounded-xl border-2 border-dashed border-medio-numero bg-medio-tinta" />Saltate <span className="tabular-nums">{nSaltate}</span></li>
+          <li className="inline-flex items-center gap-1.5"><span aria-hidden="true" className="h-4 w-4 rounded-xl border-2 border-tacca bg-superficie-2" />Da vedere <span className="tabular-nums">{Math.max(0, nDaVedere)}</span></li>
         </ul>
         <div role="group" aria-label="Domande" className="grid grid-cols-6 gap-2">
           {questions.map((q, i) => {
@@ -450,7 +450,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
             return (
               <button key={q.id} type="button" onClick={() => vaiA(i)} aria-current={corrente ? 'true' : undefined}
                 aria-label={`Domanda ${i + 1}: ${st === 'risposta' ? 'risposta data' : st === 'saltata' ? 'saltata' : corrente ? 'quella di ora' : 'da vedere'}`}
-                className={cn('grid h-12 w-full place-items-center rounded-[10px] border-2 text-[15px] font-bold tabular-nums transition-colors duration-100',
+                className={cn('grid h-12 w-full place-items-center rounded-xl border-2 text-s2 font-bold tabular-nums transition-colors duration-100',
                   st === 'risposta' && 'border-azione bg-azione text-azione-su',
                   st === 'saltata' && 'border-dashed border-medio-numero bg-medio-tinta text-medio-testo',
                   st === 'da-vedere' && 'border-tacca bg-superficie-2 text-testo',
@@ -461,7 +461,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
           })}
         </div>
         <button type="button" onClick={() => { setGriglia(false); requestSubmit(); }}
-          className="mt-5 flex h-[52px] w-full items-center justify-center rounded-[12px] border border-azione/60 text-[15px] font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
+          className="mt-5 flex h-[52px] w-full items-center justify-center rounded-xl border border-azione/60 text-s2 font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
           Consegna
         </button>
       </FoglioInfo>

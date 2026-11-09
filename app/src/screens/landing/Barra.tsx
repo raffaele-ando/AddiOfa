@@ -64,7 +64,7 @@ export default function Barra({ onStart }: { onStart(): void }) {
     <header ref={rif} className="sticky top-0 z-30 -mb-16 h-16">
       <div aria-hidden className={cn('absolute inset-0 border-b transition-colors duration-100', scorsa || aperto ? 'border-linea bg-fondo/96 backdrop-blur-md' : 'border-transparent bg-transparent')} />
       <Colonna className="relative flex h-16 items-center justify-between gap-3">
-        <button type="button" onClick={() => vai('home')} aria-label="AddiOFA, torna in cima" className={cn('flex shrink-0 items-center rounded-lg', FOCUS)}>
+        <button type="button" onClick={() => vai('home')} aria-label="AddiOFA, torna in cima" className={cn('flex shrink-0 items-center rounded-xl', FOCUS)}>
           <Marchio disposizione="orizzontale" altezza={28} />
         </button>
 
@@ -76,7 +76,7 @@ export default function Barra({ onStart }: { onStart(): void }) {
               aria-current={attiva === a.id ? 'true' : undefined}
               onClick={e => { e.preventDefault(); vai(a.id); }}
               className={cn(
-                'rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-100',
+                'rounded-full px-4 py-2 text-s2 font-semibold transition-colors duration-100',
                 attiva === a.id ? 'bg-azione-tinta text-azione-testo' : 'text-testo hover:bg-azione-tinta hover:text-azione-testo',
                 FOCUS,
               )}
@@ -91,7 +91,7 @@ export default function Barra({ onStart }: { onStart(): void }) {
             type="button"
             aria-label="Inizia il test di livello"
             onClick={() => { playTapSound(); onStart(); }}
-            className={cn('h-10 shrink-0 items-center gap-2 rounded-full bg-azione px-5 text-sm font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro', oltreHero ? 'inline-flex' : 'hidden lg:inline-flex', FOCUS)}
+            className={cn('h-10 shrink-0 items-center gap-2 rounded-full bg-azione px-5 text-s2 font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro', oltreHero ? 'inline-flex' : 'hidden lg:inline-flex', FOCUS)}
           >
             <span className="lg:hidden">Inizia il test</span>
             <span className="hidden lg:inline">Inizia il test di livello</span>
@@ -110,13 +110,13 @@ export default function Barra({ onStart }: { onStart(): void }) {
       </Colonna>
 
       {aperto && (
-        <nav id="menu-landing" aria-label="Sezioni della pagina" className="absolute inset-x-4 top-[4.25rem] flex flex-col rounded-3xl border border-linea bg-superficie p-2 shadow-lg dark:shadow-none lg:hidden">
+        <nav id="menu-landing" aria-label="Sezioni della pagina" className="absolute inset-x-4 top-[4.25rem] flex flex-col rounded-2xl border border-linea bg-superficie p-2 shadow-lg dark:shadow-none lg:hidden">
           {ANCORE.map(a => (
             <a
               key={a.id}
               href={`#${a.id}`}
               onClick={e => { e.preventDefault(); vai(a.id); }}
-              className={cn('rounded-2xl px-4 py-3 text-base font-semibold text-testo hover:bg-azione-tinta', attiva === a.id && 'bg-azione-tinta text-azione-testo', FOCUS)}
+              className={cn('rounded-2xl px-4 py-3 text-s2 font-semibold text-testo hover:bg-azione-tinta', attiva === a.id && 'bg-azione-tinta text-azione-testo', FOCUS)}
             >
               {a.label}
             </a>

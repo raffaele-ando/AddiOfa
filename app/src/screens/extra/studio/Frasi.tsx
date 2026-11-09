@@ -60,7 +60,7 @@ export default function Frasi() {
         <span aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none"><Icona nome="cerca" size={18} /></span>
         <input type="search" value={testo} onChange={e => { setTesto(e.target.value); setQuante(PAGINA); }}
           aria-label="Cerca una frase" placeholder="Cerca una frase" autoComplete="off" spellCheck={false}
-          className="w-full h-[46px] rounded-[12px] border border-bordo-campo bg-superficie-2 pl-10 pr-10 text-[15px] text-testo placeholder:text-testo-tenue outline-none focus:border-azione" />
+          className="w-full h-[46px] rounded-xl border border-bordo-campo bg-superficie-2 pl-10 pr-10 text-s2 text-testo placeholder:text-testo-tenue outline-none focus:border-azione" />
         {testo && (
           <button type="button" onClick={() => { setTesto(''); setQuante(PAGINA); }} aria-label="Cancella"
             className="absolute right-1.5 top-1/2 -translate-y-1/2 grid place-items-center w-9 h-9 rounded-full text-testo-tenue hover:text-testo">
@@ -74,7 +74,7 @@ export default function Frasi() {
           const on = filtro === f.id;
           return (
             <button key={f.id} type="button" aria-pressed={on} onClick={() => { playTapSound(); setFiltro(f.id); setQuante(PAGINA); }}
-              className={cn('min-h-[44px] flex items-center justify-center gap-1.5 rounded-full px-3.5 text-[14px] font-bold border transition-colors duration-100',
+              className={cn('min-h-[44px] flex items-center justify-center gap-1.5 rounded-full px-3.5 text-s2 font-bold border transition-colors duration-100',
                 on ? f.attivo : 'bg-superficie text-testo border-linea hover:bg-superficie-2')}>
               <Icona nome={f.icona} size={18} />{f.nome}<span className="tabular-nums font-extrabold">{conteggi[f.id]}</span>
             </button>
@@ -103,7 +103,7 @@ export default function Frasi() {
               const stato = statoFrase(f, stats);
               const inCorso = inLettura === f.id;
               return (
-                <li key={f.id} className="rounded-[12px] border border-linea bg-superficie">
+                <li key={f.id} className="rounded-xl border border-linea bg-superficie">
                   <div className="flex items-stretch">
                     {disponibile && (
                       <button type="button" aria-label={inCorso ? `Ferma: ${f.en}` : `Ascolta: ${f.en}`} aria-pressed={inCorso}
@@ -116,13 +116,13 @@ export default function Frasi() {
                     )}
                     <button type="button" aria-expanded={apertaOra} onClick={() => { playTapSound(); setAperta(apertaOra ? null : f.id); }}
                       className={cn('flex-1 min-w-0 py-3 text-left', disponibile ? 'pl-0' : 'pl-4')}>
-                      <span data-testo-ok lang="en" className="block text-[15.5px] leading-[21px] font-bold text-testo break-words">{f.en}</span>
-                      <span data-testo-ok className={cn('mt-0.5 block text-[14px] leading-[20px] text-testo-tenue break-words', apertaOra ? '' : 'line-clamp-3')}>
+                      <span data-testo-ok lang="en" className="block text-s2 leading-[21px] font-bold text-testo break-words">{f.en}</span>
+                      <span data-testo-ok className={cn('mt-0.5 block text-s2 leading-[20px] text-testo-tenue break-words', apertaOra ? '' : 'line-clamp-3')}>
                         {tipografiche(f.it)}
                       </span>
-                      {!apertaOra && f.it.length > 130 && <span aria-hidden="true" className="mt-0.5 block text-[13px] font-bold text-azione-testo">Altro</span>}
+                      {!apertaOra && f.it.length > 130 && <span aria-hidden="true" className="mt-0.5 block text-s1 font-bold text-azione-testo">Altro</span>}
                       {(stato.daRipassare || stato.nota) && (
-                        <span className={cn('mt-1.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[12px] font-bold', stato.daRipassare ? 'bg-basso-tinta text-basso-testo' : 'bg-alto-tinta text-alto-testo')}>
+                        <span className={cn('mt-1.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-s1 font-bold', stato.daRipassare ? 'bg-basso-tinta text-basso-testo' : 'bg-alto-tinta text-alto-testo')}>
                           <Icona nome={stato.daRipassare ? 'stato-da-ripassare' : 'stato-imparata'} size={13} />{stato.daRipassare ? 'Da ripassare' : 'Imparata'}
                         </span>
                       )}
@@ -135,16 +135,16 @@ export default function Frasi() {
                   {apertaOra && (
                     <div className="px-4 pb-3.5 pt-0.5">
                       {f.itTipo === 'traduzione' && f.spiegazione && (
-                        <p data-testo-ok className="flex gap-2 text-[13.5px] leading-[20px] text-testo">
+                        <p data-testo-ok className="flex gap-2 text-s1 leading-[20px] text-testo">
                           <span aria-hidden="true" className="mt-0.5 shrink-0 text-medio-numero"><Icona nome="spiegazioni" size={16} /></span>{tipografiche(f.spiegazione)}
                         </p>
                       )}
                       {f.itTipo === 'regola' && f.spiegazione && f.spiegazione !== f.it && (
-                        <p data-testo-ok className="text-[14px] leading-[21px] text-testo">{tipografiche(f.spiegazione)}</p>
+                        <p data-testo-ok className="text-s2 leading-[21px] text-testo">{tipografiche(f.spiegazione)}</p>
                       )}
                       {f.theoryId && (
                         <button type="button" onClick={() => { playTapSound(); apriTeoria(f.theoryId); }}
-                          className="mt-2 inline-flex items-center gap-1.5 min-h-[36px] text-[14px] font-semibold text-azione">
+                          className="mt-2 inline-flex items-center gap-1.5 min-h-[36px] text-s2 font-semibold text-azione">
                           <Icona nome="teoria" size={18} /> Rivedi la teoria
                         </button>
                       )}
@@ -156,7 +156,7 @@ export default function Frasi() {
           </ul>
         )}
         {elenco.length > visibili.length && (
-          <button type="button" onClick={() => { playTapSound(); setQuante(n => n + PAGINA); }} className="mt-3 w-full min-h-[48px] rounded-[12px] border border-linea text-[14.5px] font-bold text-azione-testo hover:bg-azione-tinta">
+          <button type="button" onClick={() => { playTapSound(); setQuante(n => n + PAGINA); }} className="mt-3 w-full min-h-[48px] rounded-xl border border-linea text-s2 font-bold text-azione-testo hover:bg-azione-tinta">
             Mostra altre <span className="tabular-nums">{elenco.length - visibili.length}</span>
           </button>
         )}

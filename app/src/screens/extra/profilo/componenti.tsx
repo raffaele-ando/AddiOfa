@@ -19,8 +19,8 @@ export function Pagina({ titolo, indietro, destra, piede, children }: { titolo: 
 /** Avatar: la lettera del nome in un quadrato dagli angoli morbidi. Nessuna illustrazione e nessuna foto. */
 export function Avatar({ profilo, lato = 72 }: { profilo: ProfiloDati; lato?: number }) {
   return (
-    <span className="shrink-0 overflow-hidden grid place-items-center font-extrabold select-none bg-azione-tinta text-azione-testo dark:bg-superficie-2"
-      style={{ width: lato, height: lato, borderRadius: lato * 0.28, fontSize: lato * 0.42 }} aria-hidden="true">
+    <span className="shrink-0 overflow-hidden grid place-items-center font-extrabold select-none rounded-2xl bg-azione-tinta text-azione-testo dark:bg-superficie-2"
+      style={{ width: lato, height: lato, fontSize: lato * 0.42 }} aria-hidden="true">
       {iniziale(profilo)}
     </span>
   );

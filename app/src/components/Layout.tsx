@@ -11,7 +11,7 @@ import { ReactNode, useEffect } from 'react';
  *   - oppure `<Layout larga>`.
  *   Sotto i 1024 px non cambia nulla. Dentro la colonna larga si può usare la variante `lg:` di Tailwind (es. `lg:grid-cols-2`).
  *
- * Compatibilità: le schermate che hanno ancora la loro cornice (`sm:rounded-[28px] sm:border`, `sm:rounded-[32px]`, `sm:max-h-[calc(100dvh-3rem)]`)
+ * Compatibilità: le schermate che hanno ancora la loro cornice (`sm:rounded-2xl sm:border sm:border-linea`, `sm:max-h-[calc(100dvh-3rem)]`)
  * la perdono da qui con le regole `.guscio-colonna` di index.css, senza toccare i loro file. La landing è un livello fisso (`fixed inset-0`) e non dipende dal guscio.
  */
 export function useColonnaLarga(attiva = true) {

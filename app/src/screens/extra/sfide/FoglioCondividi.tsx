@@ -26,13 +26,13 @@ export function linkCondivisione(testo: string, url: string): LinkCondivisione[]
 
 const ICONE: Record<string, NomeIcona> = { whatsapp: 'whatsapp', telegram: 'telegram', messaggi: 'messaggi' };
 
-const piastrella = 'brand-premibile flex w-full min-h-[88px] flex-col items-center gap-1.5 rounded-[14px] bg-superficie border border-linea px-1 py-3 text-center text-[13px] font-semibold text-testo shadow-sm dark:shadow-none';
+const piastrella = 'brand-premibile flex w-full min-h-[88px] flex-col items-center gap-1.5 rounded-xl bg-superficie border border-linea px-1 py-3 text-center text-s1 font-semibold text-testo shadow-sm dark:shadow-none';
 const cerchio = 'w-11 h-11 rounded-full flex items-center justify-center';
-// Un colore per canale (come nel concept): WhatsApp verde, Telegram blu, Messaggi viola; «Altre» e «Copia» restano neutri.
+// Colore dove c'è un significato: WhatsApp verde, Telegram blu. «Messaggi», «Altre» e «Copia» restano neutri (il viola è solo dei livelli).
 const COLORE_CANALE: Record<string, string> = {
   whatsapp: 'bg-alto-tinta text-alto-numero dark:bg-superficie-2',
   telegram: 'bg-azione-tinta text-azione-testo dark:bg-superficie-2',
-  messaggi: 'bg-viola-tinta text-viola dark:bg-superficie-2',
+  messaggi: 'bg-superficie-2 text-testo-tenue border border-linea',
 };
 const NEUTRO = 'bg-superficie-2 text-testo-tenue border border-linea';
 
@@ -64,7 +64,7 @@ export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { te
     <div className="flex flex-col gap-4">
       {mostraAnteprima && (
         // il messaggio che parte è contenuto, non una spiegazione dell'app
-        <p data-testo-ok className="rounded-[14px] bg-superficie border border-linea p-3 text-[14px] leading-[20px] text-testo whitespace-pre-line break-words">{testo}</p>
+        <p data-testo-ok className="rounded-xl bg-superficie border border-linea p-3 text-s2 leading-[20px] text-testo whitespace-pre-line break-words">{testo}</p>
       )}
       <ul className="grid grid-cols-[repeat(auto-fit,minmax(78px,1fr))] gap-2.5">
         {linkCondivisione(testo, url).map(l => (
@@ -83,14 +83,14 @@ export function OpzioniCondivisione({ testo, url, mostraAnteprima = true }: { te
         )}
       </ul>
       <div className="flex flex-col gap-2.5">
-        <label htmlFor="condividi-link" className="text-[14px] leading-[20px] font-bold text-testo">Il link</label>
+        <label htmlFor="condividi-link" className="text-s2 leading-[20px] font-bold text-testo">Il link</label>
         <input id="condividi-link" ref={campo} readOnly value={url} onFocus={e => e.currentTarget.select()}
-          className="h-12 min-w-0 rounded-[12px] border border-bordo-campo bg-superficie px-3.5 text-[13px] font-semibold text-testo focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
+          className="h-12 min-w-0 rounded-xl border border-bordo-campo bg-superficie px-3.5 text-s1 font-semibold text-testo focus:outline-none focus:border-azione focus:ring-2 focus:ring-azione/30" />
         <button type="button" onClick={() => { playTapSound(); void copia(); }}
-          className="brand-premibile flex min-h-[52px] w-full items-center justify-center gap-2 rounded-[14px] bg-azione px-4 py-3 text-[16px] font-bold text-azione-su">
+          className="brand-premibile flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-azione px-4 py-3 text-s2 font-bold text-azione-su">
           <Icona nome="copia" size={20} />Copia il link
         </button>
-        <p role="status" className="min-h-[18px] text-[13px] font-bold text-alto-testo">{stato}</p>
+        <p role="status" className="min-h-[18px] text-s1 font-bold text-alto-testo">{stato}</p>
       </div>
     </div>
   );
@@ -107,9 +107,9 @@ export default function FoglioCondividi({ aperto, onChiudi, testo, url, titolo =
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-0 sm:p-4" onClick={onChiudi}>
       <div role="dialog" aria-modal="true" aria-labelledby="foglio-condividi-titolo" onClick={e => e.stopPropagation()}
         onKeyDown={e => { if (e.key === 'Escape') onChiudi(); }}
-        className="w-full max-w-[440px] max-h-[92dvh] overflow-y-auto rounded-t-[24px] sm:rounded-[24px] bg-superficie border border-linea p-5 shadow-xl dark:shadow-none">
+        className="w-full max-w-[440px] max-h-[92dvh] overflow-y-auto rounded-t-2xl sm:rounded-2xl bg-superficie border border-linea p-5 shadow-xl dark:shadow-none">
         <div className="flex items-center justify-between gap-3 mb-4">
-          <h2 id="foglio-condividi-titolo" className="text-[20px] font-extrabold text-testo">{titolo}</h2>
+          <h2 id="foglio-condividi-titolo" className="text-s3 font-extrabold text-testo">{titolo}</h2>
           <button ref={chiudi} type="button" onClick={() => { playTapSound(); onChiudi(); }} aria-label="Chiudi"
             className="brand-premibile p-1.5 rounded-full text-testo-tenue hover:text-testo"><Icona nome="chiudi" size={22} /></button>
         </div>

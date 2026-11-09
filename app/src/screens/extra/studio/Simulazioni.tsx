@@ -18,7 +18,7 @@ function Dato({ icona, tono, children }: { icona: NomeIcona; tono: Tono; childre
   return (
     <li className="flex items-center gap-2.5">
       <IconaTono tono={tono} lato={32} className="rounded-full bg-superficie"><Icona nome={icona} size={18} /></IconaTono>
-      <span className="text-[15px] leading-[20px] font-bold text-testo">{children}</span>
+      <span className="text-s2 leading-[20px] font-bold text-testo">{children}</span>
     </li>
   );
 }
@@ -51,15 +51,15 @@ export default function Simulazioni() {
 
       <section aria-labelledby="titolo-svolte" className="mt-6 flex flex-col gap-2.5">
         <div className="flex items-center justify-between gap-3">
-          <h2 id="titolo-svolte" className="flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo"><Icona nome="storico" size={20} className="text-testo-tenue" />Svolte</h2>
+          <h2 id="titolo-svolte" className="flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo"><Icona nome="storico" size={20} className="text-testo-tenue" />Svolte</h2>
           {migliore !== null && (
-            <span role="img" aria-label={`Migliore: ${migliore} su ${f.questions}`} className="inline-flex items-center gap-1.5 text-[14px] font-extrabold tabular-nums text-medio-testo">
+            <span role="img" aria-label={`Migliore: ${migliore} su ${f.questions}`} className="inline-flex items-center gap-1.5 text-s2 font-extrabold tabular-nums text-medio-testo">
               <Icona nome="stato-primo" size={18} className="text-medio-numero" />Migliore {migliore}/{f.questions}
             </span>
           )}
         </div>
         {elenco.length === 0 ? (
-          <p data-testo-ok className="rounded-[12px] bg-superficie-2 px-4 py-5 text-center text-[15px] leading-[22px] text-testo-tenue">Non hai ancora svolto simulazioni.</p>
+          <p data-testo-ok className="rounded-xl bg-superficie-2 px-4 py-5 text-center text-s2 leading-[22px] text-testo-tenue">Non hai ancora svolto simulazioni.</p>
         ) : (
           <ul className="flex flex-col gap-2">
             {elenco.map(s => {
@@ -68,15 +68,15 @@ export default function Simulazioni() {
                 <li key={s.id}>
                   <button type="button" onClick={() => { playTapSound(); vai('simulazione-dettaglio', { id: s.id }); }}
                     aria-label={`Simulazione ${s.numero}, ${dataBreve(s.data)}: ${s.esatte} su ${s.totale}, ${s.superata ? 'superata' : 'sotto la soglia'}`}
-                    className="brand-premibile flex w-full items-center gap-3 rounded-[12px] bg-superficie-2 p-3 pr-2.5 text-left">
+                    className="brand-premibile flex w-full items-center gap-3 rounded-xl bg-superficie-2 p-3 pr-2.5 text-left">
                     <span className="min-w-[58px] text-center" aria-hidden="true">
-                      <span className={cn('block text-[26px] leading-[28px] font-extrabold tabular-nums', v.numero)}>{s.esatte}</span>
-                      <span className="block text-[12px] leading-[14px] font-semibold tabular-nums text-testo-tenue">/{s.totale}</span>
+                      <span className={cn('block text-s4 leading-[28px] font-extrabold tabular-nums', v.numero)}>{s.esatte}</span>
+                      <span className="block text-s1 leading-[14px] font-semibold tabular-nums text-testo-tenue">/{s.totale}</span>
                     </span>
                     <span className="min-w-0 flex-1" aria-hidden="true">
-                      <span className="block text-[15px] leading-[20px] font-bold text-testo">{dataBreve(s.data)}</span>
-                      <span className={cn('mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[12.5px] leading-[16px] font-bold', v.tinta)}><Icona nome={v.icona} size={14} />{v.parola}</span>
-                      {s.tempoSecondi > 0 && <span className="ml-2 inline-flex items-center gap-1 text-[12.5px] leading-[17px] font-semibold tabular-nums text-testo-tenue"><Icona nome="tempo" size={13} />{minSec(s.tempoSecondi)}</span>}
+                      <span className="block text-s2 leading-[20px] font-bold text-testo">{dataBreve(s.data)}</span>
+                      <span className={cn('mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-s1 leading-[16px] font-bold', v.tinta)}><Icona nome={v.icona} size={14} />{v.parola}</span>
+                      {s.tempoSecondi > 0 && <span className="ml-2 inline-flex items-center gap-1 text-s1 leading-[17px] font-semibold tabular-nums text-testo-tenue"><Icona nome="tempo" size={13} />{minSec(s.tempoSecondi)}</span>}
                     </span>
                     <Icona nome="avanti" size={22} className="shrink-0 text-testo-tenue" />
                   </button>

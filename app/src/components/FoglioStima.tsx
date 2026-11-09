@@ -25,8 +25,8 @@ function Voce({ icona, titolo, tono = 'azione', children }: { icona: ReactNode; 
         {icona}
       </span>
       <div className="min-w-0">
-        <h4 className="text-[15px] font-bold leading-snug text-testo">{titolo}</h4>
-        <div className="mt-0.5 text-[13.5px] leading-snug text-testo-tenue">{children}</div>
+        <h4 className="text-s2 font-bold leading-snug text-testo">{titolo}</h4>
+        <div className="mt-0.5 text-s1 leading-snug text-testo-tenue">{children}</div>
       </div>
     </li>
   );
@@ -70,10 +70,10 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
       <div
         ref={pannelloRef}
         role="dialog" aria-modal="true" aria-labelledby="foglio-stima-titolo"
-        className="relative flex max-h-[88vh] w-full max-w-xl flex-col rounded-t-3xl bg-superficie-2 border border-b-0 border-linea shadow-2xl dark:shadow-none"
+        className="relative flex max-h-[88vh] w-full max-w-xl flex-col rounded-t-2xl bg-superficie-2 border border-b-0 border-linea shadow-2xl dark:shadow-none"
       >
         <div className="flex items-start justify-between gap-3 px-5 pt-5 pb-3 shrink-0">
-          <h2 id="foglio-stima-titolo" ref={titoloRef} tabIndex={-1} className="text-xl font-bold leading-snug text-testo outline-none">
+          <h2 id="foglio-stima-titolo" ref={titoloRef} tabIndex={-1} className="text-s3 font-bold leading-snug text-testo outline-none">
             Come viene calcolata la stima
           </h2>
           <button type="button" onClick={onChiudi} aria-label="Chiudi"
@@ -86,7 +86,7 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
           {/* Come nel concept 25: la domanda in un riquadro tinto, poi una riga per voce (icona, titolo, una frase breve). */}
           <div className="flex items-start gap-3 rounded-2xl bg-azione-tinta p-3.5">
             <Icona nome="soglia" size={22} className="mt-0.5 shrink-0 text-azione-testo" />
-            <p className="text-[14.5px] leading-snug font-semibold text-testo">
+            <p className="text-s2 leading-snug font-semibold text-testo">
               Se facessi oggi un test da {REAL_TEST_QUESTIONS} domande, quanto è probabile azzeccarne almeno {REAL_TEST_PASS_MARK}?
             </p>
           </div>
@@ -111,7 +111,7 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
             </Voce>
           </ul>
 
-          <h3 className="mt-6 text-lg font-bold text-testo">Solo una stima</h3>
+          <h3 className="mt-6 text-s3 font-bold text-testo">Solo una stima</h3>
           <ul className="mt-3 flex flex-col gap-3.5">
             <Voce icona={<Icona nome="stima-campione" size={20} />} titolo={soloDiagnostico ? `${DIAGNOSTIC_LENGTH} domande sono poche` : 'Più risposte, più stabile'} tono="medio">
               {soloDiagnostico
@@ -119,8 +119,8 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
                     <span className="mt-2 grid grid-cols-3 gap-2">
                       {esempio.map(e => (
                         <span key={e.k} className="flex flex-col items-center rounded-xl bg-medio-tinta px-1 py-2 text-testo">
-                          <span className="text-[12.5px] font-bold tabular-nums text-testo-tenue">{e.k}/{DIAGNOSTIC_LENGTH}</span>
-                          <span className="text-[17px] leading-[22px] font-extrabold tabular-nums">{e.p}</span>
+                          <span className="text-s1 font-bold tabular-nums text-testo-tenue">{e.k}/{DIAGNOSTIC_LENGTH}</span>
+                          <span className="text-s3 leading-[24px] font-extrabold tabular-nums">{e.p}</span>
                         </span>
                       ))}
                     </span></>
@@ -137,7 +137,7 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
 
         <div className="px-5 pt-3 pb-5 shrink-0">
           <button type="button" onClick={onChiudi}
-            className="w-full rounded-2xl bg-azione py-3.5 text-base font-bold text-azione-su hover:bg-azione-scuro transition-colors duration-100">
+            className="w-full rounded-2xl bg-azione py-3.5 text-s2 font-bold text-azione-su hover:bg-azione-scuro transition-colors duration-100">
             Ho capito
           </button>
         </div>

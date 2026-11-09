@@ -40,11 +40,11 @@ export default function StatoPagina({ illustrazione, kit, titolo, testo, azioni 
     <div className={cn('relative w-full bg-fondo text-testo flex items-center justify-center overflow-y-auto', pienaAltezza ? 'h-full' : '')} style={{ fontFamily: FONT }}>
       <div role={ruolo} className="mx-auto flex w-full max-w-[420px] flex-col items-center px-6 py-10 text-center">
         <Disegno nome={illustrazione} kit={kit} lato={figuraLato} />
-        <h1 className="mt-4 flex items-center gap-1 text-[20px] leading-[26px] font-bold text-testo">
+        <h1 className="mt-4 flex items-center gap-1 text-s3 leading-[26px] font-bold text-testo">
           {titolo}
           {info && <PulsanteInfo onClick={() => setAperta(true)} etichetta="Dettagli" />}
         </h1>
-        {testo && <p data-testo-ok className="mt-1.5 max-w-[34ch] text-[15px] leading-[21px] text-testo-tenue">{testo}</p>}
+        {testo && <p data-testo-ok className="mt-1.5 max-w-[34ch] text-s2 leading-[21px] text-testo-tenue">{testo}</p>}
         {children && <div className="mt-4 w-full text-left">{children}</div>}
         {azioni.length > 0 && (
           <div className="mt-6 flex w-full flex-col gap-2.5">
@@ -52,7 +52,7 @@ export default function StatoPagina({ illustrazione, kit, titolo, testo, azioni 
               const primaria = (a.tipo ?? (i === 0 ? 'primaria' : 'secondaria')) === 'primaria';
               return (
                 <button key={a.testo} type="button" onClick={() => { playTapSound(); a.onClick(); }}
-                  className={cn('brand-premibile w-full min-h-[52px] rounded-[14px] px-4 py-3 text-[16px] font-bold flex items-center justify-center gap-2',
+                  className={cn('brand-premibile w-full min-h-[52px] rounded-xl px-4 py-3 text-s2 font-bold flex items-center justify-center gap-2',
                     primaria ? 'bg-azione text-azione-su' : 'border border-tacca bg-superficie text-testo')}>
                   {a.icona}{a.testo}
                 </button>

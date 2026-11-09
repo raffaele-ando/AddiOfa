@@ -24,9 +24,9 @@ function Podio({ righe }: { righe: RigaClassifica[] }) {
           <li key={r.id} className="flex min-w-0 flex-col items-center">
             {pos === 0 && <Icona nome="stato-primo" size={24} className="mb-0.5 text-medio-numero" />}
             <Avatar nome={r.nome} grande={pos === 0} io={r.io} />
-            <p className="mt-1.5 max-w-full truncate text-[13.5px] font-bold text-testo">{r.nome}</p>
-            <p className="text-[12.5px] font-semibold tabular-nums text-testo-tenue">{formatNumber(Math.round(r.percentuale))}%</p>
-            <div className={cn('mt-1.5 flex w-full items-start justify-center rounded-t-[10px] pt-1.5 text-[18px] font-extrabold', alt[pos], pos === 0 ? 'bg-medio-tinta text-medio-testo dark:bg-superficie-2' : 'bg-superficie-2 text-testo-tenue')}>
+            <p className="mt-1.5 max-w-full truncate text-s1 font-bold text-testo">{r.nome}</p>
+            <p className="text-s1 font-semibold tabular-nums text-testo-tenue">{formatNumber(Math.round(r.percentuale))}%</p>
+            <div className={cn('mt-1.5 flex w-full items-start justify-center rounded-t-xl pt-1.5 text-s3 font-extrabold', alt[pos], pos === 0 ? 'bg-medio-tinta text-medio-testo dark:bg-superficie-2' : 'bg-superficie-2 text-testo-tenue')}>
               {pos + 1}
               <span className="sr-only">° posto</span>
             </div>
@@ -68,8 +68,8 @@ export default function Classifica() {
           {/* La tua posizione (concept 30.14): un numero vero, calcolato qui. */}
           <Carta tono="azione">
             <div role="status" aria-label={`La tua posizione: ${mia + 1} su ${righe.length}`}>
-              <p aria-hidden className="text-[13px] font-semibold text-testo-tenue">La tua posizione</p>
-              <p aria-hidden className="text-[30px] leading-[34px] font-extrabold tabular-nums text-testo">{mia + 1}<span className="text-[16px] font-bold text-testo-tenue"> su {righe.length}</span></p>
+              <p aria-hidden className="text-s1 font-semibold text-testo-tenue">La tua posizione</p>
+              <p aria-hidden className="text-s5 leading-[34px] font-extrabold tabular-nums text-testo">{mia + 1}<span className="text-s2 font-bold text-testo-tenue"> su {righe.length}</span></p>
             </div>
           </Carta>
           {conPodio && <Carta><Podio righe={righe} /></Carta>}
@@ -78,24 +78,24 @@ export default function Classifica() {
               {elenco.map((r, k) => {
                 const i = primo + k;
                 return (
-                  <li key={r.id} className={cn('flex items-center gap-3 rounded-[14px] border p-3', r.io ? 'border-azione/50 bg-azione-tinta dark:bg-superficie dark:border-azione/60' : 'border-linea bg-superficie')}>
-                    <span className="w-6 text-center text-[16px] font-extrabold tabular-nums text-testo-tenue" aria-label={`Posizione ${i + 1}`}>{i + 1}</span>
+                  <li key={r.id} className={cn('flex items-center gap-3 rounded-xl border p-3', r.io ? 'border-azione/50 bg-azione-tinta dark:bg-superficie dark:border-azione/60' : 'border-linea bg-superficie')}>
+                    <span className="w-6 text-center text-s2 font-extrabold tabular-nums text-testo-tenue" aria-label={`Posizione ${i + 1}`}>{i + 1}</span>
                     <Avatar nome={r.nome} io={r.io} />
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate text-[15px] font-bold text-testo">{r.io ? `${r.nome} (tu)` : r.nome}</span>
-                      <span className="flex items-center gap-3 text-[13px] tabular-nums text-testo-tenue">
+                      <span className="block truncate text-s2 font-bold text-testo">{r.io ? `${r.nome} (tu)` : r.nome}</span>
+                      <span className="flex items-center gap-3 text-s1 tabular-nums text-testo-tenue">
                         <span role="img" aria-label={`${r.duelli} duelli`} className="inline-flex items-center gap-1"><Icona nome="duello" size={13} />{r.duelli} {r.duelli === 1 ? 'duello' : 'duelli'}</span>
                         <span role="img" aria-label={`Tempo medio ${tempoBreve(r.secondiMedi)}`} className="inline-flex items-center gap-1 text-medio-testo"><Icona nome="tempo" size={13} />{tempoBreve(r.secondiMedi)}</span>
                       </span>
                     </span>
-                    <span className="block text-[20px] font-extrabold tabular-nums text-testo">{formatNumber(Math.round(r.percentuale))}%</span>
+                    <span className="block text-s3 font-extrabold tabular-nums text-testo">{formatNumber(Math.round(r.percentuale))}%</span>
                   </li>
                 );
               })}
             </ol>
           )}
           {righe.length < 3 && (
-            <p data-testo-ok className="px-1 text-[13px] leading-[18px] text-testo-tenue">Il podio compare quando siete almeno in tre.</p>
+            <p data-testo-ok className="px-1 text-s1 leading-[18px] text-testo-tenue">Il podio compare quando siete almeno in tre.</p>
           )}
         </div>
       )}

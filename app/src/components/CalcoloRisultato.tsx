@@ -31,7 +31,7 @@ export default function CalcoloRisultato({ dati, onFine }: { dati: DatiCalcolo; 
     <>
       <div className="flex flex-col items-center gap-1 pt-2">
         <Illustrazione nome="documento-in-corso" lato={112} />
-        <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-testo">Calcolo</h2>
+        <h2 className="text-center text-s4 sm:text-s5 font-extrabold text-testo">Calcolo</h2>
       </div>
       <ol className="flex flex-col gap-2.5" aria-label="Tre tappe del calcolo">
         {tappe.map((x, i) => (
@@ -40,8 +40,8 @@ export default function CalcoloRisultato({ dati, onFine }: { dati: DatiCalcolo; 
               <Icona nome={x.icona} size={24} />
             </span>
             <span className="min-w-0 flex-1">
-              <span className="block text-[12.5px] leading-[16px] font-bold text-testo-tenue"><span className="tabular-nums">{i + 1}</span> · {x.etichetta}</span>
-              <span className={`block text-xl font-extrabold leading-tight ${TONI[x.tono].testo}`}>{x.valore}</span>
+              <span className="block text-s1 leading-[16px] font-bold text-testo-tenue"><span className="tabular-nums">{i + 1}</span> · {x.etichetta}</span>
+              <span className={`block text-s3 font-extrabold leading-tight ${TONI[x.tono].testo}`}>{x.valore}</span>
             </span>
             <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-alto-tinta text-alto-numero" role="img" aria-label="Fatto"><Icona nome="stato-ok" size={18} /></span>
           </li>

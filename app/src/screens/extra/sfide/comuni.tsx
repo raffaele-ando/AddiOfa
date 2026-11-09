@@ -21,7 +21,7 @@ export function Carta({ children, className, tono = 'neutro' }: { children: Reac
   return <CartaBase tono={tono} className={className}>{children}</CartaBase>;
 }
 
-const BASE_BOTTONE = 'brand-premibile w-full inline-flex min-h-[52px] items-center justify-center gap-2 rounded-[14px] px-5 py-3 text-[16px] font-bold transition-colors duration-100 disabled:opacity-45 disabled:pointer-events-none';
+const BASE_BOTTONE = 'brand-premibile w-full inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl px-5 py-3 text-s2 font-bold transition-colors duration-100 disabled:opacity-45 disabled:pointer-events-none';
 
 /** Pulsante: SEMPRE con un verbo scritto (l'icona è facoltativa, a sinistra). Uno solo pieno per schermata. */
 export function Bottone({ children, onClick, variante = 'primario', disabled, className, icona, type = 'button' }: {
@@ -47,16 +47,16 @@ export function Campo({ id, etichetta, valore, onCambia, segnaposto, maxLength, 
 }) {
   return (
     <div className={cn('flex min-w-0 flex-col gap-1.5', className)}>
-      <label htmlFor={id} className="text-[14px] leading-[20px] font-bold text-testo">{etichetta}</label>
+      <label htmlFor={id} className="text-s2 leading-[20px] font-bold text-testo">{etichetta}</label>
       <div className="relative">
         {icona && <Icona nome={icona} size={20} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue" />}
         <input id={id} value={valore} onChange={e => onCambia(e.target.value)} placeholder={segnaposto} maxLength={maxLength}
           autoComplete="off" spellCheck={false}
           onKeyDown={onInvio ? e => { if (e.key === 'Enter') onInvio(); } : undefined}
           aria-invalid={errore ? true : undefined} aria-describedby={errore ? `${id}-err` : undefined}
-          className={cn('h-12 w-full min-w-0 rounded-[12px] border border-bordo-campo bg-superficie pr-4 text-[16px] font-semibold text-testo placeholder:font-normal placeholder:text-testo-tenue focus:border-azione focus:outline-none focus:ring-2 focus:ring-azione/30', icona ? 'pl-11' : 'pl-3.5')} />
+          className={cn('h-12 w-full min-w-0 rounded-xl border border-bordo-campo bg-superficie pr-4 text-s2 font-semibold text-testo placeholder:font-normal placeholder:text-testo-tenue focus:border-azione focus:outline-none focus:ring-2 focus:ring-azione/30', icona ? 'pl-11' : 'pl-3.5')} />
       </div>
-      {errore && <p id={`${id}-err`} role="alert" className="flex items-center gap-1.5 text-[13px] font-bold text-errore-testo"><Icona nome="stato-errore" size={15} />{errore}</p>}
+      {errore && <p id={`${id}-err`} role="alert" className="flex items-center gap-1.5 text-s1 font-bold text-errore-testo"><Icona nome="stato-errore" size={15} />{errore}</p>}
     </div>
   );
 }
@@ -64,7 +64,7 @@ export function Campo({ id, etichetta, valore, onCambia, segnaposto, maxLength, 
 /** I due dati di ogni sfida, scritti: «10 domande · 5 minuti» (niente icone da decifrare). */
 export function DatiSfida({ domande, minuti, className }: { domande: number; minuti: number; className?: string }) {
   return (
-    <p className={cn('text-[15px] leading-[21px] font-semibold text-testo', className)}>
+    <p className={cn('text-s2 leading-[21px] font-semibold text-testo', className)}>
       {domande} domande <span aria-hidden="true" className="text-testo-tenue">·</span> {minuti} {minuti === 1 ? 'minuto' : 'minuti'}
     </p>
   );
@@ -81,7 +81,7 @@ const ESITO_VISTA = {
 export function PillolaEsito({ esito, className }: { esito: Esito; className?: string }) {
   const e = ESITO_VISTA[esito];
   return (
-    <span className={cn('inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-[3px] text-[12px] leading-[16px] font-bold dark:bg-superficie-2', TONI[e.tono].tinta, TONI[e.tono].testo, className)}>
+    <span className={cn('inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-[3px] text-s1 leading-[16px] font-bold dark:bg-superficie-2', TONI[e.tono].tinta, TONI[e.tono].testo, className)}>
       <Icona nome={e.nome} size={13} />{e.parola}
     </span>
   );
@@ -105,7 +105,7 @@ export function tonoAvatar(nome: string): string {
 export function Avatar({ nome, grande, io }: { nome: string; grande?: boolean; io?: boolean }) {
   return (
     <span aria-hidden className={cn('rounded-full flex items-center justify-center font-extrabold shrink-0',
-      grande ? 'w-14 h-14 text-[22px]' : 'w-10 h-10 text-[16px]', io ? 'bg-azione text-azione-su' : tonoAvatar(nome))}>
+      grande ? 'w-14 h-14 text-s4' : 'w-10 h-10 text-s2', io ? 'bg-azione text-azione-su' : tonoAvatar(nome))}>
       {(nome.trim()[0] ?? '?').toUpperCase()}
     </span>
   );
@@ -118,10 +118,10 @@ export function Tempo({ secondi, className }: { secondi: number; className?: str
 
 function Colonna({ nome, r, io, vince }: { nome: string; r: Risultato; io?: boolean; vince: boolean }) {
   return (
-    <div className={cn('min-w-0 flex-1 rounded-[14px] bg-superficie p-3 text-center border', io ? 'border-azione/60' : 'border-linea')}>
-      <p className="truncate text-[13px] font-bold text-testo-tenue">{io ? `${nome} (tu)` : nome}</p>
-      <p className={cn('mt-1 text-[30px] leading-[34px] font-extrabold tabular-nums', vince ? 'text-alto-numero' : 'text-testo')}>{r.corrette}<span className="text-[16px] font-bold text-testo-tenue">/{r.totale}</span></p>
-      <p className="mt-1 text-[13px] font-semibold text-testo-tenue"><Tempo secondi={r.secondi} /></p>
+    <div className={cn('min-w-0 flex-1 rounded-xl bg-superficie p-3 text-center border', io ? 'border-azione/60' : 'border-linea')}>
+      <p className="truncate text-s1 font-bold text-testo-tenue">{io ? `${nome} (tu)` : nome}</p>
+      <p className={cn('mt-1 text-s5 leading-[34px] font-extrabold tabular-nums', vince ? 'text-alto-numero' : 'text-testo')}>{r.corrette}<span className="text-s2 font-bold text-testo-tenue">/{r.totale}</span></p>
+      <p className="mt-1 text-s1 font-semibold text-testo-tenue"><Tempo secondi={r.secondi} /></p>
     </div>
   );
 }
@@ -143,7 +143,7 @@ export function PannelloEsito({ esito, nomeMio, io, nomeAltro, altro, className 
   return (
     <Carta tono={e.tono} className={cn('flex flex-col items-center', className)}>
       <IlluEsito esito={esito} />
-      <p role="status" className="mt-2 text-center text-[24px] leading-[30px] font-extrabold tracking-[-0.01em] text-testo">{fraseEsito(esito, nomeAltro)}</p>
+      <p role="status" className="mt-2 text-center text-s4 leading-[30px] font-extrabold tracking-[-0.01em] text-testo">{fraseEsito(esito, nomeAltro)}</p>
       <div className="mt-3.5 flex w-full gap-2.5">
         <Colonna nome={nomeMio} r={io} io vince={esito === 'vinto'} />
         <Colonna nome={nomeAltro} r={altro} vince={esito === 'perso'} />
@@ -167,8 +167,8 @@ export function Fermo({ illustrazione, titolo, causa, children }: {
   return (
     <div role="status" className="mt-10 flex flex-col items-center text-center">
       {illustrazione && <Illustrazione nome={illustrazione.nome} kit={illustrazione.kit} lato={illustrazione.lato ?? 96} />}
-      <h2 className={cn('text-[20px] leading-[26px] font-bold text-testo', illustrazione && 'mt-4')}>{titolo}</h2>
-      {causa && <p data-testo-ok className="mt-1.5 max-w-[32ch] text-[15px] leading-[21px] text-testo-tenue">{causa}</p>}
+      <h2 className={cn('text-s3 leading-[26px] font-bold text-testo', illustrazione && 'mt-4')}>{titolo}</h2>
+      {causa && <p data-testo-ok className="mt-1.5 max-w-[32ch] text-s2 leading-[21px] text-testo-tenue">{causa}</p>}
       {children && <div className="mt-6 flex w-full flex-col gap-2.5">{children}</div>}
     </div>
   );

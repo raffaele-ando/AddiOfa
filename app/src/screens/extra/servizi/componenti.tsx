@@ -54,7 +54,7 @@ export function Nota({ children, tono = 'neutro', className }: { children: React
     : 'bg-superficie border-linea shadow-sm dark:shadow-none';
   const icona = tono === 'azione' ? 'text-azione-testo' : tono === 'attenzione' ? 'text-medio-numero' : tono === 'riuscito' ? 'text-alto-numero' : tono === 'rischio' ? 'text-basso-numero' : 'text-testo-tenue';
   return (
-    <div role="note" className={cn('flex gap-2.5 rounded-[16px] border p-4 text-[14px] leading-[20px] text-testo', tinta, className)}>
+    <div role="note" className={cn('flex gap-2.5 rounded-xl border p-4 text-s2 leading-[20px] text-testo', tinta, className)}>
       <Icona nome="info" size={20} className={cn('mt-[1px] shrink-0', icona)} />
       <div className="min-w-0">{children}</div>
     </div>
@@ -64,7 +64,7 @@ export function Nota({ children, tono = 'neutro', className }: { children: React
 /** Pillola di stato (12/600): `neutro` per le informazioni senza significato di stato; un tono solo quando dice davvero qualcosa (ambra = «Non attivo»). */
 export function Etichetta({ tono = 'neutro', children, className }: { tono?: Tono | 'neutro'; children: ReactNode; className?: string }) {
   const stile = tono === 'neutro' ? 'bg-superficie-2 text-testo-tenue' : `${TONI[tono].tinta} ${TONI[tono].testo}`;
-  return <span className={cn('inline-flex items-center gap-1 rounded-full px-2.5 py-[3px] text-[12px] leading-[16px] font-semibold', stile, className)}>{children}</span>;
+  return <span className={cn('inline-flex items-center gap-1 rounded-full px-2.5 py-[3px] text-s1 leading-[16px] font-semibold', stile, className)}>{children}</span>;
 }
 
 /** Pulsante principale: blu pieno, 52 px, a tutta larghezza, sempre con un verbo scritto (l'icona è facoltativa, a sinistra). */
@@ -73,7 +73,7 @@ export function BottoneAzione({ children, onClick, disabled, className, icona }:
 }) {
   return (
     <button type="button" disabled={disabled} onClick={() => { playTapSound(); onClick(); }}
-      className={cn('brand-premibile w-full min-h-[52px] rounded-[14px] bg-azione px-4 py-3 text-[16px] font-bold text-azione-su flex items-center justify-center gap-2 disabled:opacity-45 disabled:pointer-events-none', className)}>
+      className={cn('brand-premibile w-full min-h-[52px] rounded-xl bg-azione px-4 py-3 text-s2 font-bold text-azione-su flex items-center justify-center gap-2 disabled:opacity-45 disabled:pointer-events-none', className)}>
       {icona}{children}
     </button>
   );
@@ -85,7 +85,7 @@ export function BottoneSecondario({ children, onClick, disabled, className, icon
 }) {
   return (
     <button type="button" disabled={disabled} onClick={() => { playTapSound(); onClick(); }}
-      className={cn('brand-premibile w-full min-h-[52px] rounded-[14px] border border-tacca bg-superficie px-4 py-3 text-[16px] font-bold text-testo flex items-center justify-center gap-2 disabled:opacity-45 disabled:pointer-events-none', className)}>
+      className={cn('brand-premibile w-full min-h-[52px] rounded-xl border border-tacca bg-superficie px-4 py-3 text-s2 font-bold text-testo flex items-center justify-center gap-2 disabled:opacity-45 disabled:pointer-events-none', className)}>
       {icona}{children}
     </button>
   );
@@ -110,8 +110,8 @@ export function Vuoto({ illustrazione, titolo, causa, azioni, compatto, classNam
   return (
     <div role="status" className={cn('flex flex-col items-center text-center', compatto ? 'py-2' : 'py-6', className)}>
       {!compatto && illustrazione && <Disegno nome={illustrazione} lato={96} />}
-      <h2 className={cn('text-[20px] leading-[26px] font-bold text-testo', !compatto && illustrazione && 'mt-4')}>{titolo}</h2>
-      {causa && <p data-testo-ok className="mt-1.5 max-w-[32ch] text-[15px] leading-[21px] text-testo-tenue">{causa}</p>}
+      <h2 className={cn('text-s3 leading-[26px] font-bold text-testo', !compatto && illustrazione && 'mt-4')}>{titolo}</h2>
+      {causa && <p data-testo-ok className="mt-1.5 max-w-[32ch] text-s2 leading-[21px] text-testo-tenue">{causa}</p>}
       {azioni && <div className="mt-5 flex w-full flex-col gap-2.5">{azioni}</div>}
     </div>
   );

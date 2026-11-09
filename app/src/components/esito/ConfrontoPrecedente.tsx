@@ -12,19 +12,19 @@ export default function ConfrontoPrecedente({ prima, dopo }: { prima: PuntiConfr
   if (d === null) return null;
   const aria = `Simulazione precedente ${prima.esatte} su ${prima.totale}, questa ${dopo.esatte} su ${dopo.totale}. ${fraseDifferenza(d)}`;
   return (
-    <section role="group" aria-label={aria} className="rounded-[12px] bg-superficie-2 px-4 py-3">
+    <section role="group" aria-label={aria} className="rounded-xl bg-superficie-2 px-4 py-3">
       <div aria-hidden="true" className="flex items-end justify-center gap-5">
         <div className="text-center">
-          <div className="text-[26px] leading-[28px] font-extrabold tabular-nums text-testo-tenue">{prima.esatte}<span className="text-[14px] font-bold">/{prima.totale}</span></div>
-          <div className="mt-0.5 text-[12.5px] leading-[16px] font-semibold text-testo-tenue">Simulazione precedente</div>
+          <div className="text-s4 leading-[28px] font-extrabold tabular-nums text-testo-tenue">{prima.esatte}<span className="text-s2 font-bold">/{prima.totale}</span></div>
+          <div className="mt-0.5 text-s1 leading-[16px] font-semibold text-testo-tenue">Simulazione precedente</div>
         </div>
         <Icona nome="avanti" size={22} className="mb-5 shrink-0 text-testo-tenue" />
         <div className="text-center">
-          <div className="text-[26px] leading-[28px] font-extrabold tabular-nums text-testo">{dopo.esatte}<span className="text-[14px] font-bold text-testo-tenue">/{dopo.totale}</span></div>
-          <div className="mt-0.5 text-[12.5px] leading-[16px] font-semibold text-testo-tenue">Questa</div>
+          <div className="text-s4 leading-[28px] font-extrabold tabular-nums text-testo">{dopo.esatte}<span className="text-s2 font-bold text-testo-tenue">/{dopo.totale}</span></div>
+          <div className="mt-0.5 text-s1 leading-[16px] font-semibold text-testo-tenue">Questa</div>
         </div>
       </div>
-      <p aria-hidden="true" data-testo-ok className="mt-2.5 text-center text-[13px] leading-[18px] text-testo-tenue">{fraseDifferenza(d)}</p>
+      <p aria-hidden="true" data-testo-ok className="mt-2.5 text-center text-s1 leading-[18px] text-testo-tenue">{fraseDifferenza(d)}</p>
     </section>
   );
 }

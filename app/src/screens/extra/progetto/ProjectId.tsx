@@ -123,7 +123,7 @@ export default function ProjectId() {
           </>
         ) : (
           <>
-            <ul className="divide-y divide-linea overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none">
+            <ul className="divide-y divide-linea overflow-hidden rounded-xl border border-linea bg-superficie shadow-sm dark:shadow-none">
               <RigaDato icona="email" etichetta="Email PoliMi" tono={profilo.emailVerificata ? 'alto' : 'medio'}
                 valore={<span className="flex flex-wrap items-center gap-2">{profilo.email}{profilo.emailVerificata ? <Etichetta tono="alto">Verificata</Etichetta> : <Etichetta tono="medio">Non verificata</Etichetta>}</span>} />
               <RigaDato icona="profilo" etichetta="Nome" valore={profilo.nome || 'Non indicato'} />
@@ -133,13 +133,13 @@ export default function ProjectId() {
               <RigaDato icona="provenienza" etichetta="Come ci hai conosciuto" valore={nomeProvenienza(profilo.provenienza) ?? 'Non indicato'} tono="viola" />
               <RigaDato icona="consensi" etichetta="Consensi" valore={consensiDati(iscrizioneRemota?.consensi ?? profilo.consensi)} tono="viola" />
               <RigaDato icona={statoInvio.chiave === 'inviata' ? 'stato-ok' : statoInvio.chiave === 'rifiutata' ? 'stato-errore' : 'stato-attesa'} etichetta={`Invio ad ${ECOSYSTEM.engineName}`} tono={statoInvio.chiave === 'inviata' ? 'alto' : statoInvio.chiave === 'rifiutata' ? 'errore' : 'medio'}
-                valore={<span><Etichetta tono={TONO_INVIO[statoInvio.chiave]}>{statoInvio.titolo}</Etichetta><span className="mt-1 block text-[13px] font-normal leading-[18px] text-testo-tenue">{statoInvio.dettaglio}</span></span>} />
+                valore={<span><Etichetta tono={TONO_INVIO[statoInvio.chiave]}>{statoInvio.titolo}</Etichetta><span className="mt-1 block text-s1 font-normal leading-[18px] text-testo-tenue">{statoInvio.dettaglio}</span></span>} />
             </ul>
             <div className="flex flex-col gap-2">
               {!profilo.emailVerificata && verificaDisponibile() && (
                 <>
                   <BottoneSecondario onClick={() => { void chiediLink(); }} disabled={link.fase === 'invio'} icona={<Icona nome="email" size={20} />}>{link.fase === 'invio' ? 'Invio…' : 'Verifica con un link'}</BottoneSecondario>
-                  {link.fase === 'inviato' && <p role="status" data-testo-ok className="text-[13px] leading-[18px] font-semibold text-alto-testo">Link inviato. Aprilo dalla posta: l&apos;email resta non verificata finché non lo fai.</p>}
+                  {link.fase === 'inviato' && <p role="status" data-testo-ok className="text-s1 leading-[18px] font-semibold text-alto-testo">Link inviato. Aprilo dalla posta: l&apos;email resta non verificata finché non lo fai.</p>}
                   {link.fase === 'errore' && <ErroreRiga testo={link.messaggio ?? ''} />}
                 </>
               )}
@@ -210,26 +210,26 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
   const account = acc.me?.account;
   return (
     <>
-      <div className="flex items-center gap-3 rounded-[16px] border border-linea bg-superficie p-3.5 shadow-sm dark:shadow-none">
+      <div className="flex items-center gap-3 rounded-xl border border-linea bg-superficie p-3.5 shadow-sm dark:shadow-none">
         {u.photoURL
           ? <img src={u.photoURL} alt="" referrerPolicy="no-referrer" className="h-12 w-12 rounded-full" />
-          : <span aria-hidden="true" className="grid h-12 w-12 place-items-center rounded-full bg-azione-tinta text-[20px] font-extrabold text-azione-testo">{(u.displayName || u.email || '?').charAt(0).toUpperCase()}</span>}
+          : <span aria-hidden="true" className="grid h-12 w-12 place-items-center rounded-full bg-azione-tinta text-s3 font-extrabold text-azione-testo">{(u.displayName || u.email || '?').charAt(0).toUpperCase()}</span>}
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-[16px] font-bold text-testo">{account?.displayName ?? u.displayName}</span>
-          {account && <span className="block truncate text-[13.5px] font-semibold text-testo-tenue">@{account.handle} · {account.id}</span>}
-          <span className="block truncate text-[12.5px] text-testo-tenue">{u.email}</span>
+          <span className="block truncate text-s2 font-bold text-testo">{account?.displayName ?? u.displayName}</span>
+          {account && <span className="block truncate text-s1 font-semibold text-testo-tenue">@{account.handle} · {account.id}</span>}
+          <span className="block truncate text-s1 text-testo-tenue">{u.email}</span>
         </span>
       </div>
       {acc.errore && <ErroreRiga testo={acc.errore} />}
       {!collegamento ? (
         <BottoneAzione onClick={onCollega}>Scegli cosa condividere</BottoneAzione>
       ) : (
-        <ul className="divide-y divide-linea overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none" aria-label="Permessi">
+        <ul className="divide-y divide-linea overflow-hidden rounded-xl border border-linea bg-superficie shadow-sm dark:shadow-none" aria-label="Permessi">
           {SCOPES.map(s => (
             <li key={s.id} className="flex items-start gap-3 p-3.5">
               <span className="min-w-0 flex-1">
-                <span data-testo-ok className="flex items-center gap-2 text-[15px] leading-[20px] font-bold text-testo">{s.title}</span>
-                <span data-testo-ok className="mt-0.5 block text-[13px] leading-[18px] text-testo-tenue">{s.description}</span>
+                <span data-testo-ok className="flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo">{s.title}</span>
+                <span data-testo-ok className="mt-0.5 block text-s1 leading-[18px] text-testo-tenue">{s.description}</span>
               </span>
               {s.required ? <Obbligatorio /> : <Interruttore acceso={collegamento.scopes.includes(s.id)} disabled={acc.occupato} etichetta={s.title} onChange={v => onPermesso(s.id, v)} />}
             </li>
@@ -246,9 +246,9 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
 }
 
 /** Il permesso senza il quale l'account non esiste: non è una scelta, quindi nessun interruttore. */
-const Obbligatorio = () => <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-superficie px-2.5 py-1 text-[12px] font-semibold text-testo-tenue">Necessario</span>;
+const Obbligatorio = () => <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-superficie px-2.5 py-1 text-s1 font-semibold text-testo-tenue">Necessario</span>;
 
-const ErroreRiga = ({ testo }: { testo: string }) => <p role="alert" data-testo-ok className="rounded-[14px] border border-errore/30 bg-errore-tinta p-3 text-center text-[14px] font-bold text-errore-testo dark:bg-superficie">{testo}</p>;
+const ErroreRiga = ({ testo }: { testo: string }) => <p role="alert" data-testo-ok className="rounded-xl border border-errore/30 bg-errore-tinta p-3 text-center text-s2 font-bold text-errore-testo dark:bg-superficie">{testo}</p>;
 
 /** Schermata di consenso «Accedi con Project ID»: i permessi uno per uno, tutti spenti, tranne il profilo di base senza il quale l'account non esiste. */
 function Consenso({ profilo, acc, onAnnulla, onFatto }: {
@@ -264,17 +264,17 @@ function Consenso({ profilo, acc, onAnnulla, onFatto }: {
   };
   return (
     <Pagina titolo={`Accedi con ${ECOSYSTEM.accountName}`} indietroA={onAnnulla}>
-      <div className="mt-4 flex items-center gap-3 rounded-[16px] border border-linea bg-superficie p-3.5 shadow-sm dark:shadow-none">
-        <span aria-hidden="true" className="grid h-11 w-11 place-items-center rounded-full bg-azione-tinta text-[18px] font-extrabold text-azione-testo">{(u.displayName || u.email || '?').charAt(0).toUpperCase()}</span>
-        <span className="min-w-0"><span className="block truncate font-bold text-testo">{u.displayName}</span><span className="block truncate text-[13px] text-testo-tenue">{u.email}</span></span>
+      <div className="mt-4 flex items-center gap-3 rounded-xl border border-linea bg-superficie p-3.5 shadow-sm dark:shadow-none">
+        <span aria-hidden="true" className="grid h-11 w-11 place-items-center rounded-full bg-azione-tinta text-s3 font-extrabold text-azione-testo">{(u.displayName || u.email || '?').charAt(0).toUpperCase()}</span>
+        <span className="min-w-0"><span className="block truncate font-bold text-testo">{u.displayName}</span><span className="block truncate text-s1 text-testo-tenue">{u.email}</span></span>
       </div>
       <Sezione id="cons-permessi" titolo="Cosa condividere">
-        <ul className="divide-y divide-linea overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none">
+        <ul className="divide-y divide-linea overflow-hidden rounded-xl border border-linea bg-superficie shadow-sm dark:shadow-none">
           {SCOPES.map(s => (
             <li key={s.id} className="flex items-start gap-3 p-3.5">
               <span className="min-w-0 flex-1">
-                <span data-testo-ok className="flex items-center gap-2 text-[15px] leading-[20px] font-bold text-testo">{s.title}</span>
-                <span data-testo-ok className="mt-0.5 block text-[13px] leading-[18px] text-testo-tenue">{s.description}</span>
+                <span data-testo-ok className="flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo">{s.title}</span>
+                <span data-testo-ok className="mt-0.5 block text-s1 leading-[18px] text-testo-tenue">{s.description}</span>
               </span>
               {s.required ? <Obbligatorio /> : (
                 <Interruttore acceso={scelti.has(s.id)} disabled={acc.occupato} etichetta={s.title}
@@ -285,15 +285,15 @@ function Consenso({ profilo, acc, onAnnulla, onFatto }: {
           {profilo && (
             <li className="flex items-start gap-3 p-3.5">
               <span className="min-w-0 flex-1">
-                <span data-testo-ok className="block text-[15px] leading-[20px] font-bold text-testo">Collega la mia iscrizione</span>
-                <span data-testo-ok className="mt-0.5 block text-[13px] leading-[18px] text-testo-tenue">Lega all&apos;account l&apos;email {profilo.email}, così da qui puoi esportare e cancellare anche l&apos;iscrizione. L&apos;email non è verificata.</span>
+                <span data-testo-ok className="block text-s2 leading-[20px] font-bold text-testo">Collega la mia iscrizione</span>
+                <span data-testo-ok className="mt-0.5 block text-s1 leading-[18px] text-testo-tenue">Lega all&apos;account l&apos;email {profilo.email}, così da qui puoi esportare e cancellare anche l&apos;iscrizione. L&apos;email non è verificata.</span>
               </span>
               <Interruttore acceso={collegaIscrizione} disabled={acc.occupato} etichetta="Collega la mia iscrizione" onChange={setCollegaIscrizione} />
             </li>
           )}
         </ul>
       </Sezione>
-      <p data-testo-ok className="mt-3 text-[12.5px] leading-[18px] text-testo-tenue">Versione del consenso {CONSENT_VERSION}. Puoi cambiare o ritirare ogni permesso quando vuoi da questa pagina.</p>
+      <p data-testo-ok className="mt-3 text-s1 leading-[18px] text-testo-tenue">Versione del consenso {CONSENT_VERSION}. Puoi cambiare o ritirare ogni permesso quando vuoi da questa pagina.</p>
       {acc.errore && <div className="mt-3"><ErroreRiga testo={acc.errore} /></div>}
       <div className="mt-5 flex flex-col gap-2.5">
         <BottoneAzione onClick={conferma} disabled={acc.occupato}>{acc.occupato ? 'Collego…' : 'Consenti'}</BottoneAzione>
@@ -342,14 +342,14 @@ function Modifica({ profilo, remota, acc, onAnnulla, onSalva, apriLegale }: {
         )}
 
         <section aria-labelledby="mod-percorso" className="flex flex-col gap-3">
-          <h2 id="mod-percorso" className="text-[17px] leading-[24px] font-bold text-testo">Corso di studi</h2>
+          <h2 id="mod-percorso" className="text-s3 leading-[24px] font-bold text-testo">Corso di studi</h2>
           {cambiaPercorso ? (
             <PassoPercorso scelte={form.percorso} onChange={percorso => setForm(f => ({ ...f, percorso }))} onFine={() => undefined}
               fine={<BottoneSecondario onClick={() => setCambiaPercorso(false)}>Fatto</BottoneSecondario>} />
           ) : (
             <>
               {corrente.length > 0 && (
-                <ul className="divide-y divide-linea overflow-hidden rounded-[16px] border border-linea bg-superficie shadow-sm dark:shadow-none">
+                <ul className="divide-y divide-linea overflow-hidden rounded-xl border border-linea bg-superficie shadow-sm dark:shadow-none">
                   {corrente.map(r => <RigaDato key={r.etichetta} etichetta={r.etichetta} valore={r.valore} />)}
                 </ul>
               )}
@@ -359,7 +359,7 @@ function Modifica({ profilo, remota, acc, onAnnulla, onSalva, apriLegale }: {
         </section>
 
         <section aria-labelledby="mod-prov" className="flex flex-col gap-3">
-          <h2 id="mod-prov" className="text-[17px] leading-[24px] font-bold text-testo">Come ci hai conosciuto</h2>
+          <h2 id="mod-prov" className="text-s3 leading-[24px] font-bold text-testo">Come ci hai conosciuto</h2>
           <ScelteProvenienza valore={form.provenienza} onChange={id => setForm({ ...form, provenienza: form.provenienza === id ? '' : id })} />
         </section>
 
@@ -391,14 +391,14 @@ function Esporta({ profilo, collegamento, acc, onChiudi }: { profilo: Profilo | 
   return (
     <Pagina titolo="Esporta" indietroA={onChiudi}>
       <div className="mt-4 flex flex-col gap-3">
-        <p data-testo-ok className="text-[14px] leading-[20px] text-testo-tenue">I dati di iscrizione e collegamento su questo dispositivo{acc.utente && acc.atlasOnline ? `, più la copia che ${ECOSYSTEM.engineName} ha di te` : ''}. I progressi di studio si esportano dalle Impostazioni.</p>
+        <p data-testo-ok className="text-s2 leading-[20px] text-testo-tenue">I dati di iscrizione e collegamento su questo dispositivo{acc.utente && acc.atlasOnline ? `, più la copia che ${ECOSYSTEM.engineName} ha di te` : ''}. I progressi di studio si esportano dalle Impostazioni.</p>
         <BottoneAzione onClick={prepara} disabled={lavoro} icona={<Icona nome="copia" size={20} />}>{testo ? 'Aggiorna' : 'Mostra e copia'}</BottoneAzione>
         {acc.errore && <ErroreRiga testo={acc.errore} />}
         {testo && (
           <>
-            <p role="status" data-testo-ok className="text-[13px] font-semibold text-testo-tenue">{copiato ? 'Copiato negli appunti. Puoi anche selezionare il testo qui sotto.' : 'Non riesco a copiare da solo: seleziona il testo qui sotto e copialo a mano.'}</p>
+            <p role="status" data-testo-ok className="text-s1 font-semibold text-testo-tenue">{copiato ? 'Copiato negli appunti. Puoi anche selezionare il testo qui sotto.' : 'Non riesco a copiare da solo: seleziona il testo qui sotto e copialo a mano.'}</p>
             <textarea readOnly value={testo} rows={12} onFocus={e => e.currentTarget.select()} aria-label="I tuoi dati"
-              className="w-full resize-y rounded-[12px] border border-bordo-campo bg-superficie p-3 font-mono text-[12px] leading-[17px] text-testo" />
+              className="w-full resize-y rounded-xl border border-bordo-campo bg-superficie p-3 font-mono text-s1 leading-[17px] text-testo" />
           </>
         )}
       </div>
@@ -411,11 +411,11 @@ function Conferma({ titolo, children, etichetta, onConferma, onAnnulla, occupato
 }) {
   return (
     <Pagina titolo={titolo} indietroA={onAnnulla}>
-      <div role="alertdialog" aria-label={titolo} className="mt-5 rounded-[16px] border border-errore/30 bg-errore-tinta p-4 text-[14px] leading-[21px] text-testo dark:bg-superficie">{children}</div>
+      <div role="alertdialog" aria-label={titolo} className="mt-5 rounded-xl border border-errore/30 bg-errore-tinta p-4 text-s2 leading-[21px] text-testo dark:bg-superficie">{children}</div>
       {errore && <div className="mt-3"><ErroreRiga testo={errore} /></div>}
       <div className="mt-5 flex flex-col gap-2.5">
         <button type="button" disabled={occupato} onClick={() => { playTapSound(); onConferma(); }}
-          className={cn('brand-premibile w-full min-h-[52px] rounded-[14px] bg-errore px-4 py-3 text-[16px] font-bold text-errore-su disabled:opacity-45')}>{occupato ? 'Attendi…' : etichetta}</button>
+          className={cn('brand-premibile w-full min-h-[52px] rounded-xl bg-errore px-4 py-3 text-s2 font-bold text-errore-su disabled:opacity-45')}>{occupato ? 'Attendi…' : etichetta}</button>
         <BottoneSecondario onClick={onAnnulla} disabled={occupato}>Annulla</BottoneSecondario>
       </div>
     </Pagina>

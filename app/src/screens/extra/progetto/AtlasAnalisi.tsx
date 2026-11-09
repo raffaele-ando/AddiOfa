@@ -29,11 +29,11 @@ function RigaArgomento({ a, onTeoria }: { a: ArgomentoAnalisi; onTeoria: () => v
   return (
     <button type="button" onClick={() => { playTapSound(); onTeoria(); }} className="brand-premibile block w-full px-1 py-3 text-left" aria-label={`Apri la teoria: ${a.titolo}`}>
       <span className="flex items-baseline justify-between gap-3">
-        <span data-testo-ok className="min-w-0 text-[15px] leading-[21px] font-semibold text-testo">{a.titolo}</span>
-        <span className={cn('shrink-0 text-[14px] tabular-nums', dato && 'font-bold', TESTO_TONO[tono ?? 'nessuno'])}>{dato ? `${a.percento}%` : '–'}</span>
+        <span data-testo-ok className="min-w-0 text-s2 leading-[21px] font-semibold text-testo">{a.titolo}</span>
+        <span className={cn('shrink-0 text-s2 tabular-nums', dato && 'font-bold', TESTO_TONO[tono ?? 'nessuno'])}>{dato ? `${a.percento}%` : '–'}</span>
       </span>
       <span className="mt-2 block"><BarraTono valore={dato ? a.percento! : 0} tono={tono ?? 'azione'} className="h-1.5" /></span>
-      <span data-testo-ok className="mt-1.5 block text-[12px] leading-[16px] text-testo-tenue">
+      <span data-testo-ok className="mt-1.5 block text-s1 leading-[16px] text-testo-tenue">
         {a.livello} · {a.risposte === 0 ? 'nessuna risposta' : dato ? `${a.risposte} risposte` : `${a.risposte} ${a.risposte === 1 ? 'risposta' : 'risposte'}, ancora poche`} · {a.imparate} di {a.totaleDomande} imparate
       </span>
     </button>
@@ -58,7 +58,7 @@ export default function AtlasAnalisi() {
   const info = <PulsanteInfo onClick={() => setCome(true)} etichetta="Come è calcolata l'analisi" />;
   const fogliCome = (
     <FoglioInfo aperto={come} onChiudi={() => setCome(false)} titolo="Come è calcolata">
-      <ul className="flex list-disc flex-col gap-2 pl-5 text-[14px] leading-[21px]">
+      <ul className="flex list-disc flex-col gap-2 pl-5 text-s2 leading-[21px]">
         <li>È la probabilità di fare almeno {REAL_TEST_PASS_MARK} risposte esatte su {REAL_TEST_QUESTIONS}, la soglia del test di recupero.</li>
         <li>Parte da ciò che non sai ancora sulla tua accuratezza e la aggiorna con ogni risposta. Con poche risposte la stima è larga: si stringe a ogni simulazione.</li>
         <li>Entrano le risposte del test di livello e delle ultime 3 simulazioni. Con almeno 2 simulazioni il test di livello esce dal calcolo.</li>
@@ -97,32 +97,32 @@ export default function AtlasAnalisi() {
           {stima ? (
             <Carta as="section" className="mt-4">
               {stima.risposte < RISPOSTE_STIMA_SICURA && (
-                <p className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-superficie-2 px-2.5 py-[3px] text-[12px] leading-[16px] font-semibold text-testo-tenue"><Icona nome="stato-attenzione" size={13} />Stima provvisoria</p>
+                <p className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-superficie-2 px-2.5 py-[3px] text-s1 leading-[16px] font-semibold text-testo-tenue"><Icona nome="stato-attenzione" size={13} />Stima provvisoria</p>
               )}
               <div data-testo-ok>
                 <StimaSezione stima={stima} livello={an.livelloStima ?? livelloDi(stima.p)} />
                 <RigaIntervallo intervallo={stima.intervallo} className="mt-2" />
               </div>
-              <p data-testo-ok className="mt-2 text-center text-[13px] leading-[18px] text-testo-tenue">{dettaglio}: si basa su {stima.risposte} risposte.</p>
+              <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">{dettaglio}: si basa su {stima.risposte} risposte.</p>
               <details className="group mt-2 text-center">
-                <summary className="inline-flex min-h-[44px] cursor-pointer list-none items-center gap-1 text-[14px] font-bold text-azione-testo [&::-webkit-details-marker]:hidden">Dettagli<Icona nome="espandi" size={16} className="group-open:rotate-180" /></summary>
-                <p data-testo-ok className="text-[13px] leading-[19px] text-testo-tenue">Intervallo di affidabilità (80%): {intervallo}.</p>
+                <summary className="inline-flex min-h-[44px] cursor-pointer list-none items-center gap-1 text-s2 font-bold text-azione-testo [&::-webkit-details-marker]:hidden">Dettagli<Icona nome="espandi" size={16} className="group-open:rotate-180" /></summary>
+                <p data-testo-ok className="text-s1 leading-[19px] text-testo-tenue">Intervallo di affidabilità (80%): {intervallo}.</p>
               </details>
             </Carta>
           ) : (
-            <Vuoto className="mt-4" illustrazione="progressi-statistiche" titolo="La stima non c'è ancora" causa="La calcolano il test di livello e le simulazioni."
+            <Vuoto compatto className="mt-4" titolo="La stima non c'è ancora" causa="La calcolano il test di livello e le simulazioni."
               azioni={<BottoneAzione icona={<Icona nome="diagnostico" size={20} />} onClick={avviaDiagnostico}>Fai il test di livello</BottoneAzione>} />
           )}
 
           <Sezione id="an-fattori" titolo="Come calcoliamo la stima">
             <Carta>
-              <ul className="flex list-disc flex-col gap-1.5 pl-5 text-[14px] leading-[20px] text-testo marker:text-testo-tenue">
+              <ul className="flex list-disc flex-col gap-1.5 pl-5 text-s2 leading-[20px] text-testo marker:text-testo-tenue">
                 <li data-testo-ok>{stima ? descriviFonte(stima) : 'Senza test di livello né simulazioni non c\'è una stima.'}</li>
                 <li data-testo-ok>Più rispondi, più la stima si stringe.</li>
                 <li data-testo-ok>Il ripasso non entra: sceglie le domande più difficili.</li>
               </ul>
               {stima?.delta !== undefined && (
-                <p data-testo-ok className="mt-2 text-[14px] leading-[20px] text-testo">Rispetto al solo test di livello è {stima.delta > 0 ? 'salita' : 'scesa'} di {Math.abs(stima.delta)} punti percentuali.</p>
+                <p data-testo-ok className="mt-2 text-s2 leading-[20px] text-testo">Rispetto al solo test di livello è {stima.delta > 0 ? 'salita' : 'scesa'} di {Math.abs(stima.delta)} punti percentuali.</p>
               )}
             </Carta>
           </Sezione>
@@ -132,13 +132,13 @@ export default function AtlasAnalisi() {
               <Carta>
                 <ol className="flex flex-col gap-1.5">
                   {an.serie.map((p, i) => (
-                    <li key={`${p.nome}-${i}`} className="flex items-center justify-between text-[15px] text-testo">
+                    <li key={`${p.nome}-${i}`} className="flex items-center justify-between text-s2 text-testo">
                       <span data-testo-ok>{p.nome}</span>
                       <span className={cn('font-bold tabular-nums', TESTO_TONO[livelloDi(p.p)])}>{formatProbabilita(p.p).replace(' %', '%')}</span>
                     </li>
                   ))}
                 </ol>
-                <p data-testo-ok className="mt-2 text-[13px] leading-[18px] text-testo-tenue">Solo stime misurate, mai previsioni.</p>
+                <p data-testo-ok className="mt-2 text-s1 leading-[18px] text-testo-tenue">Solo stime misurate, mai previsioni.</p>
               </Carta>
             </Sezione>
           )}
@@ -152,12 +152,12 @@ export default function AtlasAnalisi() {
               <Carta>
                 <Radar assi={radar.map(a => ({ nome: a.nome, valore: a.percento ?? 0 }))}
                   descrizione={`Radar dell'accuratezza su ${radar.length} argomenti: ${radar.map(a => `${a.nome} ${a.percento} per cento`).join(', ')}.`} />
-                <ul className="mt-1 flex flex-wrap justify-center gap-x-3.5 gap-y-1 text-[12px] leading-[17px] text-testo-tenue" aria-label="Legenda dei colori">
+                <ul className="mt-1 flex flex-wrap justify-center gap-x-3.5 gap-y-1 text-s1 leading-[17px] text-testo-tenue" aria-label="Legenda dei colori">
                   {([['alto', `Da ${SOGLIA_DA_MIGLIORARE}%`], ['medio', 'Da migliorare'], ['basso', 'Da ripassare']] as const).map(([t, nome]) => (
-                    <li key={t} className="flex items-center gap-1.5"><span aria-hidden="true" className={`h-2.5 w-2.5 ${t === 'alto' ? 'rounded-full bg-alto-numero' : t === 'medio' ? 'rounded-[2px] bg-medio-numero' : 'rotate-45 rounded-[1px] bg-basso-numero'}`} />{nome}</li>
+                    <li key={t} className="flex items-center gap-1.5"><span aria-hidden="true" className={`h-2.5 w-2.5 ${t === 'alto' ? 'rounded-full bg-alto-numero' : t === 'medio' ? 'rounded-xl bg-medio-numero' : 'rotate-45 rounded-xl bg-basso-numero'}`} />{nome}</li>
                   ))}
                 </ul>
-                <p data-testo-ok className="mt-2 text-[12px] leading-[17px] text-testo-tenue">La linea tratteggiata è l&apos;{SOGLIA_DA_MIGLIORARE}%.</p>
+                <p data-testo-ok className="mt-2 text-s1 leading-[17px] text-testo-tenue">La linea tratteggiata è l&apos;{SOGLIA_DA_MIGLIORARE}%.</p>
               </Carta>
             ) : (
               <Nota><p data-testo-ok>Compare con almeno 3 risposte in 3 argomenti. Ora: {an.conDati} {an.conDati === 1 ? 'argomento' : 'argomenti'}.</p></Nota>
@@ -180,7 +180,7 @@ export default function AtlasAnalisi() {
 
           <Sezione id="an-tutti" titolo={`Tutti i ${an.argomenti.length} argomenti`}>
             <button type="button" onClick={() => { playTapSound(); setTutti(v => !v); }} aria-expanded={tutti}
-              className="brand-premibile flex min-h-[52px] w-full items-center justify-between rounded-[14px] border border-linea bg-superficie px-4 text-left text-[15px] font-bold text-testo shadow-sm dark:shadow-none">
+              className="brand-premibile flex min-h-[52px] w-full items-center justify-between rounded-xl border border-linea bg-superficie px-4 text-left text-s2 font-bold text-testo shadow-sm dark:shadow-none">
               <span>{tutti ? 'Nascondi l\'elenco' : 'Mostra l\'elenco'}</span>
               <Icona nome="espandi" size={20} className={tutti ? 'rotate-180' : undefined} />
             </button>
@@ -189,7 +189,7 @@ export default function AtlasAnalisi() {
                 <ul className="flex flex-col divide-y divide-linea">
                   {an.argomenti.map(a => <li key={a.id}><RigaArgomento a={a} onTeoria={() => apriTeoria(a.id)} /></li>)}
                 </ul>
-                <p data-testo-ok className="px-1 pb-2 pt-1 text-[12px] leading-[17px] text-testo-tenue">{REGOLA_IMPARATA} La percentuale compare da {MIN_RISPOSTE_ARGOMENTO} risposte.</p>
+                <p data-testo-ok className="px-1 pb-2 pt-1 text-s1 leading-[17px] text-testo-tenue">{REGOLA_IMPARATA} La percentuale compare da {MIN_RISPOSTE_ARGOMENTO} risposte.</p>
               </Carta>
             )}
           </Sezione>
@@ -200,16 +200,16 @@ export default function AtlasAnalisi() {
                 <ul className="flex flex-col gap-3">
                   {[...an.fattori.categorie, ...an.fattori.livelli].map(f => (
                     <li key={f.id}>
-                      <span className="flex items-baseline justify-between text-[15px] font-semibold text-testo">
+                      <span className="flex items-baseline justify-between text-s2 font-semibold text-testo">
                         <span>{f.nome}</span>
-                        <span className={cn('text-[14px] tabular-nums', f.percento !== null ? `font-bold ${TESTO_TONO[tonoAccuratezza(f.percento) ?? 'nessuno']}` : 'font-normal text-testo-tenue')}>{f.percento !== null ? `${f.percento}%` : '–'}</span>
+                        <span className={cn('text-s2 tabular-nums', f.percento !== null ? `font-bold ${TESTO_TONO[tonoAccuratezza(f.percento) ?? 'nessuno']}` : 'font-normal text-testo-tenue')}>{f.percento !== null ? `${f.percento}%` : '–'}</span>
                       </span>
                       <span className="mt-1.5 block"><BarraTono valore={f.percento ?? 0} tono={tonoAccuratezza(f.percento) ?? 'azione'} className="h-1.5" /></span>
-                      <span data-testo-ok className="mt-1 block text-[12px] text-testo-tenue">{f.percento !== null ? `${f.risposte} risposte` : f.risposte > 0 ? `${f.risposte} ${f.risposte === 1 ? 'risposta' : 'risposte'}, ancora poche` : 'nessuna risposta'}</span>
+                      <span data-testo-ok className="mt-1 block text-s1 text-testo-tenue">{f.percento !== null ? `${f.risposte} risposte` : f.risposte > 0 ? `${f.risposte} ${f.risposte === 1 ? 'risposta' : 'risposte'}, ancora poche` : 'nessuna risposta'}</span>
                     </li>
                   ))}
                 </ul>
-                <p data-testo-ok className="mt-3 text-[12px] leading-[17px] text-testo-tenue">Sotto {MIN_RISPOSTE} risposte non si mostra la percentuale.</p>
+                <p data-testo-ok className="mt-3 text-s1 leading-[17px] text-testo-tenue">Sotto {MIN_RISPOSTE} risposte non si mostra la percentuale.</p>
               </Carta>
             </Sezione>
           )}
@@ -221,7 +221,7 @@ export default function AtlasAnalisi() {
           {deboli.length > 0 ? (
             <>
               <Carta tono="azione" className="mt-4">
-                <p data-testo-ok className="text-[15px] leading-[21px] font-semibold text-testo">Il punto più debole è {deboli[0].nome}.</p>
+                <p data-testo-ok className="text-s2 leading-[21px] font-semibold text-testo">Il punto più debole è {deboli[0].nome}.</p>
               </Carta>
               <Sezione id="an-piano" titolo="Da ripassare, in ordine">
                 <ol className="flex flex-col gap-2.5">
@@ -230,11 +230,11 @@ export default function AtlasAnalisi() {
                     return (
                       <li key={a.id}>
                         <button type="button" onClick={() => { playTapSound(); apriTeoria(a.id); }} aria-label={`${i + 1}. ${a.titolo}: ${p.parola}. Apri la teoria`}
-                          className="brand-premibile flex min-h-[64px] w-full items-center gap-3 rounded-[16px] border border-linea bg-superficie p-3 text-left shadow-sm dark:shadow-none">
-                          <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-superficie-2 text-[16px] font-extrabold tabular-nums text-testo">{i + 1}</span>
+                          className="brand-premibile flex min-h-[64px] w-full items-center gap-3 rounded-xl border border-linea bg-superficie p-3 text-left shadow-sm dark:shadow-none">
+                          <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-superficie-2 text-s2 font-extrabold tabular-nums text-testo">{i + 1}</span>
                           <span className="min-w-0 flex-1">
-                            <span data-testo-ok className="block text-[15px] leading-[21px] font-semibold text-testo">{a.titolo}</span>
-                            <span className={cn('mt-1 inline-flex items-center gap-1 rounded-full px-2.5 py-[2px] text-[12px] leading-[16px] font-semibold', p.classe)}><Icona nome={p.icona} size={13} />{p.parola}</span>
+                            <span data-testo-ok className="block text-s2 leading-[21px] font-semibold text-testo">{a.titolo}</span>
+                            <span className={cn('mt-1 inline-flex items-center gap-1 rounded-full px-2.5 py-[2px] text-s1 leading-[16px] font-semibold', p.classe)}><Icona nome={p.icona} size={13} />{p.parola}</span>
                           </span>
                           <Icona nome="avanti" size={20} className="shrink-0 text-testo-tenue" />
                         </button>
@@ -245,7 +245,7 @@ export default function AtlasAnalisi() {
               </Sezione>
             </>
           ) : (
-            <Vuoto className="mt-4" illustrazione="obiettivo" titolo="Il piano non c'è ancora" causa="Compare dopo le prime risposte su un argomento." />
+            <Vuoto compatto className="mt-4" titolo="Il piano non c'è ancora" causa="Compare dopo le prime risposte su un argomento." />
           )}
           <div className="mt-6 flex flex-col gap-2.5">
             <BottoneAzione onClick={() => avviaEsercizi('weakness')} icona={<Icona nome="modo-punti-deboli" size={20} />}>Allenati sui punti deboli</BottoneAzione>

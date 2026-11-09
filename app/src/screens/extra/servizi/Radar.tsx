@@ -42,10 +42,10 @@ export default function Radar({ assi, descrizione }: { assi: AsseRadar[]; descri
       {assi.map((a, i) => {
         const [x, y] = punto(i, n, R_ETICHETTE);
         return (
-          <span key={a.nome} aria-hidden="true" className="absolute w-[84px] -translate-x-1/2 -translate-y-1/2 text-center text-[11px] leading-[13px] font-semibold text-testo"
+          <span key={a.nome} aria-hidden="true" className="absolute w-[84px] -translate-x-1/2 -translate-y-1/2 text-center text-s1 leading-[15px] font-semibold text-testo"
             style={{ left: `${x}%`, top: `${y}%` }}>
             {a.nome}
-            <span className={`block text-[11px] font-bold tabular-nums ${TESTO_TONO[tonoAccuratezza(a.valore) ?? 'nessuno']}`}>{Math.round(a.valore)}%</span>
+            <span className={`block text-s1 font-bold tabular-nums ${TESTO_TONO[tonoAccuratezza(a.valore) ?? 'nessuno']}`}>{Math.round(a.valore)}%</span>
           </span>
         );
       })}

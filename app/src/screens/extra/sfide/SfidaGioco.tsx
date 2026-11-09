@@ -153,7 +153,7 @@ export default function SfidaGioco() {
 
   const rimaste = domande.length - Object.keys(risposte).length;
   const titoloSfida = tipo === 'giorno' ? 'Sfida del giorno' : ruolo === 'sfidato' ? `Duello con ${avversario?.nome ?? ''}` : 'Duello';
-  const cornice = 'relative h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col';
+  const cornice = 'relative h-full w-full bg-superficie text-testo sm:rounded-2xl sm:border sm:border-linea overflow-hidden flex flex-col';
   const corniceVelata = cornice.replace('bg-superficie', 'bg-fondo');
 
   // ================== Schermate di attesa e di errore ==================
@@ -161,7 +161,7 @@ export default function SfidaGioco() {
     return (
       <div className={cn(corniceVelata, 'items-center justify-center gap-3 p-8 text-center')} style={{ fontFamily: FONT }} role="status">
         <Illustrazione nome="attesa-caricamento" lato={110} />
-        <p className="text-[17px] font-bold text-testo">{fase === 'carico' ? 'Preparo le domande' : 'Consegno e correggo'}</p>
+        <p className="text-s3 font-bold text-testo">{fase === 'carico' ? 'Preparo le domande' : 'Consegno e correggo'}</p>
       </div>
     );
   }
@@ -173,7 +173,7 @@ export default function SfidaGioco() {
         ) : (
           <>
             <Illustrazione nome="documento-errore" lato={96} />
-            <h1 role="alert" className="max-w-sm text-[20px] leading-[26px] font-bold text-testo">{errore}</h1>
+            <h1 role="alert" className="max-w-sm text-s3 leading-[26px] font-bold text-testo">{errore}</h1>
             <div className="flex w-full max-w-xs flex-col gap-2.5">
               {fase === 'errore-consegna' && <Bottone icona="riprova" onClick={() => void consegna()}>Riprova a consegnare</Bottone>}
               {fase === 'errore-carico' && !erroreIniziale && <Bottone icona="riprova" onClick={() => void prepara()}>Riprova</Bottone>}
@@ -208,9 +208,9 @@ export default function SfidaGioco() {
           <PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />
         </div>
         <div className="mx-auto flex w-full max-w-[440px] flex-1 min-h-0 flex-col items-center justify-center px-6 text-center">
-          <h1 className="text-[28px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo">{titoloSfida}</h1>
+          <h1 className="text-s5 leading-[38px] font-extrabold tracking-[-0.02em] text-testo">{titoloSfida}</h1>
           <DatiSfida domande={domande.length} minuti={SECONDI_SFIDA / 60} className="mt-2" />
-          <p data-testo-ok className="mt-1 text-[15px] leading-[21px] text-testo-tenue">{aiuto}</p>
+          <p data-testo-ok className="mt-1 text-s2 leading-[21px] text-testo-tenue">{aiuto}</p>
         </div>
         <div className="shrink-0 border-t border-linea px-6 pt-3 pb-[max(14px,env(safe-area-inset-bottom))]">
           <div className="mx-auto w-full max-w-[440px]"><Bottone icona={tipo === 'giorno' ? 'sfida-giorno' : 'duello'} onClick={avvia}>Inizia la sfida</Bottone></div>
@@ -246,18 +246,18 @@ export default function SfidaGioco() {
             aria-label="Esci dalla sfida" className="p-1 sm:p-2 text-testo-tenue hover:text-testo hover:bg-linea rounded-full transition-colors duration-100">
             <Icona nome="chiudi" size={22} />
           </button>
-          <div role="timer" aria-label="Tempo rimasto" className={cn('rounded-full px-3 py-1 font-bold tabular-nums text-base sm:text-xl flex items-center gap-1.5', restano < 60 ? 'bg-basso-tinta text-basso-testo' : 'bg-medio-tinta text-medio-testo')}>
+          <div role="timer" aria-label="Tempo rimasto" className={cn('rounded-full px-3 py-1 font-bold tabular-nums text-s2 sm:text-s3 flex items-center gap-1.5', restano < 60 ? 'bg-basso-tinta text-basso-testo' : 'bg-medio-tinta text-medio-testo')}>
             <Icona nome="tempo" size={18} /> {tempo}
           </div>
           {indice < domande.length - 1 ? (
             <button type="button" onClick={() => (rimaste > 0 ? setConferma('consegna') : void consegna())}
-              className="text-[12px] font-bold text-azione-testo hover:bg-azione-tinta border border-azione/60 px-4 py-2 rounded-xl transition-colors duration-100">
+              className="text-s1 font-bold text-azione-testo hover:bg-azione-tinta border border-azione/60 px-4 py-2 rounded-xl transition-colors duration-100">
               Consegna
             </button>
           ) : <span className="w-[84px]" aria-hidden />}
         </div>
         <div className="flex items-center gap-2 mt-1">
-          <span className="text-[12px] font-bold text-testo-tenue w-10 text-right tabular-nums">{indice + 1}/{domande.length}</span>
+          <span className="text-s1 font-bold text-testo-tenue w-10 text-right tabular-nums">{indice + 1}/{domande.length}</span>
           <div className="flex-1 bg-tacca h-3 rounded-full overflow-hidden">
             <div className="bg-azione h-full rounded-full" style={{ width: `${((indice + 1) / domande.length) * 100}%` }} />
           </div>
@@ -271,11 +271,11 @@ export default function SfidaGioco() {
             <Icona nome={tipo === 'giorno' ? 'sfida-giorno' : 'duello'} size={17} />
           </span>
           <span role="img" aria-label={rimaste === 0 ? 'Hai risposto a tutte' : `${rimaste} senza risposta`}
-            className={cn('inline-flex items-center gap-1 text-[15px] font-extrabold tabular-nums', rimaste === 0 ? 'text-alto-testo' : 'text-medio-testo')}>
+            className={cn('inline-flex items-center gap-1 text-s2 font-extrabold tabular-nums', rimaste === 0 ? 'text-alto-testo' : 'text-medio-testo')}>
             <Icona nome={rimaste === 0 ? 'stato-ok' : 'stato-risposta-omessa'} size={16} />{rimaste}
           </span>
         </div>
-        <h2 data-testo-ok className="text-xl sm:text-2xl font-bold text-testo mb-5 leading-snug">{q.prompt}</h2>
+        <h2 data-testo-ok className="text-s3 sm:text-s4 font-bold text-testo mb-5 leading-snug">{q.prompt}</h2>
         <div data-testo-ok className="grid grid-cols-1 gap-2.5 content-start">
           {q.options.map((opt, i) => {
             const on = risposte[q.id] === i;
@@ -284,11 +284,11 @@ export default function SfidaGioco() {
                 className={cn('p-3 text-left border rounded-2xl transition-colors duration-100 flex items-center min-h-[56px]',
                   on ? 'bg-azione-tinta border-azione text-testo' : 'border-linea bg-superficie-2 hover:bg-linea hover:border-tacca text-testo')}>
                 <span className="flex items-center gap-4 w-full">
-                  <span className={cn('w-8 h-8 text-sm flex shrink-0 items-center justify-center border rounded-full font-bold transition-colors duration-100',
+                  <span className={cn('w-8 h-8 text-s2 flex shrink-0 items-center justify-center border rounded-full font-bold transition-colors duration-100',
                     on ? 'border-azione bg-azione text-azione-su' : 'border-linea text-testo bg-superficie')}>
                     {String.fromCharCode(65 + i)}
                   </span>
-                  <span className="text-[15px] sm:text-base font-semibold leading-snug flex-1">{opt}</span>
+                  <span className="text-s2 sm:text-s2 font-semibold leading-snug flex-1">{opt}</span>
                 </span>
               </button>
             );
@@ -312,7 +312,7 @@ export default function SfidaGioco() {
               className="p-2 text-testo-tenue rounded-xl hover:bg-linea transition-colors duration-100"><Icona nome="avanti" size={28} /></button>
           ) : (
             <button type="button" onClick={() => (rimaste > 0 ? setConferma('consegna') : void consegna())} aria-label="Consegna"
-              className="rounded-xl bg-azione px-4 py-2 text-[13px] font-bold text-azione-su hover:bg-azione-scuro transition-colors duration-100">Consegna</button>
+              className="rounded-xl bg-azione px-4 py-2 text-s1 font-bold text-azione-su hover:bg-azione-scuro transition-colors duration-100">Consegna</button>
           )}
         </div>
       </div>

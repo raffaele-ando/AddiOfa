@@ -28,7 +28,7 @@ function Cornice({ titolo, titoloRef, onBack, children, intestazione, arte }: {
   titolo?: string; titoloRef: RefObject<HTMLHeadingElement | null>; onBack: () => void; children: ReactNode; intestazione?: ReactNode; arte?: ReactNode;
 }) {
   return (
-    <div className="h-full w-full bg-superficie text-testo sm:rounded-[28px] sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
+    <div className="h-full w-full bg-superficie text-testo sm:rounded-2xl sm:border sm:border-linea overflow-hidden flex flex-col" style={{ fontFamily: FONT }}>
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide">
         <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8">
           <header className="flex items-start gap-1">
@@ -38,7 +38,7 @@ function Cornice({ titolo, titoloRef, onBack, children, intestazione, arte }: {
             </button>
             <div className="min-w-0 flex-1">
               {intestazione}
-              <h1 ref={titoloRef} tabIndex={-1} className="text-[26px] leading-[34px] font-extrabold tracking-[-0.02em] text-testo outline-none break-words pt-[3px]">{titolo}</h1>
+              <h1 ref={titoloRef} tabIndex={-1} className="text-s4 leading-[34px] font-extrabold tracking-[-0.02em] text-testo outline-none break-words pt-[3px]">{titolo}</h1>
             </div>
             {arte && <div className="shrink-0 pt-1">{arte}</div>}
           </header>
@@ -86,7 +86,7 @@ export default function Theory({ onBack, initialTopicId }: TheoryProps) {
   const nPronti = pronti.length;
   return (
     <Cornice titolo="Teoria" titoloRef={titoloRef} onBack={onBack}
-      arte={<Arte nome="suggerimenti-consigli" kit="kit-luminoso" lato={132} className="-mt-3 -mb-3" />}>
+      arte={nPronti > 0 ? <Arte nome="suggerimenti-consigli" kit="kit-luminoso" lato={132} className="-mt-3 -mb-3" /> : undefined}>
       {nPronti === 0 && (
         <div className="mt-4"><StatoVuoto illustrazione={{ nome: 'vuoto' }} titolo="Nessuna lezione" /></div>
       )}
@@ -98,7 +98,7 @@ export default function Theory({ onBack, initialTopicId }: TheoryProps) {
         return (
           <section key={l.id} aria-labelledby={idTitolo} className="mt-6 flex flex-col gap-2.5">
             <h2 id={idTitolo} className="inline-flex items-center gap-2">
-              <ChipLivello livello={l.id} className="text-[14px] leading-[18px] px-2 py-1" /><span className="sr-only">Livello {l.id}</span>
+              <ChipLivello livello={l.id} className="text-s2 leading-[19px] px-2 py-1" /><span className="sr-only">Livello {l.id}</span>
             </h2>
             <ul className="flex flex-col gap-2">
               {lista.map(t => <Riga key={t.id} t={t} onOpen={apri} />)}
@@ -117,7 +117,7 @@ function Riga({ t, onOpen }: { t: TheoryTopic; onOpen: (t: TheoryTopic) => void 
         type="button"
         onClick={() => { playTapSound(); onOpen(t); }}
         className={cn(
-          'w-full text-left rounded-[12px] px-3 py-2.5 min-h-[56px] flex items-center gap-3',
+          'w-full text-left rounded-xl px-3 py-2.5 min-h-[56px] flex items-center gap-3',
           'bg-superficie-2 hover:bg-linea transition-colors duration-100',
           'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione',
         )}
@@ -141,8 +141,8 @@ function Dettaglio({ topic, numero, prec, succ, titoloRef, onList, onGo }: {
   onList: () => void;
   onGo: (t: TheoryTopic) => void;
 }) {
-  const h2 = 'flex items-center gap-2 text-[15.5px] leading-[20px] font-bold text-testo';
-  const corpo = 'text-[15px] font-medium text-testo leading-[24px]';
+  const h2 = 'flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo';
+  const corpo = 'text-s2 font-medium text-testo leading-[24px]';
   return (
     <Cornice titoloRef={titoloRef} titolo={titoloBreve(topic)} onBack={onList}
       arte={<TesseraLezione numero={numero} lato={56} tono="azione" />}
@@ -161,7 +161,7 @@ function Dettaglio({ topic, numero, prec, succ, titoloRef, onList, onGo }: {
               {topic.esempi.map((e, i) => (
                 <li key={i} className="border-l-[3px] border-azione pl-3">
                   <p lang="en" className="font-bold text-testo leading-snug"><RichText text={e.en} /></p>
-                  <p className="mt-0.5 text-[14px] font-medium text-testo-tenue leading-snug"><RichText text={e.it} /></p>
+                  <p className="mt-0.5 text-s2 font-medium text-testo-tenue leading-snug"><RichText text={e.it} /></p>
                 </li>
               ))}
             </ul>
@@ -173,7 +173,7 @@ function Dettaglio({ topic, numero, prec, succ, titoloRef, onList, onGo }: {
             <h2 id="t-errori" className={h2}><span aria-hidden="true" className="text-errore"><Icona nome="stato-risposta-sbagliata" size={20} /></span>Errori</h2>
             <ul className="mt-2.5 flex flex-col gap-2.5">
               {topic.errori.map((e, i) => (
-                <li key={i} className="rounded-[12px] bg-superficie-2 p-4 flex flex-col gap-2.5">
+                <li key={i} className="rounded-xl bg-superficie-2 p-4 flex flex-col gap-2.5">
                   <h3 className="sr-only">Errore {i + 1}</h3>
                   <p className="flex gap-2.5 items-start">
                     <span role="img" aria-label="Sbagliato" className="mt-0.5 inline-flex items-center shrink-0 rounded-full bg-errore-tinta text-errore-testo p-1"><Icona nome="stato-risposta-sbagliata" size={16} /></span>
@@ -183,7 +183,7 @@ function Dettaglio({ topic, numero, prec, succ, titoloRef, onList, onGo }: {
                     <span role="img" aria-label="Giusto" className="mt-0.5 inline-flex items-center shrink-0 rounded-full bg-alto-tinta text-alto-testo p-1"><Icona nome="stato-risposta-giusta" size={16} /></span>
                     <span lang="en" className="font-bold text-testo leading-snug break-words min-w-0">{e.giusto}</span>
                   </p>
-                  <p className="flex gap-2.5 items-start text-[14px] font-medium text-testo-tenue leading-relaxed">
+                  <p className="flex gap-2.5 items-start text-s2 font-medium text-testo-tenue leading-relaxed">
                     <span role="img" aria-label="Perché" className="mt-0.5 shrink-0 text-medio-numero"><Icona nome="spiegazioni" size={18} /></span>
                     <span className="min-w-0"><RichText text={e.perche} /></span>
                   </p>
@@ -195,8 +195,8 @@ function Dettaglio({ topic, numero, prec, succ, titoloRef, onList, onGo }: {
 
         {/* L'avviso del test: l'unico blocco tinto della scheda, ambra (attenzione) */}
         {topic.consiglio && (
-          <section aria-label="Per il test" className="rounded-[12px] bg-medio-tinta p-4">
-            <p className="flex gap-2.5 items-start text-[14.5px] font-medium text-testo leading-relaxed">
+          <section aria-label="Per il test" className="rounded-xl bg-medio-tinta p-4">
+            <p className="flex gap-2.5 items-start text-s2 font-medium text-testo leading-relaxed">
               <span aria-hidden="true" className="mt-0.5 shrink-0 text-medio-testo"><Icona nome="suggerimento" size={20} /></span>
               <span className="min-w-0"><RichText text={topic.consiglio} /></span>
             </p>
@@ -219,7 +219,7 @@ function Vicino({ t, verso, onGo }: { t: TheoryTopic; verso: 'prec' | 'succ'; on
       type="button"
       aria-label={`${succ ? 'Successiva' : 'Precedente'}: ${titoloBreve(t)}`}
       onClick={() => { playTapSound(); onGo(t); }}
-      className="w-full flex items-center gap-3 rounded-[12px] bg-superficie-2 px-3.5 py-3 text-left transition-colors duration-100 hover:bg-linea focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione"
+      className="w-full flex items-center gap-3 rounded-xl bg-superficie-2 px-3.5 py-3 text-left transition-colors duration-100 hover:bg-linea focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione"
     >
       {!succ && <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="indietro" size={20} /></span>}
       <span className="block min-w-0 flex-1 font-bold leading-snug text-testo break-words">{titoloBreve(t)}</span>

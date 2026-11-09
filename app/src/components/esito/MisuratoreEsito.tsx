@@ -33,13 +33,13 @@ export default function MisuratoreEsito({ giuste, totale, soglia, superata }: { 
         {/* segno della soglia: sporge dall'arco da una parte e dall'altra */}
         <line x1={t0x} y1={t0y} x2={t1x} y2={t1y} strokeWidth="4" strokeLinecap="round" className="stroke-testo" />
       </svg>
-      <span aria-hidden="true" className="pointer-events-none absolute whitespace-nowrap text-[12.5px] leading-none font-bold text-testo"
+      <span aria-hidden="true" className="pointer-events-none absolute whitespace-nowrap text-s1 leading-none font-bold text-testo"
         style={{ left: `${(ex / LARG) * 100}%`, top: `${(ey / ALT) * 100}%`, transform: ancora }}>
         Soglia {soglia}
       </span>
       <div className="absolute inset-x-0 top-[34%] flex flex-col items-center leading-none pointer-events-none">
-        <div className="text-[52px] font-extrabold tabular-nums text-testo">
-          {giuste}<span className="text-xl font-bold text-testo-tenue">/{totale}</span>
+        <div className="text-s6 font-extrabold tabular-nums text-testo">
+          {giuste}<span className="text-s3 font-bold text-testo-tenue">/{totale}</span>
         </div>
       </div>
     </div>

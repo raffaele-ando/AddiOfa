@@ -1,4 +1,3 @@
-import { useId } from 'react';
 import { Icona } from '../../brand/icone/Icona';
 import type { Livello } from './stima';
 import { formatProbabilita } from '../../lib/diagnostic';
@@ -10,9 +9,6 @@ const VB_Y = 104, VB_H = 204; // porzione del foglio 390 x 858 che contiene il m
 const pt = (gradi: number, r: number) => [CX + r * Math.cos((gradi * Math.PI) / 180), CY - r * Math.sin((gradi * Math.PI) / 180)] as const;
 const cq = (px: number) => `${((px / 390) * 100).toFixed(3)}cqw`;
 const pct = (y: number) => `${(((y - VB_Y) / VB_H) * 100).toFixed(2)}%`;
-
-// Opacità del grande alone attorno al pallino: più forte nella fascia bassa, come nel foglio dei tre stati.
-const ALONE: Record<Livello, number> = { basso: 0.3, medio: 0.12, alto: 0.12 };
 
 interface Props {
   /** 0-100. null = nessuna stima: arco vuoto. */
@@ -27,7 +23,6 @@ interface Props {
 
 /** Misuratore a tutta larghezza: arco con estremità tonde, tacche, pallino con anello e alone sul valore, (i), percentuale gigante. */
 export default function Misuratore({ percento, livello, etichetta, sotto, onInfo }: Props) {
-  const id = useId().replace(/:/g, '');
   const vuoto = percento === null;
   const frazione = vuoto ? 0 : Math.max(0, Math.min(1, percento / 100));
   const gradiValore = 180 * frazione; // angolo dal lato sinistro
@@ -49,22 +44,6 @@ export default function Misuratore({ percento, livello, etichetta, sotto, onInfo
     <div className="relative w-full select-none" style={{ containerType: 'inline-size', aspectRatio: `390 / ${VB_H}` }}>
       <svg viewBox={`0 ${VB_Y} 390 ${VB_H}`} className="absolute inset-0 w-full h-full overflow-visible" role="img"
         aria-label={vuoto ? 'Probabilità stimata di superare il test: ancora nessuna stima' : `Probabilità stimata di superare il test: ${testo}`}>
-        <defs>
-          <linearGradient id={`a${id}`} gradientUnits="userSpaceOnUse" x1={x0} y1="0" x2={x1} y2="0">
-            <stop offset="0" style={{ stopColor: `var(--color-${livello}-chiaro)` }} />
-            <stop offset="1" style={{ stopColor: fine }} />
-          </linearGradient>
-          <radialGradient id={`h1${id}`} cx="0.5" cy="0.5" r="0.5">
-            <stop offset="0" style={{ stopColor: col, stopOpacity: ALONE[livello] }} />
-            <stop offset="0.55" style={{ stopColor: col, stopOpacity: ALONE[livello] / 3 }} />
-            <stop offset="1" style={{ stopColor: col, stopOpacity: 0 }} />
-          </radialGradient>
-          <radialGradient id={`h2${id}`} cx="0.5" cy="0.5" r="0.5">
-            <stop offset="0" style={{ stopColor: col, stopOpacity: 0.35 }} />
-            <stop offset="1" style={{ stopColor: col, stopOpacity: 0 }} />
-          </radialGradient>
-        </defs>
-
         {/* tacche esterne: più lunghe ogni tre, colorate fino al valore */}
         {esterne.map(i => {
           const g = 180 - 15 * i;
@@ -81,15 +60,13 @@ export default function Misuratore({ percento, livello, etichetta, sotto, onInfo
             style={{ stroke: on ? col : 'var(--color-tacca)' }} />;
         })}
 
-        {!vuoto && <circle cx={px} cy={py} r="51.3" fill={`url(#h1${id})`} />}
         {/* traccia: nel tema scuro un gradino più chiara (tacca), così si vede sul fondo */}
         <path d={arcoFondo} fill="none" strokeWidth={SPESSORE} strokeLinecap="round" className="stroke-linea dark:stroke-tacca" />
-        {!vuoto && frazione > 0 && <path d={arcoValore} fill="none" stroke={`url(#a${id})`} strokeWidth={SPESSORE} strokeLinecap="round" />}
+        {!vuoto && frazione > 0 && <path d={arcoValore} fill="none" stroke={fine} strokeWidth={SPESSORE} strokeLinecap="round" />}
         {!vuoto && (
           <>
-            <circle cx={px} cy={py} r="38.5" fill={`url(#h2${id})`} />
-            {/* anello del marcatore: bianco in chiaro, chiaro in scuro (come una maniglia); con l'anello blu notte sembrava un buco */}
-            <circle cx={px} cy={py} r="17.45" className="fill-superficie dark:fill-testo" style={{ filter: `drop-shadow(0 1px 2px color-mix(in srgb, ${col} 40%, transparent))` }} />
+            {/* anello del marcatore: bianco in chiaro, chiaro in scuro (come una maniglia); piatto, senza alone né ombra */}
+            <circle cx={px} cy={py} r="17.45" className="fill-superficie dark:fill-testo" />
             <circle cx={px} cy={py} r="10.26" style={{ fill: fine }} />
           </>
         )}
