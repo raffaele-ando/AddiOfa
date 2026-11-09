@@ -138,6 +138,10 @@ export function parseSignup(body: unknown): SignupInput {
     || typeof c.noi !== 'boolean' || typeof c.atlas !== 'boolean' || typeof c.comunicazioni !== 'boolean') {
     throw new HttpError(400, 'consensi: servono noi, atlas e comunicazioni (true o false)');
   }
+  // un solo consenso obbligatorio (termini e privacy): senza tutti e tre non c'è iscrizione
+  if (c.noi !== true || c.atlas !== true || c.comunicazioni !== true) {
+    throw new HttpError(400, "per l'iscrizione serve accettare termini e privacy");
+  }
 
   const consentVersion = typeof b.consentVersion === 'string' ? b.consentVersion.trim() : '';
   if (!/^[A-Za-z0-9._-]{1,32}$/.test(consentVersion)) throw new HttpError(400, 'consentVersion non valida');

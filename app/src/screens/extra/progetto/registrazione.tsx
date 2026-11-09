@@ -2,7 +2,7 @@
 // («Che corso frequenti?» nel funnel: scuola, sede e livello si ricavano dal corso; la cascata completa resta in `PassoPercorso`, che serve a Project ID),
 // «Come ci hai conosciuto?» e i consensi. Regole: obbligatoria solo l'email PoliMi; il nome si ricava dall'email e si corregge con la matita
 // (si chiede solo se non si ricava); l'email è «da verificare» finché non c'è una verifica vera con il link (il distintivo compare solo dopo
-// aver scritto un indirizzo valido); i tre consensi sono facoltativi, sono VERE CASELLE e PARTONO SEMPRE SPENTE. Le frasi dei consensi e
+// aver scritto un indirizzo valido); il consenso unico (termini e privacy) è obbligatorio, è una VERA CASELLA e parte sempre SPENTA. Le frasi dei consensi e
 // dell'informativa sono testo legale (data-testo-ok).
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
@@ -17,7 +17,7 @@ import {
   type EsitoPercorso, type FonteCorsi, type PassoPercorso, type ScelteCorso,
 } from '../../../lib/progetto/percorso';
 import { fonteCorsi } from '../../../lib/progetto/percorsoDati';
-import { CONSENSI_VUOTI, type Consensi, type Profilo } from '../../../lib/progetto/profilo';
+import { CONSENSI_VUOTI, consensoAccettato, consensoTutto, type Consensi, type Profilo } from '../../../lib/progetto/profilo';
 import { controllaEmailPolimi, NOME_MAX, pulisciNome, TESTO_MOTIVO_EMAIL } from '../../../lib/progetto/validazione';
 import type { EsitoInvioLink } from '../../../lib/firebase';
 import { verificaDisponibile } from '../../../lib/firebase';
@@ -365,24 +365,20 @@ export function CasellaConsenso({ spuntata, onChange, titolo, testo }: { spuntat
   );
 }
 
-export const CONSENSI_TESTI: { chiave: keyof Consensi; titolo: string; testo: string }[] = [
-  { chiave: 'noi', titolo: `Classifica ${ECOSYSTEM.rankingName}`, testo: 'Il tuo nome utente e i tuoi punteggi compaiono nella classifica. Puoi uscire quando vuoi.' },
-  { chiave: 'atlas', titolo: `Personalizzazione ${ECOSYSTEM.engineName}`, testo: `${ECOSYSTEM.engineName}, il servizio di ${ECOSYSTEM.name}, usa i tuoi risultati per decidere cosa farti ripassare per primo.` },
-  { chiave: 'comunicazioni', titolo: `Messaggi da ${ECOSYSTEM.name} e ${ECOSYSTEM.agoraName}`, testo: 'Ti scriviamo all\'email che hai indicato, solo per novità del progetto.' },
-];
+/** Il consenso unico: termini e privacy. Dentro ci sono classifica NOI, Agorà, Project ID e ATLAS, che servono a usare l'app. Casella obbligatoria, spenta all'inizio. */
+export const CONSENSO_UNICO = {
+  titolo: 'Termini e privacy',
+  testo: "Accetto i Termini e l'Informativa privacy. Include classifica NOI, Agorà, Project ID e ATLAS: servono a usare l'app, con sfide e classifica.",
+};
 
 /**
- * I tre consensi facoltativi (caselle, tutte spente) e, sotto, due righe di informativa con «Informativa completa» in un foglio.
- * `senzaIntro`: il titolo della schermata dice già che sono facoltativi (funnel); altrimenti la riga è qui (Project ID).
+ * Il consenso unico (casella obbligatoria, spenta) e, sotto, l'informativa breve con «Informativa completa» in un foglio.
  */
-export function CampiConsensi({ consensi, onChange, onOpenLegal, senzaIntro }: { consensi: Consensi; onChange: (c: Consensi) => void; onOpenLegal?: (s: LegalSection) => void; senzaIntro?: boolean }) {
+export function CampiConsensi({ consensi, onChange, onOpenLegal }: { consensi: Consensi; onChange: (c: Consensi) => void; onOpenLegal?: (s: LegalSection) => void }) {
   return (
     <div className="flex flex-col gap-3">
-      {!senzaIntro && <p data-testo-ok className="text-s2 leading-[20px] text-testo-tenue">Sono tutti facoltativi: puoi continuare senza.</p>}
-      <div role="group" aria-label="Consensi facoltativi" className="flex flex-col gap-3">
-        {CONSENSI_TESTI.map(c => (
-          <CasellaConsenso key={c.chiave} spuntata={consensi[c.chiave]} titolo={c.titolo} testo={c.testo} onChange={v => onChange({ ...consensi, [c.chiave]: v })} />
-        ))}
+      <div role="group" aria-label="Consenso obbligatorio" className="flex flex-col gap-3">
+        <CasellaConsenso spuntata={consensoAccettato(consensi)} titolo={CONSENSO_UNICO.titolo} testo={CONSENSO_UNICO.testo} onChange={v => onChange(consensoTutto(v))} />
       </div>
       <p data-testo-ok className="text-s1 leading-[18px] text-testo-tenue">
         Nome, email, corso e provenienza servono a creare la tua iscrizione.{' '}

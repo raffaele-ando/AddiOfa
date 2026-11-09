@@ -10,6 +10,7 @@ import Marchio from '../brand/Marchio';
 import FoglioStima from './FoglioStima';
 import { livelloDi, type Livello } from './home/stima';
 import { InfoFoglio } from '../screens/landing/comune';
+import { consensoAccettato } from '../lib/progetto/profilo';
 import { CampiConsensi, CampoEmail, campiPercorso, ElencoCorsi, formDa, nomeEffettivo, PilloleAnno, SceltePasso, ScelteProvenienza, TITOLO_RICHIESTA, type FormRegistrazione } from '../screens/extra/progetto/registrazione';
 import { cammino, indiceDomanda, argomentiDaRipassare, passiPercorso, testoErrori, type Richiesta } from './funnel-logica';
 import { scegli } from '../lib/progetto/percorso';
@@ -399,7 +400,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
           }}>Continua</PrimaryButton>}
         >
           <Eroe nome="verifica-utente" max={240} />
-          <Titolo etichetta="Su di te" titolo="La tua email PoliMi" sotto="Ci serve per creare la tua iscrizione. Le novità per email sono facoltative." />
+          <Titolo etichetta="Su di te" titolo="La tua email PoliMi" sotto="Ci serve per creare la tua iscrizione." />
           <CampoEmail form={reg} onChange={setReg} provato={provato}
             verificata={leggiProgetto(appState).profilo?.emailVerificata && leggiProgetto(appState).profilo?.email === reg.email.trim().toLowerCase()}
             onInviaVerifica={async () => {
@@ -469,21 +470,21 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
         </Screen>
       );
 
-    // ---- Consensi facoltativi, mai preselezionati; qui l'iscrizione si completa e parte la coda
+    // ---- Consenso unico obbligatorio (termini e privacy), mai preselezionato; qui l'iscrizione si completa e parte la coda
     case 'consensi': {
-      const nessuno = !reg.consensi.noi && !reg.consensi.atlas && !reg.consensi.comunicazioni;
+      const accettato = consensoAccettato(reg.consensi);
       return (
         <Screen
           testata={<TopBar {...barra} onBack={daIndietro} />}
-          piede={<PrimaryButton onClick={() => {
+          piede={<PrimaryButton disabled={!accettato} onClick={() => {
             if (!salva(true)) return;
             if (soloRegistrazione) onFinish(stateRef.current.onboarding ?? result());
             else avanti();
-          }}>{soloRegistrazione ? 'Salva' : nessuno ? 'Continua senza' : 'Continua'}</PrimaryButton>}
+          }}>{soloRegistrazione ? 'Salva' : 'Continua'}</PrimaryButton>}
         >
           <EroeIcona icona="consensi" max={112} />
-          <Titolo etichetta="Su di te" titolo="Le tue scelte" sotto="Sono tutte facoltative. Puoi cambiare idea quando vuoi." />
-          <CampiConsensi senzaIntro consensi={reg.consensi} onChange={c => setReg({ ...reg, consensi: c })} onOpenLegal={onOpenLegal} />
+          <Titolo etichetta="Su di te" titolo="Termini e privacy" sotto="Serve per usare l'app: prove, sfide e classifica. Leggi prima di accettare." />
+          <CampiConsensi consensi={reg.consensi} onChange={c => setReg({ ...reg, consensi: c })} onOpenLegal={onOpenLegal} />
         </Screen>
       );
     }

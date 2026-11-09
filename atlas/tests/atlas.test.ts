@@ -40,7 +40,7 @@ describe('iscrizioni', () => {
     assert.equal(riga.nome, 'Mario Rossi');
     assert.equal(riga.email_verificata, 0);
     assert.equal(riga.consenso_noi, 1);
-    assert.equal(riga.consenso_atlas, 0);
+    assert.equal(riga.consenso_atlas, 1);
     assert.equal(riga.consenso_comunicazioni, 1);
   });
 
@@ -60,6 +60,12 @@ describe('iscrizioni', () => {
     }
     const { iscrizioni } = await elenco();
     assert.ok(!iscrizioni.some(i => String(i.email).includes('gmail') || String(i.email).includes('evil')));
+  });
+
+  test('il consenso unico è obbligatorio: senza termini e privacy (tutti e tre true) l\'iscrizione è rifiutata', async () => {
+    const r = await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'nocons@polimi.it', nome: 'Nessun Consenso', consensi: { noi: true, atlas: true, comunicazioni: false } })), ip: nuovoIp() });
+    assert.equal(r.status, 400);
+    assert.match(await r.text(), /termini e privacy/);
   });
 
   test('rifiuta forma sbagliata: consensi non booleani, nome vuoto, app sconosciuta', async () => {
@@ -264,7 +270,7 @@ describe('admin', () => {
   });
 
   test('con il segreto: elenco JSON e CSV con la colonna consenso_comunicazioni', async () => {
-    await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'csv@polimi.it', nome: '=HYPERLINK("http://x")', consensi: { noi: false, atlas: false, comunicazioni: false } })), ip: nuovoIp() });
+    await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'csv@polimi.it', nome: '=HYPERLINK("http://x")', consensi: { noi: true, atlas: true, comunicazioni: true } })), ip: nuovoIp() });
     const j = await elenco();
     assert.ok(j.totale >= 1);
     assert.ok('consenso_comunicazioni' in j.iscrizioni[0]);
@@ -318,7 +324,7 @@ describe('Project ID e collegamento con l\'iscrizione', () => {
   const LUCA = 'test:luca:Luca';
   const link = (token: string, extra: Record<string, unknown> = {}) => dev.chiama('/v1/links/addiofa', {
     method: 'PUT', token, ip: nuovoIp(), headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ scopes: ['profile'], consentVersion: '2026-09-27', ...extra }),
+    body: JSON.stringify({ scopes: ['profile'], consentVersion: '2026-11-09', ...extra }),
   });
 
   test('token di prova: accettato solo con ALLOW_TEST_TOKENS; token falso 401', async () => {
@@ -335,12 +341,12 @@ describe('Project ID e collegamento con l\'iscrizione', () => {
     const me = (await (await dev.chiama('/v1/me', { token: MARIA, ip: nuovoIp() })).json()) as any;
     assert.equal(me.account.polimiEmail, 'maria@polimi.it');
     assert.deepEqual(me.profile, { nome: 'Maria B.', scuola: 'ing-ind-inf', sede: 'bovisa', livello: 'triennale', corso: 'Informatica', anno: 1 });
-    assert.deepEqual(me.consensi, { noi: true, atlas: false, comunicazioni: true });
+    assert.deepEqual(me.consensi, { noi: true, atlas: true, comunicazioni: true });
     assert.equal(me.signup.email, 'maria@polimi.it');
     assert.equal(me.signup.emailVerificata, false);
 
     // una nuova iscrizione con consensi cambiati non passa più dal modulo pubblico (è collegata a un login)
-    await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'maria@polimi.it', nome: 'Hacker', consensi: { noi: false, atlas: true, comunicazioni: false } })), ip: nuovoIp() });
+    await dev.chiama('/v1/signups', { ...postJson(iscrizione({ email: 'maria@polimi.it', nome: 'Hacker' })), ip: nuovoIp() });
     const dopo = (await (await dev.chiama('/v1/me', { token: MARIA, ip: nuovoIp() })).json()) as any;
     assert.equal(dopo.profile.nome, 'Maria B.');
 
@@ -348,7 +354,7 @@ describe('Project ID e collegamento con l\'iscrizione', () => {
     assert.equal(ex.signup.corso, 'Informatica');
     assert.equal(ex.signupConsentLog.length, 1);
     assert.equal(ex.signupConsentLog[0].action, 'grant');
-    assert.deepEqual(JSON.parse(ex.signupConsentLog[0].scopes), ['noi.leaderboard', 'comunicazioni']);
+    assert.deepEqual(JSON.parse(ex.signupConsentLog[0].scopes), ['noi.leaderboard', 'atlas.personalize', 'comunicazioni']);
     assert.equal(ex.consentLog.length, 1); // il consenso del collegamento resta separato
   });
 
@@ -374,14 +380,13 @@ describe('Project ID e collegamento con l\'iscrizione', () => {
     const corpo = iscrizione({ email: 'nina@polimi.it', nome: 'Nina' });
     await dev.chiama('/v1/signups', { ...postJson(corpo), ip: nuovoIp() });
     await dev.chiama('/v1/signups', { ...postJson(corpo), ip: nuovoIp() }); // uguale: nessuna voce nuova
-    await dev.chiama('/v1/signups', { ...postJson({ ...corpo, consensi: { noi: false, atlas: true, comunicazioni: false } }), ip: nuovoIp() });
+    await dev.chiama('/v1/signups', { ...postJson({ ...corpo, consentVersion: 'iscrizione-2026-12-01' }), ip: nuovoIp() });
     await link(NINA, { polimiEmail: 'nina@polimi.it' });
     const ex = (await (await dev.chiama('/v1/me/export', { token: NINA, ip: nuovoIp() })).json()) as any;
     assert.deepEqual(ex.signupConsentLog.map((l: any) => l.action), ['grant', 'update']);
-    assert.deepEqual(JSON.parse(ex.signupConsentLog[1].scopes), ['atlas.personalize']);
-    assert.equal(ex.signupConsentLog[1].consent_version, 'iscrizione-2026-10-16');
+    assert.equal(ex.signupConsentLog[1].consent_version, 'iscrizione-2026-12-01');
     assert.ok(ex.signupConsentLog[1].created_at > 0);
-    assert.deepEqual(ex.consensi, { noi: false, atlas: true, comunicazioni: false });
+    assert.deepEqual(ex.consensi, { noi: true, atlas: true, comunicazioni: true });
   });
 
   test('PATCH /v1/me: polimiEmail, corso e sede', async () => {
@@ -421,7 +426,7 @@ describe('Project ID e collegamento con l\'iscrizione', () => {
 describe('classifica NOI (invariata)', () => {
   const put = (token: string, scopes: string[]) => dev.chiama('/v1/links/addiofa', {
     method: 'PUT', token, ip: nuovoIp(), headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ scopes, consentVersion: '2026-09-27' }),
+    body: JSON.stringify({ scopes, consentVersion: '2026-11-09' }),
   });
   const punteggio = (token: string, body: unknown) => dev.chiama('/v1/noi/addiofa/score', {
     method: 'POST', token, ip: nuovoIp(), headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),

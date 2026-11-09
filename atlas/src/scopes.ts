@@ -1,7 +1,7 @@
 // Permessi che un'app Project può chiedere al Project ID. Devono coincidere con quelli mostrati
 // nella schermata di consenso delle app (app/src/config/ecosystem.ts).
 
-export const CONSENT_VERSION = '2026-09-27';
+export const CONSENT_VERSION = '2026-11-09';
 
 export const SCOPES = {
   profile: { required: true },            // nome, foto ed email del Project ID

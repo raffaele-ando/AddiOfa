@@ -39,7 +39,7 @@ Gli script Python della grafica si lanciano **da `grafica/`**: `python3 strument
 
 ## Cose che non si fanno
 
-- Niente pagamenti, analytics, cookie di tracciamento. Ogni funzione funziona subito nel browser; ciò che ha bisogno di ATLAS (iscrizione, Project ID, classifica NOI) dice con una riga vera se non è collegato e non finge mai. Dati personali raccolti solo con informativa, consensi facoltativi non preselezionati, email PoliMi mai segnata «verificata» se non lo è. Niente urgenza finta, account o recensioni finti, notifiche inventate.
+- Niente pagamenti, analytics, cookie di tracciamento. Ogni funzione funziona subito nel browser; ciò che ha bisogno di ATLAS (iscrizione, Project ID, classifica NOI) dice con una riga vera se non è collegato e non finge mai. Dati personali raccolti solo con informativa, un solo consenso obbligatorio (termini e privacy) che copre app, classifica, Agorà, Project ID e ATLAS, mai preselezionato, senza caselle facoltative, email PoliMi mai segnata «verificata» se non lo è. Niente urgenza finta, account o recensioni finti, notifiche inventate.
 - Nei testi per l'utente: niente «Pass», «Sblocca», «Gratis/Prova» come etichette, niente beta, dimostrativo, esperimento, «presto», «in arrivo». Tutto è aperto e senza limiti. «Simulazione di prova» è lecito. Un solo formato di test: 30 domande, 15 minuti, soglia 25/30.
 - Niente `<text>` negli SVG generati (testi come tracciati), niente font esterni nella demo.
 - Non si cancellano `app/firebase-applet-config.json` e `app/bun.lock`: li toglie l'utente.

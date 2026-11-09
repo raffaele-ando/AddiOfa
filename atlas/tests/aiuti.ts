@@ -82,8 +82,8 @@ export const iscrizione = (extra: Record<string, unknown> = {}) => ({
   corso: 'Ingegneria Gestionale',
   sede: 'leonardo',
   provenienza: 'amici',
-  consensi: { noi: true, atlas: false, comunicazioni: true },
-  consentVersion: 'iscrizione-2026-10-16',
+  consensi: { noi: true, atlas: true, comunicazioni: true },
+  consentVersion: 'iscrizione-2026-11-09',
   ...extra,
 });
 

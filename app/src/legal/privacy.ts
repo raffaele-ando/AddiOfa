@@ -48,10 +48,10 @@ export const privacy: LegalDoc = {
       elenco: [
         `Creare e tenere la tua iscrizione e, se lo scegli, il ${ID}: esecuzione del servizio che chiedi (art. 6.1.b GDPR).`,
         'Conoscere in forma aggregata chi usa AddiOFA (per esempio quante persone per corso e sede), senza usare i dati per decisioni su di te: legittimo interesse del titolare (art. 6.1.f GDPR). Puoi opporti in ogni momento.',
-        `Classifica NOI: solo se dai il consenso (art. 6.1.a GDPR), come permesso del ${ID} o con la casella dell'iscrizione. Personalizzazione ${A}: solo con consenso, che puoi ritirare.`,
+        `Classifica NOI, ${ID} e personalizzazione ${A}: li usi con l'unico consenso, Termini e privacy (art. 6.1.a e 6.1.b GDPR). Non ci sono permessi separati da scegliere.`,
         `Messaggi da ${P} e Agorà all'indirizzo che hai indicato: solo se dai il consenso (art. 6.1.a GDPR). Senza consenso non ti scriviamo.`,
         'Sicurezza e limite delle richieste ripetute: legittimo interesse (art. 6.1.f GDPR).',
-        'I consensi sono facoltativi e indipendenti: non darli non toglie nessuna funzione di studio. Ritirarli non rende illecito quanto fatto prima.',
+        'Il consenso a termini e privacy è obbligatorio per usare l\'app con iscrizione, classifica e Project ID. Ritirarlo elimina l\'account e i dati collegati; non rende illecito quanto fatto prima.',
       ],
     },
     {

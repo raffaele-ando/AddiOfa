@@ -49,7 +49,7 @@ export const termini: LegalDoc = {
     {
       titolo: `${ID}, NOI e Agorà`,
       paragrafi: [
-        `Il ${ID} è facoltativo: serve a ritrovare l'iscrizione e a scegliere cosa condividere, permesso per permesso. Entrare nella classifica NOI è un permesso a parte, spento di partenza: chi entra è visibile con il @nome utente, le domande imparate e il miglior punteggio.`,
+        `Il ${ID} serve a ritrovare l'iscrizione. La classifica NOI è compresa nel consenso a termini e privacy: chi partecipa è visibile con il @nome utente, le domande imparate e il miglior punteggio.`,
         'Scegli un @nome utente che non offenda nessuno: ci riserviamo di togliere dalla classifica chi non lo fa. I punteggi li invia l\'app e non sono controllati: la classifica è un gioco, non una prova di merito.',
         'Agorà è su Instagram: aprendo il suo profilo lasci AddiOFA e valgono le regole di Instagram.',
       ],

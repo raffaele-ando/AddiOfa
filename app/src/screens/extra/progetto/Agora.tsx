@@ -5,13 +5,10 @@ import { useExtra } from '../contesto';
 import { Pagina, Sezione, Testata } from './comuni';
 import { GruppoRighe, Riga } from '../ui';
 import { AGORA_URL, ECOSYSTEM } from '../../../config/ecosystem';
-import { leggiProgetto } from '../../../lib/progetto/profilo';
 import { playTapSound } from '../../../lib/audio';
 
 export default function Agora() {
   const { appState, vai } = useExtra();
-  const { profilo } = leggiProgetto(appState);
-  const messaggi = profilo?.consensi.comunicazioni === true;
   return (
     <Pagina titolo={ECOSYSTEM.agoraName}>
       <Testata nome="messaggi-supporto" />
@@ -27,8 +24,7 @@ export default function Agora() {
 
       <Sezione id="agora-messaggi" titolo="Novità">
         <GruppoRighe etichetta="Novità">
-          <Riga icona="email" titolo="Novità da Project e Agorà" onClick={() => vai('projectid')}
-            sottotitolo={messaggi ? 'Attive: puoi ritirare il consenso nei tuoi dati.' : 'Disattivate: non hai dato il consenso.'} />
+          <Riga icona="email" titolo="Novità da Project e Agorà" onClick={() => vai('projectid')} />
         </GruppoRighe>
       </Sezione>
     </Pagina>

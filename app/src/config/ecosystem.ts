@@ -54,10 +54,10 @@ export const FIREBASE_CONFIG: { apiKey: string; authDomain: string; projectId: s
 })();
 
 /** Versione del consenso ai permessi del Project ID: uguale a CONSENT_VERSION di atlas/src/scopes.ts. Cambiando testi o permessi si aumenta in tutti e due. */
-export const CONSENT_VERSION = '2026-09-27';
+export const CONSENT_VERSION = '2026-11-09';
 
-/** Versione del testo dei consensi dell'iscrizione (nome, email, corso, tre consensi facoltativi): si cambia a ogni cambio di testo. Formato richiesto dal Worker: [A-Za-z0-9._-]{1,32}. */
-export const ISCRIZIONE_VERSIONE = 'iscrizione-2026-10-17';
+/** Versione del testo dei consensi dell'iscrizione (nome, email, corso, un solo consenso obbligatorio: termini e privacy): si cambia a ogni cambio di testo. Formato richiesto dal Worker: [A-Za-z0-9._-]{1,32}. */
+export const ISCRIZIONE_VERSIONE = 'iscrizione-2026-11-09';
 
 export type ScopeId = 'profile' | 'progress.share' | 'noi.leaderboard' | 'atlas.personalize';
 

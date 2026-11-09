@@ -36,7 +36,6 @@ export default function Noi() {
   const mio = valoriNoi(appState);
   const haSimulazioni = (appState.history ?? []).length > 0;
   const [dati, setDati] = useState<Dati>({ fase: 'carico' });
-  const [lavoro, setLavoro] = useState(false);
   const [errore, setErrore] = useState<string | null>(null);
 
   // Con ATLAS configurato: se si partecipa si aggiorna prima il proprio punteggio (i numeri veri di questo dispositivo), poi si legge la classifica.
@@ -53,17 +52,6 @@ export default function Noi() {
   }, [acc.atlasOnline, serverInClassifica, mio.imparate, mio.migliorSimulazione]);
   useEffect(() => { if (!acc.controllo) void carica(); }, [carica, acc.controllo]);
 
-  const cambiaPermesso = async (aderisci: boolean) => {
-    setLavoro(true); setErrore(null);
-    const scopi = new Set<ScopeId>(collegamento?.scopes ?? REQUIRED_SCOPES);
-    if (aderisci) scopi.add('noi.leaderboard'); else scopi.delete('noi.leaderboard');
-    const elenco = Array.from(scopi);
-    try {
-      const r = await atlas.setLink(ECOSYSTEM.appId, elenco);
-      const link = r.links.find(l => l.appId === ECOSYSTEM.appId);
-      aggiorna(s => aggiornaProgetto(s, p => ({ ...p, collegamento: { scopes: Array.from(new Set([...REQUIRED_SCOPES, ...(link?.scopes ?? elenco)])), collegatoIl: link?.grantedAt ?? Date.now(), aggiornatoIl: Date.now(), projectId: r.account.id, handle: r.account.handle } })));
-    } catch (e) { setErrore(messaggioErrore(e)); } finally { setLavoro(false); }
-  };
 
   const t = TESTO_STATO[stato];
   const c = dati.fase === 'ok' ? dati.classifica : null;
@@ -130,8 +118,6 @@ export default function Noi() {
 
       {errore && <p role="alert" data-testo-ok className="mt-4 rounded-xl border border-errore/30 bg-errore-tinta p-3 text-center text-s2 font-bold text-errore-testo dark:bg-superficie">{errore}</p>}
       <div className="mt-6 flex flex-col gap-2.5">
-        {stato === 'da-aderire' && <BottoneAzione disabled={lavoro} onClick={() => { void cambiaPermesso(true); }}>Entra in classifica</BottoneAzione>}
-        {stato === 'aderito' && <BottoneSecondario disabled={lavoro} onClick={() => { void cambiaPermesso(false); }}>Esci dalla classifica</BottoneSecondario>}
         {(stato === 'da-accedere' || stato === 'da-aderire') && <BottoneSecondario onClick={() => vai('projectid')} icona={<Icona nome="projectid" size={20} />}>{ECOSYSTEM.accountName}</BottoneSecondario>}
         {'classifica' in SCHERMATE && <BottoneSecondario onClick={() => vai('classifica')} icona={<Icona nome="classifica" size={20} />}>Classifica tra amici</BottoneSecondario>}
       </div>

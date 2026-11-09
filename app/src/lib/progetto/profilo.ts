@@ -16,6 +16,11 @@ export interface Consensi { noi: boolean; atlas: boolean; comunicazioni: boolean
 /** Nessun consenso preselezionato: è lo stato di partenza di ogni schermata che li chiede. */
 export const CONSENSI_VUOTI: Readonly<Consensi> = Object.freeze({ noi: false, atlas: false, comunicazioni: false });
 
+/** Il consenso unico (termini e privacy) copre tutti e tre i campi: è accettato solo se sono tutti true. */
+export function consensoAccettato(c: Consensi): boolean { return c.noi === true && c.atlas === true && c.comunicazioni === true; }
+/** Accettare o ritirare il consenso unico: tutti i campi insieme. */
+export function consensoTutto(v: boolean): Consensi { return { noi: v, atlas: v, comunicazioni: v }; }
+
 export interface Profilo {
   email: string;
   /** Ricavato dall'email (o scritto a mano quando non si ricava); modificabile con la matita. */

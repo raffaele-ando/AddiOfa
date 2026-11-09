@@ -25,7 +25,7 @@ export default function Esplora() {
     : !profilo ? { testo: 'Da completare', tono: 'medio' }
     : { testo: sInvio.chiave === 'solo-locale' ? 'Su questo dispositivo' : sInvio.titolo, tono: TONO_INVIO[sInvio.chiave] };
   const statoNoi: Carta['stato'] = !ATLAS_API_URL ? { testo: 'Non attivo', tono: 'medio' }
-    : collegamento?.scopes.includes('noi.leaderboard') ? { testo: 'Aderito', tono: 'neutro' } : { testo: 'Non hai aderito', tono: 'neutro' };
+    : collegamento ? { testo: 'Partecipi', tono: 'neutro' } : { testo: 'Da collegare', tono: 'neutro' };
 
   const carte: Carta[] = [
     { id: 'projectid', titolo: 'Project ID', riga: 'Il tuo profilo di iscrizione', stato: statoProjectId },

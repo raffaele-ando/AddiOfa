@@ -6,6 +6,7 @@ import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { BottoneAzione, BottoneRiga, BottoneSecondario, Etichetta, Interruttore, Nota, Pagina, RigaDato, Sezione, copiaTesto, type TonoStato } from './comuni';
 import { CampiConsensi, CampoEmail, campiPercorso, formDa, nomeEffettivo, PassoPercorso, ScelteProvenienza, type FormRegistrazione } from './registrazione';
+import { consensoAccettato } from '../../../lib/progetto/profilo';
 import { useAccesso, useInvio, useRitornoVerifica, useSincronizzaCollegamento } from './hooks';
 import { atlas, type MeRisposta } from '../../../lib/atlas';
 import { coda, descriviInvio, type ChiaveStato } from '../../../lib/progetto/coda';
@@ -26,13 +27,6 @@ type Vista = 'principale' | 'consenso' | 'modifica' | 'esporta' | 'cancella-loca
 /** Una icona per ogni riga del percorso di studi (nessuna in comune: ogni dato ha il suo segno). */
 const ICONA_PERCORSO: Record<string, NomeIcona> = { Scuola: 'percorso-scuola', Sede: 'percorso-sede', Livello: 'percorso-livello', Anno: 'percorso-anno', Corso: 'percorso-corso' };
 const TONO_INVIO: Record<ChiaveStato, TonoStato> = { inviata: 'alto', 'in-attesa': 'medio', invio: 'azione', rifiutata: 'errore', 'solo-locale': 'neutro' };
-const NOMI_CONSENSI = { noi: `Classifica ${ECOSYSTEM.rankingName}`, atlas: `Personalizzazione ${ECOSYSTEM.engineName}`, comunicazioni: `Messaggi da ${ECOSYSTEM.name} e ${ECOSYSTEM.agoraName}` } as const;
-
-function consensiDati(p: { noi: boolean; atlas: boolean; comunicazioni: boolean }): string {
-  const dati = (Object.keys(NOMI_CONSENSI) as (keyof typeof NOMI_CONSENSI)[]).filter(k => p[k]).map(k => NOMI_CONSENSI[k]);
-  return dati.length ? dati.join(', ') : 'Nessun consenso dato';
-}
-
 export default function ProjectId() {
   const { appState, aggiorna, vai, apriLegale } = useExtra();
   const { profilo, collegamento } = leggiProgetto(appState);
@@ -131,7 +125,6 @@ export default function ProjectId() {
                 ? percorso.map(r => <RigaDato key={r.etichetta} icona={ICONA_PERCORSO[r.etichetta] ?? 'percorso-corso'} etichetta={r.etichetta} valore={r.valore} tono="alto" />)
                 : <RigaDato icona="percorso-corso" etichetta="Percorso di studi" valore="Non indicato" tono="alto" />}
               <RigaDato icona="provenienza" etichetta="Come ci hai conosciuto" valore={nomeProvenienza(profilo.provenienza) ?? 'Non indicato'} tono="viola" />
-              <RigaDato icona="consensi" etichetta="Consensi" valore={consensiDati(iscrizioneRemota?.consensi ?? profilo.consensi)} tono="viola" />
               <RigaDato icona={statoInvio.chiave === 'inviata' ? 'stato-ok' : statoInvio.chiave === 'rifiutata' ? 'stato-errore' : 'stato-attesa'} etichetta={`Invio ad ${ECOSYSTEM.engineName}`} tono={statoInvio.chiave === 'inviata' ? 'alto' : statoInvio.chiave === 'rifiutata' ? 'errore' : 'medio'}
                 valore={<span><Etichetta tono={TONO_INVIO[statoInvio.chiave]}>{statoInvio.titolo}</Etichetta><span className="mt-1 block text-s1 font-normal leading-[18px] text-testo-tenue">{statoInvio.dettaglio}</span></span>} />
             </ul>
@@ -231,7 +224,7 @@ function AccountBlocco({ acc, collegamento, profilo, onCollega, onPermesso, onSc
                 <span data-testo-ok className="flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo">{s.title}</span>
                 <span data-testo-ok className="mt-0.5 block text-s1 leading-[18px] text-testo-tenue">{s.description}</span>
               </span>
-              {s.required ? <Obbligatorio /> : <Interruttore acceso={collegamento.scopes.includes(s.id)} disabled={acc.occupato} etichetta={s.title} onChange={v => onPermesso(s.id, v)} />}
+              <Obbligatorio />
             </li>
           ))}
         </ul>
@@ -250,16 +243,14 @@ const Obbligatorio = () => <span className="inline-flex shrink-0 items-center ga
 
 const ErroreRiga = ({ testo }: { testo: string }) => <p role="alert" data-testo-ok className="rounded-xl border border-errore/30 bg-errore-tinta p-3 text-center text-s2 font-bold text-errore-testo dark:bg-superficie">{testo}</p>;
 
-/** Schermata di consenso «Accedi con Project ID»: i permessi uno per uno, tutti spenti, tranne il profilo di base senza il quale l'account non esiste. */
+/** Schermata «Accedi con Project ID»: accettando il consenso unico (termini e privacy) si attivano tutti i permessi insieme. */
 function Consenso({ profilo, acc, onAnnulla, onFatto }: {
   profilo: Profilo | undefined; acc: ReturnType<typeof useAccesso>; onAnnulla: () => void; onFatto: (scopes: ScopeId[], r: MeRisposta) => void;
 }) {
-  const [scelti, setScelti] = useState<Set<ScopeId>>(() => new Set());
-  const [collegaIscrizione, setCollegaIscrizione] = useState(false);
   const u = acc.utente!;
   const conferma = async () => {
-    const elenco = Array.from(new Set<ScopeId>([...REQUIRED_SCOPES, ...scelti]));
-    const r = await acc.esegui(() => atlas.setLink(ECOSYSTEM.appId, elenco, collegaIscrizione && profilo ? profilo.email : undefined));
+    const elenco = SCOPES.map(s => s.id);
+    const r = await acc.esegui(() => atlas.setLink(ECOSYSTEM.appId, elenco, profilo ? profilo.email : undefined));
     if (r) onFatto(elenco, r);
   };
   return (
@@ -276,27 +267,16 @@ function Consenso({ profilo, acc, onAnnulla, onFatto }: {
                 <span data-testo-ok className="flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo">{s.title}</span>
                 <span data-testo-ok className="mt-0.5 block text-s1 leading-[18px] text-testo-tenue">{s.description}</span>
               </span>
-              {s.required ? <Obbligatorio /> : (
-                <Interruttore acceso={scelti.has(s.id)} disabled={acc.occupato} etichetta={s.title}
-                  onChange={v => setScelti(prec => { const n = new Set(prec); if (v) n.add(s.id); else n.delete(s.id); return n; })} />
-              )}
+              <Obbligatorio />
             </li>
           ))}
-          {profilo && (
-            <li className="flex items-start gap-3 p-3.5">
-              <span className="min-w-0 flex-1">
-                <span data-testo-ok className="block text-s2 leading-[20px] font-bold text-testo">Collega la mia iscrizione</span>
-                <span data-testo-ok className="mt-0.5 block text-s1 leading-[18px] text-testo-tenue">Lega all&apos;account l&apos;email {profilo.email}, così da qui puoi esportare e cancellare anche l&apos;iscrizione. L&apos;email non è verificata.</span>
-              </span>
-              <Interruttore acceso={collegaIscrizione} disabled={acc.occupato} etichetta="Collega la mia iscrizione" onChange={setCollegaIscrizione} />
-            </li>
-          )}
+          
         </ul>
       </Sezione>
-      <p data-testo-ok className="mt-3 text-s1 leading-[18px] text-testo-tenue">Versione del consenso {CONSENT_VERSION}. Puoi cambiare o ritirare ogni permesso quando vuoi da questa pagina.</p>
+      <p data-testo-ok className="mt-3 text-s1 leading-[18px] text-testo-tenue">Versione del consenso {CONSENT_VERSION}. Per ritirarlo elimina l&apos;account da questa pagina.</p>
       {acc.errore && <div className="mt-3"><ErroreRiga testo={acc.errore} /></div>}
       <div className="mt-5 flex flex-col gap-2.5">
-        <BottoneAzione onClick={conferma} disabled={acc.occupato}>{acc.occupato ? 'Collego…' : 'Consenti'}</BottoneAzione>
+        <BottoneAzione onClick={conferma} disabled={acc.occupato}>{acc.occupato ? 'Collego…' : 'Accetto e collego'}</BottoneAzione>
         <BottoneSecondario onClick={onAnnulla} disabled={acc.occupato}>Annulla</BottoneSecondario>
       </div>
     </Pagina>
@@ -315,6 +295,7 @@ function Modifica({ profilo, remota, acc, onAnnulla, onSalva, apriLegale }: {
   const errori = controllaDatiMinimi({ nome: form.nome, email: form.email });
   const corrente = riepilogoPercorso(profilo);
   const salva = async () => {
+    if (!bloccata && !consensoAccettato(form.consensi)) { setErrore('Per salvare serve accettare termini e privacy.'); return; }
     if (!bloccata && (errori.nome || errori.email)) { setProvato(true); return; }
     const p = creaProfilo(
       { email: bloccata ? profilo.email : form.email, nome: bloccata ? profilo.nome : nomeEffettivo(form) ?? '', ...(cambiaPercorso && esitoPercorso(form.percorso, fonteCorsi) ? campiPercorso(form.percorso) : { scuola: profilo.scuola, sede: profilo.sede, livello: profilo.livello, corso: profilo.corso, corsoId: profilo.corsoId, anno: profilo.anno }),
