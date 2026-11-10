@@ -1,17 +1,17 @@
-id,gruppo,tipo,uso_nell_app,stato,formato,dimensione_px,sezione_prompt,note
-hero-scena,sostituzione,illustrazione,landing Hero.tsx (scena chiara e scura),da generare,PNG trasparente,1952x976,A1,sostituisce il raster con alone luminoso
-banner-edificio,decisione,illustrazione,landing Perche.tsx,da decidere,PNG trasparente,936x472,A2,l'audit chiede una sola illustrazione per schermata: consigliato toglierla
-cta-fondo,decisione,sfondo,landing CtaFinale.tsx,da decidere,PNG,900x342,A3,"consigliato colore piatto, nessuna immagine"
-badge-studio,opzionale,emblema,badge Studio (lib/profilo/badge.ts),da generare,PNG trasparente,512x512,B,oggi icona di sistema
-badge-simulazioni,opzionale,emblema,badge Simulazioni,da generare,PNG trasparente,512x512,B,oggi icona di sistema
-badge-costanza,opzionale,emblema,badge Costanza,da generare,PNG trasparente,512x512,B,oggi icona di sistema
-badge-livello,opzionale,emblema,badge Livello,da generare,PNG trasparente,512x512,B,oggi icona di sistema
-badge-memoria-10,opzionale,emblema,badge Memoria a lungo termine,da generare,PNG trasparente,512x512,B,oggi icona di sistema
-badge-accuratezza-80,opzionale,emblema,badge Accuratezza 80 %,da generare,PNG trasparente,512x512,B,oggi icona di sistema
-badge-ore-5,opzionale,emblema,badge 5 ore di studio,da generare,PNG trasparente,512x512,B,oggi icona di sistema
-badge-prima-simulazione,opzionale,emblema,badge Prima simulazione,da generare,PNG trasparente,512x512,B,oggi icona di sistema
-badge-simulazione-superata,opzionale,emblema,badge Simulazione superata,da generare,PNG trasparente,512x512,B,oggi icona di sistema
-badge-simulazioni-superate-3,opzionale,emblema,badge 3 simulazioni superate,da generare,PNG trasparente,512x512,B,oggi icona di sistema
-screen-home,riferimento,layout schermata,nessuna: solo per ricostruire la Home,da generare,PNG 390x844,390x844,C1,non va nell'app; niente testo leggibile
-screen-consenso,riferimento,layout schermata,nessuna: solo per il consenso unico,da generare,PNG 390x844,390x844,C2,non va nell'app
-screen-stato-vuoto,riferimento,layout schermata,nessuna: solo per gli stati vuoti,da generare,PNG 390x844,390x844,C3,non va nell'app
+id,gruppo,tipo,uso_nell_app,stato,file_nel_repo,note
+hero-scena,sostituzione,illustrazione,landing Hero.tsx (scena chiara e scura),pronto: PNG trasparente,grafica/brand/emblemi-ai/hero-scena-ai.png,da collegare; la versione scura usa lo stesso soggetto con altro sfondo
+banner-edificio,decisione,illustrazione,landing Perche.tsx,da scegliere tra quattro facciate,grafica/fonti/ai-nuove/ref-edificio-c.webp (consigliato),l'audit chiede una illustrazione per schermata: consigliato toglierlo
+cta-fondo,decisione,sfondo,landing CtaFinale.tsx,consigliato: colore piatto,nessuno,non serve un'immagine
+badge-studio,emblema,emblema PNG,badge Studio (lib/profilo/badge.ts),pronto: PNG 512 trasparente,grafica/brand/emblemi-ai/badge-studio.png,oggi icona di sistema: da decidere se sostituirla
+badge-simulazioni,emblema,emblema PNG,badge Simulazioni (lib/profilo/badge.ts),pronto: PNG 512 trasparente,grafica/brand/emblemi-ai/badge-simulazioni.png,oggi icona di sistema: da decidere se sostituirla
+badge-costanza,emblema,emblema PNG,badge Costanza (lib/profilo/badge.ts),pronto: PNG 512 trasparente,grafica/brand/emblemi-ai/badge-costanza.png,oggi icona di sistema: da decidere se sostituirla
+badge-livello,emblema,emblema PNG,badge Livello (lib/profilo/badge.ts),pronto: PNG 512 trasparente,grafica/brand/emblemi-ai/badge-livello.png,oggi icona di sistema: da decidere se sostituirla
+badge-memoria-10,emblema,emblema PNG,badge Memoria a lungo termine (lib/profilo/badge.ts),pronto: PNG 512 trasparente,grafica/brand/emblemi-ai/badge-memoria-10.png,oggi icona di sistema: da decidere se sostituirla
+badge-accuratezza-80,emblema,emblema PNG,badge Accuratezza 80 % (lib/profilo/badge.ts),pronto: PNG 512 trasparente,grafica/brand/emblemi-ai/badge-accuratezza-80.png,oggi icona di sistema: da decidere se sostituirla
+badge-ore-5,emblema,emblema PNG,badge 5 ore di studio (lib/profilo/badge.ts),pronto: PNG 512 trasparente,grafica/brand/emblemi-ai/badge-ore-5.png,oggi icona di sistema: da decidere se sostituirla
+badge-prima-simulazione,emblema,emblema PNG,badge Prima simulazione (lib/profilo/badge.ts),pronto: PNG 512 trasparente,grafica/brand/emblemi-ai/badge-prima-simulazione.png,oggi icona di sistema: da decidere se sostituirla
+badge-simulazione-superata,emblema,emblema PNG,badge Simulazione superata (lib/profilo/badge.ts),pronto: PNG 512 trasparente,grafica/brand/emblemi-ai/badge-simulazione-superata.png,oggi icona di sistema: da decidere se sostituirla
+badge-simulazioni-superate-3,emblema,emblema PNG,badge 3 simulazioni superate (lib/profilo/badge.ts),pronto: PNG 512 trasparente,grafica/brand/emblemi-ai/badge-simulazioni-superate-3.png,oggi icona di sistema: da decidere se sostituirla
+screen-home,riferimento,layout schermata,Home con card dominante (solo layout),riferimento caricato,grafica/fonti/ai-nuove/ref-schermata-home.webp,non va nell'app
+screen-consenso,riferimento,layout schermata,consenso unico (solo layout),riferimento caricato,grafica/fonti/ai-nuove/ref-schermata-consenso.webp,non va nell'app
+screen-stato-vuoto,riferimento,layout schermata,stati vuoti (solo layout),riferimento caricato,grafica/fonti/ai-nuove/ref-schermata-stato-vuoto.webp,non va nell'app
