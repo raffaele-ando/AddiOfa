@@ -1,0 +1,17 @@
+id,gruppo,tipo,uso_nell_app,stato,formato,dimensione_px,sezione_prompt,note
+hero-scena,sostituzione,illustrazione,landing Hero.tsx (scena chiara e scura),da generare,PNG trasparente,1952x976,A1,sostituisce il raster con alone luminoso
+banner-edificio,decisione,illustrazione,landing Perche.tsx,da decidere,PNG trasparente,936x472,A2,l'audit chiede una sola illustrazione per schermata: consigliato toglierla
+cta-fondo,decisione,sfondo,landing CtaFinale.tsx,da decidere,PNG,900x342,A3,"consigliato colore piatto, nessuna immagine"
+badge-studio,opzionale,emblema,badge Studio (lib/profilo/badge.ts),da generare,PNG trasparente,512x512,B,oggi icona di sistema
+badge-simulazioni,opzionale,emblema,badge Simulazioni,da generare,PNG trasparente,512x512,B,oggi icona di sistema
+badge-costanza,opzionale,emblema,badge Costanza,da generare,PNG trasparente,512x512,B,oggi icona di sistema
+badge-livello,opzionale,emblema,badge Livello,da generare,PNG trasparente,512x512,B,oggi icona di sistema
+badge-memoria-10,opzionale,emblema,badge Memoria a lungo termine,da generare,PNG trasparente,512x512,B,oggi icona di sistema
+badge-accuratezza-80,opzionale,emblema,badge Accuratezza 80 %,da generare,PNG trasparente,512x512,B,oggi icona di sistema
+badge-ore-5,opzionale,emblema,badge 5 ore di studio,da generare,PNG trasparente,512x512,B,oggi icona di sistema
+badge-prima-simulazione,opzionale,emblema,badge Prima simulazione,da generare,PNG trasparente,512x512,B,oggi icona di sistema
+badge-simulazione-superata,opzionale,emblema,badge Simulazione superata,da generare,PNG trasparente,512x512,B,oggi icona di sistema
+badge-simulazioni-superate-3,opzionale,emblema,badge 3 simulazioni superate,da generare,PNG trasparente,512x512,B,oggi icona di sistema
+screen-home,riferimento,layout schermata,nessuna: solo per ricostruire la Home,da generare,PNG 390x844,390x844,C1,non va nell'app; niente testo leggibile
+screen-consenso,riferimento,layout schermata,nessuna: solo per il consenso unico,da generare,PNG 390x844,390x844,C2,non va nell'app
+screen-stato-vuoto,riferimento,layout schermata,nessuna: solo per gli stati vuoti,da generare,PNG 390x844,390x844,C3,non va nell'app
