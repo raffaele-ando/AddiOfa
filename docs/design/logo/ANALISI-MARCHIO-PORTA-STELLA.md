@@ -30,3 +30,20 @@ Script di misura: contorni con OpenCV, rette ai minimi quadrati, distanze perpen
 Rifare il marchio con geometria esatta, partendo dalle misure medie di sinistra e destra:
 simmetria per costruzione, rette e archi veri (3 archi da 66 px), cornice di spessore unico (circa 128 px; stipiti uguali o 1,35× se si vogliono più pesanti), stesso angolo per tutte le punte (circa 59°), raggio del riquadro 0,25, luce con 4 fermate.
 Poi confronto ingrandito con il riferimento, come per la versione attuale.
+
+## Correzione applicata (24/11/2026)
+
+Il generatore `grafica/strumenti/brand/logo/marchio_porta_stella.py` ora disegna il marchio con geometria esatta (rette e archi, simmetria per costruzione), su un riquadro di 448:
+
+| Elemento | Valore | Verifica sul tracciato |
+|---|---|---|
+| Spessore della cornice, tutti gli 8 lati (stipiti compresi) | 34 | 34,000 su ogni lato |
+| Angolo delle tre punte | 60° | 60,000° / 60,000° / 60,000° |
+| Incavi | uguali | 137,266° / 137,266° |
+| Raggio delle punte esterne | 17 (metà della cornice) | archi veri |
+| Raggio del riquadro | 0,25 del lato (112) | come la tavola di costruzione |
+| Base degli stipiti | pendenza 7/16 a destra e a sinistra | uguali |
+| Luce | 5 fermate di colore | nessuna irregolarità |
+| Simmetria (rendering a 1792) | asse a 0,01 px dal centro, 0,04 % di area diversa dalla speculare | prima 0,7 % |
+
+Lo spessore 34 è quello con lo scarto minimo dal riferimento tra 32 e 40. Lo scarto medio dal riferimento sale da 2,5 a 6,3/255: è l'effetto voluto delle correzioni (stipiti prima a 43,5, ora uguali alla cornice; punta alta prima 55,5°; raggio prima 0,27). Il blu resta quello del riferimento, `#0977FD`.
