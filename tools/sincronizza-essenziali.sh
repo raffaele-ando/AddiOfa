@@ -13,6 +13,8 @@ mkdir -p "$DEST/disegni" "$DEST/glifi" "$DEST/logo"
 cp -r "$RADICE/grafica/brand/glifi/"* "$DEST/glifi/"
 find "$DEST/glifi" -name '*.json' -delete
 cp "$RADICE/grafica/strumenti/brand/logo/addiofa-logo.svg" "$DEST/logo/"
+# marchio-icona «porta a stella» (grafica/strumenti/brand/logo/marchio_porta_stella.py), usato nelle testate e come logo grande
+cp "$RADICE/grafica/brand/logo/marchio-porta-stella.svg" "$DEST/logo/"
 # versione senza il fondo chiaro, per metterlo sulla scena della landing (cielo, tema scuro)
 sed 's#<rect id="fondo"[^>]*/>##' "$RADICE/grafica/strumenti/brand/logo/addiofa-logo.svg" > "$DEST/logo/addiofa-logo-scena.svg"
 # ottimizzazione senza cambiare l'aspetto (percorsi relativi, niente metadati): i glifi ricalcati pesano 3 volte meno

@@ -21,7 +21,7 @@ const disegniLuminoso: Mappa = DEMO
   : import.meta.glob('./essenziali/disegni/kit-luminoso/**/*.svg', { query: '?url&no-inline', import: 'default', eager: true }) as Mappa;
 const disegni: Mappa = { ...disegniRosso, ...disegniBlu, ...disegniLuminoso };
 const glifi: Mappa = { ...glifiRosso, ...glifiBlu };
-import logoGrande from './essenziali/logo/addiofa-logo.svg?url';
+import logoGrande from './essenziali/logo/marchio-porta-stella.svg?url';
 import iconaUrl from './essenziali/icone/favicon-64.png';
 
 export type KitId = 'kit-blu' | 'kit-rosso' | 'kit-luminoso' | 'logo';

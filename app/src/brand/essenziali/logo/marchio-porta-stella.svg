@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<title>AddiOFA</title>
+<defs>
+<linearGradient id="luce" gradientUnits="userSpaceOnUse" x1="0" y1="141.18" x2="0" y2="448">
+<stop offset="0" stop-color="#FFFFFF"/><stop offset="0.62" stop-color="#FFFFFF"/><stop offset="0.82" stop-color="#CCE0FB"/><stop offset="0.93" stop-color="#70ADFD"/><stop offset="1" stop-color="#0977FD"/>
+</linearGradient>
+<filter id="sfuma" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="15"/></filter>
+<linearGradient id="dissolvi" gradientUnits="userSpaceOnUse" x1="0" y1="345" x2="0" y2="390"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#000000"/></linearGradient>
+<mask id="dentro" maskUnits="userSpaceOnUse" x="0" y="0" width="448" height="448"><rect width="448" height="448" fill="url(#dissolvi)"/></mask>
+<clipPath id="riquadro"><rect width="448" height="448" rx="112"/></clipPath>
+</defs>
+<g transform="translate(32 32) scale(1)" clip-path="url(#riquadro)">
+<rect width="448" height="448" fill="#0977FD"/>
+<path d="M166.00 448.00 L166.00 279.89 L112.00 230.00 L186.00 207.00 L224.00 141.18 L262.00 207.00 L336.00 230.00 L282.00 279.89 L282.00 448.00 Z" fill="url(#luce)" filter="url(#sfuma)"/>
+<path d="M166.00 448.00 L166.00 279.89 L112.00 230.00 L186.00 207.00 L224.00 141.18 L262.00 207.00 L336.00 230.00 L282.00 279.89 L282.00 448.00 Z" fill="url(#luce)" mask="url(#dentro)"/>
+<path d="M166.00 380.00 L166.00 279.89 L112.00 230.00 L186.00 207.00 L224.00 141.18 L262.00 207.00 L336.00 230.00 L282.00 279.89 L282.00 380.00 L324.50 398.59 L324.50 286.91 L380.70 234.99 A17 17 0 0 0 374.21 206.27 L284.79 178.48 L238.72 98.68 A17 17 0 0 0 209.28 98.68 L163.21 178.48 L73.79 206.27 A17 17 0 0 0 67.30 234.99 L123.50 286.91 L123.50 398.59 Z" fill="#011537"/>
+</g>
+</svg>
