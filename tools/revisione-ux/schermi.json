@@ -1,0 +1,516 @@
+{
+  "come": "Viewport 400x2600 e 1280x1800, deviceScaleFactor 1; 1280 anche a 2 in hd/. Tema via localStorage theme (light/dark). Stato di prova iniettato in localStorage ofa_polimi_app_state (pieno = registrato con una simulazione; senza-profilo = test fatto, profilo da completare). Animazioni e transizioni fermate con uno stile iniettato. Navigazione: ?vista=<schermata> oppure clic sui pulsanti indicati.",
+  "schermi": [
+    {
+      "nome": "landing",
+      "stato_di_prova": null,
+      "passi": [
+        [
+          "vai",
+          "/?landing"
+        ]
+      ],
+      "nota": "Prima pagina per chi non ha ancora usato l’app (vista landing)."
+    },
+    {
+      "nome": "landing-scorrimento",
+      "stato_di_prova": null,
+      "passi": [
+        [
+          "vai",
+          "/?landing"
+        ],
+        [
+          "scorri",
+          1200
+        ]
+      ],
+      "nota": "Landing dopo lo scorrimento: compaiono le schede sotto l’hero."
+    },
+    {
+      "nome": "test-iniziale",
+      "stato_di_prova": null,
+      "passi": [
+        [
+          "vai",
+          "/?landing"
+        ],
+        [
+          "clicca_contiene",
+          "test"
+        ]
+      ],
+      "nota": "Landing → pulsante del test iniziale (vista onboarding/diagnostico)."
+    },
+    {
+      "nome": "home",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/"
+        ]
+      ],
+      "nota": "Home (vista menu) per utente già registrato con una simulazione nello storico."
+    },
+    {
+      "nome": "home-scorrimento",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/"
+        ],
+        [
+          "scorri",
+          900
+        ]
+      ],
+      "nota": "Home scorsa in basso."
+    },
+    {
+      "nome": "completa-profilo",
+      "stato_di_prova": "senza-profilo",
+      "passi": [
+        [
+          "vai",
+          "/"
+        ]
+      ],
+      "nota": "Primo avvio dopo il test: «Completa il profilo» (registrazione)."
+    },
+    {
+      "nome": "esercizi",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/"
+        ],
+        [
+          "clicca",
+          "Esercizi"
+        ]
+      ],
+      "nota": "Scheda Esercizi dalla barra in basso."
+    },
+    {
+      "nome": "prontuario",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/"
+        ],
+        [
+          "clicca",
+          "Esercizi"
+        ],
+        [
+          "clicca_contiene",
+          "Riepilogo di grammatica"
+        ]
+      ],
+      "nota": "Prontuario (riepilogo di grammatica) dalla scheda Esercizi."
+    },
+    {
+      "nome": "frasi",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=frasi"
+        ]
+      ],
+      "nota": "Frasi utili (vista extra frasi)."
+    },
+    {
+      "nome": "allenamento",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/"
+        ],
+        [
+          "clicca_contiene",
+          "Continua l’allenamento"
+        ],
+        [
+          "attendi",
+          800
+        ]
+      ],
+      "nota": "Sessione di allenamento (LearnMode) avviata dal pulsante della Home."
+    },
+    {
+      "nome": "sfide",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/"
+        ],
+        [
+          "clicca",
+          "Sfide"
+        ]
+      ],
+      "nota": "Scheda Sfide dalla barra in basso."
+    },
+    {
+      "nome": "classifica",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=classifica"
+        ]
+      ],
+      "nota": "Classifica delle sfide."
+    },
+    {
+      "nome": "amici",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=amici"
+        ]
+      ],
+      "nota": "Amici (sfide)."
+    },
+    {
+      "nome": "condividi",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=condividi"
+        ]
+      ],
+      "nota": "Condividi la sfida."
+    },
+    {
+      "nome": "sfida-accetta",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?sfida=ABC123"
+        ]
+      ],
+      "nota": "Accetta una sfida (link con codice di prova)."
+    },
+    {
+      "nome": "lezione",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=lezione-dettaglio&id=present-simple"
+        ]
+      ],
+      "nota": "Dettaglio di una lezione (teoria, esercizi, verifica)."
+    },
+    {
+      "nome": "percorso",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=percorso"
+        ]
+      ],
+      "nota": "Percorso con tutte le lezioni."
+    },
+    {
+      "nome": "teoria",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/"
+        ],
+        [
+          "clicca_contiene",
+          "Inizia la lezione"
+        ],
+        [
+          "attendi",
+          800
+        ]
+      ],
+      "nota": "Teoria di un argomento, aperta dalla Home («Inizia la lezione»)."
+    },
+    {
+      "nome": "simulazioni",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=simulazioni"
+        ]
+      ],
+      "nota": "Elenco delle simulazioni svolte."
+    },
+    {
+      "nome": "simulazione-dettaglio",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=simulazione-dettaglio&id=sim-1"
+        ]
+      ],
+      "nota": "Esito di una simulazione svolta (dallo storico di prova)."
+    },
+    {
+      "nome": "simulazione-esame",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/"
+        ],
+        [
+          "clicca_contiene",
+          "Fai un’altra simulazione"
+        ],
+        [
+          "attendi",
+          1500
+        ]
+      ],
+      "nota": "Simulazione d’esame, prima domanda (30 domande, 15 minuti)."
+    },
+    {
+      "nome": "simulazione-risultato",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/"
+        ],
+        [
+          "clicca_contiene",
+          "Fai un’altra simulazione"
+        ],
+        [
+          "attendi",
+          1200
+        ],
+        [
+          "simulazione_completa"
+        ]
+      ],
+      "nota": "Simulazione consegnata con risposte scelte in automatico: schermata di esito reale."
+    },
+    {
+      "nome": "progressi",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=progressi"
+        ]
+      ],
+      "nota": "Progressi (profilo)."
+    },
+    {
+      "nome": "profilo",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=profilo"
+        ]
+      ],
+      "nota": "Profilo."
+    },
+    {
+      "nome": "profilo-modifica",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=profilo-modifica"
+        ]
+      ],
+      "nota": "Modifica del profilo."
+    },
+    {
+      "nome": "obiettivi",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=obiettivi"
+        ]
+      ],
+      "nota": "Obiettivi."
+    },
+    {
+      "nome": "badge",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=badge"
+        ]
+      ],
+      "nota": "Badge."
+    },
+    {
+      "nome": "impostazioni",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=profilo"
+        ],
+        [
+          "clicca_contiene",
+          "Impostazioni"
+        ]
+      ],
+      "nota": "Impostazioni, dal Profilo (se il Profilo ha il pulsante)."
+    },
+    {
+      "nome": "faq",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=faq"
+        ]
+      ],
+      "nota": "Domande frequenti."
+    },
+    {
+      "nome": "segnala",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=segnala"
+        ]
+      ],
+      "nota": "Segnala un problema."
+    },
+    {
+      "nome": "community",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=esplora"
+        ]
+      ],
+      "nota": "Community (Esplora)."
+    },
+    {
+      "nome": "noi",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=noi"
+        ]
+      ],
+      "nota": "NOI (classifica e community)."
+    },
+    {
+      "nome": "agora",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=agora"
+        ]
+      ],
+      "nota": "Agorà."
+    },
+    {
+      "nome": "project-id",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=projectid"
+        ]
+      ],
+      "nota": "Project ID (accesso)."
+    },
+    {
+      "nome": "atlas",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=atlas-analisi"
+        ]
+      ],
+      "nota": "ATLAS."
+    },
+    {
+      "nome": "stato-vuoto",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=stato-vuoto"
+        ]
+      ],
+      "nota": "Stato vuoto («Niente da vedere»)."
+    },
+    {
+      "nome": "offline",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=offline"
+        ]
+      ],
+      "nota": "Schermata offline."
+    },
+    {
+      "nome": "avvio",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=splash"
+        ]
+      ],
+      "nota": "Schermata di avvio (splash)."
+    },
+    {
+      "nome": "iscrizioni-admin",
+      "stato_di_prova": "pieno",
+      "passi": [
+        [
+          "vai",
+          "/?vista=admin"
+        ]
+      ],
+      "nota": "Iscrizioni (vista amministratore; può chiedere accesso)."
+    },
+    {
+      "nome": "legale-privacy",
+      "stato_di_prova": null,
+      "passi": [
+        [
+          "vai",
+          "/?landing"
+        ],
+        [
+          "clicca_contiene",
+          "Come usiamo i tuoi dati"
+        ]
+      ],
+      "nota": "Informativa privacy, aperta da «Come usiamo i tuoi dati» nella landing."
+    }
+  ]
+}
