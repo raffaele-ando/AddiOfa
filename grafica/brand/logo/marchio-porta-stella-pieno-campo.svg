@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<title>AddiOFA</title>
+<defs>
+<linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4C8DFF"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
+<radialGradient id="luce" cx="256" cy="430" r="230" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.55" stop-color="#F3F7FF"/><stop offset="1" stop-color="#C9DBFF"/></radialGradient>
+<radialGradient id="soglia" cx="256" cy="480" r="150" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+<clipPath id="tessera"><rect x="0" y="0" width="512" height="512" rx="0"/></clipPath>
+</defs>
+<g clip-path="url(#tessera)">
+<rect x="0" y="0" width="512" height="512" fill="url(#fondo)"/>
+<path d="M256.0 142.0 L290.0 224.0 L382.0 246.0 L318.0 318.0 L318.0 552.0 L194.0 552.0 L194.0 318.0 L130.0 246.0 L222.0 224.0 Z" fill="#0E1B3F" stroke="#0E1B3F" stroke-width="66" stroke-linejoin="round"/>
+<path d="M256.0 142.0 L290.0 224.0 L382.0 246.0 L318.0 318.0 L318.0 552.0 L194.0 552.0 L194.0 318.0 L130.0 246.0 L222.0 224.0 Z" fill="url(#luce)"/>
+<ellipse cx="256" cy="512" rx="130" ry="46" fill="url(#soglia)"/>
+</g>
+</svg>
