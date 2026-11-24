@@ -8,7 +8,8 @@ Unità: pixel di un riquadro da 448 (il disegno da 512 ha 32 di margine).
 Regole:
 - riquadro 448, raggio 0,25 (112), blu #0977FD;
 - apertura a stella: tre punte con lo stesso angolo (60°), incavi uguali, asse x = 224;
-- cornice blu notte #011537 di spessore unico W = 32 ovunque, stipiti compresi (bordo esterno parallelo all'apertura);
+- cornice blu notte #011537 di spessore W = 34 su punte e bracci; stipiti 5/4 della cornice (42,5), come il peso del riferimento;
+  ogni bordo esterno è parallelo al bordo interno;
 - punte esterne arrotondate con raggio W/2 = 16; spigoli interni vivi;
 - stipiti dritti, base con la stessa inclinazione a destra e a sinistra (pendenza 7/16);
 - luce: 4 fermate di colore, nitida dentro la porta, che si dissolve in una luce sfumata sotto gli stipiti.
@@ -23,7 +24,9 @@ OUT = RADICE / 'grafica' / 'brand' / 'logo'
 T = 448                    # lato del riquadro
 CX = T / 2                 # asse di simmetria
 RAGGIO = 0.25 * T          # angoli del riquadro (tavola di costruzione: R = 0,25x)
-W = 34                     # spessore unico della cornice
+W = 34                     # spessore della cornice (punte e bracci)
+RAPPORTO_STIPITI = 5 / 4   # gli stipiti sono più larghi della cornice: danno peso alla porta (riferimento: 1,28)
+W_STIPITE = W * RAPPORTO_STIPITI
 R_PUNTA = W / 2            # raggio delle punte esterne
 ANGOLO = 60                # angolo di ogni punta (gradi)
 PENDENZA = 7 / 16          # inclinazione della base degli stipiti
@@ -56,11 +59,13 @@ def offset_esterno(apertura):
     """Bordo esterno: ogni lato dell'apertura spostato di W verso l'esterno, vertici = intersezioni."""
     pts = [(CX - STIPITE, BASE)] + apertura + [(CX + STIPITE, BASE)]
     linee = []
-    for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+    ultimo = len(pts) - 2
+    for i, ((x1, y1), (x2, y2)) in enumerate(zip(pts, pts[1:])):
         dx, dy = x2 - x1, y2 - y1
         L = math.hypot(dx, dy)
         nx, ny = dy / L, -dx / L                                           # normale verso l'esterno (percorso in senso orario)
-        linee.append(((x1 + nx * W, y1 + ny * W), (dx / L, dy / L)))
+        w = W_STIPITE if i in (0, ultimo) else W                           # il primo e l'ultimo lato sono gli stipiti
+        linee.append(((x1 + nx * w, y1 + ny * w), (dx / L, dy / L)))
 
     def interseca(l1, l2):
         (p, d), (q, e) = l1, l2
@@ -73,8 +78,8 @@ def offset_esterno(apertura):
 
 def percorso_porta(apertura):
     esterni, linee = offset_esterno(apertura)
-    xo_s, xo_d = CX - STIPITE - W, CX + STIPITE + W
-    calo = W * PENDENZA
+    xo_s, xo_d = CX - STIPITE - W_STIPITE, CX + STIPITE + W_STIPITE
+    calo = W_STIPITE * PENDENZA
     # anello: base interna sinistra, su per l'apertura, giù a destra, base, su per il bordo esterno, chiusura
     giro = [(CX - STIPITE, BASE)] + apertura + [(CX + STIPITE, BASE), (xo_d, BASE + calo)]
     giro += list(reversed(esterni)) + [(xo_s, BASE + calo)]

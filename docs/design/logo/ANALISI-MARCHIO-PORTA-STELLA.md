@@ -37,7 +37,8 @@ Il generatore `grafica/strumenti/brand/logo/marchio_porta_stella.py` ora disegna
 
 | Elemento | Valore | Verifica sul tracciato |
 |---|---|---|
-| Spessore della cornice, tutti gli 8 lati (stipiti compresi) | 34 | 34,000 su ogni lato |
+| Spessore della cornice (punte e bracci, 6 lati) | 34 | 34,000 su ogni lato |
+| Stipiti | 5/4 della cornice = 42,5 (riferimento 43,5): la porta resta più pesante, come nell'originale | uguali a destra e a sinistra |
 | Angolo delle tre punte | 60° | 60,000° / 60,000° / 60,000° |
 | Incavi | uguali | 137,266° / 137,266° |
 | Raggio delle punte esterne | 17 (metà della cornice) | archi veri |
@@ -47,3 +48,5 @@ Il generatore `grafica/strumenti/brand/logo/marchio_porta_stella.py` ora disegna
 | Simmetria (rendering a 1792) | asse a 0,01 px dal centro, 0,04 % di area diversa dalla speculare | prima 0,7 % |
 
 Lo spessore 34 è quello con lo scarto minimo dal riferimento tra 32 e 40. Lo scarto medio dal riferimento sale da 2,5 a 6,3/255: è l'effetto voluto delle correzioni (stipiti prima a 43,5, ora uguali alla cornice; punta alta prima 55,5°; raggio prima 0,27). Il blu resta quello del riferimento, `#0977FD`.
+
+**Aggiornamento.** La prima versione aveva anche gli stipiti a 34: il marchio perdeva il peso della porta. Ora gli stipiti sono 5/4 della cornice (scelto tra 5/4 e 4/3 e tra spessori 32-36: scarto minimo 5,4/255 contro 6,3 della versione tutta uguale). Numeri precisi, proporzione voluta.
