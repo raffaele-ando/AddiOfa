@@ -7,8 +7,9 @@ grafica/fonti/ai-nuove/logo-porta-stella-ref.webp (1254 px), così il marchio re
   raggio 0,27 del lato (quello con lo scarto minimo; la tavola dice circa 0,25x);
 - porta blu notte: contorno della regione blu notte;
 - luce: contorno della regione più chiara del blu, riempita con il profilo di colore misurato al centro;
-  nitida dentro la porta, sfumata sotto gli stipiti (dove finiscono, y 1519/1792).
-Scarto medio con il riferimento: 2,5/255 (misurato con Chromium a 448 px).
+  nitida dentro la porta, che si dissolve gradualmente nella stessa luce sfumata sotto gli stipiti;
+- contorni lisciati con una media mobile: le punte restano tonde come nel riferimento.
+Scarto medio con il riferimento: 2,4/255 (misurato con Chromium a 448 px).
 Serve: numpy, opencv-python-headless (pip install --user numpy opencv-python-headless).
 Uso (dalla radice): python3 grafica/strumenti/brand/logo/marchio_porta_stella.py
 Scrive grafica/brand/logo/marchio-porta-stella.svg e -pieno-campo.svg (icone maskable).
@@ -24,8 +25,9 @@ OUT = RADICE / 'grafica' / 'brand' / 'logo'
 
 N = 1792                 # lato di lavoro del riquadro
 RAGGIO = 0.27            # raggio degli angoli, frazione del lato
-TAGLIO = 1519            # fine interna degli stipiti: sopra la luce è nitida, sotto sfuma
-SFUMATURA = 22           # deviazione della sfumatura della luce (unità del riquadro da 1792)
+DISSOLVENZA = (1380, 1560)  # la luce nitida si dissolve in quella sfumata tra queste quote (fine stipiti: 1519)
+LISCIO = 5               # finestra (punti) della media mobile sul contorno
+SFUMATURA = 60           # deviazione della sfumatura della luce (unità del riquadro da 1792)
 BLU = '#0977FD'          # riquadro, misurato
 NOTTE = '#011537'        # porta, misurata
 
@@ -38,10 +40,16 @@ def traccia():
     sq = cv2.resize(crop, (N, N), interpolation=cv2.INTER_CUBIC)
     B, G, R = [sq[:, :, i].astype(int) for i in range(3)]
 
-    def contorno(maschera, eps=1.2):
+    def contorno(maschera, finestra=LISCIO):
+        # contorno completo, poi media mobile circolare dei punti: toglie la scalettatura dei pixel
+        # (le punte tornano tonde come nel riferimento), poi un punto ogni 3
         cs, _ = cv2.findContours(maschera.astype(np.uint8) * 255, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-        c = cv2.approxPolyDP(max(cs, key=cv2.contourArea), eps, True)[:, 0, :]
-        return 'M' + ' L'.join(f'{x} {y}' for x, y in c) + ' Z'
+        c = max(cs, key=cv2.contourArea)[:, 0, :].astype(float)
+        k = np.ones(finestra) / finestra
+        meta = finestra // 2
+        lisci = np.stack([np.convolve(np.concatenate([c[-meta:, i], c[:, i], c[:meta, i]]), k, 'valid') for i in (0, 1)], 1)
+        lisci = lisci[::3]
+        return 'M' + ' L'.join(f'{x:.1f} {y:.1f}' for x, y in lisci) + ' Z'
 
     porta = contorno((B < 120) & (R < 45) & (G < 70))
     luce = contorno(R > 30)
@@ -60,14 +68,15 @@ def svg(porta, luce, stops, tutto_campo=False):
 <title>AddiOFA</title>
 <defs>
 <linearGradient id="luce" gradientUnits="userSpaceOnUse" x1="0" y1="560" x2="0" y2="{N - 1}">{stops}</linearGradient>
-<filter id="sfuma" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="{SFUMATURA}"/></filter>
-<clipPath id="dentro"><rect width="{N}" height="{TAGLIO}"/></clipPath>
+<filter id="sfuma" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="{SFUMATURA}"/></filter>
+<linearGradient id="dissolvi" gradientUnits="userSpaceOnUse" x1="0" y1="{DISSOLVENZA[0]}" x2="0" y2="{DISSOLVENZA[1]}"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#000000"/></linearGradient>
+<mask id="dentro" maskUnits="userSpaceOnUse" x="0" y="0" width="{N}" height="{N}"><rect width="{N}" height="{N}" fill="url(#dissolvi)"/></mask>
 <clipPath id="riquadro"><rect width="{N}" height="{N}" rx="{rx}"/></clipPath>
 </defs>
 <g transform="translate({m} {m}) scale({s:.6f})" clip-path="url(#riquadro)">
 <rect width="{N}" height="{N}" fill="{BLU}"/>
 <path d="{luce}" fill="url(#luce)" filter="url(#sfuma)"/>
-<path d="{luce}" fill="url(#luce)" clip-path="url(#dentro)"/>
+<path d="{luce}" fill="url(#luce)" mask="url(#dentro)"/>
 <path d="{porta}" fill="{NOTTE}"/>
 </g>
 </svg>
