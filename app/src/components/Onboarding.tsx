@@ -20,6 +20,9 @@ import { corpoIscrizione, creaProfilo, impostaProfilo, leggiProgetto } from '../
 import { controllaDatiMinimi } from '../lib/progetto/validazione';
 import { inviaLinkVerifica } from '../lib/firebase';
 import type { LegalSection } from '../types';
+import { questions as BANCO } from '../data/questions';
+import Legal from '../screens/Legal';
+import { CONSENSI_VUOTI } from '../lib/progetto/profilo';
 
 interface OnboardingProps {
   appState: AppState;
@@ -29,7 +32,25 @@ interface OnboardingProps {
   soloRegistrazione?: boolean;
   /** Apre una pagina legale (per il link all'informativa nel passo dei consensi). Senza, il link non compare. */
   onOpenLegal?: (s: LegalSection) => void;
+  /** Prima schermata del percorso: la freccia indietro torna da dove si è arrivati (la landing). */
+  onEsci?: () => void;
 }
+
+// Il percorso in corso (passo, risposte, scelte) si tiene in sessionStorage: una ricarica a metà riprende dallo stesso punto,
+// chiudere la scheda lo dimentica. Il consenso non si conserva: dopo una ricarica si spunta di nuovo.
+const CHIAVE_IN_CORSO = 'addiofa_percorso_in_corso';
+interface InCorso { pos: number; answers: Record<string, number>; quiz: string[]; hasOfa: OnboardingResult['hasOfa'] | null; hasCertification: boolean | null; reg: FormRegistrazione }
+function leggiInCorso(): InCorso | null {
+  try {
+    const v = JSON.parse(sessionStorage.getItem(CHIAVE_IN_CORSO) ?? 'null') as InCorso | null;
+    return v && typeof v.pos === 'number' && Array.isArray(v.quiz) && v.reg ? v : null;
+  } catch { return null; }
+}
+function scriviInCorso(v: InCorso | null) {
+  try { if (v) sessionStorage.setItem(CHIAVE_IN_CORSO, JSON.stringify(v)); else sessionStorage.removeItem(CHIAVE_IN_CORSO); } catch { /* memoria non disponibile: si riparte da capo */ }
+}
+/** C'è un percorso iniziale lasciato a metà in questa scheda (App.tsx lo riapre dopo una ricarica). */
+export function percorsoInCorso(): boolean { return leggiInCorso() !== null; }
 
 // Ordine del percorso (decisione del 17/10, rivista il 18/10): perché farlo (pain → gain) → certificazione e OFA in una schermata (possono esonerare,
 // quindi vengono prima di tutto) → le 10 domande del test, con le altre richieste SPARSE fra una domanda e l'altra, una per volta
@@ -67,20 +88,24 @@ function ConVuoto({ testo }: { testo: string }) {
 /** Messaggio di una riga sotto un pulsante o nel piè di pagina. */
 const Micro = ({ children }: { children: ReactNode }) => <p data-testo-ok className="text-center text-s1 leading-[18px] text-testo-tenue">{children}</p>;
 
-export default function Onboarding({ appState, onUpdateAppState, onFinish, soloRegistrazione = false, onOpenLegal }: OnboardingProps) {
+export default function Onboarding({ appState, onUpdateAppState, onFinish, soloRegistrazione = false, onOpenLegal, onEsci }: OnboardingProps) {
+  const ripreso = useRef(soloRegistrazione ? null : leggiInCorso());
+  const r0 = ripreso.current;
+  // l'informativa e i termini si aprono sopra il percorso, così chiudendoli si torna allo stesso passo con tutto quello che si è scritto
+  const [legale, setLegale] = useState<LegalSection | null>(null);
   // Chi ha già una registrazione completa non la rifà (apre il test dalla Home); gli altri la fanno nel funnel, con i dati già inseriti se c'erano.
   const giaRegistrato = useRef(!!leggiProgetto(appState).profilo?.completato && !soloRegistrazione);
   const precedente = appState.onboarding;
   // chi ha già detto se ha l'OFA e la certificazione non lo rifà
   const giaDetto = giaRegistrato.current && !!precedente;
-  const [reg, setRegStato] = useState<FormRegistrazione>(() => formDa(leggiProgetto(appState).profilo));
+  const [reg, setRegStato] = useState<FormRegistrazione>(() => (r0 ? { ...r0.reg, consensi: { ...CONSENSI_VUOTI } } : formDa(leggiProgetto(appState).profilo)));
   const regRef = useRef(reg);
   const setReg = (n: FormRegistrazione | ((r: FormRegistrazione) => FormRegistrazione)) => { const v = typeof n === 'function' ? n(regRef.current) : n; regRef.current = v; setRegStato(v); };
   const [provato, setProvato] = useState(false);
-  const [hasCertification, setHasCertification] = useState<boolean | null>(() => (giaDetto && precedente ? precedente.hasCertification : null));
-  const [hasOfa, setHasOfa] = useState<OnboardingResult['hasOfa'] | null>(() => (giaDetto && precedente ? precedente.hasOfa : null));
-  const [quiz, setQuiz] = useState<Question[]>([]);
-  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [hasCertification, setHasCertification] = useState<boolean | null>(() => (r0 ? r0.hasCertification : giaDetto && precedente ? precedente.hasCertification : null));
+  const [hasOfa, setHasOfa] = useState<OnboardingResult['hasOfa'] | null>(() => (r0 ? r0.hasOfa : giaDetto && precedente ? precedente.hasOfa : null));
+  const [quiz, setQuiz] = useState<Question[]>(() => (r0 ? r0.quiz.map(id => BANCO.find(q => q.id === id)).filter((q): q is Question => !!q) : []));
+  const [answers, setAnswers] = useState<Record<string, number>>(() => r0?.answers ?? {});
   const questionStart = useRef(Date.now());
   const tempi = useRef<Record<string, number>>({});
   const stateRef = useRef(appState);
@@ -91,6 +116,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
 
   useEffect(() => {
     let vivo = true;
+    if (quiz.length > 0) return; // ripreso dopo una ricarica: le stesse domande
     Promise.resolve(pickDiagnosticQuestions()).then(q => { if (vivo) setQuiz(q); });
     return () => { vivo = false; };
   }, []);
@@ -106,7 +132,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     const richieste: Richiesta[] = giaRegistrato.current ? [] : ['email', 'prov', ...percorso, 'consensi'];
     return cammino({ domande, richieste, racconto: !giaRegistrato.current, avvio: giaRegistrato.current, certOfa: !giaDetto });
   }, [soloRegistrazione, domande, giaDetto, chiavePercorso]);
-  const [pos, setPos] = useState(0);
+  const [pos, setPos] = useState(() => r0?.pos ?? 0);
   const k = passi[Math.min(pos, passi.length - 1)];
   const avanti = () => setPos(p => Math.min(p + 1, passi.length - 1));
   const indietro = () => setPos(p => Math.max(0, p - 1));
@@ -123,7 +149,16 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     timer.current = setTimeout(() => { bloccato.current = false; fn(); }, 140);
   };
   // ogni schermata nuova riparte da capo (le domande misurano il tempo da qui)
-  useEffect(() => { questionStart.current = Date.now(); bloccato.current = false; }, [pos]);
+  // per 300 ms dopo il cambio di schermata i tocchi si ignorano: un doppio tocco su «Continua» non risponde alla domanda che compare sotto il dito
+  const titoloDomanda = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    questionStart.current = Date.now();
+    bloccato.current = true;
+    const t = setTimeout(() => { bloccato.current = false; }, 300);
+    // il fuoco va sul titolo della nuova domanda (con la tastiera, un secondo Invio non risponde da solo)
+    titoloDomanda.current?.focus({ preventScroll: true });
+    return () => clearTimeout(t);
+  }, [pos]);
 
   const answered = quiz.length > 0 && Object.keys(answers).length === quiz.length;
   const correct = quiz.filter(q => answers[q.id] === q.correctIndex).length;
@@ -133,6 +168,13 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     [correct, quiz.length]
   );
   const intervallo = useMemo(() => intervalloStima(correct, quiz.length || DIAGNOSTIC_LENGTH), [correct, quiz.length]);
+
+  // il percorso in corso si salva a ogni passo (sessionStorage); arrivati al risultato si dimentica
+  useEffect(() => {
+    if (soloRegistrazione) return;
+    if (k === 'result' || pos === 0) { scriviInCorso(null); return; }
+    scriviInCorso({ pos, answers, quiz: quiz.map(q => q.id), hasOfa, hasCertification, reg: { ...reg, consensi: { ...CONSENSI_VUOTI } } });
+  }, [soloRegistrazione, k, pos, answers, quiz, hasOfa, hasCertification, reg]);
 
   const result = (): OnboardingResult => ({
     completedAt: Date.now(),
@@ -180,6 +222,20 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
 
   // ---- La schermata di una domanda di profilo: titolo + campi + piè di pagina
   const barraTesta = (destra?: ReactNode) => <TopBar {...barra} onBack={daIndietro} destra={destra} />;
+
+  // Il risultato si salva appena compare (non solo con «Vai alla tua Home»): una ricarica qui non perde la stima
+  const risultatoSalvato = useRef(false);
+  useEffect(() => {
+    if (k !== 'result' || !answered || soloRegistrazione || risultatoSalvato.current) return;
+    risultatoSalvato.current = true;
+    onUpdateAppState({ ...stateRef.current, onboarding: result() });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [k, answered]);
+
+  // Termini o informativa aperti dal passo dei consensi: sopra il percorso, che resta com'era
+  if (legale) {
+    return <Legal section={legale} onBack={() => setLegale(null)} onSection={setLegale} />;
+  }
 
   // Risultato: nessuna freccia indietro (non si rifà il test dal risultato), la barra è piena
   if (k === 'result') {
@@ -242,7 +298,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
                   </li>
                 ))}
               </ul>
-              {argomenti.length > 3 && <p data-testo-ok className="text-s2 leading-[20px] text-testo-tenue">e altri {argomenti.length - 3} {argomenti.length - 3 === 1 ? 'argomento' : 'argomenti'}</p>}
+              {argomenti.length > 3 && <p data-testo-ok className="text-s2 leading-[20px] text-testo-tenue">{argomenti.length - 3 === 1 ? 'e un altro argomento' : `e altri ${argomenti.length - 3} argomenti`}</p>}
             </>
           ) : (
             <p className="inline-flex items-center gap-2 text-s2 leading-[22px] font-semibold text-alto-testo"><Icona nome="stato-ok" size={22} />Nessun errore</p>
@@ -271,7 +327,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
         <div className="flex flex-col gap-2">
           <p className="text-s1 leading-[18px] font-medium text-testo-tenue tabular-nums" aria-label={`Domanda ${indiceQ + 1} di ${n}`}>Domanda {indiceQ + 1} di {n}{tappa}</p>
           {/* la domanda e le opzioni sono contenuto del test */}
-          <h2 data-testo-ok className="text-s4 leading-[32px] font-semibold text-testo"><ConVuoto testo={q.prompt} /></h2>
+          <h2 ref={titoloDomanda} tabIndex={-1} data-testo-ok className="text-s4 leading-[32px] font-semibold text-testo outline-none"><ConVuoto testo={q.prompt} /></h2>
         </div>
         <div data-testo-ok className="flex flex-1 flex-col gap-3">
           {q.options.map((opt, i) => (
@@ -289,7 +345,15 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     case 'pain':
       return (
         <Screen
-          testata={<div className="flex h-14 shrink-0 items-center"><Marchio disposizione="orizzontale" altezza={34} /></div>}
+          testata={<div className="flex h-14 shrink-0 items-center gap-1">
+            {onEsci && (
+              <button type="button" onClick={onEsci} aria-label="Indietro"
+                className="grid h-11 w-11 -ml-2.5 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo transition-colors duration-100">
+                <Icona nome="indietro" size={28} />
+              </button>
+            )}
+            <Marchio disposizione="orizzontale" altezza={34} />
+          </div>}
           piede={<>
             <PrimaryButton onClick={avanti}>Scopri a che punto sei</PrimaryButton>
             <Micro>{DISCLAIMER}</Micro>
@@ -320,7 +384,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
           piede={<PrimaryButton onClick={avanti} disabled={quiz.length === 0}>Inizia il test di livello</PrimaryButton>}
         >
           <Eroe nome="piano-superamento" min={112} />
-          <Titolo titolo="Arrivi al test sapendo a che punto sei" sotto={`${DIAGNOSTIC_LENGTH} domande e una stima subito dopo.`}
+          <Titolo titolo="Arrivi al test sapendo a che punto sei" sotto={`${DIAGNOSTIC_LENGTH} domande e una stima subito dopo. Fra una domanda e l'altra ti chiediamo anche email PoliMi, corso e il consenso a termini e privacy.`}
             destra={
               <InfoFoglio titolo="Che cosa ottieni" etichetta="Informazioni su cosa ottieni">
                 <div className="flex flex-col gap-2">
@@ -360,7 +424,10 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
               <SecondaryButton onClick={() => onFinish(result())}>Vai all'app</SecondaryButton>
             </>
           ) : (
-            <PrimaryButton disabled={!pronto} onClick={avanti}>Continua</PrimaryButton>
+            <>
+              <PrimaryButton disabled={!pronto} onClick={avanti}>Continua</PrimaryButton>
+              {!pronto && <Micro>Rispondi alle due domande per continuare.</Micro>}
+            </>
           )}
         >
           <Eroe nome="studio-inglese" max={200} />
@@ -457,16 +524,19 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
       return (
         <Screen
           testata={<TopBar {...barra} onBack={daIndietro} />}
-          piede={reg.percorso.corso
-            ? <div className="flex flex-col gap-2">
-                <p data-testo-ok className="text-s1 leading-[18px] font-medium text-testo-tenue">In che anno sei?</p>
-                <PilloleAnno scelte={reg.percorso} onScelto={anno => { setReg(r => ({ ...r, percorso: { ...r.percorso, anno } })); salva(false); poi(avanti); }} />
-              </div>
-            : <Micro>Tocca il tuo corso.</Micro>}
+          piede={
+            // la domanda sull'anno c'è fin dall'inizio, nello stesso posto: la schermata non cambia forma quando si sceglie il corso
+            <div className="flex flex-col gap-2">
+              <p id="dom-anno" data-testo-ok className="text-s2 leading-[20px] font-semibold text-testo">In che anno sei?</p>
+              {reg.percorso.corso
+                ? <PilloleAnno scelte={reg.percorso} onScelto={anno => { setReg(r => ({ ...r, percorso: { ...r.percorso, anno } })); salva(false); poi(avanti); }} />
+                : <p data-testo-ok className="flex min-h-12 items-center justify-center rounded-2xl border border-dashed border-tacca px-3 text-center text-s2 leading-[20px] text-testo-tenue">Prima tocca il tuo corso qui sopra.</p>}
+            </div>}
         >
           <Eroe nome="ricerca" max={160} />
           <Titolo etichetta="Su di te" titolo={TITOLO_RICHIESTA.corso} />
-          <ElencoCorsi scelte={reg.percorso} onScelto={id => { if (reg.percorso.corso !== id) setReg(r => ({ ...r, percorso: { ...r.percorso, corso: id, anno: undefined } })); }} />
+          {/* l'elenco ha una quota fissa dello spazio (3 a 1 con il disegno): cercando, il campo non si sposta */}
+          <ElencoCorsi className="flex-[3_1_0%]" scelte={reg.percorso} onScelto={id => { if (reg.percorso.corso !== id) setReg(r => ({ ...r, percorso: { ...r.percorso, corso: id, anno: undefined } })); }} />
         </Screen>
       );
 
@@ -476,15 +546,19 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
       return (
         <Screen
           testata={<TopBar {...barra} onBack={daIndietro} />}
-          piede={<PrimaryButton disabled={!accettato} onClick={() => {
-            if (!salva(true)) return;
-            if (soloRegistrazione) onFinish(stateRef.current.onboarding ?? result());
-            else avanti();
-          }}>{soloRegistrazione ? 'Salva' : 'Continua'}</PrimaryButton>}
+          piede={<>
+            <PrimaryButton disabled={!accettato} onClick={() => {
+              if (!salva(true)) return;
+              if (soloRegistrazione) onFinish(stateRef.current.onboarding ?? result());
+              else avanti();
+            }}>{soloRegistrazione ? 'Salva' : 'Continua'}</PrimaryButton>
+            {/* il pulsante spento dice perché */}
+            {!accettato && <Micro>Spunta «Termini e privacy» per continuare.</Micro>}
+          </>}
         >
           <EroeIcona icona="consensi" max={112} />
           <Titolo etichetta="Su di te" titolo="Termini e privacy" sotto="Serve per usare l'app: prove, sfide e classifica. Leggi prima di accettare." />
-          <CampiConsensi consensi={reg.consensi} onChange={c => setReg({ ...reg, consensi: c })} onOpenLegal={onOpenLegal} />
+          <CampiConsensi consensi={reg.consensi} onChange={c => setReg({ ...reg, consensi: c })} onOpenLegal={onOpenLegal ? setLegale : undefined} />
         </Screen>
       );
     }

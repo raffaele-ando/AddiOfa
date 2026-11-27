@@ -111,15 +111,16 @@ export default function Sfide() {
       </Sezione>
 
       <FoglioInfo aperto={foglio === 'amico'} onChiudi={() => setFoglio(null)} titolo="Sfida un amico">
-        <p data-testo-ok className="text-testo-tenue">Crea un link e mandalo a chi vuoi sfidare.</p>
-        <Campo className="mt-4" id="nome-sfida" etichetta="Il tuo nome" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
-          segnaposto="Come ti chiami?" maxLength={NOME_MAX} errore={erroreNome} onInvio={iniziaDuello} />
-        <Bottone className="mt-4" icona="crea-link" onClick={iniziaDuello}>Crea link</Bottone>
+        <p data-testo-ok className="text-testo-tenue">Giochi le {DOMANDE_SFIDA} domande, poi mandi il link a chi vuoi sfidare.</p>
+        <Campo className="mt-4" id="nome-sfida" etichetta="Il nome che vede il tuo amico" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
+          segnaposto="Anche un soprannome" maxLength={NOME_MAX} errore={erroreNome} onInvio={iniziaDuello} />
+        <Bottone className="mt-4" icona="crea-link" onClick={iniziaDuello}>Gioca e crea il link</Bottone>
       </FoglioInfo>
       <FoglioInfo aperto={foglio === 'link'} onChiudi={() => setFoglio(null)} titolo="Ho ricevuto una sfida">
         <Campo id="link-sfida" etichetta="Il link della sfida" valore={link} onCambia={v => { setLink(v); setErroreLink(null); }}
           segnaposto="Incolla qui il link" errore={erroreLink} onInvio={apriLink} />
         <Bottone className="mt-4" icona="avanti" disabled={!link.trim()} onClick={apriLink}>Apri la sfida</Bottone>
+        {!link.trim() && <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">Incolla il link che ti hanno mandato.</p>}
       </FoglioInfo>
     </SchedaProveSfide>
   );

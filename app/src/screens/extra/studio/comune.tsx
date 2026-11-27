@@ -81,7 +81,7 @@ export function OpzioneRisposta({ lettera, testo, stato, disabilitata, onClick }
     scelta: { riga: 'border-azione bg-azione-tinta', cerchio: 'border-azione bg-azione text-azione-su' },
     giusta: { riga: 'border-alto bg-alto-tinta', cerchio: 'border-alto bg-alto-pieno text-alto-su' },
     sbagliata: { riga: 'border-errore bg-errore-tinta', cerchio: 'border-errore bg-errore text-errore-su' },
-    spenta: { riga: 'border-linea bg-superficie-2 opacity-45', cerchio: 'border-tacca bg-superficie text-testo' },
+    spenta: { riga: 'border-linea bg-superficie-2 text-testo-tenue', cerchio: 'border-linea bg-superficie text-testo-tenue' },
   };
   const c = classi[stato];
   return (

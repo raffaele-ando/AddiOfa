@@ -145,7 +145,7 @@ export function InfoFoglio({ titolo, etichetta = 'Informazioni', children, class
           <div role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full max-w-xl overflow-y-auto rounded-t-2xl bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
             <div className="mb-3 flex items-center justify-between gap-3">
               <h2 className="text-s3 leading-[24px] font-extrabold">{titolo}</h2>
-              <button type="button" onClick={() => setAperto(false)} aria-label="Chiudi" className="brand-premibile grid h-9 w-9 place-items-center rounded-full bg-superficie-2 text-testo"><Icona nome="chiudi" size={20} /></button>
+              <button type="button" onClick={() => setAperto(false)} aria-label="Chiudi" className="brand-premibile grid h-11 w-11 place-items-center rounded-full bg-superficie-2 text-testo"><Icona nome="chiudi" size={20} /></button>
             </div>
             <div className="text-s2 leading-[21px] text-testo">{children}</div>
           </div>

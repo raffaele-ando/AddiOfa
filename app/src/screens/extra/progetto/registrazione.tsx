@@ -125,8 +125,8 @@ export function CampoEmail({ form, onChange, provato, verificata, onInviaVerific
           <InfoFoglio titolo="Email da verificare" etichetta="Perché da verificare"
             bottone={apri => (
               <button type="button" onClick={() => { playTapSound(); apri(); }} aria-label="Perché da verificare"
-                className="brand-premibile inline-flex items-center gap-1 rounded-full bg-superficie-2 px-2.5 py-1 text-s1 leading-[18px] font-semibold text-testo-tenue">
-                <Icona nome="info" size={14} />Da verificare
+                className="brand-premibile -my-2.5 inline-flex min-h-11 items-center gap-1 rounded-full bg-superficie-2 bg-clip-content py-2.5 text-s1 leading-[18px] font-semibold text-testo-tenue">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1"><Icona nome="info" size={14} />Da verificare</span>
               </button>
             )}>
             <p data-testo-ok>Controllo che l&apos;indirizzo finisca con @polimi.it, @mail.polimi.it o un sottodominio di polimi.it. Questo non prova che sia tuo.</p>
@@ -202,7 +202,7 @@ export function SceltePasso({ passo, scelte, onScelto, fonte = fonteCorsi }: { p
  * L'elenco dei corsi della scuola, della sede e del livello già scelti, con la ricerca se sono tanti e «Non trovo il mio corso» in fondo.
  * Toccare un corso lo sceglie (resta evidenziato) e fa comparire le pillole dell'anno (`PilloleAnno`, nel piè di pagina): è quel tocco a portare avanti.
  */
-export function ElencoCorsi({ scelte, onScelto, fonte = fonteCorsi }: { scelte: ScelteCorso; onScelto: (id: string) => void; fonte?: FonteCorsi }) {
+export function ElencoCorsi({ scelte, onScelto, fonte = fonteCorsi, className }: { scelte: ScelteCorso; onScelto: (id: string) => void; fonte?: FonteCorsi; className?: string }) {
   const opzioni = useMemo(() => opzioniPasso('corso', scelte, fonte), [scelte.scuola, scelte.sede, scelte.livello, fonte]); // eslint-disable-line react-hooks/exhaustive-deps
   const [ricerca, setRicerca] = useState('');
   const conRicerca = opzioni.length - 1 > CORSI_PER_RICERCA; // «Altro» non conta
@@ -211,8 +211,12 @@ export function ElencoCorsi({ scelte, onScelto, fonte = fonteCorsi }: { scelte: 
   const [piuSotto, setPiuSotto] = useState(false);
   const misura = () => { const el = lista.current; if (el) setPiuSotto(el.scrollHeight - el.scrollTop - el.clientHeight > 8); };
   useEffect(() => { misura(); }, [visibili.length, ricerca]);
+  // la voce scelta resta in vista (non sotto la sfumatura in fondo all'elenco)
+  useEffect(() => {
+    lista.current?.querySelector('[aria-pressed="true"], [aria-checked="true"]')?.scrollIntoView({ block: 'nearest' });
+  }, [scelte.corso]);
   return (
-    <div className="flex min-h-0 flex-col gap-3">
+    <div className={cn('flex min-h-0 flex-col gap-3', className)}>
       {conRicerca && (
         <div className="flex items-center gap-2 rounded-2xl border border-bordo-campo bg-superficie-2 px-4 min-h-12 focus-within:outline focus-within:outline-2 focus-within:outline-azione">
           <Icona nome="cerca" size={20} className="shrink-0 text-testo-tenue" />
@@ -220,7 +224,7 @@ export function ElencoCorsi({ scelte, onScelto, fonte = fonteCorsi }: { scelte: 
             className="w-full bg-transparent py-3 text-s3 text-testo placeholder:text-testo-tenue focus:outline-none" />
         </div>
       )}
-      <div className="relative flex min-h-[168px] shrink flex-col">
+      <div className="relative flex min-h-[168px] flex-1 shrink flex-col">
         <ul ref={lista} onScroll={misura} className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto scrollbar-hide pb-1">
           {visibili.map(o => (
             <li key={o.id} data-testo-ok><ChoiceCard selected={scelte.corso === o.id} onClick={() => onScelto(o.id)} title={o.nome} /></li>
@@ -380,18 +384,23 @@ export function CampiConsensi({ consensi, onChange, onOpenLegal }: { consensi: C
       <div role="group" aria-label="Consenso obbligatorio" className="flex flex-col gap-3">
         <CasellaConsenso spuntata={consensoAccettato(consensi)} titolo={CONSENSO_UNICO.titolo} testo={CONSENSO_UNICO.testo} onChange={v => onChange(consensoTutto(v))} />
       </div>
-      <p data-testo-ok className="text-s1 leading-[18px] text-testo-tenue">
-        Nome, email, corso e provenienza servono a creare la tua iscrizione.{' '}
-        <InfoFoglio titolo="Come usiamo i tuoi dati" etichetta="Informativa breve"
-          bottone={apri => (
-            <button type="button" onClick={() => { playTapSound(); apri(); }} className="font-semibold text-azione-testo underline underline-offset-2">Come li usiamo</button>
-          )}>
-          <p data-testo-ok>{INFORMATIVA_BREVE}</p>
+      <div className="flex flex-col items-start gap-0.5">
+        <p data-testo-ok className="text-s1 leading-[18px] text-testo-tenue">Nome, email, corso e provenienza servono a creare la tua iscrizione.</p>
+        <div className="flex flex-wrap gap-x-4">
+          <InfoFoglio titolo="Come usiamo i tuoi dati" etichetta="Informativa breve"
+            bottone={apri => (
+              <button type="button" onClick={() => { playTapSound(); apri(); }} className="inline-flex min-h-11 items-center text-s2 font-semibold text-azione-testo underline underline-offset-2">Come li usiamo</button>
+            )}>
+            <p data-testo-ok>{INFORMATIVA_BREVE}</p>
+            {onOpenLegal && (
+              <button type="button" onClick={() => onOpenLegal('privacy')} className="mt-1 inline-flex min-h-11 items-center font-semibold text-azione-testo underline underline-offset-2">Informativa completa</button>
+            )}
+          </InfoFoglio>
           {onOpenLegal && (
-            <button type="button" onClick={() => onOpenLegal('privacy')} className="mt-3 font-semibold text-azione-testo underline underline-offset-2">Informativa completa</button>
+            <button type="button" onClick={() => { playTapSound(); onOpenLegal('termini'); }} className="inline-flex min-h-11 items-center text-s2 font-semibold text-azione-testo underline underline-offset-2">Termini</button>
           )}
-        </InfoFoglio>
-      </p>
+        </div>
+      </div>
     </div>
   );
 }

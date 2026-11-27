@@ -13,7 +13,7 @@ export const privacy: LegalDoc = {
     {
       titolo: 'In breve',
       paragrafi: [
-        `AddiOFA si usa senza account: domande, simulazioni e progressi stanno nel tuo browser. All'inizio ti chiediamo la tua email del Politecnico (obbligatoria: il nome lo ricaviamo dall'email) e che cosa studi (scuola, sede, livello, corso, anno), e come ci hai conosciuto: questi dati vengono inviati ad ${A}, il servizio di ${P}, appena possibile. Chiediamo anche tre consensi facoltativi, sempre spenti finché non li accendi tu.`,
+        `AddiOFA si usa senza account: domande, simulazioni e progressi stanno nel tuo browser. All'inizio ti chiediamo la tua email del Politecnico (obbligatoria: il nome lo ricaviamo dall'email) e che cosa studi (scuola, sede, livello, corso, anno), e come ci hai conosciuto: questi dati vengono inviati ad ${A}, il servizio di ${P}, appena possibile. Ti chiediamo un solo consenso, obbligatorio e mai preselezionato: termini e privacy, che comprende classifica NOI, Agorà, ${ID} e ${A}.`,
         `Non usiamo cookie di tracciamento né strumenti di statistica, non ci sono pubblicità, non vendiamo dati e non facciamo profilazione commerciale senza il tuo consenso. Il ${ID} (accesso con Google) è facoltativo.`,
       ],
     },
@@ -30,7 +30,7 @@ export const privacy: LegalDoc = {
       paragrafi: ['Solo questi, e solo nei casi indicati:'],
       elenco: [
         'Sempre, sul tuo dispositivo e non inviati a nessuno: progressi di studio (risposte, simulazioni, ripasso, statistiche), profilo scelto (nome, corso), obiettivi, badge, sfide e preferenze (tema, suoni).',
-        `Con la registrazione, inviati ad ${A}: l'email del Politecnico (controllata nel formato e nel dominio; «verificata» solo se apri il link di verifica), il nome che ricaviamo dall'email (per esempio nome.cognome@… diventa «Nome Cognome»: lo puoi correggere), il percorso di studi (scuola, sede, livello, corso, anno), come ci hai conosciuto (gruppo o chat, Instagram, amici, altro); i tre consensi facoltativi con data e versione del testo che hai visto.`,
+        `Con la registrazione, inviati ad ${A}: l'email del Politecnico (controllata nel formato e nel dominio; «verificata» solo se apri il link di verifica), il nome che ricaviamo dall'email (per esempio nome.cognome@… diventa «Nome Cognome»: lo puoi correggere), il percorso di studi (scuola, sede, livello, corso, anno), come ci hai conosciuto (gruppo o chat, Instagram, amici, altro); il consenso a termini e privacy, con data e versione del testo che hai visto.`,
         `Se scegli «Accedi con Google» (${ID}): nome, foto ed email del tuo account Google, un identificativo del ${ID}, il @nome utente, i permessi che concedi con il loro registro (concessione, modifica, revoca, con data).`,
         'Se aderisci alla classifica NOI: il tuo @nome utente, le domande imparate e il miglior punteggio in simulazione, visibili agli altri partecipanti.',
         'Dati tecnici di connessione (indirizzo IP e simili) nei registri di chi ospita il sito e il servizio; ATLAS ne conserva solo un\'impronta per un\'ora, per limitare le richieste ripetute.',

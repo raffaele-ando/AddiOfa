@@ -83,12 +83,12 @@ export function riassuntoStudio(stato: AppState): RiassuntoStudio {
   return { giorniDiStudio, secondiTotali, domandeTotali, simulazioni };
 }
 
-/** «35 min», «2 h 05 min», «meno di 1 min» (mai 0 se c'è stato studio). */
+/** «35 min», «2 h 05 min», «< 1 min» (mai 0 se c'è stato studio). */
 export function formatoDurata(secondi: number): string {
   const s = Math.max(0, Math.round(secondi));
   if (s === 0) return '0 min';
   const minuti = Math.floor(s / 60);
-  if (minuti === 0) return 'meno di 1 min';
+  if (minuti === 0) return '< 1 min';
   if (minuti < 60) return `${minuti} min`;
   const ore = Math.floor(minuti / 60);
   const resto = minuti % 60;

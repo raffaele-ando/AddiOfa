@@ -33,8 +33,11 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const mostra = useCallback<Mostra>((testo, tipo = 'info') => {
+    // un avviso alla volta: il nuovo prende il posto dei precedenti (niente pile né ripetizioni)
     const id = ++contatore.current;
-    setLista(l => [...l.slice(-2), { id, testo, tipo }]);
+    timer.current.forEach(clearTimeout);
+    timer.current.clear();
+    setLista([{ id, testo, tipo }]);
     timer.current.set(id, setTimeout(() => chiudi(id), tipo === 'errore' ? 8000 : 5000));
   }, [chiudi]);
 
@@ -44,13 +47,13 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={valore}>
       {children}
-      <div className="fixed inset-x-0 bottom-0 z-[60] flex flex-col items-center gap-2 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pointer-events-none" aria-live="polite" role="status">
+      <div className="fixed inset-x-0 bottom-0 z-40 flex flex-col items-center gap-2 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pointer-events-none" aria-live="polite" role="status">
         {lista.map(m => {
           return (
             <div key={m.id} className="pointer-events-auto w-full max-w-sm flex items-start gap-2.5 rounded-2xl bg-superficie-2 border border-linea px-3.5 py-3 shadow-lg dark:shadow-none">
               <Icona nome={ICONE[m.tipo]} size={20} className={`mt-0.5 shrink-0 ${COLORI[m.tipo]}`} />
               <p className="flex-1 min-w-0 text-s2 text-testo break-words">{m.testo}</p>
-              <button type="button" onClick={() => chiudi(m.id)} aria-label="Chiudi il messaggio" className="shrink-0 text-testo-tenue hover:text-testo p-0.5">
+              <button type="button" onClick={() => chiudi(m.id)} aria-label="Chiudi il messaggio" className="-my-2.5 -mr-2 grid h-11 w-11 shrink-0 place-items-center rounded-xl text-testo-tenue hover:text-testo">
                 <Icona nome="chiudi" size={18} />
               </button>
             </div>

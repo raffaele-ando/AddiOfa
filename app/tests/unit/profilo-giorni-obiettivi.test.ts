@@ -44,7 +44,7 @@ test('un giorno di studio: una risposta, una simulazione o un minuto', () => {
 
 test('formatoDurata', () => {
   assert.equal(formatoDurata(0), '0 min');
-  assert.equal(formatoDurata(20), 'meno di 1 min');
+  assert.equal(formatoDurata(20), '< 1 min');
   assert.equal(formatoDurata(35 * 60), '35 min');
   assert.equal(formatoDurata(3600), '1 h');
   assert.equal(formatoDurata(2 * 3600 + 5 * 60), '2 h 05 min');

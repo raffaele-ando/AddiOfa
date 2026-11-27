@@ -7,6 +7,7 @@ import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound } 
 import { provider } from '../access';
 import type { GradeResult, PublicQuestion } from '../access/provider';
 import { Screen } from './ui';
+import ConfirmDialog from './ConfirmDialog';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 import { Illustrazione } from '../brand/Illustrazione';
 import { Bottone, OpzioneRisposta, StatoVuoto, tipografiche, type StatoOpzione } from '../screens/extra/studio/comune';
@@ -73,7 +74,19 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
   if (imparatePrima.current === null) imparatePrima.current = contaImparate(appState.stats);
   const inizioRef = useRef(Date.now());
 
+  // Esci (X o Esc) a sessione iniziata chiede conferma: le risposte sono già nei progressi, ma il riepilogo della sessione si perde
+  const [chiediUscita, setChiediUscita] = useState(false);
+  const esci = () => { if (esiti.length > 0 && currentIndex < items.length) setChiediUscita(true); else onExit(); };
+  const radice = useRef<HTMLDivElement>(null);
+  const esciRef = useRef(esci);
+  esciRef.current = esci;
+  useEffect(() => {
+    const tasto = (e: KeyboardEvent) => { if (e.key === 'Escape' && !e.defaultPrevented && radice.current?.offsetParent) esciRef.current(); };
+    document.addEventListener('keydown', tasto);
+    return () => document.removeEventListener('keydown', tasto);
+  }, []);
   const checkingRef = useRef(false);
+  const esitoAlle = useRef(0);
   const lastCheckRef = useRef<{ confidence: 'low' | 'medium' | 'high'; isTimeout: boolean } | null>(null);
   const appStateRef = useRef(appState);
   appStateRef.current = appState;
@@ -274,6 +287,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
     }
 
     setResult(res);
+    esitoAlle.current = Date.now();
     setHasChecked(true);
     setAttempts(currentAttempts);
     setChecking(false);
@@ -306,6 +320,8 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
 
   // `salta`: dopo due tentativi sbagliati si va avanti senza ripetere (la domanda resta tra quelle sbagliate)
   const handleNext = (salta = false) => {
+    // un doppio tocco su «Sicuro» non deve cadere sul pulsante che compare nello stesso punto: 400 ms dopo l'esito i tocchi si ignorano
+    if (Date.now() - esitoAlle.current < 400) return;
     playTapSound();
     if (!isCorrect && !salta) {
       // Try again logic
@@ -370,11 +386,14 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
   const rispostaEsatta = result && !isCorrect && !optionsRevealed && correctDisplay >= 0 ? question.options[correctDisplay] : null;
 
   return (
-    <div className="flex flex-col h-full w-full bg-superficie overflow-hidden transition-colors duration-100">
+    <div ref={radice} className="flex flex-col h-full w-full bg-superficie overflow-hidden transition-colors duration-100">
+      <ConfirmDialog open={chiediUscita} title="Uscire dall'allenamento?"
+        message="Le risposte date finora restano nei tuoi progressi; il riepilogo di questa sessione si perde."
+        confirmLabel="Esci" cancelLabel="Resta" onConfirm={() => { setChiediUscita(false); onExit(); }} onCancel={() => setChiediUscita(false)} />
       {/* Testata: esci, avanzamento, serie, tempo (con unità) e, sotto, il consumo del tempo */}
       <header className="relative shrink-0 border-b border-linea">
         <div className="mx-auto flex h-14 w-full max-w-[520px] items-center gap-2 px-2 sm:px-4">
-          <button onClick={() => { playTapSound(); onExit(); }} aria-label="Esci" className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo transition-colors duration-100">
+          <button onClick={() => { playTapSound(); esci(); }} aria-label="Esci" className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo transition-colors duration-100">
             <Icona nome="chiudi" size={24} />
           </button>
           <div className="flex-1 bg-superficie-2 h-2 rounded-full overflow-hidden" role="progressbar" aria-label="Avanzamento" aria-valuemin={0} aria-valuemax={questions.length} aria-valuenow={currentIndex}>
@@ -514,8 +533,9 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
               <div role="group" aria-labelledby="etichetta-fiducia" className="grid grid-cols-3 gap-2">
                 {FIDUCIA.map(f => (
                   <button key={f.id} type="button" onClick={() => handleCheck(f.id)} disabled={checking || !daControllare}
-                    className={cn('flex h-[64px] flex-col items-center justify-center gap-1 rounded-xl border-[1.5px] text-s1 font-bold text-testo transition-colors duration-100 disabled:opacity-45',
-                      daControllare ? f.pronto : 'border-linea bg-superficie-2')}>
+                    className={cn('flex h-[64px] flex-col items-center justify-center gap-1 rounded-xl border-[1.5px] text-s1 font-bold transition-colors duration-100',
+                      // spenti (prima di scegliere) restano leggibili: testo tenue pieno, niente trasparenza
+                      daControllare ? cn(f.pronto, 'text-testo') : 'border-linea bg-superficie-2 text-testo-tenue')}>
                     <BarreFiducia livello={f.livello} className={f.colore} />{f.nome}
                   </button>
                 ))}
@@ -543,17 +563,16 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
                     <Icona nome="teoria" size={18} />Rivedi la teoria
                   </button>
                 )}
-                <button type="button" onClick={() => handleNext()}
+                {/* dopo un errore la risposta giusta è già in vista: l'azione principale è andare avanti, «Riprova» resta sotto */}
+                <button type="button" onClick={() => handleNext(!isCorrect)}
                   className="flex h-[52px] min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-azione text-s2 font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
-                  {isCorrect
-                    ? <>{ultima ? 'Vedi com’è andata' : 'Avanti'} <Icona nome="avanti" size={22} /></>
-                    : <>Riprova <Icona nome="riprova" size={20} /></>}
+                  {ultima ? 'Vedi com’è andata' : 'Avanti'} <Icona nome="avanti" size={22} />
                 </button>
               </div>
-              {!isCorrect && attempts >= 2 && (
-                <button type="button" onClick={() => handleNext(true)}
+              {!isCorrect && (
+                <button type="button" onClick={() => handleNext()}
                   className="mx-auto inline-flex min-h-[44px] items-center gap-1.5 px-3 text-s2 font-bold text-testo underline underline-offset-2">
-                  <Icona nome="salta" size={16} />Vai avanti
+                  <Icona nome="riprova" size={16} />Riprova questa domanda
                 </button>
               )}
             </>
@@ -597,7 +616,7 @@ function Spiegazione({ testo }: { testo: string }) {
       </div>
       {(troncata || aperta) && (
         <button type="button" aria-expanded={aperta} onClick={() => { playTapSound(); setAperta(v => !v); }}
-          className="mt-1 inline-flex min-h-[40px] items-center text-s2 font-bold text-azione-testo underline underline-offset-2">
+          className="mt-1 inline-flex min-h-[44px] items-center text-s2 font-bold text-azione-testo underline underline-offset-2">
           {aperta ? 'Mostra meno' : 'Leggi tutto'}
         </button>
       )}

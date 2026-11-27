@@ -24,7 +24,7 @@ const VOCI: Voce[] = [
   },
   {
     d: 'Dove vengono salvati i miei progressi?',
-    r: 'I progressi di studio restano nel tuo browser: dalle Impostazioni li esporti e li importi su un altro dispositivo. All’inizio ti chiediamo la tua email del Politecnico (il nome lo ricaviamo da lì) e che cosa studi: li ricevono Project e ATLAS, che gestiscono questo sito. Niente matricola, niente codice fiscale. Non vendiamo dati; le comunicazioni e la classifica sono consensi facoltativi.',
+    r: 'I progressi di studio restano nel tuo browser: dalle Impostazioni li esporti e li importi su un altro dispositivo. All’inizio ti chiediamo la tua email del Politecnico (il nome lo ricaviamo da lì) e che cosa studi: li ricevono Project e ATLAS, che gestiscono questo sito. Niente matricola, niente codice fiscale. Non vendiamo dati. C’è un solo consenso, termini e privacy, che comprende classifica NOI, Agorà, Project ID e ATLAS.',
     legale: { sezione: 'privacy', testo: 'Privacy' },
   },
   {
@@ -62,7 +62,7 @@ function Domanda({ voce, aperta, onToggle, onOpenLegal }: { voce: Voce; aperta: 
           <div className="px-5 pb-5 sm:px-6">
             <p data-testo-ok className="text-s2 leading-relaxed text-testo">{voce.r}</p>
             {voce.legale && (
-              <button type="button" onClick={() => onOpenLegal(voce.legale!.sezione)} className={cn('mt-2 inline-flex min-h-9 items-center gap-1.5 rounded-xl text-s2 font-bold text-azione-testo underline underline-offset-2', FOCUS)}>
+              <button type="button" onClick={() => onOpenLegal(voce.legale!.sezione)} className={cn('mt-1 inline-flex min-h-11 items-center gap-1.5 rounded-xl text-s2 font-bold text-azione-testo underline underline-offset-2', FOCUS)}>
                 <Icona nome={ICONE_LEGALI[voce.legale!.sezione]} size={16} />{voce.legale.testo}
               </button>
             )}

@@ -124,7 +124,7 @@ export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheor
               <nav aria-label="Sezioni" className="hidden lg:flex items-center gap-1">
                 {SCHEDE_DESKTOP.map(v => (
                   <button key={v.id} type="button" onClick={() => { playTapSound(); onNaviga(v.id); }} aria-current={v.id === 'home' ? 'page' : undefined}
-                    className={cn('brand-premibile inline-flex items-center gap-2 h-10 px-4 rounded-xl text-s2 leading-[20px]',
+                    className={cn('brand-premibile inline-flex items-center gap-2 h-11 px-4 rounded-xl text-s2 leading-[20px]',
                       v.id === 'home' ? 'bg-azione-tinta text-azione-testo font-bold' : 'text-testo-tenue font-semibold hover:text-testo')}>
                     <Icona nome={v.icona} size={20} />{v.nome}
                   </button>
@@ -133,8 +133,9 @@ export default function Menu({ appState, onStartSmart, onOpenTheory, onOpenTheor
             )}
             {onOpenImpostazioni && (
               <button type="button" onClick={() => { playTapSound(); onOpenImpostazioni(); }} aria-label="Profilo"
-                className="brand-premibile w-9 h-9 rounded-full bg-superficie-2 text-testo grid place-items-center">
-                <Icona nome="profilo" size={22} />
+                className="brand-premibile -m-1 grid h-11 w-11 place-items-center rounded-full">
+                {/* area di tocco 44 px, cerchio disegnato 36 px */}
+                <span aria-hidden="true" className="grid h-9 w-9 place-items-center rounded-full bg-superficie-2 text-testo"><Icona nome="profilo" size={22} /></span>
               </button>
             )}
           </header>

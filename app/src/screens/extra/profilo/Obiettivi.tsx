@@ -68,7 +68,7 @@ export default function Obiettivi() {
         {av.corrente !== null ? (
           <>
             <div className="mt-4 flex items-baseline justify-between gap-3">
-              <p className="text-s5 leading-[34px] font-extrabold tabular-nums text-testo">{av.corrente}%<span className="ml-1.5 text-s2 font-semibold text-testo-tenue">probabilità ora</span></p>
+              <p className="text-s5 leading-[34px] font-extrabold tabular-nums text-testo">{n.probabilitaTesto}<span className="ml-1.5 text-s2 font-semibold text-testo-tenue">probabilità ora</span></p>
               <p className="text-s2 leading-[20px] font-bold tabular-nums text-testo">Obiettivo {av.target}%</p>
             </div>
             <BarraTono className="mt-2 h-2.5" tono="alto" valore={av.quota * 100} />
@@ -108,14 +108,14 @@ export default function Obiettivi() {
               {giorno.raggiunto && <span role="img" aria-label="Raggiunto" className="text-alto-numero"><Icona nome="stato-ok" size={20} /></span>}
             </div>
             <BarraTono className="mt-1.5" tono="medio" valore={giorno.quota * 100} />
-            <p className="mt-2 text-s1 leading-[18px] tabular-nums text-testo-tenue">{settimana.raggiunti} giorni su {settimana.giorni} questa settimana</p>
+            <p className="mt-2 text-s1 leading-[18px] tabular-nums text-testo-tenue">Obiettivo raggiunto {settimana.raggiunti === 1 ? '1 giorno' : `${settimana.raggiunti} giorni`} su {settimana.giorni} questa settimana</p>
           </div>
         </Carta>
 
         <Carta as="section" className="flex flex-col gap-3">
           <Domanda id="ob-prob" sotto="Probabilità di superare il test.">Quanto vuoi esserne sicuro?</Domanda>
           <Scelte nome="Probabilità da raggiungere" valori={STIMA_OPZIONI} scelto={ob.stimaTarget} onScegli={v => imposta({ stimaTarget: v })} formato={v => `${v}%`} />
-          <p className="text-s2 leading-[20px] font-semibold tabular-nums text-testo">{av.corrente !== null ? `Ora ${av.corrente}% · obiettivo ${av.target}%` : `Obiettivo ${av.target}%`}</p>
+          <p className="text-s2 leading-[20px] font-semibold tabular-nums text-testo">{av.corrente !== null ? `Ora ${n.probabilitaTesto} · obiettivo ${av.target}%` : `Obiettivo ${av.target}%`}</p>
         </Carta>
 
         <Carta as="section">

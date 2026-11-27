@@ -35,7 +35,7 @@ export default function Perche({ onOpenLegal }: { onOpenLegal(s: LegalSection): 
             <h2 id="t-perche" className="mt-1 text-s4 font-extrabold leading-tight tracking-tight text-testo lg:text-s5">{EXAM.passMark} risposte esatte su {EXAM.questions}.</h2>
             <p className="mt-2 text-s2 leading-relaxed text-testo-tenue">Il test vero: {EXAM.questions} domande, {EXAM.minutes} minuti. Qui lo simuli quante volte vuoi.</p>
             <InfoFoglio titolo="Il test di recupero" etichetta="Fonte e regole del test"
-              bottone={apri => <BottoneLink onClick={apri} className="mt-1 !min-h-9 !text-s2">Fonte e regole</BottoneLink>}>
+              bottone={apri => <BottoneLink onClick={apri} className="mt-1 !text-s2">Fonte e regole</BottoneLink>}>
               <p>Il test di riferimento è quello di recupero nel formato LinguaViva: {EXAM.questions} domande, {EXAM.minutes} minuti, si supera con {EXAM.passMark} risposte esatte. Le regole possono cambiare: controlla il regolamento del tuo corso.</p>
             </InfoFoglio>
           </div>

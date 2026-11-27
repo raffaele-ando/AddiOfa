@@ -134,7 +134,10 @@ const memoriaLocale = {
 };
 
 /** La verifica si può offrire solo se l'accesso Firebase è configurato. */
-export const verificaDisponibile = (): boolean => loginDisponibile();
+// Se il progetto Firebase risponde che l'accesso con link non è abilitato, il pulsante non si offre più (in questa scheda): niente richieste che falliscono di sicuro.
+const CHIAVE_LINK_SPENTO = 'addiofa_link_non_abilitato';
+function linkSpento(): boolean { try { return sessionStorage.getItem(CHIAVE_LINK_SPENTO) === '1'; } catch { return false; } }
+export const verificaDisponibile = (): boolean => loginDisponibile() && !linkSpento();
 
 export type EsitoInvioLink = { ok: true } | { ok: false; messaggio: string };
 
@@ -149,7 +152,9 @@ export async function inviaLinkVerifica(email: string): Promise<EsitoInvioLink> 
     return { ok: true };
   } catch (error) {
     if (error instanceof LoginError) return { ok: false, messaggio: error.message };
-    return { ok: false, messaggio: messaggioVerifica((error as { code?: string }).code, 'invio') };
+    const code = (error as { code?: string }).code;
+    if (code === 'auth/operation-not-allowed') { try { sessionStorage.setItem(CHIAVE_LINK_SPENTO, '1'); } catch { /* niente memoria: si riproverà */ } }
+    return { ok: false, messaggio: messaggioVerifica(code, 'invio') };
   }
 }
 

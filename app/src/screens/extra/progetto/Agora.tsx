@@ -24,7 +24,7 @@ export default function Agora() {
 
       <Sezione id="agora-messaggi" titolo="Novità">
         <GruppoRighe etichetta="Novità">
-          <Riga icona="email" titolo="Novità da Project e Agorà" onClick={() => vai('projectid')} />
+          <Riga icona="email" titolo="L'email per le novità" sottotitolo="Le novità di Project e Agorà arrivano all'email della tua iscrizione: la vedi in Project ID" onClick={() => vai('projectid')} />
         </GruppoRighe>
       </Sezione>
     </Pagina>

@@ -260,6 +260,14 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
     setViste(prev => (prev.has(next) ? prev : new Set(prev).add(next)));
   };
 
+  // Una ricarica o la chiusura della scheda a prova iniziata perde risposte e tempo: il browser chiede conferma prima
+  useEffect(() => {
+    if (phase !== 'running') return;
+    const avvisa = (e: BeforeUnloadEvent) => { e.preventDefault(); e.returnValue = ''; };
+    window.addEventListener('beforeunload', avvisa);
+    return () => window.removeEventListener('beforeunload', avvisa);
+  }, [phase]);
+
   const requestExit = () => {
     if (phase === 'running' && Object.keys(answers).length > 0) setConfirm('exit');
     else onExit();
@@ -392,7 +400,7 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
               <Icona nome="tempo" size={18} /> {timeStr}
             </div>
             <button onClick={requestSubmit}
-              className="inline-flex h-10 items-center rounded-xl border border-azione/60 px-4 text-s1 font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
+              className="inline-flex h-11 items-center rounded-xl border border-azione/60 px-4 text-s1 font-bold text-azione-testo transition-colors duration-100 hover:bg-azione-tinta">
               Consegna
             </button>
           </div>

@@ -10,7 +10,8 @@ import { serieStime } from '../../../components/home/stima';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import { analizzaLivello } from '../../../lib/servizi/analisi';
-import { livelloAttuale } from '../../../lib/profilo/livello';
+import { formatProbabilita } from '../../../lib/diagnostic';
+import { livelloAttuale, SOGLIA_LIVELLO } from '../../../lib/profilo/livello';
 import { normalizzaObiettivi, OBIETTIVI_INIZIALI, type ObiettiviDati } from '../../../lib/profilo/obiettivi';
 import { andamentoSimulazioni, formatTempoStudio, tessereStatistiche } from '../../../lib/studio/statistiche';
 import { NOMI_MESI } from '../../../lib/profilo/giorni';
@@ -46,7 +47,7 @@ function GraficoProbabilita() {
     <Carta as="section">
       <div className="flex items-start justify-between gap-3">
         <h2 className="text-s3 leading-[24px] font-bold text-testo">Probabilità di superare il test</h2>
-        {n.probabilita !== null && <p className="text-s4 leading-[30px] font-extrabold tabular-nums text-testo" aria-label={`Ora ${n.probabilita} per cento`}>{n.probabilita}%</p>}
+        {n.probabilita !== null && <p className="text-s4 leading-[30px] font-extrabold tabular-nums text-testo" aria-label={`Ora ${n.probabilitaTesto}`}>{n.probabilitaTesto}</p>}
       </div>
       {punti.length >= 2 ? (
         <>
@@ -62,7 +63,7 @@ function GraficoProbabilita() {
             {punti.map((p, i) => (
               <span key={i} aria-hidden="true" className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${x(i)}%`, top: `${y(p.p)}%` }}>
                 <span className={cn('block h-3 w-3 rounded-full border-2 border-superficie bg-azione', i === punti.length - 1 && 'h-4 w-4')} />
-                {i === punti.length - 1 && <span className="absolute bottom-full left-1/2 mb-1 -translate-x-1/2 whitespace-nowrap rounded-xl bg-azione px-1.5 py-0.5 text-s1 leading-[16px] font-bold tabular-nums text-azione-su">{Math.round(p.p * 100)}%</span>}
+                {i === punti.length - 1 && <span className="absolute bottom-full left-1/2 mb-1 -translate-x-1/2 whitespace-nowrap rounded-xl bg-azione px-1.5 py-0.5 text-s1 leading-[16px] font-bold tabular-nums text-azione-su">{formatProbabilita(p.p).replace(/\s+%/, '%')}</span>}
               </span>
             ))}
           </div>
@@ -126,10 +127,14 @@ function RisultatiSimulazioni() {
               {punti.map(p => {
                 const alt = Math.max(4, (p.esatte / totali) * 100);
                 const ok = p.esatte >= REAL_TEST_PASS_MARK;
+                // se il numero sopra la colonna toccherebbe la linea della soglia (20 px su 120), si scrive dentro la colonna
+                const sogliaPct = (REAL_TEST_PASS_MARK / totali) * 100;
+                const dentro = alt < sogliaPct && sogliaPct - alt < 20 && alt > 20;
                 return (
                   <div key={p.numero} className="relative h-full min-w-0 flex-1">
                     <div className={cn('absolute bottom-0 left-1/2 w-full max-w-[30px] -translate-x-1/2 rounded-t-xl', ok ? 'bg-alto' : 'bg-medio-numero')} style={{ height: `${alt}%` }} />
-                    <span className="absolute left-1/2 -translate-x-1/2 text-s1 leading-[16px] font-bold tabular-nums text-testo" style={{ bottom: `calc(${alt}% + 3px)` }}>{p.esatte}</span>
+                    <span className={cn('absolute left-1/2 -translate-x-1/2 text-s1 leading-[16px] font-bold tabular-nums', dentro ? (ok ? 'text-alto-su' : 'text-medio-su') : 'text-testo')}
+                      style={{ bottom: dentro ? `calc(${alt}% - 19px)` : `calc(${alt}% + 3px)` }}>{p.esatte}</span>
                   </div>
                 );
               })}
@@ -200,12 +205,14 @@ function PerLivello() {
           <li key={q.livello}>
             <div className="flex items-baseline justify-between gap-3">
               <span className="text-s2 leading-[21px] font-semibold text-testo">{q.livello}</span>
-              <span className="text-s2 font-semibold tabular-nums text-testo-tenue">{q.imparate} di {q.totale} imparate</span>
+              <span className="text-s2 font-semibold tabular-nums text-testo-tenue">{q.imparate} di {q.totale} domande imparate</span>
             </div>
             <BarraTono className="mt-1.5 h-2" tono="azione" valore={q.totale ? (q.imparate / q.totale) * 100 : 0} />
           </li>
         ))}
       </ul>
+      {/* lo stesso conto di Profilo e Badge: un livello si raggiunge imparando il 60 % delle sue domande */}
+      <p data-testo-ok className="mt-3 text-s1 leading-[18px] text-testo-tenue">Un livello si raggiunge imparando il {Math.round(SOGLIA_LIVELLO * 100)} % delle sue domande: è il numero che contano Profilo e Badge.</p>
     </Carta>
   );
 }

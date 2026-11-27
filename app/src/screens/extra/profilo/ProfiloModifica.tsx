@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Icona } from '../../../brand/icone/Icona';
 import { cn } from '../../../lib/utils';
 import { CORSO_MAX, NOME_MAX, normalizzaProfilo, type ProfiloDati } from '../../../lib/profilo/dati';
@@ -17,12 +17,17 @@ export default function ProfiloModifica() {
   const modificato = JSON.stringify(normalizzaProfilo(bozza)) !== JSON.stringify(profilo);
   const aggiorna = (p: Partial<ProfiloDati>) => setBozza(b => ({ ...b, ...p }));
   const anteprima = normalizzaProfilo(bozza);
-  const conferma = () => { salva(bozza); indietro(); };
+  // un doppio tocco su Salva non deve cadere sulla schermata che compare sotto
+  const fatto = useRef(false);
+  const conferma = () => { if (fatto.current || !modificato) return; fatto.current = true; salva(bozza); indietro(); };
 
   return (
     <Pagina titolo="Modifica profilo" indietro={indietro}
-      piede={<BottoneAzione disabled={!modificato} icona={<Icona nome="salva" size={20} />} onClick={conferma}>Salva</BottoneAzione>}>
-      <div className="mt-3 flex flex-col gap-5 rounded-xl border border-linea bg-superficie p-4 shadow-sm dark:shadow-none">
+      piede={<>
+        <BottoneAzione disabled={!modificato} icona={<Icona nome="salva" size={20} />} onClick={conferma}>Salva</BottoneAzione>
+        {!modificato && <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">Cambia il nome o il corso per salvare.</p>}
+      </>}>
+      <form onSubmit={e => { e.preventDefault(); conferma(); }} className="mt-3 flex flex-col gap-5 rounded-xl border border-linea bg-superficie p-4 shadow-sm dark:shadow-none">
         <div className="flex items-center gap-3.5">
           <Avatar profilo={anteprima} lato={56} />
           <p data-testo-ok className="min-w-0 flex-1 text-s2 leading-[20px] text-testo-tenue">L&apos;avatar è la prima lettera del tuo nome.</p>
@@ -39,7 +44,8 @@ export default function ProfiloModifica() {
           <input id="mod-corso" type="text" value={bozza.corso} maxLength={CORSO_MAX} onChange={e => aggiorna({ corso: e.target.value })}
             placeholder="Es. Ingegneria informatica" autoComplete="off" className={cn(CAMPO, 'mt-2')} />
         </div>
-      </div>
+        <button type="submit" hidden aria-hidden="true" tabIndex={-1} />
+      </form>
     </Pagina>
   );
 }

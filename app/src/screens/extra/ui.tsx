@@ -6,7 +6,7 @@
 // Superfici (revisione 18/10): la pagina `velata` ha il fondo velato (`fondo`) e le card sono bianche (`Carta`: superficie, bordo, ombra leggera
 // in chiaro; in scuro solo il bordo, niente ombra). Raggi: card 16, tessere interne 12, pulsanti 14, pillole tonde.
 // Icone e illustrazioni: icone a tratto per azioni, righe e metadati; illustrazioni solo per gli stati vuoto/errore (96-120 px) e per la testata di Community.
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useRef, type KeyboardEvent as TastoReact, type ReactNode } from 'react';
 import { Icona, type NomeIcona } from '../../brand/icone/Icona';
 import { FONT } from '../../brand/tokens';
 import { playTapSound } from '../../lib/audio';
@@ -136,6 +136,17 @@ export function BarraTono({ valore, tono = 'azione', className }: { valore: numb
 // ---------------------------------------------------------------------------------------------------------------
 // Controlli: UN solo segmentato, UN solo filtro a chip, UNA sola riga di lista. Sempre con le parole (l'icona è facoltativa).
 
+/** Frecce in un gruppo di radio (come i radio nativi): sinistra/su la voce prima, destra/giù la dopo; il fuoco segue la scelta. */
+function frecceRadio<T extends string>(e: TastoReact<HTMLElement>, ids: T[], valore: T, onScegli: (v: T) => void) {
+  const passo = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+  if (!passo || ids.length === 0) return;
+  e.preventDefault();
+  const i = (Math.max(0, ids.indexOf(valore)) + passo + ids.length) % ids.length;
+  onScegli(ids[i]);
+  const gruppo = e.currentTarget;
+  requestAnimationFrame(() => gruppo.querySelectorAll<HTMLElement>('[role=radio]')[i]?.focus());
+}
+
 /** Controllo segmentato con le parole (13-14 px, 600): traccia incavata, voce scelta sollevata (bianca in chiaro, più chiara della traccia in scuro)
  *  con il testo `azione`. Da 2 a 4 voci. L'icona a sinistra è facoltativa. */
 export function Segmenti<T extends string>({ nome, voci, valore, onScegli, className }: {
@@ -143,14 +154,14 @@ export function Segmenti<T extends string>({ nome, voci, valore, onScegli, class
 }) {
   return (
     <div role="radiogroup" aria-label={nome} className={cn('grid gap-1 rounded-xl border border-linea bg-superficie-2 p-1 dark:bg-fondo', className)}
-      style={{ gridTemplateColumns: `repeat(${voci.length}, minmax(0, 1fr))` }}>
+      style={{ gridTemplateColumns: `repeat(${voci.length}, minmax(0, 1fr))` }} onKeyDown={e => frecceRadio(e, voci.map(v => v.id), valore, onScegli)}>
       {voci.map(v => {
         const on = v.id === valore;
         return (
-          <button key={v.id} type="button" role="radio" aria-checked={on} onClick={() => { if (!on) { playTapSound(); onScegli(v.id); } }}
+          <button key={v.id} type="button" role="radio" aria-checked={on} tabIndex={on ? 0 : -1} onClick={() => { if (!on) { playTapSound(); onScegli(v.id); } }}
             className={cn('brand-premibile flex h-11 min-w-0 items-center justify-center gap-1.5 rounded-xl px-1.5 text-s2 leading-[19px] transition-colors duration-100',
               on ? 'bg-superficie font-bold text-azione-testo shadow-sm dark:bg-superficie-2 dark:shadow-none' : 'font-semibold text-testo-tenue')}>
-            {v.icona && <Icona nome={v.icona} size={18} className="shrink-0" />}
+            {v.icona && <Icona nome={v.icona} size={18} className="shrink-0 max-[399px]:hidden" />}
             <span className="truncate">{v.nome}</span>
             {v.conto !== undefined && <span className="shrink-0 text-s1 font-semibold tabular-nums opacity-80">{v.conto}</span>}
           </button>
@@ -165,12 +176,13 @@ export function FiltriChip<T extends string>({ nome, voci, valore, onScegli, cla
   nome: string; voci: { id: T; nome: string; conto?: ReactNode }[]; valore: T; onScegli: (v: T) => void; className?: string;
 }) {
   return (
-    <div role="radiogroup" aria-label={nome} className={cn('-mx-6 flex gap-2 overflow-x-auto px-6 pb-1 scrollbar-hide', className)}>
+    // vanno a capo: nessun filtro nascosto fuori dallo schermo
+    <div role="radiogroup" aria-label={nome} className={cn('flex flex-wrap gap-2 pb-1', className)} onKeyDown={e => frecceRadio(e, voci.map(v => v.id), valore, onScegli)}>
       {voci.map(v => {
         const on = v.id === valore;
         return (
-          <button key={v.id} type="button" role="radio" aria-checked={on} onClick={() => { playTapSound(); onScegli(v.id); }}
-            className={cn('brand-premibile inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border px-4 text-s2 font-semibold',
+          <button key={v.id} type="button" role="radio" aria-checked={on} tabIndex={on ? 0 : -1} onClick={() => { playTapSound(); onScegli(v.id); }}
+            className={cn('brand-premibile inline-flex h-11 shrink-0 items-center gap-1.5 rounded-full border px-4 text-s2 font-semibold',
               on ? 'border-azione bg-azione-tinta text-azione-testo' : 'border-linea bg-superficie text-testo')}>
             {v.nome}{v.conto !== undefined && <span className="text-s1 tabular-nums text-testo-tenue">{v.conto}</span>}
           </button>
@@ -229,8 +241,9 @@ export function TestataScheda({ titolo, onProfilo, destra }: { titolo: string; o
       <div className="flex items-center gap-2">
         {destra}
         <button type="button" onClick={() => { playTapSound(); onProfilo(); }} aria-label="Profilo"
-          className="brand-premibile grid h-9 w-9 place-items-center rounded-full bg-superficie-2 text-testo">
-          <Icona nome="profilo" size={22} />
+          className="brand-premibile -m-1 grid h-11 w-11 place-items-center rounded-full">
+          {/* area di tocco 44 px, cerchio disegnato 36 px */}
+          <span aria-hidden="true" className="grid h-9 w-9 place-items-center rounded-full bg-superficie-2 text-testo"><Icona nome="profilo" size={22} /></span>
         </button>
       </div>
     </header>
@@ -255,10 +268,19 @@ export function FoglioInfo({ aperto, onChiudi, titolo, children }: { aperto: boo
     window.addEventListener('keydown', k);
     return () => window.removeEventListener('keydown', k);
   }, [aperto, onChiudi]);
+  // il fuoco entra nel foglio (sul primo campo, se c'è, altrimenti su Chiudi) e alla chiusura torna dov'era
+  const foglio = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!aperto) return;
+    const prima = document.activeElement as HTMLElement | null;
+    const el = foglio.current;
+    (el?.querySelector<HTMLElement>('input, textarea, select') ?? el?.querySelector<HTMLElement>('button'))?.focus({ preventScroll: true });
+    return () => { prima?.focus?.({ preventScroll: true }); };
+  }, [aperto]);
   if (!aperto) return null;
   return (
     <div className="absolute inset-0 z-50 flex items-end bg-testo/40" onClick={e => { if (e.target === e.currentTarget) onChiudi(); }}>
-      <div role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full overflow-y-auto rounded-t-2xl border-t border-linea bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
+      <div ref={foglio} role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full overflow-y-auto rounded-t-2xl border-t border-linea bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
         <div className="mb-3 flex items-center justify-between gap-3">
           <h2 className="text-s3 leading-[24px] font-extrabold">{titolo}</h2>
           <button type="button" onClick={onChiudi} aria-label="Chiudi" className="brand-premibile grid h-11 w-11 place-items-center rounded-full bg-superficie-2 text-testo"><Icona nome="chiudi" size={20} /></button>

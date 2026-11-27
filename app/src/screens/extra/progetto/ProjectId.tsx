@@ -129,9 +129,9 @@ export default function ProjectId() {
                 valore={<span><Etichetta tono={TONO_INVIO[statoInvio.chiave]}>{statoInvio.titolo}</Etichetta><span className="mt-1 block text-s1 font-normal leading-[18px] text-testo-tenue">{statoInvio.dettaglio}</span></span>} />
             </ul>
             <div className="flex flex-col gap-2">
-              {!profilo.emailVerificata && verificaDisponibile() && (
+              {!profilo.emailVerificata && (verificaDisponibile() || link.fase === 'errore') && (
                 <>
-                  <BottoneSecondario onClick={() => { void chiediLink(); }} disabled={link.fase === 'invio'} icona={<Icona nome="email" size={20} />}>{link.fase === 'invio' ? 'Invio…' : 'Verifica con un link'}</BottoneSecondario>
+                  {verificaDisponibile() && <BottoneSecondario onClick={() => { void chiediLink(); }} disabled={link.fase === 'invio'} icona={<Icona nome="email" size={20} />}>{link.fase === 'invio' ? 'Invio…' : 'Verifica con un link'}</BottoneSecondario>}
                   {link.fase === 'inviato' && <p role="status" data-testo-ok className="text-s1 leading-[18px] font-semibold text-alto-testo">Link inviato. Aprilo dalla posta: l&apos;email resta non verificata finché non lo fai.</p>}
                   {link.fase === 'errore' && <ErroreRiga testo={link.messaggio ?? ''} />}
                 </>

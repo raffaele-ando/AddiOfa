@@ -256,13 +256,14 @@ export function RigaStoria({ icona, testo, tono = 'azione' }: { icona: NomeIcona
 }
 
 // Rende *corsivo* e **grassetto** nei testi del prontuario, senza HTML arbitrario
-export function RichText({ text }: { text: string }) {
+/** `errore`: le forme in evidenza sono quelle da evitare (rosso e barrate), non quelle corrette (blu). */
+export function RichText({ text, errore }: { text: string; errore?: boolean }) {
   const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).filter(Boolean);
   return (
     <>
       {parts.map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) return <strong key={i}>{part.slice(2, -2)}</strong>;
-        if (part.startsWith('*') && part.endsWith('*')) return <em key={i} className="font-bold not-italic text-azione-testo">{part.slice(1, -1)}</em>;
+        if (part.startsWith('*') && part.endsWith('*')) return <em key={i} className={errore ? 'font-bold not-italic text-errore-testo line-through decoration-2' : 'font-bold not-italic text-azione-testo'}>{part.slice(1, -1)}</em>;
         return <span key={i}>{part}</span>;
       })}
     </>

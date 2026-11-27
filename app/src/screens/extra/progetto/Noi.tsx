@@ -113,7 +113,7 @@ export default function Noi() {
             <p data-testo-ok className="mt-0.5 text-s1 leading-[18px] text-testo-tenue">{haSimulazioni ? 'miglior simulazione' : 'nessuna simulazione'}</p>
           </Carta>
         </div>
-        <p data-testo-ok className="text-s1 leading-[18px] text-testo-tenue">Alla classifica arrivano solo se aderisci.</p>
+        {(stato === 'da-accedere' || stato === 'da-aderire') && <p data-testo-ok className="text-s1 leading-[18px] text-testo-tenue">Alla classifica arrivano solo se aderisci.</p>}
       </Sezione>
 
       {errore && <p role="alert" data-testo-ok className="mt-4 rounded-xl border border-errore/30 bg-errore-tinta p-3 text-center text-s2 font-bold text-errore-testo dark:bg-superficie">{errore}</p>}

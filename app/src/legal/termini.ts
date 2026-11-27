@@ -34,7 +34,7 @@ export const termini: LegalDoc = {
     {
       titolo: 'Come si usa',
       paragrafi: [
-        'Puoi usare il sito quanto vuoi, per studiare: tutte le domande, le schede di teoria e le simulazioni sono aperte. All\'inizio ti chiediamo l\'email del Politecnico (il nome lo ricaviamo da lì, e lo puoi correggere) e che cosa studi al Politecnico; i consensi sono facoltativi.',
+        'Puoi usare il sito quanto vuoi, per studiare: tutte le domande, le schede di teoria e le simulazioni sono aperte. All\'inizio ti chiediamo l\'email del Politecnico (il nome lo ricaviamo da lì, e lo puoi correggere) e che cosa studi al Politecnico, e un solo consenso: termini e privacy.',
         'I tuoi progressi, il profilo, gli obiettivi e le sfide restano nel browser di questo dispositivo. Se cancelli i dati del sito o cambi dispositivo li perdi, a meno che tu non li abbia esportati dalle Impostazioni.',
         `Se ${A} non è raggiungibile o sei senza connessione, l'app funziona lo stesso: l'iscrizione resta sul dispositivo e viene inviata appena possibile.`,
       ],

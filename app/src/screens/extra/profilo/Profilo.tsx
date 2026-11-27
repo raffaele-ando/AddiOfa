@@ -99,7 +99,7 @@ export default function Profilo() {
       <Carta className="mt-3 px-2 py-3.5">
         <dl className="flex divide-x divide-linea" aria-label="I tuoi numeri">
           {[
-            { v: n.probabilita !== null ? `${n.probabilita}%` : '–', e: 'probabilità' },
+            { v: n.probabilitaTesto ?? '–', e: 'probabilità' },
             { v: String(n.imparate), e: 'domande imparate' },
             { v: n.migliorSimulazione !== null ? `${n.migliorSimulazione}/${DOMANDE_TEST}` : '–', e: 'miglior simulazione' },
             { v: `${ottenuti}/${badge.length}`, e: 'badge' },
@@ -117,7 +117,7 @@ export default function Profilo() {
         <Carta className="flex flex-col gap-4">
           <RigaAvanzamento nome="Domande imparate" valore={`${n.imparate} di ${n.totaleDomande}`} quota={n.totaleDomande ? n.imparate / n.totaleDomande : 0} tono="alto" />
           {prossimo ? (
-            <RigaAvanzamento nome={livello.livello ? `Livello ${livello.livello}: verso ${prossimo.livello}` : `Livello: verso ${prossimo.livello}`} valore={`${Math.min(prossimo.imparate, necessarie)} di ${necessarie}`}
+            <RigaAvanzamento nome={livello.livello ? `Livello ${livello.livello}: verso ${prossimo.livello}` : `Livello: verso ${prossimo.livello}`} valore={`${Math.min(prossimo.imparate, necessarie)} di ${necessarie} domande`}
               quota={necessarie ? Math.min(1, prossimo.imparate / necessarie) : 0} tono="viola" />
           ) : livello.livello ? (
             <p className="flex items-center gap-2 text-s2 font-semibold text-testo"><Icona nome="livello" size={18} className="text-viola" />Livello {livello.livello} raggiunto</p>
@@ -142,7 +142,7 @@ export default function Profilo() {
           </div>
           {av.corrente !== null ? (
             <>
-              <p className="mt-3 text-s2 leading-[20px] font-semibold text-testo">Probabilità ora {av.corrente}% · obiettivo {av.target}%</p>
+              <p className="mt-3 text-s2 leading-[20px] font-semibold text-testo">Probabilità ora {n.probabilitaTesto} · obiettivo {av.target}%</p>
               <BarraTono className="mt-2" tono="alto" valore={av.quota * 100} />
             </>
           ) : (

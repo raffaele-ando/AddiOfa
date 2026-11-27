@@ -33,7 +33,7 @@ function Cornice({ titolo, titoloRef, onBack, children, intestazione, arte }: {
         <div className="mx-auto w-full max-w-[440px] px-6 pt-[max(14px,env(safe-area-inset-top))] pb-8">
           <header className="flex items-start gap-1">
             <button type="button" onClick={() => { playTapSound(); onBack(); }} aria-label="Indietro"
-              className="brand-premibile -ml-3 grid h-10 w-10 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo">
+              className="brand-premibile -ml-3 grid h-11 w-11 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo">
               <Icona nome="indietro" size={28} />
             </button>
             <div className="min-w-0 flex-1">
@@ -146,7 +146,7 @@ function Dettaglio({ topic, numero, prec, succ, titoloRef, onList, onGo }: {
   return (
     <Cornice titoloRef={titoloRef} titolo={titoloBreve(topic)} onBack={onList}
       arte={<TesseraLezione numero={numero} lato={56} tono="azione" />}
-      intestazione={<p className="flex items-center gap-2 pt-1"><ChipLivello livello={topic.livello} /><span className="sr-only">Livello {topic.livello}</span></p>}>
+      intestazione={<p className="flex items-center gap-2 pt-1"><ChipLivello livello={topic.livello} /><span className="sr-only">Livello {topic.livello}</span><span className="text-s1 font-semibold tabular-nums text-testo-tenue">Lezione {numero} di {pronti.length}</span></p>}>
       {/* Il testo della scheda è contenuto (esente dal controllo di testo): attorno non c'è nessuna introduzione. */}
       <article data-testo-ok className="mt-5 flex flex-col gap-6">
         <section aria-labelledby="t-regola" className="flex flex-col gap-2.5">
@@ -205,8 +205,8 @@ function Dettaglio({ topic, numero, prec, succ, titoloRef, onList, onGo }: {
       </article>
 
       <nav aria-label="Altre lezioni" className="mt-6 flex flex-col gap-2">
-        {succ && <Vicino t={succ} verso="succ" onGo={onGo} />}
         {prec && <Vicino t={prec} verso="prec" onGo={onGo} />}
+        {succ && <Vicino t={succ} verso="succ" onGo={onGo} />}
       </nav>
     </Cornice>
   );
@@ -217,12 +217,14 @@ function Vicino({ t, verso, onGo }: { t: TheoryTopic; verso: 'prec' | 'succ'; on
   return (
     <button
       type="button"
-      aria-label={`${succ ? 'Successiva' : 'Precedente'}: ${titoloBreve(t)}`}
       onClick={() => { playTapSound(); onGo(t); }}
       className="w-full flex items-center gap-3 rounded-xl bg-superficie-2 px-3.5 py-3 text-left transition-colors duration-100 hover:bg-linea focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione"
     >
       {!succ && <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="indietro" size={20} /></span>}
-      <span className="block min-w-0 flex-1 font-bold leading-snug text-testo break-words">{titoloBreve(t)}</span>
+      <span className="block min-w-0 flex-1">
+        <span className="block text-s1 font-semibold leading-[16px] text-testo-tenue">{succ ? 'Successiva' : 'Precedente'}</span>
+        <span className="block font-bold leading-snug text-testo break-words">{titoloBreve(t)}</span>
+      </span>
       {succ && <span aria-hidden="true" className="shrink-0 text-azione-testo"><Icona nome="avanti" size={20} /></span>}
     </button>
   );

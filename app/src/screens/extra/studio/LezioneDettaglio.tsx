@@ -6,7 +6,7 @@ import { Icona, type NomeIcona } from '../../../brand/icone/Icona';
 import { lezioniPercorso, filtroArgomento, titoloBreve } from '../../../lib/studio/percorso';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
-import { Pagina, Bottone, StatoVuoto, BarraTono, IconaTono, ChipLivello, TesseraLezione, Arte, type Tono } from './comune';
+import { Pagina, Bottone, StatoVuoto, BarraTono, IconaTono, ChipLivello, Arte, type Tono } from './comune';
 
 const CLASSE_RIGA = 'w-full flex items-center gap-3 rounded-xl bg-superficie-2 p-3 text-left';
 
@@ -20,9 +20,10 @@ function PassoAzione({ icona, tono, nome, minuti, fatto, fine, onClick }: {
 }) {
   return (
     <li>
-      <button type="button" onClick={() => { playTapSound(); onClick(); }} aria-label={`${nome}${fatto ? ', fatto' : ''}`} className={cn(CLASSE_RIGA, 'brand-premibile')}>
+      <button type="button" onClick={() => { playTapSound(); onClick(); }} className={cn(CLASSE_RIGA, 'brand-premibile')}>
         <IconaTono tono={fatto ? 'alto' : tono} lato={44}><Icona nome={fatto ? 'stato-imparata' : icona} size={24} /></IconaTono>
-        <span className="flex-1 min-w-0 text-s2 leading-[20px] font-bold text-testo">{nome}</span>
+        {/* il nome accessibile è il testo visibile («Esercizi 5 min»), più «fatto» per chi legge a voce */}
+        <span className="flex-1 min-w-0 text-s2 leading-[20px] font-bold text-testo">{nome}{fatto && <span className="sr-only">, fatto</span>}</span>
         {minuti !== undefined && minuti > 0 && <Minuti n={minuti} />}
         {fine}
       </button>
@@ -58,8 +59,8 @@ export default function LezioneDettaglio() {
   const esercitati = () => avviaEsercizi('category', filtroArgomento(topic));
 
   return (
+    // il numero della lezione è scritto sotto il titolo («Lezione 1 di 31»): niente riquadro col numero senza parola accanto
     <Pagina titolo={titoloBreve(topic)} onIndietro={indietro}
-      destra={<TesseraLezione numero={l.numero} lato={44} tono="azione" />}
       sotto={
         <span className="inline-flex items-center gap-3">
           <ChipLivello livello={topic.livello} /><span className="sr-only">Livello {topic.livello}</span>
@@ -77,10 +78,11 @@ export default function LezioneDettaglio() {
           onClick={esercitati}
           fine={<span aria-hidden="true" className="shrink-0 grid h-9 w-9 place-items-center rounded-full bg-azione text-azione-su"><Icona nome="studia" size={18} /></span>} />
 
-        <li className={CLASSE_RIGA} aria-label={`Verifica: ${l.imparate} domande imparate su ${totaleDomande}${imparata ? ', lezione imparata' : ''}`}>
+        {/* la verifica è una misura, non un pulsante: riquadro senza fondo, con la parola dell'unità */}
+        <li className="w-full flex items-center gap-3 rounded-xl border border-dashed border-tacca p-3 text-left" aria-label={`Verifica: ${l.imparate} domande imparate su ${totaleDomande}${imparata ? ', lezione imparata' : ''}`}>
           <IconaTono tono="alto" lato={44}><Icona nome={imparata ? 'stato-imparata' : 'verifica'} size={24} /></IconaTono>
           <span className="flex-1 min-w-0">
-            <span className="block text-s2 leading-[20px] font-bold text-testo">Verifica</span>
+            <span className="block text-s2 leading-[20px] font-bold text-testo">Verifica <span className="font-semibold text-testo-tenue">· domande imparate</span></span>
             <span className="mt-1.5 block"><BarraTono valore={percento} tono={imparata ? 'alto' : 'azione'} className="h-2" /></span>
           </span>
           <span aria-hidden="true" className={cn('shrink-0 text-s4 leading-[30px] font-extrabold tabular-nums', imparata ? 'text-alto-numero' : 'text-azione-testo')}>
@@ -103,7 +105,10 @@ export default function LezioneDettaglio() {
           onClick={() => { playTapSound(); vai('lezione-dettaglio', { id: successiva.topic.id }); }}
           className={cn(CLASSE_RIGA, 'brand-premibile mt-5 border border-linea bg-superficie')}>
           <span aria-hidden="true" className="shrink-0 grid h-9 w-9 place-items-center rounded-xl bg-superficie-2 text-s2 font-extrabold tabular-nums text-testo-tenue">{successiva.numero}</span>
-          <span className="flex-1 min-w-0 text-s2 leading-[20px] font-bold text-testo break-words">{titoloBreve(successiva.topic)}</span>
+          <span className="flex-1 min-w-0">
+            <span className="block text-s1 leading-[16px] font-semibold text-testo-tenue">Lezione successiva</span>
+            <span className="block text-s2 leading-[20px] font-bold text-testo break-words">{titoloBreve(successiva.topic)}</span>
+          </span>
           <span aria-hidden="true" className="shrink-0 text-testo-tenue"><Icona nome="avanti" size={22} /></span>
         </button>
       )}

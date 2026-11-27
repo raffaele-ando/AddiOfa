@@ -111,7 +111,7 @@ export default function FoglioCondividi({ aperto, onChiudi, testo, url, titolo =
         <div className="flex items-center justify-between gap-3 mb-4">
           <h2 id="foglio-condividi-titolo" className="text-s3 font-extrabold text-testo">{titolo}</h2>
           <button ref={chiudi} type="button" onClick={() => { playTapSound(); onChiudi(); }} aria-label="Chiudi"
-            className="brand-premibile p-1.5 rounded-full text-testo-tenue hover:text-testo"><Icona nome="chiudi" size={22} /></button>
+            className="brand-premibile -mr-2 grid h-11 w-11 shrink-0 place-items-center rounded-full text-testo-tenue hover:text-testo"><Icona nome="chiudi" size={22} /></button>
         </div>
         <OpzioniCondivisione testo={testo} url={url} />
       </div>

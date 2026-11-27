@@ -9,7 +9,7 @@ import { questions } from '../../../data/questions';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import {
-  LUNGHEZZA_MAX, TIPI_SEGNALAZIONE, accorcia, aggiungi, creaSegnalazione, eTipo, leggiSalvate, rimuovi, testoDaCopiare, testoValido,
+  LUNGHEZZA_MAX, LUNGHEZZA_MIN, TIPI_SEGNALAZIONE, accorcia, aggiungi, creaSegnalazione, eTipo, leggiSalvate, rimuovi, testoDaCopiare, testoValido,
   MAX_ERRORE, type Segnalazione, type TipoSegnalazione,
 } from '../../../lib/servizi/segnalazioni';
 
@@ -77,7 +77,7 @@ export default function Segnala() {
           <p className="inline-flex items-center gap-2 self-center rounded-full bg-medio-tinta px-3 py-1.5 text-s2 font-bold text-medio-testo dark:bg-superficie-2">
             <Icona nome="stato-attenzione" size={18} />Non inviata
           </p>
-          <p data-testo-ok className="text-center text-s2 leading-[20px] text-testo-tenue">Copia il testo e mandalo tu.</p>
+          <p data-testo-ok className="text-center text-s2 leading-[20px] text-testo-tenue">Copia il testo e mandalo tu al contatto da cui hai conosciuto AddiOFA.</p>
           <div className="rounded-xl border border-linea bg-superficie p-3.5 shadow-sm dark:shadow-none">
             <BloccoTesto id={`${campo}-fatta`} testo={testoDaCopiare(fatta)} />
           </div>
@@ -129,7 +129,7 @@ export default function Segnala() {
           </div>
           <div className="mt-3">
             <BottoneAzione disabled={!testoValido(testo)} icona={<Icona nome="segnala" size={20} />} onClick={invia}>Prepara il testo</BottoneAzione>
-            <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">Non parte da qui: copi il testo e lo mandi tu.</p>
+            <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">{testoValido(testo) ? 'Non parte da qui: copi il testo e lo mandi tu.' : `Scrivi almeno ${LUNGHEZZA_MIN} caratteri per preparare il testo.`}</p>
           </div>
         </>
       )}

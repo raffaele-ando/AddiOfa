@@ -79,7 +79,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
                 'inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border px-3 text-s2 font-bold transition-colors duration-100',
                 attivo ? f.attivo : 'bg-superficie text-testo border-linea hover:bg-superficie-2'
               )}>
-              <Icona nome={f.nome} size={18} />{f.aria}<span className="tabular-nums font-extrabold">{conteggi[f.id]}</span>
+              <Icona nome={f.nome} size={18} />{f.aria}{' '}<span className="tabular-nums font-extrabold">{conteggi[f.id]}</span>
             </button>
           );
         })}
@@ -154,7 +154,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
                     <p data-testo-ok className="rounded-xl bg-superficie p-3 text-s2 font-normal leading-[22px] text-testo">{tipografiche(r.explanation)}</p>
                   )}
                   {r?.theoryId && onOpenTheory && (
-                    <button type="button" onClick={() => { playTapSound(); onOpenTheory(r.theoryId!); }}
+                    <button type="button" onClick={() => { playTapSound(); onOpenTheory(r.theoryId!); }} aria-label={`Rivedi la teoria: ${q.grammarTopic || q.category}`}
                       className="mt-1 inline-flex min-h-[44px] items-center gap-1.5 text-s2 font-bold text-azione-testo underline underline-offset-2">
                       <Icona nome="teoria" size={16} /> Rivedi la teoria
                     </button>

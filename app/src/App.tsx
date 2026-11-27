@@ -11,12 +11,13 @@ import { chiaveGiorno } from './lib/utils';
 import { inAppNativa } from './lib/nativo';
 import { questions } from './data/questions';
 import Menu from './components/Menu';
+import ConfirmDialog from './components/ConfirmDialog';
 import Esercizi from './screens/Esercizi';
 import Impostazioni from './screens/Impostazioni';
 import LearnMode from './components/LearnMode';
 import ExamMode from './components/ExamMode';
 import { Layout } from './components/Layout';
-import Onboarding from './components/Onboarding';
+import Onboarding, { percorsoInCorso } from './components/Onboarding';
 import CheatSheet from './components/CheatSheet';
 import Navigazione, { Scheda } from './components/Navigazione';
 import { coda } from './lib/progetto/coda';
@@ -51,9 +52,10 @@ const NO_RETURN: View[] = ['learn', 'brand'];
 function initialView(state: AppState): View {
   const params = new URLSearchParams(window.location.search);
   if (params.has('landing')) return 'landing';
-  if (params.has('vista') && SCHERMATE[params.get('vista') ?? '']) return 'extra';
+  if (params.has('vista') && (state.onboarding || state.history.length > 0 || SCHERMATE[params.get('vista') ?? ''])) return 'extra'; // una vista che non esiste dice «Questa pagina non esiste»
   if (params.has('sfida')) return 'extra';
   if (import.meta.env.DEV && params.has('brand')) return 'brand';
+  if (!state.onboarding && percorsoInCorso()) return 'onboarding'; // percorso iniziale lasciato a metà da una ricarica: riprende da lì
   const isNewUser = !state.onboarding && state.history.length === 0 && Object.keys(state.stats).length === 0;
   if (isNewUser) return 'landing';
   return serveRegistrazione(state) ? 'extra' : 'menu'; // chi ha già usato l'app completa il profilo alla prima apertura
@@ -81,6 +83,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     const q = new URLSearchParams(window.location.search);
     const id = q.has('sfida') && !q.has('vista') ? 'sfida-accetta' : (q.get('vista') ?? '');
     if (!id && !q.has('landing') && serveRegistrazione(appState)) return { id: 'completa-profilo', params: {} };
+    // una vista che non esiste ha lo stesso trattamento di ?vista=stato-vuoto: «Questa pagina non esiste»
+    if (q.has('vista') && !SCHERMATE[id] && SCHERMATE['stato-vuoto']) return { id: 'stato-vuoto', params: {} };
     return { id: SCHERMATE[id] || id === 'sfida-accetta' ? id : 'profilo', params: Object.fromEntries(q.entries()) };
   });
   const extraPila = useRef<{ id: string; params: Record<string, string> }[]>([]);
@@ -98,8 +102,11 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   // pila delle schermate da cui si è arrivati (per il tasto indietro di legale, teoria, impostazioni)
   const pila = useRef<View[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [daImportare, setDaImportare] = useState<AppState | null>(null);
 
-  const setView = (v: View) => { pila.current = []; setViewRaw(v); };
+  // teoria aperta da una sessione o da una simulazione: si mostra sopra, la sessione resta com'era (Indietro torna al punto delle correzioni)
+  const [teoriaSopra, setTeoriaSopra] = useState<{ id?: string } | null>(null);
+  const setView = (v: View) => { pila.current = []; setTeoriaSopra(null); setViewRaw(v); };
   // apre una schermata ricordando da dove si viene
   const apri = (v: View) => {
     const da = viewRef.current;
@@ -144,6 +151,42 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     return () => { tolto = true; rimuovi?.(); };
   }, []);
 
+  // Cronologia del browser: ogni cambio di schermata aggiunge una voce (l'indirizzo dice la schermata, ?vista=…), così il tasto o il gesto
+  // «indietro» del browser torna alla schermata precedente dell'app invece di uscire dal sito, e una ricarica riapre la schermata giusta.
+  const daPopstate = useRef(false);
+  const primaVoce = useRef(true);
+  const indietroBrowser = useRef<() => void>(() => {});
+  indietroBrowser.current = () => {
+    const v = viewRef.current;
+    // dentro una sessione, una simulazione, una sfida o il percorso iniziale l'indietro del browser non chiude nulla: si esce con la X o la freccia dell'app
+    if (v === 'learn' || v === 'exam' || v === 'onboarding') { window.history.pushState(null, '', window.location.href); return; }
+    daPopstate.current = true;
+    if (v === 'extra') indietroExtra();
+    else if (pila.current.length > 0) indietro();
+    else if (v !== 'menu' && v !== 'landing') setView('menu');
+    else daPopstate.current = false;
+  };
+  useEffect(() => {
+    const f = () => indietroBrowser.current();
+    window.addEventListener('popstate', f);
+    return () => window.removeEventListener('popstate', f);
+  }, []);
+  const extraChiave = view === 'extra' ? extra.id + JSON.stringify(extra.params) : '';
+  useEffect(() => {
+    if (view === 'brand') return;
+    const q = new URLSearchParams();
+    if (view === 'extra' && extra.id !== 'sfida-accetta') { // il link di sfida non si rimette nell'indirizzo: una ricarica non lo riapre
+      q.set('vista', extra.id);
+      for (const [k, v] of Object.entries(extra.params)) if (k !== 'vista' && k !== 'sfida') q.set(k, v);
+    } else if (view === 'landing' && new URLSearchParams(window.location.search).has('landing')) q.set('landing', '');
+    const url = window.location.pathname + (q.toString() ? `?${q.toString().replace(/=$/, '').replace(/=&/g, '&')}` : '');
+    if (primaVoce.current || daPopstate.current) window.history.replaceState(null, '', url);
+    else if (url !== window.location.pathname + window.location.search || view !== 'extra') window.history.pushState(null, '', url);
+    primaVoce.current = false;
+    daPopstate.current = false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view, extraChiave]);
+
   useEffect(() => {
     // Update streak on load
     const newState = updateStreak(appState);
@@ -178,7 +221,9 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
 
   const handleUpdateAppState = commit;
 
-  const apriTeoria = (id: string) => { setTeoriaId(id); setView('theory'); };
+  const apriTeoria = (id: string) => setTeoriaSopra({ id });
+  // esercizi e simulazioni aperti da una schermata: uscendo si torna lì (lezione, Simulazioni, Esercizi), non alla Home
+  const esciDaSessione = () => { setTeoriaSopra(null); if (pila.current.length > 0) indietro(); else setView('menu'); };
   // dalla home o dalle Lezioni: la freccia indietro riporta lì
   const apriTeoriaDa = (id: string) => { setTeoriaId(id); apri('theory'); };
 
@@ -260,13 +305,19 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     e.target.value = '';
     if (!file) return;
     try {
-      const imported = await importData(file);
-      setAppState(imported);
-      saveState(imported);
-      toast('Progressi importati.', 'ok');
+      // prima di sostituire i progressi di questo dispositivo si chiede conferma
+      setDaImportare(await importData(file));
     } catch {
       toast('Non riesco a leggere il file: controlla che sia un salvataggio di AddiOFA.', 'errore');
     }
+  };
+
+  const confermaImport = () => {
+    if (!daImportare) return;
+    setAppState(daImportare);
+    saveState(daImportare);
+    setDaImportare(null);
+    toast('Progressi importati.', 'ok');
   };
 
   const handleOnboardingFinish = (result: OnboardingResult) => {
@@ -292,6 +343,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   );
 
   const avviaSimulazione = () => setView('exam');
+  const avviaSimulazioneDa = () => apri('exam');
 
   const aggiornaExtra = (fn: (s: AppState) => AppState) => {
     setAppState(prev => {
@@ -307,8 +359,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     apriImpostazioni: () => apri('impostazioni'),
     apriLegale,
     apriLanding: () => setView('landing'),
-    avviaEsercizi: (modo, categoria) => { setLearnMode(modo); setLearnCategory(categoria); setView('learn'); },
-    avviaSimulazione: avviaSimulazione,
+    avviaEsercizi: (modo, categoria) => { setLearnMode(modo); setLearnCategory(categoria); apri('learn'); },
+    avviaSimulazione: avviaSimulazioneDa,
     vaiHome: () => setView('menu'),
     avviaDiagnostico: () => setView('onboarding'),
   };
@@ -355,7 +407,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
       {view === 'esercizi' && (
         <Esercizi
           appState={appState}
-          onAvvia={(m, c) => { setLearnMode(m); setLearnCategory(c); setView('learn'); }}
+          onAvvia={(m, c) => { setLearnMode(m); setLearnCategory(c); apri('learn'); }}
           onOpenProfilo={() => vaiExtra('profilo')}
           onOpenCheatSheet={() => apri('cheatsheet')}
           onNaviga={vaiScheda}
@@ -364,8 +416,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
       )}
       {view === 'extra' && !SCHERMATE[extra.id] && conBarra('home', (
         <div className="flex h-full flex-col items-center justify-center gap-3 p-8 text-center">
-          <p className="text-s2 font-bold text-testo">Pagina non trovata.</p>
-          <button type="button" onClick={indietroExtra} className="rounded-xl bg-azione px-5 py-3 text-s2 font-bold text-azione-su">Indietro</button>
+          <p className="text-s2 font-bold text-testo">Questa pagina non esiste.</p>
+          <button type="button" onClick={() => setView('menu')} className="min-h-11 rounded-xl bg-azione px-5 py-3 text-s2 font-bold text-azione-su">Vai alla Home</button>
         </div>
       ))}
       {view === 'extra' && SCHERMATE[extra.id] && (() => {
@@ -379,22 +431,23 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         );
         return def.barra === null ? pagina : conBarra(def.barra ?? 'home', pagina);
       })()}
-      {view === 'impostazioni' && (
+      {view === 'impostazioni' && conBarra('nessuna', (
         <Impostazioni
           onBack={indietro}
           onOpenLanding={() => setView('landing')}
           onVai={vaiExtra}
           onOpenLegal={apriLegale}
           onImport={() => fileInputRef.current?.click()}
-          onExport={() => exportData(appState)}
+          onExport={() => { exportData(appState); toast('Copia salvata: addiofa_progressi.json, nei download.', 'ok'); }}
         />
-      )}
+      ))}
       {view === 'onboarding' && (
         <Onboarding
           appState={appState}
           onUpdateAppState={handleUpdateAppState}
           onFinish={handleOnboardingFinish}
           onOpenLegal={apriLegale}
+          onEsci={appState.onboarding ? undefined : () => setView('landing')}
         />
       )}
       {view === 'theory' && (
@@ -407,26 +460,33 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
       {view === 'legal' && (
         <Legal section={legalSection} onBack={indietro} onSection={setLegalSection} />
       )}
-      {view === 'cheatsheet' && (
-        <CheatSheet onBack={indietro} />
-      )}
+      {view === 'cheatsheet' && conBarra('esercizi', <CheatSheet onBack={indietro} />)}
       {view === 'learn' && (
+        <div className={teoriaSopra ? 'hidden' : 'contents'}>
         <LearnMode
           appState={appState}
           mode={learnMode}
           category={learnCategory}
           onUpdateAppState={handleUpdateAppState}
-          onExit={() => setView('menu')}
+          onExit={esciDaSessione}
           onOpenTheory={apriTeoria}
         />
+        </div>
       )}
       {view === 'exam' && (
+        <div className={teoriaSopra ? 'hidden' : 'contents'}>
         <ExamMode
           onComplete={handleExamComplete}
-          onExit={() => setView('menu')}
+          onExit={esciDaSessione}
           onOpenTheory={apriTeoria}
         />
+        </div>
       )}
+      {teoriaSopra && (view === 'learn' || view === 'exam') && conBarra('home', (
+        <Suspense fallback={<Caricamento />}>
+          <Theory key={teoriaSopra.id ?? 'elenco'} initialTopicId={teoriaSopra.id} onBack={() => setTeoriaSopra(null)} />
+        </Suspense>
+      ))}
       <input
         type="file"
         accept=".json"
@@ -434,6 +494,9 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
         ref={fileInputRef}
         onChange={handleImport}
       />
+      <ConfirmDialog open={daImportare !== null} title="Sostituire i progressi?"
+        message="I progressi salvati su questo dispositivo vengono sostituiti da quelli del file. Se vuoi tenerli, esportali prima."
+        confirmLabel="Sostituisci" onConfirm={confermaImport} onCancel={() => setDaImportare(null)} />
     </Layout>
   );
 }

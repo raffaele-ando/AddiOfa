@@ -1,6 +1,6 @@
 // Il profilo di chi si registra e il collegamento al Project ID, salvati nel dispositivo dentro appState.extra.progetto
 // (insieme ai progressi: entrano nell'esportazione e nell'importazione, e un vecchio salvataggio senza questo campo si legge lo stesso).
-// Nome ed email sono obbligatori; corso, sede e provenienza sono facoltativi; i tre consensi partono SEMPRE tutti spenti.
+// Nome ed email sono obbligatori; corso, sede e provenienza sono facoltativi; il consenso unico (tre campi insieme) parte SEMPRE spento.
 import type { AppState } from '../../types';
 import { ECOSYSTEM, ISCRIZIONE_VERSIONE, REQUIRED_SCOPES, SCOPES, type ScopeId } from '../../config/ecosystem';
 import type { CorpoIscrizione } from '../atlas';

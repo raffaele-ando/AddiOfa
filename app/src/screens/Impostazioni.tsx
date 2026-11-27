@@ -35,8 +35,11 @@ const CHIAVI_DATI = ['ofa_polimi_app_state', 'addiofa_diagnostico_ultimo'];
 function Interruttore({ acceso, onCambia, etichetta }: { acceso: boolean; onCambia: (v: boolean) => void; etichetta: string }) {
   return (
     <button type="button" role="switch" aria-checked={acceso} aria-label={etichetta} onClick={() => onCambia(!acceso)}
-      className={cn('relative shrink-0 w-[51px] h-[31px] rounded-full', acceso ? 'bg-azione' : 'bg-tacca ring-2 ring-inset ring-bordo-campo')}>
-      <span className={cn('absolute top-[2px] w-[27px] h-[27px] rounded-full bg-superficie dark:bg-testo shadow-[0_1px_3px_rgba(0,0,0,0.25)]', acceso ? 'left-[22px]' : 'left-[2px]')} />
+      className="grid h-11 w-[51px] shrink-0 place-items-center">
+      {/* area di tocco 51x44, interruttore disegnato 51x31 */}
+      <span aria-hidden="true" className={cn('relative block w-[51px] h-[31px] rounded-full', acceso ? 'bg-azione' : 'bg-tacca ring-2 ring-inset ring-bordo-campo')}>
+        <span className={cn('absolute top-[2px] w-[27px] h-[27px] rounded-full bg-superficie dark:bg-testo shadow-[0_1px_3px_rgba(0,0,0,0.25)]', acceso ? 'left-[22px]' : 'left-[2px]')} />
+      </span>
     </button>
   );
 }

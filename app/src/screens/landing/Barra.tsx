@@ -51,6 +51,17 @@ export default function Barra({ onStart }: { onStart(): void }) {
   const rif = useRef<HTMLElement>(null);
   const vai = (id: string) => { playTapSound(); setAperto(false); vaiA(id); };
 
+  // il menu a tendina si chiude anche con Esc e toccando fuori
+  const bottoneMenu = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!aperto) return;
+    const tasto = (e: KeyboardEvent) => { if (e.key === 'Escape') { setAperto(false); bottoneMenu.current?.focus(); } };
+    const fuori = (e: PointerEvent) => { if (rif.current && !rif.current.contains(e.target as Node)) setAperto(false); };
+    document.addEventListener('keydown', tasto);
+    document.addEventListener('pointerdown', fuori);
+    return () => { document.removeEventListener('keydown', tasto); document.removeEventListener('pointerdown', fuori); };
+  }, [aperto]);
+
   useEffect(() => {
     const radice = rif.current?.parentElement;
     if (!radice) return;
@@ -64,8 +75,10 @@ export default function Barra({ onStart }: { onStart(): void }) {
     <header ref={rif} className="sticky top-0 z-30 -mb-16 h-16">
       <div aria-hidden className={cn('absolute inset-0 border-b transition-colors duration-100', scorsa || aperto ? 'border-linea bg-fondo/96 backdrop-blur-md' : 'border-transparent bg-transparent')} />
       <Colonna className="relative flex h-16 items-center justify-between gap-3">
-        <button type="button" onClick={() => vai('home')} aria-label="AddiOFA, torna in cima" className={cn('flex shrink-0 items-center rounded-xl', FOCUS)}>
-          <Marchio disposizione="orizzontale" altezza={28} />
+        <button type="button" onClick={() => vai('home')} aria-label="AddiOFA, torna in cima" className={cn('flex h-11 shrink-0 items-center rounded-xl', FOCUS)}>
+          {/* sotto i 380 px il marchio scende a 24 px (il minimo leggibile), così accanto c'è posto per «Inizia il test» e per il menu */}
+          <span className="flex max-[379px]:hidden"><Marchio disposizione="orizzontale" altezza={28} /></span>
+          <span className="hidden max-[379px]:flex"><Marchio disposizione="orizzontale" altezza={24} /></span>
         </button>
 
         <nav aria-label="Sezioni della pagina" className="hidden items-center gap-0.5 rounded-full border border-linea bg-superficie p-1 lg:flex">
@@ -76,7 +89,7 @@ export default function Barra({ onStart }: { onStart(): void }) {
               aria-current={attiva === a.id ? 'true' : undefined}
               onClick={e => { e.preventDefault(); vai(a.id); }}
               className={cn(
-                'rounded-full px-4 py-2 text-s2 font-semibold transition-colors duration-100',
+                'inline-flex h-11 items-center rounded-full px-4 text-s2 font-semibold transition-colors duration-100',
                 attiva === a.id ? 'bg-azione-tinta text-azione-testo' : 'text-testo hover:bg-azione-tinta hover:text-azione-testo',
                 FOCUS,
               )}
@@ -86,23 +99,24 @@ export default function Barra({ onStart }: { onStart(): void }) {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1">
+        <div className="flex shrink-0 items-center gap-1">
           <button
             type="button"
             aria-label="Inizia il test di livello"
             onClick={() => { playTapSound(); onStart(); }}
-            className={cn('h-10 shrink-0 items-center gap-2 rounded-full bg-azione px-5 text-s2 font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro', oltreHero ? 'inline-flex' : 'hidden lg:inline-flex', FOCUS)}
+            className={cn('h-11 shrink-0 items-center gap-2 rounded-full bg-azione px-5 max-[379px]:px-3.5 text-s2 font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro', oltreHero ? 'inline-flex' : 'hidden lg:inline-flex', FOCUS)}
           >
             <span className="lg:hidden">Inizia il test</span>
             <span className="hidden lg:inline">Inizia il test di livello</span>
           </button>
           <button
+            ref={bottoneMenu}
             type="button"
             aria-expanded={aperto}
             aria-controls="menu-landing"
             aria-label={aperto ? 'Chiudi il menu' : 'Apri il menu'}
             onClick={() => { playTapSound(); setAperto(v => !v); }}
-            className={cn('flex h-11 w-11 items-center justify-center rounded-full text-testo hover:bg-linea lg:hidden', FOCUS)}
+            className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-testo hover:bg-linea lg:hidden', FOCUS)}
           >
             <Icona nome={aperto ? 'chiudi' : 'menu'} size={24} />
           </button>

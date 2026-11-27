@@ -19,10 +19,10 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
         <span aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none"><Icona nome="cerca" size={18} /></span>
         <input type="search" value={query} onChange={e => setQuery(e.target.value)} aria-label="Cerca una regola"
           placeholder="Cerca una regola" autoComplete="off" spellCheck={false}
-          className="w-full h-[46px] rounded-xl border border-bordo-campo bg-superficie-2 pl-10 pr-10 text-s2 text-testo placeholder:text-testo-tenue outline-none focus:border-azione" />
+          className="w-full h-[46px] rounded-xl border border-bordo-campo bg-superficie-2 pl-10 pr-10 text-s2 text-testo placeholder:text-testo-tenue outline-none focus:border-azione [&::-webkit-search-cancel-button]:hidden" />
         {query && (
           <button type="button" onClick={() => setQuery('')} aria-label="Cancella"
-            className="absolute right-1.5 top-1/2 -translate-y-1/2 grid place-items-center w-9 h-9 rounded-full text-testo-tenue hover:text-testo">
+            className="absolute right-0.5 top-1/2 -translate-y-1/2 grid place-items-center w-11 h-11 rounded-full text-testo-tenue hover:text-testo">
             <Icona nome="chiudi" size={17} />
           </button>
         )}
@@ -38,7 +38,7 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
             {r.trap && (
               <p className="mt-2.5 flex gap-2 border-l-[3px] border-errore pl-3 text-s1 leading-[20px] text-testo">
                 <span aria-hidden="true" className="mt-0.5 shrink-0 text-errore"><Icona nome="stato-risposta-sbagliata" size={16} /></span>
-                <span><span className="sr-only">Da evitare: </span><RichText text={r.trap} /></span>
+                <span><span className="sr-only">Da evitare: </span><RichText text={r.trap} errore /></span>
               </p>
             )}
           </div>

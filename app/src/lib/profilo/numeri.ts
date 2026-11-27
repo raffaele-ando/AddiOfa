@@ -9,6 +9,7 @@ import type { AppState } from '../../types';
 import { calcolaStima, esitoSimulazione, type Stima } from '../../components/home/stima';
 import { EXAM } from '../../config/offer';
 import { isLearned } from '../spacedRepetition';
+import { formatProbabilita } from '../diagnostic';
 import type { DomandaBanco } from './tipi';
 
 export interface NumeriUtente {
@@ -18,8 +19,10 @@ export interface NumeriUtente {
   totaleDomande: number;
   /** Stima di superare il test (0-1), oppure null se non c'è ancora (serve il test di livello o una simulazione). */
   stima: Stima | null;
-  /** La stessa stima in percentuale intera, per scriverla. */
+  /** La stessa stima in percentuale intera (0-100). */
   probabilita: number | null;
+  /** La stessa stima scritta come in Home e ATLAS (formatProbabilita: «<1%», «42%», «>99%»), null senza stima. */
+  probabilitaTesto: string | null;
   /** Simulazioni valide (con almeno una risposta data). */
   simulazioni: number;
   /** Miglior punteggio in simulazione (risposte esatte su EXAM.questions), null senza simulazioni. */
@@ -49,6 +52,7 @@ export function numeriUtente(stato: AppState, banco: readonly DomandaBanco[]): N
     totaleDomande: banco.length,
     stima,
     probabilita: stima ? Math.round(Math.min(1, Math.max(0, stima.p)) * 100) : null,
+    probabilitaTesto: stima ? formatProbabilita(stima.p).replace(/\s+%/, '%') : null,
     simulazioni: esatte.length,
     migliorSimulazione: esatte.length ? Math.max(...esatte) : null,
     mediaSimulazioni: esatte.length ? Math.round((esatte.reduce((a, n) => a + n, 0) / esatte.length) * 10) / 10 : null,

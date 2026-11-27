@@ -6,6 +6,7 @@ import type { AppState } from '../types';
 import { playTapSound } from '../lib/audio';
 import { cn } from '../lib/utils';
 import { bankMeta, isLearned } from '../lib/spacedRepetition';
+import { calcolaStima } from '../components/home/stima';
 import { FONT } from '../brand/tokens';
 import { Icona, type NomeIcona } from '../brand/icone/Icona';
 import Navigazione, { Scheda } from '../components/Navigazione';
@@ -72,6 +73,7 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
   const argomenti = useMemo(() => Array.from(new Set(meta.map(q => q.grammarTopic))).filter(Boolean), [meta]);
 
   // Domande sbagliate almeno una volta e non ancora imparate: i «punti deboli» veri dell'utente
+  const conStima = useMemo(() => calcolaStima(appState) !== null, [appState]);
   const daRipassare = useMemo(() => Object.values(appState.stats ?? {}).filter(s => (s.incorrect ?? 0) > 0 && !isLearned(s)).length, [appState.stats]);
 
   const avvia = (modo: ModoEsercizi, categoria?: string) => {
@@ -92,13 +94,14 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
             <div className="flex items-center gap-3">
               <div className="min-w-0 flex-1">
                 <h2 id="titolo-consigliato" className="text-s3 leading-[25px] font-extrabold tracking-[-0.01em] text-testo">Allenamento consigliato</h2>
-                <p data-testo-ok className="mt-1 text-s2 leading-[20px] text-testo-tenue">10 domande scelte per te</p>
+                <p data-testo-ok className="mt-1 text-s2 leading-[20px] text-testo-tenue">10 domande scelte per te, 30 secondi l’una</p>
               </div>
               <Arte nome="quiz-test-lista" lato={88} />
             </div>
             <button type="button" onClick={() => { playTapSound(); avvia('smart'); }}
               className="brand-premibile mt-3 flex h-[56px] w-full items-center justify-center gap-2.5 rounded-xl bg-azione text-s3 font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
-              <Icona nome="studia" size={22} />Inizia
+              {/* la stessa etichetta del pulsante della Home */}
+              <Icona nome="studia" size={22} />{conStima ? 'Continua l’allenamento' : 'Inizia ad allenarti'}
             </button>
           </section>
 
@@ -138,6 +141,7 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
                 className="brand-premibile flex h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-azione text-s2 font-bold text-azione-su hover:bg-azione-scuro disabled:bg-tacca disabled:text-testo-tenue">
                 <Icona nome="studia" size={20} />Inizia con questo argomento
               </button>
+              {!filtro && <p data-testo-ok className="text-center text-s1 leading-[18px] text-testo-tenue">Scegli prima un argomento dall'elenco.</p>}
             </div>
           )}
 

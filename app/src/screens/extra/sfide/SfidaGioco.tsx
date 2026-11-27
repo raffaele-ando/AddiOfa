@@ -90,6 +90,14 @@ export default function SfidaGioco() {
 
   const domande: PublicQuestion[] = base?.domande ?? [];
 
+  // a sfida iniziata una ricarica o la chiusura della scheda la perderebbe: il browser chiede conferma prima
+  useEffect(() => {
+    if (fase !== 'in-corso') return;
+    const avvisa = (e: BeforeUnloadEvent) => { e.preventDefault(); e.returnValue = ''; };
+    window.addEventListener('beforeunload', avvisa);
+    return () => window.removeEventListener('beforeunload', avvisa);
+  }, [fase]);
+
   // ---- Avvio e tempo (dalla scadenza, non contando i secondi: non si sfasa se la scheda va in secondo piano)
   const avvia = () => {
     const ora = Date.now();
@@ -232,7 +240,7 @@ export default function SfidaGioco() {
         ? 'La partita non viene salvata. Potrai rigiocarla da capo.'
         : `Hai ancora ${rimaste} ${rimaste === 1 ? 'domanda' : 'domande'} senza risposta. Dopo la consegna non si torna indietro.`}
       confirmLabel={conferma === 'esci' ? 'Esci' : 'Consegna'}
-      cancelLabel={conferma === 'esci' ? 'Resta' : 'Continua'}
+      cancelLabel={conferma === 'esci' ? 'Resta' : 'Torna alle domande'}
       danger={conferma === 'esci'}
       onCancel={() => setConferma(null)}
       onConfirm={() => { const c = conferma; setConferma(null); if (c === 'esci') indietro(); else void consegna(); }}
@@ -243,7 +251,7 @@ export default function SfidaGioco() {
       <header className="flex flex-col gap-2 p-3 sm:p-4 border-b border-linea shrink-0">
         <div className="flex items-center justify-between">
           <button type="button" onClick={() => { if (Object.keys(risposte).length > 0) setConferma('esci'); else indietro(); }}
-            aria-label="Esci dalla sfida" className="p-1 sm:p-2 text-testo-tenue hover:text-testo hover:bg-linea rounded-full transition-colors duration-100">
+            aria-label="Esci dalla sfida" className="grid h-11 w-11 place-items-center text-testo-tenue hover:text-testo hover:bg-linea rounded-full transition-colors duration-100">
             <Icona nome="chiudi" size={22} />
           </button>
           <div role="timer" aria-label="Tempo rimasto" className={cn('rounded-full px-3 py-1 font-bold tabular-nums text-s2 sm:text-s3 flex items-center gap-1.5', restano < 60 ? 'bg-basso-tinta text-basso-testo' : 'bg-medio-tinta text-medio-testo')}>
@@ -251,7 +259,7 @@ export default function SfidaGioco() {
           </div>
           {indice < domande.length - 1 ? (
             <button type="button" onClick={() => (rimaste > 0 ? setConferma('consegna') : void consegna())}
-              className="text-s1 font-bold text-azione-testo hover:bg-azione-tinta border border-azione/60 px-4 py-2 rounded-xl transition-colors duration-100">
+              className="inline-flex h-11 items-center text-s1 font-bold text-azione-testo hover:bg-azione-tinta border border-azione/60 px-4 rounded-xl transition-colors duration-100">
               Consegna
             </button>
           ) : <span className="w-[84px]" aria-hidden />}
@@ -270,9 +278,9 @@ export default function SfidaGioco() {
             className={cn('grid h-8 w-8 place-items-center rounded-full', tipo === 'giorno' ? 'bg-alto-tinta text-alto-numero' : 'bg-basso-tinta text-basso-numero')}>
             <Icona nome={tipo === 'giorno' ? 'sfida-giorno' : 'duello'} size={17} />
           </span>
-          <span role="img" aria-label={rimaste === 0 ? 'Hai risposto a tutte' : `${rimaste} senza risposta`}
-            className={cn('inline-flex items-center gap-1 text-s2 font-extrabold tabular-nums', rimaste === 0 ? 'text-alto-testo' : 'text-medio-testo')}>
-            <Icona nome={rimaste === 0 ? 'stato-ok' : 'stato-risposta-omessa'} size={16} />{rimaste}
+          {/* il numero ha la sua parola: quante domande sono ancora senza risposta */}
+          <span className={cn('inline-flex items-center gap-1 text-s2 font-bold tabular-nums', rimaste === 0 ? 'text-alto-testo' : 'text-medio-testo')}>
+            <Icona nome={rimaste === 0 ? 'stato-ok' : 'stato-risposta-omessa'} size={16} />{rimaste === 0 ? 'Tutte con risposta' : `${rimaste} senza risposta`}
           </span>
         </div>
         <h2 data-testo-ok className="text-s3 sm:text-s4 font-bold text-testo mb-5 leading-snug">{q.prompt}</h2>
@@ -299,20 +307,23 @@ export default function SfidaGioco() {
       <div className="p-3 sm:p-4 border-t border-linea bg-superficie shrink-0 flex items-center min-h-[70px]">
         <div className="w-full flex justify-between items-center gap-2 px-1">
           <button type="button" onClick={() => setIndice(i => Math.max(0, i - 1))} disabled={indice === 0} aria-label="Domanda precedente"
-            className="p-2 text-testo-tenue disabled:opacity-30 rounded-xl hover:bg-linea transition-colors duration-100"><Icona nome="indietro" size={28} /></button>
+            className="grid h-11 w-11 shrink-0 place-items-center text-testo-tenue disabled:opacity-30 rounded-xl hover:bg-linea transition-colors duration-100"><Icona nome="indietro" size={28} /></button>
           <div className="flex flex-1 max-w-[220px] gap-1 items-center justify-center">
             {domande.map((d, i) => (
               <button key={d.id} type="button" onClick={() => setIndice(i)} aria-label={`Vai alla domanda ${i + 1}`} aria-current={i === indice ? 'step' : undefined}
-                className={cn('h-2 min-w-[8px] flex-1 rounded-full transition-colors duration-100',
-                  i === indice ? 'bg-testo h-3' : risposte[d.id] !== undefined ? 'bg-azione' : 'bg-tacca')} />
+                className="grid h-11 min-w-[8px] flex-1 place-items-center">
+                {/* area di tocco alta 44 px, puntino disegnato sottile */}
+                <span aria-hidden="true" className={cn('block w-full rounded-full transition-colors duration-100',
+                  i === indice ? 'bg-testo h-3' : risposte[d.id] !== undefined ? 'bg-azione h-2' : 'bg-tacca h-2')} />
+              </button>
             ))}
           </div>
           {indice < domande.length - 1 ? (
             <button type="button" onClick={() => setIndice(i => Math.min(domande.length - 1, i + 1))} aria-label="Domanda successiva"
-              className="p-2 text-testo-tenue rounded-xl hover:bg-linea transition-colors duration-100"><Icona nome="avanti" size={28} /></button>
+              className="grid h-11 w-11 shrink-0 place-items-center text-testo-tenue rounded-xl hover:bg-linea transition-colors duration-100"><Icona nome="avanti" size={28} /></button>
           ) : (
             <button type="button" onClick={() => (rimaste > 0 ? setConferma('consegna') : void consegna())} aria-label="Consegna"
-              className="rounded-xl bg-azione px-4 py-2 text-s1 font-bold text-azione-su hover:bg-azione-scuro transition-colors duration-100">Consegna</button>
+              className="inline-flex h-11 items-center rounded-xl bg-azione px-4 text-s1 font-bold text-azione-su hover:bg-azione-scuro transition-colors duration-100">Consegna</button>
           )}
         </div>
       </div>

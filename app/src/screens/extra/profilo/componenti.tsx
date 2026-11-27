@@ -8,6 +8,8 @@ import { Icona } from '../../../brand/icone/Icona';
 import { cn } from '../../../lib/utils';
 import { numeriUtente, type NumeriUtente } from '../../../lib/profilo/numeri';
 import { useExtra, useExtraDati } from '../contesto';
+import { corpoIscrizione, creaProfilo, impostaProfilo, leggiProgetto } from '../../../lib/progetto/profilo';
+import { coda } from '../../../lib/progetto/coda';
 import { Pagina as PaginaBase, Sezione, IconaTono, type Tono } from '../ui';
 export { Sezione };
 
@@ -26,11 +28,32 @@ export function Avatar({ profilo, lato = 72 }: { profilo: ProfiloDati; lato?: nu
   );
 }
 
-/** Il profilo salvato, già ripulito. */
+/** Il profilo: una sola fonte per nome e corso. Se c'è l'iscrizione (email PoliMi, lib/progetto/profilo.ts) nome e corso sono i suoi,
+ *  gli stessi che leggono Home e Project ID; salvando si aggiorna l'iscrizione (e si rimanda ad ATLAS se non è legata a un Project ID).
+ *  Senza iscrizione restano in appState.extra['profilo'], come prima. */
 export function useProfilo() {
-  const [grezzo, salva] = useExtraDati<ProfiloDati | null>('profilo', null);
-  const profilo = useMemo(() => normalizzaProfilo(grezzo), [grezzo]);
-  return { profilo, salva: (p: ProfiloDati) => salva(normalizzaProfilo(p)) };
+  const { appState, aggiorna } = useExtra();
+  const [grezzo, salvaLocale] = useExtraDati<ProfiloDati | null>('profilo', null);
+  const iscrizione = leggiProgetto(appState).profilo;
+  const profilo = useMemo(
+    () => (iscrizione ? normalizzaProfilo({ nome: iscrizione.nome, corso: iscrizione.corso ?? '' }) : normalizzaProfilo(grezzo)),
+    [grezzo, iscrizione?.nome, iscrizione?.corso], // eslint-disable-line react-hooks/exhaustive-deps
+  );
+  const salva = (p: ProfiloDati) => {
+    const nuovo = normalizzaProfilo(p);
+    salvaLocale(nuovo);
+    if (!iscrizione) return;
+    const corsoCambiato = nuovo.corso !== (iscrizione.corso ?? '');
+    const agg = creaProfilo({
+      email: iscrizione.email, nome: nuovo.nome || iscrizione.nome, scuola: iscrizione.scuola, sede: iscrizione.sede, livello: iscrizione.livello,
+      corso: nuovo.corso || undefined, corsoId: corsoCambiato ? undefined : iscrizione.corsoId, anno: iscrizione.anno,
+      provenienza: iscrizione.provenienza, consensi: iscrizione.consensi, completato: iscrizione.completato,
+    }, Date.now(), iscrizione);
+    if (!agg) return;
+    aggiorna(s => impostaProfilo(s, agg));
+    if (agg.completato && !leggiProgetto(appState).collegamento) void coda.accoda(corpoIscrizione(agg));
+  };
+  return { profilo, salva };
 }
 
 /** Il banco domande: uno solo, tutte le domande. */

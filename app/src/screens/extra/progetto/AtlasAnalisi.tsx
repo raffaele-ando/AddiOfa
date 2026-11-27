@@ -41,8 +41,10 @@ function RigaArgomento({ a, onTeoria }: { a: ArgomentoAnalisi; onTeoria: () => v
 }
 
 /** Priorità del piano: parola, forma e colore (basso/medio/alto, mai il solo colore). */
-function priorita(percento: number | null): { parola: string; classe: string; icona: 'stato-attenzione' | 'stato-medio' | 'stato-ok' } {
-  if (percento === null || percento < 50) return { parola: 'Priorità alta', classe: 'bg-basso-tinta text-basso-testo dark:bg-superficie-2', icona: 'stato-attenzione' };
+function priorita(percento: number | null): { parola: string; classe: string; icona: 'stato-attenzione' | 'stato-medio' | 'stato-ok' | 'info' } {
+  // sotto le MIN_RISPOSTE_ARGOMENTO risposte non c'è una percentuale (la stessa soglia della scheda Argomenti): è solo un'indicazione
+  if (percento === null) return { parola: 'Poche risposte', classe: 'bg-superficie-2 text-testo-tenue', icona: 'info' };
+  if (percento < 50) return { parola: 'Priorità alta', classe: 'bg-basso-tinta text-basso-testo dark:bg-superficie-2', icona: 'stato-attenzione' };
   if (percento < SOGLIA_DA_MIGLIORARE) return { parola: 'Priorità media', classe: 'bg-medio-tinta text-medio-testo dark:bg-superficie-2', icona: 'stato-medio' };
   return { parola: 'Priorità bassa', classe: 'bg-alto-tinta text-alto-testo dark:bg-superficie-2', icona: 'stato-ok' };
 }
@@ -221,7 +223,11 @@ export default function AtlasAnalisi() {
           {deboli.length > 0 ? (
             <>
               <Carta tono="azione" className="mt-4">
-                <p data-testo-ok className="text-s2 leading-[21px] font-semibold text-testo">Il punto più debole è {deboli[0].nome}.</p>
+                <p data-testo-ok className="text-s2 leading-[21px] font-semibold text-testo">
+                  {deboli[0].percento !== null
+                    ? `Il punto più debole è ${deboli[0].nome}.`
+                    : `Prime indicazioni: hai meno di ${MIN_RISPOSTE_ARGOMENTO} risposte per argomento. Per ora parti da ${deboli[0].nome}.`}
+                </p>
               </Carta>
               <Sezione id="an-piano" titolo="Da ripassare, in ordine">
                 <ol className="flex flex-col gap-2.5">

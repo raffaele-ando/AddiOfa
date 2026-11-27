@@ -44,6 +44,7 @@ export default function Lezioni({ lezioni, onApri, onTutte }: {
   return (
     <section aria-labelledby="titolo-lezioni" className="flex flex-col gap-3">
       <TitoloSezione id="titolo-lezioni" destra={onTutte ? <LinkTutte onClick={onTutte} aria="Tutte le lezioni" testo="Tutte le lezioni" /> : undefined}>Prossima lezione</TitoloSezione>
+      {lezioni.length > 0 && <p data-testo-ok className="-mt-1.5 text-s1 leading-[18px] text-testo-tenue">Il percorso va in ordine, dalla prima lezione non imparata. Gli argomenti da ripassare sono in «Le tue aree».</p>}
       {lezioni.length === 0 ? (
         <div role="status" className="flex items-center gap-3 rounded-xl border border-linea dark:border-tacca bg-superficie px-3 py-3">
           <Icona nome="stato-imparata" size={22} className="shrink-0 text-alto-numero" />

@@ -90,7 +90,7 @@ export default function Percorso() {
           <section key={liv} aria-labelledby={`liv-${liv}`} className="mt-6 flex flex-col gap-1">
             <h2 id={`liv-${liv}`} className="flex items-center gap-2.5">
               <ChipLivello livello={liv} className="text-s2 leading-[19px] px-2 py-1" /><span className="sr-only"> livello {liv}</span>
-              <span className="text-s1 font-semibold tabular-nums text-testo-tenue">{fatteLiv} di {delLivello.length} imparate</span>
+              <span className="text-s1 font-semibold tabular-nums text-testo-tenue">{fatteLiv} di {delLivello.length} lezioni imparate</span>
             </h2>
             <ol className="flex flex-col">
               {delLivello.map(l => <Riga key={l.topic.id} l={l} prossima={prossima?.topic.id === l.topic.id} onApri={() => vaiLezione(l)} />)}

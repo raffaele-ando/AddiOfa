@@ -126,7 +126,7 @@ export default function ProgressiCalendario() {
       </Carta>
 
       <div className="mt-4">
-        <TitoloSezione destra={<span className="text-s1 font-semibold tabular-nums text-testo-tenue">{attivi.giorniDiStudio} giorni su {attivi.giorni}</span>}>Attività</TitoloSezione>
+        <TitoloSezione destra={<span className="text-s1 font-semibold tabular-nums text-testo-tenue">{attivi.giorniDiStudio === 1 ? '1 giorno' : `${attivi.giorniDiStudio} giorni`} di studio su {attivi.giorni}</span>}>Attività</TitoloSezione>
         <Segmenti<'7' | '30'> className="mt-3" nome="Periodo" valore={String(periodo) as '7' | '30'} onScegli={v => setPeriodo(Number(v) as 7 | 30)}
           voci={[{ id: '7', nome: 'Ultimi 7 giorni' }, { id: '30', nome: 'Ultimi 30 giorni' }]} />
       </div>

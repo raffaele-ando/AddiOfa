@@ -39,7 +39,7 @@ export interface Cta { azione: AzioneCta; etichetta: string; sotto: string }
 export function ctaPrincipale(stima: Stima | null, livello: Livello, puoDiagnostico: boolean, puoSimulare: boolean): Cta {
   if (!stima && puoDiagnostico) return { azione: 'diagnostico', etichetta: 'Fai il test iniziale', sotto: `${DIAGNOSTIC_QUESTIONS} domande per la stima` };
   if (stima && livello === 'alto' && puoSimulare) return { azione: 'simulazione', etichetta: 'Fai una simulazione', sotto: `${EXAM.questions} domande, ${EXAM.minutes} minuti` };
-  return { azione: 'allenamento', etichetta: stima ? 'Continua l’allenamento' : 'Inizia ad allenarti', sotto: '10 domande scelte per te' };
+  return { azione: 'allenamento', etichetta: stima ? 'Continua l’allenamento' : 'Inizia ad allenarti', sotto: '10 domande, 30 secondi l’una' };
 }
 
 /** Chip della fascia: da quale stima si è partiti (la prima misura, in %), con la direzione. Nessun chip con meno di due misure o con una differenza di un solo punto (rumore, non un andamento). */

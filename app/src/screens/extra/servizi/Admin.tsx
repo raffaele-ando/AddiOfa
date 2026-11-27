@@ -37,14 +37,16 @@ export default function Admin() {
 
   return (
     <Pagina titolo="Iscrizioni">
-      <div className="mt-4 flex flex-col gap-3">
+      <form className="mt-4 flex flex-col gap-3" onSubmit={e => { e.preventDefault(); if (!occupato && password.trim().length >= 8) void scarica(false); }}>
         <label htmlFor="admin-password" className="text-s2 font-bold text-testo">Password dell'autore</label>
         <input id="admin-password" type="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)}
           className="w-full rounded-xl border border-bordo-campo bg-superficie-2 px-3.5 py-3 text-s2 text-testo outline-none focus:outline focus:outline-2 focus:outline-azione" />
         <BottoneAzione onClick={() => void scarica(false)} disabled={occupato || password.trim().length < 8}>Scarica tutte le iscrizioni</BottoneAzione>
-        <BottoneSecondario onClick={() => void scarica(true)} disabled={occupato || password.trim().length < 8}>Solo chi accetta le email</BottoneSecondario>
+        <BottoneSecondario onClick={() => void scarica(true)} disabled={occupato || password.trim().length < 8}>Solo chi ha il consenso ai messaggi</BottoneSecondario>
+        {password.trim().length < 8 && <p data-testo-ok className="text-s1 leading-[18px] text-testo-tenue">Scrivi la password (almeno 8 caratteri) per scaricare.</p>}
         {esito && <p role="status" data-testo-ok className={esito.tipo === 'ok' ? 'text-s2 font-bold text-alto-testo' : 'text-s2 font-bold text-errore-testo'}>{esito.testo}</p>}
-      </div>
+        <button type="submit" hidden aria-hidden="true" tabIndex={-1} />
+      </form>
     </Pagina>
   );
 }

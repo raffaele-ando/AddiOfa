@@ -41,9 +41,12 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
   const superata = result.passed;
 
   const perQ = new Map(result.perQuestion.map(r => [r.id, r]));
+  // Con una sola categoria (oggi tutte «Grammatica») una riga sola non dice nulla: si divide per livello (A1, A2, B1)
+  const perLivello = new Set(questions.map(q => q.category)).size <= 1 && questions.some(q => q.level);
   const aree: Record<string, { correct: number; total: number }> = {};
-  questions.forEach(q => {
-    const c = aree[q.category] || (aree[q.category] = { correct: 0, total: 0 });
+  [...questions].sort((a, b) => (perLivello ? (a.level ?? '').localeCompare(b.level ?? '') : 0)).forEach(q => {
+    const chiave = perLivello ? (q.level ? `Livello ${q.level}` : 'Altre') : q.category;
+    const c = aree[chiave] || (aree[chiave] = { correct: 0, total: 0 });
     c.total++;
     if (perQ.get(q.id)?.correct === true) c.correct++;
   });
@@ -93,7 +96,7 @@ export default function EsitoSimulazione({ format, result, questions, answers, e
 
           {Object.keys(aree).length > 0 && (
             <section aria-labelledby="titolo-aree" className="rounded-xl bg-superficie-2 p-4 text-left">
-              <h3 id="titolo-aree" className="mb-3 flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />Come sei andato per argomento</h3>
+              <h3 id="titolo-aree" className="mb-3 flex items-center gap-2 text-s2 leading-[20px] font-bold text-testo"><Icona nome="argomenti" size={20} className="text-viola" />{perLivello ? 'Come sei andato per livello' : 'Come sei andato per argomento'}</h3>
               <ul className="space-y-3">
                 {Object.entries(aree).map(([nome, a]) => {
                   const pct = a.total > 0 ? Math.round((a.correct / a.total) * 100) : 0;

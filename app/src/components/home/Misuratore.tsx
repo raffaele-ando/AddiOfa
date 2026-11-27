@@ -75,7 +75,7 @@ export default function Misuratore({ percento, livello, etichetta, sotto, onInfo
       {/* (i): apre il foglio che spiega la stima */}
       {onInfo && !vuoto && (
         <button type="button" onClick={onInfo} aria-label="Come è calcolata la stima"
-          className="absolute -translate-x-1/2 -translate-y-1/2 grid place-items-center w-9 h-9 rounded-full text-testo-tenue hover:text-testo"
+          className="absolute -translate-x-1/2 -translate-y-1/2 grid place-items-center w-11 h-11 rounded-full text-testo-tenue hover:text-testo"
           style={{ left: `${(195 / 390) * 100}%`, top: pct(194) }}>
           <Icona nome="info" size={18} />
         </button>

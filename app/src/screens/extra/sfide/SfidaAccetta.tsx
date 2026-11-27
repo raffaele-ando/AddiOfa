@@ -120,8 +120,8 @@ export default function SfidaAccetta() {
       <Pagina titolo={`${dati.nome} ti sfida`} onBack={() => vai('sfide')} destra={<PulsanteInfo onClick={() => setInfo(true)} etichetta="Regole" />}>
         <DatiSfida domande={DOMANDE_SFIDA} minuti={SECONDI_SFIDA / 60} className="mt-3 text-center" />
         <Carta className="mt-5 flex flex-col gap-3">
-          <Campo id="nome-accetta" etichetta="Il tuo nome" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
-            segnaposto="Come ti chiami?" maxLength={NOME_MAX} errore={erroreNome} onInvio={gioca} />
+          <Campo id="nome-accetta" etichetta="Il nome che vede chi ti sfida" valore={nome} onCambia={v => { setNome(v); setErroreNome(null); }}
+            segnaposto="Anche un soprannome" maxLength={NOME_MAX} errore={erroreNome} onInvio={gioca} />
           <Bottone icona="duello" onClick={gioca}>Accetta la sfida</Bottone>
         </Carta>
       </Pagina>

@@ -77,7 +77,7 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
             Come viene calcolata la stima
           </h2>
           <button type="button" onClick={onChiudi} aria-label="Chiudi"
-            className="-mr-1 shrink-0 rounded-full p-1.5 text-testo-tenue hover:bg-linea hover:text-testo">
+            className="-mr-2 -mt-1.5 grid h-11 w-11 shrink-0 place-items-center rounded-full text-testo-tenue hover:bg-linea hover:text-testo">
             <Icona nome="chiudi" size={22} />
           </button>
         </div>
@@ -92,7 +92,7 @@ export default function FoglioStima({ aperto, onChiudi, tipo, risposte = DIAGNOS
           </div>
 
           <ul className="mt-4 flex flex-col gap-3.5">
-            <Voce icona={<Icona nome="risposte" size={20} />} titolo={`Le tue ${risposte} risposte`}>
+            <Voce icona={<Icona nome="risposte" size={20} />} titolo={`Le ${risposte} risposte della stima`}>
               {soloDiagnostico
                 ? `Le esatte sul test di livello. Le domande hanno i livelli A1, A2, B1 in proporzione al banco.`
                 : `Test di livello e simulazioni insieme. Contano le ultime 3 simulazioni; dopo due, il test di livello esce. Le vuote valgono zero.`}

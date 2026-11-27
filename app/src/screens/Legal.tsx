@@ -17,6 +17,13 @@ export default function Legal({ section, onBack, onSection }: {
   const doc = LEGAL_DOCS[section];
   const cima = useRef<HTMLDivElement>(null);
 
+  // Esc chiude la pagina come la freccia indietro
+  useEffect(() => {
+    const tasto = (e: KeyboardEvent) => { if (e.key === 'Escape') onBack(); };
+    document.addEventListener('keydown', tasto);
+    return () => document.removeEventListener('keydown', tasto);
+  }, [onBack]);
+
   // Cambiando scheda si riparte dall'alto
   useEffect(() => {
     cima.current?.scrollIntoView({ block: 'start' });
@@ -70,7 +77,7 @@ export default function Legal({ section, onBack, onSection }: {
                     <button
                       type="button"
                       onClick={() => vai(sid(i))}
-                      className="w-full py-1.5 text-left font-semibold text-azione-testo hover:underline underline-offset-2"
+                      className="flex min-h-11 w-full items-center py-1.5 text-left font-semibold text-azione-testo hover:underline underline-offset-2"
                     >
                       {i + 1}. {s.titolo}
                     </button>

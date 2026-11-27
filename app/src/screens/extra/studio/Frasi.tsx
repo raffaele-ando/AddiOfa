@@ -60,10 +60,10 @@ export default function Frasi() {
         <span aria-hidden="true" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-testo-tenue pointer-events-none"><Icona nome="cerca" size={18} /></span>
         <input type="search" value={testo} onChange={e => { setTesto(e.target.value); setQuante(PAGINA); }}
           aria-label="Cerca una frase" placeholder="Cerca una frase" autoComplete="off" spellCheck={false}
-          className="w-full h-[46px] rounded-xl border border-bordo-campo bg-superficie-2 pl-10 pr-10 text-s2 text-testo placeholder:text-testo-tenue outline-none focus:border-azione" />
+          className="w-full h-[46px] rounded-xl border border-bordo-campo bg-superficie-2 pl-10 pr-10 text-s2 text-testo placeholder:text-testo-tenue outline-none focus:border-azione [&::-webkit-search-cancel-button]:hidden" />
         {testo && (
           <button type="button" onClick={() => { setTesto(''); setQuante(PAGINA); }} aria-label="Cancella"
-            className="absolute right-1.5 top-1/2 -translate-y-1/2 grid place-items-center w-9 h-9 rounded-full text-testo-tenue hover:text-testo">
+            className="absolute right-0.5 top-1/2 -translate-y-1/2 grid place-items-center w-11 h-11 rounded-full text-testo-tenue hover:text-testo">
             <Icona nome="chiudi" size={17} />
           </button>
         )}

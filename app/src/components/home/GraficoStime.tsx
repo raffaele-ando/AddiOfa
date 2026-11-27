@@ -26,7 +26,7 @@ export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; o
         Andamento
         {onInfo && n > 0 && (
           <button type="button" onClick={() => { playTapSound(); onInfo(); }} aria-label="Come è calcolata la stima"
-            className="grid place-items-center w-7 h-7 -m-1.5 rounded-full text-testo-tenue hover:text-testo"><Icona nome="info" size={18} /></button>
+            className="grid place-items-center w-11 h-11 -m-3.5 rounded-full text-testo-tenue hover:text-testo"><Icona nome="info" size={18} /></button>
         )}
       </span>
     </TitoloSezione>
