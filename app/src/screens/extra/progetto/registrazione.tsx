@@ -65,7 +65,8 @@ export function campiPercorso(s: ScelteCorso, fonte: FonteCorsi = fonteCorsi): {
   return { scuola: r.scuola, sede: r.sede, livello: r.livello };
 }
 
-const CAMPO = 'w-full min-h-[52px] rounded-2xl border border-bordo-campo bg-superficie-2 px-4 py-3 text-s3 leading-[24px] text-testo placeholder:text-testo-tenue focus:outline focus:outline-2 focus:outline-azione';
+// segnaposto più tenue del testo vero (non deve sembrare un valore già scritto); campo non valido = bordo e anello d'errore
+const CAMPO = 'w-full min-h-[52px] rounded-2xl border border-bordo-campo bg-superficie-2 px-4 py-3 text-s3 leading-[24px] text-testo placeholder:text-testo-tenue/60 focus:outline focus:outline-2 focus:outline-azione aria-[invalid=true]:border-errore aria-[invalid=true]:focus:outline-errore';
 
 function Campo({ id, etichetta, destra, errore, children }: { id: string; etichetta: string; destra?: ReactNode; errore?: string; children: ReactNode }) {
   return (
@@ -102,8 +103,10 @@ export function CampoEmail({ form, onChange, provato, verificata, onInviaVerific
   const derivato = e.ok ? nomeDaEmail(e.email) : null;
   const erroreEmail = (provato || toccato) && 'motivo' in e ? TESTO_MOTIVO_EMAIL[e.motivo] : undefined;
   const chiediNome = e.ok && (!derivato || correggi);
-  const erroreNome = provato && e.ok && !nomeEffettivo(form) ? 'Scrivi il tuo nome.' : undefined;
-  const puoVerificare = e.ok && !verificata && !!onInviaVerifica && verificaDisponibile();
+  const [nomeVuoto, setNomeVuoto] = useState(false);
+  const erroreNome = (provato && e.ok && !nomeEffettivo(form)) || (nomeVuoto && !form.nome.trim()) ? 'Scrivi il tuo nome.' : undefined;
+  // dopo un tentativo il riquadro resta (con l'esito) anche se il servizio ha detto che il link non si può inviare
+  const puoVerificare = e.ok && !verificata && !!onInviaVerifica && (verificaDisponibile() || verifica.fase !== 'quiete');
 
   // se l'email cambia dopo aver chiesto il link, il link chiesto non vale più per questo indirizzo
   useEffect(() => { setVerifica({ fase: 'quiete' }); }, [form.email]);
@@ -129,10 +132,10 @@ export function CampoEmail({ form, onChange, provato, verificata, onInviaVerific
                 <span className="inline-flex items-center gap-1 px-2.5 py-1"><Icona nome="info" size={14} />Da verificare</span>
               </button>
             )}>
-            <p data-testo-ok>Controllo che l&apos;indirizzo finisca con @polimi.it, @mail.polimi.it o un sottodominio di polimi.it. Questo non prova che sia tuo.</p>
+            <p data-testo-ok>Controlliamo che l&apos;indirizzo finisca con @polimi.it, @mail.polimi.it o un sottodominio di polimi.it. Questo non prova che sia tuo.</p>
             <p data-testo-ok className="mt-2">{verificaDisponibile()
-              ? 'Puoi provarlo con «Verifica con un link»: ti scrivo un link da aprire. Finché non l\'apri, l\'indirizzo resta «non verificata».'
-              : 'In questa versione non c\'è l\'invio del link di verifica, quindi l\'indirizzo resta «non verificata».'}</p>
+              ? 'Puoi provarlo con «Verifica con un link»: ti scriviamo un link da aprire. Finché non l\'apri, l\'indirizzo resta «non verificata».'
+              : 'Non ti mandiamo un link di verifica, quindi l\'indirizzo resta «non verificata». Puoi continuare lo stesso.'}</p>
           </InfoFoglio>
         )}>
         <input id={`${id}-email`} type="email" inputMode="email" value={form.email} maxLength={254} autoComplete="email" autoCapitalize="none" autoCorrect="off" spellCheck={false} enterKeyHint="done"
@@ -152,7 +155,8 @@ export function CampoEmail({ form, onChange, provato, verificata, onInviaVerific
       {chiediNome && (
         <Campo id={`${id}-nome`} etichetta={derivato ? 'Il tuo nome' : 'Come ti chiami?'} errore={erroreNome}
           destra={correggi && derivato ? (
-            <button type="button" onClick={() => { playTapSound(); setCorreggi(false); }} className="text-s2 font-semibold text-azione-testo underline underline-offset-2">Fatto</button>
+            <button type="button" onClick={() => { playTapSound(); if (!form.nome.trim()) { setNomeVuoto(true); return; } setNomeVuoto(false); setCorreggi(false); }}
+              className="-my-3 inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-s2 font-semibold text-azione-testo underline underline-offset-2">Fatto</button>
           ) : undefined}>
           <input id={`${id}-nome`} type="text" value={form.nome} maxLength={NOME_MAX} autoComplete="name" enterKeyHint="done" autoFocus={correggi}
             placeholder={derivato?.nome ?? ''} aria-invalid={!!erroreNome} aria-describedby={erroreNome ? `${id}-nome-errore` : undefined}
@@ -372,7 +376,7 @@ export function CasellaConsenso({ spuntata, onChange, titolo, testo }: { spuntat
 /** Il consenso unico: termini e privacy. Dentro ci sono classifica NOI, Agorà, Project ID e ATLAS, che servono a usare l'app. Casella obbligatoria, spenta all'inizio. */
 export const CONSENSO_UNICO = {
   titolo: 'Termini e privacy',
-  testo: "Accetto i Termini e l'Informativa privacy. Include classifica NOI, Agorà, Project ID e ATLAS: servono a usare l'app, con sfide e classifica.",
+  testo: "Accetto i Termini e l'Informativa privacy. Vale per tutto il sito, comprese sfide e classifica, e include le email con le novità all'indirizzo che indichi.",
 };
 
 /**

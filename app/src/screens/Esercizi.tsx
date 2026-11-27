@@ -12,6 +12,8 @@ import { Icona, type NomeIcona } from '../brand/icone/Icona';
 import Navigazione, { Scheda } from '../components/Navigazione';
 import { IconaTono, TestataScheda, type Tono } from './extra/ui';
 import { Arte } from './extra/studio/comune';
+import { nomeArgomento } from '../lib/studio/nomiArgomenti';
+import { ordinaPercorso } from '../lib/studio/percorso';
 
 export type ModoEsercizi = 'smart' | 'weakness' | 'blitz' | 'category' | 'recall';
 
@@ -69,8 +71,13 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
 
   const meta = useMemo(() => bankMeta(), []);
   const categorie = useMemo(() => Array.from(new Set(meta.map(q => q.category))).filter(Boolean), [meta]);
-  const livelli = useMemo(() => Array.from(new Set(meta.map(q => q.level))).filter(Boolean), [meta]);
-  const argomenti = useMemo(() => Array.from(new Set(meta.map(q => q.grammarTopic))).filter(Boolean), [meta]);
+  const livelli = useMemo(() => Array.from(new Set(meta.map(q => q.level))).filter(Boolean).sort(), [meta]);
+  // stessi nomi e stesso ordine del Percorso; un argomento del banco senza scheda resta in fondo con il suo nome
+  const argomenti = useMemo(() => {
+    const nelBanco = new Set(meta.map(q => q.grammarTopic).filter(Boolean));
+    const ordinati = ordinaPercorso().map(t => t.grammarTopic).filter(t => nelBanco.has(t));
+    return [...ordinati, ...[...nelBanco].filter(t => !ordinati.includes(t))];
+  }, [meta]);
 
   // Domande sbagliate almeno una volta e non ancora imparate: i «punti deboli» veri dell'utente
   const conStima = useMemo(() => calcolaStima(appState) !== null, [appState]);
@@ -134,7 +141,7 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
                   {livelli.map(l => <option key={`level:${l}`} value={`level:${l}`}>{l}</option>)}
                 </optgroup>
                 <optgroup label="Argomenti">
-                  {argomenti.map(t => <option key={`topic:${t}`} value={`topic:${t}`}>{t}</option>)}
+                  {argomenti.map(t => <option key={`topic:${t}`} value={`topic:${t}`}>{nomeArgomento(t)}</option>)}
                 </optgroup>
               </select>
               <button type="button" disabled={!filtro} onClick={() => { playTapSound(); avvia('category', filtro); }}
@@ -147,7 +154,7 @@ export default function Esercizi({ appState, onAvvia, onStartLearn, onStartError
 
           <h2 className="mt-6 text-s2 leading-[20px] font-bold text-testo">Per studiare</h2>
           <div className="mt-2.5 flex flex-col gap-3">
-            <RigaTesto icona="frasi" tono="azione" nome="Frasi utili" riga="Frasi con traduzione e spiegazione" onClick={onOpenExtra ? () => onOpenExtra('frasi') : undefined} />
+            <RigaTesto icona="frasi" tono="azione" nome="Frasi utili" riga="Frasi corrette, con la regola o la traduzione" onClick={onOpenExtra ? () => onOpenExtra('frasi') : undefined} />
             <RigaTesto icona="prontuario" tono="azione" nome="Riepilogo di grammatica" riga="Le regole che tornano più spesso" onClick={onOpenCheatSheet} />
           </div>
         </div>

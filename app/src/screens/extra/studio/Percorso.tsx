@@ -32,10 +32,11 @@ function Riga({ l, prossima, onApri }: { l: LezionePercorso; prossima: boolean; 
         <span className="flex-1 min-w-0">
           <span className="block text-s2 leading-[20px] font-bold text-testo break-words">{titolo}</span>
           {prossima && <span className="mt-0.5 block text-s1 leading-[16px] font-bold text-azione-testo">Prossima</span>}
-          {l.stato === 'in-corso' && (
+          {/* lo stesso contatore per tutte le lezioni (come nella scheda della lezione): domande imparate su quelle della lezione */}
+          {totale > 0 && (
             <span className="mt-1.5 flex items-center gap-2.5">
-              <BarraTono valore={percento} tono="azione" className="h-[6px] flex-1" />
-              <span className="shrink-0 text-s1 leading-[14px] font-semibold tabular-nums text-azione-testo">{l.imparate} di {totale}</span>
+              <BarraTono valore={percento} tono={l.stato === 'imparata' ? 'alto' : 'azione'} className="h-[6px] flex-1" />
+              <span className={cn('shrink-0 text-s1 leading-[14px] font-semibold tabular-nums', l.stato === 'imparata' ? 'text-alto-testo' : l.stato === 'in-corso' ? 'text-azione-testo' : 'text-testo-tenue')}>{l.imparate} di {totale}</span>
             </span>
           )}
         </span>
@@ -80,6 +81,15 @@ export default function Percorso() {
             </>
           )}
         </div>
+      )}
+      {lezioni.length > 0 && (
+        <ul aria-label="Legenda degli stati" className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+          {(Object.keys(STATO) as LezionePercorso['stato'][]).map(k => (
+            <li key={k} className="inline-flex items-center gap-1.5 text-s1 leading-[16px] text-testo-tenue">
+              <span aria-hidden="true" className={STATO[k].colore}><Icona nome={STATO[k].icona} size={16} /></span>{STATO[k].nome[0].toUpperCase() + STATO[k].nome.slice(1)}
+            </li>
+          ))}
+        </ul>
       )}
 
       {LIVELLI.map(liv => {

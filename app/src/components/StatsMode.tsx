@@ -9,6 +9,7 @@ import { FoglioInfo, TONI } from '../screens/extra/ui';
 import { Tessere, AndamentoSimulazioni } from '../screens/extra/studio/StatistichePezzi';
 import { ChipLivello } from '../screens/extra/studio/comune';
 import { playTapSound } from '../lib/audio';
+import { nomeArgomento } from '../lib/studio/nomiArgomenti';
 
 // Grafici (Recharts): colori dai token, così il tema scuro li cambia da solo.
 const GRIGLIA = 'var(--color-linea)';
@@ -325,7 +326,7 @@ export default function StatsMode({ appState, onExit, incorporata, onDiagnostico
                       {q.grammarTopic && (
                         <>
                           <span className="w-1 h-1 rounded-full bg-tacca"></span>
-                          <span>{q.grammarTopic}</span>
+                          <span>{nomeArgomento(q.grammarTopic)}</span>
                         </>
                       )}
                     </p>

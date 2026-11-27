@@ -7,7 +7,7 @@ import React, { Suspense, lazy, useState, useEffect, useRef } from 'react';
 import { AppState, UserStats, ExamHistory, OnboardingResult, LegalSection } from './types';
 import { loadState, saveState, updateStreak, exportData, importData } from './lib/storage';
 import { getQuestionStats, applySm2, qualityForResult } from './lib/spacedRepetition';
-import { chiaveGiorno } from './lib/utils';
+import { chiaveGiorno, EVENTO_INDIETRO } from './lib/utils';
 import { inAppNativa } from './lib/nativo';
 import { questions } from './data/questions';
 import Menu from './components/Menu';
@@ -21,7 +21,7 @@ import Onboarding, { percorsoInCorso } from './components/Onboarding';
 import CheatSheet from './components/CheatSheet';
 import Navigazione, { Scheda } from './components/Navigazione';
 import { coda } from './lib/progetto/coda';
-import { serveRegistrazione } from './lib/progetto/profilo';
+import { leggiProgetto, serveRegistrazione } from './lib/progetto/profilo';
 import { ToastProvider, useToast } from './components/Toast';
 import Landing from './screens/Landing';
 import Legal from './screens/Legal';
@@ -52,6 +52,10 @@ const NO_RETURN: View[] = ['learn', 'brand'];
 function initialView(state: AppState): View {
   const params = new URLSearchParams(window.location.search);
   if (params.has('landing')) return 'landing';
+  // Esercizi e Impostazioni hanno il loro indirizzo (?vista=esercizi, ?vista=impostazioni): una ricarica li riapre
+  const vistaScheda = params.get('vista');
+  if ((vistaScheda === 'esercizi' || vistaScheda === 'impostazioni') && !serveRegistrazione(state)
+    && (state.onboarding || state.history.length > 0 || Object.keys(state.stats).length > 0 || leggiProgetto(state).profilo?.completato)) return vistaScheda;
   if (params.has('vista') && (state.onboarding || state.history.length > 0 || SCHERMATE[params.get('vista') ?? ''])) return 'extra'; // una vista che non esiste dice «Questa pagina non esiste»
   if (params.has('sfida')) return 'extra';
   if (import.meta.env.DEV && params.has('brand')) return 'brand';
@@ -82,7 +86,8 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   const [extra, setExtra] = useState<{ id: string; params: Record<string, string> }>(() => {
     const q = new URLSearchParams(window.location.search);
     const id = q.has('sfida') && !q.has('vista') ? 'sfida-accetta' : (q.get('vista') ?? '');
-    if (!id && !q.has('landing') && serveRegistrazione(appState)) return { id: 'completa-profilo', params: {} };
+    // l'iscrizione si completa prima di usare l'app, anche arrivando da un indirizzo diretto (?vista=sfide, ?vista=profilo…); restano aperte solo aiuto e segnalazioni
+    if (!q.has('landing') && serveRegistrazione(appState) && !['faq', 'segnala', 'admin'].includes(id)) return { id: 'completa-profilo', params: {} };
     // una vista che non esiste ha lo stesso trattamento di ?vista=stato-vuoto: «Questa pagina non esiste»
     if (q.has('vista') && !SCHERMATE[id] && SCHERMATE['stato-vuoto']) return { id: 'stato-vuoto', params: {} };
     return { id: SCHERMATE[id] || id === 'sfida-accetta' ? id : 'profilo', params: Object.fromEntries(q.entries()) };
@@ -155,11 +160,17 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
   // «indietro» del browser torna alla schermata precedente dell'app invece di uscire dal sito, e una ricarica riapre la schermata giusta.
   const daPopstate = useRef(false);
   const primaVoce = useRef(true);
+  const ultimoUrl = useRef<string | null>(null);
   const indietroBrowser = useRef<() => void>(() => {});
   indietroBrowser.current = () => {
     const v = viewRef.current;
-    // dentro una sessione, una simulazione, una sfida o il percorso iniziale l'indietro del browser non chiude nulla: si esce con la X o la freccia dell'app
-    if (v === 'learn' || v === 'exam' || v === 'onboarding') { window.history.pushState(null, '', window.location.href); return; }
+    // dentro una sessione, una simulazione o il percorso iniziale l'indietro del browser non chiude nulla da solo: si rimette la voce
+    // (con l'indirizzo della schermata, non quello a cui il browser è tornato) e la schermata decide (dialogo «Uscire?», passo precedente)
+    if (v === 'learn' || v === 'exam' || v === 'onboarding') {
+      window.history.pushState(null, '', ultimoUrl.current ?? window.location.href);
+      window.dispatchEvent(new Event(EVENTO_INDIETRO));
+      return;
+    }
     daPopstate.current = true;
     if (v === 'extra') indietroExtra();
     else if (pila.current.length > 0) indietro();
@@ -178,10 +189,12 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
     if (view === 'extra' && extra.id !== 'sfida-accetta') { // il link di sfida non si rimette nell'indirizzo: una ricarica non lo riapre
       q.set('vista', extra.id);
       for (const [k, v] of Object.entries(extra.params)) if (k !== 'vista' && k !== 'sfida') q.set(k, v);
-    } else if (view === 'landing' && new URLSearchParams(window.location.search).has('landing')) q.set('landing', '');
+    } else if (view === 'esercizi' || view === 'impostazioni') q.set('vista', view);
+    else if (view === 'landing' && new URLSearchParams(window.location.search).has('landing')) q.set('landing', '');
     const url = window.location.pathname + (q.toString() ? `?${q.toString().replace(/=$/, '').replace(/=&/g, '&')}` : '');
     if (primaVoce.current || daPopstate.current) window.history.replaceState(null, '', url);
     else if (url !== window.location.pathname + window.location.search || view !== 'extra') window.history.pushState(null, '', url);
+    ultimoUrl.current = url;
     primaVoce.current = false;
     daPopstate.current = false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -447,7 +460,7 @@ function AppInner({ appState, setAppState }: { appState: AppState; setAppState: 
           onUpdateAppState={handleUpdateAppState}
           onFinish={handleOnboardingFinish}
           onOpenLegal={apriLegale}
-          onEsci={appState.onboarding ? undefined : () => setView('landing')}
+          onEsci={() => setView(appState.onboarding || leggiProgetto(appState).profilo?.completato ? 'menu' : 'landing')}
         />
       )}
       {view === 'theory' && (

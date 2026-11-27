@@ -2,7 +2,7 @@ import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { AppState, QuestionClickEvent, QuestionTelemetry, UserStats } from '../types';
 import { selectPracticeIds, updateStats, bankMeta, countLearned, isLearned } from '../lib/spacedRepetition';
 import { Icona } from '../brand/icone/Icona';
-import { cn, shuffleArray } from '../lib/utils';
+import { cn, EVENTO_INDIETRO, ignoraClicBrevemente, shuffleArray } from '../lib/utils';
 import { playTapSound, playCorrectSound, playIncorrectSound, playVictorySound } from '../lib/audio';
 import { provider } from '../access';
 import type { GradeResult, PublicQuestion } from '../access/provider';
@@ -11,6 +11,7 @@ import ConfirmDialog from './ConfirmDialog';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
 import { Illustrazione } from '../brand/Illustrazione';
 import { Bottone, OpzioneRisposta, StatoVuoto, tipografiche, type StatoOpzione } from '../screens/extra/studio/comune';
+import { nomeArgomento } from '../lib/studio/nomiArgomenti';
 
 interface LearnModeProps {
   appState: AppState;
@@ -82,10 +83,15 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
   esciRef.current = esci;
   useEffect(() => {
     const tasto = (e: KeyboardEvent) => { if (e.key === 'Escape' && !e.defaultPrevented && radice.current?.offsetParent) esciRef.current(); };
+    const indietro = () => esciRef.current();
     document.addEventListener('keydown', tasto);
-    return () => document.removeEventListener('keydown', tasto);
+    window.addEventListener(EVENTO_INDIETRO, indietro);
+    return () => { document.removeEventListener('keydown', tasto); window.removeEventListener(EVENTO_INDIETRO, indietro); };
   }, []);
   const checkingRef = useRef(false);
+  // dopo l'esito il fuoco va su «Avanti»: chi usa la tastiera non riparte dall'inizio della pagina
+  const avantiRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => { if (hasChecked) avantiRef.current?.focus({ preventScroll: true }); }, [hasChecked]);
   const esitoAlle = useRef(0);
   const lastCheckRef = useRef<{ confidence: 'low' | 'medium' | 'high'; isTimeout: boolean } | null>(null);
   const appStateRef = useRef(appState);
@@ -283,7 +289,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
     };
     const quiz = { prompt: question.prompt, options: question.options, correctIndex: correctIdx };
     if (currentAttempts === 1) {
-      setEsiti(prev => [...prev, { id: question.id, prompt: question.prompt, argomento: question.grammarTopic || question.category, theoryId: res.theoryId, giusta: correct }]);
+      setEsiti(prev => [...prev, { id: question.id, prompt: question.prompt, argomento: nomeArgomento(question.grammarTopic || question.category), theoryId: res.theoryId, giusta: correct }]);
     }
 
     setResult(res);
@@ -335,7 +341,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
     setHasChecked(false);
     setSelectionHistory([]);
     setLastSelectionTimestamp(null);
-    if (currentIndex + 1 >= questions.length) setSecondiSessione(Math.max(1, Math.round((Date.now() - inizioRef.current) / 1000)));
+    if (currentIndex + 1 >= questions.length) { setSecondiSessione(Math.max(1, Math.round((Date.now() - inizioRef.current) / 1000))); ignoraClicBrevemente(); }
     setCurrentIndex(prev => prev + 1);
   };
 
@@ -382,7 +388,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
   const inAllarme = timeLeft <= timeLimit / 3;
   const inAllarmeForte = timeLeft <= timeLimit / 6;
   const timerAttivo = !hasChecked && !checking && attempts === 0;
-  const titoloPannello = isCorrect ? 'Giusto' : tempoScaduto ? 'Tempo scaduto' : 'Non è questa';
+  const titoloPannello = isCorrect ? 'Giusta' : tempoScaduto ? 'Tempo scaduto' : 'Sbagliata';
   const rispostaEsatta = result && !isCorrect && !optionsRevealed && correctDisplay >= 0 ? question.options[correctDisplay] : null;
 
   return (
@@ -484,7 +490,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
                   </button>
                 ) : (
                   <div data-testo-ok className="rounded-xl bg-azione-tinta px-4 py-2 text-center text-s2 font-bold text-azione-testo">
-                    {question.grammarTopic || question.category}{question.level && ` · ${question.level}`}
+                    {nomeArgomento(question.grammarTopic || question.category)}{question.level && ` · ${question.level}`}
                   </div>
                 )}
                 <button onClick={() => { playTapSound(); setOptionsRevealed(true); }}
@@ -564,7 +570,7 @@ export default function LearnMode({ appState, mode: modoIniziale, category, onUp
                   </button>
                 )}
                 {/* dopo un errore la risposta giusta è già in vista: l'azione principale è andare avanti, «Riprova» resta sotto */}
-                <button type="button" onClick={() => handleNext(!isCorrect)}
+                <button ref={avantiRef} type="button" onClick={() => handleNext(!isCorrect)}
                   className="flex h-[52px] min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-azione text-s2 font-bold text-azione-su transition-colors duration-100 hover:bg-azione-scuro">
                   {ultima ? 'Vedi com’è andata' : 'Avanti'} <Icona nome="avanti" size={22} />
                 </button>

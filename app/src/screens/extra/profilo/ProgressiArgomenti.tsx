@@ -76,6 +76,9 @@ export default function ProgressiArgomenti() {
       )}
 
       <Carta className="px-3 py-1">
+        {ordinati.iniziali.length === 0 && !tutti && (
+          <p data-testo-ok className="px-1 py-3 text-s2 leading-[20px] text-testo-tenue">Un argomento compare qui dopo tre risposte sullo stesso argomento, in allenamento o in simulazione.</p>
+        )}
         <ul className="flex flex-col divide-y divide-linea">
           {mostrati.map(a => <li key={a.id}><RigaArgomento a={a} onApri={() => vai('lezione-dettaglio', { id: a.id })} /></li>)}
         </ul>

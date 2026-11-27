@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { ExamHistory, ExamQuestionLog, QuestionClickEvent } from '../types';
-import { cn } from '../lib/utils';
+import { cn, EVENTO_INDIETRO, ignoraClicBrevemente } from '../lib/utils';
 import { playTapSound, playVictorySound } from '../lib/audio';
 import { Icona } from '../brand/icone/Icona';
 import { IllustrazioneAnimata } from '../brand/IllustrazioneAnimata';
@@ -272,10 +272,18 @@ export default function ExamMode({ onComplete, onExit, onOpenTheory, risposteSti
     if (phase === 'running' && Object.keys(answers).length > 0) setConfirm('exit');
     else onExit();
   };
+  // l'indietro del browser apre lo stesso dialogo della X («Uscire dalla simulazione?»)
+  const requestExitRef = useRef(requestExit);
+  requestExitRef.current = requestExit;
+  useEffect(() => {
+    const f = () => requestExitRef.current();
+    window.addEventListener(EVENTO_INDIETRO, f);
+    return () => window.removeEventListener(EVENTO_INDIETRO, f);
+  }, []);
 
   const requestSubmit = () => {
     if (questions.length - Object.keys(answers).length > 0) setConfirm('submit');
-    else void finish();
+    else { ignoraClicBrevemente(); void finish(); }
   };
 
   const missing = questions.length - Object.keys(answers).length;

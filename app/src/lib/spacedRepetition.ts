@@ -475,7 +475,8 @@ export function updateStats(
 
   const dailyActivity = { ...(appState.dailyActivity || {}) };
   const giorno = chiaveGiorno(new Date(now));
-  dailyActivity[giorno] = (dailyActivity[giorno] || 0) + 1;
+  // una domanda lasciata scadere senza risposta non è una «risposta del giorno» (come le vuote della simulazione): Calendario e Panoramica contano lo stesso
+  if (!omessa) dailyActivity[giorno] = (dailyActivity[giorno] || 0) + 1;
 
   return {
     ...appState,

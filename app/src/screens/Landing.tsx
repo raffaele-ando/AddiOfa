@@ -57,6 +57,12 @@ function useRivelaScorrendo(radice: React.RefObject<HTMLDivElement | null>) {
       entrano.forEach((v, i) => { (v.target as HTMLElement).style.transitionDelay = `${Math.min(i, 5) * 70}ms`; v.target.classList.add('rivela-si'); o.unobserve(v.target); });
     }, { root: el, threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
     esterne.forEach(n => o.observe(n));
-    return () => { o.disconnect(); esterne.forEach(n => { n.classList.remove('rivela', 'rivela-si'); n.style.transitionDelay = ''; }); };
+    // con la tastiera (Tab) la sezione che riceve il fuoco si rivela subito tutta: niente titoli invisibili accanto al pulsante col fuoco
+    const fuoco = (e: FocusEvent) => {
+      const sezione = (e.target as HTMLElement | null)?.closest('section');
+      sezione?.querySelectorAll<HTMLElement>('.rivela:not(.rivela-si)').forEach(n => { n.style.transitionDelay = ''; n.classList.add('rivela-si'); o.unobserve(n); });
+    };
+    el.addEventListener('focusin', fuoco);
+    return () => { el.removeEventListener('focusin', fuoco); o.disconnect(); esterne.forEach(n => { n.classList.remove('rivela', 'rivela-si'); n.style.transitionDelay = ''; }); };
   }, [radice]);
 }

@@ -37,7 +37,7 @@ export interface StatoAccesso {
 }
 
 export function messaggioErrore(e: unknown): string {
-  if (e instanceof AtlasNonConfigurato) return 'ATLAS non è collegato in questa versione.';
+  if (e instanceof AtlasNonConfigurato) return 'ATLAS, il servizio che riceve le iscrizioni, non è collegato a questo sito.';
   if (e instanceof AtlasErrore) return e.stato === 0 ? 'ATLAS non risponde. Riprova tra poco.' : e.stato === 401 ? 'L\'accesso è scaduto: accedi di nuovo.' : e.message;
   if (e instanceof LoginError) return e.message;
   return 'Qualcosa non è andato a buon fine. Riprova.';

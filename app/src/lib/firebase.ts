@@ -36,8 +36,8 @@ let handle: Promise<Auth> | null = null;
 
 async function carica(): Promise<Auth> {
   // il confronto letterale con VITE_MODE permette alla build a file unico (`demo`) di eliminare tutto il codice di Firebase
-  if (import.meta.env.VITE_MODE === 'demo') throw new LoginError('L\'accesso con Google non è disponibile in questa versione.');
-  if (!loginDisponibile()) throw new LoginError('L\'accesso con Google non è configurato in questa versione.');
+  if (import.meta.env.VITE_MODE === 'demo') throw new LoginError('L\'accesso con Google non è disponibile qui.');
+  if (!loginDisponibile()) throw new LoginError('L\'accesso con Google non è attivo su questo sito.');
   if (!handle) {
     handle = (async () => {
       const [{ initializeApp }, { getAuth, browserLocalPersistence, setPersistence }] = await Promise.all([sdkApp(), sdkAuth()]);
@@ -137,7 +137,10 @@ const memoriaLocale = {
 // Se il progetto Firebase risponde che l'accesso con link non è abilitato, il pulsante non si offre più (in questa scheda): niente richieste che falliscono di sicuro.
 const CHIAVE_LINK_SPENTO = 'addiofa_link_non_abilitato';
 function linkSpento(): boolean { try { return sessionStorage.getItem(CHIAVE_LINK_SPENTO) === '1'; } catch { return false; } }
-export const verificaDisponibile = (): boolean => loginDisponibile() && !linkSpento();
+// Il provider «Link via email» va abilitato a mano nel progetto Firebase: finché non lo è (oggi risponde 400 OPERATION_NOT_ALLOWED) il pulsante
+// non si mostra e non parte nessuna richiesta. Per accenderlo: VITE_LINK_VERIFICA=1 nella build, dopo averlo abilitato.
+const LINK_VERIFICA_ATTIVO = !!PROVA || import.meta.env.VITE_LINK_VERIFICA === '1';
+export const verificaDisponibile = (): boolean => LINK_VERIFICA_ATTIVO && loginDisponibile() && !linkSpento();
 
 export type EsitoInvioLink = { ok: true } | { ok: false; messaggio: string };
 

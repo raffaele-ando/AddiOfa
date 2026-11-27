@@ -13,8 +13,8 @@ export const privacy: LegalDoc = {
     {
       titolo: 'In breve',
       paragrafi: [
-        `AddiOFA si usa senza account: domande, simulazioni e progressi stanno nel tuo browser. All'inizio ti chiediamo la tua email del Politecnico (obbligatoria: il nome lo ricaviamo dall'email) e che cosa studi (scuola, sede, livello, corso, anno), e come ci hai conosciuto: questi dati vengono inviati ad ${A}, il servizio di ${P}, appena possibile. Ti chiediamo un solo consenso, obbligatorio e mai preselezionato: termini e privacy, che comprende classifica NOI, Agorà, ${ID} e ${A}.`,
-        `Non usiamo cookie di tracciamento né strumenti di statistica, non ci sono pubblicità, non vendiamo dati e non facciamo profilazione commerciale senza il tuo consenso. Il ${ID} (accesso con Google) è facoltativo.`,
+        `AddiOFA si usa senza account: domande, simulazioni e progressi stanno nel tuo browser. All'inizio ti chiediamo la tua email del Politecnico (obbligatoria: il nome lo ricaviamo dall'email) e che cosa studi (scuola, sede, livello, corso, anno), e come ci hai conosciuto: questi dati vengono inviati ad ${A}, il servizio di ${P}, appena possibile. Ti chiediamo un solo consenso, obbligatorio e mai preselezionato: termini e privacy, che comprende classifica NOI, Agorà, ${ID} e ${A} e le email con le novità. NOI è la classifica tra studenti, Agorà la community di ${P}, il ${ID} l'accesso con Google, ${A} il servizio che riceve l'iscrizione.`,
+        `Non usiamo cookie di tracciamento né strumenti di statistica, non ci sono pubblicità, non vendiamo dati e non facciamo profilazione commerciale senza il tuo consenso. Usare il ${ID} (accesso con Google) è una tua scelta: se lo usi, vale lo stesso consenso.`,
       ],
     },
     {

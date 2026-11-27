@@ -171,7 +171,7 @@ const livello = (l: Livello, titolo: string, icona: NomeIcona): DefinizioneBadge
 });
 
 export const BADGE: DefinizioneBadge[] = [
-  domande('prima-domanda', 1, 'Prima domanda', 'badge-prima-domanda'),
+  domande('prima-domanda', 1, 'Prima domanda imparata', 'badge-prima-domanda'),
   domande('domande-25', 25, '25 domande', 'badge-domande-25'),
   domande('domande-100', 100, '100 domande', 'badge-domande-100'),
   argomenti('argomento-1', 1, 'Primo argomento', 'badge-argomento-1'),
@@ -184,7 +184,7 @@ export const BADGE: DefinizioneBadge[] = [
     valuta: (c, m) => conteggio(m.ricordateA7Giorni, 10, 'domande ricordate a lungo', c.banco.length),
   },
   {
-    id: 'accuratezza-80', gruppo: 'studio', titolo: 'Accuratezza 80 %', icona: 'badge-accuratezza-80',
+    id: 'accuratezza-80', gruppo: 'studio', titolo: 'Accuratezza 80\u00a0%', icona: 'badge-accuratezza-80',
     condizione: `Rispondi bene all'${Math.round(SOGLIA_ACCURATEZZA * 100)} % o più, su almeno ${MIN_RISPOSTE_ACCURATEZZA} risposte date.`,
     valuta: (_c, m) => {
       if (m.risposte < MIN_RISPOSTE_ACCURATEZZA) {

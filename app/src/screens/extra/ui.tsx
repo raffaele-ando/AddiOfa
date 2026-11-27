@@ -11,6 +11,7 @@ import { Icona, type NomeIcona } from '../../brand/icone/Icona';
 import { FONT } from '../../brand/tokens';
 import { playTapSound } from '../../lib/audio';
 import { cn } from '../../lib/utils';
+import { useTrappolaFuoco } from '../../hooks/useTrappolaFuoco';
 
 export interface PropsPagina {
   titolo: string;
@@ -118,7 +119,7 @@ export function Sezione({ id, titolo, destra, azione, children, className }: { i
  *  sembravano buchi), con l'icona nel colore del tono. */
 export function IconaTono({ tono, children, lato = 40, className }: { tono: Tono; children: ReactNode; lato?: number; className?: string }) {
   return (
-    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center rounded-xl dark:bg-superficie-2', TONI[tono].tinta, TONI[tono].icona, className)} style={{ width: lato, height: lato }}>
+    <span aria-hidden="true" className={cn('grid shrink-0 place-items-center rounded-xl', TONI[tono].tinta, TONI[tono].icona, className)} style={{ width: lato, height: lato }}>
       {children}
     </span>
   );
@@ -144,7 +145,20 @@ function frecceRadio<T extends string>(e: TastoReact<HTMLElement>, ids: T[], val
   const i = (Math.max(0, ids.indexOf(valore)) + passo + ids.length) % ids.length;
   onScegli(ids[i]);
   const gruppo = e.currentTarget;
-  requestAnimationFrame(() => gruppo.querySelectorAll<HTMLElement>('[role=radio]')[i]?.focus());
+  const etichetta = gruppo.getAttribute('aria-label');
+  // se la scelta cambia schermata (selettore delle Sfide) il gruppo è stato rifatto: si cerca quello nuovo con la stessa etichetta
+  const metti = () => {
+    const vivo = gruppo.isConnected ? gruppo : etichetta ? document.querySelector<HTMLElement>(`[role=radiogroup][aria-label="${CSS.escape(etichetta)}"]`) : null;
+    vivo?.querySelectorAll<HTMLElement>('[role=radio]')[i]?.focus();
+  };
+  requestAnimationFrame(metti);
+  // la schermata nuova può arrivare dopo (caricata a parte): si riprova per un secondo al massimo
+  let tentativi = 0;
+  const riprova = () => {
+    const vivo = !gruppo.isConnected && etichetta ? document.querySelector(`[role=radiogroup][aria-label="${CSS.escape(etichetta)}"]`) : null;
+    if (vivo) metti(); else if (++tentativi < 20) setTimeout(riprova, 50);
+  };
+  setTimeout(riprova, 50);
 }
 
 /** Controllo segmentato con le parole (13-14 px, 600): traccia incavata, voce scelta sollevata (bianca in chiaro, più chiara della traccia in scuro)
@@ -262,14 +276,9 @@ export function PulsanteInfo({ onClick, etichetta = 'Informazioni', className }:
 
 /** Foglio in basso con una spiegazione a richiesta. Si chiude con la X, toccando fuori o con Esc. Niente `alert/confirm`. */
 export function FoglioInfo({ aperto, onChiudi, titolo, children }: { aperto: boolean; onChiudi: () => void; titolo: string; children: ReactNode }) {
-  useEffect(() => {
-    if (!aperto) return;
-    const k = (e: KeyboardEvent) => { if (e.key === 'Escape') onChiudi(); };
-    window.addEventListener('keydown', k);
-    return () => window.removeEventListener('keydown', k);
-  }, [aperto, onChiudi]);
-  // il fuoco entra nel foglio (sul primo campo, se c'è, altrimenti su Chiudi) e alla chiusura torna dov'era
+  // il fuoco entra nel foglio (sul primo campo, se c'è, altrimenti su Chiudi), Tab resta dentro, Esc chiude; alla chiusura torna dov'era
   const foglio = useRef<HTMLDivElement>(null);
+  useTrappolaFuoco(foglio, aperto, onChiudi);
   useEffect(() => {
     if (!aperto) return;
     const prima = document.activeElement as HTMLElement | null;
@@ -279,8 +288,8 @@ export function FoglioInfo({ aperto, onChiudi, titolo, children }: { aperto: boo
   }, [aperto]);
   if (!aperto) return null;
   return (
-    <div className="absolute inset-0 z-50 flex items-end bg-testo/40" onClick={e => { if (e.target === e.currentTarget) onChiudi(); }}>
-      <div ref={foglio} role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full overflow-y-auto rounded-t-2xl border-t border-linea bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60" onClick={e => { if (e.target === e.currentTarget) onChiudi(); }}>
+      <div ref={foglio} role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full max-w-[480px] overflow-y-auto rounded-t-2xl border-t border-linea bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
         <div className="mb-3 flex items-center justify-between gap-3">
           <h2 className="text-s3 leading-[24px] font-extrabold">{titolo}</h2>
           <button type="button" onClick={onChiudi} aria-label="Chiudi" className="brand-premibile grid h-11 w-11 place-items-center rounded-full bg-superficie-2 text-testo"><Icona nome="chiudi" size={20} /></button>

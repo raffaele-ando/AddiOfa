@@ -33,13 +33,15 @@ function DatiFormato() {
 export default function Simulazione({ ultima, onInizia, onApriUltima, onTutte }: {
   ultima: RiepilogoSimulazione | null; onInizia?: () => void; onApriUltima?: () => void; onTutte?: () => void;
 }) {
+  // stessi colori e stessa parola dell'elenco e del dettaglio: verde superata, ambra a 5 risposte o meno dalla soglia, corallo sotto
+  const vicino = !!ultima && !ultima.superata && ultima.esatte >= EXAM.passMark - 5;
   const corpo = ultima ? (
     <span className="block min-w-0">
       <span className="flex items-baseline gap-1.5">
-        <span aria-hidden="true" className={cn('text-s4 leading-[28px] font-extrabold tabular-nums', ultima.superata ? 'text-alto-numero' : 'text-basso-numero')}>{ultima.esatte}</span>
+        <span aria-hidden="true" className={cn('text-s4 leading-[28px] font-extrabold tabular-nums', ultima.superata ? 'text-alto-numero' : vicino ? 'text-medio-testo' : 'text-basso-numero')}>{ultima.esatte}</span>
         <span aria-hidden="true" className="text-s2 leading-[19px] font-bold tabular-nums text-testo-tenue">/{ultima.totale}</span>
-        <span aria-hidden="true" className={cn('ml-1 inline-flex items-center gap-1 text-s1 leading-[16px] font-semibold', ultima.superata ? 'text-alto-testo' : 'text-basso-testo')}>
-          <Icona nome={ultima.superata ? 'stato-ok' : 'stato-attenzione'} size={14} />{ultima.superata ? 'Superata' : 'Sotto soglia'}
+        <span aria-hidden="true" className={cn('ml-1 inline-flex items-center gap-1 text-s1 leading-[16px] font-semibold', ultima.superata ? 'text-alto-testo' : vicino ? 'text-medio-testo' : 'text-basso-testo')}>
+          <Icona nome={ultima.superata ? 'stato-ok' : 'soglia'} size={14} />{ultima.superata ? 'Superata' : 'Sotto la soglia'}
         </span>
       </span>
       <span aria-hidden="true" className="block text-s1 leading-[17px] text-testo-tenue">

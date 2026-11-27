@@ -1,5 +1,7 @@
 // Conferma dentro la pagina: nell'Artifact alert/confirm/prompt non esistono (confirm risponde sempre "no").
 import { useEffect, useRef, type ReactNode } from 'react';
+import { ignoraClicBrevemente } from '../lib/utils';
+import { useTrappolaFuoco } from '../hooks/useTrappolaFuoco';
 
 interface Props {
   open: boolean;
@@ -18,16 +20,18 @@ export default function ConfirmDialog({ open, title, message, confirmLabel = 'Co
   // il fuoco parte dalla scelta che non perde nulla (Annulla, Resta, Torna alle domande), mai dal pulsante che consegna o cancella
   const ref = useRef<HTMLButtonElement>(null);
   useEffect(() => { if (open) ref.current?.focus(); }, [open]);
+  const scatola = useRef<HTMLDivElement>(null);
+  useTrappolaFuoco(scatola, open, onCancel);
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-4" role="dialog" aria-modal="true" aria-labelledby="dlg-titolo" onKeyDown={e => { if (e.key === 'Escape') { e.preventDefault(); onCancel(); } }}>
+    <div ref={scatola} className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-4" role="dialog" aria-modal="true" aria-labelledby="dlg-titolo">
       <div className={`w-full max-w-sm rounded-2xl bg-superficie-2 border border-linea p-5 shadow-xl dark:shadow-none${illustrazione ? ' text-center' : ''}`}>
         {illustrazione && <div aria-hidden="true" className="mb-3 flex justify-center">{illustrazione}</div>}
         <h2 id="dlg-titolo" className="text-s3 font-bold text-testo">{title}</h2>
         {message && <p className="mt-2 text-s2 text-testo-tenue">{message}</p>}
         <div className="mt-5 flex gap-3">
           <button ref={ref} type="button" onClick={onCancel} className="flex-1 rounded-xl border border-tacca py-3 font-semibold text-testo">{cancelLabel}</button>
-          <button type="button" onClick={onConfirm} className={`flex-1 rounded-xl py-3 font-semibold ${danger ? 'bg-errore text-errore-su' : 'bg-azione text-azione-su'}`}>{confirmLabel}</button>
+          <button type="button" onClick={() => { ignoraClicBrevemente(); onConfirm(); }} className={`flex-1 rounded-xl py-3 font-semibold ${danger ? 'bg-errore text-errore-su' : 'bg-azione text-azione-su'}`}>{confirmLabel}</button>
         </div>
       </div>
     </div>

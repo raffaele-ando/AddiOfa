@@ -101,3 +101,21 @@ export function formatDuration(totalSeconds: number): string {
 export function errorCode(e: unknown): string {
   return e instanceof Error ? e.message : String(e);
 }
+
+/**
+ * Dopo un cambio di schermata (fine sessione, consegna, uscita da un dialogo) il secondo clic di un doppio clic cadrebbe sul pulsante
+ * che compare nello stesso punto. Per `ms` millisecondi i clic sulla pagina si ignorano (fase di cattura, prima di React).
+ */
+export function ignoraClicBrevemente(ms = 400): void {
+  if (typeof document === 'undefined') return;
+  const fino = Date.now() + ms;
+  const blocca = (e: Event) => {
+    if (Date.now() > fino) { document.removeEventListener('click', blocca, true); return; }
+    e.stopPropagation(); e.preventDefault();
+  };
+  document.addEventListener('click', blocca, true);
+  setTimeout(() => document.removeEventListener('click', blocca, true), ms + 50);
+}
+
+/** L'indietro del browser dentro una sessione, una simulazione o il percorso iniziale: App lo segnala, la schermata aperta decide cosa fare. */
+export const EVENTO_INDIETRO = 'addiofa-indietro';

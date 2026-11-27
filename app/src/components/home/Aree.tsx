@@ -70,13 +70,22 @@ export default function Aree({ categorie, livelli, onVai }: { categorie: Fattore
           </span>
         </div>
       ) : (
-        <ul className="rounded-xl border border-linea dark:border-tacca bg-superficie py-0.5">
-          {righe.map((f, i) => (
-            <li key={f.id} className={i > 0 ? 'border-t border-linea dark:border-tacca' : ''}>
-              <Riga f={f} onVai={onVai} />
-            </li>
+        <>
+          {onVai && <p data-testo-ok className="-mt-1 text-s1 leading-[16px] text-testo-tenue">Tocca un'area per allenarti su quella: 10 domande a tempo.</p>}
+          {/* tipi di domanda e livelli sono due cose diverse: due gruppi, ognuno col suo nome */}
+          {([['Per tipo di domanda', righe.filter(f => !eLivello(f))], ['Per livello', righe.filter(eLivello)]] as const).filter(([, g]) => g.length > 0).map(([titolo, gruppo]) => (
+            <div key={titolo} className="flex flex-col gap-1.5">
+              <h3 className="text-s1 leading-[16px] font-bold text-testo-tenue">{titolo}</h3>
+              <ul className="rounded-xl border border-linea dark:border-tacca bg-superficie py-0.5">
+                {gruppo.map((f, i) => (
+                  <li key={f.id} className={i > 0 ? 'border-t border-linea dark:border-tacca' : ''}>
+                    <Riga f={f} onVai={onVai} />
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </>
       )}
     </section>
   );

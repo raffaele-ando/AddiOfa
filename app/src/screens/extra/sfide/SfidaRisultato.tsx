@@ -88,6 +88,9 @@ export default function SfidaRisultato() {
   // Con il duello deciso, il blocco tinto è l'esito; altrimenti è il tuo risultato (verde per la sfida del giorno, neutro per il duello in attesa).
   const haEsito = duello && avv && esito;
   const condivisione = duello && (sfidato || !avv);
+  // la sfida del giorno prende il colore del suo esito (come la soglia del test, 25 su 30): verde solo se va bene
+  const quota = voce.totale > 0 ? voce.corrette / voce.totale : 0;
+  const tonoGiorno = quota >= 25 / 30 ? 'alto' : quota >= 0.5 ? 'medio' : 'basso';
 
   const regole = (
     <Regole righe={[
@@ -104,13 +107,13 @@ export default function SfidaRisultato() {
         {haEsito ? (
           <PannelloEsito className="mt-5" esito={esito} nomeMio={nomeMio} io={mio} nomeAltro={avv.nome} altro={avv} />
         ) : (
-          <Carta tono={duello ? 'medio' : 'alto'} className="mt-5 flex items-center gap-4">
+          <Carta tono={duello ? 'medio' : tonoGiorno} className="mt-5 flex items-center gap-4">
             <div className="min-w-0 flex-1" role="status" aria-label={`${voce.corrette} su ${voce.totale}, tempo ${tempoBreve(voce.secondi)} su ${tempoBreve(SECONDI_SFIDA)}`}>
               {duello && <p aria-hidden className="text-s1 font-semibold text-testo-tenue">Il tuo risultato</p>}
               <p aria-hidden className="text-s5 leading-[38px] font-extrabold tabular-nums text-testo">{voce.corrette}<span className="text-s3 font-bold text-testo-tenue">/{voce.totale}</span></p>
               <p aria-hidden className="mt-0.5 text-s2 font-semibold text-testo-tenue"><Tempo secondi={voce.secondi} /> / {tempoBreve(SECONDI_SFIDA)}</p>
             </div>
-            {duello ? <Illustrazione nome="attesa" lato={68} /> : <Illustrazione nome="celebrazione-fiocco" lato={96} />}
+            {duello ? <Illustrazione nome="attesa" lato={68} /> : tonoGiorno === 'alto' ? <Illustrazione nome="celebrazione-fiocco" lato={96} /> : null}
           </Carta>
         )}
 
@@ -135,8 +138,14 @@ export default function SfidaRisultato() {
           </div>
         )}
 
-        <div className="mt-4">
+        <div className="mt-4 flex flex-col gap-3">
           <RivediRisposte voce={voce} primario={!condivisione} />
+          {!duello && (
+            <>
+              <Bottone variante="secondario" icona="duello" onClick={() => vai('sfide')}>Sfida un amico</Bottone>
+              <Bottone variante="testo" icona="indietro" onClick={() => vai('sfide')}>Torna alle Sfide</Bottone>
+            </>
+          )}
         </div>
       </Pagina>
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Regole">{regole}</FoglioInfo>

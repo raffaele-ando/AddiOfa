@@ -166,12 +166,12 @@ function PerArgomento({ onTutti }: { onTutti: () => void }) {
       ) : (
         <>
           <p className="mt-0.5 text-s1 leading-[18px] text-testo-tenue">I più deboli per primi</p>
-          <ul className="mt-3 flex flex-col gap-3">
+          <ul className="mt-2 flex flex-col gap-1">
             {deboli.map(a => {
               const tono = tonoAccuratezza(a.percento) ?? 'azione';
               return (
                 <li key={a.id}>
-                  <button type="button" onClick={() => { playTapSound(); vai('lezione-dettaglio', { id: a.id }); }} className="brand-premibile block w-full text-left" aria-label={`${a.titolo}: ${a.percento}%`}>
+                  <button type="button" onClick={() => { playTapSound(); vai('lezione-dettaglio', { id: a.id }); }} className="brand-premibile block min-h-11 w-full py-1 text-left" aria-label={`${a.titolo}: ${a.percento}%`}>
                     <span className="flex items-baseline justify-between gap-3">
                       <span data-testo-ok className="min-w-0 truncate text-s2 leading-[21px] font-semibold text-testo">{a.titolo}</span>
                       <span className={cn('shrink-0 text-s2 font-bold tabular-nums', TESTO_TONO[tono])}>{a.percento}%</span>

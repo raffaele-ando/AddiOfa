@@ -45,12 +45,12 @@ export default function SeNonSuperi({ onStart }: { onStart(): void }) {
 
       <ol data-testo-ok className="mt-6 grid grid-cols-2 gap-3 lg:mt-10 lg:grid-cols-[repeat(4,minmax(0,1fr))_minmax(0,1.25fr)] lg:gap-4">
         {CARTE.map(c => (
-          <li key={c.titolo} className="flex min-h-[7.5rem] flex-col justify-center rounded-2xl border border-linea bg-superficie p-4 lg:min-h-[9rem]">
+          <li key={c.titolo} className="flex min-h-[7.5rem] flex-col justify-start rounded-2xl border border-linea bg-superficie p-4 lg:min-h-0">
             <span className="block text-s2 font-extrabold leading-tight text-testo">{c.titolo}</span>
             <span className="mt-1 block text-s1 font-medium leading-snug text-testo-tenue">{c.sotto}</span>
           </li>
         ))}
-        <li className="relative col-span-2 flex min-h-[7rem] flex-col justify-between gap-4 rounded-2xl border border-azione/45 bg-azione-tinta p-5 lg:col-span-1 lg:min-h-[11.5rem]">
+        <li className="relative col-span-2 flex min-h-[7rem] flex-col justify-between gap-4 rounded-2xl border border-azione/45 bg-azione-tinta p-5 lg:col-span-1 lg:min-h-0">
           <Icona nome="avanti" size={26} className="absolute -left-[1.35rem] top-1/2 hidden -translate-y-1/2 text-azione lg:block" />
           <p className="text-s3 font-extrabold leading-snug text-testo">Con AddiOFA arrivi <span className="text-azione-testo">al test preparato.</span></p>
           <button type="button" onClick={onStart}

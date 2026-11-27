@@ -105,7 +105,7 @@ export default function AtlasAnalisi() {
                 <StimaSezione stima={stima} livello={an.livelloStima ?? livelloDi(stima.p)} />
                 <RigaIntervallo intervallo={stima.intervallo} className="mt-2" />
               </div>
-              <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">{dettaglio}: si basa su {stima.risposte} risposte.</p>
+              <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">{dettaglio}: si basa su {stima.risposte} risposte tra test di livello e simulazioni.</p>
               <details className="group mt-2 text-center">
                 <summary className="inline-flex min-h-[44px] cursor-pointer list-none items-center gap-1 text-s2 font-bold text-azione-testo [&::-webkit-details-marker]:hidden">Dettagli<Icona nome="espandi" size={16} className="group-open:rotate-180" /></summary>
                 <p data-testo-ok className="text-s1 leading-[19px] text-testo-tenue">Intervallo di affidabilità (80%): {intervallo}.</p>

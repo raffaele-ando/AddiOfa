@@ -41,7 +41,7 @@ export default function Hero({ onStart, onSkip }: { onStart(): void; onSkip(): v
           <p data-testo-ok className="mt-4 text-s1 font-medium leading-snug text-testo-tenue">Gratuita, senza password, con i progressi sul tuo dispositivo.</p>
           <button type="button" onClick={onSkip} data-testo-ok
             className="mt-1 inline-flex min-h-11 items-center rounded-xl text-s1 font-semibold text-azione-testo underline underline-offset-4 hover:text-azione focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azione">
-            Preferisci esplorare? Vai all’app senza test
+            Preferisci esplorare? Iscriviti e vai all’app senza test
           </button>
         </div>
       </Colonna>

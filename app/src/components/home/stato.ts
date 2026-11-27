@@ -37,7 +37,7 @@ export interface Cta { azione: AzioneCta; etichetta: string; sotto: string }
  * `puoDiagnostico` / `puoSimulare`: se la schermata non ha la funzione, il pulsante ripiega sull'allenamento.
  */
 export function ctaPrincipale(stima: Stima | null, livello: Livello, puoDiagnostico: boolean, puoSimulare: boolean): Cta {
-  if (!stima && puoDiagnostico) return { azione: 'diagnostico', etichetta: 'Fai il test iniziale', sotto: `${DIAGNOSTIC_QUESTIONS} domande per la stima` };
+  if (!stima && puoDiagnostico) return { azione: 'diagnostico', etichetta: 'Fai il test di livello', sotto: `${DIAGNOSTIC_QUESTIONS} domande per la stima` };
   if (stima && livello === 'alto' && puoSimulare) return { azione: 'simulazione', etichetta: 'Fai una simulazione', sotto: `${EXAM.questions} domande, ${EXAM.minutes} minuti` };
   return { azione: 'allenamento', etichetta: stima ? 'Continua l’allenamento' : 'Inizia ad allenarti', sotto: '10 domande, 30 secondi l’una' };
 }

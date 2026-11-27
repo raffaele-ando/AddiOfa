@@ -6,12 +6,16 @@ import { useExtra } from '../contesto';
 import { cn, formatNumber } from '../../../lib/utils';
 import { costruisciClassifica, tempoBreve, type RigaClassifica } from '../../../lib/sfide/risultati';
 import { useProfiloSfide, useStorico } from './dati';
-import { Avatar, Carta, Fermo } from './comuni';
+import { Avatar, Bottone, Carta, Fermo } from './comuni';
 import ClassificaNoi from './ClassificaNoi';
 import { Regole, SchedaProveSfide } from './scheda';
+import { DOMANDE_SFIDA } from '../../../lib/sfide/seme';
 
 /** Podio (solo con almeno tre persone vere): il primo in ambra con la medaglia, gli altri neutri; chi sei tu ha l'avatar blu.
  *  Ordine come nel concept: secondo, primo, terzo. Con meno di tre persone non si disegna: c'è l'elenco con la riga «Tu». */
+// lo stesso formato delle altre schermate: risposte giuste su 10 (media dei duelli, con un decimale se serve)
+const suDieci = (percentuale: number) => `${formatNumber(Math.round((percentuale / 100) * DOMANDE_SFIDA * 10) / 10)}/${DOMANDE_SFIDA}`;
+
 function Podio({ righe }: { righe: RigaClassifica[] }) {
   const prime = righe.slice(0, 3);
   const visivo = [prime[1], prime[0], prime[2]];
@@ -25,7 +29,7 @@ function Podio({ righe }: { righe: RigaClassifica[] }) {
             {pos === 0 && <Icona nome="stato-primo" size={24} className="mb-0.5 text-medio-numero" />}
             <Avatar nome={r.nome} grande={pos === 0} io={r.io} />
             <p className="mt-1.5 max-w-full truncate text-s1 font-bold text-testo">{r.nome}</p>
-            <p className="text-s1 font-semibold tabular-nums text-testo-tenue">{formatNumber(Math.round(r.percentuale))}%</p>
+            <p className="text-s1 font-semibold tabular-nums text-testo-tenue">{suDieci(r.percentuale)}</p>
             <div className={cn('mt-1.5 flex w-full items-start justify-center rounded-t-xl pt-1.5 text-s3 font-extrabold', alt[pos], pos === 0 ? 'bg-medio-tinta text-medio-testo dark:bg-superficie-2' : 'bg-superficie-2 text-testo-tenue')}>
               {pos + 1}
               <span className="sr-only">° posto</span>
@@ -62,7 +66,9 @@ export default function Classifica() {
   return (
     <SchedaProveSfide sezione="classifica" info={info} titoloInfo="Classifica">
       {righe.length === 0 ? (
-        <Fermo illustrazione={{ nome: 'successo' }} titolo="Nessuna classifica per ora" causa="Nasce dalla prima sfida a due." />
+        <Fermo illustrazione={{ nome: 'successo' }} titolo="Nessuna classifica per ora" causa="Nasce dalla prima sfida a due.">
+          <Bottone icona="duello" onClick={() => vai('sfide')}>Sfida un amico</Bottone>
+        </Fermo>
       ) : (
         <div className="mt-4 flex flex-col gap-3">
           {/* La tua posizione (concept 30.14): un numero vero, calcolato qui. */}
@@ -88,7 +94,7 @@ export default function Classifica() {
                         <span role="img" aria-label={`Tempo medio ${tempoBreve(r.secondiMedi)}`} className="inline-flex items-center gap-1 text-medio-testo"><Icona nome="tempo" size={13} />{tempoBreve(r.secondiMedi)}</span>
                       </span>
                     </span>
-                    <span className="block text-s3 font-extrabold tabular-nums text-testo">{formatNumber(Math.round(r.percentuale))}%</span>
+                    <span className="block text-s3 font-extrabold tabular-nums text-testo" aria-label={`media ${suDieci(r.percentuale)} risposte giuste`}>{suDieci(r.percentuale)}</span>
                   </li>
                 );
               })}

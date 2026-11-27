@@ -27,7 +27,7 @@ export default function MisuratoreEsito({ giuste, totale, soglia, superata }: { 
         <path d={arco} fill="none" strokeWidth="16" strokeLinecap="round" className="stroke-tacca" />
         {frazione > 0 && (
           <path d={arco} fill="none" strokeWidth="16" strokeLinecap="round"
-            className={superata ? 'stroke-alto-testo' : 'stroke-azione'}
+            className={superata ? 'stroke-alto-testo' : giuste >= soglia - 5 ? 'stroke-medio-numero' : 'stroke-basso-numero'} /* stessi colori dell'etichetta e dell'elenco: verde superata, ambra a 5 o meno, corallo sotto */
             strokeDasharray={`${lung * frazione} ${lung}`} />
         )}
         {/* segno della soglia: sporge dall'arco da una parte e dall'altra */}

@@ -4,6 +4,7 @@ import type { AppState } from '../../types';
 import { questions } from '../../data/questions';
 import { theoryTopics } from '../../data/theory';
 import { isLearned } from '../spacedRepetition';
+import { nomeArgomentoBreve } from '../studio/nomiArgomenti';
 import {
   calcolaFattori, calcolaStima, livelloDi, serieStime,
   type Fattore, type Livello, type PuntoStima, type Stima,
@@ -72,7 +73,7 @@ export function analisiArgomenti(stato: AppState): ArgomentoAnalisi[] {
     const r = per.get(t.id) ?? { c: 0, t: 0, imparate: 0, domande: 0 };
     const percento = r.t >= MIN_RISPOSTE_ARGOMENTO ? Math.round((r.c / r.t) * 100) : null;
     return {
-      id: t.id, titolo: t.titolo, nome: t.grammarTopic, livello: t.livello,
+      id: t.id, titolo: t.titolo, nome: nomeArgomentoBreve(t.grammarTopic), livello: t.livello,
       risposte: r.t, corrette: r.c, percento, imparate: r.imparate, totaleDomande: r.domande,
       stato: stat(percento, r.t),
     };

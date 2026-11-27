@@ -36,7 +36,7 @@ export default function CheatSheet({ onBack }: { onBack: () => void }) {
               <RichText text={r.rule} />
             </p>
             {r.trap && (
-              <p className="mt-2.5 flex gap-2 border-l-[3px] border-errore pl-3 text-s1 leading-[20px] text-testo">
+              <p className="mt-2.5 flex gap-2 border-l-[3px] border-errore pl-3 text-s2 leading-[22px] text-testo">
                 <span aria-hidden="true" className="mt-0.5 shrink-0 text-errore"><Icona nome="stato-risposta-sbagliata" size={16} /></span>
                 <span><span className="sr-only">Da evitare: </span><RichText text={r.trap} errore /></span>
               </p>

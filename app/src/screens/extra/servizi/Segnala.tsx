@@ -6,6 +6,7 @@ import { useExtra, useExtraDati } from '../contesto';
 import { Disegno, Pagina, copiaTesto, BottoneAzione } from './componenti';
 import { FoglioInfo, IconaTono, PulsanteInfo, TONI, type Tono } from '../ui';
 import { questions } from '../../../data/questions';
+import { CONTACT_EMAIL } from '../../../config/offer';
 import { playTapSound } from '../../../lib/audio';
 import { cn } from '../../../lib/utils';
 import {
@@ -22,7 +23,7 @@ const STILE_TIPO: Record<TipoSegnalazione, { tono: Tono; icona: NomeIcona; parol
 };
 
 const SEGNAPOSTO: Record<TipoSegnalazione, string> = {
-  domanda: 'Quale domanda ha un problema, e cosa non torna?',
+  domanda: 'Copia l\'inizio della domanda e scrivi cosa non torna.',
   spiegazione: 'Quale spiegazione non è chiara?',
   app: 'Cosa non funziona, e su che telefono?',
   idea: 'Cosa vorresti trovare in AddiOFA?',
@@ -32,6 +33,7 @@ const quando = (ms: number) => new Date(ms).toLocaleDateString('it-IT', { day: '
 const nuovoId = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
 
 function BloccoTesto({ testo, id }: { testo: string; id: string }) {
+  const mailto = CONTACT_EMAIL ? `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(testo.split('\n')[0])}&body=${encodeURIComponent(testo)}` : null;
   const [esito, setEsito] = useState<'' | 'ok' | 'no'>('');
   return (
     <div>
@@ -43,12 +45,18 @@ function BloccoTesto({ testo, id }: { testo: string; id: string }) {
         <Icona nome={esito === 'ok' ? 'stato-ok' : 'copia'} size={20} />{esito === 'ok' ? 'Copiato' : 'Copia il testo'}
       </button>
       {esito === 'no' && <p className="mt-2 inline-flex items-center gap-1.5 text-s1 text-testo-tenue" role="status"><Icona nome="stato-attenzione" size={15} />Selezionalo a mano</p>}
+      {mailto && (
+        <a href={mailto} onClick={() => playTapSound()}
+          className="brand-premibile mt-2 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl border border-tacca bg-superficie px-4 py-3 text-s2 font-bold text-azione-testo">
+          <Icona nome="segnala" size={20} />Manda per email
+        </a>
+      )}
     </div>
   );
 }
 
 export default function Segnala() {
-  const { params, indietro } = useExtra();
+  const { params } = useExtra();
   const [salvate, salva] = useExtraDati<Segnalazione[]>('segnalazioni', []);
   const lista = useMemo(() => leggiSalvate(salvate), [salvate]);
   const domanda = useMemo(() => (params.domanda ? questions.find(q => q.id === params.domanda) : undefined), [params.domanda]);
@@ -57,6 +65,7 @@ export default function Segnala() {
   const [testo, setTesto] = useState('');
   const [fatta, setFatta] = useState<Segnalazione | null>(null);
   const [info, setInfo] = useState(false);
+  const [daEliminare, setDaEliminare] = useState<string | null>(null);
   const campo = useId();
 
   const invia = () => {
@@ -77,15 +86,13 @@ export default function Segnala() {
           <p className="inline-flex items-center gap-2 self-center rounded-full bg-medio-tinta px-3 py-1.5 text-s2 font-bold text-medio-testo dark:bg-superficie-2">
             <Icona nome="stato-attenzione" size={18} />Non inviata
           </p>
-          <p data-testo-ok className="text-center text-s2 leading-[20px] text-testo-tenue">Copia il testo e mandalo tu al contatto da cui hai conosciuto AddiOFA.</p>
+          <p data-testo-ok className="text-center text-s2 leading-[20px] text-testo-tenue">{CONTACT_EMAIL ? <>Mandala per email a <strong className="break-all text-testo">{CONTACT_EMAIL}</strong>: il testo è già pronto.</> : 'Copia il testo e mandalo tu.'}</p>
           <div className="rounded-xl border border-linea bg-superficie p-3.5 shadow-sm dark:shadow-none">
             <BloccoTesto id={`${campo}-fatta`} testo={testoDaCopiare(fatta)} />
           </div>
           <div className="mt-1 flex flex-col gap-2.5">
             <button type="button" onClick={() => { playTapSound(); setFatta(null); }}
               className="brand-premibile flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl border border-tacca bg-superficie px-4 py-3 text-s2 font-bold text-testo"><Icona nome="segnala" size={20} />Un'altra segnalazione</button>
-            <button type="button" onClick={() => { playTapSound(); indietro(); }}
-              className="brand-premibile flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-s2 font-bold text-azione-testo"><Icona nome="indietro" size={20} />Indietro</button>
           </div>
         </div>
       ) : (
@@ -129,7 +136,7 @@ export default function Segnala() {
           </div>
           <div className="mt-3">
             <BottoneAzione disabled={!testoValido(testo)} icona={<Icona nome="segnala" size={20} />} onClick={invia}>Prepara il testo</BottoneAzione>
-            <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">{testoValido(testo) ? 'Non parte da qui: copi il testo e lo mandi tu.' : `Scrivi almeno ${LUNGHEZZA_MIN} caratteri per preparare il testo.`}</p>
+            <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">{testoValido(testo) ? 'Non parte da sola: al passo dopo la mandi tu per email.' : `Scrivi almeno ${LUNGHEZZA_MIN} caratteri per preparare il testo.`}</p>
           </div>
         </>
       )}
@@ -148,8 +155,17 @@ export default function Segnala() {
                 <div className="mt-2 flex gap-2">
                   <button type="button" onClick={() => { playTapSound(); setFatta(s); }}
                     className="brand-premibile inline-flex min-h-[44px] items-center gap-1.5 rounded-xl border border-tacca px-3.5 text-s2 font-bold text-azione-testo"><Icona nome="copia" size={18} />Rivedi e copia</button>
-                  <button type="button" onClick={() => { playTapSound(); salva(prec => rimuovi(leggiSalvate(prec), s.id)); }}
-                    className="brand-premibile inline-flex min-h-[44px] items-center gap-1.5 rounded-xl px-3 text-s2 font-bold text-testo-tenue"><Icona nome="cancella" size={18} />Elimina</button>
+                  {daEliminare === s.id ? (
+                    <>
+                      <button type="button" onClick={() => { playTapSound(); salva(prec => rimuovi(leggiSalvate(prec), s.id)); setDaEliminare(null); }}
+                        className="brand-premibile inline-flex min-h-[44px] items-center gap-1.5 rounded-xl border border-basso-numero px-3 text-s2 font-bold text-basso-testo"><Icona nome="cancella" size={18} />Sì, elimina</button>
+                      <button type="button" onClick={() => { playTapSound(); setDaEliminare(null); }}
+                        className="brand-premibile inline-flex min-h-[44px] items-center rounded-xl px-3 text-s2 font-bold text-testo-tenue">Annulla</button>
+                    </>
+                  ) : (
+                    <button type="button" onClick={() => { playTapSound(); setDaEliminare(s.id); }}
+                      className="brand-premibile inline-flex min-h-[44px] items-center gap-1.5 rounded-xl px-3 text-s2 font-bold text-testo-tenue"><Icona nome="cancella" size={18} />Elimina</button>
+                  )}
                 </div>
               </li>
             ))}
@@ -159,7 +175,7 @@ export default function Segnala() {
 
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Segnala">
         <p>Una domanda sbagliata, una spiegazione confusa o un problema dell'app. La segnalazione viene <strong>salvata solo su questo dispositivo</strong> e ti prepariamo un testo da copiare.</p>
-        <p className="mt-2">L'app non la invia da sola: non ha un indirizzo a cui spedirla. Copia il testo e mandalo tu al contatto da cui hai conosciuto AddiOFA. Nel testo ci sono solo quello che hai scritto e, se c'è, la domanda: niente progressi né dati personali.</p>
+        <p className="mt-2">L'app non la invia da sola: con «Manda per email» si apre la tua app di posta con il testo già scritto{CONTACT_EMAIL ? `, indirizzato a ${CONTACT_EMAIL}` : ''}. Nel testo ci sono solo quello che hai scritto e, se c'è, la domanda: niente progressi né dati personali.</p>
       </FoglioInfo>
     </Pagina>
   );

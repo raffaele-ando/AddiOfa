@@ -69,6 +69,8 @@ export default function Frasi() {
         )}
       </div>
 
+      {/* le frasi vengono dalle domande del banco: una domanda che non dà una frase intera e sicura non ne produce (per questo il conto può essere più basso) */}
+      <p data-testo-ok className="mt-2 text-s1 leading-[16px] text-testo-tenue">{tutte.length === questions.length ? `Una frase per ciascuna delle ${questions.length} domande.` : `${tutte.length} frasi dalle ${questions.length} domande: ${questions.length - tutte.length === 1 ? 'una domanda non dà' : `${questions.length - tutte.length} domande non danno`} una frase intera.`}</p>
       <div role="group" aria-label="Filtri" className="mt-3 flex flex-wrap gap-2">
         {FILTRI.map(f => {
           const on = filtro === f.id;
@@ -144,7 +146,7 @@ export default function Frasi() {
                       )}
                       {f.theoryId && (
                         <button type="button" onClick={() => { playTapSound(); apriTeoria(f.theoryId); }}
-                          className="mt-2 inline-flex items-center gap-1.5 min-h-[36px] text-s2 font-semibold text-azione">
+                          className="mt-2 inline-flex items-center gap-1.5 min-h-11 text-s2 font-semibold text-azione">
                           <Icona nome="teoria" size={18} /> Rivedi la teoria
                         </button>
                       )}

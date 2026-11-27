@@ -8,6 +8,7 @@ import type { ExamQuestionResult, PublicQuestion } from '../../access/provider';
 import { cn } from '../../lib/utils';
 import { playTapSound } from '../../lib/audio';
 import { tipografiche } from '../../screens/extra/studio/comune';
+import { nomeArgomento } from '../../lib/studio/nomiArgomenti';
 
 type Stato = 'giusta' | 'sbagliata' | 'vuota';
 type Filtro = 'tutte' | Stato;
@@ -15,7 +16,7 @@ type Filtro = 'tutte' | Stato;
 const FILTRI: { id: Filtro; nome: NomeIcona; aria: string; attivo: string }[] = [
   { id: 'tutte', nome: 'risposte', aria: 'Tutte', attivo: 'bg-azione-tinta text-azione-testo border-azione' },
   { id: 'sbagliata', nome: 'stato-risposta-sbagliata', aria: 'Sbagliate', attivo: 'bg-errore-tinta text-errore-testo border-errore' },
-  { id: 'vuota', nome: 'stato-risposta-omessa', aria: 'Senza risposta', attivo: 'bg-medio-tinta text-medio-testo border-medio' },
+  { id: 'vuota', nome: 'stato-risposta-omessa', aria: 'Vuote', attivo: 'bg-medio-tinta text-medio-testo border-medio' },
   { id: 'giusta', nome: 'stato-risposta-giusta', aria: 'Giuste', attivo: 'bg-alto-tinta text-alto-testo border-alto' },
 ];
 
@@ -107,7 +108,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
               <div className="flex items-center gap-2.5 mb-2">
                 <span className="w-7 h-7 rounded-full bg-superficie text-s1 font-bold tabular-nums text-testo-tenue flex items-center justify-center shrink-0">{n}</span>
                 <span role="img" aria-label={s.parola} className={cn('grid h-7 w-7 shrink-0 place-items-center rounded-full', s.badge)}><Icona nome={s.nome} size={16} /></span>
-                <span data-testo-ok className="ml-auto min-w-0 truncate text-right text-s1 font-semibold text-testo-tenue">{q.grammarTopic || q.category}</span>
+                <span data-testo-ok className="ml-auto min-w-0 truncate text-right text-s1 font-semibold text-testo-tenue">{nomeArgomento(q.grammarTopic || q.category)}</span>
               </div>
               <p data-testo-ok className="font-bold text-s2 sm:text-s2 text-testo leading-snug mb-2.5">{q.prompt}</p>
 
@@ -154,7 +155,7 @@ export default function CorrezioniComplete({ questions, perQuestion, answers, on
                     <p data-testo-ok className="rounded-xl bg-superficie p-3 text-s2 font-normal leading-[22px] text-testo">{tipografiche(r.explanation)}</p>
                   )}
                   {r?.theoryId && onOpenTheory && (
-                    <button type="button" onClick={() => { playTapSound(); onOpenTheory(r.theoryId!); }} aria-label={`Rivedi la teoria: ${q.grammarTopic || q.category}`}
+                    <button type="button" onClick={() => { playTapSound(); onOpenTheory(r.theoryId!); }} aria-label={`Rivedi la teoria: ${nomeArgomento(q.grammarTopic || q.category)}`}
                       className="mt-1 inline-flex min-h-[44px] items-center gap-1.5 text-s2 font-bold text-azione-testo underline underline-offset-2">
                       <Icona nome="teoria" size={16} /> Rivedi la teoria
                     </button>

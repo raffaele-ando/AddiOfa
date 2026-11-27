@@ -77,10 +77,14 @@ export default function ProjectId() {
       <Conferma titolo="Cancella dal dispositivo" onAnnulla={() => torna()} etichetta="Cancella" occupato={false}
         onConferma={() => { aggiorna(s => aggiornaProgetto(s, () => ({}))); coda.svuota(); torna('Cancellato da questo dispositivo.'); }}>
         <p data-testo-ok>Si cancellano da questo dispositivo nome, email, corso, sede, scelte e collegamento. I progressi di studio non si toccano.</p>
-        <p data-testo-ok className="mt-2">
-          Quello che è già stato inviato ad {ECOSYSTEM.engineName} resta lì. Per cancellarlo: accedi con Google, collega la tua iscrizione ed elimina il {ECOSYSTEM.accountName}
-          {CONTACT_EMAIL ? `; oppure scrivi a ${CONTACT_EMAIL}` : ''}.
-        </p>
+        {/* solo le strade che esistono davvero su questo sito */}
+        {!acc.atlasOnline ? (
+          <p data-testo-ok className="mt-2">Non è stato inviato niente ad {ECOSYSTEM.engineName}: dopo questa cancellazione non resta nulla altrove.</p>
+        ) : (
+          <p data-testo-ok className="mt-2">
+            Quello che è già stato inviato ad {ECOSYSTEM.engineName} resta lì. Per cancellarlo: {acc.loginDisponibile ? <>accedi con Google, collega la tua iscrizione ed elimina il {ECOSYSTEM.accountName}{CONTACT_EMAIL ? `; oppure scrivi a ${CONTACT_EMAIL}` : ''}</> : CONTACT_EMAIL ? `scrivi a ${CONTACT_EMAIL} dall'indirizzo dell'iscrizione` : 'chiedi al titolare indicato nell\'informativa privacy'}.
+          </p>
+        )}
       </Conferma>
     );
   }
@@ -146,7 +150,7 @@ export default function ProjectId() {
         )}
       </Sezione>
 
-      <Sezione id="pid-account" titolo="Accesso con Google">
+      <Sezione id="pid-account" titolo={acc.atlasOnline && acc.loginDisponibile ? 'Accesso con Google' : 'Accesso con Google (non attivo)'}>
         <AccountBlocco acc={acc} collegamento={collegamento} profilo={profilo}
           onCollega={() => setVista('consenso')}
           onPermesso={async (id, acceso) => {

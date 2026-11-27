@@ -14,7 +14,8 @@ export default function ProfiloModifica() {
   const { indietro } = useExtra();
   const { profilo, salva } = useProfilo();
   const [bozza, setBozza] = useState<ProfiloDati>(profilo);
-  const modificato = JSON.stringify(normalizzaProfilo(bozza)) !== JSON.stringify(profilo);
+  const nomeVuoto = !bozza.nome.trim();
+  const modificato = !nomeVuoto && JSON.stringify(normalizzaProfilo(bozza)) !== JSON.stringify(profilo);
   const aggiorna = (p: Partial<ProfiloDati>) => setBozza(b => ({ ...b, ...p }));
   const anteprima = normalizzaProfilo(bozza);
   // un doppio tocco su Salva non deve cadere sulla schermata che compare sotto
@@ -25,7 +26,7 @@ export default function ProfiloModifica() {
     <Pagina titolo="Modifica profilo" indietro={indietro}
       piede={<>
         <BottoneAzione disabled={!modificato} icona={<Icona nome="salva" size={20} />} onClick={conferma}>Salva</BottoneAzione>
-        {!modificato && <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">Cambia il nome o il corso per salvare.</p>}
+        {!modificato && <p data-testo-ok className="mt-2 text-center text-s1 leading-[18px] text-testo-tenue">{nomeVuoto ? 'Scrivi il tuo nome per salvare.' : 'Cambia il nome o il corso per salvare.'}</p>}
       </>}>
       <form onSubmit={e => { e.preventDefault(); conferma(); }} className="mt-3 flex flex-col gap-5 rounded-xl border border-linea bg-superficie p-4 shadow-sm dark:shadow-none">
         <div className="flex items-center gap-3.5">
@@ -36,7 +37,9 @@ export default function ProfiloModifica() {
         <div>
           <label htmlFor="mod-nome" className="block text-s2 leading-[21px] font-bold text-testo">Nome</label>
           <input id="mod-nome" type="text" value={bozza.nome} maxLength={NOME_MAX} onChange={e => aggiorna({ nome: e.target.value })}
-            placeholder="Come ti chiami?" autoComplete="off" className={cn(CAMPO, 'mt-2')} />
+            placeholder="Come ti chiami?" autoComplete="off" aria-invalid={nomeVuoto} aria-describedby={nomeVuoto ? 'mod-nome-errore' : undefined}
+            className={cn(CAMPO, 'mt-2', nomeVuoto && 'border-errore')} />
+          {nomeVuoto && <p id="mod-nome-errore" role="alert" className="mt-1.5 text-s1 leading-[18px] font-semibold text-errore-testo">Scrivi il tuo nome.</p>}
         </div>
 
         <div>

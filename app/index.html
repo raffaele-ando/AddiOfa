@@ -28,6 +28,18 @@
         } catch (e) {}
         document.documentElement.classList.toggle('dark', scuro);
       })();
+      // Indirizzo inesistente (es. /pagina/che/non/esiste): l'host rimanda questa pagina ma i file con percorso relativo (./assets/…)
+      // non si trovano e la pagina resterebbe bianca. Se un file della pagina non si carica, si torna una volta alla Home del sito.
+      (function () {
+        var CHIAVE = 'addiofa_ritorno_home';
+        window.addEventListener('error', function (e) {
+          var t = e.target;
+          if (!t || (t.tagName !== 'SCRIPT' && t.tagName !== 'LINK')) return;
+          try { if (sessionStorage.getItem(CHIAVE)) return; sessionStorage.setItem(CHIAVE, '1'); } catch (x) { return; }
+          location.replace('/' + location.search);
+        }, true);
+        window.addEventListener('load', function () { try { sessionStorage.removeItem(CHIAVE); } catch (x) {} });
+      })();
     </script>
   </head>
   <body>

@@ -89,10 +89,11 @@ export default function Misuratore({ percento, livello, etichetta, sotto, onInfo
         <>
           <div className="absolute inset-x-0 text-center font-extrabold tabular-nums whitespace-nowrap pointer-events-none"
             style={{ top: pct(221.5), fontSize: cq(42), lineHeight: 1, letterSpacing: '-0.02em', color: `var(--color-${livello}-numero)` }}>{testo}</div>
-          <div className="absolute inset-x-0 text-center font-semibold whitespace-nowrap pointer-events-none"
-            style={{ top: pct(268.5), fontSize: cq(15), lineHeight: 1, color: `var(--color-${livello}-testo)` }}>{etichetta}</div>
-          <div className="absolute inset-x-0 text-center font-medium text-testo-tenue whitespace-nowrap pointer-events-none"
-            style={{ top: pct(291.5), fontSize: cq(13.5), lineHeight: 1 }}>{sotto}</div>
+          {/* le parole che spiegano il numero non scendono mai sotto il passo più piccolo della scala (text-s1) anche su telefoni stretti */}
+          <div className="absolute inset-x-0 flex flex-col items-center gap-[0.4em] text-center whitespace-nowrap pointer-events-none" style={{ top: pct(268.5) }}>
+            <div className="font-semibold" style={{ fontSize: `max(var(--text-s1), ${cq(15)})`, lineHeight: 1, color: `var(--color-${livello}-testo)` }}>{etichetta}</div>
+            <div className="font-medium text-testo-tenue" style={{ fontSize: `max(var(--text-s1), ${cq(13.5)})`, lineHeight: 1 }}>{sotto}</div>
+          </div>
         </>
       )}
     </div>

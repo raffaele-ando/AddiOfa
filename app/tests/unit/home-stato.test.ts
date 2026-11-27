@@ -45,7 +45,7 @@ test('pulsante principale: cambia con lo stato e dice cosa fa', () => {
   const basso = calcolaStima(statoVuoto({ onboarding: diag(8) }))!;
   const alto = calcolaStima(statoVuoto({ onboarding: diag(10) }))!;
   assert.deepEqual(ctaPrincipale(null, 'basso', true, true).azione, 'diagnostico');
-  assert.equal(ctaPrincipale(null, 'basso', true, true).etichetta, 'Fai il test iniziale');
+  assert.equal(ctaPrincipale(null, 'basso', true, true).etichetta, 'Fai il test di livello');
   assert.equal(ctaPrincipale(null, 'basso', false, true).azione, 'allenamento', 'senza diagnostico disponibile si allena');
   assert.equal(ctaPrincipale(basso, 'basso', true, true).azione, 'allenamento');
   assert.match(ctaPrincipale(basso, 'basso', true, true).etichetta, /^Continua l.allenamento$/);

@@ -24,9 +24,10 @@ export default function Legal({ section, onBack, onSection }: {
     return () => document.removeEventListener('keydown', tasto);
   }, [onBack]);
 
-  // Cambiando scheda si riparte dall'alto
+  // All'apertura e cambiando scheda si riparte dall'alto (solo il riquadro che scorre: scrollIntoView spostava anche la pagina e la testata)
   useEffect(() => {
-    cima.current?.scrollIntoView({ block: 'start' });
+    const riquadro = cima.current?.parentElement;
+    if (riquadro) riquadro.scrollTop = 0;
   }, [section]);
 
   const vai = (id: string) =>
@@ -35,9 +36,8 @@ export default function Legal({ section, onBack, onSection }: {
   const sid = (i: number) => `${section}-s${i}`;
 
   return (
-    <Screen>
-      <TopBar onBack={onBack} />
-      <div ref={cima} className="-mt-2" />
+    <Screen testata={<TopBar onBack={onBack} centro={<span className="truncate text-s2 font-bold text-testo">{doc.titolo}</span>} />}>
+      <div ref={cima} aria-hidden="true" className="-mt-4" />
       <div className={cn(MISURA, 'flex flex-col gap-4 pb-6')}>
         <div role="tablist" aria-label="Documenti legali" className="grid grid-cols-3 gap-1 rounded-xl bg-superficie-2 p-1">
           {LEGAL_TABS.map((t) => (

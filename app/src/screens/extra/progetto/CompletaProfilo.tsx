@@ -4,7 +4,7 @@ import Onboarding from '../../../components/Onboarding';
 import { useExtra } from '../contesto';
 
 export default function CompletaProfilo() {
-  const { appState, aggiorna, vaiHome, apriLegale } = useExtra();
+  const { appState, aggiorna, vaiHome, apriLegale, apriLanding } = useExtra();
   return (
     <Onboarding
       soloRegistrazione
@@ -12,6 +12,7 @@ export default function CompletaProfilo() {
       onUpdateAppState={nuovo => aggiorna(() => nuovo)}
       onFinish={() => vaiHome()}
       onOpenLegal={apriLegale}
+      onEsci={apriLanding}
     />
   );
 }

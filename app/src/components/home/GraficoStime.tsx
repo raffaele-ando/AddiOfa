@@ -6,6 +6,7 @@ import { PIENO_FASCIA } from './comune';
 import { scalaGrafico } from './stato';
 import { formatProbabilita } from '../../lib/diagnostic';
 import { playTapSound } from '../../lib/audio';
+import { cn } from '../../lib/utils';
 
 // Disegno su 320 x 96: il grafico sta in una carta; la scala è ADATTIVA (da minimo-10 a massimo+10, almeno 30 punti, tra 0 e 100),
 // così due misure vicine non fanno una linea piatta né un salto finto. Le linee e i punti sono solo misure: nessuna proiezione.
@@ -40,7 +41,7 @@ export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; o
           <span aria-hidden="true" className="w-8 h-8 shrink-0 grid place-items-center rounded-xl bg-superficie-2 text-testo-tenue"><Icona nome="andamento" size={18} /></span>
           <span className="min-w-0">
             <span className="block text-s2 leading-[20px] font-bold text-testo">Ancora nessun dato</span>
-            <span data-testo-ok className="block text-s1 leading-[16px] text-testo-tenue">Dopo il test iniziale vedrai la curva.</span>
+            <span data-testo-ok className="block text-s1 leading-[16px] text-testo-tenue">Dopo il test di livello vedrai la curva.</span>
           </span>
         </div>
       </section>
@@ -77,8 +78,12 @@ export default function GraficoStime({ punti, onInfo }: { punti: PuntoStima[]; o
           <div className="relative w-full h-[40px] mt-2" aria-hidden="true">
             {punti.map((p, i) => {
               const ultimo = i === n - 1;
+              // la prima e l'ultima etichetta si ancorano al bordo della scheda (centrate sul punto uscirebbero dal riquadro)
+              const bordo = n > 1 && i === 0 ? 'sinistra' : n > 1 && ultimo ? 'destra' : null;
               return (
-                <div key={i} className="absolute top-0 flex flex-col items-center text-center whitespace-nowrap -translate-x-1/2" style={{ left: `${(xs[i] / W) * 100}%` }}>
+                <div key={i} className={cn('absolute top-0 flex flex-col whitespace-nowrap',
+                  bordo === 'sinistra' ? 'items-start text-left' : bordo === 'destra' ? 'items-end text-right' : 'items-center text-center -translate-x-1/2')}
+                  style={bordo === 'sinistra' ? { left: 0 } : bordo === 'destra' ? { right: 0 } : { left: `${(xs[i] / W) * 100}%` }}>
                   <span className="text-s1 leading-[18px] font-bold tabular-nums" style={{ color: `var(--color-${fasce[i]}-testo)` }}>{formatProbabilita(p.p).replace(/\s+%/, '%')}</span>
                   <span className="text-s1 leading-[16px] text-testo-tenue">{ultimo && n > 1 ? 'Oggi' : nomeBreve(p.nome)}</span>
                 </div>

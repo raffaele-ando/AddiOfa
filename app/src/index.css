@@ -141,6 +141,11 @@
   html, body, #root {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
+  /* un solo anello di fuoco da tastiera in tutta l'app (lo stesso della landing): 2 px, colore azione, staccato di 2 px */
+  :where(button, a, summary, select, [role='button'], [role='radio'], [role='tab'], [role='switch'], [role='checkbox'], [tabindex]):focus-visible {
+    outline: 2px solid var(--color-azione);
+    outline-offset: 2px;
+  }
 }
 
 /* Landing pubblica: scena dell'hero e carte di vetro (prefisso --landing-*). Il tema scuro rende la scena notturna, con il bagliore caldo della porta. */

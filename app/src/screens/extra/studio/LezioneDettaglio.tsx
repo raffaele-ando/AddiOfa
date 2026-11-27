@@ -79,8 +79,9 @@ export default function LezioneDettaglio() {
           fine={<span aria-hidden="true" className="shrink-0 grid h-9 w-9 place-items-center rounded-full bg-azione text-azione-su"><Icona nome="studia" size={18} /></span>} />
 
         {/* la verifica è una misura, non un pulsante: riquadro senza fondo, con la parola dell'unità */}
-        <li className="w-full flex items-center gap-3 rounded-xl border border-dashed border-tacca p-3 text-left" aria-label={`Verifica: ${l.imparate} domande imparate su ${totaleDomande}${imparata ? ', lezione imparata' : ''}`}>
-          <IconaTono tono="alto" lato={44}><Icona nome={imparata ? 'stato-imparata' : 'verifica'} size={24} /></IconaTono>
+        <li className="w-full flex items-center gap-3 rounded-xl bg-superficie-2 px-3 py-3 text-left" aria-label={`Verifica: ${l.imparate} domande imparate su ${totaleDomande}${imparata ? ', lezione imparata' : ''}`}>
+          {/* una misura, non un'azione: niente bordo né riquadro dell'icona come i passi toccabili */}
+          <span aria-hidden="true" className={cn('grid w-11 shrink-0 place-items-center', imparata ? 'text-alto-numero' : 'text-testo-tenue')}><Icona nome={imparata ? 'stato-imparata' : 'verifica'} size={24} /></span>
           <span className="flex-1 min-w-0">
             <span className="block text-s2 leading-[20px] font-bold text-testo">Verifica <span className="font-semibold text-testo-tenue">· domande imparate</span></span>
             <span className="mt-1.5 block"><BarraTono valore={percento} tono={imparata ? 'alto' : 'azione'} className="h-2" /></span>

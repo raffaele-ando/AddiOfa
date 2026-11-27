@@ -22,7 +22,7 @@ function Saldo({ r }: { r: Rivale }) {
   return (
     <span className="mt-0.5 flex items-center gap-3 text-s2 leading-[19px] font-extrabold tabular-nums" aria-label="Saldo">
       {voci.filter(([, n]) => n > 0).map(([nome, n, colore, aria, parola]) => (
-        <span key={nome} role="img" aria-label={aria} className={cn('inline-flex items-center gap-1', colore)}><Icona nome={nome} size={15} />{n}</span>
+        <span key={nome} role="img" aria-label={aria} className={cn('inline-flex items-center gap-1', colore)}><Icona nome={nome} size={15} />{n} <span className="text-s1 font-semibold">{parola}</span></span>
       ))}
     </span>
   );
@@ -54,7 +54,7 @@ function RigaRivale({ r, aperto, onToggle, onRimuovi, onApri }: { r: Rivale; ape
               </li>
             ))}
           </ul>
-          <button type="button" aria-label={`Togli ${r.nome}`} onClick={() => { playTapSound(); onRimuovi(); }} className="brand-premibile mt-1 inline-flex items-center gap-1.5 text-s1 font-bold text-errore-testo">
+          <button type="button" aria-label={`Togli ${r.nome}`} onClick={() => { playTapSound(); onRimuovi(); }} className="brand-premibile mt-1 inline-flex min-h-11 min-w-11 items-center gap-1.5 text-s1 font-bold text-errore-testo">
             <Icona nome="cancella" size={15} /> Togli
           </button>
         </div>

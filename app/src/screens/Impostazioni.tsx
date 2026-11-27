@@ -29,8 +29,9 @@ interface Props {
   onReset?: () => void;
 }
 
-// Chiavi del localStorage che contengono i dati dell'utente (progressi con profilo, obiettivi e badge dentro `extra`; ultimo diagnostico).
-const CHIAVI_DATI = ['ofa_polimi_app_state', 'addiofa_diagnostico_ultimo'];
+// Chiavi del localStorage che contengono i dati dell'utente (progressi con profilo, obiettivi e badge dentro `extra`; ultimo diagnostico;
+// iscrizione in attesa d'invio ad ATLAS; email a cui si è chiesto il link di verifica).
+const CHIAVI_DATI = ['ofa_polimi_app_state', 'addiofa_diagnostico_ultimo', 'addiofa_progetto_coda', 'addiofa_verifica_email'];
 
 function Interruttore({ acceso, onCambia, etichetta }: { acceso: boolean; onCambia: (v: boolean) => void; etichetta: string }) {
   return (
@@ -79,6 +80,7 @@ export default function Impostazioni({ onBack, onImport, onExport, onReset }: Pr
     setChiediCancella(false);
     if (onReset) { onReset(); return; }
     try { for (const k of CHIAVI_DATI) localStorage.removeItem(k); } catch { /* memoria non disponibile: niente da cancellare */ }
+    try { sessionStorage.removeItem('addiofa_percorso_in_corso'); } catch { /* niente */ }
     window.location.reload();
   };
 
@@ -100,7 +102,7 @@ export default function Impostazioni({ onBack, onImport, onExport, onReset }: Pr
           {onExport
             ? <Riga icona="esporta" titolo="Esporta i progressi" sottotitolo="Salva una copia" onClick={onExport} />
             : <Riga icona="copia" titolo="Copia i progressi" sottotitolo="Per tenerne una copia" onClick={() => void copiaProgressi()} />}
-          <Riga icona="cancella" tono="basso" titolo="Cancella i dati di questo dispositivo" sottotitolo="Progressi, profilo, obiettivi, badge" onClick={() => setChiediCancella(true)} />
+          <Riga icona="cancella" tono="basso" titolo="Cancella i dati di questo dispositivo" sottotitolo="Progressi, profilo, iscrizione, obiettivi, badge" onClick={() => setChiediCancella(true)} />
         </GruppoRighe>
         {testoCopia !== null && (
           <div>
@@ -123,10 +125,10 @@ export default function Impostazioni({ onBack, onImport, onExport, onReset }: Pr
       </Sezione>
       <FoglioInfo aperto={info} onChiudi={() => setInfo(false)} titolo="Informazioni">
         <p>{AVVERTENZA_INDIPENDENZA}</p>
-        <p className="mt-2">Progressi, profilo e obiettivi restano su questo dispositivo: esportali per tenerne una copia o spostarli.</p>
+        <p className="mt-2">Progressi e obiettivi restano su questo dispositivo: esportali per tenerne una copia o spostarli. L'iscrizione (nome, email, corso) va ad ATLAS quando è collegato; finché non parte resta salvata qui.</p>
       </FoglioInfo>
       <ConfirmDialog open={chiediCancella} danger title="Cancellare i dati?"
-        message="Vengono cancellati progressi, simulazioni, profilo, obiettivi e badge salvati qui. Non si può tornare indietro: se vuoi una copia, esportali prima."
+        message="Vengono cancellati progressi, simulazioni, profilo, iscrizione non ancora inviata, obiettivi e badge salvati qui. Non si può tornare indietro: se vuoi una copia, esportali prima."
         confirmLabel="Cancella" onConfirm={cancellaDati} onCancel={() => setChiediCancella(false)} />
     </Pagina>
   );

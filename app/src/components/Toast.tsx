@@ -47,7 +47,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={valore}>
       {children}
-      <div className="fixed inset-x-0 bottom-0 z-40 flex flex-col items-center gap-2 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pointer-events-none" aria-live="polite" role="status">
+      <div className="fixed inset-x-0 bottom-0 z-40 flex flex-col items-center gap-2 px-4 pb-[calc(5.5rem+env(safe-area-inset-bottom))] pointer-events-none" aria-live="polite" role="status">
         {lista.map(m => {
           return (
             <div key={m.id} className="pointer-events-auto w-full max-w-sm flex items-start gap-2.5 rounded-2xl bg-superficie-2 border border-linea px-3.5 py-3 shadow-lg dark:shadow-none">

@@ -16,14 +16,15 @@ import { useInvio } from '../progetto/hooks';
 import { Avatar, IconaBadge, Pagina, badgeInVista, useBadge, useBanco, useNumeri, useOggi, useProfilo } from './componenti';
 
 /** Una riga della card dei progressi: nome, valore a destra, barra. */
-function RigaAvanzamento({ nome, valore, quota, tono }: { nome: string; valore: string; quota: number; tono: 'alto' | 'viola' }) {
+function RigaAvanzamento({ nome, valore, quota, tono, nota }: { nome: string; valore: string; quota: number; tono: 'alto' | 'viola'; nota?: string }) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
         <span className="text-s2 leading-[21px] font-semibold text-testo">{nome}</span>
-        <span className="text-s2 leading-[20px] font-semibold tabular-nums text-testo-tenue">{valore}</span>
+        <span className="text-right text-s2 leading-[20px] font-semibold tabular-nums text-testo-tenue">{valore}</span>
       </div>
       <BarraTono className="mt-1.5 h-2" tono={tono} valore={quota * 100} />
+      {nota && <p data-testo-ok className="mt-1 text-s1 leading-[16px] text-testo-tenue">{nota}</p>}
     </div>
   );
 }
@@ -101,11 +102,11 @@ export default function Profilo() {
           {[
             { v: n.probabilitaTesto ?? '–', e: 'probabilità' },
             { v: String(n.imparate), e: 'domande imparate' },
-            { v: n.migliorSimulazione !== null ? `${n.migliorSimulazione}/${DOMANDE_TEST}` : '–', e: 'miglior simulazione' },
+            { v: n.migliorSimulazione !== null ? `${n.migliorSimulazione}/${DOMANDE_TEST}` : '–', e: 'miglior prova' },
             { v: `${ottenuti}/${badge.length}`, e: 'badge' },
           ].map(x => (
             <div key={x.e} className="min-w-0 flex-1 px-1 text-center">
-              <dd className="text-s4 leading-[30px] font-extrabold tabular-nums text-testo">{x.v}</dd>
+              <dd className="text-s3 leading-[30px] font-extrabold tabular-nums text-testo min-[380px]:text-s4">{x.v}</dd>
               <dt className="mt-0.5 text-s1 leading-[16px] font-medium text-testo-tenue">{x.e}</dt>
             </div>
           ))}
@@ -117,7 +118,8 @@ export default function Profilo() {
         <Carta className="flex flex-col gap-4">
           <RigaAvanzamento nome="Domande imparate" valore={`${n.imparate} di ${n.totaleDomande}`} quota={n.totaleDomande ? n.imparate / n.totaleDomande : 0} tono="alto" />
           {prossimo ? (
-            <RigaAvanzamento nome={livello.livello ? `Livello ${livello.livello}: verso ${prossimo.livello}` : `Livello: verso ${prossimo.livello}`} valore={`${Math.min(prossimo.imparate, necessarie)} di ${necessarie} domande`}
+            <RigaAvanzamento nome={livello.livello ? `Livello ${livello.livello}: verso ${prossimo.livello}` : `Livello: verso ${prossimo.livello}`} valore={`${Math.min(prossimo.imparate, necessarie)} di ${necessarie}`}
+              nota={`Per il livello serve il ${Math.round(SOGLIA_LIVELLO * 100)} % delle ${prossimo.totale} domande ${prossimo.livello}.`}
               quota={necessarie ? Math.min(1, prossimo.imparate / necessarie) : 0} tono="viola" />
           ) : livello.livello ? (
             <p className="flex items-center gap-2 text-s2 font-semibold text-testo"><Icona nome="livello" size={18} className="text-viola" />Livello {livello.livello} raggiunto</p>
@@ -186,7 +188,7 @@ export default function Profilo() {
       {SCHERMATE.esplora && (
         <Sezione id="pr-community" titolo="Community">
           <GruppoRighe etichetta="Community">
-            <Riga icona="community" titolo="Community" sottotitolo="Project ID, ATLAS, NOI, Agorà" onClick={() => vai('esplora')} />
+            <Riga icona="community" titolo="Community" sottotitolo="Account, classifica tra studenti e novità" onClick={() => vai('esplora')} />
           </GruppoRighe>
         </Sezione>
       )}

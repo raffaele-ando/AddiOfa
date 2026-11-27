@@ -3,7 +3,7 @@ import { AppState, OnboardingResult, Question } from '../types';
 import { DISCLAIMER, OFA_CONSEQUENCES, OFA_RULES_NOTE, EXAM, REAL_TEST_PASS_MARK, REAL_TEST_QUESTIONS, RETAKE_COST_EUR } from '../config/offer';
 import { pickDiagnosticQuestions, estimatePassProbability, intervalloStima, DIAGNOSTIC_LENGTH } from '../lib/diagnostic';
 import { updateStats } from '../lib/spacedRepetition';
-import { Screen, TopBar, PrimaryButton, SecondaryButton, ChoiceCard, Segmenti, TastoTesto, Titolo, Eroe, EroeIcona, RigaStoria } from './ui';
+import { Screen, TopBar, PrimaryButton, SecondaryButton, Segmenti, TastoTesto, Titolo, Eroe, EroeIcona, RigaStoria } from './ui';
 import { Misuratore } from '../brand/componenti';
 import { Icona, type NomeIcona } from '../brand/icone/Icona';
 import Marchio from '../brand/Marchio';
@@ -23,6 +23,9 @@ import type { LegalSection } from '../types';
 import { questions as BANCO } from '../data/questions';
 import Legal from '../screens/Legal';
 import { CONSENSI_VUOTI } from '../lib/progetto/profilo';
+import { nomeArgomento } from '../lib/studio/nomiArgomenti';
+import { EVENTO_INDIETRO } from '../lib/utils';
+import { OpzioneRisposta } from '../screens/extra/studio/comune';
 
 interface OnboardingProps {
   appState: AppState;
@@ -102,6 +105,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
   const regRef = useRef(reg);
   const setReg = (n: FormRegistrazione | ((r: FormRegistrazione) => FormRegistrazione)) => { const v = typeof n === 'function' ? n(regRef.current) : n; regRef.current = v; setRegStato(v); };
   const [provato, setProvato] = useState(false);
+  const [tuttiArgomenti, setTuttiArgomenti] = useState(false);
   const [hasCertification, setHasCertification] = useState<boolean | null>(() => (r0 ? r0.hasCertification : giaDetto && precedente ? precedente.hasCertification : null));
   const [hasOfa, setHasOfa] = useState<OnboardingResult['hasOfa'] | null>(() => (r0 ? r0.hasOfa : giaDetto && precedente ? precedente.hasOfa : null));
   const [quiz, setQuiz] = useState<Question[]>(() => (r0 ? r0.quiz.map(id => BANCO.find(q => q.id === id)).filter((q): q is Question => !!q) : []));
@@ -138,6 +142,19 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
   const indietro = () => setPos(p => Math.max(0, p - 1));
   const barra = { step: pos + 1, totalSteps: passi.length };
   const daIndietro = pos > 0 ? indietro : undefined;
+  // l'indietro del browser fa come la freccia dell'app: passo precedente (o chiude la pagina legale aperta; dal primo passo, esce se si può)
+  const indietroBrowser = useRef<() => void>(() => {});
+  indietroBrowser.current = () => {
+    if (legale) { setLegale(null); return; }
+    if (k === 'result') return;
+    if (pos > 0 && !(soloRegistrazione && pos === 0)) indietro();
+    else onEsci?.();
+  };
+  useEffect(() => {
+    const f = () => indietroBrowser.current();
+    window.addEventListener(EVENTO_INDIETRO, f);
+    return () => window.removeEventListener(EVENTO_INDIETRO, f);
+  }, []);
 
   // il tocco su una scelta evidenzia la voce per un attimo e poi porta avanti da solo (col tasto indietro si corregge)
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -291,14 +308,19 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
           {argomenti.length > 0 ? (
             <>
               <ul className="flex flex-col gap-2">
-                {argomenti.slice(0, 3).map(x => (
+                {argomenti.slice(0, tuttiArgomenti ? argomenti.length : 3).map(x => (
                   <li key={x.nome} className="flex min-h-12 items-center justify-between gap-3 rounded-2xl border border-tacca bg-superficie-2 px-4 py-2">
-                    <span data-testo-ok className="min-w-0 text-s2 leading-[22px] font-semibold text-testo">{x.nome}</span>
+                    <span data-testo-ok className="min-w-0 text-s2 leading-[22px] font-semibold text-testo">{nomeArgomento(x.nome)}</span>
                     <span className="shrink-0 text-s2 leading-[20px] tabular-nums text-testo-tenue">{testoErrori(x.errori)}</span>
                   </li>
                 ))}
               </ul>
-              {argomenti.length > 3 && <p data-testo-ok className="text-s2 leading-[20px] text-testo-tenue">{argomenti.length - 3 === 1 ? 'e un altro argomento' : `e altri ${argomenti.length - 3} argomenti`}</p>}
+              {argomenti.length > 3 && !tuttiArgomenti && (
+                <button type="button" onClick={() => setTuttiArgomenti(true)}
+                  className="inline-flex min-h-11 items-center self-start text-s2 font-semibold text-azione-testo underline underline-offset-2">
+                  {argomenti.length - 3 === 1 ? 'Mostra un altro argomento' : `Mostra gli altri ${argomenti.length - 3} argomenti`}
+                </button>
+              )}
             </>
           ) : (
             <p className="inline-flex items-center gap-2 text-s2 leading-[22px] font-semibold text-alto-testo"><Icona nome="stato-ok" size={22} />Nessun errore</p>
@@ -329,11 +351,10 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
           {/* la domanda e le opzioni sono contenuto del test */}
           <h2 ref={titoloDomanda} tabIndex={-1} data-testo-ok className="text-s4 leading-[32px] font-semibold text-testo outline-none"><ConVuoto testo={q.prompt} /></h2>
         </div>
-        <div data-testo-ok className="flex flex-1 flex-col gap-3">
+        {/* la stessa opzione dell'allenamento e della simulazione: cerchio con la lettera, riga da 56 px */}
+        <div data-testo-ok className="flex flex-col gap-3">
           {q.options.map((opt, i) => (
-            <div key={i} className="flex min-h-16 max-h-[104px] flex-1 [&>button]:h-full">
-              <ChoiceCard selected={answers[q.id] === i} onClick={() => rispondi(q, i, ultima)} title={opt} />
-            </div>
+            <OpzioneRisposta key={i} lettera={String.fromCharCode(65 + i)} testo={opt} stato={answers[q.id] === i ? 'scelta' : 'neutra'} onClick={() => rispondi(q, i, ultima)} />
           ))}
         </div>
       </Screen>
@@ -403,7 +424,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     case 'avvio':
       return (
         <Screen
-          testata={<TopBar {...barra} />}
+          testata={<TopBar {...barra} onBack={pos === 0 ? onEsci : daIndietro} />}
           piede={<PrimaryButton onClick={avanti} disabled={quiz.length === 0}>Inizia le {DIAGNOSTIC_LENGTH} domande</PrimaryButton>}
         >
           <Eroe nome="quiz-test" min={112} />
@@ -459,15 +480,15 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     case 'email':
       return (
         <Screen
-          testata={<TopBar {...barra} onBack={soloRegistrazione ? undefined : daIndietro} />}
+          testata={<TopBar {...barra} onBack={soloRegistrazione ? (pos === 0 ? onEsci : daIndietro) : daIndietro} />}
           piede={<PrimaryButton onClick={() => {
-            if (!emailOk) { setProvato(true); return; }
+            if (!emailOk) { setProvato(true); document.querySelector<HTMLInputElement>('input[type=email]')?.focus(); return; }
             salva(false);
             avanti();
           }}>Continua</PrimaryButton>}
         >
           <Eroe nome="verifica-utente" max={240} />
-          <Titolo etichetta="Su di te" titolo="La tua email PoliMi" sotto="Ci serve per creare la tua iscrizione." />
+          <Titolo etichetta="Su di te" titolo="La tua email PoliMi" sotto={soloRegistrazione && pos === 0 ? `Manca solo la tua iscrizione: ${passi.length} passi brevi, poi torni all'app.` : 'Ci serve per creare la tua iscrizione.'} />
           <CampoEmail form={reg} onChange={setReg} provato={provato}
             verificata={leggiProgetto(appState).profilo?.emailVerificata && leggiProgetto(appState).profilo?.email === reg.email.trim().toLowerCase()}
             onInviaVerifica={async () => {
@@ -481,7 +502,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
     case 'prov':
       return (
         <Screen
-          testata={<TopBar {...barra} onBack={soloRegistrazione && pos === 0 ? undefined : daIndietro}
+          testata={<TopBar {...barra} onBack={soloRegistrazione && pos === 0 ? onEsci : daIndietro}
             destra={<TastoTesto icona="salta" etichetta="Salta questa domanda" onClick={() => { setReg({ ...reg, provenienza: '' }); salva(false); avanti(); }}>Salta</TastoTesto>} />}
           piede={<Micro>Tocca una voce per continuare.</Micro>}
         >
@@ -504,7 +525,7 @@ export default function Onboarding({ appState, onUpdateAppState, onFinish, soloR
       const eroe = { scuola: 'cappello-laurea-orologio', sede: 'mondo-internazionale', livello: null }[k];
       return (
         <Screen
-          testata={<TopBar {...barra} onBack={soloRegistrazione && pos === 0 ? undefined : daIndietro} />}
+          testata={<TopBar {...barra} onBack={soloRegistrazione && pos === 0 ? onEsci : daIndietro} />}
           piede={<Micro>Tocca una voce per continuare.</Micro>}
         >
           {eroe ? <Eroe nome={eroe} max={200} /> : <EroeIcona icona="percorso-livello" max={112} />}

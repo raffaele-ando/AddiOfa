@@ -3,12 +3,14 @@
 import { Icona } from '../../../brand/icone/Icona';
 import { useExtra } from '../contesto';
 import { Pagina, Sezione, Testata } from './comuni';
+import { useInvio } from './hooks';
 import { GruppoRighe, Riga } from '../ui';
 import { AGORA_URL, ECOSYSTEM } from '../../../config/ecosystem';
 import { playTapSound } from '../../../lib/audio';
 
 export default function Agora() {
   const { appState, vai } = useExtra();
+  const invio = useInvio();
   return (
     <Pagina titolo={ECOSYSTEM.agoraName}>
       <Testata nome="messaggi-supporto" />
@@ -24,7 +26,7 @@ export default function Agora() {
 
       <Sezione id="agora-messaggi" titolo="Novità">
         <GruppoRighe etichetta="Novità">
-          <Riga icona="email" titolo="L'email per le novità" sottotitolo="Le novità di Project e Agorà arrivano all'email della tua iscrizione: la vedi in Project ID" onClick={() => vai('projectid')} />
+          <Riga icona="email" titolo="L'email per le novità" sottotitolo={invio?.stato === 'inviata' ? "Le novità di Project e Agorà arrivano all'email della tua iscrizione: la vedi in Project ID" : "Le novità di Project e Agorà arriveranno all'email della tua iscrizione quando sarà inviata: lo stato è in Project ID"} onClick={() => vai('projectid')} />
         </GruppoRighe>
       </Sezione>
     </Pagina>

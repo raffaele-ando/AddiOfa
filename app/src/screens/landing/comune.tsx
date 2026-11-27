@@ -1,10 +1,11 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../../lib/utils';
 import { playTapSound } from '../../lib/audio';
 import { Icona, type NomeIcona } from '../../brand/icone/Icona';
 import { DIAGNOSTIC_QUESTIONS } from '../../config/offer';
 import { PulsanteInfo, IconaTono, type Tono } from '../extra/ui';
+import { useTrappolaFuoco } from '../../hooks/useTrappolaFuoco';
 
 // Pezzi condivisi dalle sezioni della landing: contenitore, titoli, pulsanti, carte di vetro, data, fatti a icone, foglio «i».
 
@@ -131,18 +132,22 @@ export function Fatti({ className }: { className?: string }) {
  */
 export function InfoFoglio({ titolo, etichetta = 'Informazioni', children, className, bottone }: { titolo: string; etichetta?: string; children: ReactNode; className?: string; bottone?: (apri: () => void) => ReactNode }) {
   const [aperto, setAperto] = useState(false);
+  // fuoco dentro il foglio all'apertura, Tab che resta dentro, Esc che chiude; alla chiusura il fuoco torna dov'era
+  const foglio = useRef<HTMLDivElement>(null);
+  const chiudi = useCallback(() => setAperto(false), []);
+  useTrappolaFuoco(foglio, aperto, chiudi);
   useEffect(() => {
     if (!aperto) return;
-    const k = (e: KeyboardEvent) => { if (e.key === 'Escape') setAperto(false); };
-    window.addEventListener('keydown', k);
-    return () => window.removeEventListener('keydown', k);
+    const prima = document.activeElement as HTMLElement | null;
+    foglio.current?.querySelector<HTMLElement>('button')?.focus({ preventScroll: true });
+    return () => { prima?.focus?.({ preventScroll: true }); };
   }, [aperto]);
   return (
     <>
       {bottone ? bottone(() => setAperto(true)) : <PulsanteInfo onClick={() => setAperto(true)} etichetta={etichetta} className={className} />}
       {aperto && createPortal(
-        <div className="fixed inset-0 z-[60] flex items-end justify-center bg-testo/40" onClick={e => { if (e.target === e.currentTarget) setAperto(false); }}>
-          <div role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full max-w-xl overflow-y-auto rounded-t-2xl bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
+        <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/60" onClick={e => { if (e.target === e.currentTarget) setAperto(false); }}>
+          <div ref={foglio} role="dialog" aria-modal="true" aria-label={titolo} className="max-h-[80%] w-full max-w-xl overflow-y-auto rounded-t-2xl bg-superficie p-6 pb-8 text-testo shadow-xl dark:shadow-none">
             <div className="mb-3 flex items-center justify-between gap-3">
               <h2 className="text-s3 leading-[24px] font-extrabold">{titolo}</h2>
               <button type="button" onClick={() => setAperto(false)} aria-label="Chiudi" className="brand-premibile grid h-11 w-11 place-items-center rounded-full bg-superficie-2 text-testo"><Icona nome="chiudi" size={20} /></button>

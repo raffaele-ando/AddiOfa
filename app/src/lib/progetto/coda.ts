@@ -99,7 +99,7 @@ export type ChiaveStato = 'inviata' | 'in-attesa' | 'invio' | 'rifiutata' | 'sol
 export interface StatoVisibile { chiave: ChiaveStato; titolo: string; dettaglio: string }
 
 const DETTAGLIO_MOTIVO: Record<MotivoAttesa, string> = {
-  'non-configurato': 'ATLAS non è collegato in questa versione: i dati restano su questo dispositivo.',
+  'non-configurato': 'ATLAS, il servizio che riceve le iscrizioni, non è collegato a questo sito: i dati restano su questo dispositivo.',
   offline: 'Sei offline: riprovo appena torna la connessione.',
   rete: 'ATLAS non risponde: riprovo da solo.',
   server: 'ATLAS ha dato un errore: riprovo da solo.',

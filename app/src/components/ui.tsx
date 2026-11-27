@@ -167,11 +167,12 @@ export function Segmenti<T extends string | number>({ voci, valore, onChange, et
   compatto?: boolean;
 }) {
   return (
-    <div role="radiogroup" aria-label={etichetta} className={cn('grid gap-2', className)} style={{ gridTemplateColumns: `repeat(${voci.length}, minmax(0, 1fr))` }}>
+    // pulsanti con aria-pressed (non radio): ognuno è una fermata di Tab e la scelta porta avanti da sola, quindi niente frecce che sceglierebbero
+    <div role="group" aria-label={etichetta} className={cn('grid gap-2', className)} style={{ gridTemplateColumns: `repeat(${voci.length}, minmax(0, 1fr))` }}>
       {voci.map(v => {
         const sel = valore === v.id;
         return (
-          <button key={String(v.id)} type="button" role="radio" aria-checked={sel} onClick={() => { playTapSound(); onChange(v.id); }}
+          <button key={String(v.id)} type="button" aria-pressed={sel} onClick={() => { playTapSound(); onChange(v.id); }}
             className={cn(
               'rounded-2xl border px-2 text-s2 leading-[22px] font-semibold transition-colors duration-100',
               compatto ? 'min-h-12' : 'min-h-14',
@@ -263,7 +264,7 @@ export function RichText({ text, errore }: { text: string; errore?: boolean }) {
     <>
       {parts.map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) return <strong key={i}>{part.slice(2, -2)}</strong>;
-        if (part.startsWith('*') && part.endsWith('*')) return <em key={i} className={errore ? 'font-bold not-italic text-errore-testo line-through decoration-2' : 'font-bold not-italic text-azione-testo'}>{part.slice(1, -1)}</em>;
+        if (part.startsWith('*') && part.endsWith('*')) return <em key={i} className={errore ? 'font-bold not-italic text-errore-testo line-through decoration-1 decoration-errore/50' : 'font-bold not-italic text-azione-testo'}>{part.slice(1, -1)}</em>;
         return <span key={i}>{part}</span>;
       })}
     </>

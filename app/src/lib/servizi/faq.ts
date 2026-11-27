@@ -60,7 +60,7 @@ export function vociFaq(): VoceFaq[] {
     {
       id: 'test-certificazione', categoria: 'test', domanda: 'Ho già una certificazione: devo fare il test?',
       risposta: [
-        'Il riconoscimento di una certificazione e l\'esito di un test già sostenuto si gestiscono con il Politecnico, non con l\'app: AddiOFA non li verifica e non ti chiede nessuna email istituzionale.',
+        'Il riconoscimento di una certificazione e l\'esito di un test già sostenuto si gestiscono con il Politecnico, non con l\'app: AddiOFA non li verifica e non ne tiene conto.',
         OFA_RULES_NOTE,
       ],
       chiavi: 'gia sostenuto certificazione ielts cambridge esonero email polimi',
@@ -72,7 +72,7 @@ export function vociFaq(): VoceFaq[] {
         'Nella Home, con il pulsante «i» sotto la probabilità, vedi come è calcolata e tra quali valori può stare.',
       ],
       chiavi: 'percentuale stima probabilita superare intervallo',
-      vai: { id: 'progressi', testo: 'Apri Progressi', params: { sezione: 'argomenti' } },
+      vai: { id: 'progressi', testo: 'Apri Progressi', params: { sezione: 'panoramica' } },
     },
 
     // ---- Lo studio
@@ -116,7 +116,7 @@ export function vociFaq(): VoceFaq[] {
     },
     {
       id: 'dati-cookie', categoria: 'dati', domanda: 'Usate cookie o statistiche di tracciamento?',
-      risposta: ['No: nessun cookie di tracciamento e nessuna statistica sul tuo uso. Il browser conserva solo i tuoi progressi e le tue preferenze (come il tema).'],
+      risposta: ['No: nessun cookie di tracciamento e nessuna statistica sul tuo uso. Il browser conserva solo i tuoi progressi, le tue preferenze (come il tema) e, finché non è stata inviata, la tua iscrizione (nome, email e corso).'],
       chiavi: 'analytics tracciamento',
       legale: { sezione: 'cookie', testo: 'Leggi la pagina sui cookie' },
     },
